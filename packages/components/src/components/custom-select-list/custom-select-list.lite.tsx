@@ -15,7 +15,7 @@ export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 			role={props.multiple ? 'group' : 'radiogroup'}
 			aria-label={props.label}
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			className={cls('db-custom-select-list', props.className)}>
 			<ul>{props.children}</ul>
 		</div>

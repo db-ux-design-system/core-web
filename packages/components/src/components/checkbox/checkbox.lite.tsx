@@ -55,45 +55,45 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
-		initialized: false,
-		_id: undefined,
-		_messageId: undefined,
-		_validMessageId: undefined,
-		_invalidMessageId: undefined,
-		_invalidMessage: undefined,
-		_descByIds: undefined,
-		_voiceOverFallback: '',
-		abortController: undefined,
+		mInitialized: false,
+		mId: undefined,
+		mMessageId: undefined,
+		mValidMessageId: undefined,
+		mInvalidMessageId: undefined,
+		mInvalidMessage: undefined,
+		mDescByIds: undefined,
+		mVoiceOverFallback: '',
+		mAbortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the checkbox */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
-				state._invalidMessage =
+				state.mDescByIds = state.mInvalidMessageId;
+				state.mInvalidMessage =
 					props.invalidMessage ||
 					_ref?.validationMessage ||
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state.mVoiceOverFallback = state.mInvalidMessage;
+					delay(() => (state.mVoiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
 				_ref?.validity.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId;
+				state.mDescByIds = state.mValidMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
+					state.mVoiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					delay(() => (state.mVoiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
+				state.mDescByIds = state.mMessageId;
 			} else {
-				state._descByIds = undefined;
+				state.mDescByIds = undefined;
 			}
 		},
 		handleChange: (
@@ -136,43 +136,49 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
-		const mId = props.id ?? `checkbox-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		state.mInitialized = true;
+		const mId = props.id ?? props._id ?? `checkbox-${uuid()}`;
+		state.mId = mId;
+		state.mMessageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state.mValidMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state.mInvalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {
-		state._invalidMessage =
+		if (props.id || props._id) {
+			state.mId = props.id ?? props._id;
+		}
+	}, [props.id, props._id]);
+
+	onUpdate(() => {
+		state.mInvalidMessage =
 			props.invalidMessage ||
 			_ref?.validationMessage ||
 			DEFAULT_INVALID_MESSAGE;
 	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
-		if (state._id) {
-			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._messageId = messageId;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		if (state.mId) {
+			const messageId = state.mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state.mMessageId = messageId;
+			state.mValidMessageId = state.mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state.mInvalidMessageId =
+				state.mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = messageId;
+				state.mDescByIds = messageId;
 			}
 			state.handleValidation();
 		}
-	}, [state._id]);
+	}, [state.mId]);
 
 	onUpdate(() => {
 		if (_ref) {
 			useTarget({
 				angular: () => {
 					if (
-						state.initialized &&
+						state.mInitialized &&
 						props.indeterminate !== undefined
 					) {
 						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
@@ -189,18 +195,18 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				}
 			});
 		}
-	}, [state.initialized, _ref, props.indeterminate]);
+	}, [state.mInitialized, _ref, props.indeterminate]);
 
 	onUpdate(() => {
-		if (state.initialized && _ref) {
+		if (state.mInitialized && _ref) {
 			// in angular this must be set via native element
 			if (props.checked != undefined) {
 				_ref.checked = !!getBoolean(props.checked);
 			}
 
-			state.initialized = false;
+			state.mInitialized = false;
 		}
-	}, [state.initialized, _ref, props.checked]);
+	}, [state.mInitialized, _ref, props.checked]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -209,10 +215,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				default: undefined
 			});
 
-			let controller = state.abortController;
+			let controller = state.mAbortController;
 			if (!controller) {
 				controller = new AbortController();
-				state.abortController = controller;
+				state.mAbortController = controller;
 			}
 
 			addCheckedResetEventListener(
@@ -227,7 +233,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		state.abortController?.abort();
+		state.mAbortController?.abort();
 	});
 	// jscpd:ignore-end
 
@@ -237,13 +243,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			data-size={props.size}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
-			<label htmlFor={state._id}>
+			<label htmlFor={state.mId}>
 				<input
 					aria-invalid={props.validation === 'invalid'}
 					data-custom-validity={props.validation}
 					ref={_ref}
 					type="checkbox"
-					id={state._id}
+					id={state.mId}
 					name={props.name}
 					checked={getBoolean(props.checked, 'checked')}
 					disabled={getBoolean(props.disabled, 'disabled')}
@@ -258,7 +264,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
-					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
+					aria-describedby={props.ariaDescribedBy ?? state.mDescByIds}
 				/>
 				<Show when={props.label} else={props.children}>
 					{props.label}
@@ -269,13 +275,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
-					id={state._messageId}>
+					id={state.mMessageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 			<Show when={state.hasValidState()}>
 				<DBInfotext
-					id={state._validMessageId}
+					id={state.mValidMessageId}
 					size="small"
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
@@ -283,17 +289,17 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			</Show>
 
 			<DBInfotext
-				id={state._invalidMessageId}
+				id={state.mInvalidMessageId}
 				size="small"
 				semantic="critical">
-				{state._invalidMessage}
+				{state.mInvalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
 			 * This is an internal Fallback */}
 			<span data-visually-hidden="true" role="status">
-				{state._voiceOverFallback}
+				{state.mVoiceOverFallback}
 			</span>
 		</div>
 	);

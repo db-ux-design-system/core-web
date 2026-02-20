@@ -25,12 +25,12 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
-		_name: '',
-		initialized: false,
-		showScrollLeft: false,
-		showScrollRight: false,
-		scrollContainer: null,
-		_resizeObserver: undefined,
+		mName: '',
+		mInitialized: false,
+		mShowScrollLeft: false,
+		mShowScrollRight: false,
+		mScrollContainer: null,
+		mResizeObserver: undefined,
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -47,8 +47,8 @@ export default function DBTabs(props: DBTabsProps) {
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 
-			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
-			state.showScrollRight =
+			state.mShowScrollLeft = needsScroll && tList.scrollLeft > 1;
+			state.mShowScrollRight =
 				needsScroll &&
 				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
@@ -57,7 +57,7 @@ export default function DBTabs(props: DBTabsProps) {
 			if (left) {
 				step *= -1;
 			}
-			state.scrollContainer?.scrollBy({
+			state.mScrollContainer?.scrollBy({
 				top: 0,
 				left: step,
 				behavior: 'smooth'
@@ -76,18 +76,18 @@ export default function DBTabs(props: DBTabsProps) {
 						);
 
 						if (props.behavior === 'arrows') {
-							state.scrollContainer = container;
+							state.mScrollContainer = container;
 							state.evaluateScrollButtons(container);
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
 							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
-							if (!state._resizeObserver) {
+							if (!state.mResizeObserver) {
 								const observer = new ResizeObserver(() => {
 									state.evaluateScrollButtons(container);
 								});
 								observer.observe(container);
-								state._resizeObserver = observer;
+								state.mResizeObserver = observer;
 							}
 						}
 					}
@@ -111,14 +111,14 @@ export default function DBTabs(props: DBTabsProps) {
 
 					if (input && label) {
 						if (!input.id) {
-							const tabId = `${state._name}-tab-${index}`;
+							const tabId = `${state.mName}-tab-${index}`;
 							label.setAttribute('for', tabId);
 							input.id = tabId;
-							input.setAttribute('name', state._name);
+							input.setAttribute('name', state.mName);
 							if (tabPanels.length > index) {
 								input.setAttribute(
 									'aria-controls',
-									`${state._name}-tab-panel-${index}`
+									`${state.mName}-tab-panel-${index}`
 								);
 							}
 						}
@@ -142,10 +142,10 @@ export default function DBTabs(props: DBTabsProps) {
 				for (const panel of tabPanels) {
 					if (panel.id) continue;
 					const index: number = tabPanels.indexOf(panel);
-					panel.id = `${state._name}-tab-panel-${index}`;
+					panel.id = `${state.mName}-tab-panel-${index}`;
 					panel.setAttribute(
 						'aria-labelledby',
-						`${state._name}-tab-${index}`
+						`${state.mName}-tab-${index}`
 					);
 				}
 			}
@@ -187,19 +187,19 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		state._name = `tabs-${props.name || uuid()}`;
+		state.mName = `tabs-${props.name || uuid()}`;
 
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 	// jscpd:ignore-end
 
 	onUnMount(() => {
-		state._resizeObserver?.disconnect();
-		state._resizeObserver = undefined;
+		state.mResizeObserver?.disconnect();
+		state.mResizeObserver = undefined;
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
+		if (_ref && state.mInitialized) {
 			state.initTabList();
 			state.initTabs(true);
 
@@ -223,14 +223,14 @@ export default function DBTabs(props: DBTabsProps) {
 				});
 			}
 
-			state.initialized = false;
+			state.mInitialized = false;
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.mInitialized]);
 
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
@@ -238,7 +238,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-width={props.width ?? 'auto'}
 			onInput={(event) => state.handleChange(event)}
 			onChange={(event) => state.handleChange(event)}>
-			<Show when={state.showScrollLeft}>
+			<Show when={state.mShowScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
 					variant="ghost"
@@ -274,7 +274,7 @@ export default function DBTabs(props: DBTabsProps) {
 					)}
 				</For>
 			</Show>
-			<Show when={state.showScrollRight}>
+			<Show when={state.mShowScrollRight}>
 				<DBButton
 					class="tabs-scroll-right"
 					variant="ghost"

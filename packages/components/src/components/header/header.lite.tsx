@@ -22,8 +22,8 @@ export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
-		initialized: false,
-		forcedToMobile: false,
+		mInitialized: false,
+		mForcedToMobile: false,
 		handleToggle: (event?: any) => {
 			if (event && event.stopPropagation) {
 				event.stopPropagation();
@@ -43,20 +43,20 @@ export default function DBHeader(props: DBHeaderProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
-		if (state.initialized && _ref && props.forceMobile) {
+		if (state.mInitialized && _ref && props.forceMobile) {
 			// Adds this attribute to the header to enable all styling which would have
 			// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
 			addAttributeToChildren(_ref, {
 				key: 'data-force-mobile',
 				value: 'true'
 			});
-			state.forcedToMobile = true;
+			state.mForcedToMobile = true;
 		}
-	}, [state.initialized, _ref]);
+	}, [state.mInitialized, _ref]);
 
 	// jscpd:ignore-end
 
@@ -64,9 +64,11 @@ export default function DBHeader(props: DBHeaderProps) {
 		<header
 			ref={_ref}
 			class={cls('db-header', props.className)}
-			id={props.id}
+			id={props.id ?? props._id}
 			data-width={props.width}
-			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
+			data-on-forcing-mobile={
+				props.forceMobile && !state.mForcedToMobile
+			}>
 			<DBDrawer
 				class="db-header-drawer"
 				rounded

@@ -37,7 +37,7 @@ export default function DBCustomSelectListItem(
 	// jscpd:ignore-start
 	const state: DBCustomSelectListItemState =
 		useStore<DBCustomSelectListItemState>({
-			hasDivider: false,
+			mHasDivider: false,
 			handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 				event.stopPropagation();
 				if (props.onChange) {
@@ -65,18 +65,18 @@ export default function DBCustomSelectListItem(
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		state.hasDivider = Boolean(props.isGroupTitle || props.showDivider);
+		state.mHasDivider = Boolean(props.isGroupTitle || props.showDivider);
 	}, [props.isGroupTitle, props.showDivider]);
 
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
 				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle
 			})}
-			data-divider={getBooleanAsString(state.hasDivider)}>
+			data-divider={getBooleanAsString(state.mHasDivider)}>
 			<Show
 				when={!props.isGroupTitle}
 				else={<span>{props.groupTitle}</span>}>

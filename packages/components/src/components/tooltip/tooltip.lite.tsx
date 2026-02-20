@@ -25,10 +25,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
-		_id: DEFAULT_ID,
-		initialized: false,
-		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		mId: DEFAULT_ID,
+		mInitialized: false,
+		mDocumentScrollListenerCallbackId: undefined,
+		mObserver: undefined,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -73,37 +73,37 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 		},
 		handleLeave(): void {
-			if (state._documentScrollListenerCallbackId) {
+			if (state.mDocumentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
-					state._documentScrollListenerCallbackId!
+					state.mDocumentScrollListenerCallbackId!
 				);
 			}
 
-			state._observer?.unobserve(state.getParent());
+			state.mObserver?.unobserve(state.getParent());
 		},
 		handleEnter(parent?: HTMLElement): void {
-			state._documentScrollListenerCallbackId =
+			state.mDocumentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event, parent)
 				);
 			state.handleAutoPlacement(parent);
-			state._observer?.observe(state.getParent());
+			state.mObserver?.observe(state.getParent());
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tooltip-' + uuid();
-		state.initialized = true;
+		state.mId = props.id ?? props._id ?? 'tooltip-' + uuid();
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
-		if (props.id) {
-			state._id = props.id;
+		if (props.id || props._id) {
+			state.mId = props.id ?? props._id;
 		}
-	}, [props.id]);
+	}, [props.id, props._id]);
 
 	onUpdate(() => {
-		if (_ref && state.initialized && state._id) {
+		if (_ref && state.mInitialized && state.mId) {
 			const parent = state.getParent();
 			if (parent) {
 				state.handleAutoPlacement(parent);
@@ -121,9 +121,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
-					parent.setAttribute('aria-labelledby', state._id);
+					parent.setAttribute('aria-labelledby', state.mId);
 				} else {
-					parent.setAttribute('aria-describedby', state._id);
+					parent.setAttribute('aria-describedby', state.mId);
 				}
 			}
 
@@ -131,7 +131,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				typeof window !== 'undefined' &&
 				'IntersectionObserver' in window
 			) {
-				state._observer = new IntersectionObserver((payload) => {
+				state.mObserver = new IntersectionObserver((payload) => {
 					const entry = payload.find(
 						({ target }) => target === state.getParent()
 					);
@@ -141,9 +141,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 				});
 			}
 
-			state.initialized = false;
+			state.mInitialized = false;
 		}
-	}, [_ref, state.initialized, state._id]);
+	}, [_ref, state.mInitialized, state.mId]);
 
 	// jscpd:ignore-end
 
@@ -154,7 +154,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			aria-hidden="true"
 			ref={_ref}
 			class={cls('db-tooltip', props.className)}
-			id={state._id}
+			id={state.mId}
 			data-emphasis={props.emphasis}
 			data-wrap={getBooleanAsString(props.wrap)}
 			data-animation={getBooleanAsString(props.animation ?? true)}

@@ -21,7 +21,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 	return (
 		<nav
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-navigation', props.className)}>
 			<menu>{props.children}</menu>
 		</nav>

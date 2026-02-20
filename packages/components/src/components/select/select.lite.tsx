@@ -58,49 +58,49 @@ export default function DBSelect(props: DBSelectProps) {
 	const _ref = useRef<HTMLSelectElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
-		_id: undefined,
-		_messageId: undefined,
-		_validMessageId: undefined,
-		_invalidMessageId: undefined,
-		_invalidMessage: undefined,
-		_placeholderId: '',
-		_descByIds: undefined,
-		_value: '',
-		initialized: false,
-		_voiceOverFallback: '',
-		abortController: undefined,
+		mId: undefined,
+		mMessageId: undefined,
+		mValidMessageId: undefined,
+		mInvalidMessageId: undefined,
+		mInvalidMessage: undefined,
+		mPlaceholderId: '',
+		mDescByIds: undefined,
+		mValue: '',
+		mInitialized: false,
+		mVoiceOverFallback: '',
+		mAbortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
-				state._invalidMessage =
+				state.mDescByIds = state.mInvalidMessageId;
+				state.mInvalidMessage =
 					props.invalidMessage ||
 					_ref?.validationMessage ||
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state.mVoiceOverFallback = state.mInvalidMessage;
+					delay(() => (state.mVoiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
 				_ref?.validity.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId;
+				state.mDescByIds = state.mValidMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
+					state.mVoiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					delay(() => (state.mVoiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
+				state.mDescByIds = state.mMessageId;
 			} else if (props.placeholder) {
-				state._descByIds = state._placeholderId;
+				state.mDescByIds = state.mPlaceholderId;
 			} else {
-				state._descByIds = undefined;
+				state.mDescByIds = undefined;
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
@@ -195,14 +195,14 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
-		const mId = props.id ?? `select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		state.mInitialized = true;
+		const mId = props.id ?? props._id ?? `select-${uuid()}`;
+		state.mId = mId;
+		state.mMessageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state.mValidMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state.mInvalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.mPlaceholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
 		useTarget({
 			angular: () => {
@@ -213,44 +213,50 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onUpdate(() => {
-		state._invalidMessage =
+		if (props.id || props._id) {
+			state.mId = props.id ?? props._id;
+		}
+	}, [props.id, props._id]);
+
+	onUpdate(() => {
+		state.mInvalidMessage =
 			props.invalidMessage ||
 			_ref?.validationMessage ||
 			DEFAULT_INVALID_MESSAGE;
 	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
-		if (state._id && state.initialized) {
-			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-			state._messageId = messageId;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-			state._placeholderId = placeholderId;
+		if (state.mId && state.mInitialized) {
+			const messageId = state.mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			const placeholderId = state.mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state.mMessageId = messageId;
+			state.mValidMessageId = state.mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state.mInvalidMessageId =
+				state.mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state.mPlaceholderId = placeholderId;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = messageId;
+				state.mDescByIds = messageId;
 			} else if (props.placeholder) {
-				state._descByIds = placeholderId;
+				state.mDescByIds = placeholderId;
 			} else {
-				state._descByIds = undefined;
+				state.mDescByIds = undefined;
 			}
 
 			state.handleValidation();
-			state.initialized = false;
+			state.mInitialized = false;
 		}
-	}, [state._id, state.initialized]);
+	}, [state.mId, state.mInitialized]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		state.mValue = props.value;
 	}, [props.value]);
 
 	onUpdate(() => {
 		// If angular uses ngModel value and _value are null
 		// then the value will be set afterward and the _ref will be refreshed
 		const addResetListener = useTarget({
-			angular: !(props.value === null && state._value === null),
+			angular: !(props.value === null && state.mValue === null),
 			default: true
 		});
 
@@ -260,10 +266,10 @@ export default function DBSelect(props: DBSelectProps) {
 				default: undefined
 			});
 
-			let controller = state.abortController;
+			let controller = state.mAbortController;
 			if (!controller) {
 				controller = new AbortController();
-				state.abortController = controller;
+				state.mAbortController = controller;
 			}
 
 			addValueResetEventListener(
@@ -279,7 +285,7 @@ export default function DBSelect(props: DBSelectProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		state.abortController?.abort();
+		state.mAbortController?.abort();
 	});
 
 	return (
@@ -290,17 +296,17 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon)}>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<label htmlFor={state.mId}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
 				required={getBoolean(props.required, 'required')}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				id={state._id}
+				id={state.mId}
 				name={props.name}
 				size={props.size}
-				value={props.value ?? state._value}
+				value={props.value ?? state.mValue}
 				autocomplete={props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
@@ -318,7 +324,7 @@ export default function DBSelect(props: DBSelectProps) {
 				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
 					state.handleFocus(event)
 				}
-				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
+				aria-describedby={props.ariaDescribedBy ?? state.mDescByIds}>
 				{/* Empty option for floating label and placeholder */}
 				<Show
 					when={props.variant === 'floating' || !!props.placeholder}>
@@ -395,7 +401,7 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<Show when={props.placeholder}>
-				<span class="db-select-placeholder" id={state._placeholderId}>
+				<span class="db-select-placeholder" id={state.mPlaceholderId}>
 					{props.placeholder}
 				</span>
 			</Show>
@@ -403,14 +409,14 @@ export default function DBSelect(props: DBSelectProps) {
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
-					id={state._messageId}>
+					id={state.mMessageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 
 			<Show when={state.hasValidState()}>
 				<DBInfotext
-					id={state._validMessageId}
+					id={state.mValidMessageId}
 					size="small"
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
@@ -418,17 +424,17 @@ export default function DBSelect(props: DBSelectProps) {
 			</Show>
 
 			<DBInfotext
-				id={state._invalidMessageId}
+				id={state.mInvalidMessageId}
 				size="small"
 				semantic="critical">
-				{state._invalidMessage}
+				{state.mInvalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
 			 * This is an internal Fallback */}
 			<span data-visually-hidden="true" role="status">
-				{state._voiceOverFallback}
+				{state.mVoiceOverFallback}
 			</span>
 		</div>
 	);

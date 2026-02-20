@@ -87,7 +87,7 @@ export type DBSelectProps = GlobalProps &
 	FormSizeProps;
 
 export type DBSelectDefaultState = {
-	_placeholderId: string;
+	mPlaceholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
 	shouldShowEmptyOption: () => boolean;
 };

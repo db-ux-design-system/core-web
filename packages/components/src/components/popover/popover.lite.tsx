@@ -19,10 +19,10 @@ export default function DBPopover(props: DBPopoverProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
-		initialized: false,
-		isExpanded: false,
-		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		mInitialized: false,
+		mIsExpanded: false,
+		mDocumentScrollListenerCallbackId: undefined,
+		mObserver: undefined,
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
@@ -51,15 +51,15 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 		},
 		handleEnter(): void {
-			state.isExpanded = true;
-			state._documentScrollListenerCallbackId =
+			state.mIsExpanded = true;
+			state.mDocumentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event)
 				);
 			state.handleAutoPlacement();
 			const child = state.getTrigger();
 			if (child) {
-				state._observer?.observe(child);
+				state.mObserver?.observe(child);
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,17 +73,17 @@ export default function DBPopover(props: DBPopoverProps) {
 						element &&
 					element.parentNode.querySelector(':hover') !== element)
 			) {
-				state.isExpanded = false;
+				state.mIsExpanded = false;
 
-				if (state._documentScrollListenerCallbackId) {
+				if (state.mDocumentScrollListenerCallbackId) {
 					new DocumentScrollListener().removeCallback(
-						state._documentScrollListenerCallbackId!
+						state.mDocumentScrollListenerCallbackId!
 					);
 				}
 
 				const child = state.getTrigger();
 				if (child) {
-					state._observer?.unobserve(child);
+					state.mObserver?.unobserve(child);
 				}
 			}
 		},
@@ -108,12 +108,12 @@ export default function DBPopover(props: DBPopoverProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
-			state.initialized = false;
+		if (_ref && state.mInitialized) {
+			state.mInitialized = false;
 			const child = state.getTrigger();
 			if (child) {
 				child.ariaHasPopup = 'true';
@@ -134,7 +134,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				typeof window !== 'undefined' &&
 				'IntersectionObserver' in window
 			) {
-				state._observer = new IntersectionObserver((payload) => {
+				state.mObserver = new IntersectionObserver((payload) => {
 					const entry = payload.find(
 						({ target }) => target === state.getTrigger()
 					);
@@ -144,23 +144,23 @@ export default function DBPopover(props: DBPopoverProps) {
 				});
 			}
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.mInitialized]);
 
 	onUpdate(() => {
 		if (_ref) {
 			const child = state.getTrigger();
 			if (child) {
-				child.ariaExpanded = Boolean(state.isExpanded).toString();
+				child.ariaExpanded = Boolean(state.mIsExpanded).toString();
 			}
 		}
-	}, [_ref, state.isExpanded]);
+	}, [_ref, state.mIsExpanded]);
 
 	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-popover', props.className)}>
 			<Slot name="trigger" />
 			<article

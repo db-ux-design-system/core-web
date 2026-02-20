@@ -18,15 +18,15 @@ useDefaultProps<DBBadgeProps>({});
 export default function DBBadge(props: DBBadgeProps) {
 	const _ref = useRef<HTMLSpanElement | any>(null);
 	const state = useStore<DBBadgeState>({
-		initialized: false
+		mInitialized: false
 	});
 
 	onMount(() => {
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
+		if (_ref && state.mInitialized) {
 			if (props.placement?.startsWith('corner')) {
 				let parent = _ref.parentElement;
 
@@ -40,12 +40,12 @@ export default function DBBadge(props: DBBadgeProps) {
 				}
 			}
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.mInitialized]);
 
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-badge', props.className)}
 			data-semantic={props.semantic}
 			data-size={props.size}

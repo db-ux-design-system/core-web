@@ -29,7 +29,7 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 	PopoverProps;
 
 export type DBPopoverDefaultState = {
-	isExpanded?: boolean;
+	mIsExpanded?: boolean;
 	getTrigger: () => Element | null;
 };
 

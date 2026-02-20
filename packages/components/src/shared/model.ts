@@ -25,13 +25,19 @@ export interface GlobalProps {
 	id?: string;
 
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.
+	 * There is an underscore variant to avoid setting the id on a custom element for angular and web-components.
+	 */
+	_id?: string;
+
+	/**
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
 }
 
 export type GlobalState = {
-	_id?: string;
+	mId?: string;
 };
 
 export const SemanticList = [
@@ -246,7 +252,7 @@ export type NameProps = {
 };
 
 export type NameState = {
-	_name?: string;
+	mName?: string;
 	handleNameAttribute: () => void;
 };
 
@@ -506,31 +512,31 @@ export type FormMessageProps = {
 export type FromValidState = {
 	hasValidState: () => boolean;
 	handleValidation: () => void;
-	_invalidMessage?: string;
+	mInvalidMessage?: string;
 };
 
 export type FormState = {
-	_messageId?: string;
-	_validMessageId?: string;
-	_invalidMessageId?: string;
-	_descByIds?: string;
-	_value?: string;
-	_invalidMessage?: string;
+	mMessageId?: string;
+	mValidMessageId?: string;
+	mInvalidMessageId?: string;
+	mDescByIds?: string;
+	mValue?: string;
+	mInvalidMessage?: string;
 	/**
 	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 	 * Currently VoiceOver isn't supporting changes from aria-describedby.
 	 * This is an internal Fallback
 	 */
-	_voiceOverFallback?: string;
+	mVoiceOverFallback?: string;
 
 	/**
 	 * We use this to remove form event listener
 	 */
-	abortController?: AbortController;
+	mAbortController?: AbortController;
 };
 
 export type InitializedState = {
-	initialized: boolean;
+	mInitialized: boolean;
 };
 
 export const LinkTargetList = ['_self', '_blank', '_parent', '_top'] as const;
@@ -721,9 +727,9 @@ export type ValueLabelType = {
 };
 
 export type DocumentScrollState = {
-	_documentScrollListenerCallbackId?: string;
+	mDocumentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
-	_observer?: IntersectionObserver;
+	mObserver?: IntersectionObserver;
 };
 
 export type PopoverState = {

@@ -88,7 +88,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
   return (
     <div
     	ref={_ref}
-    	id={props.id}
+    	id={props.id ?? props._id}
     	class={cls('db-<%= name %>', props.className)}
 <% if(formValue!=="no"){   -%>
 		onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}

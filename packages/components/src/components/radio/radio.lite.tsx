@@ -38,9 +38,9 @@ export default function DBRadio(props: DBRadioProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
-		initialized: false,
-		_id: undefined,
-		abortController: undefined,
+		mInitialized: false,
+		mId: undefined,
+		mAbortController: undefined,
 		handleInput: (
 			event: ChangeEvent<HTMLInputElement> | any,
 			reset?: boolean
@@ -111,15 +111,21 @@ export default function DBRadio(props: DBRadioProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
-		state._id = props.id ?? `radio-${uuid()}`;
+		state.mInitialized = true;
+		state.mId = props.id ?? props._id ?? `radio-${uuid()}`;
 	});
 
 	onUpdate(() => {
-		if (props.checked && state.initialized && _ref) {
+		if (props.id || props._id) {
+			state.mId = props.id ?? props._id;
+		}
+	}, [props.id, props._id]);
+
+	onUpdate(() => {
+		if (props.checked && state.mInitialized && _ref) {
 			_ref.checked = true;
 		}
-	}, [state.initialized, _ref, props.checked]);
+	}, [state.mInitialized, _ref, props.checked]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -128,10 +134,10 @@ export default function DBRadio(props: DBRadioProps) {
 				default: undefined
 			});
 
-			let controller = state.abortController;
+			let controller = state.mAbortController;
 			if (!controller) {
 				controller = new AbortController();
-				state.abortController = controller;
+				state.mAbortController = controller;
 			}
 
 			addResetEventListener(
@@ -161,7 +167,7 @@ export default function DBRadio(props: DBRadioProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		state.abortController?.abort();
+		state.mAbortController?.abort();
 	});
 	// jscpd:ignore-end
 
@@ -171,13 +177,13 @@ export default function DBRadio(props: DBRadioProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			class={cls('db-radio', props.className)}
-			htmlFor={state._id}>
+			htmlFor={state.mId}>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
 				type="radio"
-				id={state._id}
+				id={state.mId}
 				name={props.name}
 				checked={getBoolean(props.checked, 'checked')}
 				disabled={getBoolean(props.disabled, 'disabled')}

@@ -18,7 +18,7 @@ export default function DBPage(props: DBPageProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
-		fontsLoaded: false
+		mFontsLoaded: false
 	});
 
 	onInit(() => {
@@ -36,14 +36,14 @@ export default function DBPage(props: DBPageProps) {
 	});
 
 	onMount(() => {
-		state.fontsLoaded = !props.fadeIn;
+		state.mFontsLoaded = !props.fadeIn;
 
 		if (document && props.fadeIn) {
 			document.fonts.ready.then(() => {
-				state.fontsLoaded = true;
+				state.mFontsLoaded = true;
 			});
 		} else {
-			state.fontsLoaded = true;
+			state.mFontsLoaded = true;
 		}
 	});
 
@@ -62,11 +62,11 @@ export default function DBPage(props: DBPageProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-page', props.className)}
 			data-variant={props.variant}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
-			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
+			data-fonts-loaded={getBooleanAsString(state.mFontsLoaded)}>
 			<Slot name="header" />
 			<main class={cls('db-main', props.mainClass)}>
 				{props.children}

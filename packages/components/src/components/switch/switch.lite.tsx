@@ -61,29 +61,29 @@ export default function DBSwitch(props: DBSwitchProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
-		_id: undefined,
-		_messageId: undefined as string | undefined,
-		_validMessageId: undefined as string | undefined,
-		_invalidMessageId: undefined as string | undefined,
-		_invalidMessage: undefined as string | undefined,
-		_descByIds: undefined,
-		_voiceOverFallback: '' as string,
-		abortController: undefined,
+		mId: undefined,
+		mMessageId: undefined as string | undefined,
+		mValidMessageId: undefined as string | undefined,
+		mInvalidMessageId: undefined as string | undefined,
+		mInvalidMessage: undefined as string | undefined,
+		mDescByIds: undefined,
+		mVoiceOverFallback: '' as string,
+		mAbortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
 		handleValidation: () => {
 			if (!_ref?.validity?.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId!;
-				state._invalidMessage =
+				state.mDescByIds = state.mInvalidMessageId!;
+				state.mInvalidMessage =
 					props.invalidMessage ||
 					_ref?.validationMessage ||
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						state._invalidMessage || DEFAULT_INVALID_MESSAGE;
+					state.mVoiceOverFallback =
+						state.mInvalidMessage || DEFAULT_INVALID_MESSAGE;
 					delay(() => {
-						state._voiceOverFallback = '';
+						state.mVoiceOverFallback = '';
 					}, 1000);
 				}
 				return;
@@ -93,23 +93,23 @@ export default function DBSwitch(props: DBSwitchProps) {
 				_ref?.validity?.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId!;
+				state.mDescByIds = state.mValidMessageId!;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
+					state.mVoiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => {
-						state._voiceOverFallback = '';
+						state.mVoiceOverFallback = '';
 					}, 1000);
 				}
 				return;
 			}
 
 			if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId!;
+				state.mDescByIds = state.mMessageId!;
 				return;
 			}
 
-			state._descByIds = undefined;
+			state.mDescByIds = undefined;
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLInputElement>,
@@ -162,12 +162,18 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ?? `switch-${uuid()}`;
-		state._messageId = `${state._id}${DEFAULT_MESSAGE_ID_SUFFIX}`;
-		state._validMessageId = `${state._id}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
-		state._invalidMessageId = `${state._id}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
+		state.mId = props.id ?? props._id ?? `switch-${uuid()}`;
+		state.mMessageId = `${state.mId}${DEFAULT_MESSAGE_ID_SUFFIX}`;
+		state.mValidMessageId = `${state.mId}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
+		state.mInvalidMessageId = `${state.mId}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
 		state.handleValidation();
 	});
+
+	onUpdate(() => {
+		if (props.id || props._id) {
+			state.mId = props.id ?? props._id;
+		}
+	}, [props.id, props._id]);
 
 	onUpdate(() => {
 		state.handleValidation();
@@ -188,10 +194,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 				default: undefined
 			});
 
-			let controller = state.abortController;
+			let controller = state.mAbortController;
 			if (!controller) {
 				controller = new AbortController();
-				state.abortController = controller;
+				state.mAbortController = controller;
 			}
 
 			addCheckedResetEventListener(
@@ -206,7 +212,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		state.abortController?.abort();
+		state.mAbortController?.abort();
 	});
 	// jscpd:ignore-end
 
@@ -219,9 +225,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>
-			<label htmlFor={state._id}>
+			<label htmlFor={state.mId}>
 				<input
-					id={state._id}
+					id={state.mId}
 					type="checkbox"
 					role="switch"
 					ref={_ref}
@@ -231,7 +237,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					aria-invalid={
 						props.validation === 'invalid' ? 'true' : undefined
 					}
-					aria-describedby={state._descByIds}
+					aria-describedby={state.mDescByIds}
 					name={props.name}
 					required={getBoolean(props.required, 'required')}
 					data-aid-icon={props.iconLeading ?? props.icon}
@@ -256,7 +262,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					id={state._messageId}
+					id={state.mMessageId}
 					size="small"
 					icon={props.messageIcon}
 					semantic="adaptive">
@@ -265,22 +271,22 @@ export default function DBSwitch(props: DBSwitchProps) {
 			</Show>
 			<Show when={state.hasValidState()}>
 				<DBInfotext
-					id={state._validMessageId}
+					id={state.mValidMessageId}
 					size="small"
 					semantic="successful">
 					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 			<DBInfotext
-				id={state._invalidMessageId}
+				id={state.mInvalidMessageId}
 				size="small"
 				semantic="critical">
-				{state._invalidMessage ??
+				{state.mInvalidMessage ??
 					props.invalidMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 			<span data-visually-hidden="true" role="status">
-				{state._voiceOverFallback}
+				{state.mVoiceOverFallback}
 			</span>
 		</div>
 	);

@@ -93,35 +93,36 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	const searchInputRef = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state: DBCustomSelectState = useStore<DBCustomSelectState>({
-		_id: undefined,
-		_messageId: undefined,
-		_validMessageId: undefined,
-		_invalidMessageId: undefined,
-		_invalidMessage: undefined,
-		_selectId: undefined,
-		_labelId: undefined,
-		_summaryId: undefined,
-		_placeholderId: undefined,
-		_infoTextId: undefined,
-		_validity: 'no-validation',
-		_userInteraction: false,
-		abortController: undefined,
+		mId: undefined,
+		mMessageId: undefined,
+		mValidMessageId: undefined,
+		mInvalidMessageId: undefined,
+		mInvalidMessage: undefined,
+		mSelectId: undefined,
+		mLabelId: undefined,
+		mSummaryId: undefined,
+		mPlaceholderId: undefined,
+		mInfoTextId: undefined,
+		mValidity: 'no-validation',
+		mUserInteraction: false,
+		mAbortController: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: undefined,
-		_selectedLabels: '',
-		_selectedLabelsId: undefined,
-		_voiceOverFallback: '',
-		_selectedOptions: [],
+		mDescByIds: undefined,
+		mSelectedLabels: '',
+		mSelectedLabelsId: undefined,
+		mVoiceOverFallback: '',
+		mSelectedOptions: [],
 		selectAllEnabled: false,
 		searchEnabled: false,
 		amountOptions: 0,
-		_values: [],
-		_options: [],
-		_hasNoOptions: false,
-		_documentClickListenerCallbackId: undefined,
-		_internalChangeTimestamp: 0,
-		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		mValues: [],
+		mOptions: [],
+		mHasNoOptions: false,
+		mDocumentClickListenerCallbackId: undefined,
+		mInternalChangeTimestamp: 0,
+		mDocumentScrollListenerCallbackId: undefined,
+		mObserver: undefined,
+		mSearchValue: undefined,
 		handleDocumentScroll: (event: any) => {
 			if (
 				event?.target?.contains &&
@@ -130,7 +131,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		_searchValue: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -140,36 +140,36 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
-				state.setDescById(state._invalidMessageId);
-				state._invalidMessage =
+				state.setDescById(state.mInvalidMessageId);
+				state.mInvalidMessage =
 					props.invalidMessage ||
 					selectRef?.validationMessage ||
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state.mVoiceOverFallback = state.mInvalidMessage;
+					delay(() => (state.mVoiceOverFallback = ''), 1000);
 				}
-				if (state._userInteraction) {
-					state._validity = props.validation ?? 'invalid';
+				if (state.mUserInteraction) {
+					state.mValidity = props.validation ?? 'invalid';
 				}
 			} else if (
 				state.hasValidState() &&
 				selectRef?.validity.valid &&
 				props.required
 			) {
-				state.setDescById(state._validMessageId);
+				state.setDescById(state.mValidMessageId);
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
+					state.mVoiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					delay(() => (state.mVoiceOverFallback = ''), 1000);
 				}
-				state._validity = props.validation ?? 'valid';
+				state.mValidity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state.setDescById(state._messageId);
-				state._validity = props.validation ?? 'no-validation';
+				state.setDescById(state.mMessageId);
+				state.mValidity = props.validation ?? 'no-validation';
 			} else {
-				state.setDescById(state._placeholderId);
-				state._validity = props.validation ?? 'no-validation';
+				state.setDescById(state.mPlaceholderId);
+				state.mValidity = props.validation ?? 'no-validation';
 			}
 		},
 		handleDropdownToggle: (event: GeneralEvent<HTMLDetailsElement>) => {
@@ -181,39 +181,39 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				event.target instanceof HTMLDetailsElement &&
 				event.target.open
 			) {
-				state._documentClickListenerCallbackId =
+				state.mDocumentClickListenerCallbackId =
 					new DocumentClickListener().addCallback((event) =>
 						state.handleDocumentClose(event)
 					);
 
-				state._documentScrollListenerCallbackId =
+				state.mDocumentScrollListenerCallbackId =
 					new DocumentScrollListener().addCallback((event) =>
 						state.handleDocumentScroll(event)
 					);
 
 				state.handleAutoPlacement();
-				state._observer?.observe(detailsRef);
+				state.mObserver?.observe(detailsRef);
 				if (!event.target.dataset['test']) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}
 			} else {
-				if (state._documentClickListenerCallbackId) {
+				if (state.mDocumentClickListenerCallbackId) {
 					new DocumentClickListener().removeCallback(
-						state._documentClickListenerCallbackId!
+						state.mDocumentClickListenerCallbackId!
 					);
 				}
-				if (state._documentScrollListenerCallbackId) {
+				if (state.mDocumentScrollListenerCallbackId) {
 					new DocumentScrollListener().removeCallback(
-						state._documentScrollListenerCallbackId!
+						state.mDocumentScrollListenerCallbackId!
 					);
 				}
-				state._observer?.unobserve(detailsRef);
+				state.mObserver?.unobserve(detailsRef);
 			}
 		},
 		getNativeSelectValue: () => {
-			if (state._values?.length) {
-				return state._values!.at(0) ?? '';
+			if (state.mValues?.length) {
+				return state.mValues!.at(0) ?? '';
 			}
 
 			return '';
@@ -224,11 +224,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				descByIds.push(descId);
 			}
 
-			if (state._selectedLabelsId && state._selectedLabels?.length) {
-				descByIds.push(state._selectedLabelsId!);
+			if (state.mSelectedLabelsId && state.mSelectedLabels?.length) {
+				descByIds.push(state.mSelectedLabelsId!);
 			}
 
-			state._descByIds = descByIds.join(' ');
+			state.mDescByIds = descByIds.join(' ');
 		},
 		getSelectAllLabel: () => {
 			return props.selectAllLabel ?? DEFAULT_LABEL;
@@ -237,8 +237,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return option.label ?? option.value?.toString() ?? '';
 		},
 		getOptionChecked: (value?: string) => {
-			if (value && state._values?.includes) {
-				return state._values?.includes(value!);
+			if (value && state.mValues?.includes) {
+				return state.mValues?.includes(value!);
 			}
 
 			return false;
@@ -429,7 +429,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						activeElement.getAttribute('type') === 'search'
 					) {
 						// When Enter is pressed in search field, select the first available option
-						const firstOption = state._options?.find(
+						const firstOption = state.mOptions?.find(
 							(opt) => !opt.isGroupTitle && !opt.disabled
 						);
 						if (firstOption?.value) {
@@ -486,11 +486,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleOptionSelected: (values: string[]) => {
 			const skip =
-				new Date().getTime() - state._internalChangeTimestamp < 200;
+				new Date().getTime() - state.mInternalChangeTimestamp < 200;
 			if (skip) return;
 
-			state._values = values;
-			state._userInteraction = true;
+			state.mValues = values;
+			state.mUserInteraction = true;
 			if (props.onOptionSelected) {
 				props.onOptionSelected(values ?? []);
 			}
@@ -513,18 +513,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						'values'
 					)
 			});
-			state._internalChangeTimestamp = new Date().getTime();
+			state.mInternalChangeTimestamp = new Date().getTime();
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
 				if (props.multiple) {
-					if (state._values?.includes(value)) {
+					if (state.mValues?.includes(value)) {
 						state.handleOptionSelected(
-							state._values!.filter((v: string) => v !== value)
+							state.mValues!.filter((v: string) => v !== value)
 						);
 					} else {
 						state.handleOptionSelected([
-							...(state._values || []),
+							...(state.mValues || []),
 							value
 						]);
 					}
@@ -536,7 +536,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleSelectAll: (event: any) => {
 			event.stopPropagation();
-			if (state._values?.length === state.amountOptions) {
+			if (state.mValues?.length === state.amountOptions) {
 				state.handleOptionSelected([]);
 			} else {
 				const searchValue: string | undefined =
@@ -621,17 +621,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 
 				filterText = (event.target as HTMLInputElement).value;
-				state._searchValue = filterText;
+				state.mSearchValue = filterText;
 			}
 
 			if (!props.options || !filterText || filterText.length === 0) {
-				state._options = props.options;
+				state.mOptions = props.options;
 			} else if (props.searchFilter) {
-				state._options = props.options!.filter((option) =>
+				state.mOptions = props.options!.filter((option) =>
 					props.searchFilter!(option, filterText)
 				);
 			} else {
-				state._options = props.options!.filter(
+				state.mOptions = props.options!.filter(
 					(option) =>
 						!option.isGroupTitle &&
 						state
@@ -660,21 +660,21 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.id ?? `custom-select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
-		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
-		state._summaryId = mId + '-summary';
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state._selectedLabelsId = mId + '-selected-labels';
-		state._infoTextId = mId + '-info';
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		const mId = props.id ?? props._id ?? `custom-select-${uuid()}`;
+		state.mId = mId;
+		state.mMessageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state.mValidMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state.mInvalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.mSelectId = mId + DEFAULT_SELECT_ID_SUFFIX;
+		state.mLabelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+		state.mSummaryId = mId + '-summary';
+		state.mPlaceholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state.mSelectedLabelsId = mId + '-selected-labels';
+		state.mInfoTextId = mId + '-info';
+		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-			state._observer = new IntersectionObserver((payload) => {
+			state.mObserver = new IntersectionObserver((payload) => {
 				if (detailsRef) {
 					const entry = payload.find(
 						({ target }) => target === detailsRef
@@ -688,6 +688,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	});
 
 	onUpdate(() => {
+		if (props.id || props._id) {
+			state.mId = props.id ?? props._id;
+		}
+	}, [props.id, props._id]);
+
+	onUpdate(() => {
 		if (detailsRef) {
 			detailsRef.addEventListener(
 				'focusout',
@@ -698,14 +704,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [detailsRef]);
 
 	onUpdate(() => {
-		if (state._id) {
-			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._labelId = state._id + DEFAULT_LABEL_ID_SUFFIX;
-			state._selectId = state._id + DEFAULT_SELECT_ID_SUFFIX;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		if (state.mId) {
+			const messageId = state.mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state.mLabelId = state.mId + DEFAULT_LABEL_ID_SUFFIX;
+			state.mSelectId = state.mId + DEFAULT_SELECT_ID_SUFFIX;
+			state.mValidMessageId = state.mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state.mInvalidMessageId =
+				state.mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state.mPlaceholderId = state.mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state.setDescById(messageId);
@@ -713,7 +719,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.setDescById();
 			}
 		}
-	}, [state._id]);
+	}, [state.mId]);
 
 	onUpdate(() => {
 		if (detailsRef) {
@@ -721,19 +727,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (summary) {
 				summary.setAttribute(
 					'aria-describedby',
-					props.ariaDescribedBy ?? (state._descByIds || '')
+					props.ariaDescribedBy ?? (state.mDescByIds || '')
 				);
 			}
 		}
-	}, [detailsRef, state._descByIds]);
+	}, [detailsRef, state.mDescByIds]);
 
 	onUpdate(() => {
 		if (props.showNoResults !== undefined) {
-			state._hasNoOptions = props.showNoResults!;
-		} else if (state._options) {
-			state._hasNoOptions = state._options!.length === 0;
+			state.mHasNoOptions = props.showNoResults!;
+		} else if (state.mOptions) {
+			state.mHasNoOptions = state.mOptions!.length === 0;
 		}
-	}, [props.showNoResults, props.showLoading, state._options]);
+	}, [props.showNoResults, props.showLoading, state.mOptions]);
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
@@ -750,11 +756,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		const v = props.values;
 
 		if (Array.isArray(v)) {
-			if (state._values !== v) {
-				state._values = v;
+			if (state.mValues !== v) {
+				state.mValues = v;
 			}
-		} else if (v == null && state._values?.length !== 0) {
-			state._values = [];
+		} else if (v == null && state.mValues?.length !== 0) {
+			state.mValues = [];
 		}
 	}, [props.values]);
 
@@ -762,14 +768,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		if (selectRef) {
 			state.handleValidation();
 		}
-	}, [state._values, selectRef]);
+	}, [state.mValues, selectRef]);
 
 	onUpdate(() => {
 		if (selectRef) {
-			let controller = state.abortController;
+			let controller = state.mAbortController;
 			if (!controller) {
 				controller = new AbortController();
-				state.abortController = controller;
+				state.mAbortController = controller;
 			}
 
 			const initialValues = props.values;
@@ -790,29 +796,29 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [selectRef]);
 
 	onUpdate(() => {
-		state._validity = props.validation;
+		state.mValidity = props.validation;
 	}, [props.validation]);
 
 	onUpdate(() => {
-		if (state._values?.length === 0) {
+		if (state.mValues?.length === 0) {
 			state.selectAllChecked = false;
 			state.selectAllIndeterminate = false;
-		} else if (state._values?.length === state.amountOptions) {
+		} else if (state.mValues?.length === state.amountOptions) {
 			state.selectAllIndeterminate = false;
 			state.selectAllChecked = true;
-		} else if (state._values) {
+		} else if (state.mValues) {
 			state.selectAllIndeterminate = true;
 		}
-	}, [state._values, state.amountOptions]);
+	}, [state.mValues, state.amountOptions]);
 
 	onUpdate(() => {
-		state._options = props.options;
+		state.mOptions = props.options;
 		state.amountOptions =
 			props.options?.filter((option) => !option.isGroupTitle).length ?? 0;
 	}, [props.options]);
 
 	onUpdate(() => {
-		state._searchValue = props.searchValue;
+		state.mSearchValue = props.searchValue;
 		if (props.searchValue) {
 			const sValue = props.searchValue!; // <- workaround for Angular
 			state.handleSearch(sValue);
@@ -821,52 +827,52 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (props.options?.length) {
-			state._selectedOptions = props.options?.filter(
+			state.mSelectedOptions = props.options?.filter(
 				(option: CustomSelectOptionType) => {
-					if (!option.value || !state._values?.['includes']) {
+					if (!option.value || !state.mValues?.['includes']) {
 						return false;
 					}
 
 					return (
 						!option.isGroupTitle &&
-						state._values?.includes(option.value)
+						state.mValues?.includes(option.value)
 					);
 				}
 			);
 		}
-	}, [props.options, state._values]);
+	}, [props.options, state.mValues]);
 
 	onUpdate(() => {
 		if (props.selectedLabels) {
-			state._selectedLabels = props.selectedLabels;
+			state.mSelectedLabels = props.selectedLabels;
 			return;
 		}
 
-		if (state._selectedOptions?.length) {
+		if (state.mSelectedOptions?.length) {
 			if (props.transformSelectedLabels) {
 				// We need to add this to another ``const`` for Angular generated output to work
-				const selectedOptions = state._selectedOptions;
+				const selectedOptions = state.mSelectedOptions;
 				const transformFn = props.transformSelectedLabels!;
-				state._selectedLabels = transformFn!(selectedOptions);
+				state.mSelectedLabels = transformFn!(selectedOptions);
 				return;
 			}
 
 			if (props.selectedType === 'amount') {
-				state._selectedLabels = props.amountText
+				state.mSelectedLabels = props.amountText
 					? props.amountText
-					: `${state._selectedOptions?.length} ${DEFAULT_SELECTED}`;
+					: `${state.mSelectedOptions?.length} ${DEFAULT_SELECTED}`;
 			} else {
-				state._selectedLabels = state._selectedOptions
+				state.mSelectedLabels = state.mSelectedOptions
 					?.map((option: CustomSelectOptionType) =>
 						state.getOptionLabel(option)
 					)
 					.join(', ');
 			}
 		} else {
-			state._selectedLabels = '';
+			state.mSelectedLabels = '';
 		}
 	}, [
-		state._selectedOptions,
+		state.mSelectedOptions,
 		props.selectedType,
 		props.amountText,
 		props.selectedLabels,
@@ -875,9 +881,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (props.onAmountChange) {
-			props.onAmountChange(state._selectedOptions?.length ?? 0);
+			props.onAmountChange(state.mSelectedOptions?.length ?? 0);
 		}
-	}, [state._selectedOptions]);
+	}, [state.mSelectedOptions]);
 
 	onUpdate(() => {
 		if (selectAllRef) {
@@ -886,14 +892,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [state.selectAllIndeterminate, selectAllRef]);
 
 	onUpdate(() => {
-		state._invalidMessage =
+		state.mInvalidMessage =
 			props.invalidMessage ||
 			selectRef?.validationMessage ||
 			DEFAULT_INVALID_MESSAGE;
 	}, [selectRef, props.invalidMessage]);
 
 	onUnMount(() => {
-		state.abortController?.abort();
+		state.mAbortController?.abort();
 	});
 
 	function satisfyReact(event: any) {
@@ -903,11 +909,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	return (
 		<div
-			id={state._id}
+			id={state.mId}
 			ref={_ref}
 			class={cls('db-custom-select', props.className)}
-			aria-invalid={state._validity === 'invalid'}
-			data-custom-validity={state._validity}
+			aria-invalid={state.mValidity === 'invalid'}
+			data-custom-validity={state.mValidity}
 			data-width={props.formFieldWidth}
 			data-variant={
 				props.variant === 'floating' &&
@@ -923,17 +929,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon)}>
-			<label id={state._labelId}>
+			<label id={state.mLabelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
 					role="none"
 					hidden
-					id={state._selectId}
+					id={state.mSelectId}
 					tabIndex={-1}
 					ref={selectRef}
 					form={props.form}
 					name={props.name}
-					data-custom-validity={state._validity}
+					data-custom-validity={state.mValidity}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
@@ -969,28 +975,28 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				<Show when={props.options}>
 					{/* We use this because we cannot wrap summary for Angular... */}
 					<summary
-						id={state._summaryId}
+						id={state.mSummaryId}
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
 						tabIndex={props.disabled ? -1 : undefined}
-						aria-labelledby={state._labelId}>
-						<Show when={state._selectedLabels?.length}>
+						aria-labelledby={state.mLabelId}>
+						<Show when={state.mSelectedLabels?.length}>
 							<span
 								data-visually-hidden={getBooleanAsString(
 									props.selectedType === 'tag'
 								)}
-								id={state._selectedLabelsId}>
+								id={state.mSelectedLabelsId}>
 								<Show when={props.selectedPrefix}>
 									<span data-visually-hidden="true">
 										{props.selectedPrefix}
 									</span>
 								</Show>
-								{state._selectedLabels}
+								{state.mSelectedLabels}
 							</span>
 						</Show>
 						<Show when={props.selectedType === 'tag'}>
 							<div>
-								<For each={state._selectedOptions}>
+								<For each={state.mSelectedOptions}>
 									{(
 										option: CustomSelectOptionType,
 										index: number
@@ -1029,19 +1035,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							<div>
 								<DBInput
 									ref={searchInputRef}
-									name={state._id}
-									form={state._id}
+									name={state.mId}
+									form={state.mId}
 									type="search"
 									showLabel={false}
-									value={state._searchValue}
+									value={state.mSearchValue}
 									label={props.searchLabel ?? DEFAULT_LABEL}
 									placeholder={
 										props.searchPlaceholder ??
 										props.searchLabel
 									}
 									ariaDescribedBy={
-										state._hasNoOptions || props.showLoading
-											? state._infoTextId
+										state.mHasNoOptions || props.showLoading
+											? state.mInfoTextId
 											: undefined
 									}
 									onInput={(
@@ -1052,7 +1058,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						</Show>
 
 						<Show
-							when={state._hasNoOptions || props.showLoading}
+							when={state.mHasNoOptions || props.showLoading}
 							else={
 								<>
 									<Show when={state.selectAllEnabled}>
@@ -1062,7 +1068,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													{/* We set a form name based on id for not sending checkboxes to a wrapping form */}
 													<input
 														ref={selectAllRef}
-														form={state._id}
+														form={state.mId}
 														type="checkbox"
 														value="select-all"
 														checked={
@@ -1089,7 +1095,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											props.label ??
 											DEFAULT_LABEL
 										}>
-										<For each={state._options}>
+										<For each={state.mOptions}>
 											{(
 												option: CustomSelectOptionType
 											) => (
@@ -1117,7 +1123,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													groupTitle={state.getOptionLabel(
 														option
 													)}
-													name={state._id}
+													name={state.mId}
 													checked={state.getOptionChecked(
 														option.value
 													)}
@@ -1139,7 +1145,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								</>
 							}>
 							<DBInfotext
-								id={state._infoTextId}
+								id={state.mInfoTextId}
 								icon={
 									props.showLoading
 										? 'circular_arrows'
@@ -1162,8 +1168,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								width="full"
 								icon="cross"
 								size="small"
-								name={state._id}
-								form={state._id}
+								name={state.mId}
+								form={state.mId}
 								onClick={() =>
 									state.handleClose(undefined, true)
 								}>
@@ -1177,15 +1183,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			<Show
 				when={
-					(props.showClearSelection ?? true) && state._values?.length
+					(props.showClearSelection ?? true) && state.mValues?.length
 				}>
 				<DBButton
 					icon="cross"
 					variant="ghost"
 					noText
 					size="small"
-					name={state._id}
-					form={state._id}
+					name={state.mId}
+					form={state.mId}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
@@ -1198,21 +1204,21 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			<span
 				class="db-custom-select-placeholder"
 				aria-hidden={getBooleanAsString(true)}
-				id={state._placeholderId}>
+				id={state.mPlaceholderId}>
 				{props.placeholder ?? props.label}
 			</span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
-					id={state._messageId}>
+					id={state.mMessageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 
 			<Show when={state.hasValidState()}>
 				<DBInfotext
-					id={state._validMessageId}
+					id={state.mValidMessageId}
 					size="small"
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
@@ -1220,17 +1226,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</Show>
 
 			<DBInfotext
-				id={state._invalidMessageId}
+				id={state.mInvalidMessageId}
 				size="small"
 				semantic="critical">
-				{state._invalidMessage}
+				{state.mInvalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
 			 * This is an internal Fallback */}
 			<span data-visually-hidden="true" role="status">
-				{state._voiceOverFallback}
+				{state.mVoiceOverFallback}
 			</span>
 		</div>
 	);

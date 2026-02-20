@@ -33,7 +33,7 @@ export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	NameProps;
 
 export type DBAccordionItemDefaultState = {
-	_open?: boolean;
+	mOpen?: boolean;
 };
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &

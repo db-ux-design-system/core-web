@@ -252,22 +252,22 @@ export type DBCustomSelectProps = GlobalProps &
 	ShowLabelProps;
 
 export type DBCustomSelectDefaultState = {
-	_validity?: ValidationType;
-	_values?: string[];
-	_options?: CustomSelectOptionType[];
-	_selectedOptions?: CustomSelectOptionType[];
-	_hasNoOptions: boolean;
-	_selectId?: string;
-	_labelId?: string;
-	_summaryId?: string;
-	_placeholderId?: string;
-	_selectedLabels?: string;
-	_selectedLabelsId?: string;
-	_infoTextId?: string;
-	_internalChangeTimestamp: number;
-	_documentClickListenerCallbackId?: string;
-	_searchValue?: string;
-	_userInteraction?: boolean;
+	mValidity?: ValidationType;
+	mValues?: string[];
+	mOptions?: CustomSelectOptionType[];
+	mSelectedOptions?: CustomSelectOptionType[];
+	mHasNoOptions: boolean;
+	mSelectId?: string;
+	mLabelId?: string;
+	mSummaryId?: string;
+	mPlaceholderId?: string;
+	mSelectedLabels?: string;
+	mSelectedLabelsId?: string;
+	mInfoTextId?: string;
+	mInternalChangeTimestamp: number;
+	mDocumentClickListenerCallbackId?: string;
+	mSearchValue?: string;
+	mUserInteraction?: boolean;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;

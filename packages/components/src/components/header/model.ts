@@ -58,7 +58,7 @@ export type DBHeaderProps = DBHeaderDefaultProps &
 	ContainerWidthProps;
 
 export type DBHeaderDefaultState = {
-	forcedToMobile?: boolean;
+	mForcedToMobile?: boolean;
 };
 
 export type DBHeaderState = DBHeaderDefaultState &

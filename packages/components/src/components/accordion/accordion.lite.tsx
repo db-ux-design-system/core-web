@@ -21,9 +21,9 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
-		_name: '',
-		initialized: false,
-		_initOpenIndexDone: false,
+		mName: '',
+		mInitialized: false,
+		mInitOpenIndexDone: false,
 		convertItems(): DBAccordionItemDefaultProps[] {
 			try {
 				if (typeof props.items === 'string') {
@@ -40,28 +40,28 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
-		state._initOpenIndexDone = true;
+		state.mInitialized = true;
+		state.mInitOpenIndexDone = true;
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
 		// If we have a single behavior we first check for
 		// props.name otherwise for state_id
-		if (state.initialized) {
+		if (state.mInitialized) {
 			if (props.behavior === 'single') {
 				if (props.name) {
-					if (state._name !== props.name) {
-						state._name = props.name;
+					if (state.mName !== props.name) {
+						state.mName = props.name;
 					}
 				} else {
-					state._name = `accordion-${uuid()}`;
+					state.mName = `accordion-${uuid()}`;
 				}
 			} else {
-				state._name = '';
+				state.mName = '';
 			}
 		}
-	}, [state.initialized, props.name, props.behavior]);
+	}, [state.mInitialized, props.name, props.behavior]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -70,18 +70,18 @@ export default function DBAccordion(props: DBAccordionProps) {
 				for (const details of Array.from<HTMLDetailsElement>(
 					childDetails
 				)) {
-					if (state._name === '') {
+					if (state.mName === '') {
 						details.removeAttribute('name');
 					} else {
-						details.name = state._name ?? '';
+						details.name = state.mName ?? '';
 					}
 				}
 			}
 		}
-	}, [_ref, state._name]);
+	}, [_ref, state.mName]);
 
 	onUpdate(() => {
-		if (_ref && state._initOpenIndexDone) {
+		if (_ref && state.mInitOpenIndexDone) {
 			if (props?.initOpenIndex && props.initOpenIndex!.length > 0) {
 				const childDetails = _ref.getElementsByTagName('details');
 				if (childDetails) {
@@ -99,14 +99,14 @@ export default function DBAccordion(props: DBAccordionProps) {
 					);
 				}
 			}
-			state._initOpenIndexDone = false;
+			state.mInitOpenIndexDone = false;
 		}
-	}, [_ref, state._initOpenIndexDone, props.initOpenIndex]);
+	}, [_ref, state.mInitOpenIndexDone, props.initOpenIndex]);
 
 	return (
 		<ul
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>

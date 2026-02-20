@@ -40,7 +40,7 @@ export default function DBNotification(props: DBNotificationProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-notification', props.className)}
 			role={getNotificationRole({
 				semantic: props.semantic,

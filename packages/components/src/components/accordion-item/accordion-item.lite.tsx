@@ -25,16 +25,16 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const _ref = useRef<HTMLDetailsElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
-		_open: false,
-		_name: undefined,
-		initialized: false,
+		mOpen: false,
+		mName: undefined,
+		mInitialized: false,
 		handleNameAttribute: () => {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
 				_ref.setAttribute = (attribute: string, value: string) => {
 					setAttribute.call(_ref, attribute, value);
 					if (attribute === 'name') {
-						state._name = value;
+						state.mName = value;
 					}
 				};
 			}
@@ -42,43 +42,45 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		handleToggle: (event: ClickEvent<HTMLElement> | any) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
 			event?.preventDefault();
-			const newStateOpen = !state._open;
+			const newStateOpen = !state.mOpen;
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			state.mOpen = newStateOpen;
 		}
 	});
 
 	onMount(() => {
 		if (props.defaultOpen) {
-			state._open = props.defaultOpen;
+			state.mOpen = props.defaultOpen;
 		}
 
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
+		if (_ref && state.mInitialized) {
 			useTarget({ react: () => state.handleNameAttribute() });
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.mInitialized]);
 
 	onUpdate(() => {
 		if (props.name) {
-			state._name = props.name;
+			state.mName = props.name;
 		}
 	}, [props.name]);
 
 	// jscpd:ignore-end
 
 	return (
-		<li id={props.id} class={cls('db-accordion-item', props.className)}>
+		<li
+			id={props.id ?? props._id}
+			class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
-				name={state._name}
-				open={state._open}>
+				name={state.mName}
+				open={state.mOpen}>
 				<summary onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}

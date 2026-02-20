@@ -31,19 +31,19 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		_selected: false,
-		_name: undefined,
-		initialized: false,
-		_listenerAdded: false,
+		mSelected: false,
+		mName: undefined,
+		mInitialized: false,
+		mListenerAdded: false,
 		boundSetSelectedOnChange: undefined,
 		setSelectedOnChange: (event: any) => {
 			event.stopPropagation();
 			useTarget({
 				stencil: () => {
-					state._selected = getBooleanAsString(event.target === _ref);
+					state.mSelected = getBooleanAsString(event.target === _ref);
 				},
 				default: () => {
-					state._selected = event.target === _ref;
+					state.mSelected = event.target === _ref;
 				}
 			});
 		},
@@ -53,7 +53,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				_ref.setAttribute = (attribute: string, value: string) => {
 					setAttribute.call(_ref, attribute, value);
 					if (attribute === 'name') {
-						state._name = value;
+						state.mName = value;
 					}
 				};
 			}
@@ -89,59 +89,59 @@ export default function DBTabItem(props: DBTabItemProps) {
 				state.boundSetSelectedOnChange = state.setSelectedOnChange;
 			}
 		});
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (_ref && state.initialized && state.boundSetSelectedOnChange) {
+		if (_ref && state.mInitialized && state.boundSetSelectedOnChange) {
 			useTarget({ react: () => state.handleNameAttribute() });
-			state.initialized = false;
+			state.mInitialized = false;
 
 			// deselect this tab when another tab in tablist is selected
-			if (!state._listenerAdded) {
+			if (!state.mListenerAdded) {
 				_ref.closest('[role=tablist]')?.addEventListener(
 					'change',
 					state.boundSetSelectedOnChange
 				);
-				state._listenerAdded = true;
+				state.mListenerAdded = true;
 			}
 
 			// Initialize selected state from either active prop (set by parent) or checked attribute
 			if (props.active || _ref.checked) {
 				useTarget({
 					stencil: () => {
-						state._selected = getBooleanAsString(true);
+						state.mSelected = getBooleanAsString(true);
 					},
 					default: () => {
-						state._selected = true;
+						state.mSelected = true;
 					}
 				});
 				_ref.click();
 			}
 		}
-	}, [_ref, state.initialized, state.boundSetSelectedOnChange]);
+	}, [_ref, state.mInitialized, state.boundSetSelectedOnChange]);
 
 	onUpdate(() => {
 		if (props.name) {
-			state._name = props.name;
+			state.mName = props.name;
 		}
 	}, [props.name]);
 
 	onUnMount(() => {
-		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
+		if (state.mListenerAdded && _ref && state.boundSetSelectedOnChange) {
 			_ref.closest('[role=tablist]')?.removeEventListener(
 				'change',
 				state.boundSetSelectedOnChange
 			);
-			state._listenerAdded = false;
+			state.mListenerAdded = false;
 		}
 	});
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
-				htmlFor={props.id}
+				htmlFor={props.id ?? props._id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
 				data-show-icon={getBooleanAsString(
@@ -153,13 +153,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-no-text={getBooleanAsString(props.noText)}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-selected={state._selected}
+					aria-selected={state.mSelected}
 					checked={getBoolean(props.checked, 'checked')}
 					ref={_ref}
 					type="radio"
 					role="tab"
-					name={state._name}
-					id={props.id}
+					name={state.mName}
+					id={props.id ?? props._id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>
 

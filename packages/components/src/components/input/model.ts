@@ -135,7 +135,7 @@ export type DBInputProps = DBInputDefaultProps &
 	FormSizeProps;
 
 export type DBInputDefaultState = {
-	_dataListId?: string;
+	mDataListId?: string;
 	getDataList: () => ValueLabelType[];
 };
 

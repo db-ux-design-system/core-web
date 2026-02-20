@@ -21,7 +21,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
-		initialized: false,
+		mInitialized: false,
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -102,7 +102,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	onMount(() => {
 		state.handleDialogOpen();
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
@@ -110,18 +110,18 @@ export default function DBDrawer(props: DBDrawerProps) {
 	}, [props.open]);
 
 	onUpdate(() => {
-		if (_ref && state.initialized && props.position === 'absolute') {
+		if (_ref && state.mInitialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
 			const parent = refElement.parentElement;
 			if (parent) {
 				parent.style.position = 'relative';
 			}
 		}
-	}, [_ref, state.initialized, props.position]);
+	}, [_ref, state.mInitialized, props.position]);
 
 	return (
 		<dialog
-			id={props.id}
+			id={props.id ?? props._id}
 			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}

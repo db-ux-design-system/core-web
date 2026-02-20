@@ -11,7 +11,7 @@ export default function DBSection(props: DBSectionProps) {
 	return (
 		<section
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			class={cls('db-section', props.className)}
 			data-spacing={props.spacing || 'medium'}
 			data-width={props.width}>

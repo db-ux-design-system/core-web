@@ -40,7 +40,7 @@ export type DBPageDefaultProps = {
 export type DBPageProps = DBPageDefaultProps & GlobalProps;
 
 export type DBPageDefaultState = {
-	fontsLoaded?: boolean;
+	mFontsLoaded?: boolean;
 };
 
 export type DBPageState = DBPageDefaultState & GlobalState;

@@ -24,17 +24,17 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
-		initialized: false,
-		hasAreaPopup: false,
-		hasSubNavigation: true,
-		isSubNavigationExpanded: false,
-		autoClose: false,
+		mInitialized: false,
+		mHasAreaPopup: false,
+		mHasSubNavigation: true,
+		mIsSubNavigationExpanded: false,
+		mAutoClose: false,
 		navigationItemSafeTriangle: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
-				state.autoClose = true;
+				state.mAutoClose = true;
 				void delay(() => {
-					state.autoClose = false;
+					state.mAutoClose = false;
 				}, 1000);
 			}
 		},
@@ -44,23 +44,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				props.onClick(event);
 			}
 
-			if (state.hasAreaPopup) {
-				state.isSubNavigationExpanded = true;
+			if (state.mHasAreaPopup) {
+				state.mIsSubNavigationExpanded = true;
 			}
 		},
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
-			state.isSubNavigationExpanded = false;
+			state.mIsSubNavigationExpanded = false;
 		}
 	});
 
 	onMount(() => {
-		state.initialized = true;
+		state.mInitialized = true;
 	});
 
 	onUpdate(() => {
 		if (props.subNavigationExpanded !== undefined) {
-			state.isSubNavigationExpanded = !!getBoolean(
+			state.mIsSubNavigationExpanded = !!getBoolean(
 				props.subNavigationExpanded,
 				'subNavigationExpanded'
 			);
@@ -68,12 +68,12 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	}, [props.subNavigationExpanded]);
 
 	onUpdate(() => {
-		if (state.initialized && _ref) {
+		if (state.mInitialized && _ref) {
 			const subNavigationSlot = _ref.querySelector('menu');
 
 			if (subNavigationSlot) {
 				if (subNavigationSlot.children?.length > 0) {
-					state.hasAreaPopup = true;
+					state.mHasAreaPopup = true;
 
 					if (!state.navigationItemSafeTriangle) {
 						state.navigationItemSafeTriangle =
@@ -83,17 +83,17 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 							);
 					}
 				} else {
-					state.hasSubNavigation = false;
+					state.mHasSubNavigation = false;
 				}
 			}
 		}
-	}, [state.initialized, _ref]);
+	}, [state.mInitialized, _ref]);
 	// jscpd:ignore-end
 
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props._id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
@@ -108,16 +108,16 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
-			<Show when={!state.hasSubNavigation}>
+			<Show when={!state.mHasSubNavigation}>
 				<Show when={props.text} else={props.children}>
 					{props.text}
 				</Show>
 			</Show>
 
-			<Show when={state.hasSubNavigation}>
+			<Show when={state.mHasSubNavigation}>
 				<button
-					aria-haspopup={state.hasAreaPopup}
-					aria-expanded={state.isSubNavigationExpanded}
+					aria-haspopup={state.mHasAreaPopup}
+					aria-expanded={state.mIsSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
 					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
@@ -131,9 +131,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				{/* TODO: Consider using popover here */}
 				<menu
 					class="db-sub-navigation"
-					data-force-close={state.autoClose}
+					data-force-close={state.mAutoClose}
 					onClick={(event) => state.handleNavigationItemClick(event)}>
-					<Show when={state.hasAreaPopup}>
+					<Show when={state.mHasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton
 								id={props.backButtonId}
