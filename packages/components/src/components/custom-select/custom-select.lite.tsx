@@ -459,7 +459,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					if (event.relatedTarget) {
 						const relatedTarget =
 							event.relatedTarget as HTMLElement;
-						// We close if the focus is on something like a <button> etc. which is not inside the details element
+						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
 						// Inside a dialog there is some focus problem because of the top-layer, we don't want to focus dialog itself
 						if (
 							!detailsRef.contains(relatedTarget) &&
