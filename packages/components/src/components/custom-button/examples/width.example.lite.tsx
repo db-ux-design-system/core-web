@@ -26,7 +26,7 @@ export default function CustomButtonWidth() {
 				(Default) Auto
 			</DBInfotext>
 			<DBCustomButton width="auto">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton width="auto">
 				<label>
@@ -47,7 +47,7 @@ export default function CustomButtonWidth() {
 			<i class="line-break" data-sb-ignore="true" />
 			<div style={{ width: '500px' }}>
 				<DBCustomButton width="full">
-					<button>Button</button>
+					<button type="button">Button</button>
 				</DBCustomButton>
 			</div>
 			<i class="line-break" data-sb-ignore="true" />

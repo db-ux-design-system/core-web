@@ -26,7 +26,7 @@ export default function CustomButtonNoText() {
 				(Default) False
 			</DBInfotext>
 			<DBCustomButton icon="x_placeholder">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder">
 				<label>
@@ -45,7 +45,7 @@ export default function CustomButtonNoText() {
 				True
 			</DBInfotext>
 			<DBCustomButton icon="x_placeholder" noText={true}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder" noText={true}>
 				<label>

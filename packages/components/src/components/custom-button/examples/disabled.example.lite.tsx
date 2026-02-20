@@ -26,7 +26,7 @@ export default function CustomButtonDisabled() {
 				(Default) False
 			</DBInfotext>
 			<DBCustomButton disabled={false}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton disabled={false}>
 				<label>
@@ -45,7 +45,7 @@ export default function CustomButtonDisabled() {
 				True
 			</DBInfotext>
 			<DBCustomButton disabled={true}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton disabled={true}>
 				<label>

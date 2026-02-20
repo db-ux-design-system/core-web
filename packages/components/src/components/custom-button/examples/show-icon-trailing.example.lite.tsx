@@ -28,7 +28,7 @@ export default function CustomButtonShowIconTrailing() {
 			<DBCustomButton
 				iconTrailing="x_placeholder"
 				showIconTrailing={false}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton
 				iconTrailing="x_placeholder"
@@ -53,7 +53,7 @@ export default function CustomButtonShowIconTrailing() {
 			<DBCustomButton
 				iconTrailing="x_placeholder"
 				showIconTrailing={true}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton
 				iconTrailing="x_placeholder"

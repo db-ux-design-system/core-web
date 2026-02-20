@@ -32,7 +32,7 @@ export default function CustomButtonVariant() {
 				(Default) Outlined
 			</DBInfotext>
 			<DBCustomButton variant="outlined">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="outlined">
 				<label>
@@ -51,7 +51,7 @@ export default function CustomButtonVariant() {
 				Filled
 			</DBInfotext>
 			<DBCustomButton variant="filled">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="filled">
 				<label>
@@ -70,7 +70,7 @@ export default function CustomButtonVariant() {
 				Ghost
 			</DBInfotext>
 			<DBCustomButton variant="ghost">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="ghost">
 				<label>
@@ -89,7 +89,7 @@ export default function CustomButtonVariant() {
 				Brand
 			</DBInfotext>
 			<DBCustomButton variant="brand">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="brand">
 				<label>

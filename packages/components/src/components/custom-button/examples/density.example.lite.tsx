@@ -29,7 +29,7 @@ export default function CustomButtonDensity() {
 				Functional
 			</DBInfotext>
 			<DBCustomButton data-density="functional">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-density="functional">
 				<label>
@@ -48,7 +48,7 @@ export default function CustomButtonDensity() {
 				(Default) Regular
 			</DBInfotext>
 			<DBCustomButton data-density="regular">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-density="regular">
 				<label>
@@ -67,7 +67,7 @@ export default function CustomButtonDensity() {
 				Expressive
 			</DBInfotext>
 			<DBCustomButton data-density="expressive">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-density="expressive">
 				<label>

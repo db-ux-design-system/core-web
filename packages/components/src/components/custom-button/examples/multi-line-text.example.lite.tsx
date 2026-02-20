@@ -30,7 +30,7 @@ export default function CustomButtonMultiLineText() {
 			</DBInfotext>
 			<div style={{ width: '300px' }}>
 				<DBCustomButton width="full">
-					<button>Multi-line Text With Automatic Line Breaks</button>
+					<button type="button">Multi-line Text With Automatic Line Breaks</button>
 				</DBCustomButton>
 			</div>
 			<div style={{ width: '300px' }}>
@@ -55,7 +55,7 @@ export default function CustomButtonMultiLineText() {
 			</DBInfotext>
 			<div style={{ width: '300px' }}>
 				<DBCustomButton width="full" icon="x_placeholder">
-					<button>
+					<button type="button">
 						Multi-line Text With Automatic Line Breaks and Icon
 					</button>
 				</DBCustomButton>
@@ -84,7 +84,7 @@ export default function CustomButtonMultiLineText() {
 			</DBInfotext>
 			<div style={{ width: '300px' }}>
 				<DBCustomButton size="small">
-					<button>
+					<button type="button">
 						Button Small Multi-line Text With Automatic Line Breaks
 					</button>
 				</DBCustomButton>

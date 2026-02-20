@@ -26,7 +26,7 @@ export default function CustomButtonShowIconLeading() {
 				(Default) False
 			</DBInfotext>
 			<DBCustomButton icon="x_placeholder" showIcon={false}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder" showIcon={false}>
 				<label>
@@ -45,7 +45,7 @@ export default function CustomButtonShowIconLeading() {
 				True
 			</DBInfotext>
 			<DBCustomButton icon="x_placeholder" showIcon={true}>
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder" showIcon={true}>
 				<label>

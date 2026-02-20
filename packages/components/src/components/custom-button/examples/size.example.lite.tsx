@@ -26,7 +26,7 @@ export default function CustomButtonSize() {
 				(Default) Medium
 			</DBInfotext>
 			<DBCustomButton size="medium">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton size="medium">
 				<label>
@@ -45,7 +45,7 @@ export default function CustomButtonSize() {
 				Small
 			</DBInfotext>
 			<DBCustomButton size="small">
-				<button>Button</button>
+				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton size="small">
 				<label>
