@@ -28,7 +28,7 @@
 
 /* Linebreak for variant cards */
 .line-break {
-	inline-size: 100vw;
+	flex-basis: 100%;
 }
 
 .variants-card,
