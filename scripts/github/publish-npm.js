@@ -32,6 +32,7 @@ const packages = [
 	'wc-core-components',
 	'core-migration',
 	'core-stylelint',
+	'core-eslint-plugin',
 	'core-vite-plugin',
 	'agent-cli'
 ];
@@ -51,6 +52,7 @@ for (const PACKAGE of packages) {
 			PACKAGE !== 'agent-cli' &&
 			PACKAGE !== 'core-migration' &&
 			PACKAGE !== 'core-stylelint' &&
+			PACKAGE !== 'core-eslint-plugin' &&
 			PACKAGE !== 'core-vite-plugin'
 		) {
 			console.log('🕵️‍ Set foundations dependency');

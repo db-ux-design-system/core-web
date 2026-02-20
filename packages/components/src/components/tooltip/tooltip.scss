@@ -112,6 +112,10 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 			background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 		}
 	}
+
+	&[data-wrap="false"] {
+		white-space: nowrap;
+	}
 }
 
 // Global styles
