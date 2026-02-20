@@ -15,7 +15,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		// Should include either default theme or detected theme
@@ -47,7 +48,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: true
+			icons: true,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -68,7 +70,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: true,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -89,7 +92,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -113,7 +117,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -137,7 +142,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -161,7 +167,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -185,7 +192,8 @@ describe('generateCSS', () => {
 			fontSizes: ['body-md', 'headline-lg'],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
@@ -209,7 +217,8 @@ describe('generateCSS', () => {
 			fontSizes: [],
 			excludeFontSizes: [],
 			animations: false,
-			icons: false
+			icons: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(

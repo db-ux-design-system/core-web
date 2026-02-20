@@ -1,6 +1,6 @@
-import type { Plugin } from 'vite';
 import { readdir, readFile, writeFile } from 'fs/promises';
 import { join, resolve } from 'path';
+import type { Plugin } from 'vite';
 import {
 	detectColors,
 	detectComponents,
@@ -78,10 +78,7 @@ function removeUnusedStyles(
 
 	for (const fontSize of unusedFontSizes) {
 		const [type, size] = fontSize.split('-');
-		css = css.replace(
-			new RegExp(`--db-type-${fontSize}:[^;]+;`, 'g'),
-			''
-		);
+		css = css.replace(new RegExp(`--db-type-${fontSize}:[^;]+;`, 'g'), '');
 		css = css.replace(
 			new RegExp(`--db-base-${type}-icon-weight-${size}:[^;]+;`, 'g'),
 			''
@@ -152,7 +149,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 
 		configResolved(resolvedConfig) {
 			outDir = resolvedConfig.build.outDir;
-			hasTailwind = resolvedConfig.plugins.some(plugin => 
+			hasTailwind = resolvedConfig.plugins.some((plugin) =>
 				plugin.name.startsWith('@tailwindcss/vite')
 			);
 		},
@@ -249,8 +246,6 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 
 			return code;
 		},
-
-
 
 		async buildEnd() {
 			if (debug && optimize && hasDetected) {

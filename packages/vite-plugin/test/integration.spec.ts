@@ -11,11 +11,6 @@ function normalizeCSS(css: string): string {
 	css = css.replace(/\/\*# sourceMappingURL=.*?\*\//g, '');
 	// Normalize line endings (Windows CRLF to Unix LF)
 	css = css.replace(/\r\n/g, '\n');
-	// Normalize multiple consecutive newlines
-	css = css.replace(/\n{3,}/g, '\n\n');
-	// Normalize whitespace around braces and colons
-	css = css.replace(/\s*{\s*/g, ' {\n');
-	css = css.replace(/\s*}\s*/g, '\n}\n');
 	// Normalize path separators in URLs (Windows backslash to forward slash)
 	css = css.replace(/url\(['"]?([^'"\)]+)['"]?\)/g, (match, path) => {
 		const normalizedPath = path.replace(/\\\\/g, '/');

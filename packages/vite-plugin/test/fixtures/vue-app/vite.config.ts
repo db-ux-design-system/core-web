@@ -16,6 +16,7 @@ export default defineConfig({
 	},
 	build: {
 		outDir: 'dist',
-		cssCodeSplit: false
+		cssCodeSplit: false,
+		cssMinify: 'esbuild'
 	}
 });
