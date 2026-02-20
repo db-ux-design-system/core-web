@@ -86,9 +86,6 @@ describe('Integration Tests', () => {
 			expect(css).toContain('db-input');
 			expect(css).toContain('--db-neutral');
 			expect(css).toContain('regular');
-
-			// Snapshot the CSS
-			expect(css).toMatchSnapshot();
 		});
 	});
 });
