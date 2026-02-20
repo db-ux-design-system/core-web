@@ -67,9 +67,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				state.checkTruncation();
-				if (_labelRef && !_labelRef.dataset.label) {
-					_labelRef.dataset.label =
-						props.label || _labelRef.innerText || _labelRef.textContent || '';
+				const labelEl = _labelRef;
+				if (labelEl && !labelEl.dataset.label) {
+					labelEl.dataset.label =
+						props.label || labelEl.innerText || labelEl.textContent || '';
 				}
 			});
 		}
