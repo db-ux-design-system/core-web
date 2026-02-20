@@ -46,6 +46,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
 			form={props.form}
