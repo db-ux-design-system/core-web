@@ -10,7 +10,6 @@ export const StorybookCustomButtonArgTypes: Record<string, InputType> = {
 		control: 'select',
 		options: ['outlined', 'brand', 'ghost', 'filled']
 	},
-	disabled: { control: 'boolean' },
 	noText: { control: 'boolean' },
 	...StorybookIconArgTypes,
 	...StorybookIconLeadingArgTypes,
