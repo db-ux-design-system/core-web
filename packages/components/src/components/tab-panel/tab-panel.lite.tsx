@@ -25,7 +25,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			tabIndex={0}
 			hidden={props.hidden}
 			aria-labelledby={props.ariaLabelledby}>
-			<Show when={props.content}> {props.content}</Show>
+			<Show when={props.content}>{props.content}</Show>
 			{props.children}
 		</section>
 	);
