@@ -9,7 +9,8 @@ import {
 	ShowIconProps,
 	ShowIconTrailingProps,
 	SizeProps,
-	WidthProps
+	WidthProps,
+	WrapProps
 } from '../../shared/model';
 import { DBButtonSharedProps } from '../button/model';
 
@@ -26,7 +27,8 @@ export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 	ShowIconTrailingProps &
 	IconLeadingProps &
 	IconTrailingProps &
-	NoTextProps;
+	NoTextProps &
+	WrapProps;
 
 export type DBCustomButtonDefaultState = {};
 

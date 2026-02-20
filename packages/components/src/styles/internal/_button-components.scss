@@ -77,6 +77,12 @@
 		}
 	}
 
+	&[data-wrap="false"] {
+		#{$selector} {
+			white-space: nowrap;
+		}
+	}
+
 	&[data-size="small"] {
 		#{$selector} {
 			@extend %db-overwrite-font-size-sm;
