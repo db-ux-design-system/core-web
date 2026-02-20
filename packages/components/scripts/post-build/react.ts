@@ -151,10 +151,10 @@ export default DB${upperComponentName};`
 						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
 						'\nclassName={'
 				},
-				/* We need to overwrite the internal state._value property just for react to have controlled components.
+				/* We need to overwrite the internal state.mValue property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */
 				{
-					from: 'props.value ?? _value',
+					from: 'props.value ?? mValue',
 					to: 'props.value'
 				}
 			];

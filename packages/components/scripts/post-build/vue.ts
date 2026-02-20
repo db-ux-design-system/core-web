@@ -46,14 +46,14 @@ export default (tmp?: boolean) => {
 			];
 
 			/* This is a workaround for valid/invalid Messages.
-			 *  If a valid/invalid message appears it will use the old this._value,
-			 *  so we need to overwrite this._value with the current event.target.value.   */
+			 *  If a valid/invalid message appears it will use the old this.mValue,
+			 *  so we need to overwrite this.mValue with the current event.target.value.   */
 
 			if (['select', 'textarea', 'input'].includes(componentName)) {
 				replacements.push({
 					from: 'if (props.onInput) {',
 					to:
-						'_value.value = (event.target as any).value;\n' +
+						'mValue.value = (event.target as any).value;\n' +
 						'if (props.onInput) {'
 				});
 			}
