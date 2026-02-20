@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBCheckbox from '../../checkbox/checkbox.lite';
 import DBInfotext from '../../infotext/infotext.lite';
@@ -21,6 +21,10 @@ useMetadata({
 });
 
 export default function TableComplex() {
+	const state = useStore({
+		columnSizes: { 0: 'min-content', 6: 'min-content' }
+	});
+
 	return (
 		<Fragment>
 			<div
@@ -36,7 +40,7 @@ export default function TableComplex() {
 					Joined
 				</DBInfotext>
 				<DBTable
-					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
+					columnSizes={state.columnSizes}
 					captionPlain="Joined, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
@@ -222,6 +226,7 @@ export default function TableComplex() {
 					</DBTableBody>
 				</DBTable>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
 					maxInlineSize: '100%',
@@ -235,7 +240,7 @@ export default function TableComplex() {
 					Zebra
 				</DBInfotext>
 				<DBTable
-					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
+					columnSizes={state.columnSizes}
 					variant="zebra"
 					captionPlain="Zebra, sortable columns are Link.">
 					<DBTableHead>
@@ -422,6 +427,7 @@ export default function TableComplex() {
 					</DBTableBody>
 				</DBTable>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
 					maxInlineSize: '100%',
@@ -435,7 +441,7 @@ export default function TableComplex() {
 					Floating
 				</DBInfotext>
 				<DBTable
-					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
+					columnSizes={state.columnSizes}
 					variant="floating"
 					captionPlain="Floating, sortable columns are Link.">
 					<DBTableHead>
@@ -622,6 +628,7 @@ export default function TableComplex() {
 					</DBTableBody>
 				</DBTable>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
 					inlineSize: '300px',
@@ -634,7 +641,7 @@ export default function TableComplex() {
 					Mobile variant: List
 				</DBInfotext>
 				<DBTable
-					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
+					columnSizes={state.columnSizes}
 					variant="floating"
 					mobileVariant="list"
 					captionPlain="Mobile variant: List, sortable columns are Link.">

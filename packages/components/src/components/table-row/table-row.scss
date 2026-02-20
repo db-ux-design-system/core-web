@@ -3,7 +3,10 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "./../../styles/internal/table-components";
 
-$interactive-child: '[data-table-row-action="true"]';
+$interactive-elements: ':is(input,button,a,select,textarea,[role="button"],[role="link"],[tabindex]:not([tabindex="-1"]))';
+$interactive-row-action: '[data-table-row-action="true"]';
+$interactive-nested-child: "#{$interactive-row-action} input,textarea,select";
+$interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$interactive-nested-child})";
 
 %full-absolute {
 	content: "";
@@ -22,17 +25,7 @@ $interactive-child: '[data-table-row-action="true"]';
 	&[data-interactive="true"] {
 		position: relative;
 
-		td
-			:is(
-				input,
-				button,
-				a,
-				select,
-				textarea,
-				[role="button"],
-				[role="link"],
-				[tabindex]:not([tabindex="-1"])
-			):not(#{$interactive-child}) {
+		td #{$interactive-elements}:not(#{$interactive-row-action}) {
 			position: relative;
 			z-index: 1;
 		}
@@ -47,7 +40,11 @@ $interactive-child: '[data-table-row-action="true"]';
 		}
 
 		&:has(
-			#{$interactive-child}:hover:not(:disabled, [aria-disabled="true"])
+			#{$interactive-child}:hover:not(
+					:disabled,
+					[aria-disabled="true"],
+					[tabindex="-1"]
+				)
 		) {
 			@include helpers.cursor-pointer {
 				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
@@ -55,7 +52,11 @@ $interactive-child: '[data-table-row-action="true"]';
 		}
 
 		&:has(
-			#{$interactive-child}:active:not(:disabled, [aria-disabled="true"])
+			#{$interactive-child}:active:not(
+					:disabled,
+					[aria-disabled="true"],
+					[tabindex="-1"]
+				)
 		) {
 			@include helpers.cursor-pointer {
 				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
@@ -68,7 +69,6 @@ $interactive-child: '[data-table-row-action="true"]';
 			}
 		}
 
-		// TODO: data-attributes on DBCheckbox aren't passed to <input> in Vue...
 		#{$interactive-child} {
 			// Reset some defaults
 			--db-tooltip-parent-position: static;
