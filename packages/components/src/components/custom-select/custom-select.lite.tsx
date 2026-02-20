@@ -660,17 +660,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.id ?? props._id ?? `custom-select-${uuid()}`;
-		state.mId = mId;
-		state.mMessageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state.mValidMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state.mInvalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state.mSelectId = mId + DEFAULT_SELECT_ID_SUFFIX;
-		state.mLabelId = mId + DEFAULT_LABEL_ID_SUFFIX;
-		state.mSummaryId = mId + '-summary';
-		state.mPlaceholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state.mSelectedLabelsId = mId + '-selected-labels';
-		state.mInfoTextId = mId + '-info';
+		const _mId = props.id ?? props._id ?? `custom-select-${uuid()}`;
+		state.mId = _mId;
+		state.mMessageId = _mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state.mValidMessageId = _mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state.mInvalidMessageId = _mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.mSelectId = _mId + DEFAULT_SELECT_ID_SUFFIX;
+		state.mLabelId = _mId + DEFAULT_LABEL_ID_SUFFIX;
+		state.mSummaryId = _mId + '-summary';
+		state.mPlaceholderId = _mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state.mSelectedLabelsId = _mId + '-selected-labels';
+		state.mInfoTextId = _mId + '-info';
 		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {

@@ -190,12 +190,12 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		const mId = props.id ?? props._id ?? `input-${uuid()}`;
-		state.mId = mId;
-		state.mMessageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state.mValidMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state.mInvalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state.mDataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
+		const _mId = props.id ?? props._id ?? `input-${uuid()}`;
+		state.mId = _mId;
+		state.mMessageId = _mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state.mValidMessageId = _mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state.mInvalidMessageId = _mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.mDataListId = _mId + DEFAULT_DATALIST_ID_SUFFIX;
 		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
