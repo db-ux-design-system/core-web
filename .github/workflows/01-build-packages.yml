@@ -51,6 +51,12 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
+      - name: ⏫ Upload eslint-plugin build
+        uses: actions/upload-artifact@v6
+        with:
+          name: db-ux-eslint-plugin-build
+          path: packages/eslint-plugin/build
+
       - name: ⏫ Upload agent-cli build
         uses: actions/upload-artifact@v6
         with:

@@ -11,7 +11,8 @@ import {
 	ShowIconTrailingProps,
 	SizeProps,
 	TextProps,
-	WidthProps
+	WidthProps,
+	WrapProps
 } from '../../shared/model';
 
 export const ButtonVariantList = [
@@ -71,6 +72,7 @@ export type DBButtonProps = DBButtonDefaultProps &
 	ShowIconTrailingProps &
 	IconLeadingProps &
 	IconTrailingProps &
+	WrapProps &
 	NoTextProps;
 
 export type DBButtonDefaultState = {
