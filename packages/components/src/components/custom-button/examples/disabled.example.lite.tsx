@@ -25,16 +25,16 @@ export default function CustomButtonDisabled() {
 				semantic="informational">
 				(Default) False
 			</DBInfotext>
-			<DBCustomButton disabled={false}>
+			<DBCustomButton>
 				<button type="button">Button</button>
 			</DBCustomButton>
-			<DBCustomButton disabled={false}>
+			<DBCustomButton>
 				<label>
 					<input type="checkbox" />
 					Checkbox
 				</label>
 			</DBCustomButton>
-			<DBCustomButton disabled={false}>
+			<DBCustomButton>
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
@@ -44,17 +44,21 @@ export default function CustomButtonDisabled() {
 				semantic="informational">
 				True
 			</DBInfotext>
-			<DBCustomButton disabled={true}>
-				<button type="button">Button</button>
+			<DBCustomButton>
+				<button type="button" disabled={true}>
+					Button
+				</button>
 			</DBCustomButton>
-			<DBCustomButton disabled={true}>
+			<DBCustomButton>
 				<label>
-					<input type="checkbox" />
+					<input type="checkbox" disabled={true} />
 					Checkbox
 				</label>
 			</DBCustomButton>
-			<DBCustomButton disabled={true}>
-				<a href="#">Link</a>
+			<DBCustomButton>
+				<a href="#" tabIndex={-1} aria-disabled="true">
+					Link
+				</a>
 			</DBCustomButton>
 		</Fragment>
 	);

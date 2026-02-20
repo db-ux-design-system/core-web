@@ -164,20 +164,16 @@ export const getInputValue = (
 		: value;
 };
 
+const toBool = (value: boolean | string): boolean =>
+	typeof value === 'string' ? value === 'true' : value;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	let _show;
-	if (typeof show === 'string') {
-		_show = show === 'true';
-	} else {
-		_show = show;
-	}
-
-	return getBooleanAsString(!_show);
+	return getBooleanAsString(!toBool(show));
 };
 
 export const stringPropVisible = (
@@ -186,16 +182,9 @@ export const stringPropVisible = (
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
-	} else {
-		let _show;
-		if (typeof showString === 'string') {
-			_show = showString === 'true';
-		} else {
-			_show = showString;
-		}
-
-		return _show && Boolean(givenString);
 	}
+
+	return toBool(showString) && Boolean(givenString);
 };
 
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>

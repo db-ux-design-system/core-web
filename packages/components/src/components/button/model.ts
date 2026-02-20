@@ -27,17 +27,16 @@ export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
 export type DBButtonSharedProps = {
 	/**
-	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
-	 */
-	disabled?: boolean | string;
-
-	/**
 	 * Variant of the button. Only use one primary button as a CTA on a page; otherwise, use one of the adaptive buttons.
 	 */
 	variant?: ButtonVariantType | string;
 };
 
 export type DBButtonDefaultProps = {
+	/**
+	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
+	 */
+	disabled?: boolean | string;
 	/**
 	 * 	Associates the control with a form element
 	 */

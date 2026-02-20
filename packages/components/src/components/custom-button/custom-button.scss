@@ -59,7 +59,7 @@ $icon-padding-custom-button: calc(
 		}
 	}
 
-	a[aria-disabled="true"] {
+	a[tabindex="-1"] {
 		cursor: default;
 		pointer-events: none;
 	}
