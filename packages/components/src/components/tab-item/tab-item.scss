@@ -27,6 +27,17 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		max-inline-size: 100%;
+
+		&::after {
+			content: attr(data-label);
+			font-weight: 700;
+			display: block;
+			block-size: 0;
+			visibility: hidden;
+			overflow: hidden;
+			pointer-events: none;
+			line-height: 0;
+		}
 	}
 
 	@extend %db-puls;

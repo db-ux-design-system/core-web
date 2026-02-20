@@ -98,7 +98,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 
 			&[role="tablist"], .db-tab-list {
 				display: flex;
-				align-items: flex-end;
+				align-items: stretch;
 				overflow: auto;
 				// stylelint-disable-next-line db-ux/use-spacings
 				padding-inline: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
