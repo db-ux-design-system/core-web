@@ -32,7 +32,7 @@ export type DBButtonSharedProps = {
 	disabled?: boolean | string;
 
 	/**
-	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
+	 * Variant of the button. Only use one primary button as a CTA on a page; otherwise, use one of the adaptive buttons.
 	 */
 	variant?: ButtonVariantType | string;
 };
