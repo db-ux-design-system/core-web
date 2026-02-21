@@ -6,6 +6,12 @@ export const handleFrameworkEventAngular = (
 	event: any,
 	modelValue: string = 'value'
 ): void => {
+	// For number inputs, skip propagating when the input is in an intermediate
+	// state (e.g. "1." or "1,") where event.target.value is empty but the user
+	// hasn't finished entering the number (validity.badInput is true).
+	if (event.target?.type === 'number' && event.target?.validity?.badInput) {
+		return;
+	}
 	component.propagateChange(event.target[modelValue]);
 	component.writeValue(event.target[modelValue]);
 };
@@ -15,6 +21,12 @@ export const handleFrameworkEventVue = (
 	event: any,
 	modelValue: string = 'value'
 ): void => {
+	// For number inputs, skip emitting when the input is in an intermediate
+	// state (e.g. "1." or "1,") where event.target.value is empty but the user
+	// hasn't finished entering the number (validity.badInput is true).
+	if (event.target?.type === 'number' && event.target?.validity?.badInput) {
+		return;
+	}
 	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 	emit(`update:${modelValue}`, event.target[modelValue]);
 };
