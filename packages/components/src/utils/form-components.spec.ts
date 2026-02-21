@@ -32,14 +32,14 @@ describe('handleFrameworkEventAngular', () => {
 		expect(component.writeValue).toHaveBeenCalledWith('1.5');
 	});
 
-	it('skips propagateChange and writeValue when number input has badInput (intermediate state like "1.")', () => {
+	it('calls propagateChange but skips writeValue when number input has badInput (intermediate state like "1.")', () => {
 		const component = {
 			propagateChange: vi.fn(),
 			writeValue: vi.fn()
 		};
 		const event = createNumberEvent('', true);
 		handleFrameworkEventAngular(component, event);
-		expect(component.propagateChange).not.toHaveBeenCalled();
+		expect(component.propagateChange).toHaveBeenCalledWith('');
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 
@@ -74,11 +74,11 @@ describe('handleFrameworkEventVue', () => {
 		expect(emit).toHaveBeenCalledWith('update:value', '1.5');
 	});
 
-	it('skips emit when number input has badInput (intermediate state like "1.")', () => {
+	it('emits update:value with empty string when number input has badInput (intermediate state like "1.")', () => {
 		const emit = vi.fn();
 		const event = createNumberEvent('', true);
 		handleFrameworkEventVue(emit, event);
-		expect(emit).not.toHaveBeenCalled();
+		expect(emit).toHaveBeenCalledWith('update:value', '');
 	});
 
 	it('emits update:value when number input is cleared (empty, no badInput)', () => {
