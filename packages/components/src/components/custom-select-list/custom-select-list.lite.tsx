@@ -8,7 +8,8 @@ useDefaultProps<DBCustomSelectListProps>({});
 
 export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLFieldSetElement | any>(null);
+	const _ref = useRef<HTMLFieldSetElement | null>(null);
+	const groupLabel = props.ariaListLabel ?? props.label;
 
 	return (
 		<fieldset
