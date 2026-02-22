@@ -43,7 +43,6 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
 	checkboxNames = ["X", "Y", "Z"];
-	selectedCheckboxes: string[] = [];
 	checkbox = "";
 }
 ```
