@@ -24,7 +24,7 @@ import { DBCheckbox } from '@db-ux/ngx-core-components';
 	<legend>Checkbox group example</legend>
 	@for (checkboxName of checkboxNames; track checkboxName) {
 		<db-checkbox
-			(change)="onCheckboxChange(checkboxName, $event)"
+			(change)="checkbox = checkboxName"
 			[label]="'Checkbox ' + checkboxName"
 			[value]="checkboxName"
 			name="CheckboxGroup"
@@ -44,16 +44,7 @@ import { Component } from "@angular/core";
 export class AppComponent {
 	checkboxNames = ["X", "Y", "Z"];
 	selectedCheckboxes: string[] = [];
-
-	onCheckboxChange(checkboxName: string, event: any) {
-		if (event.target.checked) {
-			this.selectedCheckboxes.push(checkboxName);
-		} else {
-			this.selectedCheckboxes = this.selectedCheckboxes.filter(
-				name => name !== checkboxName
-			);
-		}
-	}
+	checkbox = "";
 }
 ```
 
