@@ -1,24 +1,33 @@
 #!/usr/bin/env node
-import * as dotenv from 'dotenv';
-import * as ChildProcess from 'node:child_process';
-import * as process from 'node:process';
+import { execSync } from 'node:child_process';
+// eslint-disable-next-line unicorn/import-style
+import { dirname, join } from 'node:path';
+import { env, exit, loadEnvFile } from 'node:process';
+import { fileURLToPath } from 'node:url';
 
-dotenv.config();
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const envPath = join(__dirname, '..', '.env');
+
+try {
+	loadEnvFile(envPath);
+} catch {
+	// .env file doesn't exist, which is ok - we'll check for required vars below
+}
 
 const checkCommitMail = () => {
 	console.warn(`Check COMMIT_MAIL`);
-	if (!process.env.COMMIT_MAIL) {
+	if (!env.COMMIT_MAIL) {
 		console.error(
 			`No COMMIT_MAIL set in .env, please take a look at the file '.env.template'`
 		);
-		process.exit(1);
+		exit(1);
 	}
 
-	const currentMail = ChildProcess.execSync('git config user.email')
+	const currentMail = execSync('git config user.email')
 		.toString()
 		.trim()
 		.toLowerCase();
-	const commitMail = process.env.COMMIT_MAIL.trim().toLowerCase();
+	const commitMail = env.COMMIT_MAIL.trim().toLowerCase();
 	if (currentMail !== commitMail) {
 		console.error(
 			`currentMail: ${currentMail} !== initialMail: ${commitMail}`
@@ -26,7 +35,7 @@ const checkCommitMail = () => {
 		console.error(
 			`Please set your commit user mail for this project like: 'git config user.email '${commitMail}''`
 		);
-		process.exit(1);
+		exit(1);
 	}
 };
 

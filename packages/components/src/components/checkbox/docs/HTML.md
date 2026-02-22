@@ -15,28 +15,25 @@ For general installation and configuration take a look at the [components](https
 </body>
 ```
 
-### Group multiple checkboxes
+#### Adding Formatted Infotext
 
-When grouping multiple checkboxes, use `fieldset` and `legend` elements for proper accessibility:
+To add a descriptive text with HTML formatting (e.g., bold or italic text) to a checkbox, you should use a separate element for the message and link it via the [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby)-HTML-attribute for accessibility. This ensures that screen readers correctly associate the message with the checkbox.
 
 ```html index.html
-<!-- index.html -->
+<!-- Checkbox with formatted infotext -->
 ...
 <body>
-	<fieldset>
-		<legend>Select preferences</legend>
-		<label class="db-checkbox" for="checkbox-option-1">
-			<input type="checkbox" id="checkbox-option-1" name="preferences" value="option1" />
-			Option 1
-		</label>
-		<label class="db-checkbox" for="checkbox-option-2">
-			<input type="checkbox" id="checkbox-option-2" name="preferences" value="option2" />
-			Option 2
-		</label>
-		<label class="db-checkbox" for="checkbox-option-3">
-			<input type="checkbox" id="checkbox-option-3" name="preferences" value="option3" />
-			Option 3
-		</label>
-	</fieldset>
+	<label class="db-checkbox" for="checkbox-element">
+		<input
+			type="checkbox"
+			id="checkbox-element"
+			name="States"
+			aria-describedby="checkbox-message"
+		/>
+		Label
+	</label>
+	<p class="db-infotext" id="checkbox-message">
+		Example <strong>Text</strong>
+	</p>
 </body>
 ```

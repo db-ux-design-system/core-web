@@ -15,14 +15,13 @@ const testComponent = (viewport) => {
 		await expect(component).toContainText('Test');
 	});
 
-	test.fixme(
-		`should match screenshot for device ${viewport.name}`,
-		async ({ mount }) => {
-			const component = await mount(comp);
-			// TODO: Screenshots are not captured for top-layer
-			await expect(component).toHaveScreenshot();
-		}
-	);
+	test.fixme(`should match screenshot for device ${viewport.name}`, async ({
+		mount
+	}) => {
+		const component = await mount(comp);
+		// TODO: Screenshots are not captured for top-layer
+		await expect(component).toHaveScreenshot();
+	});
 };
 
 const testA11y = () => {
@@ -45,15 +44,11 @@ const testAction = () => {
 	test(`should open and close drawer`, async ({ mount, page }) => {
 		let test: string = '';
 		const drawer: any = (
-			<DBDrawer onClose={() => (test = 'close')}>
+			<DBDrawer open={true} onClose={() => (test = 'close')}>
 				<span data-testid="test">Test</span>
 			</DBDrawer>
 		);
 		const component = await mount(drawer);
-		await page.evaluate(() => {
-			const selector = document.querySelector('dialog');
-			selector.showModal();
-		});
 		const testSpan = component.getByTestId('test');
 		await expect(testSpan).toBeVisible();
 		await component.getByRole('button').click();

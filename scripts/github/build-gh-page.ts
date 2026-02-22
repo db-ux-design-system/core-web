@@ -62,14 +62,14 @@ const buildGHPage = async () => {
 		const nameDir = path.join(versionDir, NAME);
 		if (fs.existsSync(nameDir)) {
 			console.log(`Remove dir ./public/version/${NAME}`);
-			fs.rmdirSync(nameDir, { recursive: true });
+			fs.rmSync(nameDir, { recursive: true });
 		}
 
 		if (RELEASE) {
 			const latestDir = path.join(versionDir, 'latest');
 			if (fs.existsSync(latestDir)) {
 				console.log('Remove dir ./public/version/latest');
-				fs.rmdirSync(latestDir, { recursive: true });
+				fs.rmSync(latestDir, { recursive: true });
 			}
 
 			fs.mkdirSync(latestDir);

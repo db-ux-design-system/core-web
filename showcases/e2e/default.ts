@@ -1,9 +1,8 @@
 import { AxeBuilder } from '@axe-core/playwright';
-import { expect, type Page, test } from '@playwright/test';
+import { expect, type FullProject, type Page, test } from '@playwright/test';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
-import { type FullProject } from 'playwright/types';
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
@@ -11,11 +10,12 @@ const density = 'regular';
 
 export type SkipType = {
 	angular?: boolean;
+	stencil?: boolean;
 };
 
 export type DefaultTestType = {
 	path: string;
-	fixedHeight?: number;
+	fixedHeight?: number | ((project: FullProject) => number | undefined);
 	skip?: SkipType;
 };
 
@@ -72,8 +72,10 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
+
 	await setScrollViewport(page, fixedHeight)();
 };
 
@@ -83,7 +85,11 @@ const isCheckerError = (object: any): object is ICheckerError =>
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
 		const { showcase } = process.env;
-		if (skip.angular && showcase?.startsWith('angular')) {
+		if (skip.angular && isAngular('angular')) {
+			return true;
+		}
+
+		if (skip.stencil && isStencil(showcase)) {
 			return true;
 		}
 	}
@@ -99,15 +105,12 @@ export const getDefaultScreenshotTest = ({
 	ratio
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
-		const { showcase } = process.env;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
-		const stencil = isStencil(showcase);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if ((stencil && isWebkit) || shouldSkip(skip)) {
-			// There is an issue with Webkit and Stencil for new playwright version
+		if (shouldSkip(skip)) {
 			test.skip();
 		}
 
@@ -122,11 +125,11 @@ export const getDefaultScreenshotTest = ({
 				config.maxDiffPixels = Number(diffPixel);
 			}
 		} else if (isWebkit) {
-			config.maxDiffPixelRatio = 0.033;
-		} else if (isAngular(showcase)) {
-			config.maxDiffPixels = 1000;
-		} else {
-			config.maxDiffPixels = 120;
+			config.maxDiffPixelRatio = 0.0123;
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);
@@ -169,6 +172,10 @@ export const runAxeCoreTest = ({
 			(!isLevelOne && shouldSkipA11yTest(project))
 		) {
 			test.skip();
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, color, fixedHeight, density);
@@ -217,6 +224,10 @@ export const runA11yCheckerTest = ({
 
 		test.slow(); // Easy way to triple the default timeout
 
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
+		}
+
 		await gotoPage(page, path, lvl1, fixedHeight);
 
 		if (preChecker) {
@@ -261,6 +272,10 @@ export const runAriaSnapshotTest = ({
 		if (shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight, density);

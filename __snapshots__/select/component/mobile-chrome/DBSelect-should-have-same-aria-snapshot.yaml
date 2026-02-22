@@ -2,5 +2,8 @@
 - combobox "Label":
   - option "Test1" [selected]
   - option "Test2"
+  - option "Test3"
+  - option "Test4"
+  - option "Test5"
 - text: Description
 - status

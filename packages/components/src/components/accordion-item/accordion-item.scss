@@ -49,7 +49,9 @@
 
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			list-style: none;
-			display: flex;
+
+			@include helpers.display(flex);
+
 			justify-content: space-between;
 			padding: variables.$db-spacing-fixed-md;
 			gap: variables.$db-spacing-fixed-md;

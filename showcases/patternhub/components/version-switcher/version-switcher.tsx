@@ -73,28 +73,33 @@ const VersionSwitcher = () => {
 
 	useEffect(() => {
 		const runAsync = async () => {
-			const branchesResponse = await fetchFromGitHubApi(
-				`https://api.github.com/repos/${owner}/${repo}/branches`
-			);
-			const tagsResponse = await fetchFromGitHubApi(
-				`https://api.github.com/repos/${owner}/${repo}/tags`
-			);
-			const tags: string[] = tagsResponse.map(
-				(tag: GithubResponse) => tag.name
-			);
-			const branches: string[] = branchesResponse
-				.map((branch: GithubResponse) => branch.name)
-				.filter(
-					(branch) =>
-						branch !== 'gh-pages' && !branch.includes('dependabot')
+			try {
+				const branchesResponse = await fetchFromGitHubApi(
+					`https://api.github.com/repos/${owner}/${repo}/branches`
 				);
+				const tagsResponse = await fetchFromGitHubApi(
+					`https://api.github.com/repos/${owner}/${repo}/tags`
+				);
+				const tags: string[] = tagsResponse.map(
+					(tag: GithubResponse) => tag.name
+				);
+				const branches: string[] = branchesResponse
+					.map((branch: GithubResponse) => branch.name)
+					.filter(
+						(branch) =>
+							branch !== 'gh-pages' &&
+							!branch.includes('dependabot')
+					);
 
-			// `latest` isn't a branch, but only existing within gh-pages
-			tags.unshift('latest');
+				// `latest` isn't a branch, but only existing within gh-pages
+				tags.unshift('latest');
 
-			setCurrentBranch(branches);
-			setCurrentBranch(tags);
-			setGroupByTagsBranches(tags, branches);
+				setCurrentBranch(branches);
+				setCurrentBranch(tags);
+				setGroupByTagsBranches(tags, branches);
+			} catch (error: any) {
+				console.error(error);
+			}
 		};
 
 		void runAsync();

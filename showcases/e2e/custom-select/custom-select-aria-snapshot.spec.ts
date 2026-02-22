@@ -11,8 +11,10 @@ const preScreenShot = async (page: Page) => {
 	for (const component of components) {
 		await component.evaluate((comp: HTMLElement) => {
 			const detailsElement = comp.querySelector('details');
-			detailsElement.dataset.test = 'true';
-			detailsElement.open = true;
+			if (detailsElement) {
+				detailsElement.dataset.test = 'true';
+				detailsElement.open = true;
+			}
 		});
 	}
 };

@@ -1,0 +1,38 @@
+{
+	"rules": {
+		"require-name": "error",
+		"require-version": "error",
+		"require-description": "error",
+		"require-license": "error",
+		"require-repository": "error",
+		"valid-values-license": ["error", ["Apache-2.0"]],
+		"require-files": "warning",
+		"no-duplicate-properties": "error",
+		"prefer-absolute-version-devDependencies": "off",
+		"prefer-property-order": [
+			"warning",
+			[
+				"name",
+				"version",
+				"type",
+				"description",
+				"repository",
+				"homepage",
+				"bugs",
+				"author",
+				"license",
+				"private",
+				"main",
+				"types",
+				"module",
+				"exports",
+				"files",
+				"scripts",
+				"dependencies",
+				"devDependencies",
+				"peerDependencies",
+				"publishConfig"
+			]
+		]
+	}
+}

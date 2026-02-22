@@ -55,12 +55,15 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (!parent) return;
 			if (_ref) {
 				// This is a workaround for angular
-				utilsDelay(() => {
-					handleFixedPopover(
-						_ref,
-						parent,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+				void utilsDelay(() => {
+					// Due to race conditions we need to check for _ref again
+					if (_ref) {
+						handleFixedPopover(
+							_ref,
+							parent,
+							(props.placement as unknown as string) ?? 'bottom'
+						);
+					}
 				}, 1);
 			}
 		},
@@ -94,9 +97,16 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onUpdate(() => {
+		if (props.id) {
+			state._id = props.id;
+		}
+	}, [props.id]);
+
+	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
+				state.handleAutoPlacement(parent);
 				['mouseenter', 'focusin'].forEach((event) => {
 					parent.addEventListener(event, () =>
 						state.handleEnter(parent)
@@ -133,7 +143,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state.initialized = false;
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state._id]);
 
 	// jscpd:ignore-end
 
@@ -146,6 +156,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-animation={getBooleanAsString(props.animation ?? true)}
 			data-delay={props.delay}
 			data-width={props.width}

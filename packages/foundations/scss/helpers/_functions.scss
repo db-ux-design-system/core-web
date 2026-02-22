@@ -3,11 +3,11 @@
 @use "clearfix";
 
 @function px-to-rem($pxValue) {
-	@return #{$pxValue * 0.0625}rem;
+	@return ($pxValue * 0.0625) * 1rem;
 }
 
 @function px-to-em($pxValue) {
-	@return #{$pxValue * 0.0625}em;
+	@return ($pxValue * 0.0625) * 1em;
 }
 
 $cursor-pointer: var(--db-overwrite-cursor, pointer);

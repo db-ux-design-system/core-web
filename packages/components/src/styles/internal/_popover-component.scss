@@ -17,6 +17,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		--db-popover-center-x: -50%;
 
 		inset-inline-start: 50%;
+		transform: translateX(var(--db-popover-center-x, 0));
 	}
 
 	&[data-corrected-placement="left"],
@@ -26,6 +27,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		--db-popover-center-y: -50%;
 
 		inset-block-start: 50%;
+		transform: translateY(var(--db-popover-center-y, 0));
 	}
 }
 
@@ -155,14 +157,22 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 }
 
+@mixin set-no-animation {
+	opacity: 1;
+	transform: translate(
+		var(--db-popover-center-x, 0),
+		var(--db-popover-center-y, 0)
+	);
+}
+
 @mixin get-popover-show() {
 	&:not([data-animation]),
 	&[data-animation="false"] {
-		opacity: 1;
-		transform: translate(
-			var(--db-popover-center-x, 0),
-			var(--db-popover-center-y, 0)
-		);
+		@include set-no-animation;
+	}
+
+	@media screen and (prefers-reduced-motion: reduce) {
+		@include set-no-animation;
 	}
 
 	@media screen and (prefers-reduced-motion: no-preference) {

@@ -1,0 +1,6 @@
+// Make sure that the usage of any `display` CSS property doesn't override the usage of the `hidden` attribute.
+@mixin display($value) {
+	&:not([hidden]) {
+		display: $value;
+	}
+}

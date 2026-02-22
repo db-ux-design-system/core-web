@@ -1,3 +1,4 @@
+import { WindowsKeyCodes, WindowsModifiers } from '@guidepup/guidepup';
 import {
 	type NVDAPlaywright,
 	nvdaTest,
@@ -38,7 +39,8 @@ const flakyExpressions: Record<string, string> = {
 	'pop-up': 'pop up',
 	'checked. checked': 'checked',
 	'selected. selected': 'selected',
-	'expanded. expanded': 'expanded'
+	'expanded. expanded': 'expanded',
+	'not checked. not checked': 'not checked'
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
@@ -108,6 +110,54 @@ export const generateSnapshot = async (
 	expect(snapshot).toMatchSnapshot();
 };
 
+const SWITCH_APPLICATION = {
+	keyCode: [WindowsKeyCodes.Escape],
+	modifiers: [WindowsModifiers.Alt]
+};
+const MOVE_TO_TOP = {
+	keyCode: [WindowsKeyCodes.Home],
+	modifiers: [WindowsModifiers.Control]
+};
+
+const nvdaNavigateToWebContent = async (
+	screenRecorder: NVDAPlaywright,
+	pageTitle: string
+) => {
+	// Make sure NVDA is not in focus mode.
+	await screenRecorder.perform(screenRecorder.keyboardCommands.exitFocusMode);
+	let windowTitle: string;
+	await screenRecorder.perform(screenRecorder.keyboardCommands.reportTitle);
+	windowTitle = await screenRecorder.lastSpokenPhrase();
+	if (!windowTitle.startsWith(pageTitle)) {
+		let switchRetryCount = 0;
+		while (switchRetryCount < 10) {
+			switchRetryCount++;
+			await screenRecorder.perform(SWITCH_APPLICATION);
+			await screenRecorder.perform(
+				screenRecorder.keyboardCommands.reportTitle
+			);
+			windowTitle = await screenRecorder.lastSpokenPhrase();
+			if (windowTitle.startsWith(pageTitle)) {
+				break;
+			}
+		}
+	}
+
+	await screenRecorder.perform(
+		screenRecorder.keyboardCommands.readNextFocusableItem
+	);
+	await screenRecorder.perform(
+		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
+	);
+	await screenRecorder.perform(
+		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
+	);
+	await screenRecorder.perform(MOVE_TO_TOP);
+	// Clear out logs.
+	await screenRecorder.clearItemTextLog();
+	await screenRecorder.clearSpokenPhraseLog();
+};
+
 export const runTest = async ({
 	title,
 	url,
@@ -122,6 +172,7 @@ export const runTest = async ({
 	await page.goto(`${url}${additionalParams}`, {
 		waitUntil: 'networkidle'
 	});
+	const pageTitle = await page.title();
 	await page.waitForTimeout(500);
 
 	let recorder: (() => void) | undefined;
@@ -141,7 +192,12 @@ export const runTest = async ({
 	 * In windows:Chrome the cursor is on the middle element.
 	 * Therefore, we need to move back and delete the logs, and then start everything.
 	 */
-	await screenRecorder.navigateToWebContent();
+
+	await (nvda
+		? // TODO: We can revert this after https://github.com/guidepup/guidepup-playwright/pull/32 is released
+			nvdaNavigateToWebContent(nvda, pageTitle)
+		: screenRecorder.navigateToWebContent());
+
 	await page.waitForTimeout(500);
 
 	await testFn?.(voiceOver, nvda);

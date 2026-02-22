@@ -15,7 +15,7 @@ You can enable auto-complete of CSS classes (like e.g. `db-color-cyan`) for `HTM
 
 ### JetBrain IDEs (like. IntelliJ IDEA, WebStorm, etc.)
 
-1. Goto `File/Settings/Languages & Frameworks/Javascript/Libraries`
+1. Goto `File/Settings/Languages & Frameworks/JavaScript/Libraries`
 2. Press the `Add` button and write `db-ux` into the "name" input. This name will be shown in the auto-complete popup during coding. You can change the name if you want to. Keep the rest of the settings as default: `Framework type: <Custom>` and `Visibility: Project`.
 3. Next press the ➕ button below `Visibility` and select `Attach Directories...`
 4. This will open a file manager. Navigate to your current projects `node_modules/@db-ux/core-foundations/build/ide` and select the `ide` folder. Press `OK`.

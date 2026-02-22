@@ -2,7 +2,7 @@
 
 import { IconTypes } from '@db-ux/core-foundations';
 
-export type GlobalProps = {
+export interface GlobalProps {
 	/**
 	 * default slot
 	 */
@@ -28,7 +28,7 @@ export type GlobalProps = {
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
-};
+}
 
 export type GlobalState = {
 	_id?: string;
@@ -398,6 +398,11 @@ export type FormCheckProps = {
 
 export const LabelVariantList = ['above', 'floating'] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
+
+export const LabelVariantHorizontalList = ['leading', 'trailing'] as const;
+export type LabelVariantHorizontalType =
+	(typeof LabelVariantHorizontalList)[number];
+
 export const AutoCompleteList = [
 	'off',
 	'on',
@@ -517,6 +522,11 @@ export type FormState = {
 	 * This is an internal Fallback
 	 */
 	_voiceOverFallback?: string;
+
+	/**
+	 * We use this to remove form event listener
+	 */
+	abortController?: AbortController;
 };
 
 export type InitializedState = {
@@ -558,13 +568,21 @@ export type LinkProps = {
 	 */
 	rel?: string;
 	/**
-	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 * How much of the referrer to send when following the link.
+	 * @deprecated use `referrerPolicy` instead
 	 */
-	role?: string;
+	referrerpolicy?: LinkReferrerPolicyType;
 	/**
 	 * How much of the referrer to send when following the link.
 	 */
-	referrerpolicy?: LinkReferrerPolicyType;
+	referrerPolicy?: LinkReferrerPolicyType;
+};
+
+export type RoleProps = {
+	/**
+	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 */
+	role?: string;
 };
 
 export type TextProps = {
@@ -586,6 +604,7 @@ export type ClickEventProps<T> = {
 	 * React specific onClick to pass to forward ref.
 	 */
 	onClick?: (event: ClickEvent<T>) => void;
+	click?: (event: ClickEvent<T>) => void;
 };
 
 export type ClickEventState<T> = {
@@ -639,7 +658,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T> | any) => void;
+	handleInput: (event: InputEvent<T> | any, reset?: boolean) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -649,7 +668,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T> | any) => void;
+	handleChange: (event: ChangeEvent<T> | any, reset?: boolean) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -713,3 +732,11 @@ export type PopoverState = {
 	handleEnter: (parent?: HTMLElement) => void;
 	handleLeave: (event?: any) => void;
 } & DocumentScrollState;
+
+// TODO: Remove this after we migrate to one-platform
+export interface PatternhubProps {
+	/**
+	 * Used for Patternhub
+	 */
+	isPatternhub?: boolean;
+}

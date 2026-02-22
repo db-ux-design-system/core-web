@@ -43,14 +43,19 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	content: $icon;
 
 	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
-	// TODO: remove the @support wrapper as soon as we drop our partly-support for Firefox < version 128 (Enterprise ESR / Extended Support Release; expected to end in 2025, September / https://whattrainisitnow.com/calendar/)
+	// TODO: remove the @support wrapper as soon as we drop our partly-support for Firefox < version 128 (Enterprise ESR / Extended Support Release; expected to end in 2026, March / https://whattrainisitnow.com/calendar/)
 	@supports (content: ""/"") {
+		// stylelint-disable-next-line no-invalid-position-declaration
 		content: $icon / "";
 	}
 }
 
 @mixin to-filled-icon() {
-	--db-icon-font-family: var(--db-icon-filled-font-family, "db-ux-filled");
+	--db-icon-font-family: var(
+		--db-icon-filled-font-family,
+		"db-ux-filled",
+		"icon-font-fallback"
+	);
 }
 
 // Icon SCSS mixin
@@ -133,7 +138,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(
 		--db-icon-font-family,
-		var(--db-icon-default-font-family, "db-ux-default")
+		var(
+			--db-icon-default-font-family,
+			"db-ux-default",
+			"icon-font-fallback"
+		)
 	) !important;
 	font-size: $default-icon-font-size;
 
@@ -149,17 +158,21 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	/* stylelint-disable-next-line declaration-property-value-no-unknown */
 	speak: never; // Hiding icon from screenreaders
 	text-transform: none;
+	overflow: clip;
 	vertical-align: var(--db-icon-vertical-align, middle);
 	block-size: $default-icon-font-size;
-	inline-size: $default-icon-font-size;
+	aspect-ratio: 1;
+	flex-shrink: 0;
 
 	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 
 	// Hiding icon from screenreaders
+	// stylelint-disable-next-line media-type-no-deprecated
 	@media aural {
 		content: none;
 	}
 
+	// stylelint-disable-next-line media-type-no-deprecated
 	@media speech {
 		content: none;
 	}

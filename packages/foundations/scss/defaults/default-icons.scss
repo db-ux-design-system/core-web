@@ -1,10 +1,12 @@
 @use "../icons";
+@use "../helpers/display";
 
 [data-icon],
 [data-icon-leading],
 [data-icon-trailing] {
 	&:is(span) {
-		display: inline-flex;
+		@include display.display(inline-flex);
+
 		vertical-align: baseline;
 	}
 }

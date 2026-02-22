@@ -1,7 +1,6 @@
 import {
 	AlignmentProps,
 	GlobalProps,
-	GlobalState,
 	InitializedState,
 	InputEvent,
 	OrientationProps,
@@ -88,6 +87,7 @@ export type DBTabsDefaultState = {
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
 	handleChange: (event: InputEvent<HTMLElement>) => void;
+	_resizeObserver?: ResizeObserver;
 };
 
-export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;
+export type DBTabsState = DBTabsDefaultState & InitializedState;

@@ -53,9 +53,9 @@ const logAll = () => {
 };
 
 const reset = () => {
-	firstInput.value = "resetted";
-	textarea.value = "resetted";
-	textareavModel.value = "resetted";
+	firstInput.value = "reset";
+	textarea.value = "reset";
+	textareavModel.value = "reset";
 	checkbox.value = [true, false];
 	dateInput.value = "";
 };
@@ -169,6 +169,9 @@ const reset = () => {
 					>
 						<option value="test1">Test1</option>
 						<option value="test2">Test2</option>
+						<option value="test3">Test3</option>
+						<option value="test4">Test4</option>
+						<option value="test5">Test5</option>
 					</DBSelect>
 					<p>Button:</p>
 					<DBButton type="button" @click="reset()">

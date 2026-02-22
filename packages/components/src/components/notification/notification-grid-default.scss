@@ -3,9 +3,21 @@
 	grid-template-areas: "content";
 	grid-template-columns: 1fr;
 
+	// Add a layout for inline links
+	&[data-link-variant="inline"] {
+		grid-template-columns: 1fr min-content;
+		grid-template-areas: "content timestamp";
+	}
+
 	&:has(.db-button) {
 		grid-template-columns: 1fr min-content;
 		grid-template-areas: "content close";
+
+		// Inline link + close button
+		&[data-link-variant="inline"] {
+			grid-template-columns: 1fr min-content min-content;
+			grid-template-areas: "content timestamp close";
+		}
 	}
 
 	// 2. headline
@@ -15,11 +27,25 @@
 			"head"
 			"content";
 
+		&[data-link-variant="inline"] {
+			grid-template-columns: 1fr min-content;
+			grid-template-areas:
+				"head timestamp"
+				"content content";
+		}
+
 		&:has(.db-button) {
 			grid-template-columns: 1fr min-content;
 			grid-template-areas:
 				"head close"
 				"content content";
+
+			&[data-link-variant="inline"] {
+				grid-template-columns: 1fr min-content min-content;
+				grid-template-areas:
+					"head timestamp close"
+					"content content ."; // Empty cell aligns content column with head row
+			}
 		}
 	}
 
@@ -30,9 +56,19 @@
 		grid-template-areas: "icon content";
 		grid-template-columns: min-content 1fr;
 
+		&[data-link-variant="inline"] {
+			grid-template-columns: min-content 1fr min-content;
+			grid-template-areas: "icon content timestamp";
+		}
+
 		&:has(.db-button) {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas: "icon content close";
+
+			&[data-link-variant="inline"] {
+				grid-template-columns: min-content 1fr min-content min-content;
+				grid-template-areas: "icon content timestamp close";
+			}
 		}
 
 		&:has(header) {
@@ -41,11 +77,25 @@
 				"icon head"
 				"icon content";
 
+			&[data-link-variant="inline"] {
+				grid-template-columns: min-content 1fr min-content;
+				grid-template-areas:
+					"icon head timestamp"
+					"icon content content";
+			}
+
 			&:has(.db-button) {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
 					"icon head close"
 					"icon content content";
+
+				&[data-link-variant="inline"] {
+					grid-template-columns: min-content 1fr min-content min-content;
+					grid-template-areas:
+						"icon head timestamp close"
+						"icon content content ."; // Empty cell aligns content column with head row
+				}
 			}
 		}
 	}

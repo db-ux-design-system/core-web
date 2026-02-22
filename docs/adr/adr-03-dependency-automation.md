@@ -51,3 +51,48 @@ If dependencies are not updated automatically, packages can outdated and provide
 
 - [Dependabot](https://github.com/dependabot)
 - [Renovate](https://github.com/renovatebot/renovate)
+
+## Implementation Details
+
+### Current Configuration
+
+The repository uses Dependabot with the following strategy:
+
+#### Version Pinning Strategy
+
+- **All dependencies are pinned to exact versions** (no `^` or `~` prefixes) to ensure reproducible builds
+- **Peer dependencies** maintain ranges for compatibility (e.g., `"stylelint": "^14.0.0 || ^15.0.0 || ^16.0.0"`)
+- **Internal workspace dependencies** use `"*"` for monorepo flexibility
+- **Versioning strategy**: `increase` ensures all updates generate pull requests
+
+#### Automation Levels
+
+1. **Patch updates**: Automatically approved and merged via GitHub Actions
+2. **Minor updates**: Grouped by technology/framework, require manual review
+3. **Major updates**: Blocked for critical dependencies (Angular, React, TypeScript) requiring manual coordination
+
+#### Dependency Grouping
+
+Dependencies are logically grouped to reduce PR noise:
+
+- **Framework groups**: Angular, React, Next.js
+- **Tool groups**: ESLint, Stylelint, Prettier, TypeScript, Vite
+- **Testing groups**: Playwright, Vitest
+- **Development tools**: Commitlint
+- **Patch group**: All patch updates bundled together
+
+#### Schedule and Timing
+
+- **Daily runs at 23:00 Europe/Berlin timezone**
+- **Pull request limit**: 10 concurrent PRs to avoid overwhelming maintainers
+
+#### Ignored Dependencies
+
+Certain dependencies are intentionally ignored for manual control:
+
+- Angular major versions (coordinated framework updates)
+- React major versions (coordinated framework updates)
+- TypeScript major versions (requires codebase compatibility review)
+- Sass (temporary due to compatibility issues)
+- ESLint v9 major (pending migration planning)
+- Zone.js minor versions (Angular LTS compatibility)

@@ -1,11 +1,12 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-brand {
 	@extend %db-overwrite-font-size-md;
+	@include helpers.display(flex);
 
-	display: flex;
 	gap: variables.$db-spacing-fixed-sm;
 	align-items: center;
 	font-weight: 700;

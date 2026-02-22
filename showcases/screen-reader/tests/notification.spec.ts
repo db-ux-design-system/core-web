@@ -8,12 +8,12 @@ test.describe('DBNotification', () => {
 		title: 'default',
 		description:
 			'should have texts inline or as data-label attributes (next())',
-		url: './#/06/notification?page=density',
+		url: './#/06/notification?page=closeable',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				// Skip functional notification
-				await nvda?.previous(); // Headline "Headline"
-				await nvda?.next(); // Text "functional"
+				await nvda?.previous(); // Text "(Default) False"
+				await nvda?.next(); // Text "True"
 				await nvda?.next(); // Button "Close"
 			} else if (voiceOver) {
 				await voiceOver?.next(); // Headline "Headline"

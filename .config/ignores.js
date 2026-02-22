@@ -14,7 +14,9 @@ const ignoreFolders = [
 	'build-outputs/**/*',
 	'build-showcases/**/*',
 	'output/**/*',
-	'**/playwright.*.ts'
+	'**/test/**/*',
+	'**/playwright.*.ts',
+	'playwright-report/**/*'
 ];
 
 export default ignoreFolders;

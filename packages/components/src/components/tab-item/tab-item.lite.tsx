@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -27,11 +28,25 @@ useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
+
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		_selected: false,
 		_name: undefined,
 		initialized: false,
+		_listenerAdded: false,
+		boundSetSelectedOnChange: undefined,
+		setSelectedOnChange: (event: any) => {
+			event.stopPropagation();
+			useTarget({
+				stencil: () => {
+					state._selected = getBooleanAsString(event.target === _ref);
+				},
+				default: () => {
+					state._selected = event.target === _ref;
+				}
+			});
+		},
 		handleNameAttribute: () => {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
@@ -44,22 +59,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 		},
 		handleChange: (event: any) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
-
-			// We have different ts types in different frameworks, so we need to use any here
-
-			useTarget({
-				stencil: () => {
-					const selected = (event.target as any)?.['checked'];
-					state._selected = getBooleanAsString(selected);
-				},
-				default: () => {
-					state._selected = (event.target as any)?.['checked'];
-				}
-			});
 
 			useTarget({
 				angular: () =>
@@ -69,27 +71,72 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	});
 
+	// Set up event listener to react on any change (select & deselect) in tab list
+	// Default: Most framework can just pass the state function to the parents event listener.
+	// Stencil: Bind the function to maintain correct 'this' context in class components
+	// React: Wrap in arrow function so setState doesn't treat it as a state updater
 	onMount(() => {
+		useTarget({
+			stencil: () => {
+				state.boundSetSelectedOnChange =
+					state.setSelectedOnChange.bind(state);
+			},
+			react: () => {
+				state.boundSetSelectedOnChange = () =>
+					state.setSelectedOnChange;
+			},
+			default: () => {
+				state.boundSetSelectedOnChange = state.setSelectedOnChange;
+			}
+		});
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (state.initialized && _ref) {
-			if (props.active) {
-				_ref.click();
-			}
-
+		if (_ref && state.initialized && state.boundSetSelectedOnChange) {
 			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
+
+			// deselect this tab when another tab in tablist is selected
+			if (!state._listenerAdded) {
+				_ref.closest('[role=tablist]')?.addEventListener(
+					'change',
+					state.boundSetSelectedOnChange
+				);
+				state._listenerAdded = true;
+			}
+
+			// Initialize selected state from either active prop (set by parent) or checked attribute
+			if (props.active || _ref.checked) {
+				useTarget({
+					stencil: () => {
+						state._selected = getBooleanAsString(true);
+					},
+					default: () => {
+						state._selected = true;
+					}
+				});
+				_ref.click();
+			}
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state.boundSetSelectedOnChange]);
 
 	onUpdate(() => {
 		if (props.name) {
 			state._name = props.name;
 		}
 	}, [props.name]);
+
+	onUnMount(() => {
+		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
+			_ref.closest('[role=tablist]')?.removeEventListener(
+				'change',
+				state.boundSetSelectedOnChange
+			);
+			state._listenerAdded = false;
+		}
+	});
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">

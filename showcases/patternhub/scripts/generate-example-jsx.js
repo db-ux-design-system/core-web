@@ -1,5 +1,6 @@
 import FS from 'node:fs';
 import {
+	generateExampleKey,
 	getCodeByFramework,
 	getComponentName,
 	transformToUpperComponentName
@@ -20,6 +21,10 @@ const generateExampleJSX = () => {
 	const imports = [];
 	const examples = [];
 	for (const { name } of elements) {
+		if (!name.startsWith('db-')) {
+			continue;
+		}
+
 		const componentName = getComponentName(name);
 		imports.push(`DB${transformToUpperComponentName(componentName)}`);
 		const path = `${sharedPath}/${componentName}.json`;
@@ -35,12 +40,13 @@ const generateExampleJSX = () => {
 						true,
 						variant.children
 					);
-					examples.push(
-						`"${componentName}${variant.name}${
-							example.name
-							// eslint-disable-next-line unicorn/no-unnecessary-slice-end
-						}":renderToString(${code.slice(0, code.length)})`
+
+					const exampleKey = generateExampleKey(
+						componentName,
+						variant.name,
+						example.name
 					);
+					examples.push(`"${exampleKey}":renderToString(${[code]})`);
 				}
 			}
 		}

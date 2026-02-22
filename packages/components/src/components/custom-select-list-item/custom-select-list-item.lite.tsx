@@ -1,5 +1,4 @@
 import {
-	onMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -9,7 +8,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { ChangeEvent } from '../../shared/model';
-import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -38,7 +37,6 @@ export default function DBCustomSelectListItem(
 	// jscpd:ignore-start
 	const state: DBCustomSelectListItemState =
 		useStore<DBCustomSelectListItemState>({
-			_id: undefined,
 			hasDivider: false,
 			handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 				event.stopPropagation();
@@ -66,10 +64,6 @@ export default function DBCustomSelectListItem(
 
 	// jscpd:ignore-end
 
-	onMount(() => {
-		state._id = props.id ?? `custom-select-list-item-${uuid()}`;
-	});
-
 	onUpdate(() => {
 		state.hasDivider = Boolean(props.isGroupTitle || props.showDivider);
 	}, [props.isGroupTitle, props.showDivider]);
@@ -77,7 +71,7 @@ export default function DBCustomSelectListItem(
 	return (
 		<li
 			ref={_ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
 				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle

@@ -1,7 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
-import { existsSync, rmSync, writeFileSync } from 'node:fs';
 import { DBTabs } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -9,26 +8,27 @@ import { DBTabItem } from '../tab-item';
 import { DBTabList } from '../tab-list';
 import { DBTabPanel } from '../tab-panel';
 
-const filePath = './test-results/onIndexChange.txt';
+let activeTabIndex: number | undefined;
+let comp: any = null;
 
-const comp: any = (
-	<DBTabs
-		onIndexChange={(index: number) =>
-			writeFileSync(filePath, index.toString())
-		}>
-		<DBTabList>
-			<DBTabItem data-testid="test">Test 1</DBTabItem>
-			<DBTabItem data-testid="test2">Test 2</DBTabItem>
-			<DBTabItem>Test 3</DBTabItem>
-		</DBTabList>
+test.beforeEach(() => {
+	activeTabIndex = undefined;
+	comp = (
+		<DBTabs onIndexChange={(index: number) => (activeTabIndex = index)}>
+			<DBTabList>
+				<DBTabItem data-testid="test">Test 1</DBTabItem>
+				<DBTabItem data-testid="test2">Test 2</DBTabItem>
+				<DBTabItem>Test 3</DBTabItem>
+			</DBTabList>
 
-		<DBTabPanel>TestPanel 1</DBTabPanel>
+			<DBTabPanel>TestPanel 1</DBTabPanel>
 
-		<DBTabPanel>TestPanel 2</DBTabPanel>
+			<DBTabPanel>TestPanel 2</DBTabPanel>
 
-		<DBTabPanel>TestPanel 3</DBTabPanel>
-	</DBTabs>
-);
+			<DBTabPanel>TestPanel 3</DBTabPanel>
+		</DBTabs>
+	);
+});
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -44,10 +44,11 @@ const testComponent = () => {
 
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
-		if (existsSync(filePath)) {
-			rmSync(filePath);
-		}
+		expect(activeTabIndex).toBe(undefined);
 
+		// Beware: the comments below actually change the selector for vue
+		// this is necessary because vue will not trigger a check on an list element but requires the actual
+		// radio button element, which has the role=tab
 		const component = await mount(comp);
 		await component
 			.getByTestId('test2')
@@ -59,7 +60,7 @@ const testActions = () => {
 			.isChecked();
 		expect(!tabChecked).toBeTruthy();
 
-		expect(existsSync(filePath)).toBeTruthy();
+		expect(activeTabIndex).toBe(1);
 	});
 };
 

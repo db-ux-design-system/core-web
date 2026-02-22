@@ -74,6 +74,21 @@ If you don't have it already, add a VS Code settings folder and file at the root
 }
 ```
 
+## AI Agent Support
+
+For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
+
+### Quick Start
+
+Run this command in your repository:
+
+```shell
+npx @db-ux/agent-cli
+```
+
+This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
+
+📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
 
 ## Deutsche Bahn brand
 

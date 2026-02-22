@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     steps:
       - name: ⏬ Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
 
@@ -33,7 +33,7 @@ jobs:
 
       - name: 🆙 Set up Node.js
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version-file: ".nvmrc"
 

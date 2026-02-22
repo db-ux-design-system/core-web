@@ -7,6 +7,10 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
 
+.db-select-placeholder {
+	@extend %select-absolute-placeholder;
+}
+
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
@@ -41,7 +45,10 @@
 	}
 
 	&:has(> select option:checked:not(.placeholder)) {
-		[id$="-placeholder"] {
+		[id$="-placeholder"],
+		// Hide placeholder option in dropdown for required selects after a selection has been made
+		// This prevents users from selecting an invalid empty option when the field is required
+		option[data-show-empty-option="false"] {
 			display: none;
 		}
 	}

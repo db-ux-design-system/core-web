@@ -3,7 +3,8 @@
 @forward "../density";
 
 // Setup default styles for
-:is(:root, :host) {
+:root,
+:host {
 	@extend %db-neutral-bg-basic-level-1;
 	@extend %db-density-regular;
 }

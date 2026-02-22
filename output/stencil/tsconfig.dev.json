@@ -1,0 +1,7 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"moduleResolution": "bundler"
+	},
+	"exclude": ["src/**/*.spec.tsx"]
+}

@@ -7,3 +7,4 @@ build/**/CONTRIBUTION.md
 build/android/**/favicon.ico
 build/android/**/robots.txt
 build/android/**/site.webmanifest
+!CHANGELOG.md

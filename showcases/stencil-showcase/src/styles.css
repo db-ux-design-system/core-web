@@ -1,3 +1,15 @@
 @import "@db-ux/core-components/build/styles/rollup.css";
 @import "../../showcase-styles.css";
 @import "@db-ux/db-theme/build/styles/rollup.css";
+
+.hydrated {
+	display: contents;
+}
+
+.variants-list > * > div:not([class^="db-"]) {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--db-spacing-fixed-md);
+}

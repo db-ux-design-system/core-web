@@ -1,0 +1,26 @@
+{
+	"tsconfig": "../packages/components/tsconfig.typedoc.json",
+	"entryPoints": ["../packages/components/src/components"],
+	"entryPointStrategy": "expand",
+	"out": "../output/docs",
+	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-merge-modules"],
+	"readme": "none",
+
+	"mergeModulesMergeMode": "module",
+	"outputFileStrategy": "modules",
+
+	"hideBreadcrumbs": true,
+	"hidePageTitle": true,
+	"disableSources": true,
+	"excludePrivate": true,
+	"excludeProtected": true,
+	"skipErrorChecking": true,
+
+	"exclude": [
+		"src/components/**/*.spec.ts",
+		"src/components/**/*.spec.tsx",
+		"src/components/**/*.docs.lite.tsx",
+		"src/components/**/*.md",
+		"src/components/**/__snapshots__/**"
+	]
+}

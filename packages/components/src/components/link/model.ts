@@ -4,6 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	LinkProps,
+	RoleProps,
 	ShowIconProps,
 	TextProps,
 	WrapProps
@@ -37,6 +38,7 @@ export type DBLinkProps = DBLinkDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLAnchorElement> &
 	LinkProps &
+	RoleProps &
 	ShowIconProps &
 	TextProps &
 	WrapProps;

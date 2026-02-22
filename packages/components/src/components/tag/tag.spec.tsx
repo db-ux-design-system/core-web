@@ -124,6 +124,18 @@ const testInterActions = () => {
 		await component.getByRole('checkbox').check();
 		await expect(component).toHaveScreenshot();
 	});
+
+	test('should be removable', async ({ mount }) => {
+		let removed = false;
+		const tag: any = (
+			<DBTag behavior="removable" onRemove={() => (removed = true)}>
+				Remove me
+			</DBTag>
+		);
+		const component = await mount(tag);
+		await component.locator('.db-tab-remove-button').click();
+		expect(removed).toBeTruthy();
+	});
 };
 
 test.describe('DBTag', () => {

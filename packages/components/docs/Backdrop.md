@@ -1,7 +1,7 @@
 # Backdrop
 
 There is no `Backdrop` component.
-If you need a backdrop like the one in `DBDrawer` you sould apply those styles:
+If you need a backdrop like the one in `DBDrawer` you should apply those styles:
 
 ## CSS
 

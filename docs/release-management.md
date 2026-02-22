@@ -2,7 +2,7 @@
 
 We aim to provide reliable and consistent releases. Due to dependencies on other projects, as well as our roadmap, we need to actively manage releases and decide on their scope. This is done through frequent alignments.
 
-In order to support this process, and to gain some insight into the current state of issues, we need to both "tag" and track issues in a standardised and normative wording.
+In order to support this process, and to gain some insight into the current state of issues, we need to both "tag" and track issues in a standardized and normative wording.
 
 To do this, we
 
@@ -11,6 +11,10 @@ To do this, we
 - set their status in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" after reviewing them, so that we have a clear overview of the candidates for the next releases.
 
 Both the release scope, ensuring that all issues are ready for release, and even also other issues candidates might get pushed to that state, and the merging of Pull Requests on release day are managed by a Release Manager.
+
+## Changesets
+
+For releasing a new version we're using [changesets](.changeset/README.md).
 
 ## Repositories
 

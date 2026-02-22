@@ -20,7 +20,12 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "resolveJsonModule": true,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@components": ["../../output/angular/src"],
+      "@components/src/*": ["../../output/angular/src/*"],
+      "@components/components/*": ["../../output/angular/src/components/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

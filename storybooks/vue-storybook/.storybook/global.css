@@ -1,0 +1,8 @@
+@layer db-ux, db-theme;
+
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+
+.docs-story {
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+}

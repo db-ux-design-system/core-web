@@ -5,7 +5,7 @@
 @use "./component";
 
 %db-link-height {
-	display: inline-block;
+	@include helpers.display(inline-block);
 
 	&:not([data-wrap="true"]) {
 		block-size: variables.$db-sizing-sm;
@@ -50,7 +50,7 @@
 	}
 
 	&[data-variant="inline"] {
-		display: inline;
+		@include helpers.display(inline);
 	}
 
 	&:focus-visible {
