@@ -10,13 +10,14 @@ useMetadata({
 
 export default function CheckboxIndeterminate() {
 	return (
-		<div role="group" aria-label="Indeterminate">
+		<fieldset>
+			<legend>Indeterminate</legend>
 			<DBCheckbox name="Indeterminate" indeterminate={false}>
 				(Default) False
 			</DBCheckbox>
 			<DBCheckbox name="Indeterminate" indeterminate={true}>
 				True
 			</DBCheckbox>
-		</div>
+		</fieldset>
 	);
 }

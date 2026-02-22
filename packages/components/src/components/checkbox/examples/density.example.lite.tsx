@@ -10,7 +10,8 @@ useMetadata({
 
 export default function CheckboxDensity() {
 	return (
-		<div role="group" aria-label="Density">
+		<fieldset>
+			<legend>Density</legend>
 			<DBCheckbox data-density="functional" name="Density">
 				Functional
 			</DBCheckbox>
@@ -20,6 +21,6 @@ export default function CheckboxDensity() {
 			<DBCheckbox data-density="expressive" name="Density">
 				Expressive
 			</DBCheckbox>
-		</div>
+		</fieldset>
 	);
 }
