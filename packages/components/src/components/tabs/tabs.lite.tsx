@@ -345,9 +345,8 @@ export default function DBTabs(props: DBTabsProps) {
 						mutation.removedNodes.length ||
 						mutation.addedNodes.length
 					) {
-						const _currentRafId = state._rafId;
-						if (_currentRafId !== null) {
-							cancelAnimationFrame(_currentRafId);
+						if (state._rafId !== null) {
+							cancelAnimationFrame(state._rafId as number);
 						}
 						state._rafId = requestAnimationFrame(() => {
 							state._rafId = null;
@@ -369,9 +368,8 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
-		const _currentRafId = state._rafId;
-		if (_currentRafId !== null) {
-			cancelAnimationFrame(_currentRafId);
+		if (state._rafId !== null) {
+			cancelAnimationFrame(state._rafId as number);
 			state._rafId = null;
 		}
 		const _listener = state._scrollListener;
@@ -387,9 +385,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
-			const _rafId = state._rafId;
-			if (_rafId !== null) {
-				cancelAnimationFrame(_rafId);
+			if (state._rafId !== null) {
+				cancelAnimationFrame(state._rafId as number);
 			}
 			state._rafId = requestAnimationFrame(() => {
 				state._rafId = null;
