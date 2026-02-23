@@ -1,11 +1,6 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
-import { DBCustomButtonProps, DBCustomButtonState } from './model';
+import { DBCustomButtonProps } from './model';
 
 useMetadata({});
 
@@ -13,10 +8,7 @@ useDefaultProps<DBCustomButtonProps>({});
 
 export default function DBCustomButton(props: DBCustomButtonProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
-	// jscpd:ignore-start
-	const state = useStore<DBCustomButtonState>({});
-	// jscpd:ignore-end
+	const _ref = useRef<HTMLDivElement | null>(null);
 
 	return (
 		<div

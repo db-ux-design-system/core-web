@@ -5,7 +5,11 @@ import { DBCustomButton } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp: any = <DBCustomButton>Test</DBCustomButton>;
+const comp: any = (
+	<DBCustomButton>
+		<a href="#">Test</a>
+	</DBCustomButton>
+);
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
