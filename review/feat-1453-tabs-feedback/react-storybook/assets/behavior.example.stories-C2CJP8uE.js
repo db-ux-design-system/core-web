@@ -1,0 +1,13 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{D as a,a as s}from"./tab-list-CZ6eYNRG.js";import"./index-cGbbigiG.js";import"./iframe-BBseRL-Y.js";import"./preload-helper--tLyh50B.js";import"./tooltip-GMaT-Yd-.js";import"./constants-CD69XpC7.js";import"./document-scroll-listener-BixpNV2P.js";import"./floating-components-BNmGdAgy.js";const{fn:D}=__STORYBOOK_MODULE_TEST__,T={title:"Components/DBTabItem/Behavior",component:a,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{label:{control:"text"},active:{control:"boolean"},disabled:{control:"boolean"},showIcon:{control:"boolean"},showIconLeading:{control:"boolean"},showIconTrailing:{control:"boolean"},noText:{control:"boolean"},id:{control:"text"},autofocus:{control:"boolean"}}},o={args:{label:"(Default) Auto Width"},render:r=>t.jsx(s,{children:t.jsx(a,{...r})})},e={args:{label:"Width full"},render:r=>t.jsx(s,{style:{blockSize:"100%"},children:t.jsx(a,{...r})})};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "(Default) Auto Width"
+  },
+  render: (properties: any) => <DBTabList><DBTabItem {...properties} /></DBTabList>
+}`,...o.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Width full"
+  },
+  render: (properties: any) => <DBTabList style={{
+    blockSize: '100%'
+  }}><DBTabItem {...properties} /></DBTabList>
+}`,...e.parameters?.docs?.source}}};const h=["DefaultAutoWidth","Widthfull"];export{o as DefaultAutoWidth,e as Widthfull,h as __namedExportsOrder,T as default};
