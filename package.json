@@ -127,7 +127,7 @@
     "cspell": "9.6.4",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
-    "eslint-config-xo": "0.49.0",
+    "eslint-config-xo": "0.50.0",
     "eslint-plugin-package-json": "0.88.3",
     "eslint-plugin-prettier": "5.5.5",
     "eslint-plugin-vue": "^9.33.0",
