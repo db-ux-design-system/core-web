@@ -44,11 +44,19 @@
 		&:not([data-variant="floating"]) {
 			&[data-divider="both"],
 			&[data-divider="vertical"] {
-				tr
-					> :is(td, th, db-table-header-cell, db-table-data-cell):not(
-						:last-child
-					) {
-					border-inline-end: component.$component-border;
+				tr {
+					> :is(td, th):not(:last-child) {
+						border-inline-end: component.$component-border;
+					}
+
+					> :is(db-table-header-cell, db-table-data-cell):not(
+							:last-child
+						) {
+						td,
+						th {
+							border-inline-end: component.$component-border;
+						}
+					}
 				}
 			}
 		}
