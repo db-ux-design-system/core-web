@@ -73,7 +73,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		<li id={props.id} class={cls('db-accordion-item', props.className)}>
+		<li
+			id={props.id ?? props.propOverrides?.id}
+			class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}

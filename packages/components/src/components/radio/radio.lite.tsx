@@ -107,13 +107,23 @@ export default function DBRadio(props: DBRadioProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			state._id =
+				props.id ?? props.propOverrides?.id ?? `radio-${uuid()}`;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id ?? `radio-${uuid()}`;
+		state.resetIds();
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides]);
 
 	onUpdate(() => {
 		if (props.checked && state.initialized && _ref) {
