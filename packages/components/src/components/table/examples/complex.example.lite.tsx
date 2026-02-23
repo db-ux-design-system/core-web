@@ -106,9 +106,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Red
-								</DBLink>
+									target="_blank"
+									text="Red"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="informational">
@@ -151,9 +151,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Yellow
-								</DBLink>
+									target="_blank"
+									text="Yellow"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="warning">
@@ -195,9 +195,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Green
-								</DBLink>
+									target="_blank"
+									text="Green"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="successful">
@@ -307,9 +307,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Red
-								</DBLink>
+									target="_blank"
+									text="Red"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="informational">
@@ -352,9 +352,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Yellow
-								</DBLink>
+									target="_blank"
+									text="Yellow"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="warning">
@@ -396,9 +396,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Green
-								</DBLink>
+									target="_blank"
+									text="Green"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="successful">
@@ -508,9 +508,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Red
-								</DBLink>
+									target="_blank"
+									text="Red"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="informational">
@@ -553,9 +553,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Yellow
-								</DBLink>
+									target="_blank"
+									text="Yellow"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="warning">
@@ -597,9 +597,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Green
-								</DBLink>
+									target="_blank"
+									text="Green"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="successful">
@@ -709,9 +709,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Red
-								</DBLink>
+									target="_blank"
+									text="Red"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="informational">
@@ -754,9 +754,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Yellow
-								</DBLink>
+									target="_blank"
+									text="Yellow"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="warning">
@@ -798,9 +798,9 @@ export default function TableComplex() {
 									href="#"
 									content="external"
 									referrerPolicy="no-referrer"
-									target="_blank">
-									Green
-								</DBLink>
+									target="_blank"
+									text="Green"
+								/>
 							</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag icon="check" semantic="successful">

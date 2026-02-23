@@ -69,7 +69,8 @@ export default function DBTable(props: DBTableProps) {
 								headerCell.textContent &&
 								!cell.dataset['header']
 							) {
-								cell.dataset['header'] = headerCell.textContent;
+								cell.dataset['header'] =
+									headerCell.textContent.trim();
 							}
 						});
 					});
