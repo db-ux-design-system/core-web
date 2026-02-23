@@ -515,6 +515,10 @@ export type FromValidState = {
 	mInvalidMessage?: string;
 };
 
+export type ResetIdState = {
+	resetIds: () => void;
+};
+
 export type FormState = {
 	mMessageId?: string;
 	mValidMessageId?: string;
@@ -533,7 +537,7 @@ export type FormState = {
 	 * We use this to remove form event listener
 	 */
 	mAbortController?: AbortController;
-};
+} & ResetIdState;
 
 export type InitializedState = {
 	mInitialized: boolean;

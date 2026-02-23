@@ -161,21 +161,25 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const _mId = props.id ?? props._id ?? `textarea-${uuid()}`;
+			state.mId = _mId;
+			state.mMessageId = _mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state.mValidMessageId = _mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state.mInvalidMessageId = _mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state.mInvalidMessage =
+				props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 		}
 	});
 
 	onMount(() => {
-		const _mId = props.id ?? props._id ?? `textarea-${uuid()}`;
-		state.mId = _mId;
-		state.mMessageId = _mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state.mValidMessageId = _mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state.mInvalidMessageId = _mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		state.resetIds();
 	});
 
 	onUpdate(() => {
-		if (props.id || props._id) {
-			state.mId = props.id ?? props._id;
+		if (props.id ?? props._id) {
+			state.resetIds();
 		}
 	}, [props.id, props._id]);
 

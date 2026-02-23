@@ -11,6 +11,7 @@ import {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
+	ResetIdState,
 	SizeProps
 } from '../../shared/model';
 
@@ -33,4 +34,5 @@ export type DBRadioState = DBRadioDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
-	InitializedState;
+	InitializedState &
+	ResetIdState;

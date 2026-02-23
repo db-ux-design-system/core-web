@@ -88,17 +88,20 @@ export default function DBTooltip(props: DBTooltipProps) {
 				);
 			state.handleAutoPlacement(parent);
 			state.mObserver?.observe(state.getParent());
+		},
+		resetIds: () => {
+			state.mId = props.id ?? props._id ?? 'tooltip-' + uuid();
 		}
 	});
 
 	onMount(() => {
-		state.mId = props.id ?? props._id ?? 'tooltip-' + uuid();
 		state.mInitialized = true;
+		state.resetIds();
 	});
 
 	onUpdate(() => {
-		if (props.id || props._id) {
-			state.mId = props.id ?? props._id;
+		if (props.id ?? props._id) {
+			state.resetIds();
 		}
 	}, [props.id, props._id]);
 

@@ -158,21 +158,24 @@ export default function DBSwitch(props: DBSwitchProps) {
 					(_ref as HTMLInputElement)?.click();
 				}
 			}
+		},
+		resetIds: () => {
+			const _mId = props.id ?? props._id ?? `switch-${uuid()}`;
+			state.mId = _mId;
+			state.mMessageId = `${_mId}${DEFAULT_MESSAGE_ID_SUFFIX}`;
+			state.mValidMessageId = `${_mId}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
+			state.mInvalidMessageId = `${_mId}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
 		}
 	});
 
 	onMount(() => {
-		const _mId = props.id ?? props._id ?? `switch-${uuid()}`;
-		state.mId = _mId;
-		state.mMessageId = `${_mId}${DEFAULT_MESSAGE_ID_SUFFIX}`;
-		state.mValidMessageId = `${_mId}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
-		state.mInvalidMessageId = `${_mId}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
+		state.resetIds();
 		state.handleValidation();
 	});
 
 	onUpdate(() => {
-		if (props.id || props._id) {
-			state.mId = props.id ?? props._id;
+		if (props.id ?? props._id) {
+			state.resetIds();
 		}
 	}, [props.id, props._id]);
 

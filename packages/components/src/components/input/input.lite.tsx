@@ -186,22 +186,26 @@ export default function DBInput(props: DBInputProps) {
 						}))
 					: _list) || []
 			);
+		},
+		resetIds: () => {
+			const _mId = props.id ?? props._id ?? `input-${uuid()}`;
+			state.mId = _mId;
+			state.mMessageId = _mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state.mValidMessageId = _mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state.mInvalidMessageId = _mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state.mDataListId = _mId + DEFAULT_DATALIST_ID_SUFFIX;
+			state.mInvalidMessage =
+				props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 		}
 	});
 
 	onMount(() => {
-		const _mId = props.id ?? props._id ?? `input-${uuid()}`;
-		state.mId = _mId;
-		state.mMessageId = _mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state.mValidMessageId = _mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state.mInvalidMessageId = _mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state.mDataListId = _mId + DEFAULT_DATALIST_ID_SUFFIX;
-		state.mInvalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		state.resetIds();
 	});
 
 	onUpdate(() => {
-		if (props.id || props._id) {
-			state.mId = props.id ?? props._id;
+		if (props.id ?? props._id) {
+			state.resetIds();
 		}
 	}, [props.id, props._id]);
 
