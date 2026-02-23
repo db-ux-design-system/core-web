@@ -26,6 +26,7 @@ const getTabs = ({
 			{children}:
 		</DBInfotext>
 		<DBTabs
+			name={children?.toString()}
 			orientation={orientation}
 			width={width}
 			contentAlignment={contentAlignment}
@@ -44,13 +45,13 @@ const getTabs = ({
 					</>
 				)}
 			</DBTabList>
-			<DBTabPanel>Tab Panel 1</DBTabPanel>
-			<DBTabPanel>Tab Panel 2</DBTabPanel>
-			<DBTabPanel>Tab Panel 3</DBTabPanel>
+			<DBTabPanel ariaLabel={`${children?.toString()} Tab Panel 1`}>Tab Panel 1</DBTabPanel>
+			<DBTabPanel ariaLabel={`${children?.toString()} Tab Panel 2`}>Tab Panel 2</DBTabPanel>
+			<DBTabPanel ariaLabel={`${children?.toString()} Tab Panel 3`}>Tab Panel 3</DBTabPanel>
 			{overflow && (
 				<>
-					<DBTabPanel>Tab Panel 4</DBTabPanel>
-					<DBTabPanel>Tab Panel 5</DBTabPanel>
+					<DBTabPanel ariaLabel={`${children?.toString()} Tab Panel 4`}>Tab Panel 4</DBTabPanel>
+					<DBTabPanel ariaLabel={`${children?.toString()} Tab Panel 5`}>Tab Panel 5</DBTabPanel>
 				</>
 			)}
 		</DBTabs>

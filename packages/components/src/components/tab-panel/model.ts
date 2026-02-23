@@ -13,6 +13,10 @@ export type DBTabPanelDefaultProps = {
 	 * The id of the tab that labels this panel (WAI-ARIA).
 	 */
 	ariaLabelledby?: string;
+	/**
+	 * Accessible label for the panel, overrides ariaLabelledby for the accessible name.
+	 */
+	ariaLabel?: string;
 };
 
 export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps;
