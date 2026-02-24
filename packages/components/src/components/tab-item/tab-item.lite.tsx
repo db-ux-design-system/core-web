@@ -164,7 +164,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				</span>
 			</Show>
 			<Show when={state.isTruncated && state.tooltipText}>
-				<DBTooltip placement="right" variant="solid">{state.tooltipText}</DBTooltip>
+				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
 			</Show>
 		</button>
 	);
