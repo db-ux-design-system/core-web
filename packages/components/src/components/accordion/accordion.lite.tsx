@@ -106,7 +106,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	return (
 		<ul
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
