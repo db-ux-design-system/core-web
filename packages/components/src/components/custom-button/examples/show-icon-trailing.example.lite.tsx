@@ -33,8 +33,8 @@ export default function CustomButtonShowIconTrailing() {
 			<DBCustomButton
 				iconTrailing="x_placeholder"
 				showIconTrailing={false}>
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox15">
+					<input type="checkbox" id="checkbox15" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -58,8 +58,8 @@ export default function CustomButtonShowIconTrailing() {
 			<DBCustomButton
 				iconTrailing="x_placeholder"
 				showIconTrailing={true}>
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox16">
+					<input type="checkbox" id="checkbox16" />
 					Checkbox
 				</label>
 			</DBCustomButton>

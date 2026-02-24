@@ -48,8 +48,8 @@ export default function CustomButtonNoText() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder" noText={true}>
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox12">
+					<input type="checkbox" id="checkbox12" />
 					Checkbox
 				</label>
 			</DBCustomButton>

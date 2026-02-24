@@ -29,8 +29,8 @@ export default function CustomButtonWidth() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton width="auto">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox23">
+					<input type="checkbox" id="checkbox23" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -53,8 +53,8 @@ export default function CustomButtonWidth() {
 			<i class="line-break" data-sb-ignore="true" />
 			<div style={{ width: '500px' }}>
 				<DBCustomButton width="full">
-					<label>
-						<input type="checkbox" />
+					<label for="checkbox24">
+						<input type="checkbox" id="checkbox24" />
 						Checkbox
 					</label>
 				</DBCustomButton>

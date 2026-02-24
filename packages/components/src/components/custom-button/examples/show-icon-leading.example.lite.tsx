@@ -29,8 +29,8 @@ export default function CustomButtonShowIconLeading() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder" showIcon={false}>
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox13">
+					<input type="checkbox" id="checkbox13" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -48,8 +48,8 @@ export default function CustomButtonShowIconLeading() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton icon="x_placeholder" showIcon={true}>
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox14">
+					<input type="checkbox" id="checkbox14" />
 					Checkbox
 				</label>
 			</DBCustomButton>
