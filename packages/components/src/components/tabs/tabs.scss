@@ -111,7 +111,18 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		flex-direction: row;
 
 		.db-tab-list {
-			--db-tabs-line-gap-vertical: #{$pulse-gap-offset};
+			$width: var(
+				--db-tab-list-vertical-width,
+				#{variables.$db-sizing-3xl}
+			);
+
+			/*
+			min and nominal size must both be set to ensure
+			- min-inline-size: tab-list is not displayed narrower than defined
+			- max-inline-size: tab-list is not displayed wider than defined
+			 */
+			min-inline-size: $width;
+			max-inline-size: $width;
 
 			min-inline-size: variables.$db-sizing-3xl;
 			max-inline-size: variables.$db-sizing-3xl;
