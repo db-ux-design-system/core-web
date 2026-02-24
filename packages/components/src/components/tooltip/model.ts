@@ -8,6 +8,7 @@ import {
 	PlacementProps,
 	PopoverProps,
 	PopoverState,
+	ResetIdState,
 	WrapProps
 } from '../../shared/model';
 
@@ -43,4 +44,5 @@ export type DBTooltipState = DBTooltipDefaultState &
 	ClickEventState<HTMLElement> &
 	PopoverState &
 	InitializedState &
-	DocumentScrollState;
+	DocumentScrollState &
+	ResetIdState;
