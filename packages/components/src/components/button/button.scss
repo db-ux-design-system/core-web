@@ -61,6 +61,10 @@
 		inline-size: 100%;
 	}
 
+	&[data-wrap="false"] {
+		white-space: nowrap;
+	}
+
 	&[data-variant="brand"] {
 		background-color: colors.$db-brand-origin-default;
 		color: colors.$db-brand-on-origin-default;
