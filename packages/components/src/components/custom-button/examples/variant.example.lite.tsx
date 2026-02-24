@@ -73,8 +73,8 @@ export default function CustomButtonVariant() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="ghost">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox21">
+					<input type="checkbox" id="checkbox21" />
 					Checkbox
 				</label>
 			</DBCustomButton>
