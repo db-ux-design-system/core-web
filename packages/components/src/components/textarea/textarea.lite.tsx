@@ -169,13 +169,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessage =
-				props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 		}
 	});
 
 	onMount(() => {
 		state.resetIds();
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {

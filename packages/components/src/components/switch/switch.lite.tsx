@@ -170,7 +170,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onMount(() => {
+		state.resetIds();
 		state.handleValidation();
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {
@@ -190,6 +192,13 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.invalidMessage,
 		props.checked
 	]);
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -285,9 +294,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state._invalidMessage ??
-					props.invalidMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}
