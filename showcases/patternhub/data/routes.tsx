@@ -5,6 +5,7 @@ import BrandShowcase from '@components/components/brand/showcase/brand.showcase'
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
+import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
@@ -27,6 +28,7 @@ import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import type { ReactElement } from 'react';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -40,12 +42,14 @@ export type NavigationItem = {
 
 const nameComponentMap = {
 	accordion: <AccordionShowcase isPatternhub />,
+
 	'accordion-item': <AccordionItemShowcase isPatternhub />,
 	badge: <BadgeShowcase isPatternhub />,
 	brand: <BrandShowcase isPatternhub />,
 	button: <ButtonShowcase isPatternhub />,
 	card: <CardShowcase isPatternhub />,
 	checkbox: <CheckboxShowcase isPatternhub />,
+	'custom-button': <CustomButtonShowcase isPatternhub />,
 	'custom-select': <CustomSelectShowcase isPatternhub />,
 	divider: <DividerShowcase isPatternhub />,
 	drawer: <DrawerShowcase isPatternhub />,
