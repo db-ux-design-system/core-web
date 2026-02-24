@@ -671,14 +671,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 			state._selectedLabelsId = mId + '-selected-labels';
 			state._infoTextId = mId + '-info';
-			state._invalidMessage =
-				props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 		}
 	});
 	// jscpd:ignore-end
 
 	onMount(() => {
 		state.resetIds();
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
