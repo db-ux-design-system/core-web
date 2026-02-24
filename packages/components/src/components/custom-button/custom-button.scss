@@ -30,7 +30,7 @@ $icon-padding-custom-button: calc(
 	@include icon-passing.icon-passing;
 	@include icon-passing.icon-passing-trailing;
 
-	&:has(:is(input, button):disabled, a[aria-disabled="true"]) {
+	&:has(:is(input, button):disabled, :is(input, button, a)[aria-disabled="true"]) {
 		opacity: variables.$db-opacity-md;
 	}
 
