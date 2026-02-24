@@ -294,7 +294,10 @@ export default function DBTabs(props: DBTabsProps) {
 						if (!panel.id) {
 							panel.id = panelId;
 						}
-						if (!panel.getAttribute('aria-labelledby')) {
+						if (
+							!panel.getAttribute('aria-label') &&
+							!panel.getAttribute('aria-labelledby')
+						) {
 							panel.setAttribute('aria-labelledby', tabId);
 						}
 
