@@ -156,6 +156,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-animation={getBooleanAsString(props.animation ?? true)}
 			data-delay={props.delay}
 			data-width={props.width}
