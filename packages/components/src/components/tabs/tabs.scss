@@ -198,7 +198,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 			}
 
-			// Track-Breite anpassen wenn Buttons ausgeblendet sind
+			// Adjust track width when buttons are hidden
 			&:not(:has(.tabs-scroll-left))::before {
 				inset-inline-start: variables.$db-sizing-md;
 			}
