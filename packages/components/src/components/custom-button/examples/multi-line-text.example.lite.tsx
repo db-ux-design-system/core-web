@@ -35,8 +35,8 @@ export default function CustomButtonMultiLineText() {
 			</div>
 			<div style={{ width: '300px' }}>
 				<DBCustomButton width="full">
-					<label>
-						<input type="checkbox" />
+					<label for="checkbox08">
+						<input type="checkbox" id="checkbox08" />
 						Multi-line Text With Automatic Line Breaks
 					</label>
 				</DBCustomButton>
@@ -62,8 +62,8 @@ export default function CustomButtonMultiLineText() {
 			</div>
 			<div style={{ width: '300px' }}>
 				<DBCustomButton width="full" icon="x_placeholder">
-					<label>
-						<input type="checkbox" />
+					<label for="checkbox09">
+						<input type="checkbox" id="checkbox09" />
 						Multi-line Text With Automatic Line Breaks and Icon
 					</label>
 				</DBCustomButton>
@@ -91,8 +91,8 @@ export default function CustomButtonMultiLineText() {
 			</div>
 			<div style={{ width: '300px' }}>
 				<DBCustomButton size="small">
-					<label>
-						<input type="checkbox" />
+					<label for="checkbox10">
+						<input type="checkbox" id="checkbox10" />
 						Button Small Multi-line Text With Automatic Line Breaks
 					</label>
 				</DBCustomButton>

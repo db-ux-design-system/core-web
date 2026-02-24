@@ -32,8 +32,8 @@ export default function CustomButtonDensity() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-density="functional">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox03">
+					<input type="checkbox" id="checkbox03" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -51,8 +51,8 @@ export default function CustomButtonDensity() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-density="regular">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox04">
+					<input type="checkbox" id="checkbox04" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -70,8 +70,8 @@ export default function CustomButtonDensity() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-density="expressive">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox05">
+					<input type="checkbox" id="checkbox05" />
 					Checkbox
 				</label>
 			</DBCustomButton>

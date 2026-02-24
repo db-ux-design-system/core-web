@@ -12,14 +12,14 @@ export default function CustomButtonCheckbox() {
 	return (
 		<Fragment>
 			<DBCustomButton>
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox01">
+					<input type="checkbox" id="checkbox01" />
 					Checkbox
 				</label>
 			</DBCustomButton>
 			<DBCustomButton>
-				<label>
-					<input type="checkbox" checked />
+				<label for="checkbox02">
+					<input type="checkbox" checked id="checkbox02" />
 					Checkbox
 				</label>
 			</DBCustomButton>
