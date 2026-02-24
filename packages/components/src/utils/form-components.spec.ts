@@ -4,7 +4,12 @@ import {
 	handleFrameworkEventVue
 } from './form-components';
 
-const createNumberEvent = (value: string, badInput: boolean) => ({
+const createNumberEvent = (
+	value: string,
+	badInput: boolean,
+	inputType?: string
+) => ({
+	inputType,
 	target: {
 		type: 'number',
 		value,
@@ -37,18 +42,29 @@ describe('handleFrameworkEventAngular', () => {
 			propagateChange: vi.fn(),
 			writeValue: vi.fn()
 		};
-		const event = createNumberEvent('', true);
+		const event = createNumberEvent('', true, 'insertText');
 		handleFrameworkEventAngular(component, event);
 		expect(component.propagateChange).toHaveBeenCalledWith('');
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 
-	it('calls propagateChange and writeValue when number input is cleared (empty, no badInput)', () => {
+	it('calls propagateChange but skips writeValue when number input value is empty after insertText (e.g. comma "," in browsers where badInput stays false)', () => {
 		const component = {
 			propagateChange: vi.fn(),
 			writeValue: vi.fn()
 		};
-		const event = createNumberEvent('', false);
+		const event = createNumberEvent('', false, 'insertText');
+		handleFrameworkEventAngular(component, event);
+		expect(component.propagateChange).toHaveBeenCalledWith('');
+		expect(component.writeValue).not.toHaveBeenCalled();
+	});
+
+	it('calls propagateChange and writeValue when number input is cleared via backspace (deleteContentBackward)', () => {
+		const component = {
+			propagateChange: vi.fn(),
+			writeValue: vi.fn()
+		};
+		const event = createNumberEvent('', false, 'deleteContentBackward');
 		handleFrameworkEventAngular(component, event);
 		expect(component.propagateChange).toHaveBeenCalledWith('');
 		expect(component.writeValue).toHaveBeenCalledWith('');

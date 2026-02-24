@@ -9,8 +9,15 @@ export const handleFrameworkEventAngular = (
 	component.propagateChange(event.target[modelValue]);
 	// For number inputs, skip writing back when the input is in an intermediate
 	// state (e.g. "1." or "1,") where event.target.value is empty but the user
-	// hasn't finished entering the number (validity.badInput is true).
-	if (event.target?.type === 'number' && event.target?.validity?.badInput) {
+	// hasn't finished entering the number:
+	// - validity.badInput is true when the browser recognizes a partial number (e.g. "1." with a dot)
+	// - insertText with empty value covers browsers/locales where the separator character (e.g. ",")
+	//   does not set badInput but still results in an empty value (e.g. Firefox with certain locales)
+	if (
+		event.target?.type === 'number' &&
+		(event.target?.validity?.badInput ||
+			(event.target?.value === '' && event.inputType === 'insertText'))
+	) {
 		return;
 	}
 	component.writeValue(event.target[modelValue]);
