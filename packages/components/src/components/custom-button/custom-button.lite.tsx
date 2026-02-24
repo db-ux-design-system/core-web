@@ -13,7 +13,7 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-button', props.className)}
 			data-icon={props.iconLeading ?? props.icon}
 			data-show-icon={getBooleanAsString(
