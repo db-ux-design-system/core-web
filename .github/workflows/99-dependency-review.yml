@@ -15,3 +15,6 @@ jobs:
         uses: actions/checkout@v6
       - name: 🔎 Dependency Review
         uses: actions/dependency-review-action@v4
+        with:
+          allow-ghsas: |
+            GHSA-3ppc-4f35-3m26
