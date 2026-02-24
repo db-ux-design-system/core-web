@@ -1,5 +1,15 @@
 # @db-ux/v-core-components
 
+## 4.5.0
+
+### Minor Changes
+
+- feat: add `wrap` property for possible inline components (badge, button, infotext, tooltip) besides link and navigation-item, which already have the `wrap` property - [see commit c08970c](https://github.com/db-ux-design-system/core-web/commit/c08970c640f24abee93ed17de258f4e15fa7cb7f)
+
+- feat: add `propOverrides` property for components to provide a possibility for avoiding duplicated `id` property on Angular and Web Components - [see commit 9720ebb](https://github.com/db-ux-design-system/core-web/commit/9720ebb9c47302ed0d9939ce219a7d876ba0155c)
+
+- feat: add DBCustomButton for development to style `<a>` or `<label><input/>` children - [see commit a50323b](https://github.com/db-ux-design-system/core-web/commit/a50323b21363981c02bbabf7828a6f2d94f11e4d)
+
 ## 4.4.3
 
 ### Patch Changes
