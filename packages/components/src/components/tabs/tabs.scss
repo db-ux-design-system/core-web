@@ -162,63 +162,59 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 	&[data-scroll-behavior="arrows"] {
 		$db-tabs-z-index-button-background: 21;
 		$db-tabs-z-index-button: 22;
+		$db-tabs-z-index-track: 19;
 
 		.db-tab-list::-webkit-scrollbar {
 			display: none;
 		}
 
 		&:not([data-orientation="vertical"]) {
-			.db-tab-list {
-				padding-inline: variables.$db-sizing-md;
-				background-image: linear-gradient(
-					colors.$db-adaptive-bg-basic-transparent-semi-default,
-					colors.$db-adaptive-bg-basic-transparent-semi-default
-				);
-				background-position: center bottom;
-				background-repeat: no-repeat;
-				background-attachment: scroll;
-				background-size: 100% variables.$db-border-width-xs;
-			}
-
-			&:has(.tabs-scroll-left)::before,
-			&:has(.tabs-scroll-right)::after {
+			// Track für Arrow-Buttons-Modus als ::before Pseudo-Element auf .db-tabs
+			&::before {
 				content: "";
 				position: absolute;
-				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-				inline-size: variables.$db-sizing-md;
-				block-size: calc(#{variables.$db-sizing-md} + #{$pulse-gap-offset});
-				inset-block-start: 0;
+				z-index: $db-tabs-z-index-track;
+				inset-block-start: calc(#{variables.$db-sizing-md} - #{variables.$db-border-width-xs});
+				inset-inline: 0;
+				block-size: variables.$db-border-width-xs;
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 			}
 
-			[data-density="functional"] &:has(.tabs-scroll-left)::before,
-			[data-density="functional"] &:has(.tabs-scroll-right)::after {
-				block-size: calc(#{variables.$db-sizing-sm} + #{$pulse-gap-offset});
+			// Track-Breite anpassen wenn Buttons ausgeblendet sind
+			&:not(:has(.tabs-scroll-left))::before {
+				inset-inline-start: variables.$db-sizing-md;
 			}
 
-			[data-density="expressive"] &:has(.tabs-scroll-left)::before,
-			[data-density="expressive"] &:has(.tabs-scroll-right)::after {
-				block-size: calc(#{variables.$db-sizing-lg} + #{$pulse-gap-offset});
+			&:not(:has(.tabs-scroll-right))::before {
+				inset-inline-end: variables.$db-sizing-md;
 			}
 
-			&:has(.tabs-scroll-left)::before {
-				inset-inline-start: 0;
+			[data-density="functional"] &::before {
+				inset-block-start: calc(#{variables.$db-sizing-sm} - #{variables.$db-border-width-xs});
 			}
 
-			&:has(.tabs-scroll-right)::after {
-				inset-inline-end: 0;
+			[data-density="expressive"] &::before {
+				inset-block-start: calc(#{variables.$db-sizing-lg} - #{variables.$db-border-width-xs});
+			}
+
+			.db-tab-list {
+				padding-inline: variables.$db-sizing-md;
+				padding-block-start: 0;
+				margin-block-start: calc(-1 * #{variables.$db-border-width-xs});
+				background-image: none;
 			}
 
 			.tabs-scroll-left,
 			.tabs-scroll-right {
 				position: absolute;
 				z-index: $db-tabs-z-index-button;
-				inset-block-start: 0;
+				inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
 				aspect-ratio: unset;
 				min-block-size: unset;
 				block-size: fit-content;
 				border-block: none;
 				padding-block: calc(#{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-2xs});
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
 			.tabs-scroll-left {
