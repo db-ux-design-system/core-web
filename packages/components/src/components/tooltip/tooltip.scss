@@ -110,6 +110,10 @@
 			background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 		}
 	}
+
+	&[data-wrap="false"] {
+		white-space: nowrap;
+	}
 }
 
 // Global styles

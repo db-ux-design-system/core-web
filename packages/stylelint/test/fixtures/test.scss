@@ -48,3 +48,11 @@
 		var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
 	);
 }
+
+.transparent-border-valid {
+	border: transparent;
+}
+
+.transparent-border-with-width {
+	border: var(--db-border-width-sm) solid transparent;
+}
