@@ -17,17 +17,33 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 	const state = useStore<DBTabPanelState>({});
 
 	return (
-		<section
-			ref={_ref}
-			class={cls('db-tab-panel', props.className)}
-			id={props.id}
-			role="tabpanel"
-			tabIndex={0}
-			hidden={props.hidden}
-			aria-label={props.ariaLabel || undefined}
-			aria-labelledby={props.ariaLabel ? undefined : props.ariaLabelledby}>
-			<Show when={props.content}>{props.content}</Show>
-			{props.children}
-		</section>
+		<>
+			<Show when={props.ariaLabel}>
+				<section
+					ref={_ref}
+					class={cls('db-tab-panel', props.className)}
+					id={props.id}
+					role="tabpanel"
+					tabIndex={0}
+					hidden={props.hidden}
+					aria-label={props.ariaLabel}>
+					<Show when={props.content}>{props.content}</Show>
+					{props.children}
+				</section>
+			</Show>
+			<Show when={!props.ariaLabel}>
+				<section
+					ref={_ref}
+					class={cls('db-tab-panel', props.className)}
+					id={props.id}
+					role="tabpanel"
+					tabIndex={0}
+					hidden={props.hidden}
+					aria-labelledby={props.ariaLabelledby}>
+					<Show when={props.content}>{props.content}</Show>
+					{props.children}
+				</section>
+			</Show>
+		</>
 	);
 }
