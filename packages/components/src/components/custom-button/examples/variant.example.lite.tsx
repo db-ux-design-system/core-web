@@ -16,7 +16,6 @@ useMetadata({
 		'Ghost: Checkbox',
 		'Ghost: Link',
 		'Brand: Button',
-		'Brand: Checkbox',
 		'Brand: Link'
 	],
 	storybookArgTypes: StorybookCustomButtonArgTypes
@@ -91,7 +90,7 @@ export default function CustomButtonVariant() {
 			<DBCustomButton variant="brand">
 				<button type="button">Button</button>
 			</DBCustomButton>
-			<DBCustomButton variant="brand">
+			<DBCustomButton data-sb-ignore="true" variant="brand">
 				<label>
 					<input type="checkbox" />
 					Checkbox
