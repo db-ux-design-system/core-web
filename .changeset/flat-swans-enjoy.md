@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: add `propOverrides` for components to avoid duplicated `id` property on Angular and Web Components
+feat: add `propOverrides` property for components to provide a possibility for avoiding duplicated `id` property on Angular and Web Components
