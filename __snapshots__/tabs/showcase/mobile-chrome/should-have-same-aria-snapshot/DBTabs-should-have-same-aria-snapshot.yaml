@@ -51,6 +51,12 @@
     - tab "Test 2"
     - tab "Test 3"
   - tabpanel "Test 1": Tab Panel 1
+  - text: "full - alignment: end:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
   - link "Overflow"
   - text: "no overflow:"
   - tablist:
@@ -76,11 +82,11 @@
     - tab "Test 5"
   - tabpanel "Test 1": Tab Panel 1
   - link "Truncation"
-  - text: "truncated tab label:"
+  - text: "truncated tab label (vertical only):"
   - tablist:
     - tab "Very long tab label that gets truncated" [selected]
-    - tab "Tab 2"
-    - tab "Tab 3"
+    - tab "Another long label"
+    - tab "Short"
   - tabpanel "Very long tab label that gets truncated": Tab Panel 1
   - link "Examples"
   - text: "2nd tab selected:"
