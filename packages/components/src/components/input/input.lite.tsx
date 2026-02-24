@@ -207,7 +207,7 @@ export default function DBInput(props: DBInputProps) {
 		if (props.id ?? props.propOverrides?.id) {
 			state.resetIds();
 		}
-	}, [props.id, props.propOverrides]);
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =

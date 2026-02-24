@@ -179,7 +179,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		if (props.id ?? props.propOverrides?.id) {
 			state.resetIds();
 		}
-	}, [props.id, props.propOverrides]);
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state.handleValidation();

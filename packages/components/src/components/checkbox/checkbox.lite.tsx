@@ -153,7 +153,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		if (props.id ?? props.propOverrides?.id) {
 			state.resetIds();
 		}
-	}, [props.id, props.propOverrides]);
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =

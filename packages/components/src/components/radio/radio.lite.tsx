@@ -123,7 +123,7 @@ export default function DBRadio(props: DBRadioProps) {
 		if (props.id ?? props.propOverrides?.id) {
 			state.resetIds();
 		}
-	}, [props.id, props.propOverrides]);
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (props.checked && state.initialized && _ref) {

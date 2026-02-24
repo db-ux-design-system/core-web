@@ -104,13 +104,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		if (props.id ?? props.propOverrides?.id) {
 			state.resetIds();
 		}
-	}, [props.id, props.propOverrides]);
-
-	onUpdate(() => {
-		if (props.id ?? props.propOverrides?.id) {
-			state._id = props.id ?? props.propOverrides?.id;
-		}
-	}, [props.id ?? props.propOverrides?.id]);
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
