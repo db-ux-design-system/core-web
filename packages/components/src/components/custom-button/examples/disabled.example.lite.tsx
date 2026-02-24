@@ -50,8 +50,8 @@ export default function CustomButtonDisabled() {
 				</button>
 			</DBCustomButton>
 			<DBCustomButton>
-				<label>
-					<input type="checkbox" disabled={true} />
+				<label for="checkbox07">
+					<input type="checkbox" disabled={true} id="checkbox07" />
 					Checkbox
 				</label>
 			</DBCustomButton>

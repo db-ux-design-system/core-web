@@ -29,8 +29,8 @@ export default function CustomButtonSize() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton size="medium">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox17">
+					<input type="checkbox" id="checkbox17" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -48,8 +48,8 @@ export default function CustomButtonSize() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton size="small">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox18">
+					<input type="checkbox" id="checkbox18" />
 					Checkbox
 				</label>
 			</DBCustomButton>

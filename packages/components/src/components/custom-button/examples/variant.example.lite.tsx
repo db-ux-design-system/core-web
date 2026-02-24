@@ -34,8 +34,8 @@ export default function CustomButtonVariant() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="outlined">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox19">
+					<input type="checkbox" id="checkbox19" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -53,8 +53,8 @@ export default function CustomButtonVariant() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="filled">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox20">
+					<input type="checkbox" id="checkbox20" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -72,8 +72,8 @@ export default function CustomButtonVariant() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton variant="ghost">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox21">
+					<input type="checkbox" id="checkbox21" />
 					Checkbox
 				</label>
 			</DBCustomButton>
@@ -91,8 +91,8 @@ export default function CustomButtonVariant() {
 				<button type="button">Button</button>
 			</DBCustomButton>
 			<DBCustomButton data-sb-ignore="true" variant="brand">
-				<label>
-					<input type="checkbox" />
+				<label for="checkbox22">
+					<input type="checkbox" id="checkbox22" />
 					Checkbox
 				</label>
 			</DBCustomButton>
