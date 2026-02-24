@@ -199,7 +199,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 		// Scrolls the tab list container horizontally by a specified distance
 		scroll(left?: boolean) {
-			let step = Number(props.arrowScrollDistance) || 100;
+			let step = Number(props.arrowScrollDistance) || 120;
 			if (left) {
 				step *= -1;
 			}
@@ -228,7 +228,10 @@ export default function DBTabs(props: DBTabsProps) {
 						const _listener = state._scrollListener;
 						const _container = state.scrollContainer;
 						if (_listener && _container) {
-							_container.removeEventListener('scroll', _listener.fn);
+							_container.removeEventListener(
+								'scroll',
+								_listener.fn
+							);
 							state._scrollListener = null;
 						}
 

@@ -11,7 +11,8 @@ useMetadata({
 	storybookNames: [
 		'auto',
 		'full - alignment: start',
-		'full - alignment: center'
+		'full - alignment: center',
+		'full - alignment: end'
 	],
 	storybookArgTypes: StorybookTabsArgTypes
 });
@@ -54,6 +55,21 @@ export default function TabsWidth() {
 					full - alignment: center:
 				</DBInfotext>
 				<DBTabs width="full" contentAlignment="center">
+					<DBTabList>
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						<DBTabItem>Test 3</DBTabItem>
+					</DBTabList>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+				</DBTabs>
+			</div>
+			<div style={{ width: '100%' }} class="fit-content-container">
+				<DBInfotext icon="none" size="small" semantic="informational">
+					full - alignment: end:
+				</DBInfotext>
+				<DBTabs width="full" contentAlignment="end">
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
