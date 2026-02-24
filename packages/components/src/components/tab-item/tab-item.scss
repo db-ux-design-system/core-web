@@ -23,9 +23,6 @@
 	max-inline-size: variables.$db-sizing-2xl;
 
 	.db-tab-label {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 		max-inline-size: 100%;
 
 		&::after {
@@ -38,6 +35,12 @@
 			pointer-events: none;
 			line-height: 0;
 		}
+	}
+
+	[data-orientation="vertical"] & .db-tab-label {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	@extend %db-puls;
@@ -65,6 +68,9 @@
 	}
 
 	[data-orientation="vertical"] & {
+		max-inline-size: 100%;
+		flex-shrink: 1;
+
 		&::after {
 			inline-size: variables.$db-border-width-xs;
 			block-size: 0;

@@ -339,21 +339,20 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 
 		if (_ref) {
+			const tabListEl = _ref.querySelector('[role="tablist"]');
 			const observer = new MutationObserver((mutations) => {
-				mutations.forEach((mutation) => {
-					if (
-						mutation.removedNodes.length ||
-						mutation.addedNodes.length
-					) {
-						if (state._rafId !== null) {
-							cancelAnimationFrame(state._rafId as number);
-						}
-						state._rafId = requestAnimationFrame(() => {
-							state._rafId = null;
-							state.initTabList();
-							state.initTabs();
-						});
-					}
+				const isTabListMutation = mutations.some(
+					(m) => tabListEl && tabListEl.contains(m.target)
+				);
+				if (!isTabListMutation) return;
+
+				if (state._rafId !== null) {
+					cancelAnimationFrame(state._rafId as number);
+				}
+				state._rafId = requestAnimationFrame(() => {
+					state._rafId = null;
+					state.initTabList();
+					state.initTabs();
 				});
 			});
 

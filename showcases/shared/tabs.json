@@ -119,6 +119,31 @@
 		]
 	},
 	{
+		"name": "Orientation Vertical with Truncation",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Very Long Tab Label That Should Be Truncated" },
+					{ "name": "tab-item", "content": "Another Long Label" },
+					{ "name": "tab-item", "content": "Short" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
+			{
+				"name": "vertical with truncation",
+				"props": {
+					"orientation": "vertical",
+					"name": "orientation-vertical-truncation"
+				}
+			}
+		]
+	},
+	{
 		"name": "Width Auto",
 		"children": [
 			{
