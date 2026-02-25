@@ -62,6 +62,10 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
+		name: 'custom-button'
+	},
+
+	{
 		name: 'stack'
 	},
 	{

@@ -5,6 +5,7 @@ import BrandShowcase from '@components/components/brand/showcase/brand.showcase.
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
+import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
@@ -181,6 +182,11 @@ export const navigationItems: NavItem[] = [
 				path: '/02/link',
 				label: 'Link',
 				component: markRaw(LinkShowcase)
+			},
+			{
+				path: '/02/custom-button',
+				label: 'CustomButton',
+				component: markRaw(CustomButtonShowcase)
 			},
 			{
 				path: '/02/button',

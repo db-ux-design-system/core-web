@@ -1,3 +1,5 @@
+import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
+
 import Home from '../components/home';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
@@ -149,6 +151,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '02',
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: 'custom-button',
+				label: 'CustomButton',
+				component: <CustomButtonShowcase />
+			},
 			{ path: 'link', label: 'Link', component: <LinkShowcase /> },
 			{ path: 'button', label: 'Button', component: <ButtonShowcase /> }
 		])
