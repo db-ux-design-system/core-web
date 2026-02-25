@@ -87,7 +87,7 @@
     - tab "Very long tab label that gets truncated" [selected]
     - tab "Another long label"
     - tab "Short"
-  - tabpanel "Very long tab label that gets truncated": Tab Panel 1
+  - tabpanel "Test 1": Tab Panel 1
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
