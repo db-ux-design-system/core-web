@@ -396,7 +396,6 @@ export default function DBTabs(props: DBTabsProps) {
 			state._rafId = requestAnimationFrame(() => {
 				state._rafId = null;
 				if (!_ref) return;
-				state.initTabList();
 				state.initTabs();
 			});
 		}
