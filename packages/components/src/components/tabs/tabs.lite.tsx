@@ -344,6 +344,13 @@ export default function DBTabs(props: DBTabsProps) {
 
 		state.initialized = true;
 
+		if (typeof window !== 'undefined') {
+			setTimeout(() => {
+				state.initTabList();
+				state.initTabs();
+			}, 50);
+		}
+
 		if (_ref) {
 			const tabListEl = _ref.querySelector('[role="tablist"]');
 			const observer = new MutationObserver((mutations) => {
