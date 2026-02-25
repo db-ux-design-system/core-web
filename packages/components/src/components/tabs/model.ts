@@ -88,7 +88,7 @@ export type DBTabsDefaultState = {
 	evaluateScrollButtons: (tabList: Element) => void;
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
-	initTabs: () => void;
+	initTabs: (activeIndex?: number) => void;
 	_resizeObserver?: ResizeObserver | null;
 	_observer?: MutationObserver | null;
 	_scrollListener: { fn: () => void } | null;

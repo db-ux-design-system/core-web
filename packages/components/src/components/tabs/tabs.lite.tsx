@@ -2,7 +2,6 @@ import {
 	For,
 	onMount,
 	onUnMount,
-	onUpdate,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -23,6 +22,9 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabsState>({
+		// Static placeholders required by Mitosis: useStore needs compile-time values to infer types
+		// and generate correct framework output. Real values (uuid) are assigned in onMount (client-side
+		// only) to avoid SSR hydration mismatches from differing server/client IDs.
 		_generatedId: 'tabs-base-id',
 		_generatedName: 'tabs-base-name',
 		activeTabIndex: 0,
@@ -57,7 +59,7 @@ export default function DBTabs(props: DBTabsProps) {
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
-				state.initTabs();
+				state.initTabs(index);
 			}
 		},
 
@@ -257,7 +259,10 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// Initializes tab items and panels, setting up IDs, ARIA attributes and event listeners
-		initTabs() {
+		// activeIndex parameter allows passing the new index directly, avoiding React stale closure
+		// issues where state.activeTabIndex still holds the old value after setState
+		initTabs(activeIndex?: number) {
+			const currentIndex = activeIndex !== undefined ? activeIndex : state.activeTabIndex;
 			if (_ref) {
 				const tabListEl = _ref.querySelector('[role="tablist"]');
 				const panels = Array.from<HTMLElement>(
@@ -271,7 +276,7 @@ export default function DBTabs(props: DBTabsProps) {
 				);
 
 				buttons.forEach((button, index) => {
-					const isSelected = state.activeTabIndex === index;
+					const isSelected = currentIndex === index;
 					const panel = panels[index];
 
 					const tabId = button.id || state.getTabId(index);
@@ -344,12 +349,12 @@ export default function DBTabs(props: DBTabsProps) {
 
 		state.initialized = true;
 
-		if (typeof window !== 'undefined') {
-			setTimeout(() => {
-				state.initTabList();
-				state.initTabs();
-			}, 50);
-		}
+		// Trigger initial tab setup via rAF so DOM is painted and
+		// clientWidth is measurable (needed for scroll button visibility calculation)
+		requestAnimationFrame(() => {
+			state.initTabList();
+			state.initTabs();
+		});
 
 		if (_ref) {
 			const tabListEl = _ref.querySelector('[role="tablist"]');
@@ -394,19 +399,6 @@ export default function DBTabs(props: DBTabsProps) {
 		state._observer?.disconnect();
 		state._observer = null;
 	});
-
-	onUpdate(() => {
-		if (_ref && state.initialized) {
-			if (state._rafId !== null) {
-				cancelAnimationFrame(state._rafId as number);
-			}
-			state._rafId = requestAnimationFrame(() => {
-				state._rafId = null;
-				if (!_ref) return;
-				state.initTabs();
-			});
-		}
-	}, [_ref, state.initialized, state.activeTabIndex]); // activeTabIndex is required: onUpdate triggers initTabs() after framework re-render, ensuring hidden attribute and aria-controls/aria-labelledby are set correctly
 
 	return (
 		<div
