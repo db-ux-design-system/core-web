@@ -21,6 +21,7 @@
 	flex-shrink: 0;
 	z-index: 2;
 	max-inline-size: variables.$db-sizing-2xl;
+	transition: background-color variables.$db-transition-duration-fast;
 
 	.db-tab-label {
 		max-inline-size: 100%;
@@ -87,9 +88,11 @@
 		cursor: initial;
 	}
 
-	@include helpers.hover {
-		&:not(:disabled) {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-		}
+	// TODO: Investigate why helpers.hover mixin doesn't work here
+	// Other components use @include helpers.hover directly, but for tab-item
+	// it doesn't apply the hover effect. Using native pseudo-classes as workaround.
+	&:not(:disabled):hover,
+	&:not(:disabled):focus-visible {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 }
