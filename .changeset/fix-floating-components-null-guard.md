@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-Add null guard in `floating-components.ts` to prevent errors when `element` or `parent` is `null` inside tests.
+fix: Add null guard in `floating-components.ts` to prevent errors when `element` or `parent` is `null` inside tests.
