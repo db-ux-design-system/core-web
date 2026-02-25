@@ -344,7 +344,6 @@
           - listitem:
             - radio "Option 5"
             - text: Option 5
-  - text: "TODO: Add a validMessage"
   - status
   - link "Required"
   - text: (Default) False
@@ -388,7 +387,6 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
-  - text: Please select an item in the list.
   - status
   - link "Show Required Asterisk"
   - text: (Default) True
@@ -411,7 +409,6 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
-  - text: Please select an item in the list.
   - status
   - text: "False"
   - group:
@@ -433,7 +430,6 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
-  - text: Please select an item in the list.
   - status
   - link "Disabled"
   - text: (Default) False
