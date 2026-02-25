@@ -27,6 +27,9 @@
     - `<DBListGroup>`
     - `<DBListGroupTitle>`
     - `<DBListItem>`
+    - optional subcomponents to work with `:has()` and grid:
+        - `<DBListItemContentStart>`
+        - `<DBListItemContentEnd>`
     - See [Example in HTML](#example-what-should-be-rendered-in-html)
 - Based on the children inside `<DBListItem>` we'll change the role of the `DBList` or `DBListGroup`
     - if children are `<button>` and `<a>` we'll might use `role=menu` + `role="menuitem"`
@@ -55,6 +58,11 @@
     - Maybe we should use `variant="divider"` on `DBList` to handle this for all `DBListGroup` ???
     - `variant="divider"` would allow us to use `variant="card"` to align with `DBAccordion` and `DBTable`
 - `overflow` for `DBList` and `DBListGroup`
+- `width`: `auto` or `full` for `DBListGroup`
+- `<input type="checkbox">` or `<input type="radio">` with `:checked` will have `basic-bg-level-2`
+- `disabled` property for `DBListItem`
+- `descriptionVariant`: `block` and `inline` for `DBListItem`
+- `noText` on `DBListGroup` & `DBList` to achieve example icon only menu
 
 ### Information
 
