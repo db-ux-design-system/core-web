@@ -4,7 +4,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getNumber } from '../../utils';
+import { cls, getBooleanAsString, getNumber } from '../../utils';
 import { DBTableHeaderCellProps, DBTableHeaderCellState } from './model';
 
 useMetadata({});
@@ -25,7 +25,7 @@ export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 			class={cls('db-table-header-cell', props.className)}
 			data-horizontal-alignment={props.horizontalAlignment}
 			data-vertical-alignment={props.verticalAlignment}
-			data-no-text={props.noText}
+			data-no-text={getBooleanAsString(props.noText)}
 			scope={props.scope}
 			colSpan={getNumber(props.colSpan, props.colspan)}
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
