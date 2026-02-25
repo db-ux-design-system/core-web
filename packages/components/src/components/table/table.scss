@@ -4,6 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../table-row/table-row";
 @use "./../../styles/internal/component";
 @use "./../../styles/internal/table-components";
 
@@ -155,6 +156,14 @@
 			> db-table-row:nth-child(odd) > tr,
 			> tr:nth-child(odd) {
 				background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			}
+
+			.db-table-row {
+				&[data-interactive="true"] {
+					@include table-row.table-row-interactive-checked("") {
+						@extend %db-informational-variables;
+					}
+				}
 			}
 		}
 

@@ -14,13 +14,21 @@ $interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$i
 	inset: 0;
 }
 
+@mixin table-row-interactive-checked($with-hover: ":not(:hover, :active)") {
+	&:has(
+		input:is(
+				[type="radio"],
+				[type="checkbox"]
+			)#{$interactive-child}:checked#{$with-hover}
+	) {
+		@content;
+	}
+}
+
 .db-table-row {
 	@extend %table-section-grid;
 
-	background-color: var(
-		--db-table-row-background-color-default,
-		#{colors.$db-adaptive-bg-basic-level-1-default}
-	);
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
 	&[data-interactive="true"] {
 		position: relative;
@@ -30,13 +38,8 @@ $interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$i
 			z-index: 1;
 		}
 
-		&:has(
-			input:is(
-					[type="radio"],
-					[type="checkbox"]
-				)#{$interactive-child}:checked
-		) {
-			@extend %db-informational-variables;
+		@include table-row-interactive-checked {
+			background-color: colors.$db-adaptive-bg-basic-level-2-default;
 		}
 
 		&:has(
