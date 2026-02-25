@@ -46,7 +46,8 @@
     "generate:showcase": "mitosis build --config=configs/mitosis.showcase.config.cjs",
     "generate:stories": "mitosis build --config=configs/mitosis.storybook.config.cjs",
     "prepack": "npm run copy-assets",
-    "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
+    "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\"",
+    "test": "vitest run --config vitest.config.ts"
   },
   "dependencies": {
     "@db-ux/core-foundations": "4.4.3"
@@ -64,7 +65,8 @@
     "sass": "1.85.1",
     "sassdoc": "2.7.4",
     "storybook": "10.2.11",
-    "tsx": "4.21.0"
+    "tsx": "4.21.0",
+    "vitest": "3.2.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
