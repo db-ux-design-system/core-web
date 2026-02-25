@@ -260,7 +260,7 @@ npx changeset
 - Choose `patch` (fix), `minor` (feature), or `major` (breaking change) as the bump type.
 - Write a short description of the change.
 
-Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g., `.changeset/my-change.md`):
+Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards:
 
 ```markdown
 ---
