@@ -1,5 +1,6 @@
 @keyframes popover-animation {
 	0% {
+		pointer-events: none;
 		opacity: 0;
 		transform: translate(
 			var(--db-popover-center-x, var(--db-popover-translate-x, 0%)),
@@ -8,6 +9,7 @@
 	}
 
 	100% {
+		pointer-events: auto;
 		opacity: 1;
 		transform: translate(
 			var(--db-popover-center-x, 0%),
