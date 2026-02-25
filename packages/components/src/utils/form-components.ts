@@ -4,23 +4,40 @@ import { delay } from './index';
 export const handleFrameworkEventAngular = (
 	component: any,
 	event: any,
-	modelValue: string = 'value'
+	modelValue: string = 'value',
+	lastValue?: any
 ): void => {
-	component.propagateChange(event.target[modelValue]);
-	// For number inputs, skip writing back when the input is in an intermediate
-	// state (e.g. "1." or "1,") where event.target.value is empty but the user
-	// hasn't finished entering the number:
-	// - validity.badInput is true when the browser recognizes a partial number (e.g. "1." with a dot)
-	// - insertText with empty value covers browsers/locales where the separator character (e.g. ",")
-	//   does not set badInput but still results in an empty value (e.g. Firefox with certain locales)
+	const value = event.target[modelValue];
+	const type = event.target?.type;
+
 	if (
-		event.target?.type === 'number' &&
-		(event.target?.validity?.badInput ||
-			(event.target?.value === '' && event.inputType === 'insertText'))
+		!value &&
+		value !== '' &&
+		['date', 'time', 'week', 'month', 'datetime-local'].includes(type)
 	) {
+		// If value is empty and type date we skip `writingValue` function
 		return;
 	}
-	component.writeValue(event.target[modelValue]);
+
+	if (type === 'number') {
+		if (event.type === 'input') {
+			if (
+				['.', ','].includes(event.data) ||
+				(lastValue.toString().includes('.') &&
+					event.inputType === 'deleteContentBackward')
+			) {
+				// Skip `writingValue` function if number type and input event
+				// and `.` or `,` was typed
+				// or content was deleted but last number had a `.`
+				return;
+			}
+		} else if (event.type === 'change') {
+			// Skip `writingValue` function if number type and change event
+			return;
+		}
+	}
+	component.propagateChange(value);
+	component.writeValue(value);
 };
 
 export const handleFrameworkEventVue = (
