@@ -45,7 +45,7 @@ export default function DBBadge(props: DBBadgeProps) {
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-badge', props.className)}
 			data-semantic={props.semantic}
 			data-size={props.size}

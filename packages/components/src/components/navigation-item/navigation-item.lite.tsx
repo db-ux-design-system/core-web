@@ -93,7 +93,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()

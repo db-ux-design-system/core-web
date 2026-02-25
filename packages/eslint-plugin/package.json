@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-eslint-plugin",
-  "version": "4.4.2",
+  "version": "4.5.0",
   "type": "module",
   "description": "ESLint plugin for DB UX Design System components",
   "repository": {
@@ -38,17 +38,17 @@
   },
   "dependencies": {
     "@angular-eslint/utils": "20.7.0",
-    "@typescript-eslint/utils": "8.54.0"
+    "@typescript-eslint/utils": "8.56.0"
   },
   "devDependencies": {
     "@angular-eslint/bundled-angular-compiler": "20.7.0",
     "@angular-eslint/template-parser": "20.7.0",
     "@angular-eslint/test-utils": "20.7.0",
-    "@typescript-eslint/parser": "8.54.0",
-    "@typescript-eslint/rule-tester": "8.54.0",
+    "@typescript-eslint/parser": "8.56.0",
+    "@typescript-eslint/rule-tester": "8.56.0",
     "typescript": "5.9.3",
     "vitest": "3.2.4",
-    "vue-eslint-parser": "9.4.3"
+    "vue-eslint-parser": "10.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

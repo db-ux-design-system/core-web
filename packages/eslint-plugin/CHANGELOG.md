@@ -1,1 +1,7 @@
 # @db-ux/core-eslint-plugin
+
+## 4.5.0
+
+### Patch Changes
+
+- feat: add eslint-plugin `@db-ux/core-eslint-plugin` - [see commit 68b97f1](https://github.com/db-ux-design-system/core-web/commit/68b97f1c349397b5b695cde9504f0d851403a6f5)

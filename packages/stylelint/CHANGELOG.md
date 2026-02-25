@@ -1,5 +1,11 @@
 # @db-ux/core-stylelint
 
+## 4.5.0
+
+### Minor Changes
+
+- feat: add `db-ux/use-sizing` rule for `@db-ux/core-stylelint` node package, checking for `height`, `width`, `block-size` etc. - [see commit e2ebb4f](https://github.com/db-ux-design-system/core-web/commit/e2ebb4faa2efc1a5cfd4d1b2e913f1bc5ce8d286)
+
 ## 4.4.3
 
 ### Patch Changes
