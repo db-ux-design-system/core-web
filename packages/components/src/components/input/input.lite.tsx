@@ -315,7 +315,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={props.value ?? state._value}
+				value={props.value ?? state._value ?? ''}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}
