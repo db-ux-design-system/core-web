@@ -10,10 +10,8 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import {
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_MESSAGE_ID_SUFFIX,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
@@ -75,12 +73,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
 				state._invalidMessage =
-					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
+					props.invalidMessage || _ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -89,9 +85,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -135,17 +130,27 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `checkbox-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `checkbox-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.resetIds();
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -161,13 +166,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.handleValidation();
 		}
 	}, [state._id]);
-
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [props.invalidMessage, _ref?.validationMessage]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -280,7 +278,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 

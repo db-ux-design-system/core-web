@@ -10,13 +10,11 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import {
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER,
 	DEFAULT_ROWS,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
@@ -73,12 +71,10 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
 				state._invalidMessage =
-					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
+					props.invalidMessage || _ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -87,9 +83,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -164,16 +159,26 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `textarea-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `textarea-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.resetIds();
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -293,7 +298,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 

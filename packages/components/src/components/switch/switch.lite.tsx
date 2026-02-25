@@ -11,10 +11,8 @@ import {
 } from '@builder.io/mitosis';
 
 import {
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_MESSAGE_ID_SUFFIX,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -79,13 +77,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId!;
 				state._invalidMessage =
-					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
+					props.invalidMessage || _ref?.validationMessage;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						state._invalidMessage || DEFAULT_INVALID_MESSAGE;
-					delay(() => {
+					state._voiceOverFallback = state._invalidMessage;
+					void delay(() => {
 						state._voiceOverFallback = '';
 					}, 1000);
 				}
@@ -98,9 +93,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 			) {
 				state._descByIds = state._validMessageId!;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => {
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => {
 						state._voiceOverFallback = '';
 					}, 1000);
 				}
@@ -161,16 +155,27 @@ export default function DBSwitch(props: DBSwitchProps) {
 					(_ref as HTMLInputElement)?.click();
 				}
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `switch-${uuid()}`;
+			state._id = mId;
+			state._messageId = `${mId}${DEFAULT_MESSAGE_ID_SUFFIX}`;
+			state._validMessageId = `${mId}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
+			state._invalidMessageId = `${mId}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id ?? `switch-${uuid()}`;
-		state._messageId = `${state._id}${DEFAULT_MESSAGE_ID_SUFFIX}`;
-		state._validMessageId = `${state._id}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
-		state._invalidMessageId = `${state._id}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
+		state.resetIds();
 		state.handleValidation();
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state.handleValidation();
@@ -271,7 +276,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 			<Show when={state.hasInvalidState()}>
@@ -279,9 +284,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					id={state._invalidMessageId}
 					size="small"
 					semantic="critical">
-					{state._invalidMessage ??
-						props.invalidMessage ??
-						DEFAULT_INVALID_MESSAGE}
+					{state._invalidMessage}
 				</DBInfotext>
 			</Show>
 			<span data-visually-hidden="true" role="status">

@@ -14,7 +14,6 @@ import {
 
 import {
 	DEFAULT_CLOSE_BUTTON,
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_LABEL_ID_SUFFIX,
@@ -24,7 +23,6 @@ import {
 	DEFAULT_REMOVE,
 	DEFAULT_SELECT_ID_SUFFIX,
 	DEFAULT_SELECTED,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -134,6 +132,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		hasInvalidState: () => {
+			return !selectRef?.validity.valid || props.validation === 'invalid';
+		},
 		handleValidation: () => {
 			if (selectRef) {
 				selectRef.value = state.getNativeSelectValue();
@@ -142,12 +143,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
 				state.setDescById(state._invalidMessageId);
 				state._invalidMessage =
-					props.invalidMessage ||
-					selectRef?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
+					props.invalidMessage || selectRef?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				if (state._userInteraction) {
 					state._validity = props.validation ?? 'invalid';
@@ -159,9 +158,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			) {
 				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -655,24 +653,28 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		selectAllChecked: false,
-		selectAllIndeterminate: false
+		selectAllIndeterminate: false,
+		resetIds: () => {
+			const mId =
+				props.id ??
+				props.propOverrides?.id ??
+				`custom-select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
+			state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+			state._summaryId = mId + '-summary';
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state._selectedLabelsId = mId + '-selected-labels';
+			state._infoTextId = mId + '-info';
+		}
 	});
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.id ?? `custom-select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
-		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
-		state._summaryId = mId + '-summary';
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state._selectedLabelsId = mId + '-selected-labels';
-		state._infoTextId = mId + '-info';
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-
+		state.resetIds();
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
@@ -686,6 +688,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			});
 		}
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (detailsRef) {
@@ -885,13 +893,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state.selectAllIndeterminate, selectAllRef]);
 
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			selectRef?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [selectRef, props.invalidMessage]);
-
 	onUnMount(() => {
 		state.abortController?.abort();
 	});
@@ -933,6 +934,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={selectRef}
 					form={props.form}
 					name={props.name}
+					data-custom-validity={state._validity}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
@@ -971,6 +973,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						id={state._summaryId}
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
+						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
 							<span
@@ -989,10 +992,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
-									{(
-										option: CustomSelectOptionType,
-										index: number
-									) => (
+									{(option: CustomSelectOptionType) => (
 										<DBTag
 											key={useTarget({
 												vue: undefined,
@@ -1184,6 +1184,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					size="small"
 					name={state._id}
 					form={state._id}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">
@@ -1212,15 +1213,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 
-			<Show
-				when={
-					!selectRef?.validity?.valid ||
-					props.validation === 'invalid'
-				}>
+			<Show when={state.hasInvalidState()}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"

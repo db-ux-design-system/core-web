@@ -1,5 +1,41 @@
 # @db-ux/v-core-components
 
+## 4.5.0
+
+### Minor Changes
+
+- feat: add `wrap` property for possible inline components (badge, button, infotext, tooltip) besides link and navigation-item, which already have the `wrap` property - [see commit c08970c](https://github.com/db-ux-design-system/core-web/commit/c08970c640f24abee93ed17de258f4e15fa7cb7f)
+
+- feat: add `propOverrides` property for components to provide a possibility for avoiding duplicated `id` property on Angular and Web Components - [see commit 9720ebb](https://github.com/db-ux-design-system/core-web/commit/9720ebb9c47302ed0d9939ce219a7d876ba0155c)
+
+- feat: add DBCustomButton for development to style `<a>` or `<label><input/>` children - [see commit a50323b](https://github.com/db-ux-design-system/core-web/commit/a50323b21363981c02bbabf7828a6f2d94f11e4d)
+
+## 4.4.3
+
+### Patch Changes
+
+- fix: icon color for DBTag with semantic property set - [see commit 89c4ad7](https://github.com/db-ux-design-system/core-web/commit/89c4ad7274cdadaccc0aedc106d6f2c781e6ce8a)
+
+- fix: issue with DBCustomSelect not working properly with customValidity="no-validation" - [see commit 758ecb9](https://github.com/db-ux-design-system/core-web/commit/758ecb90f82a6c3d648728fa92c92474600b9941)
+
+- fix: issue with floating-components (tooltip, popover, etc.) inside other absolute or fixed elements - [see commit e6d934f](https://github.com/db-ux-design-system/core-web/commit/e6d934f0c0a4af0b6dd57f81773831a2431b94e1)
+
+## 4.4.2
+
+### Patch Changes
+
+- fix(SSR-compatibility): Implement framework-specific `useId` for UUID generation in React and Vue outputs - [see commit 1073c46](https://github.com/db-ux-design-system/core-web/commit/1073c469a20bf1346f150c00364ee1aeab7643d0)
+
+- fix: issue with DBInput not working properly with `datalist` and `type="time"` - [see commit 72ccb09](https://github.com/db-ux-design-system/core-web/commit/72ccb09d1304aec894b4fde27624f90029efec9d)
+
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+- DBCustomSelect: Prevent floating label from flickering during initial render - [see commit e5ceff8](https://github.com/db-ux-design-system/core-web/commit/e5ceff861534186cf86d1f5f0a876e04aeac9e41)
+
 ## 4.4.0
 
 ### Minor Changes

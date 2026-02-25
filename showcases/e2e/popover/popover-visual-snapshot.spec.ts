@@ -10,6 +10,10 @@ test.describe('DBPopover', () => {
 		path,
 		preScreenShot: async (page) => hoverPre(page, selector),
 		// The fixed popover may differ slightly in different browsers
-		ratio: isStencil(process.env.showcase) ? '0.05' : '0.01'
+		ratio: isStencil(process.env.showcase) ? '0.05' : '0.01',
+		fixedHeight: (project) =>
+			project.name === 'webkit' || project.name === 'mobile_safari'
+				? 1886
+				: undefined
 	});
 });

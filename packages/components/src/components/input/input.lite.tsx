@@ -13,12 +13,10 @@ import {
 
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -87,11 +85,10 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = state._invalidMessageId;
 				state._invalidMessage =
 					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
+					_ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -104,8 +101,8 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+						props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -189,17 +186,27 @@ export default function DBInput(props: DBInputProps) {
 						}))
 					: _list) || []
 			);
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `input-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
+		state.resetIds();
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -368,12 +375,12 @@ export default function DBInput(props: DBInputProps) {
 					id={state._validMessageId}
 					size={props.validMessageSize || 'small'}
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 
 			<Show
-				when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+				when={state.hasInvalidState()}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size={props.invalidMessageSize || 'small'}

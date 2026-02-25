@@ -2,7 +2,7 @@
 
 import { IconTypes } from '@db-ux/core-foundations';
 
-export type GlobalProps = {
+export interface GlobalProps {
 	/**
 	 * default slot
 	 */
@@ -28,7 +28,15 @@ export type GlobalProps = {
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
-};
+
+	/**
+	 * Allows overriding specific props on nested elements or internal component structure.
+	 */
+	propOverrides?: PropOverridesType;
+}
+
+// We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
+export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
 export type GlobalState = {
 	_id?: string;
@@ -510,6 +518,10 @@ export type FromValidState = {
 	_invalidMessage?: string;
 };
 
+export type ResetIdState = {
+	resetIds: () => void;
+};
+
 export type FormState = {
 	_messageId?: string;
 	_validMessageId?: string;
@@ -528,7 +540,7 @@ export type FormState = {
 	 * We use this to remove form event listener
 	 */
 	abortController?: AbortController;
-};
+} & ResetIdState;
 
 export type InitializedState = {
 	initialized: boolean;
@@ -714,6 +726,13 @@ export type AriaControlsProps = {
 	 * Pass `aria-controls` to inner element
 	 */
 	controls?: string;
+};
+
+export type NoTextProps = {
+	/**
+	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 */
+	noText?: boolean | string;
 };
 
 export type ValueLabelType = {

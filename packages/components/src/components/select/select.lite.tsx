@@ -11,12 +11,10 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import {
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER_ID_SUFFIX,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -81,11 +79,10 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._invalidMessageId;
 				state._invalidMessage =
 					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
+					_ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -95,8 +92,8 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+						props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -194,17 +191,21 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 			// Default: show empty option for non-required selects
 			return !props.required;
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state.resetIds();
 
 		useTarget({
 			angular: () => {
@@ -213,6 +214,12 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		});
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (state._id && state.initialized) {
@@ -408,7 +415,7 @@ export default function DBSelect(props: DBSelectProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 

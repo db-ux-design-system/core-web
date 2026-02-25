@@ -11,6 +11,10 @@
 			{
 				"label": "DBLink",
 				"name": "link"
+			},
+			{
+				"label": "DBCustomButton",
+				"name": "custom-button"
 			}
 		]
 	},
