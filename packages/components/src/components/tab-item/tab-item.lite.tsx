@@ -28,9 +28,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLButtonElement | null>(null);
 	const _labelRef = useRef<HTMLSpanElement | null>(null);
 
-	const state = useStore<DBTabItemState>({
+	const state = useStore<DBTabItemState & { internalTabIndex: number }>({
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
+		internalTabIndex: props.tabIndex !== undefined ? Number(props.tabIndex) : (getBoolean(props.active) ? 0 : -1),
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
@@ -88,6 +89,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 		if (_ref) {
 			const listener = (event: any) => {
 				state.internalActive = event.detail.selected;
+				if (props.tabIndex === undefined) {
+					if (event.detail.tabIndex !== undefined) {
+						state.internalTabIndex = event.detail.tabIndex;
+					} else {
+						state.internalTabIndex = event.detail.selected ? 0 : -1;
+					}
+				}
 			};
 			state._ariaSelectedListener = { fn: listener };
 			_ref.addEventListener('aria-selected-changed', listener);
@@ -142,7 +150,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
+			tabIndex={props.tabIndex !== undefined ? Number(props.tabIndex) : state.internalTabIndex}
 			id={props.id}
 			data-active={
 				props.active !== undefined

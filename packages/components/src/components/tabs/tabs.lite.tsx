@@ -284,7 +284,10 @@ export default function DBTabs(props: DBTabsProps) {
 
 					button.dispatchEvent(
 						new CustomEvent('aria-selected-changed', {
-							detail: { selected: isSelected }
+							detail: { 
+								selected: isSelected,
+								tabIndex: (currentIndex === index || (currentIndex === -1 && index === 0)) ? 0 : -1
+							}
 						})
 					);
 
