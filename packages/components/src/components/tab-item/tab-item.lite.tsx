@@ -31,7 +31,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const state = useStore<DBTabItemState>({
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
-		internalTabIndex: props.tabIndex !== undefined ? Number(props.tabIndex) : (getBoolean(props.active) ? 0 : -1),
+		internalTabIndex: getBoolean(props.active) ? 0 : -1,
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
@@ -150,7 +150,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={props.tabIndex !== undefined ? Number(props.tabIndex) : state.internalTabIndex}
+			tabIndex={props.tabIndex !== undefined ? +props.tabIndex : state.internalTabIndex}
 			id={props.id}
 			data-active={
 				props.active !== undefined
