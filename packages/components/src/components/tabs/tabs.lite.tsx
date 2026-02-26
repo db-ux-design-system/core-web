@@ -186,10 +186,11 @@ export default function DBTabs(props: DBTabsProps) {
 		// Determines the visibility of scroll buttons based on the container's scroll position
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
-			const newLeft = needsScroll && tList.scrollLeft > 1;
-			const newRight = needsScroll && tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
-			if (state.showScrollLeft !== newLeft) state.showScrollLeft = newLeft;
-			if (state.showScrollRight !== newRight) state.showScrollRight = newRight;
+			state.showScrollLeft = needsScroll && Math.round(tList.scrollLeft) > 0;
+			state.showScrollRight =
+				needsScroll &&
+				Math.round(tList.scrollLeft) <
+					Math.round(tList.scrollWidth - tList.clientWidth);
 		},
 
 		// Scrolls the tab list container horizontally by a specified distance
