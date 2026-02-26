@@ -42,9 +42,14 @@ describe('handleFrameworkEventAngular', () => {
 			propagateChange: vi.fn(),
 			writeValue: vi.fn()
 		};
-		const event = createNumberEvent('', true, 'insertText');
-		handleFrameworkEventAngular(component, event);
-		expect(component.propagateChange).toHaveBeenCalledWith('');
+		const event = {
+			type: 'input',
+			data: '.',
+			inputType: 'insertText',
+			target: { type: 'number', value: '1.' }
+		};
+		handleFrameworkEventAngular(component, event, 'value', '1');
+		expect(component.propagateChange).not.toHaveBeenCalled();
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 
@@ -53,9 +58,14 @@ describe('handleFrameworkEventAngular', () => {
 			propagateChange: vi.fn(),
 			writeValue: vi.fn()
 		};
-		const event = createNumberEvent('', false, 'insertText');
-		handleFrameworkEventAngular(component, event);
-		expect(component.propagateChange).toHaveBeenCalledWith('');
+		const event = {
+			type: 'input',
+			data: ',',
+			inputType: 'insertText',
+			target: { type: 'number', value: '' }
+		};
+		handleFrameworkEventAngular(component, event, 'value', '1');
+		expect(component.propagateChange).not.toHaveBeenCalled();
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 
