@@ -21,10 +21,7 @@ const generateTestTable = () => {
 	}
 
 	const accessibilityReview = JSON.parse(
-		FS.readFileSync(
-			'./../shared/_accessibility-review.json',
-			'utf8'
-		).toString()
+		FS.readFileSync('./data/_accessibility-review.json', 'utf8').toString()
 	);
 	const data = [];
 	for (const { name } of elements) {

@@ -140,4 +140,10 @@ dbtablist
 unstarted
 publishpackages
 commandfor
+turbopack
+lightningcss
 cooldown
+TSES
+trufflesecurity
+elif
+chromedriver
