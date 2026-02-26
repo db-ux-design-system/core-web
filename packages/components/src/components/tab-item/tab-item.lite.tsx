@@ -28,7 +28,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLButtonElement | null>(null);
 	const _labelRef = useRef<HTMLSpanElement | null>(null);
 
-	const state = useStore<DBTabItemState & { internalTabIndex: number }>({
+	const state = useStore<DBTabItemState>({
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
 		internalTabIndex: props.tabIndex !== undefined ? Number(props.tabIndex) : (getBoolean(props.active) ? 0 : -1),
