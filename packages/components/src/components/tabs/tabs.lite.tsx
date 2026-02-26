@@ -310,43 +310,43 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
+		// 1. Calculate final start index synchronously to avoid race conditions
+		let startIndex = 0;
+
 		if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
-			state.activeTabIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
+			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
 		} else if (props.initialSelectedMode === 'manually') {
-			state.activeTabIndex = -1;
+			startIndex = -1;
 		}
 
-		if (typeof window !== 'undefined') {
-			requestAnimationFrame(() => {
-				if (window.location.hash) {
-					const hashId = window.location.hash.substring(1);
-					const name = props.name
-						? 'tabs-' + props.name
-						: state._name();
-					const prefix = `${name}-tab-`;
+		// 2. Support deep linking: URL hash takes precedence over initial index
+		if (typeof window !== 'undefined' && window.location.hash) {
+			const hashId = window.location.hash.substring(1);
+			const name = props.name ? 'tabs-' + props.name : state._name();
+			const prefix = `${name}-tab-`;
 
-					if (hashId.startsWith(prefix)) {
-						const indexStr = hashId.replace(prefix, '');
-						const index = parseInt(indexStr, 10);
+			if (hashId.startsWith(prefix)) {
+				const indexStr = hashId.replace(prefix, '');
+				const index = parseInt(indexStr, 10);
 
-						if (!isNaN(index)) {
-							state.activeTabIndex = index;
-							state.initTabs(index);
-						}
-					}
+				if (!isNaN(index)) {
+					startIndex = index;
 				}
-			});
+			}
 		}
 
+		// 3. Set initial state synchronously
+		state.activeTabIndex = startIndex;
 		state.initialized = true;
 
-		// Trigger initial tab setup via rAF so DOM is painted and
-		// clientWidth is measurable (needed for scroll button visibility calculation)
-		requestAnimationFrame(() => {
-			state.initTabList();
-			state.initTabs(state.activeTabIndex);
-		});
+		// 4. Trigger single initial DOM update after paint
+		if (typeof window !== 'undefined') {
+			requestAnimationFrame(() => {
+				state.initTabList();
+				state.initTabs(startIndex);
+			});
+		}
 
 		if (_ref) {
 			const tabListEl = _ref.querySelector('[role="tablist"]');
