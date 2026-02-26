@@ -1,21 +1,18 @@
 import {
 	Show,
 	useDefaultProps,
-	useRef,
-	useStore
+	useRef
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import { DBTabPanelProps, DBTabPanelState } from './model';
+import { DBTabPanelProps } from './model';
 
 useDefaultProps<DBTabPanelProps>({});
 
 export default function DBTabPanel(props: DBTabPanelProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
-	const state = useStore<DBTabPanelState>({});
-
 	return (
-		<section
+		<div
 			ref={_ref}
 			class={cls('db-tab-panel', props.className)}
 			id={props.id}
@@ -28,6 +25,6 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			}>
 			<Show when={props.content}>{props.content}</Show>
 			{props.children}
-		</section>
+		</div>
 	);
 }
