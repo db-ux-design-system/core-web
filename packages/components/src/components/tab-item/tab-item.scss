@@ -41,6 +41,7 @@ dbtabitem {
 
 		&::after {
 			content: attr(data-label);
+			font-size: 0;
 			font-weight: 700;
 			block-size: 0;
 			visibility: hidden;
