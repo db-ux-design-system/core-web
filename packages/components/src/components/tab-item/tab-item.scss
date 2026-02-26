@@ -3,6 +3,11 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/db-puls";
 
+db-tab-item,
+dbtabitem {
+	display: contents;
+}
+
 .db-tab-item {
 	position: relative;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
