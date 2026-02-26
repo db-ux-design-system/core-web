@@ -32,7 +32,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
 		internalTabIndex: -1,
-		get currentTabIndex() {
+		getCurrentTabIndex() {
 			return props.tabIndex !== undefined ? Number(props.tabIndex) : state.internalTabIndex;
 		},
 		isTruncated: false,
@@ -154,7 +154,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={state.currentTabIndex}
+			tabIndex={state.getCurrentTabIndex()}
 			id={props.id}
 			data-active={
 				props.active !== undefined
