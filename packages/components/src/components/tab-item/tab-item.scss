@@ -28,16 +28,14 @@
 
 	.db-tab-label {
 		max-inline-size: 100%;
+		@include helpers.display(flex);
+		flex-direction: column;
+		align-items: center;
 
 		&::after {
 			content: attr(data-label);
 			font-weight: 700;
-			display: block;
 			block-size: 0;
-			font-size: 0;
-			line-height: 0;
-			padding: 0;
-			margin: 0;
 			visibility: hidden;
 			overflow: hidden;
 			pointer-events: none;
