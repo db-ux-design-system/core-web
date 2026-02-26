@@ -31,7 +31,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const state = useStore<DBTabItemState>({
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
-		internalTabIndex: getBoolean(props.active) ? 0 : -1,
+		internalTabIndex: -1,
+		get currentTabIndex() {
+			return props.tabIndex !== undefined ? Number(props.tabIndex) : state.internalTabIndex;
+		},
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
@@ -64,6 +67,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onMount(() => {
 		state.internalActive = getBoolean(props.active) || false;
+		state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
 
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
@@ -150,7 +154,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={props.tabIndex !== undefined ? +props.tabIndex : state.internalTabIndex}
+			tabIndex={state.currentTabIndex}
 			id={props.id}
 			data-active={
 				props.active !== undefined
