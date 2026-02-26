@@ -661,24 +661,29 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		selectAllChecked: false,
-		selectAllIndeterminate: false
+		selectAllIndeterminate: false,
+		resetIds: () => {
+			const mId =
+				props.id ??
+				props.propOverrides?.id ??
+				`custom-select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
+			state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+			state._summaryId = mId + '-summary';
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state._selectedLabelsId = mId + '-selected-labels';
+			state._infoTextId = mId + '-info';
+		}
 	});
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.id ?? `custom-select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
-		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
-		state._summaryId = mId + '-summary';
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state._selectedLabelsId = mId + '-selected-labels';
-		state._infoTextId = mId + '-info';
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
@@ -692,6 +697,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			});
 		}
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (detailsRef) {

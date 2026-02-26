@@ -33,7 +33,7 @@ export default function DBButton(props: DBButtonProps) {
 	return (
 		<button
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-button', props.className)}
 			type={state.getButtonType()}
 			disabled={getBoolean(props.disabled, 'disabled')}

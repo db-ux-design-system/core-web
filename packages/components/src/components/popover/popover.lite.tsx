@@ -160,7 +160,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-popover', props.className)}>
 			<Slot name="trigger" />
 			<article

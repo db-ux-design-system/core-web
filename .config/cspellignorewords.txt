@@ -143,3 +143,6 @@ turbopack
 lightningcss
 cooldown
 TSES
+trufflesecurity
+elif
+chromedriver
