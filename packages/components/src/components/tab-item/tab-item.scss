@@ -28,7 +28,9 @@
 
 	.db-tab-label {
 		max-inline-size: 100%;
+
 		@include helpers.display(flex);
+
 		flex-direction: column;
 		align-items: center;
 
