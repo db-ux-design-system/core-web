@@ -1,0 +1,12 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{D as n,a}from"./tabs-B_wOjeHu.js";import{D as l}from"./infotext--uG77GGA.js";import{a as s,D as o}from"./tab-list-DjXgR-n6.js";import"./index-C0vvPcr0.js";import"./iframe-CjNxEbM1.js";import"./preload-helper--tLyh50B.js";import"./button-DDtYFYmE.js";import"./tooltip-fjc-DXe6.js";import"./constants-C-ysBZRi.js";import"./document-scroll-listener-C19Ex2M_.js";import"./floating-components-DAXMbqch.js";const{fn:f}=__STORYBOOK_MODULE_TEST__,j={title:"Components/DBTabs/Truncation",component:n,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{orientation:{control:"select",options:["horizontal","vertical"]},width:{control:"select",options:["full","auto"]},contentAlignment:{control:"select",options:["start","center"]},behavior:{control:"select",options:["scrollbar","arrows"]},initialSelectedIndex:{control:"number"},initialSelectedMode:{control:"select",options:["auto","manually"]},name:{control:"text"},tabs:{control:"object"},arrowScrollDistance:{control:"number"},id:{control:"text"},autofocus:{control:"boolean"}}},e={args:{orientation:"vertical",width:"auto",children:t.jsxs(t.Fragment,{children:[t.jsxs(s,{children:[t.jsx(o,{label:"Very long tab label that gets truncated"}),t.jsx(o,{label:"Another long label"}),t.jsx(o,{label:"Short"})]}),t.jsx(a,{children:"Tab Panel 1"}),t.jsx(a,{children:"Tab Panel 2"}),t.jsx(a,{children:"Tab Panel 3"})]})},render:r=>t.jsxs("div",{className:"fit-content-container",style:{width:"100%"},children:[t.jsx(l,{icon:"none",size:"small",semantic:"informational",children:"truncated tab label (vertical only):"}),t.jsx(n,{...r})]})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "vertical",
+    "width": "auto",
+    "children": <><DBTabList><DBTabItem label="Very long tab label that gets truncated" /><DBTabItem label="Another long label" /><DBTabItem label="Short" /></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container" style={{
+    width: '100%'
+  }}><DBInfotext icon="none" size="small" semantic="informational">
+                    truncated tab label (vertical only):
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...e.parameters?.docs?.source}}};const g=["truncated"];export{g as __namedExportsOrder,j as default,e as truncated};
