@@ -1,14 +1,12 @@
 import {
 	onMount,
 	useDefaultProps,
-	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { cls, uuid } from '../../utils';
 import { DBTabListProps, DBTabListState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {

@@ -1,14 +1,12 @@
 import {
 	Show,
 	useDefaultProps,
-	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import { DBTabPanelProps, DBTabPanelState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabPanelProps>({});
 
 export default function DBTabPanel(props: DBTabPanelProps) {

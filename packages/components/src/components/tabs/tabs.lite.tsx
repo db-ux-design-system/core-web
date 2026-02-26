@@ -4,7 +4,6 @@ import {
 	onUnMount,
 	Show,
 	useDefaultProps,
-	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
@@ -15,7 +14,6 @@ import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
