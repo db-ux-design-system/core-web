@@ -18,7 +18,10 @@ describe('close-button-text-required', () => {
 		ruleTester.run('close-button-text-required', rule, {
 			valid: [
 				{
-					code: '<DBNotification closeButtonText="Close">Message</DBNotification>'
+					code: '<DBNotification closeable closeButtonText="Close">Message</DBNotification>'
+				},
+				{
+					code: '<DBNotification>Message</DBNotification>'
 				},
 				{
 					code: '<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>'
@@ -32,7 +35,7 @@ describe('close-button-text-required', () => {
 			],
 			invalid: [
 				{
-					code: '<DBNotification>Message</DBNotification>',
+					code: '<DBNotification closeable>Message</DBNotification>',
 					errors: [
 						{
 							messageId: 'missingCloseButtonText',
@@ -75,7 +78,10 @@ describe('close-button-text-required', () => {
 		angularRuleTester.run('close-button-text-required', rule, {
 			valid: [
 				{
-					code: '<db-notification closeButtonText="Close">Message</db-notification>'
+					code: '<db-notification closeable closeButtonText="Close">Message</db-notification>'
+				},
+				{
+					code: '<db-notification>Message</db-notification>'
 				},
 				{
 					code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
@@ -83,7 +89,7 @@ describe('close-button-text-required', () => {
 			],
 			invalid: [
 				{
-					code: '<db-notification>Message</db-notification>',
+					code: '<db-notification closeable>Message</db-notification>',
 					errors: [
 						{
 							messageId: 'missingCloseButtonText',

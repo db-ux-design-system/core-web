@@ -34,6 +34,11 @@ export default {
 
 			if (!component) return;
 
+			if (component === 'DBNotification') {
+				const closeable = getAttributeValue(node, 'closeable');
+				if (closeable === null) return;
+			}
+
 			const attribute =
 				COMPONENTS_WITH_CLOSE_BUTTON[
 					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
@@ -68,6 +73,14 @@ export default {
 			);
 
 			if (!component) return;
+
+			if (component === 'DBNotification') {
+				const closeable = getAttributeValue(
+					openingElement,
+					'closeable'
+				);
+				if (closeable === null) return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
