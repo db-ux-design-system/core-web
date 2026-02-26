@@ -1,0 +1,297 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../table-row/table-row";
+@use "./../../styles/internal/component";
+@use "./../../styles/internal/table-components";
+
+%sizes {
+	&:not([data-size]),
+	&[data-size="medium"] {
+		:is(th, td) {
+			padding: variables.$db-spacing-fixed-xs;
+		}
+	}
+
+	&[data-size="large"] {
+		:is(th, td) {
+			padding: variables.$db-spacing-fixed-sm;
+		}
+	}
+
+	&[data-size="small"],
+	&[data-size="x-small"] {
+		:is(th, td) {
+			padding: variables.$db-spacing-fixed-2xs;
+		}
+	}
+
+	&[data-size="x-small"] {
+		@extend %db-overwrite-font-size-sm;
+	}
+}
+
+%divider {
+	&:is([data-divider="none"], [data-divider="vertical"]) {
+		table {
+			border-block-end: component.$component-border;
+		}
+	}
+
+	&:not([data-divider="none"]) {
+		&:not([data-variant="floating"]) {
+			&[data-divider="both"],
+			&[data-divider="vertical"] {
+				tr {
+					> :is(td, th):not(:last-child) {
+						border-inline-end: component.$component-border;
+					}
+
+					> :is(db-table-header-cell, db-table-data-cell):not(
+							:last-child
+						) {
+						td,
+						th {
+							border-inline-end: component.$component-border;
+						}
+					}
+				}
+			}
+		}
+
+		&:not([data-divider]),
+		&[data-divider="both"],
+		&[data-divider="horizontal"] {
+			tr {
+				border-block-end: component.$component-border;
+			}
+		}
+	}
+}
+
+%set-grid-cells {
+	@for $num from 1 through 20 {
+		&:has(
+				tr
+					> :is(
+						td,
+						th,
+						db-table-data-cell,
+						db-table-header-cell
+					):nth-child(#{$num})
+			):not(
+				:has(
+					tr
+						> :is(
+							td,
+							th,
+							db-table-data-cell,
+							db-table-header-cell
+						):nth-child(#{$num + 1})
+				)
+			) {
+			--db-table-grid-cells: #{$num};
+
+			$track-size: "";
+
+			@for $index from 0 through $num - 1 {
+				$track-size: $track-size +
+					" var(--db-table-column-size-#{$index},var(--db-table-columns-size, 1fr))";
+			}
+
+			grid-template-columns: var(
+				--db-table-grid-template-columns,
+				#{string.unquote($track-size)}
+			);
+		}
+	}
+}
+
+%floating-table-variant {
+	table {
+		row-gap: variables.$db-spacing-fixed-xs;
+	}
+
+	:is(tfoot, tbody) {
+		row-gap: variables.$db-spacing-fixed-xs;
+
+		tr {
+			@extend %default-card;
+		}
+	}
+
+	thead {
+		row-gap: variables.$db-spacing-fixed-xs;
+
+		tr {
+			&:not([data-sub-header-emphasis]) {
+				@extend %transparent-border;
+			}
+
+			&[data-sub-header-emphasis] {
+				@extend %default-card;
+			}
+		}
+	}
+}
+
+%variant {
+	&:not([data-variant]),
+	&[data-variant="joined"],
+	&[data-variant="zebra"] {
+		table {
+			border-inline: component.$component-border;
+		}
+
+		thead {
+			border-block-start: component.$component-border;
+		}
+	}
+
+	&[data-variant="zebra"] {
+		tbody {
+			> db-table-row:nth-child(odd) > tr,
+			> tr:nth-child(odd) {
+				background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			}
+
+			.db-table-row {
+				&[data-interactive="true"] {
+					@include table-row.table-row-interactive-checked("") {
+						@extend %db-informational-variables;
+					}
+				}
+			}
+		}
+
+		thead {
+			tr[data-sub-header-emphasis="weak"] {
+				@extend %sub-header-strong;
+			}
+		}
+	}
+
+	&[data-variant="floating"] {
+		@extend %floating-table-variant;
+	}
+
+	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
+		&[data-mobile-variant="list"] {
+			@extend %floating-table-variant;
+
+			table {
+				--db-table-columns-size: 1fr;
+				--db-table-cell-span: 1;
+				--db-table-grid-template-columns: repeat(1, 1fr);
+
+				border-color: transparent;
+			}
+
+			:is(th, td)[data-header] {
+				gap: variables.$db-spacing-fixed-xs;
+
+				&::before {
+					// Screen reader would announce it twice
+					content: attr(data-header) ":" / "";
+					font-weight: bold;
+				}
+			}
+
+			td[data-horizontal-alignment="end"] {
+				justify-content: space-between;
+			}
+
+			thead {
+				border-block-start-color: transparent;
+
+				tr {
+					--db-table-section-display: flex;
+
+					flex-wrap: wrap;
+					gap: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+	}
+}
+
+%sticky-header {
+	&[data-sticky-header="both"],
+	&[data-sticky-header="horizontal"] {
+		thead {
+			position: sticky;
+			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
+			z-index: 4;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		}
+	}
+
+	&[data-sticky-header="both"],
+	&[data-sticky-header="vertical"] {
+		tfoot,
+		tbody {
+			th {
+				position: sticky;
+				inset-inline-start: calc(-1 * #{variables.$db-border-width-xs});
+				z-index: 3;
+				border-inline-end: component.$component-border;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+		}
+	}
+}
+
+.db-table {
+	@extend %divider;
+	@extend %variant;
+	@extend %sizes;
+	@extend %sticky-header;
+
+	container-type: inline-size;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	inline-size: 100%;
+	// stylelint-disable-next-line db-ux/use-spacings
+	padding: variables.$db-border-width-xs; // offset for focus
+
+	&:not([data-width]),
+	&[data-width="full"] {
+		overflow: auto;
+
+		table {
+			inline-size: inherit;
+		}
+	}
+
+	&[data-width="auto"] {
+		display: flex;
+		justify-content: center;
+
+		table {
+			--db-table-columns-size: auto;
+
+			inline-size: fit-content;
+		}
+	}
+
+	table {
+		@extend %set-grid-cells;
+
+		display: grid;
+
+		caption {
+			grid-column: span var(--db-table-grid-cells, 1);
+			padding: variables.$db-spacing-fixed-sm;
+			border-block-start: component.$component-border;
+			font-weight: bold;
+		}
+	}
+
+	&:not([data-show-caption="true"]) {
+		caption {
+			@extend %a11y-visually-hidden;
+		}
+	}
+}

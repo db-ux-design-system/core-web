@@ -12,6 +12,11 @@
     "build": "ng run angular-latest:build-storybook",
     "storybook": "ng run angular-latest:storybook"
   },
+  "dependencies": {
+    "@faker-js/faker": "10.3.0",
+    "@tanstack/angular-table": "8.21.3",
+    "@tanstack/match-sorter-utils": "8.19.4"
+  },
   "devDependencies": {
     "@compodoc/compodoc": "^1.2.1",
     "@storybook/addon-docs": "10.2.11",

@@ -30,6 +30,38 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'table-data-cell'
+	},
+
+	{
+		name: 'table-header-cell'
+	},
+
+	{
+		name: 'table-row'
+	},
+
+	{
+		name: 'table-footer'
+	},
+
+	{
+		name: 'table-body'
+	},
+
+	{
+		name: 'table-head'
+	},
+
+	{
+		name: 'table-caption'
+	},
+
+	{
+		name: 'table'
+	},
+
+	{
 		name: 'custom-button'
 	},
 

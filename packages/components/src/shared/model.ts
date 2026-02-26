@@ -647,11 +647,11 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export const AlignmentList = ['start', 'center'] as const;
+export const AlignmentList = ['start', 'center', 'end'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
 	/**
-	 * Define the content alignment in full width
+	 * Define the content alignment
 	 */
 	alignment?: AlignmentType | string;
 };
@@ -759,3 +759,48 @@ export interface PatternhubProps {
 	 */
 	isPatternhub?: boolean;
 }
+
+export type DBTableCellProps = {
+	/**
+	 * The **`colSpan`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
+	 */
+	colSpan?: number | string;
+
+	/**
+	 * The **`colSpan`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
+	 */
+	colspan?: number | string;
+
+	/**
+	 * The **`headers`** property of the HTMLTableCellElement interface contains a list of IDs of th elements that are _headers_ for this specific cell.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/headers)
+	 */
+	headers?: string;
+
+	/**
+	 * The **`rowSpan`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
+	 */
+	rowSpan?: number | string;
+	/**
+	 * The **`rowSpan`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
+	 */
+	rowspan?: number | string;
+
+	/**
+	 * Set the horizontal alignment of the cell content.
+	 */
+	horizontalAlignment?: AlignmentType;
+	/**
+	 * Set the vertical alignment of the cell content.
+	 */
+	verticalAlignment?: AlignmentType;
+};

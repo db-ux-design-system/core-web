@@ -1,41 +1,42 @@
 /* This file was generated */
-export type BaseIconTypes =
-	| 'arrow_down'
-	| 'arrow_left'
-	| 'arrow_right'
-	| 'arrow_up'
-	| 'arrow_up_right'
-	| 'brand'
-	| 'calendar'
-	| 'chat'
-	| 'check'
-	| 'check_circle'
-	| 'chevron_down'
-	| 'chevron_left'
-	| 'chevron_right'
-	| 'chevron_up'
-	| 'circle'
-	| 'circle_small'
-	| 'circular_arrows'
-	| 'clock'
-	| 'copy'
-	| 'cross'
-	| 'cross_circle'
-	| 'double_chevron_down'
-	| 'double_chevron_left'
-	| 'double_chevron_right'
-	| 'double_chevron_up'
-	| 'exclamation_mark_circle'
-	| 'exclamation_mark_triangle'
-	| 'eye'
-	| 'eye_disabled'
-	| 'house'
-	| 'information_circle'
-	| 'magnifying_glass'
-	| 'menu'
-	| 'minus'
-	| 'moon'
-	| 'plus'
-	| 'resize_handle_corner'
-	| 'sun'
-	| 'x_placeholder';
+export type BaseIconTypes = "arrows_vertical"|
+"arrow_down"|
+"arrow_left"|
+"arrow_right"|
+"arrow_up"|
+"arrow_up_right"|
+"brand"|
+"calendar"|
+"chat"|
+"check"|
+"check_circle"|
+"chevron_down"|
+"chevron_left"|
+"chevron_right"|
+"chevron_up"|
+"circle"|
+"circle_small"|
+"circular_arrows"|
+"clock"|
+"copy"|
+"cross"|
+"cross_circle"|
+"double_chevron_down"|
+"double_chevron_left"|
+"double_chevron_right"|
+"double_chevron_up"|
+"exclamation_mark_circle"|
+"exclamation_mark_triangle"|
+"eye"|
+"eye_disabled"|
+"house"|
+"information_circle"|
+"magnifying_glass"|
+"menu"|
+"minus"|
+"moon"|
+"more_vertical"|
+"plus"|
+"resize_handle_corner"|
+"sun"|
+"x_placeholder";

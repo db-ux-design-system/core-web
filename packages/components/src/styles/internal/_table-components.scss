@@ -1,0 +1,60 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+%table-section-grid {
+	display: var(--db-table-section-display, grid);
+	grid-template-columns: subgrid;
+	grid-column: 1 / -1;
+}
+
+%table-cell {
+	display: flex;
+
+	@for $span from 2 through 20 {
+		&[colspan="#{$span}"] {
+			grid-column: span var(--db-table-cell-span, #{$span});
+		}
+
+		&[rowspan="#{$span}"] {
+			grid-row: span var(--db-table-cell-span, #{$span});
+		}
+	}
+
+	&:not([data-horizontal-alignment]),
+	&[data-horizontal-alignment="start"] {
+		text-align: start;
+		justify-content: flex-start;
+	}
+
+	&[data-horizontal-alignment="center"] {
+		text-align: center;
+		justify-content: center;
+	}
+
+	&[data-horizontal-alignment="end"] {
+		text-align: end;
+		justify-content: flex-end;
+	}
+
+	&[data-vertical-alignment="start"] {
+		vertical-align: top;
+		align-items: flex-start;
+	}
+
+	&:not([data-vertical-alignment]),
+	&[data-vertical-alignment="center"] {
+		vertical-align: middle;
+		align-items: center;
+	}
+
+	&[data-vertical-alignment="end"] {
+		vertical-align: bottom;
+		align-items: flex-end;
+	}
+}
+
+%sub-header-strong {
+	background-color: colors.$db-adaptive-bg-vibrant-default;
+	color: colors.$db-adaptive-on-bg-vibrant-default;
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+}

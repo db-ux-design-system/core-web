@@ -1,3 +1,5 @@
+import { TableComponent } from '../components/table.component';
+
 import { CustomButtonComponent } from '../components/custom-button.component';
 
 import { Routes } from '@angular/router';
@@ -111,6 +113,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'TabItem',
 				component: TabItemComponent
 			},
+			{ path: '04/table', label: 'Table', component: TableComponent },
 
 			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])

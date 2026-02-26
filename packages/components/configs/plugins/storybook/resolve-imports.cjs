@@ -1,6 +1,6 @@
 /**
  * Resolves component imports from the imports array
- * @param {Array} imports - Array of import objects
+ * @param {Array<import('@builder.io/mitosis').MitosisImport>} imports - Array of import objects
  * @returns {{allImports: Array<string>}} Component name and all imports
  */
 const resolveImports = (imports) => {
@@ -20,4 +20,21 @@ const resolveImports = (imports) => {
 	return { allImports };
 };
 
-module.exports = { resolveImports };
+/**
+ * Resolves data imports from relative paths
+ * @param {Array<import('@builder.io/mitosis').MitosisImport>} imports - Array of import objects
+ * @returns {string} Import statement string
+ */
+const resolveDataImports = (imports) => {
+	if (!imports || imports.length === 0) return '';
+
+	return imports
+		.filter((imp) => imp.path === "./data")
+		.map((imp) => {
+			const namedImports = Object.keys(imp.imports).join(', ');
+			return `import { ${namedImports} } from '${imp.path}';`;
+		})
+		.join('\n');
+};
+
+module.exports = { resolveImports, resolveDataImports };
