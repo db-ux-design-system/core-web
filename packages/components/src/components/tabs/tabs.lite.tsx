@@ -22,11 +22,8 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabsState>({
-		// Static placeholders required by Mitosis: useStore needs compile-time values to infer types
-		// and generate correct framework output. Real values (uuid) are assigned in onMount (client-side
-		// only) to avoid SSR hydration mismatches from differing server/client IDs.
-		_generatedId: 'tabs-base-id',
-		_generatedName: 'tabs-base-name',
+		_generatedId: 'tabs-' + uuid(),
+		_generatedName: uuid(),
 		activeTabIndex: 0,
 		initialized: false,
 		showScrollLeft: false,
@@ -34,7 +31,6 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: null,
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
-		_rafId: null as number | null,
 		_scrollListener: null,
 
 		_id() {
@@ -192,11 +188,10 @@ export default function DBTabs(props: DBTabsProps) {
 		// Determines the visibility of scroll buttons based on the container's scroll position
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
-			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
-			// check if we are at the end of the scrollable area
-			state.showScrollRight =
-				needsScroll &&
-				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
+			const newLeft = needsScroll && tList.scrollLeft > 1;
+			const newRight = needsScroll && tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
+			if (state.showScrollLeft !== newLeft) state.showScrollLeft = newLeft;
+			if (state.showScrollRight !== newRight) state.showScrollRight = newRight;
 		},
 
 		// Scrolls the tab list container horizontally by a specified distance
@@ -315,9 +310,6 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		state._generatedId = props.id || 'tabs-' + uuid();
-		state._generatedName = props.name || uuid();
-
 		if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
 			state.activeTabIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
@@ -340,7 +332,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 						if (!isNaN(index)) {
 							state.activeTabIndex = index;
-							state.initTabs();
+							state.initTabs(index);
 						}
 					}
 				}
@@ -353,24 +345,24 @@ export default function DBTabs(props: DBTabsProps) {
 		// clientWidth is measurable (needed for scroll button visibility calculation)
 		requestAnimationFrame(() => {
 			state.initTabList();
-			state.initTabs();
+			state.initTabs(state.activeTabIndex);
 		});
 
 		if (_ref) {
 			const tabListEl = _ref.querySelector('[role="tablist"]');
+			let localRafId: number | null = null;
+
 			const observer = new MutationObserver((mutations) => {
 				const isTabListMutation = mutations.some(
 					(m) => tabListEl && tabListEl.contains(m.target)
 				);
 				if (!isTabListMutation) return;
 
-				if (state._rafId !== null) {
-					cancelAnimationFrame(state._rafId as number);
-				}
-				state._rafId = requestAnimationFrame(() => {
-					state._rafId = null;
+				if (localRafId !== null) cancelAnimationFrame(localRafId);
+				localRafId = requestAnimationFrame(() => {
+					localRafId = null;
 					state.initTabList();
-					state.initTabs();
+					state.initTabs(state.activeTabIndex);
 				});
 			});
 
@@ -385,10 +377,6 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
-		if (state._rafId !== null) {
-			cancelAnimationFrame(state._rafId as number);
-			state._rafId = null;
-		}
 		const _listener = state._scrollListener;
 		const _container = state.scrollContainer;
 		if (_listener && _container) {
