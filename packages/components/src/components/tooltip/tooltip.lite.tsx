@@ -88,19 +88,23 @@ export default function DBTooltip(props: DBTooltipProps) {
 				);
 			state.handleAutoPlacement(parent);
 			state._observer?.observe(state.getParent());
+		},
+		resetIds: () => {
+			state._id =
+				props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid();
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tooltip-' + uuid();
+		state.resetIds();
 		state.initialized = true;
 	});
 
 	onUpdate(() => {
-		if (props.id) {
-			state._id = props.id;
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
 		}
-	}, [props.id]);
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
@@ -156,6 +160,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-animation={getBooleanAsString(props.animation ?? true)}
 			data-delay={props.delay}
 			data-width={props.width}
