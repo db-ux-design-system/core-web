@@ -66,6 +66,7 @@ dbtabitem {
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
+
 	@extend %db-puls;
 	@include helpers.display(flex);
 
