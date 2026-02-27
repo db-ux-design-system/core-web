@@ -34,9 +34,6 @@ dbtabitem {
 
 	.db-tab-label {
 		max-inline-size: 100%;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 
 		@include helpers.display(block);
 
@@ -62,6 +59,12 @@ dbtabitem {
 				}
 			}
 		}
+	}
+
+	[data-orientation="vertical"] & .db-tab-label {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	@extend %db-puls;
