@@ -35,8 +35,16 @@ export default {
 			if (!component) return;
 
 			if (component === 'DBNotification') {
-				const closeable = getAttributeValue(node, 'closeable');
-				if (closeable === null) return;
+				const input = node.inputs?.find(
+					(i: any) => i.name === 'closeable'
+				);
+				if (input && input.value === 'false') return;
+				if (!input) {
+					const attr = node.attributes?.find(
+						(a: any) => a.name === 'closeable'
+					);
+					if (!attr) return;
+				}
 			}
 
 			const attribute =
@@ -75,11 +83,39 @@ export default {
 			if (!component) return;
 
 			if (component === 'DBNotification') {
-				const closeable = getAttributeValue(
-					openingElement,
-					'closeable'
+				// React: closeable={false}
+				const closeableAttr = openingElement.attributes?.find(
+					(a: any) =>
+						a.type === 'JSXAttribute' && a.name.name === 'closeable'
 				);
-				if (closeable === null) return;
+				if (
+					closeableAttr?.value?.type === 'JSXExpressionContainer' &&
+					closeableAttr.value.expression?.type === 'Literal' &&
+					closeableAttr.value.expression.value === false
+				)
+					return;
+
+				// Vue: :closeable="false"
+				const vueAttr = openingElement.startTag?.attributes?.find(
+					(a: any) =>
+						(a.key?.name === ':closeable' ||
+							(a.key?.name === 'bind' &&
+								a.key?.argument?.name === 'closeable')) &&
+						a.value?.value === 'false'
+				);
+				if (vueAttr) return;
+
+				// Only skip if closeable attribute/binding doesn't exist
+				const hasCloseable =
+					closeableAttr ||
+					openingElement.startTag?.attributes?.some(
+						(a: any) =>
+							a.key?.name === 'closeable' ||
+							a.key?.name === ':closeable' ||
+							(a.key?.name === 'bind' &&
+								a.key?.argument?.name === 'closeable')
+					);
+				if (!hasCloseable) return;
 			}
 
 			const componentName =

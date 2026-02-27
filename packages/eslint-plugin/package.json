@@ -34,11 +34,11 @@
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0"
+    "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@angular-eslint/utils": "20.7.0",
-    "@typescript-eslint/utils": "8.56.0"
+    "@angular-eslint/utils": ">=20.0.0",
+    "@typescript-eslint/utils": ">=8.56.0"
   },
   "devDependencies": {
     "@angular-eslint/bundled-angular-compiler": "20.7.0",
