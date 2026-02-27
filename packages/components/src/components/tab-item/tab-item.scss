@@ -68,7 +68,6 @@ dbtabitem {
 	}
 
 	@extend %db-puls;
-
 	@include helpers.display(flex);
 
 	[data-density="functional"] & {
