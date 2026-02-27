@@ -1,0 +1,36 @@
+- main:
+  - heading "DBTabItem" [level=1]
+  - link "Density"
+  - tablist:
+    - tab "Functional"
+  - tablist:
+    - tab "(Default) Regular"
+  - tablist:
+    - tab "Expressive"
+  - link "States"
+  - tablist:
+    - tab "(Default) Enabled"
+  - tablist:
+    - tab "active" [selected]
+  - tablist:
+    - tab "disabled" [disabled]
+  - link "Show Icon Leading"
+  - tablist:
+    - tab "(Default) False"
+  - tablist:
+    - tab "True"
+  - link "Show Icon Trailing"
+  - tablist:
+    - tab "(Default) False"
+  - tablist:
+    - tab "True"
+  - link "Behavior"
+  - tablist:
+    - tab "(Default) Auto Width"
+  - tablist:
+    - tab "Width full"
+  - link "Content Alignment Full Width"
+  - tablist:
+    - tab "Left"
+  - tablist:
+    - tab "Centered"
