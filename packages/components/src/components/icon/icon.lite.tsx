@@ -22,7 +22,7 @@ export default function DBIcon(props: DBIconProps) {
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}
 			data-icon-weight={props.weight}

@@ -5,6 +5,8 @@ import {
 	DBCheckbox,
 	DBCustomSelect,
 	DBDivider,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBLink,
 	DBPopover,
@@ -22,6 +24,7 @@ import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
+	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 	const [input, setInput] = useState('');
 	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -489,6 +492,35 @@ const FormComponent = () => {
 					validMessage="😎"
 					minLength={10}
 				/>
+
+				<DBButton
+					onClick={() => {
+						setDrawerOpen(true);
+					}}>
+					Open Drawer
+				</DBButton>
+				<DBDrawer
+					onClose={() => {
+						setDrawerOpen(false);
+					}}
+					open={drawerOpen}
+					spacing="none">
+					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
+						Test infotext
+						<DBTooltip placement="bottom-start">
+							Test tooltip
+						</DBTooltip>
+					</DBInfotext>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
+				</DBDrawer>
 
 				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
