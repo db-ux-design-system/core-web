@@ -161,14 +161,17 @@ export default function DBTabItem(props: DBTabItemProps) {
 					? getBoolean(props.active)
 					: state.internalActive
 			}
-			data-icon={props.showIcon ? props.icon : undefined}
-			data-icon-after={
-				props.showIconTrailing ? props.iconTrailing : undefined
-			}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={!props.noText}>
 				{/* wrapper needed for accurate width measurement via refs */}
-				<span ref={_labelRef} class="db-tab-label" title="">
+				<span
+					ref={_labelRef}
+					class="db-tab-label"
+					title=""
+					data-icon={props.showIcon ? props.icon : undefined}
+					data-icon-trailing={
+						props.showIconTrailing ? props.iconTrailing : undefined
+					}>
 					<Show when={props.label}>{props.label}</Show>
 					<Show when={!props.label}>
 						<Slot />

@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/db-puls";
 
 db-tab-item,
@@ -33,11 +34,19 @@ dbtabitem {
 
 	.db-tab-label {
 		max-inline-size: 100%;
+		position: relative;
 
 		@include helpers.display(flex);
 
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
+
+		&[data-icon]:not([data-show-icon="false"]) {
+			&::before {
+				@extend %icon;
+				margin-inline-end: variables.$db-spacing-fixed-xs;
+			}
+		}
 
 		&::after {
 			content: attr(data-label);
@@ -49,6 +58,28 @@ dbtabitem {
 			overflow: hidden;
 			pointer-events: none;
 			user-select: none;
+			position: absolute;
+		}
+
+		&[data-icon-trailing]:not([data-show-icon-trailing="false"]) {
+			&::after {
+				@extend %icon;
+				margin-inline-start: variables.$db-spacing-fixed-xs;
+				content: var(--db-icon-trailing, attr(data-icon-trailing));
+				font-size: icons.$default-icon-font-size;
+				line-height: 1;
+				font-weight: normal;
+				block-size: icons.$default-icon-font-size;
+				visibility: visible;
+				overflow: clip;
+				pointer-events: auto;
+				user-select: auto;
+				position: static;
+				// Override icon-helpers default
+				@supports (content: ""/"") {
+					content: var(--db-icon-trailing, attr(data-icon-trailing)) / "";
+				}
+			}
 		}
 	}
 
