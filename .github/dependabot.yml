@@ -71,66 +71,111 @@ updates:
         patterns:
           - "@playwright*"
           - "playwright*"
+        update-types:
+          - "patch"
+          - "minor"
       # Linting and formatting tools
       eslint:
         patterns:
           - "eslint*"
           - "@eslint*"
+        update-types:
+          - "patch"
+          - "minor"
       typescript-eslint:
         patterns:
           - "@typescript-eslint/eslint-plugin"
           - "@typescript-eslint*"
           - "typescript-eslint*"
+        update-types:
+          - "patch"
+          - "minor"
       stylelint:
         patterns:
           - "stylelint*"
           - "@double-great/stylelint-a11y"
+        update-types:
+          - "patch"
+          - "minor"
       prettier:
         patterns:
           - "prettier*"
+        update-types:
+          - "patch"
+          - "minor"
       # Build tools and bundlers
       vite:
         patterns:
           - "vite*"
+        update-types:
+          - "patch"
+          - "minor"
       # Test tools
       vitest:
         patterns:
           - "vitest"
           - "@vitest*"
+        update-types:
+          - "patch"
+          - "minor"
       # Development tools
       typescript:
         patterns:
           - "typescript"
           - "tsx"
           - "tslib"
+        update-types:
+          - "patch"
+          - "minor"
       # Commitlint
       commitlint:
         patterns:
           - "@commitlint*"
+        update-types:
+          - "patch"
+          - "minor"
       # Other grouped dependencies
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
+        update-types:
+          - "patch"
+          - "minor"
       storybook:
         patterns:
           - "storybook"
           - "@storybook*"
           - "*-storybook"
+        update-types:
+          - "patch"
+          - "minor"
       inquirer:
         patterns:
           - "@inquirer/*"
           - "inquirer"
+        update-types:
+          - "patch"
+          - "minor"
       mdx-js:
         patterns:
           - "@mdx-js/*"
+        update-types:
+          - "patch"
+          - "minor"
       guidepup:
         patterns:
           - "@guidepup/*"
+        update-types:
+          - "patch"
+          - "minor"
       next:
         patterns:
           - "@next*"
           - "eslint-config-next"
           - "next"
+        update-types:
+          - "patch"
+          - "minor"
       # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:
