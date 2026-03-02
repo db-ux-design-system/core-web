@@ -51,6 +51,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
+		},
+		handleFocusIn: (event: FocusEvent | any) => {
+			if (
+				state.hasAreaPopup &&
+				(!event.relatedTarget ||
+					!_ref?.contains(event.relatedTarget as Node))
+			) {
+				state.isSubNavigationExpanded = true;
+			}
+		},
+		handleFocusOut: (event: FocusEvent | any) => {
+			if (
+				!event.relatedTarget ||
+				!_ref?.contains(event.relatedTarget as Node)
+			) {
+				state.isSubNavigationExpanded = false;
+			}
 		}
 	});
 
@@ -86,6 +103,13 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					state.hasSubNavigation = false;
 				}
 			}
+
+			_ref.addEventListener('focusin', (event: any) =>
+				state.handleFocusIn(event)
+			);
+			_ref.addEventListener('focusout', (event: any) =>
+				state.handleFocusOut(event)
+			);
 		}
 	}, [state.initialized, _ref]);
 	// jscpd:ignore-end
