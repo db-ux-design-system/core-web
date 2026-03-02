@@ -35,7 +35,7 @@
     - if children are `<button>` and `<a>` we'll might use `role=menu` + `role="menuitem"`
     - if children are `<input type="radio">` and `<input type="checkbox">` we'll might use `role=listbox` + `role="option"`
     - we'll need to check if how we can support `details` + `summary` inside a slot of `<DBListItem>`, maybe with `display: grid` and `subgrid`
-- The "Menu" component will be an example`<DBPopover>` + `<DBList>`
+- The "Menu" component will be an example `<DBPopover>` + `<DBList>`
 - An `orientation` property on `DBList` and/or `DBListGroup` will handle the layout for `<DBListItem>`:
     - `horizontal` (Default):
         - ```css
