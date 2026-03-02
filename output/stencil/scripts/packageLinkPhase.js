@@ -1,4 +1,4 @@
-const unionSeperator = ' | ';
+const unionSeparator = ' | ';
 
 const warn = (fnName, message) => {
 	console.warn('packageLinkPhase', fnName, message);
@@ -33,7 +33,7 @@ const getFilteredContextData = (data) => {
 			}
 			let resolvedType;
 			try {
-				resolvedType = `${foundType.values.join(unionSeperator)}`;
+				resolvedType = `${foundType.values.join(unionSeparator)}`;
 			} catch (e) {
 				console.error(key, obj);
 				throw e;
@@ -90,7 +90,7 @@ const resolveAllProps = (resolvedData, resolvedProps) => {
 						.map((val) => {
 							return resolveProp(resolvedData, val).resolvedType;
 						})
-						.join(unionSeperator);
+						.join(unionSeparator);
 					return {
 						...value,
 						resolvedType

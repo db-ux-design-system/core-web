@@ -1,6 +1,7 @@
 /* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
 /* stylelint-disable scss/at-rule-no-unknown, custom-property-pattern */
 @theme {
+	--color-*: initial;
 	--font-*: initial; /* Font family utilities like font-sans */
 	--font-sans: var(--db-font-family-sans);
 	--font-head: var(--db-font-family-head);

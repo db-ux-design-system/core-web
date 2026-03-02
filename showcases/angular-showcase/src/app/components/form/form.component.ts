@@ -105,6 +105,7 @@ export class FormComponent {
 	}
 
 	resetValues(): void {
+		this.textarea = '';
 		this.model.input = 'reset';
 		this.model.textarea = 'resetted as well';
 		this.model.checkbox = false;
