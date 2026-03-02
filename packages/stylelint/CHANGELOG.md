@@ -1,9 +1,20 @@
 # @db-ux/core-stylelint
 
+## 4.5.0
+
+### Minor Changes
+
+- feat: add `db-ux/use-sizing` rule for `@db-ux/core-stylelint` node package, checking for `height`, `width`, `block-size` etc. - [see commit e2ebb4f](https://github.com/db-ux-design-system/core-web/commit/e2ebb4faa2efc1a5cfd4d1b2e913f1bc5ce8d286)
+
+## 4.4.3
+
+### Patch Changes
+
+- refactor: added acceptable values (`transparent` and `currentcolor`) for border declarations - [see commit 4f58e98](https://github.com/db-ux-design-system/core-web/commit/4f58e98d04685773d79feeaf24f31fc84447f39f)
+
 ## 4.4.2
 
 _version bump_
-
 
 ## 4.4.1
 

@@ -30,11 +30,11 @@
   "dependencies": {
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-router-dom": "7.13.0",
+    "react-router-dom": "7.13.1",
     "sa11y": "4.4.1"
   },
   "devDependencies": {
-    "@types/react": "19.2.13",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
     "cross-env": "10.1.0",
