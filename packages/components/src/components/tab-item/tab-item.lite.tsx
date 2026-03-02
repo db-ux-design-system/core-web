@@ -70,14 +70,22 @@ export default function DBTabItem(props: DBTabItemProps) {
 		state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
 
 		if (typeof window !== 'undefined') {
-			requestAnimationFrame(() => {
-				state.checkTruncation();
-				const labelEl = _labelRef;
-				if (labelEl && !labelEl.dataset.label) {
-					labelEl.dataset.label =
-						props.label || labelEl.innerText || labelEl.textContent || '';
-				}
-			});
+			const runInitialCheck = () => {
+				requestAnimationFrame(() => {
+					state.checkTruncation();
+					const labelEl = _labelRef;
+					if (labelEl && !labelEl.dataset.label) {
+						labelEl.dataset.label =
+							props.label || labelEl.innerText || labelEl.textContent || '';
+					}
+				});
+			};
+			const hasIcon = props.showIcon && props.icon;
+			if (hasIcon && document.fonts?.ready) {
+				document.fonts.ready.then(runInitialCheck);
+			} else {
+				runInitialCheck();
+			}
 		}
 
 		if (_labelRef) {
