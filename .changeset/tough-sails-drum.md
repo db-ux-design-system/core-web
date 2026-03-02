@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: input type="date" wrong padding and color for successful and critical state
+fix(`input type="date"`): wrong padding and color for successful and critical state
