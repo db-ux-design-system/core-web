@@ -7,6 +7,7 @@
 db-tab-item,
 dbtabitem {
 	display: contents;
+	vertical-align: top; // fallback if display: contents fails: prevents baseline gap
 }
 
 .db-tab-item {
