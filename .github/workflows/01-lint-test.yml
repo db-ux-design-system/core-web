@@ -35,4 +35,6 @@ jobs:
 
       - name: ⚡ Run Test
         if: ${{ matrix.command == 'test' }}
-        run: pnpm run test
+        run: |
+          pnpm --filter=@db-ux/core-eslint-plugin run build
+          pnpm run test

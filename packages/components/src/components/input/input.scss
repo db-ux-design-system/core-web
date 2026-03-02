@@ -70,6 +70,17 @@ $icon-padding: calc(
 	// This @supports should exclude Mozilla Firefox
 	// TODO: Reevaluate after Mozilla is supporting week and month input types
 	@supports selector(::-webkit-calendar-picker-indicator) {
+		&:has(input[type="week"]) {
+			--db-form-component-padding-inline-end: #{$icon-padding};
+		}
+
+		&:has(input[type="date"]),
+		&:has(input[type="datetime-local"]) {
+			--db-form-component-padding-inline-end: calc(
+				1lh + #{variables.$db-spacing-fixed-xs}
+			);
+		}
+
 		&:has(input[type="date"]),
 		&:has(input[type="week"]),
 		&:has(input[type="datetime-local"]),

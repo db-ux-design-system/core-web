@@ -71,7 +71,7 @@ export default function DBCustomSelectListItem(
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
 				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle

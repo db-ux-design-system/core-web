@@ -81,10 +81,8 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	}
 }
 
-/**
- * @mixin screen-min-max
- * @param $data an object like (min:"sm", max:"lg") or (min: "sm")
- */
+// @mixin screen-min-max
+// @param $data an object like (min:"sm", max:"lg") or (min: "sm")
 @mixin screen-min-max($data) {
 	$min: "";
 	$max: "";

@@ -55,7 +55,8 @@ const rootProps = [
 	'data-headline-size',
 	'data-divider',
 	'data-focus',
-	'data-font'
+	'data-font',
+	'data-density'
 ];
 
 /**

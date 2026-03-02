@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -7,6 +6,7 @@ import {
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBCustomButton,
 	DBCustomSelect,
 	DBDivider,
 	DBHeader,
@@ -31,6 +31,8 @@ import {
 	DBTextarea,
 	DBTooltip
 } from '../../../../packages/react-core-components/src/index';
+
+import { useEffect, useState } from 'react';
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
@@ -345,6 +347,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'custom-button') {
+		return (
+			<DBCustomButton className={className} {...props}>
+				{resolvedContent}
+			</DBCustomButton>
 		);
 	}
 
