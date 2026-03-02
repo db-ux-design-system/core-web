@@ -70,7 +70,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
 
 		if (typeof window !== 'undefined') {
-			const runInitialCheck = () => {
+			const setupObserverAndCheck = () => {
 				requestAnimationFrame(() => {
 					state.checkTruncation();
 					const labelEl = _labelRef;
@@ -78,24 +78,23 @@ export default function DBTabItem(props: DBTabItemProps) {
 						labelEl.dataset.label =
 							props.label || labelEl.innerText || labelEl.textContent || '';
 					}
+					if (_labelRef) {
+						const resizeObserver = new ResizeObserver(() => {
+							requestAnimationFrame(() => {
+								state.checkTruncation();
+							});
+						});
+						resizeObserver.observe(_labelRef);
+						state._resizeObserver = resizeObserver;
+					}
 				});
 			};
 			const hasIcon = props.showIcon && props.icon;
 			if (hasIcon && document.fonts?.ready) {
-				document.fonts.ready.then(runInitialCheck);
+				document.fonts.ready.then(setupObserverAndCheck);
 			} else {
-				runInitialCheck();
+				setupObserverAndCheck();
 			}
-		}
-
-		if (_labelRef) {
-			const resizeObserver = new ResizeObserver(() => {
-				requestAnimationFrame(() => {
-					state.checkTruncation();
-				});
-			});
-			resizeObserver.observe(_labelRef);
-			state._resizeObserver = resizeObserver;
 		}
 
 		if (_ref) {
