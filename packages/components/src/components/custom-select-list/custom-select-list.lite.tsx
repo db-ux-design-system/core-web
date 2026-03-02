@@ -12,7 +12,8 @@ export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 
 	return (
 		<div
-			role={props.multiple ? 'group' : 'radiogroup'}
+			role="listbox"
+			aria-multiselectable={props.multiple ? 'true' : undefined}
 			aria-label={props.label}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}

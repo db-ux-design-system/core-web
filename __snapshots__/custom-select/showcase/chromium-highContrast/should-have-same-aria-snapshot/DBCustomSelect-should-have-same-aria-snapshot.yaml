@@ -4,7 +4,7 @@
   - text: Functional
   - group:
     - article:
-      - radiogroup "id-10206-Functional":
+      - listbox "id-10206-Functional":
         - list:
           - listitem:
             - radio "Option 1"
@@ -25,7 +25,7 @@
   - text: (Default) Regular
   - group:
     - article:
-      - radiogroup "id-10207-(Default) Regular":
+      - listbox "id-10207-(Default) Regular":
         - list:
           - listitem:
             - radio "Option 1"
@@ -46,7 +46,7 @@
   - text: Expressive
   - group:
     - article:
-      - radiogroup "id-10208-Expressive":
+      - listbox "id-10208-Expressive":
         - list:
           - listitem:
             - radio "Option 1"
@@ -68,7 +68,7 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "id-10209-(Default) False":
+      - listbox "id-10209-(Default) False":
         - list:
           - listitem:
             - radio "Option 1"
@@ -89,7 +89,7 @@
   - text: "True"
   - group:
     - article:
-      - group "id-10210-True":
+      - listbox "id-10210-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -111,7 +111,7 @@
   - text: (Default) Above
   - group:
     - article:
-      - radiogroup "id-10211-(Default) Above":
+      - listbox "id-10211-(Default) Above":
         - list:
           - listitem:
             - radio "Option 1"
@@ -132,7 +132,7 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10212-Floating":
+      - listbox "id-10212-Floating":
         - list:
           - listitem:
             - radio "Option 1"
@@ -154,7 +154,7 @@
   - text: (Default) True
   - group:
     - article:
-      - radiogroup "id-10213-(Default) True":
+      - listbox "id-10213-(Default) True":
         - list:
           - listitem:
             - radio "Option 1"
@@ -175,7 +175,7 @@
   - text: "False"
   - group:
     - article:
-      - radiogroup "id-10214-False":
+      - listbox "id-10214-False":
         - list:
           - listitem:
             - radio "Option 1"
@@ -197,7 +197,7 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "id-10215-(Default) False":
+      - listbox "id-10215-(Default) False":
         - list:
           - listitem:
             - radio "Option 1"
@@ -218,7 +218,7 @@
   - text: "True"
   - group:
     - article:
-      - radiogroup "id-10216-True":
+      - listbox "id-10216-True":
         - list:
           - listitem:
             - radio "Option 1"
@@ -241,7 +241,7 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "id-10217-(Default) False":
+      - listbox "id-10217-(Default) False":
         - list:
           - listitem:
             - radio "Option 1"
@@ -262,7 +262,7 @@
   - text: "True"
   - group:
     - article:
-      - radiogroup "id-10218-True":
+      - listbox "id-10218-True":
         - list:
           - listitem:
             - radio "Option 1"
@@ -284,7 +284,7 @@
   - text: (Default) No Validation
   - group:
     - article:
-      - radiogroup "id-102061-(Default) No Validation":
+      - listbox "id-102061-(Default) No Validation":
         - list:
           - listitem:
             - radio "Option 1"
@@ -305,7 +305,7 @@
   - text: Invalid
   - group:
     - article:
-      - radiogroup "id-102062-Invalid":
+      - listbox "id-102062-Invalid":
         - list:
           - listitem:
             - radio "Option 1"
@@ -327,7 +327,7 @@
   - text: Valid
   - group:
     - article:
-      - radiogroup "id-102063-Valid":
+      - listbox "id-102063-Valid":
         - list:
           - listitem:
             - radio "Option 1"
@@ -350,7 +350,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10219-(Default) False":
+      - listbox "id-10219-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -371,7 +371,7 @@
   - text: "True"
   - group:
     - article:
-      - group "id-10220-True":
+      - listbox "id-10220-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -393,7 +393,7 @@
   - text: (Default) True
   - group:
     - article:
-      - group "id-1021s9-(Default) True":
+      - listbox "id-1021s9-(Default) True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -414,7 +414,7 @@
   - text: "False"
   - group:
     - article:
-      - group "id-10s220-False":
+      - listbox "id-10s220-False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -436,7 +436,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10221-(Default) False":
+      - listbox "id-10221-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -457,7 +457,7 @@
   - text: "True"
   - group:
     - article:
-      - group "id-10222-True":
+      - listbox "id-10222-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -479,7 +479,7 @@
   - text: (Default) Full
   - group:
     - article:
-      - radiogroup "id-10223-(Default) Full":
+      - listbox "id-10223-(Default) Full":
         - list:
           - listitem:
             - radio "Option 1"
@@ -500,7 +500,7 @@
   - text: Auto
   - group:
     - article:
-      - radiogroup "id-10224-Auto":
+      - listbox "id-10224-Auto":
         - list:
           - listitem:
             - radio "Option 1"
@@ -522,7 +522,7 @@
   - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
-      - radiogroup "id-10227-(Default) Fixed":
+      - listbox "id-10227-(Default) Fixed":
         - list:
           - listitem:
             - radio "Option 1"
@@ -543,7 +543,7 @@
   - text: Auto
   - group:
     - article:
-      - radiogroup "id-10228-Auto":
+      - listbox "id-10228-Auto":
         - list:
           - listitem:
             - radio "1"
@@ -564,7 +564,7 @@
   - text: Full
   - group:
     - article:
-      - radiogroup "id-10229-Full":
+      - listbox "id-10229-Full":
         - list:
           - listitem:
             - radio "1"
@@ -585,7 +585,7 @@
   - text: "Form Field Width: Auto (Default) Fixed"
   - group:
     - article:
-      - radiogroup "id-10233-(Default) Fixed":
+      - listbox "id-10233-(Default) Fixed":
         - list:
           - listitem:
             - radio "Option 1"
@@ -606,7 +606,7 @@
   - text: Auto
   - group:
     - article:
-      - radiogroup "id-10234-Auto":
+      - listbox "id-10234-Auto":
         - list:
           - listitem:
             - radio "1"
@@ -627,7 +627,7 @@
   - text: Full
   - group:
     - article:
-      - radiogroup "id-10235-Full":
+      - listbox "id-10235-Full":
         - list:
           - listitem:
             - radio "1"
@@ -649,7 +649,7 @@
   - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
-      - radiogroup "id-10238-(Default) Bottom":
+      - listbox "id-10238-(Default) Bottom":
         - list:
           - listitem:
             - radio "Option 1"
@@ -670,7 +670,7 @@
   - text: Top
   - group:
     - article:
-      - radiogroup "id-10239-Top":
+      - listbox "id-10239-Top":
         - list:
           - listitem:
             - radio "Option 1"
@@ -691,7 +691,7 @@
   - text: "Form Field Width: Auto (Default) Bottom-Start"
   - group:
     - article:
-      - radiogroup "id-10243-(Default) Bottom-Start":
+      - listbox "id-10243-(Default) Bottom-Start":
         - list:
           - listitem:
             - radio "Option 1"
@@ -712,7 +712,7 @@
   - text: Bottom-End
   - group:
     - article:
-      - radiogroup "id-10244-Bottom-End":
+      - listbox "id-10244-Bottom-End":
         - list:
           - listitem:
             - radio "Option 1"
@@ -733,7 +733,7 @@
   - text: Top-Start
   - group:
     - article:
-      - radiogroup "id-10245-Top-Start":
+      - listbox "id-10245-Top-Start":
         - list:
           - listitem:
             - radio "Option 1"
@@ -754,7 +754,7 @@
   - text: Top-End
   - group:
     - article:
-      - radiogroup "id-10246-Top-End":
+      - listbox "id-10246-Top-End":
         - list:
           - listitem:
             - radio "Option 1"
@@ -776,7 +776,7 @@
   - text: (Default) Text
   - group:
     - article:
-      - group "id-10247-(Default) Text":
+      - listbox "id-10247-(Default) Text":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -797,7 +797,7 @@
   - text: Amount
   - group:
     - article:
-      - group "id-10248-Amount":
+      - listbox "id-10248-Amount":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -818,7 +818,7 @@
   - text: Tag
   - group:
     - article:
-      - group "id-10249-Tag":
+      - listbox "id-10249-Tag":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -840,7 +840,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10250-(Default) False":
+      - listbox "id-10250-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -866,7 +866,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10252-(Default) False":
+      - listbox "id-10252-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -894,7 +894,7 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "id-10254-(Default) False":
+      - listbox "id-10254-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -933,7 +933,7 @@
       - text: Search
       - searchbox "Search"
       - status
-      - group "id-10255-True":
+      - listbox "id-10255-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -955,7 +955,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10256-(Default) False":
+      - listbox "id-10256-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -981,7 +981,7 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "id-10257-True":
+      - listbox "id-10257-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1003,7 +1003,7 @@
   - text: (Default) True
   - group:
     - article:
-      - group "id-10258-(Default) True":
+      - listbox "id-10258-(Default) True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1024,7 +1024,7 @@
   - text: "False"
   - group:
     - article:
-      - group "id-10259-False":
+      - listbox "id-10259-False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1046,7 +1046,7 @@
   - text: Icons
   - group:
     - article:
-      - radiogroup "id-10260-Icons":
+      - listbox "id-10260-Icons":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1067,7 +1067,7 @@
   - text: Less than 6
   - group:
     - article:
-      - radiogroup "id-10261-Less than 6":
+      - listbox "id-10261-Less than 6":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1088,7 +1088,7 @@
   - text: Option Group Title
   - group:
     - article:
-      - radiogroup "id-10262-Option Group Title":
+      - listbox "id-10262-Option Group Title":
         - list:
           - listitem: Option group 1
           - listitem:
@@ -1108,7 +1108,7 @@
   - text: Option Groups
   - group:
     - article:
-      - radiogroup "id-10263-Option Groups":
+      - listbox "id-10263-Option Groups":
         - list:
           - listitem:
             - radio "G1:Option 1"
@@ -1126,7 +1126,7 @@
   - text: More than 6
   - group:
     - article:
-      - radiogroup "id-10264-More than 6":
+      - listbox "id-10264-More than 6":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1156,7 +1156,7 @@
       - text: Search
       - searchbox "Search"
       - status
-      - radiogroup "id-10265-More than 10":
+      - listbox "id-10265-More than 10":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1193,7 +1193,7 @@
   - text: Less than 6
   - group:
     - article:
-      - group "id-10266-Less than 6":
+      - listbox "id-10266-Less than 6":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1214,7 +1214,7 @@
   - text: Option Group Title
   - group:
     - article:
-      - group "id-10267-Option Group Title":
+      - listbox "id-10267-Option Group Title":
         - list:
           - listitem: Option group 1
           - listitem:
@@ -1234,7 +1234,7 @@
   - text: Option Groups
   - group:
     - article:
-      - group "id-10268-Option Groups":
+      - listbox "id-10268-Option Groups":
         - list:
           - listitem:
             - checkbox "G1:Option 1"
@@ -1254,7 +1254,7 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "id-10269-More than 6":
+      - listbox "id-10269-More than 6":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1286,7 +1286,7 @@
       - status
       - checkbox "Select all"
       - text: Select all
-      - group "id-10270-More than 10":
+      - listbox "id-10270-More than 10":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1323,7 +1323,7 @@
   - text: Tag grow
   - group:
     - article:
-      - group "id-10271-Tag grow":
+      - listbox "id-10271-Tag grow":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1344,7 +1344,7 @@
   - text: Tag grow + auto
   - group:
     - article:
-      - group "id-10272-Tag grow + auto":
+      - listbox "id-10272-Tag grow + auto":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1369,7 +1369,7 @@
       - text: Search
       - searchbox "Search": "1"
       - status
-      - group "id-10as4-Search Value":
+      - listbox "id-10as4-Search Value":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -1379,7 +1379,7 @@
   - group:
     - text: "Selected: Label controlled"
     - article:
-      - radiogroup "id-10aasds4-Custom Selected Label":
+      - listbox "id-10aasds4-Custom Selected Label":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1400,7 +1400,7 @@
   - text: Transform Selected Label
   - group:
     - article:
-      - radiogroup "id-10aasds4-Transform Selected Label":
+      - listbox "id-10aasds4-Transform Selected Label":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1421,7 +1421,7 @@
   - text: Custom Search Filter
   - group:
     - article:
-      - radiogroup "id-10aasds4-Custom Search Filter":
+      - listbox "id-10aasds4-Custom Search Filter":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1443,7 +1443,7 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10300-Floating":
+      - listbox "id-10300-Floating":
         - list:
           - listitem:
             - radio "Option 1"
@@ -1464,7 +1464,7 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10301-Floating":
+      - listbox "id-10301-Floating":
         - list:
           - listitem:
             - radio "Option 1"
