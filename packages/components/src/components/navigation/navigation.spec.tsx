@@ -31,6 +31,34 @@ const comp: any = (
 	</DBNavigation>
 );
 
+const compWithSubLevels: any = (
+	<DBNavigation>
+		<DBNavigationItem
+			data-testid="toplevel"
+			subNavigation={
+				<>
+					<DBNavigationItem
+						data-testid="sublevel"
+						subNavigation={
+							<DBNavigationItem>
+								<a href="#">Sub-Sub1</a>
+							</DBNavigationItem>
+						}>
+						Sub1
+					</DBNavigationItem>
+					<DBNavigationItem>
+						<a href="#">Sub2</a>
+					</DBNavigationItem>
+				</>
+			}>
+			TopLevel
+		</DBNavigationItem>
+		<DBNavigationItem>
+			<a href="#">Other</a>
+		</DBNavigationItem>
+	</DBNavigation>
+);
+
 const testComponent = (viewport: any) => {
 	test(`should contain text for device ${viewport.name}`, async ({
 		mount
@@ -84,6 +112,70 @@ const testHover = () => {
 	});
 };
 
+const testFocus = () => {
+	test(`top-level button should have aria-expanded=true on focus`, async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubLevels);
+		const topButton = component.getByTestId('toplevel').getByRole('button');
+		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
+		await topButton.focus();
+		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
+	});
+
+	test(`top-level button should have aria-expanded=false on blur`, async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubLevels);
+		const topButton = component.getByTestId('toplevel').getByRole('button');
+		await topButton.focus();
+		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
+		await topButton.blur();
+		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
+	});
+
+	test(`first sub-level button should have aria-expanded=true on focus`, async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubLevels);
+		const subButton = component.getByTestId('sublevel').getByRole('button');
+		await expect(subButton).toHaveAttribute('aria-expanded', 'false');
+		await subButton.focus();
+		await expect(subButton).toHaveAttribute('aria-expanded', 'true');
+	});
+
+	test(`first sub-level button should have aria-expanded=false on blur`, async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubLevels);
+		const subButton = component.getByTestId('sublevel').getByRole('button');
+		await subButton.focus();
+		await expect(subButton).toHaveAttribute('aria-expanded', 'true');
+		await subButton.blur();
+		await expect(subButton).toHaveAttribute('aria-expanded', 'false');
+	});
+};
+
 const testClick = () => {
 	test(`should open sub navigation mobile`, async ({ mount, page }) => {
 		const component = await mount(comp);
@@ -102,6 +194,7 @@ test.describe('DBNavigation', () => {
 		testComponent(viewport);
 		if (viewport.name === 'desktop') {
 			testHover();
+			testFocus();
 		}
 		if (viewport.name === 'mobile') {
 			testA11y();
