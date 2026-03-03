@@ -24,6 +24,9 @@ describe('close-button-text-required', () => {
 					code: '<DBNotification>Message</DBNotification>'
 				},
 				{
+					code: '<DBNotification closeable={false}>Message</DBNotification>'
+				},
+				{
 					code: '<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>'
 				},
 				{
@@ -31,6 +34,9 @@ describe('close-button-text-required', () => {
 				},
 				{
 					code: '<DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />'
+				},
+				{
+					code: '<DBNotification :closeable="false">Message</DBNotification>'
 				}
 			],
 			invalid: [
@@ -84,6 +90,9 @@ describe('close-button-text-required', () => {
 					code: '<db-notification>Message</db-notification>'
 				},
 				{
+					code: '<db-notification [closeable]="false">Message</db-notification>'
+				},
+				{
 					code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
 				}
 			],
@@ -94,7 +103,7 @@ describe('close-button-text-required', () => {
 						{
 							messageId: 'missingCloseButtonText',
 							data: {
-								component: 'DBNotification',
+								component: 'db-notification',
 								attribute: 'closeButtonText'
 							}
 						}
@@ -106,7 +115,7 @@ describe('close-button-text-required', () => {
 						{
 							messageId: 'missingCloseButtonText',
 							data: {
-								component: 'DBDrawer',
+								component: 'db-drawer',
 								attribute: 'closeButtonText'
 							}
 						}

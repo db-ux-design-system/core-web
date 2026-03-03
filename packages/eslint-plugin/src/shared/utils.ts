@@ -49,9 +49,7 @@ export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
 ): string | boolean | null {
-	const kebabAttrName = attrName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
+	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
 		const attr = node.attributes.find(
@@ -103,11 +101,8 @@ export function hasChildOfType(
 	node: TSESTree.JSXElement | VElement | AngularElement,
 	componentName: string
 ): boolean {
-	const kebabName = componentName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
-
 	if (isAngularElement(node)) {
+		const kebabName = getAngularComponentName(componentName);
 		return (node.children || []).some((child: any) => {
 			if (child.type === 'Element' || child.type === 'Element$1') {
 				return child.name === componentName || child.name === kebabName;
@@ -115,6 +110,8 @@ export function hasChildOfType(
 			return false;
 		});
 	}
+
+	const kebabName = toKebabCase(componentName);
 
 	if (isVElement(node)) {
 		return (node.children || []).some((child: any) => {
@@ -144,13 +141,12 @@ export function isDBComponent(
 	node: ElementNode,
 	componentName: string
 ): boolean {
-	const kebabName = componentName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
-
 	if (isAngularElement(node)) {
+		const kebabName = getAngularComponentName(componentName);
 		return node.name === componentName || node.name === kebabName;
 	}
+
+	const kebabName = toKebabCase(componentName);
 
 	if (isVElement(node)) {
 		return node.rawName === componentName || node.rawName === kebabName;
@@ -206,14 +202,7 @@ export function createAngularVisitors(
 		return null;
 	}
 
-	// For DB components, convert DBComponentName -> db-component-name
-	const kebabName = componentName.startsWith('DB')
-		? 'db-' +
-			componentName
-				.slice(2)
-				.replace(/([a-z])([A-Z])/g, '$1-$2')
-				.toLowerCase()
-		: componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+	const kebabName = getAngularComponentName(componentName);
 
 	const wrappedHandler = (node: any) => handler(node, parserServices);
 
@@ -221,6 +210,17 @@ export function createAngularVisitors(
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
 		[`Element[name="${componentName}"]`]: wrappedHandler
 	};
+}
+
+export function toKebabCase(str: string): string {
+	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+export function getAngularComponentName(componentName: string): string {
+	// For DB components, convert DBComponentName -> db-component-name
+	return componentName.startsWith('DB')
+		? 'db-' + toKebabCase(componentName.slice(2))
+		: toKebabCase(componentName);
 }
 
 export function createAngularFix(

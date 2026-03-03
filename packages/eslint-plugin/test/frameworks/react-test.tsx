@@ -32,6 +32,7 @@ export const TestComponent = () => {
 
 			{/* db-ux/close-button-text-required */}
 			<DBNotification closeable>Test</DBNotification>
+			<DBNotification closeable={false}>Test</DBNotification>
 			<DBNotification>Test</DBNotification>
 			<DBDrawer></DBDrawer>
 			<DBCustomSelect label="Select"></DBCustomSelect>

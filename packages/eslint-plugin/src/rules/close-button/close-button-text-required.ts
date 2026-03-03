@@ -27,7 +27,6 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
-			const componentName = node.name;
 			const component = Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).find(
 				(comp) => isDBComponent(node, comp)
 			);
@@ -38,8 +37,14 @@ export default {
 				const input = node.inputs?.find(
 					(i: any) => i.name === 'closeable'
 				);
-				if (input && input.value === 'false') return;
-				if (!input) {
+				// Check for [closeable]="false" - Angular AST structure
+				if (input) {
+					const val = input.value;
+					if (val?.type === 'LiteralPrimitive' && val.value === false)
+						return;
+					if (val?.source === 'false') return;
+				} else {
+					// Check for plain attribute closeable (no binding)
 					const attr = node.attributes?.find(
 						(a: any) => a.name === 'closeable'
 					);
@@ -60,19 +65,23 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
-					data: { component: componentName, attribute }
+					data: { component: node.name, attribute }
 				});
 			}
 		};
 
+		const angularVisitors: any = {};
 		for (const comp of Object.keys(COMPONENTS_WITH_CLOSE_BUTTON)) {
-			const angularVisitors = createAngularVisitors(
+			const visitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
 		}
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
