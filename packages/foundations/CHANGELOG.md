@@ -1,9 +1,18 @@
 # @db-ux/core-foundations
 
-## 4.4.3
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with hover state when using DBPopover/Tooltip with animation - [see commit bc4801b](https://github.com/db-ux-design-system/core-web/commit/bc4801bf0b32d5dc4fd8e29626a6122e34fb6ada)
+
+## 4.5.0
 
 _version bump_
 
+## 4.4.3
+
+_version bump_
 
 ## 4.4.2
 

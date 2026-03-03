@@ -121,7 +121,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}

@@ -459,10 +459,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					if (event.relatedTarget) {
 						const relatedTarget =
 							event.relatedTarget as HTMLElement;
-						if (!detailsRef.contains(relatedTarget)) {
+						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
+						// Inside a <dialog> there is some focus problem because of the top-layer
+						// We do not want to focus <dialog> itself
+						if (
+							!detailsRef.contains(relatedTarget) &&
+							relatedTarget.localName !== 'dialog'
+						) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							delay(() => (detailsRef.open = false), 1);
+							void delay(() => (detailsRef.open = false), 1);
 						}
 					}
 				}
@@ -655,24 +661,29 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		selectAllChecked: false,
-		selectAllIndeterminate: false
+		selectAllIndeterminate: false,
+		resetIds: () => {
+			const mId =
+				props.id ??
+				props.propOverrides?.id ??
+				`custom-select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
+			state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+			state._summaryId = mId + '-summary';
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state._selectedLabelsId = mId + '-selected-labels';
+			state._infoTextId = mId + '-info';
+		}
 	});
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.id ?? `custom-select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
-		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
-		state._summaryId = mId + '-summary';
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state._selectedLabelsId = mId + '-selected-labels';
-		state._infoTextId = mId + '-info';
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
@@ -686,6 +697,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			});
 		}
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (detailsRef) {
@@ -991,10 +1008,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
-									{(
-										option: CustomSelectOptionType,
-										index: number
-									) => (
+									{(option: CustomSelectOptionType) => (
 										<DBTag
 											key={useTarget({
 												vue: undefined,

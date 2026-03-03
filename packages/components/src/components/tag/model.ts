@@ -5,6 +5,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	NoTextProps,
 	OverflowProps,
 	SemanticProps,
 	ShowIconProps
@@ -33,10 +34,6 @@ export type DBTagDefaultProps = {
 	behavior?: TagBehaviorType | string;
 
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
-	 */
-	noText?: boolean | string;
-	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;
@@ -63,7 +60,8 @@ export type DBTagProps = DBTagDefaultProps &
 	EmphasisProps &
 	ShowIconProps &
 	ContentSlotProps &
-	DBTagEventsProps;
+	DBTagEventsProps &
+	NoTextProps;
 
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;
