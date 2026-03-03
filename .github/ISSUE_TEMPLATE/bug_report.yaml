@@ -7,6 +7,8 @@ body:
   - type: markdown
     attributes:
       value: |
+        ❗️ For 🖌️ Figma bugs please use [this template](https://github.com/db-ux-design-system/core/issues/new?template=01--bug-report-v3.yaml) in the **core** repo.
+        
         Thank you for taking the time to fill out this bug report! Feedback from the community is highly valuable to us, as it helps improve our work and benefits all users. 🙂
 
         We would be more than happy if you could share a URL if the problem occurs in our [documentation](https://design-system.deutschebahn.com/core-web/), or at least some code. Even better would be a [working example on StackBlitz or CodeSandbox](https://design-system.deutschebahn.com/core-web/version/latest/foundations/playgrounds).
