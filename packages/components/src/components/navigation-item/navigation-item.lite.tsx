@@ -52,7 +52,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
 		},
-		handleFocusIn: (event: FocusEvent | any) => {
+		handleInteractionEnter: (
+			event: FocusEvent | MouseEvent | PointerEvent | any
+		) => {
 			if (
 				state.hasAreaPopup &&
 				(!event.relatedTarget ||
@@ -61,13 +63,27 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-		handleFocusOut: (event: FocusEvent | any) => {
+		handleInteractionLeave: (
+			event: FocusEvent | MouseEvent | PointerEvent | any
+		) => {
 			if (
 				!event.relatedTarget ||
 				!_ref?.contains(event.relatedTarget as Node)
 			) {
 				state.isSubNavigationExpanded = false;
 			}
+		},
+		handleFocusIn: (event: FocusEvent | any) => {
+			state.handleInteractionEnter(event);
+		},
+		handleFocusOut: (event: FocusEvent | any) => {
+			state.handleInteractionLeave(event);
+		},
+		handlePointerEnter: (event: MouseEvent | PointerEvent | any) => {
+			state.handleInteractionEnter(event);
+		},
+		handlePointerLeave: (event: MouseEvent | PointerEvent | any) => {
+			state.handleInteractionLeave(event);
 		}
 	});
 
@@ -103,13 +119,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					state.hasSubNavigation = false;
 				}
 			}
-
-			_ref.addEventListener('focusin', (event: any) =>
-				state.handleFocusIn(event)
-			);
-			_ref.addEventListener('focusout', (event: any) =>
-				state.handleFocusOut(event)
-			);
 		}
 	}, [state.initialized, _ref]);
 	// jscpd:ignore-end
@@ -144,6 +153,14 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
 					disabled={getBoolean(props.disabled, 'disabled')}
+					onFocus={(event: FocusEvent) => state.handleFocusIn(event)}
+					onBlur={(event: FocusEvent) => state.handleFocusOut(event)}
+					onMouseEnter={(event: MouseEvent) =>
+						state.handlePointerEnter(event)
+					}
+					onMouseLeave={(event: MouseEvent) =>
+						state.handlePointerLeave(event)
+					}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>
