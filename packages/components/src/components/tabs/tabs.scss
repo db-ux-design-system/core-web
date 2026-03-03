@@ -204,6 +204,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			}
 
 			.db-tab-list {
+				// stylelint-disable-next-line db-ux/use-spacings
 				padding: 0 variables.$db-sizing-md $pulse-gap-offset;
 				margin-block-start: 0;
 				background-image: none;
