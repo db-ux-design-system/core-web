@@ -2,8 +2,8 @@ import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
+	borderPropertiesExact,
 	defaultColorsExact,
-	defaultExact,
 	getDeclarationRuleFunction
 } from '../shared/index.js';
 
@@ -25,7 +25,7 @@ const meta = {
 
 const allowedDeclarations: AllowedType = {
 	includes: [{ include: 'border', and: ['color'] }],
-	exact: ['border']
+	exact: borderPropertiesExact
 };
 const allowedValues: AllowedType = {
 	includes: [
@@ -35,7 +35,7 @@ const allowedValues: AllowedType = {
 		},
 		{ include: 'on-bg-inverted' }
 	],
-	exact: [...defaultExact, ...defaultColorsExact],
+	exact: defaultColorsExact,
 	type: 'some'
 };
 

@@ -2,7 +2,7 @@ import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
-	defaultColorsExact,
+	borderPropertiesExact,
 	defaultExact,
 	getDeclarationRuleFunction
 } from '../shared/index.js';
@@ -24,12 +24,12 @@ const meta = {
 };
 
 const allowedDeclarations: AllowedType = {
-	includes: [{ include: 'border', and: ['height'] }],
-	exact: ['border']
+	includes: [{ include: 'border', and: ['width'] }],
+	exact: borderPropertiesExact
 };
 const allowedValues: AllowedType = {
 	includes: ['db-border-width'],
-	exact: [...defaultExact, ...defaultColorsExact],
+	exact: defaultExact,
 	type: 'some'
 };
 
