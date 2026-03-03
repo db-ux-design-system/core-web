@@ -30,7 +30,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	const state = useStore<DBTabItemState>({
 		initialized: false,
-		internalActive: getBoolean(props.active) || false,
+		internalActive: false,
 		internalTabIndex: -1,
 		getCurrentTabIndex() {
 			return props.tabIndex !== undefined ? Number(props.tabIndex) : state.internalTabIndex;
