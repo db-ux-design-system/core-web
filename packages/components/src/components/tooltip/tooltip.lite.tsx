@@ -24,7 +24,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
-		_id: props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid(),
+		_id: 'tooltip-' + uuid(),
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
