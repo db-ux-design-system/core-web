@@ -1,10 +1,13 @@
 import { readdirSync } from 'fs';
 import { resolve } from 'path';
-import type { GenerateOptions } from './types.js';
+import type { FoundationFeature, GenerateOptions } from './types.js';
 
-const FOUNDATION_IMPORTS: Record<string, string> = {
+const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
 	helpers: 'helpers/classes/all.css',
-	elevation: 'defaults/default-elevation.css'
+	elevation: 'defaults/default-elevation.css',
+	animations: 'component-animations.css',
+	icons: 'defaults/default-icons.css',
+	code: 'defaults/default-code.css'
 };
 
 function* resolveNodeModules(): Generator<string> {
@@ -66,25 +69,9 @@ function detectTheme(preferredTheme?: string): string | null {
 	return null;
 }
 
-
-
 export function generateCSS(options: GenerateOptions): string {
-	const {
-		components,
-		exclude,
-		foundations,
-		excludeFoundations,
-		colors,
-		excludeColors,
-		densities,
-		excludeDensities,
-		fontSizes,
-		excludeFontSizes,
-		animations,
-		icons,
-		theme: preferredTheme,
-		hasTailwind
-	} = options;
+	const { include, exclude, theme: preferredTheme, hasTailwind } = options;
+	const { components, foundations, colors, densities, fontSizes } = include;
 	const imports: string[] = [];
 
 	// Detect and use theme if available
@@ -112,21 +99,16 @@ export function generateCSS(options: GenerateOptions): string {
 		imports.push(
 			`@import "${theme}/build/styles/rollup.css" layer(${themeName});`
 		);
+		imports.push(
+			`@import "@db-ux/core-foundations/build/styles/defaults/default-container-properties.css" layer(db-ux);`
+		);
 	} else {
 		imports.push(
 			`@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css" layer(db-ux);`
 		);
 		imports.push(
-			`@import "@db-ux/core-foundations/build/styles/defaults/default-container-variables.css" layer(db-ux);`
-		);
-		imports.push(
 			`@import "@db-ux/core-foundations/build/styles/fonts/rollup.css" layer(db-ux);`
 		);
-		if (icons) {
-			imports.push(
-				`@import "@db-ux/core-foundations/build/styles/icons/rollup.css" layer(db-ux);`
-			);
-		}
 	}
 
 	// Tailwind theme
@@ -144,25 +126,28 @@ export function generateCSS(options: GenerateOptions): string {
 		`@import "@db-ux/core-foundations/build/styles/defaults/default-root.css" layer(db-ux);`
 	);
 
-	// Icons
-	if (icons) {
-		imports.push(
-			`@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css" layer(db-ux);`
-		);
-	}
-
 	// Optional foundation features
 	for (const [key, path] of Object.entries(FOUNDATION_IMPORTS)) {
-		if (foundations.includes(key) && !excludeFoundations.includes(key)) {
-			imports.push(
-				`@import "@db-ux/core-foundations/build/styles/${path}" layer(db-ux);`
-			);
+		const feature = key as FoundationFeature;
+		if (
+			foundations?.includes(feature) &&
+			!exclude.foundations?.includes(feature)
+		) {
+			const basePath =
+				feature === 'animations'
+					? '@db-ux/core-components'
+					: '@db-ux/core-foundations';
+			const fullPath =
+				key === 'animations'
+					? `build/styles/${path}`
+					: `build/styles/${path}`;
+			imports.push(`@import "${basePath}/${fullPath}" layer(db-ux);`);
 		}
 	}
 
 	// Color schemes
-	for (const color of colors) {
-		if (!excludeColors.includes(color)) {
+	for (const color of colors || []) {
+		if (!exclude.colors?.includes(color)) {
 			imports.push(
 				`@import "@db-ux/core-foundations/build/styles/colors/classes/${color}.css" layer(db-ux);`
 			);
@@ -170,8 +155,8 @@ export function generateCSS(options: GenerateOptions): string {
 	}
 
 	// Densities
-	for (const density of densities) {
-		if (!excludeDensities.includes(density)) {
+	for (const density of densities || []) {
+		if (!exclude.densities?.includes(density)) {
 			imports.push(
 				`@import "@db-ux/core-foundations/build/styles/density/classes/${density}.css" layer(db-ux);`
 			);
@@ -179,8 +164,8 @@ export function generateCSS(options: GenerateOptions): string {
 	}
 
 	// Font sizes
-	for (const fontSize of fontSizes) {
-		if (!excludeFontSizes.includes(fontSize)) {
+	for (const fontSize of fontSizes || []) {
+		if (!exclude.fontSizes?.includes(fontSize)) {
 			const [category, size] = fontSize.split('-');
 			imports.push(
 				`@import "@db-ux/core-foundations/build/styles/fonts/classes/${category}/${size}.css" layer(db-ux);`
@@ -188,16 +173,9 @@ export function generateCSS(options: GenerateOptions): string {
 		}
 	}
 
-	// Component animations
-	if (animations) {
-		imports.push(
-			`@import "@db-ux/core-components/build/styles/component-animations.css" layer(db-ux);`
-		);
-	}
-
 	// Component styles
-	for (const component of components) {
-		if (!exclude.includes(component)) {
+	for (const component of components || []) {
+		if (!exclude.components?.includes(component)) {
 			imports.push(
 				`@import "@db-ux/core-components/build/components/${component}/${component}.css" layer(db-ux);`
 			);

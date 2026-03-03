@@ -45,7 +45,7 @@ export default defineConfig({
 		dbUxPlugin({
 			include: {
 				components: ["button", "input"], // Force include specific components
-				foundations: ["helpers"], // Force include foundation features
+				foundations: ["helpers", "animations", "icons"], // Force include foundation features
 				colors: ["neutral", "brand"], // Force include color schemes
 				densities: ["regular", "functional"], // Force include densities
 				fontSizes: ["body-md", "headline-lg"] // Force include font sizes
@@ -53,13 +53,12 @@ export default defineConfig({
 			exclude: {
 				components: ["tooltip"], // Exclude specific components
 				foundations: ["elevation"], // Exclude foundation features
-				colors: ["critical"] // Exclude color schemes
+				colors: ["critical"], // Exclude color schemes
+				densities: ["expressive"], // Exclude densities
+				fontSizes: ["body-3xs"] // Exclude font sizes
 			},
-			animations: true, // Include component animations (default: true)
-			icons: true, // Include icon fonts (default: true)
-			optimize: true, // Enable automatic optimization (default: true)
+			optimize: true, // Remove unused CSS variable declarations to reduce bundle size (default: true).
 			theme: "db-theme", // Specify preferred theme package name (e.g., "db-theme")
-			ignoreTailwind: false, // Ignore Tailwind CSS detection (default: false)
 			debug: false // Generate detection report for debugging (default: false)
 		})
 	]
@@ -70,43 +69,26 @@ export default defineConfig({
 
 ### `include`
 
-- **Type:** `{ components?: string[], foundations?: string[], colors?: string[], densities?: string[], fontSizes?: string[] }`
+- **Type:** `{ components?: Component[], foundations?: FoundationFeature[], colors?: ColorScheme[], densities?: Density[], fontSizes?: FontSize[] }`
 - Force include specific components, foundation features, color schemes, densities, or font sizes
+- **Foundation features:** `icons`, `helpers`, `elevation`, `animations`, `code`
 
 ### `exclude`
 
-- **Type:** `{ components?: string[], foundations?: string[], colors?: string[], densities?: string[], fontSizes?: string[] }`
+- **Type:** `{ components?: Component[], foundations?: FoundationFeature[], colors?: ColorScheme[], densities?: Density[], fontSizes?: FontSize[] }`
 - Exclude specific components, foundation features, color schemes, densities, or font sizes
-
-### `animations`
-
-- **Type:** `boolean`
-- **Default:** `true`
-- Include component animations
-
-### `icons`
-
-- **Type:** `boolean`
-- **Default:** `true`
-- Include icon fonts
 
 ### `optimize`
 
 - **Type:** `boolean`
 - **Default:** `true`
-- Enable automatic detection of used components
+- Remove unused CSS variable declarations to reduce bundle size
 
 ### `theme`
 
 - **Type:** `string`
 - **Default:** `undefined`
 - Specify a preferred theme package name (e.g., `"db-theme"`). The plugin automatically detects installed theme packages from `@db-ux/*-theme` or `@db-ux-inner-source/*-theme`. Use this option to select a specific theme when multiple are available.
-
-### `ignoreTailwind`
-
-- **Type:** `boolean`
-- **Default:** `false`
-- Ignore Tailwind CSS detection. By default, the plugin detects if Tailwind CSS is installed and adjusts CSS layer ordering accordingly. Set to `true` to disable this behavior.
 
 ### `debug`
 

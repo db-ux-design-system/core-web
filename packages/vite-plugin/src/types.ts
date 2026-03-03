@@ -1,5 +1,23 @@
-export type FoundationFeature = 'icons' | 'helpers' | 'elevation';
+import type { ValidComponent } from './detector.js';
 
+/**
+ * Foundation features that can be included or excluded.
+ * - `icons`: Include icon fonts
+ * - `helpers`: Include helper classes
+ * - `elevation`: Include elevation styles
+ * - `animations`: Include component animations
+ * - `code`: Include code styling
+ */
+export type FoundationFeature =
+	| 'icons'
+	| 'helpers'
+	| 'elevation'
+	| 'animations'
+	| 'code';
+
+/**
+ * Available color schemes for the design system.
+ */
 export type ColorScheme =
 	| 'neutral'
 	| 'brand'
@@ -19,8 +37,14 @@ export type ColorScheme =
 	| 'warning'
 	| 'yellow';
 
+/**
+ * Available density options for components.
+ */
 export type Density = 'regular' | 'functional' | 'expressive';
 
+/**
+ * Available font size options.
+ */
 export type FontSize =
 	| 'body-3xs'
 	| 'body-2xs'
@@ -41,47 +65,18 @@ export type FontSize =
 	| 'headline-2xl'
 	| 'headline-3xl';
 
-export type Component =
-	| 'custom-select-list-item'
-	| 'custom-select-list'
-	| 'custom-select-dropdown'
-	| 'custom-select-form-field'
-	| 'custom-select'
-	| 'stack'
-	| 'switch'
-	| 'tab-panel'
-	| 'tabs'
-	| 'tab-list'
-	| 'tab-item'
-	| 'tab-bar'
-	| 'tooltip'
-	| 'popover'
-	| 'textarea'
-	| 'navigation'
-	| 'accordion-item'
-	| 'accordion'
-	| 'badge'
-	| 'navigation-item'
-	| 'tag'
-	| 'radio'
-	| 'select'
-	| 'notification'
-	| 'brand'
-	| 'button'
-	| 'card'
-	| 'checkbox'
-	| 'divider'
-	| 'drawer'
-	| 'header'
-	| 'icon'
-	| 'infotext'
-	| 'input'
-	| 'link'
-	| 'page'
-	| 'section'
-	| 'tab';
+/**
+ * Valid component names from the design system.
+ */
+export type Component = ValidComponent;
 
+/**
+ * Configuration options for the Vite plugin.
+ */
 export interface PluginConfig {
+	/**
+	 * Force include specific components, foundation features, color schemes, densities, or font sizes.
+	 */
 	include?: {
 		components?: Component[];
 		foundations?: FoundationFeature[];
@@ -89,6 +84,9 @@ export interface PluginConfig {
 		densities?: Density[];
 		fontSizes?: FontSize[];
 	};
+	/**
+	 * Exclude specific components, foundation features, color schemes, densities, or font sizes.
+	 */
 	exclude?: {
 		components?: Component[];
 		foundations?: FoundationFeature[];
@@ -96,26 +94,26 @@ export interface PluginConfig {
 		densities?: Density[];
 		fontSizes?: FontSize[];
 	};
-	animations?: boolean;
-	icons?: boolean;
+	/**
+	 * Remove unused CSS variable declarations to reduce bundle size (default: true).
+	 */
 	optimize?: boolean;
+	/**
+	 * Specify preferred theme package name (e.g., "db-theme").
+	 */
 	theme?: string;
+	/**
+	 * Generate detection report for debugging (default: false).
+	 */
 	debug?: boolean;
 }
 
-export interface GenerateOptions {
-	components: string[];
-	exclude: string[];
-	foundations: string[];
-	excludeFoundations: string[];
-	colors: string[];
-	excludeColors: string[];
-	densities: string[];
-	excludeDensities: string[];
-	fontSizes: string[];
-	excludeFontSizes: string[];
-	animations: boolean;
-	icons: boolean;
-	theme?: string;
+/**
+ * Internal options passed to the CSS generator.
+ */
+export interface GenerateOptions
+	extends
+		Pick<Required<PluginConfig>, 'include' | 'exclude'>,
+		Pick<PluginConfig, 'theme'> {
 	hasTailwind: boolean;
 }

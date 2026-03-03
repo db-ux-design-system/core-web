@@ -8,115 +8,21 @@ import {
 	detectFontSizes
 } from './detector.js';
 import { generateCSS } from './generator.js';
-import type { PluginConfig } from './types.js';
-
-function removeUnusedStyles(
-	css: string,
-	detectedColors: Set<string>,
-	detectedDensities: Set<string>,
-	detectedFontSizes: Set<string>
-): string {
-	const allColors = [
-		'blue',
-		'burgundy',
-		'cyan',
-		'green',
-		'light-green',
-		'orange',
-		'pink',
-		'red',
-		'turquoise',
-		'violet',
-		'yellow'
-	];
-	const unusedColors = allColors.filter((c) => !detectedColors.has(c));
-
-	const allDensities = ['functional', 'expressive'];
-	const unusedDensities = allDensities.filter(
-		(d) => !detectedDensities.has(d)
-	);
-
-	const allFontSizes = [
-		'body-3xs',
-		'body-2xs',
-		'body-lg',
-		'body-xl',
-		'body-2xl',
-		'body-3xl',
-		'headline-3xs',
-		'headline-2xl',
-		'headline-3xl'
-	];
-	const unusedFontSizes = allFontSizes.filter(
-		(f) => !detectedFontSizes.has(f)
-	);
-
-	for (const color of unusedColors) {
-		css = css.replace(
-			new RegExp(`@property --db-${color}-[a-z0-9-]+\\{[^}]+\\}`, 'g'),
-			''
-		);
-		css = css.replace(
-			new RegExp(`--db-${color}-[a-z0-9-]+:[^;]+;`, 'g'),
-			''
-		);
-	}
-
-	for (const density of unusedDensities) {
-		css = css.replace(
-			new RegExp(
-				`@property --db-[a-z-]+-${density}-[a-z0-9-]+\\{[^}]+\\}`,
-				'g'
-			),
-			''
-		);
-		css = css.replace(
-			new RegExp(`--db-[a-z-]+-${density}-[a-z0-9-]+:[^;]+;`, 'g'),
-			''
-		);
-	}
-
-	for (const fontSize of unusedFontSizes) {
-		const [type, size] = fontSize.split('-');
-		css = css.replace(new RegExp(`--db-type-${fontSize}:[^;]+;`, 'g'), '');
-		css = css.replace(
-			new RegExp(`--db-base-${type}-icon-weight-${size}:[^;]+;`, 'g'),
-			''
-		);
-		css = css.replace(
-			new RegExp(
-				`@property --db-base-icon-weight-[a-z]+-[a-z]+-${type}-${size}\\{[^}]+\\}`,
-				'g'
-			),
-			''
-		);
-		css = css.replace(
-			new RegExp(
-				`@property --db-base-icon-font-size-[a-z]+-[a-z]+-${type}-${size}\\{[^}]+\\}`,
-				'g'
-			),
-			''
-		);
-		css = css.replace(
-			new RegExp(
-				`@property --db-typography-[a-z]+-[a-z]+-${type}-${size}\\{[^}]+\\}`,
-				'g'
-			),
-			''
-		);
-	}
-
-	css = css.replace(/@layer variables;/g, '');
-
-	return css;
-}
+import { removeUnusedStyles } from './optimizer.js';
+import type {
+	ColorScheme,
+	Component,
+	Density,
+	FontSize,
+	PluginConfig
+} from './types.js';
 
 export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 	const {
-		include = {},
+		include = {
+			foundations: ['helpers', 'icons', 'animations', 'code', 'elevation']
+		},
 		exclude = {},
-		animations = true,
-		icons = true,
 		optimize = true,
 		debug = false
 	} = config;
@@ -155,7 +61,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 		},
 
 		handleHotUpdate({ file, server }) {
-			if (optimize && /\.(vue|jsx|tsx|ts|html)$/.test(file)) {
+			if (/\.(vue|jsx|tsx|ts|html)$/.test(file)) {
 				hasDetected = false;
 				detectionPromise = null;
 				if (cssModuleId) {
@@ -179,7 +85,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 			) {
 				cssModuleId = id;
 				// Run detection once when we first encounter the plugin import
-				if (optimize && !hasDetected && !detectionPromise) {
+				if (!hasDetected && !detectionPromise) {
 					detectionPromise = (async () => {
 						hasDetected = true;
 						detectedComponents = await detectComponents(
@@ -206,35 +112,18 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 					await detectionPromise;
 				}
 
-				const components = optimize
-					? Array.from(detectedComponents)
-					: include.components || [];
-
-				const colors = optimize
-					? Array.from(detectedColors)
-					: include.colors || [];
-
-				const densities = optimize
-					? Array.from(detectedDensities)
-					: include.densities || [];
-
-				const fontSizes = optimize
-					? Array.from(detectedFontSizes)
-					: include.fontSizes || [];
-
 				const css = generateCSS({
-					components,
-					exclude: exclude.components || [],
-					foundations: include.foundations || [],
-					excludeFoundations: exclude.foundations || [],
-					colors,
-					excludeColors: exclude.colors || [],
-					densities,
-					excludeDensities: exclude.densities || [],
-					fontSizes,
-					excludeFontSizes: exclude.fontSizes || [],
-					animations,
-					icons,
+					include: {
+						components: Array.from(
+							detectedComponents
+						) as Component[],
+						foundations: include.foundations || [],
+						colors: Array.from(detectedColors) as ColorScheme[],
+						densities: Array.from(detectedDensities) as Density[],
+						fontSizes: Array.from(detectedFontSizes) as FontSize[]
+					},
+					exclude,
+					theme: config.theme,
 					hasTailwind
 				});
 
@@ -248,7 +137,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 		},
 
 		async buildEnd() {
-			if (debug && optimize && hasDetected) {
+			if (debug && hasDetected) {
 				const reportPath = resolve(
 					process.cwd(),
 					'db-ux-detection-report.json'

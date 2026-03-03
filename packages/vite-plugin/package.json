@@ -19,7 +19,8 @@
   "files": [
     "CHANGELOG.md",
     "build",
-    "index.css"
+    "index.css",
+    "LICENSE"
   ],
   "keywords": [
     "vite",

@@ -31,9 +31,8 @@ const FONT_SIZE_PATTERNS = [
 const IMPORT_PATTERN =
 	/import\s+\{[^}]*\bDB(\w+)\b[^}]*\}\s+from\s+['"]@db-ux\/(?:react|ngx|v|wc)-core-components['"]/g;
 const COMPONENT_USAGE_PATTERN = /<DB(\w+)[\s>]/g;
-const COMPONENT_IMPORT_ANY_PATTERN = /import\s+\{[^}]*\bDB(\w+)\b[^}]*\}/g;
 
-const VALID_COMPONENTS = new Set([
+const VALID_COMPONENTS = [
 	'custom-select-list-item',
 	'custom-select-list',
 	'custom-select-dropdown',
@@ -71,7 +70,11 @@ const VALID_COMPONENTS = new Set([
 	'link',
 	'page',
 	'section'
-]);
+] as const;
+
+export type ValidComponent = (typeof VALID_COMPONENTS)[number];
+
+const VALID_COMPONENTS_SET = new Set<string>(VALID_COMPONENTS);
 
 export async function detectComponents(
 	context: PluginContext,
@@ -95,7 +98,7 @@ export async function detectComponents(
 						match[0].match(/db-(\S+?)(?:[\s"]|$)/);
 					if (componentMatch) {
 						const componentName = componentMatch[1];
-						if (VALID_COMPONENTS.has(componentName)) {
+						if (VALID_COMPONENTS_SET.has(componentName)) {
 							components.add(componentName);
 						}
 					}
@@ -109,7 +112,7 @@ export async function detectComponents(
 					.toLowerCase()
 					.replace(/([a-z])([A-Z])/g, '$1-$2')
 					.toLowerCase();
-				if (VALID_COMPONENTS.has(componentName)) {
+				if (VALID_COMPONENTS_SET.has(componentName)) {
 					components.add(componentName);
 				}
 			}
@@ -121,7 +124,7 @@ export async function detectComponents(
 					.toLowerCase()
 					.replace(/([a-z])([A-Z])/g, '$1-$2')
 					.toLowerCase();
-				if (VALID_COMPONENTS.has(componentName)) {
+				if (VALID_COMPONENTS_SET.has(componentName)) {
 					components.add(componentName);
 				}
 			}
