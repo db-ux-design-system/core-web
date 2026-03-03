@@ -6,7 +6,7 @@
 | --------------------------------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Atlassian Design System](https://bitbucket.org/atlassian/atlaskit/src/master/)         |                        [menu](https://atlassian.design/components/menu) / [dropdown-menu](https://atlassian.design/components/dropdown-menu)                        | `<div role="group">` + `<button>`, `<Section>` component with `heading` property, scrolling for complete menu or only for sections                      |
 | [Bootstrap](https://github.com/twbs/bootstrap)                                          |                                               [list-group](https://getbootstrap.com/docs/4.3/components/list-group/)                                                | `<ul>` + `<li>` for static content, `<div>` + `<a>` for interactive, badge as possible content                                                          |
-| [GitHub Primer](https://github.com/primer/css)                                          |                                                 [action-list](https://primer.style/product/components/action-list/)                                                 | `<ul>` + `<li>` + `<button>`, trailing action extra button, `showDividers` on list component, inline und block descriptions                             |
+| [GitHub Primer](https://github.com/primer/css)                                          |                                                 [action-list](https://primer.style/product/components/action-list/)                                                 | `<ul>` + `<li>` + `<button>`, trailing action extra button, `showDividers` on list component, inline and block descriptions                             |
 | [GitLab Pajamas](https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com)       |                                                                                 ❌                                                                                  | --                                                                                                                                                      |
 | [HP Enterprise Grommet](https://github.com/grommet/grommet)                             |                                               [list](https://v2.grommet.io/list) / [menu](https://v2.grommet.io/menu)                                               | `<ul role="listbox">` + `<li role="option" tabindex="1">` , `<div role="menu">` + `<button role="menuitem">`                                            |
 | [IBM Carbon](https://github.com/carbon-design-system/carbon)                            |                                             [contained-list](https://carbondesignsystem.com/components/contained-list)                                              | `<div>` + `<header id="header">` + `<ul aria-labelledby="header">` + `<li>` + `<button>`                                                                |
@@ -22,7 +22,7 @@
 
 ## Conclusion
 
-- We'll might add those components:
+- We might add those components:
     - `<DBList>`
     - `<DBListGroup>`
     - `<DBListGroupTitle>`
@@ -31,10 +31,11 @@
         - `<DBListItemContentStart>`
         - `<DBListItemContentEnd>`
     - See [Example in HTML](#example-what-should-be-rendered-in-html)
-- Based on the children inside `<DBListItem>` we'll change the role of the `DBList` or `DBListGroup`
-    - if children are `<button>` and `<a>` we'll might use `role=menu` + `role="menuitem"`
-    - if children are `<input type="radio">` and `<input type="checkbox">` we'll might use `role=listbox` + `role="option"`
-    - we'll need to check if how we can support `details` + `summary` inside a slot of `<DBListItem>`, maybe with `display: grid` and `subgrid`
+- Based on the children inside `<DBListItem>` we might change the role of the `DBList` or `DBListGroup`
+    - maybe we could just use the normal list semantics even for `<button>` or `<input/>` with additional JS for keyboard navigation, but we need to check how screen-readers will handle this
+    - there should be also a property like `semanticRole="list" | "menu"` to override the default behavior and skip the check for children
+    - if children are `<button>` and `<a>` we might use `role="menu"` + `role="menuitem"`
+    - we need to check if how we can support `details` + `summary` inside a slot of `<DBListItem>`, maybe with `display: grid` and `subgrid`
 - The "Menu" component will be an example `<DBPopover>` + `<DBList>`
 - An `orientation` property on `DBList` and/or `DBListGroup` will handle the layout for `<DBListItem>`:
     - `horizontal` (Default):
@@ -63,8 +64,9 @@
 - `disabled` property for `DBListItem`
 - `descriptionVariant`: `block` and `inline` for `DBListItem`
 - `noText` on `DBListGroup` & `DBList` to achieve example icon only menu
+- We need to handle keyboard navigation for interactive items see [JS Keyboard Navigation](#js-keyboard-navigation) for resources and examples
 
-### Information
+### JS Keyboard Navigation
 
 - [MDN Menu/Group/MenuItem Example](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/group_role#:~:text=The%20following%20example%20uses%20the%20group%20role%20with%20a%20drop%2Ddown%20menu%20containing%20menuitems%3A)
 - W3 Aria Patterns:
@@ -103,10 +105,7 @@
 	<body>
 		<!-- <DBList> -->
 		<div class="db-list">
-			<div class="db-list-label" id="list-caption-1" aria-hidden="true">
-				List 1
-			</div>
-			<ul aria-labelledby="list-caption-1">
+			<ul aria-label="List 1">
 				<!-- <DBListGroup> -->
 				<li class="db-list-section" aria-labelledby="section-1">
 					<!-- <DBListGroupTitle> -->
