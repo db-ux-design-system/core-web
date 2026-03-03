@@ -285,3 +285,9 @@ Short description of the fix.
 
 Short description of the breaking change.
 ```
+
+## General code styles and approaches
+
+### GitHub Actions / Pipelines
+
+- Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
