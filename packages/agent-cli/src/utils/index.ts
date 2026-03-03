@@ -27,7 +27,7 @@ function findAllNodeModulesDirectories(
 		if (isDirectory) {
 			if (entry.name === 'node_modules') {
 				found.add(fs.realpathSync(fullPath));
-			} else if (!entry.name.startsWith('.')){
+			} else if (!entry.name.startsWith('.')) {
 				findAllNodeModulesDirectories(fullPath, found);
 			}
 		}
@@ -39,7 +39,8 @@ function findAllNodeModulesDirectories(
 export const getInstructions = (rootPath: string): string => {
 	const nodeModulesDirectories = findAllNodeModulesDirectories(rootPath);
 	if (nodeModulesDirectories.size === 0) {
-		return 'No node_modules folders found.';
+		console.error('No node_modules folders found in', rootPath);
+		return '';
 	}
 
 	let copilotInstructionsContent = '';
@@ -65,11 +66,21 @@ export const getInstructions = (rootPath: string): string => {
 				try {
 					const stats = fs.statSync(packagePath);
 					isDirectory = stats.isDirectory();
+					// Handle text-file-based symlinks (e.g., Yarn PnP .pnp.cjs creates text files containing relative paths)
+					// These aren't OS-level symlinks, so statSync() sees them as regular files
 					if (!isDirectory && stats.isFile()) {
-						const content = fs.readFileSync(packagePath, 'utf8').trim();
+						const content = fs
+							.readFileSync(packagePath, 'utf8')
+							.trim();
 						if (!content.includes('\n')) {
-							const targetPath = path.resolve(path.dirname(packagePath), content);
-							if (fs.existsSync(targetPath) && fs.statSync(targetPath).isDirectory()) {
+							const targetPath = path.resolve(
+								path.dirname(packagePath),
+								content
+							);
+							if (
+								fs.existsSync(targetPath) &&
+								fs.statSync(targetPath).isDirectory()
+							) {
 								isDirectory = true;
 								packagePath = targetPath;
 							}

@@ -20,7 +20,8 @@ npx @db-ux/agent-cli
 Or with pnpm:
 
 ```shell
-pnpm exec @db-ux/agent-cli
+pnpm i @db-ux/agent-cli --save-dev
+pnpm exec agent-cli
 ```
 
 The DB UX Design System documentation will be added to (or replaced in subsequent runs, e.g. after a DB UX Design System update) in the file `.github/copilot-instructions.md` (if this file does not yet exist in your codebase, it will be created).
