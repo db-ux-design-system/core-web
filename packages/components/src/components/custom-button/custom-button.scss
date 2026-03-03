@@ -47,6 +47,11 @@ $icon-padding-custom-button: calc(
 		}
 	}
 
+	&[data-no-text="true"] {
+		--db-icon-margin-end: 0;
+		--db-icon-passing-inline-start: calc(50% - 0.5em);
+	}
+
 	label:has(input:checked) {
 		color: colors.$db-adaptive-on-bg-inverted-default;
 		background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
