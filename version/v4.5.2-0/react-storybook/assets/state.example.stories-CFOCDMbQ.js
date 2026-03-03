@@ -1,0 +1,14 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{D as l}from"./input-DoLpxqs7.js";import"./index-D2E5Z_bU.js";import"./iframe-DC0PqVxl.js";import"./preload-helper-DoCI1IQB.js";import"./constants-C-ysBZRi.js";import"./form-components-OaQ73I72.js";import"./infotext-BNxQz-0i.js";const{fn:u}=__STORYBOOK_MODULE_TEST__,x={title:"Components/DBInput/State",component:l,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{label:{control:"text"},variant:{control:"select",options:["above","floating"]},value:{control:"text"},showLabel:{control:"boolean"},message:{control:"text"},showMessage:{control:"boolean"},disabled:{control:"boolean"},readOnly:{control:"boolean"},validation:{control:"select",options:["invalid","valid","no-validation"]},invalidMessage:{control:"text"},validMessage:{control:"text"},required:{control:"boolean"},showRequiredAsterisk:{control:"boolean"},showIcon:{control:"boolean"},showIconLeading:{control:"boolean"},showIconTrailing:{control:"boolean"},minLength:{control:"number"},maxLength:{control:"number"},type:{control:"select",options:["color","date","datetime-local","email","file","hidden","month","number","password","range","search","tel","text","time","url","week"]},min:{control:"text"},max:{control:"text"},step:{control:"text"},dataList:{control:"object"},dataListId:{control:"text"},placeholder:{control:"text"},name:{control:"text"},form:{control:"text"},ariaDescribedBy:{control:"text"},size:{control:"number"},pattern:{control:"text"},accept:{control:"text"},multiple:{control:"boolean"},enterkeyhint:{control:"select",options:["enter","done","go","next","previous","search","send"]},inputmode:{control:"select",options:["none","text","decimal","numeric","tel","search","email","url"]},autocomplete:{control:"text"},messageIcon:{control:"text"},messageSize:{control:"select",options:["small","medium"]},validMessageSize:{control:"select",options:["small","medium"]},invalidMessageSize:{control:"select",options:["small","medium"]},fieldSizing:{control:"select",options:["fixed","content"]},id:{control:"text"},autofocus:{control:"boolean"}}},e={args:{label:"Label",placeholder:"(Default) Empty"},render:t=>n.jsx(l,{...t})},o={args:{label:"Label",value:"Filled",placeholder:"Filled"},render:t=>n.jsx(l,{...t})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Label",
+    "placeholder": "(Default) Empty"
+  },
+  render: (properties: any) => <DBInput {...properties} />
+}`,...e.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Label",
+    "value": "Filled",
+    "placeholder": "Filled"
+  },
+  render: (properties: any) => <DBInput {...properties} />
+}`,...o.parameters?.docs?.source}}};const b=["DefaultEmpty","Filled"];export{e as DefaultEmpty,o as Filled,b as __namedExportsOrder,x as default};
