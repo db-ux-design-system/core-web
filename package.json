@@ -124,7 +124,7 @@
     "commander": "14.0.3",
     "cpr": "3.0.1",
     "cross-env": "10.1.0",
-    "cspell": "9.6.4",
+    "cspell": "9.7.0",
     "eslint": "9.39.3",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-xo": "0.49.0",
