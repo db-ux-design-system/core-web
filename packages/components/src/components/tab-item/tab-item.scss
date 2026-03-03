@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts/font-sizes" as *;
 @use "../../styles/internal/db-puls";
 
 db-tab-item,
@@ -87,11 +88,13 @@ dbtabitem {
 	[data-density="functional"] & {
 		padding-block: variables.$db-spacing-fixed-2xs;
 		padding-inline: variables.$db-spacing-fixed-2xs;
+		@extend %db-overwrite-font-size-sm;
 	}
 
 	[data-density="expressive"] & {
 		padding-block: variables.$db-spacing-fixed-sm;
 		padding-inline: variables.$db-spacing-fixed-sm;
+		@extend %db-overwrite-font-size-lg;
 	}
 
 	&::after {
