@@ -39,7 +39,7 @@ dbtabitem {
 
 		@include helpers.display(block);
 
-		&::after {
+		&:not([data-icon-trailing])::after {
 			content: attr(data-label);
 			font-weight: 700;
 			display: block;
@@ -61,20 +61,8 @@ dbtabitem {
 			}
 		}
 
-		&[data-icon-trailing]:not([data-show-icon-trailing="false"]) {
-			&::after {
-				@extend %icon;
-
-				margin-inline-start: variables.$db-spacing-fixed-xs;
-				vertical-align: middle;
-				content: var(--db-icon-trailing, attr(data-icon-trailing));
-
-				@supports (content: ""/"") {
-					content: var(--db-icon-trailing, attr(data-icon-trailing)) / "";
-				}
-			}
-		}
 	}
+
 
 	[data-orientation="vertical"] & .db-tab-label {
 		overflow: hidden;
