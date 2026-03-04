@@ -1,5 +1,10 @@
 # @db-ux/core-foundations
 
+## 4.5.2
+
+_version bump_
+
+
 ## 4.5.1
 
 ### Patch Changes
