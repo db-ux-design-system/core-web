@@ -237,10 +237,10 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 **Always add a new changeset when making changes inside the following folders:**
 
-| Folder                      | Packages to include                                                                                                                             |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src` (if JavaScript is involved)   | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                                             |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                       |
+| Folder                                                | Packages to include                                                                                                                             |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src` (if JavaScript is involved) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/foundations/scss`                           | `@db-ux/core-foundations`                                                                                                                       |
 
 Use the following bump types for changeset entries:
 
@@ -291,3 +291,9 @@ Short description of the breaking change.
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
+
+## Additional Resources
+
+### ESLint Plugin
+
+- Use this file as a reference for the custom ESLint plugin used in this repository: `.amazonq/rules/eslint-plugin-development.md`
