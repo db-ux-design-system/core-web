@@ -50,16 +50,8 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 
 export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
-	handleInteractionEnter: (
-		event: FocusEvent | MouseEvent | PointerEvent
-	) => void;
-	handleInteractionLeave: (
-		event: FocusEvent | MouseEvent | PointerEvent
-	) => void;
 	handleFocusIn: (event: FocusEvent) => void;
 	handleFocusOut: (event: FocusEvent) => void;
-	handlePointerEnter: (event: MouseEvent | PointerEvent) => void;
-	handlePointerLeave: (event: MouseEvent | PointerEvent) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
 
