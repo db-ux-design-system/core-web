@@ -10,7 +10,6 @@ on:
   delete:
     tags:
       - "v*"
-      - "!v*-*"
 
 permissions:
   # Needed to push version commit + create releases
