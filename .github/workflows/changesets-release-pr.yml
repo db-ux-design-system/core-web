@@ -7,6 +7,7 @@ name: Changesets – Create/Update Release PR and Cut Tags
 on:
   push:
     branches: ["main"]
+  delete:
 
 permissions:
   # Needed to push version commit + create releases
@@ -18,6 +19,7 @@ jobs:
   release_pr:
     name: 🧩 Create/Update Release PR (and cut tags/releases)
     runs-on: ubuntu-24.04
+    if: github.event_name == 'push' || (github.event_name == 'delete' && github.event.ref_type == 'tag')
     concurrency:
       group: changesets-main-${{ github.ref }}
       cancel-in-progress: true
@@ -26,6 +28,8 @@ jobs:
       # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
         uses: actions/checkout@v6
+        with:
+          ref: main
 
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
@@ -40,6 +44,7 @@ jobs:
       # Let changesets open/update the "Version Packages" PR, commit bumped versions and create GitHub Releases/tags
       - name: 🧩 Changesets Action
         id: changesets
+        if: github.event_name == 'push'
         uses: changesets/action@v1
         with:
           commit: "chore(release): version packages"
@@ -50,7 +55,7 @@ jobs:
           HUSKY: 0 # Disable Husky hooks in CI
 
       - name: 🆙 Publish
-        if: steps.changesets.outputs.hasChangesets == 'false'
+        if: (github.event_name == 'push' && steps.changesets.outputs.hasChangesets == 'false') || github.event_name == 'delete'
         run: |
           npx --no tsx scripts/github/changesets/publish.ts
         env:
