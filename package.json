@@ -19,6 +19,7 @@
     "output/*",
     "showcases/*",
     "storybooks/*",
+    "figma-code-connect/*",
     "docs",
     "scripts",
     "e2e"
@@ -109,6 +110,7 @@
     "@db-ux/core-eslint-plugin": "*",
     "@db-ux/db-theme": "5.4.2",
     "@double-great/stylelint-a11y": "3.4.4",
+    "@figma/code-connect": "1.3.12",
     "@guidepup/guidepup": "0.24.1",
     "@guidepup/playwright": "0.15.0",
     "@guidepup/record": "0.1.0",
