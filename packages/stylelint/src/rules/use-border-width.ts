@@ -29,7 +29,7 @@ const allowedDeclarations: AllowedType = {
 };
 const allowedValues: AllowedType = {
 	includes: ['db-border-width'],
-	exact: defaultExact,
+	exact: [...defaultExact],
 	type: 'some'
 };
 

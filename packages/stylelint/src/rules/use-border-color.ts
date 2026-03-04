@@ -4,6 +4,7 @@ import {
 	type AllowedType,
 	borderPropertiesExact,
 	defaultColorsExact,
+	defaultExact,
 	getDeclarationRuleFunction
 } from '../shared/index.js';
 
@@ -35,7 +36,7 @@ const allowedValues: AllowedType = {
 		},
 		{ include: 'on-bg-inverted' }
 	],
-	exact: defaultColorsExact,
+	exact: [...defaultExact, ...defaultColorsExact],
 	type: 'some'
 };
 
