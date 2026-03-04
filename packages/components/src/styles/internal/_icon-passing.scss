@@ -9,15 +9,17 @@ $interactive-button-selectors: "label,button,a";
 		&::before {
 			position: absolute;
 			inset-block-start: calc(50% - 0.5em);
-			inset-inline-start: $inline-start;
+			inset-inline-start: var(
+				--db-icon-passing-inline-start,
+				#{$inline-start}
+			);
 			pointer-events: none;
 			z-index: 1;
 		}
 
 		#{$interactive-button-selectors} {
 			--db-padding-inline-start: calc(
-				#{$inline-start} + #{icons.$default-icon-margin-end} +
-					var(--db-icon-font-size)
+				#{$inline-start} + #{icons.$default-icon-margin-end} + 1lh
 			);
 
 			/* stylelint-disable-next-line db-ux/use-spacings */
