@@ -26,6 +26,7 @@ jobs:
       cancel-in-progress: true
 
     steps:
+      # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
         uses: actions/checkout@v6
 
