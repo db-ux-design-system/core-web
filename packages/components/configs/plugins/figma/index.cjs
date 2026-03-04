@@ -96,7 +96,9 @@ module.exports = () => ({
 	code: {
 		post: (code, json) => {
 			if (!env.FIGMA_FILE) {
-				throw Error('FIGMA_FILE not set in .env');
+				throw Error(
+					'FIGMA_FILE not set (check .env file or environment variables)'
+				);
 			}
 
 			const { pluginData, path } = json;

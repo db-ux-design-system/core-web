@@ -115,4 +115,4 @@ Next you need to create a new environment file like `figma-code-connect/react-fi
 
 Add the token to the file `FIGMA_ACCESS_TOKEN="figd-XXX"`.
 
-Publish with: `npm run publish --workspace=react-figma`
+Publish with: `npm run connect --workspace=react-figma`

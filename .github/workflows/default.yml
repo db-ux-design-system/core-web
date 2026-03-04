@@ -71,7 +71,7 @@ jobs:
     needs: [build-packages]
 
   build-figma-code-connect:
-    if: ${{ github.event_name != 'release'}}
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system'}}
     uses: ./.github/workflows/01-build-figma-code-connect.yml
     needs: [init]
 
@@ -108,7 +108,7 @@ jobs:
     needs: [build-outputs]
 
   test-figma-code-connect:
-    if: ${{ github.event_name != 'release'}}
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system'}}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
     needs: [build-figma-code-connect, init]
     secrets: inherit
@@ -482,7 +482,7 @@ jobs:
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publish-figma-code-connect:
-    if: ${{ !cancelled() && github.event_name != 'release' }}
+    if: ${{ !cancelled() && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
     needs: [checks-done, test-figma-code-connect]
     secrets: inherit
