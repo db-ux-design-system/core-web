@@ -8,8 +8,6 @@ on:
   push:
     branches: ["main"]
   delete:
-    tags:
-      - "v*"
 
 permissions:
   # Needed to push version commit + create releases
@@ -21,6 +19,7 @@ jobs:
   release_pr:
     name: 🧩 Create/Update Release PR (and cut tags/releases)
     runs-on: ubuntu-24.04
+    if: github.event_name == 'push' || (github.event_name == 'delete' && github.event.ref_type == 'tag')
     concurrency:
       group: changesets-main-${{ github.ref }}
       cancel-in-progress: true
