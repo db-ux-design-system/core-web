@@ -7,7 +7,7 @@
 
 ## How to include icons
 
-For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
+For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../README.md).
 
 If you only want to use the icons from this library and not the full CSS, take a look at the "Edge case: Using only icons without the full CSS" section of this page.
 
