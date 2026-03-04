@@ -19,7 +19,7 @@ jobs:
   release_pr:
     name: 🧩 Create/Update Release PR (and cut tags/releases)
     runs-on: ubuntu-24.04
-    if: github.event_name == 'push' || (github.event_name == 'delete' && github.event.ref_type == 'tag')
+    if: github.event_name == 'push' || (github.event_name == 'delete' && github.event.ref_type == 'tag' && startsWith(github.event.ref, 'v') && !contains(github.event.ref, '-')) # Only run on push to main or when a tag starting with "v" is deleted, but do not run for pre-releases (containing a hyphen)
     concurrency:
       group: changesets-main-${{ github.ref }}
       cancel-in-progress: true
