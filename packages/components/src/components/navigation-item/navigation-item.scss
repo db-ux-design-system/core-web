@@ -218,7 +218,7 @@
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 		position: absolute;
-		min-inline-size: 328px; // We should get this value from UX
+		min-inline-size: variables.$db-container-xs;
 		inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
@@ -290,6 +290,7 @@
 				inset-block-start: 0;
 				inset-inline-start: 0;
 				block-size: 100%;
+				/* stylelint-disable-next-line db-ux/use-sizing */
 				inline-size: var(--db-navigation-item-inline-size, 100%);
 				background: transparent;
 				transform: translateX(-100%);

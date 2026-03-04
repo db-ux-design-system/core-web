@@ -5,7 +5,8 @@ import {
 	InitializedState,
 	SemanticProps,
 	SizeProps,
-	TextProps
+	TextProps,
+	WrapProps
 } from '../../shared/model';
 
 export const BadgePlacementList = [
@@ -36,7 +37,8 @@ export type DBBadgeProps = DBBadgeDefaultProps &
 	SemanticProps &
 	SizeProps &
 	EmphasisProps &
-	TextProps;
+	TextProps &
+	WrapProps;
 
 export type DBBadgeDefaultState = {};
 

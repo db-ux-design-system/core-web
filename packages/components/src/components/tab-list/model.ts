@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps } from '../../shared/model';
 
 export type DBTabListDefaultProps = {};
 
@@ -6,4 +6,4 @@ export type DBTabListProps = DBTabListDefaultProps & GlobalProps;
 
 export type DBTabListDefaultState = {};
 
-export type DBTabListState = DBTabListDefaultState & GlobalState;
+export type DBTabListState = DBTabListDefaultState;

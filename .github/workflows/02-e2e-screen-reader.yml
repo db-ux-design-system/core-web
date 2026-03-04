@@ -39,12 +39,12 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: 🦮 Guidepup Setup Windows
-        uses: guidepup/setup-action@0.18.0
+        uses: guidepup/setup-action@0.19.0
         with:
           record: true
 
       - name: ⏬ Download react-showcase
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
