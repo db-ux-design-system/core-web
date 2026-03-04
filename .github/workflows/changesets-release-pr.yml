@@ -9,7 +9,8 @@ on:
     branches: ["main"]
   delete:
     tags:
-      - "**"
+      - "v*"
+      - "!v*-*"
 
 permissions:
   # Needed to push version commit + create releases
@@ -56,7 +57,7 @@ jobs:
           HUSKY: 0 # Disable Husky hooks in CI
 
       - name: 🆙 Publish
-        if: (github.event_name == 'push' && steps.changesets.outputs.hasChangesets == 'false') || github.event_name == 'delete'
+        if: steps.changesets.outputs.hasChangesets == 'false' || github.event_name == 'delete'
         run: |
           npx --no tsx scripts/github/changesets/publish.ts
         env:
