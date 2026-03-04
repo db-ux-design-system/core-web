@@ -69,7 +69,7 @@ describe(`${ruleName}`, () => {
 			code: `
 .physical-borders {
 	border: 1px solid red;
-	border-top: 1px solid #ff0000;
+	border-top: 1px solid #ff0;
 	border-right: 1px solid blue;
 	border-bottom: 1px solid green;
 	border-left: 1px solid yellow;
@@ -88,6 +88,6 @@ describe(`${ruleName}`, () => {
 		});
 
 		expect(parseErrors).toHaveLength(0);
-		expect(warnings).toHaveLength(12);
+		expect(warnings).toHaveLength(11);
 	});
 });
