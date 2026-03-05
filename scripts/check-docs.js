@@ -59,6 +59,29 @@ const findMarkdownFiles = () => {
 };
 
 /**
+ * Parse references that point to @db-ux packages.
+ *
+ * Supports these forms:
+ * - @db-ux/<package>/<path>
+ * - node_modules/@db-ux/<package>/<path>
+ * - ./node_modules/@db-ux/<package>/<path>
+ * - ../node_modules/@db-ux/<package>/<path>
+ */
+export const parseDBUXReference = (reference) => {
+	// Extract package name and check if there's a file path after it
+	const match = reference.match(
+		/^(?:(?:\.\.?\/)+)?(?:node_modules\/)?(@db-ux\/[^/]+)\/(.+)$/
+	);
+
+	if (!match) return undefined;
+
+	const [, packageName, filePath] = match;
+	if (!filePath) return undefined;
+
+	return { packageName, filePath };
+};
+
+/**
  * Extract file references from markdown content
  */
 const extractFileReferences = (content) => {
@@ -85,15 +108,13 @@ const extractFileReferences = (content) => {
 			let match;
 			// Reset regex lastIndex for each line
 			pattern.lastIndex = 0;
+
 			while ((match = pattern.exec(line)) !== null) {
 				const reference = match[1];
 
 				// Check if reference includes orgPrefix and has a file path (not just package name)
 				if (!reference.includes(config.orgPrefix)) continue;
-
-				// Extract package name and check if there's a file path after it
-				const packageMatch = reference.match(/^(@db-ux\/[^/]+)\/(.+)$/);
-				if (!packageMatch || !packageMatch[2]) continue;
+				if (!parseDBUXReference(reference)) continue;
 
 				// Only include references that have a file path after the package name
 				references.push({
@@ -248,11 +269,10 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 };
 
 const resolvePackageReference = (reference) => {
-	// Reference format: @db-ux/<package>/<file-or-subpath>
-	const match = reference.match(/^(@db-ux\/[^/]+)\/(.+)$/);
-	if (!match) return [];
+	const parsedReference = parseDBUXReference(reference);
+	if (!parsedReference) return [];
 
-	const [, packageName, filePath] = match;
+	const { packageName, filePath } = parsedReference;
 	const expandedFilePaths = expandBracketAlternatives(filePath);
 
 	// Validate each expanded variant independently so that one broken
