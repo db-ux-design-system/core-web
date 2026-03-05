@@ -11,7 +11,7 @@ const config = {
 	markdownExtensions: ['md', 'mdx'],
 	// NPM organization prefix to look for
 	orgPrefix: '@db-ux/',
-	// Root directory to search from – as this script is run from the scripts directory, we set it to one level up
+	// Root directory to search from
 	rootDir: path.join(process.cwd(), '.'),
 	// Workspace packages directories (can be multiple)
 	packagesDirs: ['packages', 'output'],
