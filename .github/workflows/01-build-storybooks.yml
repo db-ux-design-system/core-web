@@ -60,7 +60,7 @@ jobs:
           npm run build --workspace=${{ inputs.storybook }}
 
       - name: ⏫ Upload ${{ inputs.storybook }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-${{ inputs.storybook }}
           path: build-storybooks/${{ inputs.storybook }}
