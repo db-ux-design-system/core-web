@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'vitest';
 import {
 	expandBracketAlternatives,
-	parseDbUxReference
+	parseDBUXReference
 } from '../check-docs.js';
 
 const expand = expandBracketAlternatives as (input: string) => string[];
-const parseRef = parseDbUxReference as (
+const parseRef = parseDBUXReference as (
 	input: string
 ) => { packageName: string; filePath: string } | undefined;
 
@@ -41,7 +41,7 @@ describe('expandBracketAlternatives', () => {
 	});
 });
 
-describe('parseDbUxReference', () => {
+describe('parseDBUXReference', () => {
 	test('parses direct @db-ux package references', () => {
 		expect(
 			parseRef('@db-ux/db-theme-icons/build/styles/relative.css')
