@@ -144,7 +144,7 @@ const extractFileReferences = (content) => {
  * the cartesian product of all alternatives.
  */
 export const expandBracketAlternatives = (input) => {
-	// Extract package name and file path
+	// Find the first bracket group with alternatives (e.g. [a|b])
 	const match = input.match(/\[([^\]]*\|[^\]]+)]/);
 
 	if (!match) return [input];
@@ -158,7 +158,7 @@ export const expandBracketAlternatives = (input) => {
 	if (alternatives.length === 0) return [input];
 
 	const prefix = input.slice(0, match.index);
-	const suffix = input.slice((match.index ?? 0) + fullMatch.length);
+	const suffix = input.slice(match.index + fullMatch.length);
 	const expanded = [];
 
 	for (const alternative of alternatives) {
