@@ -136,9 +136,10 @@ declare module "@db-ux/core-foundations" {
 If you want to use only the icons from this library without including the complete CSS, you can copy or reference just the icon-related files:
 
 ```css
+/* bundler.css */
 @import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
 @import "@db-ux/db-theme-icons/build/styles/default-font.css";
-@import "@db-ux/db-theme-icons/build/styles/rollup.css";
+@import "@db-ux/db-theme-icons/build/styles/[rollup|webpack|relative].css";
 ```
 
 or
@@ -146,7 +147,7 @@ or
 ```bash
 cp "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css" …;
 cp "node_modules/@db-ux/db-theme-icons/build/styles/default-font.css" …;
-cp "node_modules/@db-ux/db-theme-icons/build/styles/relative.css" …;
+cp "node_modules/@db-ux/db-theme-icons/build/styles/[relative|absolute].css" …;
 ```
 
 You need to copy or reference the correct `.css` file out of your project. There are multiple files depending on the bundler you use:
