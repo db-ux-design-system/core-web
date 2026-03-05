@@ -32,6 +32,8 @@ You can control the size/weight of icons by using the `data-icon-weight` attribu
 | `before` | `data-icon-weight-before="32"` | `<span data-icon="user" data-icon-weight-before="32">Text</span>`         |
 | `after`  | `data-icon-weight-after="20"`  | `<span data-icon-trailing="user" data-icon-weight-after="20">Text</span>` |
 
+If you need to adjust the size of the icons more precisely, you can also set the `--db-icon-font-size` CSS custom property. Please bear in mind that you need to select an `icon-weight` to go with this icon font size from the available options, as each weight includes more or fewer details depending on the resulting size.
+
 ### Icon variant (family)
 
 You can control the variant/family of icons by using the `data-icon-variant` attribute. Available variants are: `default`, `filled`.
