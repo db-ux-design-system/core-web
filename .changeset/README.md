@@ -75,7 +75,7 @@ You don’t have to run anything manually, it’s handled by CI.
 In case that the pipeline has been failing and you need to re-start the release process via changesets, you would need to do the following steps:
 
 - Remove the [release](https://github.com/db-ux-design-system/core-web/releases) and afterwards the [tag](https://github.com/db-ux-design-system/core-web/tags) that have been created
-- Deleting the tag will automatically trigger the "Changesets – Create/Update Release PR and Cut Tags" workflow, which will execute `scripts/github/changesets/publish.ts` and create a new release. Please even also remove the related [GitHub Release](https://github.com/db-ux-design-system/core-web/releases) afterwards, as our process will regenerate that one as well.
+- Deleting the tag will automatically trigger the "Changesets – Create/Update Release PR and Cut Tags" workflow, which will execute `scripts/github/changesets/publish.ts` and create a new release. Previous to deleting the tag you would need to remove the related [GitHub Release](https://github.com/db-ux-design-system/core-web/releases), and changesets will regenerate that one as well.
 
 ---
 
