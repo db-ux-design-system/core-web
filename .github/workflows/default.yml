@@ -472,7 +472,8 @@ jobs:
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-screen-reader
+        test-screen-reader,
+        init
       ]
 
   deploy:
