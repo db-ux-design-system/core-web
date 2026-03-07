@@ -9,40 +9,40 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 1. **Modern CSS Support**: Write "modern" CSS that can be used directly by chromium-based browsers
 2. **Simpler Build Process**: No SASS compilation step needed during development, enabling instant soft-reload
 3. **Native CSS Features**: Leverage native CSS features like:
-    - [CSS nested selectors](https://caniuse.com/css-nesting) (already well-supported)
-    - [CSS `if()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if)
-    - [CSS custom functions (`@function`)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@function)
+   - [CSS nested selectors](https://caniuse.com/css-nesting) (already well-supported)
+   - [CSS `if()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if)
+   - [CSS custom functions (`@function`)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@function)
 4. **Dual Output**: Provide both modern (chromium-only) and legacy CSS bundles
 
 ## Current SCSS Features Analysis
 
 ### Features Found in Codebase
 
-| Feature                        | Count     | Migration Approach                                                  |
-| ------------------------------ | --------- | ------------------------------------------------------------------- |
-| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                       |
-| `@forward`                     | Many      | Replace with CSS `@import`                                          |
-| `@mixin` / `@include`          | ~31 files | postcss-mixins plugin                                               |
-| `@extend` / `%placeholder`     | ~67 files | postcss-extend-rule plugin                                          |
-| `@function`                    | ~7 files  | CSS `@function` (native)                                            |
-| `@if` / `@else`                | ~10 files | CSS `if()` function                                                 |
-| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin |
-| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                              |
-| String interpolation `#{$var}` | Many      | CSS variable syntax                                                 |
-| `sass:math` module             | Few       | CSS calc() or preprocessing                                         |
-| `sass:map` module              | Few       | Preprocessing required                                              |
+| Feature                        | Count     | Migration Approach                                                                                         |
+| ------------------------------ | --------- | ---------------------------------------------------------------------------------------------------------- |
+| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                                                              |
+| `@forward`                     | Many      | Replace with CSS `@import`                                                                                 |
+| `@mixin` / `@include`          | ~31 files | [`postcss-mixins`](https://www.npmjs.com/package/postcss-mixins) plugin, later `@mixin` (native)           |
+| `%placeholder` / `@extend`     | ~67 files | [`postcss-extend-rule`](https://www.npmjs.com/package/postcss-extend-rule) plugin, later `@macro` (native) |
+| `@function`                    | ~7 files  | CSS `@function` (native)                                                                                   |
+| `@if` / `@else`                | ~10 files | CSS `if()` function (native)                                                                               |
+| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin                                        |
+| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                                                                     |
+| String interpolation `#{$var}` | Many      | CSS variable syntax                                                                                        |
+| `sass:math` module             | Few       | CSS calc() or preprocessing                                                                                |
+| `sass:map` module              | Few       | Preprocessing required                                                                                     |
 
 ### Complex Features Requiring Special Handling
 
 1. **`@each` loops**: Used to generate repetitive CSS (e.g., color variants, density classes)
-    - Use [`postcss-each`](https://www.npmjs.com/package/postcss-each) PostCSS plugin for loop support
+   - Use [`postcss-each`](https://www.npmjs.com/package/postcss-each) PostCSS plugin for loop support
 
 2. **Sass `sass:map` functions**: Used for dynamic lookups
-    - Will need preprocessing or manual expansion
+   - Will need preprocessing or manual expansion
 
 3. **String interpolation**: `#{$variable}` syntax
-    - Simple cases: Convert to CSS variable reference
-    - Complex cases: May need preprocessing
+   - Simple cases: Convert to CSS variable reference
+   - Complex cases: May need preprocessing
 
 ## PostCSS Plugins Required
 
@@ -88,14 +88,14 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 
 ```scss
 @mixin cursor-pointer() {
-	cursor: var(--db-overwrite-cursor, pointer);
-	@content;
+  cursor: var(--db-overwrite-cursor, pointer);
+  @content;
 }
 
 .button {
-	@include cursor-pointer {
-		background: blue;
-	}
+  @include cursor-pointer {
+    background: blue;
+  }
 }
 ```
 
@@ -103,14 +103,14 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 
 ```css
 @define-mixin cursor-pointer {
-	cursor: var(--db-overwrite-cursor, pointer);
-	@mixin-content;
+  cursor: var(--db-overwrite-cursor, pointer);
+  @mixin-content;
 }
 
 .button {
-	@mixin cursor-pointer {
-		background: blue;
-	}
+  @mixin cursor-pointer {
+    background: blue;
+  }
 }
 ```
 
@@ -120,12 +120,12 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 
 ```scss
 %a11y-visually-hidden {
-	clip: rect(0, 0, 0, 0) !important;
-	position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  position: absolute !important;
 }
 
 .sr-only {
-	@extend %a11y-visually-hidden;
+  @extend %a11y-visually-hidden;
 }
 ```
 
@@ -133,12 +133,12 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 
 ```css
 %a11y-visually-hidden {
-	clip: rect(0, 0, 0, 0) !important;
-	position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  position: absolute !important;
 }
 
 .sr-only {
-	@extend %a11y-visually-hidden;
+  @extend %a11y-visually-hidden;
 }
 ```
 
@@ -150,7 +150,7 @@ _Note: postcss-extend-rule maintains SCSS-like syntax_
 
 ```scss
 @if $hovered {
-	background-color: #{$hovered};
+  background-color: #{$hovered};
 }
 ```
 
@@ -185,7 +185,7 @@ color: var(--db-sizing-md);
 
 ```scss
 @function px-to-rem($pxValue) {
-	@return ($pxValue * 0.0625) * 1rem;
+  @return ($pxValue * 0.0625) * 1rem;
 }
 ```
 
@@ -193,7 +193,7 @@ color: var(--db-sizing-md);
 
 ```css
 @function --px-to-rem(--px-value) {
-	result: calc(var(--px-value) * 0.0625 * 1rem);
+  result: calc(var(--px-value) * 0.0625 * 1rem);
 }
 ```
 
@@ -222,39 +222,39 @@ _Note: CSS functions have limited support currently_
 Generate two CSS bundles:
 
 1. **Modern (`.chromium.css`)**:
-    - Only uses `postcss-import`, `postcss-mixins`, `postcss-extend-rule`
-    - Preserves native CSS features (`if()`, `@function`, nesting)
-    - For modern browsers only
+   - Only uses `postcss-import`, `postcss-mixins`, `postcss-extend-rule`
+   - Preserves native CSS features (`if()`, `@function`, nesting)
+   - For modern browsers only
 
 2. **Legacy (`.css`)**:
-    - Uses all plugins including `postcss-if-function`
-    - Transforms modern CSS to compatible syntax
-    - For broader browser support
+   - Uses all plugins including `postcss-if-function`
+   - Transforms modern CSS to compatible syntax
+   - For broader browser support
 
 ### PostCSS Configuration Example
 
 ```javascript
 // postcss.config.chromium.cjs
 module.exports = {
-	plugins: [
-		require("postcss-import"),
-		require("postcss-mixins"),
-		require("postcss-each"),
-		require("postcss-extend-rule"),
-		require("cssnano")({ preset: ["default", { svgo: false }] })
-	]
+  plugins: [
+    require("postcss-import"),
+    require("postcss-mixins"),
+    require("postcss-each"),
+    require("postcss-extend-rule"),
+    require("cssnano")({ preset: ["default", { svgo: false }] }),
+  ],
 };
 
 // postcss.config.cjs (legacy)
 module.exports = {
-	plugins: [
-		require("postcss-import"),
-		require("postcss-mixins"),
-		require("postcss-each"),
-		require("postcss-extend-rule"),
-		require("postcss-if-function"),
-		require("cssnano")({ preset: ["default", { svgo: false }] })
-	]
+  plugins: [
+    require("postcss-import"),
+    require("postcss-mixins"),
+    require("postcss-each"),
+    require("postcss-extend-rule"),
+    require("postcss-if-function"),
+    require("cssnano")({ preset: ["default", { svgo: false }] }),
+  ],
 };
 ```
 
