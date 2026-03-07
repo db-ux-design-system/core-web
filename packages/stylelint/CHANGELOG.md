@@ -1,5 +1,16 @@
 # @db-ux/core-stylelint
 
+## 4.5.2
+
+_version bump_
+
+
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with Stylelint peer dependency being too restrictive - [see commit 1e146bc](https://github.com/db-ux-design-system/core-web/commit/1e146bc5101e5dc33781bbdecb5b75c5a91bbc99)
+
 ## 4.5.0
 
 ### Minor Changes
