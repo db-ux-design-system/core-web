@@ -2,6 +2,72 @@
 @forward "default-properties";
 @forward "default-container-properties";
 
+@property --db-container-2xl {
+	syntax: "*";
+	initial-value: 42rem;
+	inherits: true;
+}
+@property --db-container-2xs {
+	syntax: "*";
+	initial-value: 16rem;
+	inherits: true;
+}
+@property --db-container-3xl {
+	syntax: "*";
+	initial-value: 48rem;
+	inherits: true;
+}
+@property --db-container-3xs {
+	syntax: "*";
+	initial-value: 14rem;
+	inherits: true;
+}
+@property --db-container-lg {
+	syntax: "*";
+	initial-value: 32rem;
+	inherits: true;
+}
+@property --db-container-md {
+	syntax: "*";
+	initial-value: 28rem;
+	inherits: true;
+}
+@property --db-container-sm {
+	syntax: "*";
+	initial-value: 24rem;
+	inherits: true;
+}
+@property --db-container-xl {
+	syntax: "*";
+	initial-value: 36rem;
+	inherits: true;
+}
+@property --db-container-xs {
+	syntax: "*";
+	initial-value: 20rem;
+	inherits: true;
+}
+@property --db-screen-md {
+	syntax: "*";
+	inherits: true;
+	initial-value: 64em;
+}
+@property --db-screen-sm {
+	syntax: "*";
+	inherits: true;
+	initial-value: 48em;
+}
+@property --db-screen-xl {
+	syntax: "*";
+	inherits: true;
+	initial-value: 120em;
+}
+@property --db-screen-xs {
+	syntax: "*";
+	inherits: true;
+	initial-value: 20em;
+}
+
 [data-mode] {
 	@extend %db-neutral-bg-basic-level-1;
 }
