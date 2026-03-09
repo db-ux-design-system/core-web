@@ -1,9 +1,14 @@
 # @db-ux/agent-cli
 
+## 4.5.3
+
+### Patch Changes
+
+- fix(agent-cli): add pnpm compatibility by following symlinks in `node_modules` - [see commit 28606fd](https://github.com/db-ux-design-system/core-web/commit/28606fdae48ca991cbe341c6a7ea5e0c420b3a46)
+
 ## 4.5.2
 
 _version bump_
-
 
 ## 4.5.1
 
