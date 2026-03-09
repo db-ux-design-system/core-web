@@ -18,7 +18,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.3",
+    "@eslint/js": "10.0.1",
     "@storybook/addon-docs": "10.2.14",
     "@storybook/react-vite": "10.2.14",
     "@types/react": "19.2.14",
