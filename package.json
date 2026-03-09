@@ -107,7 +107,7 @@
     "@commitlint/cli": "20.4.3",
     "@commitlint/config-conventional": "20.4.3",
     "@db-ux/core-eslint-plugin": "*",
-    "@db-ux/db-theme": "5.4.2",
+    "@db-ux/db-theme": "5.5.0",
     "@double-great/stylelint-a11y": "3.4.5",
     "@guidepup/guidepup": "0.24.1",
     "@guidepup/playwright": "0.15.0",
