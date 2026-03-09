@@ -16,14 +16,8 @@ $cursor-pointer: var(--db-overwrite-cursor, pointer);
 	cursor: $cursor-pointer;
 	@content;
 
-	&:is(textarea),
-	&:is(input) {
+	&:is(textarea, input) {
 		cursor: initial;
-	}
-
-	&:is(input[type="checkbox"]),
-	&:is(input[type="radio"]:not(:checked)) {
-		cursor: pointer;
 	}
 }
 
