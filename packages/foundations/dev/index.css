@@ -1,5 +1,5 @@
-@layer db-ux-core-foundations, db-ux-theme-properties, db-ux-theme;
-@import "/build/styles/absolute.css" layer(db-ux-core-foundations);
+@layer db-ux-theme-properties, db-ux-core-foundations, db-ux-theme;
 @import "/build/styles/defaults/default-properties.css"
 	layer(db-ux-theme-properties);
+@import "/build/styles/absolute.css" layer(db-ux-core-foundations);
 @import "/build/styles/defaults/default-theme.css" layer(db-ux-theme);
