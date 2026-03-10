@@ -72,7 +72,8 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: undefined,
-		_value: (props.value as any) ?? '',
+		_interacted: false,
+		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -111,6 +112,7 @@ export default function DBInput(props: DBInputProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
+			state._interacted = true;
 			state._value = (event.target as HTMLInputElement).value;
 			useTarget({
 				angular: () => {
@@ -145,6 +147,7 @@ export default function DBInput(props: DBInputProps) {
 			event: ChangeEvent<HTMLInputElement>,
 			reset?: boolean
 		) => {
+			state._interacted = true;
 			state._value = (event.target as HTMLInputElement).value;
 			useTarget({
 				angular: () => {
@@ -239,6 +242,7 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		if (props.value !== undefined) {
 			state._value = props.value;
+			state._interacted = false;
 		}
 	}, [props.value]);
 
@@ -307,7 +311,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={state._value}
+				value={state._interacted ? state._value : (props.value ?? state._value)}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}

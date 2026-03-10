@@ -59,7 +59,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_invalidMessage: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
-		_value: (props.value as any) ?? '',
+		_interacted: false,
+		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -98,6 +99,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			event: InputEvent<HTMLTextAreaElement>,
 			reset?: boolean
 		) => {
+			state._interacted = true;
 			state._value = (event.target as HTMLTextAreaElement).value;
 			useTarget({
 				angular: () => {
@@ -131,6 +133,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			event: ChangeEvent<HTMLTextAreaElement>,
 			reset?: boolean
 		) => {
+			state._interacted = true;
 			state._value = (event.target as HTMLTextAreaElement).value;
 			useTarget({
 				angular: () => {
@@ -210,6 +213,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 	onUpdate(() => {
 		if (props.value !== undefined) {
 			state._value = props.value;
+			state._interacted = false;
 		}
 	}, [props.value]);
 
@@ -290,7 +294,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={state._value}
+				value={state._interacted ? state._value : (props.value ?? state._value)}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}
