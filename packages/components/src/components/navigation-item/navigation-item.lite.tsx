@@ -6,7 +6,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useId
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
@@ -30,6 +31,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		isSubNavigationExpanded: false,
 		autoClose: false,
 		navigationItemSafeTriangle: undefined,
+		subNavigationId: useId(),
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
 				state.autoClose = true;
@@ -118,6 +120,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				<button
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
+					aria-controls={state.subNavigationId}
 					class="db-navigation-item-expand-button"
 					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
@@ -130,6 +133,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 				{/* TODO: Consider using popover here */}
 				<menu
+					id={state.subNavigationId}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
 					onClick={(event) => state.handleNavigationItemClick(event)}>

@@ -59,6 +59,7 @@ export type DBNavigationItemDefaultState = {
 	hasSubNavigation?: boolean;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
+	subNavigationId?: string;
 };
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
