@@ -75,16 +75,16 @@ The first phase focuses on establishing a static, semantic, and accessible pagin
 * **Visual States and Accessibility:** Explicit styling of the active page (identified by `aria-current="page"`) as well as disabled buttons at the edge boundaries. Disabled elements must have the `disabled` attribute (for `<button>`) or `tabindex="-1"` combined with `pointer-events: none` (for `<a>` tags).
 * **Event Handling:** Integration of a simple, typed `onPageChange(pageNumber: number)` callback to inform the parent container.
 * **Touch-Optimized Layout:** Horizontal alignment with sufficient spacing.
+* **Micro-Interactions:** Implementation of subtle hover transitions (e.g., background color change) and focus indicators for keyboard use.
+* **Reactive Responsive Design:** Automatic reduction of `siblingCount` to 0 on mobile viewports to prevent horizontal scrolling (collapsing the layout from `< 1... 4 5 6... 9 >` to `< 1... 5... 9 >`).
+* **Truncation (Ellipsis):** Implementation of robust logic for omission marks (`...`). Introduction of flexible props `siblingCount` (pages next to the current page) and `boundaryCount` (pages at the outer edges).
 
 ### 🔵 V2 - Intermediate features
 
 The second phase transforms the base component into a responsive pagination, optimized for use in complex single-page applications.
 
-* **Truncation (Ellipsis):** Implementation of robust logic for omission marks (`...`). Introduction of flexible props `siblingCount` (pages next to the current page) and `boundaryCount` (pages at the outer edges).
-* **Reactive Responsive Design:** Automatic reduction of `siblingCount` to 0 on mobile viewports to prevent horizontal scrolling (collapsing the layout from `< 1... 4 5 6... 9 >` to `< 1... 5... 9 >`).
 * **Items per Page Control:** Optional addition of a native select dropdown at the component's edge to control data density (`pageSize`). This requires an `onPageSizeChange` callback and localizable text labels (e.g., "Showing 1-10 of 100 results").
 * **Routing and Framework Integration:** Introduction of slots. This allows consuming developers to inject framework-specific link components for SEO-friendly, server-side rendered URLs without breaking CSS.
-* **Micro-Interactions:** Implementation of subtle hover transitions (e.g., background color change) and focus indicators for keyboard use.
 
 ### 🔴 V3 - Advanced features
 
