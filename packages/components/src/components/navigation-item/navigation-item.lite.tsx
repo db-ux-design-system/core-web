@@ -134,7 +134,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				{/* TODO: Consider using popover here */}
 				<menu
 					id={state.subNavigationId}
-					aria-label={props.text as string}
+					aria-label={props.text}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
 					onClick={(event) => state.handleNavigationItemClick(event)}>

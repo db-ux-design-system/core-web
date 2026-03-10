@@ -22,7 +22,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			aria-label={props['aria-label']}
+			aria-label={props.ariaLabel}
 			class={cls('db-navigation', props.className)}>
 			<menu>{props.children}</menu>
 		</nav>
