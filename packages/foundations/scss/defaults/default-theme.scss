@@ -1,6 +1,18 @@
 @use "../colors/placeholder";
 @forward "default-container-properties";
 
+@property --db-font-family-sans {
+	syntax: "*";
+	initial-value: "OpenSans", helvetica, arial, sans-serif;
+	inherits: true;
+}
+
+@property --db-font-family-head {
+	syntax: "*";
+	initial-value: "OpenSans Head", helvetica, arial, sans-serif;
+	inherits: true;
+}
+
 @property --db-container-2xl {
 	syntax: "*";
 	initial-value: 42rem;
