@@ -69,7 +69,7 @@
     "lint:package-json": "npx --no npm-package-json-lint packages/*/package.json --configFile .config/.npmpackagejsonlintrc.json",
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
-    "prepare": "npx husky",
+    "prepare": "husky",
     "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
     "regenerate:screenshots:rebuild": "npm run rm:builds && node scripts/rebuild-e2e.js",
     "release:publish": "node scripts/github/publish-npm.js",
