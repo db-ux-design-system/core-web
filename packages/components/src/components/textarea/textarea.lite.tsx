@@ -59,7 +59,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_invalidMessage: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
-		_value: '',
+		_value: (props.value as any) ?? '',
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -98,6 +98,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			event: InputEvent<HTMLTextAreaElement>,
 			reset?: boolean
 		) => {
+			state._value = event.target.value;
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -130,6 +131,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			event: ChangeEvent<HTMLTextAreaElement>,
 			reset?: boolean
 		) => {
+			state._value = event.target.value;
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
@@ -288,7 +290,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={props.value ?? state._value}
+				value={state._value}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}

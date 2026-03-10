@@ -72,7 +72,7 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: undefined,
-		_value: '',
+		_value: (props.value as any) ?? '',
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -111,6 +111,7 @@ export default function DBInput(props: DBInputProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
+			state._value = event.target.value;
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -144,6 +145,7 @@ export default function DBInput(props: DBInputProps) {
 			event: ChangeEvent<HTMLInputElement>,
 			reset?: boolean
 		) => {
+			state._value = event.target.value;
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
@@ -305,7 +307,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={props.value ?? state._value}
+				value={state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}
