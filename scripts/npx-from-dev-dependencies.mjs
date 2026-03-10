@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs';
 
-const pkgName = process.argv.slice(2);
+const pkgName = process.argv[2];
 const cmdArgs = process.argv.slice(3);
 
 if (!pkgName) {
 	console.error(
-		'Usage: node scripts/npx-from-dependencies.mjs <pkgName> [args...]'
+		'Usage: node scripts/npx-from-dev-dependencies.mjs <pkgName> [args...]'
 	);
 	process.exit(1);
 }
@@ -28,19 +28,12 @@ if (!version) {
 const spec = `${pkgName}@${version}`;
 const { spawnSync } = await import('node:child_process');
 
-const result = spawnSync(
-	'npx',
-	['--yes', '--package', spec, pkgName, ...cmdArgs],
-	{
-		stdio: 'inherit',
-		shell: process.platform === 'win32'
-	}
-);
+const npxArgs = ['--yes', '--package', spec, pkgName, ...cmdArgs];
 
-console.log(
-	'### running npx',
-	['--yes', '--package', spec, pkgName, ...cmdArgs].join(' '),
-	'###'
-);
+console.log('### running npx', npxArgs.join(' '), '###');
 
+const result = spawnSync('npx', npxArgs, {
+	stdio: 'inherit',
+	shell: process.platform === 'win32'
+});
 process.exit(result.status ?? 1);
