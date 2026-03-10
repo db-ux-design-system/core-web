@@ -28,7 +28,7 @@ export default function HeaderExamples() {
 							},
 							default: {}
 						})}
-						aria-label="With Application Name + Navigation">
+						ariaLabel="Navigation - With Application Name">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">With Application Name + Navigation</a>
 						</DBNavigationItem>
@@ -52,7 +52,7 @@ export default function HeaderExamples() {
 							},
 							default: {}
 						})}
-						aria-label="Without Application Name">
+						ariaLabel="Navigation - Without Application Name">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Without Application Name</a>
 						</DBNavigationItem>
