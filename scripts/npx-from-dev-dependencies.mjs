@@ -30,11 +30,17 @@ const { spawnSync } = await import('node:child_process');
 
 const result = spawnSync(
 	'npx',
-	['--yes', '--package', spec, pkgName, cmdArgs],
+	['--yes', '--package', spec, pkgName, ...cmdArgs],
 	{
 		stdio: 'inherit',
 		shell: process.platform === 'win32'
 	}
+);
+
+console.log(
+	'### running npx',
+	['--yes', '--package', spec, pkgName, ...cmdArgs].join(' '),
+	'###'
 );
 
 process.exit(result.status ?? 1);
