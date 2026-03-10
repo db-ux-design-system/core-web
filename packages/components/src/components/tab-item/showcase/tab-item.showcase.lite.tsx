@@ -7,6 +7,7 @@ import TabItemContentAlignmentFullWidth from '../examples/content-alignment-full
 import TabItemDensity from '../examples/density.example.lite';
 import TabItemShowIconLeading from '../examples/show-icon-leading.example.lite';
 import TabItemShowIconTrailing from '../examples/show-icon-trailing.example.lite';
+import TabItemSlotWithBadge from '../examples/slot-with-badge.example.lite';
 import TabItemStates from '../examples/states.example.lite';
 
 export default function TabItemShowcase(props: PatternhubProps) {
@@ -37,6 +38,11 @@ export default function TabItemShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Behavior">
 				<CardWrapperShowcase>
 					<TabItemBehavior />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Slot with Badge">
+				<CardWrapperShowcase>
+					<TabItemSlotWithBadge />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Content Alignment Full Width">
