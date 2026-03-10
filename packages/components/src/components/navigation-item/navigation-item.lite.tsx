@@ -6,12 +6,11 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useId
+	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, delay, getBoolean, getBooleanAsString } from '../../utils';
+import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
@@ -31,7 +30,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		isSubNavigationExpanded: false,
 		autoClose: false,
 		navigationItemSafeTriangle: undefined,
-		subNavigationId: useId(),
+		subNavigationId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
 				state.autoClose = true;
@@ -58,6 +57,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onMount(() => {
 		state.initialized = true;
+		state.subNavigationId = `sub-nav-${uuid()}`;
 	});
 
 	onUpdate(() => {
