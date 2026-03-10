@@ -111,7 +111,7 @@ export default function DBInput(props: DBInputProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
-			state._value = event.target.value;
+			state._value = (event.target as HTMLInputElement).value;
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -145,7 +145,7 @@ export default function DBInput(props: DBInputProps) {
 			event: ChangeEvent<HTMLInputElement>,
 			reset?: boolean
 		) => {
-			state._value = event.target.value;
+			state._value = (event.target as HTMLInputElement).value;
 			useTarget({
 				angular: () => {
 					if (props.onChange) {

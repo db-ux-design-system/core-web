@@ -98,7 +98,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			event: InputEvent<HTMLTextAreaElement>,
 			reset?: boolean
 		) => {
-			state._value = event.target.value;
+			state._value = (event.target as HTMLTextAreaElement).value;
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -131,7 +131,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			event: ChangeEvent<HTMLTextAreaElement>,
 			reset?: boolean
 		) => {
-			state._value = event.target.value;
+			state._value = (event.target as HTMLTextAreaElement).value;
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
