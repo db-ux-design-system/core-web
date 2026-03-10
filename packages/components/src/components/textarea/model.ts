@@ -64,7 +64,9 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	FormTextProps &
 	FormMessageProps;
 
-export type DBTextareaDefaultState = {};
+export type DBTextareaDefaultState = {
+	_interacted: boolean;
+};
 
 export type DBTextareaState = DBTextareaDefaultState &
 	ChangeEventState<HTMLTextAreaElement> &

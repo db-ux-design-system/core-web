@@ -136,6 +136,7 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
+	_interacted: boolean;
 	getDataList: () => ValueLabelType[];
 };
 
