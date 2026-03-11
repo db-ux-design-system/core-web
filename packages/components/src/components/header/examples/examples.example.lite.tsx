@@ -41,7 +41,7 @@ export default function HeaderExamples() {
 				</DBHeader>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
-				<DBHeader brand={<DBBrand>DBHeader</DBBrand>}></DBHeader>
+				<DBHeader brand={<DBBrand>DBHeader</DBBrand>} />
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBHeader brand={<DBBrand></DBBrand>}>
@@ -63,7 +63,7 @@ export default function HeaderExamples() {
 				</DBHeader>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
-				<DBHeader brand={<DBBrand></DBBrand>}></DBHeader>
+				<DBHeader brand={<DBBrand />} />
 			</div>
 		</Fragment>
 	);
