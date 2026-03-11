@@ -75,7 +75,7 @@ The first phase focuses on establishing a static, semantic, and accessible pagin
 * **Stateless Base Props:** Implementation of minimal parameters `currentPage`, `totalCount`, and `pageSize`. The component independently calculates the total number of buttons from these without relying on complex array passing.
 * **Visual States and Accessibility:** Explicit styling of the active page (identified by `aria-current="page"`) as well as disabled buttons at the edge boundaries. Disabled elements must have the `disabled` attribute (for `<button>`) or `tabindex="-1"` combined with `pointer-events: none` (for `<a>` tags).
 * **Event Handling:** Integration of a simple, typed `onPageChange(pageNumber: number)` callback to inform the parent container.
-* **Touch-Optimized Layout:** Horizontal alignment with sufficient spacing.
+* **Touch-Optimized Layout:** Horizontal alignment with sufficient spacing. The recommended minimum touch target size of 24x24 pixels must be kept.
 * **Micro-Interactions:** Implementation of subtle hover transitions (e.g., background color change) and focus indicators for keyboard use.
 * **Reactive Responsive Design:** Automatic reduction of `siblingCount` to 0 on mobile viewports to prevent horizontal scrolling (collapsing the layout from `< 1... 4 5 6... 9 >` to `< 1... 5... 9 >`).
 * **Truncation (Ellipsis):** Implementation of robust logic for omission marks (`...`). Introduction of flexible props `siblingCount` (pages next to the current page) and `boundaryCount` (pages at the outer edges).
