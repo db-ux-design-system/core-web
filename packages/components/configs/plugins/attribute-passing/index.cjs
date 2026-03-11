@@ -21,7 +21,7 @@ module.exports = () => ({
 			parent.removeAttribute(attr.name);
 		}
 					else if (attr && attr.name === "class") {`
-				);
+					);
 			}
 
 			return code;
