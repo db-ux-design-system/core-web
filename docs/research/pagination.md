@@ -33,6 +33,8 @@ The following overview consolidates the basic data of the 15 design systems. It 
 ## Cross-Sectional Analysis and Identified Best Practices
 
 Several abstract architectural patterns can be derived and considered as practices for developing a scalable pagination component.
+Beyond basic ARIA labels, semantic HTML plays a crucial role in pagination. It is an industry best practice to implement the `rel="next"` and `rel="prev"` HTML attributes on the respective pagination links. These attributes clarify the sequential relationship between pages for search engines, improve structural accessibility, and enable modern browsers to prefetch upcoming content, significantly improving the perceived performance of the application.
+CSS functions like `sibling-index()` and `sibling-count()` can be utilized to dynamically style pagination items. However, because cross-browser support is still limited.
 
 ### State Management
 
@@ -80,6 +82,7 @@ The first phase focuses on establishing a static, semantic, and accessible pagin
 * **Reactive Responsive Design:** Automatic reduction of `siblingCount` to 0 on mobile viewports to prevent horizontal scrolling (collapsing the layout from `< 1... 4 5 6... 9 >` to `< 1... 5... 9 >`).
 * **Truncation (Ellipsis):** Implementation of robust logic for omission marks (`...`). Introduction of flexible props `siblingCount` (pages next to the current page) and `boundaryCount` (pages at the outer edges).
 * **Full Internationalization (i18n):** Architecture for seamless translatability of all screen reader texts and text nodes (e.g., "Next Page", "Page 4 of 10").
+* **Sequential Relationship:** include the `rel="next"` and `rel="prev"` attributes on the 'Next' and 'Previous' anchor tags to clarify the sequential relationship of the pages.
 
 ### 🔵 V2 - Intermediate features
 
