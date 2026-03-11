@@ -15,7 +15,8 @@
 			"@db-ux/wc-core-components",
 			"@db-ux/core-stylelint",
 			"@db-ux/core-migration",
-			"@db-ux/agent-cli"
+			"@db-ux/agent-cli",
+			"@db-ux/core-eslint-plugin"
 		]
 	],
 	"ignore": [
