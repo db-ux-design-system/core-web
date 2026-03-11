@@ -72,7 +72,7 @@ The first phase focuses on establishing a static, semantic, and accessible pagin
 
 * **Structure and Semantics:** Implementation as a `<nav>` element with a configurable, dynamic `aria-label`. Internal use of an unordered list (`<ul>` / `<li>`) for the semantic grouping of navigation items.
 * **Stateless Base Props:** Implementation of minimal parameters `currentPage`, `totalCount`, and `pageSize`. The component independently calculates the total number of buttons from these without relying on complex array passing.
-* **Visual States and Accessibility:** Explicit styling of the active page (identified by `aria-current="page"`) as well as disabled buttons at the edge boundaries. Disabled elements must have the `disabled` attribute (for `<button>`) or `tabindex="-1"` combined with `pointer-events: none` (for `<a>` tags).
+* **Visual States and Accessibility:** Explicit styling of the active page (identified by `aria-current="page"`) as well as disabled buttons at the edge boundaries. Disabled elements must have the `disabled` attribute (for `<button>`) or `tabindex="-1" aria-disabled="true"` combined with `pointer-events: none` (for `<a>` tags).
 * **Event Handling:** Integration of a simple, typed `onPageChange(pageNumber: number)` callback to inform the parent container.
 * **Touch-Optimized Layout:** Horizontal alignment with sufficient spacing.
 * **Micro-Interactions:** Implementation of subtle hover transitions (e.g., background color change) and focus indicators for keyboard use.
