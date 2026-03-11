@@ -4,7 +4,7 @@ The following investigation analyzes the implementation strategies of different 
 
 ## Foundation and UX Principles of Pagination
 
-The primary function of a pagination is to reduce the user's cognitive load and optimize system performance by segmenting huge amounts of data into smaller performant units. In contrast to infinite scrolling, which is primarily designed for explorative, aimless discovery in highly visual environments, pagination aims at targeted navigation, retrievability (deep linking), and indexability by search engines.
+The primary function of a pagination is to reduce the user's cognitive load and optimize system performance by segmenting huge amounts of data into smaller performant units. In contrast to infinite scrolling, which is primarily designed for exploratory, aimless discovery in highly visual environments, pagination aims at targeted navigation, deep linking, and indexing by search engines.
 
 ## Overview 🔍
 
