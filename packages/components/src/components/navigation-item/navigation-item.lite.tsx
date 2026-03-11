@@ -118,7 +118,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 			<Show when={state.hasSubNavigation}>
 				<button
-					aria-haspopup={state.hasAreaPopup ? 'menu' : false}
+					id={`${state.subNavigationId}-toggle`}
+					aria-haspopup={state.hasAreaPopup ? 'true' : undefined}
 					aria-expanded={state.isSubNavigationExpanded}
 					aria-controls={state.subNavigationId}
 					class="db-navigation-item-expand-button"
@@ -134,7 +135,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				{/* TODO: Consider using popover here */}
 				<menu
 					id={state.subNavigationId}
-					aria-label={props.text}
+					aria-labelledby={`${state.subNavigationId}-toggle`}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
 					onClick={(event) => state.handleNavigationItemClick(event)}>
