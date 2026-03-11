@@ -1,6 +1,7 @@
 import {
 	Fragment,
 	onMount,
+	onUnMount,
 	Show,
 	Slot,
 	useState,
@@ -9,6 +10,7 @@ import {
 import DBCard from '../../components/card/card.lite';
 import DBLink from '../../components/link/link.lite';
 import { DB_UX_LOCAL_STORAGE_FRAMEWORK } from '../constants';
+import { getShowCodeHref } from './show-code-link';
 
 type Props = {
 	role?: string;
@@ -18,27 +20,53 @@ type Props = {
 
 export default function CardWrapperShowcase(props: Props) {
 	const [href, setHref] = useState<string | undefined>(undefined);
+	let updateHrefHandler: ((event: Event) => void) | undefined;
 
-	function updateHref() {
+	function updateHref(frameworkOverride?: string) {
 		useTarget({
 			react: () => {
-				// Only for patternhub
+				// Keep the link in sync while URL updates are still in flight.
+				const frameworkFromUrl = new URLSearchParams(
+					window.location.search
+				).get('framework');
+				const frameworkFromStorage = localStorage.getItem(
+					DB_UX_LOCAL_STORAGE_FRAMEWORK
+				);
 				const framework =
-					localStorage.getItem(DB_UX_LOCAL_STORAGE_FRAMEWORK) ||
-					'react';
-				const currentUrl = window.location.href;
-				const componentsIndex = currentUrl.indexOf('components');
-				if (componentsIndex !== -1) {
-					const baseUrl = currentUrl.substring(0, componentsIndex);
-					setHref(`${baseUrl}${framework}-storybook`);
-				}
+					frameworkOverride ??
+					frameworkFromUrl ??
+					frameworkFromStorage;
+				setHref(getShowCodeHref(window.location.href, framework));
 			}
 		});
 	}
 
 	onMount(() => {
 		if (typeof window !== 'undefined' && localStorage) {
+			updateHrefHandler = (event: Event) => {
+				const framework = (event as CustomEvent<string>).detail;
+				updateHref(framework || undefined);
+			};
+
+			window.addEventListener('popstate', updateHrefHandler);
+			window.addEventListener('hashchange', updateHrefHandler);
+			window.addEventListener(
+				'db-ux-framework-change',
+				updateHrefHandler
+			);
+
 			updateHref();
+		}
+	});
+
+	onUnMount(() => {
+		if (typeof window !== 'undefined' && updateHrefHandler) {
+			window.removeEventListener('popstate', updateHrefHandler);
+			window.removeEventListener('hashchange', updateHrefHandler);
+			window.removeEventListener(
+				'db-ux-framework-change',
+				updateHrefHandler
+			);
 		}
 	});
 
