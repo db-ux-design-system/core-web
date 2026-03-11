@@ -28,7 +28,7 @@ export default function HeaderExamples() {
 							},
 							default: {}
 						})}
-						ariaLabel="Navigation - With Application Name">
+						aria-label="With Application Name + Navigation">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">With Application Name + Navigation</a>
 						</DBNavigationItem>
@@ -41,7 +41,7 @@ export default function HeaderExamples() {
 				</DBHeader>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
-				<DBHeader brand={<DBBrand>DBHeader</DBBrand>} />
+				<DBHeader brand={<DBBrand>DBHeader</DBBrand>}></DBHeader>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBHeader brand={<DBBrand></DBBrand>}>
@@ -52,7 +52,7 @@ export default function HeaderExamples() {
 							},
 							default: {}
 						})}
-						ariaLabel="Navigation - Without Application Name">
+						aria-label="Without Application Name">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Without Application Name</a>
 						</DBNavigationItem>
@@ -63,7 +63,7 @@ export default function HeaderExamples() {
 				</DBHeader>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
-				<DBHeader brand={<DBBrand />} />
+				<DBHeader brand={<DBBrand></DBBrand>}></DBHeader>
 			</div>
 		</Fragment>
 	);
