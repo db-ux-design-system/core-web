@@ -46,7 +46,8 @@ On mobile devices, this must be adjusted. As the Porsche Design System (reductio
 ### Accessibility
 
 While the implementation of a navigation landmark (`<nav aria-label="Pagination">`) and marking the current page (`aria-current="page"`) is considered as standard, practice shows more extensive and often neglected requirements.
-If pagination is triggered and the website does *not* perform a full reload, the screen reader's focus remains on the clicked pagination button at the bottom of the DOM structure. If the layout then changes (e.g., because the button is removed from the DOM due to a recalculation of truncation), focus is completely lost, which is disorienting for users of assistive technologies. It requires programmatically setting focus to the top of the new data table after an asynchronous page change. In addition, asynchronous loading states must be communicated via `aria-live="polite"` regions to signal the arrival of new data to the user.
+If pagination is triggered and the website does *not* perform a full reload, the screen reader's focus remains on the clicked pagination button at the bottom of the DOM structure. If the layout then changes (e.g., because the button is removed from the DOM due to a recalculation of truncation), focus is completely lost, which is disorienting for users of assistive technologies. It requires programmatically setting focus to the top of the new data table after an asynchronous page change.
+In addition, asynchronous loading states must be communicated via `aria-live="polite"` regions to signal the arrival of new data to the user.
 
 ---
 
@@ -78,6 +79,7 @@ The first phase focuses on establishing a static, semantic, and accessible pagin
 * **Micro-Interactions:** Implementation of subtle hover transitions (e.g., background color change) and focus indicators for keyboard use.
 * **Reactive Responsive Design:** Automatic reduction of `siblingCount` to 0 on mobile viewports to prevent horizontal scrolling (collapsing the layout from `< 1... 4 5 6... 9 >` to `< 1... 5... 9 >`).
 * **Truncation (Ellipsis):** Implementation of robust logic for omission marks (`...`). Introduction of flexible props `siblingCount` (pages next to the current page) and `boundaryCount` (pages at the outer edges).
+* **Full Internationalization (i18n):** Architecture for seamless translatability of all screen reader texts and text nodes (e.g., "Next Page", "Page 4 of 10").
 
 ### 🔵 V2 - Intermediate features
 
@@ -93,4 +95,3 @@ The final phase targets power-user functionality, and the management of huge dat
 * **Cursor-Based Architecture:** Native support for performance-critical datasets through a dedicated mode (`variant="cursor"`). This mode completely hides numeric buttons and relies purely on `hasNextPage`, `hasPreviousPage`, and the passing of cursor strings.
 * **Automated Focus Management:** Built-in mechanisms to automatically return keyboard focus to the table header after an asynchronous rendering of the parent table.
 * **Keyboard Shortcuts:** Integration of global hotkeys (e.g., `Ctrl + ArrowRight` for the next page) with dedicated `nextKeys`/`previousKeys` props. This requires the use of robust keypress listeners that avoid conflicts with browser shortcuts.
-* **Full Internationalization (i18n):** Architecture for seamless translatability of all screen reader texts and text nodes (e.g., "Next Page", "Page 4 of 10").
