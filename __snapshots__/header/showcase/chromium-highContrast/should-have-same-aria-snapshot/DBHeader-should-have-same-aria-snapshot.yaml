@@ -4,7 +4,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "Functional":
+  - navigation "Navigation - Functional":
     - list:
       - listitem:
         - link "Functional"
@@ -17,7 +17,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "(Default) Regular":
+  - navigation "Navigation - Regular":
     - list:
       - listitem:
         - link "(Default) Regular"
@@ -30,7 +30,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "Expressive":
+  - navigation "Navigation - Expressive":
     - list:
       - listitem:
         - link "Expressive"
@@ -44,7 +44,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "Full":
+  - navigation "Navigation - Full Width":
     - list:
       - listitem:
         - link "Full"
@@ -57,7 +57,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "Medium":
+  - navigation "Navigation - Medium Width":
     - list:
       - listitem:
         - link "Medium"
@@ -70,7 +70,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "Large":
+  - navigation "Navigation - Large Width":
     - list:
       - listitem:
         - link "Large"
@@ -84,7 +84,7 @@
   - link "Imprint"
   - link "Help"
   - text: DBHeader
-  - navigation "Desktop (full width)":
+  - navigation "Navigation - Desktop (full width)":
     - list:
       - listitem:
         - link "Desktop (full width)"
@@ -99,14 +99,14 @@
   - button "BurgerMenu"
   - link "Examples"
   - text: DBHeader
-  - navigation "With Application Name + Navigation":
+  - navigation "Navigation - With Application Name":
     - list:
       - listitem:
         - link "With Application Name + Navigation"
       - listitem:
         - link "With Application Name + Navigation disabled" [disabled]
   - text: DBHeader
-  - navigation "Without Application Name":
+  - navigation "Navigation - Without Application Name":
     - list:
       - listitem:
         - link "Without Application Name"
