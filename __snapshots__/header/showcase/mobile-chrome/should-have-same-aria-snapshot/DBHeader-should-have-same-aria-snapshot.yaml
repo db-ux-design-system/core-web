@@ -28,7 +28,4 @@
   - button "Search"
   - button "BurgerMenu"
   - link "Examples"
-  - text: DBHeader
-  - button "BurgerMenu"
-  - text: DBHeader
-  - button "BurgerMenu"
+  - text: DBHeader DBHeader
