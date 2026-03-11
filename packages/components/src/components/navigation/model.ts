@@ -1,8 +1,6 @@
 import { GlobalProps } from '../../shared/model';
 
-export type DBNavigationDefaultProps = {
-	ariaLabel?: string;
-};
+export type DBNavigationDefaultProps = {};
 
 export type DBNavigationProps = DBNavigationDefaultProps & GlobalProps;
 
