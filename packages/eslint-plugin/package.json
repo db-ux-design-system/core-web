@@ -34,7 +34,7 @@
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0"
+    "eslint": ">=9.0.0"
   },
   "dependencies": {
     "@angular-eslint/utils": "20.7.0",

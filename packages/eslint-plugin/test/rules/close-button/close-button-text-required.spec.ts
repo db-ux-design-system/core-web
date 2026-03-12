@@ -18,7 +18,13 @@ describe('close-button-text-required', () => {
 		ruleTester.run('close-button-text-required', rule, {
 			valid: [
 				{
-					code: '<DBNotification closeButtonText="Close">Message</DBNotification>'
+					code: '<DBNotification closeable closeButtonText="Close">Message</DBNotification>'
+				},
+				{
+					code: '<DBNotification>Message</DBNotification>'
+				},
+				{
+					code: '<DBNotification closeable={false}>Message</DBNotification>'
 				},
 				{
 					code: '<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>'
@@ -28,11 +34,14 @@ describe('close-button-text-required', () => {
 				},
 				{
 					code: '<DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />'
+				},
+				{
+					code: '<DBNotification :closeable="false">Message</DBNotification>'
 				}
 			],
 			invalid: [
 				{
-					code: '<DBNotification>Message</DBNotification>',
+					code: '<DBNotification closeable>Message</DBNotification>',
 					errors: [
 						{
 							messageId: 'missingCloseButtonText',
@@ -75,7 +84,13 @@ describe('close-button-text-required', () => {
 		angularRuleTester.run('close-button-text-required', rule, {
 			valid: [
 				{
-					code: '<db-notification closeButtonText="Close">Message</db-notification>'
+					code: '<db-notification closeable closeButtonText="Close">Message</db-notification>'
+				},
+				{
+					code: '<db-notification>Message</db-notification>'
+				},
+				{
+					code: '<db-notification [closeable]="false">Message</db-notification>'
 				},
 				{
 					code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
@@ -83,12 +98,12 @@ describe('close-button-text-required', () => {
 			],
 			invalid: [
 				{
-					code: '<db-notification>Message</db-notification>',
+					code: '<db-notification closeable>Message</db-notification>',
 					errors: [
 						{
 							messageId: 'missingCloseButtonText',
 							data: {
-								component: 'DBNotification',
+								component: 'db-notification',
 								attribute: 'closeButtonText'
 							}
 						}
@@ -100,7 +115,7 @@ describe('close-button-text-required', () => {
 						{
 							messageId: 'missingCloseButtonText',
 							data: {
-								component: 'DBDrawer',
+								component: 'db-drawer',
 								attribute: 'closeButtonText'
 							}
 						}

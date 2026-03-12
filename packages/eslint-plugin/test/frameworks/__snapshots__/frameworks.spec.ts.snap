@@ -15,6 +15,17 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
+    "endColumn": 41,
+    "endLine": 3,
+    "line": 3,
+    "message": "db-accordion-item must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": null,
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
     "endColumn": 69,
     "endLine": 6,
     "line": 6,
@@ -37,20 +48,64 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
-    "endColumn": 55,
-    "endLine": 20,
-    "line": 19,
-    "message": "DBButton with noText must have a DBTooltip child for accessibility",
-    "messageId": "missingTooltip",
+    "endColumn": 51,
+    "endLine": 14,
+    "line": 14,
+    "message": "db-notification must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
     "nodeType": null,
-    "ruleId": "db-ux/button-no-text-requires-tooltip",
+    "ruleId": "db-ux/close-button-text-required",
     "severity": 2,
   },
   {
     "column": 2,
     "endColumn": 25,
-    "endLine": 33,
-    "line": 33,
+    "endLine": 17,
+    "line": 17,
+    "message": "db-drawer must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": null,
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 58,
+    "endLine": 18,
+    "line": 18,
+    "message": "db-custom-select must have mobileCloseButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": null,
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 35,
+    "endLine": 29,
+    "line": 29,
+    "message": "db-input must have a label attribute for accessibility",
+    "messageId": "missingLabel",
+    "nodeType": null,
+    "ruleId": "db-ux/form-label-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 62,
+    "endLine": 32,
+    "line": 32,
+    "message": "db-input with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
+    "messageId": "missingInvalidMessage",
+    "nodeType": null,
+    "ruleId": "db-ux/form-validation-message-required",
+    "severity": 1,
+  },
+  {
+    "column": 2,
+    "endColumn": 25,
+    "endLine": 35,
+    "line": 35,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "nodeType": null,
@@ -60,8 +115,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 23,
-    "endLine": 44,
-    "line": 42,
+    "endLine": 46,
+    "line": 44,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "nodeType": null,
@@ -71,8 +126,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 15,
-    "endLine": 49,
-    "line": 47,
+    "endLine": 51,
+    "line": 49,
     "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
     "messageId": "noInteractive",
     "nodeType": null,
@@ -82,8 +137,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 15,
-    "endLine": 49,
-    "line": 47,
+    "endLine": 51,
+    "line": 49,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "nodeType": null,
@@ -91,10 +146,43 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
     "severity": 2,
   },
   {
+    "column": 4,
+    "endColumn": 33,
+    "endLine": 56,
+    "line": 56,
+    "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
+    "messageId": "noNested",
+    "nodeType": null,
+    "ruleId": "db-ux/no-nested-accordion",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 36,
+    "endLine": 62,
+    "line": 62,
+    "message": "Use icon attribute instead of DBIcon child in db-button",
+    "messageId": "preferAttribute",
+    "nodeType": null,
+    "ruleId": "db-ux/prefer-icon-attribute",
+    "severity": 1,
+  },
+  {
+    "column": 3,
+    "endColumn": 36,
+    "endLine": 62,
+    "line": 62,
+    "message": "db-icon must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": null,
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
     "column": 2,
     "endColumn": 44,
-    "endLine": 64,
-    "line": 64,
+    "endLine": 66,
+    "line": 66,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "nodeType": null,
@@ -104,8 +192,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 40,
-    "endLine": 67,
-    "line": 67,
+    "endLine": 69,
+    "line": 69,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "nodeType": null,
@@ -115,8 +203,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 3,
     "endColumn": 62,
-    "endLine": 71,
-    "line": 71,
+    "endLine": 73,
+    "line": 73,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "nodeType": null,
@@ -140,7 +228,9 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	</db-button>
 
 	<!-- db-ux/close-button-text-required -->
-	<db-notification></db-notification>
+	<db-notification closeable>Test</db-notification>
+	<db-notification [closeable]="false">Test</db-notification>
+	<db-notification>Test</db-notification>
 	<db-drawer></db-drawer>
 	<db-custom-select [label]="'Select'"></db-custom-select>
 
@@ -229,7 +319,7 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
-    "endColumn": 20,
+    "endColumn": 30,
     "endLine": 34,
     "line": 34,
     "message": "DBNotification must have closeButtonText attribute for accessibility",
@@ -240,20 +330,9 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
-    "endColumn": 20,
-    "endLine": 34,
-    "line": 34,
-    "message": "DBNotification must have either a text property or children content",
-    "messageId": "missingContent",
-    "nodeType": "JSXOpeningElement",
-    "ruleId": "db-ux/text-or-children-required",
-    "severity": 2,
-  },
-  {
-    "column": 4,
     "endColumn": 14,
-    "endLine": 35,
-    "line": 35,
+    "endLine": 37,
+    "line": 37,
     "message": "DBDrawer must have closeButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "nodeType": "JSXOpeningElement",
@@ -263,8 +342,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 35,
-    "endLine": 36,
-    "line": 36,
+    "endLine": 38,
+    "line": 38,
     "message": "DBCustomSelect must have mobileCloseButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "nodeType": "JSXOpeningElement",
@@ -274,8 +353,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 27,
-    "endLine": 47,
-    "line": 47,
+    "endLine": 49,
+    "line": 49,
     "message": "DBInput must have a label attribute for accessibility",
     "messageId": "missingLabel",
     "nodeType": "JSXOpeningElement",
@@ -285,8 +364,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 50,
-    "endLine": 50,
-    "line": 50,
+    "endLine": 52,
+    "line": 52,
     "message": "DBInput with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
     "messageId": "missingInvalidMessage",
     "nodeType": "JSXOpeningElement",
@@ -296,8 +375,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 14,
-    "endLine": 53,
-    "line": 53,
+    "endLine": 55,
+    "line": 55,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "nodeType": "JSXOpeningElement",
@@ -307,8 +386,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 40,
-    "endLine": 65,
-    "line": 64,
+    "endLine": 67,
+    "line": 66,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "nodeType": "JSXOpeningElement",
@@ -318,8 +397,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 40,
-    "endLine": 65,
-    "line": 64,
+    "endLine": 67,
+    "line": 66,
     "message": "DBNavigationItem must have either a text property or children content",
     "messageId": "missingContent",
     "nodeType": "JSXOpeningElement",
@@ -329,8 +408,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 68,
-    "line": 68,
+    "endLine": 70,
+    "line": 70,
     "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
     "messageId": "noInteractive",
     "nodeType": "JSXOpeningElement",
@@ -340,8 +419,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 68,
-    "line": 68,
+    "endLine": 70,
+    "line": 70,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "nodeType": "JSXOpeningElement",
@@ -351,8 +430,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 6,
     "endColumn": 19,
-    "endLine": 75,
-    "line": 75,
+    "endLine": 77,
+    "line": 77,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "nodeType": "JSXOpeningElement",
@@ -362,8 +441,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 42,
-    "endLine": 80,
-    "line": 80,
+    "endLine": 82,
+    "line": 82,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "nodeType": "JSXOpeningElement",
@@ -373,8 +452,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 29,
-    "endLine": 85,
-    "line": 85,
+    "endLine": 87,
+    "line": 87,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "nodeType": "JSXOpeningElement",
@@ -384,8 +463,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 32,
-    "endLine": 88,
-    "line": 88,
+    "endLine": 90,
+    "line": 90,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "nodeType": "JSXOpeningElement",
@@ -395,8 +474,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 5,
     "endColumn": 16,
-    "endLine": 92,
-    "line": 92,
+    "endLine": 94,
+    "line": 94,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "nodeType": "JSXOpeningElement",
@@ -440,7 +519,9 @@ export const TestComponent = () => {
 			</DBButton>
 
 			{/* db-ux/close-button-text-required */}
-			<DBNotification></DBNotification>
+			<DBNotification closeable>Test</DBNotification>
+			<DBNotification closeable={false}>Test</DBNotification>
+			<DBNotification>Test</DBNotification>
 			<DBDrawer></DBDrawer>
 			<DBCustomSelect label="Select"></DBCustomSelect>
 
@@ -554,7 +635,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
-    "endColumn": 36,
+    "endColumn": 50,
     "endLine": 15,
     "line": 15,
     "message": "DBNotification must have closeButtonText attribute for accessibility",
@@ -565,20 +646,9 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
-    "endColumn": 36,
-    "endLine": 15,
-    "line": 15,
-    "message": "DBNotification must have either a text property or children content",
-    "messageId": "missingContent",
-    "nodeType": "VElement",
-    "ruleId": "db-ux/text-or-children-required",
-    "severity": 2,
-  },
-  {
-    "column": 3,
     "endColumn": 24,
-    "endLine": 16,
-    "line": 16,
+    "endLine": 18,
+    "line": 18,
     "message": "DBDrawer must have closeButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "nodeType": "VElement",
@@ -588,8 +658,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 51,
-    "endLine": 17,
-    "line": 17,
+    "endLine": 19,
+    "line": 19,
     "message": "DBCustomSelect must have mobileCloseButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "nodeType": "VElement",
@@ -599,8 +669,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 59,
-    "endLine": 20,
-    "line": 20,
+    "endLine": 22,
+    "line": 22,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "nodeType": "VElement",
@@ -610,8 +680,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 26,
-    "endLine": 27,
-    "line": 27,
+    "endLine": 29,
+    "line": 29,
     "message": "DBInput must have a label attribute for accessibility",
     "messageId": "missingLabel",
     "nodeType": "VElement",
@@ -621,8 +691,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 49,
-    "endLine": 30,
-    "line": 30,
+    "endLine": 32,
+    "line": 32,
     "message": "DBInput with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
     "messageId": "missingInvalidMessage",
     "nodeType": "VElement",
@@ -632,8 +702,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 24,
-    "endLine": 33,
-    "line": 33,
+    "endLine": 35,
+    "line": 35,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "nodeType": "VElement",
@@ -643,15 +713,15 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 4,
-    "endLine": 41,
+    "endLine": 43,
     "fix": {
       "range": [
-        1431,
-        1431,
+        1544,
+        1544,
       ],
       "text": " referrerPolicy="no-referrer"",
     },
-    "line": 39,
+    "line": 41,
     "message": "DBLink with content="external" should have referrerPolicy attribute",
     "messageId": "missingReferrerPolicy",
     "nodeType": "VElement",
@@ -661,8 +731,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 22,
-    "endLine": 46,
-    "line": 44,
+    "endLine": 48,
+    "line": 46,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "nodeType": "VElement",
@@ -672,8 +742,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 15,
-    "endLine": 51,
-    "line": 49,
+    "endLine": 53,
+    "line": 51,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "nodeType": "VElement",
@@ -683,8 +753,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 4,
     "endColumn": 22,
-    "endLine": 57,
-    "line": 55,
+    "endLine": 59,
+    "line": 57,
     "message": "DBAccordionItem must have either headline or headlinePlain attribute",
     "messageId": "headlineRequired",
     "nodeType": "VElement",
@@ -694,8 +764,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 5,
     "endColumn": 32,
-    "endLine": 56,
-    "line": 56,
+    "endLine": 58,
+    "line": 58,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "nodeType": "VElement",
@@ -705,8 +775,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 14,
-    "endLine": 63,
-    "line": 61,
+    "endLine": 65,
+    "line": 63,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "nodeType": "VElement",
@@ -716,8 +786,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 39,
-    "endLine": 66,
-    "line": 66,
+    "endLine": 68,
+    "line": 68,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "nodeType": "VElement",
@@ -727,8 +797,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 39,
-    "endLine": 69,
-    "line": 69,
+    "endLine": 71,
+    "line": 71,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "nodeType": "VElement",
@@ -738,8 +808,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 4,
     "endColumn": 61,
-    "endLine": 73,
-    "line": 73,
+    "endLine": 75,
+    "line": 75,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "nodeType": "VElement",
@@ -764,7 +834,9 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		</DBButton>
 
 		<!-- db-ux/close-button-text-required -->
-		<DBNotification></DBNotification>
+		<DBNotification closeable>Test</DBNotification>
+		<DBNotification :closeable="false">Test</DBNotification>
+		<DBNotification>Test</DBNotification>
 		<DBDrawer></DBDrawer>
 		<DBCustomSelect label="Select"></DBCustomSelect>
 
