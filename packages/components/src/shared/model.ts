@@ -512,6 +512,7 @@ export type FormMessageProps = {
 };
 
 export type FromValidState = {
+	hasNativeValidation: () => boolean;
 	hasValidState: () => boolean;
 	hasInvalidState: () => boolean;
 	handleValidation: () => void;

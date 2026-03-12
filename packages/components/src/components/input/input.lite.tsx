@@ -73,35 +73,48 @@ export default function DBInput(props: DBInputProps) {
 		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (_ref?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
 		},
-		hasInvalidState: () => {
-			return !_ref?.validity?.valid || props.validation === 'invalid';
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !_ref?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!(
+				props.required ||
+				props.minLength ||
+				props.maxLength ||
+				props.pattern
+			);
 		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the input */
+			state._invalidMessage =
+				props.invalidMessage || _ref?.validationMessage;
 			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage =
-					props.invalidMessage ||
-					_ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (
-				state.hasValidState() &&
-				_ref?.validity.valid &&
-				(props.required ||
-					props.minLength ||
-					props.maxLength ||
-					props.pattern)
-			) {
+			} else if (state.hasValidState()) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage;
+					state._voiceOverFallback = props.validMessage;
 					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -279,9 +292,9 @@ export default function DBInput(props: DBInputProps) {
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-			data-show-icon-trailing={getBooleanAsString(
-				props.showIconTrailing
-			)}>
+			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
@@ -379,8 +392,7 @@ export default function DBInput(props: DBInputProps) {
 				</DBInfotext>
 			</Show>
 
-			<Show
-				when={state.hasInvalidState()}>
+			<Show when={state.hasInvalidState()}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size={props.invalidMessageSize || 'small'}

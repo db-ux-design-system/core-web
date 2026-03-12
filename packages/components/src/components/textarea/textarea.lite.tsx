@@ -60,27 +60,40 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (_ref?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
 		},
-		hasInvalidState: () => {
-			return !_ref?.validity?.valid || props.validation === 'invalid';
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !_ref?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!(props.required || props.minLength || props.maxLength);
 		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the textarea */
+			state._invalidMessage =
+				props.invalidMessage || _ref?.validationMessage;
 			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage =
-					props.invalidMessage || _ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (
-				state.hasValidState() &&
-				_ref?.validity.valid &&
-				(props.required || props.minLength || props.maxLength)
-			) {
+			} else if (state.hasValidState()) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = props.validMessage;
@@ -181,7 +194,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
-		if (state._id) {
+		if (state._id && _ref) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
@@ -193,7 +206,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 			state.handleValidation();
 		}
-	}, [state._id]);
+	}, [state._id, _ref]);
 
 	onUpdate(() => {
 		if (props.value !== undefined) {
@@ -242,7 +255,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-			data-hide-label={getHideProp(props.showLabel)}>
+			data-hide-label={getHideProp(props.showLabel)}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea

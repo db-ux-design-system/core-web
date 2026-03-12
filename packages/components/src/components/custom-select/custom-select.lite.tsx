@@ -129,21 +129,38 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		_searchValue: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (selectRef?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
 		},
-		hasInvalidState: () => {
-			return !selectRef?.validity.valid || props.validation === 'invalid';
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !selectRef?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!props.required;
 		},
 		handleValidation: () => {
 			if (selectRef) {
 				selectRef.value = state.getNativeSelectValue();
 			}
 			/* For a11y reasons we need to map the correct message with the select */
-			if (!selectRef?.validity.valid || props.validation === 'invalid') {
+			state._invalidMessage =
+				props.invalidMessage || selectRef?.validationMessage;
+			if (state.hasInvalidState()) {
 				state.setDescById(state._invalidMessageId);
-				state._invalidMessage =
-					props.invalidMessage || selectRef?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					void delay(() => (state._voiceOverFallback = ''), 1000);
@@ -151,11 +168,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (state._userInteraction) {
 					state._validity = props.validation ?? 'invalid';
 				}
-			} else if (
-				state.hasValidState() &&
-				selectRef?.validity.valid &&
-				props.required
-			) {
+			} else if (state.hasValidState()) {
 				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = props.validMessage;
@@ -929,7 +942,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select

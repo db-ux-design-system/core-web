@@ -62,27 +62,40 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (_ref?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
 		},
-		hasInvalidState: () => {
-			return !_ref?.validity?.valid || props.validation === 'invalid';
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !_ref?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!props.required;
 		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the checkbox */
+			state._invalidMessage =
+				props.invalidMessage || _ref?.validationMessage;
 			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage =
-					props.invalidMessage || _ref?.validationMessage;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (
-				state.hasValidState() &&
-				_ref?.validity.valid &&
-				props.required
-			) {
+			} else if (state.hasValidState()) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = props.validMessage;
@@ -236,7 +249,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-			data-hide-label={getHideProp(props.showLabel)}>
+			data-hide-label={getHideProp(props.showLabel)}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}>
 			<label htmlFor={state._id}>
 				<input
 					aria-invalid={props.validation === 'invalid'}

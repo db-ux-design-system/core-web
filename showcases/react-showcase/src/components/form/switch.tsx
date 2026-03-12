@@ -1,4 +1,4 @@
-import { DBSwitch } from '@db-ux/react-core-components/src';
+import { DBSwitch } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
