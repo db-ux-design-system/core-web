@@ -198,7 +198,7 @@ $spacings: (
 			box-shadow: variables.$db-elevation-md;
 		}
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			transition: transform
 				#{variables.$db-transition-duration-extra-slow}
 				#{variables.$db-transition-timing-emotional};
@@ -297,7 +297,7 @@ $spacings: (
 			}
 
 			&[data-transition="close"] {
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media (prefers-reduced-motion: no-preference) {
 					transition: transform
 						#{variables.$db-transition-duration-slow}
 						#{variables.$db-transition-timing-emotional};
