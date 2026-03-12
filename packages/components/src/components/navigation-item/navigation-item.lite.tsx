@@ -31,6 +31,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		autoClose: false,
 		navigationItemSafeTriangle: undefined,
 		subNavigationId: undefined,
+		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
 				state.autoClose = true;
@@ -57,7 +58,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state.subNavigationId = `sub-nav-${uuid()}`;
+
+		const subNavId = `sub-nav-${props.id ?? uuid()}`
+		state.subNavigationId = subNavId;
+		state.subNavigationToggleId = `${subNavId}-toggle`;
 	});
 
 	onUpdate(() => {
@@ -118,7 +122,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 			<Show when={state.hasSubNavigation}>
 				<button
-					id={`${state.subNavigationId}-toggle`}
+					id={state.subNavigationToggleId}
 					aria-haspopup={state.hasAreaPopup ? 'true' : undefined}
 					aria-expanded={state.isSubNavigationExpanded}
 					aria-controls={state.subNavigationId}
