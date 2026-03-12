@@ -70,7 +70,7 @@ jobs:
     needs: [init]
 
   cancel-on-failure-build-stories:
-    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-stories]
@@ -465,7 +465,8 @@ jobs:
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-screen-reader
+        test-screen-reader,
+        init
       ]
 
   deploy:
