@@ -227,6 +227,11 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				min-block-size: unset;
 				block-size: fit-content;
 				border-block: none;
+
+				@media screen and (forced-colors: active) {
+					border-block: variables.$db-border-width-xs solid transparent;
+				}
+
 				padding-block: calc(#{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-2xs});
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
