@@ -20,7 +20,6 @@ type Props = {
 
 export default function CardWrapperShowcase(props: Props) {
 	const [href, setHref] = useState<string | undefined>(undefined);
-	let updateHrefHandler: ((event: Event) => void) | undefined;
 
 	function updateHref(frameworkOverride?: string) {
 		useTarget({
@@ -41,18 +40,18 @@ export default function CardWrapperShowcase(props: Props) {
 		});
 	}
 
+	function handleHrefUpdateEvent(event: Event) {
+		const framework = (event as CustomEvent<string>).detail;
+		updateHref(framework || undefined);
+	}
+
 	onMount(() => {
 		if (typeof window !== 'undefined' && localStorage) {
-			updateHrefHandler = (event: Event) => {
-				const framework = (event as CustomEvent<string>).detail;
-				updateHref(framework || undefined);
-			};
-
-			window.addEventListener('popstate', updateHrefHandler);
-			window.addEventListener('hashchange', updateHrefHandler);
+			window.addEventListener('popstate', handleHrefUpdateEvent);
+			window.addEventListener('hashchange', handleHrefUpdateEvent);
 			window.addEventListener(
 				'db-ux-framework-change',
-				updateHrefHandler
+				handleHrefUpdateEvent
 			);
 
 			updateHref();
@@ -60,12 +59,12 @@ export default function CardWrapperShowcase(props: Props) {
 	});
 
 	onUnMount(() => {
-		if (typeof window !== 'undefined' && updateHrefHandler) {
-			window.removeEventListener('popstate', updateHrefHandler);
-			window.removeEventListener('hashchange', updateHrefHandler);
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('popstate', handleHrefUpdateEvent);
+			window.removeEventListener('hashchange', handleHrefUpdateEvent);
 			window.removeEventListener(
 				'db-ux-framework-change',
-				updateHrefHandler
+				handleHrefUpdateEvent
 			);
 		}
 	});

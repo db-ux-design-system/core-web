@@ -5,6 +5,8 @@ const LOCALHOST_STORYBOOK_PORT_MAP: Record<string, string> = {
 	html: '6001'
 };
 
+const DEFAULT_FRAMEWORK = 'react';
+
 const NON_COMPONENT_ROUTE_SEGMENTS = new Set(['docs', 'overview']);
 
 /**
@@ -48,7 +50,7 @@ export function getShowCodeHref(
 	currentUrl: string,
 	frameworkRaw: string | null | undefined
 ): string | undefined {
-	const framework = (frameworkRaw || 'react').toLowerCase();
+	const framework = (frameworkRaw || DEFAULT_FRAMEWORK).toLowerCase();
 	const url = new URL(currentUrl);
 	const componentsIndex = url.pathname.indexOf('/components/');
 	const docsPath = buildStorybookDocsPathname(url.pathname);
@@ -60,7 +62,7 @@ export function getShowCodeHref(
 	if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
 		const port =
 			LOCALHOST_STORYBOOK_PORT_MAP[framework] ||
-			LOCALHOST_STORYBOOK_PORT_MAP.react;
+			LOCALHOST_STORYBOOK_PORT_MAP[DEFAULT_FRAMEWORK];
 		return `${url.protocol}//${url.hostname}:${port}/?path=${docsPath}`;
 	}
 
