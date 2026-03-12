@@ -1,5 +1,16 @@
 # @db-ux/react-core-components
 
+## 4.5.3
+
+_version bump_
+
+
+## 4.5.2
+
+### Patch Changes
+
+- fix: issue with wrong size for DBCustomButton using `noText` property - [see commit 1c9ccd4](https://github.com/db-ux-design-system/core-web/commit/1c9ccd43d23052be84fb810ced1ec26a1a9c9984)
+
 ## 4.5.1
 
 ### Patch Changes
