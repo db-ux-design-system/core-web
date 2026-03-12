@@ -1,5 +1,9 @@
 import type { InputType } from 'storybook/internal/csf';
-import { StorybookIconArgTypes, StorybookIconLeadingArgTypes, StorybookIconTrailingArgTypes } from '../../../shared/examples/_icons.arg.types';
+import {
+	StorybookIconArgTypes,
+	StorybookIconLeadingArgTypes,
+	StorybookIconTrailingArgTypes
+} from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookTabItemArgTypes: Record<string, InputType> = {
 	label: { control: 'text' },

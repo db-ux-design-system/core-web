@@ -35,7 +35,6 @@ describe('default', () => {
 		);
 		await action('test/pnpm-test');
 
-
 		checkExpectations(copilotFile, amazonqFile);
 	});
 });
