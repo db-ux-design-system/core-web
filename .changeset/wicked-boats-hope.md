@@ -7,4 +7,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: removed `@media screen` to avoid broken layouts for browser print feature
+fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing
