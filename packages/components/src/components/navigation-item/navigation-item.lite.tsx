@@ -135,7 +135,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				{/* TODO: Consider using popover here */}
 				<menu
 					id={state.subNavigationId}
-					aria-labelledby={`${state.subNavigationId}-toggle`}
+					aria-labelledby={state.subNavigationToggleId}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
 					onClick={(event) => state.handleNavigationItemClick(event)}>
