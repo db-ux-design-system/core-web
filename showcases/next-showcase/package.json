@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@db-ux/react-core-components": "workspace:*",
-    "@types/node": "25.3.1",
+    "@types/node": "25.3.5",
     "@types/react": "19.2.14",
     "npm-run-all2": "8.0.4",
     "open-cli": "8.0.0",

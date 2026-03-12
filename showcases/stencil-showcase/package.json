@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
-    "@stencil/core": "4.43.1"
+    "@stencil/core": "4.43.2"
   },
   "devDependencies": {
     "npm-run-all2": "8.0.4",

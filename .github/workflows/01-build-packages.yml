@@ -22,13 +22,13 @@ jobs:
         run: pnpm run build
 
       - name: ⏫ Upload foundations build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏫ Upload framework sources
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-framework-sources
           path: |
@@ -38,31 +38,31 @@ jobs:
             packages/wc-core-components/src
 
       - name: ⏫ Upload components build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏫ Upload migration build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-migration-build
           path: packages/migration/build
 
       - name: ⏫ Upload stylelint build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
       - name: ⏫ Upload eslint-plugin build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-eslint-plugin-build
           path: packages/eslint-plugin/build
 
       - name: ⏫ Upload agent-cli build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build

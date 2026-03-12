@@ -74,7 +74,7 @@ jobs:
           pnpm run lint-docs-file-references
 
       - name: ⏫ Upload framework outputs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-framework-outputs
           path: |

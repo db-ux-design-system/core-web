@@ -93,8 +93,8 @@ showcases/patternhub/public/iframe-resizer/*
 /scripts/public/
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
-/packages/agent-cli/test/.github/copilot-instructions.md
-/packages/agent-cli/test/.amazonq/rules/db-ux.md
+/packages/agent-cli/test/**/.github/copilot-instructions.md
+/packages/agent-cli/test/**/.amazonq/rules/db-ux.md
 /core-web.iml
 /build-storybooks/
 **/blob-report
