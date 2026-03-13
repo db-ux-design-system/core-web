@@ -1,4 +1,4 @@
-/* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height */
+// Use sizing values for fixed heights/widths e.g. the db-button has always a fixed height
 $db-sizing-3xs: var(--db-sizing-3xs);
 $db-sizing-2xs: var(--db-sizing-2xs);
 $db-sizing-xs: var(--db-sizing-xs);
@@ -9,7 +9,7 @@ $db-sizing-xl: var(--db-sizing-xl);
 $db-sizing-2xl: var(--db-sizing-2xl);
 $db-sizing-3xl: var(--db-sizing-3xl);
 
-/* Use fixed spacings for all kind of distances (margin, padding, ...) */
+// Use fixed spacings for all kinds of distances (margin, padding, ...)
 $db-spacing-fixed-3xs: var(--db-spacing-fixed-3xs);
 $db-spacing-fixed-2xs: var(--db-spacing-fixed-2xs);
 $db-spacing-fixed-xs: var(--db-spacing-fixed-xs);
@@ -20,8 +20,8 @@ $db-spacing-fixed-xl: var(--db-spacing-fixed-xl);
 $db-spacing-fixed-2xl: var(--db-spacing-fixed-2xl);
 $db-spacing-fixed-3xl: var(--db-spacing-fixed-3xl);
 
-/* The primary use-case for responsive spacings are
-paddings/gaps in an application e.g. the <main> should have a responsive padding. */
+// The primary use-case for responsive spacings are
+// paddings/gaps in an application e.g. the <main> should have a responsive padding.
 $db-spacing-responsive-3xs: var(--db-spacing-responsive-3xs);
 $db-spacing-responsive-2xs: var(--db-spacing-responsive-2xs);
 $db-spacing-responsive-xs: var(--db-spacing-responsive-xs);
@@ -32,13 +32,13 @@ $db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
 $db-spacing-responsive-2xl: var(--db-spacing-responsive-2xl);
 $db-spacing-responsive-3xl: var(--db-spacing-responsive-3xl);
 
-/* Elevation */
+// Elevation
 
 $db-elevation-sm: var(--db-elevation-sm);
 $db-elevation-md: var(--db-elevation-md);
 $db-elevation-lg: var(--db-elevation-lg);
 
-/* Border */
+// Border
 
 $db-border-width-3xs: var(--db-border-width-3xs);
 $db-border-width-2xs: var(--db-border-width-2xs);
@@ -60,7 +60,7 @@ $db-border-radius-2xl: var(--db-border-radius-2xl);
 $db-border-radius-3xl: var(--db-border-radius-3xl);
 $db-border-radius-full: var(--db-border-radius-full);
 
-/* Opacity */
+// Opacity
 
 $db-opacity-3xs: var(--db-opacity-3xs);
 $db-opacity-2xs: var(--db-opacity-2xs);
@@ -73,7 +73,7 @@ $db-opacity-2xl: var(--db-opacity-2xl);
 $db-opacity-3xl: var(--db-opacity-3xl);
 $db-opacity-full: var(--db-opacity-full);
 
-/* Transitions */
+// Transitions
 
 $db-transition-duration-extra-slow: var(--db-transition-duration-extra-slow);
 $db-transition-duration-slow: var(--db-transition-duration-slow);
@@ -89,7 +89,7 @@ $db-transition-straight-functional: var(--db-transition-straight-functional);
 $db-transition-straight-show: var(--db-transition-straight-show);
 $db-transition-straight-hide: var(--db-transition-straight-hide);
 
-/* Screen sizes */
+// Screen sizes
 
 $db-screen-xs: var(--db-screen-xs);
 $db-screen-sm: var(--db-screen-sm);
@@ -97,7 +97,7 @@ $db-screen-md: var(--db-screen-md);
 $db-screen-lg: var(--db-screen-lg);
 $db-screen-xl: var(--db-screen-xl);
 
-/* Container sizes */
+// Container sizes
 
 $db-container-3xs: var(--db-container-3xs);
 $db-container-2xs: var(--db-container-2xs);

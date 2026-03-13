@@ -1,9 +1,9 @@
 /* stylelint-disable custom-property-pattern, custom-property-empty-line-before, import-notation, scss/at-rule-no-unknown */
 
 /* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
-@import "./colors/index.css";
 @import "./revert-theme.css";
 @import "./dimensions.css";
+@import "./colors.css";
 
 @utility text-body-3xs {
 	font: var(--db-type-body-3xs);
