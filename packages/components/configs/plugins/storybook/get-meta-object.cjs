@@ -37,6 +37,24 @@ const extractMetadata = (target, name, meta) => {
 };
 
 /**
+ * Generates explicit fn() args for argTypes that define an action.
+ * This replaces implicit Storybook actions (created by argTypesRegex) with
+ * explicit fn() spies, preventing SB_PREVIEW_API_0002 errors when event
+ * handlers are called during component rendering.
+ * @param {Object} argTypes - ArgTypes object
+ * @returns {string} Generated args section or empty string
+ */
+const getFnArgs = (argTypes) => {
+	const fnArgEntries = Object.entries(argTypes)
+		.filter(([, value]) => value?.action)
+		.map(([key]) => `\t"${key}": fn()`);
+
+	return fnArgEntries.length > 0
+		? `args: {\n${fnArgEntries.join(',\n')}\n\t},`
+		: '';
+};
+
+/**
  * Generates the Storybook meta object for a component
  * @param {Object} params - Parameters object
  * @param {string} params.target - Target framework (react, angular, vue)
@@ -66,6 +84,8 @@ const getMetaObject = ({ target, componentName, name, meta, allImports }) => {
 	],`;
 	}
 
+	const argsSection = getFnArgs(argTypes);
+
 	return `
 const meta: Meta<${metaType}> = {
 	title: 'Components/${componentName}/${title}',
@@ -75,6 +95,7 @@ const meta: Meta<${metaType}> = {
 		layout: 'centered'
 	},
 	tags: ['autodocs'],
+	${argsSection}
 	argTypes: ${JSON.stringify(argTypes)}
 } satisfies Meta<${metaType}>;
 
