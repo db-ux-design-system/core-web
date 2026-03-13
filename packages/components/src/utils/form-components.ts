@@ -6,8 +6,32 @@ export const handleFrameworkEventAngular = (
 	event: any,
 	modelValue: string = 'value'
 ): void => {
-	component.propagateChange(event.target[modelValue]);
-	component.writeValue(event.target[modelValue]);
+	const value = event.target[modelValue];
+	const type = event.target?.type;
+
+	// Always call propagateChange first so Angular forms can react to intermediate values
+	component.propagateChange(value);
+
+	if (
+		!value &&
+		value !== '' &&
+		['date', 'time', 'week', 'month', 'datetime-local'].includes(type)
+	) {
+		// If value is null/undefined and type is date/time, skip writeValue
+		return;
+	}
+
+	if (
+		type === 'number' &&
+		event.type === 'input' &&
+		(event.target?.validity?.badInput ||
+			(value === '' && event.inputType === 'insertText'))
+	) {
+		// Skip writeValue for intermediate number input states (e.g. "1." or "1,")
+		return;
+	}
+
+	component.writeValue(value);
 };
 
 export const handleFrameworkEventVue = (
