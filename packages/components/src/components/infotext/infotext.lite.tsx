@@ -22,11 +22,12 @@ export default function DBInfotext(props: DBInfotextProps) {
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-infotext', props.className)}
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-show-icon-leading={getBooleanAsString(props.showIcon ?? true)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}

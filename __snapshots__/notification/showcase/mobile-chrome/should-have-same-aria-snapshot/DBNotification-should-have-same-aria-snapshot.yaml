@@ -27,16 +27,16 @@
   - article:
     - text: Headline
     - paragraph: Neutral
-  - article:
+  - alert:
     - text: Headline
     - paragraph: Critical
-  - article:
+  - status:
     - text: Headline
     - paragraph: Informational
-  - article:
+  - status:
     - text: Headline
     - paragraph: Successful
-  - article:
+  - alert:
     - text: Headline
     - paragraph: Warning
   - link "Closeable"

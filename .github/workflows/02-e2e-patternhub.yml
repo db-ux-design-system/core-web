@@ -32,25 +32,25 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
@@ -73,7 +73,7 @@ jobs:
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: patternhub-playwright-results
           path: ./showcases/patternhub/test-results

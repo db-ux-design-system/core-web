@@ -179,17 +179,33 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value?.toString();
+		},
+		shouldShowEmptyOption: () => {
+			const hasPlaceholderOrFloating =
+				props.variant === 'floating' || !!props.placeholder;
+			if (!hasPlaceholderOrFloating) {
+				return false;
+			}
+			if (props.showEmptyOption !== undefined) {
+				return props.showEmptyOption;
+			}
+			// Default: show empty option for non-required selects
+			return !props.required;
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
 		useTarget({
@@ -199,6 +215,12 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		});
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -308,8 +330,14 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label and placeholder */}
-				<Show when={props.variant === 'floating' || props.placeholder}>
-					<option class="placeholder" value=""></option>
+				<Show
+					when={props.variant === 'floating' || !!props.placeholder}>
+					<option
+						class="placeholder"
+						value=""
+						data-show-empty-option={getBooleanAsString(
+							state.shouldShowEmptyOption()
+						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
