@@ -15,14 +15,14 @@ const extractMetadata = (target, name, meta) => {
 			title = metadata.storybookTitle;
 		}
 		if (metadata.storybookArgTypes) {
-			// Transform argTypes for Angular (convert event handlers)
+			// For Angular, skip action-based event handler entries entirely —
+			// Angular resolves @Output() bindings automatically and these keys
+			// are not valid properties on the typed Props interface, causing
+			// TypeScript compilation errors.
 			if (target === 'angular') {
 				Object.entries(metadata.storybookArgTypes).forEach(
 					([key, value]) => {
-						if (key.startsWith('on') && value?.action) {
-							const newKey = key.slice(2).toLowerCase();
-							argTypes[newKey] = { ...value, action: newKey };
-						} else {
+						if (!(key.startsWith('on') && value?.action)) {
 							argTypes[key] = value;
 						}
 					}
