@@ -1,5 +1,17 @@
 # @db-ux/core-eslint-plugin
 
+## 4.5.3
+
+_version bump_
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+_version bump_
+
 ## 4.5.0
 
 ### Patch Changes

@@ -1,9 +1,22 @@
 # @db-ux/agent-cli
 
-## 4.5.0
+## 4.5.3
+
+### Patch Changes
+
+- fix(agent-cli): add pnpm compatibility by following symlinks in `node_modules` - [see commit 28606fd](https://github.com/db-ux-design-system/core-web/commit/28606fdae48ca991cbe341c6a7ea5e0c420b3a46)
+
+## 4.5.2
 
 _version bump_
 
+## 4.5.1
+
+_version bump_
+
+## 4.5.0
+
+_version bump_
 
 ## 4.4.3
 
@@ -82,7 +95,7 @@ _version bump_
 ### Patch Changes
 
 - chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
-  - fix: add some missing variables
+    - fix: add some missing variables
 
 ## 4.0.1
 
@@ -105,4 +118,4 @@ _version bump_
 ### Patch Changes
 
 - enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
-  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+    - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
