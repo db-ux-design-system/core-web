@@ -52,7 +52,6 @@ export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
-	subNavigationId: string;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button

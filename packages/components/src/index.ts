@@ -16,6 +16,8 @@ export * from './components/card';
 export * from './components/card/model';
 export * from './components/checkbox';
 export * from './components/checkbox/model';
+export * from './components/custom-button';
+export * from './components/custom-button/model';
 export * from './components/custom-select';
 export * from './components/custom-select-dropdown';
 export * from './components/custom-select-dropdown/model';

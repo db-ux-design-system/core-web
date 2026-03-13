@@ -88,8 +88,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 				}
 				if (!open && _ref.open) {
 					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset['transition'] =
-							'close';
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'close';
 					}
 					void delay(() => {
 						_ref?.close();
@@ -120,7 +121,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}
