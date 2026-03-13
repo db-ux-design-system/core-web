@@ -4,3 +4,8 @@
 @forward "defaults/default-code";
 @forward "defaults/default-icons";
 @forward "defaults/default-required";
+@forward "defaults/default-container-properties";
+
+[data-mode] {
+	@extend %db-neutral-bg-basic-level-1;
+}
