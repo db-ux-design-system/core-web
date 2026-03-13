@@ -11,6 +11,11 @@
 	block-size: fit-content;
 	inline-size: fit-content;
 
+	// CSS Anchor Positioning: set this element as the anchor for the popover content
+	@supports (anchor-name: --db-popover-anchor) {
+		anchor-name: --db-popover-anchor;
+	}
+
 	&:is([data-e2e-hover="true"], :hover, :focus-within) {
 		> article:not([data-open="false"]) {
 			@extend %show-popover;
