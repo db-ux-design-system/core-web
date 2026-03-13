@@ -139,6 +139,7 @@ dbtabpanel
 dbtablist
 unstarted
 publishpackages
+commandfor
 turbopack
 lightningcss
 cooldown

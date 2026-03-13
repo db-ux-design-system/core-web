@@ -57,6 +57,16 @@ export type DBButtonDefaultProps = {
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
+
+	/**
+	 * Invoker Commands: `commandfor` attribute
+	 */
+	commandfor?: string;
+
+	/**
+	 * Invoker Commands: `command` attribute
+	 */
+	command?: string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &

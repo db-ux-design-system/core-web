@@ -79,6 +79,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
+	isNotModal: () => boolean;
 };
 
 export type DBDrawerState = DBDrawerDefaultState &
