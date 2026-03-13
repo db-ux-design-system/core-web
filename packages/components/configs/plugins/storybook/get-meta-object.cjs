@@ -84,7 +84,10 @@ const getMetaObject = ({ target, componentName, name, meta, allImports }) => {
 	],`;
 	}
 
-	const argsSection = getFnArgs(argTypes);
+	// Angular handles event actions differently via its own mechanism; adding
+	// explicit fn() args would generate properties that don't exist in the
+	// Angular component's typed Props interface, causing TypeScript errors.
+	const argsSection = target !== 'angular' ? getFnArgs(argTypes) : '';
 
 	return `
 const meta: Meta<${metaType}> = {
