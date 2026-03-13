@@ -132,18 +132,28 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `checkbox-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `checkbox-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
