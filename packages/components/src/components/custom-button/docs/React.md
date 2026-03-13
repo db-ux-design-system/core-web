@@ -8,7 +8,11 @@ For general installation and configuration take a look at the [react-core-compon
 // App.tsx
 import { DBCustomButton } from "@db-ux/react-core-components";
 
-const App = () => <DBCustomButton><button type="button">CustomButton</button></DBCustomButton>;
+const App = () => (
+	<DBCustomButton>
+		<button type="button">CustomButton</button>
+	</DBCustomButton>
+);
 
 export default App;
 ```
