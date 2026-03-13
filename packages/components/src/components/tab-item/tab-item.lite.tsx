@@ -58,6 +58,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 				if (state.isTruncated !== truncated) {
 					state.isTruncated = truncated;
+
+					if (!truncated && _ref) {
+						if (_ref.hasAttribute('data-has-tooltip')) {
+							_ref.removeAttribute('data-has-tooltip');
+						}
+						if (_ref.hasAttribute('aria-describedby')) {
+							_ref.removeAttribute('aria-describedby');
+						}
+					}
 				}
 
 				state.tooltipText = truncated
