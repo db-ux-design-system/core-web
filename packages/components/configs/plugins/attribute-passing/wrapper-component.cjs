@@ -9,7 +9,7 @@ module.exports = () => ({
 		pre: (json) => {
 			const { pluginData, name } = json;
 			const { target } = pluginData;
-			if (target === 'angular' || target === 'stencil') {
+			if (['angular', 'stencil'].includes(target)) {
 				const componentTagName = `db-${dashCase(name.replace('DB', ''))}`;
 
 				if (!json.hooks.onMount) {
@@ -66,7 +66,7 @@ module.exports = () => ({
 
 			let changedCode = code;
 
-			if (target === 'angular' || target === 'stencil') {
+			if (['angular', 'stencil'].includes(target)) {
 				changedCode = changedCode.replace(
 					`if (attr && attr.name === 'class') {`,
 					`      if (attr && attr.name !== "class" && !attr.name.startsWith("_")) {
