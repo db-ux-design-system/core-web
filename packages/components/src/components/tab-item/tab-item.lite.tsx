@@ -165,7 +165,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	}, [props.disabled]);
+	});
 
 	return (
 		<button
