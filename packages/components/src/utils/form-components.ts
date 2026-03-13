@@ -4,39 +4,33 @@ import { delay } from './index';
 export const handleFrameworkEventAngular = (
 	component: any,
 	event: any,
-	modelValue: string = 'value',
-	lastValue?: any
+	modelValue: string = 'value'
 ): void => {
 	const value = event.target[modelValue];
 	const type = event.target?.type;
+
+	// Always call propagateChange first so Angular forms can react to intermediate values
+	component.propagateChange(value);
 
 	if (
 		!value &&
 		value !== '' &&
 		['date', 'time', 'week', 'month', 'datetime-local'].includes(type)
 	) {
-		// If value is empty and type date we skip `writingValue` function
+		// If value is null/undefined and type is date/time, skip writeValue
 		return;
 	}
 
-	if (type === 'number') {
-		if (event.type === 'input') {
-			if (
-				['.', ','].includes(event.data) ||
-				(lastValue.toString().includes('.') &&
-					event.inputType === 'deleteContentBackward')
-			) {
-				// Skip `writingValue` function if number type and input event
-				// and `.` or `,` was typed
-				// or content was deleted but last number had a `.`
-				return;
-			}
-		} else if (event.type === 'change') {
-			// Skip `writingValue` function if number type and change event
-			return;
-		}
+	if (
+		type === 'number' &&
+		event.type === 'input' &&
+		(event.target?.validity?.badInput ||
+			(value === '' && event.inputType === 'insertText'))
+	) {
+		// Skip writeValue for intermediate number input states (e.g. "1." or "1,")
+		return;
 	}
-	component.propagateChange(value);
+
 	component.writeValue(value);
 };
 
