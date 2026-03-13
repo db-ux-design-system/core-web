@@ -267,8 +267,6 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 @import "@db-ux/core-foundations/build/styles/fonts/relative.css";
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
 @import "@db-ux/core-foundations/build/styles/icons/relative.css";
-/* The index file will add some additional styles to normalize html defaults and add some default settings like default density, etc. */
-@import "@db-ux/core-foundations/build/styles/index.css";
 ```
 
 #### Optimize index
