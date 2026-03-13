@@ -8,3 +8,7 @@
 	@extend %db-neutral-bg-basic-level-1;
 	@extend %db-density-regular;
 }
+
+[data-mode] {
+	@extend %db-neutral-bg-basic-level-1;
+}

@@ -13,7 +13,3 @@
 	initial-value: "OpenSans Head", helvetica, arial, sans-serif;
 	inherits: true;
 }
-
-[data-mode] {
-	@extend %db-neutral-bg-basic-level-1;
-}

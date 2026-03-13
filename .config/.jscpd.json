@@ -36,6 +36,7 @@
 		"**/README.md",
 		"**/test-results/**",
 		"**/tests/**",
+		"**/test/**",
 		"**/tsconfig.json",
 		"**/e2e/**/*.spec.ts",
 		"**/packages/components/scripts/post-build/components.ts",
