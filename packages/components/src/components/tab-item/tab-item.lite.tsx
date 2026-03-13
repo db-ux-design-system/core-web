@@ -33,7 +33,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 		internalActive: false,
 		internalTabIndex: -1,
 		getCurrentTabIndex() {
-			return props.tabIndex !== undefined ? Number(props.tabIndex) : state.internalTabIndex;
+			return props.tabIndex !== undefined
+				? Number(props.tabIndex)
+				: state.internalTabIndex;
 		},
 		isTruncated: false,
 		tooltipText: '',
@@ -59,7 +61,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 
 				state.tooltipText = truncated
-					? props.label || _labelRef.innerText || _labelRef.textContent || ''
+					? props.label ||
+						_labelRef.innerText ||
+						_labelRef.textContent ||
+						''
 					: '';
 			}
 		}
@@ -76,7 +81,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 					const labelEl = _labelRef;
 					if (labelEl && !labelEl.dataset.label) {
 						labelEl.dataset.label =
-							props.label || labelEl.innerText || labelEl.textContent || '';
+							props.label ||
+							labelEl.innerText ||
+							labelEl.textContent ||
+							'';
 					}
 					if (_labelRef) {
 						const resizeObserver = new ResizeObserver(() => {
@@ -137,6 +145,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
 				_ref?.setAttribute('aria-disabled', disabledStr);
+			}
+
+			if (!state.isTruncated) {
+				if (_ref.hasAttribute('data-has-tooltip')) {
+					_ref.removeAttribute('data-has-tooltip');
+				}
+				if (_ref.hasAttribute('aria-describedby')) {
+					_ref.removeAttribute('aria-describedby');
+				}
 			}
 		}
 	}, [props.disabled]);
