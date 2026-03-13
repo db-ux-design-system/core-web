@@ -29,6 +29,11 @@
     - tab "(Default) Auto Width"
   - tablist:
     - tab "Width full"
+  - link "Slot with Badge"
+  - tablist:
+    - tab "Messages 3"
+  - tablist:
+    - tab "Notifications 4"
   - link "Content Alignment Full Width"
   - tablist:
     - tab "Left"
