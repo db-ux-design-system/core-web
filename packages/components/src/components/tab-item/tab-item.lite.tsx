@@ -146,6 +146,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			ref={_ref}
 			type="button"
 			role="tab"
+			data-density={props.density || props['data-density']}
 			class={cls('db-tab-item', props.className)}
 			// suppresses native browser tooltips inherited from parent elements
 			title=""

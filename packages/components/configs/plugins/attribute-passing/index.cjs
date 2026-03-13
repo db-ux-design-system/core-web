@@ -9,9 +9,14 @@ module.exports = () => ({
 			const { pluginData } = json;
 			const { target } = pluginData;
 			if (target === 'angular' || target === 'stencil') {
-				code = code.replace(
-					`if (attr && attr.name === "class") {`,
-					`else if (attr && attr.name !== "class" && attr.name === "style") {
+				code = code
+					.replace(
+						'attr &&',
+						"attr && attr.name !== 'data-density' &&"
+					)
+					.replace(
+						`if (attr && attr.name === "class") {`,
+						`else if (attr  && attr.name !== 'data-density' && attr.name !== "class" && attr.name === "style") {
 				element.setAttribute(attr.name, attr.value);
 			parent.removeAttribute(attr.name);
 		}
