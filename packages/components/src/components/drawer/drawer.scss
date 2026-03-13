@@ -40,7 +40,7 @@
 		/* stylelint-disable-next-line db-ux/use-sizing */
 		min-block-size: var(
 			--db-drawer-min-height,
-			calc(100% - #{variables.$db-spacing-fixed-xl})
+			auto
 		);
 		max-inline-size: none;
 	}
@@ -173,7 +173,7 @@ $spacings: (
 			/* stylelint-disable-next-line db-ux/use-sizing */
 			min-inline-size: var(
 				--db-drawer-min-width,
-				calc(100% - #{variables.$db-spacing-fixed-xl})
+				auto
 			);
 
 			&:not([data-direction]),
@@ -287,12 +287,12 @@ $spacings: (
 				&:not([data-direction]),
 				&[data-direction="right"],
 				&[data-direction="left"] {
-					transform: translateX(0%);
+					transform: none;
 				}
 
 				&[data-direction="up"],
 				&[data-direction="down"] {
-					transform: translateY(0%);
+					transform: none;
 				}
 			}
 
