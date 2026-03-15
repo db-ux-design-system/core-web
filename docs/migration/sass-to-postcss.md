@@ -9,49 +9,71 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 1. **Modern CSS Support**: Write "modern" CSS that can be used directly by chromium-based browsers
 2. **Simpler Build Process**: No SASS compilation step needed during development, enabling instant soft-reload
 3. **Native CSS Features**: Leverage native CSS features like:
-   - [CSS nested selectors](https://caniuse.com/css-nesting) (already well-supported)
-   - [CSS `if()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if)
-   - [CSS custom functions (`@function`)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@function)
+    - [CSS nested selectors](https://caniuse.com/css-nesting) (already well-supported)
+    - [CSS `if()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if)
+    - [CSS custom functions (`@function`)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@function)
 4. **Dual Output**: Provide both modern (chromium-only) and legacy CSS bundles
 
 ## Current SCSS Features Analysis
 
 ### Features Found in Codebase
 
-| Feature                        | Count     | Migration Approach                                                                                                                |
-| ------------------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                                                                                     |
-| `@forward`                     | Many      | Replace with CSS `@import`                                                                                                        |
-| `@mixin` / `@include`          | ~31 files | CSS `@mixin` & `@apply` (native) with [`postcss-transform-mixins`](https://www.npmjs.com/package/postcss-transform-mixins) plugin |
-| `%placeholder` / `@extend`     | ~67 files | CSS `@macro` & `@apply` (native) with [`postcss-transform-mixins`](https://www.npmjs.com/package/postcss-transform-mixins) plugin |
-| `@function`                    | ~7 files  | CSS `@function` (native)                                                                                                          |
-| `@if` / `@else`                | ~10 files | CSS `if()` function (native)                                                                                                      |
-| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin                                                               |
-| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                                                                                            |
-| String interpolation `#{$var}` | Many      | CSS variable syntax                                                                                                               |
-| `sass:math` module             | Few       | CSS calc() or preprocessing                                                                                                       |
-| `sass:map` module              | Few       | Preprocessing required                                                                                                            |
+| Feature                        | Count     | Migration Approach                                                                                                              |
+| ------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                                                                                   |
+| `@forward`                     | Many      | Replace with CSS `@import`                                                                                                      |
+| `@mixin` / `@include`          | ~31 files | [CSS `@mixin` & `@apply`](https://drafts.csswg.org/css-mixins-1/) (native, emerging standard)                                   |
+| `%placeholder` / `@extend`     | ~67 files | [CSS `@macro` & `@apply`](https://github.com/nickvdh/csswg-drafts/blob/css-macro-apply/css-mixins-1/Overview.bs) (native draft) |
+| `@function`                    | ~7 files  | [CSS `@function`](https://developer.mozilla.org/en-US/docs/Web/CSS/@function) (native)                                          |
+| `@if` / `@else`                | ~10 files | [CSS `if()`](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions/if) function (native)                               |
+| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin (until native support)                                      |
+| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                                                                                          |
+| String interpolation `#{$var}` | Many      | CSS variable syntax                                                                                                             |
+| `sass:math` module             | Few       | CSS `calc()` (native)                                                                                                           |
+| `sass:map` module              | Few       | Preprocessing required                                                                                                          |
+
+### Native CSS Features for Mixins and Macros
+
+The CSS Working Group is developing native equivalents for Sass mixins and placeholders:
+
+1. **CSS `@mixin` & `@apply`** ([CSS Mixins specification](https://drafts.csswg.org/css-mixins-1/)):
+    - `@mixin` defines reusable style blocks (like Sass `@mixin`)
+    - `@apply` applies a mixin's styles (like Sass `@include`)
+
+2. **CSS `@macro` & `@apply`** (emerging proposal):
+    - `@macro` defines reusable style blocks that can be "inlined" (like Sass `%placeholder`)
+    - Works with `@apply` for applying the styles (like Sass `@extend`)
+
+These native CSS features are emerging and will eventually replace the need for PostCSS plugins. During the transition period, [`postcss-transform-mixins`](https://www.npmjs.com/package/postcss-transform-mixins) can be used to transform native syntax for older browsers.
 
 ### Complex Features Requiring Special Handling
 
 1. **`@each` loops**: Used to generate repetitive CSS (e.g., color variants, density classes)
-   - Use [`postcss-each`](https://www.npmjs.com/package/postcss-each) PostCSS plugin for loop support
+    - Use [`postcss-each`](https://www.npmjs.com/package/postcss-each) PostCSS plugin for loop support
 
 2. **Sass `sass:map` functions**: Used for dynamic lookups
-   - Will need preprocessing or manual expansion
+    - Will need preprocessing or manual expansion
 
 3. **String interpolation**: `#{$variable}` syntax
-   - Simple cases: Convert to CSS variable reference
-   - Complex cases: May need preprocessing
+    - Simple cases: Convert to CSS variable reference
+    - Complex cases: May need preprocessing
 
 ## PostCSS Plugins Required
 
-### Core Plugins
+### Core Plugins (Transition Period)
+
+These plugins are needed during the transition period until native CSS features reach broader browser support:
 
 1. **`postcss-import`** - Handle `@import` statements (replaces `@use`/`@forward`)
-2. **`postcss-mixins`** - Support `@define-mixin` and `@mixin`
-3. **`postcss-extend-rule`** - Support `@extend` with placeholders
-4. **[`postcss-each`](https://www.npmjs.com/package/postcss-each)** - Support `@each` loops for generating repetitive CSS
+2. **`postcss-transform-mixins`** - Transform native CSS `@mixin`/`@macro`/`@apply` for legacy browsers
+3. **[`postcss-each`](https://www.npmjs.com/package/postcss-each)** - Support `@each` loops (no native CSS equivalent yet)
+
+### Plugins to Phase Out
+
+As native CSS support improves, these plugins can be removed:
+
+- `postcss-mixins` → replaced by native CSS `@mixin` & `@apply`
+- `postcss-extend-rule` → replaced by native CSS `@macro` & `@apply`
 
 ### Compatibility Plugins (for legacy output)
 
@@ -82,86 +104,88 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 @import "defaults/default-root.css";
 ```
 
-### 2. Mixins
+### 2. Mixins (`@mixin` & `@apply`)
 
 **Before (SCSS):**
 
 ```scss
 @mixin cursor-pointer() {
-  cursor: var(--db-overwrite-cursor, pointer);
-  @content;
+	cursor: var(--db-overwrite-cursor, pointer);
+	@content;
 }
 
 .button {
-  @include cursor-pointer {
-    background: blue;
-  }
+	@include cursor-pointer {
+		background: blue;
+	}
 }
 ```
 
-**After (CSS/PostCSS):**
+**After (Native CSS):**
 
 ```css
-@define-mixin cursor-pointer {
-  cursor: var(--db-overwrite-cursor, pointer);
-  @mixin-content;
+@mixin --cursor-pointer {
+	cursor: var(--db-overwrite-cursor, pointer);
 }
 
 .button {
-  @mixin cursor-pointer {
-    background: blue;
-  }
+	@apply --cursor-pointer;
+	background: blue;
 }
 ```
 
-### 3. Placeholders and @extend
+_Note: Native CSS `@mixin` uses dashed-ident names (starting with `--`). The `@apply` rule applies the mixin styles._
+
+### 3. Placeholders and @extend (`@macro` & `@apply`)
 
 **Before (SCSS):**
 
 ```scss
 %a11y-visually-hidden {
-  clip: rect(0, 0, 0, 0) !important;
-  position: absolute !important;
+	clip: rect(0, 0, 0, 0) !important;
+	position: absolute !important;
 }
 
 .sr-only {
-  @extend %a11y-visually-hidden;
+	@extend %a11y-visually-hidden;
 }
 ```
 
-**After (CSS/PostCSS):**
+**After (Native CSS):**
 
 ```css
-%a11y-visually-hidden {
-  clip: rect(0, 0, 0, 0) !important;
-  position: absolute !important;
+@macro --a11y-visually-hidden {
+	clip: rect(0, 0, 0, 0) !important;
+	position: absolute !important;
 }
 
 .sr-only {
-  @extend %a11y-visually-hidden;
+	@apply --a11y-visually-hidden;
 }
 ```
 
-_Note: postcss-extend-rule maintains SCSS-like syntax_
+_Note: Native CSS `@macro` is similar to Sass placeholders. The `@apply` rule applies the macro's styles inline._
 
-### 4. Conditionals
+### 4. Conditionals (`if()` function)
 
 **Before (SCSS):**
 
 ```scss
 @if $hovered {
-  background-color: #{$hovered};
+	background-color: #{$hovered};
 }
 ```
 
-**After (CSS/PostCSS):**
+**After (Native CSS):**
 
 ```css
-/* For simple value conditionals: */
+/* For simple value conditionals using native CSS if() function: */
 background-color: if(style(--hovered: true), var(--hovered-color), transparent);
 
 /* Complex conditionals may need preprocessing */
 ```
+
+_Note: The native CSS `if()` function evaluates conditions inline. For legacy browser support, use `postcss-if-function` to transform._
 
 ### 5. Variables
 
@@ -172,32 +196,32 @@ $db-sizing-md: var(--db-sizing-md);
 color: #{$db-sizing-md};
 ```
 
-**After (CSS/PostCSS):**
+**After (Native CSS):**
 
 ```css
 /* Most SCSS variables already map to CSS Custom Properties */
 color: var(--db-sizing-md);
 ```
 
-### 6. Functions
+### 6. Functions (`@function`)
 
 **Before (SCSS):**
 
 ```scss
 @function px-to-rem($pxValue) {
-  @return ($pxValue * 0.0625) * 1rem;
+	@return ($pxValue * 0.0625) * 1rem;
 }
 ```
 
-**After (CSS):**
+**After (Native CSS):**
 
 ```css
 @function --px-to-rem(--px-value) {
-  result: calc(var(--px-value) * 0.0625 * 1rem);
+	result: calc(var(--px-value) * 0.0625 * 1rem);
 }
 ```
 
-_Note: CSS functions have limited support currently_
+_Note: Native CSS `@function` uses dashed-ident names and the `result` descriptor to return values._
 
 ### 7. Comments
 
@@ -222,39 +246,36 @@ _Note: CSS functions have limited support currently_
 Generate two CSS bundles:
 
 1. **Modern (`.chromium.css`)**:
-   - Only uses `postcss-import`, `postcss-mixins`, `postcss-extend-rule`
-   - Preserves native CSS features (`if()`, `@function`, nesting)
-   - For modern browsers only
+    - Minimal PostCSS plugins (only `postcss-import`, `postcss-each`)
+    - Preserves native CSS features (`@mixin`, `@macro`, `@apply`, `if()`, `@function`, nesting)
+    - For modern browsers (Chromium-based, Safari 18+, Firefox 128+)
 
 2. **Legacy (`.css`)**:
-   - Uses all plugins including `postcss-if-function`
-   - Transforms modern CSS to compatible syntax
-   - For broader browser support
+    - Full PostCSS transformation pipeline
+    - Transforms native CSS features for compatibility
+    - For broader browser support
 
 ### PostCSS Configuration Example
 
 ```javascript
-// postcss.config.chromium.cjs
+// postcss.config.chromium.cjs (modern browsers - minimal transformation)
 module.exports = {
-  plugins: [
-    require("postcss-import"),
-    require("postcss-mixins"),
-    require("postcss-each"),
-    require("postcss-extend-rule"),
-    require("cssnano")({ preset: ["default", { svgo: false }] }),
-  ],
+	plugins: [
+		require("postcss-import"),
+		require("postcss-each"), // until @each has native CSS support
+		require("cssnano")({ preset: ["default", { svgo: false }] })
+	]
 };
 
-// postcss.config.cjs (legacy)
+// postcss.config.cjs (legacy browsers - full transformation)
 module.exports = {
-  plugins: [
-    require("postcss-import"),
-    require("postcss-mixins"),
-    require("postcss-each"),
-    require("postcss-extend-rule"),
-    require("postcss-if-function"),
-    require("cssnano")({ preset: ["default", { svgo: false }] }),
-  ],
+	plugins: [
+		require("postcss-import"),
+		require("postcss-each"),
+		require("postcss-transform-mixins"), // transforms @mixin/@macro/@apply for legacy browsers
+		require("postcss-if-function"), // transforms if() for legacy browsers
+		require("cssnano")({ preset: ["default", { svgo: false }] })
+	]
 };
 ```
 
@@ -270,13 +291,15 @@ npx @db-ux/core-migration migration --type sass_to_postcss --src ./packages/foun
 
 ### What the Script Does
 
-1. Renames `.scss` files to `.css`
-2. Converts `@use` to `@import`
-3. Converts `@forward` to `@import`
-4. Converts `@mixin name()` to `@define-mixin name`
-5. Converts `@include name` to `@mixin name`
-6. Converts SCSS comments `//` to CSS comments `/* */`
-7. Updates file extensions in imports
+1. Converts `@use` to `@import`
+2. Converts `@forward` to `@import`
+3. Converts Sass `@mixin name()` to native CSS `@mixin --name`
+4. Converts Sass `@include name` to native CSS `@apply --name`
+5. Converts Sass `%placeholder` to native CSS `@macro --placeholder`
+6. Converts Sass `@extend %placeholder` to native CSS `@apply --placeholder`
+7. Converts SCSS comments `//` to CSS comments `/* */`
+8. Updates file extensions in imports (`.scss` → `.css`)
+9. Converts namespace variable references to CSS custom properties
 
 ## Phased Migration Approach
 

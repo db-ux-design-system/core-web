@@ -1,20 +1,22 @@
 import type { ReplaceInFileConfig } from 'replace-in-file';
 
 /**
- * Migration script for converting SCSS files to PostCSS-compatible CSS.
+ * Migration script for converting SCSS files to native CSS syntax.
  *
  * This migration handles:
  * 1. Converting @use to @import
  * 2. Converting @forward to @import
- * 3. Converting @mixin definitions to @define-mixin
- * 4. Converting @include to @mixin
- * 5. Converting SCSS single-line comments to CSS comments
- * 6. Updating file extensions in imports (.scss -> .css)
+ * 3. Converting Sass @mixin to native CSS @mixin --name
+ * 4. Converting Sass @include to native CSS @apply --name
+ * 5. Converting Sass %placeholder to native CSS @macro --name
+ * 6. Converting Sass @extend to native CSS @apply --name
+ * 7. Converting SCSS single-line comments to CSS comments
+ * 8. Updating file extensions in imports (.scss -> .css)
  *
  * Note: This does NOT handle:
- * - @each loops (need manual expansion or preprocessing)
- * - @if/@else blocks (need conversion to CSS if() function)
- * - Complex Sass functions (need manual refactoring)
+ * - @each loops (use postcss-each plugin)
+ * - @if/@else blocks (use native CSS if() function)
+ * - Complex Sass functions (convert to native CSS @function)
  * - Sass variables (most already map to CSS Custom Properties)
  */
 export const sass_to_postcss: ReplaceInFileConfig[] = [
@@ -50,53 +52,62 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: "@import '$1';"
 	},
 
-	// Convert @mixin definitions with parameters to @define-mixin
-	// @mixin name($param) { -> @define-mixin name $param {
-	// Note: $$ in replacement string produces single $ in output
+	// Convert Sass @mixin definitions with parameters to native CSS @mixin
+	// @mixin name($param) { -> @mixin --name {
+	// Note: Native CSS @mixin doesn't support parameters in the same way
 	{
 		files: '',
-		from: /@mixin\s+(\w[\w-]*)\s*\(\s*\$([^)]*)\)\s*\{/g,
-		to: '@define-mixin $1 $$$$2 {'
+		from: /@mixin\s+(\w[\w-]*)\s*\([^)]*\)\s*\{/g,
+		to: '@mixin --$1 {'
 	},
 
-	// Convert @mixin definitions without parameters to @define-mixin
-	// @mixin name() { -> @define-mixin name {
-	// @mixin name { -> @define-mixin name {
+	// Convert Sass @mixin definitions without parameters to native CSS @mixin
+	// @mixin name() { -> @mixin --name {
+	// @mixin name { -> @mixin --name {
 	{
 		files: '',
 		from: /@mixin\s+(\w[\w-]*)\s*(?:\(\s*\))?\s*\{/g,
-		to: '@define-mixin $1 {'
+		to: '@mixin --$1 {'
 	},
 
-	// Convert @content inside mixins to @mixin-content
+	// Convert Sass %placeholder to native CSS @macro
+	// %placeholder-name { -> @macro --placeholder-name {
 	{
 		files: '',
-		from: /@content;/g,
-		to: '@mixin-content;'
+		from: /%(\w[\w-]*)\s*\{/g,
+		to: '@macro --$1 {'
 	},
 
-	// Convert @include with content block
-	// @include name { content } -> @mixin name { content }
+	// Convert @include with content block to @apply (remove content block)
+	// @include name { content } -> @apply --name;
 	{
 		files: '',
-		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*\{/g,
-		to: '@mixin $1 {'
+		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*\{[^}]*\}/g,
+		to: '@apply --$1;'
 	},
 
-	// Convert @include with parameters
-	// @include name(params); -> @mixin name(params);
+	// Convert @include with parameters to @apply
+	// @include name(params); -> @apply --name;
 	{
 		files: '',
-		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*\(([^;]+)\);/g,
-		to: '@mixin $1($2);'
+		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*\([^)]*\)\s*;/g,
+		to: '@apply --$1;'
 	},
 
-	// Convert simple @include without parameters
-	// @include name; -> @mixin name;
+	// Convert simple @include without parameters to @apply
+	// @include name; -> @apply --name;
 	{
 		files: '',
-		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?);/g,
-		to: '@mixin $1;'
+		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*;/g,
+		to: '@apply --$1;'
+	},
+
+	// Convert @extend %placeholder to @apply
+	// @extend %placeholder-name; -> @apply --placeholder-name;
+	{
+		files: '',
+		from: /@extend\s+%(\w[\w-]*)\s*;/g,
+		to: '@apply --$1;'
 	},
 
 	// Convert SCSS single-line comments to CSS comments
@@ -218,12 +229,12 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
  *
  * 2. @each loops are supported via postcss-each plugin - no manual expansion needed
  *
- * 3. Convert @if/@else blocks to CSS if() function:
+ * 3. Convert @if/@else blocks to native CSS if() function:
  *    @if $condition { ... } @else { ... }
  *    becomes
  *    property: if(style(--condition: value), result1, result2);
  *
- * 4. Convert Sass @function to CSS @function:
+ * 4. Convert Sass @function to native CSS @function:
  *    @function name($param) { @return value; }
  *    becomes
  *    @function --name(--param) { result: value; }
@@ -231,9 +242,14 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
  * 5. Update build scripts to use PostCSS instead of Sass
  *
  * 6. Add required PostCSS plugins:
- *    - postcss-import
- *    - postcss-mixins
- *    - postcss-each
- *    - postcss-extend-rule
- *    - postcss-if-function (for legacy output)
+ *    - postcss-import (for @import handling)
+ *    - postcss-each (for @each loops)
+ *    - postcss-transform-mixins (for legacy browser support of @mixin/@macro/@apply)
+ *    - postcss-if-function (for legacy browser support of if())
+ *
+ * Native CSS features used (modern browsers only):
+ *    - @mixin --name { ... } and @apply --name;
+ *    - @macro --name { ... } and @apply --name;
+ *    - if(condition, true-value, false-value)
+ *    - @function --name(--param) { result: value; }
  */
