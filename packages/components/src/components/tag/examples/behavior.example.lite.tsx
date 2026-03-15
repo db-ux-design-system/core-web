@@ -18,7 +18,8 @@ useMetadata({
 
 export default function TagBehavior() {
 	return (
-		<div role="group" aria-label="Behavior">
+		<fieldset>
+			<legend>Behavior</legend>
 			<DBTag>(Default) Static</DBTag>
 			<DBTag behavior="removable">Removable</DBTag>
 
@@ -49,6 +50,6 @@ export default function TagBehavior() {
 					Interactive Radio 2
 				</label>
 			</DBTag>
-		</div>
+		</fieldset>
 	);
 }

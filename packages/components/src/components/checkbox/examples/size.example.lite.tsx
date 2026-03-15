@@ -10,11 +10,12 @@ useMetadata({
 
 export default function CheckboxSize() {
 	return (
-		<div role="group" aria-label="Size">
+		<fieldset>
+			<legend>Size</legend>
 			<DBCheckbox name="Size">(Default) Medium</DBCheckbox>
 			<DBCheckbox name="Size" size="small">
 				Small
 			</DBCheckbox>
-		</div>
+		</fieldset>
 	);
 }

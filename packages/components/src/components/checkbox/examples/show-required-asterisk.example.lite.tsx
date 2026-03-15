@@ -10,7 +10,8 @@ useMetadata({
 
 export default function CheckboxShowRequiredAsterisk() {
 	return (
-		<div role="group" aria-label="Show Required Asterisk">
+		<fieldset>
+			<legend>Show Required Asterisk</legend>
 			<DBCheckbox
 				name="Asterisk"
 				required={true}
@@ -23,6 +24,6 @@ export default function CheckboxShowRequiredAsterisk() {
 				showRequiredAsterisk={false}>
 				False
 			</DBCheckbox>
-		</div>
+		</fieldset>
 	);
 }

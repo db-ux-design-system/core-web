@@ -10,7 +10,8 @@ useMetadata({
 
 export default function TagDisabled() {
 	return (
-		<div role="group" aria-label="Disabled">
+		<fieldset>
+			<legend>Disabled</legend>
 			<DBTag>
 				<label>
 					<input type="checkbox" />
@@ -23,6 +24,6 @@ export default function TagDisabled() {
 					True
 				</label>
 			</DBTag>
-		</div>
+		</fieldset>
 	);
 }

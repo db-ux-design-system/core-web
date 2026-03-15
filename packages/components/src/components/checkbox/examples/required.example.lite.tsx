@@ -10,13 +10,14 @@ useMetadata({
 
 export default function CheckboxRequired() {
 	return (
-		<div role="group" aria-label="Required">
+		<fieldset>
+			<legend>Required</legend>
 			<DBCheckbox name="Requirement" required={false}>
 				(Default) False
 			</DBCheckbox>
 			<DBCheckbox name="Requirement" required={true}>
 				True
 			</DBCheckbox>
-		</div>
+		</fieldset>
 	);
 }
