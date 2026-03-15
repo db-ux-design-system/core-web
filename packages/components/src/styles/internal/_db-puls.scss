@@ -30,7 +30,7 @@
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			transition:
 				height variables.$db-transition-duration-fast
 					variables.$db-transition-timing-emotional,
@@ -54,7 +54,7 @@
 		block-size: variables.$db-border-width-xs;
 		inline-size: 100%;
 
-		@media (forced-colors: active) {
+		@media (forced-colors: active), print {
 			border: calc(#{variables.$db-border-width-xs} - 1px) solid
 				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
@@ -66,7 +66,7 @@
 		block-size: 100%;
 		inline-size: variables.$db-border-width-xs;
 
-		@media (forced-colors: active) {
+		@media (forced-colors: active), print {
 			border: calc(#{variables.$db-border-width-xs} - 1px) solid
 				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
