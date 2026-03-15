@@ -18,7 +18,7 @@
 | [SNCF Design System](https://gitlab.com/SNCF/wcs)                                       |                [navs/tabs](https://designmetier-bootstrap.sncf.fr/docs/4.3/layout/navs/#tabs)                | `nav role="navigation"`,`<ul>`,`<li>`                                                                                                                          |
 | [Telefonica Mistica](https://github.com/Telefonica/mistica-web)                         |               [tabs](https://brandfactory.telefonica.com/d/iSp7b1DkYygv/n-a#/components/tabs)                | `div`, `button role=tab`, no panels                                                                                                                            |
 | [Telekom Scale](https://github.com/telekom/scale)                                       |      [tab-navigation](https://telekom.github.io/scale/?path=/docs/components-tab-navigation--text-icon)      | `div role=tablist`, `span role=tab`, `div role="tabpanel"`                                                                                                     |
-| [Washington Post Design System](https://build.washingtonpost.com/)                      |                           [tabs](https://build.washingtonpost.com/components/tabs)                           | `div role=tablist`, `button role=tab`, `div`, alignement, disabled, overflow, !activationMode!                                                                 |
+| [Washington Post Design System](https://build.washingtonpost.com/)                      |                           [tabs](https://build.washingtonpost.com/components/tabs)                           | `div role=tablist`, `button role=tab`, `div`, alignment, disabled, overflow, !activationMode!                                                                  |
 | [W3C](https://www.w3.org/WAI/ARIA/apg/patterns/)                                        |                        [tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)                        | Tabs -> Tablist = set of tab-elements (serves as label for tabpanel) -> activation displays content of tabpanel; aria and role attributes accurately described |
 
 ## Conclusion
@@ -32,7 +32,7 @@
 
 Findings:
 
-- Some design systems are using `activation-mode=auto/manual` - is this a vaild use-case for design? Default should be `auto` select which first tab selected
+- Some design systems are using `activation-mode=auto/manual` - is this a valid use-case for design? Default should be `auto` select which first tab selected
 - Prop `label` should be a slot to pass in e.g. a `<span>` and a `<DBBadge>`
 - Shall we provide a `badgeNumber` as a default property?
 - `fitted` property should be `width=auto/full`

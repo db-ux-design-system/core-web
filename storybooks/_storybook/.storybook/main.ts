@@ -1,6 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
-import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/react-vite';
+import { createRequire } from 'node:module';
 
 import { dirname, join } from 'node:path';
 
@@ -18,7 +18,7 @@ const baseUrl = process.env.BASE_URL || '';
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-	addons: [getAbsolutePath("@storybook/addon-docs")],
+	addons: [getAbsolutePath('@storybook/addon-docs')],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {}

@@ -40,7 +40,7 @@ import { DBTextareaProps, DBTextareaState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required'],
+		nativeAttributes: ['disabled', 'required', 'value'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
@@ -161,17 +161,27 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `textarea-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `textarea-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -196,11 +206,20 @@ export default function DBTextarea(props: DBTextareaProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		if (props.value !== undefined) {
+			state._value = props.value;
+		}
 	}, [props.value]);
 
 	onUpdate(() => {
-		if (_ref) {
+		// If angular uses ngModel value and _value are null
+		// then the value will be set afterward and the _ref will be refreshed
+		const addResetListener = useTarget({
+			angular: !(props.value === null && state._value === null),
+			default: true
+		});
+
+		if (_ref && addResetListener) {
 			const defaultValue = useTarget({
 				react: (props as any).defaultValue,
 				default: undefined

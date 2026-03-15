@@ -229,6 +229,72 @@ const testAction = () => {
 		await expect(summary).toContainText('Option 1');
 	});
 
+	test('select first filtered item with Enter key from search field', async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(multipleSearchSelect);
+		const summary = component.locator('summary');
+
+		// Open dropdown
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+
+		// Wait for search input to be focused
+		await page.waitForFunction(() => {
+			const activeElement = document.activeElement as HTMLInputElement;
+			return activeElement && activeElement.type === 'search';
+		});
+
+		// Type to filter options
+		await page.keyboard.type('2');
+
+		// Wait a bit for filtering to happen
+		await page.waitForTimeout(100);
+
+		// Press Enter to select first filtered option (Option 2)
+		await page.keyboard.press('Enter');
+
+		// Close dropdown to see the selection
+		await page.keyboard.press('Escape');
+
+		// Verify Option 2 was selected
+		await expect(summary).toContainText('Option 2');
+	});
+
+	test('select first available option with Enter when only one option remains after filtering', async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(multipleSearchSelect);
+		const summary = component.locator('summary');
+
+		// Open dropdown
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+
+		// Wait for search input to be focused
+		await page.waitForFunction(() => {
+			const activeElement = document.activeElement as HTMLInputElement;
+			return activeElement && activeElement.type === 'search';
+		});
+
+		// Type to filter to only one option
+		await page.keyboard.type('Option 3');
+
+		// Wait for filtering
+		await page.waitForTimeout(100);
+
+		// Press Enter to select the only remaining option
+		await page.keyboard.press('Enter');
+
+		// Close dropdown
+		await page.keyboard.press('Escape');
+
+		// Verify Option 3 was selected
+		await expect(summary).toContainText('Option 3');
+	});
+
 	test('option groups keyboard navigation: should navigate between option groups correctly', async ({
 		page,
 		mount

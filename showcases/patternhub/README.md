@@ -6,7 +6,7 @@ This is a scaffold next.js app for documentation and testing of components.
 
 Add your documentation under `/pages` folder.
 
-You can use simple folder structure to structure your pages and subpages.
+You can use simple folder structure to structure your pages and sub-pages.
 
 You can use `.tsx` or `.mdx` files to write your documents (see the examples).
 

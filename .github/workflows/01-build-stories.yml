@@ -23,19 +23,19 @@ jobs:
           npm run generate:stories --workspace=@db-ux/core-components
 
       - name: ⏫ Upload angular stories
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: angular-storybook-stories
           path: storybooks/angular-storybook/src/components
 
       - name: ⏫ Upload react stories
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: react-storybook-stories
           path: storybooks/react-storybook/src/components
 
       - name: ⏫ Upload vue stories
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: vue-storybook-stories
           path: storybooks/vue-storybook/src/components

@@ -1,6 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
-import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/angular';
+import { createRequire } from 'node:module';
 
 import { dirname, join } from 'node:path';
 
@@ -18,6 +18,7 @@ const config: StorybookConfig = {
 	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	// TODO: Include html output when addon-html supports v10 https://github.com/whitespace-se/storybook-addon-html/pull/149
 	addons: ['@storybook/addon-docs'],
+	staticDirs: ['../public'],
 	framework: {
 		name: getAbsolutePath('@storybook/angular'),
 		options: {}

@@ -29,8 +29,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
-		subNavigationId: 'sub-navigation-' + uuid(),
 		navigationItemSafeTriangle: undefined,
+		subNavigationId: undefined,
+		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
 				state.autoClose = true;
@@ -57,6 +58,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onMount(() => {
 		state.initialized = true;
+
+		const subNavId = `sub-nav-${props.id ?? uuid()}`
+		state.subNavigationId = subNavId;
+		state.subNavigationToggleId = `${subNavId}-toggle`;
 	});
 
 	onUpdate(() => {
@@ -94,7 +99,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
@@ -117,8 +122,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 			<Show when={state.hasSubNavigation}>
 				<button
-					aria-haspopup={state.hasAreaPopup}
+					id={state.subNavigationToggleId}
+					aria-haspopup={state.hasAreaPopup ? 'true' : undefined}
 					aria-expanded={state.isSubNavigationExpanded}
+					aria-controls={state.subNavigationId}
 					class="db-navigation-item-expand-button"
 					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
@@ -131,9 +138,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 				{/* TODO: Consider using popover here */}
 				<menu
+					id={state.subNavigationId}
+					aria-labelledby={state.subNavigationToggleId}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
-					id={state.subNavigationId}
 					onClick={(event) => state.handleNavigationItemClick(event)}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">

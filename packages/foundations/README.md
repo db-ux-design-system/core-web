@@ -11,7 +11,7 @@ A library containing all tokens (colors, spacings, font formatting, etc.) and as
 
 **⚠️ Looking for UI components?** You probably want [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) instead, which **automatically includes** this package.
 
-**Use this package when you:**
+**Use this package if you:**
 
 - Only need design tokens (colors, spacing, fonts) without any component styles
 - Want to build custom components using the design system tokens

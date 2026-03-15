@@ -1,0 +1,109 @@
+import {
+	Fragment,
+	useMetadata,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
+import DBCustomSelect from '../custom-select.lite';
+import type { CustomSelectOptionType } from '../model';
+import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
+
+useMetadata({
+	storybookTitle: 'Example: Other configuration',
+	storybookNames: [
+		'Search Value',
+		'Custom Selected Label',
+		'Transform Selected Label',
+		'Custom Search Filter'
+	],
+	storybookArgTypes: StorybookCustomSelectArgTypes
+});
+
+export default function CustomSelectExampleOtherConfiguration() {
+	const state = useStore({
+		getTransformSelectedLabels: (selectedOptions?: any): string => {
+			return selectedOptions
+				.map((option: any) => option.value.at(-1))
+				.join(', ');
+		},
+		getSearchFilter: (option: CustomSelectOptionType): boolean => {
+			return option.value === 'Option 1';
+		}
+	});
+
+	return (
+		<Fragment>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: '09nursdao' },
+						{ value: 'Option 2', id: '74n9csdc14' },
+						{ value: 'Option 3', id: '64n9csdc14' },
+						{ value: 'Option 4', id: '54n9csdc14' },
+						{ value: 'Option 5', id: '44n9csdc14' }
+					]}
+					searchValue="1"
+					showSearch={true}
+					multiple={true}
+					searchLabel="Search"
+					label="Search Value"
+					listLabel="id-10as4-Search Value"></DBCustomSelect>
+			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: '09nurdscsdao' },
+						{ value: 'Option 2', id: '74n9ccsddc14' },
+						{ value: 'Option 3', id: '73n9ccsddc14' },
+						{ value: 'Option 4', id: '72n9ccsddc14' },
+						{ value: 'Option 5', id: '71n9ccsddc14' }
+					]}
+					selectedLabels="Selected: Label controlled"
+					label="Custom Selected Label"
+					listLabel="id-10aasds4-Custom Selected Label"></DBCustomSelect>
+			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: '09nurdscsdao' },
+						{ value: 'Option 2', id: '74n9ccsddc14' },
+						{ value: 'Option 3', id: '73n9ccsddc14' },
+						{ value: 'Option 4', id: '72n9ccsddc14' },
+						{ value: 'Option 5', id: '71n9ccsddc14' }
+					]}
+					label="Transform Selected Label"
+					listLabel="id-10aasds4-Transform Selected Label"
+					{...useTarget({
+						angular: { transformSelectedLabels: undefined },
+						stencil: { transformSelectedLabels: undefined },
+						default: {
+							transformSelectedLabels: (selectedOptions: any) =>
+								// @ts-ignore
+								getTransformSelectedLabels(selectedOptions)
+						}
+					})}></DBCustomSelect>
+			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: '09nurdscsdao' },
+						{ value: 'Option 2', id: '74n9ccsddc14' },
+						{ value: 'Option 3', id: '73n9ccsddc14' },
+						{ value: 'Option 4', id: '72n9ccsddc14' },
+						{ value: 'Option 5', id: '71n9ccsddc14' }
+					]}
+					label="Custom Search Filter"
+					listLabel="id-10aasds4-Custom Search Filter"
+					{...useTarget({
+						angular: { searchFilter: undefined },
+						stencil: { searchFilter: undefined },
+						default: {
+							searchFilter: (option: any) =>
+								// @ts-ignore
+								getSearchFilter(option)
+						}
+					})}></DBCustomSelect>
+			</div>
+		</Fragment>
+	);
+}

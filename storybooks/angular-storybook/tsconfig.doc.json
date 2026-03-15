@@ -3,5 +3,5 @@
 	"compilerOptions": {
 		"types": []
 	},
-	"include": ["src/**/*.ts", "../../output/angular/src/**/*.ts"],
+	"include": ["src/**/*.ts", "../../output/angular/src/**/*.ts"]
 }

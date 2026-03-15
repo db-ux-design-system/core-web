@@ -13,13 +13,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        command: ["lint", "test"]
+        command: ["lint", "test", "codespell"]
     steps:
       - name: ⏬️ Checkout repo
         uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
+
+      - name: 📖 Check spelling
+        if: ${{ matrix.command == 'codespell' }}
+        run: |
+          npm run lint:codespell
 
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}
@@ -30,4 +35,6 @@ jobs:
 
       - name: ⚡ Run Test
         if: ${{ matrix.command == 'test' }}
-        run: npm run test
+        run: |
+          npm run build --workspace=@db-ux/core-eslint-plugin
+          npm run test
