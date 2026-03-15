@@ -9,10 +9,25 @@ export const StorybookLinkArgTypes: Record<string, InputType> = {
 	showIcon: { control: 'boolean' },
 	wrap: { control: 'boolean' },
 	text: { control: 'text' },
-	target: { control: 'select', options: ['_self', '_blank', '_parent', '_top'] },
+	target: {
+		control: 'select',
+		options: ['_self', '_blank', '_parent', '_top']
+	},
 	rel: { control: 'text' },
 	hreflang: { control: 'text' },
-	referrerPolicy: { control: 'select', options: ['no-referrer', 'no-referrer-when-downgrade', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'] },
+	referrerPolicy: {
+		control: 'select',
+		options: [
+			'no-referrer',
+			'no-referrer-when-downgrade',
+			'origin',
+			'origin-when-cross-origin',
+			'same-origin',
+			'strict-origin',
+			'strict-origin-when-cross-origin',
+			'unsafe-url'
+		]
+	},
 	role: { control: 'text' },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' },

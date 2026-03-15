@@ -14,6 +14,7 @@ export const StorybookButtonArgTypes: Record<string, InputType> = {
 	form: { control: 'text' },
 	name: { control: 'text' },
 	noText: { control: 'boolean' },
+	wrap: { control: 'boolean' },
 	type: { control: 'select', options: ['button', 'reset', 'submit'] },
 	value: { control: 'text' },
 	...StorybookIconArgTypes,

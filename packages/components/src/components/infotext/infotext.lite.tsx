@@ -22,7 +22,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-infotext', props.className)}
 			data-icon={props.icon}
 			data-semantic={props.semantic}

@@ -14,7 +14,7 @@ export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 	return (
 		<fieldset
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			className={cls('db-custom-select-list', props.className)}>
 			{props.label && <legend>{props.label}</legend>}
 			<ul>{props.children}</ul>

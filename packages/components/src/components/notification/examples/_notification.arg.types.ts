@@ -4,8 +4,21 @@ import { StorybookIconArgTypes } from '../../../shared/examples/_icons.arg.types
 export const StorybookNotificationArgTypes: Record<string, InputType> = {
 	headline: { control: 'text' },
 	...StorybookIconArgTypes,
-	variant: { control: 'select', options: ['docked', 'standalone', 'overlay'] },
-	semantic: { control: 'select', options: ['adaptive', 'neutral', 'critical', 'informational', 'warning', 'successful'] },
+	variant: {
+		control: 'select',
+		options: ['docked', 'standalone', 'overlay']
+	},
+	semantic: {
+		control: 'select',
+		options: [
+			'adaptive',
+			'neutral',
+			'critical',
+			'informational',
+			'warning',
+			'successful'
+		]
+	},
 	closeable: { control: 'boolean' },
 	linkVariant: { control: 'select', options: ['block', 'inline'] },
 	showHeadline: { control: 'boolean' },
@@ -16,9 +29,6 @@ export const StorybookNotificationArgTypes: Record<string, InputType> = {
 	role: { control: 'text' },
 	closeButtonId: { control: 'text' },
 	closeButtonText: { control: 'text' },
-	delay: { control: 'select', options: ['none', 'slow', 'fast'] },
-	animation: { control: 'boolean' },
-	width: { control: 'select', options: ['auto', 'fixed'] },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' },
 	onClose: { action: 'onClose' }
