@@ -13,12 +13,10 @@ import {
 
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -75,34 +73,49 @@ export default function DBInput(props: DBInputProps) {
 		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (_ref?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
+		},
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !_ref?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!(
+				props.required ||
+				props.minLength ||
+				props.maxLength ||
+				props.pattern
+			);
 		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the input */
-			if (!_ref?.validity.valid || props.validation === 'invalid') {
+			state._invalidMessage =
+				props.invalidMessage || _ref?.validationMessage;
+			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage =
-					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (
-				state.hasValidState() &&
-				_ref?.validity.valid &&
-				(props.required ||
-					props.minLength ||
-					props.maxLength ||
-					props.pattern)
-			) {
+			} else if (state.hasValidState()) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -200,7 +213,6 @@ export default function DBInput(props: DBInputProps) {
 
 	onMount(() => {
 		state.resetIds();
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {
@@ -208,13 +220,6 @@ export default function DBInput(props: DBInputProps) {
 			state.resetIds();
 		}
 	}, [props.id, props.propOverrides?.id]);
-
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -287,9 +292,9 @@ export default function DBInput(props: DBInputProps) {
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-			data-show-icon-trailing={getBooleanAsString(
-				props.showIconTrailing
-			)}>
+			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
@@ -383,16 +388,18 @@ export default function DBInput(props: DBInputProps) {
 					id={state._validMessageId}
 					size={props.validMessageSize || 'small'}
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._invalidMessageId}
-				size={props.invalidMessageSize || 'small'}
-				semantic="critical">
-				{state._invalidMessage}
-			</DBInfotext>
+			<Show when={state.hasInvalidState()}>
+				<DBInfotext
+					id={state._invalidMessageId}
+					size={props.invalidMessageSize || 'small'}
+					semantic="critical">
+					{state._invalidMessage}
+				</DBInfotext>
+			</Show>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
