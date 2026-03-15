@@ -228,3 +228,66 @@ If possible, start by writing a test that you could use to verify your solution,
 4. **Isolate issue**: Build individual packages using workspace commands
 
 Remember: This is a design system used by Deutsche Bahn applications. Always ensure changes maintain accessibility, consistency, and brand compliance.
+
+## Changesets
+
+This repository uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
+
+### When to Add a Changeset
+
+**Always add a new changeset when making changes inside the following folders:**
+
+| Folder                                                | Packages to include                                                                                                                             |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src` (if JavaScript is involved) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/foundations/scss`                           | `@db-ux/core-foundations`                                                                                                                       |
+
+Use the following bump types for changeset entries:
+
+- **`patch`** — for bug fixes
+- **`minor`** — for new features
+- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been added, removed, renamed, or its type has changed)
+
+### How to Add a Changeset
+
+Run the following command and follow the interactive prompts:
+
+```bash
+npx changeset
+```
+
+- Select the affected packages (see table above).
+- Choose `patch` (fix), `minor` (feature), or `major` (breaking change) as the bump type.
+- Write a short description of the change.
+
+Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards:
+
+```markdown
+---
+"@db-ux/core-components": minor
+---
+
+Short description of the feature.
+```
+
+```markdown
+---
+"@db-ux/core-components": patch
+---
+
+Short description of the fix.
+```
+
+```markdown
+---
+"@db-ux/core-components": major
+---
+
+Short description of the breaking change.
+```
+
+## General code styles and approaches
+
+### GitHub Actions / Pipelines
+
+- Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
