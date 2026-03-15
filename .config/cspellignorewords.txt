@@ -153,4 +153,4 @@ Fernverkehr
 Regio
 Konzern
 Vertrieb
-stylelints
+stylelint
