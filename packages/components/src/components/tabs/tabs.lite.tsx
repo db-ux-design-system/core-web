@@ -2,15 +2,11 @@ import {
 	For,
 	onMount,
 	onUnMount,
-	onUpdate,
 	Show,
 	useDefaultProps,
-	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
-import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
@@ -18,226 +14,393 @@ import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
-	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
+	const _ref = useRef<HTMLDivElement | null>(null);
+
 	const state = useStore<DBTabsState>({
-		_name: '',
+		_generatedId: 'tabs-' + uuid(),
+		_generatedName: uuid(),
+		activeTabIndex: 0,
 		initialized: false,
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		_resizeObserver: undefined,
+		_resizeObserver: null,
+		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
+		_scrollListener: null,
+
+		_id() {
+			return props.id || state._generatedId;
+		},
+
+		_name() {
+			return 'tabs-' + (props.name || state._generatedName);
+		},
+
+		getTabId(index: number | string) {
+			return `${state._name()}-tab-${index}`;
+		},
+
+		getPanelId(index: number | string) {
+			return `${state._name()}-tab-panel-${index}`;
+		},
+
+		activateTab(index: number) {
+			if (state.activeTabIndex !== index) {
+				state.activeTabIndex = index;
+				if (props.onIndexChange) {
+					props.onIndexChange(index);
+				}
+				state.initTabs(index);
+			}
+		},
+
+		handleClick(event: any) {
+			// In props-mode (props.tabs), tab activation is handled via onClick on each DBTabItem directly.
+			// In slot-mode (!props.tabs), clicks bubble up and are handled here via DOM traversal.
+			if (props.tabs) {
+				return;
+			}
+
+			const target = event.target as HTMLElement;
+			const button = target.closest('[role="tab"]');
+			if (!button || !_ref) return;
+
+			const tabList = _ref?.querySelector('[role="tablist"]');
+			if (!tabList) return;
+			const buttons = Array.from(
+				tabList.querySelectorAll('[role="tab"]')
+			);
+			const index = buttons.indexOf(button as HTMLElement);
+
+			if (index !== -1) {
+				event.preventDefault();
+				state.activateTab(index);
+			}
+		},
+
+		handleKeyDown(event: any) {
+			if (!_ref) return;
+
+			const key = event.key;
+			const navigationKeys = [
+				'ArrowRight',
+				'ArrowDown',
+				'ArrowLeft',
+				'ArrowUp',
+				'Home',
+				'End',
+				'Enter',
+				' '
+			];
+
+			if (!navigationKeys.includes(key)) {
+				return;
+			}
+
+			const tabList = _ref.querySelector('[role="tablist"]');
+			if (!tabList) return;
+			const buttons = Array.from(
+				tabList.querySelectorAll('[role="tab"]')
+			);
+
+			// find currently focused element within the buttons list
+			let currentIndex = -1;
+			if (typeof document !== 'undefined' && document.activeElement) {
+				const focusedButton = (
+					document.activeElement as HTMLElement
+				).closest('[role="tab"]');
+				if (focusedButton) {
+					currentIndex = buttons.indexOf(
+						focusedButton as HTMLElement
+					);
+				}
+			}
+
+			if (currentIndex === -1) {
+				currentIndex = state.activeTabIndex;
+			}
+
+			if (buttons.length > 0) {
+				// handle activation (enter / space) -> change panel
+				if (key === 'Enter' || key === ' ') {
+					event.preventDefault();
+					state.activateTab(currentIndex);
+					return;
+				}
+
+				// handle navigation (arrows) -> moves focus
+				let nextIndex: number | undefined;
+				const length = buttons.length;
+
+				if (key === 'ArrowRight' || key === 'ArrowDown') {
+					nextIndex = (currentIndex + 1) % length;
+				} else if (key === 'ArrowLeft' || key === 'ArrowUp') {
+					nextIndex = (currentIndex - 1 + length) % length;
+				} else if (key === 'Home') {
+					nextIndex = 0;
+				} else if (key === 'End') {
+					nextIndex = length - 1;
+				}
+
+				if (nextIndex !== undefined) {
+					event.preventDefault();
+					// do not activateTab here for manual activation, just move the focus
+					const nextButton = buttons[nextIndex] as HTMLElement;
+					if (nextButton) {
+						nextButton.focus();
+					}
+				}
+			}
+		},
+
+		isIndexActive(index: number | string) {
+			return state.activeTabIndex === Number(index);
+		},
+
+		getTabItemTabIndex(index: number | string) {
+			const i = Number(index);
+			// only the active tab should be reachable via Tab key
+			return state.activeTabIndex === i ||
+				(state.activeTabIndex === -1 && i === 0)
+				? 0
+				: -1;
+		},
+
+		// Parses the tabs prop to ensure the correct data structure.
+		// Note: called twice in JSX (for tab items and panels) - Mitosis doesn't support local JSX variables to cache the result
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
 					return JSON.parse(props.tabs as string);
 				}
-
 				return props.tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
 			}
-
 			return [];
 		},
+
+		// Determines the visibility of scroll buttons based on the container's scroll position
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
-
-			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
+			state.showScrollLeft = needsScroll && Math.round(tList.scrollLeft) > 0;
 			state.showScrollRight =
 				needsScroll &&
-				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
+				Math.round(tList.scrollLeft) <
+					Math.round(tList.scrollWidth - tList.clientWidth);
 		},
+
+		// Scrolls the tab list container horizontally by a specified distance
 		scroll(left?: boolean) {
-			let step = Number(props.arrowScrollDistance) || 100;
+			let step = Number(props.arrowScrollDistance) || 120;
 			if (left) {
 				step *= -1;
 			}
+			// scrollBy uses physical 'left' - the Web API does not support logical properties (inlineStart)
 			state.scrollContainer?.scrollBy({
-				top: 0,
 				left: step,
 				behavior: 'smooth'
 			});
 		},
+
 		initTabList() {
 			if (_ref) {
-				const tabList = _ref.querySelector('.db-tab-list');
-				if (tabList) {
-					const container: HTMLElement | null =
-						tabList.querySelector('[role="tablist"]');
-					if (container) {
-						container.setAttribute(
-							'aria-orientation',
-							props.orientation || 'horizontal'
-						);
+				const container: HTMLElement | null =
+					_ref.querySelector('[role="tablist"]');
 
-						if (props.behavior === 'arrows') {
-							state.scrollContainer = container;
+				if (container) {
+					container.setAttribute(
+						'aria-orientation',
+						props.orientation || 'horizontal'
+					);
+
+					if (props.behavior === 'arrows') {
+						state.scrollContainer = container;
+						state.evaluateScrollButtons(container);
+
+						const _listener = state._scrollListener;
+						const _container = state.scrollContainer;
+						if (_listener && _container) {
+							_container.removeEventListener(
+								'scroll',
+								_listener.fn
+							);
+							state._scrollListener = null;
+						}
+
+						const onScroll = () =>
 							state.evaluateScrollButtons(container);
-							container.addEventListener('scroll', () => {
+						state._scrollListener = { fn: onScroll };
+						container.addEventListener('scroll', onScroll);
+
+						if (!state._resizeObserver) {
+							const observer = new ResizeObserver(() => {
 								state.evaluateScrollButtons(container);
 							});
-							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
-							if (!state._resizeObserver) {
-								const observer = new ResizeObserver(() => {
-									state.evaluateScrollButtons(container);
-								});
-								observer.observe(container);
-								state._resizeObserver = observer;
-							}
+							observer.observe(container);
+							state._resizeObserver = observer;
 						}
+					}
+
+					if (props.name) {
+						container.setAttribute('aria-label', props.name ?? '');
 					}
 				}
 			}
 		},
-		initTabs(init?: boolean) {
+
+		// Initializes tab items and panels, setting up IDs, ARIA attributes and event listeners
+		// activeIndex parameter allows passing the new index directly, avoiding React stale closure
+		// issues where state.activeTabIndex still holds the old value after setState
+		initTabs(activeIndex?: number) {
+			const currentIndex = activeIndex !== undefined ? activeIndex : state.activeTabIndex;
 			if (_ref) {
-				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item')
+				const tabListEl = _ref.querySelector('[role="tablist"]');
+				const panels = Array.from<HTMLElement>(
+					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 				);
-				const tabPanels = Array.from<Element>(
-					_ref.querySelectorAll(
-						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
-					)
+
+				if (!tabListEl) return;
+
+				const buttons = Array.from<HTMLElement>(
+					tabListEl.querySelectorAll('[role="tab"]')
 				);
-				for (const tabItem of tabItems) {
-					const index: number = tabItems.indexOf(tabItem);
-					const label = tabItem.querySelector('label');
-					const input = tabItem.querySelector('input');
 
-					if (input && label) {
-						if (!input.id) {
-							const tabId = `${state._name}-tab-${index}`;
-							label.setAttribute('for', tabId);
-							input.id = tabId;
-							input.setAttribute('name', state._name);
-							if (tabPanels.length > index) {
-								input.setAttribute(
-									'aria-controls',
-									`${state._name}-tab-panel-${index}`
-								);
-							}
-						}
+				buttons.forEach((button, index) => {
+					const isSelected = currentIndex === index;
+					const panel = panels[index];
 
-						if (init) {
-							// Auto select
-							const autoSelect =
-								!props.initialSelectedMode ||
-								props.initialSelectedMode === 'auto';
-							const shouldAutoSelect =
-								(props.initialSelectedIndex == null &&
-									index === 0) ||
-								Number(props.initialSelectedIndex) === index;
-							if (autoSelect && shouldAutoSelect) {
-								input.click();
-							}
-						}
+					const tabId = button.id || state.getTabId(index);
+					const panelId = panel?.id || state.getPanelId(index);
+
+					if (!button.id) {
+						button.id = tabId;
 					}
-				}
+					if (!button.getAttribute('aria-controls')) {
+						button.setAttribute('aria-controls', panelId);
+					}
 
-				for (const panel of tabPanels) {
-					if (panel.id) continue;
-					const index: number = tabPanels.indexOf(panel);
-					panel.id = `${state._name}-tab-panel-${index}`;
-					panel.setAttribute(
-						'aria-labelledby',
-						`${state._name}-tab-${index}`
+					button.dispatchEvent(
+						new CustomEvent('aria-selected-changed', {
+							detail: { 
+								selected: isSelected,
+								tabIndex: (currentIndex === index || (currentIndex === -1 && index === 0)) ? 0 : -1
+							}
+						})
 					);
-				}
-			}
-		},
-		handleChange: (event: InputEvent<HTMLElement>) => {
-			event.stopPropagation();
 
-			if (event.target) {
-				const target = event.target as HTMLElement;
-				const parent = target.parentElement;
-				if (
-					parent &&
-					parent.parentElement &&
-					parent.parentElement?.nodeName === 'LI'
-				) {
-					const tabItem = useTarget({
-						angular: parent.parentElement.parentElement,
-						stencil: parent.parentElement.parentElement,
-						default: parent.parentElement
-					});
-					if (tabItem) {
-						const list = tabItem.parentElement;
-						if (list) {
-							const tabIndex = Array.from(list.children).indexOf(
-								tabItem
-							);
-							if (props.onIndexChange) {
-								props.onIndexChange(tabIndex);
-							}
-
-							if (props.onTabSelect) {
-								props.onTabSelect(event);
-							}
+					if (panel) {
+						if (!panel.id) {
+							panel.id = panelId;
 						}
+						if (
+							!panel.getAttribute('aria-label') &&
+							!panel.getAttribute('aria-labelledby')
+						) {
+							panel.setAttribute('aria-labelledby', tabId);
+						}
+
+						// toggle visibility
+						panel.hidden = !isSelected;
 					}
-				}
+				});
 			}
 		}
 	});
 
 	onMount(() => {
-		state._name = `tabs-${props.name || uuid()}`;
+		// 1. Calculate final start index synchronously to avoid race conditions
+		let startIndex = 0;
 
+		if (props.initialSelectedIndex !== undefined) {
+			const parsedIndex = Number(props.initialSelectedIndex);
+			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
+		} else if (props.initialSelectedMode === 'manually') {
+			startIndex = -1;
+		}
+
+		// 2. Support deep linking: URL hash takes precedence over initial index
+		if (typeof window !== 'undefined' && window.location.hash) {
+			const hashId = window.location.hash.substring(1);
+			const name = props.name ? 'tabs-' + props.name : state._name();
+			const prefix = `${name}-tab-`;
+
+			if (hashId.startsWith(prefix)) {
+				const indexStr = hashId.replace(prefix, '');
+				const index = parseInt(indexStr, 10);
+
+				if (!isNaN(index)) {
+					startIndex = index;
+				}
+			}
+		}
+
+		// 3. Set initial state synchronously
+		state.activeTabIndex = startIndex;
 		state.initialized = true;
+
+		// 4. Trigger single initial DOM update after paint
+		if (typeof window !== 'undefined') {
+			requestAnimationFrame(() => {
+				state.initTabList();
+				state.initTabs(startIndex);
+			});
+		}
+
+		if (_ref) {
+			const tabListEl = _ref.querySelector('[role="tablist"]');
+			let localRafId: number | null = null;
+
+			const observer = new MutationObserver((mutations) => {
+				const isTabListMutation = mutations.some(
+					(m) => tabListEl && tabListEl.contains(m.target)
+				);
+				if (!isTabListMutation) return;
+
+				if (localRafId !== null) cancelAnimationFrame(localRafId);
+				localRafId = requestAnimationFrame(() => {
+					localRafId = null;
+					state.initTabList();
+					state.initTabs(state.activeTabIndex);
+				});
+			});
+
+			// childList: true only - attribute changes (set by initTabs) are not observed, preventing infinite loops
+			observer.observe(_ref, {
+				childList: true,
+				subtree: true
+			});
+
+			state._observer = observer;
+		}
 	});
-	// jscpd:ignore-end
 
 	onUnMount(() => {
-		state._resizeObserver?.disconnect();
-		state._resizeObserver = undefined;
-	});
-
-	onUpdate(() => {
-		if (_ref && state.initialized) {
-			state.initTabList();
-			state.initTabs(true);
-
-			const tabList = _ref.querySelector('.db-tab-list');
-			if (tabList) {
-				const observer = new MutationObserver((mutations) => {
-					mutations.forEach((mutation) => {
-						if (
-							mutation.removedNodes.length ||
-							mutation.addedNodes.length
-						) {
-							state.initTabList();
-							state.initTabs();
-						}
-					});
-				});
-
-				observer.observe(tabList, {
-					childList: true,
-					subtree: true
-				});
-			}
-
-			state.initialized = false;
+		const _listener = state._scrollListener;
+		const _container = state.scrollContainer;
+		if (_listener && _container) {
+			_container.removeEventListener('scroll', _listener.fn);
 		}
-	}, [_ref, state.initialized]);
+		state._resizeObserver?.disconnect();
+		state._resizeObserver = null;
+		state._observer?.disconnect();
+		state._observer = null;
+	});
 
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id ?? state._id()}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
-			data-alignment={props.alignment ?? 'start'}
+			data-content-alignment={props.contentAlignment ?? 'left'}
 			data-width={props.width ?? 'auto'}
-			onInput={(event) => state.handleChange(event)}
-			onChange={(event) => state.handleChange(event)}>
+			onClick={(event) => state.handleClick(event)}
+			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
@@ -255,11 +418,15 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								active={tab.active}
+								id={state.getTabId(index)}
+								ariaControls={state.getPanelId(index)}
+								active={state.isIndexActive(index)}
+								tabIndex={state.getTabItemTabIndex(index)}
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
 								noText={tab.noText}
+								onClick={() => state.activateTab(index)}
 							/>
 						)}
 					</For>
@@ -268,12 +435,16 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							content={tab.content}>
+							id={state.getPanelId(index)}
+							ariaLabelledby={state.getTabId(index)}
+							content={tab.content}
+							hidden={!state.isIndexActive(index)}>
 							{tab.children}
 						</DBTabPanel>
 					)}
 				</For>
 			</Show>
+			<Show when={!props.tabs}>{props.children}</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
 					class="tabs-scroll-right"
@@ -285,8 +456,6 @@ export default function DBTabs(props: DBTabsProps) {
 					Scroll right
 				</DBButton>
 			</Show>
-
-			{props.children}
 		</div>
 	);
 }

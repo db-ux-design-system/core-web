@@ -4,37 +4,21 @@
 @use "../../styles/internal/db-puls";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
-$max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-%angular-workaround {
-	db-tab-list,
-	dbtablist {
-		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked) {
-				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
-				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
-					@include helpers.display(block);
-				}
-			}
-		}
-	}
-}
+$pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs});
 
 %horizontal-pulse {
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
 
-		&:has(input:checked) {
+		&::after {
+			inset-block-end: calc(-1 * #{$pulse-gap-offset}) !important; // overrides inset-block shorthand set in _db-puls.scss
+		}
+
+		&[aria-selected="true"] {
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
-				inset-block-end: calc(
-					-1 *
-						(
-							#{variables.$db-spacing-fixed-2xs} +
-								#{variables.$db-border-width-xs}
-						)
-				);
+				inline-size: 100%;
 			}
 		}
 	}
@@ -45,12 +29,16 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		@include db-puls.set-db-puls-vertical;
 
 		&::after {
-			inset-inline-start: 0;
-			z-index: -2;
+			inset-inline: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) auto;
+			z-index: 5;
 		}
 
-		&:has(input:checked) {
+		&[aria-selected="true"] {
 			@include db-puls.show-db-puls-vertical;
+
+			&::after {
+				block-size: 100%;
+			}
 		}
 	}
 }
@@ -62,19 +50,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	position: absolute;
 }
 
-@mixin angular-button-workaround() {
-	> .db-button,
-	&:is(.db-button) {
-		@content;
-	}
-}
-
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
-	$db-tabs-z-index-button-background: 21;
-	$db-tabs-z-index-button: 22;
 
-	@extend %angular-workaround;
 	@include helpers.display(flex);
 
 	inline-size: 100%;
@@ -82,195 +60,85 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 	.db-tab-panel {
 		padding: 0 variables.$db-spacing-fixed-xs;
+		position: relative;
+		z-index: 1;
 	}
 
 	.db-tab-list {
-		max-inline-size: 100%;
+		position: relative;
 		z-index: $db-tabs-z-index-tab-list;
 
-		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked)
-				~ [id$="-tab-panel-#{$index}"] {
-				@include helpers.display(block);
-			}
-		}
+		db-tab-item, dbtabitem { display: contents; }
 	}
 
-	.db-tab-item {
-		@extend %db-puls;
-	}
-
-	/*
-	Variant Orientation HORIZONTAL
- 	*/
 	&:not([data-orientation="vertical"]) {
 		flex-flow: column wrap;
 
-		.db-tab-panel {
-			inline-size: 100%;
-		}
-
 		.db-tab-list {
-			/* horizontal track for pulse */
-			&::before {
-				@extend %pulse-track;
+			padding: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2) 0 variables.$db-spacing-fixed-2xs;
+			margin-block-start: calc(-1 * (#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2));
 
-				block-size: variables.$db-border-width-xs;
-				inset-inline: variables.$db-spacing-fixed-xs;
+			@extend %horizontal-pulse;
 
-				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
-				inset-block-start: calc(
-					3 * #{variables.$db-spacing-fixed-xs} +
-						#{variables.$db-spacing-fixed-2xs} +
-						#{form-components.$font-size-height}
-				);
+			background-image: linear-gradient(
+				colors.$db-adaptive-bg-basic-transparent-semi-default,
+				colors.$db-adaptive-bg-basic-transparent-semi-default
+			);
+			background-position: left bottom;
+			background-repeat: no-repeat;
+			background-origin: content-box;
+			background-attachment: local;
+			background-size: 100% variables.$db-border-width-xs;
+
+			.db-tab-item {
+				// stylelint-disable-next-line db-ux/use-spacings
+				margin-block-end: $pulse-gap-offset;
 			}
 
-			> ul {
-				@extend %horizontal-pulse;
-
-				overflow: auto hidden;
+			&[role="tablist"], .db-tab-list {
+				display: flex;
+				align-items: stretch;
+				overflow: auto;
+				// stylelint-disable-next-line db-ux/use-spacings
+				padding-inline: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
 				inline-size: 100%;
-
-				.db-tab-item {
-					margin-block: variables.$db-spacing-fixed-xs
-						calc(
-							2 * #{variables.$db-spacing-fixed-2xs} +
-								#{variables.$db-border-width-xs}
-						);
-				}
-
-				db-tab-item,
-				dbtabitem {
-					&:first-of-type {
-						.db-tab-item {
-							margin-inline-start: variables.$db-spacing-fixed-xs;
-						}
-					}
-
-					&:last-of-type {
-						.db-tab-item {
-							margin-inline-end: variables.$db-spacing-fixed-xs;
-						}
-					}
-				}
-
-				&:not(:has(db-tab-item, dbtabitem)) {
-					.db-tab-item {
-						&:first-of-type {
-							margin-inline-start: variables.$db-spacing-fixed-xs;
-						}
-
-						&:last-of-type {
-							margin-inline-end: variables.$db-spacing-fixed-xs;
-						}
-					}
-				}
 			}
 		}
 	}
 
-	/*
-	Variant Orientation VERTICAL
-	 */
 	&[data-orientation="vertical"] {
 		flex-direction: row;
 
-		.db-tab-panel {
-			padding: variables.$db-spacing-fixed-xs 0;
-		}
-
 		.db-tab-list {
-			$width: var(
-				--db-tab-list-vertical-width,
-				#{variables.$db-sizing-3xl}
-			);
+			--db-tabs-line-gap-vertical: #{$pulse-gap-offset};
 
 			/*
 			min and nominal size must both be set to ensure
 			- min-inline-size: tab-list is not displayed narrower than defined
 			- max-inline-size: tab-list is not displayed wider than defined
 			 */
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			min-inline-size: $width;
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			max-inline-size: $width;
-
-			/* horizontal space to the tab panels */
-			padding-inline-end: variables.$db-spacing-fixed-xs;
-
-			/* ensures that tab-list (track) is only as high as all the tab-items together if open tab-panel is higher */
+			min-inline-size: variables.$db-sizing-3xl;
+			max-inline-size: variables.$db-sizing-3xl;
+			// stylelint-disable-next-line db-ux/use-spacings
+			padding-inline: variables.$db-spacing-fixed-xs var(--db-tabs-line-gap-vertical);
 			margin-block-end: auto;
 
-			.db-tab-item {
-				label {
-					position: relative;
-				}
+			@extend %vertical-pulse;
 
-				&:has(input:focus-visible),
-				&:hover {
-					inline-size: fit-content;
-
-					label {
-						overflow: visible;
-					}
-				}
-			}
-
-			/* vertical track for pulse */
 			&::before {
 				@extend %pulse-track;
 
-				inline-size: variables.$db-border-width-xs;
-				inset-block: variables.$db-spacing-fixed-xs;
+				display: block;
 				inset-inline-start: 0;
+				inset-block: 0;
+				inline-size: variables.$db-border-width-xs;
+				z-index: 1;
 			}
 
-			> ul {
-				@extend %vertical-pulse;
-
+			&[role="tablist"], .db-tab-list {
+				display: flex;
 				flex-direction: column;
-				block-size: 100%;
-
-				&:not(:has(db-tab-item, dbtabitem)) {
-					.db-tab-item {
-						&:first-of-type {
-							margin-block-start: variables.$db-spacing-fixed-xs;
-						}
-
-						&:last-of-type {
-							margin-block-end: variables.$db-spacing-fixed-xs;
-						}
-					}
-				}
-			}
-		}
-
-		.db-tab-item {
-			$padding-start-calc: calc(
-				#{variables.$db-border-width-xs} +
-					#{variables.$db-spacing-fixed-2xs}
-			);
-
-			padding-inline-start: $padding-start-calc;
-
-			input {
-				padding-inline-start: $padding-start-calc;
-			}
-		}
-
-		db-tab-item,
-		dbtabitem {
-			&:first-of-type {
-				.db-tab-item {
-					margin-block-start: variables.$db-spacing-fixed-xs;
-				}
-			}
-
-			&:last-of-type {
-				.db-tab-item {
-					margin-block-end: variables.$db-spacing-fixed-xs;
-				}
+				align-items: flex-start;
 			}
 		}
 	}
@@ -280,84 +148,99 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			inline-size: 100%;
 		}
 
-		.db-tab-item,
-		.db-tab-item label {
-			inline-size: 100%;
+		.db-tab-item {
+			flex: 1 0 0;
+			inline-size: 0;
+			justify-content: flex-start;
 		}
 
-		&[data-alignment="center"] {
-			.db-tab-item label {
-				text-align: center;
-				justify-content: center;
-			}
+		&[data-content-alignment="center"] .db-tab-item {
+			text-align: center;
+			justify-content: center;
+		}
+
+		&[data-content-alignment="end"] .db-tab-item {
+			text-align: end;
+			justify-content: end;
 		}
 	}
 
 	&[data-scroll-behavior="arrows"] {
-		.db-tab-list {
-			> ul {
-				&::-webkit-scrollbar {
-					display: none;
+		$db-tabs-z-index-button-background: 21;
+		$db-tabs-z-index-button: 22;
+		$db-tabs-z-index-track: 19;
+
+		.db-tab-list::-webkit-scrollbar {
+			display: none;
+		}
+
+		&:not([data-orientation="vertical"]) {
+			// Track für Arrow-Buttons-Modus als ::before Pseudo-Element auf .db-tabs
+			&::before {
+				content: "";
+				position: absolute;
+				z-index: $db-tabs-z-index-track;
+				inset-block-start: calc(#{variables.$db-sizing-md} + #{variables.$db-border-width-2xs});
+				inset-inline: 0;
+				block-size: variables.$db-border-width-xs;
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			}
+
+			// Adjust track width when buttons are hidden
+			&:not(:has(.tabs-scroll-left))::before {
+				inset-inline-start: variables.$db-sizing-md;
+			}
+
+			&:not(:has(.tabs-scroll-right))::before {
+				inset-inline-end: variables.$db-sizing-md;
+			}
+
+			[data-density="functional"] &::before {
+				inset-block-start: calc(#{variables.$db-sizing-sm} + #{variables.$db-border-width-2xs});
+			}
+
+			[data-density="expressive"] &::before {
+				inset-block-start: calc(#{variables.$db-sizing-lg} + #{variables.$db-border-width-2xs});
+			}
+
+			.db-tab-list {
+				// stylelint-disable-next-line db-ux/use-spacings
+				padding: 0 variables.$db-sizing-md $pulse-gap-offset;
+				margin-block-start: 0;
+				background-image: none;
+
+				.db-tab-item {
+					margin-block-end: 0;
+
+					&::after {
+						inset-block-end: calc(-1 * (#{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-2xs})) !important;
+					}
 				}
 			}
-		}
 
-		&:has(.tabs-scroll-left) {
-			&::before {
-				content: "";
-			}
-		}
-
-		&:has(.tabs-scroll-right) {
-			&::after {
-				content: "";
-			}
-		}
-
-		&:has(.db-button) {
-			&::before,
-			&::after {
-				position: absolute;
-				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-				inline-size: variables.$db-sizing-md;
-				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-sizing-md}
-				);
-				flex: 0 0 auto;
-			}
-
-			&::before {
-				inset-inline-start: 0;
-			}
-
-			&::after {
-				inset-inline-end: 0;
-			}
-		}
-
-		/*
-		 * Scroll left / right buttons
-		 */
-		.tabs-scroll-left {
-			@include angular-button-workaround {
-				inset-inline-start: 0;
-			}
-		}
-
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				inset-inline-end: 0;
-			}
-		}
-
-		.tabs-scroll-left,
-		.tabs-scroll-right {
-			@include angular-button-workaround {
+			.tabs-scroll-left,
+			.tabs-scroll-right {
 				position: absolute;
 				z-index: $db-tabs-z-index-button;
-				inset-block: variables.$db-spacing-fixed-xs;
+				inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
+				aspect-ratio: unset;
+				min-block-size: unset;
+				block-size: fit-content;
+				border-block-width: 0;
+				padding-block: calc(#{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-2xs});
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+				@media screen and (forced-colors: active) {
+					border-block: variables.$db-border-width-xs solid transparent;
+				}
+			}
+
+			.tabs-scroll-left {
+				inset-inline-start: 0;
+			}
+
+			.tabs-scroll-right {
+				inset-inline-end: 0;
 			}
 		}
 	}

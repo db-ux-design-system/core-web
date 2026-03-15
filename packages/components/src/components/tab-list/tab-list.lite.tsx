@@ -1,29 +1,36 @@
 import {
+	onMount,
 	useDefaultProps,
-	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DBTabListProps, DBTabListState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
-	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBTabListState>({});
+	// _ref is required for Mitosis to generate forwardRef in React/Angular output
+	const _ref = useRef<HTMLDivElement | null>(null);
+	// Static placeholder required by Mitosis: useStore needs a compile-time value to infer types
+	// and generate correct framework output.
+	const state = useStore<DBTabListState>({
+		_id: 'tab-list-base-id'
+	});
 
-	// jscpd:ignore-end
-
+	onMount(() => {
+		state._id = props.id || 'tab-list-' + uuid();
+	});
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-tab-list', props.className)}>
-			<ul role="tablist">{props.children}</ul>
+			id={state._id}
+			class={cls('db-tab-list', props.className)}
+			role="tablist"
+			// aria-labelledby takes precedence over aria-label per ARIA spec – only one should be set
+			aria-label={props.ariaLabel}
+			aria-labelledby={props.ariaLabelledby}>
+			{props.children}
 		</div>
 	);
 }

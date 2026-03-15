@@ -6,7 +6,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 import {
 	cls,
@@ -25,7 +24,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
-		_id: DEFAULT_ID,
+		_id: 'tooltip-' + uuid(),
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,

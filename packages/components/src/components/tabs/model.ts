@@ -1,5 +1,5 @@
 import {
-	AlignmentProps,
+	ContentAlignmentProps,
 	GlobalProps,
 	InitializedState,
 	InputEvent,
@@ -73,11 +73,14 @@ export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
 	WidthProps &
-	AlignmentProps &
+	ContentAlignmentProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
-	_name: string;
+	_generatedId: string;
+	_generatedName: string;
+	_id: () => string;
+	_name: () => string;
 	scrollContainer?: Element | null;
 	scroll: (left?: boolean) => void;
 	showScrollLeft?: boolean;
@@ -85,9 +88,18 @@ export type DBTabsDefaultState = {
 	evaluateScrollButtons: (tabList: Element) => void;
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
-	initTabs: (init?: boolean) => void;
-	handleChange: (event: InputEvent<HTMLElement>) => void;
-	_resizeObserver?: ResizeObserver;
+	initTabs: (activeIndex?: number) => void;
+	_resizeObserver?: ResizeObserver | null;
+	_observer?: MutationObserver | null;
+	_scrollListener: { fn: () => void } | null;
+	activeTabIndex: number;
+	activateTab: (index: number) => void;
+	getTabId: (index: number | string) => string;
+	getPanelId: (index: number | string) => string;
+	handleClick: (event: any) => void;
+	handleKeyDown: (event: any) => void;
+	isIndexActive: (index: number | string) => boolean;
+	getTabItemTabIndex: (index: number | string) => 0 | -1;
 };
 
 export type DBTabsState = DBTabsDefaultState & InitializedState;

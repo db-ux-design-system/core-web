@@ -3,169 +3,217 @@ import {
 	onUnMount,
 	onUpdate,
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
-import {
-	handleFrameworkEventAngular,
-	handleFrameworkEventVue
-} from '../../utils/form-components';
+import { cls, getBoolean } from '../../utils';
+import DBTooltip from '../tooltip/tooltip.lite';
 import type { DBTabItemProps, DBTabItemState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled'],
+		nativeAttributes: ['disabled', 'tabindex'],
 		signals: {
-			writeable: ['disabled', 'checked']
+			writeable: ['disabled']
 		}
 	}
 });
+
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | any>(null);
+	const _ref = useRef<HTMLButtonElement | null>(null);
+	const _labelRef = useRef<HTMLSpanElement | null>(null);
 
-	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		_selected: false,
-		_name: undefined,
 		initialized: false,
-		_listenerAdded: false,
-		boundSetSelectedOnChange: undefined,
-		setSelectedOnChange: (event: any) => {
-			event.stopPropagation();
-			useTarget({
-				stencil: () => {
-					state._selected = getBooleanAsString(event.target === _ref);
-				},
-				default: () => {
-					state._selected = event.target === _ref;
-				}
-			});
+		internalActive: false,
+		internalTabIndex: -1,
+		getCurrentTabIndex() {
+			return props.tabIndex !== undefined
+				? Number(props.tabIndex)
+				: state.internalTabIndex;
 		},
-		handleNameAttribute: () => {
-			if (_ref) {
-				const setAttribute = _ref.setAttribute;
-				_ref.setAttribute = (attribute: string, value: string) => {
-					setAttribute.call(_ref, attribute, value);
-					if (attribute === 'name') {
-						state._name = value;
-					}
-				};
-			}
-		},
-		handleChange: (event: any) => {
-			if (props.onChange) {
-				props.onChange(event);
+		isTruncated: false,
+		tooltipText: '',
+		_resizeObserver: null,
+		_ariaSelectedListener: null,
+		handleClick: (event: any) => {
+			if (event && event.preventDefault) {
+				event.preventDefault();
 			}
 
-			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
-			});
+			if (!getBoolean(props.disabled) && props.onClick) {
+				props.onClick(event);
+			}
+		},
+		checkTruncation: () => {
+			if (_labelRef) {
+				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
+				const clientWidth = Math.ceil(_labelRef.clientWidth);
+				const truncated = scrollWidth > clientWidth + 1;
+
+				if (state.isTruncated !== truncated) {
+					state.isTruncated = truncated;
+
+					if (!truncated && _ref) {
+						if (_ref.hasAttribute('data-has-tooltip')) {
+							_ref.removeAttribute('data-has-tooltip');
+						}
+						if (_ref.hasAttribute('aria-describedby')) {
+							_ref.removeAttribute('aria-describedby');
+						}
+					}
+				}
+
+				state.tooltipText = truncated
+					? props.label ||
+						_labelRef.innerText ||
+						_labelRef.textContent ||
+						''
+					: '';
+			}
 		}
 	});
 
-	// Set up event listener to react on any change (select & deselect) in tab list
-	// Default: Most framework can just pass the state function to the parents event listener.
-	// Stencil: Bind the function to maintain correct 'this' context in class components
-	// React: Wrap in arrow function so setState doesn't treat it as a state updater
 	onMount(() => {
-		useTarget({
-			stencil: () => {
-				state.boundSetSelectedOnChange =
-					state.setSelectedOnChange.bind(state);
-			},
-			react: () => {
-				state.boundSetSelectedOnChange = () =>
-					state.setSelectedOnChange;
-			},
-			default: () => {
-				state.boundSetSelectedOnChange = state.setSelectedOnChange;
-			}
-		});
-		state.initialized = true;
-	});
-	// jscpd:ignore-end
+		state.internalActive = getBoolean(props.active) || false;
+		state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
 
-	onUpdate(() => {
-		if (_ref && state.initialized && state.boundSetSelectedOnChange) {
-			useTarget({ react: () => state.handleNameAttribute() });
-			state.initialized = false;
-
-			// deselect this tab when another tab in tablist is selected
-			if (!state._listenerAdded) {
-				_ref.closest('[role=tablist]')?.addEventListener(
-					'change',
-					state.boundSetSelectedOnChange
-				);
-				state._listenerAdded = true;
-			}
-
-			// Initialize selected state from either active prop (set by parent) or checked attribute
-			if (props.active || _ref.checked) {
-				useTarget({
-					stencil: () => {
-						state._selected = getBooleanAsString(true);
-					},
-					default: () => {
-						state._selected = true;
+		if (typeof window !== 'undefined') {
+			const setupObserverAndCheck = () => {
+				requestAnimationFrame(() => {
+					state.checkTruncation();
+					const labelEl = _labelRef;
+					if (labelEl && !labelEl.dataset.label) {
+						labelEl.dataset.label =
+							props.label ||
+							labelEl.innerText ||
+							labelEl.textContent ||
+							'';
+					}
+					if (_labelRef) {
+						const resizeObserver = new ResizeObserver(() => {
+							requestAnimationFrame(() => {
+								state.checkTruncation();
+							});
+						});
+						resizeObserver.observe(_labelRef);
+						state._resizeObserver = resizeObserver;
 					}
 				});
-				_ref.click();
+			};
+			const hasIcon = props.showIcon && props.icon;
+			if (hasIcon && document.fonts?.ready) {
+				document.fonts.ready.then(setupObserverAndCheck);
+			} else {
+				setupObserverAndCheck();
 			}
 		}
-	}, [_ref, state.initialized, state.boundSetSelectedOnChange]);
 
-	onUpdate(() => {
-		if (props.name) {
-			state._name = props.name;
+		if (_ref) {
+			const listener = (event: any) => {
+				state.internalActive = event.detail.selected;
+				if (props.tabIndex === undefined) {
+					if (event.detail.tabIndex !== undefined) {
+						state.internalTabIndex = event.detail.tabIndex;
+					} else {
+						state.internalTabIndex = event.detail.selected ? 0 : -1;
+					}
+				}
+			};
+			state._ariaSelectedListener = { fn: listener };
+			_ref.addEventListener('aria-selected-changed', listener);
 		}
-	}, [props.name]);
+	});
 
+	// Disconnect the observer
 	onUnMount(() => {
-		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
-			_ref.closest('[role=tablist]')?.removeEventListener(
-				'change',
-				state.boundSetSelectedOnChange
-			);
-			state._listenerAdded = false;
+		state._resizeObserver?.disconnect();
+		const _listener = state._ariaSelectedListener;
+		if (_ref && _listener) {
+			_ref.removeEventListener('aria-selected-changed', _listener.fn);
+		}
+	});
+
+	// Update internal active state when the active prop changes
+	onUpdate(() => {
+		if (props.active !== undefined) {
+			state.internalActive = getBoolean(props.active) || false;
+		}
+	}, [props.active]);
+
+	// Manually sync DOM attributes
+	onUpdate(() => {
+		if (_ref) {
+			const isDisabled = getBoolean(props.disabled);
+			const disabledStr = isDisabled ? 'true' : 'false';
+
+			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
+				_ref?.setAttribute('aria-disabled', disabledStr);
+			}
+
+			if (!state.isTruncated) {
+				if (_ref.hasAttribute('data-has-tooltip')) {
+					_ref.removeAttribute('data-has-tooltip');
+				}
+				if (_ref.hasAttribute('aria-describedby')) {
+					_ref.removeAttribute('aria-describedby');
+				}
+			}
 		}
 	});
 
 	return (
-		<li class={cls('db-tab-item', props.className)} role="none">
-			<label
-				htmlFor={props.id ?? props.propOverrides?.id}
-				data-icon={props.iconLeading ?? props.icon}
-				data-icon-trailing={props.iconTrailing}
-				data-show-icon={getBooleanAsString(
-					props.showIconLeading ?? props.showIcon
-				)}
-				data-show-icon-trailing={getBooleanAsString(
-					props.showIconTrailing
-				)}
-				data-no-text={getBooleanAsString(props.noText)}>
-				<input
-					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-selected={state._selected}
-					checked={getBoolean(props.checked, 'checked')}
-					ref={_ref}
-					type="radio"
-					role="tab"
-					name={state._name}
-					id={props.id ?? props.propOverrides?.id}
-					onInput={(event: any) => state.handleChange(event)}
-				/>
-
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
-			</label>
-		</li>
+		<button
+			ref={_ref}
+			type="button"
+			role="tab"
+			class={cls('db-tab-item', props.className)}
+			// suppresses native browser tooltips inherited from parent elements
+			title=""
+			aria-label={getBoolean(props.noText) ? props.label : undefined}
+			aria-selected={
+				(
+					props.active !== undefined
+						? getBoolean(props.active)
+						: state.internalActive
+				)
+					? 'true'
+					: 'false'
+			}
+			aria-controls={props.ariaControls}
+			disabled={getBoolean(props.disabled) ? true : undefined}
+			tabIndex={state.getCurrentTabIndex()}
+			id={props.id}
+			data-active={
+				props.active !== undefined
+					? getBoolean(props.active)
+					: state.internalActive
+			}
+			onClick={(event) => state.handleClick(event)}>
+			<Show when={!props.noText}>
+				{/* wrapper needed for accurate width measurement via refs */}
+				<span
+					ref={_labelRef}
+					class="db-tab-label"
+					title=""
+					data-icon={props.showIcon ? props.icon : undefined}
+					data-icon-trailing={
+						props.showIconTrailing ? props.iconTrailing : undefined
+					}>
+					<Show when={props.label}>{props.label}</Show>
+					<Show when={!props.label}>
+						<Slot />
+					</Show>
+				</span>
+			</Show>
+			<Show when={state.isTruncated && state.tooltipText}>
+				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
+			</Show>
+		</button>
 	);
 }

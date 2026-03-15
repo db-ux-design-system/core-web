@@ -1,6 +1,3 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
-
-.db-tab-panel {
-	@include helpers.display(none);
+.db-tab-panel:not([hidden]) {
+	display: block;
 }

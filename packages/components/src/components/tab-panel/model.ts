@@ -5,10 +5,20 @@ export type DBTabPanelDefaultProps = {
 	 * The content if you don't want to use children.
 	 */
 	content?: string;
+	/**
+	 * If the panel is hidden.
+	 */
+	hidden?: boolean;
+	/**
+	 * The id of the tab that labels this panel (WAI-ARIA).
+	 */
+	ariaLabelledby?: string;
+	/**
+	 * Accessible label for the panel, overrides ariaLabelledby for the accessible name.
+	 */
+	ariaLabel?: string;
 };
 
 export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps;
 
-export type DBTabPanelDefaultState = {};
-
-export type DBTabPanelState = DBTabPanelDefaultState & GlobalState;
+export interface DBTabPanelState extends GlobalState {}

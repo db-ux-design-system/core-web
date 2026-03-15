@@ -45,22 +45,14 @@ const testComponent = () => {
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
 		expect(activeTabIndex).toBe(undefined);
-
-		// Beware: the comments below actually change the selector for vue
-		// this is necessary because vue will not trigger a check on an list element but requires the actual
-		// radio button element, which has the role=tab
 		const component = await mount(comp);
-		await component
-			.getByTestId('test2')
-			// VUE: .getByRole('tab')
-			.check({ force: true });
-		const tabChecked = await component
-			.getByTestId('test')
-			// VUE: .getByRole('tab')
-			.isChecked();
-		expect(!tabChecked).toBeTruthy();
-
-		expect(activeTabIndex).toBe(1);
+		await component.getByRole('tab', { name: 'Test 2' }).click();
+		await expect(
+			component.getByRole('tab', { name: 'Test 1' })
+		).toHaveAttribute('aria-selected', 'false');
+		await expect(
+			component.getByRole('tab', { name: 'Test 2' })
+		).toHaveAttribute('aria-selected', 'true');
 	});
 };
 
@@ -83,9 +75,50 @@ const testA11y = () => {
 	});
 };
 
+const testProps = () => {
+	test('should accept content alignment prop', async ({ mount }) => {
+		const component = await mount(
+			<DBTabs contentAlignment="center">
+				<DBTabList>
+					<DBTabItem>Test 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Content 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(component).toHaveAttribute(
+			'data-content-alignment',
+			'center'
+		);
+	});
+
+	test('should activate tab based on URL hash', async ({ mount, page }) => {
+		await page.setViewportSize({ width: 1920, height: 1080 });
+		await page.evaluate(() => {
+			window.location.hash = '#tabs-my-deep-link-tab-1';
+		});
+		const component = await mount(
+			<DBTabs name="my-deep-link">
+				<DBTabList>
+					<DBTabItem>Tab 0</DBTabItem>
+					<DBTabItem>Tab 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel 0</DBTabPanel>
+				<DBTabPanel>Panel 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(
+			component.getByRole('tab', { name: 'Tab 1' })
+		).toHaveAttribute('aria-selected', 'true');
+		await expect(
+			component.getByRole('tab', { name: 'Tab 0' })
+		).toHaveAttribute('aria-selected', 'false');
+	});
+};
+
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
 	testActions();
+	testProps();
 });

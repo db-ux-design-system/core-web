@@ -6,6 +6,7 @@ import TabsDensity from '../examples/density.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
+import TabsTruncation from '../examples/truncation.example.lite';
 import TabsWidth from '../examples/width.example.lite';
 
 export default function TabsShowcase(props: PatternhubProps) {
@@ -31,6 +32,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Overflow">
 				<CardWrapperShowcase>
 					<TabsOverflow />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Truncation">
+				<CardWrapperShowcase>
+					<TabsTruncation />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">
