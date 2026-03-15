@@ -3,7 +3,7 @@
 ## Install
 
 ```shell
-npx playwright install
+pnpm exec playwright install
 npx @guidepup/setup
 ```
 
@@ -16,13 +16,13 @@ Start a test with these commands (ensure a build or start a watcher previous to 
 ### MacOS
 
 ```shell
-npm run test-sr:macos --workspace=react-showcase -- --ui
+pnpm --filter=react-showcase run test-sr:macos --ui
 ```
 
 ### Windows
 
 ```shell
-npm run test-sr:windows --workspace=react-showcase -- --ui
+pnpm --filter=react-showcase run test-sr:windows --ui
 ```
 
 ## Gotchas

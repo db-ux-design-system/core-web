@@ -30,11 +30,41 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⏬ Download outputs
+      - name: ⏬ Download foundations build
         uses: actions/download-artifact@v8
         with:
-          name: db-ux-outputs
-          path: build-outputs
+          name: db-ux-foundations-build
+          path: packages/foundations/build
+
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-components-build
+          path: packages/components/build
+
+      - name: ⏬ Download migration build
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-migration-build
+          path: packages/migration/build
+
+      - name: ⏬ Download stylelint build
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-stylelint-build
+          path: packages/stylelint/build
+
+      - name: ⏬ Download agent-cli build
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build
+
+      - name: ⏬ Download framework outputs
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-framework-outputs
+          path: packages
 
       - name: 📰 Publish to NPM Registries
         run: |

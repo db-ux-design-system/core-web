@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBNavigationItem } from "../../../output/vue/src";
+import { DBNavigationItem } from "@db-ux/v-core-components/src";
 import { type NavItem } from "./utils/navigation-items";
 
 defineProps<{

@@ -6,8 +6,8 @@
 		"outDir": "./out-tsc/app",
 		"types": [],
 		"paths": {
-			"@components": ["../../output/angular/src"],
-			"@components/src/*": ["../../output/angular/src/*"]
+			"@components": ["../../packages/ngx-core-components/src"],
+			"@components/src/*": ["../../packages/ngx-core-components/src/*"]
 		},
 		"skipLibCheck": true
 	},

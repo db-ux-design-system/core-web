@@ -16,9 +16,11 @@
 		"downlevelIteration": true,
 		"target": "ES2017",
 		"paths": {
-			"@components": ["../../output/react/src"],
-			"@components/src/*": ["../../output/react/src/*"],
-			"@components/components/*": ["../../output/react/src/components/*"]
+			"@components": ["../../packages/react-core-components/src"],
+			"@components/src/*": ["../../packages/react-core-components/src/*"],
+			"@components/components/*": [
+				"../../packages/react-core-components/src/components/*"
+			]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

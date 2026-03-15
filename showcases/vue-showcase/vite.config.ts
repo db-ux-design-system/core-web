@@ -19,7 +19,10 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'@components': path.resolve(__dirname, '../../output/vue/src')
+			'@components': path.resolve(
+				__dirname,
+				'../../packages/v-core-components/src'
+			)
 		}
 	},
 	css: {

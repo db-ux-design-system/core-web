@@ -16,7 +16,7 @@ const config = {
 	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 	transpilePackages: [
-		'../../output/react/src',
+		'@db-ux/react-core-components/src',
 		'../react-showcase/',
 		'@db-ux'
 	],

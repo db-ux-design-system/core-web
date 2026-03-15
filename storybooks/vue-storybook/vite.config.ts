@@ -14,7 +14,10 @@ export default defineConfig({
 			// Wired issue with storybook vite-builder inside monorepo
 			react: path.resolve(__dirname, '../../node_modules/react'),
 			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'@components': path.resolve(__dirname, '../../output/vue/src')
+			'@components': path.resolve(
+				__dirname,
+				'../../packages/v-core-components/src'
+			)
 		}
 	}
 });

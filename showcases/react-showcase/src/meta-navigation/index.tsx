@@ -1,5 +1,5 @@
+import { DBSelect } from '@db-ux/react-core-components/src';
 import { useEffect, useState } from 'react';
-import { DBSelect } from '../../../../output/react/src';
 import {
 	COLOR,
 	COLOR_CONST,

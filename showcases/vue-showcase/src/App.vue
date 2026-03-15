@@ -6,7 +6,7 @@ import {
 	DBNavigation,
 	DBPage,
 	DBSelect
-} from "../../../output/vue/src";
+} from "@db-ux/v-core-components/src";
 import {
 	COLORS,
 	DENSITIES

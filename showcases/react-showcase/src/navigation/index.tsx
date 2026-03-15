@@ -1,4 +1,4 @@
-import { DBNavigation } from '../../../../output/react/src';
+import { DBNavigation } from '@db-ux/react-core-components/src';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,

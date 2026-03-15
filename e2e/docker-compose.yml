@@ -13,15 +13,15 @@ services:
       - "./../packages/components/build:/e2e/packages/components/build"
       - "./../build-showcases:/e2e/build-showcases"
       - "./../showcases:/e2e/showcases"
-      - "./../output/react/playwright:/e2e/output/react/playwright"
-      - "./../output/react/src:/e2e/output/react/src"
-      - "./../output/vue/src:/e2e/output/vue/src"
+      - "./../packages/react-core-components/playwright:/e2e/packages/react-core-components/playwright"
+      - "./../packages/react-core-components/src:/e2e/packages/react-core-components/src"
+      - "./../packages/v-core-components/src:/e2e/packages/v-core-components/src"
       - type: bind
         source: ./package.json
         target: /e2e/package.json
       - type: bind
-        source: ./../output/react/playwright.config.ts
-        target: /e2e/output/react/playwright.config.ts
+        source: ./../packages/react-core-components/playwright.config.ts
+        target: /e2e/packages/react-core-components/playwright.config.ts
       - type: bind
-        source: ./../output/vue/playwright.config.ts
-        target: /e2e/output/vue/playwright.config.ts
+        source: ./../packages/v-core-components/playwright.config.ts
+        target: /e2e/packages/v-core-components/playwright.config.ts

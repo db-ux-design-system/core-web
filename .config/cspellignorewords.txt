@@ -142,6 +142,8 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+customselect
+screenshit
 TSES
 trufflesecurity
 elif

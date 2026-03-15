@@ -10,8 +10,8 @@ export default {
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
 	'**/package.json': [
-		() => 'npm install --package-lock-only --ignore-scripts',
-		'npm run lint:package-json'
+		() => 'pnpm install --lockfile-only --ignore-scripts',
+		'pnpm run lint:package-json'
 	],
 	'*': 'cspell --config .config/cspell.config.ts'
 };

@@ -30,7 +30,7 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../output/react/src/index';
+} from '../../../../packages/react-core-components/src/index';
 
 import { useEffect, useState } from 'react';
 import type { ComponentParserType, ComponentType } from './data';

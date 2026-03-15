@@ -9,7 +9,7 @@ COPY packages/ packages/
 COPY showcases/ showcases/
 
 # Install dependencies
-RUN npm install --ignore-scripts
+RUN pnpm install --ignore-scripts
 
 # Run playwright test
-CMD [ "npm", "run", "test" ]
+CMD [ "pnpm", "run", "test" ]

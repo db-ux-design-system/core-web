@@ -22,9 +22,11 @@
     "resolveJsonModule": true,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "@components": ["../../output/angular/src"],
-      "@components/src/*": ["../../output/angular/src/*"],
-      "@components/components/*": ["../../output/angular/src/components/*"]
+      "@components": ["../../packages/ngx-core-components/src"],
+      "@components/src/*": ["../../packages/ngx-core-components/src/*"],
+      "@components/components/*": [
+        "../../packages/ngx-core-components/src/components/*"
+      ]
     }
   },
   "angularCompilerOptions": {

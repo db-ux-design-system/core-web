@@ -21,9 +21,9 @@
 		"jsx": "react-jsx",
 		"types": ["vite/client"],
 		"paths": {
-			"@components": ["../../output/react/src"],
-			"@components/src/*": ["../../output/react/src/*"],
-			"@components/components/*": ["../../output/react/src/components/*"]
+			"@components": ["../../packages/react-core-components/src"],
+			"@components/src/*": ["../../packages/react-core-components/src/*"],
+			"@components/components/*": ["../../packages/react-core-components/src/components/*"]
 		}
 	},
 	"include": ["src"],

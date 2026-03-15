@@ -5,29 +5,30 @@ import components, { Overwrite } from './components.js';
 import { runReplacements } from '../utils';
 
 export default (tmp?: boolean) => {
-	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+	const outputFolder = tmp ? 'tmp/vue/' : '';
 	// Rewire imports in Playwright config
 	replaceInFileSync({
-		files: `../../${outputFolder}/vue/playwright.config.ts`,
+		files: `../v-core-components/${outputFolder}playwright.config.ts`,
 		from: /react/g,
 		to: `vue`
 	});
 	for (const component of components) {
 		const componentName = component.name;
-		const vueFile = `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.vue`;
+		const vueFile = `../v-core-components/${outputFolder}src/components/${componentName}/${componentName}.vue`;
 
 		try {
 			// Rewire imports in Playwright component tests
 			replaceInFileSync({
-				files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
+				files: `../v-core-components/${outputFolder}src/components/${componentName}/${componentName}.spec.tsx`,
 				from: `react`,
 				to: `vue`
 			});
 
+			// Only replace if .vue extension is not already present
 			replaceInFileSync({
-				files: `../../${outputFolder}/vue/src/components/${componentName}/index.ts`,
-				from: `./${componentName}`,
-				to: `./${componentName}.vue`
+				files: `../v-core-components/${outputFolder}src/components/${componentName}/index.ts`,
+				from: new RegExp(`\\./${componentName}'(?!\\.vue)`, 'g'),
+				to: `./${componentName}.vue'`
 			});
 
 			const replacements: Overwrite[] = [

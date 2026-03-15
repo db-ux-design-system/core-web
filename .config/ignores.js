@@ -11,9 +11,7 @@ const ignoreFolders = [
 	'showcases/nuxt-showcase/**/*',
 	'showcases/next-showcase/**/*',
 	'showcases/angular-ssr-showcase/**/*',
-	'build-outputs/**/*',
 	'build-showcases/**/*',
-	'output/**/*',
 	'**/test/**/*',
 	'**/playwright.*.ts',
 	'playwright-report/**/*'

@@ -39,7 +39,7 @@ const config = {
 		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	webServer: {
-		command: `npm run dev`,
+		command: `pnpm run dev`,
 		port: 5173,
 		reuseExistingServer: !process.env.CI
 	},

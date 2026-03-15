@@ -7,9 +7,9 @@ You'll need to insert the environment variables as described within the package 
 Afterwards run the following commands:
 
 ```shell
-npm install
-npm run build
-npm run start
+pnpm install
+pnpm run build
+pnpm run start
 ```
 
 Please mind the [conventions for git commits](/docs/conventions.md#user-content-git-commits-conventions).
@@ -30,20 +30,20 @@ Playwright is used to create and compare screenshots of each individual componen
 
 ###### Pipeline generated images
 
-On every fail of the visual regression tests in the Default pipeline, we're regenerating the snapshots as a `snapshot-*`-artifact. Please download these ones from the "Summary" page and commit the updated screenshots with `npm run commit:updated-snapshots` command from project root.
+On every fail of the visual regression tests in the Default pipeline, we're regenerating the snapshots as a `snapshot-*`-artifact. Please download these ones from the "Summary" page and commit the updated screenshots with `pnpm run commit:updated-snapshots` command from project root.
 
 ###### Manual update
 
 To update screenshots, simply run the following command (ensure Docker is installed and available in your shell):
 
 ```shell
-npm run regenerate:screenshots
+pnpm run regenerate:screenshots
 ```
 
 If you want to generate the screenshots manually, do the following:
 
 ```shell
-npm run build
+pnpm run build
 
 # unix
 docker run --rm --network host --volume $(pwd):/work/ --workdir /work/ --interactive --tty mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
@@ -51,11 +51,11 @@ docker run --rm --network host --volume $(pwd):/work/ --workdir /work/ --interac
 # windows - allow file sharing (windows pop up)
 docker run --rm --network host --volume ${PWD}:/work/ --workdir /work/ --interactive --tty mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
 
-npm install
+pnpm install
 
 cd output/${frameworkFolder}  (replace ${frameworkFolder} with the appropriate folder name)
 
-npx playwright test --update-snapshots
+pnpm exec playwright test --update-snapshots
 ```
 
 You can also use `docker-compose` to test or regenerate screenshots.

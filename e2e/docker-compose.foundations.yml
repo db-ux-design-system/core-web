@@ -1,6 +1,6 @@
 services:
   playwright:
-    command: "npm run regenerate:foundations"
+    command: "pnpm run regenerate:foundations"
     extends:
       file: docker-compose.yml
       service: playwright

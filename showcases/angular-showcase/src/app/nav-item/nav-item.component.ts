@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
 	DBNavigationItem,
 	NavigationContentDirective
-} from '../../../../../output/angular/src';
+} from '../../../../../packages/ngx-core-components/src';
 import { environment } from '../../environments/environment';
 import { NavItem } from '../utils/navigation-item';
 

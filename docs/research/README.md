@@ -3,7 +3,7 @@
 If you want to do a research for a new component run this in the `docs` folder:
 
 ```shell
-npm run generate:component-research --workspace=@db-ux/docs
+pnpm --filter=@db-ux/docs run generate:component-research
 ```
 
 1. Add the name of your component and a new `.md` file will be created.

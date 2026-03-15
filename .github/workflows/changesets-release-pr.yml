@@ -55,6 +55,6 @@ jobs:
       - name: 🆙 Publish
         if: steps.changesets.outputs.hasChangesets != 'true'
         run: |
-          npx --no tsx scripts/github/changesets/publish.ts
+          pnpm exec tsx scripts/github/changesets/publish.ts
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBSwitch } from '../../../../../../../output/angular/src';
+import { DBSwitch } from '../../../../../../../packages/ngx-core-components/src';
 import { environment } from '../../../../environments/environment';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 

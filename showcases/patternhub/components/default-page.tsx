@@ -1,3 +1,13 @@
+import {
+	DBBrand,
+	DBCard,
+	DBHeader,
+	DBIcon,
+	DBPage,
+	DBSection,
+	DBSwitch,
+	DBTooltip
+} from '@db-ux/react-core-components/src';
 import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -9,16 +19,6 @@ import {
 	useEffect,
 	useState
 } from 'react';
-import {
-	DBBrand,
-	DBCard,
-	DBHeader,
-	DBIcon,
-	DBPage,
-	DBSection,
-	DBSwitch,
-	DBTooltip
-} from '../../../output/react/src';
 import {
 	getBreadcrumb,
 	getNavigationList,

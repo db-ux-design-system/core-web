@@ -4,7 +4,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../../output/angular/src';
+} from '@db-ux/ngx-core-components/src';
 import { environment } from '../../../environments/environment';
 import { CheckboxesComponent } from '../form/checkboxes/checkboxes.component';
 import { CustomSelectsComponent } from '../form/custom-selects/custom-selects.component';
