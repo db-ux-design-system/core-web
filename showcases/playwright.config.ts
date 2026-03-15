@@ -21,6 +21,15 @@ const projects: Project[] = [
 		}
 	},
 	{
+		name: 'msedge',
+		use: {
+			...devices['Desktop Edge'],
+			channel: 'msedge',
+			reducedMotion: 'reduce',
+			contextOptions: { reducedMotion: 'reduce' }
+		}
+	},
+	{
 		name: 'firefox',
 		use: {
 			...devices['Desktop Firefox']
