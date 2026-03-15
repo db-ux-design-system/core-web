@@ -1,7 +1,13 @@
 import { describe, expect, test } from 'vitest';
-import { expandBracketAlternatives } from '../check-docs.js';
+import {
+	expandBracketAlternatives,
+	parseDBUXReference
+} from '../check-docs.js';
 
 const expand = expandBracketAlternatives as (input: string) => string[];
+const parseRef = parseDBUXReference as (
+	input: string
+) => { packageName: string; filePath: string } | undefined;
 
 describe('expandBracketAlternatives', () => {
 	test('returns original input when no bracket alternatives exist', () => {
@@ -32,5 +38,55 @@ describe('expandBracketAlternatives', () => {
 			'styles/rollup.css',
 			'styles/webpack.css'
 		]);
+	});
+});
+
+describe('parseDBUXReference', () => {
+	test('parses direct @db-ux package references', () => {
+		expect(
+			parseRef('@db-ux/db-theme-icons/build/styles/relative.css')
+		).toEqual({
+			packageName: '@db-ux/db-theme-icons',
+			filePath: 'build/styles/relative.css'
+		});
+	});
+
+	test('parses node_modules-prefixed @db-ux references', () => {
+		expect(
+			parseRef(
+				'node_modules/@db-ux/db-theme-icons/build/styles/[relative|absolute].css'
+			)
+		).toEqual({
+			packageName: '@db-ux/db-theme-icons',
+			filePath: 'build/styles/[relative|absolute].css'
+		});
+	});
+
+	test('parses ./node_modules-prefixed @db-ux references', () => {
+		expect(
+			parseRef(
+				'./node_modules/@db-ux/db-theme-icons/build/styles/relative.css'
+			)
+		).toEqual({
+			packageName: '@db-ux/db-theme-icons',
+			filePath: 'build/styles/relative.css'
+		});
+	});
+
+	test('parses ../node_modules-prefixed @db-ux references', () => {
+		expect(
+			parseRef(
+				'../node_modules/@db-ux/db-theme-icons/build/styles/relative.css'
+			)
+		).toEqual({
+			packageName: '@db-ux/db-theme-icons',
+			filePath: 'build/styles/relative.css'
+		});
+	});
+
+	test('returns undefined for non-@db-ux references', () => {
+		expect(
+			parseRef('node_modules/some-other-package/file.css')
+		).toBeUndefined();
 	});
 });
