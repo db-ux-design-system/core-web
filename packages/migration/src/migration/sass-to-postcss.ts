@@ -6,18 +6,18 @@ import type { ReplaceInFileConfig } from 'replace-in-file';
  * This migration handles:
  * 1. Converting @use to @import
  * 2. Converting @forward to @import
- * 3. Converting Sass @mixin to native CSS @mixin --name()
- * 4. Converting Sass @include to native CSS @apply --name()
+ * 3. Converting Sass @mixin to native CSS @mixin --name(params)
+ * 4. Converting Sass @include to native CSS @apply --name() { body }
  * 5. Converting Sass %placeholder to native CSS @macro --name
  * 6. Converting Sass @extend to native CSS @apply --name
  * 7. Converting SCSS single-line comments to CSS comments
  * 8. Updating file extensions in imports (.scss -> .css)
+ * 9. Converting #{...} interpolation syntax to var(--...)
  *
  * Note: This does NOT handle:
  * - @each loops (use postcss-each plugin)
  * - @if/@else blocks (use native CSS if() function)
  * - Complex Sass functions (convert to native CSS @function)
- * - Sass variables (most already map to CSS Custom Properties)
  */
 export const sass_to_postcss: ReplaceInFileConfig[] = [
 	// Convert @use with namespace to @import (double quotes)
@@ -53,12 +53,12 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 	},
 
 	// Convert Sass @mixin definitions with parameters to native CSS @mixin
-	// @mixin name($param) { -> @mixin --name() {
-	// Note: Native CSS @mixin doesn't support parameters in the same way
+	// @mixin name($param: "default") { -> @mixin --name($param: "default") {
+	// Preserves parameters including default values
 	{
 		files: '',
-		from: /@mixin\s+(\w[\w-]*)\s*\([^)]*\)\s*\{/g,
-		to: '@mixin --$1 {'
+		from: /@mixin\s+(\w[\w-]*)\s*\(([^)]*)\)\s*\{/g,
+		to: '@mixin --$1($2) {'
 	},
 
 	// Convert Sass @mixin definitions without parameters to native CSS @mixin
@@ -78,19 +78,43 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: '@macro --$1 {'
 	},
 
-	// Convert @include with content block to @apply (remove content block)
-	// @include name { content } -> @apply --name;
+	// Convert @include with content block (namespace.mixin) to @apply with body
+	// @include helpers.hover { background-color: red; } -> @apply --hover() { background-color: red; };
 	{
 		files: '',
-		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*\{[^}]*\}/g,
-		to: '@apply --$1;'
+		from: /@include\s+\w[\w-]*\.(\w[\w-]*)\s*\{([^}]*)\}/g,
+		to: '@apply --$1() {$2};'
 	},
 
-	// Convert @include with parameters to @apply
-	// @include name(params); -> @apply --name;
+	// Convert @include with content block (simple mixin) to @apply with body
+	// @include cursor-pointer { background: blue; } -> @apply --cursor-pointer() { background: blue; };
 	{
 		files: '',
-		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*\([^)]*\)\s*;/g,
+		from: /@include\s+(\w[\w-]*)\s*\{([^}]*)\}/g,
+		to: '@apply --$1() {$2};'
+	},
+
+	// Convert @include with parameters (namespace.mixin) to @apply
+	// @include namespace.mixin(params); -> @apply --mixin(params);
+	{
+		files: '',
+		from: /@include\s+\w[\w-]*\.(\w[\w-]*)\s*\(([^)]*)\)\s*;/g,
+		to: '@apply --$1($2);'
+	},
+
+	// Convert @include with parameters (simple mixin) to @apply
+	// @include mixin(params); -> @apply --mixin(params);
+	{
+		files: '',
+		from: /@include\s+(\w[\w-]*)\s*\(([^)]*)\)\s*;/g,
+		to: '@apply --$1($2);'
+	},
+
+	// Convert simple @include without parameters (namespace.mixin) to @apply
+	// @include namespace.mixin; -> @apply --mixin;
+	{
+		files: '',
+		from: /@include\s+\w[\w-]*\.(\w[\w-]*)\s*;/g,
 		to: '@apply --$1;'
 	},
 
@@ -98,7 +122,7 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 	// @include name; -> @apply --name;
 	{
 		files: '',
-		from: /@include\s+(\w[\w-]*(?:\.\w[\w-]*)?)\s*;/g,
+		from: /@include\s+(\w[\w-]*)\s*;/g,
 		to: '@apply --$1;'
 	},
 
@@ -134,6 +158,22 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: "@import '$1.css';"
 	},
 
+	// Add .css extension to imports without any extension (double quotes)
+	// @import "path/file"; -> @import "path/file.css";
+	// Only match if path doesn't end with .css, .scss, or other extensions
+	{
+		files: '',
+		from: /@import\s+"([^"]+?)(?<!\.css|\.scss)";/g,
+		to: '@import "$1.css";'
+	},
+
+	// Add .css extension to imports without any extension (single quotes)
+	{
+		files: '',
+		from: /@import\s+'([^']+?)(?<!\.css|\.scss)';/g,
+		to: "@import '$1.css';"
+	},
+
 	// Handle partial file imports with relative paths (files starting with _)
 	// Sass allows importing _file.scss as "file" or "./_file"
 	// PostCSS needs the full path with extension
@@ -155,6 +195,46 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		files: '',
 		from: /@import\s+"(@[\w-]+\/[^"]*?)(_[\w-]+)";/g,
 		to: '@import "$1$2.css";'
+	},
+
+	// Convert Sass string interpolation with namespace variables
+	// #{variables.$db-sizing-md} -> var(--db-sizing-md)
+	{
+		files: '',
+		from: /#\{variables\.\$db-([\w-]+)\}/g,
+		to: 'var(--db-$1)'
+	},
+
+	// Convert Sass string interpolation for colors
+	// #{colors.$db-adaptive-...} -> var(--db-adaptive-...)
+	{
+		files: '',
+		from: /#\{colors\.\$db-([\w-]+)\}/g,
+		to: 'var(--db-$1)'
+	},
+
+	// Convert Sass string interpolation with any namespace
+	// #{namespace.$db-...} -> var(--db-...)
+	{
+		files: '',
+		from: /#\{\w[\w-]*\.\$db-([\w-]+)\}/g,
+		to: 'var(--db-$1)'
+	},
+
+	// Convert simple Sass variable interpolation
+	// #{$db-variable} -> var(--db-variable)
+	{
+		files: '',
+		from: /#\{\$db-([\w-]+)\}/g,
+		to: 'var(--db-$1)'
+	},
+
+	// Convert any remaining Sass variable interpolation with $
+	// #{$variable} -> var(--variable)
+	{
+		files: '',
+		from: /#\{\$(\w[\w-]*)\}/g,
+		to: 'var(--$1)'
 	},
 
 	// Convert namespace references in variables (common pattern)
@@ -194,30 +274,6 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		files: '',
 		from: /@charset\s+"utf-8";\n?/gi,
 		to: ''
-	},
-
-	// Convert Sass string interpolation in simple cases
-	// #{$var} where $var is a simple variable -> var(--var)
-	// This handles the common pattern: #{variables.$db-sizing-md}
-	{
-		files: '',
-		from: /#\{variables\.\$db-([\w-]+)\}/g,
-		to: 'var(--db-$1)'
-	},
-
-	// Convert Sass string interpolation for colors
-	{
-		files: '',
-		from: /#\{colors\.\$db-([\w-]+)\}/g,
-		to: 'var(--db-$1)'
-	},
-
-	// Convert simple Sass variable interpolation
-	// #{$variable} -> var(--variable) (when variable maps to CSS custom property)
-	{
-		files: '',
-		from: /#\{\$db-([\w-]+)\}/g,
-		to: 'var(--db-$1)'
 	}
 ];
 
@@ -248,8 +304,13 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
  *    - postcss-if-function (for legacy browser support of if())
  *
  * Native CSS features used (modern browsers only):
- *    - @mixin --name { ... } and @apply --name;
+ *    - @mixin --name(params) { ... } and @apply --name() { body };
  *    - @macro --name { ... } and @apply --name;
  *    - if(condition, true-value, false-value)
  *    - @function --name(--param) { result: value; }
+ *
+ * Migration transformations:
+ *    - @include helpers.hover { body } -> @apply --hover() { body };
+ *    - @mixin set-button($selector: "&") { -> @mixin --set-button($selector: "&") {
+ *    - #{colors.$db-adaptive-...} -> var(--db-adaptive-...)
  */

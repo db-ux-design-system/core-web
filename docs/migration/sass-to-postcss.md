@@ -108,27 +108,42 @@ These plugins are needed during the transition period until native CSS features 
 	@content;
 }
 
+@mixin set-basic-button($selector: "&") {
+	#{$selector} {
+		cursor: pointer;
+	}
+}
+
 .button {
 	@include cursor-pointer {
 		background: blue;
 	}
+	@include set-basic-button("&");
 }
 ```
 
 **After (Native CSS):**
 
 ```css
-@mixin --cursor-pointer {
+@mixin --cursor-pointer() {
 	cursor: var(--db-overwrite-cursor, pointer);
 }
 
+@mixin --set-basic-button($selector: "&") {
+	var(--selector) {
+		cursor: pointer;
+	}
+}
+
 .button {
-	@apply --cursor-pointer;
-	background: blue;
+	@apply --cursor-pointer() {
+		background: blue;
+	}
+	@apply --set-basic-button("&");
 }
 ```
 
-_Note: Native CSS `@mixin` uses dashed-ident names (starting with `--`). The `@apply` rule applies the mixin styles._
+_Note: Native CSS `@mixin` uses dashed-ident names (starting with `--`). The `@apply` rule preserves parameters and body content._
 
 ### 3. Placeholders and @extend (`@macro` & `@apply`)
 
@@ -242,13 +257,13 @@ Generate two CSS bundles:
 1. **Modern (`.chromium.css`)**:
     - Minimal PostCSS plugins (only `postcss-import`, `postcss-each`)
     - Transforms native CSS features (`@macro`, `@mixin`, `@apply`) for compatibility
-	- Preserves native CSS features (`if()`, `@function`, nesting)
+    - Preserves native CSS features (`if()`, `@function`, nesting)
     - For modern browsers (currently only Chromium-based)
 
 2. **Legacy (`.css`)**:
     - Full PostCSS transformation pipeline
     - Transforms native CSS features (`@macro`, `@mixin`, `@apply`, `if()`, `@function`) for compatibility
-   	- Preserves native CSS features (nesting)
+    - Preserves native CSS features (nesting)
     - For broader browser support
 
 ### PostCSS Configuration Example
@@ -290,13 +305,15 @@ npx @db-ux/core-migration migration --type sass_to_postcss --src ./packages/foun
 
 1. Converts `@use` to `@import`
 2. Converts `@forward` to `@import`
-3. Converts Sass `@mixin name()` to native CSS `@mixin --name()`
-4. Converts Sass `@include name` to native CSS `@apply --name()`
-5. Converts Sass `%placeholder` to native CSS `@macro --placeholder`
-6. Converts Sass `@extend %placeholder` to native CSS `@apply --placeholder`
-7. Converts SCSS comments `//` to CSS comments `/* */`
-8. Updates file extensions in imports (`.scss` → `.css`)
-9. Converts namespace variable references to CSS custom properties
+3. Converts Sass `@mixin name($param)` to native CSS `@mixin --name($param)` (preserves parameters)
+4. Converts Sass `@include name { body }` to native CSS `@apply --name() { body };` (preserves body)
+5. Converts Sass `@include name(params)` to native CSS `@apply --name(params);`
+6. Converts Sass `%placeholder` to native CSS `@macro --placeholder`
+7. Converts Sass `@extend %placeholder` to native CSS `@apply --placeholder`
+8. Converts SCSS comments `//` to CSS comments `/* */`
+9. Updates file extensions in imports (`.scss` → `.css`)
+10. Converts `#{colors.$db-...}` interpolation to `var(--db-...)`
+11. Converts namespace variable references to CSS custom properties
 
 ## Phased Migration Approach
 
