@@ -247,12 +247,14 @@ Generate two CSS bundles:
 
 1. **Modern (`.chromium.css`)**:
     - Minimal PostCSS plugins (only `postcss-import`, `postcss-each`)
-    - Preserves native CSS features (`@mixin`, `@macro`, `@apply`, `if()`, `@function`, nesting)
-    - For modern browsers (Chromium-based)
+    - Transforms native CSS features (`@macro`, `@mixin`, `@apply`) for compatibility
+	- Preserves native CSS features (`if()`, `@function`, nesting)
+    - For modern browsers (currently only Chromium-based)
 
 2. **Legacy (`.css`)**:
     - Full PostCSS transformation pipeline
-    - Transforms native CSS features for compatibility
+    - Transforms native CSS features (`@macro`, `@mixin`, `@apply`, `if()`, `@function`) for compatibility
+   	- Preserves native CSS features (nesting)
     - For broader browser support
 
 ### PostCSS Configuration Example
