@@ -346,6 +346,13 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: ''
 	},
 
+	// @import "@db-ux/core-foundations/build/styles/css.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']@db-ux\/core-foundations\/build\/styles\/css["'];\n?/g,
+		to: ''
+	},
+
 	// Remove SASS variable declarations (single line)
 	// $variable-name: value;
 	{
