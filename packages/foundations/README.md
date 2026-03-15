@@ -38,7 +38,7 @@ npm i @db-ux/core-foundations
 
 You use this library if you need some colors, spacings etc.
 
-> **tl;dr:** Use the default theme and the bundled styles by importing bundle.css and `theme/[relative|absolute|rollup|webpack].css`.
+> **tl;dr:** Use the default theme and the bundled styles by importing `bundle.css` and `theme/[relative|absolute|rollup|webpack].css`.
 
 ---
 
