@@ -18,19 +18,19 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 
 ### Features Found in Codebase
 
-| Feature                        | Count     | Migration Approach                                                                                         |
-| ------------------------------ | --------- | ---------------------------------------------------------------------------------------------------------- |
-| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                                                              |
-| `@forward`                     | Many      | Replace with CSS `@import`                                                                                 |
-| `@mixin` / `@include`          | ~31 files | [`postcss-mixins`](https://www.npmjs.com/package/postcss-mixins) plugin, later `@mixin` (native)           |
-| `%placeholder` / `@extend`     | ~67 files | [`postcss-extend-rule`](https://www.npmjs.com/package/postcss-extend-rule) plugin, later `@macro` (native) |
-| `@function`                    | ~7 files  | CSS `@function` (native)                                                                                   |
-| `@if` / `@else`                | ~10 files | CSS `if()` function (native)                                                                               |
-| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin                                        |
-| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                                                                     |
-| String interpolation `#{$var}` | Many      | CSS variable syntax                                                                                        |
-| `sass:math` module             | Few       | CSS calc() or preprocessing                                                                                |
-| `sass:map` module              | Few       | Preprocessing required                                                                                     |
+| Feature                        | Count     | Migration Approach                                                                                                                |
+| ------------------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                                                                                     |
+| `@forward`                     | Many      | Replace with CSS `@import`                                                                                                        |
+| `@mixin` / `@include`          | ~31 files | CSS `@mixin` & `@apply` (native) with [`postcss-transform-mixins`](https://www.npmjs.com/package/postcss-transform-mixins) plugin |
+| `%placeholder` / `@extend`     | ~67 files | CSS `@macro` & `@apply` (native) with [`postcss-transform-mixins`](https://www.npmjs.com/package/postcss-transform-mixins) plugin |
+| `@function`                    | ~7 files  | CSS `@function` (native)                                                                                                          |
+| `@if` / `@else`                | ~10 files | CSS `if()` function (native)                                                                                                      |
+| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin                                                               |
+| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                                                                                            |
+| String interpolation `#{$var}` | Many      | CSS variable syntax                                                                                                               |
+| `sass:math` module             | Few       | CSS calc() or preprocessing                                                                                                       |
+| `sass:map` module              | Few       | Preprocessing required                                                                                                            |
 
 ### Complex Features Requiring Special Handling
 
