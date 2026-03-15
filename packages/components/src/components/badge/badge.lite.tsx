@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_LABEL } from '../../shared/constants';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBBadgeProps, DBBadgeState } from './model';
 
 useMetadata({});
@@ -45,12 +45,13 @@ export default function DBBadge(props: DBBadgeProps) {
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-badge', props.className)}
 			data-semantic={props.semantic}
 			data-size={props.size}
 			data-emphasis={props.emphasis}
 			data-placement={props.placement}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-label={
 				props.placement?.startsWith('corner') &&
 				(props.label ?? DEFAULT_LABEL)

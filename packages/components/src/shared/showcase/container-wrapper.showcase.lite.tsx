@@ -1,5 +1,6 @@
 import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
 import DBLink from '../../components/link/link.lite';
+import { delay } from '../../utils';
 import { PatternhubProps } from '../model';
 
 type Props = {
@@ -21,13 +22,17 @@ export default function ContainerWrapperShowcase(props: Props) {
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
-			const hash = window.location.hash;
-			const queryString = hash.includes('?') ? hash.split('?')[1] : '';
-			const params = new URLSearchParams(
-				window.location.search || queryString
-			);
+			void delay(() => {
+				const hash = window.location.hash;
+				const queryString = hash.includes('?')
+					? hash.split('?')[1]
+					: '';
+				const params = new URLSearchParams(
+					window.location.search || queryString
+				);
 
-			setHidden(Boolean(params.get('page')));
+				setHidden(Boolean(params.get('page')));
+			}, 1);
 		}
 	});
 

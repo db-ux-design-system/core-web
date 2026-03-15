@@ -1,6 +1,7 @@
 import { onMount, Show, Slot, useState } from '@builder.io/mitosis';
 import DBDivider from '../../components/divider/divider.lite';
 import DBLink from '../../components/link/link.lite';
+import { delay } from '../../utils';
 
 interface Props {
 	exampleName?: string;
@@ -26,19 +27,23 @@ export default function LinkWrapperShowcase(props: Props) {
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
-			const hash = window.location.hash;
-			const queryString = hash.includes('?') ? hash.split('?')[1] : '';
-			const params = new URLSearchParams(
-				window.location.search || queryString
-			);
+			void delay(() => {
+				const hash = window.location.hash;
+				const queryString = hash.includes('?')
+					? hash.split('?')[1]
+					: '';
+				const params = new URLSearchParams(
+					window.location.search || queryString
+				);
 
-			const rawPage = params.get('page');
+				const rawPage = params.get('page');
 
-			const normalizedPage = rawPage
-				? rawPage.replaceAll(' ', '+').toLowerCase()
-				: null;
+				const normalizedPage = rawPage
+					? rawPage.replaceAll(' ', '+').toLowerCase()
+					: null;
 
-			setPageParam(normalizedPage);
+				setPageParam(normalizedPage);
+			}, 1);
 		}
 	});
 

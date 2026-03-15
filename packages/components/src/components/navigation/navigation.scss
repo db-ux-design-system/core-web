@@ -36,7 +36,7 @@
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 						--db-icon-trailing: "chevron_down";
 
-						@media screen and (prefers-reduced-motion: no-preference) {
+						@media (prefers-reduced-motion: no-preference) {
 							transition: form-components.$dropdown-icon-transition;
 						}
 					}
