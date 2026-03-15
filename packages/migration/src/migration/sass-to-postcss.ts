@@ -6,8 +6,8 @@ import type { ReplaceInFileConfig } from 'replace-in-file';
  * This migration handles:
  * 1. Converting @use to @import
  * 2. Converting @forward to @import
- * 3. Converting Sass @mixin to native CSS @mixin --name
- * 4. Converting Sass @include to native CSS @apply --name
+ * 3. Converting Sass @mixin to native CSS @mixin --name()
+ * 4. Converting Sass @include to native CSS @apply --name()
  * 5. Converting Sass %placeholder to native CSS @macro --name
  * 6. Converting Sass @extend to native CSS @apply --name
  * 7. Converting SCSS single-line comments to CSS comments
