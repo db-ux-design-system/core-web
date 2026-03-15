@@ -97,7 +97,7 @@ To enforce correct usage of DB UX Design System components in your JavaScript pr
 ### Installation
 
 ```shell
-npm install eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-dev
+npm install eslint @db-ux/core-eslint-plugin --save-dev
 ```
 
 ### Setup
