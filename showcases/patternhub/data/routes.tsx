@@ -28,6 +28,8 @@ import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import type { ReactElement } from 'react';
+import BreadcrumbComponent from '../../react-showcase/src/components/breadcrumb';
+import BreadcrumbItemComponent from '../../react-showcase/src/components/breadcrumb-item';
 
 import Components from './components.json';
 
@@ -70,7 +72,9 @@ const nameComponentMap = {
 	tabs: <TabsShowcase isPatternhub />,
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
-	tooltip: <TooltipShowcase isPatternhub />
+	tooltip: <TooltipShowcase isPatternhub />,
+	breadcrumb: <BreadcrumbComponent />,
+	'breadcrumb-item': <BreadcrumbItemComponent />
 };
 
 const addComponentsToNavigationItems = (

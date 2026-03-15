@@ -1,5 +1,6 @@
+import BreadcrumbComponent from '../components/breadcrumb';
+import BreadcrumbItemComponent from '../components/breadcrumb-item';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
-
 import Home from '../components/home';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
@@ -63,6 +64,16 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: 'breadcrumb',
+				label: 'Breadcrumb',
+				component: <BreadcrumbComponent />
+			},
+			{
+				path: 'breadcrumb-item',
+				label: 'BreadcrumbItem',
+				component: <BreadcrumbItemComponent />
+			},
 			{
 				path: 'navigation-item',
 				label: 'NavigationItem',

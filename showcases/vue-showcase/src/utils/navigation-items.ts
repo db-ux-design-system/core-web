@@ -30,6 +30,8 @@ import TextareaShowcase from '@components/components/textarea/showcase/textarea.
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
+import BreadcrumbItem from '../components/breadcrumb-item/BreadcrumbItem.vue';
+import Breadcrumb from '../components/breadcrumb/breadcrumb.vue';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
@@ -66,6 +68,16 @@ export const navigationItems: NavItem[] = [
 		path: '/05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/05/breadcrumb',
+				label: 'Breadcrumb',
+				component: markRaw(Breadcrumb)
+			},
+			{
+				path: '/05/breadcrumb-item',
+				label: 'BreadcrumbItem',
+				component: markRaw(BreadcrumbItem)
+			},
 			{
 				path: '/05/navigation-item',
 				label: 'NavigationItem',

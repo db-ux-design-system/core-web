@@ -5,6 +5,8 @@ import { AccordionItemComponent } from '../components/accordion-item.component';
 import { AccordionComponent } from '../components/accordion.component';
 import { BadgeComponent } from '../components/badge.component';
 import { BrandComponent } from '../components/brand.component';
+import { BreadcrumbItemComponent } from '../components/breadcrumb-item/breadcrumb-item.component';
+import { BreadcrumbComponent } from '../components/breadcrumb/breadcrumb.component';
 import { ButtonComponent } from '../components/button.component';
 import { CardComponent } from '../components/card.component';
 import { CheckboxComponent } from '../components/checkbox.component';
@@ -62,6 +64,16 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '05/breadcrumb',
+				label: 'Breadcrumb',
+				component: BreadcrumbComponent
+			},
+			{
+				path: '05/breadcrumb-item',
+				label: 'BreadcrumbItem',
+				component: BreadcrumbItemComponent
+			},
 			{
 				path: '05/navigation-item',
 				label: 'NavigationItem',

@@ -92,6 +92,10 @@ const shouldSkip = (skip?: SkipType): boolean => {
 		if (skip.stencil && isStencil(showcase)) {
 			return true;
 		}
+
+		if (skip.stencil && showcase?.startsWith('stencil')) {
+			return true;
+		}
 	}
 
 	return false;
