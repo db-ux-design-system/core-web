@@ -290,8 +290,8 @@ npx @db-ux/core-migration migration --type sass_to_postcss --src ./packages/foun
 
 1. Converts `@use` to `@import`
 2. Converts `@forward` to `@import`
-3. Converts Sass `@mixin name()` to native CSS `@mixin --name`
-4. Converts Sass `@include name` to native CSS `@apply --name`
+3. Converts Sass `@mixin name()` to native CSS `@mixin --name()`
+4. Converts Sass `@include name` to native CSS `@apply --name()`
 5. Converts Sass `%placeholder` to native CSS `@macro --placeholder`
 6. Converts Sass `@extend %placeholder` to native CSS `@apply --placeholder`
 7. Converts SCSS comments `//` to CSS comments `/* */`
