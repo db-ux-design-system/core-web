@@ -92,7 +92,7 @@ This will create or update `.github/copilot-instructions.md` with component docu
 
 ## Code Quality
 
-To enforce correct usage of DB UX Design System components in your TypeScript project, we provide the [`@db-ux/core-eslint-plugin`](https://www.npmjs.com/package/@db-ux/core-eslint-plugin) ESLint plugin.
+To enforce correct usage of DB UX Design System components in your JavaScript project, we provide the [`@db-ux/core-eslint-plugin`](https://www.npmjs.com/package/@db-ux/core-eslint-plugin) ESLint plugin.
 
 ### Installation
 
@@ -103,21 +103,11 @@ npm install eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-de
 ### Setup
 
 ```js
-// eslint.config.js
+// eslint.config.js – ESLint 9+ (flat config):
 import dbUx from "@db-ux/core-eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
 
 export default [
 	{
-		files: ["**/*.ts", "**/*.tsx"],
-		languageOptions: {
-			parser: tsParser,
-			parserOptions: {
-				ecmaVersion: "latest",
-				sourceType: "module",
-				ecmaFeatures: { jsx: true }
-			}
-		},
 		plugins: {
 			"db-ux": dbUx
 		},
