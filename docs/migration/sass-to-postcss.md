@@ -68,16 +68,10 @@ These plugins are needed during the transition period until native CSS features 
 2. **`postcss-transform-mixins`** - Transform native CSS `@mixin`/`@macro`/`@apply` for legacy browsers
 3. **[`postcss-each`](https://www.npmjs.com/package/postcss-each)** - Support `@each` loops (no native CSS equivalent yet)
 
-### Plugins to Phase Out
-
-As native CSS support improves, these plugins can be removed:
-
-- `postcss-mixins` → replaced by native CSS `@mixin` & `@apply`
-- `postcss-extend-rule` → replaced by native CSS `@macro` & `@apply`
-
 ### Compatibility Plugins (for legacy output)
 
 1. **`postcss-if-function`** - Transform CSS `if()` to compatible CSS
+2. **`postcss-custom-function`** - Transform CSS `@function` to compatible CSS
 
 ### NOT Required
 
@@ -276,6 +270,7 @@ module.exports = {
 		require("postcss-each"),
 		require("postcss-transform-mixins"), // transforms @mixin/@macro/@apply for legacy browsers
 		require("postcss-if-function"), // transforms if() for legacy browsers
+		require("postcss-custom-function"), // transforms @function for legacy browsers
 		require("cssnano")({ preset: ["default", { svgo: false }] })
 	]
 };
