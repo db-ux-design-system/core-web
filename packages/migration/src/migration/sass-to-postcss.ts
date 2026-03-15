@@ -53,7 +53,7 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 	},
 
 	// Convert Sass @mixin definitions with parameters to native CSS @mixin
-	// @mixin name($param) { -> @mixin --name {
+	// @mixin name($param) { -> @mixin --name() {
 	// Note: Native CSS @mixin doesn't support parameters in the same way
 	{
 		files: '',
@@ -62,7 +62,7 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 	},
 
 	// Convert Sass @mixin definitions without parameters to native CSS @mixin
-	// @mixin name() { -> @mixin --name {
+	// @mixin name() { -> @mixin --name() {
 	// @mixin name { -> @mixin --name {
 	{
 		files: '',
