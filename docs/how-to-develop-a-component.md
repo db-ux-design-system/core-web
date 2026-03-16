@@ -115,8 +115,6 @@ We have multiple tests you should update:
 1. Component Test: `packages/components/src/components/my-awesome-component/my-awesome-component.spec.tsx`. Just test all attributes here with screenshot tests and accessibility testing.
 2. Showcase Test: `showcases/e2e/my-awesome-component/showcase-my-awesome-component.spec.ts`. Test the styling in a specific framework here and also the functionality/events.
 
-To run all tests/update the screenshots you need `Docker`. More information here: `e2e/README.md`.
-
 ## Manual audit conducted by accessibility experts
 
 After creating a component and writing all test, we need some manually third party accessibility review to prove that the component is stable. This process is internal and will be handled by a team specialized in accessibility testing.

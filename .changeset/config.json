@@ -22,7 +22,6 @@
 	"ignore": [
 		"scripts",
 		"@db-ux/docs",
-		"@db-ux/e2e",
 		"angular-showcase",
 		"angular-ssr-showcase",
 		"next-showcase",

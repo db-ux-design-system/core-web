@@ -13,5 +13,5 @@ export default {
 		() => 'pnpm install --lockfile-only --ignore-scripts',
 		'pnpm run lint:package-json'
 	],
-	'*': 'cspell --config .config/cspell.config.ts'
+	'*': 'cspell --config .config/cspell.config.ts --no-must-find-files'
 };
