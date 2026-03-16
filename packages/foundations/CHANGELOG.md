@@ -1,5 +1,11 @@
 # @db-ux/core-foundations
 
+## 4.5.4
+
+### Patch Changes
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
 ## 4.5.3
 
 _version bump_

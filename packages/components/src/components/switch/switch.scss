@@ -184,10 +184,6 @@ $checked-active-transition-size: calc(
 	}
 
 	&[data-size="small"] {
-		> label {
-			gap: variables.$db-spacing-fixed-2xs;
-		}
-
 		input {
 			@extend %db-overwrite-font-size-xs;
 		}
