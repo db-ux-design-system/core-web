@@ -27,8 +27,9 @@ export default function DBTabList(props: DBTabListProps) {
 			id={state._id}
 			class={cls('db-tab-list', props.className)}
 			role="tablist"
-			// aria-labelledby takes precedence over aria-label per ARIA spec – only one should be set
-			aria-label={props.ariaLabel}
+			// aria-labelledby takes precedence over aria-label per ARIA spec – only one should be set.
+			// If labelledby is present, we completely omit the aria-label attribute.
+			aria-label={props.ariaLabelledby ? undefined : props.ariaLabel}
 			aria-labelledby={props.ariaLabelledby}>
 			{props.children}
 		</div>
