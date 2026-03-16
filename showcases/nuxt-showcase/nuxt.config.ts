@@ -32,6 +32,14 @@ export default defineNuxtConfig({
 		}
 	},
 	alias: {
+		'@db-ux/v-core-components/src': path.resolve(
+			__dirname,
+			'../../packages/v-core-components/src'
+		),
+		'@db-ux/components/src': path.resolve(
+			__dirname,
+			'../../packages/components/src'
+		),
 		'@components': path.resolve(
 			__dirname,
 			'../../packages/v-core-components/src'
