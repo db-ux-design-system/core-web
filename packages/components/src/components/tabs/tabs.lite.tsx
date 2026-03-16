@@ -186,7 +186,8 @@ export default function DBTabs(props: DBTabsProps) {
 		// Determines the visibility of scroll buttons based on the container's scroll position
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
-			state.showScrollLeft = needsScroll && Math.round(tList.scrollLeft) > 0;
+			state.showScrollLeft =
+				needsScroll && Math.round(tList.scrollLeft) > 0;
 			state.showScrollRight =
 				needsScroll &&
 				Math.round(tList.scrollLeft) <
@@ -256,7 +257,8 @@ export default function DBTabs(props: DBTabsProps) {
 		// activeIndex parameter allows passing the new index directly, avoiding React stale closure
 		// issues where state.activeTabIndex still holds the old value after setState
 		initTabs(activeIndex?: number) {
-			const currentIndex = activeIndex !== undefined ? activeIndex : state.activeTabIndex;
+			const currentIndex =
+				activeIndex !== undefined ? activeIndex : state.activeTabIndex;
 			if (_ref) {
 				const tabListEl = _ref.querySelector('[role="tablist"]');
 				const panels = Array.from<HTMLElement>(
@@ -285,9 +287,13 @@ export default function DBTabs(props: DBTabsProps) {
 
 					button.dispatchEvent(
 						new CustomEvent('aria-selected-changed', {
-							detail: { 
+							detail: {
 								selected: isSelected,
-								tabIndex: (currentIndex === index || (currentIndex === -1 && index === 0)) ? 0 : -1
+								tabIndex:
+									currentIndex === index ||
+									(currentIndex === -1 && index === 0)
+										? 0
+										: -1
 							}
 						})
 					);
@@ -397,7 +403,7 @@ export default function DBTabs(props: DBTabsProps) {
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
-			data-content-alignment={props.contentAlignment ?? 'left'}
+			data-content-alignment={props.contentAlignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>

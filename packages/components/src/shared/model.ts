@@ -647,7 +647,7 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export const ContentAlignmentList = ['left', 'center'] as const;
+export const ContentAlignmentList = ['start', 'center', 'end'] as const;
 export type ContentAlignmentType = (typeof ContentAlignmentList)[number];
 export type ContentAlignmentProps = {
 	/**
