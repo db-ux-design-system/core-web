@@ -1,9 +1,18 @@
 # @db-ux/wc-core-components
 
+## 4.5.4
+
+### Patch Changes
+
+- refactor: Enhance the accessibility of the navigation components by adding missing WAI-ARIA attributes (`aria-controls`, `aria-label`, `aria-haspopup`) for better screen reader support. - [see commit f040188](https://github.com/db-ux-design-system/core-web/commit/f0401886267359518c37062373bb0f9df311214c)
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+- fix(switch): removed obsolete gap towards label in `small` variant - [see commit 40bad01](https://github.com/db-ux-design-system/core-web/commit/40bad017f068bf8968829977808a6d8e9d21b4fe)
+
 ## 4.5.3
 
 _version bump_
-
 
 ## 4.5.2
 
