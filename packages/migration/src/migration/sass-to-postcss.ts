@@ -374,11 +374,32 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: ''
 	},
 
+	// @import "../variables.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']variables\.css["'];\n?/g,
+		to: ''
+	},
+
 	// @import "@db-ux/core-foundations/build/styles/animation.css"; (generic css import)
 	{
 		files: '',
 		from: /@import\s+["']@db-ux\/core-foundations\/build\/styles\/animation\.css["'];\n?/g,
 		to: '@import "@db-ux/core-foundations/build/styles/animation/_index.css";'
+	},
+
+	// @import "transitions.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']transitions\.css["'];\n?/g,
+		to: '@import "_transitions.css";'
+	},
+
+	// @import "animations.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']animations\.css["'];\n?/g,
+		to: '@import "_animations.css";'
 	},
 
 	// @import "internal/custom-elements.css"; (generic css import)
