@@ -1,0 +1,15 @@
+import{j as o}from"./jsx-runtime-u17CrQMm.js";import{D as n}from"./navigation-item-C8AaydA4.js";import"./index-D2E5Z_bU.js";import"./iframe-D0Rqs9UN.js";import"./preload-helper-aOBw0osJ.js";import"./constants-C-ysBZRi.js";import"./floating-components-DAXMbqch.js";import"./button-Cu1m3lzY.js";const{fn:a}=__STORYBOOK_MODULE_TEST__,h={title:"Components/DBNavigationItem/Show Icon",component:n,parameters:{layout:"centered"},tags:["autodocs"],args:{onClick:a()},argTypes:{disabled:{control:"boolean"},active:{control:"boolean"},showIcon:{control:"boolean"},width:{control:"select",options:["full","auto"]},wrap:{control:"boolean"},text:{control:"text"},subNavigationExpanded:{control:"boolean"},backButtonId:{control:"text"},backButtonText:{control:"text"},id:{control:"text"},autofocus:{control:"boolean"},onClick:{action:"onClick"}}},e={args:{icon:"x_placeholder",showIcon:!1,children:o.jsx("a",{href:"#",children:"(Default) False"})},render:t=>o.jsx("ul",{children:o.jsx(n,{...t})})},r={args:{icon:"x_placeholder",showIcon:!0,children:o.jsx("a",{href:"#",children:"True"})},render:t=>o.jsx("ul",{children:o.jsx(n,{...t})})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "icon": "x_placeholder",
+    "showIcon": false,
+    "children": <a href="#">(Default) False</a>
+  },
+  render: (properties: any) => <ul><DBNavigationItem {...properties} /></ul>
+}`,...e.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    "icon": "x_placeholder",
+    "showIcon": true,
+    "children": <a href="#">True</a>
+  },
+  render: (properties: any) => <ul><DBNavigationItem {...properties} /></ul>
+}`,...r.parameters?.docs?.source}}};const x=["DefaultFalse","True"];export{e as DefaultFalse,r as True,x as __namedExportsOrder,h as default};

@@ -1,0 +1,21 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{D as a}from"./notification-XXJXekmN.js";import"./index-D2E5Z_bU.js";import"./iframe-D0Rqs9UN.js";import"./preload-helper-aOBw0osJ.js";import"./constants-C-ysBZRi.js";import"./button-Cu1m3lzY.js";const{fn:s}=__STORYBOOK_MODULE_TEST__,u={title:"Components/DBNotification/Show Timestamp",component:a,parameters:{layout:"centered"},tags:["autodocs"],args:{onClose:s()},argTypes:{headline:{control:"text"},showIcon:{control:"boolean"},variant:{control:"select",options:["docked","standalone","overlay"]},semantic:{control:"select",options:["adaptive","neutral","critical","informational","warning","successful"]},closeable:{control:"boolean"},linkVariant:{control:"select",options:["block","inline"]},showHeadline:{control:"boolean"},showTimestamp:{control:"boolean"},timestamp:{control:"text"},ariaLive:{control:"select",options:["assertive","polite","off"]},text:{control:"text"},role:{control:"text"},closeButtonId:{control:"text"},closeButtonText:{control:"text"},id:{control:"text"},autofocus:{control:"boolean"},onClose:{action:"onClose"}}},e={args:{variant:"overlay",timestamp:"10 min ago",showTimestamp:!1,children:"(Default) False"},render:r=>t.jsx("div",{style:{width:"300px"},children:t.jsx(a,{...r})})},o={args:{variant:"overlay",timestamp:"10 min ago",showTimestamp:!0,children:"True"},render:r=>t.jsx("div",{style:{width:"300px"},children:t.jsx(a,{...r})})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "variant": "overlay",
+    "timestamp": "10 min ago",
+    "showTimestamp": false,
+    "children": "(Default) False"
+  },
+  render: (properties: any) => <div style={{
+    width: '300px'
+  }}><DBNotification {...properties} /></div>
+}`,...e.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "variant": "overlay",
+    "timestamp": "10 min ago",
+    "showTimestamp": true,
+    "children": "True"
+  },
+  render: (properties: any) => <div style={{
+    width: '300px'
+  }}><DBNotification {...properties} /></div>
+}`,...o.parameters?.docs?.source}}};const x=["DefaultFalse","True"];export{e as DefaultFalse,o as True,x as __namedExportsOrder,u as default};
