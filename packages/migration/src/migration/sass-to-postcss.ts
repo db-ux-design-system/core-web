@@ -353,6 +353,41 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: ''
 	},
 
+	// @import "@db-ux/core-foundations/build/styles/rollup.assets-paths.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']@db-ux\/core-foundations\/build\/styles\/rollup\.assets-paths\.css["'];\n?/g,
+		to: ''
+	},
+
+	// @import "@db-ux/core-foundations/build/styles/absolute.assets-paths.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']@db-ux\/core-foundations\/build\/styles\/absolute\.assets-paths\.css["'];\n?/g,
+		to: ''
+	},
+
+	// @import "@db-ux/core-foundations/build/styles/webpack.assets-paths.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']@db-ux\/core-foundations\/build\/styles\/webpack\.assets-paths\.css["'];\n?/g,
+		to: ''
+	},
+
+	// @import "@db-ux/core-foundations/build/styles/animation.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']@db-ux\/core-foundations\/build\/styles\/animation\.css["'];\n?/g,
+		to: '@import "@db-ux/core-foundations/build/styles/animation/_index.css";'
+	},
+
+	// @import "internal/custom-elements.css"; (generic css import)
+	{
+		files: '',
+		from: /@import\s+["']internal\/custom-elements\.css["'];\n?/g,
+		to: ''
+	},
+
 	// Remove SASS variable declarations (single line)
 	// $variable-name: value;
 	{
