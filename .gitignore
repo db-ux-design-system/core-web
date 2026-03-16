@@ -12,7 +12,6 @@ dependencyGraph.json
 source/_meta/_head.mustache
 source/_meta/_foot.mustache
 
-!e2e/.env
 .env
 **/*/.env
 
