@@ -314,14 +314,15 @@ const getStories = ({
 						).trim()
 					)
 					.join('');
-				const wrappedChildren =
-					(foundComponent.children.length === 1 &&
+				const wrappedChildren = (
+					foundComponent.children.length === 1 &&
 					foundComponent.children[0].properties['_text']
 						? `"${children}"`
 						: foundComponent.children.length > 1
 							? `<>${children}</>`
-							: children).trim();
-				if (wrappedChildren.length){
+							: children
+				).trim();
+				if (wrappedChildren.length) {
 					args.push(`"children":${wrappedChildren}`);
 				}
 				foundComponent.slots = {};
