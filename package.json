@@ -20,8 +20,7 @@
     "showcases/*",
     "storybooks/*",
     "docs",
-    "scripts",
-    "e2e"
+    "scripts"
   ],
   "packageManager": "npm@11.5.2",
   "keywords": [
@@ -70,8 +69,7 @@
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
-    "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
-    "regenerate:screenshots:rebuild": "npm run rm:builds && node scripts/rebuild-e2e.js",
+    "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && npm run regenerate:visual-snapshots --workspace=react-showcase && npm run regenerate:aria-snapshots --workspace=react-showcase",
     "release:publish": "node scripts/github/publish-npm.js",
     "reset": "npm run clean && npm install && npm run prepare && npm run decode-db-theme-assets",
     "rm:builds": "npm run rm:builds --workspace=scripts",
