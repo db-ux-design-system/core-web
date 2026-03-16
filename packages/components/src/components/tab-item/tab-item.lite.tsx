@@ -201,9 +201,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 					ref={_labelRef}
 					class="db-tab-label"
 					title=""
-					data-icon={props.showIcon ? props.icon : undefined}
+					data-icon={
+						getBoolean(props.showIconLeading ?? props.showIcon)
+							? (props.iconLeading ?? props.icon)
+							: undefined
+					}
 					data-icon-trailing={
-						props.showIconTrailing ? props.iconTrailing : undefined
+						getBoolean(props.showIconTrailing)
+							? props.iconTrailing
+							: undefined
 					}>
 					<Show when={props.label}>{props.label}</Show>
 					<Show when={!props.label}>
