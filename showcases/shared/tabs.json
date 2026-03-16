@@ -124,7 +124,10 @@
 			{
 				"name": "tab-list",
 				"children": [
-					{ "name": "tab-item", "content": "Very Long Tab Label That Should Be Truncated" },
+					{
+						"name": "tab-item",
+						"content": "Very Long Tab Label That Should Be Truncated"
+					},
 					{ "name": "tab-item", "content": "Another Long Label" },
 					{ "name": "tab-item", "content": "Short" }
 				]
@@ -206,11 +209,11 @@
 		],
 		"examples": [
 			{
-				"name": "full - content alignment: center",
+				"name": "full - tab-item alignment: center",
 				"style": { "width": "100%" },
 				"props": {
 					"width": "full",
-					"contentAlignment": "center",
+					"tabItemAlignment": "center",
 					"name": "width-full-center"
 				}
 			}

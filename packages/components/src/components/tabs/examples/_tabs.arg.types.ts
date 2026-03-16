@@ -3,7 +3,7 @@ import type { InputType } from 'storybook/internal/csf';
 export const StorybookTabsArgTypes: Record<string, InputType> = {
 	orientation: { control: 'select', options: ['horizontal', 'vertical'] },
 	width: { control: 'select', options: ['full', 'auto'] },
-	contentAlignment: {
+	tabItemAlignment: {
 		control: 'select',
 		options: ['start', 'center', 'end']
 	},

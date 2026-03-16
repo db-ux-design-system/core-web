@@ -76,9 +76,9 @@ const testA11y = () => {
 };
 
 const testProps = () => {
-	test('should accept content alignment prop', async ({ mount }) => {
+	test('should accept tab-item alignment prop', async ({ mount }) => {
 		const component = await mount(
-			<DBTabs contentAlignment="center">
+			<DBTabs tabItemAlignment="center">
 				<DBTabList>
 					<DBTabItem>Test 1</DBTabItem>
 				</DBTabList>
@@ -86,7 +86,7 @@ const testProps = () => {
 			</DBTabs>
 		);
 		await expect(component).toHaveAttribute(
-			'data-content-alignment',
+			'data-tab-item-alignment',
 			'center'
 		);
 	});

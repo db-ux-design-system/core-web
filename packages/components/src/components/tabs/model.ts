@@ -1,9 +1,9 @@
 import {
-	ContentAlignmentProps,
 	GlobalProps,
 	InitializedState,
 	InputEvent,
 	OrientationProps,
+	TabItemAlignmentProps,
 	WidthProps
 } from '../../shared/model';
 import { DBTabItemProps } from '../tab-item/model';
@@ -73,7 +73,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
 	WidthProps &
-	ContentAlignmentProps &
+	TabItemAlignmentProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {

@@ -15,7 +15,7 @@ const getTabs = ({
 	children,
 	orientation,
 	width,
-	contentAlignment,
+	tabItemAlignment,
 	overflow,
 	behavior,
 	initialSelectedMode,
@@ -39,7 +39,7 @@ const getTabs = ({
 				name={children?.toString()}
 				orientation={orientation}
 				width={width}
-				contentAlignment={contentAlignment}
+				tabItemAlignment={tabItemAlignment}
 				behavior={behavior}
 				initialSelectedIndex={initialSelectedIndex}
 				initialSelectedMode={initialSelectedMode}

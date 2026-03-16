@@ -154,12 +154,12 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			justify-content: flex-start;
 		}
 
-		&[data-content-alignment="center"] .db-tab-item {
+		&[data-tab-item-alignment="center"] .db-tab-item {
 			text-align: center;
 			justify-content: center;
 		}
 
-		&[data-content-alignment="end"] .db-tab-item {
+		&[data-tab-item-alignment="end"] .db-tab-item {
 			text-align: end;
 			justify-content: end;
 		}

@@ -23,7 +23,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 					:name="exampleName"
 					:orientation="exampleProps?.orientation"
 					:width="exampleProps?.width"
-					:contentAlignment="exampleProps?.contentAlignment"
+					:tabItemAlignment="exampleProps?.tabItemAlignment"
 					:behavior="exampleProps?.behavior"
 					:initialSelectedIndex="exampleProps?.initialSelectedIndex"
 					:initialSelectedMode="exampleProps?.initialSelectedMode"
@@ -39,12 +39,22 @@ import DefaultComponent from "../DefaultComponent.vue";
 						</template>
 					</DBTabList>
 
-					<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 1`">Tab Panel 1</DBTabPanel>
-					<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 2`">Tab Panel 2</DBTabPanel>
-					<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 3`">Tab Panel 3</DBTabPanel>
+					<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 1`"
+						>Tab Panel 1</DBTabPanel
+					>
+					<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 2`"
+						>Tab Panel 2</DBTabPanel
+					>
+					<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 3`"
+						>Tab Panel 3</DBTabPanel
+					>
 					<template v-if="exampleProps?.overflow">
-						<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 4`">Tab Panel 4</DBTabPanel>
-						<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 5`">Tab Panel 5</DBTabPanel>
+						<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 4`"
+							>Tab Panel 4</DBTabPanel
+						>
+						<DBTabPanel :ariaLabel="`${exampleName} Tab Panel 5`"
+							>Tab Panel 5</DBTabPanel
+						>
 					</template>
 				</DBTabs>
 			</div>

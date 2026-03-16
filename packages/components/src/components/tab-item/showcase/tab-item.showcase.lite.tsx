@@ -3,12 +3,12 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import TabItemBehavior from '../examples/behavior.example.lite';
-import TabItemContentAlignmentFullWidth from '../examples/content-alignment-full-width.example.lite';
 import TabItemDensity from '../examples/density.example.lite';
 import TabItemShowIconLeading from '../examples/show-icon-leading.example.lite';
 import TabItemShowIconTrailing from '../examples/show-icon-trailing.example.lite';
 import TabItemSlotWithBadge from '../examples/slot-with-badge.example.lite';
 import TabItemStates from '../examples/states.example.lite';
+import TabItemAlignmentFullWidth from '../examples/tab-item-alignment-full-width.example.lite';
 
 export default function TabItemShowcase(props: PatternhubProps) {
 	return (
@@ -47,7 +47,7 @@ export default function TabItemShowcase(props: PatternhubProps) {
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Content Alignment Full Width">
 				<CardWrapperShowcase>
-					<TabItemContentAlignmentFullWidth />
+					<TabItemAlignmentFullWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

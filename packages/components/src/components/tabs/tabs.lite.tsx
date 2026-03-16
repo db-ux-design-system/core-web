@@ -403,7 +403,7 @@ export default function DBTabs(props: DBTabsProps) {
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
-			data-content-alignment={props.contentAlignment ?? 'start'}
+			data-tab-item-alignment={props.tabItemAlignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
