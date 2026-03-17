@@ -19,7 +19,7 @@ export default function TabsTruncation() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					truncated tab label (vertical only):
 				</DBInfotext>
-				<DBTabs orientation="vertical" width="auto">
+				<DBTabs orientation="vertical" tabItemWidth="auto">
 					<DBTabList>
 						<DBTabItem label="Very long tab label that gets truncated" />
 						<DBTabItem label="Another long label" />

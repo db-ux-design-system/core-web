@@ -23,7 +23,7 @@ export default function TabsOverflow() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					no overflow:
 				</DBInfotext>
-				<DBTabs width="auto">
+				<DBTabs tabItemWidth="auto">
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
