@@ -1,0 +1,18 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+[data-generation="next"] .db-button,
+.db-button[data-generation="next"] {
+	background-color: var(--db-bg-default);
+	color: var(--db-text-default);
+	border-color: var(--db-border);
+
+	@include helpers.hover {
+		background-color: var(--db-bg-hovered);
+		border-color: var(--db-border);
+	}
+
+	@include helpers.active {
+		background-color: var(--db-bg-pressed);
+		border-color: var(--db-border);
+	}
+}

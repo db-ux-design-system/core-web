@@ -5,6 +5,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { ColorType, MaterialType } from '../../shared/model';
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import type { DBButtonProps, DBButtonState } from './model';
 
@@ -27,11 +28,39 @@ export default function DBButton(props: DBButtonProps) {
 				return 'button';
 			}
 			return 'submit';
+		},
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.variant === 'brand') {
+				return 'origin';
+			}
+
+			if (props.variant === 'ghost') {
+				return 'transparent';
+			}
+
+			if (props.variant === 'filled') {
+				return 'semi-transparent';
+			}
+
+			if (props.variant === 'adaptive') {
+				return undefined;
+			}
+
+			return 'filled';
+		},
+		_getColor: (): ColorType | undefined => {
+			if (props.variant === 'brand') {
+				return 'brand';
+			}
+
+			return undefined;
 		}
 	});
 
 	return (
 		<button
+			data-material={state._getMaterial()}
+			data-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-button', props.className)}

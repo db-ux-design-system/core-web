@@ -1,0 +1,5 @@
+@layer db-ux, db-theme, db-ux-next;
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "./../../../generated-colors.css" layer(db-ux-next);
+@import "@db-ux/core-components/build/components/button/button.next.css" layer(db-ux-next);

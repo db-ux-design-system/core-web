@@ -38,8 +38,25 @@ export interface GlobalProps {
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
+export const MaterialList = [
+	'filled',
+	'vibrant',
+	'origin',
+	'semi-transparent',
+	'transparent'
+] as const;
+export type MaterialType = (typeof MaterialList)[number];
+
+export const ColorList = ['neutral', 'red', 'brand'] as const;
+export type ColorType = (typeof ColorList)[number];
+
 export type GlobalState = {
 	_id?: string;
+};
+
+export type TempGlobalState = {
+	_getMaterial: () => MaterialType | undefined;
+	_getColor: () => ColorType | undefined;
 };
 
 export const SemanticList = [

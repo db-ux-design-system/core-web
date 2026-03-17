@@ -1,0 +1,18 @@
+.tag {
+	background-color: var(--db-bg-default);
+	color: var(--db-text-default);
+	border: 1px solid var(--db-border);
+
+	&:hover, &:focus {
+		background-color: var(--db-bg-hovered);
+	}
+
+	&:active {
+		background-color: var(--db-bg-pressed);
+	}
+}
+
+
+:is(:root, :host){
+	background-color: lightblue;
+}
