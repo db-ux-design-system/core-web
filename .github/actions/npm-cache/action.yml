@@ -19,7 +19,7 @@ runs:
     - name: 🆙 Setup node
       # pick the Node version to use and install it
       # https://github.com/actions/setup-node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         # If node-version and node-version-file are both provided the action will use version from node-version.
         node-version: ${{ inputs.nodeVersion }}
@@ -32,7 +32,7 @@ runs:
         npm --version
 
     - name: 🆒 Init Cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       id: "cache"
       with:
         path: ${{ inputs.nodeModulesPath }}
