@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router';
+/* eslint-disable-next-line unicorn/prefer-node-protocol */
 import { Buffer } from 'node:buffer';
+import { useRouter } from 'next/router';
 import { COLOR } from '../../../../packages/components/src/shared/constants';
 import ComponentParser from '../../components/component-parser';
 
