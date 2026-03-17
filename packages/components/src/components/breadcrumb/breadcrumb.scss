@@ -12,7 +12,7 @@
 		flex-wrap: wrap;
 		align-items: center; // center items vertically to align with separators
 		gap: variables.$db-spacing-fixed-3xs; // 2px gap for small (per Figma)
-		list-style: none;
+		list-style-type: "";
 		margin: 0;
 		padding: 0;
 	}
