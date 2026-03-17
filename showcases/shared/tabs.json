@@ -164,7 +164,7 @@
 		"examples": [
 			{
 				"name": "auto",
-				"style": { "tabItemWidth": "100%" },
+				"style": { "tabItemWidth": "auto" },
 				"props": { "tabItemWidth": "auto", "name": "width-auto" }
 			}
 		]
@@ -187,7 +187,7 @@
 		"examples": [
 			{
 				"name": "full - content alignment: left",
-				"style": { "tabItemWidth": "100%" },
+				"style": { "tabItemWidth": "auto" },
 				"props": { "tabItemWidth": "full", "name": "width-full-left" }
 			}
 		]
@@ -210,7 +210,7 @@
 		"examples": [
 			{
 				"name": "full - tab-item alignment: center",
-				"style": { "tabItemWidth": "100%" },
+				"style": { "tabItemWidth": "auto" },
 				"props": {
 					"tabItemWidth": "full",
 					"tabItemAlignment": "center",
