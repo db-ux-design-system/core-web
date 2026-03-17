@@ -234,13 +234,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 														state.collapsedTailItems()
 															.length -
 															1
-												)}>
-												<Show when={item.icon}>
-													<DBIcon
-														weight={state.iconWeight()}
-														icon={item.icon}
-													/>
-												</Show>
+												)}
+												data-icon={item.icon}>
 												{item.text}
 											</a>
 										</Show>
