@@ -19,6 +19,10 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
+			'@db-ux/v-core-components/src': path.resolve(
+				__dirname,
+				'../../packages/v-core-components/src'
+			),
 			'@components': path.resolve(
 				__dirname,
 				'../../packages/v-core-components/src'
