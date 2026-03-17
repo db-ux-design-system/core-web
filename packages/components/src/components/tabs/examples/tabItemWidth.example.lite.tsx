@@ -7,7 +7,7 @@ import DBTabs from '../tabs.lite';
 import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
-	storybookTitle: 'Width',
+	storybookTitle: 'Tab-Item-Width',
 	storybookNames: [
 		'auto',
 		'full - alignment: start',
