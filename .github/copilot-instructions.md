@@ -115,8 +115,6 @@ npm run build-outputs # Verify framework outputs build
 ```bash
 # Generate/update screenshots:
 npm run regenerate:screenshots
-# Test visual regression:
-docker-compose --file ./e2e/docker-compose.yml up
 ```
 
 **TIMING**: Visual tests take 10+ minutes. NEVER CANCEL. Set timeout to 1800+ seconds.
@@ -149,7 +147,6 @@ docker-compose --file ./e2e/docker-compose.yml up
 │   ├── vue/                # Vue 3 components (@db-ux/v-core-components)
 │   └── stencil/            # Web Components (@db-ux/wc-core-components)
 ├── showcases/              # Example applications for each framework
-├── e2e/                    # End-to-end testing with Playwright
 └── docs/                   # Documentation files
 ```
 

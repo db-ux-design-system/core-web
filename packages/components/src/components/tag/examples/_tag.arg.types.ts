@@ -3,7 +3,17 @@ import { StorybookIconArgTypes } from '../../../shared/examples/_icons.arg.types
 
 export const StorybookTagArgTypes: Record<string, InputType> = {
 	emphasis: { control: 'select', options: ['weak', 'strong'] },
-	semantic: { control: 'select', options: ['adaptive', 'neutral', 'critical', 'informational', 'warning', 'successful'] },
+	semantic: {
+		control: 'select',
+		options: [
+			'adaptive',
+			'neutral',
+			'critical',
+			'informational',
+			'warning',
+			'successful'
+		]
+	},
 	behavior: { control: 'select', options: ['static', 'removable'] },
 	...StorybookIconArgTypes,
 	noText: { control: 'boolean' },

@@ -1,5 +1,9 @@
 import type { InputType } from 'storybook/internal/csf';
-import { StorybookIconArgTypes, StorybookIconLeadingArgTypes, StorybookIconTrailingArgTypes } from '../../../shared/examples/_icons.arg.types';
+import {
+	StorybookIconArgTypes,
+	StorybookIconLeadingArgTypes,
+	StorybookIconTrailingArgTypes
+} from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookInputArgTypes: Record<string, InputType> = {
 	label: { control: 'text' },
@@ -10,7 +14,10 @@ export const StorybookInputArgTypes: Record<string, InputType> = {
 	showMessage: { control: 'boolean' },
 	disabled: { control: 'boolean' },
 	readOnly: { control: 'boolean' },
-	validation: { control: 'select', options: ['invalid', 'valid', 'no-validation'] },
+	validation: {
+		control: 'select',
+		options: ['invalid', 'valid', 'no-validation']
+	},
 	invalidMessage: { control: 'text' },
 	validMessage: { control: 'text' },
 	required: { control: 'boolean' },
@@ -20,7 +27,27 @@ export const StorybookInputArgTypes: Record<string, InputType> = {
 	...StorybookIconTrailingArgTypes,
 	minLength: { control: 'number' },
 	maxLength: { control: 'number' },
-	type: { control: 'select', options: ['color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week'] },
+	type: {
+		control: 'select',
+		options: [
+			'color',
+			'date',
+			'datetime-local',
+			'email',
+			'file',
+			'hidden',
+			'month',
+			'number',
+			'password',
+			'range',
+			'search',
+			'tel',
+			'text',
+			'time',
+			'url',
+			'week'
+		]
+	},
 	min: { control: 'text' },
 	max: { control: 'text' },
 	step: { control: 'text' },
@@ -34,8 +61,23 @@ export const StorybookInputArgTypes: Record<string, InputType> = {
 	pattern: { control: 'text' },
 	accept: { control: 'text' },
 	multiple: { control: 'boolean' },
-	enterkeyhint: { control: 'select', options: ['enter', 'done', 'go', 'next', 'previous', 'search', 'send'] },
-	inputmode: { control: 'select', options: ['none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url'] },
+	enterkeyhint: {
+		control: 'select',
+		options: ['enter', 'done', 'go', 'next', 'previous', 'search', 'send']
+	},
+	inputmode: {
+		control: 'select',
+		options: [
+			'none',
+			'text',
+			'decimal',
+			'numeric',
+			'tel',
+			'search',
+			'email',
+			'url'
+		]
+	},
 	autocomplete: { control: 'text' },
 	messageIcon: { control: 'text' },
 	messageSize: { control: 'select', options: ['small', 'medium'] },

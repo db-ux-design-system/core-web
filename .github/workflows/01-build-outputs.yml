@@ -71,7 +71,7 @@ jobs:
           npm run lint-docs-file-references
 
       - name: ⏫ Upload outputs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-outputs
           path: build-outputs

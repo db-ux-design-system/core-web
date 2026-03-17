@@ -58,5 +58,9 @@ export const StorybookCustomSelectArgTypes: Record<string, InputType> = {
 	amountText: { control: 'text' },
 	mobileCloseButtonText: { control: 'text' },
 	open: { control: 'boolean' },
-	autofocus: { control: 'boolean' }
+	autofocus: { control: 'boolean' },
+	onAmountChange: { action: 'onAmountChange' },
+	onOptionSelected: { action: 'onOptionSelected' },
+	onDropdownToggle: { action: 'onDropdownToggle' },
+	onSearch: { action: 'onSearch' }
 };
