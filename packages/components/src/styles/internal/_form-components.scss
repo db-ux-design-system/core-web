@@ -387,12 +387,16 @@ $input-valid-types:
 
 	@include set-floating-label-overwrites($selector);
 
-	@include get-validity($selector, "valid") {
-		@include get-validity-color($selector, "valid");
+	&[data-has-valid-message="true"] {
+		@include get-validity($selector, "valid") {
+			@include get-validity-color($selector, "valid");
+		}
 	}
 
-	@include get-validity($selector, "invalid") {
-		@include get-validity-color($selector, "invalid");
+	&[data-has-invalid-message="true"] {
+		@include get-validity($selector, "invalid") {
+			@include get-validity-color($selector, "invalid");
+		}
 	}
 
 	@include placeholder-content($selector) {

@@ -344,7 +344,6 @@
           - listitem:
             - radio "Option 5"
             - text: Option 5
-  - text: "TODO: Add a validMessage"
   - status
   - link "Required"
   - text: (Default) False

@@ -11,10 +11,8 @@ import {
 } from '@builder.io/mitosis';
 
 import {
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_MESSAGE_ID_SUFFIX,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -69,47 +67,53 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
 		abortController: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (_ref?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
+		},
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !_ref?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!props.required;
 		},
 		handleValidation: () => {
-			if (!_ref?.validity?.valid || props.validation === 'invalid') {
+			state._invalidMessage =
+				props.invalidMessage || _ref?.validationMessage;
+			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId!;
-				state._invalidMessage =
-					props.invalidMessage ||
-					_ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						state._invalidMessage || DEFAULT_INVALID_MESSAGE;
-					delay(() => {
+					state._voiceOverFallback = state._invalidMessage;
+					void delay(() => {
 						state._voiceOverFallback = '';
 					}, 1000);
 				}
-				return;
-			}
-			if (
-				state.hasValidState() &&
-				_ref?.validity?.valid &&
-				props.required
-			) {
+			} else if (state.hasValidState()) {
 				state._descByIds = state._validMessageId!;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => {
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => {
 						state._voiceOverFallback = '';
 					}, 1000);
 				}
-				return;
-			}
-
-			if (stringPropVisible(props.message, props.showMessage)) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId!;
-				return;
+			} else {
+				state._descByIds = undefined;
 			}
-
-			state._descByIds = undefined;
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLInputElement>,
@@ -172,7 +176,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 	onMount(() => {
 		state.resetIds();
 		state.handleValidation();
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {
@@ -192,13 +195,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.invalidMessage,
 		props.checked
 	]);
-
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -237,6 +233,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-variant={props.variant}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}
 			class={cls('db-switch', props.className)}>
 			<label htmlFor={state._id}>
 				<input
@@ -287,15 +285,17 @@ export default function DBSwitch(props: DBSwitchProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
-				{state._invalidMessage}
-			</DBInfotext>
+			<Show when={state.hasInvalidState()}>
+				<DBInfotext
+					id={state._invalidMessageId}
+					size="small"
+					semantic="critical">
+					{state._invalidMessage}
+				</DBInfotext>
+			</Show>
 			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}
 			</span>

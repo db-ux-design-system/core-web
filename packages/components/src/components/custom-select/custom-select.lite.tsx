@@ -14,7 +14,6 @@ import {
 
 import {
 	DEFAULT_CLOSE_BUTTON,
-	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_LABEL_ID_SUFFIX,
@@ -24,7 +23,6 @@ import {
 	DEFAULT_REMOVE,
 	DEFAULT_SELECT_ID_SUFFIX,
 	DEFAULT_SELECTED,
-	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
@@ -131,37 +129,50 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		_searchValue: undefined,
-		hasValidState: () => {
-			return !!(props.validMessage ?? props.validation === 'valid');
+		hasValidState: (): boolean => {
+			if (selectRef?.validity.valid && state.hasNativeValidation()) {
+				return true;
+			}
+
+			// Always show valid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an validMessage to inform the users which success happened.
+			return props.validation === 'valid';
+		},
+		hasInvalidState: (): boolean => {
+			if (state.hasNativeValidation() && !selectRef?.validity?.valid) {
+				return true;
+			}
+
+			// Always show invalid state for custom validation.
+			// This may lead to an empty infotext without message, which is intended.
+			// Developers need to set an invalidMessage to inform the users which error happened.
+			return props.validation === 'invalid';
+		},
+		hasNativeValidation: (): boolean => {
+			return !!props.required;
 		},
 		handleValidation: () => {
 			if (selectRef) {
 				selectRef.value = state.getNativeSelectValue();
 			}
 			/* For a11y reasons we need to map the correct message with the select */
-			if (!selectRef?.validity.valid || props.validation === 'invalid') {
+			state._invalidMessage =
+				props.invalidMessage || selectRef?.validationMessage;
+			if (state.hasInvalidState()) {
 				state.setDescById(state._invalidMessageId);
-				state._invalidMessage =
-					props.invalidMessage ||
-					selectRef?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				if (state._userInteraction) {
 					state._validity = props.validation ?? 'invalid';
 				}
-			} else if (
-				state.hasValidState() &&
-				selectRef?.validity.valid &&
-				props.required
-			) {
+			} else if (state.hasValidState()) {
 				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					state._voiceOverFallback = props.validMessage;
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -683,7 +694,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onMount(() => {
 		state.resetIds();
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
@@ -902,13 +912,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state.selectAllIndeterminate, selectAllRef]);
 
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			selectRef?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [selectRef, props.invalidMessage]);
-
 	onUnMount(() => {
 		state.abortController?.abort();
 	});
@@ -939,7 +942,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}
+			data-has-valid-message={!!props.validMessage}
+			data-has-invalid-message={!!state._invalidMessage}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
@@ -1229,16 +1234,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{props.validMessage}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
-				{state._invalidMessage}
-			</DBInfotext>
+			<Show when={state.hasInvalidState()}>
+				<DBInfotext
+					id={state._invalidMessageId}
+					size="small"
+					semantic="critical">
+					{state._invalidMessage}
+				</DBInfotext>
+			</Show>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.

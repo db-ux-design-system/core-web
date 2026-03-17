@@ -46,14 +46,16 @@ $checked-active-transition-size: calc(
 		}
 	}
 
-	@include form-components.get-validity(check) {
-		&:has(.db-infotext[data-semantic="successful"]) {
+	&[data-has-valid-message="true"] {
+		@include form-components.get-validity(check) {
 			@include form-components.get-validity-color-checkbox("valid");
 		}
 	}
 
-	@include form-components.get-validity(check, "invalid") {
-		@include form-components.get-validity-color-checkbox("invalid");
+	&[data-has-invalid-message="true"] {
+		@include form-components.get-validity(check, "invalid") {
+			@include form-components.get-validity-color-checkbox("invalid");
+		}
 	}
 
 	input {
