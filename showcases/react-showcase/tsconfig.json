@@ -19,11 +19,13 @@
 		"noUnusedParameters": false,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["vite/client"],
+		"types": ["vite/client", "node"],
 		"paths": {
 			"@components": ["../../packages/react-core-components/src"],
 			"@components/src/*": ["../../packages/react-core-components/src/*"],
-			"@components/components/*": ["../../packages/react-core-components/src/components/*"]
+			"@components/components/*": [
+				"../../packages/react-core-components/src/components/*"
+			]
 		}
 	},
 	"include": ["src"],
