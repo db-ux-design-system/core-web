@@ -68,7 +68,7 @@ Import the styles in your main `.css` file.
 
 ```css
 /* index.css */
-@layer theme, db-ux;
+@layer whitelabel-theme, db-ux;
 
 @import "@db-ux/core-foundations/build/styles/theme/relative.css" layer(theme);
 
