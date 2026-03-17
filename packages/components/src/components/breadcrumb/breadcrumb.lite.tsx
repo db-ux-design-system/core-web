@@ -173,20 +173,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 													state.normalizedItems()[0],
 													state.normalizedItems()
 														.length === 1
-												)}>
-												<Show
-													when={
-														state.normalizedItems()[0]
-															.icon
-													}>
-													<DBIcon
-														weight={state.iconWeight()}
-														icon={
-															state.normalizedItems()[0]
-																.icon
-														}
-													/>
-												</Show>
+												)}
+												data-icon={
+													state.normalizedItems()[0]
+														.icon
+												}>
 												{
 													state.normalizedItems()[0]
 														.text
