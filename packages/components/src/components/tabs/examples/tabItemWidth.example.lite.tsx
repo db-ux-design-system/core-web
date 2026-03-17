@@ -17,7 +17,7 @@ useMetadata({
 	storybookArgTypes: StorybookTabsArgTypes
 });
 
-export default function TabsWidth() {
+export default function TabItemWidth() {
 	return (
 		<Fragment>
 			<div style={{ width: '100%' }} class="fit-content-container">

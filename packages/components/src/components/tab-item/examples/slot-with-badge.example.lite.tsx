@@ -15,17 +15,27 @@ export default function TabItemSlotWithBadge() {
 		<Fragment>
 			<DBTabList>
 				<DBTabItem>
-					<span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+					<span
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							gap: '8px'
+						}}>
 						Messages
-						<DBBadge semantic="informational">3</DBBadge>
+						<DBBadge semantic="informational">134</DBBadge>
 					</span>
 				</DBTabItem>
 			</DBTabList>
 			<DBTabList>
 				<DBTabItem>
-					<span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+					<span
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							gap: '8px'
+						}}>
 						Notifications
-						<DBBadge semantic="neutral">4</DBBadge>
+						<DBBadge semantic="neutral">433</DBBadge>
 					</span>
 				</DBTabItem>
 			</DBTabList>

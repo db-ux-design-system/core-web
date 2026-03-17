@@ -15,7 +15,7 @@ useMetadata({
 export default function TabsTruncation() {
 	return (
 		<Fragment>
-			<div style={{ width: '100%' }} class="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					truncated tab label (vertical only):
 				</DBInfotext>
