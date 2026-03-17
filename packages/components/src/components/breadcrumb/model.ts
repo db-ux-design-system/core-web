@@ -79,10 +79,6 @@ export type DBBreadcrumbDefaultState = {
 	 */
 	iconWeight: () => '24' | '20';
 	/**
-	 * Normalizes incoming items prop to an array.
-	 */
-	parseItems: () => DBBreadcrumbItems[];
-	/**
 	 * Determines if breadcrumb should render in collapsed state.
 	 */
 	isCollapsed: () => boolean;

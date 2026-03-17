@@ -6,7 +6,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBooleanAsString, parseItems, uuid } from '../../utils';
+import { DBIcon } from '../icon';
 import type {
 	DBBreadcrumbItems,
 	DBBreadcrumbProps,
@@ -33,29 +34,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		iconWeight: (): '24' | '20' => {
 			return props.size === 'medium' ? '24' : '20';
 		},
-		parseItems(): DBBreadcrumbItems[] {
-			const value = props.items;
-			if (!value) {
-				return [];
-			}
-
-			if (Array.isArray(value)) {
-				return value;
-			}
-
-			if (typeof value === 'string') {
-				try {
-					const parsed = JSON.parse(value);
-					return Array.isArray(parsed) ? parsed : [];
-				} catch (error) {
-					return [];
-				}
-			}
-
-			return [];
-		},
 		normalizedItems(): DBBreadcrumbItems[] {
-			return state.parseItems();
+			return parseItems<DBBreadcrumbItems>(props.items);
 		},
 		isCollapsed(): boolean {
 			const normalized = state.normalizedItems();

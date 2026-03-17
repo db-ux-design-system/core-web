@@ -52,6 +52,27 @@ export const cls = (...args: ClassNameArg[]) => {
 export const isArrayOfStrings = (value: unknown): value is string[] =>
 	Array.isArray(value) && value.every((item) => typeof item === 'string');
 
+export const parseItems = <T>(items?: T[] | string): T[] => {
+	if (!items) {
+		return [];
+	}
+
+	if (Array.isArray(items)) {
+		return items;
+	}
+
+	if (typeof items === 'string') {
+		try {
+			const parsed = JSON.parse(items);
+			return Array.isArray(parsed) ? parsed : [];
+		} catch {
+			return [];
+		}
+	}
+
+	return [];
+};
+
 const appleOs = ['Mac', 'iPhone', 'iPad', 'iPod'];
 export const hasVoiceOver = (): boolean =>
 	typeof window !== 'undefined' &&

@@ -367,25 +367,8 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'breadcrumb-item'
 	},
-	// Added Angular post-build overwrites for breadcrumb to enforce strict-null-safe maxItems/items usage in generated templates
 	{
-		name: 'breadcrumb',
-		overwrites: {
-			angular: [
-				{
-					from: /maxItems\(\) - 2/g,
-					to: 'maxItems()! - 2'
-				},
-				{
-					from: /items\(\)\.slice\(items\(\)!\.length - maxItems\(\)! \+ 1\)/g,
-					to: 'items()!.slice(items()!.length - maxItems()! + 1)'
-				},
-				{
-					from: /@if\(maxItems\(\) && items\(\) && items\(\)\.length > maxItems\(\)\)/g,
-					to: '@if(maxItems() && items() && items()!.length > maxItems()!)'
-				}
-			]
-		}
+		name: 'breadcrumb'
 	},
 	{
 		name: 'input',

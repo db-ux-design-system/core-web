@@ -1,9 +1,6 @@
 import { DBBreadcrumbItem } from '@components';
 import type { DBBreadcrumbItemProps } from '@components/src/components/breadcrumb-item/model';
-import defaultComponentVariants from '../../../../shared/breadcrumb-item.json';
-import { type BaseComponentProps } from '../base-component-data';
-import { getVariants } from '../data';
-import DefaultComponent from '../default-component';
+import defaultComponentVariants from '../../../../patternhub/data/breadcrumb-item.json';
 
 const getBreadcrumbItem = ({
 	href,
@@ -29,17 +26,39 @@ const getBreadcrumbItem = ({
 	</nav>
 );
 
-const BreadcrumbItemComponent = (props: BaseComponentProps) => {
+const BreadcrumbItemComponent = ({
+	isSubComponent,
+	componentName
+}: {
+	isSubComponent?: boolean;
+	componentName?: string;
+}) => {
+	const variants = defaultComponentVariants as Array<{
+		name: string;
+		examples: Array<{
+			name: string;
+			className?: string;
+			props?: DBBreadcrumbItemProps;
+		}>;
+	}>;
+	const heading = isSubComponent
+		? (componentName ?? 'DBBreadcrumbItem')
+		: 'DBBreadcrumbItem';
+
 	return (
-		<DefaultComponent
-			title="DBBreadcrumbItem"
-			isSubComponent={props.isSubComponent}
-			componentName={props.componentName}
-			variants={getVariants(
-				defaultComponentVariants,
-				getBreadcrumbItem,
-				props.slotCode
-			)}></DefaultComponent>
+		<div>
+			<h2>{heading}</h2>
+			{variants.map((variant) => (
+				<section key={variant.name}>
+					<h3>{variant.name}</h3>
+					{variant.examples.map((example) => (
+						<div key={example.name} className={example.className}>
+							{getBreadcrumbItem(example.props ?? {})}
+						</div>
+					))}
+				</section>
+			))}
+		</div>
 	);
 };
 
