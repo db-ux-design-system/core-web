@@ -143,7 +143,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		}
 	}
 
-	&[data-width="full"] {
+	&[data-tab-item-width="full"] {
 		.db-tab-list {
 			inline-size: 100%;
 		}

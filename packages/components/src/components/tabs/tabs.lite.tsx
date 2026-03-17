@@ -404,7 +404,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
 			data-tab-item-alignment={props.tabItemAlignment ?? 'start'}
-			data-width={props.width ?? 'auto'}
+			data-tab-item-width={props.tabItemWidth ?? 'auto'}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollLeft}>

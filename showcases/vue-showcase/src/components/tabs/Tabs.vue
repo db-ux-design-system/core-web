@@ -22,7 +22,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				<DBTabs
 					:name="exampleName"
 					:orientation="exampleProps?.orientation"
-					:width="exampleProps?.width"
+					:tabItemWidth="exampleProps?.tabItemWidth"
 					:tabItemAlignment="exampleProps?.tabItemAlignment"
 					:behavior="exampleProps?.behavior"
 					:initialSelectedIndex="exampleProps?.initialSelectedIndex"

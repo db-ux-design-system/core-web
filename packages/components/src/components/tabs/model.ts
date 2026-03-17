@@ -4,7 +4,7 @@ import {
 	InputEvent,
 	OrientationProps,
 	TabItemAlignmentProps,
-	WidthProps
+	WidthType
 } from '../../shared/model';
 import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
@@ -46,6 +46,11 @@ export type DBTabsDefaultProps = {
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
+
+	/**
+	 * Width of the tab-items. Auto width based on tab-item size, full width based on parent elements width.
+	 */
+	tabItemWidth?: WidthType | string;
 };
 
 export type DBTabsEventProps = {
@@ -72,7 +77,6 @@ export type DBTabsEventProps = {
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
-	WidthProps &
 	TabItemAlignmentProps &
 	DBTabsEventProps;
 

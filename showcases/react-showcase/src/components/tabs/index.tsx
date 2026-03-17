@@ -14,7 +14,7 @@ import DefaultComponent from '../default-component';
 const getTabs = ({
 	children,
 	orientation,
-	width,
+	tabItemWidth,
 	tabItemAlignment,
 	overflow,
 	behavior,
@@ -38,7 +38,7 @@ const getTabs = ({
 			<DBTabs
 				name={children?.toString()}
 				orientation={orientation}
-				width={width}
+				tabItemWidth={tabItemWidth}
 				tabItemAlignment={tabItemAlignment}
 				behavior={behavior}
 				initialSelectedIndex={initialSelectedIndex}

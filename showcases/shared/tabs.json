@@ -147,7 +147,7 @@
 		]
 	},
 	{
-		"name": "Width Auto",
+		"name": "Tab-Item-Width Auto",
 		"children": [
 			{
 				"name": "tab-list",
@@ -164,13 +164,13 @@
 		"examples": [
 			{
 				"name": "auto",
-				"style": { "width": "100%" },
-				"props": { "width": "auto", "name": "width-auto" }
+				"style": { "tabItemWidth": "100%" },
+				"props": { "tabItemWidth": "auto", "name": "width-auto" }
 			}
 		]
 	},
 	{
-		"name": "Width Full Left",
+		"name": "Tab-Item-Width Full Left",
 		"children": [
 			{
 				"name": "tab-list",
@@ -187,13 +187,13 @@
 		"examples": [
 			{
 				"name": "full - content alignment: left",
-				"style": { "width": "100%" },
-				"props": { "width": "full", "name": "width-full-left" }
+				"style": { "tabItemWidth": "100%" },
+				"props": { "tabItemWidth": "full", "name": "width-full-left" }
 			}
 		]
 	},
 	{
-		"name": "Width Full Center",
+		"name": "Tab-Item-Width Full Center",
 		"children": [
 			{
 				"name": "tab-list",
@@ -210,9 +210,9 @@
 		"examples": [
 			{
 				"name": "full - tab-item alignment: center",
-				"style": { "width": "100%" },
+				"style": { "tabItemWidth": "100%" },
 				"props": {
-					"width": "full",
+					"tabItemWidth": "full",
 					"tabItemAlignment": "center",
 					"name": "width-full-center"
 				}
