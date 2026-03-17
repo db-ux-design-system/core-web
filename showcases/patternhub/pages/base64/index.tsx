@@ -1,5 +1,5 @@
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
-import { Buffer } from 'node:buffer';
+import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
 import { DBLink } from '../../../../output/react/src';
 import {
