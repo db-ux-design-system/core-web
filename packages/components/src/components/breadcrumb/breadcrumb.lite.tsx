@@ -88,12 +88,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
 			data-separator={props.separator}
-			aria-label={
-				props.ariaLabel ??
-				(props.id
-					? `Breadcrumb (${props.id})`
-					: `Breadcrumb (${state.uniqueId})`)
-			}>
+>
 			<ol
 				class="db-breadcrumb-list"
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
