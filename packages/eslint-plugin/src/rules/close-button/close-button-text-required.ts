@@ -104,25 +104,43 @@ export default {
 				)
 					return;
 
-				// Vue: :closeable="false"
-				const vueAttr = openingElement.startTag?.attributes?.find(
-					(a: any) =>
-						(a.key?.name === ':closeable' ||
-							(a.key?.name === 'bind' &&
-								a.key?.argument?.name === 'closeable')) &&
-						a.value?.value === 'false'
-				);
-				if (vueAttr) return;
+				// Vue: key.name can be a VIdentifier object (key.name.name === 'bind')
+				// or a plain string for non-directive attributes
+				const isVueCloseableBind = (a: any) => {
+					const keyName =
+						typeof a.key?.name === 'string'
+							? a.key.name
+							: a.key?.name?.name;
+					return (
+						keyName === 'bind' &&
+						a.key?.argument?.name === 'closeable'
+					);
+				};
+				const isVueCloseableStatic = (a: any) => {
+					const keyName =
+						typeof a.key?.name === 'string'
+							? a.key.name
+							: a.key?.name?.name;
+					return keyName === 'closeable';
+				};
+
+				const vueBindAttr =
+					openingElement.startTag?.attributes?.find(
+						isVueCloseableBind
+					);
+				if (
+					vueBindAttr &&
+					(vueBindAttr.value?.value === 'false' ||
+						vueBindAttr.value?.expression?.value === false)
+				)
+					return;
 
 				// Only skip if closeable attribute/binding doesn't exist
 				const hasCloseable =
 					closeableAttr ||
 					openingElement.startTag?.attributes?.some(
 						(a: any) =>
-							a.key?.name === 'closeable' ||
-							a.key?.name === ':closeable' ||
-							(a.key?.name === 'bind' &&
-								a.key?.argument?.name === 'closeable')
+							isVueCloseableStatic(a) || isVueCloseableBind(a)
 					);
 				if (!hasCloseable) return;
 			}

@@ -53,6 +53,18 @@ describe('close-button-text-required', () => {
 					]
 				},
 				{
+					code: '<DBNotification :closeable="true">Message</DBNotification>',
+					errors: [
+						{
+							messageId: 'missingCloseButtonText',
+							data: {
+								component: 'DBNotification',
+								attribute: 'closeButtonText'
+							}
+						}
+					]
+				},
+				{
 					code: '<DBDrawer>Content</DBDrawer>',
 					errors: [
 						{

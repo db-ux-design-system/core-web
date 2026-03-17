@@ -13,6 +13,7 @@
 
 		<!-- db-ux/close-button-text-required -->
 		<DBNotification closeable>Test</DBNotification>
+		<DBNotification :closeable="true">Test</DBNotification>
 		<DBNotification :closeable="false">Test</DBNotification>
 		<DBNotification>Test</DBNotification>
 		<DBDrawer></DBDrawer>

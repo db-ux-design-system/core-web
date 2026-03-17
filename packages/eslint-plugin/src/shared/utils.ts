@@ -101,8 +101,8 @@ export function hasChildOfType(
 	node: TSESTree.JSXElement | VElement | AngularElement,
 	componentName: string
 ): boolean {
+	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
-		const kebabName = getAngularComponentName(componentName);
 		return (node.children || []).some((child: any) => {
 			if (child.type === 'Element' || child.type === 'Element$1') {
 				return child.name === componentName || child.name === kebabName;
@@ -110,8 +110,6 @@ export function hasChildOfType(
 			return false;
 		});
 	}
-
-	const kebabName = toKebabCase(componentName);
 
 	if (isVElement(node)) {
 		return (node.children || []).some((child: any) => {
@@ -141,12 +139,10 @@ export function isDBComponent(
 	node: ElementNode,
 	componentName: string
 ): boolean {
+	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
-		const kebabName = getAngularComponentName(componentName);
 		return node.name === componentName || node.name === kebabName;
 	}
-
-	const kebabName = toKebabCase(componentName);
 
 	if (isVElement(node)) {
 		return node.rawName === componentName || node.rawName === kebabName;
