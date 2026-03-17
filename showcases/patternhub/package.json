@@ -12,7 +12,7 @@
   "files": [],
   "scripts": {
     "build": "npm-run-all compile build:*",
-    "build:_iframe_resizer": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
+    "build:_iframe_resizer": "cpr ./node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "build:app": "next build --webpack",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "compile": "npm-run-all compile:*",
