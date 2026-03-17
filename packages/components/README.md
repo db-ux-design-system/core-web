@@ -54,9 +54,9 @@ Import the styles in your main `.css` file.
 
 ```css
 /* index.css */
-@layer theme, db-ux;
-/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
-@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(theme);
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(whitelabel-theme);
 
 @import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
