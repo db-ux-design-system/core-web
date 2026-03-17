@@ -1,15 +1,8 @@
-## Migration Guide
+## General
 
-### From v2.x to v3.x
+> **Note**
+> For a general installation or migration process check out this [documentation](https://www.npmjs.com/package/@db-ux/core-components).
 
-Currently no migration needed as this is a new component in v3.x.
+## DB UI Core ➡ DB UX Design System Core components
 
-### Breaking Changes
-
-- None (new component)
-
-### New Features
-
-- Added `DBBreadcrumb` component for navigation breadcrumbs
-- Supports semantic HTML structure with proper ARIA labels
-- Responsive design with flexbox layout
+New Component 🥳
