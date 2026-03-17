@@ -74,7 +74,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
 				<Show
 					when={state.normalizedItems().length > 0}
-					else={<>{props.children}</>}>
+					else={props.children}>
 					{/* jscpd:ignore-start */}
 					<Show
 						when={state.isCollapsed()}
