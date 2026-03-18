@@ -75,10 +75,6 @@ export type DBBreadcrumbDefaultState = {
 	 */
 	toggleExpanded: () => void;
 	/**
-	 * Returns icon weight based on breadcrumb size.
-	 */
-	iconWeight: () => '24' | '20';
-	/**
 	 * Determines if breadcrumb should render in collapsed state.
 	 */
 	isCollapsed: () => boolean;
@@ -94,9 +90,9 @@ export type DBBreadcrumbDefaultState = {
 		isLast: boolean
 	) => DBBreadcrumbItems['ariaCurrent'] | undefined;
 	/**
-	 * Unique id per instance used for deterministic fallbacks.
+	 * Stable list id used by list and expand button relation.
 	 */
-	uniqueId: string;
+	listId: () => string;
 	/**
 	 * Normalized breadcrumb items derived from the `items` prop.
 	 */

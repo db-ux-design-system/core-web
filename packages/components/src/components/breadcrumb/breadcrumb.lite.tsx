@@ -7,7 +7,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString, parseItems, uuid } from '../../utils';
-import { DBIcon } from '../icon';
 import type {
 	DBBreadcrumbItems,
 	DBBreadcrumbProps,
@@ -16,23 +15,27 @@ import type {
 
 useMetadata({});
 
+const DEFAULT_ELLIPSIS_ARIA_LABEL = 'Expand to show all breadcrumb items';
+
 useDefaultProps<DBBreadcrumbProps>({
 	size: 'small',
 	separator: 'chevron',
-	ellipsisAriaLabel: 'Expand to show all breadcrumb items'
+	ellipsisAriaLabel: DEFAULT_ELLIPSIS_ARIA_LABEL
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
+	const internalId = uuid();
 
 	const state = useStore<DBBreadcrumbState>({
-		uniqueId: uuid(),
+		listId(): string {
+			return props.id
+				? `${props.id}-list`
+				: `db-breadcrumb-list-${internalId}`;
+		},
 		isExpanded: false,
 		toggleExpanded(): void {
 			state.isExpanded = !state.isExpanded;
-		},
-		iconWeight: (): '24' | '20' => {
-			return props.size === 'medium' ? '24' : '20';
 		},
 		normalizedItems(): DBBreadcrumbItems[] {
 			return parseItems<DBBreadcrumbItems>(props.items);
@@ -67,11 +70,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			id={props.id}
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
-			data-separator={props.separator}
->
-			<ol
-				class="db-breadcrumb-list"
-				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
+			data-separator={props.separator}>
+			<ol class="db-breadcrumb-list" id={state.listId()}>
 				<Show
 					when={state.normalizedItems().length > 0}
 					else={props.children}>
@@ -98,8 +98,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 															state.normalizedItems()
 																.length -
 																1
-														data-icon={item.icon}
-													)}>
+													)}
+													data-icon={item.icon}>
 													{item.text}
 												</span>
 											}>
@@ -111,8 +111,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 														state.normalizedItems()
 															.length -
 															1
-													data-icon={item.icon}
-												)}>
+												)}
+												data-icon={item.icon}>
 												{item.text}
 											</a>
 										</Show>
@@ -159,8 +159,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 													.length === 1
 											)}
 											data-icon={
-												state.normalizedItems()[0]
-													.icon
+												state.normalizedItems()[0].icon
 											}>
 											{state.normalizedItems()[0].text}
 										</a>
@@ -173,16 +172,16 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									class="db-breadcrumb-ellipsis"
 									aria-label={
 										props.ellipsisAriaLabel ??
-										'Expand to show all breadcrumb items'
+										DEFAULT_ELLIPSIS_ARIA_LABEL
+									}
+									title={
+										props.ellipsisAriaLabel ??
+										DEFAULT_ELLIPSIS_ARIA_LABEL
 									}
 									aria-expanded={getBooleanAsString(
 										state.isExpanded
 									)}
-									aria-controls={
-										props.id
-											? `${props.id}-list`
-											: 'db-breadcrumb-list'
-									}
+									aria-controls={state.listId()}
 									onClick={() => state.toggleExpanded()}>
 									…
 								</button>
