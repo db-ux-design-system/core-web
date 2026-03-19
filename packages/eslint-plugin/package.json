@@ -38,14 +38,14 @@
   },
   "dependencies": {
     "@angular-eslint/utils": "20.7.0",
-    "@typescript-eslint/utils": "8.57.0"
+    "@typescript-eslint/utils": "8.57.1"
   },
   "devDependencies": {
     "@angular-eslint/bundled-angular-compiler": "20.7.0",
     "@angular-eslint/template-parser": "20.7.0",
     "@angular-eslint/test-utils": "20.7.0",
-    "@typescript-eslint/parser": "8.57.0",
-    "@typescript-eslint/rule-tester": "8.57.0",
+    "@typescript-eslint/parser": "8.57.1",
+    "@typescript-eslint/rule-tester": "8.57.1",
     "typescript": "5.9.3",
     "vitest": "3.2.4",
     "vue-eslint-parser": "10.4.0"
