@@ -119,7 +119,117 @@ server.registerTool(
 	}
 );
 
+const FOUNDATIONS_DIR = join(REPO_ROOT, "packages/foundations");
+
+const TOKEN_FILES: Record<string, string> = {
+	colors: join(FOUNDATIONS_DIR, "scss/colors/_variables.scss"),
+	typography: join(FOUNDATIONS_DIR, "scss/fonts/_variables.scss"),
+	spacing: join(FOUNDATIONS_DIR, "scss/_variables.scss"),
+	sizing: join(FOUNDATIONS_DIR, "scss/_variables.scss"),
+	density: join(FOUNDATIONS_DIR, "scss/density/_variables.scss"),
+	animation: join(FOUNDATIONS_DIR, "scss/animation/_animations.scss"),
+	transitions: join(FOUNDATIONS_DIR, "scss/animation/_transitions.scss"),
+};
+
+server.registerTool(
+	"list_design_token_categories",
+	{
+		description:
+			"Returns all available DB UX design token categories (e.g. colors, spacing, typography).",
+	},
+	async () => {
+		const categories = Object.keys(TOKEN_FILES).filter((key) =>
+			existsSync(TOKEN_FILES[key])
+		);
+		return {
+			content: [{ type: "text", text: JSON.stringify(categories, null, 2) }],
+		};
+	}
+);
+
+server.registerTool(
+	"get_design_tokens",
+	{
+		description:
+			"Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.",
+		inputSchema: {
+			category: z
+				.string()
+				.describe(
+					"Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories."
+				),
+		},
+	},
+	async ({ category }) => {
+		const filePath = TOKEN_FILES[category];
+		if (!filePath) {
+			return {
+				content: [
+					{
+						type: "text" as const,
+						text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(", ")}`,
+					},
+				],
+				isError: true,
+			};
+		}
+		if (!existsSync(filePath)) {
+			return {
+				content: [
+					{ type: "text" as const, text: `Error: token file not found at ${filePath}` },
+				],
+				isError: true,
+			};
+		}
+		const source = await readFile(filePath, "utf-8");
+		const lines = source
+			.split("\n")
+			.filter((line) => /--db-|^\$db-/.test(line));
+		return {
+			content: [
+				{
+					type: "text" as const,
+					text: lines.length > 0 ? lines.join("\n") : source,
+				},
+			],
+		};
+	}
+);
+
 const OUTPUT_DIR = join(REPO_ROOT, "output");
+const ALL_ICONS_FILE = join(
+	REPO_ROOT,
+	"packages/foundations/src/all-icons.ts"
+);
+
+server.registerTool(
+	"list_icons",
+	{
+		description:
+			"Returns all available DB UX icon names (e.g. 'arrow_down', 'chevron_right') " +
+			"from the generated all-icons.ts in packages/foundations/src.",
+	},
+	async () => {
+		if (!existsSync(ALL_ICONS_FILE)) {
+			return {
+				content: [
+					{
+						type: "text" as const,
+						text: `Error: icon source file not found at ${ALL_ICONS_FILE}`,
+					},
+				],
+				isError: true,
+			};
+		}
+
+		const source = await readFile(ALL_ICONS_FILE, "utf-8");
+		const icons = [...source.matchAll(/'([^']+)'/g)].map((m) => m[1]);
+
+		return {
+			content: [{ type: "text" as const, text: JSON.stringify(icons, null, 2) }],
+		};
+	}
+);
 
 function toKebabCase(name: string): string {
 	return name
