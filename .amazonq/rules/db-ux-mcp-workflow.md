@@ -2,6 +2,12 @@
 
 The `db-ux-mcp` MCP server is the **single source of truth** for all UI development in this repository. Every UI element you write must be grounded in data retrieved from this server — never from memory, assumptions, or external documentation. If the server is unavailable, stop and report the issue rather than guessing.
 
+The server is shipped as part of `@db-ux/core-components` and can be started without installation:
+
+```bash
+npx -y @db-ux/core-components
+```
+
 ## Workflow Structure
 
 Work strictly in **Plan-First** order. Never write UI code before completing the discovery phase.

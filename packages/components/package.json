@@ -9,13 +9,17 @@
   },
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
+  "bin": {
+    "db-ux-mcp": "./build/mcp/index.js"
+  },
   "files": [
     "CHANGELOG.md",
     "agent",
     "build"
   ],
   "scripts": {
-    "build": "npm-run-all --parallel build-components build-assets --sequential build-style:*",
+    "build": "npm-run-all --parallel build-components build-assets --sequential build-style:* build-mcp",
+    "build-mcp": "node ../../packages/mcp-server/esbuild.js && cpr ../../packages/mcp-server/build/index.js build/mcp/index.js --overwrite",
     "build-assets": "cpr src build --overwrite --filter \"(.ts|.tsx|.md|.html)$\"",
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
     "build-components:docs": "npm run build:cem --workspace @db-ux/wc-core-components",
@@ -50,7 +54,8 @@
     "test": "vitest run --config vitest.config.ts"
   },
   "dependencies": {
-    "@db-ux/core-foundations": "4.5.4"
+    "@db-ux/core-foundations": "4.5.4",
+    "@modelcontextprotocol/sdk": "1.16.0"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
