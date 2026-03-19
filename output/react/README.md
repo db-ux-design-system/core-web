@@ -55,6 +55,22 @@ export default defineConfig({
 });
 ```
 
+> Alternatively, you could define a [browserslist](https://browsersl.ist/) based on your individual browser support strategy — which might be totally different from the list Vite 8 defines by default (targeting browsers from the early 2020s):
+
+```ts
+// vite.config.ts
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
+
+export default defineConfig({
+  css: {
+    lightningcss: {
+      targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
+    }
+  }
+});
+```
+
 > **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
 
 ### DB Theme
