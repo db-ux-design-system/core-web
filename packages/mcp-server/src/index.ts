@@ -12,8 +12,8 @@ import { z } from "zod/v3";
 //     __dirname = packages/mcp-server/src/
 //     REPO_ROOT = ../../..  →  core-web/
 //
-//   Installed package  (npx @db-ux/core-components)
-//     __dirname = node_modules/@db-ux/core-components/dist/mcp/
+//   Installed package  (npx @db-ux/core-foundations)
+//     __dirname = node_modules/@db-ux/core-foundations/build/mcp/
 //     REPO_ROOT candidate would not contain packages/ → falls back to manifest
 // ---------------------------------------------------------------------------
 
@@ -272,7 +272,6 @@ function toKebabCase(name: string): string {
 		.replace(/^-|-$/g, "");
 }
 
-const FRAMEWORKS = ["react", "angular", "vue"] as const;
 const FRAMEWORK_EXT: Record<Framework, string> = { react: "tsx", angular: "ts", vue: "vue" };
 
 server.registerTool(
@@ -324,7 +323,7 @@ server.registerTool(
 		}
 		const fwExamples = comp.exampleCode[framework] ?? {};
 		const directKey = `${kebab}.example.${ext}`;
-		let src = fwExamples[directKey];
+		let src: string | undefined = fwExamples[directKey];
 		if (!src) {
 			// Prefix fallback
 			const matchKey = Object.keys(fwExamples).find(

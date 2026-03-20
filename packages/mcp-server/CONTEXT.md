@@ -65,7 +65,7 @@ core-web/
 
 ### Manifest (embedded data)
 
-At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-components` from a consumer project.
+At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-foundations` from a consumer project.
 
 ## Communication
 
@@ -76,7 +76,7 @@ The server uses `StdioServerTransport` from the MCP SDK. It is started as a chil
   "mcpServers": {
     "db-ux": {
       "command": "npx",
-      "args": ["-y", "@db-ux/core-components"]
+      "args": ["-y", "@db-ux/core-foundations"]
     }
   }
 }

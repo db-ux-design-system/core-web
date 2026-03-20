@@ -289,10 +289,10 @@ Short description of the breaking change.
 
 **The `db-ux-mcp` MCP server is the single source of truth for all UI development. The following rules are MANDATORY and non-negotiable.**
 
-The server is shipped inside `@db-ux/core-components`. Start it without installation:
+The server is shipped inside `@db-ux/core-foundations`. Start it without installation:
 
 ```bash
-npx -y @db-ux/core-components
+npx -y @db-ux/core-foundations
 ```
 
 Or add it to your MCP client config:
@@ -300,7 +300,7 @@ Or add it to your MCP client config:
 ```json
 {
   "mcpServers": {
-    "db-ux": { "command": "npx", "args": ["-y", "@db-ux/core-components"] }
+    "db-ux": { "command": "npx", "args": ["-y", "@db-ux/core-foundations"] }
   }
 }
 ```

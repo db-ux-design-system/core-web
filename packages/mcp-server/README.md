@@ -8,7 +8,7 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 
 ## 🚀 Quick Start for Consumers
 
-You do **not** need to install this package manually. The MCP server is bundled inside `@db-ux/core-components` and is available immediately via `npx`.
+You do **not** need to install this package manually. The MCP server is bundled inside `@db-ux/core-foundations` and is available immediately via `npx`.
 
 ### IDE Configuration
 
@@ -19,7 +19,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
   "mcpServers": {
     "db-ux": {
       "command": "npx",
-      "args": ["-y", "@db-ux/core-components"]
+      "args": ["-y", "@db-ux/core-foundations"]
     }
   }
 }
@@ -33,7 +33,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
     "servers": {
       "db-ux": {
         "command": "npx",
-        "args": ["-y", "@db-ux/core-components"]
+        "args": ["-y", "@db-ux/core-foundations"]
       }
     }
   }
@@ -118,13 +118,13 @@ The server detects its runtime environment automatically:
 isMonorepo()
   true  → packages/components/src/components/ exists
           → reads live files from the monorepo (model.ts, output/, foundations/)
-  false → running from node_modules/@db-ux/core-components/dist/mcp/
+  false → running from node_modules/@db-ux/core-foundations/build/mcp/
           → reads from the embedded manifest.json
 ```
 
 This means the same binary works for:
 - **Design system developers** working inside the monorepo (always up-to-date, live files)
-- **Consumer teams** running `npx @db-ux/core-components` (self-contained, no monorepo needed)
+- **Consumer teams** running `npx @db-ux/core-foundations` (self-contained, no monorepo needed)
 
 ### Directory structure
 
@@ -203,18 +203,18 @@ The generated examples are the canonical reference. Adapt them — do not rewrit
 
 ## 📦 Build Command
 
-The server is built as part of the `@db-ux/core-components` package:
+The server is built as part of the `@db-ux/core-foundations` package:
 
 ```bash
 # from the monorepo root
-npm run build-mcp --workspace=@db-ux/core-components
+npm run build-mcp --workspace=@db-ux/core-foundations
 ```
 
 This runs `packages/mcp-server/esbuild.js` which:
 
 1. Executes `src/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
 2. Bundles `src/index.ts` + `manifest.json` via esbuild into a single `build/index.js` with `#!/usr/bin/env node` shebang
-3. Copies the bundle to `packages/components/build/mcp/index.js` for inclusion in the published npm package
+3. Copies the bundle to `packages/foundations/build/mcp/index.js` for inclusion in the published npm package
 
 To build and test the server in isolation during development:
 
