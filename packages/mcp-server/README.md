@@ -1,6 +1,6 @@
 # DB UX Model Context Protocol (MCP) Server
 
-This server is the **"USB-C connector"** between AI coding agents (Amazon Q, GitHub Copilot, Claude) and the DB UX Design System. It gives every AI agent a single, authoritative source of truth — component APIs, framework-specific code examples, design tokens, and icon names — so the agent never has to guess or hallucinate component names, prop signatures, or color values.
+This server is the connector between AI coding agents (e.g. Amazon Q, GitHub Copilot, Claude) and the DB UX Design System. It gives every AI agent a single, authoritative source of truth — component APIs, framework-specific code examples, design tokens, and icon names — so the agent never has to guess or hallucinate component names, prop signatures, or color values.
 
 Without this server, AI agents invent plausible-sounding but incorrect component usage. With it, they pull the exact generated source code that ships in the npm packages.
 
@@ -49,7 +49,7 @@ Copy the workflow rules file into your project so your AI agent enforces the cor
 ```bash
 # from your project root
 curl -o .amazonq/rules/db-ux-mcp-workflow.md \
-  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
+  https://github.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
 ```
 
 Or copy it manually from this monorepo: `.amazonq/rules/db-ux-mcp-workflow.md`.
@@ -97,7 +97,7 @@ Because `model.ts`, showcase files, and framework example source files are **not
 
 ```
 manifest.json
-├── icons[]                          — 39 icon names from packages/foundations/src/all-icons.ts
+├── icons[]                          — icon names from packages/foundations/src/all-icons.ts
 └── components{}
     └── {componentName}
         ├── props                    — raw model.ts content
