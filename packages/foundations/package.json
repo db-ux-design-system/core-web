@@ -21,7 +21,7 @@
     "build"
   ],
   "scripts": {
-    "build": "npm-run-all copy-prepare:* build:*",
+    "build": "npm-run-all copy-prepare:* build:* build-mcp",
     "build-mcp": "node ../../packages/mcp-server/esbuild.js && cpr ../../packages/mcp-server/build/index.js build/mcp/index.js --overwrite",
     "build:01_normalize": "npm-run-all copy-prepare:*",
     "build:02_copy": "npm run copy:scss",
