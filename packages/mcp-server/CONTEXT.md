@@ -1,83 +1,88 @@
 # DB UX Design System – MCP Server
 
-## Ziel
+## Purpose
 
-Dieser MCP-Server (Model Context Protocol) stellt LLMs (z. B. Amazon Q, GitHub Copilot, Claude) strukturierten Zugriff auf die UI-Komponenten und Code-Beispiele des DB UX Design Systems bereit. Die Kommunikation erfolgt ausschließlich über **stdio**, sodass der Server als lokaler Prozess von jedem MCP-kompatiblen Client gestartet werden kann.
+This MCP server (Model Context Protocol) gives LLMs (e.g. Amazon Q, GitHub Copilot, Claude) structured access to the UI components and code examples of the DB UX Design System. All communication happens exclusively over **stdio**, so the server can be started as a local child process by any MCP-compatible client.
 
-Konkrete Anwendungsfälle:
+Concrete use cases:
 
-- Ein LLM fragt nach der API einer Komponente (z. B. `DBButton`) und erhält die Mitosis-Quelldatei sowie generierte Framework-Ausgaben.
-- Ein LLM sucht nach Verwendungsbeispielen für eine Komponente in React, Angular oder Vue.
-- Ein LLM prüft, welche Komponenten im Design System verfügbar sind.
+- An LLM asks for the API of a component (e.g. `DBButton`) and receives the Mitosis source file along with generated framework outputs.
+- An LLM looks up usage examples for a component in React, Angular, or Vue.
+- An LLM checks which components are available in the design system.
 
-## Tech-Stack
+## Tech Stack
 
-| Technologie | Zweck |
+| Technology | Purpose |
 |---|---|
-| **Node.js** (≥ 20) | Laufzeitumgebung |
-| **TypeScript** | Typsicherheit, konsistent mit dem restlichen Monorepo |
-| **`@modelcontextprotocol/sdk`** | Offizielles MCP SDK – stellt `McpServer`, Transport-Klassen und Tool-/Resource-Primitives bereit |
-| **`tsx`** | Entwicklungs-Runner (kein separater Build-Schritt nötig) |
-| **`esbuild`** | Produktions-Build zu einem einzelnen CJS/ESM-Bundle |
+| **Node.js** (≥ 20) | Runtime environment |
+| **TypeScript** | Type safety, consistent with the rest of the monorepo |
+| **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
+| **`tsx`** | Development runner (no separate build step required) |
+| **`esbuild`** | Production build into a single standalone ESM bundle |
 
-## Monorepo-Struktur (relevant für diesen Server)
+## Monorepo Structure (relevant to this server)
 
 ```
 core-web/
 ├── packages/
-│   ├── components/          # Mitosis-Quelldateien (framework-agnostisch)
+│   ├── components/          # Mitosis source files (framework-agnostic)
 │   │   └── src/
 │   │       └── components/
 │   │           └── {component}/
-│   │               ├── {component}.lite.tsx   # Mitosis-Komponente
-│   │               ├── {component}.model.ts   # Props / Typen
-│   │               └── examples/              # Verwendungsbeispiele (.example.lite.tsx)
-│   └── mcp-server/          # Dieses Paket
+│   │               ├── {component}.lite.tsx   # Mitosis component
+│   │               ├── model.ts               # Props / types
+│   │               └── examples/              # Usage examples (.example.lite.tsx)
+│   └── mcp-server/          # This package
 │       └── src/
-│           └── index.ts
+│           ├── index.ts           # MCP server — all tool registrations
+│           ├── build-manifest.ts  # Build-time script — generates manifest.json
+│           └── manifest.json      # Generated — do not edit manually
 └── output/
-    ├── react/               # Generierter React-Code
-    │   └── src/lib/
+    ├── react/               # Generated React code
+    │   └── src/components/
     │       └── {component}/
-    ├── angular/             # Generierter Angular-Code
-    │   └── src/lib/
+    ├── angular/             # Generated Angular code
+    │   └── src/components/
     │       └── {component}/
-    └── vue/                 # Generierter Vue-Code
-        └── src/lib/
+    └── vue/                 # Generated Vue code
+        └── src/components/
             └── {component}/
 ```
 
-## MCP-Konzepte in diesem Server
+## MCP Concepts in This Server
 
-### Tools (LLM-aufrufbare Funktionen)
+### Tools (LLM-callable functions)
 
-| Tool | Beschreibung |
+| Tool | Description |
 |---|---|
-| `list_components` | Gibt alle verfügbaren Komponentennamen zurück |
-| `get_component_source` | Liest die Mitosis-Quelldatei einer Komponente |
-| `get_component_examples` | Liest alle Beispieldateien einer Komponente |
-| `get_framework_output` | Liest den generierten Code für React / Angular / Vue |
+| `list_components` | Returns all available component names |
+| `get_component_props` | Returns the raw `model.ts` content for a component |
+| `get_component_details` | Returns the list of example names from the showcase file |
+| `get_example_code` | Returns generated framework-specific source for a component example |
+| `list_icons` | Returns all valid icon names from `all-icons.ts` |
+| `list_design_token_categories` | Returns all available design token categories |
+| `get_design_tokens` | Returns CSS custom properties and SCSS variables for a token category |
 
-### Resources (statische Inhalte)
+### Manifest (embedded data)
 
-Komponentendateien können auch als MCP-Resources exponiert werden, damit Clients sie direkt referenzieren können (URI-Schema: `db-ux://components/{name}`).
+At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-components` from a consumer project.
 
-## Kommunikation
+## Communication
 
-Der Server verwendet `StdioServerTransport` aus dem MCP SDK. Er wird als Kind-Prozess vom MCP-Client gestartet:
+The server uses `StdioServerTransport` from the MCP SDK. It is started as a child process by the MCP client:
 
 ```json
 {
   "mcpServers": {
     "db-ux": {
-      "command": "node",
-      "args": ["packages/mcp-server/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "@db-ux/core-components"]
     }
   }
 }
 ```
 
-Während der Entwicklung kann `tsx` verwendet werden:
+During development inside the monorepo, `tsx` can be used for live file access:
 
 ```json
 {
@@ -90,15 +95,15 @@ Während der Entwicklung kann `tsx` verwendet werden:
 }
 ```
 
-## Entwicklung
+## Development
 
 ```bash
-# Abhängigkeiten installieren (aus Monorepo-Root)
+# Install dependencies (from monorepo root)
 npm install
 
-# Server direkt starten (Entwicklung)
+# Start server directly (development mode, live file access)
 npm run dev --workspace=@db-ux/mcp-server
 
-# Produktions-Build
+# Production build (generates manifest + standalone bundle)
 npm run build --workspace=@db-ux/mcp-server
 ```
