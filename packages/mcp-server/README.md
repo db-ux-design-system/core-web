@@ -223,3 +223,36 @@ To build and test the server in isolation during development:
 npm run build   # generates manifest + bundle
 npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
 ```
+
+---
+
+## 🧪 Development & Testing
+
+The **MCP Inspector** is the official tool to validate MCP tools and prompts (e.g. `scaffold_page`) independently of any IDE (VS Code, IntelliJ, etc.). Use it to inspect the server's capabilities, test tool calls interactively, and verify prompt outputs before relying on them in an AI agent workflow.
+
+### Prerequisites
+
+Build the server bundle first (if not already done):
+
+```bash
+# from packages/mcp-server/
+npm run build
+```
+
+### Starting the Inspector
+
+Run the following command from the `packages/mcp-server/` directory:
+
+```bash
+npx @modelcontextprotocol/inspector node build/index.js
+```
+
+### Step-by-step workflow
+
+1. Run the command above — the Inspector starts a local web server
+2. Open the browser tab it prints (usually **http://localhost:5173**)
+3. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
+4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `get_example_code`) and inspect their responses
+5. Use the **"Resources"** tab to verify any static resources exposed by the server
+
+> **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
