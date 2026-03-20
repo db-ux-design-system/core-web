@@ -22,7 +22,7 @@
     "@storybook/addon-docs": "10.2.19",
     "@storybook/addon-vitest": "10.2.19",
     "@storybook/vue3-vite": "10.2.19",
-    "@vitejs/plugin-vue": "6.0.4",
+    "@vitejs/plugin-vue": "6.0.5",
     "@vue/tsconfig": "0.9.0",
     "eslint-plugin-storybook": "10.2.19",
     "storybook": "10.2.19",
