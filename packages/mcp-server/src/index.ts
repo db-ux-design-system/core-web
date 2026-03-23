@@ -459,6 +459,100 @@ server.registerTool(
 );
 
 // ---------------------------------------------------------------------------
+// docs_search
+// ---------------------------------------------------------------------------
+server.registerTool(
+	'docs_search',
+	{
+		description:
+			'Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs.',
+		inputSchema: {
+			query: z
+				.string()
+				.describe(
+					"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."
+				),
+			category: z
+				.enum(['global', 'component'])
+				.describe("Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."),
+			componentName: z
+				.string()
+				.optional()
+				.describe("Required if category is 'component' (e.g., 'button', 'navigation')."),
+			docType: z
+				.enum(['React', 'Angular', 'Vue', 'HTML', 'Migration', 'Accessibility'])
+				.optional()
+				.describe("Optional: The specific doc file to read for a component (e.g., 'Migration').")
+		}
+	},
+	async ({ query, category, componentName, docType }) => {
+		if (!isMonorepo()) {
+			return {
+				content: [{ type: 'text' as const, text: 'Error: docs_search is only available in the monorepo environment.' }],
+				isError: true
+			};
+		}
+
+		const results: string[] = [];
+		const searchTerms = query.toLowerCase().split(' ').filter(t => t.trim().length > 2);
+
+		if (category === 'component') {
+			if (!componentName) {
+				return { content: [{ type: 'text' as const, text: 'Error: componentName is required for component search.' }], isError: true };
+			}
+			const compDocsDir = join(COMPONENTS_DIR, componentName, 'docs');
+			if (existsSync(compDocsDir)) {
+				const files = await readdir(compDocsDir);
+				for (const file of files) {
+					if (!file.endsWith('.md')) continue;
+					if (docType && !file.toLowerCase().includes(docType.toLowerCase())) continue;
+
+					const content = await readFile(join(compDocsDir, file), 'utf-8');
+					const lowerContent = content.toLowerCase();
+
+					const isMatch = searchTerms.length === 0 || searchTerms.every(term => lowerContent.includes(term));
+					if (isMatch) {
+						results.push(`--- ${componentName}/docs/${file} ---\n${content}`);
+					}
+				}
+			} else {
+				results.push(`No documentation found for component '${componentName}'.`);
+			}
+		} else {
+			const docsDir = join(REPO_ROOT, 'docs');
+			if (existsSync(docsDir)) {
+				async function searchDir(currentDir: string) {
+					const entries = await readdir(currentDir, { withFileTypes: true });
+					for (const entry of entries) {
+						const fullPath = join(currentDir, entry.name);
+						if (entry.isDirectory()) {
+							await searchDir(fullPath);
+						} else if (entry.name.endsWith('.md')) {
+							const content = await readFile(fullPath, 'utf-8');
+							const lowerContent = content.toLowerCase();
+
+							const isMatch = searchTerms.length > 0 && searchTerms.every(term => lowerContent.includes(term));
+							if (isMatch) {
+								const snippet = content.length > 3000 ? content.substring(0, 3000) + '\n... [TRUNCATED]' : content;
+								results.push(`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`);
+							}
+						}
+					}
+				}
+				await searchDir(docsDir);
+			}
+		}
+
+		if (results.length === 0) {
+			return { content: [{ type: 'text' as const, text: `No documentation found matching query: '${query}'` }] };
+		}
+
+		const finalResults = results.slice(0, 3).join('\n\n');
+		return { content: [{ type: 'text' as const, text: finalResults }] };
+	}
+);
+
+// ---------------------------------------------------------------------------
 // scaffold_page prompt
 // ---------------------------------------------------------------------------
 server.registerPrompt(
@@ -544,6 +638,7 @@ Do not output code until all four phases are complete. Then structure your respo
 	})
 );
 
+// ---------------------------------------------------------------------------
 // review_ui_code prompt
 // ---------------------------------------------------------------------------
 server.registerPrompt(
