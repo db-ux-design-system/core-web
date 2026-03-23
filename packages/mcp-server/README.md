@@ -253,6 +253,19 @@ npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
 
 ---
 
+## 🛡️ Security & Compliance
+
+This MCP server is designed for enterprise environments and operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
+
+* **Strict Read-Only Sandbox:** The server has zero write-permissions. All imports from `node:fs` are strictly read-only (`readFile`, `readdir`). Modules like `child_process` (for shell execution) or file mutation methods (`writeFile`, `unlink`) are completely banned.
+* **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).
+* **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
+  * File reads are truncated at **5,000 characters**.
+  * JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
+  * Directory scans are hard-limited to a maximum of **10 files**.
+
+---
+
 ## 🧪 Development & Testing
 
 The **MCP Inspector** is the official tool to validate MCP tools and prompts (e.g. `scaffold_page`) independently of any IDE (VS Code, IntelliJ, etc.). Use it to inspect the server's capabilities, test tool calls interactively, and verify prompt outputs before relying on them in an AI agent workflow.

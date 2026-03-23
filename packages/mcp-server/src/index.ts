@@ -29,6 +29,28 @@ function isMonorepo(): boolean {
 // Live paths (monorepo only)
 const REPO_ROOT = REPO_ROOT_CANDIDATE;
 const COMPONENTS_DIR = join(REPO_ROOT, 'packages/components/src/components');
+
+// --- Security Utilities ---
+const MAX_FILE_CONTENT = 5000;
+const MAX_JSON_OUTPUT = 20_000;
+
+function truncate(text: string, limit: number, label = 'TRUNCATED DUE TO SIZE'): string {
+	return text.length > limit ? text.substring(0, limit) + `\n... [${label}]` : text;
+}
+
+/**
+ * Resolves a path and ensures it remains strictly within the allowed base directory.
+ * Prevents Path Traversal (Directory Climbing) attacks.
+ */
+function resolveSafePath(baseDir: string, userPath: string): string {
+	const absoluteBase = resolve(baseDir);
+	const absoluteRequested = resolve(baseDir, userPath);
+
+	if (!absoluteRequested.startsWith(absoluteBase + '/') && absoluteRequested !== absoluteBase) {
+		throw new Error('Security Access Denied: Path traversal detected. The requested path is outside the allowed directory.');
+	}
+	return absoluteRequested;
+}
 const OUTPUT_DIR = join(REPO_ROOT, 'output');
 const ALL_ICONS_FILE = join(REPO_ROOT, 'packages/foundations/src/all-icons.ts');
 const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
@@ -79,23 +101,18 @@ server.registerTool(
 			const components = entries
 				.filter((e) => e.isDirectory())
 				.map((e) => e.name);
+			const text = JSON.stringify(components, null, 2);
 			return {
 				content: [
-					{ type: 'text', text: JSON.stringify(components, null, 2) }
+					{ type: 'text', text: truncate(text, MAX_JSON_OUTPUT) }
 				]
 			};
 		}
 		const manifest = await getManifest();
+		const text = JSON.stringify(Object.keys(manifest.components), null, 2);
 		return {
 			content: [
-				{
-					type: 'text',
-					text: JSON.stringify(
-						Object.keys(manifest.components),
-						null,
-						2
-					)
-				}
+				{ type: 'text', text: truncate(text, MAX_JSON_OUTPUT) }
 			]
 		};
 	}
@@ -113,9 +130,9 @@ server.registerTool(
 	},
 	async ({ componentName }) => {
 		if (isMonorepo()) {
+			const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
 			const showcaseFile = join(
-				COMPONENTS_DIR,
-				componentName,
+				safeComponentPath,
 				'showcase',
 				`${componentName}.showcase.lite.tsx`
 			);
@@ -130,7 +147,7 @@ server.registerTool(
 					isError: true
 				};
 			}
-			const source = await readFile(showcaseFile, 'utf-8');
+			const source = truncate(await readFile(showcaseFile, 'utf-8'), MAX_FILE_CONTENT);
 			const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map(
 				(m) => m[1]
 			);
@@ -185,7 +202,8 @@ server.registerTool(
 	},
 	async ({ componentName }) => {
 		if (isMonorepo()) {
-			const modelFile = join(COMPONENTS_DIR, componentName, 'model.ts');
+			const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+			const modelFile = join(safeComponentPath, 'model.ts');
 			if (!existsSync(modelFile)) {
 				return {
 					content: [
@@ -199,7 +217,7 @@ server.registerTool(
 			}
 			return {
 				content: [
-					{ type: 'text', text: await readFile(modelFile, 'utf-8') }
+					{ type: 'text', text: truncate(await readFile(modelFile, 'utf-8'), MAX_FILE_CONTENT) }
 				]
 			};
 		}
@@ -216,7 +234,7 @@ server.registerTool(
 				isError: true
 			};
 		}
-		return { content: [{ type: 'text', text: comp.props }] };
+		return { content: [{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }] };
 	}
 );
 
@@ -292,11 +310,12 @@ server.registerTool(
 		const lines = source
 			.split('\n')
 			.filter((line) => /--db-|^\$db-/.test(line));
+		const raw = lines.length > 0 ? lines.join('\n') : source;
 		return {
 			content: [
 				{
 					type: 'text' as const,
-					text: lines.length > 0 ? lines.join('\n') : source
+					text: truncate(raw, MAX_JSON_OUTPUT)
 				}
 			]
 		};
@@ -321,7 +340,7 @@ server.registerTool(
 				content: [
 					{
 						type: 'text' as const,
-						text: JSON.stringify(icons, null, 2)
+						text: truncate(JSON.stringify(icons, null, 2), MAX_JSON_OUTPUT)
 					}
 				]
 			};
@@ -331,7 +350,7 @@ server.registerTool(
 			content: [
 				{
 					type: 'text' as const,
-					text: JSON.stringify(manifest.icons, null, 2)
+					text: truncate(JSON.stringify(manifest.icons, null, 2), MAX_JSON_OUTPUT)
 				}
 			]
 		};
@@ -376,18 +395,17 @@ server.registerTool(
 		const ext = FRAMEWORK_EXT[framework];
 
 		if (isMonorepo()) {
-			const examplesDir = join(
-				OUTPUT_DIR,
-				framework,
-				'src/components',
-				componentName,
-				'examples'
+			const safeComponentPath = resolveSafePath(
+				join(OUTPUT_DIR, framework, 'src/components'),
+				componentName
 			);
+			const examplesDir = join(safeComponentPath, 'examples');
 			let resolvedPath = join(examplesDir, `${kebab}.example.${ext}`);
 			if (!existsSync(resolvedPath)) {
-				const entries = existsSync(examplesDir)
+				const allEntries = existsSync(examplesDir)
 					? await readdir(examplesDir)
 					: [];
+				const entries = allEntries.slice(0, 10);
 				const match = entries.find(
 					(f) =>
 						f.endsWith(`.example.${ext}`) &&
@@ -411,7 +429,7 @@ server.registerTool(
 				content: [
 					{
 						type: 'text' as const,
-						text: await readFile(resolvedPath, 'utf-8')
+						text: truncate(await readFile(resolvedPath, 'utf-8'), MAX_FILE_CONTENT)
 					}
 				]
 			};
@@ -454,7 +472,7 @@ server.registerTool(
 				isError: true
 			};
 		}
-		return { content: [{ type: 'text' as const, text: src }] };
+		return { content: [{ type: 'text' as const, text: truncate(src, MAX_FILE_CONTENT) }] };
 	}
 );
 
@@ -500,7 +518,8 @@ server.registerTool(
 			if (!componentName) {
 				return { content: [{ type: 'text' as const, text: 'Error: componentName is required for component search.' }], isError: true };
 			}
-			const compDocsDir = join(COMPONENTS_DIR, componentName, 'docs');
+				const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+			const compDocsDir = join(safeComponentPath, 'docs');
 			if (existsSync(compDocsDir)) {
 				const files = await readdir(compDocsDir);
 				for (const file of files) {
