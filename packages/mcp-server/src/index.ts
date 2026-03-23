@@ -54,7 +54,9 @@ const TOOL_TIMEOUT_MS = 10000; // 10 seconds
 async function withTimeout<T>(
 	operation: Promise<T>,
 	timeoutMessage: string
-): Promise<T | { content: { type: 'text'; text: string }[]; isError: boolean }> {
+): Promise<
+	T | { content: { type: 'text'; text: string }[]; isError: boolean }
+> {
 	let timer: ReturnType<typeof setTimeout>;
 	const timeoutPromise = new Promise<any>((resolve) => {
 		timer = setTimeout(() => {
@@ -488,12 +490,20 @@ server.registerTool(
 					);
 					if (!existsSync(safeComponentPath)) {
 						return {
-							content: [{ type: 'text' as const, text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+							content: [
+								{
+									type: 'text' as const,
+									text: COMPONENT_NOT_FOUND_MSG(componentName)
+								}
+							],
 							isError: true
 						};
 					}
 					const examplesDir = join(safeComponentPath, 'examples');
-					let resolvedPath = join(examplesDir, `${kebab}.example.${ext}`);
+					let resolvedPath = join(
+						examplesDir,
+						`${kebab}.example.${ext}`
+					);
 					if (!existsSync(resolvedPath)) {
 						const allEntries = existsSync(examplesDir)
 							? await readdir(examplesDir)
@@ -502,25 +512,34 @@ server.registerTool(
 						const match = entries.find(
 							(f) =>
 								f.endsWith(`.example.${ext}`) &&
-								kebab.startsWith(f.replace(`.example.${ext}`, ''))
+								kebab.startsWith(
+									f.replace(`.example.${ext}`, '')
+								)
 						);
 						if (match) {
 							resolvedPath = join(examplesDir, match);
 						} else {
 							return {
-								content: [{
-									type: 'text' as const,
-									text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-								}],
+								content: [
+									{
+										type: 'text' as const,
+										text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
+									}
+								],
 								isError: true
 							};
 						}
 					}
 					return {
-						content: [{
-							type: 'text' as const,
-							text: truncate(await readFile(resolvedPath, 'utf-8'), MAX_FILE_CONTENT)
-						}]
+						content: [
+							{
+								type: 'text' as const,
+								text: truncate(
+									await readFile(resolvedPath, 'utf-8'),
+									MAX_FILE_CONTENT
+								)
+							}
+						]
 					};
 				}
 
@@ -529,7 +548,12 @@ server.registerTool(
 				const comp = manifest.components[componentName];
 				if (!comp) {
 					return {
-						content: [{ type: 'text' as const, text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+						content: [
+							{
+								type: 'text' as const,
+								text: COMPONENT_NOT_FOUND_MSG(componentName)
+							}
+						],
 						isError: true
 					};
 				}
@@ -546,16 +570,24 @@ server.registerTool(
 				}
 				if (!src) {
 					return {
-						content: [{
-							type: 'text' as const,
-							text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-						}],
+						content: [
+							{
+								type: 'text' as const,
+								text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
+							}
+						],
 						isError: true
 					};
 				}
-				return { content: [{ type: 'text' as const, text: truncate(src, MAX_FILE_CONTENT) }] };
-			})()
-			,
+				return {
+					content: [
+						{
+							type: 'text' as const,
+							text: truncate(src, MAX_FILE_CONTENT)
+						}
+					]
+				};
+			})(),
 			'Error: Reading example files took too long (exceeded 10 seconds).'
 		) as any;
 	}
@@ -624,50 +656,83 @@ server.registerTool(
 				if (category === 'component') {
 					if (!componentName) {
 						return {
-							content: [{ type: 'text' as const, text: 'Error: componentName is required for component search.' }],
+							content: [
+								{
+									type: 'text' as const,
+									text: 'Error: componentName is required for component search.'
+								}
+							],
 							isError: true
 						};
 					}
-					const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+					const safeComponentPath = resolveSafePath(
+						COMPONENTS_DIR,
+						componentName
+					);
 					const compDocsDir = join(safeComponentPath, 'docs');
 					if (existsSync(compDocsDir)) {
 						const files = await readdir(compDocsDir);
 						for (const file of files) {
 							if (!file.endsWith('.md')) continue;
-							if (docType && !file.toLowerCase().includes(docType.toLowerCase())) continue;
-							const content = await readFile(join(compDocsDir, file), 'utf-8');
+							if (
+								docType &&
+								!file
+									.toLowerCase()
+									.includes(docType.toLowerCase())
+							)
+								continue;
+							const content = await readFile(
+								join(compDocsDir, file),
+								'utf-8'
+							);
 							const lowerContent = content.toLowerCase();
 							const isMatch =
 								searchTerms.length === 0 ||
-								searchTerms.every((term) => lowerContent.includes(term));
+								searchTerms.every((term) =>
+									lowerContent.includes(term)
+								);
 							if (isMatch) {
-								results.push(`--- ${componentName}/docs/${file} ---\n${content}`);
+								results.push(
+									`--- ${componentName}/docs/${file} ---\n${content}`
+								);
 							}
 						}
 					} else {
-						results.push(`No documentation found for component '${componentName}'.`);
+						results.push(
+							`No documentation found for component '${componentName}'.`
+						);
 					}
 				} else {
 					const docsDir = join(REPO_ROOT, 'docs');
 					if (existsSync(docsDir)) {
 						async function searchDir(currentDir: string) {
-							const entries = await readdir(currentDir, { withFileTypes: true });
+							const entries = await readdir(currentDir, {
+								withFileTypes: true
+							});
 							for (const entry of entries) {
 								const fullPath = join(currentDir, entry.name);
 								if (entry.isDirectory()) {
 									await searchDir(fullPath);
 								} else if (entry.name.endsWith('.md')) {
-									const content = await readFile(fullPath, 'utf-8');
+									const content = await readFile(
+										fullPath,
+										'utf-8'
+									);
 									const lowerContent = content.toLowerCase();
 									const isMatch =
 										searchTerms.length > 0 &&
-										searchTerms.every((term) => lowerContent.includes(term));
+										searchTerms.every((term) =>
+											lowerContent.includes(term)
+										);
 									if (isMatch) {
 										const snippet =
 											content.length > 3000
-												? content.substring(0, 3000) + '\n... [TRUNCATED]'
+												? content.substring(0, 3000) +
+													'\n... [TRUNCATED]'
 												: content;
-										results.push(`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`);
+										results.push(
+											`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`
+										);
 									}
 								}
 							}
@@ -678,13 +743,19 @@ server.registerTool(
 
 				if (results.length === 0) {
 					return {
-						content: [{ type: 'text' as const, text: `No documentation found matching query: '${query}'` }]
+						content: [
+							{
+								type: 'text' as const,
+								text: `No documentation found matching query: '${query}'`
+							}
+						]
 					};
 				}
 				const finalResults = results.slice(0, 3).join('\n\n');
-				return { content: [{ type: 'text' as const, text: finalResults }] };
-			})()
-			,
+				return {
+					content: [{ type: 'text' as const, text: finalResults }]
+				};
+			})(),
 			'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
 		) as any;
 	}
@@ -708,8 +779,18 @@ server.registerPrompt(
 				.string()
 				.transform((val) => val.trim().toLowerCase())
 				.refine(
-					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
-					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+					(val) =>
+						[
+							'react',
+							'angular',
+							'vue',
+							'web-components',
+							'html'
+						].includes(val),
+					{
+						message:
+							'Framework must be exactly one of: react, angular, vue, web-components, html'
+					}
 				)
 				.describe(
 					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
@@ -799,8 +880,18 @@ server.registerPrompt(
 				.string()
 				.transform((val) => val.trim().toLowerCase())
 				.refine(
-					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
-					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+					(val) =>
+						[
+							'react',
+							'angular',
+							'vue',
+							'web-components',
+							'html'
+						].includes(val),
+					{
+						message:
+							'Framework must be exactly one of: react, angular, vue, web-components, html'
+					}
 				)
 				.describe(
 					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
@@ -869,8 +960,18 @@ server.registerPrompt(
 				.string()
 				.transform((val) => val.trim().toLowerCase())
 				.refine(
-					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
-					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+					(val) =>
+						[
+							'react',
+							'angular',
+							'vue',
+							'web-components',
+							'html'
+						].includes(val),
+					{
+						message:
+							'Framework must be exactly one of: react, angular, vue, web-components, html'
+					}
 				)
 				.describe(
 					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
@@ -974,8 +1075,18 @@ server.registerPrompt(
 				.string()
 				.transform((val) => val.trim().toLowerCase())
 				.refine(
-					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
-					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+					(val) =>
+						[
+							'react',
+							'angular',
+							'vue',
+							'web-components',
+							'html'
+						].includes(val),
+					{
+						message:
+							'Framework must be exactly one of: react, angular, vue, web-components, html'
+					}
 				)
 				.describe(
 					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
@@ -1036,3 +1147,17 @@ const cleanup = async () => {
 
 process.on('SIGINT', cleanup);
 process.on('SIGTERM', cleanup);
+
+// --- Global Error Handling (Crash Resistance) ---
+process.on('uncaughtException', (error) => {
+	console.error('[DB UX MCP] Fatal Error - Uncaught Exception:', error);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+	console.error(
+		'[DB UX MCP] Fatal Error - Unhandled Rejection at:',
+		promise,
+		'reason:',
+		reason
+	);
+});
