@@ -560,16 +560,14 @@ server.registerTool(
 				}
 				const fwExamples = comp.exampleCode[framework] ?? {};
 				const directKey = `${kebab}.example.${ext}`;
-				let src: string | undefined = fwExamples[directKey];
-				if (!src) {
-					const matchKey = Object.keys(fwExamples).find((k) => {
-						if (!k.endsWith(`.example.${ext}`)) return false;
-						const stem = k.replace(`.example.${ext}`, '');
-						return kebab.startsWith(stem) || stem.startsWith(kebab);
-					});
-					src = matchKey ? fwExamples[matchKey] : undefined;
-				}
-				if (!src) {
+				const matchKey = fwExamples[directKey]
+					? directKey
+					: Object.keys(fwExamples).find((k) => {
+							if (!k.endsWith(`.example.${ext}`)) return false;
+							const stem = k.replace(`.example.${ext}`, '');
+							return kebab.startsWith(stem) || stem.startsWith(kebab);
+						});
+				if (!matchKey) {
 					return {
 						content: [
 							{
@@ -584,7 +582,7 @@ server.registerTool(
 					content: [
 						{
 							type: 'text',
-							text: truncate(src, MAX_FILE_CONTENT)
+							text: truncate(fwExamples[matchKey], MAX_FILE_CONTENT)
 						}
 					]
 				};
