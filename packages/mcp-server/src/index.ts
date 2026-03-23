@@ -724,7 +724,7 @@ server.registerTool(
 									);
 									const lowerContent = content.toLowerCase();
 									const isMatch =
-										searchTerms.length > 0 &&
+										searchTerms.length === 0 ||
 										searchTerms.every((term) =>
 											lowerContent.includes(term)
 										);
