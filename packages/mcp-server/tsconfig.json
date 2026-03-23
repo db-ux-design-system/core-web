@@ -2,10 +2,8 @@
 	"include": ["."],
 	"compilerOptions": {
 		"strict": true,
-		"allowSyntheticDefaultImports": true,
-		"composite": true,
 		"module": "ESNext",
-		"moduleResolution": "Node",
+		"moduleResolution": "Bundler",
 		"resolveJsonModule": true,
 		"target": "ESNext",
 		"verbatimModuleSyntax": true,
