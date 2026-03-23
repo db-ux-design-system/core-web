@@ -82,7 +82,7 @@ async function buildManifest() {
 				(f) => !f.startsWith('_') && f.includes('.example.')
 			)) {
 				const src = await readFile(join(exDir, file), 'utf-8');
-				// Key: filename without extension (e.g. "show-icon-leading.example.tsx" -> "show-icon-leading.example.tsx")
+				// Key: full filename including extension (e.g. "show-icon-leading.example.tsx")
 				exampleCode[fw][file] = src;
 			}
 		}
