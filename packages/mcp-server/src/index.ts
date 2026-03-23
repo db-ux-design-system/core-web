@@ -18,16 +18,15 @@ import { z } from 'zod/v3';
 // ---------------------------------------------------------------------------
 
 const SERVER_DIR = import.meta.dirname;
-const REPO_ROOT_CANDIDATE = resolve(SERVER_DIR, '../../..');
+const REPO_ROOT = resolve(SERVER_DIR, '../../..');
 
 function isMonorepo(): boolean {
 	return existsSync(
-		join(REPO_ROOT_CANDIDATE, 'packages/components/src/components')
+		join(REPO_ROOT, 'packages/components/src/components')
 	);
 }
 
 // Live paths (monorepo only)
-const REPO_ROOT = REPO_ROOT_CANDIDATE;
 const COMPONENTS_DIR = join(REPO_ROOT, 'packages/components/src/components');
 
 // --- Security Utilities ---
@@ -375,7 +374,7 @@ server.registerTool(
 			return {
 				content: [
 					{
-						type: 'text' as const,
+						type: 'text',
 						text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}`
 					}
 				],
@@ -386,7 +385,7 @@ server.registerTool(
 			return {
 				content: [
 					{
-						type: 'text' as const,
+						type: 'text',
 						text: `Error: token file not found at ${filePath}`
 					}
 				],
@@ -401,7 +400,7 @@ server.registerTool(
 		return {
 			content: [
 				{
-					type: 'text' as const,
+					type: 'text',
 					text: truncate(raw, MAX_JSON_OUTPUT)
 				}
 			]
@@ -426,7 +425,7 @@ server.registerTool(
 			return {
 				content: [
 					{
-						type: 'text' as const,
+						type: 'text',
 						text: truncate(
 							JSON.stringify(icons, null, 2),
 							MAX_JSON_OUTPUT
@@ -439,7 +438,7 @@ server.registerTool(
 		return {
 			content: [
 				{
-					type: 'text' as const,
+					type: 'text',
 					text: truncate(
 						JSON.stringify(manifest.icons, null, 2),
 						MAX_JSON_OUTPUT
@@ -498,7 +497,7 @@ server.registerTool(
 						return {
 							content: [
 								{
-									type: 'text' as const,
+									type: 'text',
 									text: COMPONENT_NOT_FOUND_MSG(componentName)
 								}
 							],
@@ -526,7 +525,7 @@ server.registerTool(
 							return {
 								content: [
 									{
-										type: 'text' as const,
+										type: 'text',
 										text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 									}
 								],
@@ -537,7 +536,7 @@ server.registerTool(
 					return {
 						content: [
 							{
-								type: 'text' as const,
+								type: 'text',
 								text: truncate(
 									await readFile(resolvedPath, 'utf-8'),
 									MAX_FILE_CONTENT
@@ -554,7 +553,7 @@ server.registerTool(
 					return {
 						content: [
 							{
-								type: 'text' as const,
+								type: 'text',
 								text: COMPONENT_NOT_FOUND_MSG(componentName)
 							}
 						],
@@ -576,7 +575,7 @@ server.registerTool(
 					return {
 						content: [
 							{
-								type: 'text' as const,
+								type: 'text',
 								text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 							}
 						],
@@ -586,7 +585,7 @@ server.registerTool(
 				return {
 					content: [
 						{
-							type: 'text' as const,
+							type: 'text',
 							text: truncate(src, MAX_FILE_CONTENT)
 						}
 					]
@@ -642,7 +641,7 @@ server.registerTool(
 			return {
 				content: [
 					{
-						type: 'text' as const,
+						type: 'text',
 						text: 'Error: docs_search is only available in the monorepo environment.'
 					}
 				],
@@ -662,7 +661,7 @@ server.registerTool(
 						return {
 							content: [
 								{
-									type: 'text' as const,
+									type: 'text',
 									text: 'Error: componentName is required for component search.'
 								}
 							],
@@ -709,7 +708,7 @@ server.registerTool(
 				} else {
 					const docsDir = join(REPO_ROOT, 'docs');
 					if (existsSync(docsDir)) {
-						async function searchDir(currentDir: string) {
+					const searchDir = async (currentDir: string) => {
 							const entries = await readdir(currentDir, {
 								withFileTypes: true
 							});
@@ -749,7 +748,7 @@ server.registerTool(
 					return {
 						content: [
 							{
-								type: 'text' as const,
+								type: 'text',
 								text: `No documentation found matching query: '${query}'`
 							}
 						]
@@ -757,7 +756,7 @@ server.registerTool(
 				}
 				const finalResults = results.slice(0, 3).join('\n\n');
 				return {
-					content: [{ type: 'text' as const, text: finalResults }]
+					content: [{ type: 'text', text: finalResults }]
 				};
 			})(),
 			'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
