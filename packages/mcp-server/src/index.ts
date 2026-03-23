@@ -603,5 +603,68 @@ Deliver your analysis in the following strict format:
 	})
 );
 
+// ---------------------------------------------------------------------------
+// migrate_component prompt
+// ---------------------------------------------------------------------------
+server.registerPrompt(
+	'migrate_component',
+	{
+		description:
+			'Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture.',
+		argsSchema: {
+			legacy_code: z
+				.string()
+				.describe(
+					'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
+				),
+			source_context: z
+				.string()
+				.describe(
+					"The origin/context of the legacy code (e.g., 'db-ui-v2', 'bootstrap-4', 'native-html')."
+				),
+			target_framework: z
+				.string()
+				.describe(
+					'The target framework in the DB UX v3 ecosystem (react, angular, vue, web-components).'
+				)
+		}
+	},
+	({ legacy_code, source_context, target_framework }) => ({
+		description:
+			'Migrates legacy UI code to DB UX v3 standards using MCP tools',
+		messages: [
+			{
+				role: 'user',
+				content: {
+					type: 'text',
+					text: `You are a Legacy Systems Modernization Specialist and DB UX Architecture Expert.
+Your assignment is to securely migrate UI code from ${source_context} into the modern DB UX Design System v3 standard.
+
+<legacy_snippet>
+${legacy_code}
+</legacy_snippet>
+
+Target V3 Framework: ${target_framework}
+
+Do not perform a naive, line-by-line syntax translation. DB UX v3 introduced major structural shifts (e.g., decoupled JS layers, new variant controls like 'solid/outline', density controls for tables, and strict accessibility roles).
+
+You must execute this cognitive workflow:
+
+1. SEMANTIC PARSING: Analyze the legacy snippet to understand its functional intent (e.g., is this a navigation bar with a dropdown, a complex data table with sticky headers, or a form with validation states?).
+2. V3 MAPPING: Call 'list_components' to identify the exact equivalent components in the DB UX v3 ecosystem.
+3. SPECIFICATION ACQUISITION: Call 'get_example_code' for the identified target components. You MUST study the v3 API surface, paying close attention to how props, data-attributes, and declarative CSS classes are structured in the new version.
+4. TOKEN MIGRATION: Call 'get_design_tokens' to map any legacy CSS variables, utility classes, or hardcoded values from the source snippet to the current v3 token architecture.
+
+Your response must be structured to provide transparency to the developer:
+
+1. "Migration Analysis": Explain the mapping strategy. Detail which legacy components were replaced by which v3 components. Explicitly state any breaking changes or deprecated features encountered.
+2. "V3 Refactored Code": The fully migrated, production-ready code block utilizing the correct @db-ux/* package and syntax.
+3. "Actionable Post-Migration Notes": Highlight any behavioral shifts or accessibility features (ARIA states) that the developer needs to manually test post-migration.`
+				}
+			}
+		]
+	})
+);
+
 const transport = new StdioServerTransport();
 await server.connect(transport);
