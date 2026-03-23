@@ -300,12 +300,18 @@ server.registerTool(
 		}
 		const manifest = await getManifest();
 		const comp = manifest.components[componentName];
-		if (!comp?.props) {
+		if (!comp) {
+			return {
+				content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+				isError: true
+			};
+		}
+		if (!comp.props) {
 			return {
 				content: [
 					{
 						type: 'text',
-						text: COMPONENT_NOT_FOUND_MSG(componentName)
+						text: `Error: Props file (model.ts) for component '${componentName}' not found.`
 					}
 				],
 				isError: true
