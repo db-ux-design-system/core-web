@@ -14,7 +14,7 @@ Concrete use cases:
 
 | Technology | Purpose |
 |---|---|
-| **Node.js** (≥ 20) | Runtime environment |
+| **Node.js** (≥ 22) | Runtime environment |
 | **TypeScript** | Type safety, consistent with the rest of the monorepo |
 | **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
 | **`tsx`** | Development runner (no separate build step required) |
@@ -29,9 +29,10 @@ core-web/
 │   │   └── src/
 │   │       └── components/
 │   │           └── {component}/
-│   │               ├── {component}.lite.tsx   # Mitosis component
-│   │               ├── model.ts               # Props / types
-│   │               └── examples/              # Usage examples (.example.lite.tsx)
+│   │               ├── {component}.lite.tsx        # Mitosis component
+│   │               ├── model.ts                    # Props / types
+│   │               └── showcase/
+│   │                   └── {component}.showcase.lite.tsx  # Example names
 │   └── mcp-server/          # This package
 │       └── src/
 │           ├── index.ts           # MCP server — all tool registrations
@@ -41,12 +42,15 @@ core-web/
     ├── react/               # Generated React code
     │   └── src/components/
     │       └── {component}/
+    │           └── examples/  # *.example.tsx
     ├── angular/             # Generated Angular code
     │   └── src/components/
     │       └── {component}/
+    │           └── examples/  # *.example.ts
     └── vue/                 # Generated Vue code
         └── src/components/
             └── {component}/
+                └── examples/  # *.example.vue
 ```
 
 ## MCP Concepts in This Server
@@ -62,10 +66,11 @@ core-web/
 | `list_icons` | Returns all valid icon names from `all-icons.ts` |
 | `list_design_token_categories` | Returns all available design token categories |
 | `get_design_tokens` | Returns CSS custom properties and SCSS variables for a token category |
+| `docs_search` | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs |
 
 ### Manifest (embedded data)
 
-At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-foundations` from a consumer project.
+At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-foundations db-ux-mcp` from a consumer project.
 
 ## Communication
 
@@ -76,7 +81,7 @@ The server uses `StdioServerTransport` from the MCP SDK. It is started as a chil
   "mcpServers": {
     "db-ux": {
       "command": "npx",
-      "args": ["-y", "@db-ux/core-foundations"]
+      "args": ["-y", "@db-ux/core-foundations", "db-ux-mcp"]
     }
   }
 }
