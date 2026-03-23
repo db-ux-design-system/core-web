@@ -16,11 +16,12 @@ await esbuild.build({
 	outfile: `${__dirname}/build/index.js`,
 	bundle: true,
 	platform: "node",
-	target: "node20",
+	target: "node22",
 	format: "esm",
 	banner: { js: "#!/usr/bin/env node" },
-	resolveExtensions: [".ts", ".tsx", ".lite.tsx", ".js", ".jsx", ".json"],
-	// Keep @db-ux/* packages and Node built-ins external — the MCP server
-	// only embeds manifest.json, it must not pull in the component library source.
-	external: ["@db-ux/*", "@modelcontextprotocol/*"],
+	resolveExtensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+	// Keep @db-ux/* packages external — the MCP server only embeds manifest.json,
+	// it must not pull in the component library source.
+	// @modelcontextprotocol/sdk is bundled so the output runs standalone via npx.
+	external: ["@db-ux/*"],
 });
