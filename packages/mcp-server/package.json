@@ -8,9 +8,11 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
-  "main": "build/index.js",
+  "exports": {
+    ".": "./build/index.js"
+  },
   "bin": {
-    "@db-ux/mcp-server": "build/index.js"
+    "db-ux-mcp": "build/index.js"
   },
   "files": [
     "build",
