@@ -127,122 +127,54 @@ const server = new McpServer({ name: 'db-ux-mcp', version: '0.1.0' });
 // ---------------------------------------------------------------------------
 // list_components
 // ---------------------------------------------------------------------------
+export async function handleListComponents(): Promise<ToolResult> {
+	if (IS_MONOREPO) {
+		const entries = await readdir(COMPONENTS_DIR, { withFileTypes: true });
+		const components = entries.filter((e) => e.isDirectory()).map((e) => e.name);
+		return { content: [{ type: 'text', text: truncate(JSON.stringify(components, null, 2), MAX_JSON_OUTPUT) }] };
+	}
+	const manifest = await getManifest();
+	return { content: [{ type: 'text', text: truncate(JSON.stringify(Object.keys(manifest.components), null, 2), MAX_JSON_OUTPUT) }] };
+}
+
 server.registerTool(
 	'list_components',
-	{
-		description:
-			'Returns all available DB UX component names by scanning packages/components/src/components.'
-	},
-	async () => {
-		if (IS_MONOREPO) {
-			const entries = await readdir(COMPONENTS_DIR, {
-				withFileTypes: true
-			});
-			const components = entries
-				.filter((e) => e.isDirectory())
-				.map((e) => e.name);
-			const text = JSON.stringify(components, null, 2);
-			return {
-				content: [
-					{ type: 'text', text: truncate(text, MAX_JSON_OUTPUT) }
-				]
-			};
-		}
-		const manifest = await getManifest();
-		const text = JSON.stringify(Object.keys(manifest.components), null, 2);
-		return {
-			content: [{ type: 'text', text: truncate(text, MAX_JSON_OUTPUT) }]
-		};
-	}
+	{ description: 'Returns all available DB UX component names by scanning packages/components/src/components.' },
+	handleListComponents
 );
 
 // ---------------------------------------------------------------------------
 // get_component_details
 // ---------------------------------------------------------------------------
+export async function handleGetComponentDetails({ componentName }: { componentName: string }): Promise<ToolResult> {
+	if (IS_MONOREPO) {
+		const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+		if (!existsSync(safeComponentPath)) {
+			return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+		}
+		const showcaseFile = join(safeComponentPath, 'showcase', `${componentName}.showcase.lite.tsx`);
+		if (!existsSync(showcaseFile)) {
+			return { content: [{ type: 'text', text: `Error: File for component '${componentName}' not found.` }], isError: true };
+		}
+		const source = truncate(await readFile(showcaseFile, 'utf-8'), MAX_FILE_CONTENT);
+		const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map((m) => m[1]);
+		return { content: [{ type: 'text', text: examples.length > 0 ? JSON.stringify(examples, null, 2) : 'No examples found.' }] };
+	}
+	const manifest = await getManifest();
+	const comp = manifest.components[componentName];
+	if (!comp) {
+		return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+	}
+	return { content: [{ type: 'text', text: comp.examples.length > 0 ? JSON.stringify(comp.examples, null, 2) : 'No examples found.' }] };
+}
+
 server.registerTool(
 	'get_component_details',
 	{
-		description:
-			'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
+		description: 'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
 		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
 	},
-	async ({ componentName }) => {
-		if (IS_MONOREPO) {
-			const safeComponentPath = resolveSafePath(
-				COMPONENTS_DIR,
-				componentName
-			);
-			if (!existsSync(safeComponentPath)) {
-				return {
-					content: [
-						{
-							type: 'text',
-							text: COMPONENT_NOT_FOUND_MSG(componentName)
-						}
-					],
-					isError: true
-				};
-			}
-			const showcaseFile = join(
-				safeComponentPath,
-				'showcase',
-				`${componentName}.showcase.lite.tsx`
-			);
-			if (!existsSync(showcaseFile)) {
-				return {
-					content: [
-						{
-							type: 'text',
-							text: `Error: File for component '${componentName}' not found.`
-						}
-					],
-					isError: true
-				};
-			}
-			const source = truncate(
-				await readFile(showcaseFile, 'utf-8'),
-				MAX_FILE_CONTENT
-			);
-			const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map(
-				(m) => m[1]
-			);
-			return {
-				content: [
-					{
-						type: 'text',
-						text:
-							examples.length > 0
-								? JSON.stringify(examples, null, 2)
-								: 'No examples found.'
-					}
-				]
-			};
-		}
-		const manifest = await getManifest();
-		const comp = manifest.components[componentName];
-		if (!comp) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: COMPONENT_NOT_FOUND_MSG(componentName)
-					}
-				],
-				isError: true
-			};
-		}
-		return {
-			content: [
-				{
-					type: 'text',
-					text:
-						comp.examples.length > 0
-							? JSON.stringify(comp.examples, null, 2)
-							: 'No examples found.'
-				}
-			]
-		};
-	}
+	handleGetComponentDetails
 );
 
 // ---------------------------------------------------------------------------
@@ -340,80 +272,52 @@ const TOKEN_FILES: Record<string, string> = {
 	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
 };
 
+export async function handleListDesignTokenCategories(): Promise<ToolResult> {
+	const categories = Object.keys(TOKEN_FILES).filter((key) => existsSync(TOKEN_FILES[key]));
+	return { content: [{ type: 'text', text: JSON.stringify(categories, null, 2) }] };
+}
+
 server.registerTool(
 	'list_design_token_categories',
-	{
-		description:
-			'Returns all available DB UX design token categories (e.g. colors, spacing, typography).'
-	},
-	async () => {
-		const categories = Object.keys(TOKEN_FILES).filter((key) =>
-			existsSync(TOKEN_FILES[key])
-		);
-		return {
-			content: [
-				{ type: 'text', text: JSON.stringify(categories, null, 2) }
-			]
-		};
-	}
+	{ description: 'Returns all available DB UX design token categories (e.g. colors, spacing, typography).' },
+	handleListDesignTokenCategories
 );
+
+export async function handleGetDesignTokens({ category }: { category: string }): Promise<ToolResult> {
+	const filePath = TOKEN_FILES[category];
+	if (!filePath) {
+		return { content: [{ type: 'text', text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}` }], isError: true };
+	}
+	if (!existsSync(filePath)) {
+		return { content: [{ type: 'text', text: `Error: token file not found at ${filePath}` }], isError: true };
+	}
+	const source = await readFile(filePath, 'utf-8');
+	const lines = source.split('\n').filter((line) => /--db-|^\$db-/.test(line));
+	return { content: [{ type: 'text', text: truncate(lines.length > 0 ? lines.join('\n') : source, MAX_JSON_OUTPUT) }] };
+}
 
 server.registerTool(
 	'get_design_tokens',
 	{
-		description:
-			'Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.',
-		inputSchema: {
-			category: z
-				.string()
-				.describe(
-					"Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories."
-				)
-		}
+		description: 'Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.',
+		inputSchema: { category: z.string().describe("Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories.") }
 	},
-	async ({ category }) => {
-		const filePath = TOKEN_FILES[category];
-		if (!filePath) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}`
-					}
-				],
-				isError: true
-			};
-		}
-		if (!existsSync(filePath)) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: token file not found at ${filePath}`
-					}
-				],
-				isError: true
-			};
-		}
-		const source = await readFile(filePath, 'utf-8');
-		const lines = source
-			.split('\n')
-			.filter((line) => /--db-|^\$db-/.test(line));
-		const raw = lines.length > 0 ? lines.join('\n') : source;
-		return {
-			content: [
-				{
-					type: 'text',
-					text: truncate(raw, MAX_JSON_OUTPUT)
-				}
-			]
-		};
-	}
+	handleGetDesignTokens
 );
 
 // ---------------------------------------------------------------------------
 // list_icons
 // ---------------------------------------------------------------------------
+export async function handleListIcons(): Promise<ToolResult> {
+	if (IS_MONOREPO && existsSync(ALL_ICONS_FILE)) {
+		const source = await readFile(ALL_ICONS_FILE, 'utf-8');
+		const icons = [...source.matchAll(/'([^']+)'/g)].map((m) => m[1]);
+		return { content: [{ type: 'text', text: truncate(JSON.stringify(icons, null, 2), MAX_JSON_OUTPUT) }] };
+	}
+	const manifest = await getManifest();
+	return { content: [{ type: 'text', text: truncate(JSON.stringify(manifest.icons, null, 2), MAX_JSON_OUTPUT) }] };
+}
+
 server.registerTool(
 	'list_icons',
 	{
@@ -421,35 +325,7 @@ server.registerTool(
 			"Returns all available DB UX icon names (e.g. 'arrow_down', 'chevron_right') " +
 			'from the generated all-icons.ts in packages/foundations/src.'
 	},
-	async () => {
-		if (IS_MONOREPO && existsSync(ALL_ICONS_FILE)) {
-			const source = await readFile(ALL_ICONS_FILE, 'utf-8');
-			const icons = [...source.matchAll(/'([^']+)'/g)].map((m) => m[1]);
-			return {
-				content: [
-					{
-						type: 'text',
-						text: truncate(
-							JSON.stringify(icons, null, 2),
-							MAX_JSON_OUTPUT
-						)
-					}
-				]
-			};
-		}
-		const manifest = await getManifest();
-		return {
-			content: [
-				{
-					type: 'text',
-					text: truncate(
-						JSON.stringify(manifest.icons, null, 2),
-						MAX_JSON_OUTPUT
-					)
-				}
-			]
-		};
-	}
+	handleListIcons
 );
 
 // ---------------------------------------------------------------------------
@@ -469,6 +345,62 @@ const FRAMEWORK_EXT: Record<Framework, string> = {
 	vue: 'vue'
 };
 
+export async function handleGetExampleCode({ componentName, exampleName, framework }: { componentName: string; exampleName: string; framework: Framework }): Promise<ToolResult> {
+	return withTimeout(
+		(async () => {
+			const kebab = toKebabCase(exampleName);
+			const ext = FRAMEWORK_EXT[framework];
+
+			if (IS_MONOREPO) {
+				const safeComponentPath = resolveSafePath(
+					join(OUTPUT_DIR, framework, 'src/components'),
+					componentName
+				);
+				if (!existsSync(safeComponentPath)) {
+					return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+				}
+				const examplesDir = join(safeComponentPath, 'examples');
+				let resolvedPath = join(examplesDir, `${kebab}.example.${ext}`);
+				if (!existsSync(resolvedPath)) {
+					const allEntries = existsSync(examplesDir) ? await readdir(examplesDir) : [];
+					const match = allEntries.slice(0, 10).find((f) => {
+						if (!f.endsWith(`.example.${ext}`)) return false;
+						const stem = f.replace(`.example.${ext}`, '');
+						return kebab.startsWith(stem) || stem.startsWith(kebab);
+					});
+					if (match) {
+						resolvedPath = join(examplesDir, match);
+					} else {
+						return { content: [{ type: 'text', text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.` }], isError: true };
+					}
+				}
+				return { content: [{ type: 'text', text: truncate(await readFile(resolvedPath, 'utf-8'), MAX_FILE_CONTENT) }] };
+			}
+
+			// Manifest fallback
+			const manifest = await getManifest();
+			const comp = manifest.components[componentName];
+			if (!comp) {
+				return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+			}
+			const fwExamples = comp.exampleCode[framework] ?? {};
+			const directKey = `${kebab}.example.${ext}`;
+			const matchKey = fwExamples[directKey]
+				? directKey
+				: Object.keys(fwExamples).find((k) => {
+						if (!k.endsWith(`.example.${ext}`)) return false;
+						const stem = k.replace(`.example.${ext}`, '');
+						return kebab.startsWith(stem) || stem.startsWith(kebab);
+					});
+			if (!matchKey) {
+				return { content: [{ type: 'text', text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.` }], isError: true };
+			}
+			return { content: [{ type: 'text', text: truncate(fwExamples[matchKey], MAX_FILE_CONTENT) }] };
+		})(),
+		'Error: Reading example files took too long (exceeded 10 seconds).'
+	) as any;
+}
+
 server.registerTool(
 	'get_example_code',
 	{
@@ -477,292 +409,87 @@ server.registerTool(
 			'For Angular, the template is inline inside the @Component decorator within the .ts file.',
 		inputSchema: {
 			componentName: z.string().describe("e.g. 'button'"),
-			exampleName: z
-				.string()
-				.describe("Readable example name, e.g. 'Show Icon Leading'"),
-			framework: z
-				.enum(['react', 'angular', 'vue'])
-				.describe("Target framework: 'react', 'angular', or 'vue'")
+			exampleName: z.string().describe("Readable example name, e.g. 'Show Icon Leading'"),
+			framework: z.enum(['react', 'angular', 'vue']).describe("Target framework: 'react', 'angular', or 'vue'")
 		}
 	},
-	async ({ componentName, exampleName, framework }) => {
-		return withTimeout(
-			(async () => {
-				const kebab = toKebabCase(exampleName);
-				const ext = FRAMEWORK_EXT[framework];
-
-				if (IS_MONOREPO) {
-					const safeComponentPath = resolveSafePath(
-						join(OUTPUT_DIR, framework, 'src/components'),
-						componentName
-					);
-					if (!existsSync(safeComponentPath)) {
-						return {
-							content: [
-								{
-									type: 'text',
-									text: COMPONENT_NOT_FOUND_MSG(componentName)
-								}
-							],
-							isError: true
-						};
-					}
-					const examplesDir = join(safeComponentPath, 'examples');
-					let resolvedPath = join(
-						examplesDir,
-						`${kebab}.example.${ext}`
-					);
-					if (!existsSync(resolvedPath)) {
-						const allEntries = existsSync(examplesDir)
-							? await readdir(examplesDir)
-							: [];
-						const entries = allEntries.slice(0, 10);
-						const match = entries.find((f) => {
-							if (!f.endsWith(`.example.${ext}`)) return false;
-							const stem = f.replace(`.example.${ext}`, '');
-							return kebab.startsWith(stem) || stem.startsWith(kebab);
-						});
-						if (match) {
-							resolvedPath = join(examplesDir, match);
-						} else {
-							return {
-								content: [
-									{
-										type: 'text',
-										text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-									}
-								],
-								isError: true
-							};
-						}
-					}
-					return {
-						content: [
-							{
-								type: 'text',
-								text: truncate(
-									await readFile(resolvedPath, 'utf-8'),
-									MAX_FILE_CONTENT
-								)
-							}
-						]
-					};
-				}
-
-				// Manifest fallback
-				const manifest = await getManifest();
-				const comp = manifest.components[componentName];
-				if (!comp) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: COMPONENT_NOT_FOUND_MSG(componentName)
-							}
-						],
-						isError: true
-					};
-				}
-				const fwExamples = comp.exampleCode[framework] ?? {};
-				const directKey = `${kebab}.example.${ext}`;
-				const matchKey = fwExamples[directKey]
-					? directKey
-					: Object.keys(fwExamples).find((k) => {
-							if (!k.endsWith(`.example.${ext}`)) return false;
-							const stem = k.replace(`.example.${ext}`, '');
-							return kebab.startsWith(stem) || stem.startsWith(kebab);
-						});
-				if (!matchKey) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-							}
-						],
-						isError: true
-					};
-				}
-				return {
-					content: [
-						{
-							type: 'text',
-							text: truncate(fwExamples[matchKey], MAX_FILE_CONTENT)
-						}
-					]
-				};
-			})(),
-			'Error: Reading example files took too long (exceeded 10 seconds).'
-		) as any;
-	}
+	handleGetExampleCode
 );
 
 // ---------------------------------------------------------------------------
 // docs_search
 // ---------------------------------------------------------------------------
+export async function handleDocsSearch({ query, category, componentName, docType }: { query: string; category: 'global' | 'component'; componentName?: string; docType?: string }): Promise<ToolResult> {
+	if (!IS_MONOREPO) {
+		return { content: [{ type: 'text', text: 'Error: docs_search is only available in the monorepo environment.' }], isError: true };
+	}
+	return withTimeout(
+		(async () => {
+			const results: string[] = [];
+			const searchTerms = query.toLowerCase().split(' ').filter((t) => t.trim().length > 2);
+
+			if (category === 'component') {
+				if (!componentName) {
+					return { content: [{ type: 'text', text: 'Error: componentName is required for component search.' }], isError: true };
+				}
+				const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+				const compDocsDir = join(safeComponentPath, 'docs');
+				if (existsSync(compDocsDir)) {
+					const files = await readdir(compDocsDir);
+					for (const file of files) {
+						if (!file.endsWith('.md')) continue;
+						if (docType && !file.toLowerCase().includes(docType.toLowerCase())) continue;
+						const content = await readFile(join(compDocsDir, file), 'utf-8');
+						const isMatch = searchTerms.length === 0 || searchTerms.every((term) => content.toLowerCase().includes(term));
+						if (isMatch) results.push(`--- ${componentName}/docs/${file} ---\n${content}`);
+					}
+				} else {
+					results.push(`No documentation found for component '${componentName}'.`);
+				}
+			} else {
+				const docsDir = join(REPO_ROOT, 'docs');
+				if (existsSync(docsDir)) {
+					const searchDir = async (currentDir: string) => {
+						const entries = await readdir(currentDir, { withFileTypes: true });
+						for (const entry of entries) {
+							const fullPath = join(currentDir, entry.name);
+							if (entry.isDirectory()) {
+								await searchDir(fullPath);
+							} else if (entry.name.endsWith('.md')) {
+								const content = await readFile(fullPath, 'utf-8');
+								const isMatch = searchTerms.length === 0 || searchTerms.every((term) => content.toLowerCase().includes(term));
+								if (isMatch) {
+									const snippet = content.length > 3000 ? content.substring(0, 3000) + '\n... [TRUNCATED]' : content;
+									results.push(`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`);
+								}
+							}
+						}
+					};
+					await searchDir(docsDir);
+				}
+			}
+
+			if (results.length === 0) {
+				return { content: [{ type: 'text', text: `No documentation found matching query: '${query}'` }] };
+			}
+			return { content: [{ type: 'text', text: results.slice(0, 3).join('\n\n') }] };
+		})(),
+		'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
+	) as any;
+}
+
 server.registerTool(
 	'docs_search',
 	{
-		description:
-			'Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs.',
+		description: 'Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs.',
 		inputSchema: {
-			query: z
-				.string()
-				.describe(
-					"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."
-				),
-			category: z
-				.enum(['global', 'component'])
-				.describe(
-					"Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."
-				),
-			componentName: z
-				.string()
-				.optional()
-				.describe(
-					"Required if category is 'component' (e.g., 'button', 'navigation')."
-				),
-			docType: z
-				.enum([
-					'React',
-					'Angular',
-					'Vue',
-					'HTML',
-					'Migration',
-					'Accessibility'
-				])
-				.optional()
-				.describe(
-					"Optional: The specific doc file to read for a component (e.g., 'Migration')."
-				)
+			query: z.string().describe("Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."),
+			category: z.enum(['global', 'component']).describe("Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."),
+			componentName: z.string().optional().describe("Required if category is 'component' (e.g., 'button', 'navigation')."),
+			docType: z.enum(['React', 'Angular', 'Vue', 'HTML', 'Migration', 'Accessibility']).optional().describe("Optional: The specific doc file to read for a component (e.g., 'Migration').")
 		}
 	},
-	async ({ query, category, componentName, docType }) => {
-		if (!IS_MONOREPO) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: 'Error: docs_search is only available in the monorepo environment.'
-					}
-				],
-				isError: true
-			};
-		}
-		return withTimeout(
-			(async () => {
-				const results: string[] = [];
-				const searchTerms = query
-					.toLowerCase()
-					.split(' ')
-					.filter((t) => t.trim().length > 2);
-
-				if (category === 'component') {
-					if (!componentName) {
-						return {
-							content: [
-								{
-									type: 'text',
-									text: 'Error: componentName is required for component search.'
-								}
-							],
-							isError: true
-						};
-					}
-					const safeComponentPath = resolveSafePath(
-						COMPONENTS_DIR,
-						componentName
-					);
-					const compDocsDir = join(safeComponentPath, 'docs');
-					if (existsSync(compDocsDir)) {
-						const files = await readdir(compDocsDir);
-						for (const file of files) {
-							if (!file.endsWith('.md')) continue;
-							if (
-								docType &&
-								!file
-									.toLowerCase()
-									.includes(docType.toLowerCase())
-							)
-								continue;
-							const content = await readFile(
-								join(compDocsDir, file),
-								'utf-8'
-							);
-							const lowerContent = content.toLowerCase();
-							const isMatch =
-								searchTerms.length === 0 ||
-								searchTerms.every((term) =>
-									lowerContent.includes(term)
-								);
-							if (isMatch) {
-								results.push(
-									`--- ${componentName}/docs/${file} ---\n${content}`
-								);
-							}
-						}
-					} else {
-						results.push(
-							`No documentation found for component '${componentName}'.`
-						);
-					}
-				} else {
-					const docsDir = join(REPO_ROOT, 'docs');
-					if (existsSync(docsDir)) {
-						const searchDir = async (currentDir: string) => {
-							const entries = await readdir(currentDir, {
-								withFileTypes: true
-							});
-							for (const entry of entries) {
-								const fullPath = join(currentDir, entry.name);
-								if (entry.isDirectory()) {
-									await searchDir(fullPath);
-								} else if (entry.name.endsWith('.md')) {
-									const content = await readFile(
-										fullPath,
-										'utf-8'
-									);
-									const lowerContent = content.toLowerCase();
-									const isMatch =
-										searchTerms.length === 0 ||
-										searchTerms.every((term) =>
-											lowerContent.includes(term)
-										);
-									if (isMatch) {
-										const snippet =
-											content.length > 3000
-												? content.substring(0, 3000) +
-													'\n... [TRUNCATED]'
-												: content;
-										results.push(
-											`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`
-										);
-									}
-								}
-							}
-						};
-						await searchDir(docsDir);
-					}
-				}
-
-				if (results.length === 0) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: `No documentation found matching query: '${query}'`
-							}
-						]
-					};
-				}
-				const finalResults = results.slice(0, 3).join('\n\n');
-				return {
-					content: [{ type: 'text', text: finalResults }]
-				};
-			})(),
-			'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
-		) as any;
-	}
+	handleDocsSearch
 );
 
 // ---------------------------------------------------------------------------
@@ -879,6 +606,57 @@ server.registerPrompt(
 );
 
 // ---------------------------------------------------------------------------
+export function handleReviewUiCodePrompt({
+	code_snippet,
+	framework
+}: {
+	code_snippet: string;
+	framework: string;
+}) {
+	return {
+		description:
+			'Audits a UI code snippet against DB UX v3 compliance, design tokens, and WCAG 2.2 AA',
+		messages: [
+			{
+				role: 'user' as const,
+				content: {
+					type: 'text' as const,
+					text: `You are a highly rigorous QA Automation Expert, Accessibility Auditor, and DB UX Design System Guardian.
+Perform a merciless, multi-layered code review of the provided ${framework} snippet.
+
+<snippet>
+${code_snippet}
+</snippet>
+
+To prevent false positives or inaccurate advice, you MUST base your review on documented facts.
+Execute the following actions using your MCP tools:
+
+1. Cross-Reference Components: Call 'list_components' and 'get_example_code' to analyze if the components used in the snippet deviate from the official DB UX v3 specifications (e.g., deprecated props, missing mandatory slots, wrong variant syntax).
+2. Token Audit: Call 'get_design_tokens'. Scan the snippet for any hardcoded hex values, rem/px/em definitions, or raw font families. Verify the exact DB UX CSS variable that must replace them.
+
+Analyze the code against these strict domains:
+- Architecture & Compliance: Are declarative selectors used correctly? Are the framework-specific wrappers (@db-ux/${framework}-core-components) imported properly? Are there any inline styles (which are strictly forbidden)?
+- Accessibility (A11y): You must verify:
+  * WCAG 1.3.5: Are input purposes programmatically determinable?
+  * WCAG 1.4.3: Is there a risk of contrast minimum failure due to incorrect class usage?
+  * WCAG 2.1.1 & 2.1.2: Are there potential keyboard traps? Are interactive elements reachable via Tab?
+  * ARIA: Are aria-roles, aria-expanded, and aria-describedby used correctly based on the DB UX examples?
+
+Deliver your analysis in the following strict format:
+1. "Review Summary": A high-level assessment of the snippet's quality.
+2. "Critical Violations": A prioritized list of issues. For each violation, you MUST provide EVIDENCE from the DB UX tools (e.g., "The component 'DBButton' requires the prop 'variant' according to the manifest, but it is missing").
+3. "The Refactored Solution": The fully corrected, clean, and DB UX-compliant code block.`
+				}
+			}
+		]
+	};
+}
+
+// ---------------------------------------------------------------------------
+// migrate_component prompt
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
 // review_ui_code prompt
 // ---------------------------------------------------------------------------
 server.registerPrompt(
@@ -914,94 +692,30 @@ server.registerPrompt(
 				)
 		}
 	},
-	({ code_snippet, framework }) => ({
-		description:
-			'Audits a UI code snippet against DB UX v3 compliance, design tokens, and WCAG 2.2 AA',
-		messages: [
-			{
-				role: 'user',
-				content: {
-					type: 'text',
-					text: `You are a highly rigorous QA Automation Expert, Accessibility Auditor, and DB UX Design System Guardian.
-Perform a merciless, multi-layered code review of the provided ${framework} snippet.
-
-<snippet>
-${code_snippet}
-</snippet>
-
-To prevent false positives or inaccurate advice, you MUST base your review on documented facts.
-Execute the following actions using your MCP tools:
-
-1. Cross-Reference Components: Call 'list_components' and 'get_example_code' to analyze if the components used in the snippet deviate from the official DB UX v3 specifications (e.g., deprecated props, missing mandatory slots, wrong variant syntax).
-2. Token Audit: Call 'get_design_tokens'. Scan the snippet for any hardcoded hex values, rem/px/em definitions, or raw font families. Verify the exact DB UX CSS variable that must replace them.
-
-Analyze the code against these strict domains:
-- Architecture & Compliance: Are declarative selectors used correctly? Are the framework-specific wrappers (@db-ux/${framework}-core-components) imported properly? Are there any inline styles (which are strictly forbidden)?
-- Accessibility (A11y): You must verify:
-  * WCAG 1.3.5: Are input purposes programmatically determinable?
-  * WCAG 1.4.3: Is there a risk of contrast minimum failure due to incorrect class usage?
-  * WCAG 2.1.1 & 2.1.2: Are there potential keyboard traps? Are interactive elements reachable via Tab?
-  * ARIA: Are aria-roles, aria-expanded, and aria-describedby used correctly based on the DB UX examples?
-
-Deliver your analysis in the following strict format:
-1. "Review Summary": A high-level assessment of the snippet's quality.
-2. "Critical Violations": A prioritized list of issues. For each violation, you MUST provide EVIDENCE from the DB UX tools (e.g., "The component 'DBButton' requires the prop 'variant' according to the manifest, but it is missing").
-3. "The Refactored Solution": The fully corrected, clean, and DB UX-compliant code block.`
-				}
-			}
-		]
-	})
+	handleReviewUiCodePrompt
 );
 
 // ---------------------------------------------------------------------------
 // migrate_component prompt
+
 // ---------------------------------------------------------------------------
-server.registerPrompt(
-	'migrate_component',
-	{
-		description:
-			'Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. Aware of package renames, deprecated props, CLI migration tooling, and components without direct v3 equivalents.',
-		argsSchema: {
-			legacy_code: z
-				.string()
-				.describe(
-					'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
-				),
-			source_context: z
-				.string()
-				.describe(
-					"The origin/context of the legacy code. Use one of: 'db-ui-v1', 'db-ui-v2', 'db-ux-v1', 'db-ux-v2', 'db-ux-v3', 'bootstrap-4', 'native-html'."
-				),
-			target_framework: z
-				.string()
-				.transform((val) => val.trim().toLowerCase())
-				.refine(
-					(val) =>
-						[
-							'react',
-							'angular',
-							'vue',
-							'web-components',
-							'html'
-						].includes(val),
-					{
-						message:
-							'Framework must be exactly one of: react, angular, vue, web-components, html'
-					}
-				)
-				.describe(
-					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
-				)
-		}
-	},
-	({ legacy_code, source_context, target_framework }) => ({
+export function handleMigrateComponentPrompt({
+	legacy_code,
+	source_context,
+	target_framework
+}: {
+	legacy_code: string;
+	source_context: string;
+	target_framework: string;
+}) {
+	return {
 		description:
 			'Migrates legacy UI code to DB UX v3 standards using MCP tools',
 		messages: [
 			{
-				role: 'user',
+				role: 'user' as const,
 				content: {
-					type: 'text',
+					type: 'text' as const,
 					text: `You are a Legacy Systems Modernization Specialist and DB UX Architecture Expert.
 Your assignment is to securely migrate UI code from ${source_context} into the modern DB UX Design System v3 standard.
 
@@ -1070,12 +784,99 @@ Your response must be structured as follows:
 				}
 			}
 		]
-	})
+	};
+}
+
+server.registerPrompt(
+	'migrate_component',
+	{
+		description:
+			'Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. Aware of package renames, deprecated props, CLI migration tooling, and components without direct v3 equivalents.',
+		argsSchema: {
+			legacy_code: z
+				.string()
+				.describe(
+					'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
+				),
+			source_context: z
+				.string()
+				.describe(
+					"The origin/context of the legacy code. Use one of: 'db-ui-v1', 'db-ui-v2', 'db-ux-v1', 'db-ux-v2', 'db-ux-v3', 'bootstrap-4', 'native-html'."
+				),
+			target_framework: z
+				.string()
+				.transform((val) => val.trim().toLowerCase())
+				.refine(
+					(val) =>
+						[
+							'react',
+							'angular',
+							'vue',
+							'web-components',
+							'html'
+						].includes(val),
+					{
+						message:
+							'Framework must be exactly one of: react, angular, vue, web-components, html'
+					}
+				)
+				.describe(
+					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
+				)
+		}
+	},
+	handleMigrateComponentPrompt
 );
 
 // ---------------------------------------------------------------------------
 // audit_accessibility prompt
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+export function handleAuditAccessibilityPrompt({
+	code_snippet,
+	framework
+}: {
+	code_snippet: string;
+	framework: string;
+}) {
+	return {
+		description:
+			'Performs a deep accessibility audit and generates manual screen reader/keyboard test scripts',
+		messages: [
+			{
+				role: 'user' as const,
+				content: {
+					type: 'text' as const,
+					text: `You are an Accessibility (A11y) Expert and DB UX Design System Guardian.
+Your objective is to perform a specialized deep scan exclusively for inclusion and accessibility standards (WCAG 2.2 AA) on the provided ${framework} snippet.
+
+<snippet>
+${code_snippet}
+</snippet>
+
+This audit goes beyond traditional linters. You must evaluate interactive patterns, logical focus orders, and the programmatic purpose of inputs (WCAG 1.3.5).
+
+Execute the following cognitive workflow using your MCP tools:
+
+1. CONTEXT GATHERING: Call 'docs_search' with the query 'accessibility' or 'a11y' to retrieve global DB UX accessibility guidelines.
+2. COMPONENT VERIFICATION: Call 'list_components' and 'get_example_code' to verify how the used DB UX components handle ARIA attributes and keyboard events natively.
+
+Analyze the code against these strict A11y domains:
+- Screen Reader Support: Are visually hidden texts used correctly? Are decorative images hidden via aria-hidden="true"?
+- Keyboard Navigation: Are there keyboard traps? Is the focus order logical? Are interactive elements reachable via Tab?
+- Semantics & ARIA: Are ARIA roles, aria-expanded, and aria-describedby applied correctly without overriding native HTML semantics unnecessarily?
+
+Deliver your analysis in the following strict format:
+1. "Accessibility Audit Summary": A high-level assessment of the snippet's A11y compliance.
+2. "WCAG Violations": A prioritized list of issues. You MUST provide EVIDENCE from the DB UX tools or WCAG guidelines for each violation.
+3. "Manual Testing Script": Step-by-step instructions for a QA engineer to manually validate this snippet using Keyboard-only navigation and a Screen Reader.
+4. "Remediated Code": The fully accessible, DB UX-compliant code block.`
+				}
+			}
+		]
+	};
+}
+
 server.registerPrompt(
 	'audit_accessibility',
 	{
@@ -1109,42 +910,7 @@ server.registerPrompt(
 				)
 		}
 	},
-	({ code_snippet, framework }) => ({
-		description:
-			'Performs a deep accessibility audit and generates manual screen reader/keyboard test scripts',
-		messages: [
-			{
-				role: 'user',
-				content: {
-					type: 'text',
-					text: `You are an Accessibility (A11y) Expert and DB UX Design System Guardian.
-Your objective is to perform a specialized deep scan exclusively for inclusion and accessibility standards (WCAG 2.2 AA) on the provided ${framework} snippet.
-
-<snippet>
-${code_snippet}
-</snippet>
-
-This audit goes beyond traditional linters. You must evaluate interactive patterns, logical focus orders, and the programmatic purpose of inputs (WCAG 1.3.5).
-
-Execute the following cognitive workflow using your MCP tools:
-
-1. CONTEXT GATHERING: Call 'docs_search' with the query 'accessibility' or 'a11y' to retrieve global DB UX accessibility guidelines.
-2. COMPONENT VERIFICATION: Call 'list_components' and 'get_example_code' to verify how the used DB UX components handle ARIA attributes and keyboard events natively.
-
-Analyze the code against these strict A11y domains:
-- Screen Reader Support: Are visually hidden texts used correctly? Are decorative images hidden via aria-hidden="true"?
-- Keyboard Navigation: Are there keyboard traps? Is the focus order logical? Are interactive elements reachable via Tab?
-- Semantics & ARIA: Are ARIA roles, aria-expanded, and aria-describedby applied correctly without overriding native HTML semantics unnecessarily?
-
-Deliver your analysis in the following strict format:
-1. "Accessibility Audit Summary": A high-level assessment of the snippet's A11y compliance.
-2. "WCAG Violations": A prioritized list of issues. You MUST provide EVIDENCE from the DB UX tools or WCAG guidelines for each violation.
-3. "Manual Testing Script": Step-by-step instructions for a QA engineer to manually validate this snippet using Keyboard-only navigation and a Screen Reader.
-4. "Remediated Code": The fully accessible, DB UX-compliant code block.`
-				}
-			}
-		]
-	})
+	handleAuditAccessibilityPrompt
 );
 
 const transport = new StdioServerTransport();
