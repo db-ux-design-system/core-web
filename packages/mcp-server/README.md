@@ -19,7 +19,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
   "mcpServers": {
     "db-ux": {
       "command": "npx",
-      "args": ["-y", "@db-ux/core-foundations"]
+      "args": ["-y", "@db-ux/core-foundations", "db-ux-mcp"]
     }
   }
 }
@@ -33,7 +33,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
     "servers": {
       "db-ux": {
         "command": "npx",
-        "args": ["-y", "@db-ux/core-foundations"]
+        "args": ["-y", "@db-ux/core-foundations", "db-ux-mcp"]
       }
     }
   }
@@ -49,7 +49,7 @@ Copy the workflow rules file into your project so your AI agent enforces the cor
 ```bash
 # from your project root
 curl -o .amazonq/rules/db-ux-mcp-workflow.md \
-  https://github.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
+  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
 ```
 
 Or copy it manually from this monorepo: `.amazonq/rules/db-ux-mcp-workflow.md`.
@@ -142,7 +142,7 @@ This manifest is bundled into the final `index.js` by esbuild, producing a **~64
 The server detects its runtime environment automatically:
 
 ```
-isMonorepo()
+IS_MONOREPO
   true  → packages/components/src/components/ exists
           → reads live files from the monorepo (model.ts, output/, foundations/)
   false → running from node_modules/@db-ux/core-foundations/build/mcp/
@@ -186,7 +186,7 @@ These are the **Golden Rules** the AI agent must follow when using this server. 
 // ✅ CORRECT
 <DBButton variant="brand">Save</DBButton>
 <DBInput placeholder="Search..." />
-<DBStack gap="md">...</DBStack>
+<DBStack>...</DBStack>
 ```
 
 | Native element | DB UX replacement |
@@ -241,7 +241,7 @@ This runs `packages/mcp-server/esbuild.js` which:
 
 1. Executes `src/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
 2. Bundles `src/index.ts` + `manifest.json` via esbuild into a single `build/index.js` with `#!/usr/bin/env node` shebang
-3. Copies the bundle to `packages/foundations/build/mcp/index.js` for inclusion in the published npm package
+3. Copies the bundle to `packages/foundations/build/mcp/index.js` for inclusion in the published `@db-ux/core-foundations` npm package
 
 To build and test the server in isolation during development:
 
