@@ -2,7 +2,7 @@
 
 This server is the connector between AI coding agents (e.g. Amazon Q, GitHub Copilot, Claude) and the DB UX Design System. It gives every AI agent a single, authoritative source of truth — component APIs, framework-specific code examples, design tokens, and icon names — so the agent never has to guess or hallucinate component names, prop signatures, or color values.
 
-Without this server, AI agents invent plausible-sounding but incorrect component usage. With it, they pull the exact generated source code that ships in the npm packages.
+Without this server, AI agents invent plausible-sounding but incorrect component usage. With it, they pull the exact generated source code that ships in the npm packages. Additionally, through Agent Auto-Recovery (semantic error handling), the server intercepts AI typos and proactively guides the agent to autonomously recover, preventing workflows from crashing.
 
 ---
 
@@ -255,7 +255,7 @@ npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
 
 ## 🛡️ Security & Compliance
 
-This MCP server is designed for enterprise environments and operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
+This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
 
 * **Strict Read-Only Sandbox:** The server has zero write-permissions. All imports from `node:fs` are strictly read-only (`readFile`, `readdir`). Modules like `child_process` (for shell execution) or file mutation methods (`writeFile`, `unlink`) are completely banned.
 * **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).

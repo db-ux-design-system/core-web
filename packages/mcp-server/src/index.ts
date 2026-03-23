@@ -34,9 +34,18 @@ const COMPONENTS_DIR = join(REPO_ROOT, 'packages/components/src/components');
 const MAX_FILE_CONTENT = 5000;
 const MAX_JSON_OUTPUT = 20_000;
 
-function truncate(text: string, limit: number, label = 'TRUNCATED DUE TO SIZE'): string {
-	return text.length > limit ? text.substring(0, limit) + `\n... [${label}]` : text;
+function truncate(
+	text: string,
+	limit: number,
+	label = 'TRUNCATED DUE TO SIZE'
+): string {
+	return text.length > limit
+		? text.substring(0, limit) + `\n... [${label}]`
+		: text;
 }
+
+const COMPONENT_NOT_FOUND_MSG = (name: string) =>
+	`Error: Component '${name}' is not available in the DB UX Design System. Please check your spelling or use the 'list_components' tool to see all valid components.`;
 
 /**
  * Resolves a path and ensures it remains strictly within the allowed base directory.
@@ -46,8 +55,13 @@ function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
 	const absoluteRequested = resolve(baseDir, userPath);
 
-	if (!absoluteRequested.startsWith(absoluteBase + '/') && absoluteRequested !== absoluteBase) {
-		throw new Error('Security Access Denied: Path traversal detected. The requested path is outside the allowed directory.');
+	if (
+		!absoluteRequested.startsWith(absoluteBase + '/') &&
+		absoluteRequested !== absoluteBase
+	) {
+		throw new Error(
+			'Security Access Denied: Path traversal detected. The requested path is outside the allowed directory.'
+		);
 	}
 	return absoluteRequested;
 }
@@ -111,9 +125,7 @@ server.registerTool(
 		const manifest = await getManifest();
 		const text = JSON.stringify(Object.keys(manifest.components), null, 2);
 		return {
-			content: [
-				{ type: 'text', text: truncate(text, MAX_JSON_OUTPUT) }
-			]
+			content: [{ type: 'text', text: truncate(text, MAX_JSON_OUTPUT) }]
 		};
 	}
 );
@@ -130,7 +142,21 @@ server.registerTool(
 	},
 	async ({ componentName }) => {
 		if (isMonorepo()) {
-			const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+			const safeComponentPath = resolveSafePath(
+				COMPONENTS_DIR,
+				componentName
+			);
+			if (!existsSync(safeComponentPath)) {
+				return {
+					content: [
+						{
+							type: 'text',
+							text: COMPONENT_NOT_FOUND_MSG(componentName)
+						}
+					],
+					isError: true
+				};
+			}
 			const showcaseFile = join(
 				safeComponentPath,
 				'showcase',
@@ -141,13 +167,16 @@ server.registerTool(
 					content: [
 						{
 							type: 'text',
-							text: `Error: showcase file not found at ${showcaseFile}`
+							text: `Error: File for component '${componentName}' not found.`
 						}
 					],
 					isError: true
 				};
 			}
-			const source = truncate(await readFile(showcaseFile, 'utf-8'), MAX_FILE_CONTENT);
+			const source = truncate(
+				await readFile(showcaseFile, 'utf-8'),
+				MAX_FILE_CONTENT
+			);
 			const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map(
 				(m) => m[1]
 			);
@@ -170,7 +199,7 @@ server.registerTool(
 				content: [
 					{
 						type: 'text',
-						text: `Error: component '${componentName}' not found in manifest`
+						text: COMPONENT_NOT_FOUND_MSG(componentName)
 					}
 				],
 				isError: true
@@ -202,14 +231,28 @@ server.registerTool(
 	},
 	async ({ componentName }) => {
 		if (isMonorepo()) {
-			const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+			const safeComponentPath = resolveSafePath(
+				COMPONENTS_DIR,
+				componentName
+			);
+			if (!existsSync(safeComponentPath)) {
+				return {
+					content: [
+						{
+							type: 'text',
+							text: COMPONENT_NOT_FOUND_MSG(componentName)
+						}
+					],
+					isError: true
+				};
+			}
 			const modelFile = join(safeComponentPath, 'model.ts');
 			if (!existsSync(modelFile)) {
 				return {
 					content: [
 						{
 							type: 'text',
-							text: `Error: model.ts not found at ${modelFile}`
+							text: `Error: Props file (model.ts) for component '${componentName}' not found.`
 						}
 					],
 					isError: true
@@ -217,7 +260,13 @@ server.registerTool(
 			}
 			return {
 				content: [
-					{ type: 'text', text: truncate(await readFile(modelFile, 'utf-8'), MAX_FILE_CONTENT) }
+					{
+						type: 'text',
+						text: truncate(
+							await readFile(modelFile, 'utf-8'),
+							MAX_FILE_CONTENT
+						)
+					}
 				]
 			};
 		}
@@ -228,13 +277,17 @@ server.registerTool(
 				content: [
 					{
 						type: 'text',
-						text: `Error: props for '${componentName}' not found in manifest`
+						text: COMPONENT_NOT_FOUND_MSG(componentName)
 					}
 				],
 				isError: true
 			};
 		}
-		return { content: [{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }] };
+		return {
+			content: [
+				{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
+			]
+		};
 	}
 );
 
@@ -340,7 +393,10 @@ server.registerTool(
 				content: [
 					{
 						type: 'text' as const,
-						text: truncate(JSON.stringify(icons, null, 2), MAX_JSON_OUTPUT)
+						text: truncate(
+							JSON.stringify(icons, null, 2),
+							MAX_JSON_OUTPUT
+						)
 					}
 				]
 			};
@@ -350,7 +406,10 @@ server.registerTool(
 			content: [
 				{
 					type: 'text' as const,
-					text: truncate(JSON.stringify(manifest.icons, null, 2), MAX_JSON_OUTPUT)
+					text: truncate(
+						JSON.stringify(manifest.icons, null, 2),
+						MAX_JSON_OUTPUT
+					)
 				}
 			]
 		};
@@ -399,6 +458,17 @@ server.registerTool(
 				join(OUTPUT_DIR, framework, 'src/components'),
 				componentName
 			);
+			if (!existsSync(safeComponentPath)) {
+				return {
+					content: [
+						{
+							type: 'text' as const,
+							text: COMPONENT_NOT_FOUND_MSG(componentName)
+						}
+					],
+					isError: true
+				};
+			}
 			const examplesDir = join(safeComponentPath, 'examples');
 			let resolvedPath = join(examplesDir, `${kebab}.example.${ext}`);
 			if (!existsSync(resolvedPath)) {
@@ -418,7 +488,7 @@ server.registerTool(
 						content: [
 							{
 								type: 'text' as const,
-								text: `Error: file not found at ${resolvedPath}`
+								text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 							}
 						],
 						isError: true
@@ -429,7 +499,10 @@ server.registerTool(
 				content: [
 					{
 						type: 'text' as const,
-						text: truncate(await readFile(resolvedPath, 'utf-8'), MAX_FILE_CONTENT)
+						text: truncate(
+							await readFile(resolvedPath, 'utf-8'),
+							MAX_FILE_CONTENT
+						)
 					}
 				]
 			};
@@ -443,7 +516,7 @@ server.registerTool(
 				content: [
 					{
 						type: 'text' as const,
-						text: `Error: component '${componentName}' not found`
+						text: COMPONENT_NOT_FOUND_MSG(componentName)
 					}
 				],
 				isError: true
@@ -466,13 +539,17 @@ server.registerTool(
 				content: [
 					{
 						type: 'text' as const,
-						text: `Error: example '${exampleName}' for '${componentName}' (${framework}) not found in manifest`
+						text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					}
 				],
 				isError: true
 			};
 		}
-		return { content: [{ type: 'text' as const, text: truncate(src, MAX_FILE_CONTENT) }] };
+		return {
+			content: [
+				{ type: 'text' as const, text: truncate(src, MAX_FILE_CONTENT) }
+			]
+		};
 	}
 );
 
@@ -492,56 +569,105 @@ server.registerTool(
 				),
 			category: z
 				.enum(['global', 'component'])
-				.describe("Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."),
+				.describe(
+					"Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."
+				),
 			componentName: z
 				.string()
 				.optional()
-				.describe("Required if category is 'component' (e.g., 'button', 'navigation')."),
+				.describe(
+					"Required if category is 'component' (e.g., 'button', 'navigation')."
+				),
 			docType: z
-				.enum(['React', 'Angular', 'Vue', 'HTML', 'Migration', 'Accessibility'])
+				.enum([
+					'React',
+					'Angular',
+					'Vue',
+					'HTML',
+					'Migration',
+					'Accessibility'
+				])
 				.optional()
-				.describe("Optional: The specific doc file to read for a component (e.g., 'Migration').")
+				.describe(
+					"Optional: The specific doc file to read for a component (e.g., 'Migration')."
+				)
 		}
 	},
 	async ({ query, category, componentName, docType }) => {
 		if (!isMonorepo()) {
 			return {
-				content: [{ type: 'text' as const, text: 'Error: docs_search is only available in the monorepo environment.' }],
+				content: [
+					{
+						type: 'text' as const,
+						text: 'Error: docs_search is only available in the monorepo environment.'
+					}
+				],
 				isError: true
 			};
 		}
 
 		const results: string[] = [];
-		const searchTerms = query.toLowerCase().split(' ').filter(t => t.trim().length > 2);
+		const searchTerms = query
+			.toLowerCase()
+			.split(' ')
+			.filter((t) => t.trim().length > 2);
 
 		if (category === 'component') {
 			if (!componentName) {
-				return { content: [{ type: 'text' as const, text: 'Error: componentName is required for component search.' }], isError: true };
+				return {
+					content: [
+						{
+							type: 'text' as const,
+							text: 'Error: componentName is required for component search.'
+						}
+					],
+					isError: true
+				};
 			}
-				const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+			const safeComponentPath = resolveSafePath(
+				COMPONENTS_DIR,
+				componentName
+			);
 			const compDocsDir = join(safeComponentPath, 'docs');
 			if (existsSync(compDocsDir)) {
 				const files = await readdir(compDocsDir);
 				for (const file of files) {
 					if (!file.endsWith('.md')) continue;
-					if (docType && !file.toLowerCase().includes(docType.toLowerCase())) continue;
+					if (
+						docType &&
+						!file.toLowerCase().includes(docType.toLowerCase())
+					)
+						continue;
 
-					const content = await readFile(join(compDocsDir, file), 'utf-8');
+					const content = await readFile(
+						join(compDocsDir, file),
+						'utf-8'
+					);
 					const lowerContent = content.toLowerCase();
 
-					const isMatch = searchTerms.length === 0 || searchTerms.every(term => lowerContent.includes(term));
+					const isMatch =
+						searchTerms.length === 0 ||
+						searchTerms.every((term) =>
+							lowerContent.includes(term)
+						);
 					if (isMatch) {
-						results.push(`--- ${componentName}/docs/${file} ---\n${content}`);
+						results.push(
+							`--- ${componentName}/docs/${file} ---\n${content}`
+						);
 					}
 				}
 			} else {
-				results.push(`No documentation found for component '${componentName}'.`);
+				results.push(
+					`No documentation found for component '${componentName}'.`
+				);
 			}
 		} else {
 			const docsDir = join(REPO_ROOT, 'docs');
 			if (existsSync(docsDir)) {
 				async function searchDir(currentDir: string) {
-					const entries = await readdir(currentDir, { withFileTypes: true });
+					const entries = await readdir(currentDir, {
+						withFileTypes: true
+					});
 					for (const entry of entries) {
 						const fullPath = join(currentDir, entry.name);
 						if (entry.isDirectory()) {
@@ -550,10 +676,20 @@ server.registerTool(
 							const content = await readFile(fullPath, 'utf-8');
 							const lowerContent = content.toLowerCase();
 
-							const isMatch = searchTerms.length > 0 && searchTerms.every(term => lowerContent.includes(term));
+							const isMatch =
+								searchTerms.length > 0 &&
+								searchTerms.every((term) =>
+									lowerContent.includes(term)
+								);
 							if (isMatch) {
-								const snippet = content.length > 3000 ? content.substring(0, 3000) + '\n... [TRUNCATED]' : content;
-								results.push(`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`);
+								const snippet =
+									content.length > 3000
+										? content.substring(0, 3000) +
+											'\n... [TRUNCATED]'
+										: content;
+								results.push(
+									`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`
+								);
 							}
 						}
 					}
@@ -563,7 +699,14 @@ server.registerTool(
 		}
 
 		if (results.length === 0) {
-			return { content: [{ type: 'text' as const, text: `No documentation found matching query: '${query}'` }] };
+			return {
+				content: [
+					{
+						type: 'text' as const,
+						text: `No documentation found matching query: '${query}'`
+					}
+				]
+			};
 		}
 
 		const finalResults = results.slice(0, 3).join('\n\n');
@@ -866,7 +1009,7 @@ Execute the following cognitive workflow using your MCP tools:
 2. COMPONENT VERIFICATION: Call 'list_components' and 'get_example_code' to verify how the used DB UX components handle ARIA attributes and keyboard events natively.
 
 Analyze the code against these strict A11y domains:
-- Screen Reader Support: Are visually hidden texts used correctly? Are decorative images hidden via aria-hidden="true"? 
+- Screen Reader Support: Are visually hidden texts used correctly? Are decorative images hidden via aria-hidden="true"?
 - Keyboard Navigation: Are there keyboard traps? Is the focus order logical? Are interactive elements reachable via Tab?
 - Semantics & ARIA: Are ARIA roles, aria-expanded, and aria-describedby applied correctly without overriding native HTML semantics unnecessarily?
 
