@@ -515,13 +515,11 @@ server.registerTool(
 							? await readdir(examplesDir)
 							: [];
 						const entries = allEntries.slice(0, 10);
-						const match = entries.find(
-							(f) =>
-								f.endsWith(`.example.${ext}`) &&
-								kebab.startsWith(
-									f.replace(`.example.${ext}`, '')
-								)
-						);
+						const match = entries.find((f) => {
+							if (!f.endsWith(`.example.${ext}`)) return false;
+							const stem = f.replace(`.example.${ext}`, '');
+							return kebab.startsWith(stem) || stem.startsWith(kebab);
+						});
 						if (match) {
 							resolvedPath = join(examplesDir, match);
 						} else {
@@ -567,11 +565,11 @@ server.registerTool(
 				const directKey = `${kebab}.example.${ext}`;
 				let src: string | undefined = fwExamples[directKey];
 				if (!src) {
-					const matchKey = Object.keys(fwExamples).find(
-						(k) =>
-							k.endsWith(`.example.${ext}`) &&
-							kebab.startsWith(k.replace(`.example.${ext}`, ''))
-					);
+					const matchKey = Object.keys(fwExamples).find((k) => {
+						if (!k.endsWith(`.example.${ext}`)) return false;
+						const stem = k.replace(`.example.${ext}`, '');
+						return kebab.startsWith(stem) || stem.startsWith(kebab);
+					});
 					src = matchKey ? fwExamples[matchKey] : undefined;
 				}
 				if (!src) {
