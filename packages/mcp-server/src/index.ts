@@ -1022,3 +1022,17 @@ Deliver your analysis in the following strict format:
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
+
+// --- Graceful Shutdown & Process Stability ---
+const cleanup = async () => {
+	console.error('[DB UX MCP] Shutting down server gracefully...');
+	try {
+		await server.close();
+	} catch (error) {
+		console.error('[DB UX MCP] Error during server shutdown:', error);
+	}
+	process.exit(0);
+};
+
+process.on('SIGINT', cleanup);
+process.on('SIGTERM', cleanup);
