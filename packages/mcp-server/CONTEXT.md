@@ -31,8 +31,19 @@ core-web/
 │   │           └── {component}/
 │   │               ├── {component}.lite.tsx        # Mitosis component
 │   │               ├── model.ts                    # Props / types
+│   │               ├── docs/                       # Component markdown docs
 │   │               └── showcase/
 │   │                   └── {component}.showcase.lite.tsx  # Example names
+│   ├── foundations/         # Design tokens, icons, base styles
+│   │   └── src/
+│   │       └── all-icons.ts # Icon name list
+│   │   └── scss/
+│   │       ├── colors/_variables.scss
+│   │       ├── fonts/_variables.scss
+│   │       ├── density/_variables.scss
+│   │       ├── animation/_animations.scss
+│   │       ├── animation/_transitions.scss
+│   │       └── _variables.scss  # spacing / sizing
 │   └── mcp-server/          # This package
 │       └── src/
 │           ├── index.ts           # MCP server — all tool registrations
