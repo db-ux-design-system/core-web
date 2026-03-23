@@ -109,6 +109,7 @@ type Manifest = {
 };
 
 let _manifest: Manifest | null = null;
+export function resetManifestCache() { _manifest = null; }
 async function getManifest(): Promise<Manifest> {
 	if (_manifest) return _manifest;
 	const manifestPath = join(SERVER_DIR, 'manifest.json');
@@ -247,63 +248,27 @@ server.registerTool(
 // ---------------------------------------------------------------------------
 // get_component_props
 // ---------------------------------------------------------------------------
-server.registerTool(
-	'get_component_props',
-	{
-		description:
-			"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
-		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
-	},
-	async ({ componentName }) => {
-		if (IS_MONOREPO) {
-			const safeComponentPath = resolveSafePath(
-				COMPONENTS_DIR,
-				componentName
-			);
-			if (!existsSync(safeComponentPath)) {
-				return {
-					content: [
-						{
-							type: 'text',
-							text: COMPONENT_NOT_FOUND_MSG(componentName)
-						}
-					],
-					isError: true
-				};
-			}
-			const modelFile = join(safeComponentPath, 'model.ts');
-			if (!existsSync(modelFile)) {
-				return {
-					content: [
-						{
-							type: 'text',
-							text: `Error: Props file (model.ts) for component '${componentName}' not found.`
-						}
-					],
-					isError: true
-				};
-			}
+type ToolResult = { content: { type: 'text'; text: string }[]; isError?: boolean };
+
+export async function handleGetComponentProps({ componentName }: { componentName: string }): Promise<ToolResult> {
+	if (IS_MONOREPO) {
+		const safeComponentPath = resolveSafePath(
+			COMPONENTS_DIR,
+			componentName
+		);
+		if (!existsSync(safeComponentPath)) {
 			return {
 				content: [
 					{
 						type: 'text',
-						text: truncate(
-							await readFile(modelFile, 'utf-8'),
-							MAX_FILE_CONTENT
-						)
+						text: COMPONENT_NOT_FOUND_MSG(componentName)
 					}
-				]
-			};
-		}
-		const manifest = await getManifest();
-		const comp = manifest.components[componentName];
-		if (!comp) {
-			return {
-				content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+				],
 				isError: true
 			};
 		}
-		if (!comp.props) {
+		const modelFile = join(safeComponentPath, 'model.ts');
+		if (!existsSync(modelFile)) {
 			return {
 				content: [
 					{
@@ -316,10 +281,50 @@ server.registerTool(
 		}
 		return {
 			content: [
-				{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
+				{
+					type: 'text',
+					text: truncate(
+						await readFile(modelFile, 'utf-8'),
+						MAX_FILE_CONTENT
+					)
+				}
 			]
 		};
 	}
+	const manifest = await getManifest();
+	const comp = manifest.components[componentName];
+	if (!comp) {
+		return {
+			content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+			isError: true
+		};
+	}
+	if (!comp.props) {
+		return {
+			content: [
+				{
+					type: 'text',
+					text: `Error: Props file (model.ts) for component '${componentName}' not found.`
+				}
+			],
+			isError: true
+		};
+	}
+	return {
+		content: [
+			{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
+		]
+	};
+}
+
+server.registerTool(
+	'get_component_props',
+	{
+		description:
+			"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
+		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
+	},
+	handleGetComponentProps
 );
 
 // ---------------------------------------------------------------------------
@@ -704,7 +709,7 @@ server.registerTool(
 				} else {
 					const docsDir = join(REPO_ROOT, 'docs');
 					if (existsSync(docsDir)) {
-					const searchDir = async (currentDir: string) => {
+						const searchDir = async (currentDir: string) => {
 							const entries = await readdir(currentDir, {
 								withFileTypes: true
 							});
@@ -735,7 +740,7 @@ server.registerTool(
 									}
 								}
 							}
-						}
+						};
 						await searchDir(docsDir);
 					}
 				}
@@ -763,53 +768,23 @@ server.registerTool(
 // ---------------------------------------------------------------------------
 // scaffold_page prompt
 // ---------------------------------------------------------------------------
-server.registerPrompt(
-	'scaffold_page',
-	{
-		description:
-			'Generates the initial structure of a complete web page or complex module (e.g. dashboard, form). Enforces the full DB UX MCP discovery workflow before writing any code.',
-		argsSchema: {
-			page_type: z
-				.string()
-				.describe(
-					"The functional domain or structural type of the page (e.g. 'Login Portal', 'Dashboard', 'Settings Form'). Used in Phase 1 to decompose the page into UI blocks and drives component selection throughout the workflow."
-				),
-			framework: z
-				.string()
-				.transform((val) => val.trim().toLowerCase())
-				.refine(
-					(val) =>
-						[
-							'react',
-							'angular',
-							'vue',
-							'web-components',
-							'html'
-						].includes(val),
-					{
-						message:
-							'Framework must be exactly one of: react, angular, vue, web-components, html'
-					}
-				)
-				.describe(
-					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
-				),
-			additional_requirements: z
-				.string()
-				.optional()
-				.describe(
-					"Optional functional or architectural requirements (e.g. 'must include a data table with pagination', 'dark mode support required'). These requirements refine the UI block decomposition in Phase 1 and may add or remove components from the plan."
-				)
-		}
-	},
-	({ page_type, framework, additional_requirements }) => ({
+export function handleScaffoldPagePrompt({
+	page_type,
+	framework,
+	additional_requirements
+}: {
+	page_type: string;
+	framework: string;
+	additional_requirements?: string;
+}) {
+	return {
 		description:
 			'Builds a DB UX page layout using the full MCP discovery workflow',
 		messages: [
 			{
-				role: 'user',
+				role: 'user' as const,
 				content: {
-					type: 'text',
+					type: 'text' as const,
 					text: `You are a Lead Enterprise Frontend Architect specializing in the DB UX Design System v3. Your objective is to architect and implement a production-ready page layout for the Deutsche Bahn digital ecosystem.
 
 Target Framework: ${framework}
@@ -858,7 +833,49 @@ Do not output code until all four phases are complete. Then structure your respo
 				}
 			}
 		]
-	})
+	};
+}
+
+server.registerPrompt(
+	'scaffold_page',
+	{
+		description:
+			'Generates the initial structure of a complete web page or complex module (e.g. dashboard, form). Enforces the full DB UX MCP discovery workflow before writing any code.',
+		argsSchema: {
+			page_type: z
+				.string()
+				.describe(
+					"The functional domain or structural type of the page (e.g. 'Login Portal', 'Dashboard', 'Settings Form'). Used in Phase 1 to decompose the page into UI blocks and drives component selection throughout the workflow."
+				),
+			framework: z
+				.string()
+				.transform((val) => val.trim().toLowerCase())
+				.refine(
+					(val) =>
+						[
+							'react',
+							'angular',
+							'vue',
+							'web-components',
+							'html'
+						].includes(val),
+					{
+						message:
+							'Framework must be exactly one of: react, angular, vue, web-components, html'
+					}
+				)
+				.describe(
+					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
+				),
+			additional_requirements: z
+				.string()
+				.optional()
+				.describe(
+					"Optional functional or architectural requirements (e.g. 'must include a data table with pagination', 'dark mode support required'). These requirements refine the UI block decomposition in Phase 1 and may add or remove components from the plan."
+				)
+		}
+	},
+	handleScaffoldPagePrompt
 );
 
 // ---------------------------------------------------------------------------

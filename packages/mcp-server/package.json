@@ -23,7 +23,9 @@
   ],
   "scripts": {
     "build": "node esbuild.js",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:integration": "vitest run src/__tests__/integration.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
@@ -32,7 +34,8 @@
   "devDependencies": {
     "esbuild": "0.27.3",
     "tsx": "4.21.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^4.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
