@@ -730,8 +730,13 @@ server.registerPrompt(
 				),
 			framework: z
 				.string()
+				.transform((val) => val.trim().toLowerCase())
+				.refine(
+					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
+					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+				)
 				.describe(
-					"The target framework for code generation. Allowed values: angular, react, vue, web-components, html. Must be passed verbatim as the 'framework' parameter to every get_example_code call."
+					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
 				),
 			additional_requirements: z
 				.string()
@@ -816,8 +821,13 @@ server.registerPrompt(
 				),
 			framework: z
 				.string()
+				.transform((val) => val.trim().toLowerCase())
+				.refine(
+					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
+					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+				)
 				.describe(
-					'The framework used in the code (e.g., react, angular, vue).'
+					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
 				)
 		}
 	},
@@ -881,8 +891,13 @@ server.registerPrompt(
 				),
 			target_framework: z
 				.string()
+				.transform((val) => val.trim().toLowerCase())
+				.refine(
+					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
+					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+				)
 				.describe(
-					'The target framework in the DB UX v3 ecosystem (react, angular, vue, web-components).'
+					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
 				)
 		}
 	},
@@ -981,8 +996,13 @@ server.registerPrompt(
 				),
 			framework: z
 				.string()
+				.transform((val) => val.trim().toLowerCase())
+				.refine(
+					(val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val),
+					{ message: 'Framework must be exactly one of: react, angular, vue, web-components, html' }
+				)
 				.describe(
-					'The framework used in the code (e.g., react, angular, vue, html).'
+					'The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).'
 				)
 		}
 	},
