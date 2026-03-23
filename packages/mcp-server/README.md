@@ -69,6 +69,7 @@ The rules enforce the **Plan-First** paradigm: the AI must call the MCP tools to
 | `get_design_tokens` | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers. |
 | `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`. |
 | `list_icons` | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name. |
+| `docs_search` | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine. |
 
 ### Example: fetching a React button example
 
@@ -80,6 +81,27 @@ get_example_code         → returns show-icon-leading.example.tsx source
 list_icons               → confirms "arrow_right" is a valid icon name
 get_design_tokens        → returns --db-spacing-fixed-md for layout
 ```
+
+---
+
+## 🧠 Available AI Workflows (Prompts)
+
+The server exposes predefined Prompts that orchestrate complex cognitive workflows. They force the AI to plan, verify via tools, and analyze before generating output. You can trigger these in your AI chat UI (if supported) or via the MCP Inspector.
+
+### `scaffold_page` (Rapid Prototyping)
+Generates the initial structure of a complete web page or complex module.
+* **Parameters:** `page_type`, `framework`, `additional_requirements`.
+* **Behavior:** Enforces the Plan-First paradigm, deconstructing the layout into logical UI blocks and verifying component existence before writing any framework-specific code.
+
+### `review_ui_code` (Quality Assurance & A11y)
+Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on a provided code snippet.
+* **Parameters:** `code_snippet`, `framework`.
+* **Behavior:** Scans for hardcoded "magic numbers" and checks WCAG 2.2 AA rules. The AI is forced to provide *evidence* for its critique by calling the design tokens and component API tools.
+
+### `migrate_component` (Legacy Refactoring)
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture.
+* **Parameters:** `legacy_code`, `source_context`, `target_framework`.
+* **Behavior:** Uses semantic parsing to map outdated structures intelligently to the new v3 architecture, retrieving the correct tokens and declarative CSS classes automatically.
 
 ---
 
