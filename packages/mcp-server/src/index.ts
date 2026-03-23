@@ -20,11 +20,9 @@ import { z } from 'zod/v3';
 const SERVER_DIR = import.meta.dirname;
 const REPO_ROOT = resolve(SERVER_DIR, '../../..');
 
-function isMonorepo(): boolean {
-	return existsSync(
-		join(REPO_ROOT, 'packages/components/src/components')
-	);
-}
+const IS_MONOREPO = existsSync(
+	join(REPO_ROOT, 'packages/components/src/components')
+);
 
 // Live paths (monorepo only)
 const COMPONENTS_DIR = join(REPO_ROOT, 'packages/components/src/components');
@@ -56,7 +54,7 @@ async function withTimeout<T>(
 ): Promise<
 	T | { content: { type: 'text'; text: string }[]; isError: boolean }
 > {
-	let timer: ReturnType<typeof setTimeout>;
+	let timer: ReturnType<typeof setTimeout> | undefined;
 	const timeoutPromise = new Promise<any>((resolve) => {
 		timer = setTimeout(() => {
 			resolve({
@@ -67,7 +65,7 @@ async function withTimeout<T>(
 	});
 
 	const result = await Promise.race([operation, timeoutPromise]);
-	clearTimeout(timer!);
+	if (timer) clearTimeout(timer);
 	return result;
 }
 
@@ -135,7 +133,7 @@ server.registerTool(
 			'Returns all available DB UX component names by scanning packages/components/src/components.'
 	},
 	async () => {
-		if (isMonorepo()) {
+		if (IS_MONOREPO) {
 			const entries = await readdir(COMPONENTS_DIR, {
 				withFileTypes: true
 			});
@@ -168,7 +166,7 @@ server.registerTool(
 		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
 	},
 	async ({ componentName }) => {
-		if (isMonorepo()) {
+		if (IS_MONOREPO) {
 			const safeComponentPath = resolveSafePath(
 				COMPONENTS_DIR,
 				componentName
@@ -257,7 +255,7 @@ server.registerTool(
 		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
 	},
 	async ({ componentName }) => {
-		if (isMonorepo()) {
+		if (IS_MONOREPO) {
 			const safeComponentPath = resolveSafePath(
 				COMPONENTS_DIR,
 				componentName
@@ -419,7 +417,7 @@ server.registerTool(
 			'from the generated all-icons.ts in packages/foundations/src.'
 	},
 	async () => {
-		if (isMonorepo() && existsSync(ALL_ICONS_FILE)) {
+		if (IS_MONOREPO && existsSync(ALL_ICONS_FILE)) {
 			const source = await readFile(ALL_ICONS_FILE, 'utf-8');
 			const icons = [...source.matchAll(/'([^']+)'/g)].map((m) => m[1]);
 			return {
@@ -488,7 +486,7 @@ server.registerTool(
 				const kebab = toKebabCase(exampleName);
 				const ext = FRAMEWORK_EXT[framework];
 
-				if (isMonorepo()) {
+				if (IS_MONOREPO) {
 					const safeComponentPath = resolveSafePath(
 						join(OUTPUT_DIR, framework, 'src/components'),
 						componentName
@@ -637,7 +635,7 @@ server.registerTool(
 		}
 	},
 	async ({ query, category, componentName, docType }) => {
-		if (!isMonorepo()) {
+		if (!IS_MONOREPO) {
 			return {
 				content: [
 					{
