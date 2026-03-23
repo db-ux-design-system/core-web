@@ -103,6 +103,11 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 * **Parameters:** `legacy_code`, `source_context`, `target_framework`.
 * **Behavior:** Uses semantic parsing to map outdated structures intelligently to the new v3 architecture, retrieving the correct tokens and declarative CSS classes automatically.
 
+### `audit_accessibility` (Deep A11y Scan)
+Specialized deep scan exclusively for inclusion and accessibility standards (WCAG 2.2 AA). Goes beyond traditional linters by evaluating interactive patterns, focus orders, and generating manual test scripts.
+* **Parameters:** `code_snippet`, `framework`.
+* **Behavior:** Calls `docs_search` to retrieve global DB UX accessibility guidelines, then verifies how the used components handle ARIA attributes and keyboard events natively. Produces a prioritized WCAG violation list with evidence and a step-by-step manual testing script for QA engineers.
+
 ---
 
 ## 📐 Architecture & Manifest
