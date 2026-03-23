@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('node:fs', () => ({ existsSync: vi.fn() }));
-vi.mock('node:fs/promises', () => ({ readFile: vi.fn(), readdir: vi.fn() }));
+vi.mock('node:fs/promises', () => ({ readFile: vi.fn() }));
 
 const { existsSync } = await import('node:fs');
-const { readFile, readdir } = await import('node:fs/promises');
+const { readFile } = await import('node:fs/promises');
 const {
 	resetManifestCache,
 	handleListComponents,
@@ -22,8 +22,6 @@ const {
 } = await import('../index.js');
 
 const FAKE_PROPS = 'export interface FakeProps { label: string; }';
-const FAKE_EXAMPLES = ['exampleName="Variant"', 'exampleName="Show Icon Leading"'];
-const FAKE_SHOWCASE = FAKE_EXAMPLES.join('\n');
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
 function makeManifest(components: Record<string, unknown> = {}, icons: string[] = []) {
