@@ -2,7 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { join, resolve, sep } from 'node:path';
 import { z } from 'zod/v3';
 import packageJson from '../package.json';
 
@@ -75,19 +75,19 @@ const COMPONENT_NOT_FOUND_MSG = (name: string) =>
 
 /**
  * Resolves a path and ensures it remains strictly within the allowed base directory.
- * Prevents Path Traversal (Directory Climbing) attacks.
+ * Prevents Path Traversal (Directory Climbing) attacks, including URL-encoded payloads.
  */
 function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
-	const absoluteRequested = resolve(baseDir, userPath);
+	// Decode URL-encoded sequences (e.g. %2F → /) before resolving
+	const decoded = decodeURIComponent(userPath);
+	const absoluteRequested = resolve(baseDir, decoded);
 
 	if (
-		!absoluteRequested.startsWith(absoluteBase + '/') &&
+		!absoluteRequested.startsWith(absoluteBase + sep) &&
 		absoluteRequested !== absoluteBase
 	) {
-		throw new Error(
-			'Security Access Denied: Path traversal detected. The requested path is outside the allowed directory.'
-		);
+		throw new Error('Path traversal detected');
 	}
 	return absoluteRequested;
 }
@@ -183,10 +183,15 @@ export async function handleGetComponentDetails({
 	componentName: string;
 }): Promise<ToolResult> {
 	if (IS_MONOREPO) {
-		const safeComponentPath = resolveSafePath(
-			COMPONENTS_DIR,
-			componentName
-		);
+		let safeComponentPath: string;
+		try {
+			safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+		} catch {
+			return {
+				content: [{ type: 'text', text: `Error: Invalid component name '${componentName}'.` }],
+				isError: true
+			};
+		}
 		if (!existsSync(safeComponentPath)) {
 			return {
 				content: [
@@ -280,10 +285,15 @@ export async function handleGetComponentProps({
 	componentName: string;
 }): Promise<ToolResult> {
 	if (IS_MONOREPO) {
-		const safeComponentPath = resolveSafePath(
-			COMPONENTS_DIR,
-			componentName
-		);
+		let safeComponentPath: string;
+		try {
+			safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+		} catch {
+			return {
+				content: [{ type: 'text', text: `Error: Invalid component name '${componentName}'.` }],
+				isError: true
+			};
+		}
 		if (!existsSync(safeComponentPath)) {
 			return {
 				content: [
@@ -545,10 +555,18 @@ export async function handleGetExampleCode({
 					};
 				}
 				const outputSubDir = FRAMEWORK_OUTPUT_DIR[framework] ?? framework;
-				const safeComponentPath = resolveSafePath(
-					join(OUTPUT_DIR, outputSubDir, 'src/components'),
-					componentName
-				);
+				let safeComponentPath: string;
+				try {
+					safeComponentPath = resolveSafePath(
+						join(OUTPUT_DIR, outputSubDir, 'src/components'),
+						componentName
+					);
+				} catch {
+					return {
+						content: [{ type: 'text', text: `Error: Invalid component name '${componentName}'.` }],
+						isError: true
+					};
+				}
 				if (!existsSync(safeComponentPath)) {
 					return {
 						content: [
@@ -720,10 +738,15 @@ export async function handleDocsSearch({
 						isError: true
 					};
 				}
-				const safeComponentPath = resolveSafePath(
-					COMPONENTS_DIR,
-					componentName
-				);
+				let safeComponentPath: string;
+				try {
+					safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+				} catch {
+					return {
+						content: [{ type: 'text', text: `Error: Invalid component name '${componentName}'.` }],
+						isError: true
+					};
+				}
 				const compDocsDir = join(safeComponentPath, 'docs');
 				if (existsSync(compDocsDir)) {
 					const files = await readdir(compDocsDir);
