@@ -39,18 +39,31 @@ get_example_code(componentName, exampleName, framework)
 ### Phase 3: Resolve Tokens & Icons
 
 ```
+list_design_token_categories
+  → returns available categories ("colors", "spacing", "typography", etc.)
+  → call this if you're unsure which category to query
+
 get_design_tokens(category)
   → call for every spacing, color, or typography value you need
-  → categories: "colors", "spacing", "typography", ...
+  → use categories from list_design_token_categories
 
 list_icons
   → call once per task before using any icon prop
   → copy the exact name from the returned array
 ```
 
-### Phase 4: Write Code
+### Phase 4: Docs & Guidelines
 
-Only after phases 1–3 are complete, write or modify files. Adapt the output of `get_example_code` to the specific use case — do not rewrite it from scratch.
+```
+docs_search(query)
+  → searches conceptual documentation (guidelines, A11y, migration, ADRs)
+  → searches component-specific markdown docs
+  → call when you need context about design principles, accessibility requirements, or implementation guidelines
+```
+
+### Phase 5: Write Code
+
+Only after phases 1–4 are complete, write or modify files. Adapt the output of `get_example_code` to the specific use case — do not rewrite it from scratch.
 
 ## Framework Support
 
@@ -146,7 +159,9 @@ Before completing any UI task, verify every item:
 - [ ] `get_component_props` was called — prop API is known, no guessing
 - [ ] `get_example_code` was called for every UI element with the correct framework
 - [ ] `list_icons` was called — all icon names are copied verbatim from the result
+- [ ] `list_design_token_categories` was called if unsure about available token categories
 - [ ] `get_design_tokens` was called — no hardcoded color or spacing values
+- [ ] `docs_search` was called if conceptual or accessibility context was required
 - [ ] No native HTML interactive elements (`<button>`, `<input>`, `<a>`, `<select>`) used where DB UX components exist
 - [ ] No inline styles with magic numbers (`margin: 15px`, `color: #fff`)
 - [ ] No invented or assumed icon names
