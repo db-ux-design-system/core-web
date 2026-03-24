@@ -15,7 +15,7 @@ const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
 const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
 const OUTPUT_DIR = join(REPO_ROOT, 'output');
 
-const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components'] as const;
+const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components', 'html'] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
 async function readOptional(path: string): Promise<string | null> {
@@ -72,6 +72,16 @@ async function buildManifest() {
 			const exampleCode = {} as Record<Framework, Record<string, string>>;
 			for (const fw of FRAMEWORKS) {
 				exampleCode[fw] = {};
+				// html: one index.html per component (not per example)
+				// TODO: HTML currently only has one index.html per component, not per-example files.
+				// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
+				// to how react/angular/vue examples are generated, so get_example_code can return
+				// example-specific HTML markup.
+				if (fw === 'html') {
+					const htmlIndex = await readOptional(join(COMPONENTS_SRC, name, 'index.html'));
+					if (htmlIndex) exampleCode[fw]['index.html'] = htmlIndex;
+					continue;
+				}
 				// web-components examples live in output/stencil/
 				const outputDir = fw === 'web-components' ? 'stencil' : fw;
 				const exDir = join(
@@ -91,17 +101,6 @@ async function buildManifest() {
 						'utf-8'
 					);
 				}
-			}
-
-			// TODO: HTML currently only has one index.html per component, not per-example files.
-			// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
-			// to how react/angular/vue examples are generated, so get_example_code can return
-			// example-specific HTML markup.
-			const htmlIndex = await readOptional(
-				join(COMPONENTS_SRC, name, 'index.html')
-			);
-			if (htmlIndex) {
-				(exampleCode as any)['html'] = { 'index.html': htmlIndex };
 			}
 
 			components[name] = { props, examples, exampleCode };
