@@ -5,7 +5,7 @@ vi.mock('node:fs/promises', () => ({ readFile: vi.fn() }));
 
 const { existsSync } = await import('node:fs');
 const { readFile } = await import('node:fs/promises');
-const { resetManifestCache, resolveSafePath } = await import('../utils.js');
+const { resetManifestCache, resolveSafePath } = await import('../utils/index.js');
 const {
 	handleListComponents,
 	handleGetComponentDetails,
