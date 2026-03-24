@@ -28,6 +28,12 @@ function makeManifest(components: Record<string, unknown> = {}, icons: string[] 
 	return JSON.stringify({ icons, components });
 }
 
+function assertUserMessage(result: any) {
+	expect(result.messages).toHaveLength(1);
+	expect(result.messages[0].role).toBe('user');
+	return result.messages[0].content.text as string;
+}
+
 // ---------------------------------------------------------------------------
 // Shared setup: reset manifest cache + mocks before each test
 // ---------------------------------------------------------------------------
@@ -260,12 +266,10 @@ describe('handleDocsSearch', () => {
 // ---------------------------------------------------------------------------
 describe('handleScaffoldPagePrompt', () => {
 	it('returns a user message with framework and page_type', () => {
-		const result = handleScaffoldPagePrompt({ page_type: 'Dashboard', framework: 'react' });
+		const text = assertUserMessage(handleScaffoldPagePrompt({ page_type: 'Dashboard', framework: 'react' }));
 
-		expect(result.messages).toHaveLength(1);
-		expect(result.messages[0].role).toBe('user');
-		expect(result.messages[0].content.text).toContain('react');
-		expect(result.messages[0].content.text).toContain('Dashboard');
+		expect(text).toContain('react');
+		expect(text).toContain('Dashboard');
 	});
 
 	it('includes additional_requirements when provided', () => {
@@ -286,12 +290,10 @@ describe('handleScaffoldPagePrompt', () => {
 // ---------------------------------------------------------------------------
 describe('handleReviewUiCodePrompt', () => {
 	it('returns a user message containing the framework and code snippet', () => {
-		const result = handleReviewUiCodePrompt({ code_snippet: '<DBButton>Save</DBButton>', framework: 'react' });
+		const text = assertUserMessage(handleReviewUiCodePrompt({ code_snippet: '<DBButton>Save</DBButton>', framework: 'react' }));
 
-		expect(result.messages).toHaveLength(1);
-		expect(result.messages[0].role).toBe('user');
-		expect(result.messages[0].content.text).toContain('react');
-		expect(result.messages[0].content.text).toContain('<DBButton>Save</DBButton>');
+		expect(text).toContain('react');
+		expect(text).toContain('<DBButton>Save</DBButton>');
 	});
 
 	it('references the correct framework package in the prompt text', () => {
@@ -306,15 +308,12 @@ describe('handleReviewUiCodePrompt', () => {
 // ---------------------------------------------------------------------------
 describe('handleMigrateComponentPrompt', () => {
 	it('returns a user message containing legacy code, source context, and target framework', () => {
-		const result = handleMigrateComponentPrompt({
+		const text = assertUserMessage(handleMigrateComponentPrompt({
 			legacy_code: '<button class="btn">Click</button>',
 			source_context: 'bootstrap-4',
 			target_framework: 'react'
-		});
+		}));
 
-		expect(result.messages).toHaveLength(1);
-		expect(result.messages[0].role).toBe('user');
-		const text = result.messages[0].content.text;
 		expect(text).toContain('bootstrap-4');
 		expect(text).toContain('react');
 		expect(text).toContain('<button class="btn">Click</button>');
@@ -336,11 +335,8 @@ describe('handleMigrateComponentPrompt', () => {
 // ---------------------------------------------------------------------------
 describe('handleAuditAccessibilityPrompt', () => {
 	it('returns a user message containing the framework and code snippet', () => {
-		const result = handleAuditAccessibilityPrompt({ code_snippet: '<DBInput label="Name" />', framework: 'react' });
+		const text = assertUserMessage(handleAuditAccessibilityPrompt({ code_snippet: '<DBInput label="Name" />', framework: 'react' }));
 
-		expect(result.messages).toHaveLength(1);
-		expect(result.messages[0].role).toBe('user');
-		const text = result.messages[0].content.text;
 		expect(text).toContain('react');
 		expect(text).toContain('<DBInput label="Name" />');
 	});
