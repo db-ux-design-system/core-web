@@ -156,6 +156,6 @@ Vertrieb
 runneradmin
 modelcontextprotocol
 fetc
-fpasswd'
+fpasswd
 cursorrules
 xyznonexistent
