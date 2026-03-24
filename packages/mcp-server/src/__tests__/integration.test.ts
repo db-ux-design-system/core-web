@@ -25,8 +25,13 @@ const {
 const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
-function makeManifest(components: Record<string, unknown> = {}, icons: string[] = []) {
-	return JSON.stringify({ icons, components });
+function makeManifest(
+	components: Record<string, unknown> = {},
+	icons: string[] = [],
+	tokens: Record<string, string> = {},
+	docs: Record<string, string> = {}
+) {
+	return JSON.stringify({ icons, components, tokens, docs });
 }
 
 function makeFuzzyManifest(exampleKeys: string[]) {
@@ -154,19 +159,19 @@ describe('handleGetComponentProps', () => {
 // list_design_token_categories
 // ---------------------------------------------------------------------------
 describe('handleListDesignTokenCategories', () => {
-	it('returns categories whose files exist', async () => {
-		// existsSync returns true for all paths (set in beforeEach)
+	it('returns categories from manifest.tokens', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], { colors: '', spacing: '' }) as any);
+
 		const result = await handleListDesignTokenCategories();
 
 		expect(result.isError).toBeUndefined();
 		const categories = JSON.parse(result.content[0].text);
-		expect(Array.isArray(categories)).toBe(true);
 		expect(categories).toContain('colors');
 		expect(categories).toContain('spacing');
 	});
 
-	it('returns empty array when no token files exist', async () => {
-		vi.mocked(existsSync).mockReturnValue(false);
+	it('returns empty array when manifest.tokens is empty', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
 
 		const result = await handleListDesignTokenCategories();
 
@@ -178,8 +183,9 @@ describe('handleListDesignTokenCategories', () => {
 // get_design_tokens
 // ---------------------------------------------------------------------------
 describe('handleGetDesignTokens', () => {
-	it('returns filtered --db-* lines from the token file', async () => {
-		vi.mocked(readFile).mockResolvedValue('--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;' as any);
+	it('returns filtered --db-* lines from manifest.tokens', async () => {
+		const scss = '--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
+		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], { colors: scss }) as any);
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
 
@@ -189,19 +195,12 @@ describe('handleGetDesignTokens', () => {
 	});
 
 	it('returns an error for an unknown category', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+
 		const result = await handleGetDesignTokens({ category: 'nonexistent-category' });
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent-category');
-	});
-
-	it('returns an error when the token file does not exist', async () => {
-		vi.mocked(existsSync).mockImplementation((p: any) => !String(p).endsWith('_variables.scss'));
-
-		const result = await handleGetDesignTokens({ category: 'colors' });
-
-		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('token file not found');
 	});
 });
 
@@ -328,14 +327,29 @@ describe('handleGetExampleCode', () => {
 });
 
 // ---------------------------------------------------------------------------
-// docs_search — IS_MONOREPO=false in test env, so always returns error
+// docs_search — IS_MONOREPO=false in test env, falls back to manifest.docs
 // ---------------------------------------------------------------------------
 describe('handleDocsSearch', () => {
-	it('returns an error because docs_search requires monorepo environment', async () => {
-		const result = await handleDocsSearch({ query: 'accessibility', category: 'global' });
+	it('returns matching docs from the manifest', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], {}, {
+			'docs/development.md': '# Development\nHow to contribute and set up the project.'
+		}) as any);
 
-		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('monorepo');
+		const result = await handleDocsSearch({ query: 'contribute', category: 'global' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toContain('Development');
+	});
+
+	it('returns no-match message when query has no results', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], {}, {
+			'docs/development.md': '# Development'
+		}) as any);
+
+		const result = await handleDocsSearch({ query: 'xyznonexistent', category: 'global' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toContain('No documentation found');
 	});
 });
 

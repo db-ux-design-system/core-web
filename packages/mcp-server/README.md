@@ -8,9 +8,15 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 
 ## 🚀 Quick Start for Consumers
 
-You do **not** need to install this package manually. The MCP server is bundled inside `@db-ux/core-foundations` and is available immediately via `npx`.
+> **Requirement:** Node.js **v22.0.0** or higher is required to run the MCP server.
 
-### IDE Configuration
+### 1. Access the Server
+
+Ensure you are using Node.js v22+ and run the server via `npx`:
+
+### 2. Configure your IDE
+
+**Important:** Ensure you include the full hierarchy (e.g., `mcp` -> `servers`). Do not add the `db-ux` key directly to the root of your settings file.
 
 Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cursor, etc.):
 
@@ -25,7 +31,12 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
 }
 ```
 
-**VS Code** (`settings.json` or `.vscode/mcp.json`):
+**VS Code** — you have two options:
+
+- **Recommended (Project-level):** Create a `.vscode/mcp.json` file in your project root. This allows you to share the MCP config with your team via Git.
+- **Alternative (User-level):** Add the entry to your global `settings.json`.
+
+> **Note:** If both exist, the `.vscode/mcp.json` file takes precedence.
 
 ```json
 {
@@ -40,21 +51,48 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
 }
 ```
 
-**IntelliJ / JetBrains IDEs** — add via *Settings → Tools → AI Assistant → Model Context Protocol → Add Server*.
+**IntelliJ / JetBrains IDEs** — add via *Settings → Tools → AI Assistant → Model Context Protocol → Add Server*. Use these values in the dialog:
 
-### Project Rules (Plan-First Paradigm)
+| Field | Value |
+|---|---|
+| Name | `db-ux` |
+| Type | `stdio` |
+| Command | `npx` |
+| Arguments | `-y @db-ux/core-foundations db-ux-mcp` |
 
-Copy the workflow rules file into your project so your AI agent enforces the correct tool-call sequence before writing any UI code:
+### 3. Add Project Rules (Plan-First Paradigm)
 
+Copy the workflow rules file into your project so your AI agent enforces the correct tool-call sequence before writing any UI code. The target location depends on the AI assistant you are using:
+
+**For Amazon Q:**
 ```bash
-# from your project root
-curl -o .amazonq/rules/db-ux-mcp-workflow.md \
+# Creates the directory and downloads the rules
+mkdir -p .amazonq/rules && curl -o .amazonq/rules/db-ux-mcp-workflow.md \
   https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
 ```
 
-Or copy it manually from this monorepo: `.amazonq/rules/db-ux-mcp-workflow.md`.
+**For GitHub Copilot:**
+```bash
+# Creates the directory and downloads the rules
+mkdir -p .github && curl -o .github/copilot-instructions.md \
+  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
+```
 
-The rules enforce the **Plan-First** paradigm: the AI must call the MCP tools to discover components and fetch real code *before* it writes a single line of UI code.
+(Note: If you already have a `copilot-instructions.md`, download the file and append its contents to your existing file).
+
+**For Cursor:**
+```bash
+# Downloads the rules as your project's Cursor rules
+curl -o .cursorrules \
+  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
+```
+
+(Note: If you already have a `.cursorrules` file, append the downloaded contents to it).
+
+### 4. Verify Connection
+
+- **Check Status:** Look for a green indicator or "db-ux" in your IDE's MCP server list.
+- **Check Logs:** If it doesn't appear, check the MCP output logs in your IDE (e.g., in VS Code: *Output Panel* → *MCP* or *MCP Servers*).
 
 ---
 
@@ -65,7 +103,7 @@ The rules enforce the **Plan-First** paradigm: the AI must call the MCP tools to
 | `list_components` | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it. |
 | `get_component_props` | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments. |
 | `get_component_details` | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`). |
-| `get_example_code` | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, or `vue`). This is the code the AI adapts — not invents. |
+| `get_example_code` | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents. |
 | `get_design_tokens` | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers. |
 | `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`. |
 | `list_icons` | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name. |
@@ -125,6 +163,8 @@ Because `model.ts`, showcase files, and framework example source files are **not
 ```
 manifest.json
 ├── icons[]                          — icon names from packages/foundations/src/all-icons.ts
+├── tokens{}                         — raw SCSS design tokens mapped by category
+├── docs{}                           — conceptual markdown documentation
 └── components{}
     └── {componentName}
         ├── props                    — raw model.ts content
@@ -132,7 +172,9 @@ manifest.json
         └── exampleCode
             ├── react{}              — { "variant.example.tsx": "<source>" }
             ├── angular{}            — { "variant.example.ts":  "<source>" }
-            └── vue{}                — { "variant.example.vue": "<source>" }
+            ├── vue{}                — { "variant.example.vue": "<source>" }
+            ├── web-components{}     — { "variant.example.ts":  "<source>" }
+            └── html{}               — { "index.html": "<source>" }
 ```
 
 This manifest is bundled into the final `index.js` by esbuild, producing a **~640 KB standalone executable** that carries all component knowledge inside it.
@@ -248,8 +290,16 @@ To build and test the server in isolation during development:
 ```bash
 # from packages/mcp-server/
 npm run build   # generates manifest + bundle
-npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
+npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files). The server communicates over stdio and produces no terminal output by itself — this is expected.
 ```
+
+---
+
+## ❓ Troubleshooting
+
+### "Unknown Configuration Setting" in VS Code
+
+If you see a yellow squiggle/warning in your `settings.json`, this is expected. Standard VS Code does not natively recognize the `mcp` key yet. As long as your MCP client (like the Claude extension or Cursor) is active, the server will work perfectly.
 
 ---
 
@@ -283,14 +333,16 @@ npm run build
 
 Run the following command from the `packages/mcp-server/` directory:
 
+> **Note:** Port 5173 is the default for Vite and Playwright. To avoid conflicts if those are already running, you can specify a different port using the `--port` flag.
+
 ```bash
-npx @modelcontextprotocol/inspector node build/index.js
+npx @modelcontextprotocol/inspector --port 5178 node build/index.js
 ```
 
 ### Step-by-step workflow
 
 1. Run the command above — the Inspector starts a local web server
-2. Open the browser tab it prints (usually **http://localhost:5173**)
+2. Open the browser tab it prints (e.g., **http://localhost:5178**)
 3. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
 4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `get_example_code`) and inspect their responses
 5. Use the **"Resources"** tab to verify any static resources exposed by the server

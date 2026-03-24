@@ -110,6 +110,8 @@ type Manifest = {
 			exampleCode: Record<Framework, Record<string, string>>;
 		}
 	>;
+	tokens: Record<string, string>;
+	docs: Record<string, string>;
 };
 
 let _manifest: Manifest | null = null;
@@ -388,11 +390,17 @@ const TOKEN_FILES: Record<string, string> = {
 };
 
 export async function handleListDesignTokenCategories(): Promise<ToolResult> {
-	const categories = Object.keys(TOKEN_FILES).filter((key) =>
-		existsSync(TOKEN_FILES[key])
-	);
+	if (IS_MONOREPO) {
+		const categories = Object.keys(TOKEN_FILES).filter((key) =>
+			existsSync(TOKEN_FILES[key])
+		);
+		return {
+			content: [{ type: 'text', text: JSON.stringify(categories, null, 2) }]
+		};
+	}
+	const manifest = await getManifest();
 	return {
-		content: [{ type: 'text', text: JSON.stringify(categories, null, 2) }]
+		content: [{ type: 'text', text: JSON.stringify(Object.keys(manifest.tokens), null, 2) }]
 	};
 }
 
@@ -410,6 +418,23 @@ export async function handleGetDesignTokens({
 }: {
 	category: string;
 }): Promise<ToolResult> {
+	if (!IS_MONOREPO) {
+		const manifest = await getManifest();
+		const source = manifest.tokens[category];
+		if (!source) {
+			return {
+				content: [{
+					type: 'text',
+					text: `Error: unknown category '${category}'. Available: ${Object.keys(manifest.tokens).join(', ')}`
+				}],
+				isError: true
+			};
+		}
+		const lines = source.split('\n').filter((line) => /--db-|^\$db-/.test(line));
+		return {
+			content: [{ type: 'text', text: truncate(lines.length > 0 ? lines.join('\n') : source, MAX_JSON_OUTPUT) }]
+		};
+	}
 	const filePath = TOKEN_FILES[category];
 	if (!filePath) {
 		return {
@@ -733,15 +758,45 @@ export async function handleDocsSearch({
 	docType?: string;
 }): Promise<ToolResult> {
 	if (!IS_MONOREPO) {
-		return {
-			content: [
-				{
-					type: 'text',
-					text: 'Error: docs_search is only available in the monorepo environment.'
+		return withTimeout(
+			(async () => {
+				const manifest = await getManifest();
+				const searchTerms = query
+					.toLowerCase()
+					.split(' ')
+					.filter((t) => t.trim().length > 2);
+				const results: string[] = [];
+				for (const [path, content] of Object.entries(manifest.docs)) {
+					const haystack = (path + '\n' + content).toLowerCase();
+					const isMatch =
+						searchTerms.length === 0 ||
+						searchTerms.every((term) => haystack.includes(term));
+					if (isMatch) {
+						const snippet = content.length > 3000
+							? content.substring(0, 3000) + '\n... [TRUNCATED]'
+							: content;
+						results.push(`--- ${path} ---\n${snippet}`);
+					}
 				}
-			],
-			isError: true
-		};
+				if (results.length === 0) {
+					return {
+						content: [{ type: 'text', text: `No documentation found matching query: '${query}'` }]
+					};
+				}
+				const truncated = results.length > 3;
+				const content: { type: 'text'; text: string }[] = [
+					{ type: 'text', text: results.slice(0, 3).join('\n\n') }
+				];
+				if (truncated) {
+					content.push({
+						type: 'text',
+						text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
+					});
+				}
+				return { content };
+			})(),
+			'Error: Search took too long (exceeded 10 seconds). Please refine your query.'
+		) as any;
 	}
 	return withTimeout(
 		(async () => {

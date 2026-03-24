@@ -8,12 +8,23 @@
  */
 import { existsSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 
 const REPO_ROOT = resolve(import.meta.dirname, '../../..');
 const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
 const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
+const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
+const DOCS_DIR = join(REPO_ROOT, 'docs');
 const OUTPUT_DIR = join(REPO_ROOT, 'output');
+
+const TOKEN_FILES: Record<string, string> = {
+	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
+	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
+	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
+	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
+	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
+	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
+};
 
 const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components', 'html'] as const;
 type Framework = (typeof FRAMEWORKS)[number];
@@ -62,6 +73,30 @@ export async function processComponent(
 	}
 }
 
+async function collectTokens(): Promise<Record<string, string>> {
+	const tokens: Record<string, string> = {};
+	for (const [category, filePath] of Object.entries(TOKEN_FILES)) {
+		if (!existsSync(filePath)) continue;
+		tokens[category] = await readFile(filePath, 'utf-8');
+	}
+	return tokens;
+}
+
+async function collectDocs(dir: string, depth = 5): Promise<Record<string, string>> {
+	const docs: Record<string, string> = {};
+	if (!existsSync(dir) || depth === 0) return docs;
+	const entries = await readdir(dir, { withFileTypes: true });
+	for (const entry of entries) {
+		const fullPath = join(dir, entry.name);
+		if (entry.isDirectory()) {
+			Object.assign(docs, await collectDocs(fullPath, depth - 1));
+		} else if (entry.name.endsWith('.md')) {
+			docs[relative(REPO_ROOT, fullPath)] = await readFile(fullPath, 'utf-8');
+		}
+	}
+	return docs;
+}
+
 async function buildManifest() {
 	const componentEntries = await readdir(COMPONENTS_SRC, {
 		withFileTypes: true
@@ -97,11 +132,13 @@ async function buildManifest() {
 		if (!entry.hasError) components[entry.name] = entry.data;
 	}
 
-	const manifest = { icons, components };
+	const [tokens, docs] = await Promise.all([collectTokens(), collectDocs(DOCS_DIR)]);
+
+	const manifest = { icons, components, tokens, docs };
 	const outPath = join(import.meta.dirname, 'manifest.json');
 	await writeFile(outPath, JSON.stringify(manifest));
 	console.log(
-		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons)`
+		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs)`
 	);
 
 	if (hasErrors) process.exit(1);
