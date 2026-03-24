@@ -5,7 +5,7 @@ The `db-ux-mcp` MCP server is the **single source of truth** for all UI developm
 The server is shipped as part of `@db-ux/core-foundations` and can be started without installation:
 
 ```bash
-npx -y @db-ux/core-foundations
+npx --yes @db-ux/core-foundations
 ```
 
 ## Workflow Structure
