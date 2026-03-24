@@ -177,7 +177,7 @@ manifest.json
             └── html{}               — { "index.html": "<source>" }
 ```
 
-This manifest is bundled into the final `index.js` by esbuild, producing a **~640 KB standalone executable** that carries all component knowledge inside it.
+This manifest is bundled into the final `index.js` by esbuild, producing a **~775 KB standalone executable** that carries all component knowledge inside it.
 
 ### Universal path resolution
 
@@ -200,8 +200,13 @@ This means the same binary works for:
 ```
 packages/mcp-server/
 ├── src/
-│   ├── index.ts            # MCP server — all tool registrations
+│   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
+│   ├── server.ts           # McpServer singleton and lifecycle handlers
+│   ├── types.ts            # Framework type and FRAMEWORK_PKG mapping
 │   ├── build-manifest.ts   # Build-time script — generates manifest.json
+│   ├── tools/              # Tool handler implementations
+│   ├── prompts/            # Prompt handler implementations
+│   └── utils/              # Shared utilities (path, manifest, formatting, async)
 │   └── manifest.json       # Generated — do not edit manually
 ├── build/
 │   └── index.js            # Compiled standalone bundle (gitignored)
@@ -310,7 +315,7 @@ This MCP server operates under a strict, zero-trust security model to prevent ma
 * **Strict Read-Only Sandbox:** The server has zero write-permissions. All imports from `node:fs` are strictly read-only (`readFile`, `readdir`). Modules like `child_process` (for shell execution) or file mutation methods (`writeFile`, `unlink`) are completely banned.
 * **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).
 * **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
-  * File reads are truncated at **5,000 characters**.
+  * File reads are truncated at **20,000 characters**.
   * JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
   * Directory scans are hard-limited to a maximum of **10 files**.
 
