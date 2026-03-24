@@ -96,7 +96,7 @@ const ALL_ICONS_FILE = join(REPO_ROOT, 'packages/foundations/src/all-icons.ts');
 const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 
 // Embedded manifest (npx / installed package)
-type Framework = 'react' | 'angular' | 'vue';
+type Framework = 'react' | 'angular' | 'vue' | 'web-components' | 'html';
 type Manifest = {
 	icons: string[];
 	components: Record<
@@ -506,7 +506,14 @@ function toKebabCase(name: string): string {
 const FRAMEWORK_EXT: Record<Framework, string> = {
 	react: 'tsx',
 	angular: 'ts',
-	vue: 'vue'
+	vue: 'vue',
+	'web-components': 'tsx',
+	html: 'html'
+};
+
+// Maps framework key to the output/ subdirectory name
+const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
+	'web-components': 'stencil'
 };
 
 export async function handleGetExampleCode({
@@ -524,8 +531,22 @@ export async function handleGetExampleCode({
 			const ext = FRAMEWORK_EXT[framework];
 
 			if (IS_MONOREPO) {
+				// html: serve the component's index.html (one file, not per-example)
+				if (framework === 'html') {
+					const htmlFile = join(COMPONENTS_DIR, componentName, 'index.html');
+					if (!existsSync(htmlFile)) {
+						return {
+							content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+							isError: true
+						};
+					}
+					return {
+						content: [{ type: 'text', text: truncate(await readFile(htmlFile, 'utf-8'), MAX_FILE_CONTENT) }]
+					};
+				}
+				const outputSubDir = FRAMEWORK_OUTPUT_DIR[framework] ?? framework;
 				const safeComponentPath = resolveSafePath(
-					join(OUTPUT_DIR, framework, 'src/components'),
+					join(OUTPUT_DIR, outputSubDir, 'src/components'),
 					componentName
 				);
 				if (!existsSync(safeComponentPath)) {
@@ -591,6 +612,17 @@ export async function handleGetExampleCode({
 					isError: true
 				};
 			}
+			// html manifest fallback: return index.html regardless of exampleName
+			if (framework === 'html') {
+				const htmlEntry = comp.exampleCode['html']?.['index.html'];
+				if (!htmlEntry) {
+					return {
+						content: [{ type: 'text', text: `Error: No HTML example found for component '${componentName}'.` }],
+						isError: true
+					};
+				}
+				return { content: [{ type: 'text', text: truncate(htmlEntry, MAX_FILE_CONTENT) }] };
+			}
 			const fwExamples = comp.exampleCode[framework] ?? {};
 			const directKey = `${kebab}.example.${ext}`;
 			const matchKey = fwExamples[directKey]
@@ -636,8 +668,8 @@ server.registerTool(
 				.string()
 				.describe("Readable example name, e.g. 'Show Icon Leading'"),
 			framework: z
-				.enum(['react', 'angular', 'vue'])
-				.describe("Target framework: 'react', 'angular', or 'vue'")
+				.enum(['react', 'angular', 'vue', 'web-components', 'html'])
+				.describe("Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'")
 		}
 	},
 	handleGetExampleCode

@@ -15,7 +15,7 @@ const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
 const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
 const OUTPUT_DIR = join(REPO_ROOT, 'output');
 
-const FRAMEWORKS = ['react', 'angular', 'vue'] as const;
+const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components'] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
 async function readOptional(path: string): Promise<string | null> {
@@ -69,9 +69,11 @@ async function buildManifest() {
 		const exampleCode = {} as Record<Framework, Record<string, string>>;
 		for (const fw of FRAMEWORKS) {
 			exampleCode[fw] = {};
+			// web-components examples live in output/stencil/
+			const outputDir = fw === 'web-components' ? 'stencil' : fw;
 			const exDir = join(
 				OUTPUT_DIR,
-				fw,
+				outputDir,
 				'src/components',
 				name,
 				'examples'
@@ -81,12 +83,22 @@ async function buildManifest() {
 			for (const file of files.filter(
 				(f) => !f.startsWith('_') && f.includes('.example.')
 			)) {
-				// Key: full filename including extension (e.g. "show-icon-leading.example.tsx")
 				exampleCode[fw][file] = await readFile(
 					join(exDir, file),
 					'utf-8'
 				);
 			}
+		}
+
+		// TODO: HTML currently only has one index.html per component, not per-example files.
+		// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
+		// to how react/angular/vue examples are generated, so get_example_code can return
+		// example-specific HTML markup.
+		const htmlIndex = await readOptional(
+			join(COMPONENTS_SRC, name, 'index.html')
+		);
+		if (htmlIndex) {
+			(exampleCode as any)['html'] = { 'index.html': htmlIndex };
 		}
 
 		components[name] = { props, examples, exampleCode };

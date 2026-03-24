@@ -69,17 +69,21 @@ Only after phases 1–4 are complete, write or modify files. Adapt the output of
 
 `get_example_code` requires an explicit `framework` parameter. Always match it to the project's framework:
 
-| Framework | Parameter value | File extension |
-|-----------|----------------|----------------|
-| React     | `"react"`      | `.tsx`         |
-| Angular   | `"angular"`    | `.ts` (template inline in `@Component`) |
-| Vue       | `"vue"`        | `.vue`         |
+| Framework      | Parameter value    | File extension |
+|----------------|--------------------|----------------|
+| React          | `"react"`          | `.tsx`         |
+| Angular        | `"angular"`        | `.ts` (template inline in `@Component`) |
+| Vue            | `"vue"`            | `.vue`         |
+| Web Components | `"web-components"` | `.html` / `.ts`|
+| HTML           | `"html"`           | `.html`        |
 
 ```typescript
 // ✅ CORRECT: explicit framework
 get_example_code("button", "Show Icon Leading", "react")
 get_example_code("button", "Show Icon Leading", "angular")
 get_example_code("button", "Show Icon Leading", "vue")
+get_example_code("button", "Show Icon Leading", "web-components")
+get_example_code("button", "Show Icon Leading", "html")
 
 // ❌ WRONG: writing framework code from memory
 // <DBButton icon="arrow-right"> ← icon name unverified, may not exist
