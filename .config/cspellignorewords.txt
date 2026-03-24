@@ -157,3 +157,5 @@ runneradmin
 modelcontextprotocol
 fetc
 fpasswd'
+cursorrules
+xyznonexistent
