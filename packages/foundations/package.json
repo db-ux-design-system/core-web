@@ -55,7 +55,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1"
   },
-  "devDependencies": {    "@csstools/normalize.css": "12.1.1",
+  "devDependencies": {
+    "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.6",
     "@playwright/test": "1.58.2",
     "cpr": "3.0.1",

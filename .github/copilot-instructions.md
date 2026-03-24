@@ -292,7 +292,7 @@ Short description of the breaking change.
 The server is shipped inside `@db-ux/core-foundations`. Start it without installation:
 
 ```bash
-npx -y @db-ux/core-foundations
+npx --yes @db-ux/core-foundations
 ```
 
 Or add it to your MCP client config:
@@ -300,7 +300,7 @@ Or add it to your MCP client config:
 ```json
 {
   "mcpServers": {
-    "db-ux": { "command": "npx", "args": ["-y", "@db-ux/core-foundations"] }
+    "db-ux": { "command": "npx", "args": ["--yes", "@db-ux/core-foundations"] }
   }
 }
 ```
