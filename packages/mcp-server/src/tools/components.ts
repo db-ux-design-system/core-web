@@ -20,6 +20,30 @@ type ToolResult = {
 	isError?: boolean;
 };
 
+function err(text: string): ToolResult {
+	return { content: [{ type: 'text', text }], isError: true };
+}
+
+/**
+ * Resolves and verifies a component path within a given base directory.
+ * Returns the resolved path on success, or a ToolResult error on failure.
+ */
+function resolveComponentPath(
+	baseDir: string,
+	componentName: string
+): string | ToolResult {
+	let safePath: string;
+	try {
+		safePath = resolveSafePath(baseDir, componentName);
+	} catch {
+		return err(`Error: Invalid component name '${componentName}'.`);
+	}
+	if (!existsSync(safePath)) {
+		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	}
+	return safePath;
+}
+
 export async function handleListComponents(): Promise<ToolResult> {
 	if (IS_MONOREPO) {
 		const entries = await readdir(COMPONENTS_DIR, { withFileTypes: true });
@@ -58,46 +82,17 @@ export async function handleGetComponentDetails({
 	componentName: string;
 }): Promise<ToolResult> {
 	if (IS_MONOREPO) {
-		let safeComponentPath: string;
-		try {
-			safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
-		} catch {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: Invalid component name '${componentName}'.`
-					}
-				],
-				isError: true
-			};
-		}
-		if (!existsSync(safeComponentPath)) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: COMPONENT_NOT_FOUND_MSG(componentName)
-					}
-				],
-				isError: true
-			};
-		}
+		const pathOrError = resolveComponentPath(COMPONENTS_DIR, componentName);
+		if (typeof pathOrError !== 'string') return pathOrError;
 		const showcaseFile = join(
-			safeComponentPath,
+			pathOrError,
 			'showcase',
 			`${componentName}.showcase.lite.tsx`
 		);
 		if (!existsSync(showcaseFile)) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: File for component '${componentName}' not found.`
-					}
-				],
-				isError: true
-			};
+			return err(
+				`Error: File for component '${componentName}' not found.`
+			);
 		}
 		const source = truncate(
 			await readFile(showcaseFile, 'utf-8'),
@@ -120,14 +115,7 @@ export async function handleGetComponentDetails({
 	}
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) {
-		return {
-			content: [
-				{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }
-			],
-			isError: true
-		};
-	}
+	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
 	return {
 		content: [
 			{
@@ -147,42 +135,13 @@ export async function handleGetComponentProps({
 	componentName: string;
 }): Promise<ToolResult> {
 	if (IS_MONOREPO) {
-		let safeComponentPath: string;
-		try {
-			safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
-		} catch {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: Invalid component name '${componentName}'.`
-					}
-				],
-				isError: true
-			};
-		}
-		if (!existsSync(safeComponentPath)) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: COMPONENT_NOT_FOUND_MSG(componentName)
-					}
-				],
-				isError: true
-			};
-		}
-		const modelFile = join(safeComponentPath, 'model.ts');
+		const pathOrError = resolveComponentPath(COMPONENTS_DIR, componentName);
+		if (typeof pathOrError !== 'string') return pathOrError;
+		const modelFile = join(pathOrError, 'model.ts');
 		if (!existsSync(modelFile)) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: Props file (model.ts) for component '${componentName}' not found.`
-					}
-				],
-				isError: true
-			};
+			return err(
+				`Error: Props file (model.ts) for component '${componentName}' not found.`
+			);
 		}
 		return {
 			content: [
@@ -198,25 +157,11 @@ export async function handleGetComponentProps({
 	}
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) {
-		return {
-			content: [
-				{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }
-			],
-			isError: true
-		};
-	}
-	if (!comp.props) {
-		return {
-			content: [
-				{
-					type: 'text',
-					text: `Error: Props file (model.ts) for component '${componentName}' not found.`
-				}
-			],
-			isError: true
-		};
-	}
+	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	if (!comp.props)
+		return err(
+			`Error: Props file (model.ts) for component '${componentName}' not found.`
+		);
 	return {
 		content: [
 			{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
@@ -244,6 +189,18 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 	'web-components': 'stencil'
 };
 
+function fuzzyMatchExample(
+	entries: string[],
+	kebab: string,
+	ext: string
+): string | undefined {
+	return entries.slice(0, 10).find((f) => {
+		if (!f.endsWith(`.example.${ext}`)) return false;
+		const stem = f.replace(`.example.${ext}`, '');
+		return stem === kebab || stem.includes(kebab) || kebab.includes(stem);
+	});
+}
+
 export async function handleGetExampleCode({
 	componentName,
 	exampleName,
@@ -266,19 +223,8 @@ export async function handleGetExampleCode({
 							componentName,
 							'index.html'
 						);
-						if (!existsSync(htmlFile)) {
-							return {
-								content: [
-									{
-										type: 'text',
-										text: COMPONENT_NOT_FOUND_MSG(
-											componentName
-										)
-									}
-								],
-								isError: true
-							};
-						}
+						if (!existsSync(htmlFile))
+							return err(COMPONENT_NOT_FOUND_MSG(componentName));
 						return {
 							content: [
 								{
@@ -293,35 +239,12 @@ export async function handleGetExampleCode({
 					}
 					const outputSubDir =
 						FRAMEWORK_OUTPUT_DIR[framework] ?? framework;
-					let safeComponentPath: string;
-					try {
-						safeComponentPath = resolveSafePath(
-							join(OUTPUT_DIR, outputSubDir, 'src/components'),
-							componentName
-						);
-					} catch {
-						return {
-							content: [
-								{
-									type: 'text',
-									text: `Error: Invalid component name '${componentName}'.`
-								}
-							],
-							isError: true
-						};
-					}
-					if (!existsSync(safeComponentPath)) {
-						return {
-							content: [
-								{
-									type: 'text',
-									text: COMPONENT_NOT_FOUND_MSG(componentName)
-								}
-							],
-							isError: true
-						};
-					}
-					const examplesDir = join(safeComponentPath, 'examples');
+					const pathOrError = resolveComponentPath(
+						join(OUTPUT_DIR, outputSubDir, 'src/components'),
+						componentName
+					);
+					if (typeof pathOrError !== 'string') return pathOrError;
+					const examplesDir = join(pathOrError, 'examples');
 					let resolvedPath = join(
 						examplesDir,
 						`${kebab}.example.${ext}`
@@ -330,27 +253,13 @@ export async function handleGetExampleCode({
 						const allEntries = existsSync(examplesDir)
 							? await readdir(examplesDir)
 							: [];
-						const match = allEntries.slice(0, 10).find((f) => {
-							if (!f.endsWith(`.example.${ext}`)) return false;
-							const stem = f.replace(`.example.${ext}`, '');
-							return (
-								stem === kebab ||
-								stem.includes(kebab) ||
-								kebab.includes(stem)
-							);
-						});
+						const match = fuzzyMatchExample(allEntries, kebab, ext);
 						if (match) {
 							resolvedPath = join(examplesDir, match);
 						} else {
-							return {
-								content: [
-									{
-										type: 'text',
-										text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-									}
-								],
-								isError: true
-							};
+							return err(
+								`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
+							);
 						}
 					}
 					return {
@@ -368,30 +277,13 @@ export async function handleGetExampleCode({
 
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
-				if (!comp) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: COMPONENT_NOT_FOUND_MSG(componentName)
-							}
-						],
-						isError: true
-					};
-				}
+				if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
 				if (framework === 'html') {
 					const htmlEntry = comp.exampleCode['html']?.['index.html'];
-					if (!htmlEntry) {
-						return {
-							content: [
-								{
-									type: 'text',
-									text: `Error: No HTML example found for component '${componentName}'.`
-								}
-							],
-							isError: true
-						};
-					}
+					if (!htmlEntry)
+						return err(
+							`Error: No HTML example found for component '${componentName}'.`
+						);
 					return {
 						content: [
 							{
@@ -405,25 +297,11 @@ export async function handleGetExampleCode({
 				const directKey = `${kebab}.example.${ext}`;
 				const matchKey = fwExamples[directKey]
 					? directKey
-					: Object.keys(fwExamples).find((k) => {
-							if (!k.endsWith(`.example.${ext}`)) return false;
-							const stem = k.replace(`.example.${ext}`, '');
-							return (
-								stem === kebab ||
-								stem.includes(kebab) ||
-								kebab.includes(stem)
-							);
-						});
+					: fuzzyMatchExample(Object.keys(fwExamples), kebab, ext);
 				if (!matchKey) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-							}
-						],
-						isError: true
-					};
+					return err(
+						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
+					);
 				}
 				return {
 					content: [
@@ -437,12 +315,7 @@ export async function handleGetExampleCode({
 					]
 				};
 			} catch (error: any) {
-				return {
-					content: [
-						{ type: 'text', text: `Error: ${error.message}` }
-					],
-					isError: true
-				};
+				return err(`Error: ${error.message}`);
 			}
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'
