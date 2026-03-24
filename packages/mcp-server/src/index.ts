@@ -77,7 +77,7 @@ const COMPONENT_NOT_FOUND_MSG = (name: string) =>
  * Resolves a path and ensures it remains strictly within the allowed base directory.
  * Prevents Path Traversal (Directory Climbing) attacks, including URL-encoded payloads.
  */
-function resolveSafePath(baseDir: string, userPath: string): string {
+export function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
 	// Decode URL-encoded sequences repeatedly until stable (prevents %252F double-encoding bypass)
 	let decoded = userPath;

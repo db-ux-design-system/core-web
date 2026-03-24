@@ -25,7 +25,8 @@
     "build": "node esbuild.js",
     "dev": "tsx src/index.ts",
     "test": "vitest run",
-    "test:integration": "vitest run src/__tests__/integration.test.ts"
+    "test:unit": "vitest run src/__tests__/integration.test.ts src/__tests__/buildManifest.test.ts",
+    "test:e2e": "vitest run src/__tests__/e2e.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

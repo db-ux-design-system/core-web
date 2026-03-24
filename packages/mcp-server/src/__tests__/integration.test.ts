@@ -7,6 +7,7 @@ const { existsSync } = await import('node:fs');
 const { readFile } = await import('node:fs/promises');
 const {
 	resetManifestCache,
+	resolveSafePath,
 	handleListComponents,
 	handleGetComponentDetails,
 	handleGetComponentProps,
@@ -26,6 +27,16 @@ const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
 function makeManifest(components: Record<string, unknown> = {}, icons: string[] = []) {
 	return JSON.stringify({ icons, components });
+}
+
+function makeFuzzyManifest(exampleKeys: string[]) {
+	const exampleCode: Record<string, Record<string, string>> = {
+		react: {}, angular: {}, vue: {}, 'web-components': {}, html: {}
+	};
+	for (const key of exampleKeys) {
+		exampleCode['react'][key] = `// source of ${key}`;
+	}
+	return JSON.stringify({ icons: [], components: { button: { props: null, examples: [], exampleCode } } });
 }
 
 function assertUserMessage(result: any) {
@@ -247,6 +258,73 @@ describe('handleGetExampleCode', () => {
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent');
 	});
+
+	// -------------------------------------------------------------------------
+	// Fuzzy matching
+	// -------------------------------------------------------------------------
+	it('fuzzy: exact match wins over partial candidate', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['size.example.tsx', 'size-large.example.tsx']) as any);
+
+		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toBe('// source of size.example.tsx');
+	});
+
+	it('fuzzy: falls back to partial match when no exact file exists', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['size-large.example.tsx']) as any);
+
+		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toBe('// source of size-large.example.tsx');
+	});
+
+	it('fuzzy: returns error when neither exact nor partial match exists', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['variant.example.tsx']) as any);
+
+		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+
+		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain("'size'");
+	});
+
+	it('fuzzy: stem.includes(kebab) match is intentionally allowed', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['icon-size.example.tsx']) as any);
+
+		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toBe('// source of icon-size.example.tsx');
+	});
+
+	it('fuzzy: exact match wins over stem.includes(kebab) when both present', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['icon-size.example.tsx', 'size.example.tsx']) as any);
+
+		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toBe('// source of size.example.tsx');
+	});
+
+	// -------------------------------------------------------------------------
+	// Path traversal protection
+	// -------------------------------------------------------------------------
+	it('security: rejects path traversal in componentName', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+
+		const result = await handleGetExampleCode({ componentName: '../../etc/passwd', exampleName: 'Variant', framework: 'react' });
+
+		expect(result.isError).toBe(true);
+	});
+
+	it('security: rejects URL-encoded path traversal in componentName', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+
+		const result = await handleGetExampleCode({ componentName: 'button%2F..%2F..%2Fetc%2Fpasswd', exampleName: 'Variant', framework: 'react' });
+
+		expect(result.isError).toBe(true);
+	});
 });
 
 // ---------------------------------------------------------------------------
@@ -350,35 +428,65 @@ describe('handleAuditAccessibilityPrompt', () => {
 	it('instructs the agent to call docs_search for accessibility guidelines', () => {
 		const result = handleAuditAccessibilityPrompt({ code_snippet: '<DBButton>Go</DBButton>', framework: 'angular' });
 
-		expect(result.messages[0].content.text).toContain("docs_search");
+		expect(result.messages[0].content.text).toContain('docs_search');
 	});
 });
 
 // ---------------------------------------------------------------------------
-// resolveSafePath — path traversal protection (manifest fallback path)
+// resolveSafePath — unit tests for path traversal protection
 // ---------------------------------------------------------------------------
-describe('handleGetExampleCode path traversal protection', () => {
-	it('returns an error for a path traversal attempt in componentName', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+describe('resolveSafePath', () => {
+	const BASE = '/mock/base/dir';
 
-		const result = await handleGetExampleCode({
-			componentName: '../../etc/passwd',
-			exampleName: 'Variant',
-			framework: 'react'
+	describe('valid paths', () => {
+		it('resolves a normal nested path inside the base', () => {
+			expect(resolveSafePath(BASE, 'button/examples/variant.example.tsx'))
+				.toBe(`${BASE}/button/examples/variant.example.tsx`);
 		});
 
-		expect(result.isError).toBe(true);
+		it('resolves a single filename inside the base', () => {
+			expect(resolveSafePath(BASE, 'button')).toBe(`${BASE}/button`);
+		});
 	});
 
-	it('returns an error for a URL-encoded path traversal attempt', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
-
-		const result = await handleGetExampleCode({
-			componentName: 'button%2F..%2F..%2Fetc%2Fpasswd',
-			exampleName: 'Variant',
-			framework: 'react'
+	describe('standard path traversal', () => {
+		it('rejects ../../../etc/passwd', () => {
+			expect(() => resolveSafePath(BASE, '../../../etc/passwd')).toThrow('Path traversal detected');
 		});
 
-		expect(result.isError).toBe(true);
+		it('rejects ../outside-folder/file.ts', () => {
+			expect(() => resolveSafePath(BASE, '../outside-folder/file.ts')).toThrow('Path traversal detected');
+		});
+	});
+
+	describe('single URL-encoded traversal', () => {
+		it('rejects %2E%2E%2F%2E%2E%2F (../ ../)', () => {
+			expect(() => resolveSafePath(BASE, '%2E%2E%2F%2E%2E%2Fetc%2Fpasswd')).toThrow('Path traversal detected');
+		});
+
+		it('rejects %2F prefixed absolute path', () => {
+			expect(() => resolveSafePath(BASE, '%2Fetc%2Fpasswd')).toThrow('Path traversal detected');
+		});
+	});
+
+	describe('double URL-encoded traversal', () => {
+		it('rejects %252E%252E%252F (double-encoded ../)', () => {
+			expect(() => resolveSafePath(BASE, '%252E%252E%252F%252E%252E%252Fetc%252Fpasswd')).toThrow('Path traversal detected');
+		});
+
+		it('rejects %252F prefixed absolute path', () => {
+			expect(() => resolveSafePath(BASE, '%252Fetc%252Fpasswd')).toThrow('Path traversal detected');
+		});
+	});
+
+	describe('absolute path injection', () => {
+		it('rejects Unix absolute path /var/log/syslog', () => {
+			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow('Path traversal detected');
+		});
+
+		// On Unix, backslashes are literal filename characters — resolves safely inside base.
+		it('treats Windows-style path as a literal subdirectory on Unix', () => {
+			expect(resolveSafePath(BASE, 'C:\\Windows\\System32').startsWith(BASE)).toBe(true);
+		});
 	});
 });
