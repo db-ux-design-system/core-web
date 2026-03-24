@@ -20,13 +20,15 @@ type ToolResult = {
 	isError?: boolean;
 };
 
+/** Creates a standard error ToolResult with the given message. */
 function err(text: string): ToolResult {
 	return { content: [{ type: 'text', text }], isError: true };
 }
 
 /**
  * Resolves and verifies a component path within a given base directory.
- * Returns the resolved path on success, or a ToolResult error on failure.
+ * Handles path traversal protection via resolveSafePath and existence check.
+ * @returns The resolved absolute path, or a ToolResult error object on failure.
  */
 function resolveComponentPath(
 	baseDir: string,
@@ -44,6 +46,7 @@ function resolveComponentPath(
 	return safePath;
 }
 
+/** Returns all available DB UX component names from the filesystem or manifest. */
 export async function handleListComponents(): Promise<ToolResult> {
 	if (IS_MONOREPO) {
 		const entries = await readdir(COMPONENTS_DIR, { withFileTypes: true });
@@ -76,6 +79,10 @@ export async function handleListComponents(): Promise<ToolResult> {
 	};
 }
 
+/**
+ * Returns the list of example names for a component by reading its showcase file.
+ * @param componentName - The kebab-case component name (e.g. "button").
+ */
 export async function handleGetComponentDetails({
 	componentName
 }: {
@@ -129,6 +136,10 @@ export async function handleGetComponentDetails({
 	};
 }
 
+/**
+ * Returns the raw TypeScript content of a component's model.ts file.
+ * @param componentName - The kebab-case component name (e.g. "button").
+ */
 export async function handleGetComponentProps({
 	componentName
 }: {
@@ -169,6 +180,7 @@ export async function handleGetComponentProps({
 	};
 }
 
+/** Converts a human-readable example name to a kebab-case filename stem. */
 function toKebabCase(name: string): string {
 	return name
 		.trim()
@@ -189,6 +201,11 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 	'web-components': 'stencil'
 };
 
+/**
+ * Finds the best-matching example filename from a list of candidates.
+ * Prefers exact stem match, then falls back to partial inclusion.
+ * Inspects at most the first 10 entries to avoid excessive scanning.
+ */
 function fuzzyMatchExample(
 	entries: string[],
 	kebab: string,
@@ -201,6 +218,13 @@ function fuzzyMatchExample(
 	});
 }
 
+/**
+ * Returns the generated framework-specific source code for a component example.
+ * Applies a 10-second timeout to prevent hanging on slow filesystem reads.
+ * @param componentName - The kebab-case component name (e.g. "button").
+ * @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
+ * @param framework - The target framework (react, angular, vue, web-components, html).
+ */
 export async function handleGetExampleCode({
 	componentName,
 	exampleName,

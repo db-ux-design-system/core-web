@@ -26,6 +26,10 @@ const {
 const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
+/**
+ * Serialises a partial manifest structure to a JSON string for use as a
+ * mocked readFile return value.
+ */
 function makeManifest(
 	components: Record<string, unknown> = {},
 	icons: string[] = [],
@@ -35,6 +39,11 @@ function makeManifest(
 	return JSON.stringify({ icons, components, tokens, docs });
 }
 
+/**
+ * Builds a manifest JSON string containing a single "button" component whose
+ * react exampleCode is populated with the given example file keys.
+ * Used to exercise the fuzzy-matching logic in handleGetExampleCode.
+ */
 function makeFuzzyManifest(exampleKeys: string[]) {
 	const exampleCode: Record<string, Record<string, string>> = {
 		react: {}, angular: {}, vue: {}, 'web-components': {}, html: {}
@@ -45,6 +54,10 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 	return JSON.stringify({ icons: [], components: { button: { props: null, examples: [], exampleCode } } });
 }
 
+/**
+ * Asserts that a prompt handler result contains exactly one user-role message
+ * and returns its text content for further assertions.
+ */
 function assertUserMessage(result: any) {
 	expect(result.messages).toHaveLength(1);
 	expect(result.messages[0].role).toBe('user');

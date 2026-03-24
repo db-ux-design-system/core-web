@@ -2,16 +2,29 @@ import { existsSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 
 const SERVER_DIR = import.meta.dirname;
+/** Absolute path to the monorepo root (core-web/). */
 export const REPO_ROOT = resolve(SERVER_DIR, '../../../..');
-
-export const IS_MONOREPO = existsSync(join(REPO_ROOT, 'packages/components/src/components'));
-
-export const COMPONENTS_DIR = join(REPO_ROOT, 'packages/components/src/components');
+/** True when running inside the monorepo source tree; false in the installed npx package. */
+export const IS_MONOREPO = existsSync(
+	join(REPO_ROOT, 'packages/components/src/components')
+);
+/** Absolute path to the component source directory. */
+export const COMPONENTS_DIR = join(
+	REPO_ROOT,
+	'packages/components/src/components'
+);
+/** Absolute path to the framework output directory. */
 export const OUTPUT_DIR = join(REPO_ROOT, 'output');
-export const ALL_ICONS_FILE = join(REPO_ROOT, 'packages/foundations/src/all-icons.ts');
+/** Absolute path to the generated all-icons.ts file. */
+export const ALL_ICONS_FILE = join(
+	REPO_ROOT,
+	'packages/foundations/src/all-icons.ts'
+);
+/** Absolute path to the foundations package root. */
 export const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
+/** Absolute path to the top-level docs directory. */
 export const DOCS_DIR = join(REPO_ROOT, 'docs');
-
+/** Maps each design token category name to its corresponding SCSS source file. */
 export const TOKEN_FILES: Record<string, string> = {
 	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
 	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
@@ -21,6 +34,15 @@ export const TOKEN_FILES: Record<string, string> = {
 	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
 };
 
+/**
+ * Resolves a user-supplied path relative to a base directory and ensures the
+ * result stays strictly within that base (path traversal protection).
+ *
+ * Decodes URL-encoded sequences repeatedly until stable to defeat double-encoding
+ * bypass attempts (e.g. %252F → %2F → /).
+ *
+ * @throws {Error} When the resolved path escapes the base directory.
+ */
 export function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
 	let decoded = userPath;

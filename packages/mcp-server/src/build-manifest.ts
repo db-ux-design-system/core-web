@@ -26,11 +26,22 @@ const FRAMEWORKS = [
 ] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
+/** Reads a file and returns its content, or null if the file does not exist. */
 async function readOptional(path: string): Promise<string | null> {
 	if (!existsSync(path)) return null;
 	return readFile(path, 'utf-8');
 }
 
+/**
+ * Collects all metadata for a single component: props, example names, and
+ * per-framework example source code.
+ *
+ * @param name - The component directory name (e.g. "button").
+ * @param componentsSrc - Absolute path to the components source directory.
+ * @param outputDir - Absolute path to the framework output root directory.
+ * @returns A discriminated union: `{ hasError: false, name, data }` on success
+ *          or `{ hasError: true }` when any file read fails.
+ */
 export async function processComponent(
 	name: string,
 	componentsSrc: string,
@@ -100,6 +111,10 @@ export async function processComponent(
 	}
 }
 
+/**
+ * Reads all token SCSS files defined in TOKEN_FILES and returns their raw
+ * content keyed by category name. Skips categories whose file does not exist.
+ */
 async function collectTokens(): Promise<Record<string, string>> {
 	const tokens: Record<string, string> = {};
 	for (const [category, filePath] of Object.entries(TOKEN_FILES)) {
@@ -109,6 +124,13 @@ async function collectTokens(): Promise<Record<string, string>> {
 	return tokens;
 }
 
+/**
+ * Recursively scans a directory for Markdown files and returns their content
+ * keyed by path relative to the repo root.
+ *
+ * @param dir - The directory to scan.
+ * @param depth - Maximum recursion depth (default 5).
+ */
 async function collectDocs(
 	dir: string,
 	depth = 5
@@ -130,6 +152,11 @@ async function collectDocs(
 	return docs;
 }
 
+/**
+ * Entry point for the build step. Collects all component data, icons, tokens,
+ * and docs, then writes the result to src/manifest.json.
+ * Calls process.exit(1) if any component failed to process.
+ */
 async function buildManifest() {
 	const componentEntries = await readdir(COMPONENTS_SRC, {
 		withFileTypes: true

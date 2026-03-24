@@ -1,3 +1,10 @@
+/**
+ * Generates a structured prompt that migrates legacy UI code (e.g. Bootstrap,
+ * DB UI v1/v2) to the modern DB UX v3 architecture.
+ * @param legacy_code - The source code of the outdated component.
+ * @param source_context - The origin system (e.g. "db-ui-v2", "bootstrap-4").
+ * @param target_framework - The target framework for the migrated output.
+ */
 export function handleMigrateComponentPrompt({
 	legacy_code,
 	source_context,

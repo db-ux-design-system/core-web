@@ -1,3 +1,9 @@
+/**
+ * Generates a structured prompt for a deep accessibility audit against WCAG 2.2 AA.
+ * Instructs the agent to evaluate interactive patterns, focus order, and ARIA usage.
+ * @param code_snippet - The UI source code to be audited.
+ * @param framework - The framework the snippet is written in.
+ */
 export function handleAuditAccessibilityPrompt({
 	code_snippet,
 	framework

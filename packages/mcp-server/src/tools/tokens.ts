@@ -13,6 +13,7 @@ type ToolResult = {
 	isError?: boolean;
 };
 
+/** Returns all available design token categories, filtered to those with existing SCSS files. */
 export async function handleListDesignTokenCategories(): Promise<ToolResult> {
 	if (IS_MONOREPO) {
 		const categories = Object.keys(TOKEN_FILES).filter((key) =>
@@ -35,6 +36,11 @@ export async function handleListDesignTokenCategories(): Promise<ToolResult> {
 	};
 }
 
+/**
+ * Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given category.
+ * Filters raw SCSS file content to only the relevant variable declaration lines.
+ * @param category - The token category key (e.g. "colors", "spacing").
+ */
 export async function handleGetDesignTokens({
 	category
 }: {

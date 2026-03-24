@@ -13,6 +13,10 @@ type ToolResult = {
 	isError?: boolean;
 };
 
+/**
+ * Returns all available DB UX icon names by parsing the generated all-icons.ts file.
+ * Falls back to the embedded manifest when running outside the monorepo.
+ */
 export async function handleListIcons(): Promise<ToolResult> {
 	if (IS_MONOREPO && existsSync(ALL_ICONS_FILE)) {
 		const source = await readFile(ALL_ICONS_FILE, 'utf-8');

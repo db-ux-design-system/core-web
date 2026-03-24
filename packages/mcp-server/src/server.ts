@@ -1,8 +1,15 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import packageJson from '../package.json';
 
+/** The singleton McpServer instance shared across the entire application. */
 export const server = new McpServer({ name: 'db-ux-mcp', version: packageJson.version });
 
+/**
+ * Registers process-level signal and error handlers for graceful shutdown
+ * and crash resistance. Should be called once during server bootstrap.
+ *
+ * Handles: SIGINT, SIGTERM, uncaughtException, unhandledRejection.
+ */
 export function registerLifecycleHandlers() {
 	const cleanup = async () => {
 		console.error('[DB UX MCP] Shutting down server gracefully...');

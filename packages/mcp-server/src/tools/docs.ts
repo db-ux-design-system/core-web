@@ -16,6 +16,10 @@ type ToolResult = {
 	isError?: boolean;
 };
 
+/**
+ * Builds a ToolResult from a list of matched document snippets.
+ * Returns at most 3 results and appends a truncation notice when more were found.
+ */
 function buildResults(results: string[], query: string): ToolResult {
 	if (results.length === 0) {
 		return {
@@ -39,6 +43,20 @@ function buildResults(results: string[], query: string): ToolResult {
 	return { content };
 }
 
+/**
+ * Searches DB UX documentation for a given query string.
+ * Supports two scopes:
+ * - "global": searches the top-level docs/ directory recursively.
+ * - "component": searches the docs/ folder of a specific component.
+ *
+ * Falls back to the embedded manifest when running outside the monorepo.
+ * Applies a 10-second timeout to prevent hanging on large directory trees.
+ *
+ * @param query - Space-separated search terms (tokens shorter than 3 chars are ignored).
+ * @param category - Search scope: "global" or "component".
+ * @param componentName - Required when category is "component".
+ * @param docType - Optional filename filter (e.g. "Migration", "Accessibility").
+ */
 export async function handleDocsSearch({
 	query,
 	category,
