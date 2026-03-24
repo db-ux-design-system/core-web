@@ -16,8 +16,8 @@ Work strictly in **Plan-First** order. Never write UI code before completing the
 
 ```
 list_components
-  → confirms the component exists (e.g. "button", "input", "tag")
-  → if not found: stop, do not use a native HTML fallback
+  → confirms the base component exists (e.g. "button", "input" — which correspond to DBButton, DBInput, etc.)
+  → if not found: stop. Do not invent custom components or fall back to generic HTML tags if the user requested a JavaScript framework context (like React, Angular, or Vue).
 ```
 
 ### Phase 2: Load API & Examples
