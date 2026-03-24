@@ -49,59 +49,66 @@ async function buildManifest() {
 		}
 	> = {};
 
+	let hasErrors = false;
+
 	for (const name of componentNames) {
-		// model.ts
-		const props = await readOptional(
-			join(COMPONENTS_SRC, name, 'model.ts')
-		);
-
-		// Example names from showcase
-		const showcaseSrc = await readOptional(
-			join(COMPONENTS_SRC, name, 'showcase', `${name}.showcase.lite.tsx`)
-		);
-		const examples = showcaseSrc
-			? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map(
-					(m) => m[1]
-				)
-			: [];
-
-		// Example source per framework
-		const exampleCode = {} as Record<Framework, Record<string, string>>;
-		for (const fw of FRAMEWORKS) {
-			exampleCode[fw] = {};
-			// web-components examples live in output/stencil/
-			const outputDir = fw === 'web-components' ? 'stencil' : fw;
-			const exDir = join(
-				OUTPUT_DIR,
-				outputDir,
-				'src/components',
-				name,
-				'examples'
+		try {
+			// model.ts
+			const props = await readOptional(
+				join(COMPONENTS_SRC, name, 'model.ts')
 			);
-			if (!existsSync(exDir)) continue;
-			const files = await readdir(exDir);
-			for (const file of files.filter(
-				(f) => !f.startsWith('_') && f.includes('.example.')
-			)) {
-				exampleCode[fw][file] = await readFile(
-					join(exDir, file),
-					'utf-8'
+
+			// Example names from showcase
+			const showcaseSrc = await readOptional(
+				join(COMPONENTS_SRC, name, 'showcase', `${name}.showcase.lite.tsx`)
+			);
+			const examples = showcaseSrc
+				? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map(
+						(m) => m[1]
+					)
+				: [];
+
+			// Example source per framework
+			const exampleCode = {} as Record<Framework, Record<string, string>>;
+			for (const fw of FRAMEWORKS) {
+				exampleCode[fw] = {};
+				// web-components examples live in output/stencil/
+				const outputDir = fw === 'web-components' ? 'stencil' : fw;
+				const exDir = join(
+					OUTPUT_DIR,
+					outputDir,
+					'src/components',
+					name,
+					'examples'
 				);
+				if (!existsSync(exDir)) continue;
+				const files = await readdir(exDir);
+				for (const file of files.filter(
+					(f) => !f.startsWith('_') && f.includes('.example.')
+				)) {
+					exampleCode[fw][file] = await readFile(
+						join(exDir, file),
+						'utf-8'
+					);
+				}
 			}
-		}
 
-		// TODO: HTML currently only has one index.html per component, not per-example files.
-		// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
-		// to how react/angular/vue examples are generated, so get_example_code can return
-		// example-specific HTML markup.
-		const htmlIndex = await readOptional(
-			join(COMPONENTS_SRC, name, 'index.html')
-		);
-		if (htmlIndex) {
-			(exampleCode as any)['html'] = { 'index.html': htmlIndex };
-		}
+			// TODO: HTML currently only has one index.html per component, not per-example files.
+			// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
+			// to how react/angular/vue examples are generated, so get_example_code can return
+			// example-specific HTML markup.
+			const htmlIndex = await readOptional(
+				join(COMPONENTS_SRC, name, 'index.html')
+			);
+			if (htmlIndex) {
+				(exampleCode as any)['html'] = { 'index.html': htmlIndex };
+			}
 
-		components[name] = { props, examples, exampleCode };
+			components[name] = { props, examples, exampleCode };
+		} catch (error: any) {
+			console.error(`Failed to process component ${name}: ${error.message}`);
+			hasErrors = true;
+		}
 	}
 
 	const manifest = { icons, components };
@@ -110,6 +117,8 @@ async function buildManifest() {
 	console.log(
 		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons)`
 	);
+
+	if (hasErrors) process.exit(1);
 }
 
 await buildManifest();
