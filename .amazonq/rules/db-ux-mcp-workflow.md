@@ -107,14 +107,14 @@ get_example_code("button", "Show Icon Leading", "vue")
 
 ### Native HTML primitives — replace with DB UX components
 
-| ❌ Native element | ✅ DB UX replacement |
-|------------------|---------------------|
-| `<button>`       | `DBButton`          |
-| `<input>`        | `DBInput`           |
-| `<select>`       | `DBSelect`          |
-| `<a>`            | `DBLink`            |
-| `<div>` (layout) | `DBStack`, `DBSection`, `DBCard` |
-| `<textarea>`     | `DBTextarea`        |
+| ❌ Native element | ✅ DB UX replacement             |
+| ----------------- | -------------------------------- |
+| `<button>`        | `DBButton`                       |
+| `<input>`         | `DBInput`                        |
+| `<select>`        | `DBSelect`                       |
+| `<a>`             | `DBLink`                         |
+| `<div>` (layout)  | `DBStack`, `DBSection`, `DBCard` |
+| `<textarea>`      | `DBTextarea`                     |
 
 ```tsx
 // ✅ CORRECT
