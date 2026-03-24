@@ -12,6 +12,8 @@ npx --yes @db-ux/core-foundations
 
 Work strictly in **Plan-First** order. Never write UI code before completing the discovery phase.
 
+*(**Note for human readers:** The functions listed below, such as `list_components` or `get_component_props`, are the specific **MCP Tools** provided by the server. The AI agent calls these tools automatically in the background to retrieve real-time data from the design system.)*
+
 ### Phase 1: Discover
 
 ```
