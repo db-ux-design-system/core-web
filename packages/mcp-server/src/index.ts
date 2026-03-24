@@ -119,7 +119,11 @@ async function getManifest(): Promise<Manifest> {
 	if (!existsSync(manifestPath)) {
 		throw new Error(`manifest.json not found at ${manifestPath}`);
 	}
-	_manifest = JSON.parse(await readFile(manifestPath, 'utf-8')) as Manifest;
+	try {
+		_manifest = JSON.parse(await readFile(manifestPath, 'utf-8')) as Manifest;
+	} catch {
+		throw new Error('Failed to parse manifest.json — file may be corrupt or incomplete.');
+	}
 	return _manifest;
 }
 
@@ -374,7 +378,7 @@ const TOKEN_FILES: Record<string, string> = {
 	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
 	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
 	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
-	sizing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
+	sizing: join(FOUNDATIONS_DIR, 'scss/sizing/_variables.scss'),
 	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
 	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
 	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
@@ -526,6 +530,15 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 	'web-components': 'stencil'
 };
 
+// Maps framework key to the correct @db-ux/* npm package name
+const FRAMEWORK_PKG: Record<Framework, string> = {
+	react: '@db-ux/react-core-components',
+	angular: '@db-ux/ngx-core-components',
+	vue: '@db-ux/v-core-components',
+	'web-components': '@db-ux/wc-core-components',
+	html: '@db-ux/core-components'
+};
+
 export async function handleGetExampleCode({
 	componentName,
 	exampleName,
@@ -537,6 +550,7 @@ export async function handleGetExampleCode({
 }): Promise<ToolResult> {
 	return withTimeout(
 		(async () => {
+			try {
 			const kebab = toKebabCase(exampleName);
 			const ext = FRAMEWORK_EXT[framework];
 
@@ -587,7 +601,7 @@ export async function handleGetExampleCode({
 					const match = allEntries.slice(0, 10).find((f) => {
 						if (!f.endsWith(`.example.${ext}`)) return false;
 						const stem = f.replace(`.example.${ext}`, '');
-						return kebab.startsWith(stem) || stem.startsWith(kebab);
+						return stem === kebab || stem.includes(kebab) || kebab.includes(stem);
 					});
 					if (match) {
 						resolvedPath = join(examplesDir, match);
@@ -648,7 +662,7 @@ export async function handleGetExampleCode({
 				: Object.keys(fwExamples).find((k) => {
 						if (!k.endsWith(`.example.${ext}`)) return false;
 						const stem = k.replace(`.example.${ext}`, '');
-						return kebab.startsWith(stem) || stem.startsWith(kebab);
+						return stem === kebab || stem.includes(kebab) || kebab.includes(stem);
 					});
 			if (!matchKey) {
 				return {
@@ -669,6 +683,12 @@ export async function handleGetExampleCode({
 					}
 				]
 			};
+			} catch (error: any) {
+				return {
+					content: [{ type: 'text', text: `Error: ${error.message}` }],
+					isError: true
+				};
+			}
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'
 	) as any;
@@ -779,14 +799,15 @@ export async function handleDocsSearch({
 			} else {
 				const docsDir = join(REPO_ROOT, 'docs');
 				if (existsSync(docsDir)) {
-					const searchDir = async (currentDir: string) => {
+					const searchDir = async (currentDir: string, depth = 5) => {
+						if (depth === 0) return;
 						const entries = await readdir(currentDir, {
 							withFileTypes: true
 						});
 						for (const entry of entries) {
 							const fullPath = join(currentDir, entry.name);
 							if (entry.isDirectory()) {
-								await searchDir(fullPath);
+								await searchDir(fullPath, depth - 1);
 							} else if (entry.name.endsWith('.md')) {
 								const content = await readFile(
 									fullPath,
@@ -1017,7 +1038,7 @@ Execute the following actions using your MCP tools:
 2. Token Audit: Call 'get_design_tokens'. Scan the snippet for any hardcoded hex values, rem/px/em definitions, or raw font families. Verify the exact DB UX CSS variable that must replace them.
 
 Analyze the code against these strict domains:
-- Architecture & Compliance: Are declarative selectors used correctly? Are the framework-specific wrappers (@db-ux/${framework}-core-components) imported properly? Are there any inline styles (which are strictly forbidden)?
+- Architecture & Compliance: Are declarative selectors used correctly? Are the framework-specific wrappers (${FRAMEWORK_PKG[framework as Framework] ?? `@db-ux/${framework}-core-components`}) imported properly? Are there any inline styles (which are strictly forbidden)?
 - Accessibility (A11y): You must verify:
   * WCAG 1.3.5: Are input purposes programmatically determinable?
   * WCAG 1.4.3: Is there a risk of contrast minimum failure due to incorrect class usage?
