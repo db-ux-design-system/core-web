@@ -299,7 +299,7 @@ describe('handleReviewUiCodePrompt', () => {
 	it('references the correct framework package in the prompt text', () => {
 		const result = handleReviewUiCodePrompt({ code_snippet: '<db-button>Save</db-button>', framework: 'angular' });
 
-		expect(result.messages[0].content.text).toContain('@db-ux/angular-core-components');
+		expect(result.messages[0].content.text).toContain('@db-ux/ngx-core-components');
 	});
 });
 
@@ -351,5 +351,34 @@ describe('handleAuditAccessibilityPrompt', () => {
 		const result = handleAuditAccessibilityPrompt({ code_snippet: '<DBButton>Go</DBButton>', framework: 'angular' });
 
 		expect(result.messages[0].content.text).toContain("docs_search");
+	});
+});
+
+// ---------------------------------------------------------------------------
+// resolveSafePath — path traversal protection (manifest fallback path)
+// ---------------------------------------------------------------------------
+describe('handleGetExampleCode path traversal protection', () => {
+	it('returns an error for a path traversal attempt in componentName', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+
+		const result = await handleGetExampleCode({
+			componentName: '../../etc/passwd',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
+
+		expect(result.isError).toBe(true);
+	});
+
+	it('returns an error for a URL-encoded path traversal attempt', async () => {
+		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+
+		const result = await handleGetExampleCode({
+			componentName: 'button%2F..%2F..%2Fetc%2Fpasswd',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
+
+		expect(result.isError).toBe(true);
 	});
 });

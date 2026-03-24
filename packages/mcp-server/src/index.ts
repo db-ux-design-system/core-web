@@ -29,7 +29,7 @@ const IS_MONOREPO = existsSync(
 const COMPONENTS_DIR = join(REPO_ROOT, 'packages/components/src/components');
 
 // --- Security Utilities ---
-const MAX_FILE_CONTENT = 5000;
+const MAX_FILE_CONTENT = 20_000;
 const MAX_JSON_OUTPUT = 20_000;
 
 function truncate(
@@ -126,6 +126,12 @@ async function getManifest(): Promise<Manifest> {
 	}
 	return _manifest;
 }
+
+// ---------------------------------------------------------------------------
+type ToolResult = {
+	content: { type: 'text'; text: string }[];
+	isError?: boolean;
+};
 
 // ---------------------------------------------------------------------------
 
@@ -270,7 +276,7 @@ server.registerTool(
 	{
 		description:
 			'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
-		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
+		inputSchema: { componentName: z.string().max(100).describe("e.g. 'button'") }
 	},
 	handleGetComponentDetails
 );
@@ -278,11 +284,6 @@ server.registerTool(
 // ---------------------------------------------------------------------------
 // get_component_props
 // ---------------------------------------------------------------------------
-type ToolResult = {
-	content: { type: 'text'; text: string }[];
-	isError?: boolean;
-};
-
 export async function handleGetComponentProps({
 	componentName
 }: {
@@ -366,7 +367,7 @@ server.registerTool(
 	{
 		description:
 			"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
-		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
+		inputSchema: { componentName: z.string().max(100).describe("e.g. 'button'") }
 	},
 	handleGetComponentProps
 );
@@ -455,6 +456,7 @@ server.registerTool(
 		inputSchema: {
 			category: z
 				.string()
+				.max(100)
 				.describe(
 					"Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories."
 				)
@@ -701,9 +703,10 @@ server.registerTool(
 			'Returns the generated framework-specific source code for a component example. ' +
 			'For Angular, the template is inline inside the @Component decorator within the .ts file.',
 		inputSchema: {
-			componentName: z.string().describe("e.g. 'button'"),
+			componentName: z.string().max(100).describe("e.g. 'button'"),
 			exampleName: z
 				.string()
+				.max(100)
 				.describe("Readable example name, e.g. 'Show Icon Leading'"),
 			framework: z
 				.enum(['react', 'angular', 'vue', 'web-components', 'html'])
@@ -845,11 +848,17 @@ export async function handleDocsSearch({
 					]
 				};
 			}
-			return {
-				content: [
-					{ type: 'text', text: results.slice(0, 3).join('\n\n') }
-				]
-			};
+			const truncated = results.length > 3;
+			const content: { type: 'text'; text: string }[] = [
+				{ type: 'text', text: results.slice(0, 3).join('\n\n') }
+			];
+			if (truncated) {
+				content.push({
+					type: 'text',
+					text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
+				});
+			}
+			return { content };
 		})(),
 		'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
 	) as any;
@@ -863,6 +872,7 @@ server.registerTool(
 		inputSchema: {
 			query: z
 				.string()
+				.max(200)
 				.describe(
 					"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."
 				),
@@ -873,6 +883,7 @@ server.registerTool(
 				),
 			componentName: z
 				.string()
+				.max(100)
 				.optional()
 				.describe(
 					"Required if category is 'component' (e.g., 'button', 'navigation')."
@@ -974,6 +985,7 @@ server.registerPrompt(
 		argsSchema: {
 			page_type: z
 				.string()
+				.max(200)
 				.describe(
 					"The functional domain or structural type of the page (e.g. 'Login Portal', 'Dashboard', 'Settings Form'). Used in Phase 1 to decompose the page into UI blocks and drives component selection throughout the workflow."
 				),
@@ -999,6 +1011,7 @@ server.registerPrompt(
 				),
 			additional_requirements: z
 				.string()
+				.max(1000)
 				.optional()
 				.describe(
 					"Optional functional or architectural requirements (e.g. 'must include a data table with pagination', 'dark mode support required'). These requirements refine the UI block decomposition in Phase 1 and may add or remove components from the plan."
@@ -1070,6 +1083,7 @@ server.registerPrompt(
 		argsSchema: {
 			code_snippet: z
 				.string()
+				.max(10000)
 				.describe(
 					'The source code to be evaluated (including markup, styling, logic).'
 				),
@@ -1198,11 +1212,13 @@ server.registerPrompt(
 		argsSchema: {
 			legacy_code: z
 				.string()
+				.max(10000)
 				.describe(
 					'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
 				),
 			source_context: z
 				.string()
+				.max(100)
 				.describe(
 					"The origin/context of the legacy code. Use one of: 'db-ui-v1', 'db-ui-v2', 'db-ux-v1', 'db-ux-v2', 'db-ux-v3', 'bootstrap-4', 'native-html'."
 				),
@@ -1288,6 +1304,7 @@ server.registerPrompt(
 		argsSchema: {
 			code_snippet: z
 				.string()
+				.max(10000)
 				.describe(
 					'The UI source code to be audited for accessibility compliance.'
 				),

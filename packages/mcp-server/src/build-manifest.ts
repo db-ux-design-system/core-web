@@ -51,63 +51,70 @@ async function buildManifest() {
 
 	let hasErrors = false;
 
-	for (const name of componentNames) {
-		try {
-			// model.ts
-			const props = await readOptional(
-				join(COMPONENTS_SRC, name, 'model.ts')
-			);
-
-			// Example names from showcase
-			const showcaseSrc = await readOptional(
-				join(COMPONENTS_SRC, name, 'showcase', `${name}.showcase.lite.tsx`)
-			);
-			const examples = showcaseSrc
-				? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map(
-						(m) => m[1]
-					)
-				: [];
-
-			// Example source per framework
-			const exampleCode = {} as Record<Framework, Record<string, string>>;
-			for (const fw of FRAMEWORKS) {
-				exampleCode[fw] = {};
-				// html: one index.html per component (not per example)
-				// TODO: HTML currently only has one index.html per component, not per-example files.
-				// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
-				// to how react/angular/vue examples are generated, so get_example_code can return
-				// example-specific HTML markup.
-				if (fw === 'html') {
-					const htmlIndex = await readOptional(join(COMPONENTS_SRC, name, 'index.html'));
-					if (htmlIndex) exampleCode[fw]['index.html'] = htmlIndex;
-					continue;
-				}
-				// web-components examples live in output/stencil/
-				const outputDir = fw === 'web-components' ? 'stencil' : fw;
-				const exDir = join(
-					OUTPUT_DIR,
-					outputDir,
-					'src/components',
-					name,
-					'examples'
+	const entries = await Promise.all(
+		componentNames.map(async (name) => {
+			try {
+				// model.ts
+				const props = await readOptional(
+					join(COMPONENTS_SRC, name, 'model.ts')
 				);
-				if (!existsSync(exDir)) continue;
-				const files = await readdir(exDir);
-				for (const file of files.filter(
-					(f) => !f.startsWith('_') && f.includes('.example.')
-				)) {
-					exampleCode[fw][file] = await readFile(
-						join(exDir, file),
-						'utf-8'
-					);
-				}
-			}
 
-			components[name] = { props, examples, exampleCode };
-		} catch (error: any) {
-			console.error(`Failed to process component ${name}: ${error.message}`);
-			hasErrors = true;
-		}
+				// Example names from showcase
+				const showcaseSrc = await readOptional(
+					join(COMPONENTS_SRC, name, 'showcase', `${name}.showcase.lite.tsx`)
+				);
+				const examples = showcaseSrc
+					? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map(
+							(m) => m[1]
+						)
+					: [];
+
+				// Example source per framework
+				const exampleCode = {} as Record<Framework, Record<string, string>>;
+				for (const fw of FRAMEWORKS) {
+					exampleCode[fw] = {};
+					// html: one index.html per component (not per example)
+					// TODO: HTML currently only has one index.html per component, not per-example files.
+					// In the future, generate per-example HTML files (e.g. variant.example.html) analogous
+					// to how react/angular/vue examples are generated, so get_example_code can return
+					// example-specific HTML markup.
+					if (fw === 'html') {
+						const htmlIndex = await readOptional(join(COMPONENTS_SRC, name, 'index.html'));
+						if (htmlIndex) exampleCode[fw]['index.html'] = htmlIndex;
+						continue;
+					}
+					// web-components examples live in output/stencil/
+					const outputDir = fw === 'web-components' ? 'stencil' : fw;
+					const exDir = join(
+						OUTPUT_DIR,
+						outputDir,
+						'src/components',
+						name,
+						'examples'
+					);
+					if (!existsSync(exDir)) continue;
+					const files = await readdir(exDir);
+					for (const file of files.filter(
+						(f) => !f.startsWith('_') && f.includes('.example.')
+					)) {
+						exampleCode[fw][file] = await readFile(
+							join(exDir, file),
+							'utf-8'
+						);
+					}
+				}
+
+				return { name, data: { props, examples, exampleCode } };
+			} catch (error: any) {
+				console.error(`Failed to process component ${name}: ${error.message}`);
+				hasErrors = true;
+				return null;
+			}
+		})
+	);
+
+	for (const entry of entries) {
+		if (entry) components[entry.name] = entry.data;
 	}
 
 	const manifest = { icons, components };
