@@ -5,9 +5,8 @@ vi.mock('node:fs/promises', () => ({ readFile: vi.fn() }));
 
 const { existsSync } = await import('node:fs');
 const { readFile } = await import('node:fs/promises');
+const { resetManifestCache, resolveSafePath } = await import('../utils.js');
 const {
-	resetManifestCache,
-	resolveSafePath,
 	handleListComponents,
 	handleGetComponentDetails,
 	handleGetComponentProps,
@@ -16,8 +15,7 @@ const {
 	handleListIcons,
 	handleGetExampleCode,
 	handleDocsSearch
-} = await import('../index.js');
-
+} = await import('../tools/index.js');
 const {
 	handleScaffoldPagePrompt,
 	handleReviewUiCodePrompt,
