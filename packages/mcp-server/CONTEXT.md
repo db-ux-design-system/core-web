@@ -46,9 +46,14 @@ core-web/
 │   │       └── _variables.scss  # spacing / sizing
 │   └── mcp-server/          # This package
 │       └── src/
-│           ├── index.ts           # MCP server — all tool registrations
+│           ├── index.ts           # Bootstrap — connects transport, registers tools/prompts
+│           ├── server.ts          # McpServer singleton and lifecycle handlers
+│           ├── types.ts           # Framework type and FRAMEWORK_PKG mapping
 │           ├── build-manifest.ts  # Build-time script — generates manifest.json
-│           └── manifest.json      # Generated — do not edit manually
+│           ├── manifest.json      # Generated — do not edit manually
+│           ├── tools/             # Tool handler implementations
+│           ├── prompts/           # Prompt handler implementations
+│           └── utils/             # Shared utilities (path, manifest, formatting, async)
 └── output/
     ├── react/               # Generated React code
     │   └── src/components/
@@ -118,8 +123,8 @@ During development inside the monorepo, `tsx` can be used for live file access:
 npm install
 
 # Start server directly (development mode, live file access)
-npm run dev --workspace=@db-ux/mcp-server
+npm run dev --workspace=packages/mcp-server
 
 # Production build (generates manifest + standalone bundle)
-npm run build --workspace=@db-ux/mcp-server
+npm run build --workspace=packages/mcp-server
 ```
