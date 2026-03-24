@@ -1,0 +1,21 @@
+---
+name: Test MCP Server
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬️ Checkout repo
+        uses: actions/checkout@v6
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⚡ Run Test
+        run: npm run test --workspace=packages/mcp-server
