@@ -9,24 +9,21 @@
 import { existsSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
+import { TOKEN_FILES } from './utils';
 
 const REPO_ROOT = resolve(import.meta.dirname, '../../..');
 const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
 const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
-const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 const DOCS_DIR = join(REPO_ROOT, 'docs');
 const OUTPUT_DIR = join(REPO_ROOT, 'output');
 
-const TOKEN_FILES: Record<string, string> = {
-	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
-	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
-	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
-	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
-	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
-	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
-};
-
-const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components', 'html'] as const;
+const FRAMEWORKS = [
+	'react',
+	'angular',
+	'vue',
+	'web-components',
+	'html'
+] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
 async function readOptional(path: string): Promise<string | null> {
@@ -38,7 +35,18 @@ export async function processComponent(
 	name: string,
 	componentsSrc: string,
 	outputDir: string
-): Promise<{ hasError: false; name: string; data: { props: string | null; examples: string[]; exampleCode: Record<Framework, Record<string, string>> } } | { hasError: true }> {
+): Promise<
+	| {
+			hasError: false;
+			name: string;
+			data: {
+				props: string | null;
+				examples: string[];
+				exampleCode: Record<Framework, Record<string, string>>;
+			};
+	  }
+	| { hasError: true }
+> {
 	try {
 		const props = await readOptional(join(componentsSrc, name, 'model.ts'));
 
@@ -46,27 +54,46 @@ export async function processComponent(
 			join(componentsSrc, name, 'showcase', `${name}.showcase.lite.tsx`)
 		);
 		const examples = showcaseSrc
-			? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map((m) => m[1])
+			? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map(
+					(m) => m[1]
+				)
 			: [];
 
 		const exampleCode = {} as Record<Framework, Record<string, string>>;
 		for (const fw of FRAMEWORKS) {
 			exampleCode[fw] = {};
 			if (fw === 'html') {
-				const htmlIndex = await readOptional(join(componentsSrc, name, 'index.html'));
+				const htmlIndex = await readOptional(
+					join(componentsSrc, name, 'index.html')
+				);
 				if (htmlIndex) exampleCode[fw]['index.html'] = htmlIndex;
 				continue;
 			}
 			const fwOutputDir = fw === 'web-components' ? 'stencil' : fw;
-			const exDir = join(outputDir, fwOutputDir, 'src/components', name, 'examples');
+			const exDir = join(
+				outputDir,
+				fwOutputDir,
+				'src/components',
+				name,
+				'examples'
+			);
 			if (!existsSync(exDir)) continue;
 			const files = await readdir(exDir);
-			for (const file of files.filter((f) => !f.startsWith('_') && f.includes('.example.'))) {
-				exampleCode[fw][file] = await readFile(join(exDir, file), 'utf-8');
+			for (const file of files.filter(
+				(f) => !f.startsWith('_') && f.includes('.example.')
+			)) {
+				exampleCode[fw][file] = await readFile(
+					join(exDir, file),
+					'utf-8'
+				);
 			}
 		}
 
-		return { hasError: false as const, name, data: { props, examples, exampleCode } };
+		return {
+			hasError: false as const,
+			name,
+			data: { props, examples, exampleCode }
+		};
 	} catch (error: any) {
 		console.error(`Failed to process component ${name}: ${error.message}`);
 		return { hasError: true as const };
@@ -82,7 +109,10 @@ async function collectTokens(): Promise<Record<string, string>> {
 	return tokens;
 }
 
-async function collectDocs(dir: string, depth = 5): Promise<Record<string, string>> {
+async function collectDocs(
+	dir: string,
+	depth = 5
+): Promise<Record<string, string>> {
 	const docs: Record<string, string> = {};
 	if (!existsSync(dir) || depth === 0) return docs;
 	const entries = await readdir(dir, { withFileTypes: true });
@@ -91,7 +121,10 @@ async function collectDocs(dir: string, depth = 5): Promise<Record<string, strin
 		if (entry.isDirectory()) {
 			Object.assign(docs, await collectDocs(fullPath, depth - 1));
 		} else if (entry.name.endsWith('.md')) {
-			docs[relative(REPO_ROOT, fullPath)] = await readFile(fullPath, 'utf-8');
+			docs[relative(REPO_ROOT, fullPath)] = await readFile(
+				fullPath,
+				'utf-8'
+			);
 		}
 	}
 	return docs;
@@ -124,7 +157,9 @@ async function buildManifest() {
 	> = {};
 
 	const entries = await Promise.all(
-		componentNames.map((name) => processComponent(name, COMPONENTS_SRC, OUTPUT_DIR))
+		componentNames.map((name) =>
+			processComponent(name, COMPONENTS_SRC, OUTPUT_DIR)
+		)
 	);
 
 	const hasErrors = entries.some((entry) => entry.hasError);
@@ -132,7 +167,10 @@ async function buildManifest() {
 		if (!entry.hasError) components[entry.name] = entry.data;
 	}
 
-	const [tokens, docs] = await Promise.all([collectTokens(), collectDocs(DOCS_DIR)]);
+	const [tokens, docs] = await Promise.all([
+		collectTokens(),
+		collectDocs(DOCS_DIR)
+	]);
 
 	const manifest = { icons, components, tokens, docs };
 	const outPath = join(import.meta.dirname, 'manifest.json');

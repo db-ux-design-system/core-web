@@ -12,6 +12,15 @@ export const ALL_ICONS_FILE = join(REPO_ROOT, 'packages/foundations/src/all-icon
 export const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 export const DOCS_DIR = join(REPO_ROOT, 'docs');
 
+export const TOKEN_FILES: Record<string, string> = {
+	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
+	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
+	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
+	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
+	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
+	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
+};
+
 export function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
 	let decoded = userPath;

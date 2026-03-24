@@ -1,26 +1,16 @@
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import {
-	FOUNDATIONS_DIR,
 	getManifest,
 	IS_MONOREPO,
 	MAX_JSON_OUTPUT,
+	TOKEN_FILES,
 	truncate
 } from '../utils';
 
 type ToolResult = {
 	content: { type: 'text'; text: string }[];
 	isError?: boolean;
-};
-
-export const TOKEN_FILES: Record<string, string> = {
-	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
-	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
-	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
-	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
-	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
-	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
 };
 
 export async function handleListDesignTokenCategories(): Promise<ToolResult> {
