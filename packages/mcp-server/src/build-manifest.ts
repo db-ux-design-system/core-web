@@ -49,8 +49,6 @@ async function buildManifest() {
 		}
 	> = {};
 
-	let hasErrors = false;
-
 	const entries = await Promise.all(
 		componentNames.map(async (name) => {
 			try {
@@ -104,17 +102,17 @@ async function buildManifest() {
 					}
 				}
 
-				return { name, data: { props, examples, exampleCode } };
+				return { hasError: false as const, name, data: { props, examples, exampleCode } };
 			} catch (error: any) {
 				console.error(`Failed to process component ${name}: ${error.message}`);
-				hasErrors = true;
-				return null;
+				return { hasError: true as const };
 			}
 		})
 	);
 
+	const hasErrors = entries.some((entry) => entry.hasError);
 	for (const entry of entries) {
-		if (entry) components[entry.name] = entry.data;
+		if (!entry.hasError) components[entry.name] = entry.data;
 	}
 
 	const manifest = { icons, components };
