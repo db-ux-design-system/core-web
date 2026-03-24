@@ -99,7 +99,14 @@ const ALL_ICONS_FILE = join(REPO_ROOT, 'packages/foundations/src/all-icons.ts');
 const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 
 // Embedded manifest (npx / installed package)
-type Framework = 'react' | 'angular' | 'vue' | 'web-components' | 'html';
+import type { Framework } from './types.js';
+import { FRAMEWORK_PKG } from './types.js';
+import {
+	handleScaffoldPagePrompt,
+	handleReviewUiCodePrompt,
+	handleMigrateComponentPrompt,
+	handleAuditAccessibilityPrompt
+} from './prompts/index.js';
 type Manifest = {
 	icons: string[];
 	components: Record<
@@ -560,14 +567,6 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 };
 
 // Maps framework key to the correct @db-ux/* npm package name
-const FRAMEWORK_PKG: Record<Framework, string> = {
-	react: '@db-ux/react-core-components',
-	angular: '@db-ux/ngx-core-components',
-	vue: '@db-ux/v-core-components',
-	'web-components': '@db-ux/wc-core-components',
-	html: '@db-ux/core-components'
-};
-
 export async function handleGetExampleCode({
 	componentName,
 	exampleName,
@@ -966,73 +965,6 @@ server.registerTool(
 // ---------------------------------------------------------------------------
 // scaffold_page prompt
 // ---------------------------------------------------------------------------
-export function handleScaffoldPagePrompt({
-	page_type,
-	framework,
-	additional_requirements
-}: {
-	page_type: string;
-	framework: string;
-	additional_requirements?: string;
-}) {
-	return {
-		description:
-			'Builds a DB UX page layout using the full MCP discovery workflow',
-		messages: [
-			{
-				role: 'user' as const,
-				content: {
-					type: 'text' as const,
-					text: `You are a Lead Enterprise Frontend Architect specializing in the DB UX Design System v3. Your objective is to architect and implement a production-ready page layout for the Deutsche Bahn digital ecosystem.
-
-Target Framework: ${framework}
-Page Type: ${page_type}
-Additional Requirements: ${additional_requirements ?? 'None specified.'}
-
-The DB UX system strictly enforces declarative, accessible, and decoupled HTML/CSS architecture. Framework-specific components reside in dedicated packages (e.g., @db-ux/react-core-components, @db-ux/ngx-core-components, @db-ux/v-core-components, @db-ux/wc-core-components).
-
-CRITICAL INSTRUCTION: You are explicitly FORBIDDEN from:
-- Hallucinating component names, properties, CSS variables, or import statements
-- Using native HTML interactive elements (<button>, <input>, <select>, <a>, <textarea>) where a DB UX component exists
-- Using hardcoded color values (e.g. #ec0016) or magic spacing numbers (e.g. margin: 15px) — always use design tokens
-- Inventing icon names — always verify via list_icons
-
-If a required UI element does not exist as a DB UX component, STOP and explicitly report which element is missing instead of falling back to a native HTML or custom implementation.
-
-You MUST follow this exact workflow using your MCP tools BEFORE writing any code:
-
-1. PLANNING PHASE: Deconstruct the requested "${page_type}" into logical UI blocks (e.g., Header, Main Content, Form Fields, Data Tables, Modals). Factor in the Additional Requirements: "${additional_requirements ?? 'None specified.'}" — they may add, remove, or constrain the components in your plan.
-
-2. COMPONENT DISCOVERY: Execute 'list_components' to verify that every planned UI block maps to an existing DB UX v3 component. Remove any block whose component does not exist and report it.
-
-3. PROPS & EXAMPLES RETRIEVAL: For every confirmed component:
-   a. Execute 'get_component_props' to retrieve the full TypeScript prop API (types, required fields, defaults).
-   b. Execute 'get_component_details' to list available example names.
-   c. Execute 'get_example_code' with the component name, the most relevant example name, and framework="${framework}" to obtain the exact generated source. Adapt this code — do not rewrite it from scratch.
-
-4. TOKEN & ASSET VALIDATION:
-   a. Execute 'list_design_token_categories' to retrieve all valid token categories.
-   b. Execute 'get_design_tokens' for every category you need (e.g. "colors", "spacing", "typography"). Use only the returned CSS custom properties (--db-*) — never hardcode values.
-   c. If any icon prop is required, execute 'list_icons' and copy the exact name from the returned array.
-
-Native HTML replacement rules (enforce strictly):
-- <button>      → DBButton
-- <input>       → DBInput
-- <select>      → DBSelect
-- <a>           → DBLink
-- <textarea>    → DBTextarea
-- <div> layout  → DBStack, DBSection, DBCard
-
-Do not output code until all four phases are complete. Then structure your response as follows:
-
-1. "Architectural Blueprint": Bulleted list of DB UX components selected, the example used for each, and how Additional Requirements influenced the plan.
-2. "Implementation": Complete source code for the requested page as a single file (or clearly separated components if complexity demands it). All imports must reference the correct @db-ux/* package for "${framework}". No hardcoded values, no native interactive elements, no invented icon names.
-3. "Accessibility Statement": Confirmation of how semantic HTML and ARIA states are applied through DB UX components, and any additional accessibility measures taken.`
-				}
-			}
-		]
-	};
-}
 
 server.registerPrompt(
 	'scaffold_page',
@@ -1079,51 +1011,6 @@ server.registerPrompt(
 );
 
 // ---------------------------------------------------------------------------
-export function handleReviewUiCodePrompt({
-	code_snippet,
-	framework
-}: {
-	code_snippet: string;
-	framework: string;
-}) {
-	return {
-		description:
-			'Audits a UI code snippet against DB UX v3 compliance, design tokens, and WCAG 2.2 AA',
-		messages: [
-			{
-				role: 'user' as const,
-				content: {
-					type: 'text' as const,
-					text: `You are a highly rigorous QA Automation Expert, Accessibility Auditor, and DB UX Design System Guardian.
-Perform a merciless, multi-layered code review of the provided ${framework} snippet.
-
-<snippet>
-${code_snippet}
-</snippet>
-
-To prevent false positives or inaccurate advice, you MUST base your review on documented facts.
-Execute the following actions using your MCP tools:
-
-1. Cross-Reference Components: Call 'list_components' and 'get_example_code' to analyze if the components used in the snippet deviate from the official DB UX v3 specifications (e.g., deprecated props, missing mandatory slots, wrong variant syntax).
-2. Token Audit: Call 'get_design_tokens'. Scan the snippet for any hardcoded hex values, rem/px/em definitions, or raw font families. Verify the exact DB UX CSS variable that must replace them.
-
-Analyze the code against these strict domains:
-- Architecture & Compliance: Are declarative selectors used correctly? Are the framework-specific wrappers (${FRAMEWORK_PKG[framework as Framework] ?? `@db-ux/${framework}-core-components`}) imported properly? Are there any inline styles (which are strictly forbidden)?
-- Accessibility (A11y): You must verify:
-  * WCAG 1.3.5: Are input purposes programmatically determinable?
-  * WCAG 1.4.3: Is there a risk of contrast minimum failure due to incorrect class usage?
-  * WCAG 2.1.1 & 2.1.2: Are there potential keyboard traps? Are interactive elements reachable via Tab?
-  * ARIA: Are aria-roles, aria-expanded, and aria-describedby used correctly based on the DB UX examples?
-
-Deliver your analysis in the following strict format:
-1. "Review Summary": A high-level assessment of the snippet's quality.
-2. "Critical Violations": A prioritized list of issues. For each violation, you MUST provide EVIDENCE from the DB UX tools (e.g., "The component 'DBButton' requires the prop 'variant' according to the manifest, but it is missing").
-3. "The Refactored Solution": The fully corrected, clean, and DB UX-compliant code block.`
-				}
-			}
-		]
-	};
-}
 
 // ---------------------------------------------------------------------------
 // migrate_component prompt
@@ -1173,93 +1060,6 @@ server.registerPrompt(
 // migrate_component prompt
 
 // ---------------------------------------------------------------------------
-export function handleMigrateComponentPrompt({
-	legacy_code,
-	source_context,
-	target_framework
-}: {
-	legacy_code: string;
-	source_context: string;
-	target_framework: string;
-}) {
-	return {
-		description:
-			'Migrates legacy UI code to DB UX v3 standards using MCP tools',
-		messages: [
-			{
-				role: 'user' as const,
-				content: {
-					type: 'text' as const,
-					text: `You are a Legacy Systems Modernization Specialist and DB UX Architecture Expert.
-Your assignment is to securely migrate UI code from ${source_context} into the modern DB UX Design System v3 standard.
-
-<legacy_snippet>
-${legacy_code}
-</legacy_snippet>
-
-Target V3 Framework: ${target_framework}
-
-Do not perform a naive, line-by-line syntax translation. Be aware of these documented structural shifts in DB UX v3:
-
-PACKAGE RENAMES (db-ui → db-ux):
-- @db-ui/foundations → @db-ux/core-foundations
-- @db-ui/components → @db-ux/core-components
-- @db-ui/ngx-components → @db-ux/ngx-core-components
-- @db-ui/react-components → @db-ux/react-core-components
-- @db-ui/v-components → @db-ux/v-core-components
-- @db-ui/web-components → @db-ux/wc-core-components
-
-KNOWN BREAKING CHANGES TO APPLY:
-- data-color-scheme → data-mode
-- data-container-color → data-color
-- behaviour → behavior (all components)
-- data-icon-before/after → data-icon-leading/trailing, iconLeading/iconTrailing
-- DBButton: removed describedbyid/ariaexpanded/ariapressed/label props → use native aria-* attributes directly
-- DBLink: removed selected/current/label props → use aria-selected/aria-current/aria-label
-- DBNavigation: removed labelledBy → use aria-labelledby
-- DBCard behavior='interactive': no longer sets role='button' or tabIndex — wrap with <button> or <a> instead
-- DBSwitch: emphasis prop removed
-- DBCustomSelect: ariaListLabel renamed to listLabel
-- Tooltip: variant='with arrow'|'basic' → showArrow=true|false
-
-COMPONENTS WITHOUT DIRECT V3 EQUIVALENTS (do not invent replacements — use documented strategies):
-- rea-main → db-page (already includes <main>)
-- rea-grid → CSS Grid with var(--db-spacing-fixed-md) or db-stack
-- rea-footer → semantic <footer> + db-link (planned Q4/2025)
-- elm-headline → semantic <h1>–<h6> + db-infotext for subtitles
-- elm-loadingindicator → planned Q4/2025; use aria-live region temporarily
-- elm-progress → planned Q4/2025; use HTML5 <progress> with aria-label
-- elm-chip → db-tag wrapping db-button/db-checkbox/db-radio
-- cmp-breadcrumb → planned Q4/2025; use <nav aria-label="Breadcrumb"> + db-link
-- cmp-pagination → planned Q4/2025; use db-button with ARIA labels
-- cmp-table → under research; use semantic <table> with custom styling
-- cmp-sidenavi → db-navigation inside db-drawer
-- cmp-dialog → db-drawer or custom modal with focus management + ARIA
-
-CLI AUTOMATION HINT: Inform the developer that automated search-and-replace migration is available:
-- DB UI v1 → v1.0.0: npx @db-ux/core-migration --type=v007_v100 --src=./src
-- v1/v2 → v3.0.0: npx @db-ux/core-migration --type=v200_v300 --src=./src
-- v3 → v4.0.0: npx @db-ux/core-migration --type=v300_v400 --src=./src
-Always advise the developer to review CLI output manually afterwards.
-
-You must execute this cognitive workflow:
-
-1. SEMANTIC PARSING: Analyze the legacy snippet to understand its functional intent (e.g., navigation bar, data table, form with validation states). Identify which of the known breaking changes or missing components apply.
-2. V3 MAPPING: Call 'list_components' to verify the exact equivalent components in the DB UX v3 ecosystem. If a component has no direct equivalent, apply the documented strategy above — do not invent a custom solution.
-3. SPECIFICATION ACQUISITION: For every confirmed v3 component, call 'get_component_props' and 'get_example_code' with framework="${target_framework}". Study the v3 prop API carefully — do not assume legacy prop names still exist.
-4. TOKEN MIGRATION: Call 'get_design_tokens' to replace any legacy CSS variables, utility classes, or hardcoded values with the correct --db-* custom properties.
-
-Your response must be structured as follows:
-
-1. "Migration Analysis": Map each legacy element to its v3 replacement. Explicitly call out every breaking change applied and every component without a direct equivalent (with its documented workaround).
-2. "V3 Refactored Code": The fully migrated, production-ready code block using the correct @db-ux/* package for "${target_framework}". No legacy prop names, no hardcoded values, no invented components.
-3. "CLI Migration Hint": State the exact npx @db-ux/core-migration command applicable for the detected source_context.
-4. "Actionable Post-Migration Notes": List behavioral shifts and ARIA states the developer must manually verify after migration.`
-				}
-			}
-		]
-	};
-}
 
 server.registerPrompt(
 	'migrate_component',
@@ -1308,50 +1108,6 @@ server.registerPrompt(
 // audit_accessibility prompt
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-export function handleAuditAccessibilityPrompt({
-	code_snippet,
-	framework
-}: {
-	code_snippet: string;
-	framework: string;
-}) {
-	return {
-		description:
-			'Performs a deep accessibility audit and generates manual screen reader/keyboard test scripts',
-		messages: [
-			{
-				role: 'user' as const,
-				content: {
-					type: 'text' as const,
-					text: `You are an Accessibility (A11y) Expert and DB UX Design System Guardian.
-Your objective is to perform a specialized deep scan exclusively for inclusion and accessibility standards (WCAG 2.2 AA) on the provided ${framework} snippet.
-
-<snippet>
-${code_snippet}
-</snippet>
-
-This audit goes beyond traditional linters. You must evaluate interactive patterns, logical focus orders, and the programmatic purpose of inputs (WCAG 1.3.5).
-
-Execute the following cognitive workflow using your MCP tools:
-
-1. CONTEXT GATHERING: Call 'docs_search' with the query 'accessibility' or 'a11y' to retrieve global DB UX accessibility guidelines.
-2. COMPONENT VERIFICATION: Call 'list_components' and 'get_example_code' to verify how the used DB UX components handle ARIA attributes and keyboard events natively.
-
-Analyze the code against these strict A11y domains:
-- Screen Reader Support: Are visually hidden texts used correctly? Are decorative images hidden via aria-hidden="true"?
-- Keyboard Navigation: Are there keyboard traps? Is the focus order logical? Are interactive elements reachable via Tab?
-- Semantics & ARIA: Are ARIA roles, aria-expanded, and aria-describedby applied correctly without overriding native HTML semantics unnecessarily?
-
-Deliver your analysis in the following strict format:
-1. "Accessibility Audit Summary": A high-level assessment of the snippet's A11y compliance.
-2. "WCAG Violations": A prioritized list of issues. You MUST provide EVIDENCE from the DB UX tools or WCAG guidelines for each violation.
-3. "Manual Testing Script": Step-by-step instructions for a QA engineer to manually validate this snippet using Keyboard-only navigation and a Screen Reader.
-4. "Remediated Code": The fully accessible, DB UX-compliant code block.`
-				}
-			}
-		]
-	};
-}
 
 server.registerPrompt(
 	'audit_accessibility',

@@ -15,12 +15,15 @@ const {
 	handleGetDesignTokens,
 	handleListIcons,
 	handleGetExampleCode,
-	handleDocsSearch,
+	handleDocsSearch
+} = await import('../index.js');
+
+const {
 	handleScaffoldPagePrompt,
 	handleReviewUiCodePrompt,
 	handleMigrateComponentPrompt,
 	handleAuditAccessibilityPrompt
-} = await import('../index.js');
+} = await import('../prompts/index.js');
 
 const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
