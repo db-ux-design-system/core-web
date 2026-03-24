@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { z } from 'zod/v3';
+import packageJson from '../package.json';
 
 // ---------------------------------------------------------------------------
 // Path resolution — works in two environments:
@@ -109,7 +110,9 @@ type Manifest = {
 };
 
 let _manifest: Manifest | null = null;
-export function resetManifestCache() { _manifest = null; }
+export function resetManifestCache() {
+	_manifest = null;
+}
 async function getManifest(): Promise<Manifest> {
 	if (_manifest) return _manifest;
 	const manifestPath = join(SERVER_DIR, 'manifest.json');
@@ -122,7 +125,10 @@ async function getManifest(): Promise<Manifest> {
 
 // ---------------------------------------------------------------------------
 
-const server = new McpServer({ name: 'db-ux-mcp', version: '0.1.0' });
+const server = new McpServer({
+	name: 'db-ux-mcp',
+	version: packageJson.version
+});
 
 // ---------------------------------------------------------------------------
 // list_components
@@ -130,48 +136,131 @@ const server = new McpServer({ name: 'db-ux-mcp', version: '0.1.0' });
 export async function handleListComponents(): Promise<ToolResult> {
 	if (IS_MONOREPO) {
 		const entries = await readdir(COMPONENTS_DIR, { withFileTypes: true });
-		const components = entries.filter((e) => e.isDirectory()).map((e) => e.name);
-		return { content: [{ type: 'text', text: truncate(JSON.stringify(components, null, 2), MAX_JSON_OUTPUT) }] };
+		const components = entries
+			.filter((e) => e.isDirectory())
+			.map((e) => e.name);
+		return {
+			content: [
+				{
+					type: 'text',
+					text: truncate(
+						JSON.stringify(components, null, 2),
+						MAX_JSON_OUTPUT
+					)
+				}
+			]
+		};
 	}
 	const manifest = await getManifest();
-	return { content: [{ type: 'text', text: truncate(JSON.stringify(Object.keys(manifest.components), null, 2), MAX_JSON_OUTPUT) }] };
+	return {
+		content: [
+			{
+				type: 'text',
+				text: truncate(
+					JSON.stringify(Object.keys(manifest.components), null, 2),
+					MAX_JSON_OUTPUT
+				)
+			}
+		]
+	};
 }
 
 server.registerTool(
 	'list_components',
-	{ description: 'Returns all available DB UX component names by scanning packages/components/src/components.' },
+	{
+		description:
+			'Returns all available DB UX component names by scanning packages/components/src/components.'
+	},
 	handleListComponents
 );
 
 // ---------------------------------------------------------------------------
 // get_component_details
 // ---------------------------------------------------------------------------
-export async function handleGetComponentDetails({ componentName }: { componentName: string }): Promise<ToolResult> {
+export async function handleGetComponentDetails({
+	componentName
+}: {
+	componentName: string;
+}): Promise<ToolResult> {
 	if (IS_MONOREPO) {
-		const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+		const safeComponentPath = resolveSafePath(
+			COMPONENTS_DIR,
+			componentName
+		);
 		if (!existsSync(safeComponentPath)) {
-			return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+			return {
+				content: [
+					{
+						type: 'text',
+						text: COMPONENT_NOT_FOUND_MSG(componentName)
+					}
+				],
+				isError: true
+			};
 		}
-		const showcaseFile = join(safeComponentPath, 'showcase', `${componentName}.showcase.lite.tsx`);
+		const showcaseFile = join(
+			safeComponentPath,
+			'showcase',
+			`${componentName}.showcase.lite.tsx`
+		);
 		if (!existsSync(showcaseFile)) {
-			return { content: [{ type: 'text', text: `Error: File for component '${componentName}' not found.` }], isError: true };
+			return {
+				content: [
+					{
+						type: 'text',
+						text: `Error: File for component '${componentName}' not found.`
+					}
+				],
+				isError: true
+			};
 		}
-		const source = truncate(await readFile(showcaseFile, 'utf-8'), MAX_FILE_CONTENT);
-		const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map((m) => m[1]);
-		return { content: [{ type: 'text', text: examples.length > 0 ? JSON.stringify(examples, null, 2) : 'No examples found.' }] };
+		const source = truncate(
+			await readFile(showcaseFile, 'utf-8'),
+			MAX_FILE_CONTENT
+		);
+		const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map(
+			(m) => m[1]
+		);
+		return {
+			content: [
+				{
+					type: 'text',
+					text:
+						examples.length > 0
+							? JSON.stringify(examples, null, 2)
+							: 'No examples found.'
+				}
+			]
+		};
 	}
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
 	if (!comp) {
-		return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+		return {
+			content: [
+				{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }
+			],
+			isError: true
+		};
 	}
-	return { content: [{ type: 'text', text: comp.examples.length > 0 ? JSON.stringify(comp.examples, null, 2) : 'No examples found.' }] };
+	return {
+		content: [
+			{
+				type: 'text',
+				text:
+					comp.examples.length > 0
+						? JSON.stringify(comp.examples, null, 2)
+						: 'No examples found.'
+			}
+		]
+	};
 }
 
 server.registerTool(
 	'get_component_details',
 	{
-		description: 'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
+		description:
+			'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
 		inputSchema: { componentName: z.string().describe("e.g. 'button'") }
 	},
 	handleGetComponentDetails
@@ -180,9 +269,16 @@ server.registerTool(
 // ---------------------------------------------------------------------------
 // get_component_props
 // ---------------------------------------------------------------------------
-type ToolResult = { content: { type: 'text'; text: string }[]; isError?: boolean };
+type ToolResult = {
+	content: { type: 'text'; text: string }[];
+	isError?: boolean;
+};
 
-export async function handleGetComponentProps({ componentName }: { componentName: string }): Promise<ToolResult> {
+export async function handleGetComponentProps({
+	componentName
+}: {
+	componentName: string;
+}): Promise<ToolResult> {
 	if (IS_MONOREPO) {
 		const safeComponentPath = resolveSafePath(
 			COMPONENTS_DIR,
@@ -227,7 +323,9 @@ export async function handleGetComponentProps({ componentName }: { componentName
 	const comp = manifest.components[componentName];
 	if (!comp) {
 		return {
-			content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }],
+			content: [
+				{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }
+			],
 			isError: true
 		};
 	}
@@ -273,34 +371,80 @@ const TOKEN_FILES: Record<string, string> = {
 };
 
 export async function handleListDesignTokenCategories(): Promise<ToolResult> {
-	const categories = Object.keys(TOKEN_FILES).filter((key) => existsSync(TOKEN_FILES[key]));
-	return { content: [{ type: 'text', text: JSON.stringify(categories, null, 2) }] };
+	const categories = Object.keys(TOKEN_FILES).filter((key) =>
+		existsSync(TOKEN_FILES[key])
+	);
+	return {
+		content: [{ type: 'text', text: JSON.stringify(categories, null, 2) }]
+	};
 }
 
 server.registerTool(
 	'list_design_token_categories',
-	{ description: 'Returns all available DB UX design token categories (e.g. colors, spacing, typography).' },
+	{
+		description:
+			'Returns all available DB UX design token categories (e.g. colors, spacing, typography).'
+	},
 	handleListDesignTokenCategories
 );
 
-export async function handleGetDesignTokens({ category }: { category: string }): Promise<ToolResult> {
+export async function handleGetDesignTokens({
+	category
+}: {
+	category: string;
+}): Promise<ToolResult> {
 	const filePath = TOKEN_FILES[category];
 	if (!filePath) {
-		return { content: [{ type: 'text', text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}` }], isError: true };
+		return {
+			content: [
+				{
+					type: 'text',
+					text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}`
+				}
+			],
+			isError: true
+		};
 	}
 	if (!existsSync(filePath)) {
-		return { content: [{ type: 'text', text: `Error: token file not found at ${filePath}` }], isError: true };
+		return {
+			content: [
+				{
+					type: 'text',
+					text: `Error: token file not found at ${filePath}`
+				}
+			],
+			isError: true
+		};
 	}
 	const source = await readFile(filePath, 'utf-8');
-	const lines = source.split('\n').filter((line) => /--db-|^\$db-/.test(line));
-	return { content: [{ type: 'text', text: truncate(lines.length > 0 ? lines.join('\n') : source, MAX_JSON_OUTPUT) }] };
+	const lines = source
+		.split('\n')
+		.filter((line) => /--db-|^\$db-/.test(line));
+	return {
+		content: [
+			{
+				type: 'text',
+				text: truncate(
+					lines.length > 0 ? lines.join('\n') : source,
+					MAX_JSON_OUTPUT
+				)
+			}
+		]
+	};
 }
 
 server.registerTool(
 	'get_design_tokens',
 	{
-		description: 'Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.',
-		inputSchema: { category: z.string().describe("Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories.") }
+		description:
+			'Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.',
+		inputSchema: {
+			category: z
+				.string()
+				.describe(
+					"Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories."
+				)
+		}
 	},
 	handleGetDesignTokens
 );
@@ -312,10 +456,30 @@ export async function handleListIcons(): Promise<ToolResult> {
 	if (IS_MONOREPO && existsSync(ALL_ICONS_FILE)) {
 		const source = await readFile(ALL_ICONS_FILE, 'utf-8');
 		const icons = [...source.matchAll(/'([^']+)'/g)].map((m) => m[1]);
-		return { content: [{ type: 'text', text: truncate(JSON.stringify(icons, null, 2), MAX_JSON_OUTPUT) }] };
+		return {
+			content: [
+				{
+					type: 'text',
+					text: truncate(
+						JSON.stringify(icons, null, 2),
+						MAX_JSON_OUTPUT
+					)
+				}
+			]
+		};
 	}
 	const manifest = await getManifest();
-	return { content: [{ type: 'text', text: truncate(JSON.stringify(manifest.icons, null, 2), MAX_JSON_OUTPUT) }] };
+	return {
+		content: [
+			{
+				type: 'text',
+				text: truncate(
+					JSON.stringify(manifest.icons, null, 2),
+					MAX_JSON_OUTPUT
+				)
+			}
+		]
+	};
 }
 
 server.registerTool(
@@ -345,7 +509,15 @@ const FRAMEWORK_EXT: Record<Framework, string> = {
 	vue: 'vue'
 };
 
-export async function handleGetExampleCode({ componentName, exampleName, framework }: { componentName: string; exampleName: string; framework: Framework }): Promise<ToolResult> {
+export async function handleGetExampleCode({
+	componentName,
+	exampleName,
+	framework
+}: {
+	componentName: string;
+	exampleName: string;
+	framework: Framework;
+}): Promise<ToolResult> {
 	return withTimeout(
 		(async () => {
 			const kebab = toKebabCase(exampleName);
@@ -357,12 +529,22 @@ export async function handleGetExampleCode({ componentName, exampleName, framewo
 					componentName
 				);
 				if (!existsSync(safeComponentPath)) {
-					return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+					return {
+						content: [
+							{
+								type: 'text',
+								text: COMPONENT_NOT_FOUND_MSG(componentName)
+							}
+						],
+						isError: true
+					};
 				}
 				const examplesDir = join(safeComponentPath, 'examples');
 				let resolvedPath = join(examplesDir, `${kebab}.example.${ext}`);
 				if (!existsSync(resolvedPath)) {
-					const allEntries = existsSync(examplesDir) ? await readdir(examplesDir) : [];
+					const allEntries = existsSync(examplesDir)
+						? await readdir(examplesDir)
+						: [];
 					const match = allEntries.slice(0, 10).find((f) => {
 						if (!f.endsWith(`.example.${ext}`)) return false;
 						const stem = f.replace(`.example.${ext}`, '');
@@ -371,17 +553,43 @@ export async function handleGetExampleCode({ componentName, exampleName, framewo
 					if (match) {
 						resolvedPath = join(examplesDir, match);
 					} else {
-						return { content: [{ type: 'text', text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.` }], isError: true };
+						return {
+							content: [
+								{
+									type: 'text',
+									text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
+								}
+							],
+							isError: true
+						};
 					}
 				}
-				return { content: [{ type: 'text', text: truncate(await readFile(resolvedPath, 'utf-8'), MAX_FILE_CONTENT) }] };
+				return {
+					content: [
+						{
+							type: 'text',
+							text: truncate(
+								await readFile(resolvedPath, 'utf-8'),
+								MAX_FILE_CONTENT
+							)
+						}
+					]
+				};
 			}
 
 			// Manifest fallback
 			const manifest = await getManifest();
 			const comp = manifest.components[componentName];
 			if (!comp) {
-				return { content: [{ type: 'text', text: COMPONENT_NOT_FOUND_MSG(componentName) }], isError: true };
+				return {
+					content: [
+						{
+							type: 'text',
+							text: COMPONENT_NOT_FOUND_MSG(componentName)
+						}
+					],
+					isError: true
+				};
 			}
 			const fwExamples = comp.exampleCode[framework] ?? {};
 			const directKey = `${kebab}.example.${ext}`;
@@ -393,9 +601,24 @@ export async function handleGetExampleCode({ componentName, exampleName, framewo
 						return kebab.startsWith(stem) || stem.startsWith(kebab);
 					});
 			if (!matchKey) {
-				return { content: [{ type: 'text', text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.` }], isError: true };
+				return {
+					content: [
+						{
+							type: 'text',
+							text: `Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
+						}
+					],
+					isError: true
+				};
 			}
-			return { content: [{ type: 'text', text: truncate(fwExamples[matchKey], MAX_FILE_CONTENT) }] };
+			return {
+				content: [
+					{
+						type: 'text',
+						text: truncate(fwExamples[matchKey], MAX_FILE_CONTENT)
+					}
+				]
+			};
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'
 	) as any;
@@ -409,8 +632,12 @@ server.registerTool(
 			'For Angular, the template is inline inside the @Component decorator within the .ts file.',
 		inputSchema: {
 			componentName: z.string().describe("e.g. 'button'"),
-			exampleName: z.string().describe("Readable example name, e.g. 'Show Icon Leading'"),
-			framework: z.enum(['react', 'angular', 'vue']).describe("Target framework: 'react', 'angular', or 'vue'")
+			exampleName: z
+				.string()
+				.describe("Readable example name, e.g. 'Show Icon Leading'"),
+			framework: z
+				.enum(['react', 'angular', 'vue'])
+				.describe("Target framework: 'react', 'angular', or 'vue'")
 		}
 	},
 	handleGetExampleCode
@@ -419,48 +646,111 @@ server.registerTool(
 // ---------------------------------------------------------------------------
 // docs_search
 // ---------------------------------------------------------------------------
-export async function handleDocsSearch({ query, category, componentName, docType }: { query: string; category: 'global' | 'component'; componentName?: string; docType?: string }): Promise<ToolResult> {
+export async function handleDocsSearch({
+	query,
+	category,
+	componentName,
+	docType
+}: {
+	query: string;
+	category: 'global' | 'component';
+	componentName?: string;
+	docType?: string;
+}): Promise<ToolResult> {
 	if (!IS_MONOREPO) {
-		return { content: [{ type: 'text', text: 'Error: docs_search is only available in the monorepo environment.' }], isError: true };
+		return {
+			content: [
+				{
+					type: 'text',
+					text: 'Error: docs_search is only available in the monorepo environment.'
+				}
+			],
+			isError: true
+		};
 	}
 	return withTimeout(
 		(async () => {
 			const results: string[] = [];
-			const searchTerms = query.toLowerCase().split(' ').filter((t) => t.trim().length > 2);
+			const searchTerms = query
+				.toLowerCase()
+				.split(' ')
+				.filter((t) => t.trim().length > 2);
 
 			if (category === 'component') {
 				if (!componentName) {
-					return { content: [{ type: 'text', text: 'Error: componentName is required for component search.' }], isError: true };
+					return {
+						content: [
+							{
+								type: 'text',
+								text: 'Error: componentName is required for component search.'
+							}
+						],
+						isError: true
+					};
 				}
-				const safeComponentPath = resolveSafePath(COMPONENTS_DIR, componentName);
+				const safeComponentPath = resolveSafePath(
+					COMPONENTS_DIR,
+					componentName
+				);
 				const compDocsDir = join(safeComponentPath, 'docs');
 				if (existsSync(compDocsDir)) {
 					const files = await readdir(compDocsDir);
 					for (const file of files) {
 						if (!file.endsWith('.md')) continue;
-						if (docType && !file.toLowerCase().includes(docType.toLowerCase())) continue;
-						const content = await readFile(join(compDocsDir, file), 'utf-8');
-						const isMatch = searchTerms.length === 0 || searchTerms.every((term) => content.toLowerCase().includes(term));
-						if (isMatch) results.push(`--- ${componentName}/docs/${file} ---\n${content}`);
+						if (
+							docType &&
+							!file.toLowerCase().includes(docType.toLowerCase())
+						)
+							continue;
+						const content = await readFile(
+							join(compDocsDir, file),
+							'utf-8'
+						);
+						const isMatch =
+							searchTerms.length === 0 ||
+							searchTerms.every((term) =>
+								content.toLowerCase().includes(term)
+							);
+						if (isMatch)
+							results.push(
+								`--- ${componentName}/docs/${file} ---\n${content}`
+							);
 					}
 				} else {
-					results.push(`No documentation found for component '${componentName}'.`);
+					results.push(
+						`No documentation found for component '${componentName}'.`
+					);
 				}
 			} else {
 				const docsDir = join(REPO_ROOT, 'docs');
 				if (existsSync(docsDir)) {
 					const searchDir = async (currentDir: string) => {
-						const entries = await readdir(currentDir, { withFileTypes: true });
+						const entries = await readdir(currentDir, {
+							withFileTypes: true
+						});
 						for (const entry of entries) {
 							const fullPath = join(currentDir, entry.name);
 							if (entry.isDirectory()) {
 								await searchDir(fullPath);
 							} else if (entry.name.endsWith('.md')) {
-								const content = await readFile(fullPath, 'utf-8');
-								const isMatch = searchTerms.length === 0 || searchTerms.every((term) => content.toLowerCase().includes(term));
+								const content = await readFile(
+									fullPath,
+									'utf-8'
+								);
+								const isMatch =
+									searchTerms.length === 0 ||
+									searchTerms.every((term) =>
+										content.toLowerCase().includes(term)
+									);
 								if (isMatch) {
-									const snippet = content.length > 3000 ? content.substring(0, 3000) + '\n... [TRUNCATED]' : content;
-									results.push(`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`);
+									const snippet =
+										content.length > 3000
+											? content.substring(0, 3000) +
+												'\n... [TRUNCATED]'
+											: content;
+									results.push(
+										`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`
+									);
 								}
 							}
 						}
@@ -470,9 +760,20 @@ export async function handleDocsSearch({ query, category, componentName, docType
 			}
 
 			if (results.length === 0) {
-				return { content: [{ type: 'text', text: `No documentation found matching query: '${query}'` }] };
+				return {
+					content: [
+						{
+							type: 'text',
+							text: `No documentation found matching query: '${query}'`
+						}
+					]
+				};
 			}
-			return { content: [{ type: 'text', text: results.slice(0, 3).join('\n\n') }] };
+			return {
+				content: [
+					{ type: 'text', text: results.slice(0, 3).join('\n\n') }
+				]
+			};
 		})(),
 		'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
 	) as any;
@@ -481,12 +782,38 @@ export async function handleDocsSearch({ query, category, componentName, docType
 server.registerTool(
 	'docs_search',
 	{
-		description: 'Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs.',
+		description:
+			'Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs.',
 		inputSchema: {
-			query: z.string().describe("Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."),
-			category: z.enum(['global', 'component']).describe("Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."),
-			componentName: z.string().optional().describe("Required if category is 'component' (e.g., 'button', 'navigation')."),
-			docType: z.enum(['React', 'Angular', 'Vue', 'HTML', 'Migration', 'Accessibility']).optional().describe("Optional: The specific doc file to read for a component (e.g., 'Migration').")
+			query: z
+				.string()
+				.describe(
+					"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."
+				),
+			category: z
+				.enum(['global', 'component'])
+				.describe(
+					"Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."
+				),
+			componentName: z
+				.string()
+				.optional()
+				.describe(
+					"Required if category is 'component' (e.g., 'button', 'navigation')."
+				),
+			docType: z
+				.enum([
+					'React',
+					'Angular',
+					'Vue',
+					'HTML',
+					'Migration',
+					'Accessibility'
+				])
+				.optional()
+				.describe(
+					"Optional: The specific doc file to read for a component (e.g., 'Migration')."
+				)
 		}
 	},
 	handleDocsSearch
