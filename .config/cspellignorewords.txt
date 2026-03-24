@@ -159,3 +159,5 @@ fetc
 fpasswd
 cursorrules
 xyznonexistent
+serialised
+Serialises
