@@ -62,15 +62,19 @@ Add icons to breadcrumb items:
 
 ### Disabled Item
 
-Disable breadcrumb items to render them as spans instead of links:
+Disable interaction for breadcrumb links. When `href` is set, the component still renders an anchor element, but applies reduced opacity and disables pointer events:
 
 ```html
 <db-breadcrumb>
 	<db-breadcrumb-item href="/">Home</db-breadcrumb-item>
-	<db-breadcrumb-item [disabled]="true">Disabled Item</db-breadcrumb-item>
+	<db-breadcrumb-item href="/disabled" [disabled]="true">
+		Disabled Item
+	</db-breadcrumb-item>
 	<db-breadcrumb-item aria-current="page">Current Page</db-breadcrumb-item>
 </db-breadcrumb>
 ```
+
+Without `href`, the item is rendered as a non-interactive `<span>`.
 
 ### Dynamic Content
 
@@ -108,6 +112,7 @@ export class AppComponent {
 - **text**: The text content of the breadcrumb item (alternative to using child content)
 - **icon**: Icon name from DB UX icon library
 - **ariaCurrent**: Indicates the current page (typically `"page"` for the last item)
-- **disabled**: When `true`, renders as a span instead of a link
+- **size**: Size variant (`"small"` or `"medium"`)
+- **disabled**: When `true`, disables interaction for link items
 - **id**: Custom ID for the element
 - **className**: Additional CSS classes

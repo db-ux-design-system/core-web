@@ -54,15 +54,19 @@ Add icons to breadcrumb items:
 
 ### Disabled Item
 
-Disable breadcrumb items to render them as spans instead of links:
+Disable interaction for breadcrumb links. When `href` is set, the component still renders an anchor element, but applies reduced opacity and disables pointer events:
 
 ```tsx
 <DBBreadcrumb>
 	<DBBreadcrumbItem href="/">Home</DBBreadcrumbItem>
-	<DBBreadcrumbItem disabled>Disabled Item</DBBreadcrumbItem>
+	<DBBreadcrumbItem href="/disabled" disabled>
+		Disabled Item
+	</DBBreadcrumbItem>
 	<DBBreadcrumbItem ariaCurrent="page">Current Page</DBBreadcrumbItem>
 </DBBreadcrumb>
 ```
+
+Without `href`, the item is rendered as a non-interactive `<span>`.
 
 ### Dynamic Content
 
@@ -93,6 +97,7 @@ const App = () => (
 - **text**: The text content of the breadcrumb item (alternative to using children)
 - **icon**: Icon name from DB UX icon library
 - **ariaCurrent**: Indicates the current page (typically `"page"` for the last item)
-- **disabled**: When `true`, renders as a span instead of a link
+- **size**: Size variant (`"small"` or `"medium"`)
+- **disabled**: When `true`, disables interaction for link items
 - **id**: Custom ID for the element
 - **className**: Additional CSS classes

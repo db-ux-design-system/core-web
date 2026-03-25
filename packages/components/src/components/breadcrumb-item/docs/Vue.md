@@ -56,17 +56,21 @@ Add icons to breadcrumb items:
 
 ### Disabled Item
 
-Disable breadcrumb items to render them as spans instead of links:
+Disable interaction for breadcrumb links. When `href` is set, the component still renders an anchor element, but applies reduced opacity and disables pointer events:
 
 ```vue
 <template>
 	<DBBreadcrumb>
 		<DBBreadcrumbItem href="/">Home</DBBreadcrumbItem>
-		<DBBreadcrumbItem :disabled="true">Disabled Item</DBBreadcrumbItem>
+		<DBBreadcrumbItem href="/disabled" :disabled="true">
+			Disabled Item
+		</DBBreadcrumbItem>
 		<DBBreadcrumbItem aria-current="page"> Current Page </DBBreadcrumbItem>
 	</DBBreadcrumb>
 </template>
 ```
+
+Without `href`, the item is rendered as a non-interactive `<span>`.
 
 ### Dynamic Content
 
@@ -107,6 +111,7 @@ const currentPage = "Laptops";
 - **text**: The text content of the breadcrumb item (alternative to using slot content)
 - **icon**: Icon name from DB UX icon library
 - **ariaCurrent** / **aria-current**: Indicates the current page (typically `"page"` for the last item)
-- **disabled**: When `true`, renders as a span instead of a link
+- **size**: Size variant (`"small"` or `"medium"`)
+- **disabled**: When `true`, disables interaction for link items
 - **id**: Custom ID for the element
-- **className**: Additional CSS classes
+- **class**: Additional CSS classes
