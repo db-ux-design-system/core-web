@@ -1,0 +1,51 @@
+import{j as l}from"./jsx-runtime-u17CrQMm.js";import{D as a}from"./custom-select-Dg0eNUCm.js";import"./index-D2E5Z_bU.js";import"./iframe-DOGZb9UQ.js";import"./preload-helper-6AdaFMoN.js";import"./constants-C-ysBZRi.js";import"./document-scroll-listener-C9UMSkzw.js";import"./floating-components-DAXMbqch.js";import"./form-components-OaQ73I72.js";import"./button-BtsyxPWT.js";import"./infotext-Bpl9mnWN.js";import"./input-DmjmapHY.js";import"./tag-BMZOQGko.js";import"./tooltip-BIp9fc7B.js";const{fn:o}=__STORYBOOK_MODULE_TEST__,O={title:"Components/DBCustomSelect/Form Field Width",component:a,parameters:{layout:"centered"},tags:["autodocs"],args:{onAmountChange:o(),onOptionSelected:o(),onDropdownToggle:o(),onSearch:o()},argTypes:{options:{control:"object"},label:{control:"text"},placeholder:{control:"text"},id:{control:"text"},multiple:{control:"boolean"},variant:{control:"select",options:["above","floating"]},values:{control:"object"},showLabel:{control:"boolean"},message:{control:"text"},showMessage:{control:"boolean"},showIcon:{control:"boolean"},validation:{control:"select",options:["invalid","valid","no-validation"]},invalidMessage:{control:"text"},validMessage:{control:"text"},required:{control:"boolean"},showRequiredAsterisk:{control:"boolean"},disabled:{control:"boolean"},name:{control:"text"},form:{control:"text"},ariaDescribedBy:{control:"text"},formFieldWidth:{control:"select",options:["full","auto"]},dropdownWidth:{control:"select",options:["auto","fixed"]},placement:{control:"select",options:["top","bottom","top-start","top-end","bottom-start","bottom-end"]},selectedType:{control:"select",options:["amount","text","tag"]},showNoResults:{control:"boolean"},noResultsText:{control:"text"},showLoading:{control:"boolean"},loadingText:{control:"text"},showSearch:{control:"boolean"},showSelectAll:{control:"boolean"},showClearSelection:{control:"boolean"},removeTagsTexts:{control:"object"},searchValue:{control:"text"},searchLabel:{control:"text"},searchPlaceholder:{control:"text"},selectedLabels:{control:"text"},selectedPrefix:{control:"text"},selectAllLabel:{control:"text"},listLabel:{control:"text"},clearSelectionText:{control:"text"},amountText:{control:"text"},mobileCloseButtonText:{control:"text"},open:{control:"boolean"},autofocus:{control:"boolean"},onAmountChange:{action:"onAmountChange"},onOptionSelected:{action:"onOptionSelected"},onDropdownToggle:{action:"onDropdownToggle"},onSearch:{action:"onSearch"}}},t={args:{label:"(Default) Full",formFieldWidth:"full",listLabel:"id-10223-(Default) Full",options:[{value:"Option 1",id:"z0ispy7ls"},{value:"Option 2",id:"ngl1p4pxn"},{value:"Option 3",id:"ngl1p3pxn"},{value:"Option 4",id:"ngl1p2pxn"},{value:"Option 5",id:"ngl1p1pxn"}]},render:n=>l.jsx("div",{style:{width:"400px"},children:l.jsx(a,{...n})})},e={args:{label:"Auto",formFieldWidth:"auto",listLabel:"id-10224-Auto",options:[{value:"Option 1",id:"klxyvobwn"},{value:"Option 2",id:"7oag2a4fj"},{value:"Option 3",id:"7oag2a3fj"},{value:"Option 4",id:"7oag2a2fj"},{value:"Option 5",id:"7oag2a1fj"}]},render:n=>l.jsx("div",{style:{width:"400px"},children:l.jsx(a,{...n})})};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "(Default) Full",
+    "formFieldWidth": "full",
+    "listLabel": "id-10223-(Default) Full",
+    "options": [{
+      value: 'Option 1',
+      id: 'z0ispy7ls'
+    }, {
+      value: 'Option 2',
+      id: 'ngl1p4pxn'
+    }, {
+      value: 'Option 3',
+      id: 'ngl1p3pxn'
+    }, {
+      value: 'Option 4',
+      id: 'ngl1p2pxn'
+    }, {
+      value: 'Option 5',
+      id: 'ngl1p1pxn'
+    }]
+  },
+  render: (properties: any) => <div style={{
+    width: '400px'
+  }}><DBCustomSelect {...properties} /></div>
+}`,...t.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Auto",
+    "formFieldWidth": "auto",
+    "listLabel": "id-10224-Auto",
+    "options": [{
+      value: 'Option 1',
+      id: 'klxyvobwn'
+    }, {
+      value: 'Option 2',
+      id: '7oag2a4fj'
+    }, {
+      value: 'Option 3',
+      id: '7oag2a3fj'
+    }, {
+      value: 'Option 4',
+      id: '7oag2a2fj'
+    }, {
+      value: 'Option 5',
+      id: '7oag2a1fj'
+    }]
+  },
+  render: (properties: any) => <div style={{
+    width: '400px'
+  }}><DBCustomSelect {...properties} /></div>
+}`,...e.parameters?.docs?.source}}};const w=["DefaultFull","Auto"];export{e as Auto,t as DefaultFull,w as __namedExportsOrder,O as default};
