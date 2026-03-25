@@ -1,4 +1,16 @@
-import type { ReactDefaultComponentVariants } from '../../../shared/react-default-component-data';
+type ReactDefaultComponentExample = {
+	[key: string]: any;
+	name: string;
+	className?: string;
+	props?: Record<string, any>;
+};
+
+type ReactDefaultComponentVariants = {
+	[key: string]: any;
+	name: string;
+	codeFileName?: string;
+	examples: ReactDefaultComponentExample[];
+};
 
 export const getVariants = (
 	defaultComponentVariants: ReactDefaultComponentVariants[],
