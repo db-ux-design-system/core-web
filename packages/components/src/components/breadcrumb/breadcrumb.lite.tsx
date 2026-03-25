@@ -7,11 +7,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString, parseItems, uuid } from '../../utils';
-import type {
-	DBBreadcrumbItems,
-	DBBreadcrumbProps,
-	DBBreadcrumbState
-} from './model';
+import { DBBreadcrumbItem } from '../breadcrumb-item';
+import type { DBBreadcrumbItems } from '../breadcrumb-item/model';
+import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
 useMetadata({});
 
@@ -81,90 +79,40 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 						else={
 							<For each={state.normalizedItems()}>
 								{(item, index) => (
-									<li
+									<DBBreadcrumbItem
 										key={index}
-										class={cls(
-											'db-breadcrumb-item',
-											item.className
+										className={item.className}
+										size={props.size}
+										href={item.href}
+										ariaCurrent={state.ariaCurrent(
+											item,
+											index ===
+												state.normalizedItems().length -
+													1
 										)}
-										data-size={props.size}>
-										<Show
-											when={item.href}
-											else={
-												<span
-													aria-current={state.ariaCurrent(
-														item,
-														index ===
-															state.normalizedItems()
-																.length -
-																1
-													)}
-													data-icon={item.icon}>
-													{item.text}
-												</span>
-											}>
-											<a
-												href={item.href}
-												aria-current={state.ariaCurrent(
-													item,
-													index ===
-														state.normalizedItems()
-															.length -
-															1
-												)}
-												data-icon={item.icon}>
-												{item.text}
-											</a>
-										</Show>
-									</li>
+										icon={item.icon}
+										text={item.text}
+									/>
 								)}
 							</For>
 						}>
 						<>
 							{/* jscpd:ignore-end */}
 							<Show when={state.normalizedItems()[0]}>
-								<li
+								<DBBreadcrumbItem
 									key={0}
-									class={cls(
-										'db-breadcrumb-item',
+									className={
 										state.normalizedItems()[0].className
+									}
+									size={props.size}
+									href={state.normalizedItems()[0].href}
+									ariaCurrent={state.ariaCurrent(
+										state.normalizedItems()[0],
+										state.normalizedItems().length === 1
 									)}
-									data-size={props.size}>
-									<Show
-										when={state.normalizedItems()[0].href}
-										else={
-											<span
-												aria-current={state.ariaCurrent(
-													state.normalizedItems()[0],
-													state.normalizedItems()
-														.length === 1
-												)}
-												data-icon={
-													state.normalizedItems()[0]
-														.icon
-												}>
-												{
-													state.normalizedItems()[0]
-														.text
-												}
-											</span>
-										}>
-										<a
-											href={
-												state.normalizedItems()[0].href
-											}
-											aria-current={state.ariaCurrent(
-												state.normalizedItems()[0],
-												state.normalizedItems()
-													.length === 1
-											)}
-											data-icon={
-												state.normalizedItems()[0].icon
-											}>
-											{state.normalizedItems()[0].text}
-										</a>
-									</Show>
-								</li>
+									icon={state.normalizedItems()[0].icon}
+									text={state.normalizedItems()[0].text}
+								/>
 							</Show>
 							<li key="ellipsis" class="db-breadcrumb-item">
 								<button
@@ -188,42 +136,21 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 							</li>
 							<For each={state.collapsedTailItems()}>
 								{(item, index) => (
-									<li
+									<DBBreadcrumbItem
 										key={index}
-										class={cls(
-											'db-breadcrumb-item',
-											item.className
+										className={item.className}
+										size={props.size}
+										href={item.href}
+										ariaCurrent={state.ariaCurrent(
+											item,
+											index ===
+												state.collapsedTailItems()
+													.length -
+													1
 										)}
-										data-size={props.size}>
-										<Show
-											when={item.href}
-											else={
-												<span
-													aria-current={state.ariaCurrent(
-														item,
-														index ===
-															state.collapsedTailItems()
-																.length -
-																1
-													)}
-													data-icon={item.icon}>
-													{item.text}
-												</span>
-											}>
-											<a
-												href={item.href}
-												aria-current={state.ariaCurrent(
-													item,
-													index ===
-														state.collapsedTailItems()
-															.length -
-															1
-												)}
-												data-icon={item.icon}>
-												{item.text}
-											</a>
-										</Show>
-									</li>
+										icon={item.icon}
+										text={item.text}
+									/>
 								)}
 							</For>
 						</>

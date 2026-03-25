@@ -24,48 +24,27 @@
 		border-radius: variables.$db-border-radius-xs; // 4px
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font-family: var(
-			--db-type-body-font-family,
-			var(--db-font-family-sans)
-		);
-		font-size: var(--db-type-body-font-size-sm, 0.875rem); // 14px (small)
+
+		@extend %db-overwrite-font-size-sm;
+
 		font-weight: 400;
-		line-height: var(--db-type-body-line-height-sm, 1.25rem); // 20px
 		text-decoration: none;
 		white-space: nowrap;
-		transition: background-color 0.2s ease;
 
 		// Current page (with aria-current="page")
 		&[aria-current="page"] {
 			font-weight: 700; // Bold for current item
 			cursor: default;
 			pointer-events: none;
-
-			&:hover,
-			&:focus {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-				text-decoration: none;
-			}
 		}
 
-		&:hover,
-		&:focus {
+		@include helpers.hover {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		}
 
-		&:active {
+		@include helpers.active {
 			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 		}
-
-		@media screen and (prefers-reduced-motion: reduce) {
-			transition: none;
-		}
-	}
-
-	// Accessibility: ensure links show a clear focus indicator
-	a:focus-visible {
-		outline: 2px solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		outline-offset: 2px;
 	}
 
 	// Remove hover effect for icons within breadcrumb items
@@ -84,19 +63,8 @@
 			padding: variables.$db-spacing-fixed-2xs
 				variables.$db-spacing-fixed-xs; // 4px 8px (medium)
 
-			font-size: var(--db-type-body-font-size-md, 1rem); // 16px (medium)
-			line-height: var(--db-type-body-line-height-md, 1.5rem); // 24px
+			@extend %db-overwrite-font-size-md;
 		}
-	}
-
-	// Ensure icon size matches weight attribute for small size (20px)
-	.db-icon[data-icon-weight="20"]::before {
-		--db-icon-font-size: 1.25rem; // 20px
-	}
-
-	// Ensure icon size matches weight attribute for medium size (24px)
-	.db-icon[data-icon-weight="24"]::before {
-		--db-icon-font-size: 1.5rem; // 24px
 	}
 }
 
