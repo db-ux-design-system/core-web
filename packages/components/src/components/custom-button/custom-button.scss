@@ -30,7 +30,10 @@ $icon-padding-custom-button: calc(
 	@include icon-passing.icon-passing;
 	@include icon-passing.icon-passing-trailing;
 
-	&:has(:is(input, button):disabled, :is(input, button, a)[aria-disabled="true"]) {
+	&:has(
+		:is(input, button):disabled,
+		:is(input, button, a)[aria-disabled="true"]
+	) {
 		opacity: variables.$db-opacity-md;
 	}
 
@@ -42,6 +45,11 @@ $icon-padding-custom-button: calc(
 		:is(a, button) {
 			@extend %button-brand-colors;
 		}
+	}
+
+	&[data-no-text="true"] {
+		--db-icon-margin-end: 0;
+		--db-icon-passing-inline-start: calc(50% - 0.5em);
 	}
 
 	label:has(input:checked) {

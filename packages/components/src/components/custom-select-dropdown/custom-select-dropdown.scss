@@ -77,7 +77,7 @@
 
 		&[data-icon="circular_arrows"] {
 			&::before {
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media (prefers-reduced-motion: no-preference) {
 					animation: rotate 1.5s linear 0s infinite normal none
 						running;
 				}

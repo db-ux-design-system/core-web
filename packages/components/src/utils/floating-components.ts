@@ -75,6 +75,7 @@ export const handleFixedDropdown = (
 	parent: HTMLElement,
 	placement: string
 ) => {
+	if (!element || !parent) return;
 	// We skip this if we are in mobile it's already fixed
 	if (getComputedStyle(element).zIndex === '9999') return;
 
@@ -290,6 +291,7 @@ export const handleFixedPopover = (
 	parent: HTMLElement,
 	placement: string
 ) => {
+	if (!element || !parent) return;
 	const parentComputedStyles = getComputedStyle(parent);
 	const parentHasFloatingPosition = ['absolute', 'fixed'].includes(
 		parentComputedStyles.position

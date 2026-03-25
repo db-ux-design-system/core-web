@@ -66,8 +66,8 @@
 	&[data-no-text="true"] {
 		#{$selector} {
 			padding: 0;
-			aspect-ratio: 1;
 			inline-size: variables.$db-sizing-md;
+			block-size: variables.$db-sizing-md;
 
 			@include icons.is-icon-text-replace;
 
@@ -102,11 +102,12 @@
 			// Square icon only buttons
 			&[data-no-text="true"] {
 				inline-size: variables.$db-sizing-sm;
+				block-size: variables.$db-sizing-sm;
 			}
 		}
 	}
 
-	&[data-width="full"] {
+	&[data-width="full"]:not([data-no-text="true"]) {
 		#{$selector} {
 			inline-size: 100%;
 		}

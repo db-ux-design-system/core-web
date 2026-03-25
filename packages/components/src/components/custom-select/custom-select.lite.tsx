@@ -459,10 +459,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					if (event.relatedTarget) {
 						const relatedTarget =
 							event.relatedTarget as HTMLElement;
-						if (!detailsRef.contains(relatedTarget)) {
+						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
+						// Inside a <dialog> there is some focus problem because of the top-layer
+						// We do not want to focus <dialog> itself
+						if (
+							!detailsRef.contains(relatedTarget) &&
+							relatedTarget.localName !== 'dialog'
+						) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							delay(() => (detailsRef.open = false), 1);
+							void delay(() => (detailsRef.open = false), 1);
 						}
 					}
 				}
@@ -1002,10 +1008,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
-									{(
-										option: CustomSelectOptionType,
-										index: number
-									) => (
+									{(option: CustomSelectOptionType) => (
 										<DBTag
 											key={useTarget({
 												vue: undefined,

@@ -49,7 +49,7 @@ $db-min-inline-size: var(
 	&::after {
 		pointer-events: none;
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			transition: $dropdown-icon-transition;
 		}
 	}
@@ -138,7 +138,7 @@ $db-min-inline-size: var(
 			@extend %db-overwrite-font-size-sm;
 
 			inset-block-start: calc(
-				variables.$db-sizing-md / 2 - 0.5em +
+				#{variables.$db-sizing-md} / 2 - 0.5em +
 					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
@@ -191,7 +191,7 @@ $db-min-inline-size: var(
 					padding-block-start: var(--db-base-body-icon-font-size-2xs);
 				}
 
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media (prefers-reduced-motion: no-preference) {
 					transition: opacity
 						#{variables.$db-transition-straight-emotional};
 				}
@@ -225,6 +225,10 @@ $db-min-inline-size: var(
 
 	@if $key != "valid" {
 		$variant: "critical";
+	}
+
+	@if $selector == "input" {
+		--db-icon-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 	}
 
 	@if $selector != textarea {
@@ -454,7 +458,7 @@ $input-valid-types:
 		white-space: nowrap;
 		overflow: hidden;
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			transition: font-size variables.$db-transition-straight-emotional;
 		}
 	}

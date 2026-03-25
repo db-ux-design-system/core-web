@@ -70,7 +70,7 @@ jobs:
     needs: [init]
 
   cancel-on-failure-build-stories:
-    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-stories]
@@ -369,6 +369,27 @@ jobs:
           IS_RELEASE: ${{ github.event_name == 'release' }}
           IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
+          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
+          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
+          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
+          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
+          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
+          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
+          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
+          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
+          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
+          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
+          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
+          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
+          echo "resultBuildOutputs: $resultBuildOutputs"
+          echo "resultTestPackages: $resultTestPackages"
+          echo "resultTestFoundations: $resultTestFoundations"
+          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
+          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
+          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
+          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
+          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
+          echo "resultTestScreenReader: $resultTestScreenReader"
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
             echo "🎉 Changeset release PR - skipping checks."
             exit 0
@@ -444,7 +465,8 @@ jobs:
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-screen-reader
+        test-screen-reader,
+        init
       ]
 
   deploy:
