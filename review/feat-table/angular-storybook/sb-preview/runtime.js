@@ -35136,7 +35136,7 @@ function prepareContext(context) {
 }
 
 // src/preview-api/modules/store/inferArgTypes.ts
-var inferType = (value, name, visited) => {
+var inferType = (value, name, visited, cache) => {
   let type5 = typeof value;
   switch (type5) {
     case "boolean":
@@ -35148,17 +35148,26 @@ var inferType = (value, name, visited) => {
     default:
       break;
   }
-  return value ? visited.has(value) ? (logger.warn(dedent`
+  if (value) {
+    if (cache.has(value))
+      return cache.get(value);
+    if (visited.has(value))
+      return logger.warn(dedent`
         We've detected a cycle in arg '${name}'. Args should be JSON-serializable.
 
         Consider using the mapping feature or fully custom args:
         - Mapping: https://storybook.js.org/docs/writing-stories/args#mapping-to-complex-arg-values
         - Custom args: https://storybook.js.org/docs/essentials/controls#fully-custom-args
-      `), { name: "other", value: "cyclic object" }) : (visited.add(value), Array.isArray(value) ? { name: "array", value: value.length > 0 ? inferType(value[0], name, new Set(visited)) : { name: "other", value: "unknown" } } : { name: "object", value: mapValues(value, (field) => inferType(field, name, new Set(visited))) }) : { name: "object", value: {} };
+      `), { name: "other", value: "cyclic object" };
+    visited.add(value);
+    let result;
+    return Array.isArray(value) ? result = { name: "array", value: value.length > 0 ? inferType(value[0], name, visited, cache) : { name: "other", value: "unknown" } } : result = { name: "object", value: mapValues(value, (field) => inferType(field, name, visited, cache)) }, visited.delete(value), cache.set(value, result), result;
+  }
+  return { name: "object", value: {} };
 }, inferArgTypes = (context) => {
-  let { id, argTypes: userArgTypes = {}, initialArgs = {} } = context, argTypes = mapValues(initialArgs, (arg, key) => ({
+  let { id, argTypes: userArgTypes = {}, initialArgs = {} } = context, cache = /* @__PURE__ */ new Map(), argTypes = mapValues(initialArgs, (arg, key) => ({
     name: key,
-    type: inferType(arg, `${id}.${key}`, /* @__PURE__ */ new Set())
+    type: inferType(arg, `${id}.${key}`, /* @__PURE__ */ new Set(), cache)
   })), userArgTypesNames = mapValues(userArgTypes, (argType, key) => ({
     name: key
   }));
