@@ -58,6 +58,9 @@ export default defineConfig({
 > Alternatively, you could define a [browserslist](https://browsersl.ist/) based on your individual browser support strategy — which might be totally different from the list Vite 8 defines by default (targeting browsers from the early 2020s):
 
 ```ts
+// Note: You need to install the required packages first:
+// npm install -D lightningcss browserslist
+
 // vite.config.ts
 import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
