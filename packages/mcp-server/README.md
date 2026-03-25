@@ -12,7 +12,13 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 
 ### 1. Access the Server
 
-Ensure you are using Node.js v22+ and run the server via `npx`:
+Ensure you are using Node.js v22+ and have access to the DB UX packages. The server is invoked via `npx`:
+
+```bash
+npx -y @db-ux/core-foundations db-ux-mcp
+```
+
+> **Crucial Concept:** You do **not** run this command manually in your terminal for daily usage. If you do, it will look like the terminal is hanging because it is waiting for JSON-RPC messages over standard input (`stdio`). Instead, you will configure your IDE (Cursor, VS Code, IntelliJ) to run this command automatically in the background.
 
 ### 2. Configure your IDE
 
@@ -305,6 +311,22 @@ npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
 ### "Unknown Configuration Setting" in VS Code
 
 If you see a yellow squiggle/warning in your `settings.json`, this is expected. Standard VS Code does not natively recognize the `mcp` key yet. As long as your MCP client (like the Claude extension or Cursor) is active, the server will work perfectly.
+
+### Server fails to start from the monorepo root (Local Development)
+
+If you are developing or testing the MCP server directly from within the DB UX monorepo, the global `npx` command might fail due to npm workspace resolution. In this case, bypass `npx` and point your IDE directly to the local built file.
+
+**Fallback IDE Configuration (VS Code/IntelliJ):**
+Instead of using `npx`, use `node` and point it to the local build path (ensure you have run `npm run build` in the `mcp-server` directory first):
+
+```json
+{
+  "command": "node",
+  "args": ["packages/mcp-server/build/index.js"]
+}
+```
+
+*Alternatively, you can change your IDE's working directory for the MCP server to `packages/mcp-server`.*
 
 ---
 
