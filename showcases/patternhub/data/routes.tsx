@@ -73,27 +73,22 @@ const nameComponentMap = {
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
 	tooltip: <TooltipShowcase isPatternhub />,
-	breadcrumb: <BreadcrumbComponent />,
-	'breadcrumb-item': <BreadcrumbItemComponent />
+	breadcrumb: <BreadcrumbComponent isPatternhub />,
+	'breadcrumb-item': <BreadcrumbItemComponent isPatternhub />
 };
 
 const addComponentsToNavigationItems = (
 	navigationItems: NavigationItem[]
-): NavigationItem[] => {
-	return navigationItems.map((navigationItem) => {
-		return {
-			...navigationItem,
-			subNavigation: navigationItem.subNavigation?.map((subNavItem) => {
-				return {
-					...subNavItem,
-					component: subNavItem.name
-						? nameComponentMap[subNavItem.name]
-						: undefined
-				};
-			})
-		};
-	});
-};
+): NavigationItem[] =>
+	navigationItems.map((navigationItem) => ({
+		...navigationItem,
+		subNavigation: navigationItem.subNavigation?.map((subNavItem) => ({
+			...subNavItem,
+			component: subNavItem.name
+				? nameComponentMap[subNavItem.name]
+				: undefined
+		}))
+	}));
 
 export const componentChildren: NavigationItem[] =
 	addComponentsToNavigationItems(Components);
@@ -292,8 +287,7 @@ export const getBreadcrumb = (path: string) => {
 		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
-export const getAllComponentGroupNames = (): string[] => {
-	return componentChildren
+export const getAllComponentGroupNames = (): string[] =>
+	componentChildren
 		.filter(({ name }) => Boolean(name))
 		.map(({ name }) => name!);
-};

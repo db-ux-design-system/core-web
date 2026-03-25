@@ -166,7 +166,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									</Show>
 								</li>
 							</Show>
-							<li key="ellipsis">
+							<li key="ellipsis" class="db-breadcrumb-item">
 								<button
 									type="button"
 									class="db-breadcrumb-ellipsis"

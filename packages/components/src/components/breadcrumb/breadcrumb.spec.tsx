@@ -106,6 +106,9 @@ test.describe('DBBreadcrumb', () => {
 			// Ellipsis button should be visible
 			const ellipsisButton = component.locator('.db-breadcrumb-ellipsis');
 			await expect(ellipsisButton).toBeVisible();
+			await expect(
+				ellipsisButton.locator('xpath=ancestor::li[1]')
+			).toHaveClass(/db-breadcrumb-item/);
 
 			// First item should be visible
 			await expect(

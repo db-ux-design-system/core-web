@@ -1,5 +1,9 @@
 import { DBBreadcrumbItem } from '@components';
 import type { DBBreadcrumbItemProps } from '@components/src/components/breadcrumb-item/model';
+import type { PatternhubProps } from '../../../../../output/react/src/shared/model';
+import CardWrapperShowcase from '../../../../../output/react/src/shared/showcase/card-wrapper.showcase';
+import ContainerWrapperShowcase from '../../../../../output/react/src/shared/showcase/container-wrapper.showcase';
+import LinkWrapperShowcase from '../../../../../output/react/src/shared/showcase/link-wrapper.showcase';
 import defaultComponentVariants from '../../../../patternhub/data/breadcrumb-item.json';
 
 const getBreadcrumbItem = ({
@@ -27,9 +31,10 @@ const getBreadcrumbItem = ({
 );
 
 const BreadcrumbItemComponent = ({
+	isPatternhub,
 	isSubComponent,
 	componentName
-}: {
+}: PatternhubProps & {
 	isSubComponent?: boolean;
 	componentName?: string;
 }) => {
@@ -46,19 +51,27 @@ const BreadcrumbItemComponent = ({
 		: 'DBBreadcrumbItem';
 
 	return (
-		<div>
-			<h2>{heading}</h2>
+		<ContainerWrapperShowcase
+			title={heading}
+			isPatternhub={isPatternhub}
+			isSubComponent={isSubComponent}>
 			{variants.map((variant) => (
-				<section key={variant.name}>
-					<h3>{variant.name}</h3>
-					{variant.examples.map((example) => (
-						<div key={example.name} className={example.className}>
-							{getBreadcrumbItem(example.props ?? {})}
-						</div>
-					))}
-				</section>
+				<LinkWrapperShowcase
+					key={variant.name}
+					exampleName={variant.name}>
+					<CardWrapperShowcase>
+						{variant.examples.map((example) => (
+							<div
+								key={example.name}
+								className={example.className}>
+								<h3>{example.name}</h3>
+								{getBreadcrumbItem(example.props ?? {})}
+							</div>
+						))}
+					</CardWrapperShowcase>
+				</LinkWrapperShowcase>
 			))}
-		</div>
+		</ContainerWrapperShowcase>
 	);
 };
 
