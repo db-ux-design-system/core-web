@@ -31,39 +31,6 @@
 		align-items: center;
 		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small per Figma)
 		border-radius: variables.$db-border-radius-xs;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font-family: var(
-			--db-type-body-font-family,
-			var(--db-font-family-sans)
-		);
-		font-size: var(--db-type-body-font-size-sm, 0.875rem); // 14px (small)
-		font-weight: 400;
-		line-height: var(--db-type-body-line-height-sm, 1.25rem); // 20px
-		font-feature-settings:
-			"liga" off,
-			"clig" off;
-		white-space: nowrap;
-		transition: background-color 0.2s ease;
-
-		&:hover,
-		&:focus {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-		}
-
-		&:active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-		}
-
-		&:focus-visible {
-			outline: 2px solid
-				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-			outline-offset: 2px;
-		}
-
-		@media screen and (prefers-reduced-motion: reduce) {
-			transition: none;
-		}
 	}
 
 	// Default chevron: apply when the breadcrumb does NOT request a slash
@@ -89,23 +56,29 @@
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 		/* reduce the inline size so the slash doesn't create extra empty box */
-		inline-size: auto;
-		block-size: auto;
-		font-size: var(--db-sizing-functional-xs, 0.875rem); // 14px (0.875rem)
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: var(--db-sizing-regular-xs);
+		aspect-ratio: 1;
+		font-size: var(--db-icon-font-size, 1rem);
 	}
 
 	// Medium size variant
 	&[data-size="medium"] {
+		&[data-separator="slash"]
+			.db-breadcrumb-list
+			li:not(:first-child)::before {
+			--db-icon-font-size: 1.25rem; // keep slash separator aligned with medium chevron size
+
+			inline-size: var(--db-sizing-functional-sm);
+		}
+
 		.db-breadcrumb-list {
 			gap: variables.$db-spacing-fixed-2xs; // medium: list item gap (per Figma)
 
 			/* ensure list items are vertically centered in medium size */
 			align-items: center;
-		}
-
-		// Propagate medium size to breadcrumb items via data attribute
-		li[data-size="medium"] {
-			// Breadcrumb items will apply their own medium size styles
 		}
 
 		// Ensure medium size chevron styling
