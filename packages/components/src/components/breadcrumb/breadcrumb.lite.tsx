@@ -1,5 +1,6 @@
 import {
 	For,
+	onMount,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -23,13 +24,11 @@ useDefaultProps<DBBreadcrumbProps>({
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
-	const internalId = uuid();
 
 	const state = useStore<DBBreadcrumbState>({
+		internalListId: undefined,
 		listId(): string {
-			return props.id
-				? `${props.id}-list`
-				: `db-breadcrumb-list-${internalId}`;
+			return props.id ? `${props.id}-list` : (state.internalListId ?? '');
 		},
 		isExpanded: false,
 		toggleExpanded(): void {
@@ -60,6 +59,10 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		ariaCurrent(item: DBBreadcrumbItems, isLast: boolean) {
 			return isLast ? (item.ariaCurrent ?? 'page') : undefined;
 		}
+	});
+
+	onMount(() => {
+		state.internalListId = `db-breadcrumb-list-${uuid()}`;
 	});
 
 	return (

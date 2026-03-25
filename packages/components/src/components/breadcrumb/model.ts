@@ -66,6 +66,10 @@ export type DBBreadcrumbProps = DBBreadcrumbDefaultProps & GlobalProps;
 
 export type DBBreadcrumbDefaultState = {
 	/**
+	 * Internal stable id used when no explicit component id is provided.
+	 */
+	internalListId?: string;
+	/**
 	 * Tracks whether the breadcrumb is expanded or collapsed
 	 */
 	isExpanded?: boolean;
