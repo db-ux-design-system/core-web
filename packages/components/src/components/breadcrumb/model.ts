@@ -1,6 +1,5 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
 import type { DBBreadcrumbItems } from '../breadcrumb-item/model';
-export type { DBBreadcrumbItems } from '../breadcrumb-item/model';
 
 /**
  * Available sizes for breadcrumb items
