@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, TemplateRef } from '@angular/core';
+import {
+	Component,
+	CUSTOM_ELEMENTS_SCHEMA,
+	Input,
+	TemplateRef
+} from '@angular/core';
 import { DBCard, DBDivider } from '../../../../../output/angular/src';
+import { environment } from '../../environments/environment';
 
 type VariantExample = {
 	name: string;
@@ -19,8 +25,11 @@ type Variant = {
 @Component({
 	selector: 'app-default-component',
 	templateUrl: './default.component.html',
-	imports: [CommonModule, DBCard, DBDivider],
-	standalone: true
+	imports: environment.webComponents
+		? [CommonModule]
+		: [CommonModule, DBCard, DBDivider],
+	standalone: true,
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class DefaultComponent {
 	@Input() title?: string;
