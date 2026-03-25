@@ -5,7 +5,7 @@ import {
 	useRef
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import { DBIcon } from '../icon';
+import DBIcon from '../icon/icon.lite';
 import type { DBBreadcrumbItemProps } from './model';
 
 useMetadata({});
@@ -23,7 +23,9 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 			<Show
 				when={props.href}
 				else={
-					<span aria-current={props.ariaCurrent} data-icon={props.icon}>
+					<span
+						aria-current={props.ariaCurrent}
+						data-icon={props.icon}>
 						<Show when={props.icon}>
 							<DBIcon
 								weight={props.size === 'medium' ? '24' : '20'}
@@ -41,7 +43,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					data-icon={props.icon}
 					style={
 						props.disabled
-							? { pointerEvents: 'none', opacity: 0.5 }
+							? { pointerEvents: 'none', opacity: '0.5' }
 							: {}
 					}>
 					<Show when={props.icon}>

@@ -8,18 +8,16 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString, parseItems, uuid } from '../../utils';
-import { DBBreadcrumbItem } from '../breadcrumb-item';
+import DBBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.lite';
 import type { DBBreadcrumbItems } from '../breadcrumb-item/model';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
 useMetadata({});
 
-const DEFAULT_ELLIPSIS_ARIA_LABEL = 'Expand to show all breadcrumb items';
-
 useDefaultProps<DBBreadcrumbProps>({
 	size: 'small',
 	separator: 'chevron',
-	ellipsisAriaLabel: DEFAULT_ELLIPSIS_ARIA_LABEL
+	ellipsisAriaLabel: 'Expand to show all breadcrumb items'
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
@@ -123,11 +121,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									class="db-breadcrumb-ellipsis"
 									aria-label={
 										props.ellipsisAriaLabel ??
-										DEFAULT_ELLIPSIS_ARIA_LABEL
+										'Expand to show all breadcrumb items'
 									}
 									title={
 										props.ellipsisAriaLabel ??
-										DEFAULT_ELLIPSIS_ARIA_LABEL
+										'Expand to show all breadcrumb items'
 									}
 									aria-expanded={getBooleanAsString(
 										state.isExpanded
