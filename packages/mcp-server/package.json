@@ -23,7 +23,8 @@
   ],
   "scripts": {
     "build": "node esbuild.js",
-    "dev": "tsx src/index.ts",
+    "build-manifest": "npx tsx src/build-manifest.ts",
+    "dev": "npm run build-manifest && tsx src/index.ts",
     "test": "vitest run",
     "test:unit": "vitest run src/__tests__/integration.test.ts src/__tests__/buildManifest.test.ts",
     "test:e2e": "vitest run src/__tests__/e2e.test.ts"

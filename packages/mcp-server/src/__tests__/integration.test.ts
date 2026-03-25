@@ -1,10 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('node:fs', () => ({ existsSync: vi.fn() }));
-vi.mock('node:fs/promises', () => ({ readFile: vi.fn() }));
-
-const { existsSync } = await import('node:fs');
-const { readFile } = await import('node:fs/promises');
 const { resetManifestCache, resolveSafePath } = await import('../utils/index.js');
 const {
 	handleListComponents,
@@ -27,8 +22,8 @@ const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
 /**
- * Serialises a partial manifest structure to a JSON string for use as a
- * mocked readFile return value.
+ * Serialises a partial manifest structure and parses it back for use as a
+ * resetManifestCache override.
  */
 function makeManifest(
 	components: Record<string, unknown> = {},
@@ -70,8 +65,6 @@ function assertUserMessage(result: any) {
 beforeEach(() => {
 	vi.resetAllMocks();
 	resetManifestCache();
-	// manifest.json must appear to exist so getManifest() proceeds
-	vi.mocked(existsSync).mockReturnValue(true);
 });
 
 // ---------------------------------------------------------------------------
@@ -79,7 +72,7 @@ beforeEach(() => {
 // ---------------------------------------------------------------------------
 describe('handleListComponents', () => {
 	it('returns component names from the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({ button: {}, input: {} }) as any);
+		resetManifestCache(JSON.parse(makeManifest({ button: {}, input: {} })));
 
 		const result = await handleListComponents();
 
@@ -89,7 +82,7 @@ describe('handleListComponents', () => {
 	});
 
 	it('returns an empty array when manifest has no components', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleListComponents();
 
@@ -102,9 +95,9 @@ describe('handleListComponents', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetComponentDetails', () => {
 	it('returns example names from the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({
+		resetManifestCache(JSON.parse(makeManifest({
 			button: { props: null, examples: ['Variant', 'Show Icon Leading'], exampleCode: {} }
-		}) as any);
+		})));
 
 		const result = await handleGetComponentDetails({ componentName: 'button' });
 
@@ -114,9 +107,9 @@ describe('handleGetComponentDetails', () => {
 	});
 
 	it('returns "No examples found." when examples array is empty', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({
+		resetManifestCache(JSON.parse(makeManifest({
 			button: { props: null, examples: [], exampleCode: {} }
-		}) as any);
+		})));
 
 		const result = await handleGetComponentDetails({ componentName: 'button' });
 
@@ -124,7 +117,7 @@ describe('handleGetComponentDetails', () => {
 	});
 
 	it('returns an error for unknown component', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleGetComponentDetails({ componentName: 'nonexistent' });
 
@@ -138,9 +131,9 @@ describe('handleGetComponentDetails', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetComponentProps', () => {
 	it('returns props content from the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({
+		resetManifestCache(JSON.parse(makeManifest({
 			button: { props: FAKE_PROPS, examples: [], exampleCode: {} }
-		}) as any);
+		})));
 
 		const result = await handleGetComponentProps({ componentName: 'button' });
 
@@ -149,7 +142,7 @@ describe('handleGetComponentProps', () => {
 	});
 
 	it('returns an error when component is not in the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleGetComponentProps({ componentName: 'nonexistent' });
 
@@ -158,9 +151,9 @@ describe('handleGetComponentProps', () => {
 	});
 
 	it('returns an error when props is null (model.ts missing)', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({
+		resetManifestCache(JSON.parse(makeManifest({
 			'no-props': { props: null, examples: [], exampleCode: {} }
-		}) as any);
+		})));
 
 		const result = await handleGetComponentProps({ componentName: 'no-props' });
 
@@ -174,7 +167,7 @@ describe('handleGetComponentProps', () => {
 // ---------------------------------------------------------------------------
 describe('handleListDesignTokenCategories', () => {
 	it('returns categories from manifest.tokens', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], { colors: '', spacing: '' }) as any);
+		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: '', spacing: '' })));
 
 		const result = await handleListDesignTokenCategories();
 
@@ -185,7 +178,7 @@ describe('handleListDesignTokenCategories', () => {
 	});
 
 	it('returns empty array when manifest.tokens is empty', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleListDesignTokenCategories();
 
@@ -199,7 +192,7 @@ describe('handleListDesignTokenCategories', () => {
 describe('handleGetDesignTokens', () => {
 	it('returns filtered --db-* lines from manifest.tokens', async () => {
 		const scss = '--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
-		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], { colors: scss }) as any);
+		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: scss })));
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
 
@@ -209,7 +202,7 @@ describe('handleGetDesignTokens', () => {
 	});
 
 	it('returns an error for an unknown category', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleGetDesignTokens({ category: 'nonexistent-category' });
 
@@ -223,7 +216,7 @@ describe('handleGetDesignTokens', () => {
 // ---------------------------------------------------------------------------
 describe('handleListIcons', () => {
 	it('returns icon names from the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({}, ['arrow_down', 'chevron_right']) as any);
+		resetManifestCache(JSON.parse(makeManifest({}, ['arrow_down', 'chevron_right'])));
 
 		const result = await handleListIcons();
 
@@ -238,13 +231,13 @@ describe('handleListIcons', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetExampleCode', () => {
 	it('returns example code from the manifest via direct key match', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({
+		resetManifestCache(JSON.parse(makeManifest({
 			button: {
 				props: null,
 				examples: ['Variant'],
 				exampleCode: { react: { 'variant.example.tsx': FAKE_EXAMPLE_CODE }, angular: {}, vue: {} }
 			}
-		}) as any);
+		})));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'Variant', framework: 'react' });
 
@@ -253,9 +246,9 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('returns an error when the example is not found', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({
+		resetManifestCache(JSON.parse(makeManifest({
 			button: { props: null, examples: [], exampleCode: { react: {}, angular: {}, vue: {} } }
-		}) as any);
+		})));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'NonExistent', framework: 'react' });
 
@@ -264,7 +257,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('returns an error when the component is not in the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleGetExampleCode({ componentName: 'nonexistent', exampleName: 'Variant', framework: 'react' });
 
@@ -276,7 +269,7 @@ describe('handleGetExampleCode', () => {
 	// Fuzzy matching
 	// -------------------------------------------------------------------------
 	it('fuzzy: exact match wins over partial candidate', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['size.example.tsx', 'size-large.example.tsx']) as any);
+		resetManifestCache(JSON.parse(makeFuzzyManifest(['size.example.tsx', 'size-large.example.tsx'])));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
 
@@ -285,7 +278,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('fuzzy: falls back to partial match when no exact file exists', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['size-large.example.tsx']) as any);
+		resetManifestCache(JSON.parse(makeFuzzyManifest(['size-large.example.tsx'])));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
 
@@ -294,7 +287,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('fuzzy: returns error when neither exact nor partial match exists', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['variant.example.tsx']) as any);
+		resetManifestCache(JSON.parse(makeFuzzyManifest(['variant.example.tsx'])));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
 
@@ -303,7 +296,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('fuzzy: stem.includes(kebab) match is intentionally allowed', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['icon-size.example.tsx']) as any);
+		resetManifestCache(JSON.parse(makeFuzzyManifest(['icon-size.example.tsx'])));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
 
@@ -312,7 +305,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('fuzzy: exact match wins over stem.includes(kebab) when both present', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeFuzzyManifest(['icon-size.example.tsx', 'size.example.tsx']) as any);
+		resetManifestCache(JSON.parse(makeFuzzyManifest(['icon-size.example.tsx', 'size.example.tsx'])));
 
 		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
 
@@ -324,7 +317,7 @@ describe('handleGetExampleCode', () => {
 	// Path traversal protection
 	// -------------------------------------------------------------------------
 	it('security: rejects path traversal in componentName', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleGetExampleCode({ componentName: '../../etc/passwd', exampleName: 'Variant', framework: 'react' });
 
@@ -332,7 +325,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('security: rejects URL-encoded path traversal in componentName', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest() as any);
+		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleGetExampleCode({ componentName: 'button%2F..%2F..%2Fetc%2Fpasswd', exampleName: 'Variant', framework: 'react' });
 
@@ -345,9 +338,9 @@ describe('handleGetExampleCode', () => {
 // ---------------------------------------------------------------------------
 describe('handleDocsSearch', () => {
 	it('returns matching docs from the manifest', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], {}, {
+		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {
 			'docs/development.md': '# Development\nHow to contribute and set up the project.'
-		}) as any);
+		})));
 
 		const result = await handleDocsSearch({ query: 'contribute', category: 'global' });
 
@@ -356,9 +349,9 @@ describe('handleDocsSearch', () => {
 	});
 
 	it('returns no-match message when query has no results', async () => {
-		vi.mocked(readFile).mockResolvedValue(makeManifest({}, [], {}, {
+		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {
 			'docs/development.md': '# Development'
-		}) as any);
+		})));
 
 		const result = await handleDocsSearch({ query: 'xyznonexistent', category: 'global' });
 
