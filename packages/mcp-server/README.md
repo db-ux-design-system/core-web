@@ -50,7 +50,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
     "servers": {
       "db-ux": {
         "command": "npx",
-        "args": ["-y", "@db-ux/core-foundations", "db-ux-mcp"]
+        "args": ["--yes", "@db-ux/core-foundations", "db-ux-mcp"]
       }
     }
   }
