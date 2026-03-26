@@ -6,7 +6,6 @@
 .db-footer {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
-
 	@include helpers.display(flex);
 
 	flex-direction: column;
@@ -52,8 +51,8 @@
 			flex: 1 0 0;
 			align-items: center;
 			justify-content: center;
-			min-block-size: 1px;
-			min-inline-size: 1px;
+			min-block-size: variables.$db-sizing-3xs;
+			min-inline-size: variables.$db-sizing-3xs;
 
 			.db-footer-main-inner {
 				@include helpers.display(flex);
@@ -71,8 +70,8 @@
 					align-items: center;
 					justify-content: center;
 					block-size: 100%;
-					min-block-size: 1px;
-					min-inline-size: 1px;
+					min-block-size: variables.$db-sizing-3xs;
+					min-inline-size: variables.$db-sizing-3xs;
 				}
 			}
 		}
@@ -101,8 +100,8 @@
 			flex: 1 0 0;
 			gap: variables.$db-spacing-fixed-sm;
 			align-items: center;
-			min-block-size: 1px;
-			min-inline-size: 1px;
+			min-block-size: variables.$db-sizing-3xs;
+			min-inline-size: variables.$db-sizing-3xs;
 
 			> *:not(.db-footer-copyright) {
 				@include helpers.display(flex);

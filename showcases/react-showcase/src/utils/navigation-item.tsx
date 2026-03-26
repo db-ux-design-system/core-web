@@ -1,5 +1,5 @@
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
-import FooterComponent from '../components/footer';
+import FooterShowcase from '@components/components/footer/showcase/footer.showcase';
 
 import Home from '../components/home';
 
@@ -100,6 +100,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'tooltip',
 				label: 'Tooltip',
 				component: <TooltipShowcase />
+			},
+			{ path: 'tag', label: 'Tag', component: <TagShowcase /> },
+			{
+				path: 'accordion',
+				label: 'Accordion',
 				component: <AccordionShowcase />
 			},
 			{
@@ -183,7 +188,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'footer',
 				label: 'Footer',
-				component: <FooterComponent />
+				component: <FooterShowcase />
 			}
 		])
 	},

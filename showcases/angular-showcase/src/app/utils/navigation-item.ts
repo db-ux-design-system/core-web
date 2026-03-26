@@ -11,7 +11,7 @@ import { CheckboxComponent } from '../components/checkbox.component';
 import { CustomSelectComponent } from '../components/custom-select.component';
 import { DividerComponent } from '../components/divider.component';
 import { DrawerComponent } from '../components/drawer.component';
-import { FooterComponent } from '../components/footer/footer.component';
+import { FooterComponent } from '../components/footer.component';
 import { HeaderComponent } from '../components/header.component';
 import { HomeComponent } from '../components/home/home.component';
 import { IconComponent } from '../components/icon.component';

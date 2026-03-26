@@ -9,6 +9,7 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
+import FooterShowcase from '@components/components/footer/showcase/footer.showcase.vue';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
@@ -30,7 +31,6 @@ import TextareaShowcase from '@components/components/textarea/showcase/textarea.
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
-import Footer from '../components/footer/Footer.vue';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
@@ -210,6 +210,11 @@ export const navigationItems: NavItem[] = [
 				component: markRaw(DrawerShowcase)
 			},
 			{
+				path: '/01/divider',
+				label: 'Divider',
+				component: markRaw(DividerShowcase)
+			},
+			{
 				path: '/01/popover',
 				label: 'Popover',
 				component: markRaw(PopoverShowcase)
@@ -227,7 +232,7 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/01/footer',
 				label: 'Footer',
-				component: markRaw(Footer)
+				component: markRaw(FooterShowcase)
 			}
 		])
 	},

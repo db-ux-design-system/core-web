@@ -9,6 +9,7 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
+import FooterShowcase from '@components/components/footer/showcase/footer.showcase';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
@@ -28,7 +29,6 @@ import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import type { ReactElement } from 'react';
-import FooterComponent from '../../react-showcase/src/components/footer';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -71,7 +71,7 @@ const nameComponentMap = {
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
 	tooltip: <TooltipShowcase isPatternhub />,
-	footer: <FooterComponent />
+	footer: <FooterShowcase isPatternhub />
 };
 
 const addComponentsToNavigationItems = (
