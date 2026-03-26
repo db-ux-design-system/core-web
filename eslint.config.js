@@ -1,3 +1,5 @@
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import xoConfig from 'eslint-config-xo';
 import { defineConfig, globalIgnores } from 'eslint/config';
@@ -10,13 +12,19 @@ export default defineConfig([
 	globalIgnores([...ignoreFolders]),
 	{
 		files: ['**/*.ts', '**/*.tsx'],
-		parser: '@typescript-eslint/parser',
-		parserOptions: {
-			ecmaVersion: 'latest',
-			sourceType: 'module',
-			ecmaFeatures: { jsx: true }
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				ecmaVersion: 'latest',
+				sourceType: 'module',
+				ecmaFeatures: { jsx: true }
+			}
 		},
-		plugins: ['@typescript-eslint'],
-		extends: ['plugin:@typescript-eslint/recommended']
+		plugins: {
+			'@typescript-eslint': tseslint
+		},
+		rules: {
+			...tseslint.configs.recommended.rules
+		}
 	}
 ]);

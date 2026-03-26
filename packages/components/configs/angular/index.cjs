@@ -1,4 +1,8 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
+const angularPlugin = require('../plugins/angular/index.cjs');
+const angularSlotsPlugin = require('../plugins/angular/slots.cjs');
+const classNamePlugin = require('../plugins/angular/className.cjs');
+const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToAngularOptions}
@@ -10,5 +14,11 @@ module.exports = {
 		customRef: '_ref'
 	},
 	api: 'signals',
-	plugins: [onClickPlugin]
+	plugins: [
+		attributePassingPlugin,
+		angularSlotsPlugin,
+		classNamePlugin,
+		onClickPlugin,
+		angularPlugin
+	]
 };

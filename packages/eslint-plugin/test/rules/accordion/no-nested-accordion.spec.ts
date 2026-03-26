@@ -1,0 +1,64 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
+import { RuleTester } from '@typescript-eslint/rule-tester';
+import { describe, it } from 'vitest';
+import rule from '../../../src/rules/accordion/no-nested-accordion.js';
+
+const ruleTester = new RuleTester({
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
+	}
+});
+
+const angularRuleTester = new AngularRuleTester();
+
+describe('no-nested-accordion', () => {
+	it('should validate rule', () => {
+		ruleTester.run('no-nested-accordion', rule, {
+			valid: [
+				{
+					code: '<DBAccordion><DBAccordionItem>Item</DBAccordionItem></DBAccordion>'
+				},
+				{ code: '<div><DBAccordion>Content</DBAccordion></div>' },
+				{
+					code: '<DBAccordion>First</DBAccordion><DBAccordion>Second</DBAccordion>'
+				}
+			],
+			invalid: [
+				{
+					code: '<DBAccordion><DBAccordion>Nested</DBAccordion></DBAccordion>',
+					errors: [{ messageId: 'noNested' }]
+				},
+				{
+					code: '<DBAccordion><DBAccordionItem><DBAccordion>Deep nested</DBAccordion></DBAccordionItem></DBAccordion>',
+					errors: [{ messageId: 'noNested' }]
+				},
+				{
+					code: '<DBAccordion><div><DBAccordion>Nested in div</DBAccordion></div></DBAccordion>',
+					errors: [{ messageId: 'noNested' }]
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('no-nested-accordion', rule, {
+			valid: [
+				{
+					code: '<db-accordion><db-accordion-item>Item</db-accordion-item></db-accordion>'
+				}
+			],
+			invalid: [
+				{
+					code: '<db-accordion><db-accordion>Nested</db-accordion></db-accordion>',
+					errors: [{ messageId: 'noNested' }]
+				},
+				{
+					code: '<db-accordion><db-accordion-item><db-accordion>Deep nested</db-accordion></db-accordion-item></db-accordion>',
+					errors: [{ messageId: 'noNested' }]
+				}
+			]
+		});
+	});
+});

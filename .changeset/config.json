@@ -15,13 +15,13 @@
 			"@db-ux/wc-core-components",
 			"@db-ux/core-stylelint",
 			"@db-ux/core-migration",
-			"@db-ux/agent-cli"
+			"@db-ux/agent-cli",
+			"@db-ux/core-eslint-plugin"
 		]
 	],
 	"ignore": [
 		"scripts",
 		"@db-ux/docs",
-		"@db-ux/e2e",
 		"angular-showcase",
 		"angular-ssr-showcase",
 		"next-showcase",

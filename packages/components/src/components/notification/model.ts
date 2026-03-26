@@ -6,7 +6,6 @@ import {
 	GlobalState,
 	IconProps,
 	InnerCloseButtonProps,
-	PopoverProps,
 	RoleProps,
 	SemanticProps,
 	ShowIconProps,
@@ -92,7 +91,6 @@ export type DBNotificationProps = DBNotificationDefaultProps &
 	IconProps &
 	SemanticProps &
 	InnerCloseButtonProps &
-	PopoverProps &
 	ShowIconProps &
 	TextProps;
 

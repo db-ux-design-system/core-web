@@ -1,0 +1,24 @@
+@use "colors-utils";
+@use "sass:list";
+@use "../../styles/colors"; // Import path is relative to build output (scss → build/styles, tailwind → build/tailwind)
+
+$all-variants: list.append(
+	list.join(colors.$variants, colors.$additional-variants),
+	"adaptive"
+);
+
+// stylelint-disable-next-line scss/at-rule-no-unknown
+@theme {
+	@each $color-name in $all-variants {
+		@include colors-utils.get-color($color-name, $color-name);
+	}
+}
+
+@layer colors {
+	@each $color-name in $all-variants {
+		[data-color="#{$color-name}"],
+		.db-color-#{$color-name} {
+			@include colors-utils.get-color($color-name, "adaptive");
+		}
+	}
+}

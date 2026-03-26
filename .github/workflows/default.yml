@@ -37,20 +37,13 @@ concurrency:
 
 jobs:
   init:
-    # Skip the entire pipeline for changeset release PRs as they only contain version bumps
-    if: |
-      !(
-        github.event_name == 'pull_request' &&
-        startsWith(github.head_ref, 'changeset-release/') &&
-        github.event.pull_request.head.repo.full_name == github.repository &&
-        github.event.pull_request.user.login == 'dbux-auto-merge-pr[bot]'
-      )
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
     with:
       release: ${{ github.event_name == 'release' }}
 
   lint:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
 
@@ -61,6 +54,7 @@ jobs:
     needs: [lint]
 
   build-packages:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
@@ -71,16 +65,18 @@ jobs:
     needs: [build-packages]
 
   build-stories:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-stories.yml
     needs: [init]
 
   cancel-on-failure-build-stories:
-    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-stories]
 
   init-playwright:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-init-playwright.yml
     needs: [init]
     with:
@@ -371,7 +367,33 @@ jobs:
       - name: 🎉 Checks done
         env:
           IS_RELEASE: ${{ github.event_name == 'release' }}
+          IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
+          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
+          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
+          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
+          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
+          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
+          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
+          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
+          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
+          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
+          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
+          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
+          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
+          echo "resultBuildOutputs: $resultBuildOutputs"
+          echo "resultTestPackages: $resultTestPackages"
+          echo "resultTestFoundations: $resultTestFoundations"
+          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
+          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
+          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
+          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
+          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
+          echo "resultTestScreenReader: $resultTestScreenReader"
+          if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
+            echo "🎉 Changeset release PR - skipping checks."
+            exit 0
+          fi
           resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
           resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
           resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
@@ -443,7 +465,8 @@ jobs:
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-screen-reader
+        test-screen-reader,
+        init
       ]
 
   deploy:
@@ -451,7 +474,8 @@ jobs:
     if: |
       ${{
       !cancelled() && github.actor != 'dependabot[bot]' &&
-      (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system')
+      (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
+      needs.init.outputs.isChangesetRelease != 'true'
       }}
     needs: [checks-done, init]
     with:

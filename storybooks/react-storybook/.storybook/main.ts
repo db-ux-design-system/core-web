@@ -17,6 +17,7 @@ const config: StorybookConfig = {
 	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	// TODO: Include html output when addon-html supports v10 https://github.com/whitespace-se/storybook-addon-html/pull/149
 	addons: ['@storybook/addon-docs'],
+	staticDirs: ['../public'],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {}
