@@ -68,9 +68,16 @@ const findMarkdownFiles = () => {
  * - ../node_modules/@db-ux/<package>/<path>
  */
 export const parseDBUXReference = (reference) => {
+	// Escape the org prefix for use in a regular expression
+	const escapedOrgPrefix = config.orgPrefix.replace(
+		/[.*+?^${}()|[\]\\]/g,
+		'\\$&'
+	);
 	// Extract package name and check if there's a file path after it
 	const match = reference.match(
-		/^(?:(?:\.\.?\/)+)?(?:node_modules\/)?(@db-ux\/[^/]+)\/(.+)$/
+		new RegExp(
+			`^(?:(?:\\.\\.?/)+)?(?:node_modules/)?(${escapedOrgPrefix}[^/]+)/(.+)$`
+		)
 	);
 
 	if (!match) return undefined;
@@ -88,6 +95,11 @@ const extractFileReferences = (content) => {
 	const references = [];
 	const lines = content.split('\n');
 
+	// Escape org prefix for use in the generic path pattern regex
+	const escapedOrgPrefix = config.orgPrefix.replace(
+		/[.*+?^${}()|[\]\\]/g,
+		'\\$&'
+	);
 	// Patterns to match different types of imports/references
 	const patterns = [
 		// @import statements in CSS/SCSS
@@ -99,7 +111,7 @@ const extractFileReferences = (content) => {
 		// HTML link tags
 		/href\s*=\s*["']([^"']+)["']/g,
 		// Generic file paths in code blocks
-		/["']([^"']*@db-ux\/[^"']+)["']/g
+		new RegExp(`["']([^"']*${escapedOrgPrefix}[^"']+)["']`, 'g')
 	];
 
 	// Track line numbers for each reference
@@ -172,7 +184,7 @@ export const expandBracketAlternatives = (input) => {
 
 const resolveSinglePackagePath = (packageName, filePath) => {
 	// Package directory name used in workspaces (`@db-ux/foo` -> `foo`).
-	const packageDirName = packageName.replace('@db-ux/', '');
+	const packageDirName = packageName.replace(config.orgPrefix, '');
 
 	// SCSS file resolution: try different variations for SCSS partials and extensions
 	const generateScssVariations = (originalPath) => {
