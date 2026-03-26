@@ -69,9 +69,9 @@ const findMarkdownFiles = () => {
  */
 export const parseDBUXReference = (reference) => {
 	// Escape the org prefix for use in a regular expression
-	const escapedOrgPrefix = config.orgPrefix.replace(
+	const escapedOrgPrefix = config.orgPrefix.replaceAll(
 		/[.*+?^${}()|[\]\\]/g,
-		'\\$&'
+		String.raw`\$&`
 	);
 	// Extract package name and check if there's a file path after it
 	const match = reference.match(
@@ -96,9 +96,9 @@ const extractFileReferences = (content) => {
 	const lines = content.split('\n');
 
 	// Escape org prefix for use in the generic path pattern regex
-	const escapedOrgPrefix = config.orgPrefix.replace(
+	const escapedOrgPrefix = config.orgPrefix.replaceAll(
 		/[.*+?^${}()|[\]\\]/g,
-		'\\$&'
+		String.raw`\$&`
 	);
 	// Patterns to match different types of imports/references
 	const patterns = [
