@@ -1,6 +1,7 @@
+import BreadcrumbItemShowcase from '@components/components/breadcrumb-item/showcase/breadcrumb-item.showcase';
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
-import BreadcrumbComponent from '../components/breadcrumb';
-import BreadcrumbItemComponent from '../components/breadcrumb-item';
+import React from 'react';
 import Home from '../components/home';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
@@ -36,13 +37,13 @@ import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.sho
 export type NavigationItem = {
 	path: string;
 	label: string;
-	component?: any;
+	component?: React.ReactNode;
 	subNavigation?: NavigationItem[];
 };
 
 export const getSortedNavigationItems = (
 	navigationItems: NavigationItem[]
-): any[] =>
+): NavigationItem[] =>
 	navigationItems.sort((a: NavigationItem, b: NavigationItem) =>
 		a.path.localeCompare(b.path)
 	);
@@ -67,12 +68,12 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'breadcrumb',
 				label: 'Breadcrumb',
-				component: <BreadcrumbComponent />
+				component: <BreadcrumbShowcase />
 			},
 			{
 				path: 'breadcrumb-item',
 				label: 'BreadcrumbItem',
-				component: <BreadcrumbItemComponent />
+				component: <BreadcrumbItemShowcase />
 			},
 			{
 				path: 'navigation-item',

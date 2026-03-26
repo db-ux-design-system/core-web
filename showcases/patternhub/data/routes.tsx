@@ -2,6 +2,8 @@ import AccordionItemShowcase from '@components/components/accordion-item/showcas
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
 import BrandShowcase from '@components/components/brand/showcase/brand.showcase';
+import BreadcrumbItemShowcase from '@components/components/breadcrumb-item/showcase/breadcrumb-item.showcase';
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -28,8 +30,6 @@ import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import type { ReactElement } from 'react';
-import BreadcrumbComponent from '../../react-showcase/src/components/breadcrumb';
-import BreadcrumbItemComponent from '../../react-showcase/src/components/breadcrumb-item';
 
 import Components from './components.json';
 
@@ -73,8 +73,8 @@ const nameComponentMap = {
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
 	tooltip: <TooltipShowcase isPatternhub />,
-	breadcrumb: <BreadcrumbComponent isPatternhub />,
-	'breadcrumb-item': <BreadcrumbItemComponent isPatternhub />
+	breadcrumb: <BreadcrumbShowcase isPatternhub />,
+	'breadcrumb-item': <BreadcrumbItemShowcase isPatternhub />
 };
 
 const addComponentsToNavigationItems = (

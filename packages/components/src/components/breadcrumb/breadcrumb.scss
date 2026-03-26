@@ -34,9 +34,14 @@
 	}
 
 	// Default chevron: apply when the breadcrumb does NOT request a slash
+	// Two selectors cover both HTML (li direct child) and Angular (li inside db-breadcrumb-item wrapper)
 	&:not([data-separator="slash"])
 		.db-breadcrumb-list
-		> li:not(:first-child)::before {
+		> li:not(:first-child)::before,
+	&:not([data-separator="slash"])
+		.db-breadcrumb-list
+		> db-breadcrumb-item:not(:first-child)
+		> li::before {
 		@extend %icon;
 
 		--db-icon: "chevron_right";
@@ -50,7 +55,12 @@
 	}
 
 	// Slash separator override when component has data-separator="slash"
-	&[data-separator="slash"] .db-breadcrumb-list li:not(:first-child)::before {
+	// Two selectors cover both HTML (li descendant) and Angular (li inside db-breadcrumb-item wrapper)
+	&[data-separator="slash"] .db-breadcrumb-list li:not(:first-child)::before,
+	&[data-separator="slash"]
+		.db-breadcrumb-list
+		> db-breadcrumb-item:not(:first-child)
+		> li::before {
 		content: "/"; // ASCII slash (0x2F)
 		font-weight: 400;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -61,17 +71,20 @@
 		justify-content: center;
 		inline-size: var(--db-sizing-regular-xs);
 		aspect-ratio: 1;
-		font-size: var(--db-icon-font-size, 1rem);
+		font-size: 0.875rem; // Smaller text size for slash separator (small)
 	}
 
 	// Medium size variant
 	&[data-size="medium"] {
 		&[data-separator="slash"]
 			.db-breadcrumb-list
-			li:not(:first-child)::before {
-			--db-icon-font-size: 1.25rem; // keep slash separator aligned with medium chevron size
-
+			li:not(:first-child)::before,
+		&[data-separator="slash"]
+			.db-breadcrumb-list
+			> db-breadcrumb-item:not(:first-child)
+			> li::before {
 			inline-size: var(--db-sizing-functional-sm);
+			font-size: 1rem; // Smaller text size for slash separator (medium)
 		}
 
 		.db-breadcrumb-list {
@@ -84,7 +97,11 @@
 		// Ensure medium size chevron styling
 		&:not([data-separator="slash"])
 			.db-breadcrumb-list
-			> li:not(:first-child)::before {
+			> li:not(:first-child)::before,
+		&:not([data-separator="slash"])
+			.db-breadcrumb-list
+			> db-breadcrumb-item:not(:first-child)
+			> li::before {
 			--db-icon-font-weight: 20; // Font weight to load 20px icon font variant
 			--db-icon-font-size: 1.25rem; // Actual size: 20px (medium)
 			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};

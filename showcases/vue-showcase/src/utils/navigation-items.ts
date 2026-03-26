@@ -2,6 +2,8 @@ import AccordionItemShowcase from '@components/components/accordion-item/showcas
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
 import BrandShowcase from '@components/components/brand/showcase/brand.showcase.vue';
+import BreadcrumbItemShowcase from '@components/components/breadcrumb-item/showcase/breadcrumb-item.showcase.vue';
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase.vue';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
@@ -30,8 +32,6 @@ import TextareaShowcase from '@components/components/textarea/showcase/textarea.
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
-import BreadcrumbItem from '../components/breadcrumb-item/BreadcrumbItem.vue';
-import Breadcrumb from '../components/breadcrumb/breadcrumb.vue';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
@@ -71,12 +71,12 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/05/breadcrumb',
 				label: 'Breadcrumb',
-				component: markRaw(Breadcrumb)
+				component: markRaw(BreadcrumbShowcase)
 			},
 			{
 				path: '/05/breadcrumb-item',
 				label: 'BreadcrumbItem',
-				component: markRaw(BreadcrumbItem)
+				component: markRaw(BreadcrumbItemShowcase)
 			},
 			{
 				path: '/05/navigation-item',
