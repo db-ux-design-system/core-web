@@ -64,7 +64,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
 | Name | `db-ux` |
 | Type | `stdio` |
 | Command | `npx` |
-| Arguments | `-y @db-ux/core-foundations db-ux-mcp` |
+| Arguments | `--yes @db-ux/core-foundations db-ux-mcp` |
 
 ### 3. Add Project Rules (Plan-First Paradigm)
 
