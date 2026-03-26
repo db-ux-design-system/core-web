@@ -15,7 +15,7 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 Ensure you are using Node.js v22+ and have access to the DB UX packages. The server is invoked via `npx`:
 
 ```bash
-npx -y @db-ux/core-foundations db-ux-mcp
+npx --yes @db-ux/core-foundations db-ux-mcp
 ```
 
 > **Crucial Concept:** You do **not** run this command manually in your terminal for daily usage. If you do, it will look like the terminal is hanging because it is waiting for JSON-RPC messages over standard input (`stdio`). Instead, you will configure your IDE (Cursor, VS Code, IntelliJ) to run this command automatically in the background.
