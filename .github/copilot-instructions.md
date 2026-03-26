@@ -115,8 +115,6 @@ npm run build-outputs # Verify framework outputs build
 ```bash
 # Generate/update screenshots:
 npm run regenerate:screenshots
-# Test visual regression:
-docker-compose --file ./e2e/docker-compose.yml up
 ```
 
 **TIMING**: Visual tests take 10+ minutes. NEVER CANCEL. Set timeout to 1800+ seconds.
@@ -149,7 +147,6 @@ docker-compose --file ./e2e/docker-compose.yml up
 │   ├── vue/                # Vue 3 components (@db-ux/v-core-components)
 │   └── stencil/            # Web Components (@db-ux/wc-core-components)
 ├── showcases/              # Example applications for each framework
-├── e2e/                    # End-to-end testing with Playwright
 └── docs/                   # Documentation files
 ```
 
@@ -237,10 +234,10 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 **Always add a new changeset when making changes inside the following folders:**
 
-| Folder                      | Packages to include                                                                                                                             |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src` (if JavaScript is involved)   | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                                             |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                       |
+| Folder                                                | Packages to include                                                                                                                             |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src` (if JavaScript is involved) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/foundations/scss`                           | `@db-ux/core-foundations`                                                                                                                       |
 
 Use the following bump types for changeset entries:
 
