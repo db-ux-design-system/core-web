@@ -15,7 +15,8 @@
         - link "Home"
       - listitem:
         - link "Category"
-      - listitem: Current Page
+      - listitem:
+        - link "Current Page"
   - link "Separator"
   - navigation "Breadcrumb separator chevron":
     - list:
@@ -23,7 +24,8 @@
         - link "Home"
       - listitem:
         - link "Category"
-      - listitem: Current Page
+      - listitem:
+        - link "Current Page"
   - navigation "Breadcrumb separator slash":
     - list:
       - listitem:
@@ -31,7 +33,9 @@
       - listitem:
         - text: /
         - link "Category"
-      - listitem: / Current Page
+      - listitem:
+        - text: /
+        - link "Current Page"
   - link "Collapsed"
   - navigation "Breadcrumb collapsed":
     - list:
