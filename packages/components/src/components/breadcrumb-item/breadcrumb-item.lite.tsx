@@ -4,7 +4,7 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import type { DBBreadcrumbItemProps } from './model';
 
 useMetadata({});
@@ -41,6 +41,8 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					id={props.id}
 					href={props.href}
 					aria-current={props.ariaCurrent}
+					aria-disabled={getBooleanAsString(props.disabled)}
+					tabIndex={props.disabled ? -1 : 0}
 					style={
 						props.disabled
 							? { pointerEvents: 'none', opacity: '0.5' }
