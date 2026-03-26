@@ -304,11 +304,19 @@ test.describe('DBBreadcrumb', () => {
 				(<DBBreadcrumb items={itemsWithIcons} maxItems={2} />) as any
 			);
 
-			// In collapsed state: first item (Home) + ellipsis + last 1 item (Current)
-			// Both visible items have icons, so we expect 2 icons
-			const icons = component.locator('.db-icon');
-			await expect(icons).toHaveCount(2);
-			await expect(icons.first()).toBeVisible();
+			// In collapsed state we render first + last item with icon metadata.
+			const visibleIconTargets = component.locator(
+				'a[data-icon], span[data-icon]'
+			);
+			await expect(visibleIconTargets).toHaveCount(2);
+			await expect(visibleIconTargets.first()).toHaveAttribute(
+				'data-icon',
+				'house'
+			);
+			await expect(visibleIconTargets.last()).toHaveAttribute(
+				'data-icon',
+				'dot'
+			);
 		});
 	});
 

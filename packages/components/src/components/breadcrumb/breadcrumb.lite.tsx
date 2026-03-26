@@ -17,6 +17,7 @@ useMetadata({});
 useDefaultProps<DBBreadcrumbProps>({
 	size: 'small',
 	separator: 'chevron',
+	ariaLabel: 'Breadcrumb',
 	ellipsisAriaLabel: 'Expand to show all breadcrumb items'
 });
 
@@ -67,6 +68,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		<nav
 			ref={_ref}
 			id={props.id}
+			aria-label={props.ariaLabel}
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
 			data-separator={props.separator}>
