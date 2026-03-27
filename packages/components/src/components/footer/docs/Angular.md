@@ -37,14 +37,30 @@ import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
 	template: `
 		<db-footer>
 			<div main>
-				<db-link href="#">About Us</db-link>
-				<db-link href="#">Contact</db-link>
-				<db-link href="#">Careers</db-link>
+				<ul>
+					<li>
+						<db-link href="#">About Us</db-link>
+					</li>
+					<li>
+						<db-link href="#">Contact</db-link>
+					</li>
+					<li>
+						<db-link href="#">Careers</db-link>
+					</li>
+				</ul>
 			</div>
 			<div meta>
-				<db-link href="#">Privacy Policy</db-link>
-				<db-link href="#">Terms of Service</db-link>
-				<db-link href="#">Imprint</db-link>
+				<ul>
+					<li>
+						<db-link href="#">Privacy Policy</db-link>
+					</li>
+					<li>
+						<db-link href="#">Terms of Service</db-link>
+					</li>
+					<li>
+						<db-link href="#">Imprint</db-link>
+					</li>
+				</ul>
 			</div>
 		</db-footer>
 	`
@@ -91,6 +107,57 @@ import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
 				<db-link href="#">Privacy</db-link>
 				<db-link href="#">Imprint</db-link>
 			</div>
+		</db-footer>
+	`
+})
+export class AppComponent {}
+```
+
+#### Only main section
+
+```ts app.component.ts
+// app.component.ts
+import { Component } from "@angular/core";
+import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
+
+@Component({
+	selector: "app-root",
+	imports: [DBFooter, DBLink],
+	template: `
+		<db-footer [showMeta]="false">
+			<div main>
+				<ul>
+					<li>
+						<db-link href="#">About Us</db-link>
+					</li>
+					<li>
+						<db-link href="#">Contact</db-link>
+					</li>
+					<li>
+						<db-link href="#">Careers</db-link>
+					</li>
+				</ul>
+			</div>
+		</db-footer>
+	`
+})
+export class AppComponent {}
+```
+
+#### Width
+
+```ts app.component.ts
+// app.component.ts
+import { Component } from "@angular/core";
+import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
+
+@Component({
+	selector: "app-root",
+	imports: [DBFooter, DBLink],
+	template: `
+		<db-footer width="full">
+			<div main>Footer Navigation</div>
+			<div meta>Legal Links</div>
 		</db-footer>
 	`
 })

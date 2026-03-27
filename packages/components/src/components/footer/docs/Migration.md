@@ -29,16 +29,23 @@ The Footer component is new in v3. If you previously used custom footer implemen
 
 **After (DBFooter component):**
 
-```tsx
-import { DBFooter, DBLink } from "@db-ux/react-core-components";
-
-<DBFooter
-	main={<div>Footer Navigation</div>}
-	meta={
-		<>
-			<DBLink href="#">Privacy</DBLink>
-			<DBLink href="#">Imprint</DBLink>
-		</>
-	}
-/>;
+```html
+<footer class="db-footer">
+	<section class="db-footer-main">
+		<div class="db-footer-content-container">
+			<div class="db-footer-main-inner">
+				<div>Footer Navigation</div>
+			</div>
+		</div>
+	</section>
+	<section class="db-footer-meta">
+		<div class="db-footer-content-container">
+			<div class="db-footer-meta-inner">
+				<p class="db-footer-copyright">© Deutsche Bahn AG</p>
+				<a class="db-link" href="#">Privacy</a>
+				<a class="db-link" href="#">Imprint</a>
+			</div>
+		</div>
+	</section>
+</footer>
 ```

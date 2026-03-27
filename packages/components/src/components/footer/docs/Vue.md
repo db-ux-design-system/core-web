@@ -84,3 +84,48 @@ import { DBFooter, DBLink } from "@db-ux/v-core-components";
 	</DBFooter>
 </template>
 ```
+
+#### Only main section
+
+```vue App.vue
+<script setup lang="ts">
+import { DBFooter, DBLink } from "@db-ux/v-core-components";
+</script>
+
+<template>
+	<DBFooter :showMeta="false">
+		<template #main>
+			<ul>
+				<li>
+					<DBLink href="#">About Us</DBLink>
+				</li>
+				<li>
+					<DBLink href="#">Contact</DBLink>
+				</li>
+				<li>
+					<DBLink href="#">Careers</DBLink>
+				</li>
+			</ul>
+		</template>
+	</DBFooter>
+</template>
+```
+
+#### Width
+
+```vue App.vue
+<script setup lang="ts">
+import { DBFooter } from "@db-ux/v-core-components";
+</script>
+
+<template>
+	<DBFooter width="full">
+		<template #main>
+			<div>Footer Navigation</div>
+		</template>
+		<template #meta>
+			<div>Legal Links</div>
+		</template>
+	</DBFooter>
+</template>
+```
