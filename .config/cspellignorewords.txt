@@ -161,3 +161,4 @@ cursorrules
 xyznonexistent
 serialised
 Serialises
+stylelints
