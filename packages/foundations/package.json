@@ -8,9 +8,6 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
-  "bin": {
-    "db-ux-mcp": "./build/mcp/index.js"
-  },
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
@@ -21,8 +18,7 @@
     "build"
   ],
   "scripts": {
-    "build": "npm-run-all copy-prepare:* build:* build-mcp",
-    "build-mcp": "node ../../packages/mcp-server/esbuild.js && cpr ../../packages/mcp-server/build/index.js build/mcp/index.js --overwrite",
+    "build": "npm-run-all copy-prepare:* build:*",
     "build:01_normalize": "npm-run-all copy-prepare:*",
     "build:02_copy": "npm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles  --fatal-deprecation=mixed-decls",
@@ -52,9 +48,7 @@
     "start:nodemon": "nodemon --config nodemon.json",
     "test:e2e": "npx playwright test --config=./test/playwright.config.js"
   },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.27.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.6",

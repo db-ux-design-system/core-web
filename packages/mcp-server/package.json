@@ -11,23 +11,24 @@
   "engines": {
     "node": ">=22"
   },
-  "exports": {
-    ".": "./build/index.js"
-  },
   "bin": {
-    "db-ux-mcp": "build/index.js"
+    "db-ux-mcp": "./dist/index.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
   },
   "files": [
-    "build",
-    "CONTEXT.md"
+    "CONTEXT.md",
+    "dist"
   ],
   "scripts": {
-    "build": "node esbuild.js",
-    "build-manifest": "npx tsx src/build-manifest.ts",
-    "dev": "npm run build-manifest && tsx src/index.ts",
+    "build": "npm run build-manifest && node esbuild.js",
+    "build-manifest": "tsx src/build-manifest.ts",
+    "dev": "npm run build && node dist/index.js",
+    "lint": "eslint src/ --ext .ts",
+    "start": "node dist/index.js",
     "test": "vitest run",
-    "test:unit": "vitest run src/__tests__/integration.test.ts src/__tests__/buildManifest.test.ts",
-    "test:e2e": "vitest run src/__tests__/e2e.test.ts"
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
