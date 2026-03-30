@@ -24,6 +24,8 @@ export const ALL_ICONS_FILE = join(
 export const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 /** Absolute path to the top-level docs directory. */
 export const DOCS_DIR = join(REPO_ROOT, 'docs');
+/** Absolute path to the migration guides directory. */
+export const MIGRATION_DIR = join(REPO_ROOT, 'docs/migration');
 /** Maps each design token category name to its corresponding SCSS source file. */
 export const TOKEN_FILES: Record<string, string> = {
 	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),

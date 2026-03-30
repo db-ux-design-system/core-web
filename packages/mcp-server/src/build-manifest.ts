@@ -15,6 +15,7 @@ const REPO_ROOT = resolve(import.meta.dirname, '../../..');
 const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
 const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
 const DOCS_DIR = join(REPO_ROOT, 'docs');
+const MIGRATION_DIR = join(REPO_ROOT, 'docs/migration');
 const OUTPUT_DIR = join(REPO_ROOT, 'output');
 
 const FRAMEWORKS = [
@@ -153,6 +154,22 @@ async function collectDocs(
 }
 
 /**
+ * Reads all .md files from docs/migration/ and returns their content keyed
+ * by filename without the .md extension (e.g. "v2.x.x-to-v3.0.0").
+ */
+async function collectMigrationGuides(): Promise<Record<string, string>> {
+	if (!existsSync(MIGRATION_DIR)) return {};
+	const entries = await readdir(MIGRATION_DIR, { withFileTypes: true });
+	const guides: Record<string, string> = {};
+	for (const entry of entries) {
+		if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+		const key = entry.name.slice(0, -3);
+		guides[key] = await readFile(join(MIGRATION_DIR, entry.name), 'utf-8');
+	}
+	return guides;
+}
+
+/**
  * Entry point for the build step. Collects all component data, icons, tokens,
  * and docs, then writes the result to src/manifest.json.
  * Calls process.exit(1) if any component failed to process.
@@ -194,16 +211,17 @@ async function buildManifest() {
 		if (!entry.hasError) components[entry.name] = entry.data;
 	}
 
-	const [tokens, docs] = await Promise.all([
+	const [tokens, docs, migrationGuides] = await Promise.all([
 		collectTokens(),
-		collectDocs(DOCS_DIR)
+		collectDocs(DOCS_DIR),
+		collectMigrationGuides()
 	]);
 
-	const manifest = { icons, components, tokens, docs };
+	const manifest = { icons, components, tokens, docs, migrationGuides };
 	const outPath = join(import.meta.dirname, 'manifest.json');
 	await writeFile(outPath, JSON.stringify(manifest));
 	console.log(
-		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs)`
+		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`
 	);
 
 	if (hasErrors) process.exit(1);

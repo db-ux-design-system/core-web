@@ -9,7 +9,9 @@ const {
 	handleGetDesignTokens,
 	handleListIcons,
 	handleGetExampleCode,
-	handleDocsSearch
+	handleDocsSearch,
+	handleListMigrationGuides,
+	handleGetMigrationGuide
 } = await import('../tools/index.js');
 const {
 	handleScaffoldPagePrompt,
@@ -29,9 +31,10 @@ function makeManifest(
 	components: Record<string, unknown> = {},
 	icons: string[] = [],
 	tokens: Record<string, string> = {},
-	docs: Record<string, string> = {}
+	docs: Record<string, string> = {},
+	migrationGuides: Record<string, string> = {}
 ) {
-	return JSON.stringify({ icons, components, tokens, docs });
+	return JSON.stringify({ icons, components, tokens, docs, migrationGuides });
 }
 
 /**
@@ -330,6 +333,59 @@ describe('handleGetExampleCode', () => {
 		const result = await handleGetExampleCode({ componentName: 'button%2F..%2F..%2Fetc%2Fpasswd', exampleName: 'Variant', framework: 'react' });
 
 		expect(result.isError).toBe(true);
+	});
+});
+
+// ---------------------------------------------------------------------------
+// list_migration_guides
+// ---------------------------------------------------------------------------
+describe('handleListMigrationGuides', () => {
+	it('returns guide names from the manifest', async () => {
+		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {}, {
+			'v2.x.x-to-v3.0.0': '# Migration v2 to v3',
+			'db-ui-to-db-ux-dsv3': '# DB UI to DB UX'
+		})));
+
+		const result = await handleListMigrationGuides();
+
+		expect(result.isError).toBeUndefined();
+		const names = JSON.parse(result.content[0].text);
+		expect(names).toContain('v2.x.x-to-v3.0.0');
+		expect(names).toContain('db-ui-to-db-ux-dsv3');
+	});
+
+	it('returns an empty array when no migration guides exist', async () => {
+		resetManifestCache(JSON.parse(makeManifest()));
+
+		const result = await handleListMigrationGuides();
+
+		expect(JSON.parse(result.content[0].text)).toEqual([]);
+	});
+});
+
+// ---------------------------------------------------------------------------
+// get_migration_guide
+// ---------------------------------------------------------------------------
+describe('handleGetMigrationGuide', () => {
+	it('returns the full markdown content of a guide', async () => {
+		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {}, {
+			'v2.x.x-to-v3.0.0': '# Migration v2 to v3\nReplace DBButtonOld with DBButton.'
+		})));
+
+		const result = await handleGetMigrationGuide({ guideName: 'v2.x.x-to-v3.0.0' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content[0].text).toContain('Replace DBButtonOld with DBButton.');
+	});
+
+	it('returns an error for an unknown guide name', async () => {
+		resetManifestCache(JSON.parse(makeManifest()));
+
+		const result = await handleGetMigrationGuide({ guideName: 'nonexistent-guide' });
+
+		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain('nonexistent-guide');
+		expect(result.content[0].text).toContain('list_migration_guides');
 	});
 });
 

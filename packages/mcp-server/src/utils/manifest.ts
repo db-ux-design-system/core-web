@@ -17,6 +17,7 @@ export type Manifest = {
 	>;
 	tokens: Record<string, string>;
 	docs: Record<string, string>;
+	migrationGuides: Record<string, string>;
 };
 
 let _manifest: Manifest | null = null;

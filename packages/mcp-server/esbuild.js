@@ -13,7 +13,7 @@ execSync("npx tsx src/build-manifest.ts", { stdio: "inherit", cwd: __dirname });
 // (e.g. `node ../../packages/mcp-server/esbuild.js` from packages/components/).
 await esbuild.build({
 	entryPoints: [`${__dirname}/src/index.ts`],
-	outfile: `${__dirname}/build/index.js`,
+	outfile: `${__dirname}/dist/index.js`,
 	bundle: true,
 	platform: "node",
 	target: "node22",

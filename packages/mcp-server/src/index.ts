@@ -18,9 +18,11 @@ import {
 	handleGetComponentProps,
 	handleGetDesignTokens,
 	handleGetExampleCode,
+	handleGetMigrationGuide,
 	handleListComponents,
 	handleListDesignTokenCategories,
-	handleListIcons
+	handleListIcons,
+	handleListMigrationGuides
 } from './tools';
 import {
 	docsSearchSchema,
@@ -28,9 +30,11 @@ import {
 	getComponentPropsSchema,
 	getDesignTokensSchema,
 	getExampleCodeSchema,
+	getMigrationGuideSchema,
 	listComponentsSchema,
 	listDesignTokenCategoriesSchema,
-	listIconsSchema
+	listIconsSchema,
+	listMigrationGuidesSchema
 } from './tools/schemas.js';
 
 export {
@@ -39,9 +43,11 @@ export {
 	handleGetComponentProps,
 	handleGetDesignTokens,
 	handleGetExampleCode,
+	handleGetMigrationGuide,
 	handleListComponents,
 	handleListDesignTokenCategories,
-	handleListIcons
+	handleListIcons,
+	handleListMigrationGuides
 } from './tools/index.js';
 export { resetManifestCache, resolveSafePath } from './utils/index.js';
 
@@ -78,6 +84,8 @@ server.registerTool(
 	handleGetExampleCode
 );
 server.registerTool('docs_search', docsSearchSchema, handleDocsSearch);
+server.registerTool('list_migration_guides', listMigrationGuidesSchema, handleListMigrationGuides);
+server.registerTool('get_migration_guide', getMigrationGuideSchema, handleGetMigrationGuide);
 
 // Prompts
 server.registerPrompt(

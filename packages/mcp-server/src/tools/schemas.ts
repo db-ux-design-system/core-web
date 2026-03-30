@@ -47,3 +47,14 @@ export const docsSearchSchema = {
 		docType: z.enum(['React', 'Angular', 'Vue', 'HTML', 'Migration', 'Accessibility']).optional().describe("Optional: The specific doc file to read for a component (e.g., 'Migration').")
 	}
 };
+
+export const listMigrationGuidesSchema = {
+	description: 'Returns all available DB UX migration guide names. Call this first to discover which guides exist before calling get_migration_guide.'
+};
+
+export const getMigrationGuideSchema = {
+	description: 'Returns the full markdown content of a specific DB UX migration guide. Use this to learn the exact syntax changes needed to refactor legacy DB UX code.',
+	inputSchema: {
+		guideName: z.string().max(100).describe("Exact guide name as returned by list_migration_guides, e.g. 'v2.x.x-to-v3.0.0' or 'db-ui-to-db-ux-dsv3'.")
+	}
+};
