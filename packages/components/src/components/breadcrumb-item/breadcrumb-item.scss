@@ -47,6 +47,14 @@
 		}
 	}
 
+	// Disabled state
+	a[aria-disabled="true"],
+	> span[aria-disabled="true"]:not(.db-icon) {
+		opacity: variables.$db-opacity-md;
+		pointer-events: none;
+		cursor: default;
+	}
+
 	// Remove hover effect for icons within breadcrumb items
 	a:hover .db-icon,
 	a:focus .db-icon,

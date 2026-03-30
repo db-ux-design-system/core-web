@@ -25,7 +25,17 @@ export default function BreadcrumbItem() {
 			<h2>3. Disabled Item</h2>
 			<DBBreadcrumb>
 				<DBBreadcrumbItem href="/">Home</DBBreadcrumbItem>
-				<DBBreadcrumbItem disabled>Disabled Item</DBBreadcrumbItem>
+				<DBBreadcrumbItem href="/disabled" disabled>
+					Disabled Link Item
+				</DBBreadcrumbItem>
+				<DBBreadcrumbItem ariaCurrent="page">Current</DBBreadcrumbItem>
+			</DBBreadcrumb>
+
+			<DBBreadcrumb>
+				<DBBreadcrumbItem href="/">Home</DBBreadcrumbItem>
+				<DBBreadcrumbItem disabled>
+					Disabled Non-Link Item
+				</DBBreadcrumbItem>
 				<DBBreadcrumbItem ariaCurrent="page">Current</DBBreadcrumbItem>
 			</DBBreadcrumb>
 

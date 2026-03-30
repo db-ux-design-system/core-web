@@ -56,7 +56,10 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 				: [];
 		},
 		ariaCurrent(item: DBBreadcrumbItems, isLast: boolean) {
-			return isLast ? (item.ariaCurrent ?? 'page') : undefined;
+			if (item.ariaCurrent) {
+				return item.ariaCurrent;
+			}
+			return isLast ? 'page' : undefined;
 		}
 	});
 

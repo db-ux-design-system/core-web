@@ -23,7 +23,13 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 			<Show
 				when={props.href}
 				else={
-					<span aria-current={props.ariaCurrent}>
+					<span
+						aria-current={props.ariaCurrent}
+						aria-disabled={
+							props.disabled
+								? getBooleanAsString(true)
+								: undefined
+						}>
 						<Show when={props.icon}>
 							<span
 								aria-hidden="true"
@@ -42,12 +48,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					href={props.href}
 					aria-current={props.ariaCurrent}
 					aria-disabled={getBooleanAsString(props.disabled)}
-					tabIndex={props.disabled ? -1 : 0}
-					style={
-						props.disabled
-							? { pointerEvents: 'none', opacity: '0.5' }
-							: {}
-					}>
+					tabIndex={props.disabled ? -1 : 0}>
 					<Show when={props.icon}>
 						<span
 							aria-hidden="true"

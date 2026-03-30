@@ -1,52 +1,52 @@
+import { DBBreadcrumbItem } from '../../breadcrumb-item/index';
 import { DBBreadcrumb } from '../index';
 
 export default function Breadcrumb() {
 	const items = [
-		{ href: '#', text: 'Home' },
-		{ href: '#', text: 'Category' },
-		{ href: '#', text: 'Subcategory' },
-		{ text: 'Current Page', ariaCurrent: 'page' as const }
+		{ href: '/', text: 'Startseite' },
+		{ href: '/reiseauskunft', text: 'Reiseauskunft' },
+		{
+			href: '/reiseauskunft/verbindung',
+			text: 'Verbindung Berlin - Hamburg'
+		},
+		{ text: 'Fahrtdetails', ariaCurrent: 'page' as const }
+	];
+
+	const collapsedItems = [
+		{ href: '/', text: 'Startseite' },
+		{ href: '/buchung', text: 'Buchung' },
+		{ href: '/buchung/fahrkarten', text: 'Fahrkarten' },
+		{ href: '/buchung/fahrkarten/sparpreis', text: 'Super Sparpreis' },
+		{ text: 'Sitzplatzreservierung', ariaCurrent: 'page' as const }
 	];
 
 	return (
 		<>
 			<h1>DBBreadcrumb Documentation Examples</h1>
 
-			<h2>1. Default Breadcrumb</h2>
+			<h2>1. Using Child Components</h2>
 			<DBBreadcrumb>
-				<li>
-					<a href="#">Home</a>
-				</li>
-				<li>
-					<a href="#">Category</a>
-				</li>
-				<li aria-current="page">Current Page</li>
+				<DBBreadcrumbItem href="/">Startseite</DBBreadcrumbItem>
+				<DBBreadcrumbItem href="/service">
+					Service & Hilfe
+				</DBBreadcrumbItem>
+				<DBBreadcrumbItem ariaCurrent="page">
+					Kontaktformular
+				</DBBreadcrumbItem>
 			</DBBreadcrumb>
 
-			<h2>2. Long Breadcrumb Path</h2>
-			<DBBreadcrumb>
-				<li>
-					<a href="#">Home</a>
-				</li>
-				<li>
-					<a href="#">Category</a>
-				</li>
-				<li>
-					<a href="#">Subcategory</a>
-				</li>
-				<li>
-					<a href="#">Product Group</a>
-				</li>
-				<li aria-current="page">Current Product</li>
-			</DBBreadcrumb>
+			<h2>2. Using Items Prop (Recommended)</h2>
+			<DBBreadcrumb items={items} ariaLabel="Breadcrumb" />
 
-			<h2>3. Single Item</h2>
-			<DBBreadcrumb>
-				<li aria-current="page">Current Page</li>
-			</DBBreadcrumb>
+			<h2>3. Size and Separator</h2>
+			<DBBreadcrumb items={items} size="medium" separator="slash" />
 
-			<h2>4. Items prop with collapse</h2>
-			<DBBreadcrumb items={items} maxItems={3} />
+			<h2>4. Items Prop with Collapse</h2>
+			<DBBreadcrumb
+				items={collapsedItems}
+				maxItems={3}
+				ellipsisAriaLabel="Expand to show all breadcrumb items"
+			/>
 		</>
 	);
 }
