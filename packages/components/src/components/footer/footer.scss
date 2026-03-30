@@ -9,8 +9,20 @@
 	@include helpers.display(flex);
 
 	flex-direction: column;
+	inline-size: 100%;
+
+	&[data-width="full"] {
+		inline-size: 100%;
+
+		.db-footer-content-container {
+			inline-size: 100%;
+		}
+	}
 
 	&[data-width="small"] {
+		inline-size: 100%;
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
+
 		.db-footer-content-container {
 			margin-inline: auto;
 			max-inline-size: screen-sizes.$db-breakpoint-sm;
@@ -18,6 +30,9 @@
 	}
 
 	&[data-width="medium"] {
+		inline-size: 100%;
+		max-inline-size: screen-sizes.$db-breakpoint-md;
+
 		.db-footer-content-container {
 			margin-inline: auto;
 			max-inline-size: screen-sizes.$db-breakpoint-md;
@@ -25,6 +40,9 @@
 	}
 
 	&[data-width="large"] {
+		inline-size: 100%;
+		max-inline-size: screen-sizes.$db-breakpoint-lg;
+
 		.db-footer-content-container {
 			margin-inline: auto;
 			max-inline-size: screen-sizes.$db-breakpoint-lg;
@@ -34,10 +52,9 @@
 	.db-footer-main {
 		border-block-start: variables.$db-border-width-3xs solid
 			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-		min-block-size: variables.$db-sizing-lg;
 
 		// Use design token directly to satisfy spacing lint rules
-		padding-block: variables.$db-spacing-fixed-md;
+		padding-block: variables.$db-spacing-fixed-lg;
 		padding-inline: variables.$db-spacing-fixed-lg;
 
 		@include helpers.display(flex);
@@ -82,9 +99,6 @@
 		border-block-start: variables.$db-border-width-3xs solid
 			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-		// Ensure visible height per design
-		min-block-size: variables.$db-sizing-md;
-
 		// Use design token directly to satisfy spacing lint rules
 		padding-block: variables.$db-spacing-fixed-xs;
 		padding-inline: variables.$db-spacing-fixed-lg;
@@ -98,7 +112,7 @@
 			@include helpers.display(flex);
 
 			flex: 1 0 0;
-			gap: variables.$db-spacing-fixed-sm;
+			gap: variables.$db-spacing-fixed-lg;
 			align-items: center;
 			min-block-size: variables.$db-sizing-3xs;
 			min-inline-size: variables.$db-sizing-3xs;
@@ -113,7 +127,7 @@
 			.db-footer-meta-inner {
 				@include helpers.display(flex);
 
-				gap: variables.$db-spacing-fixed-sm;
+				gap: variables.$db-spacing-fixed-lg;
 				align-items: center;
 				flex: 1 0 0;
 
