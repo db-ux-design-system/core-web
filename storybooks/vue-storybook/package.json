@@ -14,7 +14,7 @@
     "storybook": "storybook dev -p 6007"
   },
   "dependencies": {
-    "vue": "3.5.30"
+    "vue": "3.5.31"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.0.2",
@@ -28,6 +28,6 @@
     "storybook": "10.2.19",
     "typescript": "~5.9.3",
     "vite": "7.3.1",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.2.6"
   }
 }
