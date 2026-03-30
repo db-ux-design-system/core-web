@@ -83,6 +83,8 @@ core-web/
 | `list_design_token_categories` | Returns all available design token categories |
 | `get_design_tokens` | Returns CSS custom properties and SCSS variables for a token category |
 | `docs_search` | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs |
+| `list_migration_guides` | Returns all available migration guide names from the manifest |
+| `get_migration_guide` | Returns the full markdown content of a specific migration guide |
 
 ### Manifest (embedded data)
 
@@ -97,7 +99,7 @@ The server uses `StdioServerTransport` from the MCP SDK. It is started as a chil
   "mcpServers": {
     "db-ux": {
       "command": "npx",
-      "args": ["-y", "@db-ux/core-foundations", "db-ux-mcp"]
+      "args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
     }
   }
 }

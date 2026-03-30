@@ -31,7 +31,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
   "mcpServers": {
     "db-ux": {
       "command": "npx",
-      "args": ["-y", "@db-ux/core-foundations", "db-ux-mcp"]
+      "args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
     }
   }
 }
@@ -114,6 +114,8 @@ curl -o .cursorrules \
 | `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`. |
 | `list_icons` | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name. |
 | `docs_search` | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine. |
+| `list_migration_guides` | Returns all available migration guide names (e.g. `v2.x.x-to-v3.0.0`, `db-ui-to-db-ux-dsv3`). Call this first before any migration task. |
+| `get_migration_guide` | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code. |
 
 ### Example: fetching a React button example
 
@@ -143,9 +145,9 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 * **Behavior:** Scans for hardcoded "magic numbers" and checks WCAG 2.2 AA rules. The AI is forced to provide *evidence* for its critique by calling the design tokens and component API tools.
 
 ### `migrate_component` (Legacy Refactoring)
-Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture.
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3/v4 architecture.
 * **Parameters:** `legacy_code`, `source_context`, `target_framework`.
-* **Behavior:** Uses semantic parsing to map outdated structures intelligently to the new v3 architecture, retrieving the correct tokens and declarative CSS classes automatically.
+* **Behavior:** Calls `list_migration_guides` and `get_migration_guide` to dynamically load the relevant migration docs before mapping any component. This ensures all package renames, prop changes, and missing-component workarounds are sourced from the official guides rather than hardcoded knowledge.
 
 ### `audit_accessibility` (Deep A11y Scan)
 Specialized deep scan exclusively for inclusion and accessibility standards (WCAG 2.2 AA). Goes beyond traditional linters by evaluating interactive patterns, focus orders, and generating manual test scripts.

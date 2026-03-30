@@ -474,14 +474,16 @@ describe('handleMigrateComponentPrompt', () => {
 		expect(text).toContain('<button class="btn">Click</button>');
 	});
 
-	it('includes the CLI migration hint in the prompt text', () => {
+	it('instructs the agent to call list_migration_guides and get_migration_guide', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<db-button>Old</db-button>',
 			source_context: 'db-ui-v2',
 			target_framework: 'angular'
 		});
 
-		expect(result.messages[0].content.text).toContain('@db-ux/core-migration');
+		const text = result.messages[0].content.text;
+		expect(text).toContain('list_migration_guides');
+		expect(text).toContain('get_migration_guide');
 	});
 });
 

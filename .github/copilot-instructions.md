@@ -300,7 +300,7 @@ Or add it to your MCP client config:
 ```json
 {
   "mcpServers": {
-    "db-ux": { "command": "npx", "args": ["--yes", "@db-ux/core-foundations"] }
+    "db-ux": { "command": "npx", "args": ["--yes", "@db-ux/mcp-server", "db-ux-mcp"] }
   }
 }
 ```
@@ -315,6 +315,8 @@ Or add it to your MCP client config:
 6. `list_design_token_categories` — get available token categories if unsure which to query
 7. `get_design_tokens` — retrieve spacing, color, and typography tokens
 8. `list_icons` — look up the exact icon name before using any icon prop
+9. `list_migration_guides` — list all available migration guides before any migration task
+10. `get_migration_guide` — load the full content of a specific migration guide
 
 #### DON'Ts — these are hard violations:
 
