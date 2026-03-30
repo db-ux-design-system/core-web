@@ -24,6 +24,11 @@
   "scripts": {
     "build": "npm run build-manifest && node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
+    "copy-build": "npm-run-all copy-build:*",
+    "copy-build:dist": "cpr dist ../../build-outputs/mcp-server/dist --overwrite",
+    "copy-build:package.json": "cpr package.json ../../build-outputs/mcp-server/package.json --overwrite",
+    "copy-build:context": "cpr CONTEXT.md ../../build-outputs/mcp-server/CONTEXT.md --overwrite",
+    "copy-build:readme": "cpr README.md ../../build-outputs/mcp-server/README.md --overwrite",
     "dev": "npm run build && node dist/index.js",
     "lint": "eslint src/ --ext .ts",
     "start": "node dist/index.js",
@@ -35,7 +40,9 @@
     "zod": "4.1.13"
   },
   "devDependencies": {
+    "cpr": "3.0.1",
     "esbuild": "0.27.3",
+    "npm-run-all": "4.1.5",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "vitest": "^4.1.1"
