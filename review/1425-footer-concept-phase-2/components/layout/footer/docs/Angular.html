@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/71c09bf19b5abb56.css" as="style"/><link rel="stylesheet" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/71c09bf19b5abb56.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/webpack-32ed6523929dfec6.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/framework-86c2a58f458066a5.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/main-38f699950ed04183.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/_app-b78534a443aa7e27.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/components/layout/footer/docs/Angular-d3dca22a92a24edf.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/zso-IcAPlXNPNxnJ8uv6u/_buildManifest.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/zso-IcAPlXNPNxnJ8uv6u/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/a72a2841b0fbeb96.css" as="style"/><link rel="stylesheet" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/a72a2841b0fbeb96.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/webpack-32ed6523929dfec6.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/framework-86c2a58f458066a5.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/main-38f699950ed04183.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/_app-b78534a443aa7e27.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/components/layout/footer/docs/Angular-918b3b1e819cb35b.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/M9l175l9b16exoWKkYp29/_buildManifest.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/M9l175l9b16exoWKkYp29/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
 <p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
 <h3 id="use-component">Use component<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
 <h4 id="simple">Simple<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=simple"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>simple<!-- --> anchor link</a></h4>
@@ -29,14 +29,30 @@ import { DBFooter, DBLink } from &quot;@db-ux/ngx-core-components&quot;;
 	template: `
 		&lt;db-footer&gt;
 			&lt;div main&gt;
-				&lt;db-link href=&quot;#&quot;&gt;About Us&lt;/db-link&gt;
-				&lt;db-link href=&quot;#&quot;&gt;Contact&lt;/db-link&gt;
-				&lt;db-link href=&quot;#&quot;&gt;Careers&lt;/db-link&gt;
+				&lt;ul&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;About Us&lt;/db-link&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Contact&lt;/db-link&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Careers&lt;/db-link&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
 			&lt;/div&gt;
 			&lt;div meta&gt;
-				&lt;db-link href=&quot;#&quot;&gt;Privacy Policy&lt;/db-link&gt;
-				&lt;db-link href=&quot;#&quot;&gt;Terms of Service&lt;/db-link&gt;
-				&lt;db-link href=&quot;#&quot;&gt;Imprint&lt;/db-link&gt;
+				&lt;ul&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Privacy Policy&lt;/db-link&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Terms of Service&lt;/db-link&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Imprint&lt;/db-link&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
 			&lt;/div&gt;
 		&lt;/db-footer&gt;
 	`
@@ -81,4 +97,49 @@ import { DBFooter, DBLink } from &quot;@db-ux/ngx-core-components&quot;;
 	`
 })
 export class AppComponent {}
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/Angular","query":{},"buildId":"zso-IcAPlXNPNxnJ8uv6u","assetPrefix":"/core-web/review/1425-footer-concept-phase-2","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre>
+<h4 id="only-main-section">Only main section<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=only-main-section"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>only-main-section<!-- --> anchor link</a></h4>
+<pre><code class="language-ts">// app.component.ts
+import { Component } from &quot;@angular/core&quot;;
+import { DBFooter, DBLink } from &quot;@db-ux/ngx-core-components&quot;;
+
+@Component({
+	selector: &quot;app-root&quot;,
+	imports: [DBFooter, DBLink],
+	template: `
+		&lt;db-footer [showMeta]=&quot;false&quot;&gt;
+			&lt;div main&gt;
+				&lt;ul&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;About Us&lt;/db-link&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Contact&lt;/db-link&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;db-link href=&quot;#&quot;&gt;Careers&lt;/db-link&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/db-footer&gt;
+	`
+})
+export class AppComponent {}
+</code></pre>
+<h4 id="width">Width<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=width"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>width<!-- --> anchor link</a></h4>
+<pre><code class="language-ts">// app.component.ts
+import { Component } from &quot;@angular/core&quot;;
+import { DBFooter, DBLink } from &quot;@db-ux/ngx-core-components&quot;;
+
+@Component({
+	selector: &quot;app-root&quot;,
+	imports: [DBFooter, DBLink],
+	template: `
+		&lt;db-footer width=&quot;full&quot;&gt;
+			&lt;div main&gt;Footer Navigation&lt;/div&gt;
+			&lt;div meta&gt;Legal Links&lt;/div&gt;
+		&lt;/db-footer&gt;
+	`
+})
+export class AppComponent {}
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/Angular","query":{},"buildId":"M9l175l9b16exoWKkYp29","assetPrefix":"/core-web/review/1425-footer-concept-phase-2","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
