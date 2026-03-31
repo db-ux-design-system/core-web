@@ -38,6 +38,7 @@ export default defineConfig({
 		'packages/mcp-server/src/manifest.json',
 		'storybooks/angular-storybook/src/components/documentation.json',
 		'docs/migration/icon-migration.md',
+		'docs/migration/color-migration.md',
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
