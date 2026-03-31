@@ -186,9 +186,19 @@ async function buildManifest() {
 	const allIconsSrc = await readOptional(
 		join(FOUNDATIONS_SRC, 'all-icons.ts')
 	);
-	const icons = allIconsSrc
+	const iconsFromTs = allIconsSrc
 		? [...allIconsSrc.matchAll(/'([^']+)'/g)].map((m) => m[1])
 		: [];
+
+	// Merge icons from icon-migration.md (full icon set for MCP consumers)
+	const iconMigrationSrc = await readOptional(
+		join(MIGRATION_DIR, 'icon-migration.md')
+	);
+	const iconsFromMd = iconMigrationSrc
+		? [...iconMigrationSrc.matchAll(/^\|\s*`[^`]+`\s*\|[^|]+\|\s*`([^`]+)`/gm)].map((m) => m[1])
+		: [];
+	const iconSet = new Set([...iconsFromTs, ...iconsFromMd]);
+	const icons = [...iconSet];
 
 	// Per-component data
 	const components: Record<
