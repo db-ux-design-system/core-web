@@ -22,7 +22,7 @@ A migration must scan **all** of the following file extensions for DB-UI usage:
 
 ## Typography Migration
 
-Instead of hardcoded `font-size` values (rem, px, named sizes like `small`, `large`, etc.), use the `font` shorthand with a DB UX typography token. These tokens set `font-size`, `line-height`, `font-weight`, and `font-family` all at once.
+Instead of hardcoded `font-size` values (`rem`, `px`, named sizes like `small`, `large`, etc.), use the `font` shorthand with a DB UX typography token. These tokens set `font-size`, `line-height`, `font-weight`, and `font-family` all at once.
 
 ### Available tokens
 

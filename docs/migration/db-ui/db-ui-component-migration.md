@@ -580,4 +580,4 @@ Check the [project board](https://github.com/orgs/db-ux-design-system/projects/4
 
 ---
 
-_This migration guide is maintained by the DB-UX Design System team. For specific component requests or migration assistance, please open an issue on GitHub._
+_This migration guide is maintained by the DB-UX Design System team. For specific component requests or migration assistance, please open an [issue on GitHub](https://github.com/db-ux-design-system/core-web/issues)._
