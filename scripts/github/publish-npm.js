@@ -33,7 +33,8 @@ const packages = [
 	'core-migration',
 	'core-stylelint',
 	'core-eslint-plugin',
-	'agent-cli'
+	'agent-cli',
+	'mcp-server'
 ];
 
 for (const PACKAGE of packages) {
@@ -51,7 +52,8 @@ for (const PACKAGE of packages) {
 			PACKAGE !== 'agent-cli' &&
 			PACKAGE !== 'core-migration' &&
 			PACKAGE !== 'core-stylelint' &&
-			PACKAGE !== 'core-eslint-plugin'
+			PACKAGE !== 'core-eslint-plugin' &&
+			PACKAGE !== 'mcp-server'
 		) {
 			console.log('🕵️‍ Set foundations dependency');
 			execSync(
