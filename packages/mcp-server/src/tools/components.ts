@@ -343,5 +343,5 @@ export async function handleGetExampleCode({
 			}
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'
-	) as any;
+	);
 }

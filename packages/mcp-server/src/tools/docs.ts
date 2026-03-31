@@ -78,6 +78,7 @@ export async function handleDocsSearch({
 					.filter((t) => t.trim().length > 2);
 				const results: string[] = [];
 				for (const [path, content] of Object.entries(manifest.docs)) {
+					if (results.length >= 3) break;
 					const haystack = (path + '\n' + content).toLowerCase();
 					const isMatch =
 						searchTerms.length === 0 ||
@@ -94,7 +95,7 @@ export async function handleDocsSearch({
 				return buildResults(results, query);
 			})(),
 			'Error: Search took too long (exceeded 10 seconds). Please refine your query.'
-		) as any;
+		);
 	}
 
 	return withTimeout(
@@ -166,7 +167,7 @@ export async function handleDocsSearch({
 			} else {
 				if (existsSync(DOCS_DIR)) {
 					const searchDir = async (currentDir: string, depth = 5) => {
-						if (depth === 0) return;
+						if (depth === 0 || results.length >= 3) return;
 						const entries = await readdir(currentDir, {
 							withFileTypes: true
 						});
@@ -204,5 +205,5 @@ export async function handleDocsSearch({
 			return buildResults(results, query);
 		})(),
 		'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
-	) as any;
+	);
 }

@@ -55,6 +55,6 @@ export const listMigrationGuidesSchema = {
 export const getMigrationGuideSchema = {
 	description: 'Returns the full markdown content of a specific DB UX migration guide. Use this to learn the exact syntax changes needed to refactor legacy DB UX code.',
 	inputSchema: {
-		guideName: z.string().max(100).describe("Exact guide name as returned by list_migration_guides, e.g. 'v2.x.x-to-v3.0.0' or 'db-ui-to-db-ux-dsv3'.")
+		guideName: z.string().max(100).regex(/^[a-zA-Z0-9._-]+$/, 'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.').describe("Exact guide name as returned by list_migration_guides, e.g. 'v2.x.x-to-v3.0.0' or 'db-ui-to-db-ux-dsv3'.")
 	}
 };

@@ -1,3 +1,9 @@
+/** Standard return type for all MCP tool handlers. */
+export type ToolResult = {
+	content: { type: 'text'; text: string }[];
+	isError?: boolean;
+};
+
 /** Maximum time in milliseconds a tool operation is allowed to run before being aborted. */
 export const TOOL_TIMEOUT_MS = 10000;
 
@@ -9,12 +15,12 @@ export const TOOL_TIMEOUT_MS = 10000;
  * @param operation - The async work to execute.
  * @param timeoutMessage - The error text returned to the LLM on timeout.
  */
-export async function withTimeout<T>(
-	operation: Promise<T>,
+export async function withTimeout(
+	operation: Promise<ToolResult>,
 	timeoutMessage: string
-): Promise<T | { content: { type: 'text'; text: string }[]; isError: boolean }> {
+): Promise<ToolResult> {
 	let timer: ReturnType<typeof setTimeout> | undefined;
-	const timeoutPromise = new Promise<any>((resolve) => {
+	const timeoutPromise = new Promise<ToolResult>((resolve) => {
 		timer = setTimeout(() => {
 			resolve({ content: [{ type: 'text', text: timeoutMessage }], isError: true });
 		}, TOOL_TIMEOUT_MS);

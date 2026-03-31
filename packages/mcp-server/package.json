@@ -22,7 +22,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run build-manifest && node esbuild.js",
+    "build": "node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:dist": "cpr dist ../../build-outputs/mcp-server/dist --overwrite",

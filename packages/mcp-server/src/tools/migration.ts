@@ -1,7 +1,6 @@
 import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
-import { join } from 'node:path';
-import { MIGRATION_DIR, IS_MONOREPO, getManifest } from '../utils';
+import { MIGRATION_DIR, IS_MONOREPO, getManifest, resolveSafePath } from '../utils';
 
 type ToolResult = { content: { type: 'text'; text: string }[]; isError?: boolean };
 
@@ -31,7 +30,15 @@ export async function handleGetMigrationGuide({
 		if (!existsSync(MIGRATION_DIR)) {
 			return { content: [{ type: 'text', text: 'Migration directory not found.' }], isError: true };
 		}
-		const filePath = join(MIGRATION_DIR, `${guideName}.md`);
+		let filePath: string;
+		try {
+			filePath = resolveSafePath(MIGRATION_DIR, `${guideName}.md`);
+		} catch {
+			return {
+				content: [{ type: 'text', text: `Error: Invalid guide name '${guideName}'.` }],
+				isError: true
+			};
+		}
 		if (!existsSync(filePath)) {
 			return {
 				content: [{ type: 'text', text: `Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.` }],
