@@ -162,3 +162,5 @@ xyznonexistent
 serialised
 Serialises
 stylelints
+carsharing
+bikesharing
