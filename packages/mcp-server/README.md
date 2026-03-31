@@ -31,7 +31,7 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
 	"mcpServers": {
 		"db-ux": {
 			"command": "npx",
-			"args": ["-y", "@db-ux/mcp-server"]
+			"args": ["--yes", "@db-ux/mcp-server"]
 		}
 	}
 }
