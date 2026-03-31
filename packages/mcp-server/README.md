@@ -15,7 +15,7 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 Ensure you are using Node.js v22+ and have access to the DB UX packages. The server is invoked via `npx`:
 
 ```bash
-npx --yes @db-ux/core-foundations db-ux-mcp
+npx --yes @db-ux/mcp-server
 ```
 
 > **Crucial Concept:** You do **not** run this command manually in your terminal for daily usage. If you do, it will look like the terminal is hanging because it is waiting for JSON-RPC messages over standard input (`stdio`). Instead, you will configure your IDE (Cursor, VS Code, IntelliJ) to run this command automatically in the background.
@@ -28,16 +28,23 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
 
 ```json
 {
-  "mcpServers": {
-    "db-ux": {
-      "command": "npx",
-      "args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
-    }
-  }
+	"mcpServers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["-y", "@db-ux/mcp-server"]
+		}
+	}
 }
 ```
 
-**VS Code** — you have two options:
+Those are the files you might want to change:
+
+- Amazon Q/ Kiro: `~\.aws\amazonq\agents\default.json`
+- Copilot: `~\.copilot\config.json`
+
+#### VS Code
+
+You have two options:
 
 - **Recommended (Project-level):** Create a `.vscode/mcp.json` file in your project root. This allows you to share the MCP config with your team via Git.
 - **Alternative (User-level):** Add the entry to your global `settings.json`.
@@ -46,80 +53,64 @@ Add the following entry to your MCP client configuration (VS Code, IntelliJ, Cur
 
 ```json
 {
-  "mcp": {
-    "servers": {
-      "db-ux": {
-        "command": "npx",
-        "args": ["--yes", "@db-ux/core-foundations", "db-ux-mcp"]
-      }
-    }
-  }
+	"mcp": {
+		"servers": {
+			"db-ux": {
+				"command": "npx",
+				"args": ["--yes", "@db-ux/mcp-server", "db-ux-mcp"]
+			}
+		}
+	}
 }
 ```
 
-**IntelliJ / JetBrains IDEs** — add via *Settings → Tools → AI Assistant → Model Context Protocol → Add Server*. Use these values in the dialog:
+#### IntelliJ / JetBrains IDEs
 
-| Field | Value |
-|---|---|
-| Name | `db-ux` |
-| Type | `stdio` |
-| Command | `npx` |
-| Arguments | `--yes @db-ux/core-foundations db-ux-mcp` |
+Add via _Settings → Tools → AI Assistant → Model Context Protocol → Add Server_. Use these values in the dialog:
 
-### 3. Add Project Rules (Plan-First Paradigm)
+| Field     | Value                     |
+| --------- | ------------------------- |
+| Name      | `db-ux`                   |
+| Type      | `stdio`                   |
+| Command   | `npx`                     |
+| Arguments | `--yes @db-ux/mcp-server` |
 
-Copy the workflow rules file into your project so your AI agent enforces the correct tool-call sequence before writing any UI code. The target location depends on the AI assistant you are using:
+### 3. Add DB UX Rules
 
-**For Amazon Q:**
-```bash
-# Creates the directory and downloads the rules
-mkdir -p .amazonq/rules && curl -o .amazonq/rules/db-ux-mcp-workflow.md \
-  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
+Run this command to update your repository rules
+
+```shell
+npm i --save-dev @db-ux/mcp-server
+npx --yes @db-ux/agent-cli
 ```
 
-**For GitHub Copilot:**
-```bash
-# Creates the directory and downloads the rules
-mkdir -p .github && curl -o .github/copilot-instructions.md \
-  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
-```
-
-(Note: If you already have a `copilot-instructions.md`, download the file and append its contents to your existing file).
-
-**For Cursor:**
-```bash
-# Downloads the rules as your project's Cursor rules
-curl -o .cursorrules \
-  https://raw.githubusercontent.com/db-ux-design-system/core-web/main/.amazonq/rules/db-ux-mcp-workflow.md
-```
-
-(Note: If you already have a `.cursorrules` file, append the downloaded contents to it).
+This will copy the correct rules for DB UX component usage and design token referencing into a `.github/copilot-instructions.md` file in your repository. These rules are crucial to ensure the AI agent uses DB UX components correctly and does not hallucinate or invent incorrect usage patterns.
 
 ### 4. Verify Connection
 
 - **Check Status:** Look for a green indicator or "db-ux" in your IDE's MCP server list.
-- **Check Logs:** If it doesn't appear, check the MCP output logs in your IDE (e.g., in VS Code: *Output Panel* → *MCP* or *MCP Servers*).
+- **Check Logs:** If it doesn't appear, check the MCP output logs in your IDE (e.g., in VS Code: _Output Panel_ → _MCP_ or _MCP Servers_).
 
 ---
 
 ## 🛠 Available AI Tools (Skills)
 
-| Tool | Description |
-|---|---|
-| `list_components` | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it. |
-| `get_component_props` | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments. |
-| `get_component_details` | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`). |
-| `get_example_code` | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents. |
-| `get_design_tokens` | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers. |
-| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`. |
-| `list_icons` | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name. |
-| `docs_search` | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine. |
-| `list_migration_guides` | Returns all available migration guide names (e.g. `v2.x.x-to-v3.0.0`, `db-ui-to-db-ux-dsv3`). Call this first before any migration task. |
-| `get_migration_guide` | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code. |
+| Tool                           | Description                                                                                                                                                                                     |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                     |
+| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                         |
+| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                          |
+| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents. |
+| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers.             |
+| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                            |
+| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                   |
+| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                   |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `db-ui-color-migration`, `db-ui-component-migration`). Call this first before any migration task.                                             |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.             |
 
 ### Example: fetching a React button example
 
-```
+```text
 list_components          → confirms "button" exists
 get_component_props      → reveals DBButtonProps, variants, types
 get_component_details    → lists ["Density", "Variant", "Show Icon Leading", ...]
@@ -135,24 +126,32 @@ get_design_tokens        → returns --db-spacing-fixed-md for layout
 The server exposes predefined Prompts that orchestrate complex cognitive workflows. They force the AI to plan, verify via tools, and analyze before generating output. You can trigger these in your AI chat UI (if supported) or via the MCP Inspector.
 
 ### `scaffold_page` (Rapid Prototyping)
+
 Generates the initial structure of a complete web page or complex module.
-* **Parameters:** `page_type`, `framework`, `additional_requirements`.
-* **Behavior:** Enforces the Plan-First paradigm, deconstructing the layout into logical UI blocks and verifying component existence before writing any framework-specific code.
+
+- **Parameters:** `page_type`, `framework`, `additional_requirements`.
+- **Behavior:** Enforces the Plan-First paradigm, deconstructing the layout into logical UI blocks and verifying component existence before writing any framework-specific code.
 
 ### `review_ui_code` (Quality Assurance & A11y)
+
 Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on a provided code snippet.
-* **Parameters:** `code_snippet`, `framework`.
-* **Behavior:** Scans for hardcoded "magic numbers" and checks WCAG 2.2 AA rules. The AI is forced to provide *evidence* for its critique by calling the design tokens and component API tools.
+
+- **Parameters:** `code_snippet`, `framework`.
+- **Behavior:** Scans for hardcoded "magic numbers" and checks WCAG 2.2 AA rules. The AI is forced to provide _evidence_ for its critique by calling the design tokens and component API tools.
 
 ### `migrate_component` (Legacy Refactoring)
+
 Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3/v4 architecture.
-* **Parameters:** `legacy_code`, `source_context`, `target_framework`.
-* **Behavior:** Calls `list_migration_guides` and `get_migration_guide` to dynamically load the relevant migration docs before mapping any component. This ensures all package renames, prop changes, and missing-component workarounds are sourced from the official guides rather than hardcoded knowledge.
+
+- **Parameters:** `legacy_code`, `source_context`, `target_framework`.
+- **Behavior:** Calls `list_migration_guides` and `get_migration_guide` to dynamically load the relevant migration docs before mapping any component. This ensures all package renames, prop changes, and missing-component workarounds are sourced from the official guides rather than hardcoded knowledge.
 
 ### `audit_accessibility` (Deep A11y Scan)
+
 Specialized deep scan exclusively for inclusion and accessibility standards (WCAG 2.2 AA). Goes beyond traditional linters by evaluating interactive patterns, focus orders, and generating manual test scripts.
-* **Parameters:** `code_snippet`, `framework`.
-* **Behavior:** Calls `docs_search` to retrieve global DB UX accessibility guidelines, then verifies how the used components handle ARIA attributes and keyboard events natively. Produces a prioritized WCAG violation list with evidence and a step-by-step manual testing script for QA engineers.
+
+- **Parameters:** `code_snippet`, `framework`.
+- **Behavior:** Calls `docs_search` to retrieve global DB UX accessibility guidelines, then verifies how the used components handle ARIA attributes and keyboard events natively. Produces a prioritized WCAG violation list with evidence and a step-by-step manual testing script for QA engineers.
 
 ---
 
@@ -168,7 +167,7 @@ Because `model.ts`, showcase files, and framework example source files are **not
 
 `src/build-manifest.ts` runs during the build and produces `src/manifest.json` containing:
 
-```
+```text
 manifest.json
 ├── icons[]                          — icon names from packages/foundations/src/all-icons.ts
 ├── tokens{}                         — raw SCSS design tokens mapped by category
@@ -191,21 +190,22 @@ This manifest is bundled into the final `index.js` by esbuild, producing a **~77
 
 The server detects its runtime environment automatically:
 
-```
+```text
 IS_MONOREPO
   true  → packages/components/src/components/ exists
           → reads live files from the monorepo (model.ts, output/, foundations/)
-  false → running from node_modules/@db-ux/core-foundations/build/mcp/
+  false → running from node_modules/@db-ux/mcp-server/dist/
           → reads from the embedded manifest.json
 ```
 
 This means the same binary works for:
+
 - **Design system developers** working inside the monorepo (always up-to-date, live files)
-- **Consumer teams** running `npx @db-ux/core-foundations` (self-contained, no monorepo needed)
+- **Consumer teams** running `npx @db-ux/core-mcp-server` (self-contained, no monorepo needed)
 
 ### Directory structure
 
-```
+```text
 packages/mcp-server/
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
@@ -244,26 +244,30 @@ These are the **Golden Rules** the AI agent must follow when using this server. 
 <DBStack>...</DBStack>
 ```
 
-| Native element | DB UX replacement |
-|---|---|
-| `<button>` | `DBButton` |
-| `<input>` | `DBInput` |
-| `<select>` | `DBSelect` |
-| `<a>` | `DBLink` |
-| `<textarea>` | `DBTextarea` |
+| Native element   | DB UX replacement                |
+| ---------------- | -------------------------------- |
+| `<button>`       | `DBButton`                       |
+| `<input>`        | `DBInput`                        |
+| `<select>`       | `DBSelect`                       |
+| `<a>`            | `DBLink`                         |
+| `<textarea>`     | `DBTextarea`                     |
 | `<div>` (layout) | `DBStack`, `DBSection`, `DBCard` |
 
 ### NEVER use hardcoded colors or magic spacing values
 
 ```scss
 // ❌ WRONG
-.my-element { color: #ec0016; margin: 15px; gap: 8px; }
+.my-element {
+	color: #ec0016;
+	margin: 15px;
+	gap: 8px;
+}
 
 // ✅ CORRECT — values retrieved via get_design_tokens
 .my-element {
-  color: var(--db-color-red-500);
-  margin: var(--db-spacing-fixed-sm);
-  gap: var(--db-spacing-fixed-xs);
+	color: var(--db-color-red-500);
+	margin: var(--db-spacing-fixed-sm);
+	gap: var(--db-spacing-fixed-xs);
 }
 ```
 
@@ -285,18 +289,18 @@ The generated examples are the canonical reference. Adapt them — do not rewrit
 
 ## 📦 Build Command
 
-The server is built as part of the `@db-ux/core-foundations` package:
+The server is built as part of the `@db-ux/mcp-server` package:
 
 ```bash
 # from the monorepo root
-npm run build-mcp --workspace=@db-ux/core-foundations
+npm run build --workspace=@db-ux/mcp-server
 ```
 
 This runs `packages/mcp-server/esbuild.js` which:
 
 1. Executes `src/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
 2. Bundles `src/index.ts` + `manifest.json` via esbuild into a single `build/index.js` with `#!/usr/bin/env node` shebang
-3. Copies the bundle to `packages/foundations/build/mcp/index.js` for inclusion in the published `@db-ux/core-foundations` npm package
+3. Copies the bundle to `packages/mcp-server/dist/index.js` for inclusion in the published `@db-ux/mcp-server` npm package
 
 To build and test the server in isolation during development:
 
@@ -322,13 +326,15 @@ If you are developing or testing the MCP server directly from within the DB UX m
 Instead of using `npx`, use `node` and point it to the local build path (ensure you have run `npm run build` in the `mcp-server` directory first):
 
 ```json
-{
-  "command": "node",
-  "args": ["packages/mcp-server/build/index.js"]
+"db-ux": {
+	"command": "node",
+	"disabled": false,
+	"timeout": 60000,
+	"args": ["packages/mcp-server/dist/index.js"]
 }
 ```
 
-*Alternatively, you can change your IDE's working directory for the MCP server to `packages/mcp-server`.*
+_Alternatively, you can change your IDE's working directory for the MCP server to `packages/mcp-server`._
 
 ---
 
@@ -336,12 +342,12 @@ Instead of using `npx`, use `node` and point it to the local build path (ensure 
 
 This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
 
-* **Strict Read-Only Sandbox:** The server has zero write-permissions. All imports from `node:fs` are strictly read-only (`readFile`, `readdir`). Modules like `child_process` (for shell execution) or file mutation methods (`writeFile`, `unlink`) are completely banned.
-* **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).
-* **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
-  * File reads are truncated at **20,000 characters**.
-  * JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
-  * Directory scans are hard-limited to a maximum of **10 files**.
+- **Strict Read-Only Sandbox:** The server has zero write-permissions. All imports from `node:fs` are strictly read-only (`readFile`, `readdir`). Modules like `child_process` (for shell execution) or file mutation methods (`writeFile`, `unlink`) are completely banned.
+- **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).
+- **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
+    - File reads are truncated at **20,000 characters**.
+    - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
+    - Directory scans are hard-limited to a maximum of **10 files**.
 
 ---
 
@@ -371,7 +377,7 @@ npx @modelcontextprotocol/inspector --port 5178 node build/index.js
 ### Step-by-step workflow
 
 1. Run the command above — the Inspector starts a local web server
-2. Open the browser tab it prints (e.g., **http://localhost:5178**)
+2. Open the browser tab it prints (e.g., **<http://localhost:5178>**)
 3. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
 4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `get_example_code`) and inspect their responses
 5. Use the **"Resources"** tab to verify any static resources exposed by the server

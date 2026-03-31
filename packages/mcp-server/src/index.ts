@@ -84,8 +84,16 @@ server.registerTool(
 	handleGetExampleCode
 );
 server.registerTool('docs_search', docsSearchSchema, handleDocsSearch);
-server.registerTool('list_migration_guides', listMigrationGuidesSchema, handleListMigrationGuides);
-server.registerTool('get_migration_guide', getMigrationGuideSchema, handleGetMigrationGuide);
+server.registerTool(
+	'list_migration_guides',
+	listMigrationGuidesSchema,
+	handleListMigrationGuides
+);
+server.registerTool(
+	'get_migration_guide',
+	getMigrationGuideSchema,
+	handleGetMigrationGuide
+);
 
 // Prompts
 server.registerPrompt(
@@ -113,3 +121,4 @@ server.registerPrompt(
 registerLifecycleHandlers();
 const transport = new StdioServerTransport();
 await server.connect(transport);
+console.error('[DB UX MCP] Server is running and waiting for requests...');

@@ -8,15 +8,16 @@
  */
 import { existsSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { join, relative, resolve } from 'node:path';
-import { TOKEN_FILES } from './utils';
-
-const REPO_ROOT = resolve(import.meta.dirname, '../../..');
-const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
-const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
-const DOCS_DIR = join(REPO_ROOT, 'docs');
-const MIGRATION_DIR = join(REPO_ROOT, 'docs/migration');
-const OUTPUT_DIR = join(REPO_ROOT, 'output');
+import { join, relative } from 'node:path';
+import {
+	COMPONENTS_DIR,
+	DOCS_DIR,
+	FOUNDATIONS_DIR,
+	MIGRATION_DIR,
+	OUTPUT_DIR,
+	REPO_ROOT,
+	TOKEN_FILES
+} from './utils';
 
 const FRAMEWORKS = [
 	'react',
@@ -175,7 +176,7 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
  * Calls process.exit(1) if any component failed to process.
  */
 async function buildManifest() {
-	const componentEntries = await readdir(COMPONENTS_SRC, {
+	const componentEntries = await readdir(COMPONENTS_DIR, {
 		withFileTypes: true
 	});
 	const componentNames = componentEntries
@@ -183,8 +184,9 @@ async function buildManifest() {
 		.map((e) => e.name);
 
 	// Icon list from all-icons.ts
+	// TODO: Those are only the whitelabel icons
 	const allIconsSrc = await readOptional(
-		join(FOUNDATIONS_SRC, 'all-icons.ts')
+		join(FOUNDATIONS_DIR, 'src', 'all-icons.ts')
 	);
 	const icons = allIconsSrc
 		? [...allIconsSrc.matchAll(/'([^']+)'/g)].map((m) => m[1])
@@ -202,7 +204,7 @@ async function buildManifest() {
 
 	const entries = await Promise.all(
 		componentNames.map((name) =>
-			processComponent(name, COMPONENTS_SRC, OUTPUT_DIR)
+			processComponent(name, COMPONENTS_DIR, OUTPUT_DIR)
 		)
 	);
 

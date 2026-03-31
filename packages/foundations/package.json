@@ -48,7 +48,6 @@
     "start:nodemon": "nodemon --config nodemon.json",
     "test:e2e": "npx playwright test --config=./test/playwright.config.js"
   },
-  "dependencies": {},
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.6",

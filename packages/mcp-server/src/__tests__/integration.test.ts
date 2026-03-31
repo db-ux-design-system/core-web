@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const { resetManifestCache, resolveSafePath } = await import('../utils/index.js');
+const { resetManifestCache, resolveSafePath } =
+	await import('../utils/index.js');
 const {
 	handleListComponents,
 	handleGetComponentDetails,
@@ -44,12 +45,19 @@ function makeManifest(
  */
 function makeFuzzyManifest(exampleKeys: string[]) {
 	const exampleCode: Record<string, Record<string, string>> = {
-		react: {}, angular: {}, vue: {}, 'web-components': {}, html: {}
+		react: {},
+		angular: {},
+		vue: {},
+		'web-components': {},
+		html: {}
 	};
 	for (const key of exampleKeys) {
 		exampleCode['react'][key] = `// source of ${key}`;
 	}
-	return JSON.stringify({ icons: [], components: { button: { props: null, examples: [], exampleCode } } });
+	return JSON.stringify({
+		icons: [],
+		components: { button: { props: null, examples: [], exampleCode } }
+	});
 }
 
 /**
@@ -98,11 +106,21 @@ describe('handleListComponents', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetComponentDetails', () => {
 	it('returns example names from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({
-			button: { props: null, examples: ['Variant', 'Show Icon Leading'], exampleCode: {} }
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					button: {
+						props: null,
+						examples: ['Variant', 'Show Icon Leading'],
+						exampleCode: {}
+					}
+				})
+			)
+		);
 
-		const result = await handleGetComponentDetails({ componentName: 'button' });
+		const result = await handleGetComponentDetails({
+			componentName: 'button'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain('Variant');
@@ -110,11 +128,17 @@ describe('handleGetComponentDetails', () => {
 	});
 
 	it('returns "No examples found." when examples array is empty', async () => {
-		resetManifestCache(JSON.parse(makeManifest({
-			button: { props: null, examples: [], exampleCode: {} }
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					button: { props: null, examples: [], exampleCode: {} }
+				})
+			)
+		);
 
-		const result = await handleGetComponentDetails({ componentName: 'button' });
+		const result = await handleGetComponentDetails({
+			componentName: 'button'
+		});
 
 		expect(result.content[0].text).toBe('No examples found.');
 	});
@@ -122,7 +146,9 @@ describe('handleGetComponentDetails', () => {
 	it('returns an error for unknown component', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetComponentDetails({ componentName: 'nonexistent' });
+		const result = await handleGetComponentDetails({
+			componentName: 'nonexistent'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent');
@@ -134,11 +160,17 @@ describe('handleGetComponentDetails', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetComponentProps', () => {
 	it('returns props content from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({
-			button: { props: FAKE_PROPS, examples: [], exampleCode: {} }
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					button: { props: FAKE_PROPS, examples: [], exampleCode: {} }
+				})
+			)
+		);
 
-		const result = await handleGetComponentProps({ componentName: 'button' });
+		const result = await handleGetComponentProps({
+			componentName: 'button'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain(FAKE_PROPS);
@@ -147,18 +179,26 @@ describe('handleGetComponentProps', () => {
 	it('returns an error when component is not in the manifest', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetComponentProps({ componentName: 'nonexistent' });
+		const result = await handleGetComponentProps({
+			componentName: 'nonexistent'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent');
 	});
 
 	it('returns an error when props is null (model.ts missing)', async () => {
-		resetManifestCache(JSON.parse(makeManifest({
-			'no-props': { props: null, examples: [], exampleCode: {} }
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					'no-props': { props: null, examples: [], exampleCode: {} }
+				})
+			)
+		);
 
-		const result = await handleGetComponentProps({ componentName: 'no-props' });
+		const result = await handleGetComponentProps({
+			componentName: 'no-props'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('model.ts');
@@ -170,7 +210,9 @@ describe('handleGetComponentProps', () => {
 // ---------------------------------------------------------------------------
 describe('handleListDesignTokenCategories', () => {
 	it('returns categories from manifest.tokens', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: '', spacing: '' })));
+		resetManifestCache(
+			JSON.parse(makeManifest({}, [], { colors: '', spacing: '' }))
+		);
 
 		const result = await handleListDesignTokenCategories();
 
@@ -194,7 +236,8 @@ describe('handleListDesignTokenCategories', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetDesignTokens', () => {
 	it('returns filtered --db-* lines from manifest.tokens', async () => {
-		const scss = '--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
+		const scss =
+			'--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
 		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: scss })));
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
@@ -207,7 +250,9 @@ describe('handleGetDesignTokens', () => {
 	it('returns an error for an unknown category', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetDesignTokens({ category: 'nonexistent-category' });
+		const result = await handleGetDesignTokens({
+			category: 'nonexistent-category'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent-category');
@@ -219,7 +264,9 @@ describe('handleGetDesignTokens', () => {
 // ---------------------------------------------------------------------------
 describe('handleListIcons', () => {
 	it('returns icon names from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, ['arrow_down', 'chevron_right'])));
+		resetManifestCache(
+			JSON.parse(makeManifest({}, ['arrow_down', 'chevron_right']))
+		);
 
 		const result = await handleListIcons();
 
@@ -234,26 +281,50 @@ describe('handleListIcons', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetExampleCode', () => {
 	it('returns example code from the manifest via direct key match', async () => {
-		resetManifestCache(JSON.parse(makeManifest({
-			button: {
-				props: null,
-				examples: ['Variant'],
-				exampleCode: { react: { 'variant.example.tsx': FAKE_EXAMPLE_CODE }, angular: {}, vue: {} }
-			}
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					button: {
+						props: null,
+						examples: ['Variant'],
+						exampleCode: {
+							react: { 'variant.example.tsx': FAKE_EXAMPLE_CODE },
+							angular: {},
+							vue: {}
+						}
+					}
+				})
+			)
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'Variant', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain(FAKE_EXAMPLE_CODE);
 	});
 
 	it('returns an error when the example is not found', async () => {
-		resetManifestCache(JSON.parse(makeManifest({
-			button: { props: null, examples: [], exampleCode: { react: {}, angular: {}, vue: {} } }
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					button: {
+						props: null,
+						examples: [],
+						exampleCode: { react: {}, angular: {}, vue: {} }
+					}
+				})
+			)
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'NonExistent', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'NonExistent',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('NonExistent');
@@ -262,7 +333,11 @@ describe('handleGetExampleCode', () => {
 	it('returns an error when the component is not in the manifest', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetExampleCode({ componentName: 'nonexistent', exampleName: 'Variant', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'nonexistent',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent');
@@ -272,45 +347,86 @@ describe('handleGetExampleCode', () => {
 	// Fuzzy matching
 	// -------------------------------------------------------------------------
 	it('fuzzy: exact match wins over partial candidate', async () => {
-		resetManifestCache(JSON.parse(makeFuzzyManifest(['size.example.tsx', 'size-large.example.tsx'])));
+		resetManifestCache(
+			JSON.parse(
+				makeFuzzyManifest([
+					'size.example.tsx',
+					'size-large.example.tsx'
+				])
+			)
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'size',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toBe('// source of size.example.tsx');
 	});
 
 	it('fuzzy: falls back to partial match when no exact file exists', async () => {
-		resetManifestCache(JSON.parse(makeFuzzyManifest(['size-large.example.tsx'])));
+		resetManifestCache(
+			JSON.parse(makeFuzzyManifest(['size-large.example.tsx']))
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'size',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toBe('// source of size-large.example.tsx');
+		expect(result.content[0].text).toBe(
+			'// source of size-large.example.tsx'
+		);
 	});
 
 	it('fuzzy: returns error when neither exact nor partial match exists', async () => {
-		resetManifestCache(JSON.parse(makeFuzzyManifest(['variant.example.tsx'])));
+		resetManifestCache(
+			JSON.parse(makeFuzzyManifest(['variant.example.tsx']))
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'size',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain("'size'");
 	});
 
 	it('fuzzy: stem.includes(kebab) match is intentionally allowed', async () => {
-		resetManifestCache(JSON.parse(makeFuzzyManifest(['icon-size.example.tsx'])));
+		resetManifestCache(
+			JSON.parse(makeFuzzyManifest(['icon-size.example.tsx']))
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'size',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toBe('// source of icon-size.example.tsx');
+		expect(result.content[0].text).toBe(
+			'// source of icon-size.example.tsx'
+		);
 	});
 
 	it('fuzzy: exact match wins over stem.includes(kebab) when both present', async () => {
-		resetManifestCache(JSON.parse(makeFuzzyManifest(['icon-size.example.tsx', 'size.example.tsx'])));
+		resetManifestCache(
+			JSON.parse(
+				makeFuzzyManifest(['icon-size.example.tsx', 'size.example.tsx'])
+			)
+		);
 
-		const result = await handleGetExampleCode({ componentName: 'button', exampleName: 'size', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'size',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toBe('// source of size.example.tsx');
@@ -322,7 +438,11 @@ describe('handleGetExampleCode', () => {
 	it('security: rejects path traversal in componentName', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetExampleCode({ componentName: '../../etc/passwd', exampleName: 'Variant', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: '../../etc/passwd',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBe(true);
 	});
@@ -330,7 +450,11 @@ describe('handleGetExampleCode', () => {
 	it('security: rejects URL-encoded path traversal in componentName', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetExampleCode({ componentName: 'button%2F..%2F..%2Fetc%2Fpasswd', exampleName: 'Variant', framework: 'react' });
+		const result = await handleGetExampleCode({
+			componentName: 'button%2F..%2F..%2Fetc%2Fpasswd',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
 
 		expect(result.isError).toBe(true);
 	});
@@ -341,17 +465,28 @@ describe('handleGetExampleCode', () => {
 // ---------------------------------------------------------------------------
 describe('handleListMigrationGuides', () => {
 	it('returns guide names from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {}, {
-			'v2.x.x-to-v3.0.0': '# Migration v2 to v3',
-			'db-ui-to-db-ux-dsv3': '# DB UI to DB UX'
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{},
+					{
+						'db-ui-color-migration':
+							'# DB-UI → DB-UX Color Migration',
+						'db-ui-component-migration': '# DB UI to DB UX'
+					}
+				)
+			)
+		);
 
 		const result = await handleListMigrationGuides();
 
 		expect(result.isError).toBeUndefined();
 		const names = JSON.parse(result.content[0].text);
-		expect(names).toContain('v2.x.x-to-v3.0.0');
-		expect(names).toContain('db-ui-to-db-ux-dsv3');
+		expect(names).toContain('db-ui-color-migration');
+		expect(names).toContain('db-ui-component-migration');
 	});
 
 	it('returns an empty array when no migration guides exist', async () => {
@@ -368,20 +503,34 @@ describe('handleListMigrationGuides', () => {
 // ---------------------------------------------------------------------------
 describe('handleGetMigrationGuide', () => {
 	it('returns the full markdown content of a guide', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {}, {
-			'v2.x.x-to-v3.0.0': '# Migration v2 to v3\nReplace DBButtonOld with DBButton.'
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{},
+					{
+						'db-ui-component-migration': '# DB UI to DB UX'
+					}
+				)
+			)
+		);
 
-		const result = await handleGetMigrationGuide({ guideName: 'v2.x.x-to-v3.0.0' });
+		const result = await handleGetMigrationGuide({
+			guideName: 'db-ui-component-migration'
+		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('Replace DBButtonOld with DBButton.');
+		expect(result.content[0].text).toContain('Layout Components Migration');
 	});
 
 	it('returns an error for an unknown guide name', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
-		const result = await handleGetMigrationGuide({ guideName: 'nonexistent-guide' });
+		const result = await handleGetMigrationGuide({
+			guideName: 'nonexistent-guide'
+		});
 
 		expect(result.isError).toBe(true);
 		expect(result.content[0].text).toContain('nonexistent-guide');
@@ -394,22 +543,47 @@ describe('handleGetMigrationGuide', () => {
 // ---------------------------------------------------------------------------
 describe('handleDocsSearch', () => {
 	it('returns matching docs from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {
-			'docs/development.md': '# Development\nHow to contribute and set up the project.'
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{
+						'docs/development.md':
+							'# Development\nHow to contribute and set up the project.'
+					}
+				)
+			)
+		);
 
-		const result = await handleDocsSearch({ query: 'contribute', category: 'global' });
+		const result = await handleDocsSearch({
+			query: 'contribute',
+			category: 'global'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain('Development');
 	});
 
 	it('returns no-match message when query has no results', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [], {}, {
-			'docs/development.md': '# Development'
-		})));
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{
+						'docs/development.md': '# Development'
+					}
+				)
+			)
+		);
 
-		const result = await handleDocsSearch({ query: 'xyznonexistent', category: 'global' });
+		const result = await handleDocsSearch({
+			query: 'xyznonexistent',
+			category: 'global'
+		});
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain('No documentation found');
@@ -421,20 +595,32 @@ describe('handleDocsSearch', () => {
 // ---------------------------------------------------------------------------
 describe('handleScaffoldPagePrompt', () => {
 	it('returns a user message with framework and page_type', () => {
-		const text = assertUserMessage(handleScaffoldPagePrompt({ page_type: 'Dashboard', framework: 'react' }));
+		const text = assertUserMessage(
+			handleScaffoldPagePrompt({
+				page_type: 'Dashboard',
+				framework: 'react'
+			})
+		);
 
 		expect(text).toContain('react');
 		expect(text).toContain('Dashboard');
 	});
 
 	it('includes additional_requirements when provided', () => {
-		const result = handleScaffoldPagePrompt({ page_type: 'Login', framework: 'vue', additional_requirements: 'dark mode' });
+		const result = handleScaffoldPagePrompt({
+			page_type: 'Login',
+			framework: 'vue',
+			additional_requirements: 'dark mode'
+		});
 
 		expect(result.messages[0].content.text).toContain('dark mode');
 	});
 
 	it('falls back to "None specified." when additional_requirements is omitted', () => {
-		const result = handleScaffoldPagePrompt({ page_type: 'Settings', framework: 'angular' });
+		const result = handleScaffoldPagePrompt({
+			page_type: 'Settings',
+			framework: 'angular'
+		});
 
 		expect(result.messages[0].content.text).toContain('None specified.');
 	});
@@ -445,16 +631,26 @@ describe('handleScaffoldPagePrompt', () => {
 // ---------------------------------------------------------------------------
 describe('handleReviewUiCodePrompt', () => {
 	it('returns a user message containing the framework and code snippet', () => {
-		const text = assertUserMessage(handleReviewUiCodePrompt({ code_snippet: '<DBButton>Save</DBButton>', framework: 'react' }));
+		const text = assertUserMessage(
+			handleReviewUiCodePrompt({
+				code_snippet: '<DBButton>Save</DBButton>',
+				framework: 'react'
+			})
+		);
 
 		expect(text).toContain('react');
 		expect(text).toContain('<DBButton>Save</DBButton>');
 	});
 
 	it('references the correct framework package in the prompt text', () => {
-		const result = handleReviewUiCodePrompt({ code_snippet: '<db-button>Save</db-button>', framework: 'angular' });
+		const result = handleReviewUiCodePrompt({
+			code_snippet: '<db-button>Save</db-button>',
+			framework: 'angular'
+		});
 
-		expect(result.messages[0].content.text).toContain('@db-ux/ngx-core-components');
+		expect(result.messages[0].content.text).toContain(
+			'@db-ux/ngx-core-components'
+		);
 	});
 });
 
@@ -463,11 +659,13 @@ describe('handleReviewUiCodePrompt', () => {
 // ---------------------------------------------------------------------------
 describe('handleMigrateComponentPrompt', () => {
 	it('returns a user message containing legacy code, source context, and target framework', () => {
-		const text = assertUserMessage(handleMigrateComponentPrompt({
-			legacy_code: '<button class="btn">Click</button>',
-			source_context: 'bootstrap-4',
-			target_framework: 'react'
-		}));
+		const text = assertUserMessage(
+			handleMigrateComponentPrompt({
+				legacy_code: '<button class="btn">Click</button>',
+				source_context: 'bootstrap-4',
+				target_framework: 'react'
+			})
+		);
 
 		expect(text).toContain('bootstrap-4');
 		expect(text).toContain('react');
@@ -492,20 +690,31 @@ describe('handleMigrateComponentPrompt', () => {
 // ---------------------------------------------------------------------------
 describe('handleAuditAccessibilityPrompt', () => {
 	it('returns a user message containing the framework and code snippet', () => {
-		const text = assertUserMessage(handleAuditAccessibilityPrompt({ code_snippet: '<DBInput label="Name" />', framework: 'react' }));
+		const text = assertUserMessage(
+			handleAuditAccessibilityPrompt({
+				code_snippet: '<DBInput label="Name" />',
+				framework: 'react'
+			})
+		);
 
 		expect(text).toContain('react');
 		expect(text).toContain('<DBInput label="Name" />');
 	});
 
 	it('references WCAG 2.2 AA in the prompt text', () => {
-		const result = handleAuditAccessibilityPrompt({ code_snippet: '<DBButton>Go</DBButton>', framework: 'vue' });
+		const result = handleAuditAccessibilityPrompt({
+			code_snippet: '<DBButton>Go</DBButton>',
+			framework: 'vue'
+		});
 
 		expect(result.messages[0].content.text).toContain('WCAG 2.2 AA');
 	});
 
 	it('instructs the agent to call docs_search for accessibility guidelines', () => {
-		const result = handleAuditAccessibilityPrompt({ code_snippet: '<DBButton>Go</DBButton>', framework: 'angular' });
+		const result = handleAuditAccessibilityPrompt({
+			code_snippet: '<DBButton>Go</DBButton>',
+			framework: 'angular'
+		});
 
 		expect(result.messages[0].content.text).toContain('docs_search');
 	});
@@ -519,8 +728,9 @@ describe('resolveSafePath', () => {
 
 	describe('valid paths', () => {
 		it('resolves a normal nested path inside the base', () => {
-			expect(resolveSafePath(BASE, 'button/examples/variant.example.tsx'))
-				.toBe(`${BASE}/button/examples/variant.example.tsx`);
+			expect(
+				resolveSafePath(BASE, 'button/examples/variant.example.tsx')
+			).toBe(`${BASE}/button/examples/variant.example.tsx`);
 		});
 
 		it('resolves a single filename inside the base', () => {
@@ -530,42 +740,61 @@ describe('resolveSafePath', () => {
 
 	describe('standard path traversal', () => {
 		it('rejects ../../../etc/passwd', () => {
-			expect(() => resolveSafePath(BASE, '../../../etc/passwd')).toThrow('Path traversal detected');
+			expect(() => resolveSafePath(BASE, '../../../etc/passwd')).toThrow(
+				'Path traversal detected'
+			);
 		});
 
 		it('rejects ../outside-folder/file.ts', () => {
-			expect(() => resolveSafePath(BASE, '../outside-folder/file.ts')).toThrow('Path traversal detected');
+			expect(() =>
+				resolveSafePath(BASE, '../outside-folder/file.ts')
+			).toThrow('Path traversal detected');
 		});
 	});
 
 	describe('single URL-encoded traversal', () => {
 		it('rejects %2E%2E%2F%2E%2E%2F (../ ../)', () => {
-			expect(() => resolveSafePath(BASE, '%2E%2E%2F%2E%2E%2Fetc%2Fpasswd')).toThrow('Path traversal detected');
+			expect(() =>
+				resolveSafePath(BASE, '%2E%2E%2F%2E%2E%2Fetc%2Fpasswd')
+			).toThrow('Path traversal detected');
 		});
 
 		it('rejects %2F prefixed absolute path', () => {
-			expect(() => resolveSafePath(BASE, '%2Fetc%2Fpasswd')).toThrow('Path traversal detected');
+			expect(() => resolveSafePath(BASE, '%2Fetc%2Fpasswd')).toThrow(
+				'Path traversal detected'
+			);
 		});
 	});
 
 	describe('double URL-encoded traversal', () => {
 		it('rejects %252E%252E%252F (double-encoded ../)', () => {
-			expect(() => resolveSafePath(BASE, '%252E%252E%252F%252E%252E%252Fetc%252Fpasswd')).toThrow('Path traversal detected');
+			expect(() =>
+				resolveSafePath(
+					BASE,
+					'%252E%252E%252F%252E%252E%252Fetc%252Fpasswd'
+				)
+			).toThrow('Path traversal detected');
 		});
 
 		it('rejects %252F prefixed absolute path', () => {
-			expect(() => resolveSafePath(BASE, '%252Fetc%252Fpasswd')).toThrow('Path traversal detected');
+			expect(() => resolveSafePath(BASE, '%252Fetc%252Fpasswd')).toThrow(
+				'Path traversal detected'
+			);
 		});
 	});
 
 	describe('absolute path injection', () => {
 		it('rejects Unix absolute path /var/log/syslog', () => {
-			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow('Path traversal detected');
+			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow(
+				'Path traversal detected'
+			);
 		});
 
 		// On Unix, backslashes are literal filename characters — resolves safely inside base.
 		it('treats Windows-style path as a literal subdirectory on Unix', () => {
-			expect(resolveSafePath(BASE, 'C:\\Windows\\System32').startsWith(BASE)).toBe(true);
+			expect(
+				resolveSafePath(BASE, 'C:\\Windows\\System32').startsWith(BASE)
+			).toBe(true);
 		});
 	});
 });

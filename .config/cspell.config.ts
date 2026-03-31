@@ -22,6 +22,7 @@ export default defineConfig({
 		'*.ttf',
 		'*.eot',
 		'**/build-*/**',
+		'**/docs/migration/db-ui/**',
 		'**/test-results/**',
 		'**/results/**',
 		'./showcases/screen-reader/translations.ts',

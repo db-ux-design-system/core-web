@@ -8,3 +8,4 @@ build-showcases/**
 showcases/**/public/**
 CODE-OF-CONDUCT.md
 **/agent/**
+docs/migration/db-ui/**
