@@ -1,8 +1,6 @@
 import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
-import { MIGRATION_DIR, IS_MONOREPO, getManifest, resolveSafePath } from '../utils';
-
-type ToolResult = { content: { type: 'text'; text: string }[]; isError?: boolean };
+import { type ToolResult, MIGRATION_DIR, IS_MONOREPO, err, getManifest, resolveSafePath } from '../utils';
 
 export async function handleListMigrationGuides(): Promise<ToolResult> {
 	if (IS_MONOREPO) {
@@ -28,32 +26,23 @@ export async function handleGetMigrationGuide({
 }): Promise<ToolResult> {
 	if (IS_MONOREPO) {
 		if (!existsSync(MIGRATION_DIR)) {
-			return { content: [{ type: 'text', text: 'Migration directory not found.' }], isError: true };
+			return err('Migration directory not found.');
 		}
 		let filePath: string;
 		try {
 			filePath = resolveSafePath(MIGRATION_DIR, `${guideName}.md`);
 		} catch {
-			return {
-				content: [{ type: 'text', text: `Error: Invalid guide name '${guideName}'.` }],
-				isError: true
-			};
+			return err(`Error: Invalid guide name '${guideName}'.`);
 		}
 		if (!existsSync(filePath)) {
-			return {
-				content: [{ type: 'text', text: `Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.` }],
-				isError: true
-			};
+			return err(`Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.`);
 		}
 		return { content: [{ type: 'text', text: await readFile(filePath, 'utf-8') }] };
 	}
 	const manifest = await getManifest();
 	const guide = manifest.migrationGuides[guideName];
 	if (!guide) {
-		return {
-			content: [{ type: 'text', text: `Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.` }],
-			isError: true
-		};
+		return err(`Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.`);
 	}
 	return { content: [{ type: 'text', text: guide }] };
 }

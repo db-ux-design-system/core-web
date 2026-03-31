@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import {
+	type ToolResult,
 	ALL_ICONS_FILE,
 	getManifest,
 	IS_MONOREPO,
@@ -23,10 +24,6 @@ async function parseIconsFromMigrationGuide(): Promise<string[] | null> {
 	return [...new Set(icons)];
 }
 
-type ToolResult = {
-	content: { type: 'text'; text: string }[];
-	isError?: boolean;
-};
 
 /**
  * Returns all available DB UX icon names by parsing the generated all-icons.ts file.
@@ -47,10 +44,8 @@ export async function handleListIcons(): Promise<ToolResult> {
 		};
 	}
 	const manifest = await getManifest();
-	const iconsFromMd = await parseIconsFromMigrationGuide();
-	const icons = mergeIconLists(manifest.icons, iconsFromMd);
 	return {
-		content: [{ type: 'text', text: truncate(JSON.stringify(icons, null, 2), MAX_JSON_OUTPUT) }]
+		content: [{ type: 'text', text: truncate(JSON.stringify(manifest.icons, null, 2), MAX_JSON_OUTPUT) }]
 	};
 }
 

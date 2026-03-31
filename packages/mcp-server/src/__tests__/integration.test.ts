@@ -230,19 +230,15 @@ describe('handleListIcons', () => {
 		expect(result.content[0].text).toContain('alarm_clock');
 	});
 
-	it('returns icons from migration file even when manifest has no icons', async () => {
+	it('returns empty array when manifest has no icons (manifest mode does not read migration file)', async () => {
 		resetManifestCache(JSON.parse(makeManifest({}, [])));
 
 		const result = await handleListIcons();
 
-		// Should still return icons from migration file
 		expect(result.isError).toBeUndefined();
 		const icons = JSON.parse(result.content[0].text);
 		expect(Array.isArray(icons)).toBe(true);
-		expect(icons.length).toBeGreaterThan(0);
-		// Should contain some icons from migration file
-		expect(icons).toContain('person');
-		expect(icons).toContain('alarm_clock');
+		expect(icons).toEqual([]);
 	});
 });
 

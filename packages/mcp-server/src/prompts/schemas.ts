@@ -1,11 +1,7 @@
 import { z } from 'zod/v3';
 
-const frameworkSchema = z.string()
-	.transform((val) => val.trim().toLowerCase())
-	.refine((val) => ['react', 'angular', 'vue', 'web-components', 'html'].includes(val), {
-		message: 'Framework must be exactly one of: react, angular, vue, web-components, html'
-	})
-	.describe('The target framework. Valid options are: react, angular, vue, web-components, html (case-insensitive).');
+const frameworkSchema = z.enum(['react', 'angular', 'vue', 'web-components', 'html'])
+	.describe('The target framework.');
 
 export const scaffoldPageSchema = {
 	description: 'Generates the initial structure of a complete web page or complex module (e.g. dashboard, form). Enforces the full DB UX MCP discovery workflow before writing any code.',

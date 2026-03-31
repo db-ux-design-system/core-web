@@ -1,6 +1,8 @@
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import {
+	type ToolResult,
+	err,
 	getManifest,
 	IS_MONOREPO,
 	MAX_JSON_OUTPUT,
@@ -8,10 +10,6 @@ import {
 	truncate
 } from '../utils';
 
-type ToolResult = {
-	content: { type: 'text'; text: string }[];
-	isError?: boolean;
-};
 
 /** Returns all available design token categories, filtered to those with existing SCSS files. */
 export async function handleListDesignTokenCategories(): Promise<ToolResult> {
@@ -50,15 +48,7 @@ export async function handleGetDesignTokens({
 		const manifest = await getManifest();
 		const source = manifest.tokens[category];
 		if (!source) {
-			return {
-				content: [
-					{
-						type: 'text',
-						text: `Error: unknown category '${category}'. Available: ${Object.keys(manifest.tokens).join(', ')}`
-					}
-				],
-				isError: true
-			};
+			return err(`Error: unknown category '${category}'. Available: ${Object.keys(manifest.tokens).join(', ')}`);
 		}
 		const lines = source
 			.split('\n')
@@ -77,26 +67,10 @@ export async function handleGetDesignTokens({
 	}
 	const filePath = TOKEN_FILES[category];
 	if (!filePath) {
-		return {
-			content: [
-				{
-					type: 'text',
-					text: `Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}`
-				}
-			],
-			isError: true
-		};
+		return err(`Error: unknown category '${category}'. Available: ${Object.keys(TOKEN_FILES).join(', ')}`);
 	}
 	if (!existsSync(filePath)) {
-		return {
-			content: [
-				{
-					type: 'text',
-					text: `Error: token file not found at ${filePath}`
-				}
-			],
-			isError: true
-		};
+		return err(`Error: token file not found at ${filePath}`);
 	}
 	const source = await readFile(filePath, 'utf-8');
 	const lines = source

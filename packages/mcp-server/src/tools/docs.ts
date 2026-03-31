@@ -2,19 +2,17 @@ import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import {
+	type ToolResult,
 	COMPONENTS_DIR,
 	DOCS_DIR,
 	IS_MONOREPO,
 	REPO_ROOT,
+	err,
 	getManifest,
 	resolveSafePath,
 	withTimeout
 } from '../utils';
 
-type ToolResult = {
-	content: { type: 'text'; text: string }[];
-	isError?: boolean;
-};
 
 /**
  * Builds a ToolResult from a list of matched document snippets.
@@ -98,8 +96,8 @@ export async function handleDocsSearch({
 		);
 	}
 
-	return withTimeout(
-		(async () => {
+	let aborted = false;
+	const operation = (async () => {
 			const results: string[] = [];
 			const searchTerms = query
 				.toLowerCase()
@@ -108,15 +106,7 @@ export async function handleDocsSearch({
 
 			if (category === 'component') {
 				if (!componentName) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: 'Error: componentName is required for component search.'
-							}
-						],
-						isError: true
-					};
+					return err('Error: componentName is required for component search.');
 				}
 				let safeComponentPath: string;
 				try {
@@ -125,20 +115,13 @@ export async function handleDocsSearch({
 						componentName
 					);
 				} catch {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: `Error: Invalid component name '${componentName}'.`
-							}
-						],
-						isError: true
-					};
+					return err(`Error: Invalid component name '${componentName}'.`);
 				}
 				const compDocsDir = join(safeComponentPath, 'docs');
 				if (existsSync(compDocsDir)) {
 					const files = await readdir(compDocsDir);
 					for (const file of files) {
+						if (aborted) break;
 						if (!file.endsWith('.md')) continue;
 						if (
 							docType &&
@@ -167,11 +150,12 @@ export async function handleDocsSearch({
 			} else {
 				if (existsSync(DOCS_DIR)) {
 					const searchDir = async (currentDir: string, depth = 5) => {
-						if (depth === 0 || results.length >= 3) return;
+						if (aborted || depth === 0 || results.length >= 3) return;
 						const entries = await readdir(currentDir, {
 							withFileTypes: true
 						});
 						for (const entry of entries) {
+							if (aborted) break;
 							const fullPath = join(currentDir, entry.name);
 							if (entry.isDirectory()) {
 								await searchDir(fullPath, depth - 1);
@@ -203,7 +187,10 @@ export async function handleDocsSearch({
 			}
 
 			return buildResults(results, query);
-		})(),
+		})();
+
+	return withTimeout(
+		operation.finally(() => { aborted = true; }),
 		'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
 	);
 }
