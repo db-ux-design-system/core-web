@@ -49,7 +49,7 @@
     "eslint": "9.39.3",
     "eslint-config-next": "16.1.7",
     "iframe-resizer": "5.5.9",
-    "open-cli": "8.0.0",
+    "open-cli": "9.0.0",
     "prettier": "3.8.1",
     "sass": "1.85.1",
     "typescript": "5.9.3",
