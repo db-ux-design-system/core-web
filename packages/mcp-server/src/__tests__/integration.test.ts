@@ -17,7 +17,6 @@ const {
 const {
 	handleScaffoldPagePrompt,
 	handleReviewUiCodePrompt,
-	handleMigrateComponentPrompt,
 	handleAuditAccessibilityPrompt
 } = await import('../prompts/index.js');
 
@@ -671,37 +670,6 @@ describe('handleReviewUiCodePrompt', () => {
 		expect(result.messages[0].content.text).toContain(
 			'@db-ux/ngx-core-components'
 		);
-	});
-});
-
-// ---------------------------------------------------------------------------
-// migrate_component prompt
-// ---------------------------------------------------------------------------
-describe('handleMigrateComponentPrompt', () => {
-	it('returns a user message containing legacy code, source context, and target framework', () => {
-		const text = assertUserMessage(
-			handleMigrateComponentPrompt({
-				legacy_code: '<button class="btn">Click</button>',
-				source_context: 'bootstrap-4',
-				target_framework: 'react'
-			})
-		);
-
-		expect(text).toContain('bootstrap-4');
-		expect(text).toContain('react');
-		expect(text).toContain('<button class="btn">Click</button>');
-	});
-
-	it('instructs the agent to call list_migration_guides and get_migration_guide', () => {
-		const result = handleMigrateComponentPrompt({
-			legacy_code: '<db-button>Old</db-button>',
-			source_context: 'db-ui-v2',
-			target_framework: 'angular'
-		});
-
-		const text = result.messages[0].content.text;
-		expect(text).toContain('list_migration_guides');
-		expect(text).toContain('get_migration_guide');
 	});
 });
 
