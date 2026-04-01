@@ -542,7 +542,7 @@ describe('handleGetMigrationGuide', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('Layout Components Migration');
+		expect(result.content[0].text).toContain('Direct Equivalents');
 	});
 
 	it('returns an error for an unknown guide name', async () => {
