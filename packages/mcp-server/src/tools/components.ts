@@ -3,27 +3,19 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { Framework } from '../types.js';
 import {
+	type ToolResult,
 	COMPONENTS_DIR,
 	COMPONENT_NOT_FOUND_MSG,
 	IS_MONOREPO,
 	MAX_FILE_CONTENT,
 	MAX_JSON_OUTPUT,
 	OUTPUT_DIR,
+	err,
 	getManifest,
 	resolveSafePath,
 	truncate,
 	withTimeout
 } from '../utils';
-
-type ToolResult = {
-	content: { type: 'text'; text: string }[];
-	isError?: boolean;
-};
-
-/** Creates a standard error ToolResult with the given message. */
-function err(text: string): ToolResult {
-	return { content: [{ type: 'text', text }], isError: true };
-}
 
 /**
  * Resolves and verifies a component path within a given base directory.

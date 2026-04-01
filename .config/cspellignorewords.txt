@@ -164,3 +164,7 @@ Serialises
 stylelints
 Kiro
 cspellignorewords
+carsharing
+bikesharing
+carsharing
+bikesharing

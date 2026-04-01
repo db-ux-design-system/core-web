@@ -265,7 +265,14 @@ describe('handleGetDesignTokens', () => {
 describe('handleListIcons', () => {
 	it('returns icon names from the manifest', async () => {
 		resetManifestCache(
-			JSON.parse(makeManifest({}, ['arrow_down', 'chevron_right']))
+			JSON.parse(
+				makeManifest({}, [
+					'arrow_down',
+					'chevron_right',
+					'person',
+					'alarm_clock'
+				])
+			)
 		);
 
 		const result = await handleListIcons();
@@ -273,6 +280,19 @@ describe('handleListIcons', () => {
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain('arrow_down');
 		expect(result.content[0].text).toContain('chevron_right');
+		expect(result.content[0].text).toContain('person');
+		expect(result.content[0].text).toContain('alarm_clock');
+	});
+
+	it('returns empty array when manifest has no icons (manifest mode does not read migration file)', async () => {
+		resetManifestCache(JSON.parse(makeManifest({}, [])));
+
+		const result = await handleListIcons();
+
+		expect(result.isError).toBeUndefined();
+		const icons = JSON.parse(result.content[0].text);
+		expect(Array.isArray(icons)).toBe(true);
+		expect(icons).toEqual([]);
 	});
 });
 

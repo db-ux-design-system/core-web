@@ -2,19 +2,16 @@ import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import {
+	type ToolResult,
 	COMPONENTS_DIR,
 	DOCS_DIR,
 	IS_MONOREPO,
 	REPO_ROOT,
+	err,
 	getManifest,
 	resolveSafePath,
 	withTimeout
 } from '../utils';
-
-type ToolResult = {
-	content: { type: 'text'; text: string }[];
-	isError?: boolean;
-};
 
 /**
  * Builds a ToolResult from a list of matched document snippets.
@@ -98,112 +95,102 @@ export async function handleDocsSearch({
 		);
 	}
 
-	return withTimeout(
-		(async () => {
-			const results: string[] = [];
-			const searchTerms = query
-				.toLowerCase()
-				.split(' ')
-				.filter((t) => t.trim().length > 2);
+	let aborted = false;
+	const operation = (async () => {
+		const results: string[] = [];
+		const searchTerms = query
+			.toLowerCase()
+			.split(' ')
+			.filter((t) => t.trim().length > 2);
 
-			if (category === 'component') {
-				if (!componentName) {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: 'Error: componentName is required for component search.'
-							}
-						],
-						isError: true
-					};
-				}
-				let safeComponentPath: string;
-				try {
-					safeComponentPath = resolveSafePath(
-						COMPONENTS_DIR,
-						componentName
+		if (category === 'component') {
+			if (!componentName) {
+				return err(
+					'Error: componentName is required for component search.'
+				);
+			}
+			let safeComponentPath: string;
+			try {
+				safeComponentPath = resolveSafePath(
+					COMPONENTS_DIR,
+					componentName
+				);
+			} catch {
+				return err(`Error: Invalid component name '${componentName}'.`);
+			}
+			const compDocsDir = join(safeComponentPath, 'docs');
+			if (existsSync(compDocsDir)) {
+				const files = await readdir(compDocsDir);
+				for (const file of files) {
+					if (aborted) break;
+					if (!file.endsWith('.md')) continue;
+					if (
+						docType &&
+						!file.toLowerCase().includes(docType.toLowerCase())
+					)
+						continue;
+					const content = await readFile(
+						join(compDocsDir, file),
+						'utf-8'
 					);
-				} catch {
-					return {
-						content: [
-							{
-								type: 'text',
-								text: `Error: Invalid component name '${componentName}'.`
-							}
-						],
-						isError: true
-					};
-				}
-				const compDocsDir = join(safeComponentPath, 'docs');
-				if (existsSync(compDocsDir)) {
-					const files = await readdir(compDocsDir);
-					for (const file of files) {
-						if (!file.endsWith('.md')) continue;
-						if (
-							docType &&
-							!file.toLowerCase().includes(docType.toLowerCase())
-						)
-							continue;
-						const content = await readFile(
-							join(compDocsDir, file),
-							'utf-8'
+					const isMatch =
+						searchTerms.length === 0 ||
+						searchTerms.every((term) =>
+							content.toLowerCase().includes(term)
 						);
-						const isMatch =
-							searchTerms.length === 0 ||
-							searchTerms.every((term) =>
-								content.toLowerCase().includes(term)
-							);
-						if (isMatch)
-							results.push(
-								`--- ${componentName}/docs/${file} ---\n${content}`
-							);
-					}
-				} else {
-					results.push(
-						`No documentation found for component '${componentName}'.`
-					);
+					if (isMatch)
+						results.push(
+							`--- ${componentName}/docs/${file} ---\n${content}`
+						);
 				}
 			} else {
-				if (existsSync(DOCS_DIR)) {
-					const searchDir = async (currentDir: string, depth = 5) => {
-						if (depth === 0 || results.length >= 3) return;
-						const entries = await readdir(currentDir, {
-							withFileTypes: true
-						});
-						for (const entry of entries) {
-							const fullPath = join(currentDir, entry.name);
-							if (entry.isDirectory()) {
-								await searchDir(fullPath, depth - 1);
-							} else if (entry.name.endsWith('.md')) {
-								const content = await readFile(
-									fullPath,
-									'utf-8'
+				results.push(
+					`No documentation found for component '${componentName}'.`
+				);
+			}
+		} else {
+			if (existsSync(DOCS_DIR)) {
+				const searchDir = async (currentDir: string, depth = 5) => {
+					if (aborted || depth === 0 || results.length >= 3) return;
+					const entries = await readdir(currentDir, {
+						withFileTypes: true
+					});
+					for (const entry of entries) {
+						if (aborted) break;
+						const fullPath = join(currentDir, entry.name);
+						if (entry.isDirectory()) {
+							await searchDir(fullPath, depth - 1);
+						} else if (entry.name.endsWith('.md')) {
+							const content = await readFile(fullPath, 'utf-8');
+							const isMatch =
+								searchTerms.length === 0 ||
+								searchTerms.every((term) =>
+									content.toLowerCase().includes(term)
 								);
-								const isMatch =
-									searchTerms.length === 0 ||
-									searchTerms.every((term) =>
-										content.toLowerCase().includes(term)
-									);
-								if (isMatch) {
-									const snippet =
-										content.length > 3000
-											? content.substring(0, 3000) +
-												'\n... [TRUNCATED]'
-											: content;
-									results.push(
-										`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`
-									);
-								}
+							if (isMatch) {
+								const snippet =
+									content.length > 3000
+										? content.substring(0, 3000) +
+											'\n... [TRUNCATED]'
+										: content;
+								results.push(
+									`--- ${fullPath.replace(REPO_ROOT, '')} ---\n${snippet}`
+								);
 							}
 						}
-					};
-					await searchDir(DOCS_DIR);
-				}
+					}
+				};
+				await searchDir(DOCS_DIR);
 			}
+		}
 
-			return buildResults(results, query);
-		})(),
+		return buildResults(results, query);
+	})();
+
+	return withTimeout(
+		operation.finally(() => {
+			aborted = true;
+		}),
 		'Error: Search took too long (exceeded 10 seconds). The directory might be too large. Please refine your query.'
 	);
 }
