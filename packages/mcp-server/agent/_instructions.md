@@ -39,7 +39,7 @@ Or add it to your MCP client config:
 - **NEVER** use native HTML elements (`<button>`, `<input>`, `<select>`, `<a>`) when a DB UX component exists (e.g. `DBButton`, `DBInput`, `DBSelect`, `DBLink`)
 - **NEVER** use `<div>` or `<span>` for layout when `DBStack`, `DBSection`, or `DBCard` apply
 - **NEVER** hardcode color values (`#d40000`, `rgb(...)`) — use design tokens exclusively
-- **NEVER** write inline styles with magic numbers (`style="margin: 15px"`) — use `var(--db-...)` tokens
+- **NEVER** write inline styles (`style="margin: 15px"`)
 - **NEVER** invent or guess icon names — always call `list_icons` first
 
 ### DOs:

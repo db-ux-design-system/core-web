@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div class="flex flex-col gap-md">
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-xs">
