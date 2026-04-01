@@ -4,20 +4,21 @@
  *
  * The manifest embeds all component metadata and example source code so the
  * MCP server can operate without access to the monorepo source tree (e.g.
- * when invoked via `npx @db-ux/core-foundations`).
+ * when invoked via `npx @db-ux/mcp-server`).
  */
 import { existsSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { join, relative, resolve } from 'node:path';
-import { TOKEN_FILES } from './utils';
+import { join, relative } from 'node:path';
+import {
+	COMPONENTS_DIR,
+	DOCS_DIR,
+	MIGRATION_DIR,
+	OUTPUT_DIR,
+	REPO_ROOT,
+	TOKEN_FILES
+} from './utils';
 
-const REPO_ROOT = resolve(import.meta.dirname, '../../..');
-const COMPONENTS_SRC = join(REPO_ROOT, 'packages/components/src/components');
-const FOUNDATIONS_SRC = join(REPO_ROOT, 'packages/foundations/src');
-const DOCS_DIR = join(REPO_ROOT, 'docs');
-const MIGRATION_DIR = join(REPO_ROOT, 'docs/migration');
-const OUTPUT_DIR = join(REPO_ROOT, 'output');
-
+import { ALL_ICONS } from '@db-ux/db-theme-icons';
 const FRAMEWORKS = [
 	'react',
 	'angular',
@@ -175,7 +176,7 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
  * Calls process.exit(1) if any component failed to process.
  */
 async function buildManifest() {
-	const componentEntries = await readdir(COMPONENTS_SRC, {
+	const componentEntries = await readdir(COMPONENTS_DIR, {
 		withFileTypes: true
 	});
 	const componentNames = componentEntries
@@ -183,22 +184,7 @@ async function buildManifest() {
 		.map((e) => e.name);
 
 	// Icon list from all-icons.ts
-	const allIconsSrc = await readOptional(
-		join(FOUNDATIONS_SRC, 'all-icons.ts')
-	);
-	const iconsFromTs = allIconsSrc
-		? [...allIconsSrc.matchAll(/'([^']+)'/g)].map((m) => m[1])
-		: [];
-
-	// Merge icons from icon-migration.md (full icon set for MCP consumers)
-	const iconMigrationSrc = await readOptional(
-		join(MIGRATION_DIR, 'icon-migration.md')
-	);
-	const iconsFromMd = iconMigrationSrc
-		? [...iconMigrationSrc.matchAll(/^\|\s*`[^`]+`\s*\|[^|]+\|\s*`([^`]+)`/gm)].map((m) => m[1])
-		: [];
-	const iconSet = new Set([...iconsFromTs, ...iconsFromMd]);
-	const icons = [...iconSet];
+	const icons = ALL_ICONS;
 
 	// Per-component data
 	const components: Record<
@@ -212,7 +198,7 @@ async function buildManifest() {
 
 	const entries = await Promise.all(
 		componentNames.map((name) =>
-			processComponent(name, COMPONENTS_SRC, OUTPUT_DIR)
+			processComponent(name, COMPONENTS_DIR, OUTPUT_DIR)
 		)
 	);
 

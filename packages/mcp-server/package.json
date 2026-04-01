@@ -12,7 +12,7 @@
     "node": ">=22"
   },
   "bin": {
-    "db-ux-mcp": "./dist/index.js"
+    "@db-ux/mcp-server": "./dist/index.js"
   },
   "exports": {
     ".": "./dist/index.js"
@@ -25,14 +25,15 @@
     "build": "node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
+    "copy-build:agent": "cpr agent ../../build-outputs/mcp-server/agent --overwrite",
+    "copy-build:context": "cpr CONTEXT.md ../../build-outputs/mcp-server/CONTEXT.md --overwrite",
     "copy-build:dist": "cpr dist ../../build-outputs/mcp-server/dist --overwrite",
     "copy-build:package.json": "cpr package.json ../../build-outputs/mcp-server/package.json --overwrite",
-    "copy-build:context": "cpr CONTEXT.md ../../build-outputs/mcp-server/CONTEXT.md --overwrite",
     "copy-build:readme": "cpr README.md ../../build-outputs/mcp-server/README.md --overwrite",
     "dev": "npm run build && node dist/index.js",
     "lint": "eslint src/ --ext .ts",
     "start": "node dist/index.js",
-    "test": "vitest run",
+    "test": "npm run build && vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {

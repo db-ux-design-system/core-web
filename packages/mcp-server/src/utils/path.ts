@@ -1,13 +1,8 @@
-import { existsSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 
 const SERVER_DIR = import.meta.dirname;
 /** Absolute path to the monorepo root (core-web/). */
 export const REPO_ROOT = resolve(SERVER_DIR, '../../../..');
-/** True when running inside the monorepo source tree; false in the installed npx package. */
-export const IS_MONOREPO =
-	process.env['FORCE_MANIFEST'] !== '1' &&
-	existsSync(join(REPO_ROOT, 'packages/components/src/components'));
 /** Absolute path to the component source directory. */
 export const COMPONENTS_DIR = join(
 	REPO_ROOT,
@@ -15,17 +10,15 @@ export const COMPONENTS_DIR = join(
 );
 /** Absolute path to the framework output directory. */
 export const OUTPUT_DIR = join(REPO_ROOT, 'output');
-/** Absolute path to the generated all-icons.ts file. */
-export const ALL_ICONS_FILE = join(
-	REPO_ROOT,
-	'packages/foundations/src/all-icons.ts'
-);
 /** Absolute path to the foundations package root. */
 export const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 /** Absolute path to the top-level docs directory. */
 export const DOCS_DIR = join(REPO_ROOT, 'docs');
 /** Absolute path to the migration guides directory. */
-export const MIGRATION_DIR = join(REPO_ROOT, 'docs/migration');
+export const MIGRATION_DIR = join(
+	REPO_ROOT,
+	'packages/mcp-server/docs/migration'
+);
 /** Maps each design token category name to its corresponding SCSS source file. */
 export const TOKEN_FILES: Record<string, string> = {
 	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),

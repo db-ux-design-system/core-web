@@ -151,6 +151,11 @@ for (const { name, lib } of targets) {
 	);
 
 	let instructionsContent = `- Use "@db-ux/${lib}-core-components" as import for components:`;
+	if (name !== 'stencil') {
+		instructionsContent += `
+  - Example for the import is this: \`import { DBButton, DBInput } from "@db-ux/${lib}-core-components";\``;
+	}
+
 	for (const key of Object.keys(groupedFiles)) {
 		const componentName = toPascalCase(key);
 		instructionsContent += `

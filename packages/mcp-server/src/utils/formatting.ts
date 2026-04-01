@@ -9,8 +9,14 @@ export const MAX_JSON_OUTPUT = 20_000;
  * Truncates a string to at most `limit` characters and appends a labelled marker.
  * Returns the original string unchanged when it is within the limit.
  */
-export function truncate(text: string, limit: number, label = 'TRUNCATED DUE TO SIZE'): string {
-	return text.length > limit ? text.substring(0, limit) + `\n... [${label}]` : text;
+export function truncate(
+	text: string,
+	limit: number,
+	label = 'TRUNCATED DUE TO SIZE'
+): string {
+	return text.length > limit
+		? text.substring(0, limit) + `\n... [${label}]`
+		: text;
 }
 
 /** Returns a standardised "component not found" error message for the given component name. */
@@ -21,4 +27,3 @@ export const COMPONENT_NOT_FOUND_MSG = (name: string) =>
 export function err(text: string): ToolResult {
 	return { content: [{ type: 'text', text }], isError: true };
 }
-

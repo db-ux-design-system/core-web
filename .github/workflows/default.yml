@@ -104,11 +104,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
-  test-mcp-server:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/02-test-mcp-server.yml
-    needs: [build-packages, init]
-
   build-storybook-composition:
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
@@ -389,7 +384,6 @@ jobs:
           echo "resultBuildOutputs: $resultBuildOutputs"
           echo "resultTestPackages: $resultTestPackages"
           echo "resultTestFoundations: $resultTestFoundations"
-          echo "resultTestMcpServer: $resultTestMcpServer"
           echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
           echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
           echo "resultTestShowcaseReact: $resultTestShowcaseReact"
@@ -415,7 +409,6 @@ jobs:
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
-          resultTestMcpServer="${{ needs.test-mcp-server.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
           resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
           resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
@@ -428,7 +421,6 @@ jobs:
              [[ $resultBuildStorybookReact == "success" ]] && \
              [[ $resultBuildStorybookVue == "success" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
-             [[ $resultTestMcpServer == "success" ]] && \
             [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
@@ -473,7 +465,6 @@ jobs:
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-mcp-server,
         test-screen-reader,
         init
       ]

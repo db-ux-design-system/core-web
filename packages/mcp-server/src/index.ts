@@ -1,13 +1,11 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
 	handleAuditAccessibilityPrompt,
-	handleMigrateComponentPrompt,
 	handleReviewUiCodePrompt,
 	handleScaffoldPagePrompt
 } from './prompts';
 import {
 	auditAccessibilitySchema,
-	migrateComponentSchema,
 	reviewUiCodeSchema,
 	scaffoldPageSchema
 } from './prompts/schemas.js';
@@ -49,7 +47,7 @@ export {
 	handleListIcons,
 	handleListMigrationGuides
 } from './tools/index.js';
-export { resetManifestCache, resolveSafePath } from './utils/index.js';
+export { resolveSafePath } from './utils/index.js';
 
 // Tools
 server.registerTool(
@@ -84,8 +82,16 @@ server.registerTool(
 	handleGetExampleCode
 );
 server.registerTool('docs_search', docsSearchSchema, handleDocsSearch);
-server.registerTool('list_migration_guides', listMigrationGuidesSchema, handleListMigrationGuides);
-server.registerTool('get_migration_guide', getMigrationGuideSchema, handleGetMigrationGuide);
+server.registerTool(
+	'list_migration_guides',
+	listMigrationGuidesSchema,
+	handleListMigrationGuides
+);
+server.registerTool(
+	'get_migration_guide',
+	getMigrationGuideSchema,
+	handleGetMigrationGuide
+);
 
 // Prompts
 server.registerPrompt(
@@ -99,11 +105,6 @@ server.registerPrompt(
 	handleReviewUiCodePrompt
 );
 server.registerPrompt(
-	'migrate_component',
-	migrateComponentSchema,
-	handleMigrateComponentPrompt
-);
-server.registerPrompt(
 	'audit_accessibility',
 	auditAccessibilitySchema,
 	handleAuditAccessibilityPrompt
@@ -113,3 +114,4 @@ server.registerPrompt(
 registerLifecycleHandlers();
 const transport = new StdioServerTransport();
 await server.connect(transport);
+console.error('[DB UX MCP] Server is running and waiting for requests...');

@@ -12,17 +12,17 @@ Concrete use cases:
 
 ## Tech Stack
 
-| Technology | Purpose |
-|---|---|
-| **Node.js** (≥ 22) | Runtime environment |
-| **TypeScript** | Type safety, consistent with the rest of the monorepo |
+| Technology                      | Purpose                                                                                  |
+| ------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Node.js** (≥ 22)              | Runtime environment                                                                      |
+| **TypeScript**                  | Type safety, consistent with the rest of the monorepo                                    |
 | **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
-| **`tsx`** | Development runner (no separate build step required) |
-| **`esbuild`** | Production build into a single standalone ESM bundle |
+| **`tsx`**                       | Development runner (no separate build step required)                                     |
+| **`esbuild`**                   | Production build into a single standalone ESM bundle                                     |
 
 ## Monorepo Structure (relevant to this server)
 
-```
+```text
 core-web/
 ├── packages/
 │   ├── components/          # Mitosis source files (framework-agnostic)
@@ -73,18 +73,18 @@ core-web/
 
 ### Tools (LLM-callable functions)
 
-| Tool | Description |
-|---|---|
-| `list_components` | Returns all available component names |
-| `get_component_props` | Returns the raw `model.ts` content for a component |
-| `get_component_details` | Returns the list of example names from the showcase file |
-| `get_example_code` | Returns generated framework-specific source for a component example |
-| `list_icons` | Returns all valid icon names from `all-icons.ts` |
-| `list_design_token_categories` | Returns all available design token categories |
-| `get_design_tokens` | Returns CSS custom properties and SCSS variables for a token category |
-| `docs_search` | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs |
-| `list_migration_guides` | Returns all available migration guide names from the manifest |
-| `get_migration_guide` | Returns the full markdown content of a specific migration guide |
+| Tool                           | Description                                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `list_components`              | Returns all available component names                                                            |
+| `get_component_props`          | Returns the raw `model.ts` content for a component                                               |
+| `get_component_details`        | Returns the list of example names from the showcase file                                         |
+| `get_example_code`             | Returns generated framework-specific source for a component example                              |
+| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                 |
+| `list_design_token_categories` | Returns all available design token categories                                                    |
+| `get_design_tokens`            | Returns CSS custom properties and SCSS variables for a token category                            |
+| `docs_search`                  | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs |
+| `list_migration_guides`        | Returns all available migration guide names from the manifest                                    |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                  |
 
 ### Manifest (embedded data)
 
@@ -96,12 +96,12 @@ The server uses `StdioServerTransport` from the MCP SDK. It is started as a chil
 
 ```json
 {
-  "mcpServers": {
-    "db-ux": {
-      "command": "npx",
-      "args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
-    }
-  }
+	"mcpServers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
+		}
+	}
 }
 ```
 
@@ -109,12 +109,12 @@ During development inside the monorepo, `tsx` can be used for live file access:
 
 ```json
 {
-  "mcpServers": {
-    "db-ux": {
-      "command": "npx",
-      "args": ["tsx", "packages/mcp-server/src/index.ts"]
-    }
-  }
+	"mcpServers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["tsx", "packages/mcp-server/src/index.ts"]
+		}
+	}
 }
 ```
 

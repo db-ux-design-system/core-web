@@ -1,22 +1,16 @@
 import { existsSync } from 'node:fs';
-import { readFile, readdir } from 'node:fs/promises';
-import { join } from 'node:path';
 import type { Framework } from '../types.js';
 import {
 	type ToolResult,
-	COMPONENTS_DIR,
 	COMPONENT_NOT_FOUND_MSG,
-	IS_MONOREPO,
 	MAX_FILE_CONTENT,
 	MAX_JSON_OUTPUT,
-	OUTPUT_DIR,
 	err,
-	getManifest,
 	resolveSafePath,
 	truncate,
 	withTimeout
 } from '../utils';
-
+import { getManifest } from '../utils/manifest';
 
 /**
  * Resolves and verifies a component path within a given base directory.
@@ -41,23 +35,6 @@ function resolveComponentPath(
 
 /** Returns all available DB UX component names from the filesystem or manifest. */
 export async function handleListComponents(): Promise<ToolResult> {
-	if (IS_MONOREPO) {
-		const entries = await readdir(COMPONENTS_DIR, { withFileTypes: true });
-		const components = entries
-			.filter((e) => e.isDirectory())
-			.map((e) => e.name);
-		return {
-			content: [
-				{
-					type: 'text',
-					text: truncate(
-						JSON.stringify(components, null, 2),
-						MAX_JSON_OUTPUT
-					)
-				}
-			]
-		};
-	}
 	const manifest = await getManifest();
 	return {
 		content: [
@@ -81,38 +58,6 @@ export async function handleGetComponentDetails({
 }: {
 	componentName: string;
 }): Promise<ToolResult> {
-	if (IS_MONOREPO) {
-		const pathOrError = resolveComponentPath(COMPONENTS_DIR, componentName);
-		if (typeof pathOrError !== 'string') return pathOrError;
-		const showcaseFile = join(
-			pathOrError,
-			'showcase',
-			`${componentName}.showcase.lite.tsx`
-		);
-		if (!existsSync(showcaseFile)) {
-			return err(
-				`Error: File for component '${componentName}' not found.`
-			);
-		}
-		const source = truncate(
-			await readFile(showcaseFile, 'utf-8'),
-			MAX_FILE_CONTENT
-		);
-		const examples = [...source.matchAll(/exampleName="([^"]+)"/g)].map(
-			(m) => m[1]
-		);
-		return {
-			content: [
-				{
-					type: 'text',
-					text:
-						examples.length > 0
-							? JSON.stringify(examples, null, 2)
-							: 'No examples found.'
-				}
-			]
-		};
-	}
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
 	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
@@ -138,27 +83,6 @@ export async function handleGetComponentProps({
 }: {
 	componentName: string;
 }): Promise<ToolResult> {
-	if (IS_MONOREPO) {
-		const pathOrError = resolveComponentPath(COMPONENTS_DIR, componentName);
-		if (typeof pathOrError !== 'string') return pathOrError;
-		const modelFile = join(pathOrError, 'model.ts');
-		if (!existsSync(modelFile)) {
-			return err(
-				`Error: Props file (model.ts) for component '${componentName}' not found.`
-			);
-		}
-		return {
-			content: [
-				{
-					type: 'text',
-					text: truncate(
-						await readFile(modelFile, 'utf-8'),
-						MAX_FILE_CONTENT
-					)
-				}
-			]
-		};
-	}
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
 	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
@@ -232,66 +156,6 @@ export async function handleGetExampleCode({
 			try {
 				const kebab = toKebabCase(exampleName);
 				const ext = FRAMEWORK_EXT[framework];
-
-				if (IS_MONOREPO) {
-					if (framework === 'html') {
-						const htmlFile = join(
-							COMPONENTS_DIR,
-							componentName,
-							'index.html'
-						);
-						if (!existsSync(htmlFile))
-							return err(COMPONENT_NOT_FOUND_MSG(componentName));
-						return {
-							content: [
-								{
-									type: 'text',
-									text: truncate(
-										await readFile(htmlFile, 'utf-8'),
-										MAX_FILE_CONTENT
-									)
-								}
-							]
-						};
-					}
-					const outputSubDir =
-						FRAMEWORK_OUTPUT_DIR[framework] ?? framework;
-					const pathOrError = resolveComponentPath(
-						join(OUTPUT_DIR, outputSubDir, 'src/components'),
-						componentName
-					);
-					if (typeof pathOrError !== 'string') return pathOrError;
-					const examplesDir = join(pathOrError, 'examples');
-					let resolvedPath = join(
-						examplesDir,
-						`${kebab}.example.${ext}`
-					);
-					if (!existsSync(resolvedPath)) {
-						const allEntries = existsSync(examplesDir)
-							? await readdir(examplesDir)
-							: [];
-						const match = fuzzyMatchExample(allEntries, kebab, ext);
-						if (match) {
-							resolvedPath = join(examplesDir, match);
-						} else {
-							return err(
-								`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
-							);
-						}
-					}
-					return {
-						content: [
-							{
-								type: 'text',
-								text: truncate(
-									await readFile(resolvedPath, 'utf-8'),
-									MAX_FILE_CONTENT
-								)
-							}
-						]
-					};
-				}
-
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
 				if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
