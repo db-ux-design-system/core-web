@@ -452,7 +452,7 @@ New Component 🥳
 |   🔁   | **Available replacement** - Use suggested alternative component(s)    |
 |   🔄   | **Planned for future** - Component in roadmap, use temporary solution |
 |   ❌   | **Not planned** - Use alternative approach or build custom solution   |
-|   🆕   | **New in DB-UX-DSv3** - Enhanced or new functionality available       |
+|   🆕   | **New in DB UX Design System v3** - Enhanced or new functionality available       |
 
 ## Migration Strategies
 
@@ -541,7 +541,7 @@ When building custom solutions for missing components:
 
 ```html
 <!-- Temporary loading indicator -->
-<div class="custom-loading" aria-live="polite" aria-label="Loading content">
+<div class="custom-loading" role="status">
 	<div class="spinner"></div>
 	<span class="visually-hidden">Loading...</span>
 </div>

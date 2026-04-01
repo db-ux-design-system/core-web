@@ -57,7 +57,7 @@ You have two options:
 		"servers": {
 			"db-ux": {
 				"command": "npx",
-				"args": ["--yes", "@db-ux/mcp-server", "db-ux-mcp"]
+				"args": ["--yes", "@db-ux/mcp-server"]
 			}
 		}
 	}
@@ -201,7 +201,7 @@ IS_MONOREPO
 This means the same binary works for:
 
 - **Design system developers** working inside the monorepo (always up-to-date, live files)
-- **Consumer teams** running `npx @db-ux/core-mcp-server` (self-contained, no monorepo needed)
+- **Consumer teams** running `npx @db-ux/mcp-server` (self-contained, no monorepo needed)
 
 ### Directory structure
 
