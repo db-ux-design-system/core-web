@@ -4,7 +4,7 @@
  *
  * The manifest embeds all component metadata and example source code so the
  * MCP server can operate without access to the monorepo source tree (e.g.
- * when invoked via `npx @db-ux/core-foundations`).
+ * when invoked via `npx @db-ux/mcp-server`).
  */
 import { existsSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
@@ -12,13 +12,13 @@ import { join, relative } from 'node:path';
 import {
 	COMPONENTS_DIR,
 	DOCS_DIR,
-	FOUNDATIONS_DIR,
 	MIGRATION_DIR,
 	OUTPUT_DIR,
 	REPO_ROOT,
 	TOKEN_FILES
 } from './utils';
 
+import { ALL_ICONS } from '@db-ux/db-theme-icons';
 const FRAMEWORKS = [
 	'react',
 	'angular',
@@ -184,27 +184,7 @@ async function buildManifest() {
 		.map((e) => e.name);
 
 	// Icon list from all-icons.ts
-	// TODO: Those are only the whitelabel icons
-	const allIconsSrc = await readOptional(
-		join(FOUNDATIONS_DIR, 'src', 'all-icons.ts')
-	);
-	const iconsFromTs = allIconsSrc
-		? [...allIconsSrc.matchAll(/'([^']+)'/g)].map((m) => m[1])
-		: [];
-
-	// Merge icons from icon-migration.md (full icon set for MCP consumers)
-	const iconMigrationSrc = await readOptional(
-		join(MIGRATION_DIR, 'icon-migration.md')
-	);
-	const iconsFromMd = iconMigrationSrc
-		? [
-				...iconMigrationSrc.matchAll(
-					/^\|\s*`[^`]+`\s*\|[^|]+\|\s*`([^`]+)`/gm
-				)
-			].map((m) => m[1])
-		: [];
-	const iconSet = new Set([...iconsFromTs, ...iconsFromMd]);
-	const icons = [...iconSet];
+	const icons = ALL_ICONS;
 
 	// Per-component data
 	const components: Record<

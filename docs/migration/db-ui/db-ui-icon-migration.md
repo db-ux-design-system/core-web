@@ -1,6 +1,6 @@
-# DB-UI → DB-UX Icon Migration
+# DB UI → DB UX Icon Migration
 
-| DB-UI Icon                               | Category       | DB-UX Icon                        | Match   | Method |
+| DB UI Icon                               | Category       | DB UX Icon                        | Match   | Method |
 | ---------------------------------------- | -------------- | --------------------------------- | ------- | ------ |
 | `account`                                | functional     | `person`                          | 100% ✅ | manual |
 | `add`                                    | functional     | `plus`                            | 100% ✅ | manual |

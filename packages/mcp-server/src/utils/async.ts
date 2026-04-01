@@ -22,7 +22,10 @@ export async function withTimeout(
 	let timer: ReturnType<typeof setTimeout> | undefined;
 	const timeoutPromise = new Promise<ToolResult>((resolve) => {
 		timer = setTimeout(() => {
-			resolve({ content: [{ type: 'text', text: timeoutMessage }], isError: true });
+			resolve({
+				content: [{ type: 'text', text: timeoutMessage }],
+				isError: true
+			});
 		}, TOOL_TIMEOUT_MS);
 	});
 	const result = await Promise.race([operation, timeoutPromise]);

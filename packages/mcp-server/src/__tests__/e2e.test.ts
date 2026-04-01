@@ -5,13 +5,16 @@
  * child_process.spawn is needed. transport.close() shuts down the child
  * process cleanly on teardown.
  */
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { resolve } from 'node:path';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 const SERVER_ENTRY = resolve(import.meta.dirname, '../index.ts');
-const TSX_CLI = resolve(import.meta.dirname, '../../../../node_modules/tsx/dist/cli.mjs');
+const TSX_CLI = resolve(
+	import.meta.dirname,
+	'../../../../node_modules/tsx/dist/cli.mjs'
+);
 const REPO_ROOT = resolve(import.meta.dirname, '../../../..');
 
 let client: Client;
@@ -39,8 +42,10 @@ describe('MCP server — stdio transport', () => {
 
 		expect(response.isError).toBeFalsy();
 
-		const text = (response.content as { type: string; text: string }[])
-			.find((c) => c.type === 'text')?.text ?? '';
+		const text =
+			(response.content as { type: string; text: string }[]).find(
+				(c) => c.type === 'text'
+			)?.text ?? '';
 
 		const components: string[] = JSON.parse(text);
 		expect(Array.isArray(components)).toBe(true);

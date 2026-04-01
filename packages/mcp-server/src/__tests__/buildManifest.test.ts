@@ -24,12 +24,19 @@ beforeEach(() => {
 
 describe('processComponent', () => {
 	it('returns hasError:false with props and examples on success', async () => {
-		vi.mocked(existsSync).mockImplementation((p: any) =>
-			String(p).includes('model.ts') || String(p).includes('showcase')
+		vi.mocked(existsSync).mockImplementation(
+			(p: any) =>
+				String(p).includes('model.ts') || String(p).includes('showcase')
 		);
 		vi.mocked(readFile).mockImplementation((p: any) => {
-			if (String(p).includes('model.ts')) return Promise.resolve('export interface ButtonProps {}' as any);
-			if (String(p).includes('showcase')) return Promise.resolve('exampleName="Variant" exampleName="Size"' as any);
+			if (String(p).includes('model.ts'))
+				return Promise.resolve(
+					'export interface ButtonProps {}' as any
+				);
+			if (String(p).includes('showcase'))
+				return Promise.resolve(
+					'exampleName="Variant" exampleName="Size"' as any
+				);
 			return Promise.resolve('' as any);
 		});
 
@@ -45,7 +52,9 @@ describe('processComponent', () => {
 
 	it('returns hasError:true when readFile throws', async () => {
 		vi.mocked(existsSync).mockReturnValue(true);
-		vi.mocked(readFile).mockRejectedValue(new Error('EACCES: permission denied'));
+		vi.mocked(readFile).mockRejectedValue(
+			new Error('EACCES: permission denied')
+		);
 
 		const result = await processComponent('broken', BASE, OUTPUT);
 
@@ -70,7 +79,9 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 	let exitSpy: ReturnType<typeof vi.spyOn>;
 
 	beforeEach(() => {
-		exitSpy = vi.spyOn(process, 'exit').mockImplementation((() => {}) as any);
+		exitSpy = vi
+			.spyOn(process, 'exit')
+			.mockImplementation((() => {}) as any);
 	});
 
 	afterEach(() => {
@@ -79,11 +90,14 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 
 	it('processes all components and calls process.exit(1) when one fails', async () => {
 		// Simulate: 'button' succeeds, 'broken' throws during readFile
-		vi.mocked(existsSync).mockImplementation((p: any) =>
-			String(p).includes('button/model.ts') || String(p).includes('broken/model.ts')
+		vi.mocked(existsSync).mockImplementation(
+			(p: any) =>
+				String(p).includes('button/model.ts') ||
+				String(p).includes('broken/model.ts')
 		);
 		vi.mocked(readFile).mockImplementation((p: any) => {
-			if (String(p).includes('broken')) throw new Error('ENOENT: broken component');
+			if (String(p).includes('broken'))
+				throw new Error('ENOENT: broken component');
 			return Promise.resolve('// button props' as any);
 		});
 

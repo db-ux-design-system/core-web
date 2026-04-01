@@ -1,6 +1,6 @@
 /**
  * Generates a structured prompt that migrates legacy UI code
- * to the modern DB UX v3/v4 architecture using dynamic migration guides.
+ * to the modern DB UX architecture using dynamic migration guides.
  */
 export function handleMigrateComponentPrompt({
 	legacy_code,
@@ -37,7 +37,7 @@ You must execute this cognitive workflow:
 
 1. KNOWLEDGE ACQUISITION (CRITICAL):
    - First, call the 'list_migration_guides' tool to see all available historical migration documents.
-   - Based on the ${source_context} and the target v3/v4 architecture, call 'get_migration_guide' for the relevant versions (e.g., 'db-ui-to-db-ux-dsv3' or 'v2.x.x-to-v3.0.0').
+   - Based on the ${source_context} and the target DB UX architecture, call 'get_migration_guide' for the relevant versions (e.g., 'db-ui-component-migration' or 'db-ui-color-migration').
    - Study the returned markdown guides carefully. Pay close attention to package renames, missing components (and their documented workarounds), and prop changes (like 'behaviour' to 'behavior').
 
 2. ASSET SCANNING & MIGRATION (MANDATORY — do not skip):
@@ -47,7 +47,7 @@ You must execute this cognitive workflow:
    - If ANY color reference is found: call 'get_migration_guide' with guide name 'color-migration' and use the returned mapping table as the SOLE source of truth for color replacement. NEVER guess or infer a color mapping — if a value is not in the table, flag it explicitly.
    - If ANY icon reference is found: call 'get_migration_guide' with guide name 'icon-migration' and use the returned mapping table as the SOLE source of truth for icon name replacement. NEVER guess or infer an icon name — if a name is not in the table, flag it explicitly.
 
-3. V3/V4 MAPPING & VERIFICATION:
+3. DB UX MAPPING & VERIFICATION:
    - Call 'list_components' to verify the exact equivalent components in the current DB UX ecosystem.
    - For every confirmed component, call 'get_component_props' and 'get_example_code' with framework="${target_framework}" to ensure you use the modern API.
 

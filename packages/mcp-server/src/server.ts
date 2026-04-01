@@ -2,7 +2,10 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import packageJson from '../package.json';
 
 /** The singleton McpServer instance shared across the entire application. */
-export const server = new McpServer({ name: 'db-ux-mcp', version: packageJson.version });
+export const server = new McpServer({
+	name: 'db-ux-mcp',
+	version: packageJson.version
+});
 
 /**
  * Registers process-level signal and error handlers for graceful shutdown
@@ -29,6 +32,11 @@ export function registerLifecycleHandlers() {
 	});
 
 	process.on('unhandledRejection', (reason, promise) => {
-		console.error('[DB UX MCP] Fatal Error - Unhandled Rejection at:', promise, 'reason:', reason);
+		console.error(
+			'[DB UX MCP] Fatal Error - Unhandled Rejection at:',
+			promise,
+			'reason:',
+			reason
+		);
 	});
 }
