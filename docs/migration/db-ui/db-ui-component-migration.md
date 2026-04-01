@@ -5,7 +5,7 @@
 
 ## Overview
 
-DB-UX Design System v3 represents a complete rethinking of the component architecture with a focus on atomic design principles, accessibility, and modern web standards. Some DB-UI components have been redesigned, consolidated, or are planned for future releases.
+The DB UX Design System v3 is based on a completely new approach to component architecture, focusing on atomic design principles, accessibility and modern web standards. Some DB UI components have been redesigned or consolidated, with more planned for future releases.
 
 ## Components with Direct Equivalents
 
