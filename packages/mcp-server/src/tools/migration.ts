@@ -5,9 +5,9 @@ import {
 	IS_MONOREPO,
 	MIGRATION_DIR,
 	err,
-	getManifest,
 	resolveSafePath
 } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 export async function handleListMigrationGuides(): Promise<ToolResult> {
 	if (IS_MONOREPO) {

@@ -49,7 +49,7 @@ export {
 	handleListIcons,
 	handleListMigrationGuides
 } from './tools/index.js';
-export { resetManifestCache, resolveSafePath } from './utils/index.js';
+export { resolveSafePath } from './utils/index.js';
 
 // Tools
 server.registerTool(

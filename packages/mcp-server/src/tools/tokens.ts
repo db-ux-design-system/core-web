@@ -3,12 +3,12 @@ import { readFile } from 'node:fs/promises';
 import {
 	type ToolResult,
 	err,
-	getManifest,
 	IS_MONOREPO,
 	MAX_JSON_OUTPUT,
 	TOKEN_FILES,
 	truncate
 } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /** Returns all available design token categories, filtered to those with existing SCSS files. */
 export async function handleListDesignTokenCategories(): Promise<ToolResult> {

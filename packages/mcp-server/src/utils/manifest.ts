@@ -1,5 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import manifestData from '../manifest.json' with { type: 'json' };
 import type { Framework } from '../types.js';
 
 /**
@@ -25,29 +24,18 @@ let _manifest: Manifest | null = null;
 
 /**
  * Clears the in-memory manifest cache.
- * In tests, pass a fake manifest object to override the loaded data.
+ * In tests, pass a fake manifest object to override the static import.
  */
 export function resetManifestCache(override?: Manifest) {
 	_manifest = override ?? null;
 }
 
 /**
- * Returns the manifest data, cached after the first call.
- * Reads manifest.json from disk only if the file exists.
- *
- * @throws {Error} When manifest.json does not exist.
+ * Returns the statically imported manifest data, cached after the first call.
+ * esbuild embeds manifest.json directly into the bundle via the static import.
  */
 export async function getManifest(): Promise<Manifest> {
 	if (_manifest) return _manifest;
-
-	const manifestPath = join(import.meta.dirname, '..', 'manifest.json');
-	if (!existsSync(manifestPath)) {
-		throw new Error(
-			`[DB UX MCP] manifest.json not found at ${manifestPath}. Run "npm run build" first.`
-		);
-	}
-
-	const raw = readFileSync(manifestPath, 'utf-8');
-	_manifest = JSON.parse(raw) as Manifest;
+	_manifest = manifestData as Manifest;
 	return _manifest;
 }

@@ -11,11 +11,11 @@ import {
 	MAX_JSON_OUTPUT,
 	OUTPUT_DIR,
 	err,
-	getManifest,
 	resolveSafePath,
 	truncate,
 	withTimeout
 } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /**
  * Resolves and verifies a component path within a given base directory.

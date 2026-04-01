@@ -1,11 +1,11 @@
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
 import {
-	getManifest,
 	IS_MONOREPO,
 	MAX_JSON_OUTPUT,
 	type ToolResult,
 	truncate
 } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /**
  * Returns all available DB UX icon names by parsing the generated all-icons.ts file.

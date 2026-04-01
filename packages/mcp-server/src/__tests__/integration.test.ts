@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetManifestCache } from '../utils/manifest';
 
-const { resetManifestCache, resolveSafePath } =
-	await import('../utils/index.js');
+const { resolveSafePath } = await import('../utils/index.js');
 const {
 	handleListComponents,
 	handleGetComponentDetails,

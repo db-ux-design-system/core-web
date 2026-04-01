@@ -33,7 +33,7 @@
     "dev": "npm run build && node dist/index.js",
     "lint": "eslint src/ --ext .ts",
     "start": "node dist/index.js",
-    "test": "vitest run",
+    "test": "npm run build && vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {

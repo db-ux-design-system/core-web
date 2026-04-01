@@ -8,10 +8,10 @@ import {
 	IS_MONOREPO,
 	REPO_ROOT,
 	err,
-	getManifest,
 	resolveSafePath,
 	withTimeout
 } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /**
  * Builds a ToolResult from a list of matched document snippets.
