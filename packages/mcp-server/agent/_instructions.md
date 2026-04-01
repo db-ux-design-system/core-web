@@ -15,7 +15,7 @@ Or add it to your MCP client config:
 	"mcpServers": {
 		"db-ux": {
 			"command": "npx",
-			"args": ["--yes", "@db-ux/mcp-server", "db-ux-mcp"]
+			"args": ["--yes", "@db-ux/mcp-server"]
 		}
 	}
 }

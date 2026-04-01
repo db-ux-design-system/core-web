@@ -287,7 +287,7 @@ Short description of the breaking change.
 
 ### UI Development & MCP Workflow
 
-**The `db-ux-mcp` MCP server is the single source of truth for all UI development. The following rules are MANDATORY and non-negotiable.**
+**The `@db-ux/mcp-server` MCP server is the single source of truth for all UI development. The following rules are MANDATORY and non-negotiable.**
 
 The server is shipped inside `@db-ux/mcp-server`. Start it without installation:
 
@@ -302,7 +302,7 @@ Or add it to your MCP client config:
 	"mcpServers": {
 		"db-ux": {
 			"command": "npx",
-			"args": ["--yes", "@db-ux/mcp-server", "db-ux-mcp"]
+			"args": ["--yes", "@db-ux/mcp-server"]
 		}
 	}
 }
