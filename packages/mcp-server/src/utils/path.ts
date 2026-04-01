@@ -1,13 +1,8 @@
-import { existsSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 
 const SERVER_DIR = import.meta.dirname;
 /** Absolute path to the monorepo root (core-web/). */
 export const REPO_ROOT = resolve(SERVER_DIR, '../../../..');
-/** True when running inside the monorepo source tree; false in the installed npx package. */
-export const IS_MONOREPO =
-	process.env['FORCE_MANIFEST'] !== '1' &&
-	existsSync(join(REPO_ROOT, 'packages/components/src/components'));
 /** Absolute path to the component source directory. */
 export const COMPONENTS_DIR = join(
 	REPO_ROOT,

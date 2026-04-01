@@ -1,10 +1,4 @@
-import { ALL_ICONS } from '@db-ux/db-theme-icons';
-import {
-	IS_MONOREPO,
-	MAX_JSON_OUTPUT,
-	type ToolResult,
-	truncate
-} from '../utils';
+import { MAX_JSON_OUTPUT, type ToolResult, truncate } from '../utils';
 import { getManifest } from '../utils/manifest';
 
 /**
@@ -12,19 +6,6 @@ import { getManifest } from '../utils/manifest';
  * Falls back to the embedded manifest when running outside the monorepo.
  */
 export async function handleListIcons(): Promise<ToolResult> {
-	if (IS_MONOREPO) {
-		return {
-			content: [
-				{
-					type: 'text',
-					text: truncate(
-						JSON.stringify(ALL_ICONS, null, 2),
-						MAX_JSON_OUTPUT
-					)
-				}
-			]
-		};
-	}
 	const manifest = await getManifest();
 	return {
 		content: [

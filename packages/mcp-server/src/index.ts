@@ -1,13 +1,11 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
 	handleAuditAccessibilityPrompt,
-	handleMigrateComponentPrompt,
 	handleReviewUiCodePrompt,
 	handleScaffoldPagePrompt
 } from './prompts';
 import {
 	auditAccessibilitySchema,
-	migrateComponentSchema,
 	reviewUiCodeSchema,
 	scaffoldPageSchema
 } from './prompts/schemas.js';
@@ -105,11 +103,6 @@ server.registerPrompt(
 	'review_ui_code',
 	reviewUiCodeSchema,
 	handleReviewUiCodePrompt
-);
-server.registerPrompt(
-	'migrate_component',
-	migrateComponentSchema,
-	handleMigrateComponentPrompt
 );
 server.registerPrompt(
 	'audit_accessibility',
