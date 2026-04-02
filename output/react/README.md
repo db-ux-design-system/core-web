@@ -44,6 +44,36 @@ import "@db-ux/core-components/build/styles/rollup.css";
 
 </details>
 
+> **Vite 8 Note:** Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `vite.config.ts` like this:
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  build: {
+    cssMinify: "esbuild"
+  }
+});
+```
+
+> Alternatively, you could define a [browserslist](https://browsersl.ist/) based on your individual browser support strategy — which might be totally different from the list Vite 8 defines by default (targeting browsers from the early 2020s):
+
+```ts
+// Note: You need to install the required packages first:
+// npm install -D lightningcss browserslist
+
+// vite.config.ts
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
+
+export default defineConfig({
+  css: {
+    lightningcss: {
+      targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
+    }
+  }
+});
+```
+
 > **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
 
 ### DB Theme
@@ -74,6 +104,44 @@ npx @db-ux/agent-cli
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
 📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+
+## Code Quality
+
+To enforce correct usage of DB UX Design System components in your React project, we provide the [`@db-ux/core-eslint-plugin`](https://www.npmjs.com/package/@db-ux/core-eslint-plugin) ESLint plugin.
+
+### Installation
+
+```shell
+npm install eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-dev
+```
+
+### Setup
+
+```js
+// eslint.config.js
+import dbUx from "@db-ux/core-eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+	{
+		files: ["**/*.ts", "**/*.tsx"],
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				ecmaVersion: "latest",
+				sourceType: "module",
+				ecmaFeatures: { jsx: true }
+			}
+		},
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
+];
+```
+
+📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
 
 ## Deutsche Bahn brand
 
