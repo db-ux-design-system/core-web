@@ -59,7 +59,6 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ux/core-components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ux/core-components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ux/core-components",
-    "pretest:docs-file-references": "npm run build",
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf --glob showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",
@@ -91,6 +90,7 @@
     "test": "npm-run-all --parallel test:*",
     "test:agent-cli": "npm run test --workspace=@db-ux/agent-cli",
     "test:components": "npm run test --workspace=@db-ux/core-components",
+    "pretest:docs-file-references": "npm run build",
     "test:docs-file-references": "node check-docs.js",
     "test:eslint-plugin": "npm run test --workspace=@db-ux/core-eslint-plugin",
     "test:migration": "npm run test --workspace=@db-ux/core-migration",
@@ -111,6 +111,6 @@
     "typedoc": "0.28.18",
     "typedoc-plugin-markdown": "4.10.0",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "3.2.4"
+    "vitest": "4.1.2"
   }
 }
