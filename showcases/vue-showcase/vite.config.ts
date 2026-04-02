@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue';
+import { Features } from 'lightningcss';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
@@ -11,8 +12,7 @@ export default defineConfig({
 	plugins: [vue()],
 	build: {
 		outDir: '../../build-showcases/vue-showcase',
-		emptyOutDir: true,
-		cssMinify: 'esbuild'
+		emptyOutDir: true
 	},
 	resolve: {
 		alias: {
@@ -20,6 +20,9 @@ export default defineConfig({
 		}
 	},
 	css: {
-		devSourcemap: true // Enables source maps in dev mode for CSS,
+		devSourcemap: true, // Enables source maps in dev mode for CSS
+		lightningcss: {
+			exclude: Features.LightDark
+		}
 	}
 });
