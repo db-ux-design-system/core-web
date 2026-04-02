@@ -8,10 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://vitejs.dev/config/
 export default defineConfig({
 	base: `/vue-showcase/`,
-	plugins: [
-		vue(),
-		devtoolsJson() // Enable Chrome DevTools JSON generation for enhanced debugging
-	],
+	plugins: [vue()],
 	build: {
 		outDir: '../../build-showcases/vue-showcase',
 		emptyOutDir: true,
@@ -23,6 +20,6 @@ export default defineConfig({
 		}
 	},
 	css: {
-		devSourcemap: true // Enables source maps in dev mode for CSS
+		devSourcemap: true // Enables source maps in dev mode for CSS,
 	}
 });
