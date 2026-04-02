@@ -2,20 +2,17 @@ import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import devtoolsJson from 'vite-plugin-devtools-json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	base: `/react-showcase/`,
-	plugins: [
-		react(),
-		devtoolsJson() // Enable Chrome DevTools JSON generation for enhanced debugging
-	],
+	plugins: [react()],
 	build: {
 		outDir: '../../build-showcases/react-showcase',
-		emptyOutDir: true
+		emptyOutDir: true,
+		cssMinify: 'esbuild'
 	},
 	define: {
 		process: {

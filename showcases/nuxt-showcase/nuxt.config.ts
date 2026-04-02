@@ -22,7 +22,8 @@ export default defineNuxtConfig({
 		base: `/nuxt-showcase/`,
 		build: {
 			outDir: '../../build-showcases/nuxt-showcase',
-			emptyOutDir: true
+			emptyOutDir: true,
+			cssMinify: 'esbuild'
 		}
 	},
 	nitro: {

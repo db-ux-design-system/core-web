@@ -15,7 +15,8 @@ export default defineConfig({
 	],
 	build: {
 		outDir: '../../build-showcases/vue-showcase',
-		emptyOutDir: true
+		emptyOutDir: true,
+		cssMinify: 'esbuild'
 	},
 	resolve: {
 		alias: {
