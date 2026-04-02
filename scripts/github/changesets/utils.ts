@@ -23,7 +23,7 @@ export function findChangelogFiles(
  */
 export function extractChangelogForVersion(changelog: string): string {
 	// Find the index of the first '##' header
-	const firstHeader = /^##\s.*$/m.exec(changelog);
+	const firstHeader = /^##\s.*$/mv.exec(changelog);
 	if (!firstHeader) {
 		// No '##' header found, return empty string
 		return '';
@@ -33,7 +33,7 @@ export function extractChangelogForVersion(changelog: string): string {
 
 	// Find the index of the second '##' header after the first
 	const rest = changelog.slice(startIdx + firstHeader[0].length);
-	const secondHeader = /^##\s.*$/m.exec(rest);
+	const secondHeader = /^##\s.*$/mv.exec(rest);
 	if (secondHeader) {
 		// Second '##' found: return content from first to second header
 		const endIdx = startIdx + firstHeader[0].length + secondHeader.index;

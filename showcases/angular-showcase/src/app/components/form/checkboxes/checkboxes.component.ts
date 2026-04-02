@@ -18,7 +18,7 @@ export class CheckboxesComponent {
 	ngModel = true;
 	formControl: FormControl = new FormControl(true);
 
-	public handlePlainChange(event: any) {
-		this.plain = event.target.checked;
+	public handlePlainChange(event: Event) {
+		this.plain = (event.target as HTMLInputElement).checked;
 	}
 }

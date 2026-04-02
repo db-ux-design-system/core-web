@@ -54,7 +54,7 @@ async function processComponent(
 	if (documents.length > 0) {
 		// Remove HTML anchor tags inserted by SassDoc
 		const md = buildMarkdown(documents).replaceAll(
-			/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gm,
+			/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gmv,
 			''
 		);
 		const outPath = join(resolve(__dirname, outputSubPath), component);
@@ -74,7 +74,7 @@ async function processComponent(
  * @param {string} description
  */
 function extractTags(description: string) {
-	const lines = description.split(/\r?\n/).map((l) => l.trim());
+	const lines = description.split(/\r?\n/v).map((l) => l.trim());
 	const result: {
 		name?: string;
 		propertyName?: string;
@@ -93,7 +93,7 @@ function extractTags(description: string) {
 	let inExample = false;
 
 	for (const line of lines) {
-		const tagMatch = /^@(\w+)\s*:?\s*(.*)$/.exec(line);
+		const tagMatch = /^@(\w+)\s*:?\s*(.*)$/v.exec(line);
 		if (tagMatch) {
 			const [, tag, rest] = tagMatch;
 			switch (tag) {
@@ -177,7 +177,7 @@ function buildMarkdown(documents: any[]) {
 		}
 
 		const ex = example
-			? `<pre>${escapeHtml(example).replaceAll(/\r?\n/g, '<br>')}</pre>`
+			? `<pre>${escapeHtml(example).replaceAll(/\r?\n/gv, '<br>')}</pre>`
 			: empty;
 		md += `| \`${name}\` | ${defaultValue ? `\`${defaultValue}\`` : empty} | ${propertyName} | ${description ?? empty} | ${ex} |\n`;
 	}

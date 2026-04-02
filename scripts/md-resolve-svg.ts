@@ -6,7 +6,10 @@ import * as https from 'node:https';
 import { replaceInFileSync } from 'replace-in-file';
 
 // eslint-disable-next-line prefer-regex-literals
-const shieldRegex = new RegExp(String.raw`https://img\.shields\.io/[^)|\s]*`);
+const shieldRegex = new RegExp(
+	String.raw`https://img\.shields\.io/[^)|\s]*`,
+	'v'
+);
 const docsPath = 'docs/images/download';
 
 type Replacement = {
@@ -33,7 +36,7 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 		svgName = decodeURI(svgName)
 			.replace('https://img.shields.io/badge/', '')
 			.replace('.svg', '')
-			.replaceAll(/[^a-zA-Z\d\s]/g, '')
+			.replaceAll(/[^a-zA-Z\d\s]/gv, '')
 			.replaceAll(' ', '_');
 		const pathname = `${docsPath}/${svgName}`;
 		const pathNameSvg = `${pathname}.svg`;

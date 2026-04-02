@@ -17,7 +17,7 @@ export class TextareasComponent {
 	plain = 'test1';
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
-	public handlePlainChange(event: any) {
-		this.plain = event.target.value;
+	public handlePlainChange(event: Event) {
+		this.plain = (event.target as HTMLTextAreaElement).value;
 	}
 }

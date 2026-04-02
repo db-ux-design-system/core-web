@@ -1,15 +1,16 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import type { Preview } from '@storybook/angular';
-import { StoryContext } from 'storybook/internal/csf';
+import { type StoryContext } from 'storybook/internal/csf';
 import docJson from '../src/components/documentation.json';
+
 setCompodocJson(docJson);
 
 const preview: Preview = {
 	parameters: {
 		controls: {
 			matchers: {
-				color: /(background|color)$/i,
-				date: /Date$/i
+				color: /(background|color)$/iv,
+				date: /date$/iv
 			}
 		},
 		actions: { argTypesRegex: '^on.*' },
@@ -19,13 +20,13 @@ const preview: Preview = {
 				title: 'Table of Contents'
 			},
 			source: {
-				transform: async (code: string, context: StoryContext) => {
+				async transform(code: string, context: StoryContext) {
 					let result = code;
 					for (const [key, value] of Object.entries(
-						context['allArgs']
+						context['allArgs'] as Record<string, unknown>
 					)) {
 						result = result
-							.replaceAll(`"${key}"`, `"${value}"`)
+							.replaceAll(`"${key}"`, `"${String(value)}"`)
 							.replaceAll(`[${key}]`, (substring) => {
 								if (!substring.startsWith('[attr.')) {
 									return key;
@@ -33,7 +34,7 @@ const preview: Preview = {
 
 								return substring;
 							})
-							.replaceAll(`this['${key}']`, `'${value}'`);
+							.replaceAll(`this['${key}']`, `'${String(value)}'`);
 					}
 
 					return result;

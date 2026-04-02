@@ -93,7 +93,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				// console.error(e);
 			}
 
-			exampleCode = exampleCode?.replace(/;/g, '').trim();
+			exampleCode = exampleCode?.replaceAll(';', '').trim();
 
 			result += `
 				<DBTabPanel>
@@ -143,7 +143,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 	if (FS.existsSync(path)) {
 		variants = JSON.parse(FS.readFileSync(path, 'utf8')).map((variant) => ({
 			...variant,
-			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, '')
+			name: variant.name.replaceAll(/\s/gv, '').replaceAll(/\W/gv, '')
 		}));
 
 		let indexFile = '';

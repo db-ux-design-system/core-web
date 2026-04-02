@@ -36,7 +36,7 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 		const isUnion = value.type.includes('|');
 
 		propertyTable += `| ${getAllNames(name)} `;
-		propertyTable += `| ${description?.replaceAll(/\r\n|\r|\n/g, '<br/>') || 'No description'} `;
+		propertyTable += `| ${description?.replaceAll(/\r\n|\r|\n/gv, '<br/>') || 'No description'} `;
 		propertyTable += `| ${isUnion ? 'union' : value.type} `;
 
 		propertyTable += ['icon', 'icon-trailing', 'message-icon'].includes(
@@ -47,7 +47,7 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 	}
 
 	for (const { name, description } of allSlots) {
-		slotsTable += `| ${getAllNames(name)} | ${description?.replaceAll(/\r\n|\r|\n/g, '<br/>')} |\n`;
+		slotsTable += `| ${getAllNames(name)} | ${description?.replaceAll(/\r\n|\r|\n/gv, '<br/>')} |\n`;
 	}
 
 	for (const { name } of events) {

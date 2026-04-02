@@ -47,14 +47,14 @@ export default function transformLinks() {
 							'./' +
 							basePath
 								.slice(2) // Remove './'
-								.replace(/\.md$/, '') // Remove .md extension
-								.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // CamelCase to kebab-case
+								.replace(/\.md$/v, '') // Remove .md extension
+								.replaceAll(/([a-z])([A-Z])/gv, '$1-$2') // CamelCase to kebab-case
 								.toLowerCase();
 					} else {
 						// Handle simple .md files and other relative paths
 						basePath = basePath
-							.replace(/\.md$/, '') // Remove .md extension
-							.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // CamelCase to kebab-case
+							.replace(/\.md$/v, '') // Remove .md extension
+							.replaceAll(/([a-z])([A-Z])/gv, '$1-$2') // CamelCase to kebab-case
 							.toLowerCase();
 					}
 

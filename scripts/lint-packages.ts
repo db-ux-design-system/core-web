@@ -27,7 +27,6 @@ for (const { name, parentPath } of packages) {
 	const packageJsonPath = path.join(packagePath, 'package.json');
 
 	try {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 		const { name: packageName } = JSON.parse(
 			readFileSync(packageJsonPath, 'utf8')
 		) as { name: string };

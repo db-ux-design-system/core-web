@@ -33,14 +33,14 @@ const includeSet = new Set(
  */
 function toPascalCase(string_: string): string {
 	return string_
-		.replaceAll(/[-_]+/g, ' ')
-		.replaceAll(/[^\w\s]/g, '')
+		.replaceAll(/[-_]+/gv, ' ')
+		.replaceAll(/[^\w\s]/gv, '')
 		.replaceAll(
-			/\s+(.)(\w*)/g,
+			/\s+(.)(\w*)/gv,
 			(_, firstChar: string, rest: string) =>
 				firstChar.toUpperCase() + rest.toLowerCase()
 		)
-		.replace(/^\w/, (char: string) => char.toUpperCase());
+		.replace(/^\w/v, (char: string) => char.toUpperCase());
 }
 
 /**
@@ -94,7 +94,7 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 	try {
 		// Read and merge the content of all files in the group
 		const fileContents = fileGroup
-			.sort((a, b) => a.localeCompare(b))
+			.toSorted((a, b) => a.localeCompare(b))
 			.map((file) => readFileSync(file, 'utf8'));
 		mergedContent = fileContents.join('\n\n');
 	} catch (error) {
