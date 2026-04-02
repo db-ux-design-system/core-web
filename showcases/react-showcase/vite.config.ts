@@ -1,5 +1,4 @@
 import react from '@vitejs/plugin-react';
-import { Features } from 'lightningcss';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
@@ -12,7 +11,8 @@ export default defineConfig({
 	plugins: [react()],
 	build: {
 		outDir: '../../build-showcases/react-showcase',
-		emptyOutDir: true
+		emptyOutDir: true,
+		minify: 'esbuild'
 	},
 	define: {
 		process: {
@@ -35,9 +35,6 @@ export default defineConfig({
 		}
 	},
 	css: {
-		devSourcemap: true, // Enables source maps in dev mode for CSS
-		lightningcss: {
-			exclude: Features.LightDark
-		}
+		devSourcemap: true // Enables source maps in dev mode for CSS
 	}
 });
