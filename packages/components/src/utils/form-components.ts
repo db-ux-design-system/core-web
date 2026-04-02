@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ValidationType } from '../shared/model';
 import { delay } from './index';
 
 export const handleFrameworkEventAngular = (
@@ -87,4 +88,31 @@ export const addValueResetEventListener = (
 		},
 		signal
 	);
+};
+
+export const getValidationState = (
+	props: { validMessage?: string; validation?: ValidationType },
+	element?: HTMLElement
+): ValidationType => {
+	let userValid: boolean = false;
+	let userInvalid: boolean = false;
+	if (typeof window !== 'undefined' && element) {
+		userValid =
+			!!getComputedStyle(element).getPropertyValue('--db-user-valid');
+		userInvalid =
+			!!getComputedStyle(element).getPropertyValue('--db-user-invalid');
+	}
+
+	if (
+		props.validMessage &&
+		(props.validation === 'valid' || (!props.validation && userValid))
+	) {
+		return 'valid';
+	}
+
+	if (props.validation === 'invalid' || (!props.validation && userInvalid)) {
+		return 'invalid';
+	}
+
+	return 'no-validation';
 };

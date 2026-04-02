@@ -1,0 +1,62 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+[data-generation="next"] .db-checkbox,
+.db-checkbox[data-generation="next"] {
+	> label {
+		color: var(--db-text-default);
+	}
+
+	input {
+		&:not(:checked) {
+			background-color: var(--db-bg-default);
+			color: var(--db-text-default);
+			border-color: var(--db-visual-default);
+
+			&::before {
+				color: var(--db-visual-default);
+			}
+		}
+
+		:checked {
+			background-color: var(--db-acitve-bg-default);
+			color: var(--db-acitve-text-default);
+			border-color: var(--db-acitve-visual-default);
+
+			&::before {
+				color: var(--db-acitve-visual-default);
+			}
+		}
+	}
+
+	@include helpers.hover {
+		> label {
+			color: var(--db-text-hovered);
+		}
+
+		input {
+			&:not(:checked) {
+				background-color: var(--db-bg-hovered);
+			}
+
+			:checked {
+				background-color: var(--db-active-bg-hovered);
+			}
+		}
+	}
+
+	@include helpers.active {
+		> label {
+			color: var(--db-text-pressed);
+		}
+
+		input {
+			&:not(:checked) {
+				background-color: var(--db-bg-pressed);
+			}
+
+			:checked {
+				background-color: var(--db-active-bg-pressed);
+			}
+		}
+	}
+}

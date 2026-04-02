@@ -1,23 +1,25 @@
 import {
 	ClickEventProps,
+	ColorState,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	MaterialState,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
 	SizeProps,
-	TempGlobalState,
+	TempGlobalProps,
 	TextProps,
 	WidthProps,
 	WrapProps
 } from '../../shared/model';
 
 export const ButtonVariantList = [
-	"adaptive",
+	'adaptive',
 	'outlined',
 	'brand',
 	'filled',
@@ -64,6 +66,7 @@ export type DBButtonDefaultProps = {
 export type DBButtonProps = DBButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
+	TempGlobalProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
@@ -83,4 +86,5 @@ export type DBButtonDefaultState = {
 
 export type DBButtonState = DBButtonDefaultState &
 	GlobalState &
-	TempGlobalState;
+	MaterialState &
+	ColorState;

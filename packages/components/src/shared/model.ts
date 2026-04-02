@@ -38,25 +38,66 @@ export interface GlobalProps {
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
+export type TempGlobalProps = {
+	material?: MaterialType;
+	color?: ColorType;
+	containerContrast?: ContrastType;
+	contentContrast?: ContrastType;
+};
+
+export const ContrastList = ['max', 'min'] as const;
+export type ContrastType = (typeof ContrastList)[number];
+
 export const MaterialList = [
 	'filled',
 	'vibrant',
 	'origin',
+	'inverted',
 	'semi-transparent',
 	'transparent'
 ] as const;
 export type MaterialType = (typeof MaterialList)[number];
 
-export const ColorList = ['neutral', 'red', 'brand'] as const;
+export const ColorList = ['neutral', 'red', 'brand', 'green'] as const;
 export type ColorType = (typeof ColorList)[number];
 
 export type GlobalState = {
 	_id?: string;
 };
 
-export type TempGlobalState = {
+export type MaterialState = {
 	_getMaterial: () => MaterialType | undefined;
+};
+export type ColorState = {
 	_getColor: () => ColorType | undefined;
+};
+export type ActiveMaterialState = {
+	_getActiveMaterial: () => MaterialType | undefined;
+};
+export type ActiveColorState = {
+	_getActiveColor: () => ColorType | undefined;
+};
+export type ActiveMaterialProps = {
+	activeMaterial?: MaterialType;
+	activeColor?: ColorType;
+	activeContainerContrast?: ContrastType;
+	activeContentContrast?: ContrastType;
+};
+
+export type ContainerContrastState = {
+	_getContainerContrast: () => ContrastType | undefined;
+};
+
+export type ContentContrastState = {
+	_getContentContrast: () => ContrastType | undefined;
+};
+
+export type ActiveContainerContrastState = {
+	_getActiveContainerContrast: () => ContrastType | undefined;
+};
+
+export type ActiveContentContrastState = {
+	_getActiveContentContrast: () => ContrastType | undefined;
 };
 
 export const SemanticList = [

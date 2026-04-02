@@ -8,6 +8,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { MaterialType } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
@@ -36,6 +37,18 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 
 			return [];
+		},
+
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
+			if (props.variant === 'card') {
+				return 'filled';
+			}
+
+			return 'transparent';
 		}
 	});
 
@@ -108,6 +121,10 @@ export default function DBAccordion(props: DBAccordionProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-accordion', props.className)}
+			data-material={state._getMaterial()}
+			data-color-next={props.color}
+			data-container-contrast={props.containerContrast ?? 'max'}
+			data-content-contrast={props.contentContrast}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>

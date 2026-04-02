@@ -1,4 +1,9 @@
-import { GlobalProps, InitializedState } from '../../shared/model';
+import {
+	GlobalProps,
+	InitializedState,
+	MaterialState,
+	TempGlobalProps
+} from '../../shared/model';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 export const AccordionVariantList = ['divider', 'card'] as const;
@@ -40,7 +45,9 @@ export type DBAccordionDefaultProps = {
 	variant?: AccordionVariantType;
 };
 
-export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
+export type DBAccordionProps = DBAccordionDefaultProps &
+	GlobalProps &
+	TempGlobalProps;
 
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;
@@ -48,4 +55,6 @@ export type DBAccordionDefaultState = {
 	convertItems: () => DBAccordionItemDefaultProps[];
 };
 
-export type DBAccordionState = DBAccordionDefaultState & InitializedState;
+export type DBAccordionState = DBAccordionDefaultState &
+	InitializedState &
+	MaterialState;

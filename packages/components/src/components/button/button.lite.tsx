@@ -30,6 +30,10 @@ export default function DBButton(props: DBButtonProps) {
 			return 'submit';
 		},
 		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
 			if (props.variant === 'brand') {
 				return 'origin';
 			}
@@ -49,6 +53,10 @@ export default function DBButton(props: DBButtonProps) {
 			return 'filled';
 		},
 		_getColor: (): ColorType | undefined => {
+			if (props.color) {
+				return props.color;
+			}
+
 			if (props.variant === 'brand') {
 				return 'brand';
 			}
@@ -60,7 +68,9 @@ export default function DBButton(props: DBButtonProps) {
 	return (
 		<button
 			data-material={state._getMaterial()}
-			data-color={state._getColor()}
+			data-color-next={state._getColor()}
+			data-container-contrast={props.containerContrast}
+			data-content-contrast={props.contentContrast}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-button', props.className)}

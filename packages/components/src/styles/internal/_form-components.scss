@@ -322,6 +322,8 @@ $input-valid-types:
 		&:has(
 			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
 		) {
+			--db-#{$user}#{$key}: 1;
+
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */

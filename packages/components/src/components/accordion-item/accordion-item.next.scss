@@ -1,0 +1,18 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+[data-generation="next"] .db-accordion-item,
+.db-accordion-item[data-generation="next"] {
+	> details {
+		> summary {
+			background-color: var(--db-bg-default);
+
+			@include helpers.hover {
+				background-color: var(--db-bg-hovered);
+			}
+
+			@include helpers.active {
+				background-color: var(--db-bg-pressed);
+			}
+		}
+	}
+}

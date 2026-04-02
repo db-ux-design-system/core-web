@@ -1,0 +1,12 @@
+@use "accordion";
+
+[data-generation="next"] .db-accordion,
+.db-accordion[data-generation="next"] {
+	&[data-variant="card"] {
+		.db-accordion-item {
+			&::after {
+				border-color: var(--db-border);
+			}
+		}
+	}
+}

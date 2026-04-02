@@ -28,6 +28,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -64,6 +65,66 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getActiveColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.activeColor) {
+				return props.activeColor;
+			}
+
+			return undefined;
+		},
+		_getActiveContentContrast: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid' || validationState === 'invalid') {
+				return 'min';
+			}
+
+			if (props.activeContentContrast) {
+				return props.activeContentContrast;
+			}
+
+			return 'max';
+		},
+		_getContentContrast: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid' || validationState === 'invalid') {
+				return 'min';
+			}
+
+			if (props.contentContrast) {
+				return props.contentContrast;
+			}
+
+			return 'max';
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -243,6 +304,16 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	return (
 		<div
+			data-active-material={props.activeMaterial ?? 'inverted'}
+			data-active-color-next={state._getActiveColor()}
+			data-material={props.material ?? 'filled'}
+			data-color-next={state._getColor()}
+			data-container-contrast={props.containerContrast ?? 'max'}
+			data-active-container-contrast={
+				props.activeContainerContrast ?? 'max'
+			}
+			data-content-contrast={state._getContentContrast()}
+			data-active-content-contrast={state._getActiveContentContrast()}
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

@@ -4,6 +4,7 @@ export type MaterialName =
 	| 'filled'
 	| 'vibrant'
 	| 'origin'
+	| 'inverted'
 	| 'semi-transparent'
 	| 'transparent';
 
@@ -35,21 +36,23 @@ export type MaterialConfig = {
 	}>;
 };
 
-export const containerPropToCss: Record<ContainerProp, string> = {
-	border: '--db-border',
-	bgDefault: '--db-bg-default',
-	bgHovered: '--db-bg-hovered',
-	bgPressed: '--db-bg-pressed'
-};
+export const containerPropToCss = (
+	prefix = ''
+): Record<ContainerProp, string> => ({
+	border: `--db-${prefix}border`,
+	bgDefault: `--db-${prefix}bg-default`,
+	bgHovered: `--db-${prefix}bg-hovered`,
+	bgPressed: `--db-${prefix}bg-pressed`
+});
 
-export const contentPropToCss: Record<ContentProp, string> = {
-	textDefault: '--db-text-default',
-	textHovered: '--db-text-hovered',
-	textPressed: '--db-text-pressed',
-	visualDefault: '--db-visual-default',
-	visualHovered: '--db-visual-hovered',
-	visualPressed: '--db-visual-pressed'
-};
+export const contentPropToCss = (prefix = ''): Record<ContentProp, string> => ({
+	textDefault: `--db-${prefix}text-default`,
+	textHovered: `--db-${prefix}text-hovered`,
+	textPressed: `--db-${prefix}text-pressed`,
+	visualDefault: `--db-${prefix}visual-default`,
+	visualHovered: `--db-${prefix}visual-hovered`,
+	visualPressed: `--db-${prefix}visual-pressed`
+});
 
 const filledContent: Record<ContrastLevel, ContentContrastProps> = {
 	max: {
@@ -156,6 +159,40 @@ export const materials: Record<MaterialName, MaterialConfig> = {
 				textPressed: 8,
 				visualDefault: 9,
 				visualHovered: 5,
+				visualPressed: 9
+			}
+		}
+	},
+	inverted: {
+		container: {
+			max: {
+				border: 4,
+				bgDefault: 1,
+				bgHovered: 5,
+				bgPressed: 1
+			},
+			min: {
+				border: 7,
+				bgDefault: 5,
+				bgHovered: 4,
+				bgPressed: 5
+			}
+		},
+		content: {
+			max: {
+				textDefault: 14,
+				textHovered: 11,
+				textPressed: 14,
+				visualDefault: 14,
+				visualHovered: 11,
+				visualPressed: 14
+			},
+			min: {
+				textDefault: 10,
+				textHovered: 7,
+				textPressed: 10,
+				visualDefault: 9,
+				visualHovered: 6,
 				visualPressed: 9
 			}
 		}
