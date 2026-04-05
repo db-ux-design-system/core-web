@@ -132,7 +132,7 @@
     "eslint-config-xo": "0.49.0",
     "eslint-plugin-package-json": "0.88.3",
     "eslint-plugin-prettier": "5.5.5",
-    "eslint-plugin-vue": "^9.33.0",
+    "eslint-plugin-vue": "9.33.0",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
     "http-server": "14.1.1",
