@@ -1,0 +1,118 @@
+@charset "utf-8";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+
+.db-breadcrumb {
+	// Default: Small size
+	.db-breadcrumb-list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center; // center items vertically to align with separators
+		gap: variables.$db-spacing-fixed-3xs; // 2px gap for small (per Figma)
+		list-style-type: "";
+		margin: 0;
+		padding: 0;
+	}
+
+	// Breadcrumb items inherit styling from db-breadcrumb-item component
+	// Individual item styling is encapsulated in breadcrumb-item.scss
+
+	// Ellipsis button for collapsed breadcrumbs
+	.db-breadcrumb-ellipsis {
+		appearance: none;
+		background: none;
+		border-width: 0;
+		margin: 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small per Figma)
+		border-radius: variables.$db-border-radius-xs;
+	}
+
+	// Default chevron: apply when the breadcrumb does NOT request a slash
+	// Two selectors cover both HTML (li direct child) and Angular (li inside db-breadcrumb-item wrapper)
+	&:not([data-separator="slash"])
+		.db-breadcrumb-list
+		> li:not(:first-child)::before,
+	&:not([data-separator="slash"])
+		.db-breadcrumb-list
+		> db-breadcrumb-item:not(:first-child)
+		> li::before {
+		@extend %icon;
+
+		--db-icon: "chevron_right";
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+		--db-icon-font-weight: 16; // Font weight to load 16px icon font variant
+		--db-icon-font-size: 1rem; // Actual size: 16px (small)
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	// Slash separator override when component has data-separator="slash"
+	// Two selectors cover both HTML (li descendant) and Angular (li inside db-breadcrumb-item wrapper)
+	&[data-separator="slash"] .db-breadcrumb-list li:not(:first-child)::before,
+	&[data-separator="slash"]
+		.db-breadcrumb-list
+		> db-breadcrumb-item:not(:first-child)
+		> li::before {
+		content: "/"; // ASCII slash (0x2F)
+		font-weight: 400;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+		/* reduce the inline size so the slash doesn't create extra empty box */
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: var(--db-sizing-regular-xs);
+		aspect-ratio: 1;
+		font-size: 0.875rem; // Smaller text size for slash separator (small)
+	}
+
+	// Medium size variant
+	&[data-size="medium"] {
+		&[data-separator="slash"]
+			.db-breadcrumb-list
+			li:not(:first-child)::before,
+		&[data-separator="slash"]
+			.db-breadcrumb-list
+			> db-breadcrumb-item:not(:first-child)
+			> li::before {
+			inline-size: var(--db-sizing-functional-sm);
+			font-size: 1rem; // Smaller text size for slash separator (medium)
+		}
+
+		.db-breadcrumb-list {
+			gap: variables.$db-spacing-fixed-2xs; // medium: list item gap (per Figma)
+
+			/* ensure list items are vertically centered in medium size */
+			align-items: center;
+		}
+
+		// Ensure medium size chevron styling
+		&:not([data-separator="slash"])
+			.db-breadcrumb-list
+			> li:not(:first-child)::before,
+		&:not([data-separator="slash"])
+			.db-breadcrumb-list
+			> db-breadcrumb-item:not(:first-child)
+			> li::before {
+			--db-icon-font-weight: 20; // Font weight to load 20px icon font variant
+			--db-icon-font-size: 1.25rem; // Actual size: 20px (medium)
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+		}
+
+		// Ellipsis button styling for medium size
+		.db-breadcrumb-ellipsis {
+			padding: variables.$db-spacing-fixed-2xs
+				variables.$db-spacing-fixed-xs; // match medium padding
+
+			@extend %db-overwrite-font-size-md;
+		}
+	}
+}

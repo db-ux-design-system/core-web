@@ -2,6 +2,8 @@ import AccordionItemShowcase from '@components/components/accordion-item/showcas
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
 import BrandShowcase from '@components/components/brand/showcase/brand.showcase';
+import BreadcrumbItemShowcase from '@components/components/breadcrumb-item/showcase/breadcrumb-item.showcase';
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -70,26 +72,23 @@ const nameComponentMap = {
 	tabs: <TabsShowcase isPatternhub />,
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
-	tooltip: <TooltipShowcase isPatternhub />
+	tooltip: <TooltipShowcase isPatternhub />,
+	breadcrumb: <BreadcrumbShowcase isPatternhub />,
+	'breadcrumb-item': <BreadcrumbItemShowcase isPatternhub />
 };
 
 const addComponentsToNavigationItems = (
 	navigationItems: NavigationItem[]
-): NavigationItem[] => {
-	return navigationItems.map((navigationItem) => {
-		return {
-			...navigationItem,
-			subNavigation: navigationItem.subNavigation?.map((subNavItem) => {
-				return {
-					...subNavItem,
-					component: subNavItem.name
-						? nameComponentMap[subNavItem.name]
-						: undefined
-				};
-			})
-		};
-	});
-};
+): NavigationItem[] =>
+	navigationItems.map((navigationItem) => ({
+		...navigationItem,
+		subNavigation: navigationItem.subNavigation?.map((subNavItem) => ({
+			...subNavItem,
+			component: subNavItem.name
+				? nameComponentMap[subNavItem.name]
+				: undefined
+		}))
+	}));
 
 export const componentChildren: NavigationItem[] =
 	addComponentsToNavigationItems(Components);
@@ -288,8 +287,7 @@ export const getBreadcrumb = (path: string) => {
 		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
-export const getAllComponentGroupNames = (): string[] => {
-	return componentChildren
+export const getAllComponentGroupNames = (): string[] =>
+	componentChildren
 		.filter(({ name }) => Boolean(name))
 		.map(({ name }) => name!);
-};

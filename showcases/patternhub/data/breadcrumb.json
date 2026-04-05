@@ -1,0 +1,139 @@
+[
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Small",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-size-small",
+					"ariaLabel": "Breadcrumb size small",
+					"items": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{
+							"text": "Current Page",
+							"ariaCurrent": "page",
+							"href": "#"
+						}
+					]
+				}
+			},
+			{
+				"name": "Medium",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-size-medium",
+					"size": "medium",
+					"ariaLabel": "Breadcrumb size medium",
+					"items": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "Separator",
+		"examples": [
+			{
+				"name": "Chevron",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-separator-chevron",
+					"separator": "chevron",
+					"ariaLabel": "Breadcrumb separator chevron",
+					"items": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			},
+			{
+				"name": "Slash",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-separator-slash",
+					"separator": "slash",
+					"ariaLabel": "Breadcrumb separator slash",
+					"items": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "Collapsed",
+		"examples": [
+			{
+				"name": "Collapsed (maxItems=3)",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-collapsed",
+					"maxItems": 3,
+					"ariaLabel": "Breadcrumb collapsed",
+					"ellipsisAriaLabel": "Expand to show all breadcrumb items",
+					"items": [
+						{ "href": "#", "text": "Root" },
+						{ "href": "#", "text": "Path 1" },
+						{ "href": "#", "text": "Path 2" },
+						{ "href": "#", "text": "Path 3" },
+						{
+							"text": "Current Page",
+							"ariaCurrent": "page",
+							"href": "#"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "Icons",
+		"examples": [
+			{
+				"name": "With Icons (Small)",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-icons-small",
+					"ariaLabel": "Breadcrumb icons small",
+					"items": [
+						{ "href": "#", "text": "Root", "icon": "house" },
+						{
+							"href": "#",
+							"text": "Settings",
+							"icon": "gear_wheel"
+						},
+						{ "href": "#", "text": "Profile", "icon": "person" },
+						{ "href": "#", "text": "Notifications", "icon": "bell" }
+					]
+				}
+			},
+			{
+				"name": "With Icons (Medium)",
+				"className": "w-full",
+				"props": {
+					"id": "breadcrumb-icons-medium",
+					"ariaLabel": "Breadcrumb icons medium",
+					"size": "medium",
+					"items": [
+						{ "href": "#", "text": "Root", "icon": "house" },
+						{
+							"href": "#",
+							"text": "Settings",
+							"icon": "gear_wheel"
+						},
+						{ "href": "#", "text": "Profile", "icon": "person" },
+						{ "href": "#", "text": "Notifications", "icon": "bell" }
+					]
+				}
+			}
+		]
+	}
+]

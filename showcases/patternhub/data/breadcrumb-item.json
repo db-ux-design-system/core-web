@@ -1,0 +1,63 @@
+[
+	{
+		"name": "Basic",
+		"examples": [
+			{
+				"name": "Link",
+				"props": {
+					"href": "#",
+					"text": "Home"
+				}
+			},
+			{
+				"name": "Current Page",
+				"props": {
+					"ariaCurrent": "page",
+					"text": "Current Page"
+				}
+			}
+		]
+	},
+	{
+		"name": "With Icon",
+		"examples": [
+			{
+				"name": "Home Icon",
+				"props": {
+					"href": "#",
+					"icon": "house",
+					"text": "Home"
+				}
+			},
+			{
+				"name": "Folder Icon",
+				"props": {
+					"href": "#",
+					"icon": "folder",
+					"text": "Category"
+				}
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"href": "#",
+					"disabled": false,
+					"text": "Enabled Item"
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"href": "#",
+					"disabled": true,
+					"text": "Disabled Item"
+				}
+			}
+		]
+	}
+]

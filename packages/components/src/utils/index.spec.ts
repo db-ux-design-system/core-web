@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getStep } from './index';
+import { getStep, parseItems } from './index';
 
 describe('getStep', () => {
 	it('returns undefined when step is undefined', () => {
@@ -28,5 +28,27 @@ describe('getStep', () => {
 	it('returns NaN when step is a non-numeric string', () => {
 		expect(getStep('foo')).toBeNaN();
 		expect(getStep('invalid')).toBeNaN();
+	});
+});
+
+describe('parseItems', () => {
+	it('returns an empty array for undefined', () => {
+		expect(parseItems<string>(undefined)).toEqual([]);
+	});
+
+	it('returns array values unchanged', () => {
+		expect(parseItems<string>(['a', 'b'])).toEqual(['a', 'b']);
+	});
+
+	it('parses a valid JSON array string', () => {
+		expect(parseItems<string>('["a","b"]')).toEqual(['a', 'b']);
+	});
+
+	it('returns empty array for non-array JSON', () => {
+		expect(parseItems<string>('"text"')).toEqual([]);
+	});
+
+	it('returns empty array for invalid JSON', () => {
+		expect(parseItems<string>('{invalid')).toEqual([]);
 	});
 });
