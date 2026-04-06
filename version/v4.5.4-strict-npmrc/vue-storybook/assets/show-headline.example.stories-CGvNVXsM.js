@@ -1,0 +1,43 @@
+import{_ as n}from"./notification-GhA_XHdi.js";import"./iframe-B_8YGBdU.js";import"./preload-helper-COvGWKxX.js";import"./constants-y2N5m1XS.js";import"./index-CggTMVtt.js";import"./button-CJtBRNYR.js";const{fn:a}=__STORYBOOK_MODULE_TEST__,p={title:"Components/DBNotification/Show Headline",component:n,parameters:{layout:"centered"},tags:["autodocs"],args:{onClose:a()},argTypes:{headline:{control:"text"},showIcon:{control:"boolean"},variant:{control:"select",options:["docked","standalone","overlay"]},semantic:{control:"select",options:["adaptive","neutral","critical","informational","warning","successful"]},closeable:{control:"boolean"},linkVariant:{control:"select",options:["block","inline"]},showHeadline:{control:"boolean"},showTimestamp:{control:"boolean"},timestamp:{control:"text"},ariaLive:{control:"select",options:["assertive","polite","off"]},text:{control:"text"},role:{control:"text"},closeButtonId:{control:"text"},closeButtonText:{control:"text"},id:{control:"text"},autofocus:{control:"boolean"},onClose:{action:"onClose"}}},t={args:{headline:"Headline",showHeadline:!0,default:"(Default) True"},render:e=>({components:{DBNotification:n},setup(){return{args:e}},template:`<div  :style="{
+  width: '300px'
+}"  ><DBNotification v-bind="args"   >${e.default}</DBNotification></div>`})},o={args:{headline:"Headline",showHeadline:!1,default:"False"},render:e=>({components:{DBNotification:n},setup(){return{args:e}},template:`<div  :style="{
+  width: '300px'
+}"  ><DBNotification v-bind="args"   >${e.default}</DBNotification></div>`})};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    "headline": "Headline",
+    "showHeadline": true,
+    "default": \`(Default) True\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBNotification
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<div  :style="{
+  width: '300px'
+}"  ><DBNotification v-bind="args"   >\${args.default}</DBNotification></div>\`
+  })
+}`,...t.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "headline": "Headline",
+    "showHeadline": false,
+    "default": \`False\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBNotification
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<div  :style="{
+  width: '300px'
+}"  ><DBNotification v-bind="args"   >\${args.default}</DBNotification></div>\`
+  })
+}`,...o.parameters?.docs?.source}}};const u=["DefaultTrue","False"];export{t as DefaultTrue,o as False,u as __namedExportsOrder,p as default};
