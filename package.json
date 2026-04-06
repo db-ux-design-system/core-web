@@ -162,7 +162,7 @@
     "vite-plugin-devtools-json": "1.0.0",
     "vitest": "3.2.4",
     "vue-eslint-parser": "10.4.0",
-    "xo": "1.2.3",
+    "xo": "2.0.2",
     "zone.js": "0.15.1"
   },
   "overrides": {
