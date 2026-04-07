@@ -125,7 +125,7 @@
     "cspell": "9.7.0",
     "eslint": "10.1.0",
     "eslint-config-prettier": "10.1.8",
-    "eslint-config-xo": "0.50.0",
+    "eslint-config-xo": "0.51.0",
     "eslint-plugin-package-json": "0.91.1",
     "eslint-plugin-prettier": "5.5.5",
     "eslint-plugin-vue": "10.8.0",
@@ -166,8 +166,7 @@
   "overrides": {
     "cross-spawn": "7.0.6",
     "esbuild": "0.27.7",
-    "esbuild-wasm": "0.27.7",
-    "eslint-config-xo": "0.50.0"
+    "esbuild-wasm": "0.27.7"
   },
   "validate-branch-name": {
     "pattern": "((copilot/)|(dependabot-)|((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
