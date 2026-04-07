@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { DBSelect } from '../../../../output/react/src';
 import {
 	COLOR,
 	COLOR_CONST,
@@ -7,7 +5,9 @@ import {
 	DENSITIES,
 	DENSITY,
 	DENSITY_CONST
-} from '../../../../packages/components/src/shared/constants';
+} from '@db-ux/core-components/src';
+import { useEffect, useState } from 'react';
+import { DBSelect } from '../../../../output/react/src';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 
 export type MetaNavigationProps = {
