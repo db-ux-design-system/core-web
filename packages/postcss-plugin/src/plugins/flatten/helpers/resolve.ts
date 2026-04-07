@@ -235,27 +235,46 @@ export const resolveCalc = (value: string): string =>
 // ── color-mix() ─────────────────────────────────────────────────────────
 
 /**
- * Parse a hex color string to an RGB tuple.
- * Supports `#rgb`, `#rrggbb`, `#rgba`, and `#rrggbbaa` (alpha is ignored).
+ * Parse a hex color string to an RGBA tuple.
+ * Supports `#rgb`, `#rrggbb`, `#rgba`, and `#rrggbbaa`.
  * @param hex - The hex color string
- * @returns An [r, g, b] tuple (0-255), or null if not parseable
+ * @returns An [r, g, b, a] tuple (0-255 for rgb, 0-1 for alpha), or null if not parseable
  */
-const parseHexColor = (hex: string): [number, number, number] | null => {
+const parseHexColor = (
+	hex: string
+): [number, number, number, number] | null => {
 	const h = hex.replace('#', '');
 	let r: number, g: number, b: number;
-	if (h.length === 3 || h.length === 4) {
+	let a = 1;
+	if (h.length === 3) {
 		r = Number.parseInt(h[0] + h[0], 16);
 		g = Number.parseInt(h[1] + h[1], 16);
 		b = Number.parseInt(h[2] + h[2], 16);
-	} else if (h.length === 6 || h.length === 8) {
+	} else if (h.length === 4) {
+		r = Number.parseInt(h[0] + h[0], 16);
+		g = Number.parseInt(h[1] + h[1], 16);
+		b = Number.parseInt(h[2] + h[2], 16);
+		a = Number.parseInt(h[3] + h[3], 16) / 255;
+	} else if (h.length === 6) {
 		r = Number.parseInt(h.slice(0, 2), 16);
 		g = Number.parseInt(h.slice(2, 4), 16);
 		b = Number.parseInt(h.slice(4, 6), 16);
+	} else if (h.length === 8) {
+		r = Number.parseInt(h.slice(0, 2), 16);
+		g = Number.parseInt(h.slice(2, 4), 16);
+		b = Number.parseInt(h.slice(4, 6), 16);
+		a = Number.parseInt(h.slice(6, 8), 16) / 255;
 	} else {
 		return null;
 	}
-	if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return null;
-	return [r, g, b];
+	if (
+		Number.isNaN(r) ||
+		Number.isNaN(g) ||
+		Number.isNaN(b) ||
+		Number.isNaN(a)
+	)
+		return null;
+	return [r, g, b, a];
 };
 
 /**
@@ -324,7 +343,8 @@ const evaluateColorMix = (args: string): string | null => {
 	} else {
 		const parsed = parseHexColor(arg1.color);
 		if (!parsed) return null;
-		rgb1 = parsed;
+		rgb1 = [parsed[0], parsed[1], parsed[2]];
+		alpha1 = parsed[3];
 	}
 
 	let rgb2: [number, number, number],
@@ -335,7 +355,8 @@ const evaluateColorMix = (args: string): string | null => {
 	} else {
 		const parsed = parseHexColor(arg2.color);
 		if (!parsed) return null;
-		rgb2 = parsed;
+		rgb2 = [parsed[0], parsed[1], parsed[2]];
+		alpha2 = parsed[3];
 	}
 
 	const mixedAlpha = alpha1 * pct1 + alpha2 * pct2;
