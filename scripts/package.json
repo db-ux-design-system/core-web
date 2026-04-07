@@ -47,7 +47,7 @@
     "build:eslint-plugin": "npm run build --workspace=@db-ux/core-eslint-plugin",
     "build:foundations": "npm run build --workspace=@db-ux/core-foundations",
     "build:migration": "npm run build --workspace=@db-ux/core-migration",
-    "build:postcss-plugin": "npm run build --workspace=@db-ux/postcss-plugin",
+    "build:postcss-plugin": "npm run build --workspace=@db-ux/core-postcss-plugin",
     "build:stylelint": "npm run build --workspace=@db-ux/core-stylelint",
     "decode-db-theme-assets": "npm-run-all --parallel decode-db-theme-assets:*",
     "decode-db-theme-assets:db-theme": "node ../node_modules/@db-ux/db-theme/build/scripts/index.js",
