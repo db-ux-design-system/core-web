@@ -56,6 +56,12 @@ jobs:
           name: db-ux-components-build
           path: packages/components/build
 
+      - name: ⏬ Download postcss-plugin build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-postcss-plugin-build
+          path: packages/postcss-plugin/build
+
       - name: ⏬ Download ${{ inputs.showcase }}
         uses: actions/download-artifact@v8
         with:

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
+import dbUxFlatten from '../../packages/postcss-plugin/build/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -38,6 +39,9 @@ export default defineConfig({
 		}
 	},
 	css: {
-		devSourcemap: true // Enables source maps in dev mode for CSS
+		devSourcemap: true, // Enables source maps in dev mode for CSS
+		postcss: {
+			plugins: [dbUxFlatten()]
+		}
 	}
 });

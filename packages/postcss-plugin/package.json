@@ -1,0 +1,50 @@
+{
+  "name": "@db-ux/core-postcss-plugin",
+  "version": "4.5.4",
+  "type": "module",
+  "description": "PostCSS plugins for DB UX Design System",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "build"
+  ],
+  "keywords": [
+    "postcss",
+    "postcss-plugin",
+    "db-ux",
+    "css-variables",
+    "light-dark"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "copy-output": "npm-run-all copy:*",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/postcss-plugin/CHANGELOG.md --overwrite",
+    "copy:outputs": "cpr build ../../build-outputs/postcss-plugin/build -o",
+    "copy:package.json": "cpr package.json ../../build-outputs/postcss-plugin/package.json -o",
+    "copy:readme": "cpr README.md ../../build-outputs/postcss-plugin/README.md -o",
+    "test": "vitest run --config vitest.config.ts",
+    "test:update": "vitest run --config vitest.config.ts --update"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "devDependencies": {
+    "postcss": "8.5.8",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}
