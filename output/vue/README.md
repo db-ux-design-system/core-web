@@ -57,7 +57,7 @@ Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](htt
 // vite.config.ts
 export default defineConfig({
   build: {
-    minify: "esbuild"
+    cssMinify: "esbuild"
   }
 });
 ```
