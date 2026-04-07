@@ -619,6 +619,31 @@ export class CustomCardComponent {
 - Verify screen reader compatibility
 - Check color contrast ratios
 
+### User Testing
+
+1. **Create a pre-release**: Go to [GitHub Releases](https://github.com/db-ux-design-system/core-web/releases/new) and create a new pre-release.
+
+2. **Get the pre-release version**: Check the publish step inside the pipeline to find the exact name of the pre-release (e.g., `0.0.0-table-abc1234`).
+
+3. **Set up the examples repo**: Create a new branch in the [examples repository](https://github.com/db-ux-design-system/examples) named after the component (e.g., `test-table`). Update the npm dependency for the framework you want to test with the pre-release version:
+"Use the package matching your framework: @db-ux/react-core-components (React), @db-ux/ngx-core-components (Angular), @db-ux/v-core-components (Vue), @db-ux/wc-core-components (Web Components)."
+    ```json
+    {
+    	"dependencies": {
+    		"@db-ux/react-core-components": "0.0.0-table-abc1234"
+    	}
+    }
+    ```
+
+4. **Run user tests**: Users can either clone the examples repo and check out the branch, or open it directly in StackBlitz:
+
+    ```text
+    https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/<branch-name>/<framework>-example?file=index.html
+    ```
+
+    For example:
+    `https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/test-table/react-example?file=index.html`
+
 ## Conclusion
 
 Creating custom components with the DB UX Design System requires careful attention to design consistency, accessibility, and brand guidelines.

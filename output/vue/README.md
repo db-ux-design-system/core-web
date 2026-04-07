@@ -141,6 +141,45 @@ This will create or update `.github/copilot-instructions.md` with component docu
 
 📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
 
+## Code Quality
+
+To enforce correct usage of DB UX Design System components in your Vue project, we provide the [`@db-ux/core-eslint-plugin`](https://www.npmjs.com/package/@db-ux/core-eslint-plugin) ESLint plugin.
+
+### Installation
+
+```shell
+npm install eslint @db-ux/core-eslint-plugin vue-eslint-parser @typescript-eslint/parser --save-dev
+```
+
+### Setup
+
+```js
+// eslint.config.js
+import dbUx from "@db-ux/core-eslint-plugin";
+import vueParser from "vue-eslint-parser";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+	{
+		files: ["**/*.vue"],
+		languageOptions: {
+			parser: vueParser,
+			parserOptions: {
+				parser: tsParser,
+				ecmaVersion: "latest",
+				sourceType: "module"
+			}
+		},
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
+];
+```
+
+📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
+
 ## Deutsche Bahn brand
 
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even if being used with the code that we're providing with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.

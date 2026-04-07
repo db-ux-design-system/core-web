@@ -153,6 +153,7 @@ Fernverkehr
 Regio
 Konzern
 Vertrieb
+stylelint
 runneradmin
 modelcontextprotocol
 fetc
