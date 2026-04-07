@@ -6,6 +6,13 @@ import '../../showcase-styles.css';
 import App from './app';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
+// Makes env-variable available in the components without using import.meta.
+// as a result, the components are also compatible with next.
+// eslint-disable-next-line @typescript-eslint/dot-notation
+window['env'] = {
+	BASE_URL: import.meta.env.BASE_URL
+};
+
 ReactDOM.createRoot(document.querySelector('#root')!).render(
 	<React.StrictMode>
 		<HashRouter>

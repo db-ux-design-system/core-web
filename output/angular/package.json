@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "main": "fesm2022/db-ux-ngx-core-components.mjs",
   "module": "fesm2022/db-ux-ngx-core-components.mjs",
-  "types": "index.d.ts",
   "scripts": {
     "build": "npm-run-all build:* --parallel mv:*",
     "build:angular": "ng build",

@@ -18,8 +18,8 @@ const getDefaultScreenshotTest = async (
 
 for (const group of Components) {
 	for (const component of group.subNavigation) {
-		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(
+		test.describe(component.name, () => {
+			void getDefaultScreenshotTest(
 				component.name,
 				`docs`,
 				`.${group.path}/${component.name}/docs/Angular`,
@@ -29,8 +29,8 @@ for (const group of Components) {
 				}
 			);
 		});
-		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(
+		test.describe(component.name, () => {
+			void getDefaultScreenshotTest(
 				component.name,
 				`overview`,
 				`.${group.path}/${component.name}/overview?fullscreen=true`,
@@ -40,8 +40,8 @@ for (const group of Components) {
 				}
 			);
 		});
-		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(
+		test.describe(component.name, () => {
+			void getDefaultScreenshotTest(
 				component.name,
 				`properties`,
 				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
