@@ -165,6 +165,7 @@ Serialises
 stylelints
 Kiro
 cspellignorewords
+lintstagedrc
 carsharing
 bikesharing
 carsharing
