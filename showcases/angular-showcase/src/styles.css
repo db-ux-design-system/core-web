@@ -2,7 +2,6 @@
 @import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
 @import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
 @import "../../showcase-styles.css";
-@import "sa11y/dist/css/sa11y.min.css";
 
 .variants-list > * > div:not([class^="db-"]) {
 	align-items: center;
