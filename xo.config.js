@@ -19,7 +19,8 @@ const xoConfig = [
 			'import-x/order': 0, // We use a prettier plugin to organize imports,
 			'@typescript-eslint/no-unsafe-type-assertion': 0, // We don't need this tsc will handle it anyway
 			'@typescript-eslint/no-unsafe-member-access': 0, // We don't need this tsc will handle it anyway
-			'@typescript-eslint/no-unsafe-enum-comparison': 0 // We don't need this tsc will handle it anyway
+			'@typescript-eslint/no-unsafe-enum-comparison': 0, // We don't need this tsc will handle it anyway
+			'require-unicode-regexp': 0 // We don't need unicode regexp
 		}
 	},
 	{

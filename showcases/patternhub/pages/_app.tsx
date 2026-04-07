@@ -75,7 +75,7 @@ const App = ({ Component, pageProps }: AppProps) => (
 				<img
 					{...properties}
 					src={
-						properties.src?.startsWith('http')
+						properties.src?.toString()?.startsWith('http')
 							? properties.src
 							: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${properties.src}`
 					}

@@ -40,7 +40,7 @@ function getVersion(): string {
 
 function getFirstHeadline(changelog: string): string {
 	// Match first line starting with # or ## (allow whitespace)
-	const match = /^\s*#+\s+(.+)$/mv.exec(changelog);
+	const match = /^\s*#+\s+(.+)$/m.exec(changelog);
 	return match ? match[1].trim() : '';
 }
 
@@ -56,7 +56,7 @@ function getReleaseNotes(): string {
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
 			const entry = `# ${headline}\n${section}`;
 			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
-			const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/mv.test(
+			const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/m.test(
 				section
 			);
 			if (isVersionBump) {

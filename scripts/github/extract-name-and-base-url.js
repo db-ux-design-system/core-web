@@ -24,7 +24,7 @@ function extractNameAndBaseUrl(context) {
 	if (isRelease) {
 		// Use tag name from GITHUB_REF (remove refs/tags/ prefix)
 		const githubRef = process.env.GITHUB_REF || '';
-		name = githubRef.replace(/^refs\/tags\//v, '');
+		name = githubRef.replace(/^refs\/tags\//, '');
 		console.log('Using tag name from GITHUB_REF:', name);
 	} else {
 		// Use extracted branch name

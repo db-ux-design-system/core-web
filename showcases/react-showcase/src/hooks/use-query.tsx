@@ -56,7 +56,7 @@ const useQuery = (
 
 	useEffect(() => {
 		if (searchRead) {
-			const nextQuery: Record<string, string | boolean> = {
+			const nextQuery: Record<string, string> = {
 				density,
 				color
 			};
@@ -65,7 +65,7 @@ const useQuery = (
 			}
 
 			if (fullscreen) {
-				nextQuery.fullscreen = true;
+				nextQuery.fullscreen = 'true';
 			}
 
 			if (redirectURLSearchParameters) {

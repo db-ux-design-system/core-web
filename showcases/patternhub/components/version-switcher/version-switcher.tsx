@@ -52,7 +52,7 @@ const VersionSwitcher = () => {
 				bugfixes.push(branch);
 			} else if (branch.startsWith('refactor')) {
 				refactors.push(branch);
-			} else if (/^\d*-/v.test(branch)) {
+			} else if (/^\d*-/.test(branch)) {
 				issues.push(branch);
 			} else if (branch.startsWith('docs')) {
 				docs.push(branch);

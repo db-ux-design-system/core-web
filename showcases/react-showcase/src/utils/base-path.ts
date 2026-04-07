@@ -4,8 +4,8 @@ export const getBasePath = () => {
 	}
 
 	if (typeof globalThis !== 'undefined') {
-		return (globalThis as unknown as Record<string, Record<string, string>>)
-			.env?.BASE_URL;
+		// eslint-disable-next-line @typescript-eslint/dot-notation
+		return window['env']?.BASE_URL;
 	}
 
 	return '';

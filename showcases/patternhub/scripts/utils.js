@@ -230,7 +230,7 @@ export const getColorVariants = () => [
  */
 export const cleanupName = (name) => {
 	if (!name) return '';
-	return name.replaceAll(/\s+/gv, '').replaceAll(/\W/gv, '');
+	return name.replaceAll(/\s+/g, '').replaceAll(/\W/g, '');
 };
 
 /**

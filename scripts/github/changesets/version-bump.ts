@@ -19,7 +19,7 @@ export function ensureChangelogHasContent() {
 		if (!latestSection) continue; // No section found, skip
 
 		// Find the first '##' header
-		const headerMatch = /^##\s.*$/mv.exec(latestSection);
+		const headerMatch = /^##\s.*$/m.exec(latestSection);
 		if (!headerMatch) continue;
 		const header = headerMatch[0];
 		const afterHeader = latestSection.slice(header.length).trim();
@@ -27,7 +27,7 @@ export function ensureChangelogHasContent() {
 		// If no content after header, add italicized 'version bump'
 		if (!afterHeader) {
 			// Find the position of the first '##' header in the file
-			const fileHeaderMatch = /^##\s.*$/mv.exec(content);
+			const fileHeaderMatch = /^##\s.*$/m.exec(content);
 			if (!fileHeaderMatch) continue;
 			const insertPos = fileHeaderMatch.index + fileHeaderMatch[0].length;
 			const newContent =

@@ -33,14 +33,14 @@ const includeSet = new Set(
  */
 function toPascalCase(string_: string): string {
 	return string_
-		.replaceAll(/[-_]+/gv, ' ')
-		.replaceAll(/[^\w\s]/gv, '')
+		.replaceAll(/[-_]+/g, ' ')
+		.replaceAll(/[^\w\s]/g, '')
 		.replaceAll(
-			/\s+(.)(\w*)/gv,
+			/\s+(.)(\w*)/g,
 			(_, firstChar: string, rest: string) =>
 				firstChar.toUpperCase() + rest.toLowerCase()
 		)
-		.replace(/^\w/v, (char: string) => char.toUpperCase());
+		.replace(/^\w/, (char: string) => char.toUpperCase());
 }
 
 /**
