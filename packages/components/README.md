@@ -95,7 +95,11 @@ import browserslist from "browserslist";
 export default defineConfig({
 	css: {
 		lightningcss: {
-			targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
+			targets: browserslistToTargets(
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
 		}
 	}
 });
