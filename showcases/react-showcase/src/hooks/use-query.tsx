@@ -11,15 +11,15 @@ const useQuery = (redirectURLSearchParameters = true): any => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
-	const [density, setDensity] = useState<string>(
+	const [density, setDensity] = useState(
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
-	const [color, setColor] = useState<string>(
+	const [color, setColor] = useState(
 		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
-	const [fullscreen, setFullscreen] = useState<boolean>(false);
-	const [searchRead, setSearchRead] = useState<boolean>(false);
+	const [fullscreen, setFullscreen] = useState(false);
+	const [searchRead, setSearchRead] = useState(false);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
