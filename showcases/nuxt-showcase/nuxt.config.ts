@@ -1,4 +1,3 @@
-import { Features } from 'lightningcss';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineNuxtConfig } from 'nuxt/config';
@@ -24,12 +23,8 @@ export default defineNuxtConfig({
 		base: `/nuxt-showcase/`,
 		build: {
 			outDir: '../../build-showcases/nuxt-showcase',
-			emptyOutDir: true
-		},
-		css: {
-			lightningcss: {
-				exclude: Features.LightDark
-			}
+			emptyOutDir: true,
+			cssMinify: 'esbuild'
 		}
 	},
 	nitro: {
