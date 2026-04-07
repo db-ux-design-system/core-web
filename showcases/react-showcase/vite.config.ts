@@ -12,7 +12,7 @@ export default defineConfig({
 	build: {
 		outDir: '../../build-showcases/react-showcase',
 		emptyOutDir: true,
-		minify: 'esbuild'
+		cssMinify: 'esbuild'
 	},
 	define: {
 		process: {
