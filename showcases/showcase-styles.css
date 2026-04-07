@@ -92,6 +92,7 @@
 
 .link-headline {
 	margin-block: var(--db-spacing-fixed-md);
+	font-weight: 700;
 }
 
 /**
