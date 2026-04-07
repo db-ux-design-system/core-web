@@ -42,7 +42,9 @@ const CopyClipboardButton = ({
 			variant="ghost"
 			icon="copy"
 			noText={true}
-			onClick={onCopyButtonClick}
+			onClick={(event) => {
+				void onCopyButtonClick(event);
+			}}
 			aria-describedby={name}>
 			<DBTooltip
 				id={name}
