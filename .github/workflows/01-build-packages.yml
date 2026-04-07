@@ -19,7 +19,9 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: 🔨 Build Packages
-        run: npm run build
+        run: |
+          npm run build
+          npm run docs-file-references --workspace=scripts
 
       - name: ⏫ Upload foundations build
         uses: actions/upload-artifact@v7
