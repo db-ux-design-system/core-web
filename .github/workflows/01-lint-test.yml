@@ -13,18 +13,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        command: ["lint", "test", "codespell"]
+        command: ["lint", "test"]
     steps:
       - name: ⏬️ Checkout repo
         uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
-
-      - name: 📖 Check spelling
-        if: ${{ matrix.command == 'codespell' }}
-        run: |
-          npm run lint:codespell
 
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}

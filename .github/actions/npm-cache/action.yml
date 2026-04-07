@@ -36,9 +36,9 @@ runs:
       id: "cache"
       with:
         path: ${{ inputs.nodeModulesPath }}
-        key: ${{ runner.os }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
+        key: ${{ runner.os }}-${{ runner.arch }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
         restore-keys: |
-          ${{ runner.os }}-node-${{ inputs.nodeVersion }}
+          ${{ runner.os }}-${{ runner.arch }}-node-${{ inputs.nodeVersion }}
 
     - name: 🎄🎸🥊 Log Cache Hit
       shell: bash
@@ -50,4 +50,4 @@ runs:
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        npm ci
+        npm ci --include=optional

@@ -34,7 +34,7 @@
     "start": "stencil build --watch --config stencil.config.dev.ts"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "0.11.0",
+    "@custom-elements-manifest/analyzer": "0.10.10",
     "@stencil/core": "4.43.3",
     "cem-plugin-expanded-types": "1.4.0",
     "custom-element-jet-brains-integration": "1.7.0",

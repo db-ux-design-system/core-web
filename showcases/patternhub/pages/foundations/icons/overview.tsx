@@ -15,10 +15,10 @@ import rootPackage from '../../../../../package.json';
 import themeIconsPackage from '../../../../../node_modules/@db-ux/db-theme-icons/package.json';
 
 const IconOverview = () => {
-	const [weight, setWeight] = useState<string>('24');
-	const [family, setFamily] = useState<string>('default');
+	const [weight, setWeight] = useState('24');
+	const [family, setFamily] = useState('default');
 	// TODO: we should add a better search for this
-	const [search, setSearch] = useState<string>('');
+	const [search, setSearch] = useState('');
 
 	// Get theme version from root package.json
 	const themeVersion =

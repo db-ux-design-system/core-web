@@ -24,13 +24,14 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 ## Packages
 
 | Package                                                                                                       | Content                                      | Version                                                                                                                                                                                                                                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------------------------------------------------------------------------------------------|----------------------------------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [@db-ux/core-foundations](https://github.com/db-ux-design-system/core-web/tree/main/packages/foundations)     | CSS/SCSS/Tailwind styles and assets          | [![@db-ux/core-foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-foundations "DB UX Design System – on NPM")           |
 | [@db-ux/core-components](https://github.com/db-ux-design-system/core-web/tree/main/packages/components)       | CSS/SCSS styles for components               | [![@db-ux/core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-components "DB UX Design System – on NPM")             |
 | [@db-ux/ngx-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/angular)        | Native Angular components                    | [![@db-ux/ngx-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/ngx-core-components "DB UX Design System – on NPM")     |
 | [@db-ux/react-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/react)        | Native React components                      | [![@db-ux/react-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/react-core-components "DB UX Design System – on NPM") |
 | [@db-ux/v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)              | Native Vue 3 components                      | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UX Design System – on NPM")         |
 | [@db-ux/wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)         | Web Components                               | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UX Design System – on NPM")       |
+| [@db-ux/mcp-server](https://github.com/db-ux-design-system/core-web/tree/main/packages/mcp-server)            | Model Context Protocol (MCP) Server          | [![@db-ux/mcp-server on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/mcp-server "DB UX Design System – on NPM")                       |
 | [@db-ux/core-eslint-plugin](https://github.com/db-ux-design-system/core-web/tree/main/packages/eslint-plugin) | ESLint plugin for component usage validation | [![@db-ux/core-eslint-plugin on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.npmjs.org%2F%40db-ux%2Fcore-eslint-plugin%2Flatest&query=%24.version&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-eslint-plugin "DB UX Design System – on NPM")                        |
 | [@db-ux/core-stylelint](https://github.com/db-ux-design-system/core-web/tree/main/packages/stylelint)         | Stylelint plugin for CSS/SCSS usage          | [![@db-ux/core-stylelint on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.npmjs.org%2F%40db-ux%2Fcore-stylelint%2Flatest&query=%24.version&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-stylelint "DB UX Design System – on NPM")                                    |
 
@@ -59,9 +60,25 @@ We even provide some [examples of integrations](https://github.com/db-ux-design-
 
 ## AI Agent Support
 
-For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
+We provide dedicated tooling to integrate the DB UX Design System directly into your AI coding assistants (like GitHub Copilot, Amazon Q, Cursor, or Claude).
 
-### Quick Start
+### Model Context Protocol (MCP) Server
+For IDEs and AI tools that support the [Model Context Protocol](https://modelcontextprotocol.io/) (e.g., Claude plugins, Cursor, Windsurf), we provide a standalone MCP server. It equips your AI with our official documentation, design tokens, and a powerful migration engine to automatically refactor legacy v2 code into modern v3 standards.
+
+Add the server to your AI assistant's MCP configuration:
+```json
+{
+  "mcpServers": {
+    "db-ux": {
+      "command": "npx",
+      "args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
+    }
+  }
+}
+```
+
+### Agent CLI (Copilot Instructions)
+For developers using GitHub Copilot or similar tools that read workspace instructions, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool.
 
 Run this command in your repository:
 

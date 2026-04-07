@@ -155,4 +155,17 @@ Konzern
 Vertrieb
 stylelint
 runneradmin
+modelcontextprotocol
+fetc
+fpasswd
+cursorrules
+xyznonexistent
+serialised
+Serialises
 stylelints
+Kiro
+cspellignorewords
+carsharing
+bikesharing
+carsharing
+bikesharing
