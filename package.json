@@ -118,7 +118,7 @@
     "@typescript-eslint/eslint-plugin": "8.58.0",
     "@typescript-eslint/parser": "8.58.0",
     "accessibility-checker": "4.0.16",
-    "adm-zip": "0.5.16",
+    "adm-zip": "0.5.17",
     "commander": "14.0.3",
     "cpr": "3.0.1",
     "cross-env": "10.1.0",
