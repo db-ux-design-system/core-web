@@ -69,7 +69,6 @@ jobs:
       - name: 🔨 Build outputs
         run: |
           npm run generate:agent
-          npm run copy-build -w packages/mcp-server
           npm run build-outputs
 
       - name: 📦 Validate Package Publishing
