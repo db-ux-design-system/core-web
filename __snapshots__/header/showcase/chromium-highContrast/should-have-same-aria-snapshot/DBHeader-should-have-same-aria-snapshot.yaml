@@ -1,0 +1,114 @@
+- main:
+  - heading "DBHeader" [level=1]
+  - link "Density"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "Functional":
+    - list:
+      - listitem:
+        - link "Functional"
+      - listitem:
+        - link "Functional disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "(Default) Regular":
+    - list:
+      - listitem:
+        - link "(Default) Regular"
+      - listitem:
+        - link "(Default) Regular disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "Expressive":
+    - list:
+      - listitem:
+        - link "Expressive"
+      - listitem:
+        - link "Expressive disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Width"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "Full":
+    - list:
+      - listitem:
+        - link "Full"
+      - listitem:
+        - link "Full disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "Medium":
+    - list:
+      - listitem:
+        - link "Medium"
+      - listitem:
+        - link "Medium disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "Large":
+    - list:
+      - listitem:
+        - link "Large"
+      - listitem:
+        - link "Large disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Behavior"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
+  - navigation "Desktop (full width)":
+    - list:
+      - listitem:
+        - link "Desktop (full width)"
+      - listitem:
+        - link "Desktop (full width) disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Examples"
+  - text: DBHeader
+  - navigation "With Application Name + Navigation":
+    - list:
+      - listitem:
+        - link "With Application Name + Navigation"
+      - listitem:
+        - link "With Application Name + Navigation disabled" [disabled]
+  - text: DBHeader
+  - navigation "Without Application Name":
+    - list:
+      - listitem:
+        - link "Without Application Name"
+      - listitem:
+        - link "Without Application Name disabled" [disabled]
