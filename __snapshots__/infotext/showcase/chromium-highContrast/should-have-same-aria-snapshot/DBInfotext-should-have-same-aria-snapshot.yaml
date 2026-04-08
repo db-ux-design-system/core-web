@@ -1,0 +1,10 @@
+- main:
+  - heading "DBInfotext" [level=1]
+  - link "Density"
+  - text: Functional (Default) Regular Expressive
+  - link "Semantic"
+  - text: (Default) Adaptive Neutral Critical Informational Successful Warning
+  - link "Size"
+  - text: (Default) Medium Small
+  - link "Show Icon"
+  - text: (Default) True False
