@@ -111,7 +111,7 @@
     "sassdoc": "2.7.4",
     "tar": "7.5.13",
     "typedoc": "0.28.18",
-    "typedoc-plugin-markdown": "4.10.0",
+    "typedoc-plugin-markdown": "4.11.0",
     "typedoc-plugin-merge-modules": "7.0.0",
     "vitest": "4.1.2"
   }
