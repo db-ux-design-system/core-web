@@ -16,6 +16,10 @@
 - there is no property `gap="fix-md"`, available values are `small`, `medium`, etc.
 - there is no property `direction="horizontal"`, available values are `row`, `column`, etc.
 
+## `DBPage` or `db-page`
+
+- If you use `DBHeader` or a footer use `<DBPage variant="fixed">`, without a header use `DBPage variant="auto"`
+
 ## `DBAccordion` or `db-accordion`
 
 - never nest a `DBAccordion`/`db-accordion` inside another `DBAccordion`/`db-accordion` — it confuses users

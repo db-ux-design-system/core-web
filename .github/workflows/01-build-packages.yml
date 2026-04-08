@@ -64,3 +64,10 @@ jobs:
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
+
+      - name: ⏫ Upload mcp-server build
+        uses: actions/upload-artifact@v7
+        with:
+          name: db-ux-mcp-server-build
+          path: packages/mcp-server/dist
+          retention-days: 1
