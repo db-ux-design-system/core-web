@@ -11,7 +11,7 @@ const AccessibilityReviewInfo = (
 	accessibilityReview?: AccessibilityReviewInfoType
 ) => {
 	const [semantic, setSemantic] = useState<SemanticType>('critical');
-	const [text, setText] = useState<string>('Missing');
+	const [text, setText] = useState('Missing');
 
 	useEffect(() => {
 		if (accessibilityReview) {
