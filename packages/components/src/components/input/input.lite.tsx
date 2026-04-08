@@ -136,7 +136,12 @@ export default function DBInput(props: DBInputProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(state, event, 'value'),
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -163,7 +168,12 @@ export default function DBInput(props: DBInputProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(state, event, 'value'),
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();

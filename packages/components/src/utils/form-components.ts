@@ -1,36 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { delay } from './index';
 
+const specialNumberCharacters = ['.', ',', 'e', 'E', '+', '-'];
+
 export const handleFrameworkEventAngular = (
 	component: any,
 	event: any,
-	modelValue: string = 'value'
+	modelValue: string = 'value',
+	lastValue?: any
 ): void => {
 	const value = event.target[modelValue];
 	const type = event.target?.type;
-
-	// Always call propagateChange first so Angular forms can react to intermediate values
-	component.propagateChange(value);
 
 	if (
 		!value &&
 		value !== '' &&
 		['date', 'time', 'week', 'month', 'datetime-local'].includes(type)
 	) {
-		// If value is null/undefined and type is date/time, skip writeValue
+		// If value is empty and type date we skip `writingValue` function
 		return;
 	}
 
-	if (
-		type === 'number' &&
-		event.type === 'input' &&
-		(event.target?.validity?.badInput ||
-			(value === '' && event.inputType === 'insertText'))
-	) {
-		// Skip writeValue for intermediate number input states (e.g. "1." or "1,")
-		return;
+	if (type === 'number') {
+		if (event.type === 'input') {
+			if (
+				specialNumberCharacters.includes(event.data) ||
+				(specialNumberCharacters.some((specialCharacter) =>
+					lastValue?.toString().includes(specialCharacter)
+				) &&
+					event.inputType === 'deleteContentBackward')
+			) {
+				// Skip `writingValue` function if number type and input event
+				// and `.` or `,` or 'e', 'E', '+', '-' was typed
+				// or content was deleted but last number had a `.`
+				return;
+			}
+		} else if (event.type === 'change') {
+			// Skip `writingValue` function if number type and change event
+			return;
+		}
 	}
-
+	component.propagateChange(value);
 	component.writeValue(value);
 };
 
