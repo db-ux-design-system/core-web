@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
+import '../../db-ux.css';
 import '../../showcase-styles.css';
 import App from './App.vue';
 import './index.css';

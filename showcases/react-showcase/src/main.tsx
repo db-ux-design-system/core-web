@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import '../../db-ux.css';
 import '../../showcase-styles.css';
 import App from './app';
 import './index.css';

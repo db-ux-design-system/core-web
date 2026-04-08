@@ -36,13 +36,6 @@
 .variants-card > .db-card {
 	align-items: center;
 	justify-content: center;
-	padding: var(--db-spacing-fixed-xl);
-	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
-}
-
-db-card:is(.variants-card) > db-card > .db-card,
-db-card:is(.variants-card) > .db-card {
-	padding: var(--db-spacing-fixed-sm);
 }
 
 .variants-list {
@@ -98,7 +91,6 @@ db-card:is(.variants-card) > .db-card {
 }
 
 .link-headline {
-	display: block;
 	margin-block: var(--db-spacing-fixed-md);
 	font-weight: 700;
 }
