@@ -4,6 +4,7 @@
 		"strict": true,
 		"allowSyntheticDefaultImports": true,
 		"composite": false,
+		"declaration": true,
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"resolveJsonModule": true,
