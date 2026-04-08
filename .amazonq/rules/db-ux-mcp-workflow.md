@@ -12,11 +12,11 @@ npx --yes @db-ux/core-foundations
 
 Work strictly in **Plan-First** order. Never write UI code before completing the discovery phase.
 
-*(**Note for human readers:** The functions listed below, such as `list_components` or `get_component_props`, are the specific **MCP Tools** provided by the server. The AI agent calls these tools automatically in the background to retrieve real-time data from the design system.)*
+_(**Note for human readers:** The functions listed below, such as `list_components` or `get_component_props`, are the specific **MCP Tools** provided by the server. The AI agent calls these tools automatically in the background to retrieve real-time data from the design system.)_
 
 ### Phase 1: Discover
 
-```
+```text
 list_components
   → confirms the base component exists (e.g. "button", "input" — which correspond to DBButton, DBInput, etc.)
   → if not found: stop. Do not invent custom components or fall back to generic HTML tags if the user requested a JavaScript framework context (like React, Angular, or Vue).
@@ -24,7 +24,7 @@ list_components
 
 ### Phase 2: Load API & Examples
 
-```
+```text
 get_component_props(componentName)
   → reveals all props, types, and required attributes
 
@@ -38,7 +38,7 @@ get_example_code(componentName, exampleName, framework)
 
 ### Phase 3: Resolve Tokens & Icons
 
-```
+```text
 list_design_token_categories
   → returns available categories ("colors", "spacing", "typography", etc.)
   → call this if you're unsure which category to query
@@ -54,7 +54,7 @@ list_icons
 
 ### Phase 4: Docs & Guidelines
 
-```
+```text
 docs_search(query)
   → searches conceptual documentation (guidelines, A11y, migration, ADRs)
   → searches component-specific markdown docs
@@ -69,21 +69,21 @@ Only after phases 1–4 are complete, write or modify files. Adapt the output of
 
 `get_example_code` requires an explicit `framework` parameter. Always match it to the project's framework:
 
-| Framework      | Parameter value    | File extension |
-|----------------|--------------------|----------------|
-| React          | `"react"`          | `.tsx`         |
+| Framework      | Parameter value    | File extension                          |
+| -------------- | ------------------ | --------------------------------------- |
+| React          | `"react"`          | `.tsx`                                  |
 | Angular        | `"angular"`        | `.ts` (template inline in `@Component`) |
-| Vue            | `"vue"`            | `.vue`         |
-| Web Components | `"web-components"` | `.html` / `.ts`|
-| HTML           | `"html"`           | `.html`        |
+| Vue            | `"vue"`            | `.vue`                                  |
+| Web Components | `"web-components"` | `.html` / `.ts`                         |
+| HTML           | `"html"`           | `.html`                                 |
 
 ```typescript
 // ✅ CORRECT: explicit framework
-get_example_code("button", "Show Icon Leading", "react")
-get_example_code("button", "Show Icon Leading", "angular")
-get_example_code("button", "Show Icon Leading", "vue")
-get_example_code("button", "Show Icon Leading", "web-components")
-get_example_code("button", "Show Icon Leading", "html")
+get_example_code("button", "Show Icon Leading", "react");
+get_example_code("button", "Show Icon Leading", "angular");
+get_example_code("button", "Show Icon Leading", "vue");
+get_example_code("button", "Show Icon Leading", "web-components");
+get_example_code("button", "Show Icon Leading", "html");
 
 // ❌ WRONG: writing framework code from memory
 // <DBButton icon="arrow-right"> ← icon name unverified, may not exist
@@ -95,21 +95,23 @@ get_example_code("button", "Show Icon Leading", "html")
 
 ```html
 <!-- ✅ CORRECT -->
-<div style="gap: var(--db-spacing-fixed-md); color: var(--db-color-text-default)">
-
-<!-- ❌ WRONG -->
-<div style="gap: 16px; color: #333333">
+<div
+	style="gap: var(--db-spacing-fixed-md); color: var(--db-color-text-default)"
+>
+	<!-- ❌ WRONG -->
+	<div style="gap: 16px; color: #333333"></div>
+</div>
 ```
 
 ```scss
 // ✅ CORRECT
 .my-element {
-  margin-block: var(--db-spacing-fixed-sm);
+	margin-block: var(--db-spacing-fixed-sm);
 }
 
 // ❌ WRONG
 .my-element {
-  margin-block: 8px;
+	margin-block: 8px;
 }
 ```
 
@@ -117,11 +119,11 @@ get_example_code("button", "Show Icon Leading", "html")
 
 ```tsx
 // ✅ CORRECT: name verified via list_icons
-<DBButton icon="arrow_right">Weiter</DBButton>
+<DBButton icon="arrow_right">Continue</DBButton>
 
 // ❌ WRONG: invented name
-<DBButton icon="arrow-right">Weiter</DBButton>
-<DBButton icon="chevronRight">Weiter</DBButton>
+<DBButton icon="arrow-right">Continue</DBButton>
+<DBButton icon="chevronRight">Continue</DBButton>
 ```
 
 ### Native HTML primitives — replace with DB UX components
@@ -137,10 +139,10 @@ get_example_code("button", "Show Icon Leading", "html")
 
 ```tsx
 // ✅ CORRECT
-<DBButton type="button" variant="brand">Speichern</DBButton>
+<DBButton type="button" variant="brand">Save</DBButton>
 
 // ❌ WRONG
-<button className="btn btn-primary" style="background: #d40000">Speichern</button>
+<button className="btn btn-primary" style="background: #d40000">Save</button>
 ```
 
 ### Interactive elements — never build custom
