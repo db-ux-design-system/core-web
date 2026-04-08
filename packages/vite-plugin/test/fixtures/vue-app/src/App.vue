@@ -6,6 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { DBButton, DBInput } from "@components";
+import { DBButton, DBInput } from "@db-ux/v-core-components";
 import "./index.css";
 </script>

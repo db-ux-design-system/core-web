@@ -13,10 +13,12 @@
 		"jsx": "preserve",
 		"strict": true,
 		"paths": {
-			"@components": ["../../../../output/vue/src"],
-			"@components/src/*": ["../../../../output/vue/src/*"],
-			"@components/components/*": [
-				"../../../../output/vue/src/components/*"
+			"@db-ux/v-core-components": ["../../../../../output/vue/src"],
+			"@db-ux/v-core-components/src/*": [
+				"../../../../../output/vue/src/*"
+			],
+			"@db-ux/v-core-components/components/*": [
+				"../../../../../output/vue/src/components/*"
 			]
 		}
 	},

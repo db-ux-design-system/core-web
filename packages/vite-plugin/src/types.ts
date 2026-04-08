@@ -1,5 +1,3 @@
-import type { ValidComponent } from './detector.js';
-
 /**
  * Foundation features that can be included or excluded.
  * - `icons`: Include icon fonts
@@ -66,11 +64,6 @@ export type FontSize =
 	| 'headline-3xl';
 
 /**
- * Valid component names from the design system.
- */
-export type Component = ValidComponent;
-
-/**
  * Configuration options for the Vite plugin.
  */
 export interface PluginConfig {
@@ -78,7 +71,7 @@ export interface PluginConfig {
 	 * Force include specific components, foundation features, color schemes, densities, or font sizes.
 	 */
 	include?: {
-		components?: Component[];
+		components?: string[];
 		foundations?: FoundationFeature[];
 		colors?: ColorScheme[];
 		densities?: Density[];
@@ -88,7 +81,7 @@ export interface PluginConfig {
 	 * Exclude specific components, foundation features, color schemes, densities, or font sizes.
 	 */
 	exclude?: {
-		components?: Component[];
+		components?: string[];
 		foundations?: FoundationFeature[];
 		colors?: ColorScheme[];
 		densities?: Density[];
@@ -115,5 +108,7 @@ export interface GenerateOptions
 	extends
 		Pick<Required<PluginConfig>, 'include' | 'exclude'>,
 		Pick<PluginConfig, 'theme'> {
+	/** Vite project root, used for resolving node_modules. */
+	root: string;
 	hasTailwind: boolean;
 }

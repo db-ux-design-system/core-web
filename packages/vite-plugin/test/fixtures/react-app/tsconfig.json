@@ -13,10 +13,12 @@
 		"jsx": "react-jsx",
 		"strict": true,
 		"paths": {
-			"@components": ["../../../../output/react/src"],
-			"@components/src/*": ["../../../../output/react/src/*"],
-			"@components/components/*": [
-				"../../../../output/react/src/components/*"
+			"@db-ux/react-core-components": ["../../../../../output/react/src"],
+			"@db-ux/react-core-components/src/*": [
+				"../../../../../output/react/src/*"
+			],
+			"@db-ux/react-core-components/components/*": [
+				"../../../../../output/react/src/components/*"
 			]
 		}
 	},

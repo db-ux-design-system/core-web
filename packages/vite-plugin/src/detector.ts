@@ -1,219 +1,362 @@
-import { readFileSync } from 'fs';
-import type { PluginContext } from 'rollup';
+import fg from 'fast-glob';
+import { readFileSync, readdirSync } from 'fs';
+import { resolve } from 'path';
 
-const COMPONENT_PATTERNS = [
-	/class="[^"]*db-(?:custom-select-list-item|custom-select-list|custom-select-dropdown|custom-select-form-field|custom-select|stack|switch|tab-panel|tabs|tab-list|tab-item|tab-bar|tooltip|popover|textarea|navigation|accordion-item|accordion|badge|navigation-item|tag|radio|select|notification|brand|button|card|checkbox|divider|drawer|header|icon|infotext|input|link|page|section|tab)[^"]*"/g,
-	/className="[^"]*db-(?:custom-select-list-item|custom-select-list|custom-select-dropdown|custom-select-form-field|custom-select|stack|switch|tab-panel|tabs|tab-list|tab-item|tab-bar|tooltip|popover|textarea|navigation|accordion-item|accordion|badge|navigation-item|tag|radio|select|notification|brand|button|card|checkbox|divider|drawer|header|icon|infotext|input|link|page|section|tab)[^"]*"/g,
-	/className=\{[^}]*db-(?:custom-select-list-item|custom-select-list|custom-select-dropdown|custom-select-form-field|custom-select|stack|switch|tab-panel|tabs|tab-list|tab-item|tab-bar|tooltip|popover|textarea|navigation|accordion-item|accordion|badge|navigation-item|tag|radio|select|notification|brand|button|card|checkbox|divider|drawer|header|icon|infotext|input|link|page|section|tab)[^}]*\}/g
-];
+/**
+ * Walk up the directory tree from `root` to locate a package path inside node_modules.
+ * Handles monorepo hoisting where dependencies may live in a parent node_modules.
+ * Returns the resolved absolute path or null if not found.
+ */
+export function resolvePackagePath(
+	root: string,
+	packagePath: string
+): string | null {
+	let currentDir = root;
+	for (let i = 0; i < 10; i++) {
+		const resolved = resolve(currentDir, 'node_modules', packagePath);
+		try {
+			readdirSync(resolved);
+			return resolved;
+		} catch {
+			// Try parent directory
+		}
 
-const COLOR_PATTERNS = [
-	/\.db-color-(neutral|brand|blue|burgundy|critical|cyan|green|informational|light-green|orange|pink|red|successful|turquoise|violet|warning|yellow)/g,
-	/\[data-color=["']?(neutral|brand|blue|burgundy|critical|cyan|green|informational|light-green|orange|pink|red|successful|turquoise|violet|warning|yellow)["']?\]/g,
-	/data-color=["'](neutral|brand|blue|burgundy|critical|cyan|green|informational|light-green|orange|pink|red|successful|turquoise|violet|warning|yellow)["']/g,
-	/["']data-color["']:\s*["'](neutral|brand|blue|burgundy|critical|cyan|green|informational|light-green|orange|pink|red|successful|turquoise|violet|warning|yellow)["']/g
-];
+		const parentDir = resolve(currentDir, '..');
+		if (parentDir === currentDir) break;
+		currentDir = parentDir;
+	}
 
-const DENSITY_PATTERNS = [
-	/\.db-density-(regular|functional|expressive)/g,
-	/\[data-density=["']?(regular|functional|expressive)["']?\]/g,
-	/data-density=["'](regular|functional|expressive)["']/g,
-	/["']data-density["']:\s*["'](regular|functional|expressive)["']/g
-];
+	return null;
+}
 
-const FONT_SIZE_PATTERNS = [
-	/\.db-font-size-(body|headline)-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
-	/\[data-font-size=["']?(body|headline)-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)["']?\]/g,
-	/data-font-size=["'](body|headline)-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)["']/g,
-	/["']data-font-size["']:\s*["'](body|headline)-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)["']/g
-];
+/** Return subdirectory names (folders only) from the given path. */
+function readDirNames(dirPath: string): string[] {
+	try {
+		return readdirSync(dirPath, { withFileTypes: true })
+			.filter((e) => e.isDirectory())
+			.map((e) => e.name);
+	} catch {
+		return [];
+	}
+}
 
+/** Return CSS file stems (without .css extension) from the given path, excluding "all.css". */
+function readCssNames(dirPath: string): string[] {
+	try {
+		return readdirSync(dirPath)
+			.filter((f) => f.endsWith('.css') && f !== 'all.css')
+			.map((f) => f.replace('.css', ''));
+	} catch {
+		return [];
+	}
+}
+
+/** Cache of discovered design system values, keyed by project root. */
+const cache = new Map<
+	string,
+	{
+		components: Set<string>;
+		colors: string[];
+		densities: string[];
+		fontSizes: string[];
+	}
+>();
+
+/**
+ * Discover all available components, colors, densities, and font sizes
+ * by reading the installed @db-ux packages from the filesystem.
+ * Results are cached per project root.
+ */
+function discover(root: string) {
+	if (cache.has(root)) return cache.get(root)!;
+
+	// Components
+	const compDir = resolvePackagePath(
+		root,
+		'@db-ux/core-components/build/components'
+	);
+	const components = new Set<string>(compDir ? readDirNames(compDir) : []);
+
+	// Colors
+	const colorDir = resolvePackagePath(
+		root,
+		'@db-ux/core-foundations/build/styles/colors/classes'
+	);
+	const colors = colorDir ? readCssNames(colorDir) : [];
+
+	// Densities
+	const densityDir = resolvePackagePath(
+		root,
+		'@db-ux/core-foundations/build/styles/density/classes'
+	);
+	const densities = densityDir ? readCssNames(densityDir) : [];
+
+	// Font sizes: body/<size>.css + headline/<size>.css → "body-sm", "headline-lg"
+	const fontDir = resolvePackagePath(
+		root,
+		'@db-ux/core-foundations/build/styles/fonts/classes'
+	);
+	const fontSizes: string[] = [];
+	if (fontDir) {
+		for (const category of readDirNames(fontDir)) {
+			for (const size of readCssNames(resolve(fontDir, category))) {
+				fontSizes.push(`${category}-${size}`);
+			}
+		}
+	}
+
+	const result = { components, colors, densities, fontSizes };
+	cache.set(root, result);
+	return result;
+}
+
+/** Public accessor for the discovery cache. */
+export function discoverAll(root: string) {
+	return discover(root);
+}
+
+/**
+ * Scan detected component CSS files for referenced colors, densities, and font sizes
+ * so the optimizer doesn't strip variables that components depend on.
+ */
+export function scanComponentDependencies(
+	root: string,
+	components: Set<string>,
+	colors: Set<string>,
+	densities: Set<string>,
+	fontSizes: Set<string>
+): void {
+	const compDir = resolvePackagePath(
+		root,
+		'@db-ux/core-components/build/components'
+	);
+	if (!compDir) return;
+
+	const {
+		colors: validColors,
+		densities: validDensities,
+		fontSizes: validFontSizes
+	} = discover(root);
+	const validFontSizeSet = new Set(validFontSizes);
+
+	for (const component of components) {
+		const css = readSource(resolve(compDir, component, `${component}.css`));
+		if (!css) continue;
+
+		for (const color of validColors) {
+			if (css.includes(`--db-${color}-`)) colors.add(color);
+		}
+
+		for (const density of validDensities) {
+			if (css.includes(`-${density}-`)) densities.add(density);
+		}
+
+		for (const m of css.matchAll(/--db-type-(body|headline)-(\w+)/g)) {
+			const fs = `${m[1]}-${m[2]}`;
+			if (validFontSizeSet.has(fs)) fontSizes.add(fs);
+		}
+	}
+}
+
+/** Convert PascalCase to kebab-case: "NavigationItem" → "navigation-item". */
+function toKebabCase(str: string): string {
+	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+/**
+ * Build an array of regex patterns to detect usage of design system values.
+ * Covers CSS classes (e.g. db-color-cyan), data attributes (e.g. data-color="cyan"),
+ * HTML attributes, and JS object notation.
+ */
+function buildPatterns(
+	classPrefix: string,
+	dataAttr: string,
+	values: string
+): RegExp[] {
+	return [
+		new RegExp(`${classPrefix}(${values})`, 'g'),
+		new RegExp(`\\[${dataAttr}=["']?(${values})["']?\\]`, 'g'),
+		new RegExp(`${dataAttr}=["'](${values})["']`, 'g'),
+		new RegExp(`["']${dataAttr}["']:\\s*["'](${values})["']`, 'g')
+	];
+}
+
+/** Matches JSX/TSX component usage: <DBButton>, <DBNavigationItem> */
+const JSX_COMPONENT_PATTERN = /<DB(\w+)[\s>/]/g;
+/** Matches Angular/HTML kebab-case usage: <db-button>, <db-navigation-item> */
+const KEBAB_COMPONENT_PATTERN = /<db-([\w-]+)[\s>/]/g;
+/** Matches CSS class-based usage: class="db-button ...", className="db-card" */
+const CLASS_COMPONENT_PATTERN =
+	/(?:class|className)=(?:"[^"]*|'[^']*|\{[^}]*)db-([\w-]+)/g;
+/** Matches named imports from @db-ux framework packages: import { DBButton, DBCard } from '...' */
 const IMPORT_PATTERN =
-	/import\s+\{[^}]*\bDB(\w+)\b[^}]*\}\s+from\s+['"]@db-ux\/(?:react|ngx|v|wc)-core-components['"]/g;
-const COMPONENT_USAGE_PATTERN = /<DB(\w+)[\s>]/g;
+	/import\s+\{([^}]+)}\s+from\s+['"]@db-ux\/(?:react|ngx|v|wc)-core-components['"]/g;
 
-const VALID_COMPONENTS = [
-	'custom-select-list-item',
-	'custom-select-list',
-	'custom-select-dropdown',
-	'custom-select-form-field',
-	'custom-select',
-	'stack',
-	'switch',
-	'tab-panel',
-	'tabs',
-	'tab-list',
-	'tab-item',
-	'tab-bar',
-	'tooltip',
-	'popover',
-	'textarea',
-	'navigation',
-	'accordion-item',
-	'accordion',
-	'badge',
-	'navigation-item',
-	'tag',
-	'radio',
-	'select',
-	'notification',
-	'brand',
-	'button',
-	'card',
-	'checkbox',
-	'divider',
-	'drawer',
-	'header',
-	'icon',
-	'infotext',
-	'input',
-	'link',
-	'page',
-	'section'
-] as const;
+/** Glob all source files from the project root, excluding node_modules/dist/build. */
+async function scanFiles(root: string): Promise<string[]> {
+	return fg(['**/*.{vue,jsx,tsx,ts,html}'], {
+		cwd: root,
+		absolute: true,
+		ignore: ['**/node_modules/**', '**/dist/**', '**/build/**']
+	});
+}
 
-export type ValidComponent = (typeof VALID_COMPONENTS)[number];
+/** Safely read a file's contents, returning null on failure. */
+function readSource(filePath: string): string | null {
+	try {
+		return readFileSync(filePath, 'utf-8');
+	} catch {
+		return null;
+	}
+}
 
-const VALID_COMPONENTS_SET = new Set<string>(VALID_COMPONENTS);
-
+/**
+ * Scan all project source files to detect which DB UX components are used.
+ * Supports JSX (<DBButton>), kebab-case (<db-button>), CSS classes (class="db-button"),
+ * and named imports (import { DBButton } from '...').
+ */
 export async function detectComponents(
-	context: PluginContext,
+	root: string,
 	forceInclude: string[]
 ): Promise<Set<string>> {
 	const components = new Set<string>(forceInclude);
-	const moduleIds = Array.from(context.getModuleIds());
+	const { components: validComponents } = discover(root);
+	const files = await scanFiles(root);
 
-	for (const id of moduleIds) {
-		if (!/\.(vue|jsx|tsx|ts|html)$/.test(id)) continue;
-		if (id.includes('node_modules')) continue;
+	for (const file of files) {
+		const code = readSource(file);
+		if (!code) continue;
 
-		try {
-			const code = readFileSync(id, 'utf-8');
+		// Detect JSX usage: <DBButton>, <DBNavigationItem>
+		for (const match of code.matchAll(JSX_COMPONENT_PATTERN)) {
+			const name = toKebabCase(match[1]);
+			if (validComponents.has(name)) {
+				components.add(name);
+			}
+		}
 
-			// Detect from class names
-			for (const pattern of COMPONENT_PATTERNS) {
-				const matches = code.matchAll(pattern);
-				for (const match of matches) {
-					const componentMatch =
-						match[0].match(/db-(\S+?)(?:[\s"]|$)/);
-					if (componentMatch) {
-						const componentName = componentMatch[1];
-						if (VALID_COMPONENTS_SET.has(componentName)) {
-							components.add(componentName);
-						}
-					}
+		// Detect kebab-case usage: <db-button>, <db-navigation-item>
+		for (const match of code.matchAll(KEBAB_COMPONENT_PATTERN)) {
+			if (validComponents.has(match[1])) {
+				components.add(match[1]);
+			}
+		}
+
+		// Detect class-based usage: class="db-button ..."
+		for (const match of code.matchAll(CLASS_COMPONENT_PATTERN)) {
+			// Extract all db-* names from the matched attribute value
+			const fragment = match[0];
+			for (const inner of fragment.matchAll(/db-([\w-]+)/g)) {
+				if (validComponents.has(inner[1])) {
+					components.add(inner[1]);
 				}
 			}
+		}
 
-			// Detect from imports (official packages)
-			const importMatches = code.matchAll(IMPORT_PATTERN);
-			for (const match of importMatches) {
-				const componentName = match[1]
-					.toLowerCase()
-					.replace(/([a-z])([A-Z])/g, '$1-$2')
-					.toLowerCase();
-				if (VALID_COMPONENTS_SET.has(componentName)) {
-					components.add(componentName);
+		// Detect from imports: import { DBButton, DBCard } from '...'
+		for (const match of code.matchAll(IMPORT_PATTERN)) {
+			const importList = match[1];
+			for (const nameMatch of importList.matchAll(/\bDB(\w+)\b/g)) {
+				const name = toKebabCase(nameMatch[1]);
+				if (validComponents.has(name)) {
+					components.add(name);
 				}
 			}
-
-			// Detect from component usage (e.g., <DBButton>, <DBInput>)
-			const usageMatches = code.matchAll(COMPONENT_USAGE_PATTERN);
-			for (const match of usageMatches) {
-				const componentName = match[1]
-					.toLowerCase()
-					.replace(/([a-z])([A-Z])/g, '$1-$2')
-					.toLowerCase();
-				if (VALID_COMPONENTS_SET.has(componentName)) {
-					components.add(componentName);
-				}
-			}
-		} catch {
-			// Skip modules that can't be loaded
 		}
 	}
 
 	return components;
 }
 
+/**
+ * Shared detection logic for colors, densities, and font sizes.
+ * Scans all project source files for class names and data attributes
+ * matching the given patterns, returning the set of detected values.
+ */
+async function detectByPatterns(
+	root: string,
+	forceInclude: string[],
+	classPrefix: string,
+	dataAttr: string,
+	validValues: string[],
+	mapMatch?: (match: RegExpMatchArray) => string | null
+): Promise<Set<string>> {
+	const result = new Set<string>(forceInclude);
+	if (validValues.length === 0) return result;
+
+	const patterns = buildPatterns(
+		classPrefix,
+		dataAttr,
+		validValues.join('|')
+	);
+	const files = await scanFiles(root);
+
+	for (const file of files) {
+		const code = readSource(file);
+		if (!code) continue;
+
+		for (const pattern of patterns) {
+			for (const match of code.matchAll(pattern)) {
+				const value = mapMatch ? mapMatch(match) : match[1];
+				if (value) result.add(value);
+			}
+		}
+	}
+
+	return result;
+}
+
+/** Detect which color schemes are used in the project (e.g. "cyan", "brand"). */
 export async function detectColors(
-	context: PluginContext,
+	root: string,
 	forceInclude: string[]
 ): Promise<Set<string>> {
-	// Always include essential colors
-	const colors = new Set<string>([...forceInclude]);
-	const moduleIds = Array.from(context.getModuleIds());
-
-	for (const id of moduleIds) {
-		if (!/\.(vue|jsx|tsx|ts|html|css|scss)$/.test(id)) continue;
-
-		try {
-			const code = readFileSync(id, 'utf-8');
-
-			for (const pattern of COLOR_PATTERNS) {
-				const matches = code.matchAll(pattern);
-				for (const match of matches) {
-					colors.add(match[1]);
-				}
-			}
-		} catch {
-			// Skip modules that can't be loaded
-		}
-	}
-
-	return colors;
+	const { colors } = discover(root);
+	return detectByPatterns(
+		root,
+		forceInclude,
+		'db-color-',
+		'data-color',
+		colors
+	);
 }
 
+/** Detect which density variants are used in the project (e.g. "functional", "expressive"). */
 export async function detectDensities(
-	context: PluginContext,
+	root: string,
 	forceInclude: string[]
 ): Promise<Set<string>> {
-	const densities = new Set<string>(forceInclude);
-	const moduleIds = Array.from(context.getModuleIds());
-
-	for (const id of moduleIds) {
-		if (!/\.(vue|jsx|tsx|ts|html|css|scss)$/.test(id)) continue;
-
-		try {
-			const code = readFileSync(id, 'utf-8');
-
-			for (const pattern of DENSITY_PATTERNS) {
-				const matches = code.matchAll(pattern);
-				for (const match of matches) {
-					densities.add(match[1]);
-				}
-			}
-		} catch {
-			// Skip modules that can't be loaded
-		}
-	}
-
-	return densities;
+	const { densities } = discover(root);
+	return detectByPatterns(
+		root,
+		forceInclude,
+		'db-density-',
+		'data-density',
+		densities
+	);
 }
 
+/** Detect which font size combinations are used in the project (e.g. "body-md", "headline-lg"). */
 export async function detectFontSizes(
-	context: PluginContext,
+	root: string,
 	forceInclude: string[]
 ): Promise<Set<string>> {
-	const fontSizes = new Set<string>(forceInclude);
-	const moduleIds = Array.from(context.getModuleIds());
+	const { fontSizes: validFontSizes } = discover(root);
+	if (validFontSizes.length === 0) return new Set<string>(forceInclude);
 
-	for (const id of moduleIds) {
-		if (!/\.(vue|jsx|tsx|ts|html|css|scss)$/.test(id)) continue;
+	const categories = [...new Set(validFontSizes.map((f) => f.split('-')[0]))];
+	const sizes = [...new Set(validFontSizes.map((f) => f.split('-')[1]))];
+	const validSet = new Set(validFontSizes);
 
-		try {
-			const code = readFileSync(id, 'utf-8');
-
-			for (const pattern of FONT_SIZE_PATTERNS) {
-				const matches = code.matchAll(pattern);
-				for (const match of matches) {
-					fontSizes.add(`${match[1]}-${match[2]}`);
-				}
-			}
-		} catch {
-			// Skip modules that can't be loaded
+	return detectByPatterns(
+		root,
+		forceInclude,
+		'db-font-size-',
+		'data-font-size',
+		[`(${categories.join('|')})-(${sizes.join('|')})`],
+		(match) => {
+			const value = `${match[1]}-${match[2]}`;
+			return validSet.has(value) ? value : null;
 		}
-	}
-
-	return fontSizes;
+	);
 }

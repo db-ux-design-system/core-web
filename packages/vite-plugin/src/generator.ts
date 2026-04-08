@@ -2,6 +2,7 @@ import { readdirSync } from 'fs';
 import { resolve } from 'path';
 import type { FoundationFeature, GenerateOptions } from './types.js';
 
+/** Maps foundation feature names to their CSS file paths relative to build/styles/. */
 const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
 	helpers: 'helpers/classes/all.css',
 	elevation: 'defaults/default-elevation.css',
@@ -10,91 +11,78 @@ const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
 	code: 'defaults/default-code.css'
 };
 
-function* resolveNodeModules(): Generator<string> {
-	let currentDir = process.cwd();
-	let attempts = 0;
-	const maxAttempts = 10;
+/** Theme package scopes to search for installed themes. */
+const THEME_SCOPES = ['@db-ux', '@db-ux-inner-source'] as const;
 
-	while (attempts < maxAttempts) {
-		yield resolve(currentDir, 'node_modules');
+/**
+ * Auto-detect the installed DB UX theme package (e.g. @db-ux/db-theme).
+ * Walks up from `root` checking each node_modules for *-theme packages
+ * in both @db-ux/* and @db-ux-inner-source/* scopes.
+ * Returns the package specifier or null if no theme is found.
+ */
+function detectTheme(root: string, preferredTheme?: string): string | null {
+	let currentDir = root;
+	for (let i = 0; i < 10; i++) {
+		for (const scope of THEME_SCOPES) {
+			try {
+				const scopeDir = resolve(currentDir, 'node_modules', scope);
+				const packages = readdirSync(scopeDir);
+				const themePackages = packages.filter((pkg) =>
+					pkg.endsWith('-theme')
+				);
+				if (themePackages.length === 0) continue;
+
+				const match =
+					preferredTheme && themePackages.includes(preferredTheme)
+						? preferredTheme
+						: themePackages[0];
+				return `${scope}/${match}`;
+			} catch {
+				// Scope not found at this level
+			}
+		}
+
 		const parentDir = resolve(currentDir, '..');
 		if (parentDir === currentDir) break;
 		currentDir = parentDir;
-		attempts++;
 	}
-}
 
-function detectTheme(preferredTheme?: string): string | null {
-	try {
-		for (const nodeModulesPath of resolveNodeModules()) {
-			// Check @db-ux/* packages
-			try {
-				const packages = readdirSync(
-					resolve(nodeModulesPath, '@db-ux')
-				);
-				const themePackages = packages.filter((pkg) =>
-					pkg.endsWith('-theme')
-				);
-				if (themePackages.length > 0) {
-					if (
-						preferredTheme &&
-						themePackages.includes(preferredTheme)
-					) {
-						return `@db-ux/${preferredTheme}`;
-					}
-					return `@db-ux/${themePackages[0]}`;
-				}
-			} catch {}
-
-			// Check @db-ux-inner-source/* packages
-			try {
-				const packages = readdirSync(
-					resolve(nodeModulesPath, '@db-ux-inner-source')
-				);
-				const themePackages = packages.filter((pkg) =>
-					pkg.endsWith('-theme')
-				);
-				if (themePackages.length > 0) {
-					if (
-						preferredTheme &&
-						themePackages.includes(preferredTheme)
-					) {
-						return `@db-ux-inner-source/${preferredTheme}`;
-					}
-					return `@db-ux-inner-source/${themePackages[0]}`;
-				}
-			} catch {}
-		}
-	} catch {}
 	return null;
 }
 
+/**
+ * Generate the CSS import statements based on detected/discovered values.
+ * Produces @import rules for theme, foundations, colors, densities,
+ * font sizes, and component styles, all wrapped in @layer declarations.
+ */
 export function generateCSS(options: GenerateOptions): string {
-	const { include, exclude, theme: preferredTheme, hasTailwind } = options;
+	const {
+		root,
+		include,
+		exclude,
+		theme: preferredTheme,
+		hasTailwind
+	} = options;
 	const { components, foundations, colors, densities, fontSizes } = include;
 	const imports: string[] = [];
 
-	// Detect and use theme if available
-	const theme = detectTheme(preferredTheme);
+	const theme = detectTheme(root, preferredTheme);
 	const themeName = theme ? theme.split('/').pop() : null;
 
 	// Layer order declaration
 	if (hasTailwind) {
-		if (themeName) {
-			imports.push(
-				`@layer theme, base, components, db-ux, utilities, ${themeName};`
-			);
-		} else {
-			imports.push(`@layer theme, base, components, db-ux, utilities;`);
-		}
+		imports.push(
+			themeName
+				? `@layer  ${themeName}, theme, base, components, db-ux, utilities;`
+				: `@layer theme, base, components, db-ux, utilities;`
+		);
 	} else {
-		if (themeName) {
-			imports.push(`@layer db-ux, ${themeName};`);
-		} else {
-			imports.push(`@layer db-ux;`);
-		}
+		imports.push(
+			themeName ? `@layer ${themeName}, db-ux;` : `@layer db-ux;`
+		);
 	}
 
+	// Theme or default fallback
 	if (theme) {
 		imports.push(
 			`@import "${theme}/build/styles/rollup.css" layer(${themeName});`
@@ -104,7 +92,7 @@ export function generateCSS(options: GenerateOptions): string {
 		);
 	} else {
 		imports.push(
-			`@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css" layer(db-ux);`
+			`@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);`
 		);
 		imports.push(
 			`@import "@db-ux/core-foundations/build/styles/fonts/rollup.css" layer(db-ux);`
@@ -137,11 +125,9 @@ export function generateCSS(options: GenerateOptions): string {
 				feature === 'animations'
 					? '@db-ux/core-components'
 					: '@db-ux/core-foundations';
-			const fullPath =
-				key === 'animations'
-					? `build/styles/${path}`
-					: `build/styles/${path}`;
-			imports.push(`@import "${basePath}/${fullPath}" layer(db-ux);`);
+			imports.push(
+				`@import "${basePath}/build/styles/${path}" layer(db-ux);`
+			);
 		}
 	}
 

@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
-	plugins: [vue(), dbUxPlugin()],
+	plugins: [vue(), dbUxPlugin({ debug: true })],
 	resolve: {
 		alias: {
 			'@components': resolve(__dirname, '../../../../../output/vue/src')

@@ -10,5 +10,5 @@
 }
 
 [data-mode] {
-	@extend %db-neutral-bg-basic-level-1;
+	@extend %db-neutral-bg-basic-level-1 !optional;
 }

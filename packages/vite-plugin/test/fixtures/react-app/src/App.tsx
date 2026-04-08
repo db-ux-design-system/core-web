@@ -1,4 +1,4 @@
-import { DBButton, DBInput } from '@components';
+import { DBButton, DBInput } from '@db-ux/react-core-components';
 import './index.css';
 
 function App() {

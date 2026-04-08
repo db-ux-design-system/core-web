@@ -10,26 +10,23 @@
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
-/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-@layer #{helpers.$layer-variables} {
-	:root,
-	:host {
-		@extend %db-font-size-md;
+:root,
+:host {
+	@extend %db-font-size-md;
 
-		/* COLORS */
+	/* COLORS */
+	@include default-color-icons.get-color-icons-light;
+
+	@media (prefers-color-scheme: dark) {
+		@include default-color-icons.get-color-icons-dark;
+	}
+
+	[data-mode="dark"] {
+		@include default-color-icons.get-color-icons-dark;
+	}
+
+	[data-mode="light"] {
 		@include default-color-icons.get-color-icons-light;
-
-		@media (prefers-color-scheme: dark) {
-			@include default-color-icons.get-color-icons-dark;
-		}
-
-		[data-mode="dark"] {
-			@include default-color-icons.get-color-icons-dark;
-		}
-
-		[data-mode="light"] {
-			@include default-color-icons.get-color-icons-light;
-		}
 	}
 }
 

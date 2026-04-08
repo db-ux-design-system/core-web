@@ -1,31 +1,47 @@
-import { readdir, readFile, writeFile } from 'fs/promises';
-import { join, resolve } from 'path';
+import { writeFile } from 'fs/promises';
+import { resolve } from 'path';
 import type { Plugin } from 'vite';
 import {
 	detectColors,
 	detectComponents,
 	detectDensities,
-	detectFontSizes
+	detectFontSizes,
+	discoverAll,
+	scanComponentDependencies
 } from './detector.js';
 import { generateCSS } from './generator.js';
-import { removeUnusedStyles } from './optimizer.js';
-import type {
-	ColorScheme,
-	Component,
-	Density,
-	FontSize,
-	PluginConfig
-} from './types.js';
+import { removeUnusedStyles, type OptimizerContext } from './optimizer.js';
+import type { ColorScheme, Density, FontSize, PluginConfig } from './types.js';
 
-export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
-	const {
-		include = {
-			foundations: ['helpers', 'icons', 'animations', 'code', 'elevation']
-		},
-		exclude = {},
-		optimize = true,
-		debug = false
-	} = config;
+/** Default foundation features included unless overridden by user config. */
+const DEFAULT_FOUNDATIONS = [
+	'helpers',
+	'icons',
+	'animations',
+	'code',
+	'elevation'
+] as const;
+
+/**
+ * Create the DB UX Vite plugin.
+ * Returns two plugins: a pre-transform plugin for CSS generation and
+ * a post-build plugin for optimizing the final CSS bundle.
+ *
+ * During dev, all available styles are included for instant HMR.
+ * During build, only detected styles are included and unused ones are stripped.
+ */
+export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
+	const { optimize = true, debug = false } = config;
+
+	// Deep-merge include/exclude so partial user config doesn't lose defaults
+	const include = {
+		foundations: config.include?.foundations ?? [...DEFAULT_FOUNDATIONS],
+		components: config.include?.components,
+		colors: config.include?.colors,
+		densities: config.include?.densities,
+		fontSizes: config.include?.fontSizes
+	};
+	const exclude = config.exclude ?? {};
 
 	let detectedComponents = new Set<string>();
 	let detectedColors = new Set<string>();
@@ -33,11 +49,12 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 	let detectedFontSizes = new Set<string>();
 	let hasDetected = false;
 	let detectionPromise: Promise<void> | null = null;
-	let outDir = 'dist';
 	let cssModuleId: string | null = null;
 	let hasTailwind = false;
+	let root = process.cwd();
+	let isBuild = false;
 
-	return {
+	const mainPlugin: Plugin = {
 		name: 'db-ux-vite-plugin',
 		enforce: 'pre',
 
@@ -54,23 +71,19 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 		},
 
 		configResolved(resolvedConfig) {
-			outDir = resolvedConfig.build.outDir;
+			root = resolvedConfig.root;
+			isBuild = resolvedConfig.command === 'build';
 			hasTailwind = resolvedConfig.plugins.some((plugin) =>
 				plugin.name.startsWith('@tailwindcss/vite')
 			);
 		},
 
-		handleHotUpdate({ file, server }) {
-			if (/\.(vue|jsx|tsx|ts|html)$/.test(file)) {
-				hasDetected = false;
-				detectionPromise = null;
-				if (cssModuleId) {
-					const mod = server.moduleGraph.getModuleById(cssModuleId);
-					if (mod) {
-						server.moduleGraph.invalidateModule(mod);
-						server.ws.send({ type: 'full-reload' });
-						return [];
-					}
+		handleHotUpdate({ file, server, modules }) {
+			if (/\.(vue|jsx|tsx|ts|html)$/.test(file) && cssModuleId) {
+				const mod = server.moduleGraph.getModuleById(cssModuleId);
+				if (mod) {
+					server.moduleGraph.invalidateModule(mod);
+					return [...modules, mod];
 				}
 			}
 		},
@@ -78,49 +91,64 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 		async transform(code, id) {
 			if (!id.endsWith('.css')) return;
 
-			// Replace @import "@db-ux/core-vite-plugin/index.css" with generated CSS
 			if (
 				code.includes('@import "@db-ux/core-vite-plugin/index.css"') ||
 				code.includes("@import '@db-ux/core-vite-plugin/index.css'")
 			) {
 				cssModuleId = id;
-				// Run detection once when we first encounter the plugin import
-				if (!hasDetected && !detectionPromise) {
+
+				if (isBuild && !hasDetected && !detectionPromise) {
 					detectionPromise = (async () => {
 						hasDetected = true;
 						detectedComponents = await detectComponents(
-							this,
+							root,
 							include.components || []
 						);
 						detectedColors = await detectColors(
-							this,
+							root,
 							include.colors || []
 						);
 						detectedDensities = await detectDensities(
-							this,
+							root,
 							include.densities || []
 						);
 						detectedFontSizes = await detectFontSizes(
-							this,
+							root,
 							include.fontSizes || []
+						);
+						scanComponentDependencies(
+							root,
+							detectedComponents,
+							detectedColors,
+							detectedDensities,
+							detectedFontSizes
 						);
 					})();
 				}
 
-				// Wait for detection to complete
 				if (detectionPromise) {
 					await detectionPromise;
 				}
 
+				// During dev, include all discovered values for instant HMR.
+				// During build, use only detected values for tree-shaking.
+				const discovered = discoverAll(root);
 				const css = generateCSS({
+					root,
 					include: {
-						components: Array.from(
-							detectedComponents
-						) as Component[],
+						components: isBuild
+							? Array.from(detectedComponents)
+							: Array.from(discovered.components),
 						foundations: include.foundations || [],
-						colors: Array.from(detectedColors) as ColorScheme[],
-						densities: Array.from(detectedDensities) as Density[],
-						fontSizes: Array.from(detectedFontSizes) as FontSize[]
+						colors: isBuild
+							? (Array.from(detectedColors) as ColorScheme[])
+							: (discovered.colors as ColorScheme[]),
+						densities: isBuild
+							? (Array.from(detectedDensities) as Density[])
+							: (discovered.densities as Density[]),
+						fontSizes: isBuild
+							? (Array.from(detectedFontSizes) as FontSize[])
+							: (discovered.fontSizes as FontSize[])
 					},
 					exclude,
 					theme: config.theme,
@@ -138,10 +166,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 
 		async buildEnd() {
 			if (debug && hasDetected) {
-				const reportPath = resolve(
-					process.cwd(),
-					'db-ux-detection-report.json'
-				);
+				const reportPath = resolve(root, 'db-ux-detection-report.json');
 				await writeFile(
 					reportPath,
 					JSON.stringify(
@@ -157,37 +182,43 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 					'utf-8'
 				);
 			}
-		},
+		}
+	};
 
-		async closeBundle() {
+	const optimizerPlugin: Plugin = {
+		name: 'db-ux-vite-plugin:optimizer',
+		enforce: 'post',
+
+		generateBundle(_options, bundle) {
 			if (!optimize || !hasDetected) return;
 
-			const distDir = resolve(process.cwd(), outDir);
-			try {
-				const files = await readdir(distDir, { recursive: true });
-				for (const file of files) {
-					if (file.endsWith('.css')) {
-						const filePath = join(distDir, file);
-						let css = await readFile(filePath, 'utf-8');
+			const { colors, densities, fontSizes } = discoverAll(root);
+			const optimizerContext: OptimizerContext = {
+				allColors: colors,
+				allDensities: densities,
+				allFontSizes: fontSizes
+			};
 
-						css = removeUnusedStyles(
-							css,
-							detectedColors,
-							detectedDensities,
-							detectedFontSizes
-						);
-
-						await writeFile(filePath, css, 'utf-8');
-					}
+			for (const [, asset] of Object.entries(bundle)) {
+				if (
+					asset.type === 'asset' &&
+					typeof asset.fileName === 'string' &&
+					asset.fileName.endsWith('.css') &&
+					typeof asset.source === 'string'
+				) {
+					asset.source = removeUnusedStyles(
+						asset.source,
+						detectedColors,
+						detectedDensities,
+						detectedFontSizes,
+						optimizerContext
+					);
 				}
-			} catch (error) {
-				console.warn(
-					'[db-ux-vite-plugin] Could not process dist CSS files:',
-					error
-				);
 			}
 		}
 	};
+
+	return [mainPlugin, optimizerPlugin];
 }
 
 export type { PluginConfig };

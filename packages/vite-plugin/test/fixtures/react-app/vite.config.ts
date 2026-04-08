@@ -10,16 +10,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
-	plugins: [react(), dbUxPlugin(), tailwindcss()],
+	plugins: [react(), dbUxPlugin({ debug: true }), tailwindcss()],
 	resolve: {
 		alias: {
-			'@components': resolve(__dirname, '../../../../../output/react/src'),
+			'@components': resolve(
+				__dirname,
+				'../../../../../output/react/src'
+			),
 			react: resolve(__dirname, 'node_modules/react'),
 			'react-dom': resolve(__dirname, 'node_modules/react-dom')
 		}
 	},
 	build: {
 		outDir: 'dist',
-		cssCodeSplit: false
+		cssCodeSplit: false,
+		cssMinify: 'esbuild'
 	}
 });

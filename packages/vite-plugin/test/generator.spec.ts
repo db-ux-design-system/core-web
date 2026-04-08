@@ -1,21 +1,21 @@
+import { resolve } from 'path';
 import { describe, expect, it } from 'vitest';
 import { generateCSS } from '../src/generator.js';
+
+const root = resolve(__dirname, '../../..');
 
 describe('generateCSS', () => {
 	it('should include default theme when no theme is detected', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: [],
+				foundations: [],
+				colors: [],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -23,10 +23,8 @@ describe('generateCSS', () => {
 		const hasDefaultTheme = css.includes(
 			'@db-ux/core-foundations/build/styles/defaults/default-theme.css'
 		);
-		const hasDbTheme = css.includes(
-			'@db-ux/db-theme/build/styles/rollup.css'
-		);
-		expect(hasDefaultTheme || hasDbTheme).toBe(true);
+		const hasThemeRollup = css.includes('build/styles/rollup.css');
+		expect(hasDefaultTheme || hasThemeRollup).toBe(true);
 		expect(css).toContain(
 			'@db-ux/core-foundations/build/styles/defaults/default-required.css'
 		);
@@ -37,18 +35,15 @@ describe('generateCSS', () => {
 
 	it('should include icons when enabled', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: true,
+			root,
+			include: {
+				components: [],
+				foundations: ['icons'],
+				colors: [],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -59,18 +54,15 @@ describe('generateCSS', () => {
 
 	it('should include component animations when enabled', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: true,
-			icons: false,
+			root,
+			include: {
+				components: [],
+				foundations: ['animations'],
+				colors: [],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -81,18 +73,15 @@ describe('generateCSS', () => {
 
 	it('should include specified components', () => {
 		const css = generateCSS({
-			components: ['button', 'input'],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: ['button', 'input'],
+				foundations: [],
+				colors: [],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -106,18 +95,17 @@ describe('generateCSS', () => {
 
 	it('should exclude specified components', () => {
 		const css = generateCSS({
-			components: ['button', 'input'],
-			exclude: ['input'],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: ['button', 'input'],
+				foundations: [],
+				colors: [],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {
+				components: ['input']
+			},
 			hasTailwind: false
 		});
 
@@ -131,18 +119,15 @@ describe('generateCSS', () => {
 
 	it('should include specified colors', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: ['neutral', 'brand'],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: [],
+				foundations: [],
+				colors: ['neutral', 'brand'],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -156,18 +141,15 @@ describe('generateCSS', () => {
 
 	it('should include specified densities', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: ['regular', 'functional'],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: [],
+				foundations: [],
+				colors: [],
+				densities: ['regular', 'functional'],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -181,18 +163,15 @@ describe('generateCSS', () => {
 
 	it('should include specified font sizes', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: [],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: ['body-md', 'headline-lg'],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: [],
+				foundations: [],
+				colors: [],
+				densities: [],
+				fontSizes: ['body-md', 'headline-lg']
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
@@ -206,18 +185,15 @@ describe('generateCSS', () => {
 
 	it('should include foundation features', () => {
 		const css = generateCSS({
-			components: [],
-			exclude: [],
-			foundations: ['helpers', 'elevation'],
-			excludeFoundations: [],
-			colors: [],
-			excludeColors: [],
-			densities: [],
-			excludeDensities: [],
-			fontSizes: [],
-			excludeFontSizes: [],
-			animations: false,
-			icons: false,
+			root,
+			include: {
+				components: [],
+				foundations: ['helpers', 'elevation'],
+				colors: [],
+				densities: [],
+				fontSizes: []
+			},
+			exclude: {},
 			hasTailwind: false
 		});
 
