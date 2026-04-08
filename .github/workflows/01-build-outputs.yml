@@ -54,6 +54,12 @@ jobs:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
 
+      - name: ⏬ Download mcp-server build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-mcp-server-build
+          path: packages/mcp-server/dist
+
       - name: ⏬ Download output
         uses: actions/download-artifact@v8
         with:

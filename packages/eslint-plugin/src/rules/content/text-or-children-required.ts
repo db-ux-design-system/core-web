@@ -8,6 +8,7 @@ import {
 
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
+	'DBBadge',
 	'DBButton',
 	'DBLink',
 	'DBIcon',

@@ -1,6 +1,7 @@
+import * as angularTemplateParser from '@angular-eslint/template-parser';
 import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { describe, it } from 'vitest';
+
 import rule from '../../../src/rules/close-button/close-button-text-required.js';
 
 const ruleTester = new RuleTester({
@@ -11,7 +12,11 @@ const ruleTester = new RuleTester({
 	}
 });
 
-const angularRuleTester = new AngularRuleTester();
+const angularRuleTester = new AngularRuleTester({
+	languageOptions: {
+		parser: angularTemplateParser
+	}
+});
 
 describe('close-button-text-required', () => {
 	it('should validate rule', () => {
