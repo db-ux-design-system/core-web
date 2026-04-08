@@ -4,7 +4,10 @@ type VElement = {
 	type: 'VElement';
 	startTag: {
 		attributes: Array<{
-			key: { name: string; argument?: { name: string } };
+			key: {
+				name: string | { name: string };
+				argument?: string | { name: string | { name: string } };
+			};
 			value?: { value: string };
 		}>;
 		range: [number, number];
@@ -69,13 +72,28 @@ export function getAttributeValue(
 
 	if (isVElement(node)) {
 		const attr = node.startTag.attributes.find((a) => {
-			if (a.key.name === 'bind' && a.key.argument?.name === attrName)
+			const keyName =
+				typeof a.key.name === 'string' ? a.key.name : a.key.name?.name;
+			const argName = a.key.argument
+				? typeof a.key.argument === 'string'
+					? a.key.argument
+					: typeof a.key.argument.name === 'string'
+						? a.key.argument.name
+						: a.key.argument.name?.name
+				: undefined;
+			if (
+				keyName === 'bind' &&
+				(argName === attrName ||
+					argName === kebabAttrName ||
+					argName === attrName.toLowerCase() ||
+					argName === kebabAttrName.toLowerCase())
+			)
 				return true;
 			return (
-				a.key.name === attrName ||
-				a.key.name === kebabAttrName ||
-				a.key.name === `:${attrName}` ||
-				a.key.name === `:${kebabAttrName}`
+				keyName === attrName ||
+				keyName === kebabAttrName ||
+				keyName === `:${attrName}` ||
+				keyName === `:${kebabAttrName}`
 			);
 		});
 		if (!attr) return null;
