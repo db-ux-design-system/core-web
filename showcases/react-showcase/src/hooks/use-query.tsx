@@ -7,19 +7,28 @@ import {
 } from '../../../../packages/components/src/shared/constants';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (redirectURLSearchParameters = true): any => {
+const useQuery = (
+	redirectURLSearchParameters = true
+): [
+	string,
+	(v: string) => void,
+	string,
+	(v: string) => void,
+	string | undefined,
+	boolean
+] => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
-	const [density, setDensity] = useState<string>(
+	const [density, setDensity] = useState(
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
-	const [color, setColor] = useState<string>(
+	const [color, setColor] = useState(
 		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
-	const [fullscreen, setFullscreen] = useState<boolean>(false);
-	const [searchRead, setSearchRead] = useState<boolean>(false);
+	const [fullscreen, setFullscreen] = useState(false);
+	const [searchRead, setSearchRead] = useState(false);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
@@ -47,13 +56,16 @@ const useQuery = (redirectURLSearchParameters = true): any => {
 
 	useEffect(() => {
 		if (searchRead) {
-			const nextQuery: any = { density, color };
+			const nextQuery: Record<string, string> = {
+				density,
+				color
+			};
 			if (page) {
 				nextQuery.page = page;
 			}
 
 			if (fullscreen) {
-				nextQuery.fullscreen = true;
+				nextQuery.fullscreen = 'true';
 			}
 
 			if (redirectURLSearchParameters) {

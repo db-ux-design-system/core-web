@@ -19,6 +19,9 @@ const FrameworkContext = createContext<FrameworkContextType | undefined>(
 
 const frameworkKey = 'db-ux-framework';
 
+/**
+ * Provides access to the currently selected framework and related helpers.
+ */
 export const useFramework = () => {
 	const context = useContext(FrameworkContext);
 	if (!context) {
@@ -28,39 +31,44 @@ export const useFramework = () => {
 	return context;
 };
 
+/**
+ * Stores the selected framework in URL/localStorage and keeps consumers in sync.
+ */
 export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 	const [framework, setFrameworkState] =
 		useState<Framework>(DEFAULT_FRAMEWORK);
 
-	// Initialize framework from localStorage or URL parameter
+	// URL has priority over localStorage so shared links open with the expected framework.
 	useEffect(() => {
 		if (globalThis.window !== undefined) {
-			// Check URL parameter first
 			const urlParameters = new URLSearchParams(
 				globalThis.location.search
 			);
-			const frameworkParameter = urlParameters.get(
-				'framework'
-			) as Framework;
+			const frameworkParameter = urlParameters.get('framework');
 
 			if (
 				frameworkParameter &&
 				['angular', 'html', 'react', 'vue'].includes(frameworkParameter)
 			) {
-				setFrameworkState(frameworkParameter);
-				localStorage.setItem(frameworkKey, frameworkParameter);
+				const validFramework = frameworkParameter as Framework;
+				setFrameworkState(validFramework);
+				localStorage.setItem(frameworkKey, validFramework);
+				// The card wrapper reads this event to refresh the "Show Code" target.
+				globalThis.dispatchEvent(
+					new CustomEvent('db-ux-framework-change', {
+						detail: validFramework
+					})
+				);
 				return;
 			}
 
-			// Fallback to localStorage
-			const savedFramework = localStorage.getItem(
-				frameworkKey
-			) as Framework;
+			// Fallback for direct visits without a framework query parameter.
+			const savedFramework = localStorage.getItem(frameworkKey);
 			if (
 				savedFramework &&
 				['angular', 'html', 'react', 'vue'].includes(savedFramework)
 			) {
-				setFrameworkState(savedFramework);
+				setFrameworkState(savedFramework as Framework);
 			}
 		}
 	}, []);
@@ -70,8 +78,14 @@ export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 
 		if (globalThis.window !== undefined) {
 			localStorage.setItem(frameworkKey, newFramework);
+			// Dispatch before replaceState so listeners can use the selected value immediately.
+			globalThis.dispatchEvent(
+				new CustomEvent('db-ux-framework-change', {
+					detail: newFramework
+				})
+			);
 
-			// Update URL parameter to allow sharing
+			// Persist in the URL so links can be shared.
 			const url = new URL(globalThis.location.href);
 			url.searchParams.set('framework', newFramework);
 			globalThis.history.replaceState({}, '', url.toString());

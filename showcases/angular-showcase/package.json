@@ -22,9 +22,6 @@
     "test:visual-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
     "watch": "ng build --watch --configuration development"
   },
-  "dependencies": {
-    "sa11y": "4.4.1"
-  },
   "devDependencies": {
     "typescript": "5.9.3"
   }

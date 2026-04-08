@@ -133,19 +133,21 @@ export default {
 								fixes.push(
 									fixer.replaceText(textChild, shortText)
 								);
-								const lastAttr =
-									openingElement.attributes[
-										openingElement.attributes.length - 1
-									];
-								const insertPos = lastAttr
-									? lastAttr.range[1]
-									: openingElement.name.range[1];
-								fixes.push(
-									fixer.insertTextAfterRange(
-										[insertPos, insertPos],
-										` label="${content}"`
-									)
-								);
+								if (!label) {
+									const lastAttr =
+										openingElement.attributes[
+											openingElement.attributes.length - 1
+										];
+									const insertPos = lastAttr
+										? lastAttr.range[1]
+										: openingElement.name.range[1];
+									fixes.push(
+										fixer.insertTextAfterRange(
+											[insertPos, insertPos],
+											` label="${content}"`
+										)
+									);
+								}
 							}
 						}
 
