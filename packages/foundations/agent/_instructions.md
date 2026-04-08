@@ -40,6 +40,41 @@
         - font: `text-body-sm`
     - Always stick to the variables. Don't use values like `p-4` or `m-[16px]`; use `p-fix-xs` or `m-fix-md` instead.
 
+### Import
+
+#### Tailwind v4
+
+```css
+@import "tailwindcss";
+@import "@db-ux/core-foundations/build/tailwind/theme/index.css";
+```
+
+#### Tailwind v3
+
+> **Note:** In Tailwind v4 you can use the config with `@config "tailwind.config.[js|ts]";` inside your `.css` file as well.
+
+After this you can extend your tailwind config like this:
+
+```javascript
+//tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+import tokens from "@db-ux/core-foundations/build/tailwind/tailwind-tokens.json";
+
+export default {
+	content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+	plugins: [],
+	theme: {
+		...tokens,
+		gap: ({ theme }) => ({
+			...theme("spacing")
+		}),
+		space: ({ theme }) => ({
+			...theme("spacing")
+		})
+	}
+};
+```
+
 ## Figma MCP
 
 - If you use Figma MCP always generate code with project's conventions, such as using @db-ux/core-components and @db-ux/core-foundations.

@@ -1,0 +1,56 @@
+{
+  "name": "@db-ux/mcp-server",
+  "version": "4.5.4",
+  "type": "module",
+  "description": "MCP server for DB UX Design System – gives LLMs access to UI components and code examples",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "@db-ux/mcp-server": "./dist/index.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "agent",
+    "dist"
+  ],
+  "scripts": {
+    "build": "node esbuild.js",
+    "build-manifest": "tsx src/build-manifest.ts",
+    "copy-build": "npm-run-all copy-build:*",
+    "copy-build:agent": "cpr agent ../../build-outputs/mcp-server/agent --overwrite",
+    "copy-build:context": "cpr CONTEXT.md ../../build-outputs/mcp-server/CONTEXT.md --overwrite",
+    "copy-build:dist": "cpr dist ../../build-outputs/mcp-server/dist --overwrite",
+    "copy-build:package.json": "cpr package.json ../../build-outputs/mcp-server/package.json --overwrite",
+    "copy-build:readme": "cpr README.md ../../build-outputs/mcp-server/README.md --overwrite",
+    "dev": "npm run build && node dist/index.js",
+    "lint": "eslint src/ --ext .ts",
+    "start": "node dist/index.js",
+    "test": "npm run build && vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.27.1",
+    "zod": "4.1.13"
+  },
+  "devDependencies": {
+    "cpr": "3.0.1",
+    "esbuild": "0.27.7",
+    "npm-run-all2": "8.0.4",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}
