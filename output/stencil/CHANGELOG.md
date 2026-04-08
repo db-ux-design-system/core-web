@@ -1,5 +1,39 @@
 # @db-ux/wc-core-components
 
+## 4.5.4
+
+### Patch Changes
+
+- refactor: Enhance the accessibility of the navigation components by adding missing WAI-ARIA attributes (`aria-controls`, `aria-label`, `aria-haspopup`) for better screen reader support. - [see commit f040188](https://github.com/db-ux-design-system/core-web/commit/f0401886267359518c37062373bb0f9df311214c)
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+- fix(switch): removed obsolete gap towards label in `small` variant - [see commit 40bad01](https://github.com/db-ux-design-system/core-web/commit/40bad017f068bf8968829977808a6d8e9d21b4fe)
+
+## 4.5.3
+
+_version bump_
+
+## 4.5.2
+
+### Patch Changes
+
+- fix: issue with wrong size for DBCustomButton using `noText` property - [see commit 1c9ccd4](https://github.com/db-ux-design-system/core-web/commit/1c9ccd43d23052be84fb810ced1ec26a1a9c9984)
+
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with DBButton `noText` and `width="full"` not having fixed size - [see commit bc81b40](https://github.com/db-ux-design-system/core-web/commit/bc81b402660871d706b1bf8d3fbac6713a7c9670)
+
+- fix: issue with hover state when using DBPopover/Tooltip with animation - [see commit bc4801b](https://github.com/db-ux-design-system/core-web/commit/bc4801bf0b32d5dc4fd8e29626a6122e34fb6ada)
+
+- fix: Add null guard in `floating-components.ts` to prevent errors when `element` or `parent` is `null` inside tests. - [see commit ac50f97](https://github.com/db-ux-design-system/core-web/commit/ac50f97fa503ef4f62d37f316f3b5da0f6d7742e)
+
+- fix: issue with DBCustomSelect inside DBDrawer (or other `<dialog>` based) components, which has a problem with top-layer and focus - [see commit 6547ada](https://github.com/db-ux-design-system/core-web/commit/6547ada44844cbed1b8207db742a5119edb945f6)
+
+- fix(`input type="date"`): wrong padding and color for successful and critical state - [see commit 4f3db42](https://github.com/db-ux-design-system/core-web/commit/4f3db4262a652ac8d6353bd1a0a92a4a62b6ff86)
+
 ## 4.5.0
 
 ### Minor Changes

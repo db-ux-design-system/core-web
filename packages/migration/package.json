@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-migration",
-  "version": "4.5.0",
+  "version": "4.5.4",
   "type": "module",
   "description": "Migration script for changing your code in between DB UX Design System v3 versions regarding BREAKING CHANGES.",
   "repository": {
@@ -33,9 +33,9 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.27.3",
+    "esbuild": "0.27.7",
     "tsx": "4.21.0",
-    "vitest": "3.2.4"
+    "vitest": "4.1.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

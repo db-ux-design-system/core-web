@@ -26,9 +26,8 @@ describe('build-gh-page', () => {
 		let result: string;
 		try {
 			result = execSync(command).toString();
-		} catch (error) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			result = error.message;
+		} catch (error: unknown) {
+			result = error instanceof Error ? error.message : String(error);
 		}
 
 		expect(result.toString().trim()).toEqual(
@@ -44,9 +43,8 @@ describe('build-gh-page', () => {
 		let result: string;
 		try {
 			result = execSync(command).toString();
-		} catch (error) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			result = error.message;
+		} catch (error: unknown) {
+			result = error instanceof Error ? error.message : String(error);
 		}
 
 		expect(result.toString().trim()).toEqual(
