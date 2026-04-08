@@ -238,7 +238,11 @@ export const getComponents = (): Component[] => [
 			],
 			stencil: [
 				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
-				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' }
+				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' },
+				{
+					from: 'this.value ?? this._value ?? ""',
+					to: 'this.value ?? this._value ?? undefined'
+				}
 			]
 		},
 		config: {
