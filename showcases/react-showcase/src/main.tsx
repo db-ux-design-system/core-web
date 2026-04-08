@@ -4,7 +4,6 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import '../../db-ux.css';
 import '../../showcase-styles.css';
 import App from './app';
-import './index.css';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
 // Makes env-variable available in the components without using import.meta.
