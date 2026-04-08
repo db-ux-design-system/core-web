@@ -7,7 +7,8 @@ const xoConfig = [
 			...ignoreFolders,
 			'**/*.vue',
 			// We don't need to check for stories - they will be generated
-			'storybooks/*/src/**'
+			'storybooks/*/src/**',
+			'scripts/check-docs.js'
 		]
 	},
 	{
@@ -15,14 +16,19 @@ const xoConfig = [
 		rules: {
 			'n/prefer-global/process': 0,
 			'unicorn/prefer-module': 0,
-			'import-x/order': 0 // We use a prettier plugin to organize imports
+			'import-x/order': 0, // We use a prettier plugin to organize imports,
+			'@typescript-eslint/no-unsafe-type-assertion': 0, // We don't need this tsc will handle it anyway
+			'@typescript-eslint/no-unsafe-member-access': 0, // We don't need this tsc will handle it anyway
+			'@typescript-eslint/no-unsafe-enum-comparison': 0, // We don't need this tsc will handle it anyway
+			'require-unicode-regexp': 0 // We don't need unicode regexp
 		}
 	},
 	{
 		files: ['./showcases/angular-showcase/**'],
 		rules: {
 			'import-x/no-extraneous-dependencies': 0,
-			'@typescript-eslint/consistent-type-imports': 0
+			'@typescript-eslint/consistent-type-imports': 0,
+			'@stylistic/curly-newline': 0
 		}
 	},
 	{
@@ -48,7 +54,8 @@ const xoConfig = [
 			'@typescript-eslint/no-redundant-type-constituents': 0, // Only happens in cicd
 			'@typescript-eslint/no-unsafe-argument': 0, // Valid for app
 			'@typescript-eslint/no-unsafe-return': 0, // Valid for app
-			'import-x/no-extraneous-dependencies': 0 // Foundation and component.css are inside this repo
+			'import-x/no-extraneous-dependencies': 0, // Foundation and component.css are inside this repo
+			'@typescript-eslint/no-base-to-string': 0
 		}
 	},
 	{

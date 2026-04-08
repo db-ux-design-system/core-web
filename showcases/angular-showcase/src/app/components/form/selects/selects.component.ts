@@ -17,7 +17,8 @@ export class SelectsComponent {
 	plain = 'combobox-2';
 	ngModel = 'combobox-2';
 	formControl: FormControl = new FormControl('combobox-2');
-	public handlePlainChange(event: any) {
-		this.plain = event.target.value;
+	public handlePlainChange(event: Event | void) {
+		if (!event) return;
+		this.plain = (event.target as HTMLSelectElement).value;
 	}
 }

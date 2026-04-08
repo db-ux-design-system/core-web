@@ -4,8 +4,10 @@ import {
 	parseDBUXReference
 } from '../check-docs.js';
 
-const expand = expandBracketAlternatives as (input: string) => string[];
-const parseRef = parseDBUXReference as (
+const expand = expandBracketAlternatives as unknown as (
+	input: string
+) => string[];
+const parseRef = parseDBUXReference as unknown as (
 	input: string
 ) => { packageName: string; filePath: string } | undefined;
 

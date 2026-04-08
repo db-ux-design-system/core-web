@@ -94,7 +94,7 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 	try {
 		// Read and merge the content of all files in the group
 		const fileContents = fileGroup
-			.sort((a, b) => a.localeCompare(b))
+			.toSorted((a, b) => a.localeCompare(b))
 			.map((file) => readFileSync(file, 'utf8'));
 		mergedContent = fileContents.join('\n\n');
 	} catch (error) {
@@ -151,11 +151,6 @@ for (const { name, lib } of targets) {
 	);
 
 	let instructionsContent = `- Use "@db-ux/${lib}-core-components" as import for components:`;
-	if (name !== 'stencil') {
-		instructionsContent += `
-  - Example for the import is this: \`import { DBButton, DBInput } from "@db-ux/${lib}-core-components";\``;
-	}
-
 	for (const key of Object.keys(groupedFiles)) {
 		const componentName = toPascalCase(key);
 		instructionsContent += `

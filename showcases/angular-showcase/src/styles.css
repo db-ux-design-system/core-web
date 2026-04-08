@@ -1,6 +1,5 @@
 @import "@db-ux/core-components/build/styles/rollup.css";
 @import "../../showcase-styles.css";
-@import "sa11y/dist/css/sa11y.min.css";
 @import "@db-ux/db-theme/build/styles/rollup.css";
 
 .variants-list > * > div:not([class^="db-"]) {

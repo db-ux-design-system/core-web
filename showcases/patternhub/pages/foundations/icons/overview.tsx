@@ -1,5 +1,5 @@
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
 	DBCard,
 	DBIcon,
@@ -87,7 +87,7 @@ const IconOverview = () => {
 						'--db-icon-font-family': `db-${family}`,
 						'--db-icon-font-weight': weight,
 						'--db-icon-font-size': `${weight}px`
-					} as any
+					} as React.CSSProperties
 				}>
 				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
 					(icon) => (
