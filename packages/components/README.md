@@ -27,7 +27,7 @@ If you just need the styling follow this:
 
 **✅ Do I need foundations if I install components?**
 
-**No!** The `@db-ux/core-components` package **automatically includes** all the foundations (`@db-ux/core-foundations`) you need. You only need to install one package:
+**No!** The `@db-ux/core-components` package **automatically includes** all the foundations (`@db-ux/core-foundations`) you need. You only need to include one package:
 
 - **Use `@db-ux/core-components`** - If you want to use UI components (buttons, inputs, etc.)
 - **Use `@db-ux/core-foundations`** - If you only need design tokens, colors, spacing, fonts, and assets without any component styles
@@ -36,11 +36,11 @@ If you just need the styling follow this:
 
 `npm i @db-ux/core-components`
 
-> **Note**: This automatically includes `@db-ux/core-foundations` as a dependency, so you don't need to install it separately.
+> **Note**: This automatically includes `@db-ux/core-foundations` as a dependency, if you use `npm`. If you use `pnpm` you need to install `@db-ux/core-foundations` as well.
 
 ## Styling Dependencies
 
-Import the styles in `scss` or `css`. Based on your technology the file names could be different.
+Import the styles in `css`. Based on your technology the file names could be different.
 
 - `relative`: asset path point to `../assets`
 - `webpack`: asset path point to `~@db-ux/core-foundations/assets`
@@ -48,27 +48,18 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 
 **Important**: These bundled files automatically include **all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations)** (design tokens, colors, fonts, etc.) **and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss)** - everything you need in one import!
 
-**SCSS**
+### Import
 
-```scss
-// index.scss
-@forward "@db-ux/core-components/build/styles/rollup";
-```
+Import the styles in your main `.css` file.
 
-**CSS**
+```css
+/* index.css */
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 
-Within HTML files directly:
-
-```html
-<!-- index.html //-->
-<link rel="stylesheet" href="/styles/rollup.css" />
-```
-
-Or within your JavaScript files, with the related bundler as a prefix (in this case rollup and equivalents like Vite):
-
-```js
-// main.js
-import "@db-ux/core-components/build/styles/rollup.css";
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 > **Vite 8 Note:** Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `vite.config.ts` like this:
@@ -116,7 +107,7 @@ In the case you want to include only some components, and you could do it like t
 
 ```css
 /* The theme contains all props required for components like spacings, colors, ... */
-@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
+@import "@db-ux/core-foundations/build/styles/bundle.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
 @import "@db-ux/core-foundations/build/styles/fonts/rollup.css";
 /* The required styles will normalize css and add focus and default font to body */
