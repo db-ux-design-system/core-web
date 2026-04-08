@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"strict": true,
 		"allowSyntheticDefaultImports": true,
-		"composite": true,
+		"composite": false,
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"resolveJsonModule": true,
@@ -11,6 +11,7 @@
 		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
 		"outDir": "build",
+		"rootDir": "src",
 		"esModuleInterop": true
 	}
 }
