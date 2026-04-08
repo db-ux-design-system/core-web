@@ -1,4 +1,4 @@
-import type { AtRule, Declaration, Root } from 'postcss';
+import type { AtRule, Declaration, Root, Rule } from 'postcss';
 import { findCssFunction, findTopLevelComma } from './css-parser.js';
 import {
 	collectVarReferences,
@@ -93,7 +93,10 @@ export const transformRoot = (
 
 	if (removeAtProperty) {
 		root.walkAtRules('property', (atRule: AtRule) => {
-			atRule.remove();
+			const propName = atRule.params.trim();
+			if (!referencedVars.has(propName)) {
+				atRule.remove();
+			}
 		});
 	}
 
@@ -105,6 +108,34 @@ export const transformRoot = (
 				!dynamicVars.has(decl.prop)
 			) {
 				decl.remove();
+			}
+		});
+	}
+
+	removeEmptyContainers(root);
+};
+
+/**
+ * Remove empty rules and `@layer` at-rules left behind after
+ * declarations and `@property` rules have been stripped.
+ * Walks bottom-up so nested empty containers are cleaned recursively.
+ */
+const removeEmptyContainers = (root: Root) => {
+	let changed = true;
+	while (changed) {
+		changed = false;
+
+		root.walkRules((rule: Rule) => {
+			if (rule.nodes && rule.nodes.length === 0) {
+				rule.remove();
+				changed = true;
+			}
+		});
+
+		root.walkAtRules('layer', (atRule: AtRule) => {
+			if (atRule.nodes && atRule.nodes.length === 0) {
+				atRule.remove();
+				changed = true;
 			}
 		});
 	}

@@ -308,6 +308,66 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).not.toContain('@property');
 		});
 
+		it('should keep @property when var() is still referenced in output', async () => {
+			const input = `
+@property --db-border-radius-full {
+	syntax: "<length>";
+	initial-value: 9999px;
+	inherits: true;
+}
+@property --db-neutral-0 {
+	syntax: "<color>";
+	initial-value: #0d0e10;
+	inherits: true;
+}
+:root {
+	--db-border-radius-full: 9999px;
+	--db-neutral-0: #0d0e10;
+}
+.bla {
+	border-radius: var(--db-border-radius-full);
+	color: var(--db-neutral-0);
+}`;
+			// --db-border-radius-full is static and fully resolved, so its @property is removed
+			// --db-neutral-0 is static and fully resolved, so its @property is removed
+			const output = await run(input);
+			expect(output).toContain('border-radius: 9999px');
+			expect(output).toContain('color: #0d0e10');
+			expect(output).not.toContain('@property');
+		});
+
+		it('should keep @property for dynamic vars still referenced via var()', async () => {
+			const input = `
+@property --db-spacing-fixed-sm {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+@property --db-neutral-0 {
+	syntax: "<color>";
+	initial-value: #0d0e10;
+	inherits: true;
+}
+:root {
+	--db-spacing-fixed-sm: 0.75rem;
+	--db-neutral-0: #0d0e10;
+}
+[data-density=functional] {
+	--db-spacing-fixed-sm: 0.5rem;
+}
+.foo {
+	padding: var(--db-spacing-fixed-sm);
+	color: var(--db-neutral-0);
+}`;
+			const output = await run(input);
+			// --db-spacing-fixed-sm is dynamic → var() kept → @property kept
+			expect(output).toContain('var(--db-spacing-fixed-sm)');
+			expect(output).toContain('@property --db-spacing-fixed-sm');
+			// --db-neutral-0 is static → fully resolved → @property removed
+			expect(output).toContain('color: #0d0e10');
+			expect(output).not.toContain('@property --db-neutral-0');
+		});
+
 		it('should keep @property rules when removeAtProperty is false', async () => {
 			const input = `
 @property --db-neutral-0 {
@@ -354,6 +414,76 @@ describe('postcss-flatten-db-variables', () => {
 			const output = await run(input);
 			expect(output).toContain('color: #0d0e10');
 			expect(output).not.toContain('--db-neutral-0');
+		});
+
+		it('should remove empty @layer left after resolving all variables', async () => {
+			const input = `
+@layer db-ux, db-theme;
+@layer db-ux {
+	@property --db-neutral-0 {
+		syntax: "<color>";
+		initial-value: #0d0e10;
+		inherits: true;
+	}
+	:root {
+		--db-neutral-0: #0d0e10;
+	}
+}
+.foo {
+	color: var(--db-neutral-0);
+}`;
+			const output = await run(input);
+			expect(output).toContain('color: #0d0e10');
+			// The @layer db-ux {} block should be gone (empty after cleanup)
+			expect(output).not.toContain('@layer db-ux {');
+			// The @layer order declaration should still be there
+			expect(output).toContain('@layer db-ux, db-theme;');
+		});
+
+		it('should remove nested empty containers (empty :root inside empty @layer)', async () => {
+			const input = `
+@layer variables {
+	@property --db-color-a {
+		syntax: "<color>";
+		initial-value: #aaa;
+		inherits: true;
+	}
+	:root {
+		--db-color-a: #aaa;
+	}
+}
+.foo {
+	color: var(--db-color-a);
+}`;
+			const output = await run(input);
+			expect(output).toContain('color: #aaa');
+			expect(output).not.toContain('@layer variables');
+			expect(output).not.toContain(':root');
+		});
+
+		it('should keep @layer when it still has content after cleanup', async () => {
+			const input = `
+@layer db-ux {
+	@property --db-neutral-0 {
+		syntax: "<color>";
+		initial-value: #0d0e10;
+		inherits: true;
+	}
+	:root {
+		--db-neutral-0: #0d0e10;
+	}
+	.bar {
+		margin: 1rem;
+	}
+}
+.foo {
+	color: var(--db-neutral-0);
+}`;
+			const output = await run(input);
+			expect(output).toContain('color: #0d0e10');
+			// @layer still has .bar inside, so it stays
+			expect(output).toContain('@layer db-ux');
+			expect(output).toContain('margin: 1rem');
 		});
 
 		it('should keep declarations when removeResolved is false', async () => {
