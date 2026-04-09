@@ -30,7 +30,7 @@ const DEFAULT_FOUNDATIONS = [
  * During dev, all available styles are included for instant HMR.
  * During build, only detected styles are included and unused ones are stripped.
  */
-export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
+export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 	const { optimize = true, debug = false } = config;
 
 	// Deep-merge include/exclude so partial user config doesn't lose defaults
@@ -53,6 +53,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
 	let hasTailwind = false;
 	let root = process.cwd();
 	let isBuild = false;
+	let generatedImports: string[] = [];
 
 	const mainPlugin: Plugin = {
 		name: 'db-ux-vite-plugin',
@@ -76,6 +77,12 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
 			hasTailwind = resolvedConfig.plugins.some((plugin) =>
 				plugin.name.startsWith('@tailwindcss/vite')
 			);
+
+			if (debug) {
+				console.log(
+					`[db-ux-vite-plugin] Initialized (mode: ${resolvedConfig.command}, tailwind: ${hasTailwind})`
+				);
+			}
 		},
 
 		handleHotUpdate({ file, server, modules }) {
@@ -91,10 +98,11 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
 		async transform(code, id) {
 			if (!id.endsWith('.css')) return;
 
-			if (
+			const hasImport =
 				code.includes('@import "@db-ux/core-vite-plugin/index.css"') ||
-				code.includes("@import '@db-ux/core-vite-plugin/index.css'")
-			) {
+				code.includes("@import '@db-ux/core-vite-plugin/index.css'");
+
+			if (hasImport) {
 				cssModuleId = id;
 
 				if (isBuild && !hasDetected && !detectionPromise) {
@@ -152,8 +160,22 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
 					},
 					exclude,
 					theme: config.theme,
+					additionalLayers: config.additionalLayers,
+					overrideLayers: config.overrideLayers,
 					hasTailwind
 				});
+
+				generatedImports = css.split('\n');
+
+				if (debug) {
+					console.log(
+						'\n[db-ux-vite-plugin] Generated imports:\n' +
+							generatedImports
+								.map((line) => `  ${line}`)
+								.join('\n') +
+							'\n'
+					);
+				}
 
 				code = code.replace(
 					/@import ["']@db-ux\/core-vite-plugin\/index\.css["'];?/g,
@@ -174,7 +196,8 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin[] {
 							components: Array.from(detectedComponents).sort(),
 							colors: Array.from(detectedColors).sort(),
 							densities: Array.from(detectedDensities).sort(),
-							fontSizes: Array.from(detectedFontSizes).sort()
+							fontSizes: Array.from(detectedFontSizes).sort(),
+							generatedImports
 						},
 						null,
 						2

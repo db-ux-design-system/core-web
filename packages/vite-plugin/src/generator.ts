@@ -61,7 +61,9 @@ export function generateCSS(options: GenerateOptions): string {
 		include,
 		exclude,
 		theme: preferredTheme,
-		hasTailwind
+		hasTailwind,
+		overrideLayers,
+		additionalLayers
 	} = options;
 	const { components, foundations, colors, densities, fontSizes } = include;
 	const imports: string[] = [];
@@ -70,16 +72,33 @@ export function generateCSS(options: GenerateOptions): string {
 	const themeName = theme ? theme.split('/').pop() : null;
 
 	// Layer order declaration
-	if (hasTailwind) {
-		imports.push(
-			themeName
-				? `@layer  ${themeName}, theme, base, components, db-ux, utilities;`
-				: `@layer theme, base, components, db-ux, utilities;`
-		);
+	if (overrideLayers?.length) {
+		imports.push(`@layer ${overrideLayers.join(', ')};`);
 	} else {
-		imports.push(
-			themeName ? `@layer ${themeName}, db-ux;` : `@layer db-ux;`
-		);
+		let autoLayers: string[];
+		if (hasTailwind) {
+			autoLayers = themeName
+				? [
+						themeName,
+						'theme',
+						'base',
+						'components',
+						'db-ux',
+						'utilities'
+					]
+				: ['theme', 'base', 'components', 'db-ux', 'utilities'];
+		} else {
+			autoLayers = themeName ? [themeName, 'db-ux'] : ['db-ux'];
+		}
+
+		if (additionalLayers?.before?.length) {
+			autoLayers = [...additionalLayers.before, ...autoLayers];
+		}
+		if (additionalLayers?.after?.length) {
+			autoLayers = [...autoLayers, ...additionalLayers.after];
+		}
+
+		imports.push(`@layer ${autoLayers.join(', ')};`);
 	}
 
 	// Theme or default fallback

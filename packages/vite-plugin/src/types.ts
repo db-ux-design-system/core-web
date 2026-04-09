@@ -96,6 +96,21 @@ export interface PluginConfig {
 	 */
 	theme?: string;
 	/**
+	 * Append custom layers to the auto-generated `@layer` order.
+	 * @example { after: ['ri-extension'] } → `@layer db-theme, db-ux, ri-extension;`
+	 * @example { before: ['reset'] } → `@layer reset, db-theme, db-ux;`
+	 */
+	additionalLayers?: {
+		before?: string[];
+		after?: string[];
+	};
+	/**
+	 * Fully replace the auto-generated `@layer` statement.
+	 * When set, `additionalLayers` is ignored.
+	 * @example ['db-theme', 'db-ux', 'ri-extension']
+	 */
+	overrideLayers?: string[];
+	/**
 	 * Generate detection report for debugging (default: false).
 	 */
 	debug?: boolean;
@@ -107,7 +122,7 @@ export interface PluginConfig {
 export interface GenerateOptions
 	extends
 		Pick<Required<PluginConfig>, 'include' | 'exclude'>,
-		Pick<PluginConfig, 'theme'> {
+		Pick<PluginConfig, 'theme' | 'additionalLayers' | 'overrideLayers'> {
 	/** Vite project root, used for resolving node_modules. */
 	root: string;
 	hasTailwind: boolean;
