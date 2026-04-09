@@ -1,118 +1,214 @@
 # How to Connect Figma Components
 
-This guide explains how to connect Figma components to code components using Figma Connect.
+This guide explains how to connect Figma components to code components using [Figma Code Connect](https://www.figma.com/developers/api#code-connect) and [Mitosis](https://github.com/BuilderIO/mitosis).
+
+## Prerequisites
+
+- Access to the Figma design file
+- A `FIGMA_FILE` value in your `.env` (see [Step 3](#3-add-figma_file-to-env))
+- A `FIGMA_ACCESS_TOKEN` for publishing (see [Publishing](#publishing))
 
 ## Structure
 
-Each component with Figma integration has a `figma/` folder containing:
+Each component with Figma integration has a `figma/` folder:
 
-- `[component].figma.ts` - Configuration mapping Figma properties to code props
-- `[variant].figma.lite.tsx` - Mitosis component files for each variant
+```text
+src/components/button/figma/
+├── button.figma.ts                  # Configuration mapping Figma properties to code props
+├── text.button.figma.lite.tsx       # Mitosis component for the "with text" variant
+└── no-text.button.figma.lite.tsx    # Mitosis component for the "no text" variant
+```
 
-## Setup
+## Step-by-Step Guide
 
-### 1. Get Figma Component URL
+### 1. Get the Figma Component URL
 
-![Component url](figma-component-url.png)<!-- TODO: Add screenshot showing where to find the component URL in Figma -->
+![Component url](figma-component-url.png)
 
-> **NOTE:** Make sure to select the `Component set` and then press the link button.
+1. Select the **Component set** in Figma (not an individual variant)
+2. Click the **link button** to copy the URL
 
-This will give you a url with a `node_id`, we just need this `node_id` for the next step.
+The URL looks like: `https://www.figma.com/design/XXXXX/file-name?node-id=14436-13065`
 
-### 2. Create Configuration File
+You only need the `node-id` value for the configuration file.
 
-Create `[component].figma.ts`:
+> **Note:** Each component set has its own `node-id`. If a component has multiple sets (e.g., "with text" and "without text" buttons), you need a separate `node-id` for each.
+
+### 2. Identify Figma Properties
+
+![Component properties](figma-component-props.png)
+
+1. Select a specific component instance in Figma
+2. Switch to **Dev Mode**
+3. Review the properties panel on the right side
+
+Note the exact property names (e.g., `Size`, `💻 Variant`, `✏️ Text`) — these must match exactly in your configuration.
+
+> **Important:** Different component sets within the same component may have different properties. If you reference a property that doesn't exist in a component set, Figma will reject the connection.
+
+### 3. Add `FIGMA_FILE` to `.env`
+
+When you copy a component link, the URL contains the Figma file path including the branch:
+
+```text
+https://www.figma.com/design/ABC123/my-branch?node-id=...
+                              ^^^^^^^^^^^^^^^
+```
+
+Add the value between `design/` and `?node-id` to your `.env` file:
+
+```env
+FIGMA_FILE=ABC123/my-branch
+```
+
+See [.env.template](/.env.template) for reference.
+
+> **⚠️ Security:** Never commit `.env` files or personal access tokens.
+
+### 4. Create the Configuration File
+
+Create `figma/[component].figma.ts` to map Figma properties to code props.
+
+**Example** from `button.figma.ts`:
 
 ```typescript
 import { FigmaCodeConnect, FigmaProp } from "../../../shared/figma";
 
-const props: Record<string, FigmaProp> = {
-	propName: {
-		type: "enum", // or 'string', 'boolean'
-		key: "Figma Property Name",
+const defaultButtonProps: Record<string, FigmaProp> = {
+	disabled: {
+		type: "enum",
+		key: "Disabled",
 		value: {
-			"Figma Value": "code-value"
+			False: false,
+			True: true
+		}
+	},
+	size: {
+		type: "enum",
+		key: "Size",
+		value: {
+			Small: "small",
+			"(Def) Medium": "medium"
+		}
+	},
+	text: { type: "string", key: "✏️ Text" },
+	variant: {
+		type: "enum",
+		key: "💻 Variant",
+		value: {
+			Brand: "brand",
+			Ghost: "ghost",
+			Filled: "filled",
+			Outlined: "outlined"
 		}
 	}
 };
 
-export const componentConnect: FigmaCodeConnect = {
-	urls: ["https://www.figma.com/design/FIGMA_FILE?node-id=..."],
-	props
+export const textButtons: FigmaCodeConnect = {
+	urls: [
+		"https://www.figma.com/design/FIGMA_FILE?node-id=14436-13065",
+		"https://www.figma.com/design/FIGMA_FILE?node-id=14436-13355"
+	],
+	props: defaultButtonProps
 };
 ```
 
-### 2.1 Add `FIGMA_FILE` inside `.env`
+> **Note:** `FIGMA_FILE` in the URLs is a placeholder that gets replaced at build time with the value from your `.env` file.
 
-When coping a link to a component you get the path for the figma file including the branch.
+### 5. Create the Mitosis Component
 
-You need to add this as `FIGMA_FILE=xxx/testing-branch` to `.env` see [.env.template](/.env.template) as reference.
+Create `figma/[variant].[component].figma.lite.tsx` for each variant:
 
-### 3. Map Figma Properties
+**Example** from `text.button.figma.lite.tsx`:
 
-Map Figma properties to code props:
+```tsx
+import { useMetadata } from "@builder.io/mitosis";
+import { DBButton } from "../index";
+import { textButtons } from "./button.figma";
 
-- `type`: Property type (`enum`, `string`, `boolean`, `instance`)
-- `key`: Exact Figma property name
-- `value`: Mapping object (for enums) or nested config (for instances)
+useMetadata({
+	figma: textButtons
+});
 
-![Component properties](figma-component-props.png)
-
-1. Click on a specific component
-2. Select dev mode
-3. Look at the required properties and convert them
-
-> **NOTE:** Make sure that every Component set may have different properties.
-> If a property doesn't exist in a component set Figma will reject the connection.
-
-### 4. Create Mitosis Component
-
-Create `[variant].figma.lite.tsx`:
-
-```typescript
-import { useMetadata } from '@builder.io/mitosis';
-import { DBComponent } from '../index';
-import { componentConnect } from './component.figma';
-
-useMetadata({ figma: componentConnect });
-
-export default function ComponentFigmaLite(props) {
-  return <DBComponent propName={props.propName} />;
+export default function TextButtonFigmaLite(props: any) {
+	return (
+		<DBButton
+			disabled={props.disabled}
+			size={props.size}
+			variant={props.variant}
+			type="button"
+		>
+			{props.text}
+		</DBButton>
+	);
 }
 ```
 
+The `useMetadata({ figma: ... })` call links this Mitosis component to the Figma configuration. The `props` passed to the DB UX component must match the keys defined in your configuration file.
+
 ## Property Types
 
-- **enum**: Maps Figma dropdown values to code values
-- **string**: Direct text mapping
-- **boolean**: True/false properties
-- **instance**: Nested component instances (e.g., icons)
+| Type          | Description                                       | Example                                                    |
+| ------------- | ------------------------------------------------- | ---------------------------------------------------------- |
+| `enum`        | Maps Figma dropdown/toggle values to code         | `{ type: "enum", key: "Size", value: { Small: "small" } }` |
+| `string`      | Direct text input                                 | `{ type: "string", key: "✏️ Text" }`                       |
+| `boolean`     | True/false toggle                                 | `{ type: "boolean", key: "Show Icon Leading" }`            |
+| `instance`    | Nested component instance (e.g., swappable icons) | `{ type: "instance", key: "🔄 Icon Medium" }`              |
+| `children`    | Child component slots                             | `{ type: "children", key: "Slot" }`                        |
+| `textContent` | Text content of the component                     | `{ type: "textContent", key: "Label" }`                    |
 
-## Example
+### Instance Props with Size-Dependent Keys
 
-See `packages/components/src/components/button/figma/` for a complete implementation.
+When an instance prop depends on another property (e.g., icon size depends on button size), use a nested enum:
+
+```typescript
+icon: {
+  type: "enum",
+  key: "Size",
+  value: {
+    Small: { type: "instance", key: "🔄 Icon Small" },
+    "(Def) Medium": { type: "instance", key: "🔄 Icon Medium" }
+  }
+}
+```
 
 ## Testing
 
-Run this to generate all figma files via Mitosis:
+1. Generate all Figma files via Mitosis:
 
-`npm run generate:figma --workspace=@db-ux/core-components`
+    ```shell
+    npm run generate:figma --workspace=@db-ux/core-components
+    ```
 
-Next you can look at e.g. `figma-code-connect/react-figma`.
-The generates files should be inside `src` folder.
+2. Check the generated output in `figma-code-connect/react-figma/src/`.
 
-Test them with: `npm run test --workspace=react-figma`
+3. Run the tests:
 
-## Publish in test-branch
+    ```shell
+    npm run test --workspace=react-figma
+    ```
 
-If you want to publish you need an `FIGMA_ACCESS_TOKEN`.
+## Publishing
 
-Go to your Figma account and generate a token.
+### Generate a Figma Access Token
+
+1. Go to your [Figma account settings](https://www.figma.com/settings)
+2. Generate a personal access token
 
 ![Generate access token](figma-generate-access-token.png)
 
-Next you need to create a new environment file like `figma-code-connect/react-figma/.env`.
+### Publish to Figma
 
-Add the token to the file `FIGMA_ACCESS_TOKEN="figd-XXX"`.
+1. Create `figma-code-connect/react-figma/.env` with your token:
 
-Publish with: `npm run connect --workspace=react-figma`
+    ```env
+    FIGMA_ACCESS_TOKEN="figd_XXX"
+    ```
+
+    > **⚠️ Security:** Keep this token local and do not commit it.
+
+2. Publish:
+
+    ```shell
+    npm run connect --workspace=react-figma
+    ```

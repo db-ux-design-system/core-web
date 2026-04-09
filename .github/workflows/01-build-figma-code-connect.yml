@@ -20,7 +20,7 @@ jobs:
 
       - name: 🔨 Generate Figma Code Connect
         env:
-          FIGMA_FILE: ${{ github.event_name == 'pull_request' && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
+          FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
         run: npm run generate:figma --workspace=@db-ux/core-components
 
       - name: ⏫ Upload figma-code-connect
