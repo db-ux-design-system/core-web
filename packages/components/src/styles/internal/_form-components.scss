@@ -423,8 +423,10 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		@include helpers.not-disabled {
+			@include helpers.hover(initial) {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
 		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {

@@ -36,23 +36,27 @@ $with-icon-padding-calc: calc(
 		overflow: hidden;
 		text-overflow: ellipsis;
 
-		@include helpers.hover {
-			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				&:has(:not(input:disabled)) {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+				}
 
-			&:has(input:disabled) {
-				cursor: initial;
+				&:has(input:disabled) {
+					cursor: initial;
+				}
 			}
 		}
 
-		@include helpers.hover {
-			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				&:has(:not(input:disabled)) {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+				}
 
-			&:has(input:disabled) {
-				cursor: initial;
+				&:has(input:disabled) {
+					cursor: initial;
+				}
 			}
 		}
 

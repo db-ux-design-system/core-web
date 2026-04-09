@@ -72,12 +72,14 @@
 
 	@include helpers.display(inline-flex);
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+		}
 
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		}
 	}
 
 	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
