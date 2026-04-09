@@ -32,6 +32,11 @@
 	--spacing-screen-md: var(--db-screen-md);
 	--spacing-screen-lg: var(--db-screen-lg);
 	--spacing-screen-xl: var(--db-screen-xl);
+	--breakpoint-xs: var(--db-screen-xs);
+	--breakpoint-sm: var(--db-screen-sm);
+	--breakpoint-md: var(--db-screen-md);
+	--breakpoint-lg: var(--db-screen-lg);
+	--breakpoint-xl: var(--db-screen-xl);
 	--spacing-container-3xs: var(--db-container-3xs);
 	--spacing-container-2xs: var(--db-container-2xs);
 	--spacing-container-xs: var(--db-container-xs);
@@ -41,6 +46,15 @@
 	--spacing-container-xl: var(--db-container-xl);
 	--spacing-container-2xl: var(--db-container-2xl);
 	--spacing-container-3xl: var(--db-container-3xl);
+	--container-3xs: var(--db-container-3xs);
+	--container-2xs: var(--db-container-2xs);
+	--container-xs: var(--db-container-xs);
+	--container-sm: var(--db-container-sm);
+	--container-md: var(--db-container-md);
+	--container-lg: var(--db-container-lg);
+	--container-xl: var(--db-container-xl);
+	--container-2xl: var(--db-container-2xl);
+	--container-3xl: var(--db-container-3xl);
 	--gap-3xs: var(--db-spacing-fixed-3xs);
 	--gap-2xs: var(--db-spacing-fixed-2xs);
 	--gap-xs: var(--db-spacing-fixed-xs);

@@ -41,9 +41,4 @@
 	--radius-0: 0;
 	--shadow-*: initial; /* Box shadow utilities like shadow-md */
 	--breakpoint-*: initial; /* Responsive breakpoint variants like sm:* */
-	--breakpoint-xs: 360px;
-	--breakpoint-sm: 720px;
-	--breakpoint-md: 1024px;
-	--breakpoint-lg: 1440px;
-	--breakpoint-xl: 1920px;
 }
