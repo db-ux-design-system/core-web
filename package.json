@@ -165,8 +165,8 @@
   },
   "overrides": {
     "cross-spawn": "7.0.6",
-    "esbuild": "0.27.7",
-    "esbuild-wasm": "0.27.7"
+    "esbuild": "0.28.0",
+    "esbuild-wasm": "0.28.0"
   },
   "validate-branch-name": {
     "pattern": "((copilot/)|(dependabot-)|((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
