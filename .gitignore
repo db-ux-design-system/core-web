@@ -79,3 +79,4 @@ showcases/patternhub/public/iframe-resizer/*
 /figma-code-connect/**/src/
 
 packages/mcp-server/src/manifest.json
+**/db-ux-detection-report.json

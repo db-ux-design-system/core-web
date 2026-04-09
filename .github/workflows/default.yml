@@ -103,6 +103,10 @@ jobs:
     secrets: inherit
     needs: [build-outputs]
 
+  test-vite-plugin:
+    uses: ./.github/workflows/02-vite-plugin-test.yml
+    needs: [build-outputs]
+
   test-figma-code-connect:
     if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system'}}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
@@ -424,6 +428,7 @@ jobs:
           resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
@@ -447,6 +452,7 @@ jobs:
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
+             [[ $resultTestVitePlugin == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
@@ -479,6 +485,7 @@ jobs:
         build-outputs,
         test-figma-code-connect,
         test-components,
+        test-vite-plugin,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,

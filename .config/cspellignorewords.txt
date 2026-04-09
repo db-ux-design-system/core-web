@@ -163,6 +163,9 @@ xyznonexistent
 serialised
 Serialises
 stylelints
+atrule
+Unlayered
+unlayered
 Kiro
 cspellignorewords
 lintstagedrc

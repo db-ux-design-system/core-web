@@ -33,6 +33,8 @@ const packages = [
 	'core-migration',
 	'core-stylelint',
 	'core-eslint-plugin',
+	'core-vite-plugin',
+	'core-postcss-plugin',
 	'agent-cli',
 	'mcp-server'
 ];
@@ -53,6 +55,8 @@ for (const PACKAGE of packages) {
 			PACKAGE !== 'core-migration' &&
 			PACKAGE !== 'core-stylelint' &&
 			PACKAGE !== 'core-eslint-plugin' &&
+			PACKAGE !== 'core-postcss-plugin' &&
+			PACKAGE !== 'core-vite-plugin' &&
 			PACKAGE !== 'mcp-server'
 		) {
 			console.log('🕵️‍ Set foundations dependency');
