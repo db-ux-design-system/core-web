@@ -7,7 +7,7 @@ import ignoreFolders from './.config/ignores.js';
 
 // We use this for IDEs
 export default defineConfig([
-	xoConfig,
+	...xoConfig(),
 	eslintConfigPrettier,
 	globalIgnores([...ignoreFolders]),
 	{

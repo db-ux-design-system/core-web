@@ -1,5 +1,5 @@
 @use "index";
-@use "../default.assets-paths" as assets-paths;
+@use "../theme/default.assets-paths" as assets-paths;
 
 @each $variant in index.$default-icon-variants {
 	@font-face {

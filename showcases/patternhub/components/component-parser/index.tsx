@@ -85,7 +85,11 @@ const ComponentSwitch = ({
 		return (
 			<div
 				className={`flex ${className ?? ''}`}
-				data-variant={props?.column ? 'column' : 'row'}>
+				data-variant={
+					(props as Record<string, unknown>)?.column
+						? 'column'
+						: 'row'
+				}>
 				{resolvedContent}
 			</div>
 		);
@@ -93,14 +97,15 @@ const ComponentSwitch = ({
 
 	if (type === 'a') {
 		try {
-			const url = new URL('', props.href);
+			const aProps = props as Record<string, string>;
+			const url = new URL('', aProps.href);
 			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
 					<a
 						className={className}
-						href={props.href}
-						target={props.target}>
+						href={aProps.href}
+						target={aProps.target}>
 						{resolvedContent}
 					</a>
 				);

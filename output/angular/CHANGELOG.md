@@ -1,9 +1,31 @@
 # @db-ux/ngx-core-components
 
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+- fix(number input): prevent from clearing on intermediate decimal entry - [see commit aa85967](https://github.com/db-ux-design-system/core-web/commit/aa85967ffeaa685f6b647069d0e1d415d812dc87):
+  - fix(input,textarea): allow using `undefined` as `value`
+
+## 4.5.4
+
+### Patch Changes
+
+- refactor: Enhance the accessibility of the navigation components by adding missing WAI-ARIA attributes (`aria-controls`, `aria-label`, `aria-haspopup`) for better screen reader support. - [see commit f040188](https://github.com/db-ux-design-system/core-web/commit/f0401886267359518c37062373bb0f9df311214c)
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+- fix(switch): removed obsolete gap towards label in `small` variant - [see commit 40bad01](https://github.com/db-ux-design-system/core-web/commit/40bad017f068bf8968829977808a6d8e9d21b4fe)
+
 ## 4.5.3
 
 _version bump_
-
 
 ## 4.5.2
 

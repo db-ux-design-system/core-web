@@ -1,0 +1,28 @@
+{
+  "name": "vue-test-app",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Vue test fixture for vite plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --open",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "file:../../../../../packages/components",
+    "@db-ux/core-foundations": "file:../../../../../packages/foundations",
+    "@db-ux/v-core-components": "file:../../../../../output/vue",
+    "vue": "3.5.28"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.4",
+    "typescript": "5.9.3",
+    "vue-tsc": "3.2.4"
+  }
+}

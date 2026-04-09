@@ -1,9 +1,24 @@
 # @db-ux/core-foundations
 
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+## 4.5.4
+
+### Patch Changes
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
 ## 4.5.3
 
 _version bump_
-
 
 ## 4.5.2
 
