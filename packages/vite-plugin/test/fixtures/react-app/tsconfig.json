@@ -11,16 +11,7 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"strict": true,
-		"paths": {
-			"@db-ux/react-core-components": ["../../../../../output/react/src"],
-			"@db-ux/react-core-components/src/*": [
-				"../../../../../output/react/src/*"
-			],
-			"@db-ux/react-core-components/components/*": [
-				"../../../../../output/react/src/components/*"
-			]
-		}
+		"strict": true
 	},
 	"include": ["src"],
 	"references": [{ "path": "./tsconfig.node.json" }]

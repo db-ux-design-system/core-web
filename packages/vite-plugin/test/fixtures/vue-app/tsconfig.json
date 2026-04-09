@@ -11,16 +11,7 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "preserve",
-		"strict": true,
-		"paths": {
-			"@db-ux/v-core-components": ["../../../../../output/vue/src"],
-			"@db-ux/v-core-components/src/*": [
-				"../../../../../output/vue/src/*"
-			],
-			"@db-ux/v-core-components/components/*": [
-				"../../../../../output/vue/src/components/*"
-			]
-		}
+		"strict": true
 	},
 	"include": ["src/**/*.ts", "src/**/*.vue"],
 	"references": [{ "path": "./tsconfig.node.json" }]

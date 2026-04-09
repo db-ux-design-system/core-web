@@ -15,6 +15,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@db-ux/core-components": "file:../../../../../packages/components",
+    "@db-ux/core-foundations": "file:../../../../../packages/foundations",
+    "@db-ux/v-core-components": "file:../../../../../output/vue",
     "vue": "3.5.28"
   },
   "devDependencies": {

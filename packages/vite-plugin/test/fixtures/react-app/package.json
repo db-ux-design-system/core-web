@@ -15,6 +15,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@db-ux/core-components": "file:../../../../../packages/components",
+    "@db-ux/core-foundations": "file:../../../../../packages/foundations",
+    "@db-ux/react-core-components": "file:../../../../../output/react",
     "@tailwindcss/vite": "4.1.18",
     "react": "19.2.4",
     "react-dom": "19.2.4",
