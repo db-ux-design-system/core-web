@@ -7,4 +7,4 @@
 "@db-ux/core-components": patch
 ---
 
-fix: issue with tailwind duplicating some classes by using @theme inline
+fix: issue with tailwind duplicating some classes by using `@theme` inline
