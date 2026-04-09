@@ -29,7 +29,7 @@
 			opacity: variables.$db-opacity-md;
 		}
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			> summary + div {
 				transition: block-size
 					#{variables.$db-transition-straight-emotional};

@@ -36,9 +36,20 @@
 				}
 			}
 		],
-		"db-ux/use-border-width": [true],
+		"db-ux/use-border-width": [
+			true,
+			{
+				"allowCalc": true,
+				"allow": { "startsWith": ["component.$", "form-components.$"] }
+			}
+		],
 		"db-ux/use-border-radius": [true],
-		"db-ux/use-border-color": [true],
+		"db-ux/use-border-color": [
+			true,
+			{
+				"allow": { "startsWith": ["component.$", "form-components.$"] }
+			}
+		],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,
