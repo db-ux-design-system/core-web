@@ -13,7 +13,7 @@ export default defineConfig({
 	plugins: [react(), dbUxPlugin({ debug: true }), tailwindcss()],
 	resolve: {
 		alias: {
-			'@components': resolve(
+			'@db-ux/react-core-components': resolve(
 				__dirname,
 				'../../../../../output/react/src'
 			),

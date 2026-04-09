@@ -30,7 +30,24 @@ Then import the plugin in your CSS file:
 @import "@db-ux/core-vite-plugin/index.css";
 ```
 
-The plugin will automatically detect which components you use and include only the necessary CSS.
+The plugin handles theme detection, component CSS, and foundation styles automatically.
+
+#### Migration
+
+If you're currently using the manual CSS layer imports, you can replace them with the plugin's single import:
+
+```css
+/* Before */
+@layer whitelabel-theme, db-ux;
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+```
+
+```css
+/* After */
+@import "@db-ux/core-vite-plugin/index.css";
+```
 
 ### Advanced Usage
 

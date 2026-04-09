@@ -11,7 +11,10 @@ export default defineConfig({
 	plugins: [vue(), dbUxPlugin({ debug: true })],
 	resolve: {
 		alias: {
-			'@components': resolve(__dirname, '../../../../../output/vue/src')
+			'@db-ux/v-core-components': resolve(
+				__dirname,
+				'../../../../../output/vue/src'
+			)
 		}
 	},
 	build: {
