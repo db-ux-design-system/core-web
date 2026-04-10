@@ -73,18 +73,19 @@ core-web/
 
 ### Tools (LLM-callable functions)
 
-| Tool                           | Description                                                                                      |
-| ------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `list_components`              | Returns all available component names                                                            |
-| `get_component_props`          | Returns the raw `model.ts` content for a component                                               |
-| `get_component_details`        | Returns the list of example names from the showcase file                                         |
-| `get_example_code`             | Returns generated framework-specific source for a component example                              |
-| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                 |
-| `list_design_token_categories` | Returns all available design token categories                                                    |
-| `get_design_tokens`            | Returns CSS custom properties and SCSS variables for a token category                            |
-| `docs_search`                  | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs |
-| `list_migration_guides`        | Returns all available migration guide names from the manifest                                    |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                  |
+| Tool                           | Description                                                                                                                                                                         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available component names                                                                                                                                               |
+| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                                  |
+| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                            |
+| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                                 |
+| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                    |
+| `list_design_token_categories` | Returns all available design token categories                                                                                                                                       |
+| `get_design_tokens`            | Returns CSS custom properties and SCSS variables for a token category                                                                                                               |
+| `docs_search`                  | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs                                                                                    |
+| `list_migration_guides`        | Returns all available migration guide names from the manifest                                                                                                                       |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                     |
+| `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Used by `migrate_component` to self-correct before presenting code to the user (max 3 retries). |
 
 ### Manifest (embedded data)
 

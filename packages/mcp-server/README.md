@@ -95,18 +95,19 @@ This will copy the correct rules for DB UX component usage and design token refe
 
 ## 🛠 Available AI Tools (Skills)
 
-| Tool                           | Description                                                                                                                                                                                     |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                     |
-| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                         |
-| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                          |
-| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents. |
-| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers.             |
-| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                            |
-| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                   |
-| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                   |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `db-ui-color-migration`, `db-ui-component-migration`). Call this first before any migration task.                                             |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.             |
+| Tool                           | Description                                                                                                                                                                                                                                  |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                                  |
+| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                                      |
+| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                       |
+| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                              |
+| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers.                                                          |
+| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                         |
+| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                |
+| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `db-ui-color-migration`, `db-ui-component-migration`). Call this first before any migration task.                                                                                          |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                          |
+| `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler/linter check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts). |
 
 ### Example: fetching a React button example
 
@@ -117,6 +118,7 @@ get_component_details    → lists ["Density", "Variant", "Show Icon Leading", .
 get_example_code         → returns show-icon-leading.example.tsx source
 list_icons               → confirms "arrow_right" is a valid icon name
 get_design_tokens        → returns --db-spacing-fixed-md for layout
+verify_migrated_code     → runs tsc --noEmit on generated code, returns ✅ or diagnostics
 ```
 
 ---
@@ -342,7 +344,7 @@ _Alternatively, you can change your IDE's working directory for the MCP server t
 
 This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
 
-- **Strict Read-Only Sandbox:** The server has zero write-permissions. All imports from `node:fs` are strictly read-only (`readFile`, `readdir`). Modules like `child_process` (for shell execution) or file mutation methods (`writeFile`, `unlink`) are completely banned.
+- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The only exception is the `verify_migrated_code` tool, which writes a temporary file to the OS temp directory (`os.tmpdir()`) and deletes it in a `finally` block after the check completes. Shell execution via `child_process.exec` is scoped exclusively to this tool and limited to running `tsc --noEmit` on the temporary file with a 30-second timeout.
 - **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).
 - **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
     - File reads are truncated at **20,000 characters**.

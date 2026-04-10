@@ -14,3 +14,4 @@ export {
 	handleGetDesignTokens,
 	handleListDesignTokenCategories
 } from './tokens.js';
+export { handleVerifyMigratedCode } from './verify.js';

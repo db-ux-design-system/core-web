@@ -113,7 +113,7 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` — Legacy Refactoring
 
-Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern DB UX architecture.
+Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern DB UX architecture. Includes a **mandatory code verification step** before presenting results.
 
 **Parameters:**
 
@@ -125,16 +125,17 @@ Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern D
 
 **Workflow:**
 
-1. **Knowledge Acquisition** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes
-2. **Asset Scanning** — Scans for color references (CSS classes, hex values, legacy `--db-color-*` variables) and icon references. Loads `color-migration` and `icon-migration` guides as sole source of truth. Flags any values not found in the tables
-3. **DB UX Mapping** — Calls `list_components`, `get_component_props`, and `get_example_code` to verify modern equivalents
-4. **Token Migration** — Calls `get_design_tokens` to replace legacy CSS variables, utility classes, or hardcoded values
+1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes
+2. **Component Discovery & Props Retrieval** — Calls `list_components`, `get_component_props`, `get_component_details`, and `get_example_code` to verify modern equivalents. Calls `get_design_tokens` to replace legacy CSS variables or hardcoded values. Calls `list_icons` for any icon references
+3. **Code Generation** — Generates the complete migrated component code. **Does NOT output this to the user yet**
+4. **Code Verification & Self-Correction (MANDATORY)** — Calls `verify_migrated_code` with the generated code and framework. If the tool returns compiler/linter errors, the AI analyzes the diagnostics, fixes the code, and retries. This loop runs for a **maximum of 3 attempts**. If verification still fails after 3 attempts, the AI presents the code with a prominent ⚠️ warning block containing the remaining errors
+5. **Final Output** — Presents the verified code (✅ on success, ⚠️ with diagnostics on failure)
 
 **Output structure:**
 
 1. "Migration Analysis" — Maps each legacy element to its modern replacement, referencing migration guide rules
-2. "Refactored Code" — Fully migrated, production-ready code with correct `@db-ux/*` imports
-3. "Actionable Post-Migration Notes" — Behavioral shifts, ARIA states to verify, colors/icons not found in migration tables
+2. "Migrated Code" — Fully migrated, production-ready code with correct `@db-ux/*` imports. Marked ✅ VERIFIED or ⚠️ WARNING with remaining diagnostics
+3. "Accessibility Statement" — Confirmation of WCAG 2.2 AA compliance through the selected DB UX components
 
 ### `audit_accessibility` — Deep A11y Scan
 

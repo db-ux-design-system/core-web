@@ -1,11 +1,13 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
 	handleAuditAccessibilityPrompt,
+	handleMigrateComponentPrompt,
 	handleReviewUiCodePrompt,
 	handleScaffoldPagePrompt
 } from './prompts';
 import {
 	auditAccessibilitySchema,
+	migrateComponentSchema,
 	reviewUiCodeSchema,
 	scaffoldPageSchema
 } from './prompts/schemas.js';
@@ -20,7 +22,8 @@ import {
 	handleListComponents,
 	handleListDesignTokenCategories,
 	handleListIcons,
-	handleListMigrationGuides
+	handleListMigrationGuides,
+	handleVerifyMigratedCode
 } from './tools';
 import {
 	docsSearchSchema,
@@ -32,7 +35,8 @@ import {
 	listComponentsSchema,
 	listDesignTokenCategoriesSchema,
 	listIconsSchema,
-	listMigrationGuidesSchema
+	listMigrationGuidesSchema,
+	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
 export {
@@ -45,7 +49,8 @@ export {
 	handleListComponents,
 	handleListDesignTokenCategories,
 	handleListIcons,
-	handleListMigrationGuides
+	handleListMigrationGuides,
+	handleVerifyMigratedCode
 } from './tools/index.js';
 export { resolveSafePath } from './utils/index.js';
 
@@ -92,6 +97,11 @@ server.registerTool(
 	getMigrationGuideSchema,
 	handleGetMigrationGuide
 );
+server.registerTool(
+	'verify_migrated_code',
+	verifyMigratedCodeSchema,
+	handleVerifyMigratedCode
+);
 
 // Prompts
 server.registerPrompt(
@@ -103,6 +113,11 @@ server.registerPrompt(
 	'review_ui_code',
 	reviewUiCodeSchema,
 	handleReviewUiCodePrompt
+);
+server.registerPrompt(
+	'migrate_component',
+	migrateComponentSchema,
+	handleMigrateComponentPrompt
 );
 server.registerPrompt(
 	'audit_accessibility',
