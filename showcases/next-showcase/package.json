@@ -24,7 +24,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@types/node": "25.5.2",
+    "@types/node": "^25.5.2",
     "@types/react": "19.2.14",
     "npm-run-all2": "8.0.4",
     "open-cli": "9.0.0",
