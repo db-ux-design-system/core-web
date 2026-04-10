@@ -33,6 +33,7 @@ Or add it to your MCP client config:
 8. `list_icons` — look up the exact icon name before using any icon prop
 9. `list_migration_guides` — list all available migration guides before any migration task
 10. `get_migration_guide` — load the full content of a specific migration guide
+11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler/linter check. Fix errors and retry (max 3 attempts) before presenting code to the user
 
 ### DON'Ts — these are hard violations:
 
@@ -41,6 +42,8 @@ Or add it to your MCP client config:
 - **NEVER** hardcode color values (`#d40000`, `rgb(...)`) — use design tokens exclusively
 - **NEVER** write inline styles (`style="margin: 15px"`)
 - **NEVER** invent or guess icon names — always call `list_icons` first
+- **NEVER** output migrated code to the user without calling `verify_migrated_code` first — the self-correction loop (max 3 attempts) is mandatory
+- **NEVER** use `// @ts-nocheck`, `// @ts-ignore`, `// @ts-expect-error`, `eslint-disable`, or any other compiler/linter bypass directive to "fix" errors — solve the underlying issue instead
 
 ### DOs:
 
