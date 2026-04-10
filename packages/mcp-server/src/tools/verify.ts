@@ -34,23 +34,35 @@ const REACT_IMPORT_WRAPPER = `import React from 'react';\n`;
 const ANGULAR_IMPORT_WRAPPER = `import { Component } from '@angular/core';\n`;
 
 /**
+ * Checks whether the given code already contains a React import.
+ * Uses simple string matching instead of regex to avoid ReDoS on untrusted input.
+ */
+function hasReactImport(code: string): boolean {
+	return code.includes('import React') || code.includes("from 'react'") || code.includes('from "react"');
+}
+
+/**
+ * Checks whether the given code already imports `Component` from `@angular/core`.
+ * Uses simple string matching instead of regex to avoid ReDoS on untrusted input.
+ */
+function hasAngularComponentImport(code: string): boolean {
+	return code.includes('@angular/core') && code.includes('Component');
+}
+
+/**
  * Wraps incoming code with framework-specific boilerplate imports to prevent
  * trivial "missing import" errors during the verification check.
  */
 function wrapCode(code: string, framework: string): string {
 	switch (framework) {
 		case 'react': {
-			if (!/import\s+React[\s,{]/.test(code)) {
+			if (!hasReactImport(code)) {
 				return REACT_IMPORT_WRAPPER + code;
 			}
 			return code;
 		}
 		case 'angular': {
-			if (
-				!/import\s*{[^}]*Component[^}]*}\s*from\s*['"]@angular\/core['"]/.test(
-					code
-				)
-			) {
+			if (!hasAngularComponentImport(code)) {
 				return ANGULAR_IMPORT_WRAPPER + code;
 			}
 			return code;
