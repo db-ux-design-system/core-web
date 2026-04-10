@@ -183,8 +183,13 @@
 	position: fixed;
 	overflow: hidden auto;
 	inset-inline-start: variables.$db-spacing-fixed-xl;
-	inset-block: calc(#{component.$min-mobile-header-height})
-		calc(#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2);
+	inset-block: calc(
+			#{component.$min-mobile-header-height} + env(safe-area-inset-top)
+		)
+		calc(
+			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
+				env(safe-area-inset-bottom)
+		);
 }
 
 .db-sub-navigation {

@@ -3,8 +3,12 @@
 
 .db-page-document {
 	@media screen {
-		block-size: 100%;
 		overflow: hidden;
+		block-size: 100%;
+
+		@supports (height: 100dvh) {
+			block-size: 100dvh;
+		}
 	}
 }
 
@@ -38,10 +42,17 @@
 
 			block-size: 100%;
 			min-block-size: 100%;
+			flex-direction: column;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
+			/* stylelint-disable-next-line db-ux/use-spacings */
+
+			@supports (height: 100dvh) {
+				block-size: 100dvh;
+				min-block-size: 100dvh;
+			}
 
 			@include helpers.display(flex);
-
-			flex-direction: column;
 
 			/* workaround for angular */
 			> :is(db-header, dbheader, dbfooter, db-footer) {

@@ -35,7 +35,12 @@
 		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: var(
 			--db-drawer-max-height,
-			calc(100% - #{variables.$db-spacing-fixed-xl})
+			calc(
+				100% -
+					#{variables.$db-spacing-fixed-xl} - env(
+						safe-area-inset-bottom
+					) - env(safe-area-inset-top)
+			)
 		);
 		/* stylelint-disable-next-line db-ux/use-sizing */
 		min-block-size: var(--db-drawer-min-height, auto);
@@ -53,6 +58,10 @@
 		border-start-end-radius: variables.$db-border-radius-sm;
 		border-start-start-radius: variables.$db-border-radius-sm;
 	}
+
+	margin-block-end: 0;
+	/* stylelint-disable-next-line db-ux/use-spacings */
+	padding-block-end: env(safe-area-inset-bottom);
 }
 
 %direction-down {
@@ -143,7 +152,12 @@ $spacings: (
 		display: flex;
 		flex-direction: column;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		block-size: 100%;
+		block-size: calc(
+			100% - env(safe-area-inset-top) - env(safe-area-inset-bottom)
+		);
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		margin-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		inline-size: 100%;
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
@@ -245,8 +259,6 @@ $spacings: (
 		position: absolute;
 		z-index: 3;
 		inset: 0;
-		block-size: 100%;
-		inline-size: 100%;
 		background-color: transparent;
 
 		&[open] {
