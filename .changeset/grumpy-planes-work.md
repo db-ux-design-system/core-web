@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(drawer): issue with wrong transform lead to broken drawer for mobile view
+fix(navigation): issue with changed transform inside drawer lead to broken sub-navigation for mobile view

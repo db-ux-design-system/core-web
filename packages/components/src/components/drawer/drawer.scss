@@ -281,12 +281,12 @@ $spacings: (
 				&:not([data-direction]),
 				&[data-direction="right"],
 				&[data-direction="left"] {
-					transform: translateX(0%);
+					transform: none;
 				}
 
 				&[data-direction="up"],
 				&[data-direction="down"] {
-					transform: translateY(0%);
+					transform: none;
 				}
 			}
 
