@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 4.6.1
+
+### Patch Changes
+
+- fix(navigation): issue with changed transform inside drawer lead to broken sub-navigation for mobile view - [see commit 1762975](https://github.com/db-ux-design-system/core-web/commit/17629755c0c249808c0bb69686f167677d4181ee)
+
 ## 4.6.0
 
 ### Minor Changes
