@@ -45,7 +45,6 @@
 			flex-direction: column;
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
-			/* stylelint-disable-next-line db-ux/use-spacings */
 
 			@supports (height: 100dvh) {
 				block-size: 100dvh;
