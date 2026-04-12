@@ -14,8 +14,8 @@
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.2.1",
-    "@storybook/addon-docs": "10.3.4",
-    "@storybook/angular": "10.3.4",
-    "eslint-plugin-storybook": "10.3.4"
+    "@storybook/addon-docs": "10.3.5",
+    "@storybook/angular": "10.3.5",
+    "eslint-plugin-storybook": "10.3.5"
   }
 }
