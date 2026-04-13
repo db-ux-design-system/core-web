@@ -26,13 +26,13 @@ export function handleMigrateComponentPrompt({
 
 	return {
 		description:
-			'Migrates legacy UI code to DB UX v4 using the full MCP discovery and verification workflow',
+			'Migrates legacy UI code to DB UX v3 using the full MCP discovery and verification workflow',
 		messages: [
 			{
 				role: 'user' as const,
 				content: {
 					type: 'text' as const,
-					text: `You are an Expert Migration Engineer specializing in the DB UX Design System. Your objective is to transform legacy UI code into modern, production-ready DB UX v4 code for the "${target_framework}" framework.
+					text: `You are an Expert Migration Engineer specializing in the DB UX Design System. Your objective is to transform legacy UI code into modern, production-ready DB UX v3 code for the "${target_framework}" framework.
 
 Source Context: ${source_context}
 Target Framework: ${target_framework}
@@ -61,7 +61,7 @@ a. Identify every UI element in the legacy code (buttons, inputs, selects, layou
 b. Call 'list_migration_guides' and check if a dedicated migration guide exists for the source context "${source_context}".
 c. If a guide exists, call 'get_migration_guide' and use its rules as the PRIMARY migration reference.
 d. Call 'docs_search' with category 'component' for each identified element to find component-specific migration docs.
-e. Produce a mapping table: Legacy Element → DB UX v4 Component → Rationale.
+e. Produce a mapping table: Legacy Element → DB UX v3 Component → Rationale.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL
