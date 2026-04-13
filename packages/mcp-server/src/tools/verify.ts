@@ -149,8 +149,8 @@ export async function handleVerifyMigratedCode({
 
 /**
  * Builds the shell command used to verify the temporary file.
- * Uses `npx tsc --noEmit` for React/Angular (TypeScript) and
- * `npx vue-tsc --noEmit` for Vue single-file components.
+ * Uses `npx --no-install tsc --noEmit` for React/Angular (TypeScript) and
+ * `npx --no-install vue-tsc --noEmit` for Vue single-file components.
  *
  * File paths are always double-quoted to handle spaces and special characters
  * on all operating systems (Unix + Windows).
@@ -158,16 +158,16 @@ export async function handleVerifyMigratedCode({
 function buildCheckCommand(filePath: string, framework: string): string {
 	switch (framework) {
 		case 'vue': {
-			return `npx vue-tsc --noEmit "${filePath}" 2>&1`;
+			return `npx --no-install vue-tsc --noEmit "${filePath}" 2>&1`;
 		}
 		case 'react': {
-			return `npx tsc --noEmit --jsx react-jsx --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
+			return `npx --no-install tsc --noEmit --jsx react-jsx --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
 		}
 		case 'angular': {
-			return `npx tsc --noEmit --experimentalDecorators --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
+			return `npx --no-install tsc --noEmit --experimentalDecorators --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
 		}
 		default: {
-			return `npx tsc --noEmit --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
+			return `npx --no-install tsc --noEmit --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
 		}
 	}
 }
