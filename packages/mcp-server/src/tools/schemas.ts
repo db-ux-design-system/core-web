@@ -127,6 +127,7 @@ export const verifyMigratedCodeSchema = {
 	inputSchema: {
 		code: z
 			.string()
+			.max(50_000)
 			.describe(
 				'The complete component code to verify (e.g. a full React component file).'
 			),
