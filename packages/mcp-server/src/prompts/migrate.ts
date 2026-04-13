@@ -104,7 +104,10 @@ THIS STEP IS NON-NEGOTIABLE. You MUST NOT skip it under any circumstances.
 
 STRICT RULE: You are NEVER allowed to use // @ts-nocheck, // @ts-ignore, // @ts-expect-error, eslint-disable, or ANY other compiler/linter bypass directive to "fix" errors. You MUST solve the underlying syntax or type issue with correct DB UX components and valid TypeScript. Any code containing such directives will be considered a HARD FAILURE.
 
-a. VERIFY: Pass the complete generated code as a string to the 'verify_migrated_code' tool with parameters:
+a. VERIFY: This step applies ONLY when target_framework is one of: react, angular, vue.
+   If target_framework is "web-components" or "html", skip to Step 5 immediately — verify_migrated_code does not support these frameworks.
+
+   Otherwise, pass the complete generated code as a string to the 'verify_migrated_code' tool with parameters:
    - code: <the full component source code>
    - framework: "${target_framework}"
 
