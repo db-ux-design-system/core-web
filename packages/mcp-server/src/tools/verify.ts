@@ -113,7 +113,11 @@ export async function handleVerifyMigratedCode({
 		await writeFile(tmpFile, wrappedCode, 'utf-8');
 
 		const command = buildCheckCommand(tmpFile, framework);
-		await exec(command, { timeout: 30_000, cwd: process.cwd() });
+		await exec(command, {
+			timeout: 30_000,
+			cwd: process.cwd(),
+			maxBuffer: 10 * 1024 * 1024
+		});
 
 		return {
 			content: [
