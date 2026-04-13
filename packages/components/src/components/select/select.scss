@@ -44,6 +44,7 @@
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
+	// TODO: we could remove the `> select option:checked:not(.placeholder), ` selector part as soon as `:open` is baseline.
 	&:has(> select option:checked:not(.placeholder), > select:open) {
 		[id$="-placeholder"],
 		// Hide placeholder option in dropdown for required selects after a selection has been made
