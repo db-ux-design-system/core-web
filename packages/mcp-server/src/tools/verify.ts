@@ -38,7 +38,11 @@ const ANGULAR_IMPORT_WRAPPER = `import { Component } from '@angular/core';\n`;
  * Uses simple string matching instead of regex to avoid ReDoS on untrusted input.
  */
 function hasReactImport(code: string): boolean {
-	return code.includes('import React') || code.includes("from 'react'") || code.includes('from "react"');
+	return (
+		code.includes('import React') ||
+		code.includes("from 'react'") ||
+		code.includes('from "react"')
+	);
 }
 
 /**
@@ -154,7 +158,7 @@ export async function handleVerifyMigratedCode({
 function buildCheckCommand(filePath: string, framework: string): string {
 	switch (framework) {
 		case 'vue': {
-			return `npx vue-tsc --noEmit "${filePath}" 2>&1 || true && npx eslint --no-eslintrc --rule '{}' "${filePath}" 2>&1`;
+			return `npx vue-tsc --noEmit "${filePath}" 2>&1 && npx eslint --no-eslintrc --rule '{}' "${filePath}" 2>&1`;
 		}
 		case 'react': {
 			return `npx tsc --noEmit --jsx react-jsx --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
