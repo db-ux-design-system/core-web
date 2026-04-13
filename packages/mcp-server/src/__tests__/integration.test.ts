@@ -926,103 +926,114 @@ describe('handleMigrateComponentPrompt', () => {
 	});
 });
 describe('handleVerifyMigratedCode', () => {
-	it('returns a success result when exec resolves (compiler passes)', async () => {
+	const execMock = vi.fn();
+	const writeFileMock = vi.fn();
+	const unlinkMock = vi.fn();
+
+	vi.mock('node:child_process', () => ({
+		exec: (_cmd: string, _opts: unknown, cb: (err: null) => void) => {
+			execMock(_cmd, _opts);
+			cb(null);
+		}
+	}));
+	vi.mock('node:fs/promises', () => ({
+		writeFile: (...args: unknown[]) => writeFileMock(...args),
+		unlink: (...args: unknown[]) => unlinkMock(...args)
+	}));
+
+	beforeEach(() => {
+		execMock.mockResolvedValue({ stdout: '', stderr: '' });
+		writeFileMock.mockResolvedValue(undefined);
+		unlinkMock.mockResolvedValue(undefined);
+	});
+
+	it('returns a success ToolResult when exec resolves', async () => {
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
 
-		// We cannot easily control the real tsc output without a full TS install,
-		// so we mock the module. Instead we test the handler's contract:
-		// it should always return a ToolResult (never throw).
 		const result = await handler({
 			code: 'const x: number = 42;',
 			framework: 'react'
 		});
 
-		// Either success or error — must be a well-formed ToolResult
-		expect(result).toHaveProperty('content');
-		expect(Array.isArray(result.content)).toBe(true);
-		expect(result.content.length).toBeGreaterThan(0);
-		expect(result.content[0]).toHaveProperty('type', 'text');
-		expect(result.content[0]).toHaveProperty('text');
-		expect(typeof result.content[0].text).toBe('string');
-	}, 15_000);
-
-	it('returns a ToolResult (not an exception) even when exec rejects', async () => {
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		// Intentionally invalid TypeScript that should trigger diagnostics
-		const result = await handler({
-			code: 'const x: number = "not a number"; x.toFixed(.',
-			framework: 'react'
-		});
-
-		// Must still return a ToolResult, never throw
 		expect(result).toHaveProperty('content');
 		expect(Array.isArray(result.content)).toBe(true);
 		expect(result.content[0]).toHaveProperty('type', 'text');
-		expect(typeof result.content[0].text).toBe('string');
-	}, 15_000);
+		expect(result.content[0].text).toContain('✅');
+		expect(result.isError).toBeUndefined();
+	});
 
-	it('uses .tsx extension for react framework', async () => {
+	it('returns an error ToolResult (not an exception) when exec rejects', async () => {
+		execMock.mockRejectedValue({
+			stdout: 'error TS2322: Type string is not assignable to type number.',
+			stderr: ''
+		});
+
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
 
-		// JSX code — if this runs at all (tsc present), it should not fail due to wrong extension
 		const result = await handler({
-			code: 'const App = () => <div>Hello</div>;\nexport default App;',
+			code: 'const x: number = "not a number";',
 			framework: 'react'
 		});
 
-		expect(result).toHaveProperty('content');
-		// The important thing: no unhandled exception was thrown
-	}, 15_000);
+		expect(result.isError).toBe(true);
+		expect(result.content[0].text).toContain('❌');
+		expect(result.content[0].text).toContain('TS2322');
+	});
 
-	it('uses .vue extension for vue framework', async () => {
+	it('writes a .tsx temp file for react framework', async () => {
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
 
-		const result = await handler({
+		await handler({ code: 'const x = 1;', framework: 'react' });
+
+		const writtenPath: string = writeFileMock.mock.calls[0][0];
+		expect(writtenPath).toMatch(/\.tsx$/);
+	});
+
+	it('writes a .vue temp file for vue framework', async () => {
+		const { handleVerifyMigratedCode: handler } =
+			await import('../tools/verify.js');
+
+		await handler({
 			code: '<template><div>Hello</div></template>',
 			framework: 'vue'
 		});
 
-		expect(result).toHaveProperty('content');
-	}, 35_000);
+		const writtenPath: string = writeFileMock.mock.calls[0][0];
+		expect(writtenPath).toMatch(/\.vue$/);
+	});
 
-	it('uses .ts extension for angular framework', async () => {
+	it('writes a .ts temp file for angular framework', async () => {
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
 
-		const result = await handler({
-			code: 'import { Component } from "@angular/core";\n@Component({ template: "<p>Hi</p>" })\nexport class AppComponent {}',
-			framework: 'angular'
-		});
+		await handler({ code: 'const x = 1;', framework: 'angular' });
 
-		expect(result).toHaveProperty('content');
-	}, 15_000);
+		const writtenPath: string = writeFileMock.mock.calls[0][0];
+		expect(writtenPath).toMatch(/\.ts$/);
+	});
 
-	it('cleans up the temporary file after execution', async () => {
-		const { readdirSync } = await import('node:fs');
+	it('always calls unlink to clean up the temp file', async () => {
+		const { handleVerifyMigratedCode: handler } =
+			await import('../tools/verify.js');
 
-		const cwd = process.cwd();
-		const beforeFiles = new Set(
-			readdirSync(cwd).filter((f) => f.startsWith('.tmp_verify_'))
-		);
+		await handler({ code: 'const x = 1;', framework: 'react' });
+
+		expect(unlinkMock).toHaveBeenCalledOnce();
+		const unlinkedPath: string = unlinkMock.mock.calls[0][0];
+		expect(unlinkedPath).toMatch(/\.tmp_verify_/);
+	});
+
+	it('still calls unlink even when exec rejects', async () => {
+		execMock.mockRejectedValue({ stdout: 'error', stderr: '' });
 
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
-		await handler({
-			code: 'const x = 1;',
-			framework: 'react'
-		});
 
-		const afterFiles = readdirSync(cwd).filter((f) =>
-			f.startsWith('.tmp_verify_')
-		);
-		const newFiles = afterFiles.filter((f) => !beforeFiles.has(f));
+		await handler({ code: 'const x = 1;', framework: 'react' });
 
-		// No new .tmp_verify_ files should remain after execution
-		expect(newFiles).toHaveLength(0);
-	}, 15_000);
+		expect(unlinkMock).toHaveBeenCalledOnce();
+	});
 });
