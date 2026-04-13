@@ -123,7 +123,7 @@ export const getMigrationGuideSchema = {
 
 export const verifyMigratedCodeSchema = {
 	description:
-		'IMPORTANT: ALWAYS call this tool after generating v4 code and BEFORE showing it to the user. The tool saves the code to a temporary file and runs a compiler/linter check. If errors are returned, you must fix the code and call the tool again (max 3 attempts).',
+		'IMPORTANT: ALWAYS call this tool after generating v3 code and BEFORE showing it to the user. The tool saves the code to a temporary file and runs a compiler check. If errors are returned, you must fix the code and call the tool again (max 3 attempts).',
 	inputSchema: {
 		code: z
 			.string()

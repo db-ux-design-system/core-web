@@ -78,7 +78,7 @@ function wrapCode(code: string, framework: string): string {
 }
 
 /**
- * Saves the given code to a temporary file, runs a linter/compiler check, and
+ * Saves the given code to a temporary file, runs a compiler check, and
  * returns either a success message or the captured diagnostics so the LLM can
  * self-correct.
  *
@@ -97,6 +97,8 @@ function wrapCode(code: string, framework: string): string {
  * - **Cross-platform paths:** `path.join` + `process.cwd()` produce OS-native
  *   paths; file paths are always double-quoted in shell commands for
  *   Windows compatibility.
+ * - **Buffer overflow protection:** `maxBuffer` is set to 10 MB so that verbose
+ *   compiler output is fully captured before {@link truncate} reduces it.
  */
 export async function handleVerifyMigratedCode({
 	code,
