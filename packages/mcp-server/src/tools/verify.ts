@@ -158,7 +158,7 @@ export async function handleVerifyMigratedCode({
 function buildCheckCommand(filePath: string, framework: string): string {
 	switch (framework) {
 		case 'vue': {
-			return `npx vue-tsc --noEmit "${filePath}" 2>&1 && npx eslint --no-eslintrc --rule '{}' "${filePath}" 2>&1`;
+			return `npx vue-tsc --noEmit "${filePath}" 2>&1`;
 		}
 		case 'react': {
 			return `npx tsc --noEmit --jsx react-jsx --esModuleInterop --moduleResolution node --skipLibCheck "${filePath}" 2>&1`;
