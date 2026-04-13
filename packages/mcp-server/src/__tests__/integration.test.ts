@@ -1,6 +1,41 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetManifestCache } from '../utils/manifest';
 
+// ---------------------------------------------------------------------------
+// Mocks for handleVerifyMigratedCode — must be at top level so vi.mock hoisting works
+// ---------------------------------------------------------------------------
+const { execMock, writeFileMock, unlinkMock } = vi.hoisted(() => ({
+	execMock: vi.fn(),
+	writeFileMock: vi.fn(),
+	unlinkMock: vi.fn()
+}));
+
+vi.mock('node:child_process', () => ({
+	exec: (
+		_cmd: string,
+		_opts: unknown,
+		cb: (
+			err: Error | null,
+			result?: { stdout: string; stderr: string }
+		) => void
+	) => {
+		const result = execMock(_cmd, _opts);
+		if (result && typeof result.then === 'function') {
+			result.then(
+				(val: { stdout: string; stderr: string }) => cb(null, val),
+				(err: Error) => cb(err)
+			);
+		} else {
+			cb(null, { stdout: '', stderr: '' });
+		}
+	}
+}));
+
+vi.mock('node:fs/promises', () => ({
+	writeFile: (...args: unknown[]) => writeFileMock(...args),
+	unlink: (...args: unknown[]) => unlinkMock(...args)
+}));
+
 const { resolveSafePath } = await import('../utils/index.js');
 const {
 	handleListComponents,
@@ -926,21 +961,6 @@ describe('handleMigrateComponentPrompt', () => {
 	});
 });
 describe('handleVerifyMigratedCode', () => {
-	const execMock = vi.fn();
-	const writeFileMock = vi.fn();
-	const unlinkMock = vi.fn();
-
-	vi.mock('node:child_process', () => ({
-		exec: (_cmd: string, _opts: unknown, cb: (err: null) => void) => {
-			execMock(_cmd, _opts);
-			cb(null);
-		}
-	}));
-	vi.mock('node:fs/promises', () => ({
-		writeFile: (...args: unknown[]) => writeFileMock(...args),
-		unlink: (...args: unknown[]) => unlinkMock(...args)
-	}));
-
 	beforeEach(() => {
 		execMock.mockResolvedValue({ stdout: '', stderr: '' });
 		writeFileMock.mockResolvedValue(undefined);
