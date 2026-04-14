@@ -320,6 +320,7 @@ Or add it to your MCP client config:
 8. `list_icons` — look up the exact icon name before using any icon prop
 9. `list_migration_guides` — list all available migration guides before any migration task
 10. `get_migration_guide` — load the full content of a specific migration guide
+11. `get_component_visual` — _(optional, use sparingly)_ if you need visual context for complex layouts, z-index dependencies, or visual hierarchies, call this tool with the component or layout name to receive a downsampled screenshot
 
 #### DON'Ts — these are hard violations
 

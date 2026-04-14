@@ -944,6 +944,18 @@ describe('handleMigrateComponentPrompt', () => {
 		);
 	});
 
+	it('mentions get_component_visual as optional visual validation in Step 2', () => {
+		const result = handleMigrateComponentPrompt({
+			legacy_code: '<div class="layout">Content</div>',
+			source_context: 'native-html',
+			target_framework: 'react'
+		});
+
+		const text = result.messages[0].content.text;
+		expect(text).toContain('get_component_visual');
+		expect(text).toContain('OPTIONAL');
+	});
+
 	it('forbids @ts-nocheck, @ts-ignore, and other compiler bypass directives', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<button>Click</button>',

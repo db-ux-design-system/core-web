@@ -15,3 +15,4 @@ export {
 	handleListDesignTokenCategories
 } from './tokens.js';
 export { handleVerifyMigratedCode } from './verify.js';
+export { handleGetComponentVisual } from './visuals.js';

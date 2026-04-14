@@ -20,6 +20,7 @@
   "files": [
     "CHANGELOG.md",
     "agent",
+    "assets",
     "dist"
   ],
   "scripts": {
@@ -27,6 +28,7 @@
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:agent": "cpr agent ../../build-outputs/mcp-server/agent --overwrite",
+    "copy-build:assets": "cpr assets ../../build-outputs/mcp-server/assets --overwrite",
     "copy-build:context": "cpr CONTEXT.md ../../build-outputs/mcp-server/CONTEXT.md --overwrite",
     "copy-build:dist": "cpr dist ../../build-outputs/mcp-server/dist --overwrite",
     "copy-build:package.json": "cpr package.json ../../build-outputs/mcp-server/package.json --overwrite",
@@ -39,6 +41,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.29.0",
+    "sharp": ">=0.33.5",
     "zod": "4.3.6"
   },
   "devDependencies": {

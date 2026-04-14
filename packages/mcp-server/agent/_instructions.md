@@ -34,6 +34,7 @@ Or add it to your MCP client config:
 9. `list_migration_guides` — list all available migration guides before any migration task
 10. `get_migration_guide` — load the full content of a specific migration guide
 11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
+12. `get_component_visual` — _(optional, use sparingly)_ if you need visual context for complex layouts, z-index dependencies, or visual hierarchies, call this tool with the component or layout name to receive a downsampled screenshot
 
 ### DON'Ts — these are hard violations:
 
@@ -80,6 +81,7 @@ Generates the initial structure of a complete web page or complex module. Enforc
 2. **Component Discovery** — Calls `list_components` to verify every planned block maps to a DB UX component. Reports missing components instead of falling back to native HTML
 3. **Props & Examples** — For each component: `get_component_props` → `get_component_details` → `get_example_code` with the target framework
 4. **Token & Asset Validation** — `list_design_token_categories` → `get_design_tokens` for needed categories, `list_icons` for any icon props
+5. **Visual Validation (optional)** — If uncertain about layout structure or visual hierarchy, call `get_component_visual` for a reference screenshot
 
 **Output structure:**
 
@@ -129,7 +131,7 @@ Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern D
 **Workflow:**
 
 1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes
-2. **Component Discovery & Props Retrieval** — Calls `list_components`, `get_component_props`, `get_component_details`, and `get_example_code` to verify modern equivalents. Calls `get_design_tokens` to replace legacy CSS variables or hardcoded values. Calls `list_icons` for any icon references
+2. **Component Discovery & Props Retrieval** — Calls `list_components`, `get_component_props`, `get_component_details`, and `get_example_code` to verify modern equivalents. Calls `get_design_tokens` to replace legacy CSS variables or hardcoded values. Calls `list_icons` for any icon references. Optionally calls `get_component_visual` when uncertain about layout structures or visual hierarchies
 3. **Code Generation** — Generates the complete migrated component code. **Does NOT output this to the user yet**
 4. **Code Verification & Self-Correction (MANDATORY)** — Calls `verify_migrated_code` with the generated code and framework. If the tool returns compiler errors, the AI analyzes the diagnostics, fixes the code, and retries. This loop runs for a **maximum of 3 attempts**. If verification still fails after 3 attempts, the AI presents the code with a prominent ⚠️ warning block containing the remaining errors
 5. **Final Output** — Presents the verified code (✅ on success, ⚠️ with diagnostics on failure)

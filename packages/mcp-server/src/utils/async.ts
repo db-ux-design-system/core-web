@@ -1,6 +1,12 @@
+/** A single text content block inside an MCP tool result. */
+export type TextContent = { type: 'text'; text: string };
+
+/** A single image content block inside an MCP tool result. */
+export type ImageContent = { type: 'image'; data: string; mimeType: string };
+
 /** Standard return type for all MCP tool handlers. */
 export type ToolResult = {
-	content: { type: 'text'; text: string }[];
+	content: (TextContent | ImageContent)[];
 	isError?: boolean;
 };
 

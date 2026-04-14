@@ -95,19 +95,20 @@ This will copy the correct rules for DB UX component usage and design token refe
 
 ## 🛠 Available AI Tools (Skills)
 
-| Tool                           | Description                                                                                                                                                                                                                           |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                           |
-| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                               |
-| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                |
-| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                       |
-| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers.                                                   |
-| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                  |
-| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                         |
-| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                         |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `db-ui-color-migration`, `db-ui-component-migration`). Call this first before any migration task.                                                                                   |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                   |
-| `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts). |
+| Tool                           | Description                                                                                                                                                                                                                                              |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                                              |
+| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                                                  |
+| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                                   |
+| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                                          |
+| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers.                                                                      |
+| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                                     |
+| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                            |
+| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                            |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `db-ui-color-migration`, `db-ui-component-migration`). Call this first before any migration task.                                                                                                      |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                      |
+| `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                    |
+| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies. |
 
 ### Example: fetching a React button example
 
@@ -118,6 +119,7 @@ get_component_details    → lists ["Density", "Variant", "Show Icon Leading", .
 get_example_code         → returns show-icon-leading.example.tsx source
 list_icons               → confirms "arrow_right" is a valid icon name
 get_design_tokens        → returns --db-spacing-fixed-md for layout
+get_component_visual     → (optional) returns a downsampled screenshot for visual reference
 verify_migrated_code     → runs tsc --noEmit on generated code, returns ✅ or diagnostics
 ```
 
@@ -146,7 +148,7 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture.
 
 - **Parameters:** `legacy_code`, `source_context`, `target_framework`.
-- **Behavior:** Calls `list_migration_guides` and `get_migration_guide` to dynamically load the relevant migration docs before mapping any component. This ensures all package renames, prop changes, and missing-component workarounds are sourced from the official guides rather than hardcoded knowledge.
+- **Behavior:** Calls `list_migration_guides` and `get_migration_guide` to dynamically load the relevant migration docs before mapping any component. This ensures all package renames, prop changes, and missing-component workarounds are sourced from the official guides rather than hardcoded knowledge. Optionally calls `get_component_visual` when the AI is uncertain about layout structures or visual hierarchies.
 
 ### `audit_accessibility` (Deep A11y Scan)
 
@@ -209,6 +211,8 @@ This means the same binary works for:
 
 ```text
 packages/mcp-server/
+├── assets/
+│   └── visuals/            # Curated reference images (shipped with npm package)
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
 │   ├── server.ts           # McpServer singleton and lifecycle handlers
@@ -350,6 +354,7 @@ This MCP server operates under a strict, zero-trust security model to prevent ma
     - File reads are truncated at **20,000 characters**.
     - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
     - Directory scans are hard-limited to a maximum of **10 files**.
+- **Image Downsampling (Token Optimization):** The `get_component_visual` tool dynamically downsamples images to stay below **1.15 megapixels** using bilinear interpolation before Base64 encoding. This prevents oversized images from inflating the LLM context window. Images are served exclusively from the curated `assets/visuals/` directory — path traversal protection applies here as well.
 
 ---
 

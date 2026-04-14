@@ -23,5 +23,6 @@ await esbuild.build({
 	// Keep @db-ux/* packages external — the MCP server only embeds manifest.json,
 	// it must not pull in the component library source.
 	// @modelcontextprotocol/sdk is bundled so the output runs standalone via npx.
-	external: ['@db-ux/*']
+	// sharp uses native bindings (libvips) that cannot be bundled by esbuild.
+	external: ['@db-ux/*', 'sharp']
 });

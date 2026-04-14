@@ -51,4 +51,38 @@ describe('MCP server — stdio transport', () => {
 		expect(Array.isArray(components)).toBe(true);
 		expect(components).toContain('button');
 	}, 10_000);
+
+	it('responds to get_component_visual with an image for "dashboard"', async () => {
+		const response = await client.callTool({
+			name: 'get_component_visual',
+			arguments: { componentName: 'dashboard' }
+		});
+
+		expect(response.isError).toBeFalsy();
+
+		const content = response.content as {
+			type: string;
+			data?: string;
+			mimeType?: string;
+			text?: string;
+		}[];
+
+		const imageBlock = content.find((c) => c.type === 'image');
+		expect(imageBlock).toBeDefined();
+		expect(imageBlock!.mimeType).toBe('image/png');
+		expect(imageBlock!.data!.length).toBeGreaterThan(0);
+
+		const textBlock = content.find((c) => c.type === 'text');
+		expect(textBlock).toBeDefined();
+		expect(textBlock!.text).toContain('dashboard');
+	}, 15_000);
+
+	it('responds to get_component_visual with an error for unknown name', async () => {
+		const response = await client.callTool({
+			name: 'get_component_visual',
+			arguments: { componentName: 'nonexistent-xyz' }
+		});
+
+		expect(response.isError).toBeTruthy();
+	}, 10_000);
 });

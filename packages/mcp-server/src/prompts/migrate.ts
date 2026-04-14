@@ -74,6 +74,7 @@ b. For each confirmed component:
    - Call 'get_example_code' with the most relevant example and framework="${target_framework}" to obtain the exact generated source. Adapt this code — do NOT rewrite from scratch.
 c. Call 'list_design_token_categories', then 'get_design_tokens' for every token category used in the legacy code (colors, spacing, typography, etc.). Replace ALL hardcoded values.
 d. If any icon is used, call 'list_icons' and copy the exact name from the returned array.
+e. OPTIONAL — Visual validation: If you are uncertain about layout structures, z-index stacking, or visual hierarchies of a component, call 'get_component_visual' with the component name. This returns a downsampled screenshot for visual reference. Use sparingly — only when textual docs are insufficient.
 
 Native HTML replacement rules (enforce strictly):
 - <button>      → DBButton

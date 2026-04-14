@@ -16,6 +16,7 @@ import {
 	handleDocsSearch,
 	handleGetComponentDetails,
 	handleGetComponentProps,
+	handleGetComponentVisual,
 	handleGetDesignTokens,
 	handleGetExampleCode,
 	handleGetMigrationGuide,
@@ -29,6 +30,7 @@ import {
 	docsSearchSchema,
 	getComponentDetailsSchema,
 	getComponentPropsSchema,
+	getComponentVisualSchema,
 	getDesignTokensSchema,
 	getExampleCodeSchema,
 	getMigrationGuideSchema,
@@ -43,6 +45,7 @@ export {
 	handleDocsSearch,
 	handleGetComponentDetails,
 	handleGetComponentProps,
+	handleGetComponentVisual,
 	handleGetDesignTokens,
 	handleGetExampleCode,
 	handleGetMigrationGuide,
@@ -101,6 +104,11 @@ server.registerTool(
 	'verify_migrated_code',
 	verifyMigratedCodeSchema,
 	handleVerifyMigratedCode
+);
+server.registerTool(
+	'get_component_visual',
+	getComponentVisualSchema,
+	handleGetComponentVisual
 );
 
 // Prompts
