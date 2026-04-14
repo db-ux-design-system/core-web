@@ -375,18 +375,26 @@ npm run build
 
 Run the following command from the `packages/mcp-server/` directory:
 
-> **Note:** Port 5173 is the default for Vite and Playwright. To avoid conflicts if those are already running, you can specify a different port using the `--port` flag.
+> **Note:** The Inspector UI runs on **port 6274**, the proxy on **port 6277**. If either port is already in use, free it first: `lsof -ti :6274 -ti :6277 | xargs kill -9`
 
 ```bash
-npx @modelcontextprotocol/inspector --port 5178 node build/index.js
+npx @modelcontextprotocol/inspector --transport stdio node dist/index.js
 ```
+
+The Inspector prints a URL with a session token to the terminal, e.g.:
+
+```text
+🔍 MCP Inspector is up and running at http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=<token>
+```
+
+Open that **full URL including the token** in your browser — the token is required for authentication.
 
 ### Step-by-step workflow
 
 1. Run the command above — the Inspector starts a local web server
-2. Open the browser tab it prints (e.g., **<http://localhost:5178>**)
-3. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
-4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `get_example_code`) and inspect their responses
-5. Use the **"Resources"** tab to verify any static resources exposed by the server
+2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
+3. Click **"Connect"** to establish the stdio connection to the server
+4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `get_component_visual`) and inspect their responses
+5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
 
 > **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.

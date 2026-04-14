@@ -147,7 +147,7 @@ export const getComponentVisualSchema = {
 			.string()
 			.max(100)
 			.describe(
-				"The kebab-case component name, e.g. 'button', 'navigation', 'card'."
+				"Name of the visual reference to load. Available visuals: 'dashboard', 'form', 'landingpage', 'table'."
 			)
 	}
 };
