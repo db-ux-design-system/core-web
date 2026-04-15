@@ -71,29 +71,6 @@ core-web/
                 └── examples/  # *.example.vue
 ```
 
-## MCP Concepts in This Server
-
-### Tools (LLM-callable functions)
-
-| Tool                           | Description                                                                                                                                                                                                         |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available component names                                                                                                                                                                               |
-| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                                                                  |
-| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                                                            |
-| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                                                                 |
-| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                                                    |
-| `list_design_token_categories` | Returns all available design token categories                                                                                                                                                                       |
-| `get_design_tokens`            | Returns CSS custom properties and SCSS variables for a token category                                                                                                                                               |
-| `docs_search`                  | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs                                                                                                                    |
-| `list_migration_guides`        | Returns all available migration guide names from the manifest                                                                                                                                                       |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                     |
-| `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Used by `migrate_component` to self-correct before presenting code to the user (max 3 retries).                                 |
-| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Opt-in only — for complex layouts, z-index dependencies, or visual hierarchies. |
-
-### Manifest (embedded data)
-
-At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-foundations db-ux-mcp` from a consumer project.
-
 ## Communication
 
 The server uses `StdioServerTransport` from the MCP SDK. It is started as a child process by the MCP client:
@@ -121,6 +98,29 @@ During development inside the monorepo, `tsx` can be used for live file access:
 	}
 }
 ```
+
+## MCP Concepts in This Server
+
+### Tools (LLM-callable functions)
+
+| Tool                           | Description                                                                                                                                                                                                         |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available component names                                                                                                                                                                               |
+| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                                                                  |
+| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                                                            |
+| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                                                                 |
+| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                                                    |
+| `list_design_token_categories` | Returns all available design token categories                                                                                                                                                                       |
+| `get_design_tokens`            | Returns CSS custom properties and SCSS variables for a token category                                                                                                                                               |
+| `docs_search`                  | Searches conceptual docs (guidelines, A11y, migration, ADRs) or component-specific markdown docs                                                                                                                    |
+| `list_migration_guides`        | Returns all available migration guide names from the manifest                                                                                                                                                       |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                     |
+| `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Used by `migrate_component` to self-correct before presenting code to the user (max 3 retries).                                 |
+| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Opt-in only — for complex layouts, z-index dependencies, or visual hierarchies. |
+
+### Manifest (embedded data)
+
+At build time, `build-manifest.ts` collects all component metadata and example source code into `src/manifest.json`. This file is bundled into the final `index.js` so the server can operate without access to the monorepo source tree — for example when invoked via `npx @db-ux/core-foundations db-ux-mcp` from a consumer project.
 
 ## Development
 

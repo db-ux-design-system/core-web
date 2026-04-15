@@ -145,10 +145,74 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` (Legacy Refactoring)
 
-Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture.
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. This is the most complex prompt — it orchestrates **12 different MCP tools** across 5 mandatory steps, including a compiler-verified self-correction loop.
 
-- **Parameters:** `legacy_code`, `source_context`, `target_framework`.
-- **Behavior:** Calls `list_migration_guides` and `get_migration_guide` to dynamically load the relevant migration docs before mapping any component. This ensures all package renames, prop changes, and missing-component workarounds are sourced from the official guides rather than hardcoded knowledge. Optionally calls `get_component_visual` when the AI is uncertain about layout structures or visual hierarchies.
+**Parameters:**
+
+| Parameter          | Required | Description                                                                                                            |
+| ------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `legacy_code`      | Yes      | The outdated source code to migrate (DB UI, Bootstrap, raw HTML/CSS). Max 10,000 chars                                 |
+| `source_context`   | Yes      | Origin of the legacy code: `db-ui-v1`, `db-ui-v2`, `db-ux-v1`, `db-ux-v2`, `db-ux-v3`, `bootstrap-4`, or `native-html` |
+| `target_framework` | Yes      | Target framework: `react`, `angular`, `vue`, `web-components`, or `html`                                               |
+
+**Full workflow (5 mandatory steps):**
+
+```text
+┌──────────────────────────────────────────────────────────────────┐
+│ STEP 1: MIGRATION ANALYSIS                                       │
+│  list_migration_guides → get_migration_guide → docs_search       │
+│  Output: Legacy Element → DB UX v3 Component mapping table       │
+├──────────────────────────────────────────────────────────────────┤
+│ STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL                    │
+│  list_components → get_component_props → get_component_details   │
+│  → get_example_code → get_design_tokens → list_icons             │
+│  → get_component_visual (optional, for layout uncertainty)       │
+├──────────────────────────────────────────────────────────────────┤
+│ STEP 3: CODE GENERATION                                          │
+│  Generates complete migrated code (NOT shown to user yet)        │
+├──────────────────────────────────────────────────────────────────┤
+│ STEP 4: CODE VERIFICATION & SELF-CORRECTION (mandatory)          │
+│  verify_migrated_code → fix errors → retry (max 3 attempts)     │
+│  ⚠️ Only for react, angular, vue — skipped for html/wc          │
+├──────────────────────────────────────────────────────────────────┤
+│ STEP 5: FINAL OUTPUT                                             │
+│  ✅ VERIFIED or ⚠️ WARNING with remaining diagnostics            │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+**Step-by-step details:**
+
+1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` to load official migration rules (package renames, prop changes, removed components). Calls `docs_search` for component-specific migration docs. Produces a mapping table: Legacy Element → DB UX v3 Component → Rationale.
+2. **Component Discovery & Props Retrieval** — Calls `list_components` to verify every mapped component exists. For each: `get_component_props` (TypeScript API), `get_component_details` (examples), `get_example_code` (canonical source to adapt). Calls `get_design_tokens` to replace hardcoded colors/spacing. Calls `list_icons` to verify icon names. Optionally calls `get_component_visual` when uncertain about layout structures.
+3. **Code Generation** — Generates the complete migrated code with correct `@db-ux/*` imports, verified design tokens, and verified icon names. **Does NOT output this to the user yet.**
+4. **Code Verification & Self-Correction** — Passes the generated code to `verify_migrated_code` which runs `tsc --noEmit`. If compiler errors are returned, the AI analyzes diagnostics, fixes the code, and retries — up to **3 attempts maximum**. This step only applies to `react`, `angular`, and `vue` targets. For `web-components` and `html`, it is skipped.
+5. **Final Output** — Presents the result in three sections: "Migration Analysis" (mapping table + guide references), "Migrated Code" (marked ✅ VERIFIED on success, or ⚠️ WARNING with remaining diagnostics), and "Accessibility Statement" (WCAG 2.2 AA compliance confirmation).
+
+**Available migration guides:**
+
+| Guide                       | Covers                                                             |
+| --------------------------- | ------------------------------------------------------------------ |
+| `db-ui-component-migration` | Component renames, prop changes, removed/planned components        |
+| `db-ui-color-migration`     | Full color token mapping (old → new `--db-*` tokens)               |
+| `db-ui-icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)    |
+| `db-ui-general-migration`   | Typography tokens, spacing tokens, elevation, inline style removal |
+
+**Example: migrating a DB UI v2 React component**
+
+Trigger the prompt with these parameters:
+
+- `legacy_code`: your old React component source code
+- `source_context`: `db-ui-v2`
+- `target_framework`: `react`
+
+The AI will then autonomously:
+
+1. Load `db-ui-component-migration`, `db-ui-color-migration`, `db-ui-icon-migration`, and `db-ui-general-migration`
+2. Map every legacy element (e.g. `variant="brand-primary"` → `variant="brand"`, `icon="search"` → `icon="magnifying_glass"`)
+3. Fetch the exact generated React example code for each component and adapt it
+4. Replace all hardcoded `#ec0016` / `margin: 15px` values with `--db-*` design tokens
+5. Compile the result via `verify_migrated_code` and self-correct up to 3 times
+6. Present the verified code with a migration analysis and accessibility statement
 
 ### `audit_accessibility` (Deep A11y Scan)
 
@@ -257,32 +321,6 @@ npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
 
 ---
 
-## ❓ Troubleshooting
-
-### "Unknown Configuration Setting" in VS Code
-
-If you see a yellow squiggle/warning in your `settings.json`, this is expected. Standard VS Code does not natively recognize the `mcp` key yet. As long as your MCP client (like the Claude extension or Cursor) is active, the server will work perfectly.
-
-### Server fails to start from the monorepo root (Local Development)
-
-If you are developing or testing the MCP server directly from within the DB UX monorepo, the global `npx` command might fail due to npm workspace resolution. In this case, bypass `npx` and point your IDE directly to the local built file.
-
-**Fallback IDE Configuration (VS Code/IntelliJ):**
-Instead of using `npx`, use `node` and point it to the local build path (ensure you have run `npm run build` in the `mcp-server` directory first):
-
-```json
-"db-ux": {
-	"command": "node",
-	"disabled": false,
-	"timeout": 60000,
-	"args": ["packages/mcp-server/dist/index.js"]
-}
-```
-
-_Alternatively, you can change your IDE's working directory for the MCP server to `packages/mcp-server`._
-
----
-
 ## 🛡️ Security & Compliance
 
 This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
@@ -337,3 +375,29 @@ Open that **full URL including the token** in your browser — the token is requ
 5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
 
 > **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
+
+---
+
+## ❓ Troubleshooting
+
+### "Unknown Configuration Setting" in VS Code
+
+If you see a yellow squiggle/warning in your `settings.json`, this is expected. Standard VS Code does not natively recognize the `mcp` key yet. As long as your MCP client (like the Claude extension or Cursor) is active, the server will work perfectly.
+
+### Server fails to start from the monorepo root (Local Development)
+
+If you are developing or testing the MCP server directly from within the DB UX monorepo, the global `npx` command might fail due to npm workspace resolution. In this case, bypass `npx` and point your IDE directly to the local built file.
+
+**Fallback IDE Configuration (VS Code/IntelliJ):**
+Instead of using `npx`, use `node` and point it to the local build path (ensure you have run `npm run build` in the `mcp-server` directory first):
+
+```json
+"db-ux": {
+	"command": "node",
+	"disabled": false,
+	"timeout": 60000,
+	"args": ["packages/mcp-server/dist/index.js"]
+}
+```
+
+_Alternatively, you can change your IDE's working directory for the MCP server to `packages/mcp-server`._

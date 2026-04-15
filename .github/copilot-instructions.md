@@ -119,113 +119,6 @@ npm run regenerate:screenshots
 
 **TIMING**: Visual tests take 10+ minutes. NEVER CANCEL. Set timeout to 1800+ seconds.
 
-## Common Tasks
-
-### Working with Components
-
-- **Generate new component**: `npm run generate:component`
-- **Component build location**: `packages/components/build/`
-- **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
-
-### Working with Styles
-
-- **Foundation styles**: `packages/foundations/`
-- **Component styles**: `packages/components/src/styles/`
-- **Build artifacts**: `packages/foundations/build/` and `packages/components/build/`
-
-### Key Repository Locations
-
-```text
-├── packages/
-│   ├── foundations/        # Base CSS/SCSS styles and design tokens
-│   ├── components/         # Component CSS and build definitions
-│   ├── migration/          # Migration utilities between versions
-│   └── stylelint/          # DB UX Design System Stylelint plugin for QS
-├── output/                 # Framework-specific generated code
-│   ├── angular/            # Angular components (@db-ux/ngx-core-components)
-│   ├── react/              # React components (@db-ux/react-core-components)
-│   ├── vue/                # Vue 3 components (@db-ux/v-core-components)
-│   └── stencil/            # Web Components (@db-ux/wc-core-components)
-├── showcases/              # Example applications for each framework
-└── docs/                   # Documentation files
-```
-
-### Package Scripts Reference
-
-```bash
-# Development
-npm run dev                 # Interactive dev server (framework selection)
-npm run start              # Start Patternhub documentation site
-
-# Building
-npm run build              # Build core packages (~30 seconds)
-npm run build-outputs      # Build all framework outputs (~2 minutes)
-npm run build-showcases    # Build example applications
-
-# Testing & Quality
-npm run test               # Run test suite (~10 seconds)
-npm run lint               # Run all linters (known issue: may fail if Nuxt showcase hasn't been run yet; see "Known Issues and Workarounds" below)
-npm run regenerate:screenshots  # Update visual regression tests material
-
-# Utilities
-npm run clean              # Clean build artifacts
-npm run generate:component # Generate new component scaffolding
-```
-
-## Known Issues and Workarounds
-
-### Installation Issues
-
-- **chromedriver fails**: Use `npm install --ignore-scripts` - this is expected in restricted network environments
-- **Font decoding fails**: Expected with placeholder credentials - does not affect basic development
-
-### Build Issues
-
-- **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
-- **Stencil warnings**: Component prop name conflicts are expected and documented
-
-### Git hook issues
-
-**Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
-
-```bash
-git commit -m "Your commit message" --no-verify
-```
-
-### Network Restrictions
-
-- **Docker registry access**: E2E testing requires Docker and may need proxy configuration
-- **Asset downloads**: DB Theme assets require valid credentials from Deutsche Bahn Marketing Portal
-
-## Development Workflows
-
-If possible, start by writing a test that you could use to verify your solution, as well as we could use for ongoing regression testing throughout the product's development.
-
-### Adding a New Component
-
-1. `npm run generate:component` - Follow interactive prompts
-2. Implement component in `packages/components/src/components/[name]/`
-3. Build and test: `npm run build && npm run test`
-4. Generate framework outputs: `npm run build-outputs`
-5. Test in development server: `npm run dev`
-
-### Modifying Existing Components
-
-1. Make changes in `packages/components/src/components/[name]/`
-2. Adapt those changes into the `showcases/vue-showcase`, `showcases/angular-showcase` and `showcases/react-showcase` folders.
-3. **Always run**: `npm run build && npm run dev`
-4. **Manual validation**: Test component behavior in browser
-5. **Before committing**: `npm run test && npm run build-outputs`
-
-### Debugging Build Issues
-
-1. **Check Node.js version**: Must be v24 (see `.nvmrc`)
-2. **Clean rebuild**: `npm run clean && npm run build`
-3. **Check dependencies**: `npm install --ignore-scripts`
-4. **Isolate issue**: Build individual packages using workspace commands
-
-Remember: This is a design system used by Deutsche Bahn applications. Always ensure changes maintain accessibility, consistency, and brand compliance.
-
 ## Changesets
 
 This repository uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
@@ -283,6 +176,113 @@ Short description of the fix.
 Short description of the breaking change.
 ```
 
+## Common Tasks
+
+### Working with Components
+
+- **Generate new component**: `npm run generate:component`
+- **Component build location**: `packages/components/build/`
+- **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
+
+### Working with Styles
+
+- **Foundation styles**: `packages/foundations/`
+- **Component styles**: `packages/components/src/styles/`
+- **Build artifacts**: `packages/foundations/build/` and `packages/components/build/`
+
+### Key Repository Locations
+
+```text
+├── packages/
+│   ├── foundations/        # Base CSS/SCSS styles and design tokens
+│   ├── components/         # Component CSS and build definitions
+│   ├── migration/          # Migration utilities between versions
+│   └── stylelint/          # DB UX Design System Stylelint plugin for QS
+├── output/                 # Framework-specific generated code
+│   ├── angular/            # Angular components (@db-ux/ngx-core-components)
+│   ├── react/              # React components (@db-ux/react-core-components)
+│   ├── vue/                # Vue 3 components (@db-ux/v-core-components)
+│   └── stencil/            # Web Components (@db-ux/wc-core-components)
+├── showcases/              # Example applications for each framework
+└── docs/                   # Documentation files
+```
+
+### Package Scripts Reference
+
+```bash
+# Development
+npm run dev                 # Interactive dev server (framework selection)
+npm run start              # Start Patternhub documentation site
+
+# Building
+npm run build              # Build core packages (~30 seconds)
+npm run build-outputs      # Build all framework outputs (~2 minutes)
+npm run build-showcases    # Build example applications
+
+# Testing & Quality
+npm run test               # Run test suite (~10 seconds)
+npm run lint               # Run all linters (known issue: may fail if Nuxt showcase hasn't been run yet; see "Known Issues and Workarounds" below)
+npm run regenerate:screenshots  # Update visual regression tests material
+
+# Utilities
+npm run clean              # Clean build artifacts
+npm run generate:component # Generate new component scaffolding
+```
+
+## Development Workflows
+
+If possible, start by writing a test that you could use to verify your solution, as well as we could use for ongoing regression testing throughout the product's development.
+
+### Adding a New Component
+
+1. `npm run generate:component` - Follow interactive prompts
+2. Implement component in `packages/components/src/components/[name]/`
+3. Build and test: `npm run build && npm run test`
+4. Generate framework outputs: `npm run build-outputs`
+5. Test in development server: `npm run dev`
+
+### Modifying Existing Components
+
+1. Make changes in `packages/components/src/components/[name]/`
+2. Adapt those changes into the `showcases/vue-showcase`, `showcases/angular-showcase` and `showcases/react-showcase` folders.
+3. **Always run**: `npm run build && npm run dev`
+4. **Manual validation**: Test component behavior in browser
+5. **Before committing**: `npm run test && npm run build-outputs`
+
+### Debugging Build Issues
+
+1. **Check Node.js version**: Must be v24 (see `.nvmrc`)
+2. **Clean rebuild**: `npm run clean && npm run build`
+3. **Check dependencies**: `npm install --ignore-scripts`
+4. **Isolate issue**: Build individual packages using workspace commands
+
+Remember: This is a design system used by Deutsche Bahn applications. Always ensure changes maintain accessibility, consistency, and brand compliance.
+
+## Known Issues and Workarounds
+
+### Installation Issues
+
+- **chromedriver fails**: Use `npm install --ignore-scripts` - this is expected in restricted network environments
+- **Font decoding fails**: Expected with placeholder credentials - does not affect basic development
+
+### Build Issues
+
+- **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
+- **Stencil warnings**: Component prop name conflicts are expected and documented
+
+### Git hook issues
+
+**Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
+
+```bash
+git commit -m "Your commit message" --no-verify
+```
+
+### Network Restrictions
+
+- **Docker registry access**: E2E testing requires Docker and may need proxy configuration
+- **Asset downloads**: DB Theme assets require valid credentials from Deutsche Bahn Marketing Portal
+
 ## General code styles and approaches
 
 ### UI Development & MCP Workflow
@@ -329,6 +329,17 @@ Or add it to your MCP client config:
 - **NEVER** hardcode color values (`#d40000`, `rgb(...)`) — use design tokens exclusively
 - **NEVER** write inline styles with magic numbers (`style="margin: 15px"`) — use `var(--db-...)` tokens
 - **NEVER** invent or guess icon names — always call `list_icons` first
+- **NEVER** output migrated code to the user without calling `verify_migrated_code` first — the self-correction loop (max 3 attempts) is mandatory
+
+#### Migration workflow (MANDATORY when the user asks to migrate, refactor, or upgrade legacy code)
+
+When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX v3, you **MUST** follow this exact 5-step workflow — do NOT skip any step:
+
+1. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → DB UX v3 Component → Rationale.
+2. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
+3. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.
+4. **Code Verification (MANDATORY for react/angular/vue)** — Call `verify_migrated_code`. If errors are returned, fix and retry (max 3 attempts). For `web-components` and `html` targets, skip this step.
+5. **Final Output** — Present: "Migration Analysis" (mapping table), "Migrated Code" (✅ VERIFIED or ⚠️ WARNING with diagnostics), "Accessibility Statement".
 
 #### DOs
 
