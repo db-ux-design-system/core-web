@@ -34,6 +34,7 @@ export default defineConfig({
 		'**/test/**',
 		'packages/migration/**',
 		'packages/mcp-server/docs/**',
+		'packages/mcp-server/assets/**',
 		'output/**',
 		'showcases/patternhub/**',
 		'docs/migration/db-ui/color-migration.md',
