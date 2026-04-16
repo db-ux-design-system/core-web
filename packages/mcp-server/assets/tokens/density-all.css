@@ -1,93 +1,4 @@
 /* Variants for adaptive components like input, select, notification, ... */
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
 
 .db-density-expressive,
 [data-density="expressive"],
@@ -105,7 +16,6 @@
 .db-density-functional,
 [data-density="functional"] {
 	font: var(--db-type-body-md);
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 }
 @layer variables {
 	.db-density-expressive,
@@ -118,50 +28,6 @@
 		--db-icon-font-weight: var(--db-base-body-icon-weight-md);
 		--db-icon-font-size: var(--db-base-body-icon-font-size-md);
 	}
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-@layer variables {
-}
-
-.db-density-expressive,
-[data-density="expressive"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 }
 @layer variables {
 	.db-density-expressive,
@@ -184,12 +50,6 @@
 		--db-spacing-fixed-xl: var(--db-spacing-fixed-expressive-xl);
 		--db-spacing-fixed-2xl: var(--db-spacing-fixed-expressive-2xl);
 		--db-spacing-fixed-3xl: var(--db-spacing-fixed-expressive-3xl);
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
 	}
 	@media (width <= 48em) {
 		.db-density-expressive,
@@ -288,11 +148,6 @@
 		}
 	}
 }
-
-.db-density-regular,
-[data-density="regular"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
 	.db-density-regular,
 	[data-density="regular"] {
@@ -314,12 +169,6 @@
 		--db-spacing-fixed-xl: var(--db-spacing-fixed-regular-xl);
 		--db-spacing-fixed-2xl: var(--db-spacing-fixed-regular-2xl);
 		--db-spacing-fixed-3xl: var(--db-spacing-fixed-regular-3xl);
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
 	}
 	@media (width <= 48em) {
 		.db-density-regular,
@@ -418,11 +267,6 @@
 		}
 	}
 }
-
-.db-density-functional,
-[data-density="functional"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
 	.db-density-functional,
 	[data-density="functional"] {
@@ -444,12 +288,6 @@
 		--db-spacing-fixed-xl: var(--db-spacing-fixed-functional-xl);
 		--db-spacing-fixed-2xl: var(--db-spacing-fixed-functional-2xl);
 		--db-spacing-fixed-3xl: var(--db-spacing-fixed-functional-3xl);
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
 	}
 	@media (width <= 48em) {
 		.db-density-functional,
@@ -548,21 +386,7 @@
 		}
 	}
 }
-
-.db-density-expressive,
-[data-density="expressive"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
-	.db-density-expressive,
-	[data-density="expressive"] {
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	}
 	@media (width <= 48em) {
 		.db-density-expressive,
 		[data-density="expressive"] {
@@ -822,21 +646,7 @@
 		}
 	}
 }
-
-.db-density-expressive,
-[data-density="expressive"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
-	.db-density-expressive,
-	[data-density="expressive"] {
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	}
 	@media (width <= 48em) {
 		.db-density-expressive,
 		[data-density="expressive"] {
@@ -1050,21 +860,7 @@
 		}
 	}
 }
-
-.db-density-regular,
-[data-density="regular"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
-	.db-density-regular,
-	[data-density="regular"] {
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	}
 	@media (width <= 48em) {
 		.db-density-regular,
 		[data-density="regular"] {
@@ -1324,21 +1120,7 @@
 		}
 	}
 }
-
-.db-density-regular,
-[data-density="regular"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
-	.db-density-regular,
-	[data-density="regular"] {
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	}
 	@media (width <= 48em) {
 		.db-density-regular,
 		[data-density="regular"] {
@@ -1544,21 +1326,7 @@
 		}
 	}
 }
-
-.db-density-functional,
-[data-density="functional"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
-	.db-density-functional,
-	[data-density="functional"] {
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	}
 	@media (width <= 48em) {
 		.db-density-functional,
 		[data-density="functional"] {
@@ -1818,21 +1586,7 @@
 		}
 	}
 }
-
-.db-density-functional,
-[data-density="functional"] {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-}
 @layer variables {
-	.db-density-functional,
-	[data-density="functional"] {
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-		/* stylelint-disable-next-line media-query-no-invalid */
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	}
 	@media (width <= 48em) {
 		.db-density-functional,
 		[data-density="functional"] {
