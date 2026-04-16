@@ -16,3 +16,4 @@ packages/foundations/scss/_normalize.scss
 packages/stylelint/test/**
 .stylelintrc.json
 packages/foundations/assets/icons/fonts/**
+packages/mcp-server/assets/

@@ -41,6 +41,28 @@ export const TOKEN_FILES: Record<string, string> = {
 };
 
 /**
+ * Compiled token files that contain the actual primitive values
+ * (rem, px, box-shadow strings) instead of raw SCSS with @each loops.
+ *
+ * Primary: monorepo source paths (packages/foundations/...).
+ * Fallback: assets/tokens/ shipped with the published npm package.
+ */
+const ASSETS_DIR = join(import.meta.dirname, '../../assets/tokens');
+
+export const TOKEN_COMPILED_FILES = {
+	/** All primitive --db-* custom properties with concrete values. */
+	defaultVariables: {
+		monorepo: join(FOUNDATIONS_DIR, 'scss/defaults/default-variables.scss'),
+		standalone: join(ASSETS_DIR, 'default-variables.scss')
+	},
+	/** Density-class overrides (expressive / regular / functional). */
+	densityClasses: {
+		monorepo: join(FOUNDATIONS_DIR, 'build/styles/density/classes/all.css'),
+		standalone: join(ASSETS_DIR, 'density-all.css')
+	}
+} as const;
+
+/**
  * Resolves a user-supplied path relative to a base directory and ensures the
  * result stays strictly within that base (path traversal protection).
  *

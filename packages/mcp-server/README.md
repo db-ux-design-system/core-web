@@ -95,20 +95,20 @@ This will copy the correct rules for DB UX component usage and design token refe
 
 ## 🛠 Available AI Tools (Skills)
 
-| Tool                           | Description                                                                                                                                                                                                                                              |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                                              |
-| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                                                  |
-| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                                   |
-| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                                          |
-| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) and SCSS variables (`$db-*`) for a token category (`colors`, `spacing`, `typography`, …). Prevents hardcoded hex values and magic numbers.                                                                      |
-| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                                     |
-| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                            |
-| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                            |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                      |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                      |
-| `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                    |
-| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies. |
+| Tool                           | Description                                                                                                                                                                                                                                                                                                         |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                                                                                                         |
+| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                                                                                                             |
+| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                                                                                              |
+| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                                                                                                     |
+| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) for a token category (`colors`, `spacing`, `typography`, `elevation`, `density`, …). For spacing, elevation, and density, returns **compiled primitive values** (e.g. `0.75rem`, box-shadow strings) instead of raw SCSS. Prevents hardcoded hex values and magic numbers. |
+| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                                                                                                |
+| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                                                                                       |
+| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                                                                                       |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                             |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                 |
+| `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                                                                               |
+| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies.                                                            |
 
 ### Example: fetching a React button example
 
@@ -190,8 +190,8 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 
 **Available migration guides:**
 
-| Guide                       | Covers                                                             |
-| --------------------------- | ------------------------------------------------------------------ |
+| Guide                 | Covers                                                             |
+| --------------------- | ------------------------------------------------------------------ |
 | `component-migration` | Component renames, prop changes, removed/planned components        |
 | `color-migration`     | Full color token mapping (old → new `--db-*` tokens)               |
 | `icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)    |
@@ -238,7 +238,7 @@ Because `model.ts`, showcase files, and framework example source files are **not
 ```text
 manifest.json
 ├── icons[]                          — icon names from packages/foundations/src/all-icons.ts
-├── tokens{}                         — raw SCSS design tokens mapped by category
+├── tokens{}                         — SCSS design tokens mapped by category (colors, typography, animation, transitions)
 ├── docs{}                           — conceptual markdown documentation
 └── components{}
     └── {componentName}
@@ -271,11 +271,15 @@ This means the same binary works for:
 - **Design system developers** working inside the monorepo (always up-to-date, live files)
 - **Consumer teams** running `npx @db-ux/mcp-server` (self-contained, no monorepo needed)
 
+> **Note on compiled tokens:** For `spacing`, `elevation`, and `density`, the tool reads compiled CSS/SCSS files with concrete primitive values (not raw SCSS with `@each` loops). In the monorepo it reads directly from `packages/foundations/`; in standalone mode it falls back to `assets/tokens/` (populated by the `prebuild` step).
+
 ### Directory structure
 
 ```text
 packages/mcp-server/
 ├── assets/
+│   ├── migration/          # Migration guides (copied from docs/migration/db-ui/ by prebuild)
+│   ├── tokens/             # Compiled token files (copied from foundations by prebuild)
 │   └── visuals/            # Curated reference images (shipped with npm package)
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts

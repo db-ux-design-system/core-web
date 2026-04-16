@@ -96,6 +96,15 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 }
 
 /**
+ * Extracts the text from a ToolResult content item, asserting it is a TextContent.
+ * Avoids TS2339 on the `TextContent | ImageContent` union type.
+ */
+function text(content: { type: string; text?: string }): string {
+	expect(content.type).toBe('text');
+	return (content as { type: 'text'; text: string }).text;
+}
+
+/**
  * Asserts that a prompt handler result contains exactly one user-role message
  * and returns its text content for further assertions.
  */
@@ -123,8 +132,8 @@ describe('handleListComponents', () => {
 		const result = await handleListComponents();
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('button');
-		expect(result.content[0].text).toContain('input');
+		expect(text(result.content[0])).toContain('button');
+		expect(text(result.content[0])).toContain('input');
 	});
 
 	it('returns an empty array when manifest has no components', async () => {
@@ -132,7 +141,7 @@ describe('handleListComponents', () => {
 
 		const result = await handleListComponents();
 
-		expect(result.content[0].text).toBe('[]');
+		expect(text(result.content[0])).toBe('[]');
 	});
 });
 
@@ -158,8 +167,8 @@ describe('handleGetComponentDetails', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('Variant');
-		expect(result.content[0].text).toContain('Show Icon Leading');
+		expect(text(result.content[0])).toContain('Variant');
+		expect(text(result.content[0])).toContain('Show Icon Leading');
 	});
 
 	it('returns "No examples found." when examples array is empty', async () => {
@@ -175,7 +184,7 @@ describe('handleGetComponentDetails', () => {
 			componentName: 'button'
 		});
 
-		expect(result.content[0].text).toBe('No examples found.');
+		expect(text(result.content[0])).toBe('No examples found.');
 	});
 
 	it('returns an error for unknown component', async () => {
@@ -186,7 +195,7 @@ describe('handleGetComponentDetails', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('nonexistent');
+		expect(text(result.content[0])).toContain('nonexistent');
 	});
 });
 
@@ -208,7 +217,7 @@ describe('handleGetComponentProps', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain(FAKE_PROPS);
+		expect(text(result.content[0])).toContain(FAKE_PROPS);
 	});
 
 	it('returns an error when component is not in the manifest', async () => {
@@ -219,7 +228,7 @@ describe('handleGetComponentProps', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('nonexistent');
+		expect(text(result.content[0])).toContain('nonexistent');
 	});
 
 	it('returns an error when props is null (model.ts missing)', async () => {
@@ -236,7 +245,7 @@ describe('handleGetComponentProps', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('model.ts');
+		expect(text(result.content[0])).toContain('model.ts');
 	});
 });
 
@@ -252,17 +261,18 @@ describe('handleListDesignTokenCategories', () => {
 		const result = await handleListDesignTokenCategories();
 
 		expect(result.isError).toBeUndefined();
-		const categories = JSON.parse(result.content[0].text);
+		const categories = JSON.parse(text(result.content[0]));
 		expect(categories).toContain('colors');
 		expect(categories).toContain('spacing');
 	});
 
-	it('returns empty array when manifest.tokens is empty', async () => {
+	it('returns elevation even when manifest.tokens is empty', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
 
 		const result = await handleListDesignTokenCategories();
 
-		expect(JSON.parse(result.content[0].text)).toEqual([]);
+		const categories = JSON.parse(text(result.content[0]));
+		expect(categories).toContain('elevation');
 	});
 });
 
@@ -278,8 +288,8 @@ describe('handleGetDesignTokens', () => {
 		const result = await handleGetDesignTokens({ category: 'colors' });
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('--db-color-red');
-		expect(result.content[0].text).not.toContain('some-other');
+		expect(text(result.content[0])).toContain('--db-color-red');
+		expect(text(result.content[0])).not.toContain('some-other');
 	});
 
 	it('returns an error for an unknown category', async () => {
@@ -290,7 +300,7 @@ describe('handleGetDesignTokens', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('nonexistent-category');
+		expect(text(result.content[0])).toContain('nonexistent-category');
 	});
 });
 
@@ -313,10 +323,10 @@ describe('handleListIcons', () => {
 		const result = await handleListIcons();
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('arrow_down');
-		expect(result.content[0].text).toContain('chevron_right');
-		expect(result.content[0].text).toContain('person');
-		expect(result.content[0].text).toContain('alarm_clock');
+		expect(text(result.content[0])).toContain('arrow_down');
+		expect(text(result.content[0])).toContain('chevron_right');
+		expect(text(result.content[0])).toContain('person');
+		expect(text(result.content[0])).toContain('alarm_clock');
 	});
 
 	it('returns empty array when manifest has no icons (manifest mode does not read migration file)', async () => {
@@ -325,7 +335,7 @@ describe('handleListIcons', () => {
 		const result = await handleListIcons();
 
 		expect(result.isError).toBeUndefined();
-		const icons = JSON.parse(result.content[0].text);
+		const icons = JSON.parse(text(result.content[0]));
 		expect(Array.isArray(icons)).toBe(true);
 		expect(icons).toEqual([]);
 	});
@@ -359,7 +369,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain(FAKE_EXAMPLE_CODE);
+		expect(text(result.content[0])).toContain(FAKE_EXAMPLE_CODE);
 	});
 
 	it('returns an error when the example is not found', async () => {
@@ -382,7 +392,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('NonExistent');
+		expect(text(result.content[0])).toContain('NonExistent');
 	});
 
 	it('returns an error when the component is not in the manifest', async () => {
@@ -395,7 +405,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('nonexistent');
+		expect(text(result.content[0])).toContain('nonexistent');
 	});
 
 	// -------------------------------------------------------------------------
@@ -418,7 +428,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toBe('// source of size.example.tsx');
+		expect(text(result.content[0])).toBe('// source of size.example.tsx');
 	});
 
 	it('fuzzy: falls back to partial match when no exact file exists', async () => {
@@ -433,7 +443,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toBe(
+		expect(text(result.content[0])).toBe(
 			'// source of size-large.example.tsx'
 		);
 	});
@@ -450,7 +460,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain("'size'");
+		expect(text(result.content[0])).toContain("'size'");
 	});
 
 	it('fuzzy: stem.includes(kebab) match is intentionally allowed', async () => {
@@ -465,7 +475,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toBe(
+		expect(text(result.content[0])).toBe(
 			'// source of icon-size.example.tsx'
 		);
 	});
@@ -484,7 +494,7 @@ describe('handleGetExampleCode', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toBe('// source of size.example.tsx');
+		expect(text(result.content[0])).toBe('// source of size.example.tsx');
 	});
 
 	// -------------------------------------------------------------------------
@@ -539,7 +549,7 @@ describe('handleListMigrationGuides', () => {
 		const result = await handleListMigrationGuides();
 
 		expect(result.isError).toBeUndefined();
-		const names = JSON.parse(result.content[0].text);
+		const names = JSON.parse(text(result.content[0]));
 		expect(names).toContain('db-ui-color-migration');
 		expect(names).toContain('db-ui-component-migration');
 	});
@@ -549,7 +559,7 @@ describe('handleListMigrationGuides', () => {
 
 		const result = await handleListMigrationGuides();
 
-		expect(JSON.parse(result.content[0].text)).toEqual([]);
+		expect(JSON.parse(text(result.content[0]))).toEqual([]);
 	});
 });
 
@@ -577,7 +587,7 @@ describe('handleGetMigrationGuide', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('# DB UI to DB UX');
+		expect(text(result.content[0])).toContain('# DB UI to DB UX');
 	});
 
 	it('returns an error for an unknown guide name', async () => {
@@ -588,8 +598,8 @@ describe('handleGetMigrationGuide', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('nonexistent-guide');
-		expect(result.content[0].text).toContain('list_migration_guides');
+		expect(text(result.content[0])).toContain('nonexistent-guide');
+		expect(text(result.content[0])).toContain('list_migration_guides');
 	});
 });
 
@@ -618,7 +628,7 @@ describe('handleDocsSearch', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('Colors');
+		expect(text(result.content[0])).toContain('Colors');
 	});
 
 	it('returns no-match message when query has no results', async () => {
@@ -641,7 +651,7 @@ describe('handleDocsSearch', () => {
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('No documentation found');
+		expect(text(result.content[0])).toContain('No documentation found');
 	});
 
 	it('filters out docs from blacklisted directories', async () => {
@@ -672,10 +682,10 @@ describe('handleDocsSearch', () => {
 
 		expect(result.isError).toBeUndefined();
 		// Only the whitelisted component doc should appear
-		expect(result.content[0].text).toContain('Button React docs');
-		expect(result.content[0].text).not.toContain('Migration guide');
-		expect(result.content[0].text).not.toContain('ADR 01');
-		expect(result.content[0].text).not.toContain('research');
+		expect(text(result.content[0])).toContain('Button React docs');
+		expect(text(result.content[0])).not.toContain('Migration guide');
+		expect(text(result.content[0])).not.toContain('ADR 01');
+		expect(text(result.content[0])).not.toContain('research');
 	});
 });
 
@@ -1025,7 +1035,7 @@ describe('handleVerifyMigratedCode', () => {
 		expect(result).toHaveProperty('content');
 		expect(Array.isArray(result.content)).toBe(true);
 		expect(result.content[0]).toHaveProperty('type', 'text');
-		expect(result.content[0].text).toContain('✅');
+		expect(text(result.content[0])).toContain('✅');
 		expect(result.isError).toBeUndefined();
 	});
 
@@ -1044,8 +1054,8 @@ describe('handleVerifyMigratedCode', () => {
 		});
 
 		expect(result.isError).toBe(true);
-		expect(result.content[0].text).toContain('❌');
-		expect(result.content[0].text).toContain('TS2322');
+		expect(text(result.content[0])).toContain('❌');
+		expect(text(result.content[0])).toContain('TS2322');
 	});
 
 	it('writes a .tsx temp file for react framework', async () => {

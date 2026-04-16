@@ -29,7 +29,7 @@ Or add it to your MCP client config:
 4. `docs_search` — search guidelines, accessibility docs, or component-specific documentation if needed
 5. `get_example_code` — fetch the real generated code for the target framework
 6. `list_design_token_categories` — get available token categories if unsure which to query
-7. `get_design_tokens` — retrieve spacing, color, and typography tokens
+7. `get_design_tokens` — retrieve spacing, elevation, density, color, and typography tokens
 8. `list_icons` — look up the exact icon name before using any icon prop
 9. `list_migration_guides` — list all available migration guides before any migration task
 10. `get_migration_guide` — load the full content of a specific migration guide

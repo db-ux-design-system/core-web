@@ -24,7 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "cpr ../../docs/migration/db-ui assets/migration --overwrite",
+    "prebuild": "npm-run-all prebuild:*",
     "build": "node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
@@ -36,6 +36,10 @@
     "copy-build:readme": "cpr README.md ../../build-outputs/mcp-server/README.md --overwrite",
     "dev": "npm run build && node dist/index.js",
     "lint": "eslint src/ --ext .ts",
+    "prebuild:migration": "cpr ../../docs/migration/db-ui assets/migration --overwrite",
+    "prebuild:token-defaults": "cpr ../../packages/foundations/scss/defaults/default-variables.scss assets/tokens/default-variables.scss --overwrite",
+    "prebuild:token-density": "cpr ../../packages/foundations/build/styles/density/classes/all.css assets/tokens/density-all.css --overwrite",
+    "prebuild:tokens-dir": "node -e \"require('fs').mkdirSync('assets/tokens',{recursive:true})\"",
     "start": "node dist/index.js",
     "test": "npm run build && vitest run",
     "test:watch": "vitest"

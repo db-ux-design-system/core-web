@@ -28,13 +28,13 @@ export const listDesignTokenCategoriesSchema = {
 
 export const getDesignTokensSchema = {
 	description:
-		'Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.',
+		'Returns CSS custom properties (--db-*) for a given design token category. For spacing, elevation, and density, returns compiled primitive values (rem, px, box-shadow). For colors, typography, animation, and transitions, returns SCSS variable declarations.',
 	inputSchema: {
 		category: z
 			.string()
 			.max(100)
 			.describe(
-				"Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories."
+				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories."
 			)
 	}
 };
@@ -84,17 +84,10 @@ export const docsSearchSchema = {
 				"Required if category is 'component' (e.g., 'button', 'navigation')."
 			),
 		docType: z
-			.enum([
-				'React',
-				'Angular',
-				'Vue',
-				'HTML',
-				'Migration',
-				'Accessibility'
-			])
+			.enum(['React', 'Angular', 'Vue', 'HTML', 'Accessibility'])
 			.optional()
 			.describe(
-				"Optional: The specific doc file to read for a component (e.g., 'Migration')."
+				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead."
 			)
 	}
 };
@@ -116,7 +109,7 @@ export const getMigrationGuideSchema = {
 				'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.'
 			)
 			.describe(
-				"Exact guide name as returned by list_migration_guides, e.g. 'db-ui-color-migration' or 'db-ui-icon-migration'."
+				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'."
 			)
 	}
 };
