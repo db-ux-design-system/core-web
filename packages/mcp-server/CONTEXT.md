@@ -167,20 +167,21 @@ During development inside the monorepo, `tsx` can be used for live file access:
 
 ### Tools (LLM-callable functions)
 
-| Tool                           | Description                                                                                                                                                                   |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available component names                                                                                                                                         |
-| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                            |
-| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                      |
-| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                           |
-| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                              |
-| `list_design_token_categories` | Returns all available design token categories (incl. `elevation`)                                                                                                             |
-| `get_design_tokens`            | Returns CSS custom properties for a token category. For spacing/elevation/density: compiled primitive values. For colors/typography/animation/transitions: SCSS declarations. |
-| `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                            |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                   |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                               |
-| `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Max 3 retries.                                                                            |
-| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP) as Base64. Opt-in only.                                                                                                          |
+| Tool                           | Description                                                                                                                                                                      |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available component names                                                                                                                                            |
+| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                               |
+| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                         |
+| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                              |
+| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                 |
+| `list_design_token_categories` | Returns all available design token categories (incl. `elevation`)                                                                                                                |
+| `get_design_tokens`            | Returns CSS custom properties for a token category. For spacing/elevation/density: compiled primitive values. For colors/typography/animation/transitions: SCSS declarations.    |
+| `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                               |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                      |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                  |
+| `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Max 3 retries.                                                                               |
+| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP) as Base64. Opt-in only.                                                                                                             |
+| `analyze_v2_migration`         | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating. |
 
 ### Manifest (embedded data)
 

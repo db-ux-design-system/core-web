@@ -144,3 +144,21 @@ export const getComponentVisualSchema = {
 			)
 	}
 };
+
+export const analyzeV2MigrationSchema = {
+	description:
+		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
+		'Scans a source file for DB UI v2 patterns (components like <cmp-*, <elm-*, <rea-*>, ' +
+		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
+		'with exact line numbers and deterministic migration suggestions resolved from ' +
+		'the official migration guides. This gives you a precise migration plan before ' +
+		'you start generating code — no guessing needed.',
+	inputSchema: {
+		filePath: z
+			.string()
+			.max(500)
+			.describe(
+				'Absolute path or path relative to the workspace root of the file to scan.'
+			)
+	}
+};

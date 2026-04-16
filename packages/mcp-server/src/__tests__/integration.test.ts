@@ -31,10 +31,14 @@ vi.mock('node:child_process', () => ({
 	}
 }));
 
-vi.mock('node:fs/promises', () => ({
-	writeFile: (...args: unknown[]) => writeFileMock(...args),
-	unlink: (...args: unknown[]) => unlinkMock(...args)
-}));
+vi.mock('node:fs/promises', async (importOriginal) => {
+	const actual = await importOriginal<typeof import('node:fs/promises')>();
+	return {
+		...actual,
+		writeFile: (...args: unknown[]) => writeFileMock(...args),
+		unlink: (...args: unknown[]) => unlinkMock(...args)
+	};
+});
 
 const { resolveSafePath } = await import('../utils/index.js');
 const {
@@ -1111,5 +1115,216 @@ describe('handleVerifyMigratedCode', () => {
 		await handler({ code: 'const x = 1;', framework: 'react' });
 
 		expect(unlinkMock).toHaveBeenCalledOnce();
+	});
+});
+
+// ---------------------------------------------------------------------------
+// analyze_v2_migration
+// ---------------------------------------------------------------------------
+describe('handleAnalyzeV2Migration', () => {
+	let handleAnalyzeV2Migration: (typeof import('../tools/scanner.js'))['handleAnalyzeV2Migration'];
+	let resetScannerCache: (typeof import('../tools/scanner.js'))['resetScannerCache'];
+
+	beforeEach(async () => {
+		const mod = await import('../tools/scanner.js');
+		handleAnalyzeV2Migration = mod.handleAnalyzeV2Migration;
+		resetScannerCache = mod.resetScannerCache;
+
+		// Reset scanner cache so maps are re-parsed from fresh manifest
+		resetScannerCache();
+
+		// Reset manifest with migration guides so the scanner can build its maps
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{},
+					{
+						'component-migration':
+							'**button** — `elm-button`->`db-button`. **card** — `cmp-card`->`db-card`.',
+						'color-migration':
+							'`db-color-red-500` → BG: `--db-brand-bg-inverted`, FG: `--db-brand-on-bg`',
+						'icon-migration':
+							'`account`→`person`, `search`→`magnifying_glass`'
+					}
+				)
+			)
+		);
+	});
+
+	it('detects v2 component tags and returns suggestions', async () => {
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
+		writeFileSync(
+			tmp,
+			'<div>\n  <elm-button>Click</elm-button>\n  <cmp-card></cmp-card>\n</div>'
+		);
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			expect(output).toContain('elm-button');
+			expect(output).toContain('"suggestion": "db-button"');
+			expect(output).toContain('cmp-card');
+			expect(output).toContain('"suggestion": "db-card"');
+			expect(output).toContain('"type": "component"');
+		} finally {
+			unlinkSync(tmp);
+		}
+	});
+
+	it('detects v2 color tokens and returns BG/FG suggestions', async () => {
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.css`);
+		writeFileSync(tmp, '.foo { background: var(--db-color-red-500); }');
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			expect(output).toContain('db-color-red-500');
+			expect(output).toContain('"type": "color"');
+			expect(output).toContain('--db-brand-bg-inverted');
+			expect(output).toContain('--db-brand-on-bg');
+		} finally {
+			unlinkSync(tmp);
+		}
+	});
+
+	it('detects v2 icon names and returns suggestions', async () => {
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
+		writeFileSync(
+			tmp,
+			'<elm-button icon="account">Login</elm-button>\n<div data-icon="search">X</div>'
+		);
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			expect(output).toContain('"type": "icon"');
+			expect(output).toContain('"found": "account"');
+			expect(output).toContain('"suggestion": "person"');
+			expect(output).toContain('"found": "search"');
+			expect(output).toContain('"suggestion": "magnifying_glass"');
+		} finally {
+			unlinkSync(tmp);
+		}
+	});
+
+	it('returns no-findings message for a clean file', async () => {
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
+		writeFileSync(tmp, '<db-button>Already migrated</db-button>');
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			expect(output).toContain('No DB UI v2 patterns found');
+		} finally {
+			unlinkSync(tmp);
+		}
+	});
+
+	it('returns an error for non-existent files', async () => {
+		const result = await handleAnalyzeV2Migration({
+			filePath: '/tmp/does-not-exist-12345.html'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('File not found');
+	});
+
+	it('includes correct line numbers in findings', async () => {
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
+		writeFileSync(
+			tmp,
+			'<div>\n<p>hello</p>\n<elm-button>Click</elm-button>\n</div>'
+		);
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			// elm-button is on line 3
+			expect(output).toContain('"line": 3');
+		} finally {
+			unlinkSync(tmp);
+		}
+	});
+
+	it('includes summary with finding counts', async () => {
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
+		writeFileSync(
+			tmp,
+			'<elm-button icon="account">X</elm-button>\n.x{color:var(--db-color-red-500)}'
+		);
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			expect(output).toContain('component(s)');
+			expect(output).toContain('color token(s)');
+			expect(output).toContain('icon(s)');
+		} finally {
+			unlinkSync(tmp);
+		}
+	});
+
+	it('falls back to legacy db-ui- prefixed guide keys', async () => {
+		// Reset scanner cache to force re-parsing with new manifest
+		resetScannerCache();
+
+		// Simulate old manifest format with db-ui- prefix
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{},
+					{
+						'db-ui-component-migration':
+							'**toggle** — `elm-toggle`->`db-switch`.'
+					}
+				)
+			)
+		);
+
+		const { writeFileSync, unlinkSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
+		writeFileSync(tmp, '<elm-toggle>Dark</elm-toggle>');
+
+		try {
+			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const output = text(result.content[0]);
+
+			expect(output).toContain('elm-toggle');
+			expect(output).toContain('"suggestion": "db-switch"');
+		} finally {
+			unlinkSync(tmp);
+		}
 	});
 });

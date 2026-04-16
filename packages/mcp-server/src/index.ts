@@ -13,6 +13,7 @@ import {
 } from './prompts/schemas.js';
 import { registerLifecycleHandlers, server } from './server.js';
 import {
+	handleAnalyzeV2Migration,
 	handleDocsSearch,
 	handleGetComponentDetails,
 	handleGetComponentProps,
@@ -27,6 +28,7 @@ import {
 	handleVerifyMigratedCode
 } from './tools';
 import {
+	analyzeV2MigrationSchema,
 	docsSearchSchema,
 	getComponentDetailsSchema,
 	getComponentPropsSchema,
@@ -42,6 +44,7 @@ import {
 } from './tools/schemas.js';
 
 export {
+	handleAnalyzeV2Migration,
 	handleDocsSearch,
 	handleGetComponentDetails,
 	handleGetComponentProps,
@@ -109,6 +112,11 @@ server.registerTool(
 	'get_component_visual',
 	getComponentVisualSchema,
 	handleGetComponentVisual
+);
+server.registerTool(
+	'analyze_v2_migration',
+	analyzeV2MigrationSchema,
+	handleAnalyzeV2Migration
 );
 
 // Prompts
