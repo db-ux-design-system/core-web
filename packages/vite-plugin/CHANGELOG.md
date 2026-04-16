@@ -4,7 +4,6 @@
 
 _version bump_
 
-
 ## 4.6.0
 
 ### Minor Changes
