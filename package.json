@@ -137,7 +137,7 @@
     "lint-staged": "16.4.0",
     "markdownlint-cli": "0.48.0",
     "ng-packagr": "21.2.2",
-    "npm-package-json-lint": "10.2.0",
+    "npm-package-json-lint": "10.2.1",
     "npm-run-all2": "8.0.4",
     "playwright": "1.59.1",
     "playwright-core": "1.59.1",
