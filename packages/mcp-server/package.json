@@ -24,7 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "npm-run-all prebuild:*",
+    "prebuild": "node scripts/prebuild.mjs",
     "build": "node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
