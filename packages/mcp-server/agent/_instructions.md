@@ -36,6 +36,7 @@ Or add it to your MCP client config:
 11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
 12. `get_component_visual` — _(optional, use sparingly)_ if you need visual context for complex layouts, z-index dependencies, or visual hierarchies, call this tool with the component or layout name to receive a downsampled screenshot
 13. `analyze_v2_migration` — **call FIRST when migrating a file.** Scans a source file for v2 patterns (`<cmp-*>`, `<elm-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
+14. `scaffold_component` — generates a DB UX-conformant component skeleton for a specified framework. Creates all boilerplate files with correct `@db-ux/*` imports and SCSS foundation `@use` directives.
 
 ### DON'Ts — these are hard violations:
 

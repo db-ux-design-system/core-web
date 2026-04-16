@@ -162,3 +162,31 @@ export const analyzeV2MigrationSchema = {
 			)
 	}
 };
+
+export const scaffoldComponentSchema = {
+	description:
+		'Generates a DB UX v4-conformant component skeleton for a specified framework. ' +
+		'Creates all boilerplate files (component, template, SCSS) with correct @db-ux/* imports, ' +
+		'design token SCSS @use directives, and framework-idiomatic structure. ' +
+		'The developer only needs to fill in the business logic. ' +
+		'Use this instead of writing boilerplate from scratch — it guarantees architectural consistency.',
+	inputSchema: {
+		name: z
+			.string()
+			.max(100)
+			.describe(
+				"Component name in kebab-case (e.g. 'reservation-card', 'trip-details'). PascalCase input is auto-converted."
+			),
+		framework: z
+			.enum(['react', 'angular', 'vue', 'web-components', 'html'])
+			.describe(
+				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'."
+			),
+		targetPath: z
+			.string()
+			.max(500)
+			.describe(
+				'Directory where the component folder will be created. Absolute or relative to workspace root.'
+			)
+	}
+};

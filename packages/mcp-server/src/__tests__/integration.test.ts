@@ -51,7 +51,8 @@ const {
 	handleGetExampleCode,
 	handleDocsSearch,
 	handleListMigrationGuides,
-	handleGetMigrationGuide
+	handleGetMigrationGuide,
+	handleScaffoldComponent
 } = await import('../tools/index.js');
 const {
 	handleScaffoldPagePrompt,
@@ -1325,6 +1326,209 @@ describe('handleAnalyzeV2Migration', () => {
 			expect(output).toContain('"suggestion": "db-switch"');
 		} finally {
 			unlinkSync(tmp);
+		}
+	});
+});
+
+// ---------------------------------------------------------------------------
+// scaffold_component tool
+// ---------------------------------------------------------------------------
+describe('handleScaffoldComponent', () => {
+	it('generates React files with correct structure', async () => {
+		const { mkdtempSync, existsSync, readFileSync, rmSync } =
+			await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+
+		try {
+			const result = await handleScaffoldComponent({
+				name: 'reservation-card',
+				framework: 'react',
+				targetPath
+			});
+			const output = text(result.content[0]);
+
+			expect(output).toContain('✅ Scaffolded "ReservationCard"');
+			expect(output).toContain('react');
+
+			const componentDir = join(targetPath, 'reservation-card');
+			expect(existsSync(join(componentDir, 'ReservationCard.tsx'))).toBe(
+				true
+			);
+			expect(existsSync(join(componentDir, 'ReservationCard.scss'))).toBe(
+				true
+			);
+
+			const tsx = readFileSync(
+				join(componentDir, 'ReservationCard.tsx'),
+				'utf-8'
+			);
+			expect(tsx).toContain("from '@db-ux/react-core-components'");
+			expect(tsx).toContain('DBButton');
+			expect(tsx).toContain('DBCard');
+		} finally {
+			rmSync(targetPath, { recursive: true, force: true });
+		}
+	});
+
+	it('generates Angular files with correct structure', async () => {
+		const { mkdtempSync, existsSync, rmSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+
+		try {
+			const result = await handleScaffoldComponent({
+				name: 'reservation-card',
+				framework: 'angular',
+				targetPath
+			});
+			const output = text(result.content[0]);
+			expect(output).toContain('✅ Scaffolded "ReservationCard"');
+
+			const componentDir = join(targetPath, 'reservation-card');
+			expect(
+				existsSync(join(componentDir, 'reservation-card.component.ts'))
+			).toBe(true);
+			expect(
+				existsSync(
+					join(componentDir, 'reservation-card.component.html')
+				)
+			).toBe(true);
+			expect(
+				existsSync(
+					join(componentDir, 'reservation-card.component.scss')
+				)
+			).toBe(true);
+		} finally {
+			rmSync(targetPath, { recursive: true, force: true });
+		}
+	});
+
+	it('generates Vue single-file component', async () => {
+		const { mkdtempSync, existsSync, readFileSync, rmSync } =
+			await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+
+		try {
+			const result = await handleScaffoldComponent({
+				name: 'reservation-card',
+				framework: 'vue',
+				targetPath
+			});
+			const output = text(result.content[0]);
+			expect(output).toContain('✅ Scaffolded "ReservationCard"');
+
+			const componentDir = join(targetPath, 'reservation-card');
+			expect(existsSync(join(componentDir, 'ReservationCard.vue'))).toBe(
+				true
+			);
+
+			const vue = readFileSync(
+				join(componentDir, 'ReservationCard.vue'),
+				'utf-8'
+			);
+			expect(vue).toContain("from '@db-ux/v-core-components'");
+		} finally {
+			rmSync(targetPath, { recursive: true, force: true });
+		}
+	});
+
+	it('generates HTML template files', async () => {
+		const { mkdtempSync, existsSync, rmSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+
+		try {
+			const result = await handleScaffoldComponent({
+				name: 'reservation-card',
+				framework: 'html',
+				targetPath
+			});
+			const output = text(result.content[0]);
+			expect(output).toContain('✅ Scaffolded "ReservationCard"');
+
+			const componentDir = join(targetPath, 'reservation-card');
+			expect(
+				existsSync(join(componentDir, 'reservation-card.html'))
+			).toBe(true);
+			expect(
+				existsSync(join(componentDir, 'reservation-card.scss'))
+			).toBe(true);
+		} finally {
+			rmSync(targetPath, { recursive: true, force: true });
+		}
+	});
+
+	it('returns error for names shorter than 2 characters', async () => {
+		const result = await handleScaffoldComponent({
+			name: 'x',
+			framework: 'react',
+			targetPath: '/tmp/scaffold-noop'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('at least 2 characters');
+	});
+
+	it('returns error for unsupported framework', async () => {
+		const result = await handleScaffoldComponent({
+			name: 'my-widget',
+			framework: 'svelte' as any,
+			targetPath: '/tmp/scaffold-noop'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('Unsupported framework');
+	});
+
+	it('converts PascalCase input to kebab-case', async () => {
+		const { mkdtempSync, existsSync, rmSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+
+		try {
+			const result = await handleScaffoldComponent({
+				name: 'MyWidget',
+				framework: 'react',
+				targetPath
+			});
+			const output = text(result.content[0]);
+			expect(output).toContain('✅ Scaffolded "MyWidget"');
+			expect(existsSync(join(targetPath, 'my-widget'))).toBe(true);
+		} finally {
+			rmSync(targetPath, { recursive: true, force: true });
+		}
+	});
+
+	it('includes SCSS foundation imports in generated files', async () => {
+		const { mkdtempSync, readFileSync, rmSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { tmpdir } = await import('node:os');
+		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+
+		try {
+			await handleScaffoldComponent({
+				name: 'test-comp',
+				framework: 'react',
+				targetPath
+			});
+
+			const scss = readFileSync(
+				join(targetPath, 'test-comp', 'TestComp.scss'),
+				'utf-8'
+			);
+			expect(scss).toContain(
+				'@use "@db-ux/foundations/scss/defaults/default-variables"'
+			);
+			expect(scss).toContain(
+				'@use "@db-ux/foundations/scss/colors/variables"'
+			);
+		} finally {
+			rmSync(targetPath, { recursive: true, force: true });
 		}
 	});
 });
