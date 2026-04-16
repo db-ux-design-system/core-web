@@ -105,7 +105,7 @@ This will copy the correct rules for DB UX component usage and design token refe
 | `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                                     |
 | `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                            |
 | `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                            |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `db-ui-color-migration`, `db-ui-component-migration`). Call this first before any migration task.                                                                                                      |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                      |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                      |
 | `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                    |
 | `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies. |
@@ -192,10 +192,10 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 
 | Guide                       | Covers                                                             |
 | --------------------------- | ------------------------------------------------------------------ |
-| `db-ui-component-migration` | Component renames, prop changes, removed/planned components        |
-| `db-ui-color-migration`     | Full color token mapping (old → new `--db-*` tokens)               |
-| `db-ui-icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)    |
-| `db-ui-general-migration`   | Typography tokens, spacing tokens, elevation, inline style removal |
+| `component-migration` | Component renames, prop changes, removed/planned components        |
+| `color-migration`     | Full color token mapping (old → new `--db-*` tokens)               |
+| `icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)    |
+| `general-migration`   | Typography tokens, spacing tokens, elevation, inline style removal |
 
 **Example: migrating a DB UI v2 React component**
 
@@ -207,7 +207,7 @@ Trigger the prompt with these parameters:
 
 The AI will then autonomously:
 
-1. Load `db-ui-component-migration`, `db-ui-color-migration`, `db-ui-icon-migration`, and `db-ui-general-migration`
+1. Load `component-migration`, `color-migration`, `icon-migration`, and `general-migration`
 2. Map every legacy element (e.g. `variant="brand-primary"` → `variant="brand"`, `icon="search"` → `icon="magnifying_glass"`)
 3. Fetch the exact generated React example code for each component and adapt it
 4. Replace all hardcoded `#ec0016` / `margin: 15px` values with `--db-*` design tokens

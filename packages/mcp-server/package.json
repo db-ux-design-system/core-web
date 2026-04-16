@@ -24,6 +24,7 @@
     "dist"
   ],
   "scripts": {
+    "prebuild": "cpr ../../docs/migration/db-ui assets/migration --overwrite",
     "build": "node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",

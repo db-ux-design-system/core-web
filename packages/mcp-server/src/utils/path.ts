@@ -14,10 +14,16 @@ export const OUTPUT_DIR = join(REPO_ROOT, 'output');
 export const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
 /** Absolute path to the top-level docs directory. */
 export const DOCS_DIR = join(REPO_ROOT, 'docs');
-/** Absolute path to the migration guides directory. */
-export const MIGRATION_DIR = join(
-	REPO_ROOT,
-	'packages/mcp-server/docs/migration'
+/** Absolute path to the migration guides in the monorepo (single source of truth). */
+export const MIGRATION_DIR = join(REPO_ROOT, 'docs/migration/db-ui');
+/**
+ * Fallback path for standalone installations (e.g. npx @db-ux/mcp-server)
+ * where the monorepo root is not available. The prebuild step copies the
+ * guides into this directory so they ship with the published package.
+ */
+export const MIGRATION_ASSETS_DIR = join(
+	import.meta.dirname,
+	'../../assets/migration'
 );
 /** Absolute path to curated visual reference images shipped with the MCP server. */
 export const VISUALS_DIR = join(

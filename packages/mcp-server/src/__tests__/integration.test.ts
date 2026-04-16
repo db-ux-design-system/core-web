@@ -605,20 +605,20 @@ describe('handleDocsSearch', () => {
 					[],
 					{},
 					{
-						'docs/development.md':
-							'# Development\nHow to contribute and set up the project.'
+						'packages/foundations/docs/Colors.md':
+							'# Colors\nHow to use adaptive colors in the design system.'
 					}
 				)
 			)
 		);
 
 		const result = await handleDocsSearch({
-			query: 'contribute',
+			query: 'adaptive colors',
 			category: 'global'
 		});
 
 		expect(result.isError).toBeUndefined();
-		expect(result.content[0].text).toContain('Development');
+		expect(result.content[0].text).toContain('Colors');
 	});
 
 	it('returns no-match message when query has no results', async () => {
@@ -629,7 +629,7 @@ describe('handleDocsSearch', () => {
 					[],
 					{},
 					{
-						'docs/development.md': '# Development'
+						'packages/foundations/docs/Colors.md': '# Colors'
 					}
 				)
 			)
@@ -642,6 +642,40 @@ describe('handleDocsSearch', () => {
 
 		expect(result.isError).toBeUndefined();
 		expect(result.content[0].text).toContain('No documentation found');
+	});
+
+	it('filters out docs from blacklisted directories', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest(
+					{},
+					[],
+					{},
+					{
+						'docs/migration/v1.x.x-to-v2.0.0.md':
+							'# Migration guide content',
+						'docs/adr/adr-01-framework.md':
+							'# ADR 01 Framework decision',
+						'docs/research/button-group.md':
+							'# Button group research',
+						'packages/components/src/components/button/docs/React.md':
+							'# Button React docs'
+					}
+				)
+			)
+		);
+
+		const result = await handleDocsSearch({
+			query: '',
+			category: 'global'
+		});
+
+		expect(result.isError).toBeUndefined();
+		// Only the whitelisted component doc should appear
+		expect(result.content[0].text).toContain('Button React docs');
+		expect(result.content[0].text).not.toContain('Migration guide');
+		expect(result.content[0].text).not.toContain('ADR 01');
+		expect(result.content[0].text).not.toContain('research');
 	});
 });
 

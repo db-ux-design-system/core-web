@@ -11,7 +11,8 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import {
 	COMPONENTS_DIR,
-	DOCS_DIR,
+	FOUNDATIONS_DIR,
+	MIGRATION_ASSETS_DIR,
 	MIGRATION_DIR,
 	OUTPUT_DIR,
 	REPO_ROOT,
@@ -127,6 +128,19 @@ async function collectTokens(): Promise<Record<string, string>> {
 }
 
 /**
+ * Whitelisted directories for docs collection.
+ * Only Markdown files from these directories are included in the manifest
+ * to reduce token consumption and prevent context collisions (hallucinations).
+ *
+ * Explicitly excluded: docs/migration/ (has its own tool), docs/adr/,
+ * docs/research/, docs/.vitepress/, and all other top-level docs/ files.
+ */
+const DOCS_WHITELIST_DIRS: string[] = [
+	join(COMPONENTS_DIR), // packages/components/src/components/*/docs/
+	join(FOUNDATIONS_DIR, 'docs') // packages/foundations/docs/
+];
+
+/**
  * Recursively scans a directory for Markdown files and returns their content
  * keyed by path relative to the repo root.
  *
@@ -155,17 +169,34 @@ async function collectDocs(
 }
 
 /**
- * Reads all .md files from docs/migration/ and returns their content keyed
- * by filename without the .md extension (e.g. "v2.x.x-to-v3.0.0").
+ * Collects Markdown docs exclusively from whitelisted directories
+ * (component docs and foundation docs). This prevents ADRs, migration guides,
+ * research documents, and infrastructure files from polluting the AI context.
+ */
+async function collectWhitelistedDocs(): Promise<Record<string, string>> {
+	const docs: Record<string, string> = {};
+	for (const dir of DOCS_WHITELIST_DIRS) {
+		Object.assign(docs, await collectDocs(dir));
+	}
+	return docs;
+}
+
+/**
+ * Reads all .md files from the migration guides directory.
+ * Primary: docs/migration/db-ui/ (monorepo root – single source of truth).
+ * Fallback: assets/migration/ (standalone / npx installation).
  */
 async function collectMigrationGuides(): Promise<Record<string, string>> {
-	if (!existsSync(MIGRATION_DIR)) return {};
-	const entries = await readdir(MIGRATION_DIR, { withFileTypes: true });
+	const migrationDir = existsSync(MIGRATION_DIR)
+		? MIGRATION_DIR
+		: MIGRATION_ASSETS_DIR;
+	if (!existsSync(migrationDir)) return {};
+	const entries = await readdir(migrationDir, { withFileTypes: true });
 	const guides: Record<string, string> = {};
 	for (const entry of entries) {
 		if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
 		const key = entry.name.slice(0, -3);
-		guides[key] = await readFile(join(MIGRATION_DIR, entry.name), 'utf-8');
+		guides[key] = await readFile(join(migrationDir, entry.name), 'utf-8');
 	}
 	return guides;
 }
@@ -209,7 +240,7 @@ async function buildManifest() {
 
 	const [tokens, docs, migrationGuides] = await Promise.all([
 		collectTokens(),
-		collectDocs(DOCS_DIR),
+		collectWhitelistedDocs(),
 		collectMigrationGuides()
 	]);
 
