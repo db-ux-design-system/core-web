@@ -47,7 +47,15 @@ async function readFilteredLines(
 	filePath: string,
 	filter: RegExp
 ): Promise<string> {
-	const content = await readFile(filePath, 'utf-8');
+	let content: string;
+	try {
+		content = await readFile(filePath, 'utf-8');
+	} catch {
+		// Graceful degradation: if file is unreadable (permissions, race condition),
+		// skip this source instead of crashing the server.
+		return '';
+	}
+
 	const allLines = content.split('\n');
 	const result: string[] = [];
 

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetManifestCache } from '../utils/manifest';
 
 // ---------------------------------------------------------------------------
@@ -35,7 +35,16 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 	const actual = await importOriginal<typeof import('node:fs/promises')>();
 	return {
 		...actual,
-		writeFile: (...args: unknown[]) => writeFileMock(...args),
+		writeFile: (...args: unknown[]) => {
+			// If writeFileMock has been configured with a custom implementation, use it.
+			// Otherwise, pass through to the real fs.writeFile for scaffold tests etc.
+			if (writeFileMock.getMockImplementation()) {
+				return writeFileMock(...args);
+			}
+			return actual.writeFile(
+				...(args as Parameters<typeof actual.writeFile>)
+			);
+		},
 		unlink: (...args: unknown[]) => unlinkMock(...args)
 	};
 });
@@ -1028,6 +1037,12 @@ describe('handleVerifyMigratedCode', () => {
 		unlinkMock.mockResolvedValue(undefined);
 	});
 
+	afterEach(() => {
+		writeFileMock.mockReset();
+		unlinkMock.mockReset();
+		execMock.mockReset();
+	});
+
 	it('returns a success ToolResult when exec resolves', async () => {
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
@@ -1126,6 +1141,15 @@ describe('handleAnalyzeV2Migration', () => {
 	let handleAnalyzeV2Migration: (typeof import('../tools/scanner.js'))['handleAnalyzeV2Migration'];
 	let resetScannerCache: (typeof import('../tools/scanner.js'))['resetScannerCache'];
 
+	/** Creates a temp file inside process.cwd() and returns its path. */
+	function writeCwdTemp(name: string, content: string): string {
+		const { writeFileSync } = require('node:fs');
+		const { join } = require('node:path');
+		const tmp = join(process.cwd(), `.scan-test-${name}-${Date.now()}`);
+		writeFileSync(tmp, content);
+		return tmp;
+	}
+
 	beforeEach(async () => {
 		const mod = await import('../tools/scanner.js');
 		handleAnalyzeV2Migration = mod.handleAnalyzeV2Migration;
@@ -1156,12 +1180,9 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('detects v2 component tags and returns suggestions', async () => {
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
-		writeFileSync(
-			tmp,
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp(
+			'comp',
 			'<div>\n  <elm-button>Click</elm-button>\n  <cmp-card></cmp-card>\n</div>'
 		);
 
@@ -1180,11 +1201,11 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('detects v2 color tokens and returns BG/FG suggestions', async () => {
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.css`);
-		writeFileSync(tmp, '.foo { background: var(--db-color-red-500); }');
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp(
+			'color',
+			'.foo { background: var(--db-color-red-500); }'
+		);
 
 		try {
 			const result = await handleAnalyzeV2Migration({ filePath: tmp });
@@ -1200,12 +1221,9 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('detects v2 icon names and returns suggestions', async () => {
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
-		writeFileSync(
-			tmp,
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp(
+			'icon',
 			'<elm-button icon="account">Login</elm-button>\n<div data-icon="search">X</div>'
 		);
 
@@ -1224,11 +1242,11 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('returns no-findings message for a clean file', async () => {
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
-		writeFileSync(tmp, '<db-button>Already migrated</db-button>');
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp(
+			'clean',
+			'<db-button>Already migrated</db-button>'
+		);
 
 		try {
 			const result = await handleAnalyzeV2Migration({ filePath: tmp });
@@ -1242,7 +1260,7 @@ describe('handleAnalyzeV2Migration', () => {
 
 	it('returns an error for non-existent files', async () => {
 		const result = await handleAnalyzeV2Migration({
-			filePath: '/tmp/does-not-exist-12345.html'
+			filePath: 'does-not-exist-12345.html'
 		});
 
 		expect(result.isError).toBe(true);
@@ -1250,12 +1268,9 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('includes correct line numbers in findings', async () => {
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
-		writeFileSync(
-			tmp,
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp(
+			'lines',
 			'<div>\n<p>hello</p>\n<elm-button>Click</elm-button>\n</div>'
 		);
 
@@ -1271,12 +1286,9 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('includes summary with finding counts', async () => {
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
-		writeFileSync(
-			tmp,
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp(
+			'summary',
 			'<elm-button icon="account">X</elm-button>\n.x{color:var(--db-color-red-500)}'
 		);
 
@@ -1312,11 +1324,8 @@ describe('handleAnalyzeV2Migration', () => {
 			)
 		);
 
-		const { writeFileSync, unlinkSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const tmp = join(tmpdir(), `scan-test-${Date.now()}.html`);
-		writeFileSync(tmp, '<elm-toggle>Dark</elm-toggle>');
+		const { unlinkSync } = await import('node:fs');
+		const tmp = writeCwdTemp('legacy', '<elm-toggle>Dark</elm-toggle>');
 
 		try {
 			const result = await handleAnalyzeV2Migration({ filePath: tmp });
@@ -1328,18 +1337,48 @@ describe('handleAnalyzeV2Migration', () => {
 			unlinkSync(tmp);
 		}
 	});
+
+	// --- Security tests ---
+
+	it('🔒 rejects file paths outside workspace (path traversal)', async () => {
+		const result = await handleAnalyzeV2Migration({
+			filePath: '/etc/passwd'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('Path traversal');
+	});
+
+	it('🔒 rejects ../ directory climbing', async () => {
+		const result = await handleAnalyzeV2Migration({
+			filePath: '../../../../../../etc/passwd'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('Path traversal');
+	});
 });
 
 // ---------------------------------------------------------------------------
 // scaffold_component tool
 // ---------------------------------------------------------------------------
 describe('handleScaffoldComponent', () => {
-	it('generates React files with correct structure', async () => {
-		const { mkdtempSync, existsSync, readFileSync, rmSync } =
-			await import('node:fs');
+	/** Creates a temp directory inside process.cwd() and returns its path + cleanup fn. */
+	async function makeCwdTemp(): Promise<{
+		targetPath: string;
+		cleanup: () => void;
+	}> {
+		const { mkdtempSync, rmSync } = await import('node:fs');
 		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+		const targetPath = mkdtempSync(join(process.cwd(), '.scaffold-test-'));
+		return {
+			targetPath,
+			cleanup: () => rmSync(targetPath, { recursive: true, force: true })
+		};
+	}
+
+	it('generates React files with correct structure', async () => {
+		const { existsSync, readFileSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { targetPath, cleanup } = await makeCwdTemp();
 
 		try {
 			const result = await handleScaffoldComponent({
@@ -1368,15 +1407,14 @@ describe('handleScaffoldComponent', () => {
 			expect(tsx).toContain('DBButton');
 			expect(tsx).toContain('DBCard');
 		} finally {
-			rmSync(targetPath, { recursive: true, force: true });
+			cleanup();
 		}
 	});
 
 	it('generates Angular files with correct structure', async () => {
-		const { mkdtempSync, existsSync, rmSync } = await import('node:fs');
+		const { existsSync } = await import('node:fs');
 		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+		const { targetPath, cleanup } = await makeCwdTemp();
 
 		try {
 			const result = await handleScaffoldComponent({
@@ -1402,16 +1440,14 @@ describe('handleScaffoldComponent', () => {
 				)
 			).toBe(true);
 		} finally {
-			rmSync(targetPath, { recursive: true, force: true });
+			cleanup();
 		}
 	});
 
 	it('generates Vue single-file component', async () => {
-		const { mkdtempSync, existsSync, readFileSync, rmSync } =
-			await import('node:fs');
+		const { existsSync, readFileSync } = await import('node:fs');
 		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+		const { targetPath, cleanup } = await makeCwdTemp();
 
 		try {
 			const result = await handleScaffoldComponent({
@@ -1433,15 +1469,14 @@ describe('handleScaffoldComponent', () => {
 			);
 			expect(vue).toContain("from '@db-ux/v-core-components'");
 		} finally {
-			rmSync(targetPath, { recursive: true, force: true });
+			cleanup();
 		}
 	});
 
 	it('generates HTML template files', async () => {
-		const { mkdtempSync, existsSync, rmSync } = await import('node:fs');
+		const { existsSync } = await import('node:fs');
 		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+		const { targetPath, cleanup } = await makeCwdTemp();
 
 		try {
 			const result = await handleScaffoldComponent({
@@ -1460,7 +1495,7 @@ describe('handleScaffoldComponent', () => {
 				existsSync(join(componentDir, 'reservation-card.scss'))
 			).toBe(true);
 		} finally {
-			rmSync(targetPath, { recursive: true, force: true });
+			cleanup();
 		}
 	});
 
@@ -1468,7 +1503,7 @@ describe('handleScaffoldComponent', () => {
 		const result = await handleScaffoldComponent({
 			name: 'x',
 			framework: 'react',
-			targetPath: '/tmp/scaffold-noop'
+			targetPath: '.'
 		});
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('at least 2 characters');
@@ -1478,17 +1513,16 @@ describe('handleScaffoldComponent', () => {
 		const result = await handleScaffoldComponent({
 			name: 'my-widget',
 			framework: 'svelte' as any,
-			targetPath: '/tmp/scaffold-noop'
+			targetPath: '.'
 		});
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('Unsupported framework');
 	});
 
 	it('converts PascalCase input to kebab-case', async () => {
-		const { mkdtempSync, existsSync, rmSync } = await import('node:fs');
+		const { existsSync } = await import('node:fs');
 		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+		const { targetPath, cleanup } = await makeCwdTemp();
 
 		try {
 			const result = await handleScaffoldComponent({
@@ -1500,15 +1534,14 @@ describe('handleScaffoldComponent', () => {
 			expect(output).toContain('✅ Scaffolded "MyWidget"');
 			expect(existsSync(join(targetPath, 'my-widget'))).toBe(true);
 		} finally {
-			rmSync(targetPath, { recursive: true, force: true });
+			cleanup();
 		}
 	});
 
 	it('includes SCSS foundation imports in generated files', async () => {
-		const { mkdtempSync, readFileSync, rmSync } = await import('node:fs');
+		const { readFileSync } = await import('node:fs');
 		const { join } = await import('node:path');
-		const { tmpdir } = await import('node:os');
-		const targetPath = mkdtempSync(join(tmpdir(), 'scaffold-'));
+		const { targetPath, cleanup } = await makeCwdTemp();
 
 		try {
 			await handleScaffoldComponent({
@@ -1528,7 +1561,75 @@ describe('handleScaffoldComponent', () => {
 				'@use "@db-ux/foundations/scss/colors/variables"'
 			);
 		} finally {
-			rmSync(targetPath, { recursive: true, force: true });
+			cleanup();
+		}
+	});
+
+	// --- Security tests ---
+
+	it('🔒 rejects targetPath outside workspace (path traversal)', async () => {
+		const result = await handleScaffoldComponent({
+			name: 'evil',
+			framework: 'react',
+			targetPath: '/tmp'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('Path traversal');
+	});
+
+	it('🔒 rejects targetPath with ../ directory climbing', async () => {
+		const result = await handleScaffoldComponent({
+			name: 'evil',
+			framework: 'react',
+			targetPath: '../../../../../../tmp'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('Path traversal');
+	});
+
+	it('🔒 strips path separators from component name', async () => {
+		const { existsSync } = await import('node:fs');
+		const { join } = await import('node:path');
+		const { targetPath, cleanup } = await makeCwdTemp();
+
+		try {
+			const result = await handleScaffoldComponent({
+				name: '../../etc/passwd',
+				framework: 'react',
+				targetPath
+			});
+			// Name gets sanitized to "etcpasswd" (slashes + dots stripped) // cspell:disable-line
+			const output = text(result.content[0]);
+			expect(output).toContain('✅ Scaffolded');
+			// Verify no directory climbing occurred
+			expect(existsSync(join(targetPath, 'etcpasswd'))).toBe(true); // cspell:disable-line
+		} finally {
+			cleanup();
+		}
+	});
+
+	it('🔒 refuses to overwrite existing files', async () => {
+		const { targetPath, cleanup } = await makeCwdTemp();
+
+		try {
+			// First scaffold succeeds
+			const first = await handleScaffoldComponent({
+				name: 'my-comp',
+				framework: 'react',
+				targetPath
+			});
+			expect(first.isError).toBeUndefined();
+
+			// Second scaffold with same name fails
+			const second = await handleScaffoldComponent({
+				name: 'my-comp',
+				framework: 'react',
+				targetPath
+			});
+			expect(second.isError).toBe(true);
+			expect(text(second.content[0])).toContain('already exists');
+		} finally {
+			cleanup();
 		}
 	});
 });

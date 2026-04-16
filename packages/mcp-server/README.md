@@ -93,7 +93,7 @@ This will copy the correct rules for DB UX component usage and design token refe
 
 ### 5. Optimize Amazon Q for this Project (Recommended)
 
-Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the v4 component API — without any manual onboarding or repeated context-setting by the developer.
+Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the v3 component API — without any manual onboarding or repeated context-setting by the developer.
 
 **Why this matters:**
 

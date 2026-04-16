@@ -1,5 +1,6 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join, resolve, sep } from 'node:path';
 import type { Framework } from '../types.js';
 import { FRAMEWORK_PKG } from '../types.js';
 import type { ToolResult } from '../utils';
@@ -22,7 +23,8 @@ function toKebabCase(name: string): string {
 	return name
 		.replace(/([a-z])([A-Z])/g, '$1-$2')
 		.replace(/[\s_]+/g, '-')
-		.toLowerCase();
+		.toLowerCase()
+		.replace(/[^a-z0-9-]/g, ''); // Strip anything except alphanumeric + hyphens (path traversal protection)
 }
 
 // ---------------------------------------------------------------------------
@@ -255,7 +257,7 @@ const GENERATORS: Record<
 // ---------------------------------------------------------------------------
 
 /**
- * Scaffolds a DB UX v4-conformant component skeleton for the specified framework.
+ * Scaffolds a DB UX-conformant component skeleton for the specified framework.
  *
  * Generates all boilerplate files (component, template, SCSS) with correct
  * @db-ux/* imports, design token SCSS @use directives, and framework-idiomatic
@@ -264,6 +266,13 @@ const GENERATORS: Record<
  * Every generated SCSS block includes the mandatory foundation imports:
  * - @use "@db-ux/foundations/scss/defaults/default-variables"
  * - @use "@db-ux/foundations/scss/colors/variables"
+ *
+ * ### Security
+ * - **Path traversal protection:** `targetPath` is resolved against `process.cwd()`
+ *   and must stay within it. The component name is sanitized to `[a-z0-9-]` only.
+ * - **No silent overwrites:** Refuses to write if any target file already exists.
+ * - **Graceful error handling:** FS errors (permissions, disk full) are caught and
+ *   returned as MCP error results instead of crashing the server.
  */
 export async function handleScaffoldComponent({
 	name,
@@ -290,17 +299,48 @@ export async function handleScaffoldComponent({
 		);
 	}
 
-	// Resolve and create target directory
-	const absoluteTarget = resolve(targetPath, kebab);
-	mkdirSync(absoluteTarget, { recursive: true });
+	// 🔒 Path traversal protection: targetPath must resolve within cwd()
+	const cwd = resolve(process.cwd());
+	const resolvedTarget = resolve(cwd, targetPath);
+	if (!resolvedTarget.startsWith(cwd + sep) && resolvedTarget !== cwd) {
+		return err(
+			`Error: targetPath '${targetPath}' resolves outside the workspace root. Path traversal is not allowed.`
+		);
+	}
 
-	// Generate files
+	const absoluteTarget = join(resolvedTarget, kebab);
+
+	// 🔒 Overwrite protection: refuse if any target file already exists
 	const files = generator(pascal, kebab);
+	for (const [fileName] of files) {
+		const filePath = join(absoluteTarget, fileName);
+		if (existsSync(filePath)) {
+			return err(
+				`Error: File already exists: '${filePath}'. Use a different component name or remove the existing files first.`
+			);
+		}
+	}
+
+	// Create directory and write files with error handling
+	try {
+		await mkdir(absoluteTarget, { recursive: true });
+	} catch (error: unknown) {
+		const msg = error instanceof Error ? error.message : String(error);
+		return err(
+			`Error: Could not create directory '${absoluteTarget}': ${msg}`
+		);
+	}
+
 	const writtenPaths: string[] = [];
 
 	for (const [fileName, content] of files) {
 		const filePath = join(absoluteTarget, fileName);
-		writeFileSync(filePath, content, 'utf-8');
+		try {
+			await writeFile(filePath, content, 'utf-8');
+		} catch (error: unknown) {
+			const msg = error instanceof Error ? error.message : String(error);
+			return err(`Error: Could not write file '${filePath}': ${msg}`);
+		}
 		writtenPaths.push(filePath);
 	}
 

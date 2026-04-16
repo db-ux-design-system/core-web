@@ -1,8 +1,42 @@
+import { existsSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
+
+/**
+ * Walks up from `startDir` looking for a directory that contains a
+ * `package.json` with a `"workspaces"` field — the conventional marker
+ * for a monorepo root.  Falls back to a relative offset from the MCP
+ * server source directory so standalone (npx) installs still work.
+ */
+function findRepoRoot(startDir: string): string {
+	let dir = resolve(startDir);
+	const { root } = { root: resolve(dir, '/') };
+	while (dir !== root) {
+		const pkgPath = join(dir, 'package.json');
+		if (existsSync(pkgPath)) {
+			try {
+				// Dynamic import is not needed – a synchronous JSON parse is fine
+				// during module initialization.
+				// eslint-disable-next-line @typescript-eslint/no-require-imports
+				const pkg = JSON.parse(
+					// eslint-disable-next-line no-restricted-syntax
+					require('node:fs').readFileSync(pkgPath, 'utf8')
+				);
+				if (pkg.workspaces) {
+					return dir;
+				}
+			} catch {
+				// ignore parse errors and keep walking
+			}
+		}
+		dir = resolve(dir, '..');
+	}
+	// Fallback: relative offset (packages/mcp-server/src/utils → ../../../../)
+	return resolve(startDir, '../../../..');
+}
 
 const SERVER_DIR = import.meta.dirname;
 /** Absolute path to the monorepo root (core-web/). */
-export const REPO_ROOT = resolve(SERVER_DIR, '../../../..');
+export const REPO_ROOT = findRepoRoot(SERVER_DIR);
 /** Absolute path to the component source directory. */
 export const COMPONENTS_DIR = join(
 	REPO_ROOT,
@@ -71,6 +105,17 @@ export const TOKEN_COMPILED_FILES = {
  *
  * @throws {Error} When the resolved path escapes the base directory.
  */
+/**
+ * Finds a migration guide by name, falling back to the legacy `db-ui-`
+ * prefixed key for backwards compatibility with older manifest formats.
+ */
+export function findGuide(
+	guides: Record<string, string>,
+	name: string
+): string | undefined {
+	return guides[name] ?? guides[`db-ui-${name}`];
+}
+
 export function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
 	let decoded = userPath;

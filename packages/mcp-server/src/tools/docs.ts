@@ -83,6 +83,26 @@ export async function handleDocsSearch({
 				if (results.length >= 3) break;
 				// Defense-in-depth: skip docs outside whitelisted directories
 				if (!isAllowedDocPath(path)) continue;
+
+				// Scope filter: when category is 'component' and componentName is given,
+				// only match docs within that component's directory.
+				if (
+					category === 'component' &&
+					componentName &&
+					!path.includes(`/components/${componentName}/`)
+				) {
+					continue;
+				}
+
+				// Doc type filter: when docType is given, only match docs whose
+				// filename contains the type (e.g. 'Accessibility', 'React').
+				if (
+					docType &&
+					!path.toLowerCase().includes(docType.toLowerCase())
+				) {
+					continue;
+				}
+
 				const haystack = (path + '\n' + content).toLowerCase();
 				const isMatch =
 					searchTerms.length === 0 ||

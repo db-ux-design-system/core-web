@@ -1,8 +1,17 @@
 import { existsSync } from 'node:fs';
-import { readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
+import { readFile, stat } from 'node:fs/promises';
+import { resolve, sep } from 'node:path';
+import {
+	type ToolResult,
+	err,
+	findGuide,
+	MAX_JSON_OUTPUT,
+	truncate
+} from '../utils';
 import { getManifest } from '../utils/manifest';
+
+/** Maximum file size the scanner will read (5 MB). */
+const MAX_SCAN_SIZE = 5 * 1024 * 1024;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -87,17 +96,21 @@ async function ensureMaps(): Promise<void> {
 	const manifest = await getManifest();
 	const guides = manifest.migrationGuides ?? {};
 
-	/** Finds a guide by trying the new name first, then the legacy db-ui- prefixed name. */
-	const findGuide = (name: string): string | undefined =>
-		guides[name] ?? guides[`db-ui-${name}`];
-
-	componentMap = parseComponentMap(findGuide('component-migration') ?? '');
-	colorMap = parseColorMap(findGuide('color-migration') ?? '');
-	iconMap = parseIconMap(findGuide('icon-migration') ?? '');
+	componentMap = parseComponentMap(
+		findGuide(guides, 'component-migration') ?? ''
+	);
+	colorMap = parseColorMap(findGuide(guides, 'color-migration') ?? '');
+	iconMap = parseIconMap(findGuide(guides, 'icon-migration') ?? '');
 }
 
 // ---------------------------------------------------------------------------
 // Regex Patterns
+//
+// ⚠️ These regexps use the /g flag and MUST only be used with
+// String.prototype.matchAll() — NEVER with regex.exec() or regex.test().
+// matchAll() internally clones the regex, so shared lastIndex state is safe.
+// Using .exec() or .test() on module-level /g regexps causes subtle bugs
+// because lastIndex persists across calls.
 // ---------------------------------------------------------------------------
 
 /** Matches v2 component tags: <cmp-xxx, <elm-xxx, <rea-xxx (HTML/JSX) */
@@ -194,11 +207,27 @@ export async function handleAnalyzeV2Migration({
 	filePath: string;
 }): Promise<ToolResult> {
 	// Resolve path (absolute or relative to cwd)
-	const absolutePath = resolve(filePath);
+	const cwd = resolve(process.cwd());
+	const absolutePath = resolve(cwd, filePath);
+
+	// 🔒 Path traversal protection: file must be within cwd()
+	if (!absolutePath.startsWith(cwd + sep) && absolutePath !== cwd) {
+		return err(
+			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
+		);
+	}
 
 	if (!existsSync(absolutePath)) {
 		return err(
 			`Error: File not found: '${absolutePath}'. Provide an absolute path or a path relative to your workspace root.`
+		);
+	}
+
+	// 🔒 File size guard: reject files larger than 5 MB
+	const stats = await stat(absolutePath);
+	if (stats.size > MAX_SCAN_SIZE) {
+		return err(
+			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
 		);
 	}
 
@@ -207,6 +236,13 @@ export async function handleAnalyzeV2Migration({
 
 	// Read and scan
 	const content = await readFile(absolutePath, 'utf-8');
+
+	// 🔒 Binary file guard: reject files containing NUL bytes
+	if (content.substring(0, 8192).includes('\0')) {
+		return err(
+			'Error: File appears to be binary. Only text files can be scanned.'
+		);
+	}
 	const lines = content.split('\n');
 	const findings: ScanFinding[] = [];
 

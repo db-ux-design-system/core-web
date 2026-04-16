@@ -182,7 +182,7 @@ During development inside the monorepo, `tsx` can be used for live file access:
 | `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Max 3 retries.                                                                                                                          |
 | `get_component_visual`         | Returns a downsampled screenshot (max 800×800 px, JPEG q75) as Base64. Opt-in only.                                                                                                                                         |
 | `analyze_v2_migration`         | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.                                            |
-| `scaffold_component`           | Generates a DB UX v4-conformant component skeleton for a specified framework (react, angular, vue, web-components, html). Creates all boilerplate files with correct @db-ux/\* imports and SCSS foundation @use directives. |
+| `scaffold_component`           | Generates a DB UX v3-conformant component skeleton for a specified framework (react, angular, vue, web-components, html). Creates all boilerplate files with correct @db-ux/\* imports and SCSS foundation @use directives. |
 
 ### Manifest (embedded data)
 

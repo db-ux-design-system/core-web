@@ -165,7 +165,7 @@ export const analyzeV2MigrationSchema = {
 
 export const scaffoldComponentSchema = {
 	description:
-		'Generates a DB UX v4-conformant component skeleton for a specified framework. ' +
+		'Generates a DB UX v3-conformant component skeleton for a specified framework. ' +
 		'Creates all boilerplate files (component, template, SCSS) with correct @db-ux/* imports, ' +
 		'design token SCSS @use directives, and framework-idiomatic structure. ' +
 		'The developer only needs to fill in the business logic. ' +
