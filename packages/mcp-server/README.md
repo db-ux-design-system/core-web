@@ -91,6 +91,33 @@ This will copy the correct rules for DB UX component usage and design token refe
 - **Check Status:** Look for a green indicator or "db-ux" in your IDE's MCP server list.
 - **Check Logs:** If it doesn't appear, check the MCP output logs in your IDE (e.g., in VS Code: _Output Panel_ → _MCP_ or _MCP Servers_).
 
+### 5. Optimize Amazon Q for this Project (Recommended)
+
+Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the v4 component API — without any manual onboarding or repeated context-setting by the developer.
+
+**Why this matters:**
+
+- ✅ Eliminates hallucinations about component names, prop signatures, and token values
+- ✅ The agent follows the correct 6-step migration workflow from the first message
+- ✅ New team members get a fully context-aware AI assistant on day one
+
+**Setup:**
+
+1. Open (or create) the file `~/.aws/amazonq/agents/default.json`
+2. Add the following configuration:
+
+```json
+{
+	"agentInstruction": {
+		"paths": ["CONTEXT.md"]
+	}
+}
+```
+
+3. Place the `CONTEXT.md` file in your project root (it ships with `@db-ux/mcp-server` and is copied by `npx @db-ux/agent-cli`)
+
+> **Note:** The path is resolved relative to the workspace root. Amazon Q / Kiro will read this file at the start of every session and inject it as system-level context for the agent.
+
 ---
 
 ## 🛠 Available AI Tools (Skills)
