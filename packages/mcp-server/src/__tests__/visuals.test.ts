@@ -9,8 +9,8 @@ import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { handleGetComponentVisual } from '../tools';
 
-/** Maximum pixel budget as defined in the architecture requirement. */
-const MAX_PIXELS = 1_150_000;
+/** Maximum dimension (width or height) after downsampling. */
+const MAX_DIMENSION = 800;
 
 // ---------------------------------------------------------------------------
 // Successful lookups — real images from assets/visuals/
@@ -27,7 +27,7 @@ describe('handleGetComponentVisual', () => {
 		// First block: image
 		const imageBlock = result.content[0];
 		expect(imageBlock.type).toBe('image');
-		expect((imageBlock as any).mimeType).toBe('image/png');
+		expect((imageBlock as any).mimeType).toBe('image/jpeg');
 		expect((imageBlock as any).data).toBeTruthy();
 
 		// Second block: text description
@@ -49,10 +49,10 @@ describe('handleGetComponentVisual', () => {
 	);
 
 	// -----------------------------------------------------------------------
-	// Downsampling constraint: output must stay ≤ 1.15 MP
+	// Downsampling constraint: output must stay ≤ 800 px on each side
 	// -----------------------------------------------------------------------
 	it.each(['dashboard', 'form', 'landingpage', 'table'])(
-		'downsamples "%s" to ≤ 1.15 megapixels',
+		'downsamples "%s" to max 800×800 px and returns JPEG',
 		async (name) => {
 			const result = await handleGetComponentVisual({
 				componentName: name
@@ -60,7 +60,6 @@ describe('handleGetComponentVisual', () => {
 
 			expect(result.isError).toBeUndefined();
 
-			// Decode the Base64 image and check its dimensions
 			const imageBlock = result.content[0] as {
 				type: 'image';
 				data: string;
@@ -69,9 +68,10 @@ describe('handleGetComponentVisual', () => {
 			const buffer = Buffer.from(imageBlock.data, 'base64');
 			const metadata = await sharp(buffer).metadata();
 
-			const pixels = (metadata.width ?? 0) * (metadata.height ?? 0);
-			expect(pixels).toBeLessThanOrEqual(MAX_PIXELS);
-			expect(metadata.format).toBe('png');
+			expect(metadata.width).toBeLessThanOrEqual(MAX_DIMENSION);
+			expect(metadata.height).toBeLessThanOrEqual(MAX_DIMENSION);
+			expect(metadata.format).toBe('jpeg');
+			expect(imageBlock.mimeType).toBe('image/jpeg');
 		}
 	);
 

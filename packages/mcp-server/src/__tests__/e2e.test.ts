@@ -69,7 +69,7 @@ describe('MCP server — stdio transport', () => {
 
 		const imageBlock = content.find((c) => c.type === 'image');
 		expect(imageBlock).toBeDefined();
-		expect(imageBlock!.mimeType).toBe('image/png');
+		expect(imageBlock!.mimeType).toBe('image/jpeg');
 		expect(imageBlock!.data!.length).toBeGreaterThan(0);
 
 		const textBlock = content.find((c) => c.type === 'text');

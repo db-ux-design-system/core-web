@@ -108,7 +108,7 @@ This will copy the correct rules for DB UX component usage and design token refe
 | `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                             |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                 |
 | `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                                                                               |
-| `get_component_visual`         | Returns a downsampled screenshot (≤ 1.15 MP, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies.                                                            |
+| `get_component_visual`         | Returns a downsampled screenshot (max 800×800 px, JPEG q75, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies.                                             |
 | `analyze_v2_migration`         | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (`<cmp-*>`, `<elm-*>`, `<rea-*>` tags, `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.          |
 
 ### Example: fetching a React button example
@@ -340,7 +340,7 @@ This MCP server operates under a strict, zero-trust security model to prevent ma
     - File reads are truncated at **20,000 characters**.
     - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
     - Directory scans are hard-limited to a maximum of **10 files**.
-- **Image Downsampling (Token Optimization):** The `get_component_visual` tool dynamically downsamples images to stay below **1.15 megapixels** using bilinear interpolation before Base64 encoding. This prevents oversized images from inflating the LLM context window. Images are served exclusively from the curated `assets/visuals/` directory — path traversal protection applies here as well.
+- **Image Downsampling (Token Optimization):** The `get_component_visual` tool downsamples images to a maximum of **800×800 px** and encodes them as **JPEG at quality 75** before Base64 encoding. This keeps the payload well under the 100 000-character MCP client limit. Images are served exclusively from the curated `assets/visuals/` directory — path traversal protection applies here as well.
 
 ---
 

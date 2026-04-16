@@ -4,15 +4,8 @@ import sharp from 'sharp';
 import type { ToolResult } from '../utils';
 import { VISUALS_DIR, err, resolveSafePath, truncate } from '../utils';
 
-/**
- * Maximum number of pixels (width × height) allowed after downsampling.
- * The architecture requirement specifies "below 1,15 Megapixel".
- * 1,150,000 px budget – e.g. 1024×1024 = 1,048,576 stays well within bounds.
- */
-const MAX_PIXELS = 1_150_000;
-
 /** Supported image extensions for visual lookup. */
-const IMAGE_EXTENSIONS = ['.png', '.jpg'];
+const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg'];
 
 /**
  * Resolves `VISUALS_DIR` relative to the **running** bundle (dist/index.js)
@@ -51,43 +44,43 @@ function findImage(name: string): string | null {
 }
 
 /**
- * Downsamples an image so that its total pixel count stays below
- * {@link MAX_PIXELS} (≈ 1.15 megapixels) using bilinear interpolation
- * and returns a Base64-encoded PNG buffer.
+ * Maximum dimension (width or height) after downsampling.
+ * Capped at 800 px to keep the Base64 payload well under
+ * the 100 000-character MCP client limit.
+ */
+const MAX_DIMENSION = 800;
+
+/**
+ * JPEG quality for the returned image.
+ * 75 is a good trade-off between file size and visual fidelity for
+ * reference screenshots that only need to convey layout, not pixel-perfection.
+ */
+const JPEG_QUALITY = 75;
+
+/**
+ * Downsamples an image so that neither width nor height exceeds
+ * {@link MAX_DIMENSION} (800 px) and returns a Base64-encoded **JPEG**
+ * buffer compressed at {@link JPEG_QUALITY}.
  *
- * If the image is already within the budget it is passed through as PNG
- * without rescaling (only re-encoded to ensure consistent output format).
+ * Previous behavior (PNG, 1.15 MP budget) produced payloads that exceeded
+ * the 100 000-char client limit for large visuals like the dashboard.
  */
 async function downsampleImage(imagePath: string): Promise<{
 	data: string;
-	mimeType: 'image/png';
+	mimeType: 'image/jpeg';
 }> {
-	const image = sharp(imagePath);
-	const metadata = await image.metadata();
-	const width = metadata.width ?? 0;
-	const height = metadata.height ?? 0;
-	const totalPixels = width * height;
-
-	let pipeline = image;
-
-	if (totalPixels > MAX_PIXELS && width > 0 && height > 0) {
-		// Calculate the uniform scale factor that brings us below MAX_PIXELS
-		const scale = Math.sqrt(MAX_PIXELS / totalPixels);
-		const targetWidth = Math.round(width * scale);
-		const targetHeight = Math.round(height * scale);
-
-		pipeline = pipeline.resize(targetWidth, targetHeight, {
+	const buffer = await sharp(imagePath)
+		.resize(MAX_DIMENSION, MAX_DIMENSION, {
 			fit: 'inside',
-			// Bilinear interpolation — 'linear' is supported at runtime by
-			// sharp/libvips but missing from the TS type declarations in 0.33.x.
+			withoutEnlargement: true,
 			kernel: 'linear' as keyof sharp.KernelEnum
-		});
-	}
+		})
+		.jpeg({ quality: JPEG_QUALITY })
+		.toBuffer();
 
-	const buffer = await pipeline.png().toBuffer();
 	return {
 		data: buffer.toString('base64'),
-		mimeType: 'image/png'
+		mimeType: 'image/jpeg'
 	};
 }
 
@@ -95,8 +88,8 @@ async function downsampleImage(imagePath: string): Promise<{
  * MCP tool handler: `get_component_visual`
  *
  * Fetches a visual reference image for a DB UX component or page layout,
- * downsamples it to stay under 1.15 megapixels (bilinear interpolation),
- * and returns it as a Base64-encoded MCP image content block.
+ * downsamples it to max 800×800 px (bilinear interpolation), compresses
+ * as JPEG (quality 75), and returns it as a Base64-encoded MCP image block.
  *
  * Images are resolved from the `assets/visuals/` directory that ships
  * with the `@db-ux/mcp-server` package.
@@ -132,7 +125,7 @@ export async function handleGetComponentVisual({
 				},
 				{
 					type: 'text',
-					text: `Visual reference for '${componentName}' (downsampled to ≤1.15MP, bilinear interpolation).`
+					text: `Visual reference for '${componentName}' (max 800×800 px, JPEG q75, bilinear interpolation).`
 				}
 			]
 		};

@@ -134,7 +134,7 @@ export const verifyMigratedCodeSchema = {
 
 export const getComponentVisualSchema = {
 	description:
-		'Invoke this tool if you require visual context for complex layouts, z-index dependencies, or visual hierarchies of a DB UX component. Returns a downsampled screenshot (≤1.15MP, bilinear interpolation) as a Base64-encoded image. Use sparingly (opt-in only).',
+		'Invoke this tool if you require visual context for complex layouts, z-index dependencies, or visual hierarchies of a DB UX component. Returns a screenshot downsampled to max 800×800 px (JPEG q75, bilinear interpolation) as a Base64-encoded image. Use sparingly (opt-in only).',
 	inputSchema: {
 		componentName: z
 			.string()
