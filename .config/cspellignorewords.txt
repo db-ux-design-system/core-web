@@ -172,4 +172,3 @@ lintstagedrc
 carsharing
 bikesharing
 carsharing
-bikesharing
