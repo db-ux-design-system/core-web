@@ -32,6 +32,7 @@ export default defineConfig({
 		'**/*.showcase.lite.tsx',
 		'**/*.example.stories.*',
 		'**/test/**',
+		'packages/migration/src/migration/color-q32024.ts',
 		'output/**',
 		'showcases/patternhub/**',
 		'docs/migration/db-ui/color-migration.md',
