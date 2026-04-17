@@ -34,6 +34,7 @@ export default defineConfig({
 		'**/test/**',
 		'packages/migration/src/migration/color-q32024.ts',
 		'packages/mcp-server/docs/migration/db-ui-icon-migration.md',
+		'packages/mcp-server/docs/migration/db-ui-color-migration.md',
 		'output/**',
 		'showcases/patternhub/**',
 		'docs/migration/db-ui/color-migration.md',
