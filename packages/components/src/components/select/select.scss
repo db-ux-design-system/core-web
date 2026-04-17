@@ -45,7 +45,7 @@
 	}
 
 	// TODO: we could remove the `> select option:checked:not(.placeholder), ` selector part as soon as `:open` is baseline.
-	&:has(> select option:checked:not(.placeholder), > select:open) {
+	&:is(:has(> select option:checked:not(.placeholder)), > select:open) {
 		[id$="-placeholder"],
 		// Hide inserted `option` for placeholder or floating label types in dropdown for `required` selects after a selection has been made or the `select` has been opened
 		// This prevents users from selecting an invalid empty option when the field is required
