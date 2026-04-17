@@ -38,11 +38,11 @@ npm i @db-ux/core-foundations
 
 You use this library if you need some colors, spacings etc.
 
-> **tl;dr:** Use the default theme and the bundled styles by importing [relative|absolute|rollup|webpack].css`.
+> **tl;dr:** Use the default theme and the bundled styles by importing `bundle.css` and `theme/[relative|absolute|rollup|webpack].css`.
 
 ---
 
-First of all you need to import a theme which contains all tokens (css-properties). We provide a `default-theme.css` which handles dark/light mode as well.
+First of all you need to import a theme which contains all tokens (css-properties). We provide a `theme/[relative|absolute|rollup|webpack].css` which handles dark/light mode as well.
 
 Afterward, you may import helper classes / placeholders to easily consume the tokens from your theme. There are some categories:
 
@@ -53,7 +53,7 @@ Afterward, you may import helper classes / placeholders to easily consume the to
 - **density**: Overwrite default density to scale adaptive components inside container using density
 - **colors**: Sets an adaptive color to a container, which passes all required css-properties to children
 
-You can import the complete **init** styles with `[relative|absolute|rollup|webpack].css` which apply the default:
+The `bundle.css` applies those default:
 
 - [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=und%20Textfarben%20sicherstellt.-,Sizing,-Adaptive%20Sizing%20ist): `regular`
 - [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=Akzeptieren-,Coloring,-Adaptive%20Coloring%20bezieht): `neutral-bg-lvl-1`
@@ -64,39 +64,28 @@ Default assets path for `relative.css` is `../assets`. Make sure to copy all use
 
 #### Import
 
-Import the styles in your main `.js | .ts` file or in your main `.css` file.
-
-CSS:
+Import the styles in your main `.css` file.
 
 ```css
 /* index.css */
-@import "@db-ux/core-foundations/build/styles/relative.css";
+@layer whitelabel-theme, db-ux;
+
+@import "@db-ux/core-foundations/build/styles/theme/relative.css" layer(theme);
+
+@import "@db-ux/core-foundations/build/styles/bundle.css" layer(db-ux);
 
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-@import "@db-ux/core-foundations/build/styles/helpers/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/helpers/classes/all.css"
+	layer(db-ux);
 /* Optional: Use [data-density] everywhere */
-@import "@db-ux/core-foundations/build/styles/density/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/density/classes/all.css"
+	layer(db-ux);
 /* Optional: Use [data-font-size] everywhere */
-@import "@db-ux/core-foundations/build/styles/fonts/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/fonts/classes/all.css"
+	layer(db-ux);
 /* Optional: Use [data-color] everywhere */
-@import "@db-ux/core-foundations/build/styles/colors/classes/all.css";
-```
-
-JS/TS:
-
-```ts
-// main.[js|ts]
-/* index.css */
-import "@db-ux/core-foundations/build/styles/relative.css";
-
-/* Optional: Use [data-divider] & [data-focus] everywhere */
-import "@db-ux/core-foundations/build/styles/helpers/classes/all.css";
-/* Optional: Use [data-density] everywhere */
-import "@db-ux/core-foundations/build/styles/density/classes/all.css";
-/* Optional: Use [data-font-size] everywhere */
-import "@db-ux/core-foundations/build/styles/fonts/classes/all.css";
-/* Optional: Use [data-color] everywhere */
-import "@db-ux/core-foundations/build/styles/colors/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/colors/classes/all.css"
+	layer(db-ux);
 ```
 
 #### Use
@@ -129,46 +118,6 @@ In HTML:
 > **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders or mixins like we have it in **scss**. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
 
 ### SCSS
-
-Default assets path for `relative.scss` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].scss`.
-
-#### Import
-
-Import the styles in your main `.js | .ts` file or in your main `.scss` file.
-
-SCSS:
-
-```scss
-/* index.css */
-@forward "@db-ux/core-foundations/build/styles/relative";
-
-/* Optional: Use [data-divider] & [data-focus] everywhere */
-@forward "@db-ux/core-foundations/build/styles/helpers/classes/all";
-/* Optional: Use [data-density] everywhere */
-@forward "@db-ux/core-foundations/build/styles/density/classes/all";
-/* Optional: Use [data-font-size] everywhere */
-@forward "@db-ux/core-foundations/build/styles/fonts/classes/all";
-/* Optional: Use [data-color] everywhere */
-@forward "@db-ux/core-foundations/build/styles/colors/classes/all";
-```
-
-> **Note:** Besides of forwarding the classes you can use placeholders to include only some specific styles.
-
-JS/TS:
-
-```ts
-// main.[js|ts]
-import "@db-ux/core-foundations/build/styles/relative.scss";
-
-/* Optional: Use [data-divider] & [data-focus] everywhere */
-import "@db-ux/core-foundations/build/styles/helpers/classes/all.scss";
-/* Optional: Use [data-density] everywhere */
-import "@db-ux/core-foundations/build/styles/density/classes/all.scss";
-/* Optional: Use [data-font-size] everywhere */
-import "@db-ux/core-foundations/build/styles/fonts/classes/all.scss";
-/* Optional: Use [data-color] everywhere */
-import "@db-ux/core-foundations/build/styles/colors/classes/all.scss";
-```
 
 #### Use
 
@@ -313,13 +262,11 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
-@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
+@import "@db-ux/core-foundations/build/styles/theme/relative.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
 @import "@db-ux/core-foundations/build/styles/fonts/relative.css";
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
 @import "@db-ux/core-foundations/build/styles/icons/relative.css";
-/* The index file will add some additional styles to normalize html defaults and add some default settings like default density, etc. */
-@import "@db-ux/core-foundations/build/styles/index.css";
 ```
 
 #### Optimize index

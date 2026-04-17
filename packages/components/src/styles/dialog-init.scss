@@ -10,7 +10,7 @@ $backdrop-color-weak: color(
 		#{variables.$db-opacity-sm}
 );
 
-dialog {
+dialog[class^="db-"] {
 	padding: 0;
 	margin: 0;
 	border: 0;

@@ -238,7 +238,11 @@ export const getComponents = (): Component[] => [
 			],
 			stencil: [
 				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
-				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' }
+				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' },
+				{
+					from: 'this.value ?? this._value ?? ""',
+					to: 'this.value ?? this._value ?? undefined'
+				}
 			]
 		},
 		config: {
@@ -371,20 +375,7 @@ export const getComponents = (): Component[] => [
 			vue: [{ from: ', index', to: '' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
-			angular: [
-				{ from: '<HTMLElement>', to: '<HTMLInputElement>' },
-				{
-					from: 'writeValue(value: any) {',
-					to:
-						'writeValue(value: any) {\n' +
-						'if (!value && value !== "" && (this.type() === "date" ||\n' +
-						'			this.type() === "time" ||\n' +
-						'			this.type() === "week" ||\n' +
-						'			this.type() === "month" ||\n' +
-						'			this.type() === "datetime-local"\n' +
-						'			)) return;'
-				}
-			]
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }]
 		},
 		config: {
 			vue: {
