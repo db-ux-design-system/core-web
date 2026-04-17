@@ -32,8 +32,6 @@ export default defineConfig({
 		'**/*.showcase.lite.tsx',
 		'**/*.example.stories.*',
 		'**/test/**',
-		'packages/migration/**',
-		'packages/mcp-server/docs/**',
 		'output/**',
 		'showcases/patternhub/**',
 		'docs/migration/db-ui/color-migration.md',
