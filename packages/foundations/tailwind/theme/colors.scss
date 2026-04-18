@@ -8,17 +8,8 @@ $all-variants: list.append(
 );
 
 // stylelint-disable-next-line scss/at-rule-no-unknown
-@theme {
+@theme inline {
 	@each $color-name in $all-variants {
 		@include colors-utils.get-color($color-name, $color-name);
-	}
-}
-
-@layer colors {
-	@each $color-name in $all-variants {
-		[data-color="#{$color-name}"],
-		.db-color-#{$color-name} {
-			@include colors-utils.get-color($color-name, "adaptive");
-		}
 	}
 }

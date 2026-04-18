@@ -1,5 +1,5 @@
 #!/usr/bin/env tsx
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -35,7 +35,7 @@ for (const { name, parentPath } of packages) {
 
 		if (mode === 'publint') {
 			try {
-				execSync(`npx publint ${packagePath}`, {
+				execFileSync('npx', ['publint', packagePath], {
 					stdio: 'inherit',
 					cwd: process.cwd()
 				});

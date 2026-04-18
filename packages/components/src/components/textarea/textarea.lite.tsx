@@ -206,9 +206,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		if (props.value !== undefined) {
-			state._value = props.value;
-		}
+		state._value = props.value;
 	}, [props.value]);
 
 	onUpdate(() => {
@@ -288,7 +286,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={props.value ?? state._value}
+				value={props.value ?? state._value ?? ''}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}
