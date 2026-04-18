@@ -174,8 +174,6 @@ $anchor-fallbacks-horizontal:
 		position: fixed;
 		position-anchor: --db-popover-anchor;
 		inset: unset;
-		// stylelint-disable-next-line db-ux/use-spacings
-		margin: var(--db-popover-distance);
 
 		// The pseudo element for bridging the gap is not needed with anchor positioning
 		&::before {
