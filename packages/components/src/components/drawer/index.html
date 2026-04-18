@@ -6,13 +6,22 @@
 		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<dialog class="db-drawer" data-backdrop="true" open>
+		<button
+			class="db-button"
+			command="show-modal"
+			commandfor="my-drawer"
+		>
+			Open Drawer
+		</button>
+		<dialog id="my-drawer" class="db-drawer" data-backdrop="true">
 			<article class="db-drawer-container">
 				<header class="db-drawer-header">
 					<button
 						class="db-button button-close-drawer is-icon-text-replace"
 						data-icon="cross"
 						data-variant="ghost"
+						command="close"
+						commandfor="my-drawer"
 					>
 						Close Button
 					</button>
@@ -20,5 +29,29 @@
 				<div class="db-drawer-content">My Drawer content</div>
 			</article>
 		</dialog>
+
+		<script>
+			/*
+			 * Feature detection for Invoker Commands:
+			 * If the browser does not support the `command` and `commandfor`
+			 * HTML attributes, we fall back to JavaScript event handlers.
+			 */
+			if (!('CommandEvent' in window)) {
+				const openButton = document.querySelector(
+					'[commandfor="my-drawer"][command="show-modal"]'
+				);
+				const closeButton = document.querySelector(
+					'[commandfor="my-drawer"][command="close"]'
+				);
+				const drawer = document.getElementById('my-drawer');
+
+				openButton?.addEventListener('click', () => {
+					drawer?.showModal();
+				});
+				closeButton?.addEventListener('click', () => {
+					drawer?.close();
+				});
+			}
+		</script>
 	</body>
 </html>

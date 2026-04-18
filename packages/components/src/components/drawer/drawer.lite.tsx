@@ -103,6 +103,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onMount(() => {
 		state.handleDialogOpen();
 		state.initialized = true;
+
+		// Prevent built-in Invoker Commands behavior to preserve
+		// animation and state management through JavaScript
+		_ref?.addEventListener?.('command', (event: Event) => {
+			event.preventDefault();
+		});
 	});
 
 	onUpdate(() => {
@@ -147,6 +153,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 						icon="cross"
 						variant="ghost"
 						noText
+						command="close"
+						commandfor={props.id ?? props.propOverrides?.id}
 						onClick={(event) => state.handleClose(event, true)}>
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 					</DBButton>

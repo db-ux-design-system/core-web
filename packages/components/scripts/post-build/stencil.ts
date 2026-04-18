@@ -79,7 +79,9 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
-		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
+		const replacements: Overwrite[] = [
+			{ from: /(?<!\w)for={/g, to: 'htmlFor={' }
+		];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
 	}

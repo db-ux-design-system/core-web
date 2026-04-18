@@ -50,7 +50,9 @@ export default function DBButton(props: DBButtonProps) {
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
 			form={props.form}
-			value={props.value}>
+			value={props.value}
+			command={props.command}
+			commandfor={props.commandfor}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
