@@ -42,6 +42,38 @@ import "@db-ux/core-components/build/styles/rollup.css";
 
 </details>
 
+### Vite 8
+
+Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). To keep CSS output stable, configure `vite.config.ts` like this:
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  build: {
+    cssMinify: "esbuild"
+  }
+});
+```
+
+> Alternatively, you could define a [browserslist](https://browsersl.ist/) based on your individual browser support strategy — which might be totally different from the list Vite 8 defines by default (targeting browsers from the early 2020s):
+
+```ts
+// Note: You need to install the required packages first:
+// npm install -D lightningcss browserslist
+
+// vite.config.ts
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
+
+export default defineConfig({
+  css: {
+    lightningcss: {
+      targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
+    }
+  }
+});
+```
+
 > **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
 
 ### DB Theme

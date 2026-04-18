@@ -19,7 +19,9 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: 🔨 Build Packages
-        run: npm run build
+        run: |
+          npm run build
+          npm run docs-file-references --workspace=scripts
 
       - name: ⏫ Upload foundations build
         uses: actions/upload-artifact@v7
@@ -57,8 +59,27 @@ jobs:
           name: db-ux-eslint-plugin-build
           path: packages/eslint-plugin/build
 
+      - name: ⏫ Upload postcss-plugin build
+        uses: actions/upload-artifact@v7
+        with:
+          name: db-ux-postcss-plugin-build
+          path: packages/postcss-plugin/build
+
+      - name: ⏫ Upload vite-plugin build
+        uses: actions/upload-artifact@v7
+        with:
+          name: db-ux-vite-plugin-build
+          path: packages/vite-plugin/build
+
       - name: ⏫ Upload agent-cli build
         uses: actions/upload-artifact@v7
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
+
+      - name: ⏫ Upload mcp-server build
+        uses: actions/upload-artifact@v7
+        with:
+          name: db-ux-mcp-server-build
+          path: packages/mcp-server/dist
+          retention-days: 1
