@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -22,6 +23,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
+		abortController: undefined,
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -106,9 +108,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 		// Prevent built-in Invoker Commands behavior to preserve
 		// animation and state management through JavaScript
-		_ref?.addEventListener?.('command', (event: Event) => {
-			event.preventDefault();
-		});
+		const controller = new AbortController();
+		state.abortController = controller;
+		_ref?.addEventListener?.(
+			'command',
+			(event: Event) => {
+				event.preventDefault();
+			},
+			{ signal: controller.signal }
+		);
+	});
+
+	onUnMount(() => {
+		state.abortController?.abort();
 	});
 
 	onUpdate(() => {

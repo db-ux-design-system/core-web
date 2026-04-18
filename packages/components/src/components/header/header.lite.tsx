@@ -69,7 +69,11 @@ export default function DBHeader(props: DBHeaderProps) {
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
 				class="db-header-drawer"
-				id={props.id ? `${props.id}-drawer` : undefined}
+				id={
+					(props.id ?? props.propOverrides?.id)
+						? `${props.id ?? props.propOverrides?.id}-drawer`
+						: undefined
+				}
 				rounded
 				spacing="small"
 				closeButtonId={props.closeButtonId}
@@ -113,7 +117,11 @@ export default function DBHeader(props: DBHeaderProps) {
 							noText
 							variant="ghost"
 							command="show-modal"
-							commandfor={props.id ? `${props.id}-drawer` : undefined}
+							commandfor={
+								(props.id ?? props.propOverrides?.id)
+									? `${props.id ?? props.propOverrides?.id}-drawer`
+									: undefined
+							}
 							onClick={() => state.handleToggle()}>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
