@@ -3,11 +3,17 @@
  * This is used to determine whether to use JavaScript positioning or let CSS handle it.
  */
 export const supportsCSSAnchorPositioning = (): boolean => {
-	if (typeof window === 'undefined' || typeof CSS === 'undefined') {
+	if (typeof window === 'undefined' || typeof CSS?.supports !== 'function') {
 		return false;
 	}
 
-	return CSS.supports('anchor-name', '--db-popover-anchor');
+	// Require support for all features needed by our implementation.
+	// Some browsers can parse anchor-name but not collision-related properties.
+	return (
+		CSS.supports('anchor-name', '--db-popover-anchor') &&
+		CSS.supports('position-area', 'block-end center') &&
+		CSS.supports('position-try-fallbacks', 'flip-block')
+	);
 };
 
 // Cached result for CSS Anchor Positioning support to avoid repeated checks
@@ -22,6 +28,11 @@ const getCSSAnchorPositioningSupport = (): boolean => {
 		_cssAnchorPositioningSupported = supportsCSSAnchorPositioning();
 	}
 	return _cssAnchorPositioningSupported;
+};
+
+// Exported for tests so support can be mocked per scenario.
+export const resetCSSAnchorPositioningSupportCache = (): void => {
+	_cssAnchorPositioningSupported = undefined;
 };
 
 // The JavaScript positioning code below is only used for browsers that don't support CSS Anchor Positioning.
