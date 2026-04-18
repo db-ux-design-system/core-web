@@ -89,9 +89,40 @@ const overwriteFragmentMap = (input: string) => {
 		.join('\n');
 };
 
+/**
+ * Invoker Commands API type augmentation for React.
+ * Adds the `command` and `commandfor` HTML attributes to React's ButtonHTMLAttributes
+ * until React's type definitions natively support them.
+ * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
+ */
+const writeInvokerCommandsTypes = (tmp?: boolean) => {
+	const typesFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/invoker-commands.d.ts`;
+	const content = `/**
+ * Type augmentation for Invoker Commands API
+ * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
+ *
+ * Extends React's ButtonHTMLAttributes to include the \`command\` and \`commandfor\`
+ * HTML attributes for declarative dialog control via Invoker Commands.
+ *
+ * This augmentation can be removed once React's type definitions
+ * natively support these attributes.
+ */
+import "react";
+
+declare module "react" {
+	interface ButtonHTMLAttributes<T> {
+		command?: string | undefined;
+		commandfor?: string | undefined;
+	}
+}
+`;
+	writeFileSync(typesFilePath, content);
+};
+
 export default (tmp?: boolean) => {
 	try {
 		overwriteEvents(tmp);
+		writeInvokerCommandsTypes(tmp);
 
 		for (const component of components) {
 			const upperComponentName = transformToUpperComponentName(
