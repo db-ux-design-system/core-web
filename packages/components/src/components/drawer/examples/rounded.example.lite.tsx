@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
@@ -13,33 +13,27 @@ useMetadata({
 });
 
 export default function DrawerRounded() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-rounded-false"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: (Default) False
 				</DBButton>
-				<DBDrawer
-					rounded={false}
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-rounded-false" rounded={false}>
 					(Default) False
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-rounded-true"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: True
 				</DBButton>
-				<DBDrawer
-					rounded={true}
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-rounded-true" rounded={true}>
 					True
 				</DBDrawer>
 			</div>

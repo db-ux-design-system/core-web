@@ -18,11 +18,6 @@ export const useLayout = () => {
 	const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
 	const page = ref();
 	const fullscreen = ref();
-	const drawerOpen = ref(false);
-
-	const toggleDrawer = (open: boolean) => {
-		drawerOpen.value = open;
-	};
 
 	const classNames = computed(
 		() => `db-density-${density.value} db-${color.value}`
@@ -78,10 +73,8 @@ export const useLayout = () => {
 		fullscreen,
 		density,
 		color,
-		drawerOpen,
 		classNames,
 		onChange,
-		toggleDrawer,
 		sortedNavigation
 	};
 };

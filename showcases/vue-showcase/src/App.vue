@@ -20,10 +20,8 @@ const {
 	fullscreen,
 	density,
 	color,
-	drawerOpen,
 	classNames,
 	onChange,
-	toggleDrawer,
 	sortedNavigation
 } = useLayout();
 </script>
@@ -39,7 +37,7 @@ const {
 		:fadeIn="true"
 	>
 		<template v-slot:header>
-			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
+			<DBHeader>
 				<template v-slot:brand>
 					<DBBrand>Showcase</DBBrand>
 				</template>

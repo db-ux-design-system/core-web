@@ -39,7 +39,6 @@ const DefaultPage = ({
 	const [fullscreen, setFullscreen] = useState(false);
 	const [noH1, setNoH1] = useState(false);
 	const [properties, setProperties] = useState(false);
-	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [lastScroll, setLastScroll] = useState<string>();
 	const [previousNavigationItem, setPreviousNavigationItem] = useState<
 		NavigationItem | undefined
@@ -140,8 +139,6 @@ const DefaultPage = ({
 					variant="fixed"
 					header={
 						<DBHeader
-							drawerOpen={drawerOpen}
-							onToggle={setDrawerOpen}
 							brand={
 								<DBBrand>
 									{process.env.NEXT_PUBLIC_APP_NAME}

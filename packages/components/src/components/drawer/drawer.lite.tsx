@@ -1,6 +1,5 @@
 import {
 	onMount,
-	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -23,7 +22,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		abortController: undefined,
+		closeDialog: () => {
+			if (_ref?.open) {
+				if (dialogContainerRef) {
+					(dialogContainerRef as HTMLDivElement).dataset[
+						'transition'
+					] = 'close';
+				}
+
+				void delay(() => {
+					_ref?.close();
+				}, 401);
+			}
+		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -34,19 +45,23 @@ export default function DBDrawer(props: DBDrawerProps) {
 		) => {
 			if (!event) return;
 
+			const isControlled = props.open !== undefined;
+
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
 				if (event.key === 'Escape') {
 					event.preventDefault();
 
-					if (props.onClose) {
+					if (isControlled && props.onClose) {
 						props.onClose(event);
+					} else {
+						state.closeDialog();
 					}
 				}
 			} else {
 				if (forceClose) {
 					event.stopPropagation();
 
-					if (props.onClose) {
+					if (isControlled && props.onClose) {
 						props.onClose(event);
 					}
 				}
@@ -56,8 +71,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 					event.type === 'click' &&
 					props.backdrop !== 'none'
 				) {
-					if (props.onClose) {
+					if (isControlled && props.onClose) {
 						props.onClose(event);
+					} else {
+						state.closeDialog();
 					}
 				}
 			}
@@ -89,14 +106,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}, 1);
 				}
 				if (!open && _ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset[
-							'transition'
-						] = 'close';
-					}
-					void delay(() => {
-						_ref?.close();
-					}, 401);
+					state.closeDialog();
 				}
 			}
 		}
@@ -105,22 +115,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onMount(() => {
 		state.handleDialogOpen();
 		state.initialized = true;
-
-		// Prevent built-in Invoker Commands behavior to preserve
-		// animation and state management through JavaScript
-		const controller = new AbortController();
-		state.abortController = controller;
-		_ref?.addEventListener?.(
-			'command',
-			(event: Event) => {
-				event.preventDefault();
-			},
-			{ signal: controller.signal }
-		);
-	});
-
-	onUnMount(() => {
-		state.abortController?.abort();
 	});
 
 	onUpdate(() => {

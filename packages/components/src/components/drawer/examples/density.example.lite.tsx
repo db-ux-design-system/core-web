@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
@@ -13,45 +13,36 @@ useMetadata({
 });
 
 export default function DrawerDensity() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div data-density="functional">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-density-functional"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Functional
 				</DBButton>
-				<DBDrawer
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
-					Functional
-				</DBDrawer>
+				<DBDrawer id="drawer-density-functional">Functional</DBDrawer>
 			</div>
 			<div data-density="regular">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-density-regular"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: (Default) Regular
 				</DBButton>
-				<DBDrawer
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-density-regular">
 					(Default) Regular
 				</DBDrawer>
 			</div>
 			<div data-density="expressive">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-density-expressive"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Expressive
 				</DBButton>
-				<DBDrawer
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}>
-					Expressive
-				</DBDrawer>
+				<DBDrawer id="drawer-density-expressive">Expressive</DBDrawer>
 			</div>
 		</Fragment>
 	);

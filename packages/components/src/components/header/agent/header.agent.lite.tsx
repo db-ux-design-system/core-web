@@ -1,5 +1,4 @@
 import { useMetadata } from '@builder.io/mitosis';
-import { useState } from 'react';
 import { DBNavigation } from '../../navigation';
 import { DBNavigationItem } from '../../navigation-item';
 import { DBHeader } from '../index';
@@ -40,16 +39,12 @@ useMetadata({
 });
 
 export default function Header() {
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
 	return (
 		<>
 			<h1>DBHeader Documentation Examples</h1>
 
 			<h2>1. Default Header</h2>
-			<DBHeader
-				drawerOpen={drawerOpen}
-				onToggle={(open: boolean) => setDrawerOpen(open)}>
+			<DBHeader>
 				__slots__
 				<DBNavigation>
 					<DBNavigationItem>

@@ -79,7 +79,11 @@ export default function DBHeader(props: DBHeaderProps) {
 				closeButtonId={props.closeButtonId}
 				closeButtonText={props.closeButtonText}
 				open={getBoolean(props.drawerOpen)}
-				onClose={() => state.handleToggle()}>
+				onClose={
+					props.drawerOpen !== undefined
+						? () => state.handleToggle()
+						: undefined
+				}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
@@ -121,8 +125,7 @@ export default function DBHeader(props: DBHeaderProps) {
 								(props.id ?? props.propOverrides?.id)
 									? `${props.id ?? props.propOverrides?.id}-drawer`
 									: undefined
-							}
-							onClick={() => state.handleToggle()}>
+							}>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>

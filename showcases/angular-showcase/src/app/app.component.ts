@@ -60,7 +60,6 @@ import {
 })
 export class AppComponent implements OnInit {
 	isWebComponents = environment.webComponents;
-	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
 	densities = DENSITIES;
@@ -107,9 +106,5 @@ export class AppComponent implements OnInit {
 			queryParams: { density: this.density, color: this.color },
 			queryParamsHandling: 'merge'
 		});
-	};
-
-	toggleDrawer = (open: boolean | void) => {
-		this.drawerOpen = Boolean(open);
 	};
 }

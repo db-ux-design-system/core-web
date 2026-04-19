@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
@@ -8,8 +7,6 @@ import Navigation from './navigation';
 const App = () => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
-
-	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	if (pageName ?? fullscreen) {
 		return (
@@ -26,8 +23,6 @@ const App = () => {
 			fadeIn
 			header={
 				<DBHeader
-					drawerOpen={drawerOpen}
-					onToggle={setDrawerOpen}
 					brand={<DBBrand>Showcase</DBBrand>}
 					metaNavigation={
 						<MetaNavigation

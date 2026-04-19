@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
@@ -13,58 +13,47 @@ useMetadata({
 });
 
 export default function DrawerDirection() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-direction-right"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: (Default) Right
 				</DBButton>
-				<DBDrawer
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
-					(Default) Right
-				</DBDrawer>
+				<DBDrawer id="drawer-direction-right">(Default) Right</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-direction-left"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Left
 				</DBButton>
-				<DBDrawer
-					direction="left"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-direction-left" direction="left">
 					Left
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-direction-up"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Up
 				</DBButton>
-				<DBDrawer
-					direction="up"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-direction-up" direction="up">
 					Up
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+					command="show-modal"
+					commandfor="drawer-direction-down"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Down
 				</DBButton>
-				<DBDrawer
-					direction="down"
-					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-direction-down" direction="down">
 					Down
 				</DBDrawer>
 			</div>

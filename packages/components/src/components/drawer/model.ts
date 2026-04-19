@@ -78,7 +78,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	SpacingProps;
 
 export type DBDrawerDefaultState = {
-	abortController?: AbortController;
+	closeDialog: () => void;
 	handleDialogOpen: () => void;
 };
 

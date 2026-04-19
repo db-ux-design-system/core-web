@@ -24,7 +24,6 @@ import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
-	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [input, setInput] = useState('');
 	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -494,17 +493,11 @@ const FormComponent = () => {
 				/>
 
 				<DBButton
-					onClick={() => {
-						setDrawerOpen(true);
-					}}>
+					command="show-modal"
+					commandfor="showcase-form-drawer">
 					Open Drawer
 				</DBButton>
-				<DBDrawer
-					onClose={() => {
-						setDrawerOpen(false);
-					}}
-					open={drawerOpen}
-					spacing="none">
+				<DBDrawer id="showcase-form-drawer" spacing="none">
 					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
 						Test infotext
 						<DBTooltip placement="bottom-start">

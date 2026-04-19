@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import { useState } from 'react';
 import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import MetaNavigation from '../../react-showcase/src/meta-navigation';
@@ -10,8 +9,6 @@ import '../styles/global.css';
 const App = ({ Component, pageProps }: AppProps) => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
-
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
 	if (pageName ?? fullscreen) {
 		return (
@@ -28,8 +25,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 			fadeIn
 			header={
 				<DBHeader
-					drawerOpen={drawerOpen}
-					onToggle={setDrawerOpen}
 					brand={<DBBrand>Showcase</DBBrand>}
 					metaNavigation={
 						<MetaNavigation

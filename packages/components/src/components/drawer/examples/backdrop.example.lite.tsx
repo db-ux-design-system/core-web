@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
@@ -13,59 +13,49 @@ useMetadata({
 });
 
 export default function DrawerBackdrop() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-strong"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: (Default) Strong
 				</DBButton>
-				<DBDrawer
-					backdrop="strong"
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-backdrop-strong" backdrop="strong">
 					(Default) Strong
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-weak"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Weak
 				</DBButton>
-				<DBDrawer
-					backdrop="weak"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-backdrop-weak" backdrop="weak">
 					Weak
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-invisible"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: Invisible
 				</DBButton>
-				<DBDrawer
-					backdrop="invisible"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-backdrop-invisible" backdrop="invisible">
 					Invisible
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-none"
+					data-sb-replace="Open DBDrawer via command and commandfor">
 					Open: No Backdrop
 				</DBButton>
-				<DBDrawer
-					backdrop="none"
-					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer id="drawer-backdrop-none" backdrop="none">
 					No Backdrop
 				</DBDrawer>
 			</div>
