@@ -3,10 +3,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	InnerCloseButtonProps,
-	NavigationBehaviorState,
-	ToggleEventProps,
-	ToggleEventState
+	InnerCloseButtonProps
 } from '../../shared/model';
 
 export type DBHeaderDefaultProps = {
@@ -34,11 +31,6 @@ export type DBHeaderDefaultProps = {
 	secondaryAction?: any;
 
 	/**
-	 * Open/closes the drawer for mobile header or if `forceMobile` is true.
-	 */
-	drawerOpen?: boolean | string;
-
-	/**
 	 * Forces the header to use mobile layout for desktop as well.
 	 * You should only use this setting if you really can't provide a smaller navigation.
 	 * Overwrite size of the drawer with '--db-drawer-max-width: xxx'
@@ -54,15 +46,14 @@ export type DBHeaderDefaultProps = {
 export type DBHeaderProps = DBHeaderDefaultProps &
 	InnerCloseButtonProps &
 	GlobalProps &
-	ToggleEventProps &
 	ContainerWidthProps;
 
 export type DBHeaderDefaultState = {
 	forcedToMobile?: boolean;
+	generatedId?: string;
+	handleNavigationItemClick: (event: unknown) => void;
 };
 
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &
-	ToggleEventState<HTMLElement> &
-	InitializedState &
-	NavigationBehaviorState;
+	InitializedState;

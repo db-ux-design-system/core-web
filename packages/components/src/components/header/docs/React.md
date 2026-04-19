@@ -19,15 +19,10 @@ export default App;
 
 ```tsx App.tsx
 // App.tsx
-import { useState } from "react";
 import { DBHeader, DBBrand, DBLink } from "@db-ux/react-core-components";
-
-const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
 const App = () => (
 	<DBHeader
-		drawerOpen={drawerOpen}
-		onToggle={setDrawerOpen}
 		brand={<DBBrand>My Awesome App</DBBrand>}
 		metaNavigation={
 			<>

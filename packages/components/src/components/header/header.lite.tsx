@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_BURGER_MENU } from '../../shared/constants';
-import { addAttributeToChildren, cls, getBoolean } from '../../utils';
+import { addAttributeToChildren, cls, delay, uuid } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
@@ -20,24 +20,27 @@ useDefaultProps<DBHeaderProps>({});
 
 export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
+	const drawerRef = useRef<HTMLDialogElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
 		initialized: false,
 		forcedToMobile: false,
-		handleToggle: (event?: any) => {
-			if (event && event.stopPropagation) {
-				event.stopPropagation();
-			}
-
-			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
-
-			if (props.onToggle) {
-				props.onToggle(open);
-			}
-		},
+		generatedId: props.id ?? props.propOverrides?.id ?? `header-${uuid()}`,
 		handleNavigationItemClick: (event: unknown) => {
-			if (isEventTargetNavigationItem(event)) {
-				state.handleToggle();
+			if (isEventTargetNavigationItem(event) && drawerRef) {
+				const dialogContainerRef = drawerRef.querySelector(
+					'.db-drawer-container'
+				) as HTMLDivElement | null;
+
+				if (dialogContainerRef) {
+					dialogContainerRef.dataset['transition'] = 'close';
+				}
+
+				void delay(() => {
+					if (drawerRef?.open) {
+						drawerRef?.close();
+					}
+				}, 401);
 			}
 		}
 	});
@@ -64,31 +67,22 @@ export default function DBHeader(props: DBHeaderProps) {
 		<header
 			ref={_ref}
 			class={cls('db-header', props.className)}
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id ?? props.propOverrides?.id ?? state.generatedId}
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
+				ref={drawerRef}
 				class="db-header-drawer"
-				id={
-					(props.id ?? props.propOverrides?.id)
-						? `${props.id ?? props.propOverrides?.id}-drawer`
-						: undefined
-				}
+				id={`${props.id ?? props.propOverrides?.id ?? state.generatedId}-drawer`}
 				rounded
 				spacing="small"
 				closeButtonId={props.closeButtonId}
-				closeButtonText={props.closeButtonText}
-				open={getBoolean(props.drawerOpen)}
-				onClose={
-					props.drawerOpen !== undefined
-						? () => state.handleToggle()
-						: undefined
-				}>
+				closeButtonText={props.closeButtonText}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
 						onClick={(event) =>
-							state.handleNavigationItemClick(event)
+							state.handleNavigationItemClick?.(event)
 						}>
 						{props.children}
 					</div>
@@ -121,11 +115,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							noText
 							variant="ghost"
 							command="show-modal"
-							commandfor={
-								(props.id ?? props.propOverrides?.id)
-									? `${props.id ?? props.propOverrides?.id}-drawer`
-									: undefined
-							}>
+							commandfor={`${props.id ?? props.propOverrides?.id ?? state.generatedId}-drawer`}>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>

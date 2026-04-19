@@ -39,27 +39,9 @@ import {
 
 #### Full
 
-```ts app.component.ts
-// File: app.component.ts
-
-import { Component } from "@angular/core";
-
-@Component({
-	selector: "app-root",
-	templateUrl: "./app.component.html"
-})
-export class AppComponent {
-	drawerOpen = false;
-
-	toggleDrawer = (open: boolean) => {
-		this.drawerOpen = open;
-	};
-}
-```
-
 ```html app.component.html
 <!-- app.component.html -->
-<db-header [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
+<db-header>
 	<db-brand brand>My Awesome App</db-brand>
 	<db-navigation *dbNavigation>
 		<!-- https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/Angular.md -->

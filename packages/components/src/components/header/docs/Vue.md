@@ -24,18 +24,11 @@ import { DBHeader, DBBrand } from "@db-ux/v-core-components";
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { _ref } from "vue";
 import { DBHeader, DBBrand, DBLink, DBButton } from "@db-ux/v-core-components";
-
-const drawerOpen = _ref(false);
-
-const toggleDrawer = (open: boolean) => {
-	drawerOpen.value = open;
-};
 </script>
 
 <template>
-	<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
+	<DBHeader>
 		<template v-slot:brand>
 			<DBBrand> My Awesome App </DBBrand>
 		</template>
