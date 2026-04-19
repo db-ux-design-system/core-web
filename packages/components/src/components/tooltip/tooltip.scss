@@ -28,7 +28,8 @@
 	}
 
 	// Only for testing
-	&[data-e2e-hover="true"] {
+	&[data-e2e-hover="true"],
+	&:popover-open {
 		@extend %show-popover;
 	}
 

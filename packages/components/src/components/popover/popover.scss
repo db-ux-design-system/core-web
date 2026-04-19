@@ -27,7 +27,8 @@
 		@extend %default-popover;
 		@include component.get-data-spacing;
 
-		&[data-open="true"] {
+		&[data-open="true"],
+		&:popover-open {
 			@extend %show-popover;
 		}
 	}

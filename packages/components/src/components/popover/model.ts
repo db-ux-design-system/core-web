@@ -29,6 +29,8 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 	PopoverProps;
 
 export type DBPopoverDefaultState = {
+	_popoverId?: string;
+	resetPopoverId: () => void;
 	isExpanded?: boolean;
 	getTrigger: () => Element | null;
 };

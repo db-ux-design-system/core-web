@@ -7,7 +7,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
+import {
+	cls,
+	getBooleanAsString,
+	delay as utilsDelay,
+	uuid
+} from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
 import { DBPopoverProps, DBPopoverState } from './model';
@@ -19,10 +25,16 @@ export default function DBPopover(props: DBPopoverProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
+		_popoverId: DEFAULT_ID,
 		initialized: false,
 		isExpanded: false,
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
+		resetPopoverId: () => {
+			state._popoverId = props.id
+				? `${props.id}-content`
+				: 'popover-content-' + uuid();
+		},
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
@@ -52,6 +64,10 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		handleEnter(): void {
 			state.isExpanded = true;
+			if (_ref) {
+				const article = _ref.querySelector('article') as any;
+				article?.showPopover?.();
+			}
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event)
@@ -74,6 +90,11 @@ export default function DBPopover(props: DBPopoverProps) {
 					element.parentNode.querySelector(':hover') !== element)
 			) {
 				state.isExpanded = false;
+
+				if (_ref) {
+					const article = _ref.querySelector('article') as any;
+					article?.hidePopover?.();
+				}
 
 				if (state._documentScrollListenerCallbackId) {
 					new DocumentScrollListener().removeCallback(
@@ -108,6 +129,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	});
 
 	onMount(() => {
+		state.resetPopoverId();
 		state.initialized = true;
 	});
 
@@ -117,6 +139,9 @@ export default function DBPopover(props: DBPopoverProps) {
 			const child = state.getTrigger();
 			if (child) {
 				child.ariaHasPopup = 'true';
+				if (state._popoverId && state._popoverId !== DEFAULT_ID) {
+					child.setAttribute('popovertarget', state._popoverId);
+				}
 			}
 			state.handleAutoPlacement();
 
@@ -164,6 +189,8 @@ export default function DBPopover(props: DBPopoverProps) {
 			class={cls('db-popover', props.className)}>
 			<Slot name="trigger" />
 			<article
+				id={state._popoverId}
+				popover={'manual'}
 				class="db-popover-content"
 				data-spacing={props.spacing}
 				data-gap={getBooleanAsString(props.gap)}

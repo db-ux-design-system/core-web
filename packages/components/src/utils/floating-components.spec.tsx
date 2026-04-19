@@ -6,6 +6,16 @@ Object.defineProperty(globalThis, 'window', {
 	writable: true
 });
 
+// Provide a baseline CSS global so support detection in the module behaves
+// predictably regardless of test execution order.
+if (!('CSS' in globalThis)) {
+	Object.defineProperty(globalThis, 'CSS', {
+		value: { supports: () => false },
+		writable: true,
+		configurable: true
+	});
+}
+
 import { describe, expect, it } from 'vitest';
 import {
 	getFloatingProps,

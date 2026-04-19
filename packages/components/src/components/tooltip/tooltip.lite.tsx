@@ -80,6 +80,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 
 			state._observer?.unobserve(state.getParent());
+			(_ref as any)?.hidePopover?.();
 		},
 		handleEnter(parent?: HTMLElement): void {
 			state._documentScrollListenerCallbackId =
@@ -88,6 +89,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				);
 			state.handleAutoPlacement(parent);
 			state._observer?.observe(state.getParent());
+			(_ref as any)?.showPopover?.();
 		},
 		resetIds: () => {
 			state._id =
@@ -124,6 +126,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 				});
 				parent.dataset['hasTooltip'] = 'true';
 
+				// Connect tooltip to parent using native Popover API
+				if (state._id && state._id !== DEFAULT_ID) {
+					parent.setAttribute('popovertarget', state._id);
+				}
+
 				if (props.variant === 'label') {
 					parent.setAttribute('aria-labelledby', state._id);
 				} else {
@@ -157,6 +164,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			role="tooltip"
 			aria-hidden="true"
 			ref={_ref}
+			popover={'hint'}
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}

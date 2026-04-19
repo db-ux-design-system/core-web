@@ -10,7 +10,6 @@ export const supportsCSSAnchorPositioning = (): boolean => {
 	// Require support for all features needed by our implementation.
 	// Some browsers can parse anchor-name but not collision-related properties.
 	return (
-		CSS.supports('anchor-name', '--db-popover-anchor') &&
 		CSS.supports('position-area', 'block-end center') &&
 		CSS.supports('position-try-fallbacks', 'flip-block')
 	);
