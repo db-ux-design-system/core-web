@@ -47,6 +47,7 @@
     - option
     - option "Floating" [selected]
     - option "Option 2"
+  - text: Floating
   - status
   - link "Show Label"
   - text: Label
@@ -106,6 +107,7 @@
     - option
     - option "Filled" [selected]
     - option "Option 2"
+  - text: Filled
   - status
   - link "Validation"
   - text: Label
@@ -257,12 +259,14 @@
     - option
     - option "Filled" [selected]
     - option "Option 2"
+  - text: Filled
   - status
   - text: Label
   - combobox "Label" [disabled]:
     - option
     - option "Disabled" [selected]
     - option "Option 2"
+  - text: Disabled
   - status
   - text: Label
   - combobox "Label":
