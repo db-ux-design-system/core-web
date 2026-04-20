@@ -1,18 +1,25 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/version/v4.6.1/_next/static/css/e7adcc9c42f19044.css" as="style"/><link rel="stylesheet" href="/core-web/version/v4.6.1/_next/static/css/e7adcc9c42f19044.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/version/v4.6.1/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/version/v4.6.1/_next/static/chunks/webpack-136346ea3dfa8e5d.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/framework-b879567b90d34fb5.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/main-a7d8b9493c3b7d8c.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/pages/_app-4749d6d9bd2a8d6e.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/pages/components/layout/drawer/docs/HTML-7f876d63d5180aaa.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/k5FcNLHhwf8pOfDMBjxsQ/_buildManifest.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/k5FcNLHhwf8pOfDMBjxsQ/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/version/v4.6.1/components/layout/drawer/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/version/v4.6.1/_next/static/css/e7adcc9c42f19044.css" as="style"/><link rel="stylesheet" href="/core-web/version/v4.6.1/_next/static/css/e7adcc9c42f19044.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/version/v4.6.1/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/version/v4.6.1/_next/static/chunks/webpack-136346ea3dfa8e5d.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/framework-dc944e7812d432a3.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/main-ff1e27dbf58d2a58.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/pages/_app-4749d6d9bd2a8d6e.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/chunks/pages/components/layout/drawer/docs/HTML-60e5d7738556424e.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/vZoj3oXiP7mA5cH5yF6Xq/_buildManifest.js" defer=""></script><script src="/core-web/version/v4.6.1/_next/static/vZoj3oXiP7mA5cH5yF6Xq/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/version/v4.6.1/components/layout/drawer/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
 <p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
 <h3 id="general">General<a class="header-link" href="/core-web/version/v4.6.1/components/layout/drawer/docs/HTML?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
 <p>If you use <code>width !== full</code> you are able to overwrite the <code>max-width</code> with <code>--db-drawer-max-width:</code> CSS variable.</p>
 <h3 id="use-component">Use component<a class="header-link" href="/core-web/version/v4.6.1/components/layout/drawer/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<p>Use <a target="_blank" referrerPolicy="no-referrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API">Invoker Commands</a> (<code>command</code> and <code>commandfor</code> HTML attributes) to declaratively connect buttons with the <code>&lt;dialog&gt;</code> element. Supported built-in commands for <code>&lt;dialog&gt;</code> are <code>show-modal</code> and <code>close</code>.</p>
+<p>If you do need to provide support for <a target="_blank" referrerPolicy="no-referrer" href="https://caniuse.com/wf-invoker-commands">browser versions that haven&#x27;t implemented Invoker Commands</a>, add a feature detection fallback in JavaScript (see example below) or the <a target="_blank" referrerPolicy="no-referrer" href="https://github.com/keithamus/invokers-polyfill">polyfill <code>invokers-polyfill</code></a>.</p>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
 ...
 &lt;body&gt;
-	&lt;dialog class=&quot;db-drawer&quot; data-backdrop=&quot;true&quot; open&gt;
+	&lt;button class=&quot;db-button&quot; command=&quot;show-modal&quot; commandfor=&quot;my-drawer&quot;&gt;
+		Open Drawer
+	&lt;/button&gt;
+	&lt;dialog id=&quot;my-drawer&quot; class=&quot;db-drawer&quot; data-backdrop=&quot;true&quot;&gt;
 		&lt;article class=&quot;db-drawer-container&quot;&gt;
 			&lt;header class=&quot;db-drawer-header&quot;&gt;
 				&lt;button
 					class=&quot;db-button button-close-drawer is-icon-text-replace&quot;
 					data-icon=&quot;cross&quot;
 					data-variant=&quot;ghost&quot;
+					command=&quot;close&quot;
+					commandfor=&quot;my-drawer&quot;
 				&gt;
 					Close Button
 				&lt;/button&gt;
@@ -20,5 +27,32 @@
 			&lt;div class=&quot;db-drawer-content&quot;&gt;My Drawer content&lt;/div&gt;
 		&lt;/article&gt;
 	&lt;/dialog&gt;
+
+	&lt;script&gt;
+		/*
+		 * Feature detection for Invoker Commands:
+		 * If the browser does not support the `command` and `commandfor`
+		 * HTML attributes, we fall back to JavaScript event handlers.
+		 */
+		if (
+			!(&quot;command&quot; in HTMLButtonElement.prototype) ||
+			!(&quot;commandFor&quot; in HTMLButtonElement.prototype)
+		) {
+			const openButton = document.querySelector(
+				&#x27;[commandfor=&quot;my-drawer&quot;][command=&quot;show-modal&quot;]&#x27;
+			);
+			const closeButton = document.querySelector(
+				&#x27;[commandfor=&quot;my-drawer&quot;][command=&quot;close&quot;]&#x27;
+			);
+			const drawer = document.getElementById(&quot;my-drawer&quot;);
+
+			openButton?.addEventListener(&quot;click&quot;, () =&gt; {
+				drawer?.showModal?.();
+			});
+			closeButton?.addEventListener(&quot;click&quot;, () =&gt; {
+				drawer?.close?.();
+			});
+		}
+	&lt;/script&gt;
 &lt;/body&gt;
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/HTML","query":{},"buildId":"k5FcNLHhwf8pOfDMBjxsQ","assetPrefix":"/core-web/version/v4.6.1","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/HTML","query":{},"buildId":"vZoj3oXiP7mA5cH5yF6Xq","assetPrefix":"/core-web/version/v4.6.1","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
