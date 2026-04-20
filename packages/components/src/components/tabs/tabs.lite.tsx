@@ -2,6 +2,7 @@ import {
 	For,
 	onMount,
 	onUnMount,
+	onUpdate,
 	Show,
 	useDefaultProps,
 	useRef,
@@ -180,18 +181,24 @@ export default function DBTabs(props: DBTabsProps) {
 				: -1;
 		},
 
-		// Parses the tabs prop to ensure the correct data structure.
-		// Note: called twice in JSX (for tab items and panels) - Mitosis doesn't support local JSX variables to cache the result
-		convertTabs(): DBSimpleTabProps[] {
+		_cachedTabs: [] as DBSimpleTabProps[],
+
+		// Parses the tabs prop and caches the result in state._cachedTabs.
+		// Called in onMount and onUpdate([props.tabs]) so the JSX can reference
+		// state._cachedTabs without re-parsing on every render.
+		_updateCachedTabs() {
 			try {
 				if (typeof props.tabs === 'string') {
-					return JSON.parse(props.tabs as string);
+					state._cachedTabs = JSON.parse(props.tabs as string);
+				} else if (props.tabs) {
+					state._cachedTabs = props.tabs as DBSimpleTabProps[];
+				} else {
+					state._cachedTabs = [];
 				}
-				return props.tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
+				state._cachedTabs = [];
 			}
-			return [];
 		},
 
 		// Detects RTL direction on the scroll container via computed style.
@@ -355,6 +362,11 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	});
 
+	// Re-cache parsed tabs when the prop changes (e.g. dynamic tab lists)
+	onUpdate(() => {
+		state._updateCachedTabs();
+	}, [props.tabs]);
+
 	onMount(() => {
 		// 1. Calculate final start index synchronously to avoid race conditions
 		let startIndex = 0;
@@ -385,6 +397,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// 3. Set initial state synchronously
 		state.activeTabIndex = startIndex;
 		state.initialized = true;
+		state._updateCachedTabs();
 
 		// 4. Trigger single initial DOM update after paint
 		if (typeof window !== 'undefined') {
@@ -461,7 +474,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={props.tabs}>
 				<DBTabList>
-					<For each={state.convertTabs()}>
+					<For each={state._cachedTabs}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
@@ -478,7 +491,7 @@ export default function DBTabs(props: DBTabsProps) {
 						)}
 					</For>
 				</DBTabList>
-				<For each={state.convertTabs()}>
+				<For each={state._cachedTabs}>
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
