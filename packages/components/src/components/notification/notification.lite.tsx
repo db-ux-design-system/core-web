@@ -62,9 +62,11 @@ export default function DBNotification(props: DBNotificationProps) {
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>
 				<header>{props.headline}</header>
 			</Show>
-			<Show when={props.text} else={props.children}>
-				<p>{props.text}</p>
-			</Show>
+			<div>
+				<Show when={props.text} else={props.children}>
+					{props.text}
+				</Show>
+			</div>
 			<Show
 				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
 				<span>{props.timestamp}</span>
