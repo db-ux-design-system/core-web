@@ -412,8 +412,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 			if (tabListEl) {
 				const observer = new MutationObserver(() => {
-					if (state._pendingRafId !== null)
-						cancelAnimationFrame(state._pendingRafId);
+					const rafId = state._pendingRafId;
+					if (rafId !== null) cancelAnimationFrame(rafId);
 					state._pendingRafId = requestAnimationFrame(() => {
 						state._pendingRafId = null;
 						state.initTabList();
@@ -435,8 +435,9 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
-		if (state._pendingRafId !== null) {
-			cancelAnimationFrame(state._pendingRafId);
+		const rafId = state._pendingRafId;
+		if (rafId !== null) {
+			cancelAnimationFrame(rafId);
 			state._pendingRafId = null;
 		}
 		const _listener = state._scrollListener;
