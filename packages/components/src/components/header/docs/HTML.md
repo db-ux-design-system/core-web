@@ -6,7 +6,7 @@ For general installation and configuration take a look at the [components](https
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor` HTML attributes) to declaratively connect the burger menu button with the drawer `<dialog>` element, and the close button inside the drawer. Supported built-in commands for `<dialog>` are `show-modal` and `close`.
 
-If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill)).
+If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
 
 ```html index.html
 <!-- index.html -->
