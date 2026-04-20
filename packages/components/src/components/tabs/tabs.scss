@@ -4,14 +4,18 @@
 @use "../../styles/internal/db-puls";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
-$pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs});
+$pulse-gap-offset: calc(
+	#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
+);
 
 %horizontal-pulse {
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
 
 		&::after {
-			inset-block-end: calc(-1 * #{$pulse-gap-offset}) !important; // overrides inset-block shorthand set in _db-puls.scss
+			inset-block-end: calc(
+				-1 * #{$pulse-gap-offset}
+			) !important; // overrides inset-block shorthand set in _db-puls.scss
 		}
 
 		&[aria-selected="true"] {
@@ -68,15 +72,28 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		position: relative;
 		z-index: $db-tabs-z-index-tab-list;
 
-		db-tab-item, dbtabitem { display: contents; }
+		db-tab-item,
+		dbtabitem {
+			display: contents;
+		}
 	}
 
 	&:not([data-orientation="vertical"]) {
 		flex-flow: column wrap;
 
 		.db-tab-list {
-			padding: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2) 0 variables.$db-spacing-fixed-2xs;
-			margin-block-start: calc(-1 * (#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2));
+			padding: calc(
+					#{variables.$db-border-width-2xs} +
+						#{variables.$db-border-width-xs} * 2
+				)
+				0 variables.$db-spacing-fixed-2xs;
+			margin-block-start: calc(
+				-1 *
+					(
+						#{variables.$db-border-width-2xs} +
+							#{variables.$db-border-width-xs} * 2
+					)
+			);
 
 			@extend %horizontal-pulse;
 
@@ -95,12 +112,16 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				margin-block-end: $pulse-gap-offset;
 			}
 
-			&[role="tablist"], .db-tab-list {
+			&[role="tablist"],
+			.db-tab-list {
 				display: flex;
 				align-items: stretch;
 				overflow: auto;
 				// stylelint-disable-next-line db-ux/use-spacings
-				padding-inline: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
+				padding-inline: calc(
+					#{variables.$db-border-width-2xs} +
+						#{variables.$db-border-width-xs} * 2
+				);
 				inline-size: 100%;
 			}
 		}
@@ -120,7 +141,8 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			min-inline-size: variables.$db-sizing-3xl;
 			max-inline-size: variables.$db-sizing-3xl;
 			// stylelint-disable-next-line db-ux/use-spacings
-			padding-inline: variables.$db-spacing-fixed-xs var(--db-tabs-line-gap-vertical);
+			padding-inline: variables.$db-spacing-fixed-xs
+				var(--db-tabs-line-gap-vertical);
 			margin-block-end: auto;
 
 			@extend %vertical-pulse;
@@ -135,7 +157,8 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				z-index: 1;
 			}
 
-			&[role="tablist"], .db-tab-list {
+			&[role="tablist"],
+			.db-tab-list {
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
@@ -180,27 +203,36 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				content: "";
 				position: absolute;
 				z-index: $db-tabs-z-index-track;
-				inset-block-start: calc(#{variables.$db-sizing-md} + #{variables.$db-border-width-2xs});
+				inset-block-start: calc(
+					#{variables.$db-sizing-md} +
+						#{variables.$db-border-width-2xs}
+				);
 				inset-inline: 0;
 				block-size: variables.$db-border-width-xs;
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 			}
 
 			// Adjust track width when buttons are hidden
-			&:not(:has(.tabs-scroll-left))::before {
+			&:not(:has(.tabs-scroll-start))::before {
 				inset-inline-start: variables.$db-sizing-md;
 			}
 
-			&:not(:has(.tabs-scroll-right))::before {
+			&:not(:has(.tabs-scroll-end))::before {
 				inset-inline-end: variables.$db-sizing-md;
 			}
 
 			[data-density="functional"] &::before {
-				inset-block-start: calc(#{variables.$db-sizing-sm} + #{variables.$db-border-width-2xs});
+				inset-block-start: calc(
+					#{variables.$db-sizing-sm} +
+						#{variables.$db-border-width-2xs}
+				);
 			}
 
 			[data-density="expressive"] &::before {
-				inset-block-start: calc(#{variables.$db-sizing-lg} + #{variables.$db-border-width-2xs});
+				inset-block-start: calc(
+					#{variables.$db-sizing-lg} +
+						#{variables.$db-border-width-2xs}
+				);
 			}
 
 			.db-tab-list {
@@ -213,13 +245,19 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 					margin-block-end: 0;
 
 					&::after {
-						inset-block-end: calc(-1 * (#{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-2xs})) !important;
+						inset-block-end: calc(
+							-1 *
+								(
+									#{variables.$db-spacing-fixed-xs} -
+										#{variables.$db-border-width-2xs}
+								)
+						) !important;
 					}
 				}
 			}
 
-			.tabs-scroll-left,
-			.tabs-scroll-right {
+			.tabs-scroll-start,
+			.tabs-scroll-end {
 				position: absolute;
 				z-index: $db-tabs-z-index-button;
 				inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
@@ -227,19 +265,23 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				min-block-size: unset;
 				block-size: fit-content;
 				border-block-width: 0;
-				padding-block: calc(#{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-2xs});
+				padding-block: calc(
+					#{variables.$db-spacing-fixed-xs} -
+						#{variables.$db-border-width-2xs}
+				);
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
 				@media screen and (forced-colors: active) {
-					border-block: variables.$db-border-width-xs solid transparent;
+					border-block: variables.$db-border-width-xs solid
+						transparent;
 				}
 			}
 
-			.tabs-scroll-left {
+			.tabs-scroll-start {
 				inset-inline-start: 0;
 			}
 
-			.tabs-scroll-right {
+			.tabs-scroll-end {
 				inset-inline-end: 0;
 			}
 		}

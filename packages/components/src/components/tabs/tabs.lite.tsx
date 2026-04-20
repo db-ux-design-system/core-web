@@ -24,8 +24,8 @@ export default function DBTabs(props: DBTabsProps) {
 		_generatedName: uuid(),
 		activeTabIndex: 0,
 		initialized: false,
-		showScrollLeft: false,
-		showScrollRight: false,
+		showScrollStart: false,
+		showScrollEnd: false,
 		scrollContainer: null,
 		_resizeObserver: null,
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
@@ -183,24 +183,51 @@ export default function DBTabs(props: DBTabsProps) {
 			return [];
 		},
 
-		// Determines the visibility of scroll buttons based on the container's scroll position
-		evaluateScrollButtons(tList: Element) {
-			const needsScroll = tList.scrollWidth > tList.clientWidth;
-			state.showScrollLeft =
-				needsScroll && Math.round(tList.scrollLeft) > 0;
-			state.showScrollRight =
-				needsScroll &&
-				Math.round(tList.scrollLeft) <
-					Math.round(tList.scrollWidth - tList.clientWidth);
+		// Detects RTL direction on the scroll container via computed style.
+		// Cached per evaluation cycle – no need for persistent state since it's synchronous.
+		_isRtl(): boolean {
+			return (
+				!!state.scrollContainer &&
+				typeof getComputedStyle !== 'undefined' &&
+				getComputedStyle(state.scrollContainer as Element).direction ===
+					'rtl'
+			);
 		},
 
-		// Scrolls the tab list container horizontally by a specified distance
-		scroll(left?: boolean) {
+		// Determines the visibility of scroll buttons based on the container's scroll position.
+		// Uses Math.abs(scrollLeft) because browsers return negative scrollLeft values in RTL layouts
+		// (Chrome, Edge, Firefox all use 0 → negative; Safari historically used reversed positive values).
+		evaluateScrollButtons(tList: Element) {
+			const needsScroll = tList.scrollWidth > tList.clientWidth;
+			if (!needsScroll) {
+				state.showScrollStart = false;
+				state.showScrollEnd = false;
+				return;
+			}
+
+			const scrollPos = Math.round(Math.abs(tList.scrollLeft));
+			const maxScroll = Math.round(tList.scrollWidth - tList.clientWidth);
+
+			// scrollPos=0 means "at inline-start" in both LTR and RTL
+			state.showScrollStart = scrollPos > 0;
+			state.showScrollEnd = scrollPos < maxScroll;
+		},
+
+		// Scrolls the tab list container horizontally by a specified distance.
+		// The `toStart` parameter means "scroll towards inline-start" (visually left in LTR, right in RTL).
+		// scrollBy({ left }) always operates in the physical axis, so we must invert the step in RTL
+		// to map the logical direction (start/end) to the correct physical direction.
+		scroll(toStart?: boolean) {
 			let step = Number(props.arrowScrollDistance) || 120;
-			if (left) {
+			const isRtl = state._isRtl();
+
+			// In LTR: "toStart" means physical left (negative step).
+			// In RTL: "toStart" means physical right (positive step).
+			// XOR logic: invert when exactly one of toStart/isRtl is true.
+			if (toStart !== isRtl) {
 				step *= -1;
 			}
-			// scrollBy uses physical 'left' - the Web API does not support logical properties (inlineStart)
+
 			state.scrollContainer?.scrollBy({
 				left: step,
 				behavior: 'smooth'
@@ -407,15 +434,15 @@ export default function DBTabs(props: DBTabsProps) {
 			data-tab-item-width={props.tabItemWidth ?? 'auto'}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
-			<Show when={state.showScrollLeft}>
+			<Show when={state.showScrollStart}>
 				<DBButton
-					class="tabs-scroll-left"
+					class="tabs-scroll-start"
 					variant="ghost"
 					icon="chevron_left"
 					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
-					Scroll left
+					Scroll start
 				</DBButton>
 			</Show>
 			<Show when={props.tabs}>
@@ -451,15 +478,15 @@ export default function DBTabs(props: DBTabsProps) {
 				</For>
 			</Show>
 			<Show when={!props.tabs}>{props.children}</Show>
-			<Show when={state.showScrollRight}>
+			<Show when={state.showScrollEnd}>
 				<DBButton
-					class="tabs-scroll-right"
+					class="tabs-scroll-end"
 					variant="ghost"
 					icon="chevron_right"
 					type="button"
 					noText
 					onClick={() => state.scroll()}>
-					Scroll right
+					Scroll end
 				</DBButton>
 			</Show>
 		</div>
