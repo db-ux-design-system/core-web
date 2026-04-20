@@ -29,6 +29,7 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: null,
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
+		_pendingRafId: null,
 		_scrollListener: null,
 
 		_id() {
@@ -395,33 +396,36 @@ export default function DBTabs(props: DBTabsProps) {
 
 		if (_ref) {
 			const tabListEl = _ref.querySelector('[role="tablist"]');
-			let localRafId: number | null = null;
 
-			const observer = new MutationObserver((mutations) => {
-				const isTabListMutation = mutations.some(
-					(m) => tabListEl && tabListEl.contains(m.target)
-				);
-				if (!isTabListMutation) return;
-
-				if (localRafId !== null) cancelAnimationFrame(localRafId);
-				localRafId = requestAnimationFrame(() => {
-					localRafId = null;
-					state.initTabList();
-					state.initTabs(state.activeTabIndex);
+			if (tabListEl) {
+				const observer = new MutationObserver(() => {
+					if (state._pendingRafId !== null)
+						cancelAnimationFrame(state._pendingRafId);
+					state._pendingRafId = requestAnimationFrame(() => {
+						state._pendingRafId = null;
+						state.initTabList();
+						state.initTabs(state.activeTabIndex);
+					});
 				});
-			});
 
-			// childList: true only - attribute changes (set by initTabs) are not observed, preventing infinite loops
-			observer.observe(_ref, {
-				childList: true,
-				subtree: true
-			});
+				// Observe only the tablist (not panel content) to avoid unnecessary
+				// re-evaluations when user content inside panels changes.
+				// childList only – attribute changes (set by initTabs) are not observed, preventing infinite loops.
+				observer.observe(tabListEl, {
+					childList: true,
+					subtree: true
+				});
 
-			state._observer = observer;
+				state._observer = observer;
+			}
 		}
 	});
 
 	onUnMount(() => {
+		if (state._pendingRafId !== null) {
+			cancelAnimationFrame(state._pendingRafId);
+			state._pendingRafId = null;
+		}
 		const _listener = state._scrollListener;
 		const _container = state.scrollContainer;
 		if (_listener && _container) {
