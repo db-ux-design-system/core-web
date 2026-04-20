@@ -100,8 +100,12 @@ export class FormComponent {
 			: [...this.tags, tag];
 	};
 
-	changeTextarea(key: string, event: any) {
-		this[key] = event.target.value;
+	changeTextarea(
+		key: 'textarea' | 'textareaDefaultValue',
+		event: Event | void
+	) {
+		if (!event) return;
+		this[key] = (event.target as HTMLTextAreaElement).value;
 	}
 
 	resetValues(): void {
@@ -127,22 +131,35 @@ export class FormComponent {
 	}
 
 	// Checkbox changes
-	handleChange1 = (event?: any) => {
-		this.checked = [event.target.checked, event.target.checked];
+	handleChange1 = (event?: Event | void) => {
+		if (!event) return;
+		const checked = (event.target as HTMLInputElement)?.checked;
+		this.checked = [checked, checked];
 	};
 
-	handleChange2 = (event: any) => {
-		this.checked = [event.target.checked, this.checked[1]];
+	handleChange2 = (event: Event | void) => {
+		if (!event) return;
+		this.checked = [
+			(event.target as HTMLInputElement).checked,
+			this.checked[1]
+		];
 	};
 
-	handleChange3 = (event: any) => {
-		this.checked = [this.checked[0], event.target.checked];
+	handleChange3 = (event: Event | void) => {
+		if (!event) return;
+		this.checked = [
+			this.checked[0],
+			(event.target as HTMLInputElement).checked
+		];
 	};
 
-	handleChange4 = (event: any) => {
-		this.form.get('select')?.setValue(event.target.value, {
-			onlySelf: true
-		});
+	handleChange4 = (event: Event | void) => {
+		if (!event) return;
+		this.form
+			.get('select')
+			?.setValue((event.target as HTMLSelectElement).value, {
+				onlySelf: true
+			});
 	};
 
 	showValues(): void {
@@ -159,9 +176,10 @@ export class FormComponent {
 		);
 	}
 
-	handleChange(event: any) {
+	handleChange(event: Event | void) {
+		if (!event) return;
 		console.log(event.currentTarget);
-		this.checkedSignal.set(event.target.checked);
-		this.checkedNonSignal = event.target.checked;
+		this.checkedSignal.set((event.target as HTMLInputElement).checked);
+		this.checkedNonSignal = (event.target as HTMLInputElement).checked;
 	}
 }

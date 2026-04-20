@@ -30,7 +30,7 @@ export interface GlobalProps {
 	autofocus?: boolean | string;
 
 	/**
-	 * Allows overriding specific props on nested elements or internal component structure.
+	 * Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id
 	 */
 	propOverrides?: PropOverridesType;
 }

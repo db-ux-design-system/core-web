@@ -42,7 +42,7 @@ export type NavigationItem = {
 export const getSortedNavigationItems = (
 	navigationItems: NavigationItem[]
 ): any[] =>
-	navigationItems.sort((a: NavigationItem, b: NavigationItem) =>
+	navigationItems.toSorted((a: NavigationItem, b: NavigationItem) =>
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
