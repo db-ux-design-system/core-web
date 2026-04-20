@@ -10,7 +10,7 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element. Supported built-in commands for `<dialog>` are `show-modal` and `close`.
 
-If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill)).
+If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
 
 ```html index.html
 <!-- index.html -->
