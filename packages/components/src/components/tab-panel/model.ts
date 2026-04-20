@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps } from '../../shared/model';
 
 export type DBTabPanelDefaultProps = {
 	/**
@@ -20,5 +20,3 @@ export type DBTabPanelDefaultProps = {
 };
 
 export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps;
-
-export interface DBTabPanelState extends GlobalState {}

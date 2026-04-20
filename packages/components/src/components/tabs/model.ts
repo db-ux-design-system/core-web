@@ -1,7 +1,6 @@
 import {
 	GlobalProps,
 	InitializedState,
-	InputEvent,
 	OrientationProps,
 	TabItemAlignmentProps,
 	WidthType
@@ -51,6 +50,16 @@ export type DBTabsDefaultProps = {
 	 * Width of the tab-items. Auto width based on tab-item size, full width based on parent elements width.
 	 */
 	tabItemWidth?: WidthType | string;
+
+	/**
+	 * Accessible label for the "scroll towards start" button (i18n). Only used with behavior="arrows".
+	 */
+	scrollStartLabel?: string;
+
+	/**
+	 * Accessible label for the "scroll towards end" button (i18n). Only used with behavior="arrows".
+	 */
+	scrollEndLabel?: string;
 };
 
 export type DBTabsEventProps = {
@@ -63,15 +72,6 @@ export type DBTabsEventProps = {
 	 * Informs the user if the current tab index has changed.
 	 */
 	onIndexChange?: (index?: number) => void;
-	/**
-	 * Informs the user if another tab has been selected.
-	 */
-	onTabSelect?: (event?: InputEvent<HTMLElement>) => void;
-
-	/**
-	 * Informs the user if another tab has been selected.
-	 */
-	tabSelect?: (event?: InputEvent<HTMLElement>) => void;
 };
 
 export type DBTabsProps = DBTabsDefaultProps &

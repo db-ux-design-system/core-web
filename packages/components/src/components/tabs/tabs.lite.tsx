@@ -15,7 +15,12 @@ import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
-useDefaultProps<DBTabsProps>({});
+useDefaultProps<DBTabsProps>({
+	tabItemWidth: 'auto',
+	tabItemAlignment: 'start',
+	scrollStartLabel: 'Scroll start',
+	scrollEndLabel: 'Scroll end'
+});
 
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -261,7 +266,7 @@ export default function DBTabs(props: DBTabsProps) {
 					if (!container.getAttribute('aria-orientation')) {
 						container.setAttribute(
 							'aria-orientation',
-							props.orientation || 'horizontal'
+							props.orientation ?? 'horizontal'
 						);
 					}
 
@@ -456,12 +461,12 @@ export default function DBTabs(props: DBTabsProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? state._id()}
+			id={props.id ?? props.propOverrides?.id ?? state._id()}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
-			data-tab-item-alignment={props.tabItemAlignment ?? 'start'}
-			data-tab-item-width={props.tabItemWidth ?? 'auto'}
+			data-tab-item-alignment={props.tabItemAlignment}
+			data-tab-item-width={props.tabItemWidth}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>
@@ -472,7 +477,7 @@ export default function DBTabs(props: DBTabsProps) {
 					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
-					Scroll start
+					{props.scrollStartLabel}
 				</DBButton>
 			</Show>
 			<Show when={props.tabs}>
@@ -518,7 +523,7 @@ export default function DBTabs(props: DBTabsProps) {
 					type="button"
 					noText
 					onClick={() => state.scroll()}>
-					Scroll end
+					{props.scrollEndLabel}
 				</DBButton>
 			</Show>
 		</div>
