@@ -108,14 +108,24 @@ export default function DBTabs(props: DBTabsProps) {
 
 			// find currently focused element within the buttons list
 			let currentIndex = -1;
-			if (typeof document !== 'undefined' && document.activeElement) {
-				const focusedButton = (
-					document.activeElement as HTMLElement
-				).closest('[role="tab"]');
-				if (focusedButton) {
-					currentIndex = buttons.indexOf(
-						focusedButton as HTMLElement
+			if (typeof document !== 'undefined') {
+				// Traverse Shadow DOM boundaries to find the truly focused element.
+				// document.activeElement only returns the shadow host when focus is inside a Shadow DOM,
+				// so we must walk through each shadowRoot to reach the actual focused element.
+				let activeEl: Element | null = document.activeElement;
+				while (activeEl?.shadowRoot?.activeElement) {
+					activeEl = activeEl.shadowRoot.activeElement;
+				}
+
+				if (activeEl) {
+					const focusedButton = (activeEl as HTMLElement).closest(
+						'[role="tab"]'
 					);
+					if (focusedButton) {
+						currentIndex = buttons.indexOf(
+							focusedButton as HTMLElement
+						);
+					}
 				}
 			}
 
