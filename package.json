@@ -23,6 +23,9 @@
     "scripts"
   ],
   "packageManager": "npm@11.5.2",
+  "engines": {
+    "node": ">= 24"
+  },
   "keywords": [
     "design-system",
     "ui-library",
@@ -115,8 +118,8 @@
     "@playwright/experimental-ct-react": "1.59.1",
     "@playwright/experimental-ct-vue": "1.59.1",
     "@playwright/test": "1.59.1",
-    "@typescript-eslint/eslint-plugin": "8.58.1",
-    "@typescript-eslint/parser": "8.58.1",
+    "@typescript-eslint/eslint-plugin": "8.58.2",
+    "@typescript-eslint/parser": "8.58.2",
     "accessibility-checker": "4.0.16",
     "adm-zip": "0.5.17",
     "commander": "14.0.3",
