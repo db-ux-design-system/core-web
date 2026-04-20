@@ -1,5 +1,7 @@
-$variants: "neutral", "brand", "critical", "successful", "warning", "informational";
-$variant-colors: "neutral", "critical", "successful", "warning", "informational";
+$variants:
+	"neutral", "brand", "critical", "successful", "warning", "informational";
+$variant-colors:
+	"neutral", "critical", "successful", "warning", "informational";
 $on-background-colors:
 	"emphasis-100", "emphasis-90", "emphasis-80", "emphasis-70", "emphasis-60",
 	"emphasis-50";
