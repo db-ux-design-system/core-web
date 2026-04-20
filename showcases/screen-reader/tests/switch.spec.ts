@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -26,6 +26,22 @@ test.describe('DBSwitch', () => {
 				await voiceOver?.next(); // Focus "switch 3"
 				await voiceOver?.act(); // Interact "switch 1"
 				await voiceOver?.next(); // Focus "switch 3 inline text"
+			}
+		},
+		async postTestFn(voiceOver, nvda, retry) {
+			if (nvda) {
+				/*
+				 * There is a timing issue for windows which results in
+				 * NVDA announcing "blank" instead of the disabled switch
+				 * label. We normalize the output to stabilize the snapshot.
+				 */
+				await generateSnapshot(nvda, retry, (phraseLog) =>
+					phraseLog.map((log) =>
+						log === 'blank' ? 'check box, not checked, True' : log
+					)
+				);
+			} else if (voiceOver) {
+				await generateSnapshot(voiceOver, retry);
 			}
 		}
 	});
