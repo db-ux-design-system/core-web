@@ -72,7 +72,7 @@
     - tab "Test 4"
     - tab "Test 5"
   - tabpanel "Test 1": Tab Panel 1
-  - button "Scroll right"
+  - button "Scroll end"
   - text: "with overflow - behavior: scrollbar:"
   - tablist:
     - tab "Test 1" [selected]
