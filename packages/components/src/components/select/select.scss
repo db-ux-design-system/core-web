@@ -27,15 +27,6 @@
 
 	select {
 		text-indent: select-components.$has-before-padding;
-
-		// Hide placeholder, as soon as a selection has been made
-		// Hide inserted `option` for placeholder or floating label types in dropdown
-		&:is(
-			:has(option:checked:not(.placeholder)) + [id$="-placeholder"],
-			:open option[data-show-empty-option="false"]
-		) {
-			display: none;
-		}
 	}
 
 	&[data-hide-label="true"] {
@@ -51,5 +42,15 @@
 
 	optgroup {
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
+	}
+
+	// TODO: we could remove the `:is(:has(> select option:checked:not(.placeholder)), ` selector part as soon as `:open` is baseline.
+	select:is(:has(option:checked:not(.placeholder)), :open) {
+		& + [id$="-placeholder"],
+		// Hide inserted `option` for placeholder or floating label types in dropdown for `required` selects after a selection has been made or the `select` has been opened
+		// This prevents users from selecting an invalid empty option when the field is required
+		option[data-show-empty-option="false"] {
+			display: none;
+		}
 	}
 }
