@@ -258,10 +258,12 @@ export default function DBTabs(props: DBTabsProps) {
 					_ref.querySelector('[role="tablist"]');
 
 				if (container) {
-					container.setAttribute(
-						'aria-orientation',
-						props.orientation || 'horizontal'
-					);
+					if (!container.getAttribute('aria-orientation')) {
+						container.setAttribute(
+							'aria-orientation',
+							props.orientation || 'horizontal'
+						);
+					}
 
 					if (props.behavior === 'arrows') {
 						state.scrollContainer = container;
@@ -291,7 +293,7 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 					}
 
-					if (props.name) {
+					if (props.name && !container.getAttribute('aria-label')) {
 						container.setAttribute('aria-label', props.name ?? '');
 					}
 				}
@@ -474,7 +476,9 @@ export default function DBTabs(props: DBTabsProps) {
 				</DBButton>
 			</Show>
 			<Show when={props.tabs}>
-				<DBTabList>
+				<DBTabList
+					orientation={props.orientation}
+					ariaLabel={props.name}>
 					<For each={state._cachedTabs}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem

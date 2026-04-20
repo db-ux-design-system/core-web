@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState, OrientationProps } from '../../shared/model';
 
 export type DBTabListDefaultProps = {
 	/**
@@ -12,7 +12,9 @@ export type DBTabListDefaultProps = {
 	ariaLabelledby?: string;
 };
 
-export type DBTabListProps = DBTabListDefaultProps & GlobalProps;
+export type DBTabListProps = DBTabListDefaultProps &
+	GlobalProps &
+	OrientationProps;
 
 export interface DBTabListState extends GlobalState {
 	_id?: string;
