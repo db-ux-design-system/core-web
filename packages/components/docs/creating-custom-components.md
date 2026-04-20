@@ -627,7 +627,8 @@ export class CustomCardComponent {
 
 3. **Set up the examples repo**: Create a new branch in the [examples repository](https://github.com/db-ux-design-system/examples) named after the component (e.g., `test-table`). Update the npm dependency for the framework you want to test with the pre-release version:
    "Use the package matching your framework: @db-ux/react-core-components (React), @db-ux/ngx-core-components (Angular), @db-ux/v-core-components (Vue), @db-ux/wc-core-components (Web Components)."
-   ```json
+
+    ```json
     {
     	"dependencies": {
     		"@db-ux/react-core-components": "0.0.0-table-abc1234"
