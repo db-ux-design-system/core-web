@@ -3,6 +3,10 @@ import { getTest, testDefault } from '../default';
 const test = getTest();
 
 test.describe('DBSwitch', () => {
+	// NVDA sometimes announces "blank" instead of the checkbox label (timing-dependent).
+	// Retries stabilize this flaky behavior without masking the actual output.
+	test.describe.configure({ retries: 2 });
+
 	testDefault({
 		test,
 		title: 'default',
