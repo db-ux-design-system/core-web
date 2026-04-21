@@ -271,6 +271,14 @@ $pulse-gap-offset: calc(
 				align-items: flex-start;
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
+				@include helpers.hover {
+					background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+				}
+
+				@include helpers.active {
+					background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+				}
+
 				@media screen and (forced-colors: active) {
 					border-block: variables.$db-border-width-xs solid
 						transparent;
