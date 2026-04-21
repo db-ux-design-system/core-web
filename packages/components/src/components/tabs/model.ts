@@ -85,7 +85,7 @@ export type DBTabsDefaultState = {
 	_generatedName: string;
 	_id: () => string;
 	_name: () => string;
-	scrollContainer?: Element | null;
+	_getScrollContainer: () => Element | null;
 	scroll: (toStart?: boolean) => void;
 	showScrollStart?: boolean;
 	showScrollEnd?: boolean;

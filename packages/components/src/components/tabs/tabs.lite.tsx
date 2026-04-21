@@ -32,7 +32,6 @@ export default function DBTabs(props: DBTabsProps) {
 		initialized: false,
 		showScrollStart: false,
 		showScrollEnd: false,
-		scrollContainer: null,
 		_resizeObserver: null,
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
 		_pendingRafId: null,
@@ -206,14 +205,22 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
+		// Returns the live tablist DOM element by querying _ref.
+		// IMPORTANT: Do NOT store DOM elements in useStore and call native methods
+		// like scrollBy() on them. Mitosis/React wraps state values in proxies that
+		// strip native DOM prototypes, causing silent no-ops. Always query fresh.
+		_getScrollContainer(): Element | null {
+			return _ref?.querySelector('[role="tablist"]') ?? null;
+		},
+
 		// Detects RTL direction on the scroll container via computed style.
 		// Cached per evaluation cycle – no need for persistent state since it's synchronous.
 		_isRtl(): boolean {
+			const container = state._getScrollContainer();
 			return (
-				!!state.scrollContainer &&
+				!!container &&
 				typeof getComputedStyle !== 'undefined' &&
-				getComputedStyle(state.scrollContainer as Element).direction ===
-					'rtl'
+				getComputedStyle(container).direction === 'rtl'
 			);
 		},
 
@@ -228,12 +235,13 @@ export default function DBTabs(props: DBTabsProps) {
 				return;
 			}
 
-			const scrollPos = Math.round(Math.abs(tList.scrollLeft));
-			const maxScroll = Math.round(tList.scrollWidth - tList.clientWidth);
+			const scrollPos = Math.abs(tList.scrollLeft);
+			const maxScroll = tList.scrollWidth - tList.clientWidth;
+			const tolerance = 2;
 
 			// scrollPos=0 means "at inline-start" in both LTR and RTL
-			state.showScrollStart = scrollPos > 0;
-			state.showScrollEnd = scrollPos < maxScroll;
+			state.showScrollStart = scrollPos > tolerance;
+			state.showScrollEnd = scrollPos < maxScroll - tolerance;
 		},
 
 		// Scrolls the tab list container horizontally by a specified distance.
@@ -241,20 +249,27 @@ export default function DBTabs(props: DBTabsProps) {
 		// scrollBy({ left }) always operates in the physical axis, so we must invert the step in RTL
 		// to map the logical direction (start/end) to the correct physical direction.
 		scroll(toStart?: boolean) {
+			const container = state._getScrollContainer();
+			if (!container) {
+				return;
+			}
+
 			let step = Number(props.arrowScrollDistance) || 120;
+			const isLeft = !!toStart;
 			const isRtl = state._isRtl();
 
-			// In LTR: "toStart" means physical left (negative step).
-			// In RTL: "toStart" means physical right (positive step).
-			// XOR logic: invert when exactly one of toStart/isRtl is true.
-			if (toStart !== isRtl) {
+			// Map logical direction (start/end) to physical direction.
+			// In LTR: toStart=true → scroll left (negative), toEnd → scroll right (positive).
+			// In RTL: directions are inverted physically.
+			if (isLeft !== isRtl) {
 				step *= -1;
 			}
 
-			state.scrollContainer?.scrollBy({
-				left: step,
-				behavior: 'smooth'
-			});
+			container.scrollBy({ left: step, behavior: 'smooth' });
+			// Fallback: directly update scrollLeft in case scrollBy is not effective
+			if (container.scrollLeft === Math.round(container.scrollLeft)) {
+				container.scrollLeft += step;
+			}
 		},
 
 		initTabList() {
@@ -271,13 +286,11 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 
 					if (props.behavior === 'arrows') {
-						state.scrollContainer = container;
 						state.evaluateScrollButtons(container);
 
 						const _listener = state._scrollListener;
-						const _container = state.scrollContainer;
-						if (_listener && _container) {
-							_container.removeEventListener(
+						if (_listener && container) {
+							container.removeEventListener(
 								'scroll',
 								_listener.fn
 							);
@@ -448,7 +461,7 @@ export default function DBTabs(props: DBTabsProps) {
 			state._pendingRafId = null;
 		}
 		const _listener = state._scrollListener;
-		const _container = state.scrollContainer;
+		const _container = state._getScrollContainer();
 		if (_listener && _container) {
 			_container.removeEventListener('scroll', _listener.fn);
 		}
@@ -522,7 +535,7 @@ export default function DBTabs(props: DBTabsProps) {
 					icon="chevron_right"
 					type="button"
 					noText
-					onClick={() => state.scroll()}>
+					onClick={() => state.scroll(false)}>
 					{props.scrollEndLabel}
 				</DBButton>
 			</Show>
