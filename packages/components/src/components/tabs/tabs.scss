@@ -260,20 +260,39 @@ $pulse-gap-offset: calc(
 			.tabs-scroll-end {
 				position: absolute;
 				z-index: $db-tabs-z-index-button;
-				inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
+				inset-block-start: 0;
 				aspect-ratio: unset;
 				min-block-size: unset;
-				block-size: fit-content;
 				border-block-width: 0;
-				padding-block: calc(
-					#{variables.$db-spacing-fixed-xs} -
-						#{variables.$db-border-width-2xs}
-				);
+				padding-block: variables.$db-spacing-fixed-xs
+					calc(
+						#{variables.$db-spacing-fixed-xs} + #{$pulse-gap-offset}
+					);
+				align-items: flex-start;
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
 				@media screen and (forced-colors: active) {
 					border-block: variables.$db-border-width-xs solid
 						transparent;
+					inset-block-start: calc(
+						-1 * #{variables.$db-border-width-xs}
+					);
+				}
+
+				[data-density="functional"] & {
+					padding-block: variables.$db-spacing-fixed-2xs
+						calc(
+							#{variables.$db-spacing-fixed-2xs} +
+								#{$pulse-gap-offset}
+						);
+				}
+
+				[data-density="expressive"] & {
+					padding-block: variables.$db-spacing-fixed-sm
+						calc(
+							#{variables.$db-spacing-fixed-sm} +
+								#{$pulse-gap-offset}
+						);
 				}
 			}
 

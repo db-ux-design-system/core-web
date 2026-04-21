@@ -7,27 +7,27 @@ import DBTabs from '../tabs.lite';
 import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
-	storybookTitle: 'Truncation',
-	storybookNames: ['truncated vertical', 'truncated horizontal full-width'],
+	storybookTitle: 'Disabled',
+	storybookNames: ['with disabled tab in the middle'],
 	storybookArgTypes: StorybookTabsArgTypes
 });
 
-export default function TabsTruncation() {
+export default function TabsDisabled() {
 	return (
 		<Fragment>
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
-					truncated tab label (vertical only):
+					with disabled tab in the middle:
 				</DBInfotext>
-				<DBTabs orientation="vertical" tabItemWidth="auto">
+				<DBTabs>
 					<DBTabList>
-						<DBTabItem label="Very long tab label that gets truncated" />
-						<DBTabItem label="Another long label" />
-						<DBTabItem label="Short" />
+						<DBTabItem>Active Tab</DBTabItem>
+						<DBTabItem disabled={true}>Disabled Tab</DBTabItem>
+						<DBTabItem>Another Tab</DBTabItem>
 					</DBTabList>
-					<DBTabPanel>Tab Panel 1</DBTabPanel>
-					<DBTabPanel>Tab Panel 2</DBTabPanel>
-					<DBTabPanel>Tab Panel 3</DBTabPanel>
+					<DBTabPanel>Panel for active tab</DBTabPanel>
+					<DBTabPanel>Panel for disabled tab</DBTabPanel>
+					<DBTabPanel>Panel for another tab</DBTabPanel>
 				</DBTabs>
 			</div>
 		</Fragment>

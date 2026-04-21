@@ -11,7 +11,40 @@ import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
-const getTabs = ({
+type ChildDefinition = {
+	name: string;
+	content?: string;
+	props?: Record<string, any>;
+	children?: ChildDefinition[];
+};
+
+/** Renders DBTabs from the JSON child definition (tabs.json `children`). */
+const getTabsFromChildren = (
+	tabsDef: ChildDefinition[],
+	tabsProps: DBTabsProps
+) => {
+	const tabList = tabsDef.find((c) => c.name === 'tab-list');
+	const panels = tabsDef.filter((c) => c.name === 'tab-panel');
+	const tabItems = tabList?.children ?? [];
+
+	return (
+		<DBTabs {...tabsProps}>
+			<DBTabList>
+				{tabItems.map((item, i) => (
+					<DBTabItem key={i} {...(item.props ?? {})}>
+						{item.content}
+					</DBTabItem>
+				))}
+			</DBTabList>
+			{panels.map((panel, i) => (
+				<DBTabPanel key={i}>{panel.content}</DBTabPanel>
+			))}
+		</DBTabs>
+	);
+};
+
+/** Fallback hardcoded template for examples without explicit children. */
+const getTabsFallback = ({
 	children,
 	orientation,
 	tabItemWidth,
@@ -19,7 +52,8 @@ const getTabs = ({
 	overflow,
 	behavior,
 	initialSelectedMode,
-	initialSelectedIndex
+	initialSelectedIndex,
+	arrowScrollDistance
 }: DBTabsProps & { overflow: boolean }) => {
 	const isTruncationExample = children?.toString().includes('truncation');
 	const tabLabels = isTruncationExample
@@ -43,7 +77,7 @@ const getTabs = ({
 				behavior={behavior}
 				initialSelectedIndex={initialSelectedIndex}
 				initialSelectedMode={initialSelectedMode}
-				arrowScrollDistance={75}>
+				arrowScrollDistance={arrowScrollDistance ?? 75}>
 				<DBTabList>
 					<DBTabItem>{tabLabels[0]}</DBTabItem>
 					<DBTabItem>{tabLabels[1]}</DBTabItem>
@@ -81,16 +115,40 @@ const getTabs = ({
 	);
 };
 
+const getTabs = (exampleProps: any) => {
+	if (exampleProps._children && Array.isArray(exampleProps._children)) {
+		const { _children, style, ...tabsProps } = exampleProps;
+		return (
+			<div className="w-full" style={style}>
+				<DBInfotext icon="none" size="small" semantic="informational">
+					{exampleProps.id}:
+				</DBInfotext>
+				{getTabsFromChildren(_children, tabsProps)}
+			</div>
+		);
+	}
+
+	return getTabsFallback(exampleProps);
+};
+
 const TabsComponent = (props: BaseComponentProps) => {
+	const enrichedVariants = defaultComponentVariants.map((variant: any) => ({
+		...variant,
+		examples: variant.examples.map((example: any) => ({
+			...example,
+			props: {
+				...example.props,
+				...(variant.children ? { _children: variant.children } : {})
+			}
+		}))
+	}));
+
 	return (
 		<DefaultComponent
 			title="DBTabs"
 			subComponent={props.subComponent}
-			variants={getVariants(
-				defaultComponentVariants,
-				getTabs,
-				props.slotCode
-			)}></DefaultComponent>
+			variants={getVariants(enrichedVariants, getTabs, props.slotCode)}
+		/>
 	);
 };
 

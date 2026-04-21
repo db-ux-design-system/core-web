@@ -194,6 +194,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					? getBoolean(props.active)
 					: state.internalActive
 			}
+			data-no-text={getBoolean(props.noText) ? 'true' : undefined}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={!props.noText}>
 				{/* wrapper needed for accurate width measurement via refs */}
@@ -216,6 +217,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 						<Slot />
 					</Show>
 				</span>
+			</Show>
+			<Show when={getBoolean(props.noText)}>
+				{/* icon-only: render label span without text, icon shown via CSS ::before */}
+				<span
+					class="db-tab-label"
+					aria-hidden="true"
+					data-icon={
+						getBoolean(props.showIconLeading ?? props.showIcon)
+							? (props.iconLeading ?? props.icon)
+							: undefined
+					}
+				/>
 			</Show>
 			<Show when={state.isTruncated && state.tooltipText}>
 				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>

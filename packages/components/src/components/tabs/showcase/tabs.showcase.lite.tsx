@@ -3,7 +3,9 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import TabsDensity from '../examples/density.example.lite';
+import TabsDisabled from '../examples/disabled.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
+import TabsIcons from '../examples/icons.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
 import TabItemWidth from '../examples/tabItemWidth.example.lite';
@@ -37,6 +39,16 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Truncation">
 				<CardWrapperShowcase>
 					<TabsTruncation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Icons">
+				<CardWrapperShowcase>
+					<TabsIcons />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Disabled">
+				<CardWrapperShowcase>
+					<TabsDisabled />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">
