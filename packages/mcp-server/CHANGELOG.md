@@ -1,5 +1,9 @@
 # @db-ux/mcp-server
 
+## 4.6.1
+
+_version bump_
+
 ## 4.6.0
 
 ### Minor Changes
