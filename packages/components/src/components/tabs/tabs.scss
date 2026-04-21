@@ -63,7 +63,7 @@ $pulse-gap-offset: calc(
 	position: relative;
 
 	.db-tab-panel {
-		padding: 0 variables.$db-spacing-fixed-xs;
+		padding: variables.$db-spacing-fixed-xs;
 		position: relative;
 		z-index: 1;
 	}
