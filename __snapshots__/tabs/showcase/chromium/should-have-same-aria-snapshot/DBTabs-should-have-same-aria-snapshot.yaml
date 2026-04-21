@@ -81,6 +81,22 @@
     - tab "Test 4"
     - tab "Test 5"
   - tabpanel "Test 1": Tab Panel 1
+  - text: "arrows heavy load (12 tabs, custom distance 250px):"
+  - tablist:
+    - tab "Berlin" [selected]
+    - tab "München"
+    - tab "Hamburg"
+    - tab "Frankfurt"
+    - tab "Köln"
+    - tab "Stuttgart"
+    - tab "Düsseldorf"
+    - tab "Leipzig"
+    - tab "Hannover"
+    - tab "Nürnberg"
+    - tab "Dresden"
+    - tab "Bremen"
+  - tabpanel "Berlin"
+  - button "Scroll end"
   - link "Truncation"
   - text: "truncated tab label (vertical only):"
   - tablist:
@@ -88,6 +104,32 @@
     - tab "Another long label"
     - tab "Short"
   - tabpanel "Very long tab label that gets truncated": Tab Panel 1
+  - link "Icons"
+  - text: "with leading icons:"
+  - tablist:
+    - tab "Home" [selected]
+    - tab "Search"
+    - tab "Calendar"
+  - tabpanel "Home": Home content
+  - text: "with trailing icons:"
+  - tablist:
+    - tab "Notifications" [selected]
+    - tab "Info"
+    - tab "Settings"
+  - tabpanel "Notifications": Notifications content
+  - text: "icon-only (noText):"
+  - tablist:
+    - tab "Home" [selected]
+    - tab "Search"
+    - tab "Calendar"
+  - tabpanel "Home": Home content
+  - link "Disabled"
+  - text: "with disabled tab in the middle:"
+  - tablist:
+    - tab "Active Tab" [selected]
+    - tab "Disabled Tab" [disabled]
+    - tab "Another Tab"
+  - tabpanel "Active Tab": Panel for active tab
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
