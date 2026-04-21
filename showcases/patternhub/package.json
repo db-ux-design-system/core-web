@@ -29,7 +29,7 @@
     "test:e2e": "npx playwright test --config=./playwright.patternhub-config.ts"
   },
   "dependencies": {
-    "dompurify": "3.3.3",
+    "dompurify": "3.4.0",
     "highlight.js": "11.11.1",
     "next": "16.2.4",
     "react": "19.2.5",
