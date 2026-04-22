@@ -156,10 +156,7 @@ test.describe('Home', () => {
 		await waitForDBPage(page);
 		const accessibilityScanResults = await new AxeBuilder({
 			page
-		})
-			// TODO: There might be an issue our implementation of which elements get which roles
-			.disableRules(['aria-allowed-role'])
-			.analyze();
+		}).analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

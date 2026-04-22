@@ -54,6 +54,22 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		activateTab(index: number) {
+			// Prevent activating a disabled tab
+			if (_ref) {
+				const tabList = _ref.querySelector('[role="tablist"]');
+				if (tabList) {
+					const tabs = Array.from(
+						tabList.querySelectorAll('[role="tab"]')
+					);
+					const tab = tabs[index] as HTMLElement | undefined;
+					if (
+						tab?.disabled ||
+						tab?.getAttribute('aria-disabled') === 'true'
+					) {
+						return;
+					}
+				}
+			}
 			if (state.activeTabIndex !== index) {
 				state.activeTabIndex = index;
 				if (props.onIndexChange) {
@@ -178,9 +194,35 @@ export default function DBTabs(props: DBTabsProps) {
 
 				if (nextIndex !== undefined) {
 					event.preventDefault();
+
+					// Skip disabled tabs when navigating with arrow keys
+					const isForward =
+						key === 'ArrowRight' || key === 'ArrowDown';
+					const maxAttempts = length;
+					for (let i = 0; i < maxAttempts; i++) {
+						const candidate = buttons[
+							nextIndex
+						] as HTMLButtonElement;
+						if (
+							!candidate?.disabled &&
+							candidate?.getAttribute('aria-disabled') !== 'true'
+						) {
+							break;
+						}
+						if (isForward) {
+							nextIndex = (nextIndex + 1) % length;
+						} else {
+							nextIndex = (nextIndex - 1 + length) % length;
+						}
+					}
+
 					// do not activateTab here for manual activation, just move the focus
 					const nextButton = buttons[nextIndex] as HTMLElement;
-					if (nextButton) {
+					if (
+						nextButton &&
+						!(nextButton as HTMLButtonElement).disabled &&
+						nextButton.getAttribute('aria-disabled') !== 'true'
+					) {
 						nextButton.focus();
 					}
 				}
@@ -281,10 +323,6 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 
 			container.scrollBy({ left: step, behavior: 'smooth' });
-			// Fallback: directly update scrollLeft in case scrollBy is not effective
-			if (container.scrollLeft === Math.round(container.scrollLeft)) {
-				container.scrollLeft += step;
-			}
 		},
 
 		initTabList() {
