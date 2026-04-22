@@ -697,5 +697,27 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Slot with Badge",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Messages" },
+					{ "name": "tab-item", "content": "Notifications" },
+					{ "name": "tab-item", "content": "Settings" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Messages content" },
+			{ "name": "tab-panel", "content": "Notifications content" },
+			{ "name": "tab-panel", "content": "Settings content" }
+		],
+		"examples": [
+			{
+				"name": "tab-items with badges",
+				"props": { "name": "slot-with-badge" }
+			}
+		]
 	}
 ]

@@ -8,6 +8,7 @@ import TabsExamples from '../examples/examples.example.lite';
 import TabsIcons from '../examples/icons.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
+import TabsSlotWithBadge from '../examples/slotWithBadge.example.lite';
 import TabItemWidth from '../examples/tabItemWidth.example.lite';
 import TabsTruncation from '../examples/truncation.example.lite';
 
@@ -49,6 +50,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Disabled">
 				<CardWrapperShowcase>
 					<TabsDisabled />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Slot with Badge">
+				<CardWrapperShowcase>
+					<TabsSlotWithBadge />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">
