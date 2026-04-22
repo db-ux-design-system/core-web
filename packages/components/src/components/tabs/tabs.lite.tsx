@@ -76,19 +76,14 @@ export default function DBTabs(props: DBTabsProps) {
 					props.onIndexChange(index);
 				}
 				// Emit value of the newly active tab item if value props are set
-				if (props.onValueChange || props.valueChange) {
+				if (props.onValueChange) {
 					const tabList = _ref?.querySelector('[role="tablist"]');
 					const tabs = tabList
 						? Array.from(tabList.querySelectorAll('[role="tab"]'))
 						: [];
 					const value = (tabs[index] as HTMLElement | undefined)
 						?.dataset?.value;
-					if (props.onValueChange) {
-						props.onValueChange(value);
-					}
-					if (props.valueChange) {
-						props.valueChange(value);
-					}
+					props.onValueChange(value);
 				}
 				state.initTabs(index);
 			}
