@@ -81,17 +81,17 @@ export type DBTabsEventProps = {
 	onIndexChange?: (index?: number) => void;
 
 	/**
+	 * Vue / Angular alias for onValueChange.
+	 */
+	valueChange?: (value?: string) => void;
+
+	/**
 	 * Fires when the active tab changes and a `value` prop is set on the tab items.
 	 * Payload is the `value` string of the newly active tab item, or undefined
 	 * if the tab item has no `value` prop set.
 	 * Use this for form binding (e.g. Angular FormControl, React controlled state).
 	 */
 	onValueChange?: (value?: string) => void;
-
-	/**
-	 * Vue / Angular alias for onValueChange.
-	 */
-	valueChange?: (value?: string) => void;
 };
 
 export type DBTabsProps = DBTabsDefaultProps &
