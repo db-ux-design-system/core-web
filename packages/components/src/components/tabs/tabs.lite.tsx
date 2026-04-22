@@ -59,6 +59,21 @@ export default function DBTabs(props: DBTabsProps) {
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
+				// Emit value of the newly active tab item if value props are set
+				if (props.onValueChange || props.valueChange) {
+					const tabList = _ref?.querySelector('[role="tablist"]');
+					const tabs = tabList
+						? Array.from(tabList.querySelectorAll('[role="tab"]'))
+						: [];
+					const value = (tabs[index] as HTMLElement | undefined)
+						?.dataset?.value;
+					if (props.onValueChange) {
+						props.onValueChange(value);
+					}
+					if (props.valueChange) {
+						props.valueChange(value);
+					}
+				}
 				state.initTabs(index);
 			}
 		},
@@ -386,6 +401,16 @@ export default function DBTabs(props: DBTabsProps) {
 	onUpdate(() => {
 		state._updateCachedTabs();
 	}, [props.tabs]);
+
+	// Controlled mode: sync external activeIndex changes to internal state
+	onUpdate(() => {
+		if (props.activeIndex !== undefined) {
+			const newIndex = Number(props.activeIndex);
+			if (!isNaN(newIndex) && newIndex !== state.activeTabIndex) {
+				state.activateTab(newIndex);
+			}
+		}
+	}, [props.activeIndex]);
 
 	onMount(() => {
 		// 1. Calculate final start index synchronously to avoid race conditions

@@ -195,6 +195,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					: state.internalActive
 			}
 			data-no-text={getBoolean(props.noText) ? 'true' : undefined}
+			data-value={props.value}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={!props.noText}>
 				{/* wrapper needed for accurate width measurement via refs */}

@@ -32,6 +32,13 @@ export type DBTabsDefaultProps = {
 	initialSelectedIndex?: number | string;
 
 	/**
+	 * Controlled active tab index. When set, the component becomes controlled:
+	 * the consumer is responsible for updating this value in the onIndexChange handler.
+	 * Takes precedence over initialSelectedIndex after mount.
+	 */
+	activeIndex?: number | string;
+
+	/**
 	 * Default behavior is auto selecting the first tab, disable it with 'manually'
 	 */
 	initialSelectedMode?: TabsInitialSelectedModeType;
@@ -72,6 +79,19 @@ export type DBTabsEventProps = {
 	 * Informs the user if the current tab index has changed.
 	 */
 	onIndexChange?: (index?: number) => void;
+
+	/**
+	 * Fires when the active tab changes and a `value` prop is set on the tab items.
+	 * Payload is the `value` string of the newly active tab item, or undefined
+	 * if the tab item has no `value` prop set.
+	 * Use this for form binding (e.g. Angular FormControl, React controlled state).
+	 */
+	onValueChange?: (value?: string) => void;
+
+	/**
+	 * Vue / Angular alias for onValueChange.
+	 */
+	valueChange?: (value?: string) => void;
 };
 
 export type DBTabsProps = DBTabsDefaultProps &
