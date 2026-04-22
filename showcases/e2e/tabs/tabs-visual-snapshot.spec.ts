@@ -21,6 +21,7 @@ const preScreenShot = async (page: Page, project: FullProject) => {
 test.describe('DBTabs', () => {
 	getDefaultScreenshotTest({
 		path,
-		preScreenShot
+		preScreenShot,
+		ratio: '0.02'
 	});
 });

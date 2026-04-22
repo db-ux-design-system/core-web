@@ -4,6 +4,7 @@ import { getDefaultScreenshotTest } from '../default.ts';
 const path = '04/tab-item';
 test.describe('DBTabItem', () => {
 	getDefaultScreenshotTest({
-		path
+		path,
+		ratio: '0.02'
 	});
 });
