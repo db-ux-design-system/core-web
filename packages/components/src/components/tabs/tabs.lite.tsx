@@ -82,7 +82,7 @@ export default function DBTabs(props: DBTabsProps) {
 						? Array.from(tabList.querySelectorAll('[role="tab"]'))
 						: [];
 					const value = (tabs[index] as HTMLElement | undefined)
-						?.dataset?.value;
+						?.dataset?.['value'];
 					props.onValueChange(value);
 				}
 				state.initTabs(index);
