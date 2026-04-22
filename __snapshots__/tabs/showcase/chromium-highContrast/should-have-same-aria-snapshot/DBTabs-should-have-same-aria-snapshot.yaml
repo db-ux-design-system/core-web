@@ -130,6 +130,13 @@
     - tab "Disabled Tab" [disabled]
     - tab "Another Tab"
   - tabpanel "Active Tab": Panel for active tab
+  - link "Slot with Badge"
+  - text: "tab-items with badges:"
+  - tablist:
+    - tab "Messages 134" [selected]
+    - tab "Notifications 433"
+    - tab "Settings"
+  - tabpanel "Messages 134": Messages content
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
