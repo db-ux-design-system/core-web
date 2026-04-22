@@ -61,7 +61,7 @@ export default function DBTabs(props: DBTabsProps) {
 					const tabs = Array.from(
 						tabList.querySelectorAll('[role="tab"]')
 					);
-					const tab = tabs[index] as HTMLElement | undefined;
+					const tab = tabs[index] as HTMLButtonElement | undefined;
 					if (
 						tab?.disabled ||
 						tab?.getAttribute('aria-disabled') === 'true'
