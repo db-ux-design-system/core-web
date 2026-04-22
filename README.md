@@ -50,7 +50,7 @@ designers, and content authors build, maintain, and scale best-of-class digital 
     - For Angular: `npm i @db-ux/ngx-core-components`
     - For Vue: `npm i @db-ux/v-core-components`
     - For Web Components: `npm i @db-ux/wc-core-components`
-    - For styling only: `npm i @db-ux/core-components`
+    - For styling only (e.g. for pure HTML integrations): `npm i @db-ux/core-components`
 
 2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
 
