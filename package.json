@@ -169,6 +169,7 @@
     "zone.js": "0.15.1"
   },
   "overrides": {
+    "@hono/node-server": ">=1.19.13",
     "cross-spawn": "7.0.6",
     "esbuild": "0.28.0",
     "esbuild-wasm": "0.28.0",
