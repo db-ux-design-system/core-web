@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 jobs:
-  deploy:
+  publish-figma-code-connect:
     name: Publish to figma code-connect
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     strategy:

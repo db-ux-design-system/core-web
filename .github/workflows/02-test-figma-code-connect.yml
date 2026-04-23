@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 jobs:
-  deploy:
+  test-figma-code-connect:
     name: Test figma code-connect
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     strategy:
