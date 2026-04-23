@@ -182,11 +182,6 @@ main .db-header {
 	padding: var(--db-spacing-fixed-xs);
 }
 
-.stack-show-alignment {
-	border: var(--db-border-width-3xs) dashed
-		var(--db-adaptive-on-bg-basic-emphasis-60-default);
-}
-
 .dummy-component {
 	border-radius: var(--db-border-radius-md);
 	border: var(--db-border-width-3xs) solid

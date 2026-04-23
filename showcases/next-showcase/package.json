@@ -19,12 +19,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "next": "16.2.4",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
-    "@types/node": "25.5.2",
+    "@types/node": "^25.6.0",
     "@types/react": "19.2.14",
     "npm-run-all2": "8.0.4",
     "open-cli": "9.0.0",

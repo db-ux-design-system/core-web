@@ -163,10 +163,11 @@ xyznonexistent
 serialised
 Serialises
 stylelints
+atrule
+Unlayered
+unlayered
 Kiro
 cspellignorewords
 lintstagedrc
-carsharing
-bikesharing
 carsharing
 bikesharing

@@ -28,9 +28,9 @@
     "test:visual-snapshots": "cross-env showcase=react-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-router-dom": "7.13.2"
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-router-dom": "7.14.1"
   },
   "devDependencies": {
     "@types/react": "19.2.14",
@@ -38,6 +38,6 @@
     "@vitejs/plugin-react": "6.0.1",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
-    "vite": "8.0.6"
+    "vite": "8.0.8"
   }
 }
