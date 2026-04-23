@@ -1,5 +1,19 @@
 import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
+export type FigmaButtonProps = {
+	text?: string;
+	size?: string;
+	width?: string;
+	disabled?: boolean;
+	noText?: boolean;
+	variant?: string;
+	showIconLeading?: boolean;
+	showIconTrailing?: boolean;
+	iconLeading?: string;
+	iconTrailing?: string;
+	icon?: string;
+};
+
 const defaultButtonProps: Record<string, FigmaProp> = {
 	disabled: {
 		type: 'enum',

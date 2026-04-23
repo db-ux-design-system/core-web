@@ -1,12 +1,12 @@
 import { useMetadata } from '@builder.io/mitosis';
 import { DBButton } from '../index';
-import { noTextButtons } from './button.figma';
+import { FigmaButtonProps, noTextButtons } from './button.figma';
 
 useMetadata({
 	figma: noTextButtons
 });
 
-export default function NoTextButtonFigmaLite(props: any) {
+export default function NoTextButtonFigmaLite(props: FigmaButtonProps) {
 	return (
 		<DBButton
 			disabled={props.disabled}
