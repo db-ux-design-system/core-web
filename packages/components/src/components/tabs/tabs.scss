@@ -82,18 +82,8 @@ $pulse-gap-offset: calc(
 		flex-flow: column wrap;
 
 		.db-tab-list {
-			padding: calc(
-					#{variables.$db-border-width-2xs} +
-						#{variables.$db-border-width-xs} * 2
-				)
-				0 variables.$db-spacing-fixed-2xs;
-			margin-block-start: calc(
-				-1 *
-					(
-						#{variables.$db-border-width-2xs} +
-							#{variables.$db-border-width-xs} * 2
-					)
-			);
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-xs 0 variables.$db-spacing-fixed-xs;
 
 			@extend %horizontal-pulse;
 
@@ -117,11 +107,6 @@ $pulse-gap-offset: calc(
 				display: flex;
 				align-items: stretch;
 				overflow: auto;
-				// stylelint-disable-next-line db-ux/use-spacings
-				padding-inline: calc(
-					#{variables.$db-border-width-2xs} +
-						#{variables.$db-border-width-xs} * 2
-				);
 				inline-size: 100%;
 			}
 		}
@@ -238,7 +223,7 @@ $pulse-gap-offset: calc(
 
 			.db-tab-list {
 				// stylelint-disable-next-line db-ux/use-spacings
-				padding: 0 variables.$db-sizing-md $pulse-gap-offset;
+				padding: 0 0 $pulse-gap-offset;
 				margin-block-start: 0;
 				background-image: none;
 
