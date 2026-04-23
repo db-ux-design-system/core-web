@@ -50,10 +50,4 @@ runs:
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        npm ci --ignore-scripts=false
-
-    - name: 🔧 Rebuild native bindings (ensures cached node_modules have platform binaries)
-      shell: bash
-      if: steps.cache.outputs.cache-hit == 'true'
-      run: |
-        npm rebuild
+        npm ci
