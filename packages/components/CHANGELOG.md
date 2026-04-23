@@ -1,5 +1,28 @@
 # @db-ux/core-components
 
+## 4.6.1
+
+### Patch Changes
+
+- fix(navigation): issue with changed transform inside drawer lead to broken sub-navigation for mobile view - [see commit 1762975](https://github.com/db-ux-design-system/core-web/commit/17629755c0c249808c0bb69686f167677d4181ee)
+
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+- fix: the drawer ignored custom `max-width` and `max-height` properties due to internal `min-width` overrides. Additionally, resolved a bug where nested fixed-position elements (like DBCustomSelect dropdowns) were incorrectly positioned while the drawer was open. - [see commit d40e651](https://github.com/db-ux-design-system/core-web/commit/d40e6516c147c5e0f62bd049cf9bc1928ed6b36f)
+
+- docs(vite): mentioning version 8 configuration in `README.md` file - [see commit 4c5fc92](https://github.com/db-ux-design-system/core-web/commit/4c5fc9266402d9585087f4738a1a800cff1515f1)
+
+- fix(number input): prevent from clearing on intermediate decimal entry - [see commit aa85967](https://github.com/db-ux-design-system/core-web/commit/aa85967ffeaa685f6b647069d0e1d415d812dc87):
+    - fix(input,textarea): allow using `undefined` as `value`
+
 ## 4.5.4
 
 ### Patch Changes
