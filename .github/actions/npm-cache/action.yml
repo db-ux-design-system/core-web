@@ -50,4 +50,4 @@ runs:
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        npm ci
+        npm ci --ignore-scripts=false
