@@ -719,5 +719,38 @@
 				"props": { "name": "slot-with-badge" }
 			}
 		]
+	},
+	{
+		"name": "URL Sync",
+		"description": "Demonstrates how to pre-select a tab via URL parameters. Use initialSelectedIndex with a value parsed from the URL (e.g. ?tab=2), or combine the value prop on DBTabItem with onValueChange to sync a semantic hash (e.g. #settings) instead of a numeric index.",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Overview" },
+					{ "name": "tab-item", "content": "Details" },
+					{ "name": "tab-item", "content": "Settings" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Overview content" },
+			{ "name": "tab-panel", "content": "Details content" },
+			{ "name": "tab-panel", "content": "Settings content" }
+		],
+		"examples": [
+			{
+				"name": "initialSelectedIndex via URL",
+				"props": {
+					"initialSelectedIndex": 2,
+					"name": "url-sync-index"
+				}
+			},
+			{
+				"name": "value-based URL sync",
+				"props": {
+					"initialSelectedIndex": 1,
+					"name": "url-sync-value"
+				}
+			}
+		]
 	}
 ]

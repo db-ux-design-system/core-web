@@ -11,6 +11,7 @@ import TabsOverflow from '../examples/overflow.example.lite';
 import TabsSlotWithBadge from '../examples/slotWithBadge.example.lite';
 import TabItemWidth from '../examples/tabItemWidth.example.lite';
 import TabsTruncation from '../examples/truncation.example.lite';
+import TabsUrlSync from '../examples/urlSync.example.lite';
 
 export default function TabsShowcase(props: PatternhubProps) {
 	return (
@@ -55,6 +56,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Slot with Badge">
 				<CardWrapperShowcase>
 					<TabsSlotWithBadge />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="URL Sync">
+				<CardWrapperShowcase>
+					<TabsUrlSync />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">

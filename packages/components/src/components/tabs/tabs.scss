@@ -186,9 +186,10 @@ $pulse-gap-offset: calc(
 				z-index: $db-tabs-z-index-track;
 				inset-block-start: calc(
 					#{variables.$db-sizing-md} +
-						#{variables.$db-border-width-2xs}
+						#{variables.$db-spacing-fixed-xs} +
+						#{variables.$db-border-width-xs}
 				);
-				inset-inline: 0;
+				inset-inline: variables.$db-spacing-fixed-xs;
 				block-size: variables.$db-border-width-xs;
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 				pointer-events: none;
@@ -197,14 +198,16 @@ $pulse-gap-offset: calc(
 			[data-density="functional"] &::before {
 				inset-block-start: calc(
 					#{variables.$db-sizing-sm} +
-						#{variables.$db-border-width-2xs}
+						#{variables.$db-spacing-fixed-xs} +
+						#{variables.$db-border-width-xs}
 				);
 			}
 
 			[data-density="expressive"] &::before {
 				inset-block-start: calc(
 					#{variables.$db-sizing-lg} +
-						#{variables.$db-border-width-2xs}
+						#{variables.$db-spacing-fixed-xs} +
+						#{variables.$db-border-width-xs}
 				);
 			}
 

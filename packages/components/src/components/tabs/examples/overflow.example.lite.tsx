@@ -59,7 +59,7 @@ export default function TabsOverflow() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					with overflow - behavior: scrollbar:
 				</DBInfotext>
-				<DBTabs>
+				<DBTabs behavior="scrollbar">
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
