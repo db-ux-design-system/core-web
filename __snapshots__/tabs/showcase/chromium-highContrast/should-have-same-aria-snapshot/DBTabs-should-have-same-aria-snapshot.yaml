@@ -137,6 +137,19 @@
     - tab "Notifications 433"
     - tab "Settings"
   - tabpanel "Messages 134": Messages content
+  - link "URL Sync"
+  - text: "3rd tab pre-selected via initialSelectedIndex with a value parsed from URL parameter:"
+  - tablist "url-sync-index":
+    - tab "Overview"
+    - tab "Details"
+    - tab "Settings" [selected]
+  - tabpanel "Settings": Settings content
+  - text: "2nd tab pre-selected with value props and 'onValueChange':"
+  - tablist "url-sync-value":
+    - tab "Overview"
+    - tab "Details" [selected]
+    - tab "Settings"
+  - tabpanel "Details": Details content
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
