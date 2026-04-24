@@ -93,8 +93,9 @@ $pulse-gap-offset: calc(
 			);
 			background-position: left bottom;
 			background-repeat: no-repeat;
+
+			// Draw baseline flush with the first and last tab-item (content-box excludes padding).
 			background-origin: content-box;
-			background-attachment: local;
 			background-size: 100% variables.$db-border-width-xs;
 
 			.db-tab-item {
@@ -174,6 +175,49 @@ $pulse-gap-offset: calc(
 		}
 	}
 
+	&[data-scroll-behavior="scrollbar"] {
+		$db-tabs-z-index-track: 19;
+
+		&:not([data-orientation="vertical"]) {
+			// Keep the track outside the scrolling tab-list so the native scrollbar cannot cover it.
+			&::before {
+				content: "";
+				position: absolute;
+				z-index: $db-tabs-z-index-track;
+				inset-block-start: calc(
+					#{variables.$db-sizing-md} +
+						#{variables.$db-border-width-2xs}
+				);
+				inset-inline: 0;
+				block-size: variables.$db-border-width-xs;
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+				pointer-events: none;
+			}
+
+			[data-density="functional"] &::before {
+				inset-block-start: calc(
+					#{variables.$db-sizing-sm} +
+						#{variables.$db-border-width-2xs}
+				);
+			}
+
+			[data-density="expressive"] &::before {
+				inset-block-start: calc(
+					#{variables.$db-sizing-lg} +
+						#{variables.$db-border-width-2xs}
+				);
+			}
+
+			.db-tab-list {
+				background-image: none;
+
+				&::before {
+					content: none;
+				}
+			}
+		}
+	}
+
 	&[data-scroll-behavior="arrows"] {
 		$db-tabs-z-index-button-background: 21;
 		$db-tabs-z-index-button: 22;
@@ -198,15 +242,6 @@ $pulse-gap-offset: calc(
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 			}
 
-			// Adjust track width when buttons are hidden
-			&:not(:has(.tabs-scroll-start))::before {
-				inset-inline-start: variables.$db-sizing-md;
-			}
-
-			&:not(:has(.tabs-scroll-end))::before {
-				inset-inline-end: variables.$db-sizing-md;
-			}
-
 			[data-density="functional"] &::before {
 				inset-block-start: calc(
 					#{variables.$db-sizing-sm} +
@@ -226,6 +261,10 @@ $pulse-gap-offset: calc(
 				padding: 0 0 $pulse-gap-offset;
 				margin-block-start: 0;
 				background-image: none;
+
+				&::before {
+					content: none;
+				}
 
 				.db-tab-item {
 					margin-block-end: 0;
