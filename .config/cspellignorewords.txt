@@ -171,6 +171,4 @@ cspellignorewords
 lintstagedrc
 carsharing
 bikesharing
-carsharing
-bikesharing
 figd
