@@ -25,7 +25,7 @@ export default function DBHeader(props: DBHeaderProps) {
 	const state = useStore<DBHeaderState>({
 		initialized: false,
 		forcedToMobile: false,
-		generatedId: props.id ?? props.propOverrides?.id ?? `header-${uuid()}`,
+		generatedId: `header-${uuid()}`,
 		handleNavigationItemClick: (event: unknown) => {
 			if (isEventTargetNavigationItem(event) && drawerRef) {
 				const dialogContainerRef = drawerRef.querySelector(
