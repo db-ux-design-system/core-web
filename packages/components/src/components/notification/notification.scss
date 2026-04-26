@@ -82,7 +82,7 @@
 	}
 
 	// content
-	& > div {
+	& > div.contents {
 		@extend %db-overwrite-font-size-md;
 
 		grid-area: content;
