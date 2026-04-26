@@ -14,7 +14,7 @@ Both the release scope, ensuring that all issues are ready for release, and even
 
 ## Changesets
 
-For releasing a new version we're using [changesets](.changeset/README.md).
+For releasing a new version we're using [changesets](../.changeset/README.md).
 
 ## Repositories
 
