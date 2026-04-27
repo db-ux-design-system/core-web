@@ -4,6 +4,7 @@
 @import "./revert-theme.css";
 @import "./dimensions.css";
 @import "./colors.css";
+@import "./breakpoints.css";
 
 @utility text-body-3xs {
 	font: var(--db-type-body-3xs);
