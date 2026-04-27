@@ -211,7 +211,7 @@ export async function handleAnalyzeV2Migration({
 	const absolutePath = resolve(cwd, filePath);
 
 	// 🔒 Path traversal protection: file must be within cwd()
-	if (!absolutePath.startsWith(cwd + sep) && absolutePath !== cwd) {
+	if (!absolutePath.startsWith(cwd + sep)) {
 		return err(
 			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
 		);
@@ -225,6 +225,11 @@ export async function handleAnalyzeV2Migration({
 
 	// 🔒 File size guard: reject files larger than 5 MB
 	const stats = await stat(absolutePath);
+	if (!stats.isFile()) {
+		return err(
+			`Error: Expected a file, but '${absolutePath}' is a directory.`
+		);
+	}
 	if (stats.size > MAX_SCAN_SIZE) {
 		return err(
 			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
