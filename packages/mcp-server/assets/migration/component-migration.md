@@ -70,21 +70,21 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 ## No Direct Equivalent
 
-| Old                    |    Status     | Replacement                                                       |
-| ---------------------- | :-----------: | ----------------------------------------------------------------- |
-| `rea-main`             |   [removed]   | `db-page` (includes `<main>`)                                     |
-| `rea-grid`             |   [removed]   | CSS Grid or `db-stack`                                            |
-| `rea-footer`           |   [planned]   | Semantic `<footer>` + `db-link`, planned Q4/2025                  |
-| `elm-headline`         | [replacement] | Semantic headings + `db-infotext` for subtitles                   |
-| `elm-headline` (pulse) |   [removed]   | Heading + CSS animation                                           |
-| `elm-loadingindicator` |   [planned]   | Planned Q4/2025, use CSS spinner + `aria-live`                    |
-| `elm-progress`         |   [planned]   | Planned Q4/2025, use `<progress>`                                 |
-| `elm-chip`             | [replacement] | `db-tag` with `db-button`/`db-checkbox`/`db-radio` inside         |
-| `cmp-breadcrumb`       |   [planned]   | Planned Q4/2025, use `db-link` in `<nav aria-label="Breadcrumb">` |
-| `cmp-pagination`       |   [planned]   | Planned Q4/2025, use `db-button` with ARIA labels                 |
-| `cmp-table`            |   [planned]   | Under research, use semantic `<table>`                            |
-| `cmp-sidenavi`         | [replacement] | `db-navigation` inside `db-drawer`                                |
-| `cmp-dialog`           | [replacement] | `db-drawer` or custom modal, planned Q4/2025                      |
+| Old                    |    Status     | Replacement                                               |
+| ---------------------- | :-----------: | --------------------------------------------------------- |
+| `rea-main`             |   [removed]   | `db-page` (includes `<main>`)                             |
+| `rea-grid`             |   [removed]   | CSS Grid or `db-stack`                                    |
+| `rea-footer`           |   [planned]   | Semantic `<footer>` + `db-link`, planned Q4/2025          |
+| `elm-headline`         | [replacement] | Semantic headings + `db-infotext` for subtitles           |
+| `elm-headline` (pulse) |   [removed]   | Heading + CSS animation                                   |
+| `elm-loadingindicator` |   [planned]   | Planned, use CSS spinner + `aria-live`                    |
+| `elm-progress`         |   [planned]   | Planned, use `<progress>`                                 |
+| `elm-chip`             | [replacement] | `db-tag` with `db-button`/`db-checkbox`/`db-radio` inside |
+| `cmp-breadcrumb`       |   [planned]   | Planned, use `db-link` in `<nav aria-label="Breadcrumb">` |
+| `cmp-pagination`       |   [planned]   | Planned, use `db-button` with ARIA labels                 |
+| `cmp-table`            |   [planned]   | Under research, use semantic `<table>`                    |
+| `cmp-sidenavi`         | [replacement] | `db-navigation` inside `db-drawer`                        |
+| `cmp-dialog`           | [replacement] | `db-drawer` or custom modal, planned Q4/2025              |
 
 ## Key Migration Examples
 
