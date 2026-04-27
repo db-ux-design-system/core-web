@@ -84,10 +84,13 @@ export const TOKEN_FILES: Record<string, string> = {
 const ASSETS_DIR = join(import.meta.dirname, '../../assets/tokens');
 
 export const TOKEN_COMPILED_FILES = {
-	/** All primitive --db-* custom properties with concrete values. */
+	/** All primitive --db-* custom properties with concrete DB theme values. */
 	defaultVariables: {
-		monorepo: join(FOUNDATIONS_DIR, 'scss/defaults/default-variables.scss'),
-		standalone: join(ASSETS_DIR, 'default-variables.scss')
+		monorepo: join(
+			REPO_ROOT,
+			'node_modules/@db-ux/db-theme/build/styles/_default_variables.scss'
+		),
+		standalone: join(ASSETS_DIR, 'db-variables.scss')
 	},
 	/** Density-class overrides (expressive / regular / functional). */
 	densityClasses: {

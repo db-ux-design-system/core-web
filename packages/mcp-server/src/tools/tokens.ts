@@ -91,7 +91,7 @@ async function readCompiledTokens(category: string): Promise<string | null> {
 
 	const sections: string[] = [];
 
-	// 1. Primitive values from default-variables.scss
+	// 1. Primitive values from DB theme (db-variables.scss)
 	const defaultsPath = resolveTokenFile(
 		TOKEN_COMPILED_FILES.defaultVariables
 	);
@@ -99,7 +99,7 @@ async function readCompiledTokens(category: string): Promise<string | null> {
 		const lines = await readFilteredLines(defaultsPath, filter);
 		if (lines) {
 			sections.push(
-				`/* --- Primitive token values (default-variables.scss) --- */\n${lines}`
+				`/* --- Primitive token values (db-variables.scss) --- */\n${lines}`
 			);
 		}
 	}

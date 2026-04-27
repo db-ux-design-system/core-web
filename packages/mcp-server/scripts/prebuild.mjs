@@ -67,10 +67,10 @@ mkdirSync(
 	{ recursive: true }
 );
 
-// Primitive token values — lives in SCSS source, always present
+// Primitive token values — DB theme, from @db-ux/db-theme package
 copyAsset(
-	'packages/foundations/scss/defaults/default-variables.scss',
-	'assets/tokens/default-variables.scss'
+	'node_modules/@db-ux/db-theme/build/styles/_default_variables.scss',
+	'assets/tokens/db-variables.scss'
 );
 
 // Density class overrides — BUILD ARTIFACT, may not exist in CI
