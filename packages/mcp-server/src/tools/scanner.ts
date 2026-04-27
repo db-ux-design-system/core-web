@@ -191,10 +191,10 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 // ---------------------------------------------------------------------------
 
 /**
- * Analyzes a file for DB UI v2 patterns that need migration to DB UX v4.
+ * Analyzes a file for DB UI v2 patterns that need migration to DB UX v3.
  *
  * Deterministically scans for:
- * - v2 component tags (<cmp-*, <elm-*, <rea-*)
+ * - v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*)
  * - v2 color tokens (db-color-*)
  * - v2 icon names (cross-referenced against the icon migration guide)
  *
