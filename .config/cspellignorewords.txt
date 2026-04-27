@@ -171,4 +171,8 @@ cspellignorewords
 lintstagedrc
 carsharing
 bikesharing
+<<<<<<< feat-code-connect
 figd
+=======
+peaceiris
+>>>>>>> main
