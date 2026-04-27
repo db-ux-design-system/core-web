@@ -21,7 +21,6 @@ $disabled-state: ':disabled,[aria-disabled="true"],[tabindex="-1"],:has(:disable
 
 @mixin hover($cursor: pointer) {
 	&:hover,
-	&:focus {
 		cursor: var(--db-overwrite-cursor, #{$cursor});
 		@content;
 	}
