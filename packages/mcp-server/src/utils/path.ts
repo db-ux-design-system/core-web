@@ -100,15 +100,6 @@ export const TOKEN_COMPILED_FILES = {
 } as const;
 
 /**
- * Resolves a user-supplied path relative to a base directory and ensures the
- * result stays strictly within that base (path traversal protection).
- *
- * Decodes URL-encoded sequences repeatedly until stable to defeat double-encoding
- * bypass attempts (e.g. %252F → %2F → /).
- *
- * @throws {Error} When the resolved path escapes the base directory.
- */
-/**
  * Finds a migration guide by name, falling back to the legacy `db-ui-`
  * prefixed key for backwards compatibility with older manifest formats.
  */
@@ -119,6 +110,15 @@ export function findGuide(
 	return guides[name] ?? guides[`db-ui-${name}`];
 }
 
+/**
+ * Resolves a user-supplied path relative to a base directory and ensures the
+ * result stays strictly within that base (path traversal protection).
+ *
+ * Decodes URL-encoded sequences repeatedly until stable to defeat double-encoding
+ * bypass attempts (e.g. %252F → %2F → /).
+ *
+ * @throws {Error} When the resolved path escapes the base directory.
+ */
 export function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = resolve(baseDir);
 	let decoded = userPath;
