@@ -56,17 +56,17 @@
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.13.0",
     "@builder.io/mitosis-cli": "0.13.0",
-    "@prettier/sync": "^0.6.1",
-    "@typescript-eslint/eslint-plugin": "8.58.1",
+    "@prettier/sync": "0.6.1",
+    "@typescript-eslint/eslint-plugin": "8.59.0",
     "cpr": "3.0.1",
-    "cssnano": "7.1.4",
+    "cssnano": "7.1.7",
     "hygen": "6.2.11",
     "nodemon": "3.1.14",
     "sass": "1.99.0",
     "sassdoc": "2.7.4",
     "storybook": "10.3.5",
     "tsx": "4.21.0",
-    "vitest": "4.1.3"
+    "vitest": "4.1.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
