@@ -5,10 +5,7 @@
 	@media screen {
 		overflow: hidden;
 		block-size: 100%;
-
-		@supports (height: 100dvh) {
-			block-size: 100dvh;
-		}
+		block-size: 100dvh;
 	}
 }
 
