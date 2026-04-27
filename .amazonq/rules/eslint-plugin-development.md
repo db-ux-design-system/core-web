@@ -127,6 +127,8 @@ const iconChild = node.children?.find(
 
 ## Rule Implementation Pattern
 
+### Single Component Rule
+
 ```typescript
 import {
 	createAngularVisitors,
@@ -160,7 +162,8 @@ export default {
 				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID
+					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID,
+					data: { component: node.name } // Use node.name for kebab-case
 				});
 			}
 		};
@@ -182,9 +185,71 @@ export default {
 			if (value === null || value === "") {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID
+					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID,
+					data: {
+						component:
+							openingElement.name?.name || openingElement.rawName
+					}
 				});
 			}
+		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
+		);
+	}
+};
+```
+
+### Multiple Components Rule
+
+**CRITICAL**: When checking multiple components, collect ALL Angular visitors before returning:
+
+```typescript
+const COMPONENTS_TO_CHECK = ["DBButton", "DBLink", "DBInput"];
+
+export default {
+	meta: {
+		/* ... */
+	},
+	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const component = COMPONENTS_TO_CHECK.find((comp) =>
+				isDBComponent(node, comp)
+			);
+			if (!component) return;
+
+			// Your validation logic here
+		};
+
+		// ❌ WRONG - Returns after first component, others never registered
+		for (const comp of COMPONENTS_TO_CHECK) {
+			const angularVisitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (angularVisitors) return angularVisitors; // ❌ Early return!
+		}
+
+		// ✅ CORRECT - Collects all visitors before returning
+		const angularVisitors: any = {};
+		for (const comp of COMPONENTS_TO_CHECK) {
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
+		}
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
+
+		const checkComponent = (node: any) => {
+			// React/Vue handler
 		};
 
 		return defineTemplateBodyVisitor(
@@ -257,10 +322,13 @@ invalid: [
 
 - Angular boolean attributes return empty string `''` - handle with `attr.value === null || attr.value === ''`
 - Use `createAngularVisitors` for Angular support - it handles kebab-case conversion for components starting with `DB`
+- **CRITICAL**: When checking multiple components, collect ALL Angular visitors using `Object.assign()` before returning
 - Always use `COMPONENTS` constants instead of hardcoded strings
 - Always use `MESSAGE_IDS` and `MESSAGES` from constants
 - For Angular, use `parserServices.convertNodeSourceSpanToLoc(node.sourceSpan)` for location
+- For Angular, use `node.name` in error data to preserve kebab-case (e.g., `db-button`)
 - For React/Vue, use `node: openingElement` for location
+- For React/Vue, use `openingElement.name?.name || openingElement.rawName` for component name
 - Angular template parser uses both `Element` and `Element$1` types
 - Vue sometimes uses `Element` as fallback instead of `VElement`
 - When traversing parents/children, always check for `JSXElement`, `VElement`, and `Element` types
@@ -335,6 +403,8 @@ Before submitting a new rule:
 - [ ] Rule `fixable` uses `as const` assertion (if present)
 - [ ] Test uses `languageOptions` configuration (not `parser` property)
 - [ ] Angular support via `createAngularVisitors`
+- [ ] **If checking multiple components**: Angular visitors collected with `Object.assign()` before returning
+- [ ] Angular error data uses `node.name` for kebab-case component names
 - [ ] Vue/React support via `defineTemplateBodyVisitor`
 - [ ] All attribute checks use `=== null` (not `!value`)
 - [ ] Required text attributes check `=== null || === ''`
