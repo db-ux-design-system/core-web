@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 
 /**
@@ -14,13 +14,7 @@ function findRepoRoot(startDir: string): string {
 		const pkgPath = join(dir, 'package.json');
 		if (existsSync(pkgPath)) {
 			try {
-				// Dynamic import is not needed – a synchronous JSON parse is fine
-				// during module initialization.
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
-				const pkg = JSON.parse(
-					// eslint-disable-next-line no-restricted-syntax
-					require('node:fs').readFileSync(pkgPath, 'utf8')
-				);
+				const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
 				if (pkg.workspaces) {
 					return dir;
 				}
