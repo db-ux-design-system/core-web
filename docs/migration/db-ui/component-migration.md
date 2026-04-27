@@ -1,6 +1,6 @@
 # DB UI to DB UX v3 Component Migration
 
-Prefer JS framework packages: Angular `@db-ux/ngx-core-components` (`<db-button>`), React `@db-ux/react-core-components` (`<DBButton>`), Vue `@db-ux/v-core-components` (`<DBButton>`). CSS-only fallback: `@db-ux/core-components`.
+Prefer JS framework packages: Angular `@db-ux/ngx-core-components` (`<db-button>`), React `@db-ux/react-core-components` (`<DBButton>`), Vue `@db-ux/v-core-components` (`<DBButton>`) in case that the user wants to build a JavaScript application with one of these frameworks. If it's still a JavaScript framework, but none of these apply, use `@db-ux/core-components` node package. In all other cases, use the HTML and CSS basis: `@db-ux/core-components`.
 
 Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed, [planned]=planned
 
