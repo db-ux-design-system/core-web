@@ -358,3 +358,9 @@ When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstr
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
+
+## Additional Resources
+
+### ESLint Plugin
+
+- Use this file as a reference for the custom ESLint plugin used in this repository: `.amazonq/rules/eslint-plugin-development.md`
