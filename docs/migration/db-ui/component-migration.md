@@ -18,7 +18,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **card** — `cmp-card`->`db-card`. Variant: `header`->[removed], `content`->[removed] (use children/slot), `variant="interactive"` makes it act like a button. Image: `alt`->`imgAlt`, `image`->`imgSrc`. New: `imgWidth`, `imgHeight`. Removed: `illustration`, `uiCoreIllustrationPath`.
 
-**checkbox** — `elm-checkbox`->`db-checkbox`. `input_id`->`id`.
+**checkbox** — `elm-checkbox`->`db-checkbox`. Map `input_id` to `id` (for React/Vue), but use `propOverrides` for Web Components and Angular.
 
 **divider** — New component
 
@@ -44,7 +44,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **popover** — New component
 
-**radio** — `elm-radio`->`db-radio`. `input_id`->`id`.
+**radio** — `elm-radio`->`db-radio`. Map `input_id` to `id` (for React/Vue), but use `propOverrides` for Web Components and Angular.
 
 **section** — New component
 
