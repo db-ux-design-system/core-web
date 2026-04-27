@@ -24,7 +24,7 @@ Do NOT use color tokens for `box-shadow`. Use: `--db-elevation-sm` (subtle/press
 
 ## Inline Styles
 
-Remove all inline `style` attributes. They bypass theming, density, dark mode. Priority: 1) use component props, 2) CSS/SCSS class with tokens, 3) inline with tokens only as last resort.
+Replace all inline `style` attributes, as they bypass theming, density, and dark mode. Follow this strict priority: 1) use component props, 2) use external CSS/SCSS classes with tokens, 3) use inline styles with tokens only as an absolute last resort.
 
 ## Spacing
 
