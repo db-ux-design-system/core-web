@@ -148,7 +148,7 @@ export const getComponentVisualSchema = {
 export const analyzeV2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
-		'Scans a source file for DB UI v2 patterns (components like <cmp-*, <elm-*, <rea-*>, ' +
+		'Scans a source file for DB UI v2 patterns (v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*), ' +
 		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
