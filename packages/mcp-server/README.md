@@ -438,3 +438,18 @@ Instead of using `npx`, use `node` and point it to the local build path (ensure 
 ```
 
 _Alternatively, you can change your IDE's working directory for the MCP server to `packages/mcp-server`._
+
+---
+
+## ⚠️ Development Constraints
+
+> **These rules are critical for contributors and AI agents working on the MCP server.**
+
+| Rule                             | Details                                                                                                                                                     |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ESM only**                     | This package is `"type": "module"`. Never use `require()` — use `import` exclusively.                                                                       |
+| **No lifecycle hooks**           | NPM lifecycle scripts (`prebuild`, `preinstall`) are disabled in this monorepo. Build steps must be chained via `&&` in the `build` script.                 |
+| **No committed build artifacts** | Files in `assets/migration/` and `assets/tokens/` are generated at build time. They are git-ignored and must never be committed.                            |
+| **Hard CI failures**             | Build scripts must `throw new Error()` when required sources are missing — never fail silently. Exception: density CSS (build artifact, soft-fail allowed). |
+| **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                 |
+| **DB UX v2 history**             | `cmp-*`, `elm-*`, `rea-*` were CSS classes in v2, not HTML tags. The custom elements were `<db-*>`.                                                         |

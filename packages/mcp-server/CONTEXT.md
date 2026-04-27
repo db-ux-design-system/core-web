@@ -113,7 +113,8 @@ Migration guides are served exclusively through the dedicated `list_migration_gu
 
 | Source file                                        | Contains                                                |
 | -------------------------------------------------- | ------------------------------------------------------- |
-| `foundations/scss/defaults/default-variables.scss` | All primitive `--db-*` values (rem, px, box-shadow)     |
+| `foundations/scss/defaults/default-variables.scss` | All primitive `--db-*` values (whitelabel theme)        |
+| `@db-ux/db-theme/.../\_default_variables.scss`     | All primitive `--db-*` values (DB brand theme) ★ used   |
 | `foundations/build/styles/density/classes/all.css` | Density class overrides (expressive/regular/functional) |
 
 Other categories (`colors`, `typography`, `animation`, `transitions`) continue to use raw SCSS from the manifest, since those files contain direct variable declarations without loops.
@@ -124,16 +125,48 @@ Other categories (`colors`, `typography`, `animation`, `transitions`) continue t
 
 ## Prebuild Pipeline
 
-The `prebuild` script runs automatically before every `build` and ensures the `assets/` directory contains all files needed for standalone operation:
+NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monorepo. The prebuild step is chained directly into the `build` script via `&&`:
+
+```json
+"build": "node scripts/prebuild.mjs && node esbuild.js"
+```
+
+The prebuild script copies assets for standalone (npx) operation:
 
 ```text
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
 prebuild:tokens-dir     → mkdir -p assets/tokens/
-prebuild:token-defaults → cpr foundations/.../default-variables.scss → assets/tokens/
-prebuild:token-density  → cpr foundations/.../density/classes/all.css → assets/tokens/
+prebuild:token-defaults → cpr @db-ux/db-theme/.../_default_variables.scss → assets/tokens/db-variables.scss
+prebuild:token-density  → cpr foundations/.../density/classes/all.css → assets/tokens/ (soft-fail: build artifact)
 ```
 
+**Hard vs. soft failures:**
+
+- Migration docs and DB theme tokens **must** exist → hard error (`throw new Error`)
+- Density CSS is a build artifact from foundations → soft warning (may not exist before `npm run build` in foundations)
+
 The `"files"` array in `package.json` includes `"assets"`, so all prebuild outputs are shipped with the npm package.
+
+**⚠️ Build artifacts in `assets/migration/` and `assets/tokens/` must NEVER be committed to Git.** The `.gitignore` excludes their contents while preserving the directories via `.gitkeep`.
+
+## Critical Development Rules
+
+### ESM Only
+
+This package is `"type": "module"`. **Never use `require()`** — always use `import` (top-level or dynamic `await import()`). The `require('node:fs')` anti-pattern will crash at runtime.
+
+### File System Safety
+
+When reading user-supplied file paths:
+
+1. Validate with path traversal protection (`resolveSafePath`)
+2. Check `existsSync()` before accessing
+3. Call `stats.isFile()` after `stat()` — directories cause `EISDIR` crashes with `readFile()`
+
+### DB UX v2 vs v3 Terminology
+
+- **v2**: `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
+- **v3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
 
 ## Communication
 
