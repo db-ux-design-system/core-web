@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(mobile): issues with page and drawer not using `env(safe-area-inset-bottom)` and `env(safe-area-inset-top)`
+fix(mobile): issues with page, drawer, and navigation-item not using `env(safe-area-inset-bottom)` and `env(safe-area-inset-top)`

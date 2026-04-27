@@ -31,7 +31,7 @@
 		/// Sets the maximum height of the drawer
 		/// @propertyname max-block-size
 		/// @cssprop --db-drawer-max-height
-		/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
+		/// @default calc(100% - #{variables.$db-spacing-fixed-xl} - env(safe-area-inset-bottom) - env(safe-area-inset-top))
 		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: var(
 			--db-drawer-max-height,
