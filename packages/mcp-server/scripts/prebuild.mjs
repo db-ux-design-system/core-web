@@ -3,10 +3,6 @@
  *
  * Copies migration guides and compiled token files from the monorepo into the
  * local assets/ directories so they are available for standalone npx usage.
- *
- * All copies are OPTIONAL — if a source file or directory does not exist
- * (e.g. in CI before foundations has been built, or in a partial checkout),
- * the copy is skipped with a warning instead of aborting the build.
  */
 
 import {
@@ -23,9 +19,8 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 
 /**
  * Copies src → dest.
- * Skips silently (with a warning) when src does not exist so that the build
- * succeeds in environments where optional build artifacts haven't been
- * generated yet (e.g. CI runners that haven't built foundations yet).
+ * Throws a hard error when src does not exist to prevent publishing
+ * an incomplete package.
  *
  * @param {string} src  - Path relative to monorepo root.
  * @param {string} dest - Path relative to this package root (packages/mcp-server).
@@ -40,10 +35,7 @@ function copyAsset(src, dest, opts = {}) {
 	);
 
 	if (!existsSync(srcAbs)) {
-		console.warn(
-			`[prebuild] SKIP: source not found (will use fallback at runtime): ${src}`
-		);
-		return;
+		throw new Error(`[prebuild] FATAL: required source not found: ${src}`);
 	}
 
 	mkdirSync(dirname(destAbs), { recursive: true });
@@ -89,8 +81,8 @@ const densityDestAbs = resolve(
 );
 
 if (!existsSync(densitySrcAbs)) {
-	console.warn(
-		`[prebuild] SKIP: source not found (will use fallback at runtime): ${DENSITY_SRC}`
+	throw new Error(
+		`[prebuild] FATAL: required source not found: ${DENSITY_SRC}`
 	);
 } else {
 	const raw = readFileSync(densitySrcAbs, 'utf-8');
