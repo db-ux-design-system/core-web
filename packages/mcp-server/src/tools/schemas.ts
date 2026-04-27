@@ -63,7 +63,7 @@ export const getExampleCodeSchema = {
 
 export const docsSearchSchema = {
 	description:
-		'Searches the DB UX component and foundation documentation (guidelines, A11y, framework-specific docs). Only docs from packages/components/ and packages/foundations/docs/ are included. For migration guides, use list_migration_guides and get_migration_guide instead.',
+		'Searches the DB UX component and foundation documentation (guidelines, Accessibility, framework-specific docs). Only docs from packages/components/ and packages/foundations/docs/ are included. For migration guides, use list_migration_guides and get_migration_guide instead.',
 	inputSchema: {
 		query: z
 			.string()
