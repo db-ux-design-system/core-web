@@ -24,8 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "node scripts/prebuild.mjs",
-    "build": "node esbuild.js",
+    "build": "node scripts/prebuild.mjs && node esbuild.js",
     "build-manifest": "tsx src/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:agent": "cpr agent ../../build-outputs/mcp-server/agent --overwrite",
