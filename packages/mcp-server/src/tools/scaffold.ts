@@ -216,10 +216,10 @@ function htmlTemplate(pascal: string, kebab: string): Map<string, string> {
 	<link rel="stylesheet" href="${kebab}.css" />
 </head>
 <body>
-	<div data-variant="card">
+	<div class="db-card">
 		<h2>${pascal}</h2>
 		<!-- TODO: Implement component content -->
-		<button data-variant="brand">Action</button>
+		<button class="db-button" type="button" data-variant="brand">Action</button>
 	</div>
 </body>
 </html>
