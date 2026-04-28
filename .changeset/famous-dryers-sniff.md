@@ -6,4 +6,4 @@
 "@db-ux/react-core-components": minor
 ---
 
-DBSelect: correctly hiding empty `option` element for _placeholder_ or _floating label_ components with property `showEmptyOption=true`
+DBSelect: correctly hiding empty `option` element for _placeholder_ or _floating label_ components with property `showEmptyOption=false`
