@@ -261,7 +261,7 @@ The server is a single Node.js process communicating over **stdio** using the [M
 
 Because `model.ts`, showcase files, and framework example source files are **not** included in the published npm packages (only compiled `dist/` is shipped), the server embeds all necessary data at build time.
 
-`src/build-manifest.ts` runs during the build and produces `src/manifest.json` containing:
+`scripts/build-manifest.ts` runs during the build and produces `src/manifest.json` containing:
 
 ```text
 manifest.json
@@ -308,14 +308,16 @@ packages/mcp-server/
 ├── assets/
 │   ├── migration/          # Migration guides (copied from docs/migration/db-ui/ by prebuild)
 │   └── tokens/             # Compiled token files (copied from foundations by prebuild)
+├── scripts/
+│   ├── prebuild.ts          # Prebuild asset copy script (runs as native TS via Node 24)
+│   └── build-manifest.ts    # Build-time script — generates src/manifest.json
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
 │   ├── server.ts           # McpServer singleton and lifecycle handlers
 │   ├── types.ts            # Framework type and FRAMEWORK_PKG mapping
-│   ├── build-manifest.ts   # Build-time script — generates manifest.json
 │   ├── tools/              # Tool handler implementations
 │   ├── prompts/            # Prompt handler implementations
-│   └── utils/              # Shared utilities (path, manifest, formatting, async)
+│   ├── utils/              # Shared utilities (path, manifest, formatting, async)
 │   └── manifest.json       # Generated — do not edit manually
 ├── build/
 │   └── index.js            # Compiled standalone bundle (gitignored)
@@ -338,7 +340,7 @@ npm run build --workspace=@db-ux/mcp-server
 
 This runs `packages/mcp-server/esbuild.js` which:
 
-1. Executes `src/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
+1. Executes `scripts/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
 2. Bundles `src/index.ts` + `manifest.json` via esbuild into a single `build/index.js` with `#!/usr/bin/env node` shebang
 3. Copies the bundle to `packages/mcp-server/dist/index.js` for inclusion in the published `@db-ux/mcp-server` npm package
 

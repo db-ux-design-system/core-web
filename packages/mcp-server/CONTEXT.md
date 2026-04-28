@@ -62,7 +62,6 @@ core-web/
 │       │   ├── migration/       # Prebuild copy of docs/migration/db-ui/ (for npx standalone)
 │       │   └── tokens/          # Prebuild copy of compiled token files (for npx standalone)
 │       └── src/
-│           ├── index.ts
 │           ├── server.ts
 │           ├── types.ts
 │           ├── build-manifest.ts

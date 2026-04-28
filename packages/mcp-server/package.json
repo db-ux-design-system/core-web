@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "node scripts/prebuild.ts && node esbuild.js",
-    "build-manifest": "tsx src/build-manifest.ts",
+    "build-manifest": "tsx scripts/build-manifest.ts",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:agent": "cpr agent ../../build-outputs/mcp-server/agent --overwrite",
     "copy-build:assets": "cpr assets ../../build-outputs/mcp-server/assets --overwrite",

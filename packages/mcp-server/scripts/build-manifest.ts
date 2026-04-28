@@ -1,6 +1,6 @@
 /**
  * Generates src/manifest.json at build time.
- * Run via: npx tsx src/build-manifest.ts
+ * Run via: npx tsx scripts/build-manifest.ts
  *
  * The manifest embeds all component metadata and example source code so the
  * MCP server can operate without access to the monorepo source tree (e.g.
@@ -17,7 +17,7 @@ import {
 	OUTPUT_DIR,
 	REPO_ROOT,
 	TOKEN_FILES
-} from './utils';
+} from '../src/utils';
 
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
 const FRAMEWORKS = [
@@ -245,7 +245,7 @@ async function buildManifest() {
 	]);
 
 	const manifest = { icons, components, tokens, docs, migrationGuides };
-	const outPath = join(import.meta.dirname, 'manifest.json');
+	const outPath = join(import.meta.dirname, '..', 'src', 'manifest.json');
 	await writeFile(outPath, JSON.stringify(manifest));
 	console.log(
 		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`
