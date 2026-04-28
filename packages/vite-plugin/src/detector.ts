@@ -1,6 +1,6 @@
 import fg from 'fast-glob';
-import { readFileSync, readdirSync } from 'fs';
-import { resolve } from 'path';
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 /**
  * Walk up the directory tree from `root` to locate a package path inside node_modules.
@@ -10,7 +10,7 @@ import { resolve } from 'path';
 export function resolvePackagePath(
 	root: string,
 	packagePath: string
-): string | null {
+): string | undefined {
 	let currentDir = root;
 	for (let i = 0; i < 10; i++) {
 		const resolved = resolve(currentDir, 'node_modules', packagePath);
@@ -26,7 +26,7 @@ export function resolvePackagePath(
 		currentDir = parentDir;
 	}
 
-	return null;
+	return undefined;
 }
 
 /** Return subdirectory names (folders only) from the given path. */
@@ -159,8 +159,8 @@ export function scanComponentDependencies(
 }
 
 /** Convert PascalCase to kebab-case: "NavigationItem" → "navigation-item". */
-function toKebabCase(str: string): string {
-	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+function toKebabCase(string_: string): string {
+	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 /**
@@ -175,9 +175,9 @@ function buildPatterns(
 ): RegExp[] {
 	return [
 		new RegExp(`${classPrefix}(${values})`, 'g'),
-		new RegExp(`\\[${dataAttr}=["']?(${values})["']?\\]`, 'g'),
+		new RegExp(String.raw`\[${dataAttr}=["']?(${values})["']?\]`, 'g'),
 		new RegExp(`${dataAttr}=["'](${values})["']`, 'g'),
-		new RegExp(`["']${dataAttr}["']:\\s*["'](${values})["']`, 'g')
+		new RegExp(String.raw`["']${dataAttr}["']:\s*["'](${values})["']`, 'g')
 	];
 }
 
@@ -187,10 +187,10 @@ const JSX_COMPONENT_PATTERN = /<DB(\w+)[\s>/]/g;
 const KEBAB_COMPONENT_PATTERN = /<db-([\w-]+)[\s>/]/g;
 /** Matches CSS class-based usage: class="db-button ...", className="db-card" */
 const CLASS_COMPONENT_PATTERN =
-	/(?:class|className)=(?:"[^"]*|'[^']*|\{[^}]*)db-([\w-]+)/g;
+	/(?:class|className)=(?:"[^"]*|'[^']*|{[^}]*)db-([\w-]+)/g;
 /** Matches named imports from @db-ux framework packages: import { DBButton, DBCard } from '...' */
 const IMPORT_PATTERN =
-	/import\s+\{([^}]+)}\s+from\s+['"]@db-ux\/(?:react|ngx|v|wc)-core-components['"]/g;
+	/import\s+{([^}]+)}\s+from\s+['"]@db-ux\/(?:react|ngx|v|wc)-core-components['"]/g;
 
 /** Glob all source files from the project root, excluding node_modules/dist/build. */
 async function scanFiles(root: string): Promise<string[]> {
@@ -202,11 +202,11 @@ async function scanFiles(root: string): Promise<string[]> {
 }
 
 /** Safely read a file's contents, returning null on failure. */
-function readSource(filePath: string): string | null {
+function readSource(filePath: string): string | undefined {
 	try {
 		return readFileSync(filePath, 'utf-8');
 	} catch {
-		return null;
+		return undefined;
 	}
 }
 
@@ -279,7 +279,7 @@ async function detectByPatterns(
 	classPrefix: string,
 	dataAttr: string,
 	validValues: string[],
-	mapMatch?: (match: RegExpMatchArray) => string | null
+	mapMatch?: (match: RegExpMatchArray) => string | undefined
 ): Promise<Set<string>> {
 	const result = new Set<string>(forceInclude);
 	if (validValues.length === 0) return result;
@@ -356,7 +356,7 @@ export async function detectFontSizes(
 		[`(${categories.join('|')})-(${sizes.join('|')})`],
 		(match) => {
 			const value = `${match[1]}-${match[2]}`;
-			return validSet.has(value) ? value : null;
+			return validSet.has(value) ? value : undefined;
 		}
 	);
 }

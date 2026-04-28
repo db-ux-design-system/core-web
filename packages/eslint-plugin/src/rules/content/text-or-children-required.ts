@@ -69,6 +69,7 @@ export default {
 				Object.assign(angularVisitors, visitors);
 			}
 		}
+
 		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {

@@ -11,14 +11,16 @@ import { findCssFunction, findTopLevelComma } from './css-parser.js';
 const findNextVar = (
 	value: string,
 	fromIndex: number
-): {
-	start: number;
-	end: number;
-	name: string;
-	fallback: string | null;
-} | null => {
+):
+	| {
+			start: number;
+			end: number;
+			name: string;
+			fallback: string | undefined;
+	  }
+	| undefined => {
 	const found = findCssFunction(value, 'var', fromIndex);
-	if (!found) return null;
+	if (!found) return undefined;
 
 	const commaIdx = findTopLevelComma(found.inner);
 
@@ -27,7 +29,7 @@ const findNextVar = (
 			start: found.start,
 			end: found.end,
 			name: found.inner.trim(),
-			fallback: null
+			fallback: undefined
 		};
 	}
 
@@ -75,7 +77,7 @@ export const resolveVars = (
 			const resolvedValue = resolveVars(resolved, varMap, childSeen);
 			result = result.slice(0, start) + resolvedValue + result.slice(end);
 			searchFrom = start + resolvedValue.length;
-		} else if (fallback !== null) {
+		} else if (fallback) {
 			const resolvedFallback = resolveVars(fallback, varMap, seen);
 			const replacement = `var(${name}, ${resolvedFallback})`;
 			result = result.slice(0, start) + replacement + result.slice(end);
@@ -106,6 +108,7 @@ export const collectVarReferences = (
 		if (found.fallback) {
 			collectVarReferences(found.fallback, refs);
 		}
+
 		searchFrom = found.end;
 	}
 };
@@ -125,7 +128,7 @@ export const collectVarReferences = (
 const resolveCssFunction = (
 	value: string,
 	funcName: string,
-	evaluate: (inner: string) => string | null,
+	evaluate: (inner: string) => string | undefined,
 	skipNestedFunctions = false
 ): string => {
 	let result = value;
@@ -139,13 +142,14 @@ const resolveCssFunction = (
 			searchFrom = found.end;
 			continue;
 		}
+
 		if (skipNestedFunctions && /[a-z-]+\(/i.test(found.inner)) {
 			searchFrom = found.end;
 			continue;
 		}
 
 		const evaluated = evaluate(found.inner);
-		if (evaluated !== null) {
+		if (evaluated) {
 			result =
 				result.slice(0, found.start) +
 				evaluated +
@@ -166,9 +170,11 @@ const resolveCssFunction = (
  * @param str - The string to parse (e.g. "0.75rem", "100%", "2")
  * @returns An object with `value` and `unit`, or null if not parseable
  */
-const parseUnit = (str: string): { value: number; unit: string } | null => {
-	const match = str.trim().match(/^(-?[\d.]+)\s*(%|[a-z]*)$/i);
-	if (!match) return null;
+const parseUnit = (
+	string_: string
+): { value: number; unit: string } | undefined => {
+	const match = /^(-?[\d.]+)\s*(%|[a-z]*)$/i.exec(string_.trim());
+	if (!match) return undefined;
 	return { value: Number.parseFloat(match[1]), unit: match[2] || '' };
 };
 
@@ -178,9 +184,9 @@ const parseUnit = (str: string): { value: number; unit: string } | null => {
  * @param expr - The inner content of a `calc()` expression
  * @returns The evaluated result as a string (e.g. "1.5rem"), or null if not evaluable
  */
-const evaluateCalc = (expr: string): string | null => {
+const evaluateCalc = (expr: string): string | undefined => {
 	const tokens = expr.trim().split(/\s+/).filter(Boolean);
-	if (tokens.length === 0) return null;
+	if (tokens.length === 0) return undefined;
 
 	let result = 0;
 	let resultUnit = '';
@@ -193,28 +199,35 @@ const evaluateCalc = (expr: string): string | null => {
 		}
 
 		const parsed = parseUnit(token);
-		if (!parsed) return null;
+		if (!parsed) return undefined;
 
 		if (parsed.unit && !resultUnit) {
 			resultUnit = parsed.unit;
 		} else if (parsed.unit && parsed.unit !== resultUnit && resultUnit) {
-			return null;
+			return undefined;
 		}
 
 		switch (operator) {
-			case '+':
+			case '+': {
 				result += parsed.value;
 				break;
-			case '-':
+			}
+
+			case '-': {
 				result -= parsed.value;
 				break;
-			case '*':
+			}
+
+			case '*': {
 				result *= parsed.value;
 				break;
-			case '/':
-				if (parsed.value === 0) return null;
+			}
+
+			case '/': {
+				if (parsed.value === 0) return undefined;
 				result /= parsed.value;
 				break;
+			}
 		}
 	}
 
@@ -242,38 +255,59 @@ export const resolveCalc = (value: string): string =>
  */
 const parseHexColor = (
 	hex: string
-): [number, number, number, number] | null => {
+): [number, number, number, number] | undefined => {
 	const h = hex.replace('#', '');
-	let r: number, g: number, b: number;
+	let r: number;
+	let g: number;
+	let b: number;
 	let a = 1;
-	if (h.length === 3) {
-		r = Number.parseInt(h[0] + h[0], 16);
-		g = Number.parseInt(h[1] + h[1], 16);
-		b = Number.parseInt(h[2] + h[2], 16);
-	} else if (h.length === 4) {
-		r = Number.parseInt(h[0] + h[0], 16);
-		g = Number.parseInt(h[1] + h[1], 16);
-		b = Number.parseInt(h[2] + h[2], 16);
-		a = Number.parseInt(h[3] + h[3], 16) / 255;
-	} else if (h.length === 6) {
-		r = Number.parseInt(h.slice(0, 2), 16);
-		g = Number.parseInt(h.slice(2, 4), 16);
-		b = Number.parseInt(h.slice(4, 6), 16);
-	} else if (h.length === 8) {
-		r = Number.parseInt(h.slice(0, 2), 16);
-		g = Number.parseInt(h.slice(2, 4), 16);
-		b = Number.parseInt(h.slice(4, 6), 16);
-		a = Number.parseInt(h.slice(6, 8), 16) / 255;
-	} else {
-		return null;
+	switch (h.length) {
+		case 3: {
+			r = Number.parseInt(h[0] + h[0], 16);
+			g = Number.parseInt(h[1] + h[1], 16);
+			b = Number.parseInt(h[2] + h[2], 16);
+
+			break;
+		}
+
+		case 4: {
+			r = Number.parseInt(h[0] + h[0], 16);
+			g = Number.parseInt(h[1] + h[1], 16);
+			b = Number.parseInt(h[2] + h[2], 16);
+			a = Number.parseInt(h[3] + h[3], 16) / 255;
+
+			break;
+		}
+
+		case 6: {
+			r = Number.parseInt(h.slice(0, 2), 16);
+			g = Number.parseInt(h.slice(2, 4), 16);
+			b = Number.parseInt(h.slice(4, 6), 16);
+
+			break;
+		}
+
+		case 8: {
+			r = Number.parseInt(h.slice(0, 2), 16);
+			g = Number.parseInt(h.slice(2, 4), 16);
+			b = Number.parseInt(h.slice(4, 6), 16);
+			a = Number.parseInt(h.slice(6, 8), 16) / 255;
+
+			break;
+		}
+
+		default: {
+			return undefined;
+		}
 	}
+
 	if (
 		Number.isNaN(r) ||
 		Number.isNaN(g) ||
 		Number.isNaN(b) ||
 		Number.isNaN(a)
 	)
-		return null;
+		return undefined;
 	return [r, g, b, a];
 };
 
@@ -294,40 +328,42 @@ const toHex = (n: number): string =>
  * @param args - The inner arguments of `color-mix()`
  * @returns The mixed color as a hex string, "transparent", or null if not evaluable
  */
-const evaluateColorMix = (args: string): string | null => {
-	const srgbMatch = args.match(
-		/^in\s+srgb\s*,\s*([\s\S]+?)\s*,\s*([\s\S]+?)\s*$/
+const evaluateColorMix = (args: string): string | undefined => {
+	const srgbMatch = /^in\s+srgb\s*,\s*([\s\S]+?)\s*,\s*([\s\S]+?)\s*$/.exec(
+		args
 	);
-	if (!srgbMatch) return null;
+	if (!srgbMatch) return undefined;
 
 	const parseColorArg = (
 		arg: string
-	): { color: string; percentage: number | null } | null => {
+	): { color: string; percentage: number | undefined } | undefined => {
 		const parts = arg.trim().split(/\s+/);
-		if (parts.length === 1) return { color: parts[0], percentage: null };
+		if (parts.length === 1)
+			return { color: parts[0], percentage: undefined };
 		if (parts.length === 2) {
-			const pctMatch = parts[1].match(/^([\d.]+)%$/);
-			if (!pctMatch) return null;
+			const pctMatch = /^([\d.]+)%$/.exec(parts[1]);
+			if (!pctMatch) return undefined;
 			return {
 				color: parts[0],
 				percentage: Number.parseFloat(pctMatch[1])
 			};
 		}
-		return null;
+
+		return undefined;
 	};
 
 	const arg1 = parseColorArg(srgbMatch[1]);
 	const arg2 = parseColorArg(srgbMatch[2]);
-	if (!arg1 || !arg2) return null;
+	if (!arg1 || !arg2) return undefined;
 
 	let p1 = arg1.percentage;
 	let p2 = arg2.percentage;
-	if (p1 === null && p2 === null) {
+	if (!p1 && !p2) {
 		p1 = 50;
 		p2 = 50;
-	} else if (p1 !== null && p2 === null) {
+	} else if (p1 && !p2) {
 		p2 = 100 - p1;
-	} else if (p1 === null && p2 !== null) {
+	} else if (!p1 && p2) {
 		p1 = 100 - p2;
 	}
 
@@ -335,26 +371,26 @@ const evaluateColorMix = (args: string): string | null => {
 	const pct2 = p2! / 100;
 	const isTransparent = (c: string) => c === 'transparent';
 
-	let rgb1: [number, number, number],
-		alpha1 = 1;
+	let rgb1: [number, number, number];
+	let alpha1 = 1;
 	if (isTransparent(arg1.color)) {
 		rgb1 = [0, 0, 0];
 		alpha1 = 0;
 	} else {
 		const parsed = parseHexColor(arg1.color);
-		if (!parsed) return null;
+		if (!parsed) return undefined;
 		rgb1 = [parsed[0], parsed[1], parsed[2]];
 		alpha1 = parsed[3];
 	}
 
-	let rgb2: [number, number, number],
-		alpha2 = 1;
+	let rgb2: [number, number, number];
+	let alpha2 = 1;
 	if (isTransparent(arg2.color)) {
 		rgb2 = [0, 0, 0];
 		alpha2 = 0;
 	} else {
 		const parsed = parseHexColor(arg2.color);
-		if (!parsed) return null;
+		if (!parsed) return undefined;
 		rgb2 = [parsed[0], parsed[1], parsed[2]];
 		alpha2 = parsed[3];
 	}

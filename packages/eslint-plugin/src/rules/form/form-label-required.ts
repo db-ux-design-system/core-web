@@ -16,7 +16,11 @@ const FORM_COMPONENTS = [
 	'DBSwitch'
 ];
 
-const COMPONENTS_WITH_CHILDREN_LABEL = ['DBCheckbox', 'DBRadio', 'DBSwitch'];
+const COMPONENTS_WITH_CHILDREN_LABEL = new Set([
+	'DBCheckbox',
+	'DBRadio',
+	'DBSwitch'
+]);
 
 export default {
 	meta: {
@@ -46,7 +50,7 @@ export default {
 			);
 
 			const canUseChildren =
-				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
+				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
 				(label === null || label === '') &&
@@ -74,6 +78,7 @@ export default {
 				Object.assign(angularVisitors, visitors);
 			}
 		}
+
 		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkFormComponent = (node: any) => {
@@ -96,7 +101,7 @@ export default {
 			);
 
 			const canUseChildren =
-				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
+				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
 				(label === null || label === '') &&

@@ -10,7 +10,7 @@ export type Manifest = {
 	components: Record<
 		string,
 		{
-			props: string | null;
+			props: string | undefined;
 			examples: string[];
 			exampleCode: Record<Framework, Record<string, string>>;
 		}
@@ -20,14 +20,14 @@ export type Manifest = {
 	migrationGuides: Record<string, string>;
 };
 
-let _manifest: Manifest | null = null;
+let _manifest: Manifest | undefined;
 
 /**
  * Clears the in-memory manifest cache.
  * In tests, pass a fake manifest object to override the static import.
  */
 export function resetManifestCache(override?: Manifest) {
-	_manifest = override ?? null;
+	_manifest = override ?? undefined;
 }
 
 /**

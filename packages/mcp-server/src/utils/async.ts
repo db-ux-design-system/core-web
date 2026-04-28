@@ -1,11 +1,11 @@
 /** Standard return type for all MCP tool handlers. */
 export type ToolResult = {
-	content: { type: 'text'; text: string }[];
+	content: Array<{ type: 'text'; text: string }>;
 	isError?: boolean;
 };
 
 /** Maximum time in milliseconds a tool operation is allowed to run before being aborted. */
-export const TOOL_TIMEOUT_MS = 10000;
+export const TOOL_TIMEOUT_MS = 10_000;
 
 /**
  * Races a promise against a fixed timeout.

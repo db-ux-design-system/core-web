@@ -50,6 +50,7 @@ export default {
 					}
 				});
 			}
+
 			if (content === 'external' && !referrerPolicy) {
 				context.report({
 					loc,
@@ -68,6 +69,7 @@ export default {
 					}
 				});
 			}
+
 			if (target === '_blank' && content !== 'external') {
 				context.report({
 					loc,
@@ -114,9 +116,7 @@ export default {
 						fix(fixer: any) {
 							if (node.openingElement) {
 								const lastAttr =
-									openingElement.attributes[
-										openingElement.attributes.length - 1
-									];
+									openingElement.attributes.at(-1);
 								const insertPos = lastAttr
 									? lastAttr.range[1]
 									: openingElement.name.range[1];
@@ -124,31 +124,31 @@ export default {
 									[insertPos, insertPos],
 									' target="_blank"'
 								);
-							} else {
-								const attrs =
-									openingElement.startTag.attributes;
-								if (attrs.length > 0) {
-									return fixer.insertTextAfterRange(
-										[
-											attrs[attrs.length - 1].range[1],
-											attrs[attrs.length - 1].range[1]
-										],
-										' target="_blank"'
-									);
-								} else {
-									const insertPos =
-										openingElement.startTag.range[0] +
-										1 +
-										openingElement.rawName.length;
-									return fixer.insertTextAfterRange(
-										[insertPos, insertPos],
-										' target="_blank"'
-									);
-								}
 							}
+
+							const attrs = openingElement.startTag.attributes;
+							if (attrs.length > 0) {
+								return fixer.insertTextAfterRange(
+									[
+										attrs.at(-1).range[1],
+										attrs.at(-1).range[1]
+									],
+									' target="_blank"'
+								);
+							}
+
+							const insertPos =
+								openingElement.startTag.range[0] +
+								1 +
+								openingElement.rawName.length;
+							return fixer.insertTextAfterRange(
+								[insertPos, insertPos],
+								' target="_blank"'
+							);
 						}
 					});
 				}
+
 				if (!referrerPolicy) {
 					context.report({
 						node: openingElement,
@@ -156,9 +156,7 @@ export default {
 						fix(fixer: any) {
 							if (node.openingElement) {
 								const lastAttr =
-									openingElement.attributes[
-										openingElement.attributes.length - 1
-									];
+									openingElement.attributes.at(-1);
 								const insertPos = lastAttr
 									? lastAttr.range[1]
 									: openingElement.name.range[1];
@@ -166,28 +164,27 @@ export default {
 									[insertPos, insertPos],
 									' referrerPolicy="no-referrer"'
 								);
-							} else {
-								const attrs =
-									openingElement.startTag.attributes;
-								if (attrs.length > 0) {
-									return fixer.insertTextAfterRange(
-										[
-											attrs[attrs.length - 1].range[1],
-											attrs[attrs.length - 1].range[1]
-										],
-										' referrerPolicy="no-referrer"'
-									);
-								} else {
-									const insertPos =
-										openingElement.startTag.range[0] +
-										1 +
-										openingElement.rawName.length;
-									return fixer.insertTextAfterRange(
-										[insertPos, insertPos],
-										' referrerPolicy="no-referrer"'
-									);
-								}
 							}
+
+							const attrs = openingElement.startTag.attributes;
+							if (attrs.length > 0) {
+								return fixer.insertTextAfterRange(
+									[
+										attrs.at(-1).range[1],
+										attrs.at(-1).range[1]
+									],
+									' referrerPolicy="no-referrer"'
+								);
+							}
+
+							const insertPos =
+								openingElement.startTag.range[0] +
+								1 +
+								openingElement.rawName.length;
+							return fixer.insertTextAfterRange(
+								[insertPos, insertPos],
+								' referrerPolicy="no-referrer"'
+							);
 						}
 					});
 				}
@@ -199,10 +196,7 @@ export default {
 					messageId: MESSAGE_IDS.LINK_MISSING_CONTENT_EXTERNAL,
 					fix(fixer: any) {
 						if (node.openingElement) {
-							const lastAttr =
-								openingElement.attributes[
-									openingElement.attributes.length - 1
-								];
+							const lastAttr = openingElement.attributes.at(-1);
 							const insertPos = lastAttr
 								? lastAttr.range[1]
 								: openingElement.name.range[1];
@@ -210,27 +204,24 @@ export default {
 								[insertPos, insertPos],
 								' content="external"'
 							);
-						} else {
-							const attrs = openingElement.startTag.attributes;
-							if (attrs.length > 0) {
-								return fixer.insertTextAfterRange(
-									[
-										attrs[attrs.length - 1].range[1],
-										attrs[attrs.length - 1].range[1]
-									],
-									' content="external"'
-								);
-							} else {
-								const insertPos =
-									openingElement.startTag.range[0] +
-									1 +
-									openingElement.rawName.length;
-								return fixer.insertTextAfterRange(
-									[insertPos, insertPos],
-									' content="external"'
-								);
-							}
 						}
+
+						const attrs = openingElement.startTag.attributes;
+						if (attrs.length > 0) {
+							return fixer.insertTextAfterRange(
+								[attrs.at(-1).range[1], attrs.at(-1).range[1]],
+								' content="external"'
+							);
+						}
+
+						const insertPos =
+							openingElement.startTag.range[0] +
+							1 +
+							openingElement.rawName.length;
+						return fixer.insertTextAfterRange(
+							[insertPos, insertPos],
+							' content="external"'
+						);
 					}
 				});
 			}

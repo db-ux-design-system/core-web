@@ -21,6 +21,7 @@ export function registerLifecycleHandlers() {
 		} catch (error) {
 			console.error('[DB UX MCP] Error during server shutdown:', error);
 		}
+
 		process.exit(0);
 	};
 

@@ -119,22 +119,19 @@ export default {
 								closingTag,
 								`\n  <${tooltipName}>Describe action</${tooltipName}>`
 							);
-						} else {
-							// Vue
-							if (!node.endTag) return null;
-							if (!node.startTag?.range) return null;
-							const componentName = openingElement.rawName;
-							const tooltipName = componentName.includes('-')
-								? 'db-tooltip'
-								: 'DBTooltip';
-							return fixer.insertTextAfterRange(
-								[
-									node.startTag.range[1],
-									node.startTag.range[1]
-								],
-								`\n  <${tooltipName}>Describe action</${tooltipName}>`
-							);
 						}
+
+						// Vue
+						if (!node.endTag) return null;
+						if (!node.startTag?.range) return null;
+						const componentName = openingElement.rawName;
+						const tooltipName = componentName.includes('-')
+							? 'db-tooltip'
+							: 'DBTooltip';
+						return fixer.insertTextAfterRange(
+							[node.startTag.range[1], node.startTag.range[1]],
+							`\n  <${tooltipName}>Describe action</${tooltipName}>`
+						);
 					}
 				});
 			}

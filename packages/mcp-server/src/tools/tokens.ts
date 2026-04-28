@@ -31,6 +31,7 @@ export async function handleGetDesignTokens({
 			`Error: unknown category '${category}'. Available: ${Object.keys(manifest.tokens).join(', ')}`
 		);
 	}
+
 	const lines = source
 		.split('\n')
 		.filter((line) => /--db-|^\$db-/.test(line));

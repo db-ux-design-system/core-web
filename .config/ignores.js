@@ -6,7 +6,9 @@ const ignoreFolders = [
 	'out/**/*',
 	'helpers/**/*',
 	'dist/**/*',
-	'packages/**/*',
+	'packages/components/**/*',
+	'packages/foundations/**/*',
+	'packages/migration/**/*',
 	'showcases/patternhub/pages/components/**/*',
 	'showcases/nuxt-showcase/**/*',
 	'showcases/next-showcase/**/*',
@@ -17,7 +19,8 @@ const ignoreFolders = [
 	'**/test/**/*',
 	'**/playwright.*.ts',
 	'playwright-report/**/*',
-	'storybooks/**/.storybook/**/*'
+	'storybooks/**/.storybook/**/*',
+	'**/vitest.config.ts'
 ];
 
 export default ignoreFolders;

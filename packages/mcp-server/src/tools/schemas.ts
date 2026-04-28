@@ -112,7 +112,7 @@ export const getMigrationGuideSchema = {
 			.string()
 			.max(100)
 			.regex(
-				/^[a-zA-Z0-9._-]+$/,
+				/^[\w.-]+$/,
 				'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.'
 			)
 			.describe(

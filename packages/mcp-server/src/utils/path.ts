@@ -44,6 +44,7 @@ export function resolveSafePath(baseDir: string, userPath: string): string {
 	while (decoded !== decodeURIComponent(decoded)) {
 		decoded = decodeURIComponent(decoded);
 	}
+
 	const absoluteRequested = resolve(baseDir, decoded);
 	if (
 		!absoluteRequested.startsWith(absoluteBase + sep) &&
@@ -51,5 +52,6 @@ export function resolveSafePath(baseDir: string, userPath: string): string {
 	) {
 		throw new Error('Path traversal detected');
 	}
+
 	return absoluteRequested;
 }

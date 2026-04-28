@@ -19,6 +19,7 @@ import {
 } from './utils';
 
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
+
 const FRAMEWORKS = [
 	'react',
 	'angular',
@@ -29,8 +30,8 @@ const FRAMEWORKS = [
 type Framework = (typeof FRAMEWORKS)[number];
 
 /** Reads a file and returns its content, or null if the file does not exist. */
-async function readOptional(path: string): Promise<string | null> {
-	if (!existsSync(path)) return null;
+async function readOptional(path: string): Promise<string | undefined> {
+	if (!existsSync(path)) return undefined;
 	return readFile(path, 'utf-8');
 }
 
@@ -53,7 +54,7 @@ export async function processComponent(
 			hasError: false;
 			name: string;
 			data: {
-				props: string | null;
+				props: string | undefined;
 				examples: string[];
 				exampleCode: Record<Framework, Record<string, string>>;
 			};
@@ -82,6 +83,7 @@ export async function processComponent(
 				if (htmlIndex) exampleCode[fw]['index.html'] = htmlIndex;
 				continue;
 			}
+
 			const fwOutputDir = fw === 'web-components' ? 'stencil' : fw;
 			const exDir = join(
 				outputDir,
@@ -123,6 +125,7 @@ async function collectTokens(): Promise<Record<string, string>> {
 		if (!existsSync(filePath)) continue;
 		tokens[category] = await readFile(filePath, 'utf-8');
 	}
+
 	return tokens;
 }
 
@@ -151,6 +154,7 @@ async function collectDocs(
 			);
 		}
 	}
+
 	return docs;
 }
 
@@ -167,6 +171,7 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
 		const key = entry.name.slice(0, -3);
 		guides[key] = await readFile(join(MIGRATION_DIR, entry.name), 'utf-8');
 	}
+
 	return guides;
 }
 
@@ -190,14 +195,14 @@ async function buildManifest() {
 	const components: Record<
 		string,
 		{
-			props: string | null;
+			props: string | undefined;
 			examples: string[];
 			exampleCode: Record<Framework, Record<string, string>>;
 		}
 	> = {};
 
 	const entries = await Promise.all(
-		componentNames.map((name) =>
+		componentNames.map(async (name) =>
 			processComponent(name, COMPONENTS_DIR, OUTPUT_DIR)
 		)
 	);

@@ -43,7 +43,7 @@ describe('MCP server — stdio transport', () => {
 		expect(response.isError).toBeFalsy();
 
 		const text =
-			(response.content as { type: string; text: string }[]).find(
+			(response.content as Array<{ type: string; text: string }>).find(
 				(c) => c.type === 'text'
 			)?.text ?? '';
 

@@ -29,15 +29,17 @@ function hasInteractiveChild(node: any): boolean {
 			if (
 				tagName &&
 				INTERACTIVE_ELEMENTS.some(
-					(el) =>
-						tagName === el ||
-						tagName === el.toLowerCase().replace('db', 'db-')
+					(element) =>
+						tagName === element ||
+						tagName === element.toLowerCase().replace('db', 'db-')
 				)
 			) {
 				return true;
 			}
+
 			return hasInteractiveChild(child);
 		}
+
 		return false;
 	});
 }

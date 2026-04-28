@@ -51,8 +51,9 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 		html: {}
 	};
 	for (const key of exampleKeys) {
-		exampleCode['react'][key] = `// source of ${key}`;
+		exampleCode.react[key] = `// source of ${key}`;
 	}
+
 	return JSON.stringify({
 		icons: [],
 		components: { button: { props: null, examples: [], exampleCode } }
@@ -781,7 +782,10 @@ describe('resolveSafePath', () => {
 		// On Unix, backslashes are literal filename characters — resolves safely inside base.
 		it('treats Windows-style path as a literal subdirectory on Unix', () => {
 			expect(
-				resolveSafePath(BASE, 'C:\\Windows\\System32').startsWith(BASE)
+				resolveSafePath(
+					BASE,
+					String.raw`C:\Windows\System32`
+				).startsWith(BASE)
 			).toBe(true);
 		});
 	});

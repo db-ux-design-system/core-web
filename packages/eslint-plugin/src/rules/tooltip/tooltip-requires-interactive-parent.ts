@@ -20,12 +20,12 @@ function isInteractiveElement(node: any): boolean {
 	if (!tagName) return false;
 
 	const normalizedTag = tagName.toLowerCase();
-	return INTERACTIVE_ELEMENTS.some((el) => {
-		const elLower = el.toLowerCase();
-		const kebabCase = elLower.startsWith('db')
-			? elLower.replace('db', 'db-')
-			: elLower;
-		return normalizedTag === elLower || normalizedTag === kebabCase;
+	return INTERACTIVE_ELEMENTS.some((element) => {
+		const elementLower = element.toLowerCase();
+		const kebabCase = elementLower.startsWith('db')
+			? elementLower.replace('db', 'db-')
+			: elementLower;
+		return normalizedTag === elementLower || normalizedTag === kebabCase;
 	});
 }
 
@@ -44,7 +44,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
-			let parent: any = node.parent;
+			let { parent } = node;
 			while (parent) {
 				if (
 					(parent.type === 'Element' ||
@@ -53,6 +53,7 @@ export default {
 				) {
 					return;
 				}
+
 				parent = parent.parent;
 			}
 
@@ -76,17 +77,17 @@ export default {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, 'DBTooltip')) return;
 
-			let parent: any = node.parent;
+			let { parent } = node;
 			while (parent) {
 				if (
-					parent.type === 'JSXElement' ||
-					parent.type === 'VElement' ||
-					parent.type === 'Element'
+					(parent.type === 'JSXElement' ||
+						parent.type === 'VElement' ||
+						parent.type === 'Element') &&
+					isInteractiveElement(parent)
 				) {
-					if (isInteractiveElement(parent)) {
-						return;
-					}
+					return;
 				}
+
 				parent = parent.parent;
 			}
 

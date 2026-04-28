@@ -19,7 +19,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
-			let parent: any = node.parent;
+			let { parent } = node;
 			while (parent) {
 				if (
 					(parent.type === 'Element' ||
@@ -35,6 +35,7 @@ export default {
 					});
 					return;
 				}
+
 				parent = parent.parent;
 			}
 		};
@@ -50,7 +51,7 @@ export default {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, COMPONENTS.DBAccordion)) return;
 
-			let parent: any = node.parent;
+			let { parent } = node;
 			while (parent) {
 				const parentOpening = parent.openingElement || parent;
 				if (
@@ -66,6 +67,7 @@ export default {
 					});
 					return;
 				}
+
 				parent = parent.parent;
 			}
 		};

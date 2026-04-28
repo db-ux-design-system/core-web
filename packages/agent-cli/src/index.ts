@@ -3,7 +3,7 @@ import path from 'node:path';
 import { generateAmazonQ } from './amazonq';
 import { generateCopilot } from './copilot';
 
-export const action = async (rootPath: string = '.') => {
+export const action = async (rootPath = '.') => {
 	const hasCopilot = fs.existsSync(
 		path.join(rootPath, '.github', 'copilot-instructions.md')
 	);

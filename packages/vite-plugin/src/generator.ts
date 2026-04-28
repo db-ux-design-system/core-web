@@ -1,5 +1,5 @@
-import { readdirSync } from 'fs';
-import { resolve } from 'path';
+import { readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import type { FoundationFeature, GenerateOptions } from './types.js';
 
 /** Maps foundation feature names to their CSS file paths relative to build/styles/. */
@@ -17,10 +17,13 @@ const THEME_SCOPES = ['@db-ux', '@db-ux-inner-source'] as const;
 /**
  * Auto-detect the installed DB UX theme package (e.g. @db-ux/db-theme).
  * Walks up from `root` checking each node_modules for *-theme packages
- * in both @db-ux/* and @db-ux-inner-source/* scopes.
+ * in both @db-ux/* And @db-ux-inner-source/* scopes.
  * Returns the package specifier or null if no theme is found.
  */
-function detectTheme(root: string, preferredTheme?: string): string | null {
+function detectTheme(
+	root: string,
+	preferredTheme?: string
+): string | undefined {
 	let currentDir = root;
 	for (let i = 0; i < 10; i++) {
 		for (const scope of THEME_SCOPES) {
@@ -47,7 +50,7 @@ function detectTheme(root: string, preferredTheme?: string): string | null {
 		currentDir = parentDir;
 	}
 
-	return null;
+	return undefined;
 }
 
 /**
@@ -94,6 +97,7 @@ export function generateCSS(options: GenerateOptions): string {
 		if (additionalLayers?.before?.length) {
 			autoLayers = [...additionalLayers.before, ...autoLayers];
 		}
+
 		if (additionalLayers?.after?.length) {
 			autoLayers = [...autoLayers, ...additionalLayers.after];
 		}
@@ -104,16 +108,12 @@ export function generateCSS(options: GenerateOptions): string {
 	// Theme or default fallback
 	if (theme) {
 		imports.push(
-			`@import "${theme}/build/styles/rollup.css" layer(${themeName});`
-		);
-		imports.push(
+			`@import "${theme}/build/styles/rollup.css" layer(${themeName});`,
 			`@import "@db-ux/core-foundations/build/styles/defaults/default-container-properties.css" layer(db-ux);`
 		);
 	} else {
 		imports.push(
-			`@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);`
-		);
-		imports.push(
+			`@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);`,
 			`@import "@db-ux/core-foundations/build/styles/fonts/rollup.css" layer(db-ux);`
 		);
 	}
@@ -127,9 +127,7 @@ export function generateCSS(options: GenerateOptions): string {
 
 	// Required foundation styles
 	imports.push(
-		`@import "@db-ux/core-foundations/build/styles/defaults/default-required.css" layer(db-ux);`
-	);
-	imports.push(
+		`@import "@db-ux/core-foundations/build/styles/defaults/default-required.css" layer(db-ux);`,
 		`@import "@db-ux/core-foundations/build/styles/defaults/default-root.css" layer(db-ux);`
 	);
 

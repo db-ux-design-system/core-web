@@ -51,7 +51,7 @@ function isAngularElement(node: any): node is AngularElement {
 export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
-): string | boolean | null {
+): string | boolean | undefined {
 	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
@@ -63,6 +63,7 @@ export function getAttributeValue(
 				? true
 				: attr.value;
 		}
+
 		const input = node.inputs.find(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
@@ -101,11 +102,9 @@ export function getAttributeValue(
 		return attr.value.value;
 	}
 
-	const variants = [attrName, `[${attrName}]`, `:${attrName}`];
+	const variants = new Set([attrName, `[${attrName}]`, `:${attrName}`]);
 	const attr = node.attributes.find(
-		(a) =>
-			a.type === 'JSXAttribute' &&
-			variants.includes(a.name.name as string)
+		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
 	) as TSESTree.JSXAttribute | undefined;
 
 	if (!attr) return null;
@@ -125,6 +124,7 @@ export function hasChildOfType(
 			if (child.type === 'Element' || child.type === 'Element$1') {
 				return child.name === componentName || child.name === kebabName;
 			}
+
 			return false;
 		});
 	}
@@ -137,18 +137,20 @@ export function hasChildOfType(
 					child.rawName === kebabName
 				);
 			}
+
 			return false;
 		});
 	}
 
 	return node.children.some((child) => {
 		if (child.type === 'JSXElement') {
-			const openingElement = child.openingElement;
+			const { openingElement } = child;
 			if (openingElement.name.type === 'JSXIdentifier') {
-				const name = openingElement.name.name;
+				const { name } = openingElement.name;
 				return name === componentName || name === kebabName;
 			}
 		}
+
 		return false;
 	});
 }
@@ -167,7 +169,7 @@ export function isDBComponent(
 	}
 
 	if (node.name.type !== 'JSXIdentifier') return false;
-	const name = node.name.name;
+	const { name } = node.name;
 	return name === componentName || name === kebabName;
 }
 
@@ -191,11 +193,12 @@ export function defineTemplateBodyVisitor(
 		const angularVisitors: any = {};
 		for (const [key, handler] of Object.entries(templateVisitor)) {
 			if (key === 'VElement' || key === 'Element') {
-				angularVisitors['Element'] = handler;
+				angularVisitors.Element = handler;
 			} else {
 				angularVisitors[key] = handler;
 			}
 		}
+
 		return angularVisitors;
 	}
 
@@ -218,7 +221,9 @@ export function createAngularVisitors(
 
 	const kebabName = getAngularComponentName(componentName);
 
-	const wrappedHandler = (node: any) => handler(node, parserServices);
+	const wrappedHandler = (node: any) => {
+		handler(node, parserServices);
+	};
 
 	return {
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
@@ -226,8 +231,8 @@ export function createAngularVisitors(
 	};
 }
 
-export function toKebabCase(str: string): string {
-	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+export function toKebabCase(string_: string): string {
+	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 export function getAngularComponentName(componentName: string): string {
@@ -260,24 +265,21 @@ export function createJsxVueFix(
 ) {
 	if (node.openingElement) {
 		// JSX
-		const lastAttr =
-			openingElement.attributes[openingElement.attributes.length - 1];
+		const lastAttr = openingElement.attributes.at(-1);
 		const insertPos = lastAttr
 			? lastAttr.range[1]
 			: openingElement.name.range[1];
 		return { insertPos, attributeText };
-	} else {
-		// Vue
-		const attrs = openingElement.startTag.attributes;
-		if (attrs.length > 0) {
-			const lastAttr = attrs[attrs.length - 1];
-			return { insertPos: lastAttr.range[1], attributeText };
-		} else {
-			const insertPos =
-				openingElement.startTag.range[0] +
-				1 +
-				openingElement.rawName.length;
-			return { insertPos, attributeText };
-		}
 	}
+
+	// Vue
+	const attrs = openingElement.startTag.attributes;
+	if (attrs.length > 0) {
+		const lastAttr = attrs.at(-1);
+		return { insertPos: lastAttr.range[1], attributeText };
+	}
+
+	const insertPos =
+		openingElement.startTag.range[0] + 1 + openingElement.rawName.length;
+	return { insertPos, attributeText };
 }

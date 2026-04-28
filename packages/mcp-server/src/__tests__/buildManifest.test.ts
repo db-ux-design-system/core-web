@@ -28,16 +28,12 @@ describe('processComponent', () => {
 			(p: any) =>
 				String(p).includes('model.ts') || String(p).includes('showcase')
 		);
-		vi.mocked(readFile).mockImplementation((p: any) => {
+		vi.mocked(readFile).mockImplementation(async (p: any) => {
 			if (String(p).includes('model.ts'))
-				return Promise.resolve(
-					'export interface ButtonProps {}' as any
-				);
+				return 'export interface ButtonProps {}' as any;
 			if (String(p).includes('showcase'))
-				return Promise.resolve(
-					'exampleName="Variant" exampleName="Size"' as any
-				);
-			return Promise.resolve('' as any);
+				return 'exampleName="Variant" exampleName="Size"' as any;
+			return '' as any;
 		});
 
 		const result = await processComponent('button', BASE, OUTPUT);
@@ -62,7 +58,7 @@ describe('processComponent', () => {
 	});
 
 	it('returns hasError:false with null props when model.ts is absent', async () => {
-		// existsSync returns false for everything → readOptional returns null
+		// ExistsSync returns false for everything → readOptional returns null
 		vi.mocked(existsSync).mockReturnValue(false);
 
 		const result = await processComponent('button', BASE, OUTPUT);
@@ -95,10 +91,10 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 				String(p).includes('button/model.ts') ||
 				String(p).includes('broken/model.ts')
 		);
-		vi.mocked(readFile).mockImplementation((p: any) => {
+		vi.mocked(readFile).mockImplementation(async (p: any) => {
 			if (String(p).includes('broken'))
 				throw new Error('ENOENT: broken component');
-			return Promise.resolve('// button props' as any);
+			return '// button props' as any;
 		});
 
 		const results = await Promise.all([
@@ -111,12 +107,13 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 
 		// Both settled — no early crash
 		expect(results).toHaveLength(2);
-		// button succeeded
+		// Button succeeded
 		expect(successful).toHaveLength(1);
 		if (!successful[0].hasError) {
 			expect(successful[0].name).toBe('button');
 		}
-		// broken failed
+
+		// Broken failed
 		expect(hasErrors).toBe(true);
 
 		// Simulate what buildManifest does after Promise.all

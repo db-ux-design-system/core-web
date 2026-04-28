@@ -66,7 +66,7 @@ export type FontSize =
 /**
  * Configuration options for the Vite plugin.
  */
-export interface PluginConfig {
+export type PluginConfig = {
 	/**
 	 * Force include specific components, foundation features, color schemes, densities, or font sizes.
 	 */
@@ -114,16 +114,14 @@ export interface PluginConfig {
 	 * Generate detection report for debugging (default: false).
 	 */
 	debug?: boolean;
-}
+};
 
 /**
  * Internal options passed to the CSS generator.
  */
-export interface GenerateOptions
-	extends
-		Pick<Required<PluginConfig>, 'include' | 'exclude'>,
-		Pick<PluginConfig, 'theme' | 'additionalLayers' | 'overrideLayers'> {
+export type GenerateOptions = {
 	/** Vite project root, used for resolving node_modules. */
 	root: string;
 	hasTailwind: boolean;
-}
+} & Pick<Required<PluginConfig>, 'include' | 'exclude'> &
+	Pick<PluginConfig, 'theme' | 'additionalLayers' | 'overrideLayers'>;

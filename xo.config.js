@@ -87,6 +87,91 @@ const xoConfig = [
 			// Node.js environment
 			'no-console': 'off'
 		}
+	},
+	{
+		files: ['./packages/eslint-plugin/**'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0, // Uses PascalCase (DBButton, VElement, JSXElement) and UPPER_CASE constants intentionally
+			'@typescript-eslint/no-unsafe-assignment': 0, // AST nodes are untyped
+			'@typescript-eslint/no-unsafe-call': 0, // AST node method calls
+			'@typescript-eslint/no-unsafe-argument': 0, // AST node arguments
+			'@typescript-eslint/no-unsafe-return': 0, // AST node returns
+			'@typescript-eslint/restrict-plus-operands': 0, // String concatenation with AST values
+			'@typescript-eslint/prefer-nullish-coalescing': 0, // Intentional || for falsy checks
+			'import-x/no-anonymous-default-export': 0, // ESLint rules export anonymous objects
+			'unicorn/prefer-string-slice': 0, // Substring is fine
+			'unicorn/no-array-callback-reference': 0, // Intentional
+			'unicorn/no-immediate-mutation': 0 // Intentional pattern
+		}
+	},
+	{
+		files: ['./packages/mcp-server/**'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0, // Uses UPPER_CASE constants and snake_case API fields
+			'@typescript-eslint/no-unsafe-assignment': 0, // Dynamic manifest handling
+			'@typescript-eslint/no-unsafe-call': 0,
+			'@typescript-eslint/no-unsafe-argument': 0,
+			'@typescript-eslint/no-unsafe-return': 0,
+			'@typescript-eslint/consistent-type-imports': 0, // Dynamic imports
+			'@typescript-eslint/consistent-type-assertions': 0, // Type assertions needed
+			'@typescript-eslint/no-require-imports': 0, // Needed for dynamic requires
+			'@typescript-eslint/no-empty-function': 0, // Test stubs
+			'import-x/extensions': 0, // Bundled with esbuild
+			'import-x/no-extraneous-dependencies': 0, // Monorepo internal deps
+			'n/no-extraneous-import': 0, // Monorepo internal deps
+			'unicorn/text-encoding-identifier-case': 0, // Utf-8 is standard
+			'unicorn/no-process-exit': 0, // This IS a CLI app
+			'unicorn/prevent-abbreviations': 0, // Short names in catch
+			'unicorn/filename-case': 0, // Existing file names
+			'unicorn/import-style': 0, // Named imports for node:path
+			'no-await-in-loop': 0, // Sequential file processing
+			'new-cap': 0, // Zod schema constructors
+			'@typescript-eslint/strict-void-return': 0, // Event handlers
+			'@stylistic/curly-newline': 0 // Test formatting
+		}
+	},
+	{
+		files: ['./packages/vite-plugin/**'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0, // UPPER_CASE constants
+			'@typescript-eslint/prefer-nullish-coalescing': 0, // Intentional || for defaults
+			'unicorn/no-array-sort': 0, // Mutation is intentional
+			'unicorn/text-encoding-identifier-case': 0, // Utf-8 is standard
+			'unicorn/prevent-abbreviations': 0 // Short names in catch
+		}
+	},
+	{
+		files: ['./packages/postcss-plugin/**'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0, // PostCSS lifecycle hooks (Once, OnceExit)
+			'@typescript-eslint/no-unsafe-assignment': 0,
+			'@typescript-eslint/no-unsafe-call': 0,
+			'@typescript-eslint/no-unsafe-return': 0,
+			'@typescript-eslint/no-loop-func': 0, // Intentional closures
+			'@typescript-eslint/switch-exhaustiveness-check': 0, // Default case handled elsewhere
+			'unicorn/no-for-loop': 0, // Index needed
+			'unicorn/prevent-abbreviations': 0 // Short names
+		}
+	},
+	{
+		files: ['./packages/agent-cli/**'],
+		rules: {
+			'import-x/extensions': 0, // Bundled
+			'@typescript-eslint/strict-void-return': 0, // CLI entry point
+			'unicorn/no-array-sort': 0 // Intentional
+		}
+	},
+	{
+		files: ['./packages/stylelint/**'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0 // UPPER_CASE constants
+		}
+	},
+	{
+		files: ['./**/vitest.config.ts'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0 // Env var names
+		}
 	}
 ];
 

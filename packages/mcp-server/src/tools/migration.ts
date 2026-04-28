@@ -29,5 +29,6 @@ export async function handleGetMigrationGuide({
 			`Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.`
 		);
 	}
+
 	return { content: [{ type: 'text', text: guide }] };
 }

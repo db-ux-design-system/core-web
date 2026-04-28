@@ -9,14 +9,16 @@ import {
 function hasOptionChildren(node: any): boolean {
 	return node.children?.some((child: any) => {
 		if (child.type === 'JSXElement') {
-			const name = child.openingElement.name;
+			const { name } = child.openingElement;
 			if (name.type === 'JSXIdentifier') {
 				return name.name === 'option';
 			}
 		}
+
 		if (child.type === 'VElement' || child.type === 'Element') {
 			return child.rawName === 'option' || child.name === 'option';
 		}
+
 		return false;
 	});
 }

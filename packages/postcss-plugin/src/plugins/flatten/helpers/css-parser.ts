@@ -16,6 +16,7 @@ export const findMatchingParenthesis = (
 		if (value[i] === ')') depth--;
 		i++;
 	}
+
 	return depth === 0 ? i : -1;
 };
 
@@ -32,6 +33,7 @@ export const findTopLevelComma = (value: string): number => {
 		else if (value[i] === ')') depth--;
 		else if (value[i] === ',' && depth === 0) return i;
 	}
+
 	return -1;
 };
 
@@ -47,13 +49,13 @@ export const findCssFunction = (
 	value: string,
 	funcName: string,
 	fromIndex = 0
-): { start: number; end: number; inner: string } | null => {
+): { start: number; end: number; inner: string } | undefined => {
 	const prefix = `${funcName}(`;
 	const idx = value.indexOf(prefix, fromIndex);
-	if (idx === -1) return null;
+	if (idx === -1) return undefined;
 
 	const end = findMatchingParenthesis(value, idx + prefix.length);
-	if (end === -1) return null;
+	if (end === -1) return undefined;
 
 	return {
 		start: idx,

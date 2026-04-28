@@ -47,6 +47,7 @@ export default {
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
+
 				if (accept !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
@@ -88,6 +89,7 @@ export default {
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
+
 				if (accept !== null) {
 					context.report({
 						node: openingElement,

@@ -3,7 +3,7 @@ import path from 'node:path';
 
 function findAllNodeModulesDirectories(
 	directory: string,
-	found: Set<string> = new Set()
+	found = new Set<string>()
 ): Set<string> {
 	if (!fs.existsSync(directory)) {
 		return found;

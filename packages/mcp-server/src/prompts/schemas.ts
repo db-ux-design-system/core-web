@@ -31,7 +31,7 @@ export const reviewUiCodeSchema = {
 	argsSchema: {
 		code_snippet: z
 			.string()
-			.max(10000)
+			.max(10_000)
 			.describe(
 				'The source code to be evaluated (including markup, styling, logic).'
 			),
@@ -45,7 +45,7 @@ export const migrateComponentSchema = {
 	argsSchema: {
 		legacy_code: z
 			.string()
-			.max(10000)
+			.max(10_000)
 			.describe(
 				'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
 			),
@@ -65,7 +65,7 @@ export const auditAccessibilitySchema = {
 	argsSchema: {
 		code_snippet: z
 			.string()
-			.max(10000)
+			.max(10_000)
 			.describe(
 				'The UI source code to be audited for accessibility compliance.'
 			),

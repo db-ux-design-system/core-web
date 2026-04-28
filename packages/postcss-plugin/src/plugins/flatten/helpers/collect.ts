@@ -16,7 +16,7 @@ export const isRootSelector = (selector: string): boolean => {
  * @param node - The PostCSS child node to start from
  * @returns The layer name, or null if not inside any `@layer`
  */
-export const getLayerName = (node: ChildNode): string | null => {
+export const getLayerName = (node: ChildNode): string | undefined => {
 	let current: any = node.parent;
 	while (current) {
 		if (
@@ -26,9 +26,11 @@ export const getLayerName = (node: ChildNode): string | null => {
 		) {
 			return current.params.trim();
 		}
+
 		current = current.parent;
 	}
-	return null;
+
+	return undefined;
 };
 
 /**
@@ -45,8 +47,8 @@ export const collectLayerOrder = (root: Root): Map<string, number> => {
 			.split(',')
 			.map((n) => n.trim())
 			.filter(Boolean);
-		for (let i = 0; i < names.length; i++) {
-			order.set(names[i], i);
+		for (const [i, name] of names.entries()) {
+			order.set(name, i);
 		}
 	});
 	return order;
@@ -60,12 +62,12 @@ export const collectLayerOrder = (root: Root): Map<string, number> => {
 export const collectImportLayers = (root: Root): Map<string, string> => {
 	const importLayers = new Map<string, string>();
 	root.walkAtRules('import', (atRule: AtRule) => {
-		const params = atRule.params;
-		const layerMatch = params.match(/layer\(([^)]+)\)/);
+		const { params } = atRule;
+		const layerMatch = /layer\(([^)]+)\)/.exec(params);
 		if (!layerMatch) return;
 		const layerName = layerMatch[1].trim();
-		const fileMatch = params.match(
-			/(?:url\(\s*)?["']([^"']+)["'](?:\s*\))?/
+		const fileMatch = /(?:url\(\s*)?["']([^"']+)["'](?:\s*\))?/.exec(
+			params
 		);
 		if (!fileMatch) return;
 		importLayers.set(fileMatch[1], layerName);
@@ -81,10 +83,10 @@ export const collectImportLayers = (root: Root): Map<string, string> => {
  * @returns The numeric priority (higher = wins)
  */
 export const getLayerPriority = (
-	layer: string | null,
+	layer: string | undefined,
 	layerOrder: Map<string, number>
 ): number => {
-	if (layer === null) return Number.MAX_SAFE_INTEGER;
+	if (!layer) return Number.MAX_SAFE_INTEGER;
 	return layerOrder.get(layer) ?? -1;
 };
 
@@ -108,6 +110,7 @@ export const pickBestVar = (
 			best = entries[i];
 		}
 	}
+
 	return best.value;
 };
 
@@ -121,15 +124,18 @@ export const pickBestVar = (
 export const getFileLayer = (
 	filePath: string,
 	importLayerMap: Map<string, string>
-): string | null => {
+): string | undefined => {
 	for (const [specifier, layer] of importLayerMap) {
 		if (
-			filePath.replace(/\\/g, '/').endsWith(specifier.replace(/\\/g, '/'))
+			filePath
+				.replaceAll('\\', '/')
+				.endsWith(specifier.replaceAll('\\', '/'))
 		) {
 			return layer;
 		}
 	}
-	return null;
+
+	return undefined;
 };
 
 /**
@@ -157,10 +163,10 @@ export const collectVarsWithLayer = (
 	propertyNames: Set<string>,
 	dynamicVars: Set<string>,
 	prefixes: string[],
-	forceLayer: string | null,
+	forceLayer: string | undefined,
 	file: string
 ) => {
-	const addVar = (prop: string, value: string, layer: string | null) => {
+	const addVar = (prop: string, value: string, layer: string | undefined) => {
 		const entries = varMap.get(prop);
 		if (entries) {
 			if (entries.some((e) => e.file === file && e.layer === layer))
@@ -181,25 +187,24 @@ export const collectVarsWithLayer = (
 	});
 
 	root.walkDecls(/^--/, (decl: Declaration) => {
-		const parent = decl.parent;
+		const { parent } = decl;
 
 		if (prefixes.some((p) => decl.prop.startsWith(p))) {
 			dynamicVars.add(decl.prop);
 		}
 
-		if (parent && parent.type === 'rule') {
+		if (parent?.type === 'rule') {
 			const rule = parent as Rule;
 			if (!isRootSelector(rule.selector)) {
 				dynamicVars.add(decl.prop);
 			}
 		}
 
-		if (parent && parent.type === 'rule') {
+		if (parent?.type === 'rule') {
 			const rule = parent as Rule;
 			if (
 				isRootSelector(rule.selector) &&
-				rule.parent &&
-				rule.parent.type === 'atrule'
+				rule.parent?.type === 'atrule'
 			) {
 				const atRule = rule.parent as AtRule;
 				if (atRule.name === 'media') {
