@@ -24,13 +24,30 @@ const setProjectStatus = () => {
 	console.log(`ITEM_ID: ${itemId}`);
 	console.log(`FIELD_ID: ${fieldId}`);
 
-	let statusName: string;
+	// Determine the project board status based on the event type:
+	// - review_requested: a reviewer was added, move to active review
+	// - converted_to_draft: PR was explicitly converted to draft
+	// - ready_for_review / opened (non-draft): PR is ready for review
+	// - all other events (closed, assigned, edited, etc.): no status change needed
+	let statusName: string | undefined;
 	if (eventAction === 'review_requested') {
 		statusName = '👀 Actively In Review';
-	} else if (isDraft) {
+	} else if (eventAction === 'converted_to_draft') {
 		statusName = '🏗️ In progress';
-	} else {
+	} else if (
+		(eventAction === 'ready_for_review' ||
+			eventAction === 'opened' ||
+			eventAction === 'reopened') &&
+		!isDraft
+	) {
 		statusName = '🎁 Ready for review';
+	}
+
+	if (!statusName) {
+		console.log(
+			`No status change needed for event "${eventAction}" (draft: ${isDraft})`
+		);
+		return;
 	}
 
 	const optionId = exec(
@@ -43,7 +60,9 @@ const setProjectStatus = () => {
 		`gh project item-edit --project-id "${projectId}" --id "${itemId}" --field-id "${fieldId}" --single-select-option-id "${optionId}"`
 	);
 
-	if (isDraft) {
+	// Only remove reviewers when a PR is explicitly converted to draft,
+	// not on every event where the PR happens to be a draft
+	if (eventAction === 'converted_to_draft') {
 		exec(`gh pr edit "${prUrl}" --remove-reviewer @*`);
 	}
 };
