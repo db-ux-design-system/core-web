@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetManifestCache } from '../utils/manifest';
 
 // ---------------------------------------------------------------------------
@@ -60,8 +60,7 @@ const {
 	handleGetExampleCode,
 	handleDocsSearch,
 	handleListMigrationGuides,
-	handleGetMigrationGuide,
-	handleScaffoldComponent
+	handleGetMigrationGuide
 } = await import('../tools/index.js');
 const {
 	handleScaffoldPagePrompt,
@@ -1031,114 +1030,26 @@ describe('handleMigrateComponentPrompt', () => {
 	});
 });
 describe('handleVerifyMigratedCode', () => {
-	beforeEach(() => {
-		execMock.mockResolvedValue({ stdout: '', stderr: '' });
-		writeFileMock.mockResolvedValue(undefined);
-		unlinkMock.mockResolvedValue(undefined);
-	});
-
-	afterEach(() => {
-		writeFileMock.mockReset();
-		unlinkMock.mockReset();
-		execMock.mockReset();
-	});
-
-	it('returns a success ToolResult when exec resolves', async () => {
+	it('returns a ToolResult with verification instructions', async () => {
 		const { handleVerifyMigratedCode: handler } =
 			await import('../tools/verify.js');
 
-		const result = await handler({
-			code: 'const x: number = 42;',
-			framework: 'react'
-		});
+		const result = await handler();
 
 		expect(result).toHaveProperty('content');
 		expect(Array.isArray(result.content)).toBe(true);
 		expect(result.content[0]).toHaveProperty('type', 'text');
-		expect(text(result.content[0])).toContain('✅');
+		expect(text(result.content[0])).toContain('package.json');
+		expect(text(result.content[0])).toContain('typecheck');
 		expect(result.isError).toBeUndefined();
-	});
-
-	it('returns an error ToolResult (not an exception) when exec rejects', async () => {
-		execMock.mockRejectedValue({
-			stdout: 'error TS2322: Type string is not assignable to type number.',
-			stderr: ''
-		});
-
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		const result = await handler({
-			code: 'const x: number = "not a number";',
-			framework: 'react'
-		});
-
-		expect(result.isError).toBe(true);
-		expect(text(result.content[0])).toContain('❌');
-		expect(text(result.content[0])).toContain('TS2322');
-	});
-
-	it('writes a .tsx temp file for react framework', async () => {
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		await handler({ code: 'const x = 1;', framework: 'react' });
-
-		const writtenPath: string = writeFileMock.mock.calls[0][0];
-		expect(writtenPath).toMatch(/\.tsx$/);
-	});
-
-	it('writes a .vue temp file for vue framework', async () => {
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		await handler({
-			code: '<template><div>Hello</div></template>',
-			framework: 'vue'
-		});
-
-		const writtenPath: string = writeFileMock.mock.calls[0][0];
-		expect(writtenPath).toMatch(/\.vue$/);
-	});
-
-	it('writes a .ts temp file for angular framework', async () => {
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		await handler({ code: 'const x = 1;', framework: 'angular' });
-
-		const writtenPath: string = writeFileMock.mock.calls[0][0];
-		expect(writtenPath).toMatch(/\.ts$/);
-	});
-
-	it('always calls unlink to clean up the temp file', async () => {
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		await handler({ code: 'const x = 1;', framework: 'react' });
-
-		expect(unlinkMock).toHaveBeenCalledOnce();
-		const unlinkedPath: string = unlinkMock.mock.calls[0][0];
-		expect(unlinkedPath).toMatch(/\.tmp_verify_/);
-	});
-
-	it('still calls unlink even when exec rejects', async () => {
-		execMock.mockRejectedValue({ stdout: 'error', stderr: '' });
-
-		const { handleVerifyMigratedCode: handler } =
-			await import('../tools/verify.js');
-
-		await handler({ code: 'const x = 1;', framework: 'react' });
-
-		expect(unlinkMock).toHaveBeenCalledOnce();
 	});
 });
 
 // ---------------------------------------------------------------------------
-// analyze_v2_migration
+// scan_v2_migration
 // ---------------------------------------------------------------------------
-describe('handleAnalyzeV2Migration', () => {
-	let handleAnalyzeV2Migration: (typeof import('../tools/scanner.js'))['handleAnalyzeV2Migration'];
+describe('handleScanV2Migration', () => {
+	let handleScanV2Migration: (typeof import('../tools/scanner.js'))['handleScanV2Migration'];
 	let resetScannerCache: (typeof import('../tools/scanner.js'))['resetScannerCache'];
 
 	/** Creates a temp file inside process.cwd() and returns its path. */
@@ -1152,7 +1063,7 @@ describe('handleAnalyzeV2Migration', () => {
 
 	beforeEach(async () => {
 		const mod = await import('../tools/scanner.js');
-		handleAnalyzeV2Migration = mod.handleAnalyzeV2Migration;
+		handleScanV2Migration = mod.handleScanV2Migration;
 		resetScannerCache = mod.resetScannerCache;
 
 		// Reset scanner cache so maps are re-parsed from fresh manifest
@@ -1187,7 +1098,7 @@ describe('handleAnalyzeV2Migration', () => {
 		);
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('elm-button');
@@ -1208,7 +1119,7 @@ describe('handleAnalyzeV2Migration', () => {
 		);
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('db-color-red-500');
@@ -1228,7 +1139,7 @@ describe('handleAnalyzeV2Migration', () => {
 		);
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('"type": "icon"');
@@ -1249,7 +1160,7 @@ describe('handleAnalyzeV2Migration', () => {
 		);
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('No DB UI v2 patterns found');
@@ -1259,7 +1170,7 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('returns an error for non-existent files', async () => {
-		const result = await handleAnalyzeV2Migration({
+		const result = await handleScanV2Migration({
 			filePath: 'does-not-exist-12345.html'
 		});
 
@@ -1275,7 +1186,7 @@ describe('handleAnalyzeV2Migration', () => {
 		);
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			// elm-button is on line 3
@@ -1293,7 +1204,7 @@ describe('handleAnalyzeV2Migration', () => {
 		);
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('component(s)');
@@ -1328,7 +1239,7 @@ describe('handleAnalyzeV2Migration', () => {
 		const tmp = writeCwdTemp('legacy', '<elm-toggle>Dark</elm-toggle>');
 
 		try {
-			const result = await handleAnalyzeV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('elm-toggle');
@@ -1341,7 +1252,7 @@ describe('handleAnalyzeV2Migration', () => {
 	// --- Security tests ---
 
 	it('🔒 rejects file paths outside workspace (path traversal)', async () => {
-		const result = await handleAnalyzeV2Migration({
+		const result = await handleScanV2Migration({
 			filePath: '/etc/passwd'
 		});
 		expect(result.isError).toBe(true);
@@ -1349,287 +1260,10 @@ describe('handleAnalyzeV2Migration', () => {
 	});
 
 	it('🔒 rejects ../ directory climbing', async () => {
-		const result = await handleAnalyzeV2Migration({
+		const result = await handleScanV2Migration({
 			filePath: '../../../../../../etc/passwd'
 		});
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('Path traversal');
-	});
-});
-
-// ---------------------------------------------------------------------------
-// scaffold_component tool
-// ---------------------------------------------------------------------------
-describe('handleScaffoldComponent', () => {
-	/** Creates a temp directory inside process.cwd() and returns its path + cleanup fn. */
-	async function makeCwdTemp(): Promise<{
-		targetPath: string;
-		cleanup: () => void;
-	}> {
-		const { mkdtempSync, rmSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const targetPath = mkdtempSync(join(process.cwd(), '.scaffold-test-'));
-		return {
-			targetPath,
-			cleanup: () => rmSync(targetPath, { recursive: true, force: true })
-		};
-	}
-
-	it('generates React files with correct structure', async () => {
-		const { existsSync, readFileSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			const result = await handleScaffoldComponent({
-				name: 'reservation-card',
-				framework: 'react',
-				targetPath
-			});
-			const output = text(result.content[0]);
-
-			expect(output).toContain('✅ Scaffolded "ReservationCard"');
-			expect(output).toContain('react');
-
-			const componentDir = join(targetPath, 'reservation-card');
-			expect(existsSync(join(componentDir, 'ReservationCard.tsx'))).toBe(
-				true
-			);
-			expect(existsSync(join(componentDir, 'ReservationCard.scss'))).toBe(
-				true
-			);
-
-			const tsx = readFileSync(
-				join(componentDir, 'ReservationCard.tsx'),
-				'utf-8'
-			);
-			expect(tsx).toContain("from '@db-ux/react-core-components'");
-			expect(tsx).toContain('DBButton');
-			expect(tsx).toContain('DBCard');
-		} finally {
-			cleanup();
-		}
-	});
-
-	it('generates Angular files with correct structure', async () => {
-		const { existsSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			const result = await handleScaffoldComponent({
-				name: 'reservation-card',
-				framework: 'angular',
-				targetPath
-			});
-			const output = text(result.content[0]);
-			expect(output).toContain('✅ Scaffolded "ReservationCard"');
-
-			const componentDir = join(targetPath, 'reservation-card');
-			expect(
-				existsSync(join(componentDir, 'reservation-card.component.ts'))
-			).toBe(true);
-			expect(
-				existsSync(
-					join(componentDir, 'reservation-card.component.html')
-				)
-			).toBe(true);
-			expect(
-				existsSync(
-					join(componentDir, 'reservation-card.component.scss')
-				)
-			).toBe(true);
-		} finally {
-			cleanup();
-		}
-	});
-
-	it('generates Vue single-file component', async () => {
-		const { existsSync, readFileSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			const result = await handleScaffoldComponent({
-				name: 'reservation-card',
-				framework: 'vue',
-				targetPath
-			});
-			const output = text(result.content[0]);
-			expect(output).toContain('✅ Scaffolded "ReservationCard"');
-
-			const componentDir = join(targetPath, 'reservation-card');
-			expect(existsSync(join(componentDir, 'ReservationCard.vue'))).toBe(
-				true
-			);
-
-			const vue = readFileSync(
-				join(componentDir, 'ReservationCard.vue'),
-				'utf-8'
-			);
-			expect(vue).toContain("from '@db-ux/v-core-components'");
-		} finally {
-			cleanup();
-		}
-	});
-
-	it('generates HTML template files', async () => {
-		const { existsSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			const result = await handleScaffoldComponent({
-				name: 'reservation-card',
-				framework: 'html',
-				targetPath
-			});
-			const output = text(result.content[0]);
-			expect(output).toContain('✅ Scaffolded "ReservationCard"');
-
-			const componentDir = join(targetPath, 'reservation-card');
-			expect(
-				existsSync(join(componentDir, 'reservation-card.html'))
-			).toBe(true);
-			expect(
-				existsSync(join(componentDir, 'reservation-card.scss'))
-			).toBe(true);
-		} finally {
-			cleanup();
-		}
-	});
-
-	it('returns error for names shorter than 2 characters', async () => {
-		const result = await handleScaffoldComponent({
-			name: 'x',
-			framework: 'react',
-			targetPath: '.'
-		});
-		expect(result.isError).toBe(true);
-		expect(text(result.content[0])).toContain('at least 2 characters');
-	});
-
-	it('returns error for unsupported framework', async () => {
-		const result = await handleScaffoldComponent({
-			name: 'my-widget',
-			framework: 'svelte' as any,
-			targetPath: '.'
-		});
-		expect(result.isError).toBe(true);
-		expect(text(result.content[0])).toContain('Unsupported framework');
-	});
-
-	it('converts PascalCase input to kebab-case', async () => {
-		const { existsSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			const result = await handleScaffoldComponent({
-				name: 'MyWidget',
-				framework: 'react',
-				targetPath
-			});
-			const output = text(result.content[0]);
-			expect(output).toContain('✅ Scaffolded "MyWidget"');
-			expect(existsSync(join(targetPath, 'my-widget'))).toBe(true);
-		} finally {
-			cleanup();
-		}
-	});
-
-	it('includes SCSS foundation imports in generated files', async () => {
-		const { readFileSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			await handleScaffoldComponent({
-				name: 'test-comp',
-				framework: 'react',
-				targetPath
-			});
-
-			const scss = readFileSync(
-				join(targetPath, 'test-comp', 'TestComp.scss'),
-				'utf-8'
-			);
-			expect(scss).toContain(
-				'@use "@db-ux/foundations/scss/defaults/default-variables"'
-			);
-			expect(scss).toContain(
-				'@use "@db-ux/foundations/scss/colors/variables"'
-			);
-		} finally {
-			cleanup();
-		}
-	});
-
-	// --- Security tests ---
-
-	it('🔒 rejects targetPath outside workspace (path traversal)', async () => {
-		const result = await handleScaffoldComponent({
-			name: 'evil',
-			framework: 'react',
-			targetPath: '/tmp'
-		});
-		expect(result.isError).toBe(true);
-		expect(text(result.content[0])).toContain('Path traversal');
-	});
-
-	it('🔒 rejects targetPath with ../ directory climbing', async () => {
-		const result = await handleScaffoldComponent({
-			name: 'evil',
-			framework: 'react',
-			targetPath: '../../../../../../tmp'
-		});
-		expect(result.isError).toBe(true);
-		expect(text(result.content[0])).toContain('Path traversal');
-	});
-
-	it('🔒 strips path separators from component name', async () => {
-		const { existsSync } = await import('node:fs');
-		const { join } = await import('node:path');
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			const result = await handleScaffoldComponent({
-				name: '../../etc/passwd',
-				framework: 'react',
-				targetPath
-			});
-			// Name gets sanitized to "etcpasswd" (slashes + dots stripped) // cspell:disable-line
-			const output = text(result.content[0]);
-			expect(output).toContain('✅ Scaffolded');
-			// Verify no directory climbing occurred
-			expect(existsSync(join(targetPath, 'etcpasswd'))).toBe(true); // cspell:disable-line
-		} finally {
-			cleanup();
-		}
-	});
-
-	it('🔒 refuses to overwrite existing files', async () => {
-		const { targetPath, cleanup } = await makeCwdTemp();
-
-		try {
-			// First scaffold succeeds
-			const first = await handleScaffoldComponent({
-				name: 'my-comp',
-				framework: 'react',
-				targetPath
-			});
-			expect(first.isError).toBeUndefined();
-
-			// Second scaffold with same name fails
-			const second = await handleScaffoldComponent({
-				name: 'my-comp',
-				framework: 'react',
-				targetPath
-			});
-			expect(second.isError).toBe(true);
-			expect(text(second.content[0])).toContain('already exists');
-		} finally {
-			cleanup();
-		}
 	});
 });
