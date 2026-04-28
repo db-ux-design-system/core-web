@@ -1081,7 +1081,7 @@ describe('handleScanV2Migration', () => {
 						'component-migration':
 							'**button** — `elm-button`->`db-button`. **card** — `cmp-card`->`db-card`.',
 						'color-migration':
-							'`db-color-red-500` → BG: `--db-brand-bg-inverted`, FG: `--db-brand-on-bg`',
+							'| `db-color-red-500` | `--db-brand-bg-inverted` | `--db-brand-on-bg` |',
 						'icon-migration':
 							'`account`→`person`, `search`→`magnifying_glass`'
 					}

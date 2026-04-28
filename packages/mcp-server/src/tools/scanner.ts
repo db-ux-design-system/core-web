@@ -60,16 +60,16 @@ function parseComponentMap(content: string): Map<string, string> {
 
 /**
  * Parses `color-migration.md` into a Map<oldColor, {bg, fg}>.
- * Format: `db-color-xxx-nnn` → BG: `--db-xxx-...`, FG: `--db-xxx-...`
+ * Supports GFM table format: | `db-color-xxx` | `--db-bg-token` | `--db-fg-token` |
  */
 function parseColorMap(
 	content: string
 ): Map<string, { bg: string; fg: string }> {
 	const map = new Map<string, { bg: string; fg: string }>();
 	for (const match of content.matchAll(
-		/`(db-color-[\w-]+)`\s*→\s*BG:\s*`([^`]+)`(?:,\s*FG:\s*`([^`]+)`)?/g
+		/\|\s*`(db-color-[\w-]+)`\s*\|\s*`([^`]+)`\s*\|\s*`([^`]+)`\s*\|/g
 	)) {
-		map.set(match[1], { bg: match[2], fg: match[3] ?? '' });
+		map.set(match[1], { bg: match[2], fg: match[3] });
 	}
 	return map;
 }
