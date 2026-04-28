@@ -150,6 +150,14 @@
     - tab "Details" [selected]
     - tab "Settings"
   - tabpanel "Details": Details content
+  - link "Nested Tabs"
+  - text: "Nested Tabs:"
+  - tablist "outer-tabs":
+    - tab "Overview" [selected]
+    - tab "Details"
+    - tab "Settings"
+  - tabpanel "Overview":
+    - paragraph: Overview content without nested tabs.
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
