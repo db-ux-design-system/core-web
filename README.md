@@ -47,11 +47,11 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 ## How to use
 
 1. **Install your preferred package** via npm or yarn:
-   - For React: `npm i @db-ux/react-core-components`
-   - For Angular: `npm i @db-ux/ngx-core-components`
-   - For Vue: `npm i @db-ux/v-core-components`
-   - For Web Components: `npm i @db-ux/wc-core-components`
-   - For styling only (e.g. for pure HTML integrations): `npm i @db-ux/core-components`
+    - For React: `npm i @db-ux/react-core-components`
+    - For Angular: `npm i @db-ux/ngx-core-components`
+    - For Vue: `npm i @db-ux/v-core-components`
+    - For Web Components: `npm i @db-ux/wc-core-components`
+    - For styling only (e.g. for pure HTML integrations): `npm i @db-ux/core-components`
 
 2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
 
@@ -71,12 +71,12 @@ Add the server to your AI assistant's MCP configuration:
 
 ```json
 {
-  "mcpServers": {
-    "db-ux": {
-      "command": "npx",
-      "args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
-    }
-  }
+	"mcpServers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["-y", "@db-ux/mcp-server", "db-ux-mcp"]
+		}
+	}
 }
 ```
 
@@ -113,12 +113,12 @@ Then add it to your ESLint config:
 import dbUx from "@db-ux/core-eslint-plugin";
 
 export default [
-  {
-    plugins: {
-      "db-ux": dbUx,
-    },
-    rules: dbUx.configs.recommended.rules,
-  },
+	{
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
 ];
 ```
 
