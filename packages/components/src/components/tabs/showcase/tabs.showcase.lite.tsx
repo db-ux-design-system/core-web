@@ -64,14 +64,14 @@ export default function TabsShowcase(props: PatternhubProps) {
 					<TabsUrlSync />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Examples">
-				<CardWrapperShowcase>
-					<TabsExamples />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Nested Tabs">
 				<CardWrapperShowcase>
 					<TabsNested />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Examples">
+				<CardWrapperShowcase>
+					<TabsExamples />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

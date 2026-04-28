@@ -1,4 +1,5 @@
 import { useMetadata } from '@builder.io/mitosis';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBTabItem from '../../tab-item/tab-item.lite';
 import DBTabList from '../../tab-list/tab-list.lite';
 import DBTabPanel from '../../tab-panel/tab-panel.lite';
@@ -14,6 +15,9 @@ useMetadata({
 export default function TabsNested() {
 	return (
 		<div class="fit-content-container">
+			<DBInfotext icon="none" size="small" semantic="informational">
+				Nested Tabs:
+			</DBInfotext>
 			<DBTabs name="outer-tabs">
 				<DBTabList>
 					<DBTabItem>Overview</DBTabItem>
@@ -40,4 +44,3 @@ export default function TabsNested() {
 		</div>
 	);
 }
-
