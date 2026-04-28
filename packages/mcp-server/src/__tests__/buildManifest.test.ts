@@ -65,7 +65,7 @@ describe('processComponent', () => {
 
 		expect(result.hasError).toBe(false);
 		if (!result.hasError) {
-			expect(result.data.props).toBeNull();
+			expect(result.data.props).toBeUndefined();
 			expect(result.data.examples).toEqual([]);
 		}
 	});

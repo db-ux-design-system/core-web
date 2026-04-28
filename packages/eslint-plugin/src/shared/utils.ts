@@ -68,7 +68,7 @@ export function getAttributeValue(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
 		if (input) return true;
-		return undefined;
+		return null;
 	}
 
 	if (isVElement(node)) {
@@ -97,7 +97,7 @@ export function getAttributeValue(
 				keyName === `:${kebabAttrName}`
 			);
 		});
-		if (!attr) return undefined;
+		if (!attr) return null;
 		if (!attr.value) return true;
 		return attr.value.value;
 	}
@@ -107,11 +107,11 @@ export function getAttributeValue(
 		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
 	) as TSESTree.JSXAttribute | undefined;
 
-	if (!attr) return undefined;
+	if (!attr) return null;
 	if (!attr.value) return true;
 	if (attr.value.type === 'Literal') return attr.value.value as string;
 	if (attr.value.type === 'JSXExpressionContainer') return true;
-	return undefined;
+	return null;
 }
 
 export function hasChildOfType(
