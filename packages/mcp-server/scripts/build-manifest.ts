@@ -12,12 +12,11 @@ import { join, relative } from 'node:path';
 import {
 	COMPONENTS_DIR,
 	FOUNDATIONS_DIR,
-	MIGRATION_ASSETS_DIR,
 	MIGRATION_DIR,
 	OUTPUT_DIR,
 	REPO_ROOT,
 	TOKEN_FILES
-} from '../src/utils';
+} from './paths.ts';
 
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
 const FRAMEWORKS = [
@@ -183,20 +182,20 @@ async function collectWhitelistedDocs(): Promise<Record<string, string>> {
 
 /**
  * Reads all .md files from the migration guides directory.
- * Primary: docs/migration/db-ui/ (monorepo root – single source of truth).
- * Fallback: assets/migration/ (standalone / npx installation).
+ * At build time this always reads from docs/migration/db-ui/ in the monorepo.
  */
 async function collectMigrationGuides(): Promise<Record<string, string>> {
-	const migrationDir = existsSync(MIGRATION_DIR)
-		? MIGRATION_DIR
-		: MIGRATION_ASSETS_DIR;
-	if (!existsSync(migrationDir)) return {};
-	const entries = await readdir(migrationDir, { withFileTypes: true });
+	if (!existsSync(MIGRATION_DIR)) {
+		throw new Error(
+			`[build-manifest] FATAL: migration guides directory not found: ${MIGRATION_DIR}`
+		);
+	}
+	const entries = await readdir(MIGRATION_DIR, { withFileTypes: true });
 	const guides: Record<string, string> = {};
 	for (const entry of entries) {
 		if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
 		const key = entry.name.slice(0, -3);
-		guides[key] = await readFile(join(migrationDir, entry.name), 'utf-8');
+		guides[key] = await readFile(join(MIGRATION_DIR, entry.name), 'utf-8');
 	}
 	return guides;
 }
