@@ -6,6 +6,7 @@ import TabsDensity from '../examples/density.example.lite';
 import TabsDisabled from '../examples/disabled.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
 import TabsIcons from '../examples/icons.example.lite';
+import TabsNested from '../examples/nested.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
 import TabsSlotWithBadge from '../examples/slotWithBadge.example.lite';
@@ -66,6 +67,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples">
 				<CardWrapperShowcase>
 					<TabsExamples />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Nested Tabs">
+				<CardWrapperShowcase>
+					<TabsNested />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
