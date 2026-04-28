@@ -24,7 +24,7 @@ function getTextContent(node: any): string | undefined {
 		}
 	}
 
-	return null;
+	return undefined;
 }
 
 export default {
