@@ -27,15 +27,11 @@ const CATEGORY_LINE_FILTERS: Record<string, RegExp> = {
 };
 
 /**
- * Resolves a compiled token file path with monorepo → standalone fallback.
- * Returns the first path that exists, or null if neither is available.
+ * Checks whether a compiled token file exists at the given assets path.
+ * Returns the path if it exists, or null otherwise.
  */
-function resolveTokenFile(paths: {
-	monorepo: string;
-	standalone: string;
-}): string | null {
-	if (existsSync(paths.monorepo)) return paths.monorepo;
-	if (existsSync(paths.standalone)) return paths.standalone;
+function resolveTokenFile(filePath: string): string | null {
+	if (existsSync(filePath)) return filePath;
 	return null;
 }
 

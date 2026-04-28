@@ -85,7 +85,7 @@ core-web/
 
 **Decision:** The single source of truth lives at `docs/migration/db-ui/` in the monorepo root. The `db-ui-` filename prefix was stripped (redundant inside the `db-ui/` directory). The MCP-server no longer has its own `docs/` folder.
 
-**Fallback for standalone (npx):** The `prebuild` step copies guides into `assets/migration/` so they ship with the published package. At runtime, `collectMigrationGuides()` in `build-manifest.ts` checks `MIGRATION_DIR` (monorepo) first, then falls back to `MIGRATION_ASSETS_DIR` (standalone).
+**Runtime resolution:** The `prebuild` step copies guides into `assets/migration/` so they ship with the published package. At runtime, migration guides are read exclusively from the embedded manifest (built from `assets/migration/`). There is no fallback to monorepo source paths.
 
 ### ADR-2: Defense-in-Depth Filtering for docs_search
 
@@ -118,7 +118,7 @@ Other categories (`colors`, `typography`, `animation`, `transitions`) continue t
 
 **Multiline handling:** The `readFilteredLines()` function detects when a CSS declaration spans multiple lines (e.g. elevation box-shadows) and captures continuation lines.
 
-**Standalone operation:** The `prebuild` step copies both compiled files into `assets/tokens/`. The `resolveTokenFile()` function reads strictly from assets — it must never fall back to monorepo source paths, to avoid masking build failures.
+**Asset resolution:** The `prebuild` step copies both compiled files into `assets/tokens/`. The `resolveTokenFile()` function reads strictly from `assets/tokens/` — there is no monorepo fallback. If the file is missing, `null` is returned and the server surfaces the error.
 
 ## Prebuild Pipeline
 
