@@ -21,12 +21,12 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
  * Copies src → dest.
  * Throws a hard error when src does not exist to prevent publishing
  * an incomplete package.
- *
- * @param {string} src  - Path relative to monorepo root.
- * @param {string} dest - Path relative to this package root (packages/mcp-server).
- * @param {{ recursive?: boolean }} [opts]
  */
-function copyAsset(src, dest, opts = {}) {
+function copyAsset(
+	src: string,
+	dest: string,
+	opts: { recursive?: boolean } = {}
+): void {
 	const srcAbs = resolve(ROOT, src);
 	const destAbs = resolve(
 		dirname(fileURLToPath(import.meta.url)),
