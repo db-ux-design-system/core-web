@@ -111,7 +111,7 @@
     "@db-ux/core-eslint-plugin": "*",
     "@db-ux/db-theme": "5.5.1",
     "@double-great/stylelint-a11y": "3.4.10",
-    "@figma/code-connect": "1.3.12",
+    "@figma/code-connect": "1.4.4",
     "@guidepup/guidepup": "0.24.1",
     "@guidepup/playwright": "0.15.0",
     "@guidepup/record": "0.1.0",
@@ -173,7 +173,6 @@
     "cross-spawn": "7.0.6",
     "esbuild": "0.28.0",
     "esbuild-wasm": "0.28.0",
-    "lodash": ">=4.18.0",
     "path-to-regexp": ">=8.4.0",
     "picomatch": ">=4.0.4",
     "zod-validation-error": ">=4.0.2"

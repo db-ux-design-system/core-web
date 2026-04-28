@@ -1,5 +1,5 @@
 {
-	"include": ["."],
+	"include": [".", "../parse-utils.ts", "../vitest.config.ts"],
 	"compilerOptions": {
 		"strict": true,
 		"allowSyntheticDefaultImports": true,
@@ -9,6 +9,7 @@
 		"resolveJsonModule": true,
 		"target": "ESNext",
 		"verbatimModuleSyntax": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"types": ["@figma/code-connect/figma-types"]
 	}
 }

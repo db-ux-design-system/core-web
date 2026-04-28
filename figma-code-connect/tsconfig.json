@@ -1,0 +1,10 @@
+{
+	"include": ["parse-utils.ts", "vitest.config.ts"],
+	"compilerOptions": {
+		"strict": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"target": "ESNext",
+		"skipLibCheck": true
+	}
+}

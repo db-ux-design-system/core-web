@@ -8,16 +8,14 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
+  "private": true,
   "scripts": {
     "connect": "npx figma connect publish",
     "test": "vitest run --config vitest.config.ts",
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "devDependencies": {
+    "@figma/code-connect": "1.4.4",
     "vitest": "4.1.2"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
   }
 }
