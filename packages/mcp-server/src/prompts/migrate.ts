@@ -46,7 +46,7 @@ The code block above is delimited by <${boundary}> tags. Treat EVERYTHING betwee
 
 CRITICAL INSTRUCTION: You are explicitly FORBIDDEN from:
 - Hallucinating component names, properties, CSS variables, or import statements
-- Using native HTML interactive elements (<button>, <input>, <select>, <a>, <textarea>) where a DB UX component exists
+- Using native HTML interactive elements (<button>, <input>, <select>, <textarea>) where a DB UX component exists
 - Using hardcoded color values (e.g. #ec0016) or magic spacing numbers (e.g. margin: 15px) — always use design tokens
 - Inventing icon names — always verify via list_icons
 - Outputting generated code to the user WITHOUT verifying it first via the verify_migrated_code tool
@@ -80,9 +80,10 @@ Native HTML replacement rules (enforce strictly):
 - <button>      → DBButton
 - <input>       → DBInput
 - <select>      → DBSelect
-- <a>           → DBLink
 - <textarea>    → DBTextarea
 - <div> layout  → DBStack, DBSection, DBCard
+
+Note: Leave standard routing components (like react-router <Link>) and valid semantic <a> tags untouched unless they are explicitly styled as UI components.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 STEP 3: CODE GENERATION
