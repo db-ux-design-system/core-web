@@ -44,7 +44,7 @@ export function resetScannerCache(): void {
 }
 
 /**
- * Parses `component-migration.md` into a Map<oldTag, newTag>.
+ * Parses `component-migration.md` into a Map<oldClass, newClass>.
  * Extracts patterns like `cmp-card`->`db-card` or `elm-button`->`db-button`.
  */
 function parseComponentMap(content: string): Map<string, string> {
@@ -113,8 +113,11 @@ async function ensureMaps(): Promise<void> {
 // because lastIndex persists across calls.
 // ---------------------------------------------------------------------------
 
-/** Matches v2 component tags: <cmp-xxx, <elm-xxx, <rea-xxx (HTML/JSX) */
-const RE_V2_COMPONENT = /<((?:cmp|elm|rea)-[\w-]+)/g;
+/** Matches v2 CSS classes: cmp-xxx, elm-xxx, rea-xxx (in class attributes, SCSS, etc.) */
+const RE_V2_CSS_CLASS = /\b((?:cmp|elm|rea)-[\w-]+)\b/g;
+
+/** Matches v2 Web Components: <db-xxx (HTML/JSX custom element tags) */
+const RE_V2_WEB_COMPONENT = /<(db-[\w-]+)\b/g;
 
 /** Matches v2 color tokens: db-color-xxx-nnn */
 const RE_V2_COLOR = /\b(db-color-[\w-]+)/g;
@@ -135,8 +138,8 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const findings: ScanFinding[] = [];
 	const ctx = line.length > 120 ? line.substring(0, 120) + '…' : line;
 
-	// --- Components ---
-	for (const match of line.matchAll(RE_V2_COMPONENT)) {
+	// --- v2 CSS classes (cmp-*, elm-*, rea-*) ---
+	for (const match of line.matchAll(RE_V2_CSS_CLASS)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
@@ -148,6 +151,20 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		if (replacement) {
 			finding.suggestion = replacement;
 		}
+		findings.push(finding);
+	}
+
+	// --- v2 Web Components (<db-*>) ---
+	for (const match of line.matchAll(RE_V2_WEB_COMPONENT)) {
+		const old = match[1];
+		const finding: ScanFinding = {
+			line: lineNumber,
+			type: 'component',
+			found: `<${old}>`,
+			context: ctx.trim()
+		};
+		// v2 <db-*> maps to v3 <db-*> — flag for API review
+		finding.suggestion = `${old} (v3) — review changed props/API`;
 		findings.push(finding);
 	}
 
