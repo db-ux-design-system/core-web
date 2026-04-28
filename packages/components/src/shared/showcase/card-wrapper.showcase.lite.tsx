@@ -35,13 +35,7 @@ export default function CardWrapperShowcase(props: Props) {
 					frameworkOverride ??
 					frameworkFromUrl ??
 					frameworkFromStorage;
-
-				// TODO: Remove after we've set up and provided HTML storybook
-				if (framework !== 'html') {
-					setHref(getShowCodeHref(window.location.href, framework));
-				} else {
-					setHref(undefined);
-				}
+				setHref(getShowCodeHref(window.location.href, framework));
 			}
 		});
 	}

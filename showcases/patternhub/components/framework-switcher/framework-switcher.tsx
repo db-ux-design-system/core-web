@@ -13,7 +13,7 @@ const FrameworkSwitcher = () => {
 			value={framework}
 			onChange={(event) => {
 				const { value } = event.target;
-				if (['angular', 'html', 'react', 'vue'].includes(value)) {
+				if (['angular', 'react', 'vue'].includes(value)) {
 					setFramework(value as Framework);
 				}
 			}}>
