@@ -375,7 +375,7 @@ export default function DBTabs(props: DBTabsProps) {
 			if (_ref) {
 				const tabListEl = _ref.querySelector('[role="tablist"]');
 				const panels = Array.from<HTMLElement>(
-					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
+					_ref?.querySelectorAll(':scope > [role="tabpanel"]') ?? []
 				);
 
 				if (!tabListEl) return;
