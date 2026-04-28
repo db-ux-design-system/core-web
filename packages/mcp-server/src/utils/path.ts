@@ -53,11 +53,6 @@ export const MIGRATION_ASSETS_DIR = join(
 	import.meta.dirname,
 	'../../assets/migration'
 );
-/** Absolute path to curated visual reference images shipped with the MCP server. */
-export const VISUALS_DIR = join(
-	REPO_ROOT,
-	'packages/mcp-server/assets/visuals'
-);
 /** Maps each design token category name to its corresponding SCSS source file. */
 export const TOKEN_FILES: Record<string, string> = {
 	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),

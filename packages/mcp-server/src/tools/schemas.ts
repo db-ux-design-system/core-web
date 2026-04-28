@@ -122,19 +122,6 @@ export const verifyMigratedCodeSchema = {
 	inputSchema: {}
 };
 
-export const getComponentVisualSchema = {
-	description:
-		'Invoke this tool if you require visual context for complex layouts, z-index dependencies, or visual hierarchies of a DB UX component. Returns a screenshot downsampled to max 800×800 px (JPEG q75, bilinear interpolation) as a Base64-encoded image. Use sparingly (opt-in only).',
-	inputSchema: {
-		componentName: z
-			.string()
-			.max(100)
-			.describe(
-				"Name of the visual reference to load. Available visuals: 'dashboard', 'form', 'landingpage', 'table'."
-			)
-	}
-};
-
 export const scanV2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
