@@ -81,7 +81,6 @@ Native HTML replacement rules (enforce strictly):
 - <input>       → DBInput
 - <select>      → DBSelect
 - <textarea>    → DBTextarea
-- <div> layout  → DBStack, DBSection, DBCard
 
 Note: Leave standard routing components (like react-router <Link>) and valid semantic <a> tags untouched unless they are explicitly styled as UI components.
 
