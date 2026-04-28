@@ -17,6 +17,7 @@ export default function StackJustifyContentRow() {
 					alignItems: 'flex-start',
 					alignSelf: 'flex-start',
 					display: 'flex',
+					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '300px'
@@ -45,6 +46,7 @@ export default function StackJustifyContentRow() {
 					alignItems: 'flex-start',
 					alignSelf: 'flex-start',
 					display: 'flex',
+					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '300px'
@@ -73,6 +75,7 @@ export default function StackJustifyContentRow() {
 					alignItems: 'flex-start',
 					alignSelf: 'flex-start',
 					display: 'flex',
+					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '300px'
@@ -101,6 +104,7 @@ export default function StackJustifyContentRow() {
 					alignItems: 'flex-start',
 					alignSelf: 'flex-start',
 					display: 'flex',
+					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '300px'

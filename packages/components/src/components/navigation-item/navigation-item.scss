@@ -34,7 +34,9 @@
 			}
 
 			.db-sub-navigation {
-				inset-block: 0;
+				inset: 0;
+				inline-size: 100%;
+				border-color: transparent;
 			}
 		}
 	}
@@ -104,6 +106,8 @@
 
 	@include screen-sizes.screen("md", "max") {
 		&:not([data-width="full"]) {
+			inline-size: 100%;
+
 			.db-navigation-item-expand-button {
 				&::after {
 					--db-icon-margin-start: auto;
@@ -175,19 +179,12 @@
 
 @mixin sub-navigation-mobile() {
 	padding: variables.$db-spacing-fixed-md;
-	inline-size: 100%;
+	inline-size: calc(100% - #{variables.$db-spacing-fixed-xl});
 	position: fixed;
 	overflow: hidden auto;
-
-	// additional #{$db-spacing-fixed-3xs} for border
-	inset-block: calc(
-			#{component.$min-mobile-header-height} +
-				#{variables.$db-spacing-fixed-3xs}
-		)
-		calc(
-			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
-				#{variables.$db-spacing-fixed-3xs}
-		);
+	inset-inline-start: variables.$db-spacing-fixed-xl;
+	inset-block: calc(#{component.$min-mobile-header-height})
+		calc(#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2);
 }
 
 .db-sub-navigation {
