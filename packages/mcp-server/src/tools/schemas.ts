@@ -116,20 +116,10 @@ export const getMigrationGuideSchema = {
 
 export const verifyMigratedCodeSchema = {
 	description:
-		'IMPORTANT: ALWAYS call this tool after generating v3 code and BEFORE showing it to the user. The tool saves the code to a temporary file and runs a compiler check. If errors are returned, you must fix the code and call the tool again (max 3 attempts).',
-	inputSchema: {
-		code: z
-			.string()
-			.max(50_000)
-			.describe(
-				'The complete component code to verify (e.g. a full React component file).'
-			),
-		framework: z
-			.enum(['react', 'angular', 'vue'])
-			.describe(
-				"Target framework of the code to verify: 'react', 'angular', or 'vue'."
-			)
-	}
+		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
+		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
+		'If errors are found, fix the code and call the tool again (max 3 attempts).',
+	inputSchema: {}
 };
 
 export const getComponentVisualSchema = {
