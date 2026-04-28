@@ -1156,7 +1156,7 @@ describe('handleScanV2Migration', () => {
 		const { unlinkSync } = await import('node:fs');
 		const tmp = writeCwdTemp(
 			'clean',
-			'<db-button>Already migrated</db-button>'
+			'<div class="db-card"><p>Already migrated</p></div>'
 		);
 
 		try {
