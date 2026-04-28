@@ -253,4 +253,7 @@ async function buildManifest() {
 	if (hasErrors) process.exit(1);
 }
 
-await buildManifest();
+// Only run when executed directly (not when imported by tests)
+if (!process.env.VITEST) {
+	await buildManifest();
+}
