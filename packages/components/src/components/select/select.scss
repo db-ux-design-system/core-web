@@ -46,8 +46,8 @@
 
 	select:is(:has(option:checked:not(.placeholder)), :open) {
 		& + [id$="-placeholder"],
-		// Hide inserted `option` for placeholder or floating label types in dropdown for `required` selects after a selection has been made or the `select` has been opened
-		// This prevents users from selecting an invalid empty option when the field is required
+		// Hide the placeholder and an inserted empty `option` with
+		// `data-show-empty-option="false"` once a non-placeholder option is selected or the `select` is open
 		option[data-show-empty-option="false"] {
 			display: none;
 		}
