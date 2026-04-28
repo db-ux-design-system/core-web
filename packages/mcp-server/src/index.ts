@@ -25,7 +25,6 @@ import {
 	handleListDesignTokenCategories,
 	handleListIcons,
 	handleListMigrationGuides,
-	handleScaffoldComponent,
 	handleVerifyMigratedCode
 } from './tools';
 import {
@@ -41,7 +40,6 @@ import {
 	listDesignTokenCategoriesSchema,
 	listIconsSchema,
 	listMigrationGuidesSchema,
-	scaffoldComponentSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
@@ -58,7 +56,6 @@ export {
 	handleListDesignTokenCategories,
 	handleListIcons,
 	handleListMigrationGuides,
-	handleScaffoldComponent,
 	handleVerifyMigratedCode
 } from './tools/index.js';
 export { resolveSafePath } from './utils/index.js';
@@ -120,11 +117,6 @@ server.registerTool(
 	'analyze_v2_migration',
 	analyzeV2MigrationSchema,
 	handleAnalyzeV2Migration
-);
-server.registerTool(
-	'scaffold_component',
-	scaffoldComponentSchema,
-	handleScaffoldComponent
 );
 
 // Prompts

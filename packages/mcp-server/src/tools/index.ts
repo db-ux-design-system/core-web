@@ -10,7 +10,6 @@ export {
 	handleGetMigrationGuide,
 	handleListMigrationGuides
 } from './migration.js';
-export { handleScaffoldComponent } from './scaffold.js';
 export { handleAnalyzeV2Migration } from './scanner.js';
 export {
 	handleGetDesignTokens,
