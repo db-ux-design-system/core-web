@@ -320,14 +320,14 @@ Or add it to your MCP client config:
 8. `list_icons` — look up the exact icon name before using any icon prop
 9. `list_migration_guides` — list all available migration guides before any migration task
 10. `get_migration_guide` — load the full content of a specific migration guide
-11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
-12. `get_component_visual` — _(optional, use sparingly)_ if you need visual context for complex layouts, z-index dependencies, or visual hierarchies, call this tool with the component or layout name to receive a downsampled screenshot
-13. `scan_v2_migration` — **call FIRST when migrating a file.** Scans a source file for v2 patterns (`<cmp-*>`, `<elm-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
+11. `verify_migrated_code` — after generating migrated code, call this tool to get instructions for running the project's own verification scripts (typecheck, lint, build from package.json). Fix errors and retry (max 3 attempts) before presenting code to the user
+12. `scan_v2_migration` — **call FIRST when migrating a file.** Scans a source file for v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`), v2 Web Components (`<db-*>`), `db-color-*` tokens, and legacy icons. Returns a JSON report with line numbers and deterministic suggestions.
 
 #### DON'Ts — these are hard violations
 
-- **NEVER** use native HTML elements (`<button>`, `<input>`, `<select>`, `<a>`) when a DB UX component exists (e.g. `DBButton`, `DBInput`, `DBSelect`, `DBLink`)
-- **NEVER** use `<div>` or `<span>` for layout when `DBStack`, `DBSection`, or `DBCard` apply
+- **NEVER** use native HTML elements (`<button>`, `<input>`, `<select>`, `<textarea>`) when a DB UX component exists (e.g. `DBButton`, `DBInput`, `DBSelect`, `DBTextarea`)
+- **NEVER** blindly replace `<a>` tags with `DBLink` — this breaks framework routing (e.g. react-router `<Link>`). Only replace `<a>` when it is explicitly styled as a UI action component
+- **NEVER** force-replace generic `<div>` elements with `DBStack`/`DBSection`/`DBCard` — plain `<div>` is valid HTML. Only use DB UX layout components when the design explicitly calls for them
 - **NEVER** hardcode color values (`#d40000`, `rgb(...)`) — use design tokens exclusively
 - **NEVER** write inline styles with magic numbers (`style="margin: 15px"`) — use `var(--db-...)` tokens
 - **NEVER** invent or guess icon names — always call `list_icons` first
@@ -339,9 +339,9 @@ When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstr
 
 1. **File Scan** — Call `scan_v2_migration` with the file path. This returns a deterministic JSON report of all v2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
 2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → DB UX v3 Component → Rationale.
-3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
+3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names.
 4. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.
-5. **Code Verification (MANDATORY for react/angular/vue)** — Call `verify_migrated_code`. If errors are returned, fix and retry (max 3 attempts). For `web-components` and `html` targets, skip this step.
+5. **Code Verification (MANDATORY)** — Call `verify_migrated_code` to get instructions for running the project's own verification scripts. If errors are found, fix and retry (max 3 attempts).
 6. **Final Output** — Present: "Migration Analysis" (mapping table), "Migrated Code" (✅ VERIFIED or ⚠️ WARNING with diagnostics), "Accessibility Statement".
 
 #### DOs
@@ -364,10 +364,13 @@ When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstr
 When working on the MCP server package, these rules are **mandatory**:
 
 - **ESM only**: The package is `"type": "module"`. **NEVER use `require()`** — use `import` (top-level or dynamic `await import()`). Using `require()` will crash at runtime.
-- **No NPM lifecycle hooks**: `prebuild`/`preinstall` hooks are disabled in this monorepo. Chain build steps with `&&` in the `"build"` script (e.g. `"build": "node scripts/prebuild.mjs && node esbuild.js"`).
+- **No NPM lifecycle hooks**: `prebuild`/`preinstall` hooks are disabled in this monorepo. Chain build steps with `&&` in the `"build"` script (e.g. `"build": "node scripts/prebuild.ts && node esbuild.js"`).
+- **Node 24 native TypeScript**: Build scripts (like `prebuild.ts`) run as native TypeScript via Node 24's type stripping. Tools like `tsx` or file extensions like `.mjs` are not needed.
 - **Never commit build artifacts**: Files in `assets/migration/` and `assets/tokens/` are generated by the prebuild script. They are git-ignored and must never be committed.
 - **Hard CI failures**: Build scripts must `throw new Error()` when required source files are missing. Never `console.warn()` and continue — this causes incomplete packages to be published. Exception: the density CSS file is a build artifact that may legitimately not exist before foundations is built.
+- **Strict assets-only reading**: The server must never fall back to monorepo source paths (`packages/foundations/...`) at runtime. Read strictly from `assets/` to avoid masking build failures.
 - **File system safety**: After `stat()`, always check `stats.isFile()` before calling `readFile()`. Passing a directory path to `readFile()` causes an unhandled `EISDIR` error that crashes the server.
+- **Cross-platform paths**: Always normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\` which breaks `.includes('/')` checks.
 - **DB UX v2 terminology**: In v2, `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The actual custom elements were `<db-*>`. Do not confuse these in migration docs or scanner descriptions.
 - **DB UX v3 HTML markup**: Use CSS classes (`class="db-card"`, `class="db-button"`) with `data-variant` for variants and `type="button"` on buttons. Do not invent attributes like `data-variant="card"` on divs.
 

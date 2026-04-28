@@ -9,7 +9,7 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "bin": {
     "@db-ux/mcp-server": "./dist/index.js"

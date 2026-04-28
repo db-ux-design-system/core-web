@@ -14,10 +14,9 @@ Concrete use cases:
 
 | Technology                      | Purpose                                                                                  |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Node.js** (≥ 22)              | Runtime environment                                                                      |
+| **Node.js** (≥ 24)              | Runtime environment (native TypeScript execution via type stripping)                     |
 | **TypeScript**                  | Type safety, consistent with the rest of the monorepo                                    |
 | **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
-| **`tsx`**                       | Development runner (no separate build step required)                                     |
 | **`esbuild`**                   | Production build into a single standalone ESM bundle                                     |
 
 ## Monorepo Structure (relevant to this server)
@@ -61,8 +60,7 @@ core-web/
 │   └── mcp-server/                                 # This package
 │       ├── assets/
 │       │   ├── migration/       # Prebuild copy of docs/migration/db-ui/ (for npx standalone)
-│       │   ├── tokens/          # Prebuild copy of compiled token files (for npx standalone)
-│       │   └── visuals/         # Curated reference images
+│       │   └── tokens/          # Prebuild copy of compiled token files (for npx standalone)
 │       └── src/
 │           ├── index.ts
 │           ├── server.ts
@@ -121,17 +119,17 @@ Other categories (`colors`, `typography`, `animation`, `transitions`) continue t
 
 **Multiline handling:** The `readFilteredLines()` function detects when a CSS declaration spans multiple lines (e.g. elevation box-shadows) and captures continuation lines.
 
-**Fallback for standalone (npx):** The `prebuild` step copies both compiled files into `assets/tokens/`. The `resolveTokenFile()` function checks the monorepo path first, then falls back to the assets directory.
+**Standalone operation:** The `prebuild` step copies both compiled files into `assets/tokens/`. The `resolveTokenFile()` function reads strictly from assets — it must never fall back to monorepo source paths, to avoid masking build failures.
 
 ## Prebuild Pipeline
 
 NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monorepo. The prebuild step is chained directly into the `build` script via `&&`:
 
 ```json
-"build": "node scripts/prebuild.mjs && node esbuild.js"
+"build": "node scripts/prebuild.ts && node esbuild.js"
 ```
 
-The prebuild script copies assets for standalone (npx) operation:
+The prebuild script (native TypeScript, Node 24) copies assets for standalone (npx) operation:
 
 ```text
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
@@ -155,6 +153,14 @@ The `"files"` array in `package.json` includes `"assets"`, so all prebuild outpu
 
 This package is `"type": "module"`. **Never use `require()`** — always use `import` (top-level or dynamic `await import()`). The `require('node:fs')` anti-pattern will crash at runtime.
 
+### Node 24 Native TypeScript
+
+Build scripts (like `prebuild.ts`) run as native TypeScript via Node 24's type stripping. Tools like `tsx` or file extensions like `.mjs` are not needed.
+
+### Build Parity (Strict Assets-Only Reading)
+
+The MCP server must **never** fall back to monorepo source paths (`packages/foundations/...`) at runtime. It must strictly read from its own built `assets/` directory. This ensures that build failures are caught immediately instead of being silently masked by reading raw source files.
+
 ### File System Safety
 
 When reading user-supplied file paths:
@@ -162,6 +168,16 @@ When reading user-supplied file paths:
 1. Validate with path traversal protection (`resolveSafePath`)
 2. Check `existsSync()` before accessing
 3. Call `stats.isFile()` after `stat()` — directories cause `EISDIR` crashes with `readFile()`
+
+### Cross-Platform Path Normalization
+
+Always normalize paths (convert `\` to `/`) before string comparisons like `.includes()` or `.startsWith()`. Windows manifest keys contain backslashes which break hardcoded forward-slash checks.
+
+### Gentle Migration (No Aggressive HTML Replacement)
+
+- **Do NOT** blindly replace `<a>` tags with `DBLink` — this breaks framework routing (e.g. react-router `<Link>`)
+- **Do NOT** force-replace generic `<div>` elements with `DBStack`/`DBSection`/`DBCard` — plain `<div>` is valid HTML
+- Only replace native elements when they are explicitly used as UI components
 
 ### DB UX v2 vs v3 Terminology
 
@@ -183,14 +199,14 @@ The server uses `StdioServerTransport` from the MCP SDK. It is started as a chil
 }
 ```
 
-During development inside the monorepo, `tsx` can be used for live file access:
+During development inside the monorepo, Node 24 runs TypeScript natively:
 
 ```json
 {
 	"mcpServers": {
 		"db-ux": {
-			"command": "npx",
-			"args": ["tsx", "packages/mcp-server/src/index.ts"]
+			"command": "node",
+			"args": ["packages/mcp-server/src/index.ts"]
 		}
 	}
 }
@@ -212,8 +228,7 @@ During development inside the monorepo, `tsx` can be used for live file access:
 | `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                               |
 | `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                      |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                  |
-| `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Max 3 retries.                                                                               |
-| `get_component_visual`         | Returns a downsampled screenshot (max 800×800 px, JPEG q75) as Base64. Opt-in only.                                                                                              |
+| `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                            |
 | `scan_v2_migration`            | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating. |
 
 ### Manifest (embedded data)

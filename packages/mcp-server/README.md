@@ -8,11 +8,11 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 
 ## 🚀 Quick Start for Consumers
 
-> **Requirement:** Node.js **v22.0.0** or higher is required to run the MCP server.
+> **Requirement:** Node.js **v24.0.0** or higher is required to run the MCP server.
 
 ### 1. Access the Server
 
-Ensure you are using Node.js v22+ and have access to the DB UX packages. The server is invoked via `npx`:
+Ensure you are using Node.js v24+ and have access to the DB UX packages. The server is invoked via `npx`:
 
 ```bash
 npx --yes @db-ux/mcp-server
@@ -134,8 +134,7 @@ Amazon Q can automatically load the project's `CONTEXT.md` as a persistent syste
 | `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, Accessibility, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                                                                                                            |
 | `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                                                           |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                               |
-| `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                                                                                                             |
-| `get_component_visual`         | Returns a downsampled screenshot (max 800×800 px, JPEG q75, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies.                                                                           |
+| `verify_migrated_code`         | Instructs the AI to verify its changes using the project's own scripts (`typecheck`, `lint`, `build`) from `package.json`. No temp files or hardcoded compilers — works with any toolchain (JS, TS, Vite, Angular CLI).                                                                                                                           |
 | `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed. |
 
 ### Example: fetching a React button example
@@ -147,8 +146,7 @@ get_component_details    → lists ["Density", "Variant", "Show Icon Leading", .
 get_example_code         → returns show-icon-leading.example.tsx source
 list_icons               → confirms "arrow_right" is a valid icon name
 get_design_tokens        → returns --db-spacing-fixed-md for layout
-get_component_visual     → (optional) returns a downsampled screenshot for visual reference
-verify_migrated_code     → runs tsc --noEmit on generated code, returns ✅ or diagnostics
+verify_migrated_code     → instructs AI to run project's own typecheck/lint/build scripts
 ```
 
 ---
@@ -173,7 +171,7 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` (Legacy Refactoring)
 
-Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. This is the most complex prompt — it orchestrates **12 different MCP tools** across 5 mandatory steps, including a compiler-verified self-correction loop.
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
 
 **Parameters:**
 
@@ -198,14 +196,12 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 │ STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL                    │
 │  list_components → get_component_props → get_component_details   │
 │  → get_example_code → get_design_tokens → list_icons             │
-│  → get_component_visual (optional, for layout uncertainty)       │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 3: CODE GENERATION                                          │
 │  Generates complete migrated code (NOT shown to user yet)        │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 4: CODE VERIFICATION & SELF-CORRECTION (mandatory)          │
-│  verify_migrated_code → fix errors → retry (max 3 attempts)     │
-│  ⚠️ Only for react, angular, vue — skipped for html/wc          │
+│  verify_migrated_code → run project scripts → retry (max 3)     │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 5: FINAL OUTPUT                                             │
 │  ✅ VERIFIED or ⚠️ WARNING with remaining diagnostics            │
@@ -215,9 +211,9 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 **Step-by-step details:**
 
 1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` to load official migration rules (package renames, prop changes, removed components). Calls `docs_search` for component-specific migration docs. Produces a mapping table: Legacy Element → DB UX v3 Component → Rationale.
-2. **Component Discovery & Props Retrieval** — Calls `list_components` to verify every mapped component exists. For each: `get_component_props` (TypeScript API), `get_component_details` (examples), `get_example_code` (canonical source to adapt). Calls `get_design_tokens` to replace hardcoded colors/spacing. Calls `list_icons` to verify icon names. Optionally calls `get_component_visual` when uncertain about layout structures.
+2. **Component Discovery & Props Retrieval** — Calls `list_components` to verify every mapped component exists. For each: `get_component_props` (TypeScript API), `get_component_details` (examples), `get_example_code` (canonical source to adapt). Calls `get_design_tokens` to replace hardcoded colors/spacing. Calls `list_icons` to verify icon names.
 3. **Code Generation** — Generates the complete migrated code with correct `@db-ux/*` imports, verified design tokens, and verified icon names. **Does NOT output this to the user yet.**
-4. **Code Verification & Self-Correction** — Passes the generated code to `verify_migrated_code` which runs `tsc --noEmit`. If compiler errors are returned, the AI analyzes diagnostics, fixes the code, and retries — up to **3 attempts maximum**. This step only applies to `react`, `angular`, and `vue` targets. For `web-components` and `html`, it is skipped.
+4. **Code Verification & Self-Correction** — Calls `verify_migrated_code` which instructs the AI to run the project's own verification scripts (typecheck, lint, build from package.json). If errors are found, the AI fixes the code and retries — up to **3 attempts maximum**. This step applies to all framework targets.
 5. **Final Output** — Presents the result in three sections: "Migration Analysis" (mapping table + guide references), "Migrated Code" (marked ✅ VERIFIED on success, or ⚠️ WARNING with remaining diagnostics), and "Accessibility Statement" (WCAG 2.2 AA compliance confirmation).
 
 **Available migration guides:**
@@ -243,7 +239,7 @@ The AI will then autonomously:
 2. Map every legacy element (e.g. `variant="brand-primary"` → `variant="brand"`, `icon="search"` → `icon="magnifying_glass"`)
 3. Fetch the exact generated React example code for each component and adapt it
 4. Replace all hardcoded `#ec0016` / `margin: 15px` values with `--db-*` design tokens
-5. Compile the result via `verify_migrated_code` and self-correct up to 3 times
+5. Verify the result via `verify_migrated_code` (runs project's own scripts) and self-correct up to 3 times
 6. Present the verified code with a migration analysis and accessibility statement
 
 ### `audit_accessibility` (Deep A11y Scan)
@@ -303,7 +299,7 @@ This means the same binary works for:
 - **Design system developers** working inside the monorepo (always up-to-date, live files)
 - **Consumer teams** running `npx @db-ux/mcp-server` (self-contained, no monorepo needed)
 
-> **Note on compiled tokens:** For `spacing`, `elevation`, and `density`, the tool reads compiled CSS/SCSS files with concrete primitive values (not raw SCSS with `@each` loops). In the monorepo it reads directly from `packages/foundations/`; in standalone mode it falls back to `assets/tokens/` (populated by the `prebuild` step).
+> **Note on compiled tokens:** For `spacing`, `elevation`, and `density`, the tool reads compiled CSS/SCSS files with concrete primitive values (not raw SCSS with `@each` loops). These are read from `assets/tokens/` which is populated by the `prebuild` step from `@db-ux/db-theme` and the foundations build output.
 
 ### Directory structure
 
@@ -311,8 +307,7 @@ This means the same binary works for:
 packages/mcp-server/
 ├── assets/
 │   ├── migration/          # Migration guides (copied from docs/migration/db-ui/ by prebuild)
-│   ├── tokens/             # Compiled token files (copied from foundations by prebuild)
-│   └── visuals/            # Curated reference images (shipped with npm package)
+│   └── tokens/             # Compiled token files (copied from foundations by prebuild)
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
 │   ├── server.ts           # McpServer singleton and lifecycle handlers
@@ -361,13 +356,12 @@ npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files)
 
 This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
 
-- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The only exception is the `verify_migrated_code` tool, which writes a temporary file under the current working directory (`process.cwd()`, typically the repo/workspace root) and deletes it in a `finally` block after the check completes. Shell execution via `child_process.exec` is scoped exclusively to this tool and limited to running `tsc --noEmit` on the temporary file with a 30-second timeout.
+- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The `verify_migrated_code` tool does not execute shell commands — it returns instructions for the LLM to run the project's own verification scripts.
 - **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a cryptographic-style path resolver. The server mathematically guarantees that no file reads can escape the allowed `REPO_ROOT` or `COMPONENTS_DIR` (blocking `../../etc/passwd` attacks).
 - **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
     - File reads are truncated at **20,000 characters**.
     - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
     - Directory scans are hard-limited to a maximum of **10 files**.
-- **Image Downsampling (Token Optimization):** The `get_component_visual` tool downsamples images to a maximum of **800×800 px** and encodes them as **JPEG at quality 75** before Base64 encoding. This keeps the payload well under the 100 000-character MCP client limit. Images are served exclusively from the curated `assets/visuals/` directory — path traversal protection applies here as well.
 
 ---
 
@@ -407,7 +401,7 @@ Open that **full URL including the token** in your browser — the token is requ
 1. Run the command above — the Inspector starts a local web server
 2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
 3. Click **"Connect"** to establish the stdio connection to the server
-4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `get_component_visual`) and inspect their responses
+4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_v2_migration`) and inspect their responses
 5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
 
 > **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
@@ -447,8 +441,12 @@ _Alternatively, you can change your IDE's working directory for the MCP server t
 | Rule                             | Details                                                                                                                                                     |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ESM only**                     | This package is `"type": "module"`. Never use `require()` — use `import` exclusively.                                                                       |
+| **Node 24 native TS**            | Build scripts run as native TypeScript (type stripping). No `tsx` or `.mjs` needed.                                                                         |
 | **No lifecycle hooks**           | NPM lifecycle scripts (`prebuild`, `preinstall`) are disabled in this monorepo. Build steps must be chained via `&&` in the `build` script.                 |
 | **No committed build artifacts** | Files in `assets/migration/` and `assets/tokens/` are generated at build time. They are git-ignored and must never be committed.                            |
+| **Strict assets-only reading**   | The server must never fall back to monorepo source paths at runtime. Read strictly from `assets/` to avoid masking build failures.                          |
 | **Hard CI failures**             | Build scripts must `throw new Error()` when required sources are missing — never fail silently. Exception: density CSS (build artifact, soft-fail allowed). |
 | **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                 |
+| **Cross-platform paths**         | Normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\`.                                                        |
+| **Gentle migration**             | Do NOT blindly replace `<a>` (breaks routing) or `<div>` (valid HTML) with DB UX components.                                                                |
 | **DB UX v2 history**             | `cmp-*`, `elm-*`, `rea-*` were CSS classes in v2, not HTML tags. The custom elements were `<db-*>`.                                                         |
