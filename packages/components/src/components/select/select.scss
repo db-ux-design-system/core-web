@@ -45,7 +45,7 @@
 	}
 
 	select:is(:has(option:checked:not(.placeholder)), :open) {
-		& + [id$="-placeholder"],
+		& ~ [id$="-placeholder"],
 		// Hide the placeholder and an inserted empty `option` with
 		// `data-show-empty-option="false"` once a non-placeholder option is selected or the `select` is open
 		option[data-show-empty-option="false"] {
