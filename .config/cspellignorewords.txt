@@ -187,6 +187,5 @@ regioguide
 rollator
 sepa
 stepless
-steppless
 violett
 peaceiris
