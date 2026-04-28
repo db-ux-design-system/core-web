@@ -1,5 +1,10 @@
 # @db-ux/core-postcss-plugin
 
+## 4.7.0
+
+_version bump_
+
+
 ## 4.6.0
 
 ### Minor Changes
