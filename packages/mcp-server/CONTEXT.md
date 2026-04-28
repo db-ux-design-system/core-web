@@ -214,7 +214,7 @@ During development inside the monorepo, `tsx` can be used for live file access:
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                  |
 | `verify_migrated_code`         | Writes generated code to a temp file, runs `tsc --noEmit`, and returns diagnostics. Max 3 retries.                                                                               |
 | `get_component_visual`         | Returns a downsampled screenshot (max 800×800 px, JPEG q75) as Base64. Opt-in only.                                                                                              |
-| `analyze_v2_migration`         | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating. |
+| `scan_v2_migration`            | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating. |
 
 ### Manifest (embedded data)
 

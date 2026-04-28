@@ -13,7 +13,6 @@ import {
 } from './prompts/schemas.js';
 import { registerLifecycleHandlers, server } from './server.js';
 import {
-	handleAnalyzeV2Migration,
 	handleDocsSearch,
 	handleGetComponentDetails,
 	handleGetComponentProps,
@@ -25,10 +24,10 @@ import {
 	handleListDesignTokenCategories,
 	handleListIcons,
 	handleListMigrationGuides,
+	handleScanV2Migration,
 	handleVerifyMigratedCode
 } from './tools';
 import {
-	analyzeV2MigrationSchema,
 	docsSearchSchema,
 	getComponentDetailsSchema,
 	getComponentPropsSchema,
@@ -40,11 +39,11 @@ import {
 	listDesignTokenCategoriesSchema,
 	listIconsSchema,
 	listMigrationGuidesSchema,
+	scanV2MigrationSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
 export {
-	handleAnalyzeV2Migration,
 	handleDocsSearch,
 	handleGetComponentDetails,
 	handleGetComponentProps,
@@ -56,6 +55,7 @@ export {
 	handleListDesignTokenCategories,
 	handleListIcons,
 	handleListMigrationGuides,
+	handleScanV2Migration,
 	handleVerifyMigratedCode
 } from './tools/index.js';
 export { resolveSafePath } from './utils/index.js';
@@ -114,9 +114,9 @@ server.registerTool(
 	handleGetComponentVisual
 );
 server.registerTool(
-	'analyze_v2_migration',
-	analyzeV2MigrationSchema,
-	handleAnalyzeV2Migration
+	'scan_v2_migration',
+	scanV2MigrationSchema,
+	handleScanV2Migration
 );
 
 // Prompts

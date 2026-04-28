@@ -322,7 +322,7 @@ Or add it to your MCP client config:
 10. `get_migration_guide` — load the full content of a specific migration guide
 11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
 12. `get_component_visual` — _(optional, use sparingly)_ if you need visual context for complex layouts, z-index dependencies, or visual hierarchies, call this tool with the component or layout name to receive a downsampled screenshot
-13. `analyze_v2_migration` — **call FIRST when migrating a file.** Scans a source file for v2 patterns (`<cmp-*>`, `<elm-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
+13. `scan_v2_migration` — **call FIRST when migrating a file.** Scans a source file for v2 patterns (`<cmp-*>`, `<elm-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
 
 #### DON'Ts — these are hard violations
 
@@ -337,7 +337,7 @@ Or add it to your MCP client config:
 
 When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX v3, you **MUST** follow this exact 5-step workflow — do NOT skip any step:
 
-1. **File Scan** — Call `analyze_v2_migration` with the file path. This returns a deterministic JSON report of all v2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
+1. **File Scan** — Call `scan_v2_migration` with the file path. This returns a deterministic JSON report of all v2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
 2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → DB UX v3 Component → Rationale.
 3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
 4. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.

@@ -136,7 +136,7 @@ Amazon Q can automatically load the project's `CONTEXT.md` as a persistent syste
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                               |
 | `verify_migrated_code`         | Saves generated code to a temp file and runs a compiler check (`tsc --noEmit`). Must be called after code generation and before showing code to the user. Returns diagnostics on failure so the AI can self-correct (max 3 attempts).                                                                                                             |
 | `get_component_visual`         | Returns a downsampled screenshot (max 800×800 px, JPEG q75, bilinear interpolation) of a DB UX component or page layout as a Base64-encoded image. Use sparingly — only when visual context is needed for complex layouts, z-index dependencies, or visual hierarchies.                                                                           |
-| `analyze_v2_migration`         | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed. |
+| `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed. |
 
 ### Example: fetching a React button example
 
@@ -188,7 +188,7 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 ```text
 ┌──────────────────────────────────────────────────────────────────┐
 │ STEP 0: FILE SCAN (NEW — deterministic, no guessing)             │
-│  analyze_v2_migration → JSON report with line numbers,           │
+│  scan_v2_migration → JSON report with line numbers,           │
 │  v2 patterns, and migration suggestions                          │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 1: MIGRATION ANALYSIS                                       │
