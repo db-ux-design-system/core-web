@@ -80,7 +80,7 @@ function parseColorMap(
  */
 function parseIconMap(content: string): Map<string, string> {
 	const map = new Map<string, string>();
-	for (const match of content.matchAll(/`(\w+)`→`(\w+)`/g)) {
+	for (const match of content.matchAll(/`([\w-]+)`→`([\w-]+)`/g)) {
 		map.set(match[1], match[2]);
 	}
 	return map;
