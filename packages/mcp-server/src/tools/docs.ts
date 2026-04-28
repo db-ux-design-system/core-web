@@ -81,15 +81,17 @@ export async function handleDocsSearch({
 			const results: string[] = [];
 			for (const [path, content] of Object.entries(manifest.docs)) {
 				if (results.length >= 3) break;
+				// Normalize Windows backslashes to forward slashes
+				const normalizedPath = path.replace(/\\/g, '/');
 				// Defense-in-depth: skip docs outside whitelisted directories
-				if (!isAllowedDocPath(path)) continue;
+				if (!isAllowedDocPath(normalizedPath)) continue;
 
 				// Scope filter: when category is 'component' and componentName is given,
 				// only match docs within that component's directory.
 				if (
 					category === 'component' &&
 					componentName &&
-					!path.includes(`/components/${componentName}/`)
+					!normalizedPath.includes(`/components/${componentName}/`)
 				) {
 					continue;
 				}
@@ -98,12 +100,18 @@ export async function handleDocsSearch({
 				// filename contains the type (e.g. 'Accessibility', 'React').
 				if (
 					docType &&
-					!path.toLowerCase().includes(docType.toLowerCase())
+					!normalizedPath
+						.toLowerCase()
+						.includes(docType.toLowerCase())
 				) {
 					continue;
 				}
 
-				const haystack = (path + '\n' + content).toLowerCase();
+				const haystack = (
+					normalizedPath +
+					'\n' +
+					content
+				).toLowerCase();
 				const isMatch =
 					searchTerms.length === 0 ||
 					searchTerms.every((term) => haystack.includes(term));
@@ -112,7 +120,7 @@ export async function handleDocsSearch({
 						content.length > 3000
 							? content.substring(0, 3000) + '\n... [TRUNCATED]'
 							: content;
-					results.push(`--- ${path} ---\n${snippet}`);
+					results.push(`--- ${normalizedPath} ---\n${snippet}`);
 				}
 			}
 			return buildResults(results, query);
