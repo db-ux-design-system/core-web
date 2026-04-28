@@ -72,8 +72,7 @@ async function downsampleImage(imagePath: string): Promise<{
 	const buffer = await sharp(imagePath)
 		.resize(MAX_DIMENSION, MAX_DIMENSION, {
 			fit: 'inside',
-			withoutEnlargement: true,
-			kernel: 'linear' as keyof sharp.KernelEnum
+			withoutEnlargement: true
 		})
 		.jpeg({ quality: JPEG_QUALITY })
 		.toBuffer();
