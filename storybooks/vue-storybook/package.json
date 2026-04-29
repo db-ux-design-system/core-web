@@ -14,6 +14,9 @@
     "storybook": "storybook dev -p 6007"
   },
   "dependencies": {
+    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.9.0",
     "vue": "3.5.33"
   },
   "devDependencies": {

@@ -11,11 +11,11 @@ describe('Integration Tests', () => {
 			const appPath = resolve(__dirname, `fixtures/${app}-app`);
 
 			beforeAll(() => {
-				execSync('npm install', {
+				execSync('pnpm install', {
 					cwd: appPath,
 					stdio: 'inherit'
 				});
-				execSync('npm run build', {
+				execSync('pnpm run build', {
 					cwd: appPath,
 					stdio: 'inherit'
 				});

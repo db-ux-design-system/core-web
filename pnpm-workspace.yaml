@@ -1,0 +1,16 @@
+packages:
+  - "packages/*"
+  - "output/*"
+  - "showcases/*"
+  - "storybooks/*"
+  - "docs"
+  - "scripts"
+
+allowBuilds:
+  "@db-ux/db-theme": true
+  "@db-ux/db-theme-fonts": true
+  "@db-ux/db-theme-icons": true
+  "@db-ux/db-theme-illustrative-icons": true
+
+engineStrict: true
+saveExact: true

@@ -1,0 +1,23 @@
+---
+name: "PNPM Cache Action"
+description: "Initialize PNPM Cache"
+inputs:
+  nodeVersion:
+    description: "Node version"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: 🆙 Setup pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: 🆙 Setup node
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.nodeVersion }}
+        node-version-file: ".nvmrc"
+        cache: "pnpm"
+
+    - name: ⏬ Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

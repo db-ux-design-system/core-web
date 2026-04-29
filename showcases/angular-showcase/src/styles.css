@@ -1,4 +1,4 @@
-@import "../../db-ux.css";
+@import "./db-ux.css";
 @import "../../showcase-styles.css";
 
 .variants-list > * > div:not([class^="db-"]) {

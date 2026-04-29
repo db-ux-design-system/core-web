@@ -4,7 +4,7 @@ export default defineConfig({
 	version: '0.2',
 	ignorePaths: [
 		'*.lock',
-		'package-lock.json',
+		'pnpm-lock.yaml',
 		'node_modules',
 		'.git',
 		'__snapshots__',
@@ -32,6 +32,7 @@ export default defineConfig({
 		'**/*.showcase.lite.tsx',
 		'**/*.example.stories.*',
 		'**/test/**',
+		'**/__tests__/**',
 		'packages/migration/src/migration/color-q32024.ts',
 		'packages/mcp-server/docs/migration/db-ui-icon-migration.md',
 		'packages/mcp-server/docs/migration/db-ui-color-migration.md',

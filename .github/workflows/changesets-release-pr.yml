@@ -29,8 +29,8 @@ jobs:
       - name: ⏬ Checkout main
         uses: actions/checkout@v6
 
-      - name: 🔄 Init Node & NPM cache
-        uses: ./.github/actions/npm-cache
+      - name: 🔄 Init Node & PNPM cache
+        uses: ./.github/actions/pnpm-cache
 
       - name: 🧬 Generate a token
         id: generate-token
@@ -47,7 +47,7 @@ jobs:
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
-          version: npm run ci:version
+          version: pnpm run ci:version
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           HUSKY: 0 # Disable Husky hooks in CI
@@ -55,6 +55,6 @@ jobs:
       - name: 🆙 Publish
         if: steps.changesets.outputs.hasChangesets != 'true'
         run: |
-          npx --no tsx scripts/github/changesets/publish.ts
+          pnpm --silent tsx scripts/github/changesets/publish.ts
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

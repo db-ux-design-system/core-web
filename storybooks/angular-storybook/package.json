@@ -12,10 +12,16 @@
     "build": "ng run angular-latest:build-storybook",
     "storybook": "ng run angular-latest:storybook"
   },
+  "dependencies": {
+    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.9.0"
+  },
   "devDependencies": {
     "@compodoc/compodoc": "1.2.1",
     "@storybook/addon-docs": "10.3.5",
     "@storybook/angular": "10.3.5",
+    "@types/node": "25.6.0",
     "eslint-plugin-storybook": "10.3.5"
   }
 }

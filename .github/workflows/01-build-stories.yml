@@ -16,11 +16,11 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
 
       - name: 🔨 Build Packages
         run: |
-          npm run generate:stories --workspace=@db-ux/core-components
+          pnpm --filter @db-ux/core-components run generate:stories
 
       - name: ⏫ Upload angular stories
         uses: actions/upload-artifact@v7
