@@ -174,3 +174,5 @@ lintstagedrc
 carsharing
 bikesharing
 peaceiris
+smol
+defu
