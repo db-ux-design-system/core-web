@@ -395,8 +395,8 @@ importers:
         specifier: 11.0.1
         version: 11.0.1(jiti@2.6.1)(postcss@8.5.11)(tsx@4.21.0)
       replace-in-file:
-        specifier: 8.3.0
-        version: 8.3.0
+        specifier: 8.4.0
+        version: 8.4.0
       sass:
         specifier: 1.99.0
         version: 1.99.0
@@ -22489,14 +22489,6 @@ packages:
       }
     engines: { node: ">= 0.10" }
 
-  replace-in-file@8.3.0:
-    resolution:
-      {
-        integrity: sha512-4VhddQiMCPIuypiwHDTM+XHjZoVu9h7ngBbSCnwGRcwdHwxltjt/m//Ep3GDwqaOx1fDSrKFQ+n7uo4uVcEz9Q==
-      }
-    engines: { node: ">=18" }
-    hasBin: true
-
   replace-in-file@8.4.0:
     resolution:
       {
@@ -42415,12 +42407,6 @@ snapshots:
   replace-ext@0.0.1: {}
 
   replace-ext@1.0.1: {}
-
-  replace-in-file@8.3.0:
-    dependencies:
-      chalk: 5.6.2
-      glob: 10.5.0
-      yargs: 17.7.2
 
   replace-in-file@8.4.0:
     dependencies:
