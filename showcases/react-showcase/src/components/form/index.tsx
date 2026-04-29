@@ -262,7 +262,7 @@ const FormComponent = () => {
 						<DBButton
 							type="button"
 							variant="brand"
-							onClick={(clickEvent) => {
+							onClick={() => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
@@ -355,6 +355,7 @@ const FormComponent = () => {
 						</DBTabItem>
 						<DBTabItem
 							icon="x_placeholder"
+							label="Placeholder"
 							noText={true}></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
