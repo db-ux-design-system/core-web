@@ -61,7 +61,9 @@ const {
 	handleGetExampleCode,
 	handleDocsSearch,
 	handleListMigrationGuides,
-	handleGetMigrationGuide
+	handleGetMigrationGuide,
+	handleListVisuals,
+	handleGetVisualReference
 } = await import('../tools/index.js');
 const {
 	handleScaffoldPagePrompt,
@@ -1004,7 +1006,7 @@ describe('handleMigrateComponentPrompt', () => {
 		);
 	});
 
-	it('mentions get_component_visual as optional visual validation in Step 2', () => {
+	it('mentions get_visual_reference as optional visual validation in Step 2', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<div class="layout">Content</div>',
 			source_context: 'native-html',
@@ -1012,7 +1014,7 @@ describe('handleMigrateComponentPrompt', () => {
 		});
 
 		const text = result.messages[0].content.text;
-		expect(text).toContain('get_component_visual');
+		expect(text).toContain('get_visual_reference');
 		expect(text).toContain('OPTIONAL');
 	});
 
@@ -1213,5 +1215,91 @@ describe('handleScanV2Migration', () => {
 		});
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('Path traversal');
+	});
+});
+
+// ---------------------------------------------------------------------------
+// list_visuals
+// ---------------------------------------------------------------------------
+describe('handleListVisuals', () => {
+	it('returns an array of available visual names', async () => {
+		const result = await handleListVisuals();
+
+		expect(result.isError).toBeUndefined();
+		const visuals: string[] = JSON.parse(text(result.content[0]));
+		expect(Array.isArray(visuals)).toBe(true);
+		// prebuild generates these from src/data/visuals-source/
+		expect(visuals).toContain('dashboard');
+		expect(visuals).toContain('form');
+		expect(visuals).toContain('table');
+		expect(visuals).toContain('landingpage');
+	});
+});
+
+// ---------------------------------------------------------------------------
+// get_visual_reference
+// ---------------------------------------------------------------------------
+describe('handleGetVisualReference', () => {
+	it('returns a Base64 image block for an existing visual', async () => {
+		const result = await handleGetVisualReference({ name: 'dashboard' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content).toHaveLength(2);
+
+		// First block: image
+		const imgBlock = result.content[0] as {
+			type: string;
+			data: string;
+			mimeType: string;
+		};
+		expect(imgBlock.type).toBe('image');
+		expect(imgBlock.mimeType).toBe('image/jpeg');
+		expect(typeof imgBlock.data).toBe('string');
+		expect(imgBlock.data.length).toBeGreaterThan(100);
+
+		// Validate Base64 is decodable and starts with JPEG magic bytes
+		const buffer = Buffer.from(imgBlock.data, 'base64');
+		expect(buffer[0]).toBe(0xff);
+		expect(buffer[1]).toBe(0xd8);
+		expect(buffer[2]).toBe(0xff);
+
+		// Second block: text description
+		const txtBlock = result.content[1] as { type: string; text: string };
+		expect(txtBlock.type).toBe('text');
+		expect(txtBlock.text).toContain('dashboard');
+	});
+
+	it('returns an error for a non-existent visual', async () => {
+		const result = await handleGetVisualReference({
+			name: 'nonexistent-image-xyz'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('nonexistent-image-xyz');
+		expect(text(result.content[0])).toContain('No visual found');
+	});
+
+	it('lists available visuals in the error message', async () => {
+		const result = await handleGetVisualReference({
+			name: 'does-not-exist'
+		});
+
+		expect(result.isError).toBe(true);
+		const errorText = text(result.content[0]);
+		// Error should mention at least one available visual
+		expect(errorText).toMatch(/dashboard|form|table|landingpage/);
+	});
+
+	it('does not import sharp at runtime (no native dependencies)', async () => {
+		// Verify that visuals.ts does not contain any sharp import
+		const { readFileSync } = await import('node:fs');
+		const { resolve } = await import('node:path');
+		const source = readFileSync(
+			resolve(import.meta.dirname, '../tools/visuals.ts'),
+			'utf-8'
+		);
+		expect(source).not.toContain("from 'sharp'");
+		expect(source).not.toContain('import sharp');
+		expect(source).not.toContain("require('sharp')");
 	});
 });

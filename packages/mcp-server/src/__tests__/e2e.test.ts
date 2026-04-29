@@ -52,20 +52,25 @@ describe('MCP server — stdio transport', () => {
 		expect(components).toContain('button');
 	}, 10_000);
 
-	it('responds to get_component_visual with an error for unknown tool or missing asset', async () => {
-		const response = await client.callTool({
-			name: 'get_component_visual',
-			arguments: { componentName: 'dashboard' }
-		});
+	it('responds to list_visuals with available visual names', async () => {
+		const response = await client.callTool({ name: 'list_visuals' });
 
-		// get_component_visual is not a registered tool, so an error is expected
-		expect(response.isError).toBeTruthy();
-	}, 15_000);
+		expect(response.isError).toBeFalsy();
 
-	it('responds to get_component_visual with an error for unknown name', async () => {
+		const text =
+			(response.content as { type: string; text: string }[]).find(
+				(c) => c.type === 'text'
+			)?.text ?? '';
+
+		const visuals: string[] = JSON.parse(text);
+		expect(Array.isArray(visuals)).toBe(true);
+		expect(visuals).toContain('dashboard');
+	}, 10_000);
+
+	it('responds to get_visual_reference with an error for unknown name', async () => {
 		const response = await client.callTool({
-			name: 'get_component_visual',
-			arguments: { componentName: 'nonexistent-xyz' }
+			name: 'get_visual_reference',
+			arguments: { name: 'nonexistent-xyz' }
 		});
 
 		expect(response.isError).toBeTruthy();
