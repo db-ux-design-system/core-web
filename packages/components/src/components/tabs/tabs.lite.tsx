@@ -375,9 +375,7 @@ export default function DBTabs(props: DBTabsProps) {
 			if (_ref) {
 				const tabListEl = _ref.querySelector('[role="tablist"]');
 				const panels = Array.from<HTMLElement>(
-					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
-				).filter(
-					(panel) => panel.closest('.db-tabs') === _ref
+					_ref?.querySelectorAll(':scope > [role="tabpanel"]') ?? []
 				);
 
 				if (!tabListEl) return;
@@ -413,4 +411,192 @@ export default function DBTabs(props: DBTabsProps) {
 						})
 					);
 
-					if
+					if (panel) {
+						if (!panel.id) {
+							panel.id = panelId;
+						}
+						if (
+							!panel.getAttribute('aria-label') &&
+							!panel.getAttribute('aria-labelledby')
+						) {
+							panel.setAttribute('aria-labelledby', tabId);
+						}
+
+						// toggle visibility
+						panel.hidden = !isSelected;
+					}
+				});
+			}
+		}
+	});
+
+	// Re-cache parsed tabs when the prop changes (e.g. dynamic tab lists)
+	onUpdate(() => {
+		state._updateCachedTabs();
+	}, [props.tabs]);
+
+	// Controlled mode: sync external activeIndex changes to internal state
+	onUpdate(() => {
+		if (props.activeIndex !== undefined) {
+			const newIndex = Number(props.activeIndex);
+			if (!isNaN(newIndex) && newIndex !== state.activeTabIndex) {
+				state.activateTab(newIndex);
+			}
+		}
+	}, [props.activeIndex]);
+
+	onMount(() => {
+		// 1. Calculate final start index synchronously to avoid race conditions
+		let startIndex = 0;
+
+		if (props.initialSelectedIndex !== undefined) {
+			const parsedIndex = Number(props.initialSelectedIndex);
+			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
+		} else if (props.initialSelectedMode === 'manually') {
+			startIndex = -1;
+		}
+
+		// 2. Support deep linking: URL hash takes precedence over initial index
+		if (typeof window !== 'undefined' && window.location.hash) {
+			const hashId = window.location.hash.substring(1);
+			const name = props.name ? 'tabs-' + props.name : state._name();
+			const prefix = `${name}-tab-`;
+
+			if (hashId.startsWith(prefix)) {
+				const indexStr = hashId.replace(prefix, '');
+				const index = parseInt(indexStr, 10);
+
+				if (!isNaN(index)) {
+					startIndex = index;
+				}
+			}
+		}
+
+		// 3. Set initial state synchronously
+		state.activeTabIndex = startIndex;
+		state.initialized = true;
+		state._updateCachedTabs();
+
+		// 4. Trigger single initial DOM update after paint
+		if (typeof window !== 'undefined') {
+			requestAnimationFrame(() => {
+				state.initTabList();
+				state.initTabs(startIndex);
+			});
+		}
+
+		if (_ref) {
+			const tabListEl = _ref.querySelector('[role="tablist"]');
+
+			if (tabListEl) {
+				const observer = new MutationObserver(() => {
+					const rafId = state._pendingRafId;
+					if (rafId !== null) cancelAnimationFrame(rafId);
+					state._pendingRafId = requestAnimationFrame(() => {
+						state._pendingRafId = null;
+						state.initTabList();
+						state.initTabs(state.activeTabIndex);
+					});
+				});
+
+				// Observe only the tablist (not panel content) to avoid unnecessary
+				// re-evaluations when user content inside panels changes.
+				// childList only – attribute changes (set by initTabs) are not observed, preventing infinite loops.
+				observer.observe(tabListEl, {
+					childList: true,
+					subtree: true
+				});
+
+				state._observer = observer;
+			}
+		}
+	});
+
+	onUnMount(() => {
+		const rafId = state._pendingRafId;
+		if (rafId !== null) {
+			cancelAnimationFrame(rafId);
+			state._pendingRafId = null;
+		}
+		const _listener = state._scrollListener;
+		const _container = state._getScrollContainer();
+		if (_listener && _container) {
+			_container.removeEventListener('scroll', _listener.fn);
+		}
+		state._resizeObserver?.disconnect();
+		state._resizeObserver = null;
+		state._observer?.disconnect();
+		state._observer = null;
+	});
+
+	return (
+		<div
+			ref={_ref}
+			id={props.id ?? props.propOverrides?.id ?? state._id()}
+			class={cls('db-tabs', props.className)}
+			data-orientation={props.orientation}
+			data-scroll-behavior={props.behavior}
+			data-tab-item-alignment={props.tabItemAlignment}
+			data-tab-item-width={props.tabItemWidth}
+			onClick={(event) => state.handleClick(event)}
+			onKeyDown={(event) => state.handleKeyDown(event)}>
+			<Show when={state.showScrollStart}>
+				<DBButton
+					class="tabs-scroll-start"
+					variant="ghost"
+					icon="chevron_left"
+					type="button"
+					noText
+					onClick={() => state.scroll(true)}>
+					{props.scrollStartLabel}
+				</DBButton>
+			</Show>
+			<Show when={props.tabs}>
+				<DBTabList
+					orientation={props.orientation}
+					ariaLabel={props.name}>
+					<For each={state._cachedTabs}>
+						{(tab: DBSimpleTabProps, index: number) => (
+							<DBTabItem
+								key={props.name + 'tab-item' + index}
+								id={state.getTabId(index)}
+								ariaControls={state.getPanelId(index)}
+								active={state.isIndexActive(index)}
+								tabIndex={state.getTabItemTabIndex(index)}
+								label={tab.label}
+								iconTrailing={tab.iconTrailing}
+								icon={tab.icon}
+								noText={tab.noText}
+								onClick={() => state.activateTab(index)}
+							/>
+						)}
+					</For>
+				</DBTabList>
+				<For each={state._cachedTabs}>
+					{(tab: DBSimpleTabProps, index: number) => (
+						<DBTabPanel
+							key={props.name + 'tab-panel' + index}
+							id={state.getPanelId(index)}
+							ariaLabelledby={state.getTabId(index)}
+							content={tab.content}
+							hidden={!state.isIndexActive(index)}>
+							{tab.children}
+						</DBTabPanel>
+					)}
+				</For>
+			</Show>
+			<Show when={!props.tabs}>{props.children}</Show>
+			<Show when={state.showScrollEnd}>
+				<DBButton
+					class="tabs-scroll-end"
+					variant="ghost"
+					icon="chevron_right"
+					type="button"
+					noText
+					onClick={() => state.scroll(false)}>
+					{props.scrollEndLabel}
+				</DBButton>
+			</Show>
+		</div>
+	);
+}
