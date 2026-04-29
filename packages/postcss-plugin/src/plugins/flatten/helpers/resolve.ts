@@ -358,12 +358,12 @@ const evaluateColorMix = (args: string): string | undefined => {
 
 	let p1 = arg1.percentage;
 	let p2 = arg2.percentage;
-	if (!p1 && !p2) {
+	if (p1 === undefined && p2 === undefined) {
 		p1 = 50;
 		p2 = 50;
-	} else if (p1 && !p2) {
+	} else if (p1 !== undefined && p2 === undefined) {
 		p2 = 100 - p1;
-	} else if (!p1 && p2) {
+	} else if (p1 === undefined && p2 !== undefined) {
 		p1 = 100 - p2;
 	}
 

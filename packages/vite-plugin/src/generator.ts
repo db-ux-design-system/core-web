@@ -17,8 +17,8 @@ const THEME_SCOPES = ['@db-ux', '@db-ux-inner-source'] as const;
 /**
  * Auto-detect the installed DB UX theme package (e.g. @db-ux/db-theme).
  * Walks up from `root` checking each node_modules for *-theme packages
- * in both @db-ux/* And @db-ux-inner-source/* scopes.
- * Returns the package specifier or null if no theme is found.
+ * In both @db-ux and @db-ux-inner-source scopes.
+ * Returns the package specifier or undefined if no theme is found.
  */
 function detectTheme(
 	root: string,

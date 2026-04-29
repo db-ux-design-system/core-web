@@ -166,12 +166,6 @@ const xoConfig = [
 		rules: {
 			'@typescript-eslint/naming-convention': 0 // UPPER_CASE constants
 		}
-	},
-	{
-		files: ['./**/vitest.config.ts'],
-		rules: {
-			'@typescript-eslint/naming-convention': 0 // Env var names
-		}
 	}
 ];
 

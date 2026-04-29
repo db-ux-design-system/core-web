@@ -15,11 +15,11 @@ function getTextContent(node: any): string | undefined {
 			}
 
 			if (child.type === 'Text') {
-				return child.value?.trim() || null;
+				return child.value?.trim() || undefined;
 			}
 
 			if (child.type === 'VText') {
-				return child.value?.trim() || null;
+				return child.value?.trim() || undefined;
 			}
 		}
 	}

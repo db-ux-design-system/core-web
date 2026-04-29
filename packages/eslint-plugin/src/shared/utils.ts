@@ -51,7 +51,7 @@ function isAngularElement(node: any): node is AngularElement {
 export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
-): string | boolean | undefined {
+): string | boolean | null {
 	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
