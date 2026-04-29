@@ -60,7 +60,8 @@ core-web/
 │   └── mcp-server/                                 # This package
 │       ├── assets/
 │       │   ├── migration/       # Prebuild copy of docs/migration/db-ui/ (for npx standalone)
-│       │   └── tokens/          # Prebuild-generated tokens.json (structured design tokens)
+│       │   ├── tokens/          # Prebuild-generated tokens.json (structured design tokens)
+│       │   └── visuals/         # Prebuild-generated optimised reference images (JPEG)
 │       └── src/
 │           ├── server.ts
 │           ├── types.ts
@@ -123,6 +124,14 @@ At runtime, `tokens.ts` loads `tokens.json` via `fs.readFile` + `JSON.parse` and
 
 **Removed:** `parseComponentMap`, `parseColorMap`, `parseIconMap`, async caching logic, and the `.md` files that served as data sources for the scanner.
 
+### ADR-5: Build-Time Visual Downsampling (no native deps at runtime)
+
+**Status:** Implemented (April 2026)
+
+**Problem:** The previous `get_component_visual` tool imported `sharp` at runtime to downsample images. This required native C++ bindings in the production bundle, caused installation issues in restricted environments, and slowed down cold starts.
+
+**Decision:** Image processing is moved entirely to the `prebuild` step. `sharp` is a **devDependency only** — the `scripts/build-visuals.ts` module reads source PNGs from `src/data/visuals-source/`, downsamples them to max 800×800 px JPEG (quality 75), and writes optimised files to `assets/visuals/`. At runtime, `tools/visuals.ts` reads pre-optimised images via `fs.readFile` and returns Base64-encoded MCP image blocks. Zero native dependencies at runtime.
+
 ## Prebuild Pipeline
 
 NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monorepo. The prebuild step is chained directly into the `build` script via `&&`:
@@ -137,6 +146,8 @@ The prebuild script (native TypeScript, Node 24) prepares assets for standalone 
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
 prebuild:tokens         → parse CSS custom properties from @db-ux/db-theme/_default_variables.scss
                           + foundations/build/density/classes/all.css → assets/tokens/tokens.json
+prebuild:visuals        → sharp downsample src/data/visuals-source/*.png → assets/visuals/*.jpg
+                          (max 800×800 px, JPEG q75 — sharp is devDependency only)
 ```
 
 **Hard vs. soft failures:**
@@ -231,6 +242,8 @@ During development inside the monorepo, Node 24 runs TypeScript natively:
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                        |
 | `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                                                                  |
 | `scan_v2_migration`            | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.                                       |
+| `list_visuals`                 | Returns all available visual reference names (e.g. dashboard, form, table).                                                                                                                                            |
+| `get_visual_reference`         | Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a Base64-encoded MCP image block. No native dependencies at runtime.                                                                      |
 
 ### Manifest (embedded data)
 

@@ -220,3 +220,9 @@ writeFileSync(tokensJsonPath, JSON.stringify(flatTokens, null, 2), 'utf-8');
 console.log(
 	`[prebuild] generated: assets/tokens/tokens.json (${Object.keys(flatTokens).length} categories, ${defaultProps.length} theme + ${densityProps.length} density tokens)`
 );
+
+// ---------------------------------------------------------------------------
+// Visual reference images (build-time downsampling via sharp)
+// ---------------------------------------------------------------------------
+import { buildVisuals } from './build-visuals.ts';
+await buildVisuals();
