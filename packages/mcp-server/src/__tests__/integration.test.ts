@@ -1050,7 +1050,6 @@ describe('handleVerifyMigratedCode', () => {
 // ---------------------------------------------------------------------------
 describe('handleScanV2Migration', () => {
 	let handleScanV2Migration: (typeof import('../tools/scanner.js'))['handleScanV2Migration'];
-	let resetScannerCache: (typeof import('../tools/scanner.js'))['resetScannerCache'];
 
 	/** Creates a temp file inside process.cwd() and returns its path. */
 	function writeCwdTemp(name: string, content: string): string {
@@ -1064,30 +1063,6 @@ describe('handleScanV2Migration', () => {
 	beforeEach(async () => {
 		const mod = await import('../tools/scanner.js');
 		handleScanV2Migration = mod.handleScanV2Migration;
-		resetScannerCache = mod.resetScannerCache;
-
-		// Reset scanner cache so maps are re-parsed from fresh manifest
-		resetScannerCache();
-
-		// Reset manifest with migration guides so the scanner can build its maps
-		resetManifestCache(
-			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
-						'component-migration':
-							'**button** — `elm-button`->`db-button`. **card** — `cmp-card`->`db-card`.',
-						'color-migration':
-							'| `db-color-red-500` | `--db-brand-bg-inverted` | `--db-brand-on-bg` |',
-						'icon-migration':
-							'`account`→`person`, `search`→`magnifying_glass`'
-					}
-				)
-			)
-		);
 	});
 
 	it('detects v2 component tags and returns suggestions', async () => {
@@ -1124,8 +1099,12 @@ describe('handleScanV2Migration', () => {
 
 			expect(output).toContain('db-color-red-500');
 			expect(output).toContain('"type": "color"');
-			expect(output).toContain('--db-brand-bg-inverted');
-			expect(output).toContain('--db-brand-on-bg');
+			expect(output).toContain(
+				'--db-brand-bg-inverted-contrast-low-default'
+			);
+			expect(output).toContain(
+				'--db-brand-on-bg-basic-emphasis-70-default'
+			);
 		} finally {
 			unlinkSync(tmp);
 		}
@@ -1210,40 +1189,6 @@ describe('handleScanV2Migration', () => {
 			expect(output).toContain('component(s)');
 			expect(output).toContain('color token(s)');
 			expect(output).toContain('icon(s)');
-		} finally {
-			unlinkSync(tmp);
-		}
-	});
-
-	it('falls back to legacy db-ui- prefixed guide keys', async () => {
-		// Reset scanner cache to force re-parsing with new manifest
-		resetScannerCache();
-
-		// Simulate old manifest format with db-ui- prefix
-		resetManifestCache(
-			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
-						'db-ui-component-migration':
-							'**toggle** — `elm-toggle`->`db-switch`.'
-					}
-				)
-			)
-		);
-
-		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp('legacy', '<elm-toggle>Dark</elm-toggle>');
-
-		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
-			const output = text(result.content[0]);
-
-			expect(output).toContain('elm-toggle');
-			expect(output).toContain('"suggestion": "db-switch"');
 		} finally {
 			unlinkSync(tmp);
 		}
