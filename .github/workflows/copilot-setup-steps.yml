@@ -25,14 +25,9 @@ jobs:
     # You can define any steps you want, and they will run before the agent starts.
     # If you do not check out your code, Copilot will do this for you.
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6.4.0
-        with:
-          node-version-file: ".nvmrc"
-
-      - name: Install JavaScript dependencies
-        run: pnpm install --frozen-lockfile
+      - name: 🔄 Init Cache Default
+        uses: ./.github/actions/npm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 # TODO: we probably would want to enhance this with further aspects like e.g. linting or testing. But we would need to determine the tradeoff in between slowing down Copilot with this, as we would most likely run some of this work later on within the PR anyhow.
