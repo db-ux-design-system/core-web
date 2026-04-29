@@ -51,6 +51,7 @@ function isAngularElement(node: any): node is AngularElement {
 export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
+	// eslint-disable-next-line @typescript-eslint/no-restricted-types
 ): string | boolean | null {
 	const kebabAttrName = toKebabCase(attrName);
 
