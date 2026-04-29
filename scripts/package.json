@@ -57,7 +57,6 @@
     "decode-db-theme-assets:db-theme": "node ../node_modules/@db-ux/db-theme/build/scripts/index.js",
     "decode-db-theme-assets:db-theme-fonts": "node ../node_modules/@db-ux/db-theme-fonts/build/scripts/index.js",
     "decode-db-theme-assets:db-theme-icons": "node ../node_modules/@db-ux/db-theme-icons/build/scripts/index.js",
-    "decode-db-theme-assets:db-theme-illustrative-icons": "node ../node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js",
     "dev": "tsx dev.js",
     "dev:angular-components": "pnpm --filter @db-ux/core-components run dev:angular",
     "dev:plain-html-components": "pnpm --filter @db-ux/core-components run dev:html",
