@@ -375,8 +375,8 @@ export default function DBTabs(props: DBTabsProps) {
 			if (_ref) {
 				const tabListEl = _ref.querySelector('[role="tablist"]');
 				const panels = Array.from<HTMLElement>(
-					_ref?.querySelectorAll(':scope > [role="tabpanel"]') ?? []
-				);
+					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
+				).filter((panel) => panel.closest('.db-tabs') === _ref);
 
 				if (!tabListEl) return;
 
