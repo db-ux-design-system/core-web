@@ -50,6 +50,7 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 });
 
 const { resolveSafePath } = await import('../utils/index.js');
+const { resetTokensCache } = await import('../tools/tokens.js');
 const {
 	handleListComponents,
 	handleGetComponentDetails,
@@ -297,6 +298,7 @@ describe('handleGetDesignTokens', () => {
 		const scss =
 			'--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
 		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: scss })));
+		resetTokensCache({}); // Disable JSON lookups → force manifest fallback
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
 
@@ -307,6 +309,7 @@ describe('handleGetDesignTokens', () => {
 
 	it('returns an error for an unknown category', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
+		resetTokensCache({}); // Disable JSON lookups
 
 		const result = await handleGetDesignTokens({
 			category: 'nonexistent-category'
