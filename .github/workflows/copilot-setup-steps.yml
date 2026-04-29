@@ -25,6 +25,12 @@ jobs:
     # You can define any steps you want, and they will run before the agent starts.
     # If you do not check out your code, Copilot will do this for you.
     steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: false
+
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache
         env:
