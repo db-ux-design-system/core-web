@@ -79,8 +79,8 @@ const gotoPage = async (
 	await setScrollViewport(page, fixedHeight)();
 };
 
-const isCheckerError = (object: any): object is ICheckerError =>
-	'details' in object;
+const isCheckerError = (object: unknown): object is ICheckerError =>
+	typeof object === 'object' && object !== null && 'details' in object;
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
@@ -114,7 +114,7 @@ export const getDefaultScreenshotTest = ({
 			test.skip();
 		}
 
-		const config: any = {};
+		const config: Record<string, unknown> = {};
 
 		if (maxDiffPixelRatio ?? diffPixel) {
 			if (maxDiffPixelRatio) {

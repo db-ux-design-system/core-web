@@ -19,5 +19,8 @@ export default defineConfig({
 				'../../packages/react-core-components/src'
 			)
 		}
+	},
+	build: {
+		cssMinify: 'esbuild'
 	}
 });

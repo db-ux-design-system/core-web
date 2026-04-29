@@ -18,8 +18,8 @@ const ColorsOverviewTabs = ({
 	prefixClass: string;
 	dataAttributeName: string;
 }) => {
-	const [showCheckerboard, setShowCheckerboard] = useState<boolean>(false);
-	const [enableDarkMode, setEnableDarkMode] = useState<boolean>(false);
+	const [showCheckerboard, setShowCheckerboard] = useState(false);
+	const [enableDarkMode, setEnableDarkMode] = useState(false);
 
 	return (
 		<>

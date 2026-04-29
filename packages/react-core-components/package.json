@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "4.5.4",
+  "version": "4.7.0",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -28,11 +28,10 @@
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.58.2",
-    "@types/node": "25.5.0",
+    "@playwright/experimental-ct-react": "1.59.1",
     "@types/react": "19.2.14",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

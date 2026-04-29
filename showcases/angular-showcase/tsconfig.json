@@ -20,7 +20,7 @@
 		"target": "ES2022",
 		"module": "ES2022",
 		"useDefineForClassFields": false,
-		"lib": ["ES2022", "dom"],
+		"lib": ["ES2023", "dom"],
 		"paths": {
 			"@components": ["../../packages/ngx-core-components/src"],
 			"@components/src/*": ["../../packages/ngx-core-components/src/*"],

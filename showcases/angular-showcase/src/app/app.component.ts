@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
 		return `db-density-${this.density} db-${this.color}`;
 	};
 
-	onChange = async (value: any) => {
+	onChange = async (_value: unknown) => {
 		await this.router.navigate([], {
 			relativeTo: this.route,
 			queryParams: { density: this.density, color: this.color },

@@ -7,7 +7,8 @@ import { type BranchGroup, type GithubResponse } from './data';
 const fetchFromGitHubApi = async (url: string): Promise<GithubResponse[]> => {
 	try {
 		const response = await fetch(url);
-		return (await response.json()) as GithubResponse[];
+		const data: unknown = await response.json();
+		return data as GithubResponse[];
 	} catch (error) {
 		console.error(error);
 	}
@@ -97,7 +98,7 @@ const VersionSwitcher = () => {
 				setCurrentBranch(branches);
 				setCurrentBranch(tags);
 				setGroupByTagsBranches(tags, branches);
-			} catch (error: any) {
+			} catch (error: unknown) {
 				console.error(error);
 			}
 		};

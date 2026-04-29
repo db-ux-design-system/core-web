@@ -48,11 +48,29 @@ jobs:
           name: db-ux-eslint-plugin-build
           path: packages/eslint-plugin/build
 
+      - name: ⏬ Download postcss-plugin build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-postcss-plugin-build
+          path: packages/postcss-plugin/build
+
+      - name: ⏬ Download vite-plugin build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-vite-plugin-build
+          path: packages/vite-plugin/build
+
       - name: ⏬ Download agent-cli build
         uses: actions/download-artifact@v8
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
+
+      - name: ⏬ Download mcp-server build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-mcp-server-build
+          path: packages/mcp-server/dist
 
       - name: ⏬ Download framework sources
         uses: actions/download-artifact@v8

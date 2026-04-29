@@ -1,4 +1,5 @@
-@mixin get-variables() {
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@theme inline {
 	--spacing-fix-3xs: var(--db-spacing-fixed-3xs);
 	--spacing-fix-2xs: var(--db-spacing-fixed-2xs);
 	--spacing-fix-xs: var(--db-spacing-fixed-xs);

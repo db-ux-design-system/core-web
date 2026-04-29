@@ -14,5 +14,8 @@ export default defineConfig({
 			// Wired issue with storybook vite-builder inside monorepo
 			vue: path.resolve(__dirname, '../../node_modules/vue')
 		}
+	},
+	build: {
+		cssMinify: 'esbuild'
 	}
 });

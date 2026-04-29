@@ -10,8 +10,8 @@ import {
 } from '../../../../packages/components/src/shared/constants';
 
 const Base64 = () => {
-	const [base64, setBase64] = useState<string>('');
-	const [url, setUrl] = useState<string>('');
+	const [base64, setBase64] = useState('');
+	const [url, setUrl] = useState('');
 
 	const [density, setDensity] = useState<string>(DENSITY.REGULAR);
 	const [color, setColor] = useState<string>(COLOR.NEUTRAL_BG_LEVEL_1);

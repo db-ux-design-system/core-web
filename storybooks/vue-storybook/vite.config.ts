@@ -19,5 +19,8 @@ export default defineConfig({
 				'../../packages/v-core-components/src'
 			)
 		}
+	},
+	build: {
+		cssMinify: 'esbuild'
 	}
 });

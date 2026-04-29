@@ -6,7 +6,7 @@ import {
 	DBInput,
 	DBSelect
 } from '@db-ux/react-core-components/src';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
 
 // Import root package.json for theme version
@@ -15,10 +15,10 @@ import rootPackage from '../../../../../package.json';
 import themeIconsPackage from '../../../../../node_modules/@db-ux/db-theme-icons/package.json';
 
 const IconOverview = () => {
-	const [weight, setWeight] = useState<string>('24');
-	const [family, setFamily] = useState<string>('default');
+	const [weight, setWeight] = useState('24');
+	const [family, setFamily] = useState('default');
 	// TODO: we should add a better search for this
-	const [search, setSearch] = useState<string>('');
+	const [search, setSearch] = useState('');
 
 	// Get theme version from root package.json
 	const themeVersion =
@@ -87,7 +87,7 @@ const IconOverview = () => {
 						'--db-icon-font-family': `db-${family}`,
 						'--db-icon-font-weight': weight,
 						'--db-icon-font-size': `${weight}px`
-					} as any
+					} as React.CSSProperties
 				}>
 				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
 					(icon) => (

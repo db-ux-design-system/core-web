@@ -16,7 +16,10 @@
 			"@db-ux/core-stylelint",
 			"@db-ux/core-migration",
 			"@db-ux/agent-cli",
-			"@db-ux/core-eslint-plugin"
+			"@db-ux/core-eslint-plugin",
+			"@db-ux/core-vite-plugin",
+			"@db-ux/core-postcss-plugin",
+			"@db-ux/mcp-server"
 		]
 	],
 	"ignore": [
