@@ -7,10 +7,25 @@ packages:
   - "scripts"
 
 allowBuilds:
+  "@compodoc/compodoc": false
   "@db-ux/db-theme": true
   "@db-ux/db-theme-fonts": true
   "@db-ux/db-theme-icons": true
   "@db-ux/db-theme-illustrative-icons": true
+  "@parcel/watcher": false
+  accessibility-checker: false
+  chromedriver: false
+  core-js: false
+  esbuild: false
+  ffmpeg-static: false
+  lmdb: false
+  msgpackr-extract: false
+  puppeteer: false
+  rs-module-lexer: false
+  sharp: false
+  svelte-preprocess: false
+  ttf2woff2: false
+  unrs-resolver: false
 
 engineStrict: true
 saveExact: true

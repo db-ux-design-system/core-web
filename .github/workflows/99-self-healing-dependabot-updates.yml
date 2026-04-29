@@ -46,7 +46,7 @@ jobs:
       - name: ⏬ Install dependencies
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
         run: |
-          pnpm install --frozen-lockfile
+          pnpm install
 
       - name: 🏃 Run Stylelint to format the code
         if: env.stylelint_update == 'true'

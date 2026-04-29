@@ -74,6 +74,9 @@ jobs:
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: 🛤 Extract name and base
         id: extract-name-and-base

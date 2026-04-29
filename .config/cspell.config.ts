@@ -5,6 +5,7 @@ export default defineConfig({
 	ignorePaths: [
 		'*.lock',
 		'pnpm-lock.yaml',
+		'pnpm-workspace.yaml',
 		'node_modules',
 		'.git',
 		'__snapshots__',

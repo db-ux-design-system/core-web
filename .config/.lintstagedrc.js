@@ -9,9 +9,6 @@ export default {
 	// And elsewhere we don't, compare to https://github.com/stylelint/stylelint/pull/8009
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
-	'**/package.json': [
-		() => 'pnpm install --frozen-lockfile false --ignore-scripts',
-		'pnpm run lint:package-json'
-	],
+	'**/package.json': [() => 'pnpm install', 'pnpm run lint:package-json'],
 	'*': 'cspell --config .config/cspell.config.ts --no-must-find-files'
 };
