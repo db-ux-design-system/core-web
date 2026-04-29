@@ -42,6 +42,7 @@
     "@db-ux/db-theme-icons": "3.9.0",
     "@stencil/core": "4.43.4",
     "rxjs": "7.8.2",
+    "tslib": "2.3.0",
     "zone.js": "0.15.1"
   },
   "devDependencies": {
