@@ -60,7 +60,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>
-				<header>{props.headline}</header>
+				<header data-area="head">{props.headline}</header>
 			</Show>
 			<div data-area="content">
 				<Show when={props.text} else={props.children}>
@@ -69,7 +69,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			</div>
 			<Show
 				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
-				<span>{props.timestamp}</span>
+				<span data-area="timestamp">{props.timestamp}</span>
 			</Show>
 
 			<Slot name="link" />

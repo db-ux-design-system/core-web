@@ -13,8 +13,8 @@
 
 %timestamp-line-height-adjustments {
 	// Adjusts line-height for elements when timestamp is present
-	&:has(span) {
-		header,
+	&:has([data-area="timestamp"]) {
+		[data-area="head"],
 		p,
 		&::before,
 		.db-button {
@@ -59,7 +59,7 @@
 	}
 
 	// headline
-	header {
+	[data-area="head"] {
 		grid-area: head;
 
 		&,
@@ -101,7 +101,7 @@
 	}
 
 	// timestamp
-	span {
+	[data-area="timestamp"] {
 		@extend %db-overwrite-font-size-sm;
 
 		grid-area: timestamp;
@@ -132,7 +132,7 @@
 	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
 	// Progressive enhancement - timestamps gracefully shown in older browsers
 	&[data-link-variant="inline"]:has(a) {
-		> span {
+		> [data-area="timestamp"] {
 			display: none;
 		}
 	}
