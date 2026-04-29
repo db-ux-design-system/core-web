@@ -144,7 +144,7 @@
     "npm-run-all2": "8.0.4",
     "playwright": "1.59.1",
     "playwright-core": "1.59.1",
-    "postcss": "8.5.11",
+    "postcss": "8.5.12",
     "postcss-cli": "11.0.1",
     "prettier": "3.8.3",
     "prettier-plugin-organize-imports": "4.3.0",
