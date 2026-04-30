@@ -1,5 +1,23 @@
 # @db-ux/react-core-components
 
+## 4.7.2
+
+### Patch Changes
+
+- fix(navigation): changed transform inside the drawer led to overlapping sub-navigation on smaller viewports - [see commit dd88a33](https://github.com/db-ux-design-system/core-web/commit/dd88a339fe6e7510e964c6979eeee84f4e40df59)
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+### Minor Changes
+
+- DBSelect: correctly hiding empty `option` element for _placeholder_ or _floating label_ components with property `showEmptyOption=false` - [see commit ec01b5c](https://github.com/db-ux-design-system/core-web/commit/ec01b5cb56e1fc05911d33cbff0fc8f385644628)
+
+- refactor(notification): not enforcing a paragraph for it's contents anymore. You could set any block level elements now as children. - [see commit 3170b3a](https://github.com/db-ux-design-system/core-web/commit/3170b3a6ef57bb73fa32b3176b7b8cf651a38641) and [commit 2ebe315](https://github.com/db-ux-design-system/core-web/commit/2ebe3156cd45e3702cf4acdc4224cd34da31d907)
+
 ## 4.6.1
 
 ### Patch Changes
