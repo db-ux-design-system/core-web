@@ -182,12 +182,15 @@
 	inline-size: calc(100% - #{variables.$db-spacing-fixed-xl});
 	position: fixed;
 	overflow: hidden auto;
+
 	&:not([data-direction="right"]) {
 		inset-inline-start: variables.$db-spacing-fixed-xl;
 	}
+
 	&[data-direction="right"] {
 		inset-inline-end: variables.$db-spacing-fixed-xl;
 	}
+
 	inset-block: calc(#{component.$min-mobile-header-height})
 		calc(#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2);
 }
