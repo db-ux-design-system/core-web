@@ -183,11 +183,11 @@
 	position: fixed;
 	overflow: hidden auto;
 
-	&:not([data-direction="right"]) {
+	&:not([data-direction="left"]) {
 		inset-inline-start: variables.$db-spacing-fixed-xl;
 	}
 
-	&[data-direction="right"] {
+	&[data-direction="left"] {
 		inset-inline-end: variables.$db-spacing-fixed-xl;
 	}
 
