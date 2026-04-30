@@ -2,4 +2,4 @@
 "@db-ux/core-components": patch
 ---
 
-fix(dialog): added missing styles to native `dialog` HTML element again
+fix(dialog): re-added missing styles to native `dialog` HTML element. We'll most likely remove those later again, and provide a DBDialog component.
