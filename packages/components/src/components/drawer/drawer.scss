@@ -38,10 +38,7 @@
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
 		/* stylelint-disable-next-line db-ux/use-sizing */
-		min-block-size: var(
-			--db-drawer-min-height,
-			auto
-		);
+		min-block-size: var(--db-drawer-min-height, auto);
 		max-inline-size: none;
 	}
 }
@@ -171,10 +168,7 @@ $spacings: (
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
 			/* stylelint-disable-next-line db-ux/use-sizing */
-			min-inline-size: var(
-				--db-drawer-min-width,
-				auto
-			);
+			min-inline-size: var(--db-drawer-min-width, auto);
 
 			&:not([data-direction]),
 			&[data-direction="right"] {
