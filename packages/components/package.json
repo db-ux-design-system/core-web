@@ -62,7 +62,7 @@
     "hygen": "6.2.11",
     "nodemon": "3.1.14",
     "npm-run-all2": "8.0.4",
-    "postcss": "8.5.11",
+    "postcss": "8.5.12",
     "postcss-cli": "11.0.1",
     "replace-in-file": "8.4.0",
     "sass": "1.99.0",
