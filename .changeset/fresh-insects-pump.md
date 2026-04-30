@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(navigation): issue with changed transform inside drawer lead to broken (overlapping) sub-navigation for mobile view
+fix(navigation): changed transform inside the drawer led to overlapping sub-navigation on mobile
