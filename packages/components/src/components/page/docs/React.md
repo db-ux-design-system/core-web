@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [react-core-compon
 import { DBPage, DBHeader } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBPage slotHeader={<DBHeader>...</DBHeader>}>
+	<DBPage header={<DBHeader>...</DBHeader>}>
 		<main class="db-main">Main Page</main>
 	</DBPage>
 );
