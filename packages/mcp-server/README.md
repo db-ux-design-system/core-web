@@ -253,6 +253,19 @@ Specialized deep scan exclusively for inclusion and accessibility standards (WCA
 
 ---
 
+## 🛡️ Security & Compliance
+
+This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
+
+- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The `verify_migrated_code` tool does not execute shell commands — it returns instructions for the LLM to run the project's own verification scripts.
+- **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a path resolver with traversal protection (`resolveSafePath`). The server guarantees that no file reads can escape the allowed base directories (blocking `../../etc/passwd` attacks).
+- **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
+    - File reads are truncated at **20,000 characters**.
+    - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
+    - Directory scans are hard-limited to a maximum of **10 files**.
+
+---
+
 ## 📐 Architecture & Manifest
 
 ### How it works
@@ -311,7 +324,7 @@ This means the same binary works for:
 packages/mcp-server/
 ├── assets/
 │   ├── migration/          # Migration guides (copied from docs/migration/db-ui/ by prebuild)
-│   └── tokens/             # Prebuild-generated tokens.json (structured design tokens)
+│   ├── tokens/             # Prebuild-generated tokens.json (structured design tokens)
 │   └── visuals/            # Prebuild-generated optimised reference images (JPEG)
 ├── scripts/
 │   ├── prebuild.ts          # Prebuild asset copy script (runs as native TS via Node 24)
@@ -331,87 +344,6 @@ packages/mcp-server/
 ├── tsconfig.json
 └── CONTEXT.md              # Architecture notes
 ```
-
----
-
-## 📦 Build Command
-
-The server is built as part of the `@db-ux/mcp-server` package:
-
-```bash
-# from the monorepo root
-npm run build --workspace=@db-ux/mcp-server
-```
-
-This runs `packages/mcp-server/esbuild.js` which:
-
-1. Executes `scripts/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
-2. Bundles `src/index.ts` + `manifest.json` via esbuild into a single `build/index.js` with `#!/usr/bin/env node` shebang
-3. Copies the bundle to `packages/mcp-server/dist/index.js` for inclusion in the published `@db-ux/mcp-server` npm package
-
-To build and test the server in isolation during development:
-
-```bash
-# from packages/mcp-server/
-npm run build   # generates manifest + bundle
-npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files). The server communicates over stdio and produces no terminal output by itself — this is expected.
-```
-
----
-
-## 🛡️ Security & Compliance
-
-This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
-
-- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The `verify_migrated_code` tool does not execute shell commands — it returns instructions for the LLM to run the project's own verification scripts.
-- **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a path resolver with traversal protection (`resolveSafePath`). The server guarantees that no file reads can escape the allowed base directories (blocking `../../etc/passwd` attacks).
-- **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
-    - File reads are truncated at **20,000 characters**.
-    - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
-    - Directory scans are hard-limited to a maximum of **10 files**.
-
----
-
-## 🧪 Development & Testing
-
-The **MCP Inspector** is the official tool to validate MCP tools and prompts (e.g. `scaffold_page`) independently of any IDE (VS Code, IntelliJ, etc.). Use it to inspect the server's capabilities, test tool calls interactively, and verify prompt outputs before relying on them in an AI agent workflow.
-
-### Prerequisites
-
-Build the server bundle first (if not already done):
-
-```bash
-# from packages/mcp-server/
-npm run build
-```
-
-### Starting the Inspector
-
-Run the following command from the `packages/mcp-server/` directory:
-
-> **Note:** The Inspector UI runs on **port 6274**, the proxy on **port 6277**. If either port is already in use, free it first: `lsof -ti :6274 -ti :6277 | xargs kill -9`
-
-```bash
-npx @modelcontextprotocol/inspector --transport stdio node dist/index.js
-```
-
-The Inspector prints a URL with a session token to the terminal, e.g.:
-
-```text
-🔍 MCP Inspector is up and running at http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=<token>
-```
-
-Open that **full URL including the token** in your browser — the token is required for authentication.
-
-### Step-by-step workflow
-
-1. Run the command above — the Inspector starts a local web server
-2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
-3. Click **"Connect"** to establish the stdio connection to the server
-4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_v2_migration`) and inspect their responses
-5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
-
-> **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
 
 ---
 
@@ -441,19 +373,72 @@ _Alternatively, you can change your IDE's working directory for the MCP server t
 
 ---
 
+## 🧪 Development & Testing
+
+To build and test the server in isolation during development:
+
+```bash
+# from packages/mcp-server/
+npm run build   # generates manifest + bundle
+npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files). The server communicates over stdio and produces no terminal output by itself — this is expected.
+```
+
+### MCP Inspector
+
+The **MCP Inspector** is the official tool to validate MCP tools and prompts (e.g. `scaffold_page`) independently of any IDE (VS Code, IntelliJ, etc.). Use it to inspect the server's capabilities, test tool calls interactively, and verify prompt outputs before relying on them in an AI agent workflow.
+
+#### Prerequisites
+
+Build the server bundle first (if not already done):
+
+```bash
+# from packages/mcp-server/
+npm run build
+```
+
+#### Starting the Inspector
+
+Run the following command from the `packages/mcp-server/` directory:
+
+> **Note:** The Inspector UI runs on **port 6274**, the proxy on **port 6277**. If either port is already in use, free it first: `lsof -ti :6274 -ti :6277 | xargs kill -9`
+
+```bash
+npx @modelcontextprotocol/inspector --transport stdio node dist/index.js
+```
+
+The Inspector prints a URL with a session token to the terminal, e.g.:
+
+```text
+🔍 MCP Inspector is up and running at http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=<token>
+```
+
+Open that **full URL including the token** in your browser — the token is required for authentication.
+
+#### Step-by-step workflow
+
+1. Run the command above — the Inspector starts a local web server
+2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
+3. Click **"Connect"** to establish the stdio connection to the server
+4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_v2_migration`) and inspect their responses
+5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
+
+> **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
+
+---
+
 ## ⚠️ Development Constraints
 
-> **These rules are critical for contributors and AI agents working on the MCP server.**
+> **These rules are critical for contributors working on the MCP server package.**
 
 | Rule                             | Details                                                                                                                                                     |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ESM only**                     | This package is `"type": "module"`. Never use `require()` — use `import` exclusively.                                                                       |
 | **Node 24 native TS**            | Build scripts run as native TypeScript (type stripping). No `tsx` or `.mjs` needed.                                                                         |
 | **No lifecycle hooks**           | NPM lifecycle scripts (`prebuild`, `preinstall`) are disabled in this monorepo. Build steps must be chained via `&&` in the `build` script.                 |
-| **No committed build artifacts** | Files in `assets/migration/` and `assets/tokens/` are generated at build time. They are git-ignored and must never be committed.                            |
+| **No committed build artifacts** | Files in `assets/migration/`, `assets/tokens/`, and `assets/visuals/` are generated at build time. They are git-ignored and must never be committed.        |
 | **Strict assets-only reading**   | The server must never fall back to monorepo source paths at runtime. Read strictly from `assets/` to avoid masking build failures.                          |
 | **Hard CI failures**             | Build scripts must `throw new Error()` when required sources are missing — never fail silently. Exception: density CSS (build artifact, soft-fail allowed). |
 | **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                 |
 | **Cross-platform paths**         | Normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\`.                                                        |
-| **Gentle migration**             | Do NOT blindly replace `<a>` (breaks routing) or `<div>` (valid HTML) with DB UX components.                                                                |
-| **DB UX v2 history**             | `cmp-*`, `elm-*`, `rea-*` were CSS classes in v2, not HTML tags. The custom elements were `<db-*>`.                                                         |
+
+> **Note:** AI-specific behavioral rules (gentle migration, v2/v3 terminology, icon verification, etc.) are maintained in `CONTEXT.md` (shipped with the package for consumer AI agents) and in `.github/copilot-instructions.md` (for agents working inside this monorepo). They are intentionally not duplicated here.
