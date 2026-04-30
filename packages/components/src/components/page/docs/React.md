@@ -10,7 +10,7 @@ import { DBPage, DBHeader } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBPage header={<DBHeader>...</DBHeader>}>
-		<main class="db-main">Main Page</main>
+		<main className="db-main">Main Page</main>
 	</DBPage>
 );
 
