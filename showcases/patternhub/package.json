@@ -52,6 +52,7 @@
     "@types/react-dom": "19.2.3",
     "cpr": "3.0.1",
     "cross-env": "10.1.0",
+    "esbuild": "0.28.0",
     "eslint": "10.2.1",
     "eslint-config-next": "16.2.4",
     "iframe-resizer": "5.5.9",
