@@ -74,12 +74,20 @@ const testComponent = () => {
 		mount,
 		page
 	}) => {
+		await page.emulateMedia({ reducedMotion: 'reduce' });
 		await mount(nestedSubNavigationComp);
 
-		await page.getByRole('button', { name: 'Navi-Item 1' }).click();
-		await page.getByRole('button', { name: 'Sub-Navi-Item 1' }).click();
+		const navigationItemButton = page.getByRole('button', { name: 'Navi-Item 1' });
+		const subNavigationItemButton = page.getByRole('button', { name: 'Sub-Navi-Item 1' });
+
+		await navigationItemButton.click();
+		await expect(navigationItemButton).toHaveAttribute('aria-expanded', 'true');
+
+		await subNavigationItemButton.click();
+		await expect(subNavigationItemButton).toHaveAttribute('aria-expanded', 'true');
 
 		const drawer = page.locator('.db-drawer');
+		await expect(drawer).toHaveAttribute('data-transition', 'open');
 		await expect(drawer).toHaveScreenshot();
 	});
 };
