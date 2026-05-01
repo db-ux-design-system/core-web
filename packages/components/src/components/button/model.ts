@@ -43,7 +43,7 @@ export type DBButtonDefaultProps = {
 	 * The [commandfor](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#commandfor) attribute turns a `<button>` into a command button that controls the given interactive element referenced by `id`.
 	 */
 	commandfor?: string;
-
+	
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
