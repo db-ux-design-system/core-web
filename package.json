@@ -120,7 +120,7 @@
     "@playwright/test": "1.59.1",
     "@typescript-eslint/eslint-plugin": "8.59.1",
     "@typescript-eslint/parser": "8.59.1",
-    "accessibility-checker": "4.0.16",
+    "accessibility-checker": "4.0.17",
     "adm-zip": "0.5.17",
     "commander": "14.0.3",
     "cpr": "3.0.1",
