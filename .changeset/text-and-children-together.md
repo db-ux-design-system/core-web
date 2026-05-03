@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": minor
 ---
 
-refactor: allow text and children to be used together in components. Previously, text and children were mutually exclusive.
+refactor: allow `text` and children to be used together in components. Previously, `text` and children were mutually exclusive.
