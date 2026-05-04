@@ -2625,6 +2625,866 @@ exports[`figma > check if parse has same snapshot 1`] = `
     "sourceLocation": {
       "line": -1
     },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst headlinePlain = figma.currentLayer.__properties__.string('✏️ Headline')\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst defaultOpen = figma.currentLayer.__properties__.enum('Open', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (headlinePlain && headlinePlain.type !== 'ERROR') {\\n  __props[\\"headlinePlain\\"] = headlinePlain\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (defaultOpen && defaultOpen.type !== 'ERROR') {\\n  __props[\\"defaultOpen\\"] = defaultOpen\\n}\\n\\nexport default figma.html\`<db-accordion-item\\n    \${_fcc_renderHtmlAttribute('headlinePlain', headlinePlain)}\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('defaultOpen', defaultOpen)}\\n  >\\n    Content\\n  </db-accordion-item>\`\\n",
+    "templateData": {
+      "props": {
+        "headlinePlain": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Headline"
+          }
+        },
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "defaultOpen": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Open",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBAccordionItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
     "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst behavior = figma.currentLayer.__properties__.enum('💻 Behavior', {\\n\\"multiple\\": 'multiple',\\n\\"single\\": 'single'})\\nconst variant = figma.currentLayer.__properties__.enum('Variant', {\\n\\"(Def) Divider\\": 'divider',\\n\\"Card\\": 'card'})\\nconst __props = {}\\nif (behavior && behavior.type !== 'ERROR') {\\n  __props[\\"behavior\\"] = behavior\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\n\\nexport default figma.html\`<db-accordion \${_fcc_renderHtmlAttribute('behavior', behavior)} \${_fcc_renderHtmlAttribute('variant', variant)}\\n    ><db-accordion-item headlinePlain=\\"Item 1\\">Content 1</db-accordion-item>\\n    <db-accordion-item headlinePlain=\\"Item 2\\"\\n      >Content 2</db-accordion-item\\n    ></db-accordion\\n  >\`\\n",
     "templateData": {
       "props": {
