@@ -6,7 +6,8 @@ import { execSync } from 'node:child_process';
  */
 export const getParsedFigmaConnect = (): string => {
 	const result = execSync(
-		'npx figma connect parse --exit-on-unreadable-files'
+		'npx figma connect parse --exit-on-unreadable-files',
+		{ maxBuffer: 50 * 1024 * 1024 }
 	).toString();
 
 	const parsed = JSON.parse(result) as Array<Record<string, unknown>>;
