@@ -9,6 +9,1370 @@ exports[`figma > check if parse has same snapshot 1`] = `
     "sourceLocation": {
       "line": -1
     },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"up\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"right\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"left\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer \${_fcc_renderHtmlAttribute('spacing', spacing)}>Content</db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer \${_fcc_renderHtmlAttribute('spacing', spacing)}>Content</db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer \${_fcc_renderHtmlAttribute('spacing', spacing)}>Content</db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer \${_fcc_renderHtmlAttribute('spacing', spacing)}>Content</db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst rounded = figma.currentLayer.__properties__.enum('Rounded', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst spacing = figma.currentLayer.__properties__.enum('Spacing', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small',\\n\\"Large\\": 'large',\\n\\"None\\": 'none'})\\nconst __props = {}\\nif (rounded && rounded.type !== 'ERROR') {\\n  __props[\\"rounded\\"] = rounded\\n}\\nif (spacing && spacing.type !== 'ERROR') {\\n  __props[\\"spacing\\"] = spacing\\n}\\n\\nexport default figma.html\`<db-drawer\\n    direction=\\"down\\"\\n    \${_fcc_renderHtmlAttribute('rounded', rounded)}\\n    \${_fcc_renderHtmlAttribute('spacing', spacing)}\\n  >\\n    Content\\n  </db-drawer>\`\\n",
+    "templateData": {
+      "props": {
+        "rounded": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Rounded",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "spacing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Spacing",
+            "valueMapping": {
+              "(Def) Medium": "medium",
+              "Small": "small",
+              "Large": "large",
+              "None": "none"
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBDrawer } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
     "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst variant = figma.currentLayer.__properties__.enum('Variant', {\\n\\"(Def) Horizontal\\": 'horizontal',\\n\\"Vertical\\": 'vertical'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst __props = {}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\n\\nexport default figma.html\`<db-divider\\n    \${_fcc_renderHtmlAttribute('variant', variant)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n  ></db-divider>\`\\n",
     "templateData": {
       "props": {
