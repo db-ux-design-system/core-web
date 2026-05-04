@@ -72,6 +72,7 @@
 		"**/showcases/react-showcase/src/utils/navigation-item.tsx",
 		"**/playwright-report/**/*",
 		"**/examples/**/*.example.lite.tsx",
+		"**/figma/**/*.figma.lite.tsx",
 		"**/packages/eslint-plugin/src/rules/**"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
