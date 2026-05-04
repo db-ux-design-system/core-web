@@ -9,6 +9,1402 @@ exports[`figma > check if parse has same snapshot 1`] = `
     "sourceLocation": {
       "line": -1
     },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst active = figma.currentLayer.__properties__.enum('Active', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (active && active.type !== 'ERROR') {\\n  __props[\\"active\\"] = active\\n}\\n\\nexport default figma.html\`<db-navigation-item \${_fcc_renderHtmlAttribute('disabled', disabled)} \${_fcc_renderHtmlAttribute('active', active)}\\n    ><a href=\\"#\\">Item</a></db-navigation-item\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "active": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Active",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBNavigationItem } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nexport default figma.html\`<db-navigation\\n    ><db-navigation-item><a href=\\"#\\">Item 1</a></db-navigation-item>\\n    <db-navigation-item\\n      ><a href=\\"#\\">Item 2</a></db-navigation-item\\n    ></db-navigation\\n  >\`\\n",
+    "templateData": {
+      "props": {},
+      "imports": [
+        "import { DBNavigationItem, DBNavigation } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nexport default figma.html\`<db-navigation\\n    ><db-navigation-item><a href=\\"#\\">Item 1</a></db-navigation-item>\\n    <db-navigation-item\\n      ><a href=\\"#\\">Item 2</a></db-navigation-item\\n    ></db-navigation\\n  >\`\\n",
+    "templateData": {
+      "props": {},
+      "imports": [
+        "import { DBNavigationItem, DBNavigation } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nexport default figma.html\`<db-navigation\\n    ><db-navigation-item><a href=\\"#\\">Item 1</a></db-navigation-item>\\n    <db-navigation-item\\n      ><a href=\\"#\\">Item 2</a></db-navigation-item\\n    ></db-navigation\\n  >\`\\n",
+    "templateData": {
+      "props": {},
+      "imports": [
+        "import { DBNavigationItem, DBNavigation } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nexport default figma.html\`<db-navigation\\n    ><db-navigation-item><a href=\\"#\\">Item 1</a></db-navigation-item>\\n    <db-navigation-item\\n      ><a href=\\"#\\">Item 2</a></db-navigation-item\\n    ></db-navigation\\n  >\`\\n",
+    "templateData": {
+      "props": {},
+      "imports": [
+        "import { DBNavigationItem, DBNavigation } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
     "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Medium\\": 'medium',\\n\\"Small\\": 'small'})\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\n\\nexport default figma.html\`<db-link\\n    href=\\"#\\"\\n    content=\\"internal\\"\\n    variant=\\"brand\\"\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n  >\\n    Link\\n  </db-link>\`\\n",
     "templateData": {
       "props": {
