@@ -897,6 +897,1734 @@ exports[`figma > check if parse has same snapshot 1`] = `
     "sourceLocation": {
       "line": -1
     },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"(Def) Small\\": 'small',\\n\\"Medium\\": 'medium'})\\nconst semantic = figma.currentLayer.__properties__.enum('Semantic', {\\n\\"(Def) Adaptive\\": 'adaptive',\\n\\"Critical\\": 'critical',\\n\\"Informational\\": 'informational',\\n\\"Neutral\\": 'neutral',\\n\\"Successful\\": 'successful',\\n\\"Warning\\": 'warning'})\\nconst emphasis = figma.currentLayer.__properties__.enum('Emphasis', {\\n\\"(Def) Weak\\": 'weak',\\n\\"Strong\\": 'strong'})\\nconst placement = figma.currentLayer.__properties__.enum('💻 Placement', {\\n\\"inline\\": 'inline',\\n\\"corner-top-left\\": 'corner-top-left',\\n\\"corner-top-right\\": 'corner-top-right',\\n\\"corner-center-left\\": 'corner-center-left',\\n\\"corner-center-right\\": 'corner-center-right',\\n\\"corner-bottom-left\\": 'corner-bottom-left',\\n\\"corner-bottom-right\\": 'corner-bottom-right'})\\nconst text = figma.currentLayer.__findChildWithCriteria__({ name: '✏️ Text', type: \\"TEXT\\" }).__render__()\\nconst __props = {}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (semantic && semantic.type !== 'ERROR') {\\n  __props[\\"semantic\\"] = semantic\\n}\\nif (emphasis && emphasis.type !== 'ERROR') {\\n  __props[\\"emphasis\\"] = emphasis\\n}\\nif (placement && placement.type !== 'ERROR') {\\n  __props[\\"placement\\"] = placement\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\n\\nexport default figma.html\`<DBBadge\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('semantic', semantic)}\\n    \${_fcc_renderHtmlAttribute('emphasis', emphasis)}\\n    \${_fcc_renderHtmlAttribute('placement', placement)}\\n    >\${_fcc_renderHtmlValue(text)}</DBBadge\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "(Def) Small": "small",
+              "Medium": "medium"
+            }
+          }
+        },
+        "semantic": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Semantic",
+            "valueMapping": {
+              "(Def) Adaptive": "adaptive",
+              "Critical": "critical",
+              "Informational": "informational",
+              "Neutral": "neutral",
+              "Successful": "successful",
+              "Warning": "warning"
+            }
+          }
+        },
+        "emphasis": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Emphasis",
+            "valueMapping": {
+              "(Def) Weak": "weak",
+              "Strong": "strong"
+            }
+          }
+        },
+        "placement": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Placement",
+            "valueMapping": {
+              "inline": "inline",
+              "corner-top-left": "corner-top-left",
+              "corner-top-right": "corner-top-right",
+              "corner-center-left": "corner-center-left",
+              "corner-center-right": "corner-center-right",
+              "corner-bottom-left": "corner-bottom-left",
+              "corner-bottom-right": "corner-bottom-right"
+            }
+          }
+        },
+        "text": {
+          "kind": "text-content",
+          "args": {
+            "layer": "✏️ Text"
+          }
+        }
+      },
+      "imports": [
+        "import { DBBadge } from '@db-ux/v-core-components'"
+      ],
+      "nestable": true
+    }
+  },
+  {
+    "label": "Vue",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
     "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst behavior = figma.currentLayer.__properties__.enum('💻 Behavior', {\\n\\"multiple\\": 'multiple',\\n\\"single\\": 'single'})\\nconst variant = figma.currentLayer.__properties__.enum('Variant', {\\n\\"(Def) Divider\\": 'divider',\\n\\"Card\\": 'card'})\\nconst __props = {}\\nif (behavior && behavior.type !== 'ERROR') {\\n  __props[\\"behavior\\"] = behavior\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\n\\nexport default figma.html\`<DBAccordion \${_fcc_renderHtmlAttribute('behavior', behavior)} \${_fcc_renderHtmlAttribute('variant', variant)}\\n    ><DBAccordionItem headlinePlain=\\"Item 1\\">Content 1</DBAccordionItem\\n    ><DBAccordionItem headlinePlain=\\"Item 2\\"\\n      >Content 2</DBAccordionItem\\n    ></DBAccordion\\n  >\`\\n",
     "templateData": {
       "props": {
