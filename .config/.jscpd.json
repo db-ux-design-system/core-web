@@ -73,6 +73,7 @@
 		"**/playwright-report/**/*",
 		"**/examples/**/*.example.lite.tsx",
 		"**/figma/**/*.figma.lite.tsx",
+		"**/figma/**/*.figma.ts",
 		"**/packages/eslint-plugin/src/rules/**"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
