@@ -1,13 +1,13 @@
-import { FigmaCodeConnect } from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaNotificationProps = {
 	semantic?: string;
 	showHeadline?: boolean;
 };
 
-const notificationProps = {
+const notificationProps: Record<string, FigmaProp> = {
 	semantic: {
-		type: 'enum' as const,
+		type: 'enum',
 		key: 'Semantic',
 		value: {
 			'(Def) Adaptive': 'adaptive',
@@ -18,7 +18,7 @@ const notificationProps = {
 		}
 	},
 	showHeadline: {
-		type: 'enum' as const,
+		type: 'enum',
 		key: 'Show Headline',
 		value: {
 			True: true,

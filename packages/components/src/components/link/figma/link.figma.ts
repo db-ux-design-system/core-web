@@ -1,13 +1,13 @@
-import { FigmaCodeConnect } from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaLinkProps = {
 	size?: string;
 	disabled?: boolean;
 };
 
-const linkProps = {
+const linkProps: Record<string, FigmaProp> = {
 	size: {
-		type: 'enum' as const,
+		type: 'enum',
 		key: 'Size',
 		value: {
 			'(Def) Medium': 'medium',
@@ -15,7 +15,7 @@ const linkProps = {
 		}
 	},
 	disabled: {
-		type: 'enum' as const,
+		type: 'enum',
 		key: 'Disabled',
 		value: {
 			False: false,
