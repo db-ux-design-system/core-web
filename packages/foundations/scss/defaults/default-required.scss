@@ -35,7 +35,7 @@
 	color-scheme: var(--db-color-scheme, light dark);
 
 	// We need to provide the possibility to set the color-scheme via CSS Custom Property, but not set a fallback based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
-	&:has(meta[name="color-scheme"]:is([content*="light"], [content*="dark"])) {
+	&:has([name="color-scheme"]:is([content*="light"], [content*="dark"])) {
 		color-scheme: var(--db-color-scheme);
 	}
 }
