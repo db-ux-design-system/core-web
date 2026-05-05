@@ -5,8 +5,11 @@ test.describe('Color Scheme', () => {
 		page
 	}) => {
 		await page.goto(`dev/color-scheme.html`);
-		const colorScheme = await page.evaluate(() =>
-			getComputedStyle(document.documentElement).colorScheme
+		await page.evaluate(() => {
+			document.querySelector('meta[name="color-scheme"]').remove();
+		});
+		const colorScheme = await page.evaluate(
+			() => getComputedStyle(document.documentElement).colorScheme
 		);
 		expect(colorScheme).toBe('light dark');
 	});
@@ -16,13 +19,11 @@ test.describe('Color Scheme', () => {
 	}) => {
 		await page.goto(`dev/color-scheme.html`);
 		await page.evaluate(() => {
-			const meta = document.createElement('meta');
-			meta.name = 'color-scheme';
-			meta.content = 'dark';
-			document.head.appendChild(meta);
+			document.querySelector('meta[name="color-scheme"]').content =
+				'dark';
 		});
-		const colorScheme = await page.evaluate(() =>
-			getComputedStyle(document.documentElement).colorScheme
+		const colorScheme = await page.evaluate(
+			() => getComputedStyle(document.documentElement).colorScheme
 		);
 		// When meta tag is present, --db-color-scheme has no fallback value, so the CSS
 		// variable resolves to the initial value ("normal"), meaning the CSS rule no longer
@@ -35,13 +36,11 @@ test.describe('Color Scheme', () => {
 	}) => {
 		await page.goto(`dev/color-scheme.html`);
 		await page.evaluate(() => {
-			const meta = document.createElement('meta');
-			meta.name = 'color-scheme';
-			meta.content = 'light';
-			document.head.appendChild(meta);
+			document.querySelector('meta[name="color-scheme"]').content =
+				'light';
 		});
-		const colorScheme = await page.evaluate(() =>
-			getComputedStyle(document.documentElement).colorScheme
+		const colorScheme = await page.evaluate(
+			() => getComputedStyle(document.documentElement).colorScheme
 		);
 		expect(colorScheme).toBe('normal');
 	});
@@ -51,10 +50,14 @@ test.describe('Color Scheme', () => {
 	}) => {
 		await page.goto(`dev/color-scheme.html`);
 		await page.evaluate(() => {
-			document.documentElement.style.setProperty('--db-color-scheme', 'dark');
+			document.querySelector('meta[name="color-scheme"]').remove();
+			document.documentElement.style.setProperty(
+				'--db-color-scheme',
+				'dark'
+			);
 		});
-		const colorScheme = await page.evaluate(() =>
-			getComputedStyle(document.documentElement).colorScheme
+		const colorScheme = await page.evaluate(
+			() => getComputedStyle(document.documentElement).colorScheme
 		);
 		expect(colorScheme).toBe('dark');
 	});
@@ -64,14 +67,15 @@ test.describe('Color Scheme', () => {
 	}) => {
 		await page.goto(`dev/color-scheme.html`);
 		await page.evaluate(() => {
-			const meta = document.createElement('meta');
-			meta.name = 'color-scheme';
-			meta.content = 'light';
-			document.head.appendChild(meta);
-			document.documentElement.style.setProperty('--db-color-scheme', 'dark');
+			document.querySelector('meta[name="color-scheme"]').content =
+				'light';
+			document.documentElement.style.setProperty(
+				'--db-color-scheme',
+				'dark'
+			);
 		});
-		const colorScheme = await page.evaluate(() =>
-			getComputedStyle(document.documentElement).colorScheme
+		const colorScheme = await page.evaluate(
+			() => getComputedStyle(document.documentElement).colorScheme
 		);
 		expect(colorScheme).toBe('dark');
 	});
