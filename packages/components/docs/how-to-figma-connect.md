@@ -115,6 +115,48 @@ export const textButtons: FigmaCodeConnect = {
 
 > **Note:** `FIGMA_FILE` in the URLs is a placeholder that gets replaced at build time with the value from your `.env` file.
 
+#### Props constants: one variable per `props` field
+
+> **⚠️ Mitosis constraint:** Mitosis parses the `props` value in `useMetadata` as JSON5. This means `props` must point to **a single variable** — not a composed object literal with multiple variable references.
+
+```typescript
+// ❌ Fails — Mitosis cannot resolve { semantic: semanticProp, disabled: disabledProp }
+export const myComponent: FigmaCodeConnect = {
+	urls: [...],
+	props: { semantic: semanticProp, disabled: disabledProp }
+};
+
+// ✅ Correct — a single variable
+const myComponentProps: Record<string, FigmaProp> = {
+	semantic: { type: 'enum', key: 'Semantic', value: { ... } },
+	disabled: { type: 'enum', key: 'Disabled', value: { False: false, True: true } }
+};
+
+export const myComponent: FigmaCodeConnect = {
+	urls: [...],
+	props: myComponentProps
+};
+```
+
+If a component has variants with different prop combinations, create **separate constants** per combination:
+
+```typescript
+const semanticOnlyProps: Record<string, FigmaProp> = { semantic: { ... } };
+const semanticDisabledProps: Record<string, FigmaProp> = { semantic: { ... }, disabled: { ... } };
+const semanticDisabledCheckedProps: Record<string, FigmaProp> = { semantic: { ... }, disabled: { ... }, checked: { ... } };
+```
+
+Also note that Mitosis **cannot resolve template literals** in URLs:
+
+```typescript
+// ❌ Fails
+const FILE = "mlJ6R0GkfR15a93KSlqXtB";
+urls: [`https://www.figma.com/design/${FILE}?node-id=14442:18427`];
+
+// ✅ Correct — plain string
+urls: ["https://www.figma.com/design/FIGMA_FILE?node-id=14442:18427"];
+```
+
 ### 5. Create the Mitosis Component
 
 Create `figma/[variant].[component].figma.lite.tsx` for each variant:
@@ -124,13 +166,14 @@ Create `figma/[variant].[component].figma.lite.tsx` for each variant:
 ```tsx
 import { useMetadata } from "@builder.io/mitosis";
 import { DBButton } from "../index";
-import { textButtons } from "./button.figma";
+import { FigmaButtonProps, textButtons } from "./button.figma";
+//       ^^^^^^^^^^^^^^^^ Always import the typed props interface, never use `any`
 
 useMetadata({
 	figma: textButtons
 });
 
-export default function TextButtonFigmaLite(props: any) {
+export default function TextButtonFigmaLite(props: FigmaButtonProps) {
 	return (
 		<DBButton
 			disabled={props.disabled}
@@ -187,6 +230,28 @@ icon: {
     ```shell
     npm run test --workspace=react-figma
     ```
+
+### Update snapshots
+
+After any change to `.figma.ts` or `.figma.lite.tsx` files, update the snapshots for all three frameworks:
+
+```shell
+npm run test:update --workspace=react-figma
+npm run test:update --workspace=angular-figma
+npm run test:update --workspace=vue-figma
+```
+
+> **When required:** Whenever you add a new component, change URLs, change props, or change example templates. The CI will fail if snapshots are out of date.
+
+The snapshot files live at:
+
+```text
+figma-code-connect/react-figma/test/__snapshots__/parse.spec.ts.snap
+figma-code-connect/angular-figma/test/__snapshots__/parse.spec.ts.snap
+figma-code-connect/vue-figma/test/__snapshots__/parse.spec.ts.snap
+```
+
+These files **must be committed** — they are the baseline for CI.
 
 ## Publishing
 
