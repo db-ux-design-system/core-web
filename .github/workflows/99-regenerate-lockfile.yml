@@ -1,0 +1,35 @@
+name: Regenerate package-lock.json
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+        with:
+          ref: feat-code-connect
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🆙 Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: 🔄 Regenerate package-lock.json
+        run: |
+          rm package-lock.json
+          npm install --package-lock-only --legacy-peer-deps --ignore-scripts
+
+      - name: 💾 Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore: regenerate package-lock.json on Linux"
+          git push
