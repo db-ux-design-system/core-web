@@ -13,6 +13,7 @@ export default function MediumLeadingSwitchFigmaLite(props: FigmaSwitchProps) {
 			variant="leading"
 			disabled={props.disabled}
 			checked={props.checked}
+			validation={props.validation}
 			name="switch">
 			Label
 		</DBSwitch>

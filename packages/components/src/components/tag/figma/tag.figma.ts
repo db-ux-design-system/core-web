@@ -77,50 +77,40 @@ const semanticDisabledCheckedProps: Record<string, FigmaProp> = {
 
 // weak × static — text
 export const weakStaticTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:18427'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:18427'],
 	props: semanticOnlyProps
 };
 
 // weak × static — icon-only / noText
 export const weakStaticIconTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:18483'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:18483'],
 	props: semanticOnlyProps
 };
 
 // weak × interactive — text
 export const weakInteractiveTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=15754:26043'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=15754:26043'],
 	props: semanticDisabledProps
 };
 
 // weak × interactive — icon-only / noText
 export const weakInteractiveIconTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=15754:26350'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=15754:26350'],
 	props: semanticDisabledProps
 };
 
 // weak × interactive-toggle — text
 export const weakInteractiveToggleTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:18526'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:18526'],
 	props: semanticDisabledCheckedProps
 };
 
 // weak × interactive-toggle — icon-only / noText
 export const weakInteractiveToggleIconTag: FigmaCodeConnect = {
 	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:18803',
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=15767:31246',
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=15767:31553'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:18803',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31246',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31553'
 	],
 	props: semanticDisabledCheckedProps
 };
@@ -128,26 +118,24 @@ export const weakInteractiveToggleIconTag: FigmaCodeConnect = {
 // weak × removable — text
 export const weakRemovableTag: FigmaCodeConnect = {
 	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:19514',
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:19950'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19514',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19950'
 	],
 	props: semanticOnlyProps
 };
 
 // strong × interactive-toggle — text
 export const strongInteractiveToggleTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:19673'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:19673'],
 	props: semanticDisabledCheckedProps
 };
 
 // strong × static / interactive
 export const strongStaticTag: FigmaCodeConnect = {
 	urls: [
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:19575',
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:19630',
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=14442:20661'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19575',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19630',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:20661'
 	],
 	props: semanticOnlyProps
 };

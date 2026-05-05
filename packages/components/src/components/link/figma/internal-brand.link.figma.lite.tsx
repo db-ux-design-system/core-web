@@ -8,7 +8,12 @@ useMetadata({
 
 export default function InternalBrandLinkFigmaLite(props: FigmaLinkProps) {
 	return (
-		<DBLink href="#" content="internal" variant="brand" size={props.size}>
+		<DBLink
+			href="#"
+			content="internal"
+			variant="brand"
+			size={props.size}
+			disabled={props.disabled}>
 			Link
 		</DBLink>
 	);
