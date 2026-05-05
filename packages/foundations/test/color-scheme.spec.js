@@ -24,9 +24,10 @@ test.describe('Color Scheme', () => {
 		const colorScheme = await page.evaluate(() =>
 			getComputedStyle(document.documentElement).colorScheme
 		);
-		// When meta tag is present, --db-color-scheme has no fallback, so the CSS variable
-		// resolves to its initial value (normal) and does not override the meta tag.
-		expect(colorScheme).not.toBe('light dark');
+		// When meta tag is present, --db-color-scheme has no fallback value, so the CSS
+		// variable resolves to the initial value ("normal"), meaning the CSS rule no longer
+		// forces "light dark" and the meta tag is free to control the browser's color scheme.
+		expect(colorScheme).toBe('normal');
 	});
 
 	test('should not override meta[name="color-scheme" content="light"] with "light dark"', async ({
@@ -42,7 +43,7 @@ test.describe('Color Scheme', () => {
 		const colorScheme = await page.evaluate(() =>
 			getComputedStyle(document.documentElement).colorScheme
 		);
-		expect(colorScheme).not.toBe('light dark');
+		expect(colorScheme).toBe('normal');
 	});
 
 	test('should use --db-color-scheme CSS custom property when set', async ({
