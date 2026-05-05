@@ -90,5 +90,16 @@ export const fullDrawers: FigmaCodeConnect = {
 		'https://www.figma.com/design/FIGMA_FILE?node-id=1:26350',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=1:26354'
 	],
-	props: { spacing: drawerProps.spacing }
+	props: {
+		spacing: {
+			type: 'enum',
+			key: 'Spacing',
+			value: {
+				'(Def) Medium': 'medium',
+				Small: 'small',
+				Large: 'large',
+				None: 'none'
+			}
+		}
+	}
 };
