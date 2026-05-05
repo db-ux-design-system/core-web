@@ -21,19 +21,19 @@
 		inset-inline-start: 0;
 	}
 
-	&[data-placement*="top"] {
+	&[data-placement|="top"] {
 		--badge-transform-y: -50%;
 
 		inset-block-start: 0;
 	}
 
-	&[data-placement*="center"] {
+	&[data-placement|="center"] {
 		--badge-transform-y: -50%;
 
 		inset-block-start: 50%;
 	}
 
-	&[data-placement*="bottom"] {
+	&[data-placement|="bottom"] {
 		--badge-transform-y: 50%;
 
 		inset-block-end: 0;
