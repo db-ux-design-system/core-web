@@ -317,6 +317,9 @@ importers:
       "@vitejs/plugin-vue":
         specifier: 6.0.6
         version: 6.0.6(vite@8.0.10(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.4))(vue@3.5.33(typescript@5.9.3))
+      cpr:
+        specifier: 3.0.1
+        version: 3.0.1
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -443,6 +446,9 @@ importers:
       "@typescript-eslint/rule-tester":
         specifier: 8.59.1
         version: 8.59.1(eslint@10.3.0(jiti@2.6.1))(typescript@5.9.3)
+      cpr:
+        specifier: 3.0.1
+        version: 3.0.1
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -559,6 +565,9 @@ importers:
 
   packages/postcss-plugin:
     devDependencies:
+      cpr:
+        specifier: 3.0.1
+        version: 3.0.1
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -578,6 +587,9 @@ importers:
         specifier: ">=14.0.0"
         version: 17.9.1(typescript@5.9.3)
     devDependencies:
+      cpr:
+        specifier: 3.0.1
+        version: 3.0.1
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
@@ -615,6 +627,9 @@ importers:
       "@types/node":
         specifier: 25.6.0
         version: 25.6.0
+      cpr:
+        specifier: 3.0.1
+        version: 3.0.1
       npm-run-all2:
         specifier: 8.0.4
         version: 8.0.4
