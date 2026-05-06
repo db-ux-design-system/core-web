@@ -36,9 +36,9 @@
     "@angular/cli": "21.2.8",
     "@angular/compiler-cli": "21.2.10",
     "@compodoc/compodoc": "1.2.1",
-    "@storybook/addon-docs": "10.3.5",
-    "@storybook/angular": "10.3.5",
+    "@storybook/addon-docs": "10.3.6",
+    "@storybook/angular": "10.3.6",
     "@types/node": "25.6.0",
-    "eslint-plugin-storybook": "10.3.5"
+    "eslint-plugin-storybook": "10.3.6"
   }
 }

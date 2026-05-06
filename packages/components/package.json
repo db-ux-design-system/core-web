@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "4.7.0",
+  "version": "4.7.2",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
@@ -58,7 +58,7 @@
     "@builder.io/mitosis-cli": "0.13.0",
     "@prettier/sync": "0.6.1",
     "cpr": "3.0.1",
-    "cssnano": "7.1.7",
+    "cssnano": "7.1.8",
     "hygen": "6.2.11",
     "nodemon": "3.1.14",
     "npm-run-all2": "8.0.4",
@@ -66,7 +66,7 @@
     "postcss-cli": "11.0.1",
     "replace-in-file": "8.4.0",
     "sass": "1.99.0",
-    "storybook": "10.3.5",
+    "storybook": "10.3.6",
     "tsx": "4.21.0",
     "vitest": "4.1.5"
   },
