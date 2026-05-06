@@ -32,6 +32,7 @@ export default defineConfig({
 		'**/*.example.lite.tsx',
 		'**/*.showcase.lite.tsx',
 		'**/*.example.stories.*',
+		'**/scripts/public/**',
 		'**/test/**',
 		'**/__tests__/**',
 		'packages/migration/src/migration/color-q32024.ts',
