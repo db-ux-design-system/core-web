@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 import { execFileSync } from 'node:child_process';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -20,6 +20,45 @@ let totalIssues = 0;
 
 console.log(`🔍 Running ${mode} checks on publishable packages...`);
 
+type PkgJson = {
+	name: string;
+	version?: string;
+	dependencies?: Record<string, string>;
+	peerDependencies?: Record<string, string>;
+};
+
+function resolveWorkspaceDeps(packageJsonPath: string): void {
+	const pkgJson = JSON.parse(
+		readFileSync(packageJsonPath, 'utf8')
+	) as PkgJson;
+	let rewritten = false;
+	for (const depField of ['dependencies', 'peerDependencies'] as const) {
+		const deps = pkgJson[depField];
+		if (!deps) continue;
+		for (const [dep, ver] of Object.entries(deps)) {
+			if (!ver.startsWith('workspace:')) continue;
+			const depPkgPath = path.join(
+				'build-outputs',
+				dep.replace('@db-ux/', ''),
+				'package.json'
+			);
+			try {
+				const { version } = JSON.parse(
+					readFileSync(depPkgPath, 'utf8')
+				) as PkgJson;
+				deps[dep] = `^${version}`;
+				rewritten = true;
+			} catch {
+				// Dep not in build-outputs, leave as-is
+			}
+		}
+	}
+
+	if (rewritten) {
+		writeFileSync(packageJsonPath, JSON.stringify(pkgJson, null, '\t'));
+	}
+}
+
 for (const { name, parentPath } of packages) {
 	if (name === 'package.json') continue; // Skip root package.json
 
@@ -34,6 +73,7 @@ for (const { name, parentPath } of packages) {
 		console.log(`\n📦 Checking ${packageName} (${packagePath})...`);
 
 		if (mode === 'publint') {
+			resolveWorkspaceDeps(packageJsonPath);
 			try {
 				execFileSync('npx', ['publint', packagePath], {
 					stdio: 'inherit',
