@@ -45,11 +45,11 @@
   - text: Small
   - status
   - link "Variant"
-  - switch "(Default) Trailing(Default) Trailing"
-  - text: (Default) Trailing(Default) Trailing
+  - switch "(Default) Trailing"
+  - text: (Default) Trailing
   - status
-  - switch "LeadingLeading"
-  - text: LeadingLeading
+  - switch "Leading"
+  - text: Leading
   - status
   - link "Show Label"
   - switch "(Default) True"
