@@ -43,7 +43,7 @@ jobs:
       - name: 🧩 Changesets Action
         id: changesets
         if: github.event_name == 'push'
-        uses: changesets/action@v1
+        uses: changesets/action@v1.7.0
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
