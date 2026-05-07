@@ -107,11 +107,7 @@ export const weakInteractiveToggleTag: FigmaCodeConnect = {
 
 // weak × interactive-toggle — icon-only / noText
 export const weakInteractiveToggleIconTag: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:18803',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31246',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31553'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:18803'],
 	props: semanticDisabledCheckedProps
 };
 
@@ -128,6 +124,18 @@ export const weakRemovableTag: FigmaCodeConnect = {
 export const strongInteractiveToggleTag: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:19673'],
 	props: semanticDisabledCheckedProps
+};
+
+// strong × interactive — text
+export const strongInteractiveTag: FigmaCodeConnect = {
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=15767:31246'],
+	props: semanticDisabledProps
+};
+
+// strong × interactive — icon-only / noText
+export const strongInteractiveIconTag: FigmaCodeConnect = {
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=15767:31553'],
+	props: semanticDisabledProps
 };
 
 // strong × static / interactive

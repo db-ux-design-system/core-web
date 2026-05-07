@@ -11,11 +11,6 @@ module.exports = {
 		return `${target}-figma`;
 	},
 	options: {
-		react: {
-			explicitBuildFileExtensions: {
-				'.tsx': /.*(figma\.lite\.tsx)$/g
-			}
-		},
 		angular: {
 			api: 'signals'
 		},
@@ -27,7 +22,7 @@ module.exports = {
 		typescript: true,
 		plugins: [figmaPlugin],
 		explicitBuildFileExtensions: {
-			'.ts': /.*(figma\.lite\.tsx)$/g
+			'.batch.ts': /.*(figma\.lite\.tsx|figma\.lite\.ts)$/g
 		}
 	}
 };

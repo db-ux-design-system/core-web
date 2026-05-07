@@ -27,33 +27,11 @@ const accordionItemProps: Record<string, FigmaProp> = {
 };
 
 export const dividerAccordionItems: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15842',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15849',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15856',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15863',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15870',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15920',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15930',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15940',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15950',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15960'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:15841'],
 	props: accordionItemProps
 };
 
 export const cardAccordionItems: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15878',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15886',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15894',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15902',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15910',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15971',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15982',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15993',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:16004',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:16015'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:15919'],
 	props: accordionItemProps
 };

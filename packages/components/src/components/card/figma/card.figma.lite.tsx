@@ -1,18 +1,18 @@
 import { useMetadata } from '@builder.io/mitosis';
 import { DBCard } from '../index';
-import { FigmaCardProps, level3Cards } from './card.figma';
+import { FigmaCardProps, cards } from './card.figma';
 
 useMetadata({
-	figma: level3Cards
+	figma: cards
 });
 
-export default function Level3CardFigmaLite(props: FigmaCardProps) {
+export default function CardFigmaLite(props: FigmaCardProps) {
 	return (
 		<DBCard
-			elevationLevel="3"
+			elevationLevel={props.elevationLevel}
 			spacing={props.spacing}
 			behavior={props.behavior}>
-			Content
+			{props.children}
 		</DBCard>
 	);
 }

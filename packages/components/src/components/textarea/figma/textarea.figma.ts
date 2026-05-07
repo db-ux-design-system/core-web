@@ -30,22 +30,34 @@ export const aboveTextareas: FigmaCodeConnect = {
 	urls: [
 		// Empty
 		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3895:4642',
-		// Active
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:6941',
 		// Filled
 		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:7493'
 	],
 	props: textareaProps
 };
 
+export const activeAboveTextareas: FigmaCodeConnect = {
+	urls: [
+		// Active
+		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:6941'
+	],
+	props: {}
+};
+
 export const floatingTextareas: FigmaCodeConnect = {
 	urls: [
 		// Empty
 		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:8045',
-		// Active
-		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:8597',
 		// Filled
 		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:8838'
 	],
 	props: textareaProps
+};
+
+export const activeFloatingTextareas: FigmaCodeConnect = {
+	urls: [
+		// Active
+		'https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB?node-id=3714:8597'
+	],
+	props: {}
 };

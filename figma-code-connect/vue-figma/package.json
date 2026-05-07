@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "connect": "npx figma connect publish",
+    "connect": "npx figma connect publish --force",
     "test": "vitest run --config vitest.config.ts",
     "test:update": "vitest run --config vitest.config.ts --update"
   },

@@ -54,31 +54,6 @@ const defaultBadgeProps: Record<string, FigmaProp> = {
 };
 
 export const textBadges: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29569',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29572',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29575',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29578',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29581',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29584',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29587',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29590',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29593',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29596',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29599',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29602',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29605',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29608',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29611',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29614',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29617',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29620',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29623',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29626',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29629',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29632',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29635',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29638'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=1:29568'],
 	props: defaultBadgeProps
 };

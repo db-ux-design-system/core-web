@@ -28,6 +28,13 @@ jobs:
           name: figma-code-connect
           path: figma-code-connect
 
+      - name: 🎨 Generate icon batch files
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+          FIGMA_ICON_FILE: ${{ vars.FIGMA_ICON_FILE }}
+        run: |
+          node --import tsx/esm figma-code-connect/generate-icons.ts
+
       - name: 🖌️🔌 Publish
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}

@@ -5,11 +5,7 @@ export type FigmaHeaderProps = {
 };
 
 export const desktopHeaders: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=2414:2863',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3432:27195',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3432:27233'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=3432:27231'],
 	props: {
 		width: {
 			type: 'enum',
@@ -24,9 +20,6 @@ export const desktopHeaders: FigmaCodeConnect = {
 };
 
 export const mobileHeaders: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=2946:22741',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3407:26404'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=2946:22714'],
 	props: {}
 };

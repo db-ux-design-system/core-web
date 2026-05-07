@@ -5,12 +5,7 @@ export type FigmaPopoverProps = {
 };
 
 export const popovers: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:5595',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:5599',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:5603',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:5607'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=32604:5594'],
 	props: {
 		spacing: {
 			type: 'enum',

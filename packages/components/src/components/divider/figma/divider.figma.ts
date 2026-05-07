@@ -25,11 +25,6 @@ const dividerProps: Record<string, FigmaProp> = {
 };
 
 export const dividers: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:21537',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:21539',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:21541',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:21543'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=1:21536'],
 	props: dividerProps
 };
