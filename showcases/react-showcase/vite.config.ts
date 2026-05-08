@@ -15,6 +15,9 @@ export default defineConfig({
 		emptyOutDir: true,
 		cssMinify: 'esbuild'
 	},
+	optimizeDeps: {
+		include: ['next/navigation', 'next/router']
+	},
 	define: {
 		process: {
 			env: {
