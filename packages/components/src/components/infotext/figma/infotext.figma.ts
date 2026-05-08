@@ -3,6 +3,7 @@ import { FigmaCodeConnect } from '../../../shared/figma';
 export type FigmaInfotextProps = {
 	semantic?: string;
 	size?: string;
+	showIcon?: boolean;
 };
 
 export const infotexts: FigmaCodeConnect = {
@@ -23,6 +24,14 @@ export const infotexts: FigmaCodeConnect = {
 				Neutral: 'neutral',
 				Successful: 'successful',
 				Warning: 'warning'
+			}
+		},
+		showIcon: {
+			type: 'enum',
+			key: 'Show Icon',
+			value: {
+				False: false,
+				True: true
 			}
 		},
 		size: {

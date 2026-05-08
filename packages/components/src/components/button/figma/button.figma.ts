@@ -66,8 +66,8 @@ const noTextButtonProps: Record<string, FigmaProp> = {
 		type: 'enum',
 		key: 'Size',
 		value: {
-			Small: { type: 'instance', key: '🔄 Icon Small' },
-			'(Def) Medium': { type: 'instance', key: '🔄 Icon Medium' }
+			Small: { type: 'iconSwap', key: '🔄 Icon Small' },
+			'(Def) Medium': { type: 'iconSwap', key: '🔄 Icon Medium' }
 		}
 	}
 };
@@ -80,16 +80,16 @@ const textButtonProps: Record<string, FigmaProp> = {
 		type: 'enum',
 		key: 'Size',
 		value: {
-			Small: { type: 'instance', key: '🔄 Icon Leading Small' },
-			'(Def) Medium': { type: 'instance', key: '🔄 Icon Leading Medium' }
+			Small: { type: 'iconSwap', key: '🔄 Icon Leading Small' },
+			'(Def) Medium': { type: 'iconSwap', key: '🔄 Icon Leading Medium' }
 		}
 	},
 	iconTrailing: {
 		type: 'enum',
 		key: 'Size',
 		value: {
-			Small: { type: 'instance', key: '🔄 Icon Trailing Small' },
-			'(Def) Medium': { type: 'instance', key: '🔄 Icon Trailing Medium' }
+			Small: { type: 'iconSwap', key: '🔄 Icon Trailing Small' },
+			'(Def) Medium': { type: 'iconSwap', key: '🔄 Icon Trailing Medium' }
 		}
 	}
 };

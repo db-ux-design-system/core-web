@@ -7,5 +7,5 @@ useMetadata({
 });
 
 export default function MobileHeaderFigmaLite() {
-	return <DBHeader forceMobile>Navigation</DBHeader>;
+	return <DBHeader>Real content coming soon</DBHeader>;
 }

@@ -19,6 +19,14 @@ src/components/button/figma/
 └── no-text.button.figma.lite.tsx    # Mitosis component for the "no text" variant
 ```
 
+If all variants share the same JSX structure, a single lite file is enough:
+
+```text
+src/components/checkbox/figma/
+├── checkbox.figma.ts
+└── checkbox.figma.lite.tsx
+```
+
 ## Step-by-Step Guide
 
 ### 1. Get the Figma Component URL
@@ -117,16 +125,16 @@ export const textButtons: FigmaCodeConnect = {
 
 #### Props constants: one variable per `props` field
 
-> **⚠️ Mitosis constraint:** Mitosis parses the `props` value in `useMetadata` as JSON5. This means `props` must point to **a single variable** — not a composed object literal with multiple variable references.
+> **⚠️ Mitosis constraint:** Mitosis parses the `props` value in `useMetadata` as JSON5. This means `props` must point to **a single named variable** — not an inline object literal with multiple variable references.
 
 ```typescript
-// ❌ Fails — Mitosis cannot resolve { semantic: semanticProp, disabled: disabledProp }
+// ❌ Fails — Mitosis cannot resolve the inline object
 export const myComponent: FigmaCodeConnect = {
 	urls: [...],
 	props: { semantic: semanticProp, disabled: disabledProp }
 };
 
-// ✅ Correct — a single variable
+// ✅ Correct — a single named variable
 const myComponentProps: Record<string, FigmaProp> = {
 	semantic: { type: 'enum', key: 'Semantic', value: { ... } },
 	disabled: { type: 'enum', key: 'Disabled', value: { False: false, True: true } }
@@ -138,12 +146,22 @@ export const myComponent: FigmaCodeConnect = {
 };
 ```
 
+Spreads inside the `Record` variable itself are fine — Mitosis only has trouble with the inline object passed directly to `props`:
+
+```typescript
+// ✅ Spreads inside the variable are fine
+const extendedProps: Record<string, FigmaProp> = {
+	...baseProps,
+	icon: { type: 'iconSwap', ... }
+};
+```
+
 If a component has variants with different prop combinations, create **separate constants** per combination:
 
 ```typescript
-const semanticOnlyProps: Record<string, FigmaProp> = { semantic: { ... } };
-const semanticDisabledProps: Record<string, FigmaProp> = { semantic: { ... }, disabled: { ... } };
-const semanticDisabledCheckedProps: Record<string, FigmaProp> = { semantic: { ... }, disabled: { ... }, checked: { ... } };
+const baseBadgeProps: Record<string, FigmaProp> = { size: { ... }, semantic: { ... } };
+const dotBadgeProps: Record<string, FigmaProp> = { ...baseBadgeProps, placement: cornerPlacementProp };
+const iconBadgeProps: Record<string, FigmaProp> = { ...baseBadgeProps, icon: { ... } };
 ```
 
 Also note that Mitosis **cannot resolve template literals** in URLs:
@@ -159,7 +177,7 @@ urls: ["https://www.figma.com/design/FIGMA_FILE?node-id=14442:18427"];
 
 ### 5. Create the Mitosis Component
 
-Create `figma/[variant].[component].figma.lite.tsx` for each variant:
+Create `figma/[variant].[component].figma.lite.tsx` for each variant. If all variants share the same JSX, a single `[component].figma.lite.tsx` is enough.
 
 **Example** from `text.button.figma.lite.tsx`:
 
@@ -191,28 +209,253 @@ The `useMetadata({ figma: ... })` call links this Mitosis component to the Figma
 
 ## Property Types
 
-| Type          | Description                                       | Example                                                    |
-| ------------- | ------------------------------------------------- | ---------------------------------------------------------- |
-| `enum`        | Maps Figma dropdown/toggle values to code         | `{ type: "enum", key: "Size", value: { Small: "small" } }` |
-| `string`      | Direct text input                                 | `{ type: "string", key: "✏️ Text" }`                       |
-| `boolean`     | True/false toggle                                 | `{ type: "boolean", key: "Show Icon Leading" }`            |
-| `instance`    | Nested component instance (e.g., swappable icons) | `{ type: "instance", key: "🔄 Icon Medium" }`              |
-| `children`    | Child component slots                             | `{ type: "children", key: "Slot" }`                        |
-| `textContent` | Text content of the component                     | `{ type: "textContent", key: "Label" }`                    |
+| Type                       | Description                                                                                               |
+| -------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `string`                   | Direct text input — `instance.getString(key)`                                                             |
+| `boolean`                  | True/false toggle — `instance.getBoolean(key)`                                                            |
+| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                       |
+| `children`                 | Named slot content — `instance.getSlot(key)`                                                              |
+| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                               |
+| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`              |
+| `iconSwap`                 | Icon instance swap rendered as plain string attribute — `getInstanceSwap(key)?.executeTemplate().example` |
+| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                    |
+| `connectedText`            | Text from the first code-connected child with that property key                                           |
+| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                |
+| `conditionalProp`          | Attribute only rendered when a boolean guard prop is true (e.g. icons guarded by `showIcon`)              |
+| `connectedInstances`       | All direct code-connected child instances rendered as children                                            |
+| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                              |
 
-### Instance Props with Size-Dependent Keys
+### `enum` with boolean values
 
-When an instance prop depends on another property (e.g., icon size depends on button size), use a nested enum:
+Use `False: false, True: true` to map Figma toggle values to booleans:
 
 ```typescript
-icon: {
-  type: "enum",
-  key: "Size",
-  value: {
-    Small: { type: "instance", key: "🔄 Icon Small" },
-    "(Def) Medium": { type: "instance", key: "🔄 Icon Medium" }
-  }
+disabled: {
+	type: "enum",
+	key: "Disabled",
+	value: { False: false, True: true }
 }
+```
+
+### `iconSwap` — icon instance swaps
+
+Icons in Figma are instance swaps that resolve to icon name strings via the icon batch files. Use `iconSwap` (not `instance`) as the value type inside an `enum` prop. The generated code calls `getInstanceSwap(...).executeTemplate().example` and renders the result as a plain string attribute (e.g. `icon="arrow_right"`):
+
+```typescript
+// ✅ Correct — resolves to icon name string rendered as plain attribute
+icon: {
+	type: "enum",
+	key: "Size",
+	value: {
+		Small: { type: "iconSwap", key: "🔄 Icon Small" },
+		"(Def) Medium": { type: "iconSwap", key: "🔄 Icon Medium" }
+	}
+}
+
+// ❌ Wrong — would try to execute the icon as a component template
+icon: {
+	type: "enum",
+	key: "Size",
+	value: {
+		Small: { type: "instance", key: "🔄 Icon Small" }
+	}
+}
+```
+
+### `textContent` vs `string`
+
+Both generate `instance.getString()` but serve different purposes:
+
+- `string` — for attribute props (e.g. `headlinePlain="..."`)
+- `textContent` — for text rendered as children or as a screenreader label (e.g. `<DBBadge>{text}</DBBadge>`)
+
+### `nestedText` — text from a named nested instance
+
+Use when the text lives inside a specific named child component (e.g. an infotext inside a checkbox):
+
+```typescript
+message: { type: "nestedText", layerName: "Infotext - (Def) Auto Width", key: "✏️ Text" }
+```
+
+Generates: `instance.findInstance('Infotext - (Def) Auto Width')?.getString('✏️ Text')`
+
+### `connectedText` — text from a code-connected child
+
+Use when the text lives inside a child that has its own Code Connect mapping:
+
+```typescript
+message: { type: "connectedText", key: "✏️ Text", index: 0 }
+```
+
+Generates:
+
+```js
+instance
+	.findConnectedInstances((node) => node.hasCodeConnect())
+	.filter((node) => node.type === "INSTANCE")
+	.filter((node) => !!node.properties["✏️ Text"])[0]
+	?.getString("✏️ Text");
+```
+
+### `connectedInstances` — dynamic children from Figma
+
+Use when a container component (e.g. `DBAccordion`) should render its child instances dynamically instead of hardcoded placeholders:
+
+```typescript
+children: {
+	type: "connectedInstances";
+}
+```
+
+Generates:
+
+```js
+instance
+	.findConnectedInstances((node) => node.hasCodeConnect())
+	.map((child) => child.executeTemplate().example);
+```
+
+In the lite file, use `{props.children}` as the slot:
+
+```tsx
+<DBAccordion behavior={props.behavior} variant={props.variant}>
+	{props.children}
+</DBAccordion>
+```
+
+### `nestedConnectedInstances` — children behind helper layers
+
+Some Figma components wrap their child instances in non-code-connected helper components, or mix different component types (e.g. accordion items interleaved with dividers). Use `filter` to specify which component to keep by matching against the `nestedImports` of each instance's template.
+
+```typescript
+// Only include DBAccordionItem instances, skip DBDivider and other components
+children: { type: "nestedConnectedInstances", filter: "DBAccordionItem" }
+```
+
+Generates:
+
+```js
+instance
+	.findConnectedInstances((node) => node.hasCodeConnect(), {
+		traverseInstances: true
+	})
+	.filter((node) => node.type === "INSTANCE")
+	.filter((node) =>
+		node
+			.executeTemplate()
+			.example.some(
+				(section) =>
+					section.type === "CODE" &&
+					section.nestedImports?.some((i) =>
+						i.includes("DBAccordionItem")
+					)
+			)
+	)
+	.reverse()
+	.flatMap((child) => child.executeTemplate().example);
+```
+
+`traverseInstances: true` searches recursively through all descendant layers, so intermediate helper components are automatically traversed. The `filter` string is matched against the `nestedImports` array of each instance's rendered template — only instances that import the specified component are included.
+
+> **How to find the right `filter` value:** Use the component name as it appears in the import statement (e.g. `DBAccordionItem`, `DBTabItem`). Check the Figma Code Connect output to see what `nestedImports` each child instance produces.
+
+### `validationMessage` — conditional message attribute
+
+Use when a component has a message prop that maps to different attribute names depending on a validation state (e.g. `message`, `invalidMessage`, `validMessage`).
+
+```typescript
+message: {
+	type: "validationMessage",
+	key: "✏️ Text",
+	conditionProp: "validation",
+	map: {
+		invalid: "invalidMessage",
+		valid: "validMessage",
+		default: "message"
+	}
+}
+```
+
+Generates:
+
+```js
+const _messageMessage = instance
+	.findConnectedInstances((node) => node.hasCodeConnect())
+	.filter((node) => node.type === "INSTANCE")
+	.filter((node) => !!node.properties["✏️ Text"])[0]
+	?.getString("✏️ Text");
+let message = "";
+if (_messageMessage) {
+	let messageAttr = "message";
+	if (validation === "invalid") messageAttr = "invalidMessage";
+	if (validation === "valid") messageAttr = "validMessage";
+	message = `\n\t\t${messageAttr}="${_messageMessage}"`;
+}
+```
+
+The `message` variable is injected directly after the opening tag: `<DBCheckbox${message} ...>`. When empty, nothing is rendered — no blank line.
+
+> **Do not add the prop to the lite file** — the plugin injects it automatically. The lite file should not include `message={props.message}`.
+
+### `conditionalProp` — attribute only rendered when a guard is true
+
+Use for icon props that should only appear in the output when their corresponding `showIcon*` boolean is true. Without this, empty `icon=""` attributes would always be rendered.
+
+```typescript
+iconLeading: {
+	type: "conditionalProp",
+	key: "🔄 Icon Leading",
+	guardProp: "showIconLeading",
+	attrName: "icon"
+},
+iconTrailing: {
+	type: "conditionalProp",
+	key: "🔄 Icon Trailing",
+	guardProp: "showIconTrailing",
+	attrName: "iconTrailing"
+}
+```
+
+Generates:
+
+```js
+const _iconLeadingValue = instance
+	.getInstanceSwap("🔄 Icon Leading")
+	?.executeTemplate().example;
+let iconLeading = "";
+if (showIconLeading) {
+	iconLeading = `\n\t\ticon="${_iconLeadingValue}"`;
+}
+```
+
+The variable is injected after the opening tag: `<DBInput${iconLeading}${iconTrailing} ...>`. When the guard is false, the attribute is completely omitted.
+
+> **Do not add the prop to the lite file** — the plugin injects it automatically. Remove `icon={props.iconLeading}` from the JSX.
+
+## Merging Variants into One File
+
+If multiple Figma component sets produce identical JSX (only differing in a prop value like `size`), merge them into a single lite file and expose the differing property as a prop:
+
+```typescript
+// Instead of medium.checkbox.figma.ts + small.checkbox.figma.ts:
+const checkboxProps: Record<string, FigmaProp> = {
+	size: {
+		type: "enum",
+		key: "💻 Size",
+		value: { "(Def) Medium": "medium", Small: "small" }
+	}
+	// ...
+};
+
+export const checkboxes: FigmaCodeConnect = {
+	urls: [
+		"https://www.figma.com/design/FIGMA_FILE?node-id=2068:3423", // Medium Auto
+		"https://www.figma.com/design/FIGMA_FILE?node-id=10707:19709", // Medium Full
+		"https://www.figma.com/design/FIGMA_FILE?node-id=2068:3548", // Small Auto
+		"https://www.figma.com/design/FIGMA_FILE?node-id=10707:19958" // Small Full
+	],
+	props: checkboxProps
+};
 ```
 
 ## Testing

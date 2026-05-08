@@ -1,15 +1,15 @@
 import { useMetadata } from '@builder.io/mitosis';
 import { DBCheckbox } from '../index';
-import { FigmaCheckboxProps, mediumCheckboxes } from './checkbox.figma';
+import { FigmaCheckboxProps, checkboxes } from './checkbox.figma';
 
 useMetadata({
-	figma: mediumCheckboxes
+	figma: checkboxes
 });
 
-export default function MediumCheckboxFigmaLite(props: FigmaCheckboxProps) {
+export default function CheckboxFigmaLite(props: FigmaCheckboxProps) {
 	return (
 		<DBCheckbox
-			size="medium"
+			size={props.size}
 			disabled={props.disabled}
 			checked={props.checked}
 			indeterminate={props.indeterminate}

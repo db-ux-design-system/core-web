@@ -4,10 +4,12 @@ export type FigmaAccordionItemProps = {
 	headlinePlain?: string;
 	disabled?: boolean;
 	defaultOpen?: boolean;
+	content?: string;
 };
 
 const accordionItemProps: Record<string, FigmaProp> = {
 	headlinePlain: { type: 'string', key: '✏️ Headline' },
+	content: { type: 'textContent', key: '✏️ Text' },
 	disabled: {
 		type: 'enum',
 		key: 'Disabled',
@@ -26,12 +28,10 @@ const accordionItemProps: Record<string, FigmaProp> = {
 	}
 };
 
-export const dividerAccordionItems: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:15841'],
-	props: accordionItemProps
-};
-
-export const cardAccordionItems: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:15919'],
+export const accordionItems: FigmaCodeConnect = {
+	urls: [
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15841',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:15919'
+	],
 	props: accordionItemProps
 };

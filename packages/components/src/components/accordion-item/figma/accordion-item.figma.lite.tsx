@@ -2,22 +2,20 @@ import { useMetadata } from '@builder.io/mitosis';
 import { DBAccordionItem } from '../index';
 import {
 	FigmaAccordionItemProps,
-	dividerAccordionItems
+	accordionItems
 } from './accordion-item.figma';
 
 useMetadata({
-	figma: dividerAccordionItems
+	figma: accordionItems
 });
 
-export default function DividerAccordionItemFigmaLite(
-	props: FigmaAccordionItemProps
-) {
+export default function AccordionItemFigmaLite(props: FigmaAccordionItemProps) {
 	return (
 		<DBAccordionItem
 			headlinePlain={props.headlinePlain}
 			disabled={props.disabled}
 			defaultOpen={props.defaultOpen}>
-			Content
+			{props.content}
 		</DBAccordionItem>
 	);
 }

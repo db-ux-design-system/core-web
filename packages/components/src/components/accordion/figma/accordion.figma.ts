@@ -3,6 +3,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaAccordionProps = {
 	behavior?: string;
 	variant?: string;
+	children?: string;
 };
 
 const accordionProps: Record<string, FigmaProp> = {
@@ -21,7 +22,8 @@ const accordionProps: Record<string, FigmaProp> = {
 			'(Def) Divider': 'divider',
 			Card: 'card'
 		}
-	}
+	},
+	children: { type: 'nestedConnectedInstances', filter: 'DBAccordionItem' }
 };
 
 export const accordions: FigmaCodeConnect = {

@@ -7,5 +7,5 @@ useMetadata({
 });
 
 export default function DesktopHeaderFigmaLite(props: FigmaHeaderProps) {
-	return <DBHeader width={props.width}>Navigation</DBHeader>;
+	return <DBHeader width={props.width}>Real content coming soon</DBHeader>;
 }
