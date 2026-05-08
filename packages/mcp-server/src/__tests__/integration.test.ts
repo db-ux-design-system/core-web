@@ -708,21 +708,30 @@ describe('handleAuditAccessibilityPrompt', () => {
 	});
 });
 
+import { platform } from 'node:os';
+import { resolve } from 'node:path';
+
 // ---------------------------------------------------------------------------
 // resolveSafePath — unit tests for path traversal protection
 // ---------------------------------------------------------------------------
 describe('resolveSafePath', () => {
-	const BASE = '/mock/base/dir';
+	// Use a base that resolves consistently on both Windows and Unix
+	const BASE = resolve('/mock/base/dir').replaceAll('\\', '/');
+	const normalise = (p: string) => p.replaceAll('\\', '/');
 
 	describe('valid paths', () => {
 		it('resolves a normal nested path inside the base', () => {
 			expect(
-				resolveSafePath(BASE, 'button/examples/variant.example.tsx')
+				normalise(
+					resolveSafePath(BASE, 'button/examples/variant.example.tsx')
+				)
 			).toBe(`${BASE}/button/examples/variant.example.tsx`);
 		});
 
 		it('resolves a single filename inside the base', () => {
-			expect(resolveSafePath(BASE, 'button')).toBe(`${BASE}/button`);
+			expect(normalise(resolveSafePath(BASE, 'button'))).toBe(
+				`${BASE}/button`
+			);
 		});
 	});
 
@@ -773,16 +782,27 @@ describe('resolveSafePath', () => {
 
 	describe('absolute path injection', () => {
 		it('rejects Unix absolute path /var/log/syslog', () => {
+			// On Windows /var/log/syslog resolves within the current drive,
+			// which may or may not be inside BASE — skip on Windows.
+			if (platform() === 'win32') return;
 			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow(
 				'Path traversal detected'
 			);
 		});
 
-		// On Unix, backslashes are literal filename characters — resolves safely inside base.
-		it('treats Windows-style path as a literal subdirectory on Unix', () => {
-			expect(
-				resolveSafePath(BASE, 'C:\\Windows\\System32').startsWith(BASE)
-			).toBe(true);
+		// On Windows C:\path is absolute and escapes the base — throws.
+		// On Unix backslashes are literal filename chars — resolves inside base.
+		it('handles Windows-style path correctly per platform', () => {
+			const input = 'C:\\Windows\\System32';
+			if (process.platform === 'win32') {
+				expect(() => resolveSafePath(BASE, input)).toThrow(
+					'Path traversal detected'
+				);
+			} else {
+				expect(resolveSafePath(BASE, input).startsWith(BASE)).toBe(
+					true
+				);
+			}
 		});
 	});
 });

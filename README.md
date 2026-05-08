@@ -46,12 +46,12 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 
 ## How to use
 
-1. **Install your preferred package** via npm or yarn:
-    - For React: `npm i @db-ux/react-core-components`
-    - For Angular: `npm i @db-ux/ngx-core-components`
-    - For Vue: `npm i @db-ux/v-core-components`
-    - For Web Components: `npm i @db-ux/wc-core-components`
-    - For styling only (e.g. for pure HTML integrations): `npm i @db-ux/core-components`
+1. **Install your preferred package** via pnpm (or npm/yarn):
+    - For React: `pnpm i @db-ux/react-core-components`
+    - For Angular: `pnpm i @db-ux/ngx-core-components`
+    - For Vue: `pnpm i @db-ux/v-core-components`
+    - For Web Components: `pnpm i @db-ux/wc-core-components`
+    - For styling only (e.g. for pure HTML integrations): `pnpm i @db-ux/core-components`
 
 2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
 
@@ -103,7 +103,7 @@ To help enforce correct usage of DB UX Design System components in your codebase
 Install the plugin:
 
 ```shell
-npm install eslint @db-ux/core-eslint-plugin --save-dev
+pnpm install eslint @db-ux/core-eslint-plugin --save-dev
 ```
 
 Then add it to your ESLint config:

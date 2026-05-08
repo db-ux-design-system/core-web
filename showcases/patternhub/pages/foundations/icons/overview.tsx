@@ -10,9 +10,9 @@ import {
 import DefaultPage from '../../../components/default-page';
 
 // Import root package.json for theme version
-import rootPackage from '../../../../../package.json';
+import rootPackage from '../../../package.json';
 // Import the theme-icons version constant
-import themeIconsPackage from '../../../../../node_modules/@db-ux/db-theme-icons/package.json';
+import themeIconsPackage from '../../../node_modules/@db-ux/db-theme-icons/package.json';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState('24');
@@ -35,7 +35,7 @@ const IconOverview = () => {
 			<p>
 				These icons reflect the
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/${themeIconsVersion === 'unknown' ? '' : 'v/' + themeIconsVersion}`}
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/${themeIconsVersion === 'unknown' ? '' : `v/${themeIconsVersion}`}`}
 					target="_blank"
 					rel="noopener noreferrer">
 					<code>@db-ux/db-theme-icons</code> node package of version{' '}
@@ -43,7 +43,7 @@ const IconOverview = () => {
 				</a>
 				, which is part of the{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme/${themeVersion === 'unknown' ? '' : 'v/' + themeVersion}`}>
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/${themeVersion === 'unknown' ? '' : `v/${themeVersion}`}`}>
 					<code>@db-ux/db-theme</code> package , version{' '}
 					{themeVersion}
 				</a>
