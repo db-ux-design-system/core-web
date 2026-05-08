@@ -1,4 +1,7 @@
 const figmaPlugin = require('./plugins/figma/index.cjs');
+const vue = require('./vue/index.cjs');
+const angular = require('./angular/index.cjs');
+const react = require('./react/index.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
@@ -11,12 +14,9 @@ module.exports = {
 		return `${target}-figma`;
 	},
 	options: {
-		angular: {
-			api: 'signals'
-		},
-		vue: {
-			api: 'composition'
-		}
+		react,
+		angular,
+		vue
 	},
 	commonOptions: {
 		typescript: true,

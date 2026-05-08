@@ -7,9 +7,5 @@ useMetadata({
 });
 
 export default function AccordionFigmaLite(props: FigmaAccordionProps) {
-	return (
-		<DBAccordion behavior={props.behavior} variant={props.variant}>
-			{props.children}
-		</DBAccordion>
-	);
+	return <DBAccordion>{props._children}</DBAccordion>;
 }

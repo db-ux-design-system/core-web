@@ -1,11 +1,17 @@
-import { FigmaCodeConnect } from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
-export const desktopNavigation: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=4935:49095'],
-	props: {}
+export type FigmaNavigationProps = {
+	_children?: string;
 };
 
-export const mobileNavigation: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=4924:32907'],
-	props: {}
+const navigationProps: Record<string, FigmaProp> = {
+	_children: { type: 'nestedConnectedInstances', filter: 'DBNavigationItem' }
+};
+
+export const navigations: FigmaCodeConnect = {
+	urls: [
+		'https://www.figma.com/design/FIGMA_FILE?node-id=4935:49095',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=4924:32907'
+	],
+	props: navigationProps
 };

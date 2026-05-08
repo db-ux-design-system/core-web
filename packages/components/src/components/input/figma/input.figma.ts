@@ -4,12 +4,15 @@ export type FigmaInputProps = {
 	variant?: string;
 	label?: string;
 	placeholder?: string;
+	required?: boolean;
+	showRequiredAsterisk?: boolean;
 	disabled?: boolean;
 	validation?: string;
 	showIconLeading?: boolean;
 	showIconTrailing?: boolean;
 	iconLeading?: string;
 	iconTrailing?: string;
+	showMessage?: boolean;
 	message?: string;
 };
 
@@ -17,21 +20,13 @@ const inputProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
 		key: '💻 Variant',
-		value: {
-			Above: 'above',
-			Floating: 'floating'
-		}
+		value: { Above: 'above', Floating: 'floating' }
 	},
 	label: { type: 'string', key: '✏️ Label' },
 	placeholder: { type: 'string', key: '✏️ Placeholder' },
-	disabled: {
-		type: 'enum',
-		key: 'Disabled',
-		value: {
-			False: false,
-			True: true
-		}
-	},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',
@@ -55,6 +50,7 @@ const inputProps: Record<string, FigmaProp> = {
 		guardProp: 'showIconTrailing',
 		attrName: 'iconTrailing'
 	},
+	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
 		key: '✏️ Text',

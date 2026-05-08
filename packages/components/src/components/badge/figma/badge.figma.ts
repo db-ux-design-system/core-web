@@ -75,11 +75,22 @@ const baseBadgeProps: Record<string, FigmaProp> = {
 	semantic: semanticProp,
 	emphasis: emphasisProp,
 	placement: allPlacementProp,
-	text: textProp
+	text: textProp,
+	icon: {
+		type: 'enum',
+		key: 'Size',
+		value: {
+			'(Def) Small': { type: 'iconSwap', key: '🔄 Icon Small' },
+			Medium: { type: 'iconSwap', key: '🔄 Icon Medium' }
+		}
+	}
 };
 
-export const textBadges: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=1:29568'],
+export const badges: FigmaCodeConnect = {
+	urls: [
+		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29568',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=4184:18686'
+	],
 	props: baseBadgeProps
 };
 
@@ -94,21 +105,4 @@ const dotBadgeProps: Record<string, FigmaProp> = {
 export const dotBadges: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=1:31013'],
 	props: dotBadgeProps
-};
-
-const iconBadgeProps: Record<string, FigmaProp> = {
-	...baseBadgeProps,
-	icon: {
-		type: 'enum',
-		key: 'Size',
-		value: {
-			'(Def) Small': { type: 'iconSwap', key: '🔄 Icon Small' },
-			Medium: { type: 'iconSwap', key: '🔄 Icon Medium' }
-		}
-	}
-};
-
-export const iconBadges: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=4184:18686'],
-	props: iconBadgeProps
 };

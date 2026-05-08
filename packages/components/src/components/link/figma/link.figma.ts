@@ -13,35 +13,19 @@ const linkProps: Record<string, FigmaProp> = {
 	content: {
 		type: 'enum',
 		key: '💻 Content',
-		value: {
-			Internal: 'internal',
-			External: 'external'
-		}
+		value: { Internal: 'internal', External: 'external' }
 	},
 	variant: {
 		type: 'enum',
 		key: '💻 Variant',
-		value: {
-			Adaptive: 'adaptive',
-			Brand: 'brand'
-		}
+		value: { Adaptive: 'adaptive', Brand: 'brand' }
 	},
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: {
-			'(Def) Medium': 'medium',
-			Small: 'small'
-		}
+		value: { '(Def) Medium': 'medium', Small: 'small' }
 	},
-	disabled: {
-		type: 'enum',
-		key: 'Disabled',
-		value: {
-			False: false,
-			True: true
-		}
-	}
+	disabled: { type: 'boolean', key: 'Disabled' }
 };
 
 export const links: FigmaCodeConnect = {

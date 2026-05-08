@@ -11,29 +11,14 @@ const drawerProps: Record<string, FigmaProp> = {
 	direction: {
 		type: 'enum',
 		key: '💻 Direction',
-		value: {
-			Right: 'right',
-			Left: 'left',
-			Bottom: 'up',
-			Top: 'down'
-		}
+		value: { Right: 'right', Left: 'left', Bottom: 'up', Top: 'down' }
 	},
 	size: {
 		type: 'enum',
 		key: '💻 Size',
-		value: {
-			Medium: 'medium',
-			Full: 'full'
-		}
+		value: { Medium: 'medium', Full: 'full' }
 	},
-	rounded: {
-		type: 'enum',
-		key: 'Rounded',
-		value: {
-			False: false,
-			True: true
-		}
-	},
+	rounded: { type: 'boolean', key: 'Rounded' },
 	spacing: {
 		type: 'enum',
 		key: 'Spacing',

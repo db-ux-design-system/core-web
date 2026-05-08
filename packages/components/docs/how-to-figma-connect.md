@@ -27,6 +27,26 @@ src/components/checkbox/figma/
 └── checkbox.figma.lite.tsx
 ```
 
+## How the Plugin Works
+
+The Figma plugin uses two Mitosis hooks:
+
+**`json.pre`** — runs before code generation:
+
+1. Validates `FIGMA_FILE` env var
+2. Removes all attribute bindings from the JSON nodes (so Mitosis doesn't emit them)
+3. Replaces slot child nodes (`_text` bindings) with variable references
+4. Pre-computes all declarations and stores them on `figmaMeta._precomputed`
+
+**`code.post`** — runs after code generation:
+
+1. Extracts the generated template from the Mitosis output
+2. Replaces framework-specific slot rendering (`{prop}`, `{{prop}}`) with `${prop}`
+3. Injects all conditional attribute variables after the opening tag
+4. Returns the final `figma.code` template string
+
+All attribute props are injected conditionally using `instance.getPropertyValue(key) !== undefined` — so props that don't exist on a particular Figma variant are automatically omitted from the output.
+
 ## Step-by-Step Guide
 
 ### 1. Get the Figma Component URL
@@ -52,7 +72,7 @@ You only need the `node-id` value for the configuration file.
 
 Note the exact property names (e.g., `Size`, `💻 Variant`, `✏️ Text`) — these must match exactly in your configuration.
 
-> **Important:** Different component sets within the same component may have different properties. If you reference a property that doesn't exist in a component set, Figma will reject the connection.
+> **Important:** Different component sets within the same component may have different properties. If you reference a property that doesn't exist in a component set, it will simply be omitted from the output — no error.
 
 ### 3. Add `FIGMA_FILE` to `.env`
 
@@ -86,20 +106,14 @@ const defaultButtonProps: Record<string, FigmaProp> = {
 	disabled: {
 		type: "enum",
 		key: "Disabled",
-		value: {
-			False: false,
-			True: true
-		}
+		value: { False: false, True: true }
 	},
 	size: {
 		type: "enum",
 		key: "Size",
-		value: {
-			Small: "small",
-			"(Def) Medium": "medium"
-		}
+		value: { Small: "small", "(Def) Medium": "medium" }
 	},
-	text: { type: "string", key: "✏️ Text" },
+	text: { type: "textContent", key: "✏️ Text" },
 	variant: {
 		type: "enum",
 		key: "💻 Variant",
@@ -156,14 +170,6 @@ const extendedProps: Record<string, FigmaProp> = {
 };
 ```
 
-If a component has variants with different prop combinations, create **separate constants** per combination:
-
-```typescript
-const baseBadgeProps: Record<string, FigmaProp> = { size: { ... }, semantic: { ... } };
-const dotBadgeProps: Record<string, FigmaProp> = { ...baseBadgeProps, placement: cornerPlacementProp };
-const iconBadgeProps: Record<string, FigmaProp> = { ...baseBadgeProps, icon: { ... } };
-```
-
 Also note that Mitosis **cannot resolve template literals** in URLs:
 
 ```typescript
@@ -179,25 +185,28 @@ urls: ["https://www.figma.com/design/FIGMA_FILE?node-id=14442:18427"];
 
 Create `figma/[variant].[component].figma.lite.tsx` for each variant. If all variants share the same JSX, a single `[component].figma.lite.tsx` is enough.
 
-**Example** from `text.button.figma.lite.tsx`:
+#### What belongs in the lite file
+
+The plugin automatically injects all attribute props from the figma config. The lite file should only contain:
+
+- **Hardcoded static props** — values that never change (e.g. `type="button"`, `name="checkbox"`, `size="medium"`)
+- **Slot/children content** — `{props.text}`, `{props._children}`, `{props.label}`
+- **Complex non-figma expressions** — e.g. `options={[...]}`, `trigger={<DBButton>}`
 
 ```tsx
-import { useMetadata } from "@builder.io/mitosis";
-import { DBButton } from "../index";
-import { FigmaButtonProps, textButtons } from "./button.figma";
-//       ^^^^^^^^^^^^^^^^ Always import the typed props interface, never use `any`
+// ✅ Correct — only static props and slot content
+export default function TextButtonFigmaLite(props: FigmaButtonProps) {
+	return <DBButton type="button">{props.text}</DBButton>;
+}
 
-useMetadata({
-	figma: textButtons
-});
-
+// ❌ Wrong — do not pass figma props as attributes
 export default function TextButtonFigmaLite(props: FigmaButtonProps) {
 	return (
 		<DBButton
-			disabled={props.disabled}
-			size={props.size}
-			variant={props.variant}
 			type="button"
+			disabled={props.disabled} // ❌ remove this
+			size={props.size} // ❌ remove this
+			variant={props.variant} // ❌ remove this
 		>
 			{props.text}
 		</DBButton>
@@ -205,41 +214,77 @@ export default function TextButtonFigmaLite(props: FigmaButtonProps) {
 }
 ```
 
-The `useMetadata({ figma: ... })` call links this Mitosis component to the Figma configuration. The `props` passed to the DB UX component must match the keys defined in your configuration file.
+The plugin's `json.pre` hook removes all attribute bindings before Mitosis generates code, then `code.post` injects them conditionally using `getPropertyValue` guards.
+
+#### The `_children` prop name
+
+Mitosis reserves `props.children` as a special slot. For slot/children props in figma configs, always use `_children` as the prop name:
+
+```typescript
+// ✅ Correct
+_children: { type: 'nestedConnectedInstances', filter: 'DBAccordionItem' }
+
+// ❌ Wrong — conflicts with Mitosis reserved prop
+children: { type: 'nestedConnectedInstances', filter: 'DBAccordionItem' }
+```
+
+In the lite file:
+
+```tsx
+export default function AccordionFigmaLite(props: FigmaAccordionProps) {
+	return <DBAccordion>{props._children}</DBAccordion>;
+}
+```
 
 ## Property Types
 
-| Type                       | Description                                                                                               |
-| -------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `string`                   | Direct text input — `instance.getString(key)`                                                             |
-| `boolean`                  | True/false toggle — `instance.getBoolean(key)`                                                            |
-| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                       |
-| `children`                 | Named slot content — `instance.getSlot(key)`                                                              |
-| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                               |
-| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`              |
-| `iconSwap`                 | Icon instance swap rendered as plain string attribute — `getInstanceSwap(key)?.executeTemplate().example` |
-| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                    |
-| `connectedText`            | Text from the first code-connected child with that property key                                           |
-| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                |
-| `conditionalProp`          | Attribute only rendered when a boolean guard prop is true (e.g. icons guarded by `showIcon`)              |
-| `connectedInstances`       | All direct code-connected child instances rendered as children                                            |
-| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                              |
+| Type                       | Description                                                                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `string`                   | Direct text input — `instance.getString(key)`                                                                                         |
+| `boolean`                  | Figma `False/True` toggle — `instance.getEnum(key, { 'False': false, 'True': true })` — shorthand for the common boolean enum pattern |
+| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                                                   |
+| `children`                 | Named slot content — `instance.getSlot(key)`                                                                                          |
+| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                                                           |
+| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`                                          |
+| `iconSwap`                 | Icon instance swap rendered as plain string attribute — `getInstanceSwap(key)?.executeTemplate().example`                             |
+| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                                                |
+| `connectedText`            | Text from the first code-connected child with that property key                                                                       |
+| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                                            |
+| `conditionalProp`          | Attribute only rendered when a boolean guard prop is true (e.g. icons guarded by `showIcon`)                                          |
+| `connectedInstances`       | All direct code-connected child instances rendered as children                                                                        |
+| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                                                          |
 
-### `enum` with boolean values
+### `boolean` — Figma False/True toggles
 
-Use `False: false, True: true` to map Figma toggle values to booleans:
+Most Figma boolean properties use a `False/True` dropdown rather than a native boolean. Use `type: 'boolean'` as a shorthand — the plugin automatically generates `getEnum` with the correct `False/True` mapping:
 
 ```typescript
+// ✅ Correct — shorthand, plugin generates getEnum('Disabled', { 'False': false, 'True': true })
+disabled: { type: 'boolean', key: 'Disabled' }
+showIcon: { type: 'boolean', key: 'Show Icon' }
+
+// ❌ Verbose — unnecessary, use the shorthand above
 disabled: {
-	type: "enum",
-	key: "Disabled",
+	type: 'enum',
+	key: 'Disabled',
 	value: { False: false, True: true }
 }
 ```
 
+Only use `type: 'enum'` when the Figma property has values other than `False/True`.
+
+### `textContent` vs `string`
+
+Both generate `instance.getString()` but serve different purposes:
+
+- `string` — for attribute props (e.g. `headlinePlain="..."`)
+- `textContent` — for text rendered as children or as a screenreader label (e.g. `<DBBadge>{text}</DBBadge>`)
+
+Use `textContent` in the lite file as `{props.propName}` children. The plugin keeps `textContent` bindings in the JSON and replaces them in the template.
+
 ### `iconSwap` — icon instance swaps
 
-Icons in Figma are instance swaps that resolve to icon name strings via the icon batch files. Use `iconSwap` (not `instance`) as the value type inside an `enum` prop. The generated code calls `getInstanceSwap(...).executeTemplate().example` and renders the result as a plain string attribute (e.g. `icon="arrow_right"`):
+Icons in Figma are instance swaps that resolve to icon name strings via the icon batch files. Use `iconSwap` (not `instance`) as the value type inside an `enum` prop:
 
 ```typescript
 // ✅ Correct — resolves to icon name string rendered as plain attribute
@@ -251,23 +296,7 @@ icon: {
 		"(Def) Medium": { type: "iconSwap", key: "🔄 Icon Medium" }
 	}
 }
-
-// ❌ Wrong — would try to execute the icon as a component template
-icon: {
-	type: "enum",
-	key: "Size",
-	value: {
-		Small: { type: "instance", key: "🔄 Icon Small" }
-	}
-}
 ```
-
-### `textContent` vs `string`
-
-Both generate `instance.getString()` but serve different purposes:
-
-- `string` — for attribute props (e.g. `headlinePlain="..."`)
-- `textContent` — for text rendered as children or as a screenreader label (e.g. `<DBBadge>{text}</DBBadge>`)
 
 ### `nestedText` — text from a named nested instance
 
@@ -277,11 +306,7 @@ Use when the text lives inside a specific named child component (e.g. an infotex
 message: { type: "nestedText", layerName: "Infotext - (Def) Auto Width", key: "✏️ Text" }
 ```
 
-Generates: `instance.findInstance('Infotext - (Def) Auto Width')?.getString('✏️ Text')`
-
 ### `connectedText` — text from a code-connected child
-
-Use when the text lives inside a child that has its own Code Connect mapping:
 
 ```typescript
 message: { type: "connectedText", key: "✏️ Text", index: 0 }
@@ -299,37 +324,28 @@ instance
 
 ### `connectedInstances` — dynamic children from Figma
 
-Use when a container component (e.g. `DBAccordion`) should render its child instances dynamically instead of hardcoded placeholders:
+Use when a container component should render its child instances dynamically:
 
 ```typescript
-children: {
+_children: {
 	type: "connectedInstances";
 }
 ```
 
-Generates:
-
-```js
-instance
-	.findConnectedInstances((node) => node.hasCodeConnect())
-	.map((child) => child.executeTemplate().example);
-```
-
-In the lite file, use `{props.children}` as the slot:
+In the lite file:
 
 ```tsx
-<DBAccordion behavior={props.behavior} variant={props.variant}>
-	{props.children}
-</DBAccordion>
+export default function AccordionFigmaLite(props: FigmaAccordionProps) {
+	return <DBAccordion>{props._children}</DBAccordion>;
+}
 ```
 
 ### `nestedConnectedInstances` — children behind helper layers
 
-Some Figma components wrap their child instances in non-code-connected helper components, or mix different component types (e.g. accordion items interleaved with dividers). Use `filter` to specify which component to keep by matching against the `nestedImports` of each instance's template.
+Some Figma components mix different component types (e.g. accordion items interleaved with dividers). Use `filter` to keep only the relevant component:
 
 ```typescript
-// Only include DBAccordionItem instances, skip DBDivider and other components
-children: { type: "nestedConnectedInstances", filter: "DBAccordionItem" }
+_children: { type: "nestedConnectedInstances", filter: "DBAccordionItem" }
 ```
 
 Generates:
@@ -355,13 +371,11 @@ instance
 	.flatMap((child) => child.executeTemplate().example);
 ```
 
-`traverseInstances: true` searches recursively through all descendant layers, so intermediate helper components are automatically traversed. The `filter` string is matched against the `nestedImports` array of each instance's rendered template — only instances that import the specified component are included.
-
-> **How to find the right `filter` value:** Use the component name as it appears in the import statement (e.g. `DBAccordionItem`, `DBTabItem`). Check the Figma Code Connect output to see what `nestedImports` each child instance produces.
+> **How to find the right `filter` value:** Use the component name as it appears in the import statement (e.g. `DBAccordionItem`, `DBTabItem`).
 
 ### `validationMessage` — conditional message attribute
 
-Use when a component has a message prop that maps to different attribute names depending on a validation state (e.g. `message`, `invalidMessage`, `validMessage`).
+Use when a message prop maps to different attribute names depending on validation state:
 
 ```typescript
 message: {
@@ -393,13 +407,13 @@ if (_messageMessage) {
 }
 ```
 
-The `message` variable is injected directly after the opening tag: `<DBCheckbox${message} ...>`. When empty, nothing is rendered — no blank line.
+Injected as `<DBCheckbox${message} ...>`. When empty, nothing is rendered.
 
-> **Do not add the prop to the lite file** — the plugin injects it automatically. The lite file should not include `message={props.message}`.
+> **Do not add the prop to the lite file** — the plugin injects it automatically.
 
 ### `conditionalProp` — attribute only rendered when a guard is true
 
-Use for icon props that should only appear in the output when their corresponding `showIcon*` boolean is true. Without this, empty `icon=""` attributes would always be rendered.
+Use for icon props that should only appear when their `showIcon*` boolean is true:
 
 ```typescript
 iconLeading: {
@@ -407,12 +421,6 @@ iconLeading: {
 	key: "🔄 Icon Leading",
 	guardProp: "showIconLeading",
 	attrName: "icon"
-},
-iconTrailing: {
-	type: "conditionalProp",
-	key: "🔄 Icon Trailing",
-	guardProp: "showIconTrailing",
-	attrName: "iconTrailing"
 }
 ```
 
@@ -428,16 +436,13 @@ if (showIconLeading) {
 }
 ```
 
-The variable is injected after the opening tag: `<DBInput${iconLeading}${iconTrailing} ...>`. When the guard is false, the attribute is completely omitted.
-
-> **Do not add the prop to the lite file** — the plugin injects it automatically. Remove `icon={props.iconLeading}` from the JSX.
+> **Do not add the prop to the lite file** — the plugin injects it automatically.
 
 ## Merging Variants into One File
 
-If multiple Figma component sets produce identical JSX (only differing in a prop value like `size`), merge them into a single lite file and expose the differing property as a prop:
+If multiple Figma component sets produce identical JSX (only differing in a prop value like `size`), merge them into a single lite file:
 
 ```typescript
-// Instead of medium.checkbox.figma.ts + small.checkbox.figma.ts:
 const checkboxProps: Record<string, FigmaProp> = {
 	size: {
 		type: "enum",

@@ -4,7 +4,7 @@ export type FigmaCardProps = {
 	elevationLevel?: string;
 	spacing?: string;
 	behavior?: string;
-	children?: string;
+	_children?: string;
 };
 
 const cardProps: Record<string, FigmaProp> = {
@@ -35,7 +35,7 @@ const cardProps: Record<string, FigmaProp> = {
 			Interactive: 'interactive'
 		}
 	},
-	children: {
+	_children: {
 		type: 'children',
 		key: 'Children'
 	}

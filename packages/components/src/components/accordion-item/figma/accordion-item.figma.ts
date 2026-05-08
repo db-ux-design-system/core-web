@@ -10,22 +10,8 @@ export type FigmaAccordionItemProps = {
 const accordionItemProps: Record<string, FigmaProp> = {
 	headlinePlain: { type: 'string', key: '✏️ Headline' },
 	content: { type: 'textContent', key: '✏️ Text' },
-	disabled: {
-		type: 'enum',
-		key: 'Disabled',
-		value: {
-			False: false,
-			True: true
-		}
-	},
-	defaultOpen: {
-		type: 'enum',
-		key: 'Open',
-		value: {
-			False: false,
-			True: true
-		}
-	}
+	disabled: { type: 'boolean', key: 'Disabled' },
+	defaultOpen: { type: 'boolean', key: 'Open' }
 };
 
 export const accordionItems: FigmaCodeConnect = {

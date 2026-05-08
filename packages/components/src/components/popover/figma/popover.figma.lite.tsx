@@ -9,10 +9,8 @@ useMetadata({
 
 export default function PopoverFigmaLite(props: FigmaPopoverProps) {
 	return (
-		<DBPopover
-			spacing={props.spacing}
-			trigger={<DBButton>Trigger</DBButton>}>
-			Content
+		<DBPopover trigger={<DBButton>Trigger</DBButton>}>
+			{props._children}
 		</DBPopover>
 	);
 }

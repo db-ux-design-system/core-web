@@ -17,8 +17,6 @@ export default function FullWidthCustomSelectFigmaLite(
 			label="Label"
 			name="custom-select"
 			formFieldWidth="full"
-			placement={props.placement}
-			dropdownWidth={props.dropdownWidth}
 			options={[
 				{ value: '1', label: 'Option 1' },
 				{ value: '2', label: 'Option 2' },

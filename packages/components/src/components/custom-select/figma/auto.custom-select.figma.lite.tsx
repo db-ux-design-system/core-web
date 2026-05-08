@@ -17,8 +17,6 @@ export default function AutoWidthCustomSelectFigmaLite(
 			label="Label"
 			name="custom-select"
 			formFieldWidth="auto"
-			placement={props.placement}
-			dropdownWidth={props.dropdownWidth}
 			options={[
 				{ value: '1', label: 'Option 1' },
 				{ value: '2', label: 'Option 2' },

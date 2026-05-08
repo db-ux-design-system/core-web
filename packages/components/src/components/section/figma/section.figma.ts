@@ -3,6 +3,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaSectionProps = {
 	spacing?: string;
 	width?: string;
+	_children?: string;
 };
 
 const sectionProps: Record<string, FigmaProp> = {
@@ -25,6 +26,10 @@ const sectionProps: Record<string, FigmaProp> = {
 			'Large (1440)': 'large',
 			'Small (768)': 'small'
 		}
+	},
+	_children: {
+		type: 'children',
+		key: 'Children'
 	}
 };
 

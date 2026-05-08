@@ -1,20 +1,25 @@
 import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaSelectProps = {
+	label?: string;
+	variant?: string;
+	required?: boolean;
+	showRequiredAsterisk?: boolean;
 	disabled?: boolean;
 	validation?: string;
 	showIcon?: boolean;
 };
 
 const selectProps: Record<string, FigmaProp> = {
-	disabled: {
+	label: { type: 'string', key: '✏️ Label' },
+	variant: {
 		type: 'enum',
-		key: 'Disabled',
-		value: {
-			False: false,
-			True: true
-		}
+		key: '💻 Variant',
+		value: { Above: 'above', Floating: 'floating' }
 	},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',
@@ -24,28 +29,22 @@ const selectProps: Record<string, FigmaProp> = {
 			Invalid: 'invalid'
 		}
 	},
-	showIcon: {
-		type: 'boolean',
-		key: 'Show Icon'
-	}
+	showIcon: { type: 'boolean', key: 'Show Icon' }
 };
 
-export const aboveSelects: FigmaCodeConnect = {
+export const selects: FigmaCodeConnect = {
 	urls: [
-		// Empty
+		// Above Empty
 		'https://www.figma.com/design/FIGMA_FILE?node-id=3900:5134',
-		// Selected
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3900:25648'
-	],
-	props: selectProps
-};
-
-export const floatingSelects: FigmaCodeConnect = {
-	urls: [
-		// Empty
+		// Above Selected
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3900:25648',
+		// Floating Empty
 		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:4692',
-		// Selected
+		// Floating Selected
 		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:5527'
 	],
 	props: selectProps
 };
+
+export const aboveSelects = selects;
+export const floatingSelects = selects;

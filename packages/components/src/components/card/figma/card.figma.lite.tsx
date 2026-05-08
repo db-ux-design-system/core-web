@@ -7,12 +7,5 @@ useMetadata({
 });
 
 export default function CardFigmaLite(props: FigmaCardProps) {
-	return (
-		<DBCard
-			elevationLevel={props.elevationLevel}
-			spacing={props.spacing}
-			behavior={props.behavior}>
-			{props.children}
-		</DBCard>
-	);
+	return <DBCard>{props._children}</DBCard>;
 }

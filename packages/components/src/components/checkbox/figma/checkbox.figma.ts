@@ -15,35 +15,11 @@ const checkboxProps: Record<string, FigmaProp> = {
 	size: {
 		type: 'enum',
 		key: '💻 Size',
-		value: {
-			Medium: 'medium',
-			Small: 'small'
-		}
+		value: { Medium: 'medium', Small: 'small' }
 	},
-	disabled: {
-		type: 'enum',
-		key: 'Disabled',
-		value: {
-			False: false,
-			True: true
-		}
-	},
-	checked: {
-		type: 'enum',
-		key: 'Checked',
-		value: {
-			False: false,
-			True: true
-		}
-	},
-	indeterminate: {
-		type: 'enum',
-		key: 'Indeterminate',
-		value: {
-			False: false,
-			True: true
-		}
-	},
+	disabled: { type: 'boolean', key: 'Disabled' },
+	checked: { type: 'boolean', key: 'Checked' },
+	indeterminate: { type: 'boolean', key: 'Indeterminate' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',

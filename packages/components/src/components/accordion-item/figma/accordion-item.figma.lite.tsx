@@ -10,12 +10,5 @@ useMetadata({
 });
 
 export default function AccordionItemFigmaLite(props: FigmaAccordionItemProps) {
-	return (
-		<DBAccordionItem
-			headlinePlain={props.headlinePlain}
-			disabled={props.disabled}
-			defaultOpen={props.defaultOpen}>
-			{props.content}
-		</DBAccordionItem>
-	);
+	return <DBAccordionItem>{props.content}</DBAccordionItem>;
 }

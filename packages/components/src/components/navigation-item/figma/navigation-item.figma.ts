@@ -1,8 +1,30 @@
-import { FigmaCodeConnect } from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaNavigationItemProps = {
+	text?: string;
+	width?: string;
 	disabled?: boolean;
 	active?: boolean;
+	showIcon?: boolean;
+	icon?: string;
+};
+
+const navigationItemProps: Record<string, FigmaProp> = {
+	text: { type: 'textContent', key: '✏️ Text' },
+	width: {
+		type: 'enum',
+		key: '💻 Width',
+		value: { Auto: 'auto', Full: 'full' }
+	},
+	disabled: { type: 'boolean', key: 'Disabled' },
+	active: { type: 'boolean', key: 'Active' },
+	showIcon: { type: 'boolean', key: 'Show Icon' },
+	icon: {
+		type: 'conditionalProp',
+		key: '🔄 Icon',
+		guardProp: 'showIcon',
+		attrName: 'icon'
+	}
 };
 
 export const navigationItems: FigmaCodeConnect = {
@@ -16,22 +38,5 @@ export const navigationItems: FigmaCodeConnect = {
 		// Horizontal Full Width
 		'https://www.figma.com/design/FIGMA_FILE?node-id=4924:33160'
 	],
-	props: {
-		disabled: {
-			type: 'enum',
-			key: 'Disabled',
-			value: {
-				False: false,
-				True: true
-			}
-		},
-		active: {
-			type: 'enum',
-			key: 'Active',
-			value: {
-				False: false,
-				True: true
-			}
-		}
-	}
+	props: navigationItemProps
 };

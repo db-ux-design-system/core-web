@@ -7,5 +7,5 @@ useMetadata({
 });
 
 export default function TooltipFigmaLite(props: FigmaTooltipProps) {
-	return <DBTooltip emphasis={props.emphasis}>Tooltip</DBTooltip>;
+	return <DBTooltip>{props.label}</DBTooltip>;
 }

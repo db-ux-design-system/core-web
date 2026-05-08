@@ -7,9 +7,5 @@ useMetadata({
 });
 
 export default function SectionFigmaLite(props: FigmaSectionProps) {
-	return (
-		<DBSection spacing={props.spacing} width={props.width}>
-			Content
-		</DBSection>
-	);
+	return <DBSection>{props._children}</DBSection>;
 }

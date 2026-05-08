@@ -13,8 +13,8 @@ export default function NavigationItemFigmaLite(
 	props: FigmaNavigationItemProps
 ) {
 	return (
-		<DBNavigationItem disabled={props.disabled} active={props.active}>
-			<a href="#">Item</a>
+		<DBNavigationItem>
+			<a href="https://wikipedia.org/wiki/Easter_Egg">{props.text}</a>
 		</DBNavigationItem>
 	);
 }

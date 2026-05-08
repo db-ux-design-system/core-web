@@ -7,14 +7,5 @@ useMetadata({
 });
 
 export default function TextareaFigmaLite(props: FigmaTextareaProps) {
-	return (
-		<DBTextarea
-			variant={props.variant}
-			label={props.label}
-			placeholder={props.placeholder}
-			name="textarea"
-			disabled={props.disabled}
-			validation={props.validation}
-		/>
-	);
+	return <DBTextarea name="textarea" />;
 }

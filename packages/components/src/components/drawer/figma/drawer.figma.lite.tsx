@@ -7,13 +7,5 @@ useMetadata({
 });
 
 export default function DrawerFigmaLite(props: FigmaDrawerProps) {
-	return (
-		<DBDrawer
-			size={props.size}
-			direction={props.direction}
-			rounded={props.rounded}
-			spacing={props.spacing}>
-			Real content coming soon
-		</DBDrawer>
-	);
+	return <DBDrawer>Content</DBDrawer>;
 }

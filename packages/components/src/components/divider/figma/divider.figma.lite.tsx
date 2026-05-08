@@ -7,5 +7,5 @@ useMetadata({
 });
 
 export default function DividerFigmaLite(props: FigmaDividerProps) {
-	return <DBDivider variant={props.variant} emphasis={props.emphasis} />;
+	return <DBDivider />;
 }

@@ -7,13 +7,5 @@ useMetadata({
 });
 
 export default function DotBadgeFigmaLite(props: FigmaBadgeProps) {
-	return (
-		<DBBadge
-			size={props.size}
-			semantic={props.semantic}
-			emphasis={props.emphasis}
-			placement={props.placement}
-			label={props.label}
-		/>
-	);
+	return <DBBadge />;
 }

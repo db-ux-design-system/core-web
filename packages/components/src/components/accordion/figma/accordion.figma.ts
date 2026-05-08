@@ -3,7 +3,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaAccordionProps = {
 	behavior?: string;
 	variant?: string;
-	children?: string;
+	_children?: string;
 };
 
 const accordionProps: Record<string, FigmaProp> = {
@@ -23,7 +23,7 @@ const accordionProps: Record<string, FigmaProp> = {
 			Card: 'card'
 		}
 	},
-	children: { type: 'nestedConnectedInstances', filter: 'DBAccordionItem' }
+	_children: { type: 'nestedConnectedInstances', filter: 'DBAccordionItem' }
 };
 
 export const accordions: FigmaCodeConnect = {

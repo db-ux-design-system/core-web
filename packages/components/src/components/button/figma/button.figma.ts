@@ -14,32 +14,15 @@ export type FigmaButtonProps = {
 	icon?: string;
 };
 
-const defaultButtonProps: Record<string, FigmaProp> = {
-	disabled: {
-		type: 'enum',
-		key: 'Disabled',
-		value: {
-			False: false,
-			True: true
-		}
-	},
-	noText: {
-		type: 'enum',
-		key: '💻 No Text',
-		value: {
-			False: false,
-			True: true
-		}
-	},
+const buttonProps: Record<string, FigmaProp> = {
+	disabled: { type: 'boolean', key: 'Disabled' },
+	noText: { type: 'boolean', key: '💻 No Text' },
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: {
-			Small: 'small',
-			'(Def) Medium': 'medium'
-		}
+		value: { Small: 'small', '(Def) Medium': 'medium' }
 	},
-	text: { type: 'string', key: '✏️ Text' },
+	text: { type: 'textContent', key: '✏️ Text' },
 	variant: {
 		type: 'enum',
 		key: '💻 Variant',
@@ -53,15 +36,8 @@ const defaultButtonProps: Record<string, FigmaProp> = {
 	width: {
 		type: 'enum',
 		key: 'Width',
-		value: {
-			'(Def) Auto': 'auto',
-			Full: 'full'
-		}
-	}
-};
-
-const noTextButtonProps: Record<string, FigmaProp> = {
-	...defaultButtonProps,
+		value: { '(Def) Auto': 'auto', Full: 'full' }
+	},
 	icon: {
 		type: 'enum',
 		key: 'Size',
@@ -69,11 +45,7 @@ const noTextButtonProps: Record<string, FigmaProp> = {
 			Small: { type: 'iconSwap', key: '🔄 Icon Small' },
 			'(Def) Medium': { type: 'iconSwap', key: '🔄 Icon Medium' }
 		}
-	}
-};
-
-const textButtonProps: Record<string, FigmaProp> = {
-	...defaultButtonProps,
+	},
 	showIconLeading: { type: 'boolean', key: 'Show Icon Leading' },
 	showIconTrailing: { type: 'boolean', key: 'Show Icon Trailing' },
 	iconLeading: {
@@ -94,22 +66,18 @@ const textButtonProps: Record<string, FigmaProp> = {
 	}
 };
 
-export const textButtons: FigmaCodeConnect = {
+export const buttons: FigmaCodeConnect = {
 	urls: [
+		// Text variants
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13065',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13355',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13645',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13935'
-	],
-	props: textButtonProps
-};
-
-export const noTextButtons: FigmaCodeConnect = {
-	urls: [
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13935',
+		// No-text variants
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13210',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13500',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13790',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-14080'
 	],
-	props: noTextButtonProps
+	props: buttonProps
 };
