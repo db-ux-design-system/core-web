@@ -36,6 +36,6 @@
     "http-server": "14.1.1",
     "typescript": "5.9.3",
     "vite": "8.0.10",
-    "vue-tsc": "3.2.7"
+    "vue-tsc": "3.2.8"
   }
 }
