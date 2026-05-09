@@ -83,6 +83,24 @@ const testAction = () => {
 		await component.click();
 		expect(test).toEqual('test');
 	});
+
+	test('should forward invoker command attributes when provided', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBButton command="show-modal" commandfor="dialog">Test</DBButton>
+		);
+		await expect(component).toHaveAttribute('command', 'show-modal');
+		await expect(component).toHaveAttribute('commandfor', 'dialog');
+	});
+
+	test('should omit invoker command attributes when not provided', async ({
+		mount
+	}) => {
+		const component = await mount(<DBButton>Test</DBButton>);
+		await expect(component).not.toHaveAttribute('command');
+		await expect(component).not.toHaveAttribute('commandfor');
+	});
 };
 
 test.describe('DBButton', () => {
