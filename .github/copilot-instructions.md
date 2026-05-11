@@ -322,7 +322,7 @@ Or add it to your MCP client config:
 
 - **NEVER** use native HTML elements (`<button>`, `<input>`, `<select>`, `<textarea>`) when a DB UX component exists (e.g. `DBButton`, `DBInput`, `DBSelect`, `DBTextarea`)
 - **NEVER** replace any `<a>` tags with `DBLink` — this breaks framework routing (e.g. react-router `<Link>`). Only replace `<a>` when it is explicitly styled as a UI action component
-- **NEVER** force-replace generic `<div>` elements with `DBStack`/`DBSection`/`DBCard` — plain `<div>` is valid HTML. Only use DB UX layout components when the design explicitly calls for them
+- **NEVER** force-replace generic `<div>` elements with `DBStack`/`DBSection`/`DBCard` — plain `<div>` is valid HTML. Only use DB UX layout components when the design explicitly calls for them, and `DBStack`/`DBSection`/`DBCard` would provide semantics or a specific grouping
 - **NEVER** hardcode color values (`#d40000`, `rgb(...)`) — use design tokens exclusively
 - **NEVER** write inline styles with magic numbers (`style="margin: 15px"`) — use `var(--db-...)` tokens
 - **NEVER** invent or guess icon names — always call `list_icons` first
