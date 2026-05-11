@@ -100,7 +100,10 @@ for (const { dir, name: PACKAGE } of packages) {
 	}
 
 	console.log('📦 Create npm package');
-	execSync(`pnpm pack --quiet --config.ignore-scripts=true`, { cwd: dir });
+	execSync(
+		`pnpm pack --quiet --config.ignore-scripts=true --ignore-workspace`,
+		{ cwd: dir }
+	);
 }
 
 let TAG = 'latest';
