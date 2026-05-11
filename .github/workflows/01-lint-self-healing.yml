@@ -9,7 +9,7 @@
 #
 # Auto-fixable issues include:
 # - prettier/xo formatting issues
-# - stylelint CSS/SCSS formatting issues  
+# - stylelint CSS/SCSS formatting issues
 # - markdownlint markdown formatting issues
 #
 # Non-fixable issues include:
@@ -29,25 +29,37 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    strategy:
+      fail-fast: false
+      matrix:
+        command: ["lint", "test"]
     steps:
       - name: ⏬️ Checkout repo
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.head_ref }}
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: ⚡ Run Test
+        if: ${{ matrix.command == 'test' }}
+        run: |
+          pnpm --filter @db-ux/core-eslint-plugin run build
+          pnpm run test
 
       - name: 🔍 Check lint status (attempt 1)
+        if: ${{ matrix.command == 'lint' }}
         id: lint_check
         run: |
           # Pre-build stylelint package if needed
-          npm run nuxt:prepare --workspace=nuxt-showcase
-          npm run build --workspace=@db-ux/core-stylelint
+          pnpm --filter nuxt-showcase run nuxt:prepare
+          pnpm --filter @db-ux/core-stylelint run build
 
           # Run lint and capture exit code
           set +e
-          npm run lint
+          pnpm run lint
           LINT_EXIT_CODE=$?
           set -e
 
@@ -62,7 +74,7 @@ jobs:
           fi
 
       - name: 🔧 Attempt auto-fix for style issues
-        if: env.needs_fixing == 'true'
+        if: ${{ matrix.command == 'lint' && env.needs_fixing == 'true' }}
         run: |
           echo "🔧 Attempting to auto-fix lint issues..."
 
@@ -72,13 +84,13 @@ jobs:
 
           # Run formatters with --fix flags
           echo "🎨 Running prettier/xo fix..."
-          npm run lint:xo -- --fix || true
+          pnpm run lint:xo --fix || true
 
           echo "🎨 Running stylelint fix..."
-          npm run lint:stylelint -- --fix || true
+          pnpm run lint:stylelint --fix || true
 
           echo "📝 Running markdownlint fix..."
-          npm run lint:markdownlint -- --fix || true
+          pnpm run lint:markdownlint --fix || true
 
           # Check if any changes were made
           if [[ -n "$(git status --porcelain)" ]]; then
@@ -95,12 +107,12 @@ jobs:
           fi
 
       - name: 🔍 Check lint status after fixes (attempt 2)
-        if: env.needs_fixing == 'true'
+        if: ${{ matrix.command == 'lint' && env.needs_fixing == 'true' }}
         id: lint_recheck
         run: |
           # Run lint again and capture exit code
           set +e
-          npm run lint
+          pnpm run lint
           LINT_EXIT_CODE=$?
           set -e
 
@@ -113,7 +125,7 @@ jobs:
           fi
 
       - name: 🚘 Auto commit style fixes
-        if: env.needs_fixing == 'true' && env.fixes_successful == 'true' && env.changes_made == 'true' && github.event.pull_request != null && github.actor != 'dependabot[bot]'
+        if: ${{ matrix.command == 'lint' && env.needs_fixing == 'true' && env.fixes_successful == 'true' && env.changes_made == 'true' && github.event.pull_request != null && github.actor != 'dependabot[bot]' }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
@@ -124,7 +136,7 @@ jobs:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ❌ Fail if lint issues remain unfixable
-        if: env.needs_fixing == 'true' && env.fixes_successful == 'false'
+        if: ${{ matrix.command == 'lint' && env.needs_fixing == 'true' && env.fixes_successful == 'false' }}
         run: |
           echo "❌ Lint issues remain after auto-fix attempt."
           echo "These may be structural issues that require manual intervention."
@@ -146,9 +158,3 @@ jobs:
               echo "✅ Lint passed after running formatters, but no file changes were needed."
             fi
           fi
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
