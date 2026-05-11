@@ -276,7 +276,7 @@ The server is a single Node.js process communicating over **stdio** using the [M
 
 Because `model.ts`, showcase files, and framework example source files are **not** included in the published npm packages (only compiled `dist/` is shipped), the server embeds all necessary data at build time.
 
-`scripts/build-manifest.ts` runs during the build and produces `src/manifest.json` containing:
+`scripts/build-manifest.ts` is called by the `prebuild.ts` orchestrator and produces `src/manifest.json` containing:
 
 ```text
 manifest.json
@@ -327,7 +327,7 @@ packages/mcp-server/
 │   ├── tokens/             # Prebuild-generated tokens.json (structured design tokens)
 │   └── visuals/            # Pre-optimised static reference images (JPEG, committed to Git)
 ├── scripts/
-│   ├── prebuild.ts          # Prebuild asset copy script (runs as native TS via Node 24)
+│   ├── prebuild.ts          # Central orchestrator: migration assets, tokens, manifest (runs as native TS via Node 24)
 │   └── build-manifest.ts    # Build-time script — generates src/manifest.json
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
@@ -339,7 +339,7 @@ packages/mcp-server/
 │   └── manifest.json       # Generated — do not edit manually
 ├── build/
 │   └── index.js            # Compiled standalone bundle (gitignored)
-├── esbuild.js              # Build script: runs build-manifest, then bundles
+├── esbuild.js              # Build script: bundles src/index.ts into standalone dist/index.js
 ├── package.json
 ├── tsconfig.json
 └── CONTEXT.md              # Architecture notes

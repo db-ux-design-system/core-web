@@ -69,7 +69,7 @@ core-web/
 │           ├── manifest.json    # Generated — do not edit manually
 │           ├── tools/
 │           ├── prompts/
-│           ├── data/           # Static typed data (e.g. migration-map.ts)
+│           ├── data/           # Static typed data (e.g. db-ui-migration-map.ts)
 │           └── utils/
 └── output/
     ├── react/src/components/{component}/examples/
@@ -120,7 +120,7 @@ At runtime, `tokens.ts` loads `tokens.json` via `fs.readFile` + `JSON.parse` and
 
 **Problem:** The `scan_v2_migration` tool previously parsed Markdown tables from migration guide files (`component-migration.md`, `color-migration.md`, `icon-migration.md`) at runtime using regex (`matchAll`). Functions like `parseComponentMap`, `parseColorMap`, and `parseIconMap` were fragile, required async caching (`ensureMaps`, `getManifest`), and broke silently when the Markdown format changed.
 
-**Decision:** Migration mappings are now defined as a typed TypeScript object in `src/data/migration-map.ts` — the Single Source of Truth. The scanner imports `migrationData` directly (synchronous, no caching needed) and performs lookups against `migrationData.components`, `migrationData.colors`, and `migrationData.icons`.
+**Decision:** Migration mappings are now defined as a typed TypeScript object in `src/data/db-ui-migration-map.ts` — the Single Source of Truth. The scanner imports `migrationData` directly (synchronous, no caching needed) and performs lookups against `migrationData.components`, `migrationData.colors`, and `migrationData.icons`.
 
 **Removed:** `parseComponentMap`, `parseColorMap`, `parseIconMap`, async caching logic, and the `.md` files that served as data sources for the scanner.
 
@@ -142,13 +142,18 @@ NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monore
 "build": "node scripts/prebuild.ts && node esbuild.js"
 ```
 
-The prebuild script (native TypeScript, Node 24) prepares assets for standalone (npx) operation:
+The prebuild script (native TypeScript, Node 24) is the central orchestrator that prepares all assets and metadata for standalone (npx) operation:
 
 ```text
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
 prebuild:tokens         → parse CSS custom properties from @db-ux/db-theme/_default_variables.scss
                           + foundations/build/density/classes/all.css → assets/tokens/tokens.json
+                          (internal --db-base-* tokens are filtered out to prevent LLM misuse)
+prebuild:manifest       → build-manifest.ts → src/manifest.json
+                          (component metadata, examples, icons, tokens, docs, migration guides)
 ```
+
+After prebuild completes, `esbuild.js` performs only the final bundling step (`src/index.ts → dist/index.js`).
 
 **Hard vs. soft failures:**
 
@@ -261,7 +266,7 @@ At build time, `build-manifest.ts` collects all component metadata and example s
 
 - ADRs, research docs, `.vitepress` internals
 - Structured `assets/tokens/tokens.json` (prebuild-generated, read separately at runtime)
-- Migration scanner data (`src/data/migration-map.ts` — compiled into the bundle, not the manifest)
+- Migration scanner data (`src/data/db-ui-migration-map.ts` — compiled into the bundle, not the manifest)
 
 ## Development
 
