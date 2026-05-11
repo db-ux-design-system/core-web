@@ -45,7 +45,8 @@ function categorise(property: string): string {
 		rest.startsWith('font')
 	)
 		return 'typography';
-	if (rest.startsWith('base-')) return 'base';
+	// Base tokens are internal primitives — never expose them to LLMs.
+	if (rest.startsWith('base-')) return '__skip__';
 	if (rest.startsWith('border')) return 'border';
 	if (rest.startsWith('opacity')) return 'opacity';
 	const colorPrefixes = [
@@ -129,6 +130,7 @@ export async function buildTokens(): Promise<void> {
 
 	function addToken(entry: TokenEntry) {
 		const cat = categorise(entry.property);
+		if (cat === '__skip__') return;
 		if (!tokensJson[cat]) tokensJson[cat] = {};
 		if (!tokensJson[cat][entry.property])
 			tokensJson[cat][entry.property] = [];
