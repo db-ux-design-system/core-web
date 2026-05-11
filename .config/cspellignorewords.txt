@@ -190,6 +190,8 @@ stepless
 steppless
 violett
 peaceiris
+xlarge
+pnpm
 categorised
 Categorises
 categorise
