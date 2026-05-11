@@ -11,6 +11,26 @@ try {
 	// .env file doesn't exist, which is ok
 }
 
+const UNSAFE_JS_CHAR_MAP = {
+	'<': '\\u003C',
+	'>': '\\u003E',
+	'/': '\\u002F',
+	'\\': '\\\\',
+	'\b': '\\b',
+	'\f': '\\f',
+	'\n': '\\n',
+	'\r': '\\r',
+	'\t': '\\t',
+	'\0': '\\0',
+	'\u2028': '\\u2028',
+	'\u2029': '\\u2029'
+};
+const escapeUnsafeChars = (str) =>
+	str.replace(
+		/[<>/\\\b\f\n\r\t\0\u2028\u2029]/g,
+		(ch) => UNSAFE_JS_CHAR_MAP[ch]
+	);
+
 // Prop types that are slot/children content - kept in bindings, used directly in template
 const SLOT_TYPES = new Set([
 	'children',
@@ -185,9 +205,16 @@ const buildTemplate = (json, target) => {
 			}
 			const ccChild = `codeConnect?.children.find((c) => c.type === 'INSTANCE' && c.name.trim() === '${figmaKey}') as figma.InstanceHandle | undefined`;
 			const ccRawValue = `Object.values((_cc_${propName} as figma.InstanceHandle)?.properties ?? {})[0]?.value`;
+			const ccValueMap =
+				fProp.type === 'boolean'
+					? { False: false, True: true }
+					: fProp.value;
+			const ccValueMapSerialized = escapeUnsafeChars(
+				JSON.stringify(ccValueMap)
+			);
 			const ccMappedValue =
 				fProp.type === 'enum' || fProp.type === 'boolean'
-					? `((v) => { const s = String(v); return ((${JSON.stringify(fProp.type === 'boolean' ? { False: false, True: true } : fProp.value)} as Record<string, unknown>)[s] ?? (${JSON.stringify(fProp.type === 'boolean' ? { False: false, True: true } : fProp.value)} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | boolean | undefined; })(${ccRawValue})`
+					? `((v) => { const s = String(v); return ((${ccValueMapSerialized} as Record<string, unknown>)[s] ?? (${ccValueMapSerialized} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | boolean | undefined; })(${ccRawValue})`
 					: `${ccRawValue} as string | undefined`;
 			return [
 				`const _cc_${propName} = ${ccChild}`,
