@@ -21,7 +21,7 @@ jobs:
       - name: 🔨 Generate Figma Code Connect
         env:
           FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
-        run: npm run generate:figma --workspace=@db-ux/core-components
+        run: pnpm run --filter=@db-ux/core-components generate:figma
 
       - name: ⏫ Upload figma-code-connect
         uses: actions/upload-artifact@v6

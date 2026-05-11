@@ -183,8 +183,15 @@ const buildTemplate = (json, target) => {
 			} else {
 				attrStr = `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
 			}
+			const ccChild = `codeConnect?.children.find((c) => c.type === 'INSTANCE' && c.name.trim() === '${figmaKey}') as figma.InstanceHandle | undefined`;
+			const ccRawValue = `Object.values((_cc_${propName} as figma.InstanceHandle)?.properties ?? {})[0]?.value`;
+			const ccMappedValue =
+				fProp.type === 'enum' || fProp.type === 'boolean'
+					? `((v) => { const s = String(v); return ((${JSON.stringify(fProp.type === 'boolean' ? { False: false, True: true } : fProp.value)} as Record<string, unknown>)[s] ?? (${JSON.stringify(fProp.type === 'boolean' ? { False: false, True: true } : fProp.value)} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | boolean | undefined; })(${ccRawValue})`
+					: `${ccRawValue} as string | undefined`;
 			return [
-				`const _${propName} = instance.getPropertyValue('${figmaKey}') !== undefined ? ${valueExpr} : undefined`,
+				`const _cc_${propName} = ${ccChild}`,
+				`const _${propName} = ['string', 'boolean'].includes(typeof instance.getPropertyValue('${figmaKey}')) ? ${valueExpr} : _cc_${propName} ? ${ccMappedValue} : undefined`,
 				`let ${propName} = ''`,
 				`if (_${propName} !== undefined && _${propName} !== null && String(_${propName}) !== 'undefined') {`,
 				`\t${propName} = ${attrStr}`,
@@ -510,7 +517,7 @@ module.exports = () => ({
 			const importsArray = importsEntry ? `[${importsEntry}]` : '[]';
 
 			return (
-				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\n\n" +
+				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _cc = instance.findInstance('\u2699\ufe0f Code Connect')\nconst codeConnect = _cc.type === 'INSTANCE' ? _cc : undefined\n\n" +
 				allDeclarations +
 				'export default {\n  example: figma.code`' +
 				exampleWithProps +
