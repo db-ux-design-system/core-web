@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-refactor(notification): resilience on differentiating the components elements by the flexible composition content elements. You could set further inline elements like `span` without styling collisions.
+Notification content now supports additional inline elements like `span` without styling collisions.
