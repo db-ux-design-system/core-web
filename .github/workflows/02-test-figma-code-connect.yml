@@ -32,4 +32,4 @@ jobs:
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
-          npm run test --workspace=${{ matrix.target }}-figma
+          pnpm --filter=${{ matrix.target }}-figma run test
