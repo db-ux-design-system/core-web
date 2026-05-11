@@ -14,11 +14,11 @@
 	&:not(:has(img)) {
 		&::before {
 			content: "";
-			block-size: #{variables.$db-sizing-md};
+			block-size: #{variables.$db-sizing-sm};
 			aspect-ratio: var(--db-logo-aspect-ratio);
-			background-image: var(--db-logo);
+			background-image: var(--db-logo-url);
 			background-repeat: no-repeat;
-			background-size: auto #{variables.$db-sizing-md};
+			background-size: auto #{variables.$db-sizing-sm};
 		}
 	}
 

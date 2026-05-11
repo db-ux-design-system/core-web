@@ -1,0 +1,9 @@
+@use "./default.assets-paths" as assets-paths;
+
+@mixin get-images {
+	--db-textarea-resizer-image: url("#{assets-paths.$images-path}resize_handle_corner.svg");
+	--db-textarea-scrollbar-button-decrement: url("#{assets-paths.$images-path}chevron_down.svg");
+	--db-textarea-scrollbar-button-increment: url("#{assets-paths.$images-path}chevron_up.svg");
+	--db-logo-aspect-ratio: 1;
+	--db-logo-url: url("#{assets-paths.$images-path}logo.svg");
+}
