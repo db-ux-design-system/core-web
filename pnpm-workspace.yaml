@@ -28,7 +28,6 @@ allowBuilds:
   unrs-resolver: false
 
 engineStrict: true
-saveExact: true
 
 minimumReleaseAgeExclude:
   - got@11.8.5
@@ -71,3 +70,5 @@ overrides:
   svelte@<=5.51.4: ^5.51.5
   svelte@<=5.53.4: ^5.53.5
   uuid@>=11.0.0 <11.1.1: ^11.1.1
+
+saveExact: true
