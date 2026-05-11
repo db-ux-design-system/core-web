@@ -5,7 +5,7 @@
 "@db-ux/wc-core-components": minor
 ---
 
-feat: add `text` property to components that previously only supported children for their label, e.g. `DBTooltip`.
+feat: add `text` property to components that previously only supported children for their label, like e.g. `DBTooltip`.
 
 refactor: allow `text` property and components children to be used together in components. Previously, `text` and children were mutually exclusive.
 
