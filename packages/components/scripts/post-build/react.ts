@@ -99,9 +99,22 @@ const overwriteFragmentMap = (input: string) => {
 const writeInvokerCommandsTypes = (tmp?: boolean) => {
 	const outputFolder = `../../${tmp ? 'output/tmp' : 'output'}/react`;
 	const srcFolder = `${outputFolder}/src`;
+	const typeAugmentationMarker = 'Type augmentation for Invoker Commands API';
+	const cleanupFilePaths = [
+		`${srcFolder}/invoker-commands.ts`,
+		`${srcFolder}/invoker-commands.d.ts`,
+		`${outputFolder}/dist/invoker-commands.js`,
+		`${outputFolder}/dist/invoker-commands.d.ts`,
+		...(tmp
+			? []
+			: [
+					'../../build-outputs/react/dist/invoker-commands.js',
+					'../../build-outputs/react/dist/invoker-commands.d.ts'
+				])
+	];
 	const content = `
 /**
- * Type augmentation for Invoker Commands API
+ * ${typeAugmentationMarker}
  * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
  *
  * Extends React's ButtonHTMLAttributes to include the \`command\` and \`commandfor\`
@@ -118,18 +131,7 @@ declare module "react" {
 }
 `;
 
-	for (const filePath of [
-		`${srcFolder}/invoker-commands.ts`,
-		`${srcFolder}/invoker-commands.d.ts`,
-		`${outputFolder}/dist/invoker-commands.js`,
-		`${outputFolder}/dist/invoker-commands.d.ts`,
-		...(tmp
-			? []
-			: [
-					'../../build-outputs/react/dist/invoker-commands.js',
-					'../../build-outputs/react/dist/invoker-commands.d.ts'
-				])
-	]) {
+	for (const filePath of cleanupFilePaths) {
 		rmSync(filePath, { force: true });
 	}
 
@@ -140,7 +142,7 @@ declare module "react" {
 		'\n'
 	);
 
-	if (!indexContent.includes('commandfor?: string | undefined;')) {
+	if (!indexContent.includes(typeAugmentationMarker)) {
 		indexContent += content;
 	}
 
