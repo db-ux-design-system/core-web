@@ -14,7 +14,7 @@ const config = {
 	// Root directory to search from
 	rootDir: path.join(process.cwd(), '.'),
 	// Workspace packages directories (can be multiple)
-	packagesDirs: ['packages', 'output'],
+	packagesDirs: ['packages', 'output', 'build-outputs'],
 	// Debug mode - set to true to see all references found
 	debug: process.argv.includes('--debug') || process.env.DEBUG === 'true',
 	// Folder patterns to ignore
@@ -26,6 +26,36 @@ const config = {
 		'showcases/patternhub/public/docs/migration/**'
 	]
 };
+
+/**
+ * Build a lookup map from npm package name to actual directory name
+ * by scanning all workspace package directories.
+ */
+const buildPackageDirMap = () => {
+	const map = new Map();
+	for (const packagesDir of config.packagesDirs) {
+		const dirPath = path.join(config.rootDir, packagesDir);
+		if (!fs.existsSync(dirPath)) continue;
+		for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+			if (!entry.isDirectory()) continue;
+			const pkgJsonPath = path.join(dirPath, entry.name, 'package.json');
+			if (!fs.existsSync(pkgJsonPath)) continue;
+			try {
+				const { name } = JSON.parse(
+					fs.readFileSync(pkgJsonPath, 'utf8')
+				);
+				if (name) {
+					if (!map.has(name)) map.set(name, []);
+					map.get(name).push(path.join(packagesDir, entry.name));
+				}
+			} catch {}
+		}
+	}
+
+	return map;
+};
+
+const packageDirMap = buildPackageDirMap();
 
 /**
  * Find all markdown files in the repository
@@ -59,12 +89,47 @@ const findMarkdownFiles = () => {
 };
 
 /**
+ * Parse references that point to @db-ux packages.
+ *
+ * Supports these forms:
+ * - @db-ux/<package>/<path>
+ * - node_modules/@db-ux/<package>/<path>
+ * - ./node_modules/@db-ux/<package>/<path>
+ * - ../node_modules/@db-ux/<package>/<path>
+ */
+export const parseDBUXReference = (reference) => {
+	// Escape the org prefix for use in a regular expression
+	const escapedOrgPrefix = config.orgPrefix.replaceAll(
+		/[.*+?^${}()|[\]\\]/g,
+		String.raw`\$&`
+	);
+	// Extract package name and check if there's a file path after it
+	const match = reference.match(
+		new RegExp(
+			`^(?:(?:\\.\\.?/)+)?(?:node_modules/)?(${escapedOrgPrefix}[^/]+)/(.+)$`
+		)
+	);
+
+	if (!match) return undefined;
+
+	const [, packageName, filePath] = match;
+	if (!filePath) return undefined;
+
+	return { packageName, filePath };
+};
+
+/**
  * Extract file references from markdown content
  */
 const extractFileReferences = (content) => {
 	const references = [];
 	const lines = content.split('\n');
 
+	// Escape org prefix for use in the generic path pattern regex
+	const escapedOrgPrefix = config.orgPrefix.replaceAll(
+		/[.*+?^${}()|[\]\\]/g,
+		String.raw`\$&`
+	);
 	// Patterns to match different types of imports/references
 	const patterns = [
 		// @import statements in CSS/SCSS
@@ -76,7 +141,7 @@ const extractFileReferences = (content) => {
 		// HTML link tags
 		/href\s*=\s*["']([^"']+)["']/g,
 		// Generic file paths in code blocks
-		/["']([^"']*@db-ux\/[^"']+)["']/g
+		new RegExp(`["']([^"']*${escapedOrgPrefix}[^"']+)["']`, 'g')
 	];
 
 	// Track line numbers for each reference
@@ -85,15 +150,13 @@ const extractFileReferences = (content) => {
 			let match;
 			// Reset regex lastIndex for each line
 			pattern.lastIndex = 0;
+
 			while ((match = pattern.exec(line)) !== null) {
 				const reference = match[1];
 
 				// Check if reference includes orgPrefix and has a file path (not just package name)
 				if (!reference.includes(config.orgPrefix)) continue;
-
-				// Extract package name and check if there's a file path after it
-				const packageMatch = reference.match(/^(@db-ux\/[^/]+)\/(.+)$/);
-				if (!packageMatch || !packageMatch[2]) continue;
+				if (!parseDBUXReference(reference)) continue;
 
 				// Only include references that have a file path after the package name
 				references.push({
@@ -123,7 +186,7 @@ const extractFileReferences = (content) => {
  * the cartesian product of all alternatives.
  */
 export const expandBracketAlternatives = (input) => {
-	// Extract package name and file path
+	// Find the first bracket group with alternatives (e.g. [a|b])
 	const match = input.match(/\[([^\]]*\|[^\]]+)]/);
 
 	if (!match) return [input];
@@ -137,7 +200,7 @@ export const expandBracketAlternatives = (input) => {
 	if (alternatives.length === 0) return [input];
 
 	const prefix = input.slice(0, match.index);
-	const suffix = input.slice((match.index ?? 0) + fullMatch.length);
+	const suffix = input.slice(match.index + fullMatch.length);
 	const expanded = [];
 
 	for (const alternative of alternatives) {
@@ -151,7 +214,7 @@ export const expandBracketAlternatives = (input) => {
 
 const resolveSinglePackagePath = (packageName, filePath) => {
 	// Package directory name used in workspaces (`@db-ux/foo` -> `foo`).
-	const packageDirName = packageName.replace('@db-ux/', '');
+	const packageDirName = packageName.replace(config.orgPrefix, '');
 
 	// SCSS file resolution: try different variations for SCSS partials and extensions
 	const generateScssVariations = (originalPath) => {
@@ -202,21 +265,21 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 	// This supports both monorepo workspace paths and installed package paths.
 	const possiblePaths = [];
 
+	// Use the lookup map to find actual directories for this package
+	const packageDirs = packageDirMap.get(packageName) || [
+		// Fallback: try deriving from package name
+		...config.packagesDirs.map((dir) => path.join(dir, packageDirName))
+	];
+
 	for (const variation of fileVariations) {
-		for (const packagesDir of config.packagesDirs) {
+		for (const relativeDir of packageDirs) {
 			possiblePaths.push(
 				// Direct workspace package
-				path.join(
-					config.rootDir,
-					packagesDir,
-					packageDirName,
-					variation
-				),
+				path.join(config.rootDir, relativeDir, variation),
 				// Workspace node_modules
 				path.join(
 					config.rootDir,
-					packagesDir,
-					packageDirName,
+					relativeDir,
 					'node_modules',
 					packageName,
 					variation
@@ -248,11 +311,10 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 };
 
 const resolvePackageReference = (reference) => {
-	// Reference format: @db-ux/<package>/<file-or-subpath>
-	const match = reference.match(/^(@db-ux\/[^/]+)\/(.+)$/);
-	if (!match) return [];
+	const parsedReference = parseDBUXReference(reference);
+	if (!parsedReference) return [];
 
-	const [, packageName, filePath] = match;
+	const { packageName, filePath } = parsedReference;
 	const expandedFilePaths = expandBracketAlternatives(filePath);
 
 	// Validate each expanded variant independently so that one broken

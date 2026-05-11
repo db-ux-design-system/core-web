@@ -46,6 +46,7 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
@@ -57,6 +58,7 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-build-packages:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-packages.result == 'failure' }}
@@ -68,6 +70,7 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-stories.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-build-stories:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
@@ -79,12 +82,14 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-init-playwright.yml
     needs: [init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
+    secrets: inherit
 
   cancel-on-failure-build-outputs:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-outputs.result == 'failure' }}
@@ -92,15 +97,22 @@ jobs:
     secrets: inherit
     needs: [build-outputs]
 
+  test-vite-plugin:
+    uses: ./.github/workflows/02-vite-plugin-test.yml
+    needs: [build-outputs]
+    secrets: inherit
+
   test-components:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -243,6 +255,7 @@ jobs:
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
@@ -251,6 +264,7 @@ jobs:
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
@@ -259,6 +273,7 @@ jobs:
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-react, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
@@ -267,6 +282,7 @@ jobs:
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
@@ -275,6 +291,7 @@ jobs:
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, init, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}
@@ -282,6 +299,7 @@ jobs:
   regenerate-snapshots-components:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-components.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: components
@@ -290,6 +308,7 @@ jobs:
   regenerate-snapshots-foundations:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: foundations
@@ -298,6 +317,7 @@ jobs:
   regenerate-snapshots-patternhub:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       path: ${{ needs.init.outputs.baseUrl }}
@@ -313,6 +333,7 @@ jobs:
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -325,6 +346,7 @@ jobs:
         needs.test-showcase-stencil.result == 'failure'
       )
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: showcases
@@ -407,6 +429,7 @@ jobs:
           resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
@@ -428,6 +451,7 @@ jobs:
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
+             [[ $resultTestVitePlugin == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
@@ -459,6 +483,7 @@ jobs:
         build-showcase-patternhub,
         build-outputs,
         test-components,
+        test-vite-plugin,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
@@ -478,6 +503,7 @@ jobs:
       needs.init.outputs.isChangesetRelease != 'true'
       }}
     needs: [checks-done, init]
+    secrets: inherit
     with:
       release: ${{ needs.init.outputs.release }}
       preRelease: ${{ needs.init.outputs.preRelease }}

@@ -91,7 +91,5 @@
 			}
 		}
 	},
-	"cli": {
-		"analytics": false
-	}
+	"cli": { "packageManager": "pnpm", "analytics": false }
 }

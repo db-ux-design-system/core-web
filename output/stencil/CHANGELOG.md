@@ -1,9 +1,62 @@
 # @db-ux/wc-core-components
 
-## 4.5.3
+## 4.7.3
 
 _version bump_
 
+
+## 4.7.2
+
+### Patch Changes
+
+- fix(navigation): changed transform inside the drawer led to overlapping sub-navigation on smaller viewports - [see commit dd88a33](https://github.com/db-ux-design-system/core-web/commit/dd88a339fe6e7510e964c6979eeee84f4e40df59)
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+### Minor Changes
+
+- DBSelect: correctly hiding empty `option` element for _placeholder_ or _floating label_ components with property `showEmptyOption=false` - [see commit ec01b5c](https://github.com/db-ux-design-system/core-web/commit/ec01b5cb56e1fc05911d33cbff0fc8f385644628)
+
+- refactor(notification): not enforcing a paragraph for it's contents anymore. You could set any block level elements now as children. - [see commit 3170b3a](https://github.com/db-ux-design-system/core-web/commit/3170b3a6ef57bb73fa32b3176b7b8cf651a38641) and [commit 2ebe315](https://github.com/db-ux-design-system/core-web/commit/2ebe3156cd45e3702cf4acdc4224cd34da31d907)
+
+## 4.6.1
+
+### Patch Changes
+
+- fix(navigation): issue with changed transform inside drawer lead to broken sub-navigation for mobile view - [see commit 1762975](https://github.com/db-ux-design-system/core-web/commit/17629755c0c249808c0bb69686f167677d4181ee)
+
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+- docs(vite): mentioning version 8 configuration in `README.md` file - [see commit 4c5fc92](https://github.com/db-ux-design-system/core-web/commit/4c5fc9266402d9585087f4738a1a800cff1515f1)
+
+- fix(number input): prevent from clearing on intermediate decimal entry - [see commit aa85967](https://github.com/db-ux-design-system/core-web/commit/aa85967ffeaa685f6b647069d0e1d415d812dc87):
+  - fix(input,textarea): allow using `undefined` as `value`
+
+## 4.5.4
+
+### Patch Changes
+
+- refactor: Enhance the accessibility of the navigation components by adding missing WAI-ARIA attributes (`aria-controls`, `aria-label`, `aria-haspopup`) for better screen reader support. - [see commit f040188](https://github.com/db-ux-design-system/core-web/commit/f0401886267359518c37062373bb0f9df311214c)
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+- fix(switch): removed obsolete gap towards label in `small` variant - [see commit 40bad01](https://github.com/db-ux-design-system/core-web/commit/40bad017f068bf8968829977808a6d8e9d21b4fe)
+
+## 4.5.3
+
+_version bump_
 
 ## 4.5.2
 

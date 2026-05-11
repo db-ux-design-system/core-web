@@ -59,7 +59,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	onMount(() => {
 		state.initialized = true;
 
-		const subNavId = `sub-nav-${props.id ?? uuid()}`
+		const subNavId = `sub-nav-${props.id ?? uuid()}`;
 		state.subNavigationId = subNavId;
 		state.subNavigationToggleId = `${subNavId}-toggle`;
 	});
