@@ -10,7 +10,6 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildManifest } from './build-manifest.ts';
 import { buildTokens } from './build-tokens.ts';
-import { buildVisuals } from './build-visuals.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 
@@ -52,11 +51,6 @@ copyAsset('docs/migration/db-ui', 'assets/migration', { recursive: true });
 // Structured tokens JSON (assets/tokens/tokens.json)
 // ---------------------------------------------------------------------------
 await buildTokens();
-
-// ---------------------------------------------------------------------------
-// Visual reference images (build-time downsampling via sharp)
-// ---------------------------------------------------------------------------
-await buildVisuals();
 
 // ---------------------------------------------------------------------------
 // Embedded manifest (component metadata, examples, icons, tokens, docs)

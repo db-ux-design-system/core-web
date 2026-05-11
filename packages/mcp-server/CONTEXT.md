@@ -61,7 +61,7 @@ core-web/
 │       ├── assets/
 │       │   ├── migration/       # Prebuild copy of docs/migration/db-ui/ (for npx standalone)
 │       │   ├── tokens/          # Prebuild-generated tokens.json (structured design tokens)
-│       │   └── visuals/         # Prebuild-generated optimised reference images (JPEG)
+│       │   └── visuals/         # Pre-optimised static reference images (JPEG, committed to Git)
 │       └── src/
 │           ├── server.ts
 │           ├── types.ts
@@ -124,13 +124,15 @@ At runtime, `tokens.ts` loads `tokens.json` via `fs.readFile` + `JSON.parse` and
 
 **Removed:** `parseComponentMap`, `parseColorMap`, `parseIconMap`, async caching logic, and the `.md` files that served as data sources for the scanner.
 
-### ADR-5: Build-Time Visual Downsampling (no native deps at runtime)
+### ADR-5: Static Visual Assets (no build-time or runtime image processing)
 
-**Status:** Implemented (April 2026)
+**Status:** Implemented (May 2026)
 
-**Problem:** The previous `get_component_visual` tool imported `sharp` at runtime to downsample images. This required native C++ bindings in the production bundle, caused installation issues in restricted environments, and slowed down cold starts.
+**Problem:** The previous approach used `sharp` as a devDependency to downsample source PNGs at build time (`scripts/build-visuals.ts`). This added a heavy native C++ dependency to the build toolchain, slowed down prebuild, and complicated CI environments with restricted network access.
 
-**Decision:** Image processing is moved entirely to the `prebuild` step. `sharp` is a **devDependency only** — the `scripts/build-visuals.ts` module reads source PNGs from `src/data/visuals-source/`, downsamples them to max 800×800 px JPEG (quality 75), and writes optimised files to `assets/visuals/`. At runtime, `tools/visuals.ts` reads pre-optimised images via `fs.readFile` and returns Base64-encoded MCP image blocks. Zero native dependencies at runtime.
+**Decision:** Pre-optimised JPEG files are committed directly to `assets/visuals/` in the repository. No build-time image processing step exists. The `sharp` dependency has been removed entirely. At runtime, `tools/visuals.ts` reads the static JPEGs via `fs.readFile` and returns Base64-encoded MCP image blocks.
+
+**Removed:** `scripts/build-visuals.ts`, `src/data/visuals-source/` (original PNGs), `sharp` devDependency.
 
 ## Prebuild Pipeline
 
@@ -146,8 +148,6 @@ The prebuild script (native TypeScript, Node 24) prepares assets for standalone 
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
 prebuild:tokens         → parse CSS custom properties from @db-ux/db-theme/_default_variables.scss
                           + foundations/build/density/classes/all.css → assets/tokens/tokens.json
-prebuild:visuals        → sharp downsample src/data/visuals-source/*.png → assets/visuals/*.jpg
-                          (max 800×800 px, JPEG q75 — sharp is devDependency only)
 ```
 
 **Hard vs. soft failures:**
@@ -157,7 +157,7 @@ prebuild:visuals        → sharp downsample src/data/visuals-source/*.png → a
 
 The `"files"` array in `package.json` includes `"assets"`, so all prebuild outputs are shipped with the npm package.
 
-**⚠️ Build artifacts in `assets/migration/` and `assets/tokens/` must NEVER be committed to Git.** The `.gitignore` excludes their contents while preserving the directories via `.gitkeep`.
+**⚠️ Build artifacts in `assets/migration/` and `assets/tokens/` must NEVER be committed to Git.** The `.gitignore` excludes their contents while preserving the directories via `.gitkeep`. The `assets/visuals/` directory contains pre-optimised static JPEGs that **are** committed to Git.
 
 ## Critical Development Rules
 

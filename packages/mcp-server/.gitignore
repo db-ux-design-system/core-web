@@ -5,6 +5,4 @@ assets/migration/*
 assets/tokens/*
 !assets/tokens/.gitkeep
 
-assets/visuals/*
-!assets/visuals/.gitkeep
 
