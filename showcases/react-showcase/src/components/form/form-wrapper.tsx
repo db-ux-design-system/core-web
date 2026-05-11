@@ -1,4 +1,4 @@
-import { DBButton } from '@db-ux/react-core-components/src';
+import { DBButton } from '@components';
 import { type PropsWithChildren } from 'react';
 
 const FormWrapper = ({

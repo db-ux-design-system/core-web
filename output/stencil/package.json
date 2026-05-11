@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "4.7.1",
+  "version": "4.7.3",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -36,10 +36,14 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",
     "@stencil/core": "4.43.4",
+    "@types/node": "25.6.0",
     "cem-plugin-expanded-types": "1.4.0",
+    "cpr": "3.0.1",
     "custom-element-jet-brains-integration": "1.7.0",
     "custom-element-vs-code-integration": "1.5.0",
-    "workbox-build": "7.4.0"
+    "npm-run-all2": "8.0.4",
+    "storybook": "10.3.6",
+    "workbox-build": "7.4.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -48,7 +52,7 @@
   "web-types": "./dist/web-types.json",
   "customElements": "dist/custom-elements.json",
   "dependencies": {
-    "@db-ux/core-components": "4.7.1",
-    "@db-ux/core-foundations": "4.7.1"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   }
 }
