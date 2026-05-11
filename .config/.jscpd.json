@@ -25,6 +25,7 @@
 		"**/build/**",
 		"**/dist/**",
 		"**/docs/**",
+		"**/*.figma.batch.*",
 		"**/generated/**",
 		"**/navigation-items.ts",
 		"**/node_modules/**",
