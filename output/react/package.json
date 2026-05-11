@@ -7,6 +7,7 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -30,10 +31,14 @@
     "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
+    "npm-run-all2": "8.0.4",
     "@playwright/experimental-ct-react": "1.59.1",
     "@types/react": "19.2.14",
+    "cpr": "3.0.1",
+    "playwright": "1.59.1",
     "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "react-dom": "19.2.5",
+    "typescript": "5.9.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -41,7 +46,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@db-ux/core-components": "4.7.2",
-    "@db-ux/core-foundations": "4.7.2"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   }
 }

@@ -1,4 +1,12 @@
-import { join, resolve, sep } from 'node:path';
+import { join, resolve } from 'node:path';
+
+/**
+ * Normalizes a path to use forward slashes on all platforms.
+ * Used internally so that startsWith checks work cross-platform.
+ */
+function normalize(p: string): string {
+	return p.replaceAll('\\', '/');
+}
 
 /**
  * Absolute path to the assets directory shipped with the published package.
@@ -31,14 +39,14 @@ export function findGuide(
  * @throws {Error} When the resolved path escapes the base directory.
  */
 export function resolveSafePath(baseDir: string, userPath: string): string {
-	const absoluteBase = resolve(baseDir);
+	const absoluteBase = normalize(resolve(baseDir));
 	let decoded = userPath;
 	while (decoded !== decodeURIComponent(decoded)) {
 		decoded = decodeURIComponent(decoded);
 	}
-	const absoluteRequested = resolve(baseDir, decoded);
+	const absoluteRequested = normalize(resolve(baseDir, decoded));
 	if (
-		!absoluteRequested.startsWith(absoluteBase + sep) &&
+		!absoluteRequested.startsWith(absoluteBase + '/') &&
 		absoluteRequested !== absoluteBase
 	) {
 		throw new Error('Path traversal detected');
