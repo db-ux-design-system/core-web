@@ -1,4 +1,4 @@
-# @db-ux/ngx-core-components
+# @db-ux/react-core-components
 
 ## 4.7.3
 
@@ -38,6 +38,8 @@ _version bump_
 ### Patch Changes
 
 - fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+- docs(vite): mentioning version 8 configuration in `README.md` file - [see commit 4c5fc92](https://github.com/db-ux-design-system/core-web/commit/4c5fc9266402d9585087f4738a1a800cff1515f1)
 
 - fix(number input): prevent from clearing on intermediate decimal entry - [see commit aa85967](https://github.com/db-ux-design-system/core-web/commit/aa85967ffeaa685f6b647069d0e1d415d812dc87):
   - fix(input,textarea): allow using `undefined` as `value`
@@ -179,8 +181,6 @@ _version bump_
 ### Patch Changes
 
 - fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
-
-- DBInput: inserting an empty string doesn't reset/empty date or time related form fields - [see commit 884b03d](https://github.com/db-ux-design-system/core-web/commit/884b03d3997ffad725c99f63480563f309a046ef)
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
 
