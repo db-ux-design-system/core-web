@@ -118,8 +118,7 @@ export const verifyMigratedCodeSchema = {
 	description:
 		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
 		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
-		'If errors are found, fix the code and call the tool again (max 3 attempts).',
-	inputSchema: {}
+		'If errors are found, fix the code and call the tool again (max 3 attempts).'
 };
 
 export const scanV2MigrationSchema = {

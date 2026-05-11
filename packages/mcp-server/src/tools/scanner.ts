@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
-import { resolve, sep } from 'node:path';
+import { resolve } from 'node:path';
 import { migrationData } from '../data/db-ui-migration-map';
 import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
 
@@ -140,11 +140,11 @@ export async function handleScanV2Migration({
 	filePath: string;
 }): Promise<ToolResult> {
 	// Resolve path (absolute or relative to cwd)
-	const cwd = resolve(process.cwd());
-	const absolutePath = resolve(cwd, filePath);
+	const cwd = resolve(process.cwd()).replaceAll('\\', '/');
+	const absolutePath = resolve(cwd, filePath).replaceAll('\\', '/');
 
 	// 🔒 Path traversal protection: file must be within cwd()
-	if (!absolutePath.startsWith(cwd + sep)) {
+	if (!absolutePath.startsWith(cwd + '/')) {
 		return err(
 			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
 		);

@@ -20,20 +20,26 @@ const SUPPORTED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 // Helpers
 // ---------------------------------------------------------------------------
 
+/** Reads the visuals directory once and returns the list of filenames. */
+async function readVisualsDir(): Promise<string[]> {
+	if (!existsSync(VISUALS_DIR)) return [];
+	return readdir(VISUALS_DIR);
+}
+
 /** Returns the list of available visual names (without extension). */
 async function listAvailableVisuals(): Promise<string[]> {
-	if (!existsSync(VISUALS_DIR)) return [];
-	const files = await readdir(VISUALS_DIR);
+	const files = await readVisualsDir();
 	return files
 		.filter((f) => SUPPORTED_EXTENSIONS.has(extname(f).toLowerCase()))
 		.map((f) => basename(f, extname(f)));
 }
 
 /** Resolves a visual name to its file path, or null if not found. */
-function resolveVisualPath(name: string): string | null {
+async function resolveVisualPath(name: string): Promise<string | null> {
+	const files = await readVisualsDir();
 	for (const ext of SUPPORTED_EXTENSIONS) {
-		const candidate = join(VISUALS_DIR, `${name}${ext}`);
-		if (existsSync(candidate)) return candidate;
+		const target = `${name}${ext}`;
+		if (files.includes(target)) return join(VISUALS_DIR, target);
 	}
 	return null;
 }
@@ -101,7 +107,7 @@ export async function handleGetVisualReference({
 }: {
 	name: string;
 }): Promise<ToolResult> {
-	const imagePath = resolveVisualPath(name);
+	const imagePath = await resolveVisualPath(name);
 
 	if (!imagePath) {
 		const available = await listAvailableVisuals();

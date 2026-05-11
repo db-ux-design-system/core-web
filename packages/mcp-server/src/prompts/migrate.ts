@@ -19,6 +19,7 @@ export function handleMigrateComponentPrompt({
 	source_context: string;
 	target_framework: string;
 }) {
+	// Note: Math.random() is used here for basic injection prevention, not as a cryptographic security primitive.
 	const boundary = `LEGACY_CODE_${Date.now()}_${Math.random().toString(36).slice(2)}`;
 	const pkg =
 		FRAMEWORK_PKG[target_framework as Framework] ??
