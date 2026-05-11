@@ -16,11 +16,28 @@ const THEME_SCOPES = ['@db-ux', '@db-ux-inner-source'] as const;
 
 /**
  * Auto-detect the installed DB UX theme package (e.g. @db-ux/db-theme).
- * Walks up from `root` checking each node_modules for *-theme packages
- * in both @db-ux/* and @db-ux-inner-source/* scopes.
+ * Tries to resolve known theme packages directly, falling back to
+ * filesystem scanning for custom theme packages.
  * Returns the package specifier or null if no theme is found.
  */
 function detectTheme(root: string, preferredTheme?: string): string | null {
+	// Try to resolve known/preferred theme packages directly first
+	const candidatePackages = preferredTheme
+		? [preferredTheme]
+		: THEME_SCOPES.flatMap((scope) =>
+				['db-theme', 'db-theme-db'].map((name) => `${scope}/${name}`)
+			);
+
+	for (const pkg of candidatePackages) {
+		try {
+			require.resolve(`${pkg}/package.json`, { paths: [root] });
+			return pkg;
+		} catch {
+			// Not found, try next
+		}
+	}
+
+	// Fallback: filesystem scan for custom theme packages
 	let currentDir = root;
 	for (let i = 0; i < 10; i++) {
 		for (const scope of THEME_SCOPES) {
