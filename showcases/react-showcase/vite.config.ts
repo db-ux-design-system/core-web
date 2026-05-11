@@ -2,20 +2,21 @@ import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import devtoolsJson from 'vite-plugin-devtools-json';
+import dbUxFlatten from '../../packages/postcss-plugin/build/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	base: `/react-showcase/`,
-	plugins: [
-		react(),
-		devtoolsJson() // Enable Chrome DevTools JSON generation for enhanced debugging
-	],
+	plugins: [react()],
 	build: {
 		outDir: '../../build-showcases/react-showcase',
-		emptyOutDir: true
+		emptyOutDir: true,
+		cssMinify: 'esbuild'
+	},
+	optimizeDeps: {
+		include: ['next/navigation', 'next/router']
 	},
 	define: {
 		process: {
@@ -38,6 +39,9 @@ export default defineConfig({
 		}
 	},
 	css: {
-		devSourcemap: true // Enables source maps in dev mode for CSS
+		devSourcemap: true, // Enables source maps in dev mode for CSS
+		postcss: {
+			plugins: [dbUxFlatten()]
+		}
 	}
 });

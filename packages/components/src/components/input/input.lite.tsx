@@ -135,7 +135,13 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -161,7 +167,13 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -186,18 +198,28 @@ export default function DBInput(props: DBInputProps) {
 						}))
 					: _list) || []
 			);
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `input-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -225,9 +247,7 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		if (props.value !== undefined) {
-			state._value = props.value;
-		}
+		state._value = props.value;
 	}, [props.value]);
 
 	onUpdate(() => {
@@ -295,7 +315,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={props.value ?? state._value}
+				value={props.value ?? state._value ?? ''}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}

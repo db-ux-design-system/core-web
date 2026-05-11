@@ -161,17 +161,27 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `textarea-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `textarea-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -196,9 +206,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		if (props.value !== undefined) {
-			state._value = props.value;
-		}
+		state._value = props.value;
 	}, [props.value]);
 
 	onUpdate(() => {
@@ -278,7 +286,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={props.value ?? state._value}
+				value={props.value ?? state._value ?? ''}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}

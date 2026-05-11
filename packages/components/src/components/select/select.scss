@@ -44,10 +44,10 @@
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
-	&:has(> select option:checked:not(.placeholder)) {
-		[id$="-placeholder"],
-		// Hide placeholder option in dropdown for required selects after a selection has been made
-		// This prevents users from selecting an invalid empty option when the field is required
+	select:is(:has(option:checked:not(.placeholder)), :open) {
+		& ~ [id$="-placeholder"],
+		// Hide the placeholder and an inserted empty `option` with
+		// `data-show-empty-option="false"` once a non-placeholder option is selected or the `select` is open
 		option[data-show-empty-option="false"] {
 			display: none;
 		}

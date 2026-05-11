@@ -15,7 +15,7 @@
 		&[open] {
 			> summary + div {
 				block-size: auto;
-				/* stylelint-disable-next-line declaration-property-value-no-unknown */
+				/* stylelint-disable-next-line declaration-property-value-no-unknown, db-ux/use-sizing */
 				block-size: calc-size(auto, size);
 			}
 
@@ -29,7 +29,7 @@
 			opacity: variables.$db-opacity-md;
 		}
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			> summary + div {
 				transition: block-size
 					#{variables.$db-transition-straight-emotional};

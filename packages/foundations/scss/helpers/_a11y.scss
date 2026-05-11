@@ -1,5 +1,5 @@
+// stylelint-disable property-no-deprecated, db-ux/use-sizing
 %a11y-visually-hidden {
-	// stylelint-disable-next-line property-no-deprecated
 	clip: rect(0, 0, 0, 0) !important;
 	overflow: hidden !important;
 	white-space: nowrap !important;

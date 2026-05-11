@@ -9,7 +9,7 @@ const App = () => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
 
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	if (pageName ?? fullscreen) {
 		return (
