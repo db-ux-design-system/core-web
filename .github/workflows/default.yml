@@ -44,7 +44,7 @@ jobs:
 
   lint:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/01-lint-self-healing.yml
+    uses: ./.github/workflows/01-lint-test-self-healing.yml
     needs: [init]
     secrets: inherit
 
