@@ -8,6 +8,7 @@
 import { cpSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildManifest } from './build-manifest.ts';
 import { buildTokens } from './build-tokens.ts';
 import { buildVisuals } from './build-visuals.ts';
 
@@ -56,3 +57,8 @@ await buildTokens();
 // Visual reference images (build-time downsampling via sharp)
 // ---------------------------------------------------------------------------
 await buildVisuals();
+
+// ---------------------------------------------------------------------------
+// Embedded manifest (component metadata, examples, icons, tokens, docs)
+// ---------------------------------------------------------------------------
+await buildManifest();
