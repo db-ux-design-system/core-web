@@ -8,11 +8,11 @@ Without this server, AI agents invent plausible-sounding but incorrect component
 
 ## 🚀 Quick Start for Consumers
 
-> **Requirement:** Node.js **v24.0.0** or higher is required to run the MCP server.
+> **Requirement:** Node.js **v22.0.0** or higher is required to run the MCP server.
 
 ### 1. Access the Server
 
-Ensure you are using Node.js v24+ and have access to the DB UX packages. The server is invoked via `npx`:
+Ensure you are using Node.js v22+ and have access to the DB UX packages. The server is invoked via `npx`:
 
 ```bash
 npx --yes @db-ux/mcp-server
@@ -327,7 +327,7 @@ packages/mcp-server/
 │   ├── tokens/             # Prebuild-generated tokens.json (structured design tokens)
 │   └── visuals/            # Pre-optimised static reference images (JPEG, committed to Git)
 ├── scripts/
-│   ├── prebuild.ts          # Central orchestrator: migration assets, tokens, manifest (runs as native TS via Node 24)
+│   ├── prebuild.ts          # Central orchestrator: migration assets, tokens, manifest (runs via tsx)
 │   └── build-manifest.ts    # Build-time script — generates src/manifest.json
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
@@ -433,7 +433,7 @@ Open that **full URL including the token** in your browser — the token is requ
 | Rule                             | Details                                                                                                                                                                                          |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **ESM only**                     | This package is `"type": "module"`. Never use `require()` — use `import` exclusively.                                                                                                            |
-| **Node 24 native TS**            | Build scripts run as native TypeScript (type stripping). No `tsx` or `.mjs` needed.                                                                                                              |
+| **tsx for TS scripts**           | Build scripts (e.g. `prebuild.ts`) run via `tsx`. This ensures compatibility with Node.js 22+.                                                                                                   |
 | **No lifecycle hooks**           | NPM lifecycle scripts (`prebuild`, `preinstall`) are disabled in this monorepo. Build steps must be chained via `&&` in the `build` script.                                                      |
 | **No committed build artifacts** | Files in `assets/migration/` and `assets/tokens/` are generated at build time. They are git-ignored and must never be committed. `assets/visuals/` contains static JPEGs that **are** committed. |
 | **Strict assets-only reading**   | The server must never fall back to monorepo source paths at runtime. Read strictly from `assets/` to avoid masking build failures.                                                               |

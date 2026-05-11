@@ -14,7 +14,7 @@ Concrete use cases:
 
 | Technology                      | Purpose                                                                                  |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Node.js** (≥ 24)              | Runtime environment (native TypeScript execution via type stripping)                     |
+| **Node.js** (≥ 22)              | Runtime environment                                                                      |
 | **TypeScript**                  | Type safety, consistent with the rest of the monorepo                                    |
 | **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
 | **`esbuild`**                   | Production build into a single standalone ESM bundle                                     |
@@ -139,10 +139,10 @@ At runtime, `tokens.ts` loads `tokens.json` via `fs.readFile` + `JSON.parse` and
 NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monorepo. The prebuild step is chained directly into the `build` script via `&&`:
 
 ```json
-"build": "node scripts/prebuild.ts && node esbuild.js"
+"build": "tsx scripts/prebuild.ts && node esbuild.js"
 ```
 
-The prebuild script (native TypeScript, Node 24) is the central orchestrator that prepares all assets and metadata for standalone (npx) operation:
+The prebuild script is executed via `tsx` to ensure Node.js 22+ compatibility. It is the central orchestrator that prepares all assets and metadata for standalone (npx) operation:
 
 ```text
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
@@ -170,9 +170,9 @@ The `"files"` array in `package.json` includes `"assets"`, so all prebuild outpu
 
 This package is `"type": "module"`. **Never use `require()`** — always use `import` (top-level or dynamic `await import()`). The `require('node:fs')` anti-pattern will crash at runtime.
 
-### Node 24 Native TypeScript
+### tsx for TypeScript Build Scripts
 
-Build scripts (like `prebuild.ts`) run as native TypeScript via Node 24's type stripping. Tools like `tsx` or file extensions like `.mjs` are not needed.
+Build scripts (like `prebuild.ts`) run via `tsx`, which provides TypeScript execution for Node.js 22+. This avoids requiring Node 24's native type stripping while keeping TypeScript as the script language.
 
 ### Build Parity (Strict Assets-Only Reading)
 
@@ -216,7 +216,7 @@ The server uses `StdioServerTransport` from the MCP SDK. It is started as a chil
 }
 ```
 
-During development inside the monorepo, Node 24 runs TypeScript natively:
+During development inside the monorepo, you can run TypeScript source directly via `tsx`:
 
 ```json
 {
