@@ -69,7 +69,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			</div>
 			<Show
 				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
-				<span data-area="timestamp">{props.timestamp}</span>
+				<time data-area="timestamp">{props.timestamp}</time>
 			</Show>
 
 			<Slot name="link" />
