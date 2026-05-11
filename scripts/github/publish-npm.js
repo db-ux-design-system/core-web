@@ -4,7 +4,9 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const repoRoot = path.join(fileURLToPath(import.meta.url), '../../..');
+const repoRoot =
+	process.env.GITHUB_WORKSPACE ??
+	path.join(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 const { VALID_SEMVER_VERSION } = process.env;
 const RELEASE = process.env.RELEASE === 'true';
@@ -41,8 +43,8 @@ const IS_PRE_RELEASE = process.env.PRE_RELEASE === 'true';
 console.log('🛠 Forge all packages version numbers');
 console.log(`which package version ?: ${VALID_SEMVER}`);
 
-console.log('goto build-outputs');
-process.chdir(path.join(repoRoot, 'build-outputs'));
+const buildOutputs = path.join(repoRoot, 'build-outputs');
+console.log(`goto build-outputs: ${buildOutputs}`);
 
 const packages = [
 	{ dir: 'foundations', name: 'core-foundations' },
@@ -78,32 +80,36 @@ const packagesWithComponentsDep = new Set([
 for (const { dir, name: PACKAGE } of packages) {
 	console.log(`Start ${PACKAGE} bundle:`);
 
-	if (IS_PRE_RELEASE) {
-		// Only update versions for pre-releases
-		console.log('🆚 Update Version');
-		const pkgPath = path.join(dir, 'package.json');
-		const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
-		pkg.version = VALID_SEMVER;
+	// Always update version so pnpm pack produces the correct .tgz filename
+	console.log('🆚 Update Version');
+	const pkgPath = path.join(buildOutputs, dir, 'package.json');
+	const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
+	pkg.version = VALID_SEMVER;
 
-		if (packagesWithFoundationsDep.has(PACKAGE)) {
-			console.log('🕵️ Set foundations dependency');
-			pkg.dependencies ??= {};
-			pkg.dependencies['@db-ux/core-foundations'] = VALID_SEMVER;
-		}
-
-		if (packagesWithComponentsDep.has(PACKAGE)) {
-			pkg.dependencies ??= {};
-			pkg.dependencies['@db-ux/core-components'] = VALID_SEMVER;
-		}
-
-		writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+	if (packagesWithFoundationsDep.has(PACKAGE)) {
+		console.log('🕵️ Set foundations dependency');
+		pkg.dependencies ??= {};
+		pkg.dependencies['@db-ux/core-foundations'] = VALID_SEMVER;
 	}
 
+	if (packagesWithComponentsDep.has(PACKAGE)) {
+		pkg.dependencies ??= {};
+		pkg.dependencies['@db-ux/core-components'] = VALID_SEMVER;
+	}
+
+	writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+
 	console.log('📦 Create npm package');
-	execSync(
-		`pnpm pack --quiet --config.ignore-scripts=true --ignore-workspace`,
-		{ cwd: dir }
-	);
+	try {
+		execSync(
+			`pnpm pack --quiet --config.ignore-scripts=true --ignore-workspace`,
+			{ cwd: path.join(buildOutputs, dir), stdio: 'inherit' }
+		);
+	} catch (error) {
+		console.error(`❌ pnpm pack failed for ${PACKAGE}`);
+		console.error(error.message || error);
+		process.exit(1);
+	}
 }
 
 let TAG = 'latest';
@@ -114,7 +120,9 @@ if (IS_PRE_RELEASE) {
 console.log(`📰 Publish Package to Registry with tag: ${TAG}`);
 
 console.log('🔒 Authenticate NPM Registry');
-execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/');
+execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
+	stdio: 'inherit'
+});
 console.log('🔑 Using trusted publishing for NPM');
 
 // Only run provenance (real publish) in CI, locally only dry-run
@@ -123,7 +131,7 @@ for (const step of CI ? ['dry-run', 'provenance'] : ['dry-run']) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {
 			execSync(
-				`pnpm publish --tag ${TAG} ${dir}/db-ux-${PACKAGE}-${VALID_SEMVER}.tgz --${step} --no-git-checks`
+				`pnpm publish --tag ${TAG} ${path.join(buildOutputs, dir, `db-ux-${PACKAGE}-${VALID_SEMVER}.tgz`)} --${step} --no-git-checks`
 			);
 		} catch (error) {
 			console.error(
