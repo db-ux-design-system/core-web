@@ -172,3 +172,5 @@ lintstagedrc
 carsharing
 bikesharing
 peaceiris
+xlarge
+pnpm

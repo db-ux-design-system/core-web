@@ -1,16 +1,19 @@
 # @db-ux/core-eslint-plugin
 
-## 4.7.1
+## 4.7.2
 
 _version bump_
 
+## 4.7.1
+
+_version bump_
 
 ## 4.7.0
 
 ### Patch Changes
 
 - fix(`DBNotification`): `close-button-text-required` rule now only requires `closeButtonText` when `closeable` attribute is set. - [see commit 9ae9216](https://github.com/db-ux-design-system/core-web/commit/9ae92161a6d07c7a7ab80a4af31777a4d35d09be):
-  - refactor(`ESLint`): optimize parsing of multiple Angular components.
+    - refactor(`ESLint`): optimize parsing of multiple Angular components.
 
 ## 4.6.1
 
