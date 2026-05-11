@@ -122,20 +122,22 @@ Amazon Q can automatically load the project's `CONTEXT.md` as a persistent syste
 
 ## 🛠 Available AI Tools (Skills)
 
-| Tool                           | Description                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                                                                                                                                       |
-| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                                                                                                                                           |
-| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                                                                                                                            |
-| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                                                                                                                                   |
-| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) for a token category (`colors`, `spacing`, `typography`, `elevation`, `density`, …). For spacing, elevation, and density, returns **compiled primitive values** (e.g. `0.75rem`, box-shadow strings) instead of raw SCSS. Prevents hardcoded hex values and magic numbers.                               |
-| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                                                                                                                              |
-| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                                                                                                                     |
-| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, Accessibility, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                                                                                                            |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                                                           |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                               |
-| `verify_migrated_code`         | Instructs the AI to verify its changes using the project's own scripts (`typecheck`, `lint`, `build`) from `package.json`. No temp files or hardcoded compilers — works with any toolchain (JS, TS, Vite, Angular CLI).                                                                                                                           |
-| `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed. |
+| Tool                           | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available DB UX component names (e.g. `button`, `input`, `tag`). Call this first to confirm a component exists before using it.                                                                                                                                                                                                                                                                      |
+| `get_component_props`          | Returns the raw TypeScript `model.ts` for a component — all interfaces, prop types, and JSDoc comments.                                                                                                                                                                                                                                                                                                          |
+| `get_component_details`        | Returns the list of available example names for a component (e.g. `"Variant"`, `"Show Icon Leading"`).                                                                                                                                                                                                                                                                                                           |
+| `get_example_code`             | Fetches the exact generated source code for a component example in a specific framework (`react`, `angular`, `vue`, `web-components`, or `html`). This is the code the AI adapts — not invents.                                                                                                                                                                                                                  |
+| `get_design_tokens`            | Returns CSS custom properties (`--db-*`) for a token category (`colors`, `spacing`, `typography`, `elevation`, `density`, …). Reads from a structured `tokens.json` generated at build time with concrete primitive values (e.g. `0.75rem`, box-shadow strings). Falls back to SCSS from the manifest for categories not in JSON (e.g. animation, transitions). Prevents hardcoded hex values and magic numbers. |
+| `list_design_token_categories` | Lists all available token categories to pass to `get_design_tokens`.                                                                                                                                                                                                                                                                                                                                             |
+| `list_icons`                   | Returns all valid DB UX icon names (e.g. `arrow_down`, `chevron_right`, `x_placeholder`). Always call this before using any `icon` prop — never guess a name.                                                                                                                                                                                                                                                    |
+| `docs_search`                  | Searches the DB UX conceptual documentation (guidelines, Accessibility, migration, ADRs) or component-specific markdown docs. Acts as our Retrieval-Augmented Generation (RAG) engine.                                                                                                                                                                                                                           |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                                                                                                                          |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                                                                                              |
+| `verify_migrated_code`         | Instructs the AI to verify its changes using the project's own scripts (`typecheck`, `lint`, `build`) from `package.json`. No temp files or hardcoded compilers — works with any toolchain (JS, TS, Vite, Angular CLI).                                                                                                                                                                                          |
+| `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.                                                                |
+| `list_visuals`                 | Returns all available visual reference names (e.g. `dashboard`, `form`, `table`). Call this to discover which visuals exist before requesting one.                                                                                                                                                                                                                                                               |
+| `get_visual_reference`         | Returns a pre-optimised static visual reference image (JPEG) as a Base64-encoded MCP image block. No build-time or runtime image processing dependencies — images are committed as pre-optimised assets.                                                                                                                                                                                                         |
 
 ### Example: fetching a React button example
 
@@ -251,6 +253,19 @@ Specialized deep scan exclusively for inclusion and accessibility standards (WCA
 
 ---
 
+## 🛡️ Security & Compliance
+
+This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
+
+- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The `verify_migrated_code` tool does not execute shell commands — it returns instructions for the LLM to run the project's own verification scripts.
+- **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a path resolver with traversal protection (`resolveSafePath`). The server guarantees that no file reads can escape the allowed base directories (blocking `../../etc/passwd` attacks).
+- **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
+    - File reads are truncated at **20,000 characters**.
+    - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
+    - Directory scans are hard-limited to a maximum of **10 files**.
+
+---
+
 ## 📐 Architecture & Manifest
 
 ### How it works
@@ -261,12 +276,12 @@ The server is a single Node.js process communicating over **stdio** using the [M
 
 Because `model.ts`, showcase files, and framework example source files are **not** included in the published npm packages (only compiled `dist/` is shipped), the server embeds all necessary data at build time.
 
-`scripts/build-manifest.ts` runs during the build and produces `src/manifest.json` containing:
+`scripts/build-manifest.ts` is called by the `prebuild.ts` orchestrator and produces `src/manifest.json` containing:
 
 ```text
 manifest.json
 ├── icons[]                          — icon names from packages/foundations/src/all-icons.ts
-├── tokens{}                         — SCSS design tokens mapped by category (colors, typography, animation, transitions)
+├── tokens{}                         — SCSS design tokens mapped by category (colors, typography, animation, transitions — categories with raw SCSS; spacing/elevation/density served from tokens.json instead)
 ├── docs{}                           — conceptual markdown documentation
 └── components{}
     └── {componentName}
@@ -299,7 +314,9 @@ This means the same binary works for:
 - **Design system developers** working inside the monorepo (always up-to-date, live files)
 - **Consumer teams** running `npx @db-ux/mcp-server` (self-contained, no monorepo needed)
 
-> **Note on compiled tokens:** For `spacing`, `elevation`, and `density`, the tool reads compiled CSS/SCSS files with concrete primitive values (not raw SCSS with `@each` loops). These are read from `assets/tokens/` which is populated by the `prebuild` step from `@db-ux/db-theme` and the foundations build output.
+> **Note on design tokens:** For most categories (spacing, elevation, density, colors, etc.), the tool reads from a structured `assets/tokens/tokens.json` generated by the `prebuild` step from `@db-ux/db-theme` and the foundations build output. Categories not covered by the JSON (e.g. animation, transitions) fall back to raw SCSS from the manifest.
+>
+> **Note on visual references:** The `get_visual_reference` tool serves pre-optimised static JPEG images from `assets/visuals/`. These files are committed directly to the repository — no build-time image processing or native dependencies required.
 
 ### Directory structure
 
@@ -307,9 +324,10 @@ This means the same binary works for:
 packages/mcp-server/
 ├── assets/
 │   ├── migration/          # Migration guides (copied from docs/migration/db-ui/ by prebuild)
-│   └── tokens/             # Compiled token files (copied from foundations by prebuild)
+│   ├── tokens/             # Prebuild-generated tokens.json (structured design tokens)
+│   └── visuals/            # Pre-optimised static reference images (JPEG, committed to Git)
 ├── scripts/
-│   ├── prebuild.ts          # Prebuild asset copy script (runs as native TS via Node 24)
+│   ├── prebuild.ts          # Central orchestrator: migration assets, tokens, manifest (runs as native TS via Node 24)
 │   └── build-manifest.ts    # Build-time script — generates src/manifest.json
 ├── src/
 │   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
@@ -321,92 +339,11 @@ packages/mcp-server/
 │   └── manifest.json       # Generated — do not edit manually
 ├── build/
 │   └── index.js            # Compiled standalone bundle (gitignored)
-├── esbuild.js              # Build script: runs build-manifest, then bundles
+├── esbuild.js              # Build script: bundles src/index.ts into standalone dist/index.js
 ├── package.json
 ├── tsconfig.json
 └── CONTEXT.md              # Architecture notes
 ```
-
----
-
-## 📦 Build Command
-
-The server is built as part of the `@db-ux/mcp-server` package:
-
-```bash
-# from the monorepo root
-npm run build --workspace=@db-ux/mcp-server
-```
-
-This runs `packages/mcp-server/esbuild.js` which:
-
-1. Executes `scripts/build-manifest.ts` — collects all component data from the live monorepo into `src/manifest.json`
-2. Bundles `src/index.ts` + `manifest.json` via esbuild into a single `build/index.js` with `#!/usr/bin/env node` shebang
-3. Copies the bundle to `packages/mcp-server/dist/index.js` for inclusion in the published `@db-ux/mcp-server` npm package
-
-To build and test the server in isolation during development:
-
-```bash
-# from packages/mcp-server/
-npm run build   # generates manifest + bundle
-npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files). The server communicates over stdio and produces no terminal output by itself — this is expected.
-```
-
----
-
-## 🛡️ Security & Compliance
-
-This MCP server operates under a strict, zero-trust security model to prevent malicious AI behavior or accidental system damage.
-
-- **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The `verify_migrated_code` tool does not execute shell commands — it returns instructions for the LLM to run the project's own verification scripts.
-- **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a path resolver with traversal protection (`resolveSafePath`). The server guarantees that no file reads can escape the allowed base directories (blocking `../../etc/passwd` attacks).
-- **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
-    - File reads are truncated at **20,000 characters**.
-    - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
-    - Directory scans are hard-limited to a maximum of **10 files**.
-
----
-
-## 🧪 Development & Testing
-
-The **MCP Inspector** is the official tool to validate MCP tools and prompts (e.g. `scaffold_page`) independently of any IDE (VS Code, IntelliJ, etc.). Use it to inspect the server's capabilities, test tool calls interactively, and verify prompt outputs before relying on them in an AI agent workflow.
-
-### Prerequisites
-
-Build the server bundle first (if not already done):
-
-```bash
-# from packages/mcp-server/
-npm run build
-```
-
-### Starting the Inspector
-
-Run the following command from the `packages/mcp-server/` directory:
-
-> **Note:** The Inspector UI runs on **port 6274**, the proxy on **port 6277**. If either port is already in use, free it first: `lsof -ti :6274 -ti :6277 | xargs kill -9`
-
-```bash
-npx @modelcontextprotocol/inspector --transport stdio node dist/index.js
-```
-
-The Inspector prints a URL with a session token to the terminal, e.g.:
-
-```text
-🔍 MCP Inspector is up and running at http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=<token>
-```
-
-Open that **full URL including the token** in your browser — the token is required for authentication.
-
-### Step-by-step workflow
-
-1. Run the command above — the Inspector starts a local web server
-2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
-3. Click **"Connect"** to establish the stdio connection to the server
-4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_v2_migration`) and inspect their responses
-5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
-
-> **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
 
 ---
 
@@ -436,19 +373,72 @@ _Alternatively, you can change your IDE's working directory for the MCP server t
 
 ---
 
+## 🧪 Development & Testing
+
+To build and test the server in isolation during development:
+
+```bash
+# from packages/mcp-server/
+npm run build   # generates manifest + bundle
+npm run dev     # runs src/index.ts directly via tsx (monorepo mode, live files). The server communicates over stdio and produces no terminal output by itself — this is expected.
+```
+
+### MCP Inspector
+
+The **MCP Inspector** is the official tool to validate MCP tools and prompts (e.g. `scaffold_page`) independently of any IDE (VS Code, IntelliJ, etc.). Use it to inspect the server's capabilities, test tool calls interactively, and verify prompt outputs before relying on them in an AI agent workflow.
+
+#### Prerequisites
+
+Build the server bundle first (if not already done):
+
+```bash
+# from packages/mcp-server/
+npm run build
+```
+
+#### Starting the Inspector
+
+Run the following command from the `packages/mcp-server/` directory:
+
+> **Note:** The Inspector UI runs on **port 6274**, the proxy on **port 6277**. If either port is already in use, free it first: `lsof -ti :6274 -ti :6277 | xargs kill -9`
+
+```bash
+npx @modelcontextprotocol/inspector --transport stdio node dist/index.js
+```
+
+The Inspector prints a URL with a session token to the terminal, e.g.:
+
+```text
+🔍 MCP Inspector is up and running at http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=<token>
+```
+
+Open that **full URL including the token** in your browser — the token is required for authentication.
+
+#### Step-by-step workflow
+
+1. Run the command above — the Inspector starts a local web server
+2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
+3. Click **"Connect"** to establish the stdio connection to the server
+4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_v2_migration`) and inspect their responses
+5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
+
+> **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
+
+---
+
 ## ⚠️ Development Constraints
 
-> **These rules are critical for contributors and AI agents working on the MCP server.**
+> **These rules are critical for contributors working on the MCP server package.**
 
-| Rule                             | Details                                                                                                                                                     |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **ESM only**                     | This package is `"type": "module"`. Never use `require()` — use `import` exclusively.                                                                       |
-| **Node 24 native TS**            | Build scripts run as native TypeScript (type stripping). No `tsx` or `.mjs` needed.                                                                         |
-| **No lifecycle hooks**           | NPM lifecycle scripts (`prebuild`, `preinstall`) are disabled in this monorepo. Build steps must be chained via `&&` in the `build` script.                 |
-| **No committed build artifacts** | Files in `assets/migration/` and `assets/tokens/` are generated at build time. They are git-ignored and must never be committed.                            |
-| **Strict assets-only reading**   | The server must never fall back to monorepo source paths at runtime. Read strictly from `assets/` to avoid masking build failures.                          |
-| **Hard CI failures**             | Build scripts must `throw new Error()` when required sources are missing — never fail silently. Exception: density CSS (build artifact, soft-fail allowed). |
-| **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                 |
-| **Cross-platform paths**         | Normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\`.                                                        |
-| **Gentle migration**             | Do NOT blindly replace `<a>` (breaks routing) or `<div>` (valid HTML) with DB UX components.                                                                |
-| **DB UX v2 history**             | `cmp-*`, `elm-*`, `rea-*` were CSS classes in v2, not HTML tags. The custom elements were `<db-*>`.                                                         |
+| Rule                             | Details                                                                                                                                                                                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **ESM only**                     | This package is `"type": "module"`. Never use `require()` — use `import` exclusively.                                                                                                            |
+| **Node 24 native TS**            | Build scripts run as native TypeScript (type stripping). No `tsx` or `.mjs` needed.                                                                                                              |
+| **No lifecycle hooks**           | NPM lifecycle scripts (`prebuild`, `preinstall`) are disabled in this monorepo. Build steps must be chained via `&&` in the `build` script.                                                      |
+| **No committed build artifacts** | Files in `assets/migration/` and `assets/tokens/` are generated at build time. They are git-ignored and must never be committed. `assets/visuals/` contains static JPEGs that **are** committed. |
+| **Strict assets-only reading**   | The server must never fall back to monorepo source paths at runtime. Read strictly from `assets/` to avoid masking build failures.                                                               |
+| **Hard CI failures**             | Build scripts must `throw new Error()` when required sources are missing — never fail silently. Exception: density CSS (build artifact, soft-fail allowed).                                      |
+| **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                                                      |
+| **Cross-platform paths**         | Normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\`.                                                                                             |
+
+> **Note:** AI-specific behavioral rules (gentle migration, v2/v3 terminology, icon verification, etc.) are maintained in `CONTEXT.md` (shipped with the package for consumer AI agents) and in `.github/copilot-instructions.md` (for agents working inside this monorepo). They are intentionally not duplicated here.

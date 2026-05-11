@@ -60,7 +60,8 @@ core-web/
 │   └── mcp-server/                                 # This package
 │       ├── assets/
 │       │   ├── migration/       # Prebuild copy of docs/migration/db-ui/ (for npx standalone)
-│       │   └── tokens/          # Prebuild copy of compiled token files (for npx standalone)
+│       │   ├── tokens/          # Prebuild-generated tokens.json (structured design tokens)
+│       │   └── visuals/         # Pre-optimised static reference images (JPEG, committed to Git)
 │       └── src/
 │           ├── server.ts
 │           ├── types.ts
@@ -68,6 +69,7 @@ core-web/
 │           ├── manifest.json    # Generated — do not edit manually
 │           ├── tools/
 │           ├── prompts/
+│           ├── data/           # Static typed data (e.g. db-ui-migration-map.ts)
 │           └── utils/
 └── output/
     ├── react/src/components/{component}/examples/
@@ -100,25 +102,37 @@ core-web/
 
 Migration guides are served exclusively through the dedicated `list_migration_guides` / `get_migration_guide` tools.
 
-### ADR-3: Compiled Token Files for Spacing, Elevation, and Density
+### ADR-3: Structured Token JSON (migration from SCSS/CSS regex parsing)
 
 **Status:** Implemented (April 2026)
 
-**Problem:** The `get_design_tokens` tool read raw SCSS source files. For categories like `spacing`, `density`, and `elevation`, these files contain `@each` loops and `mixin` calls — the LLM received unexpanded SCSS code instead of usable CSS custom property values (e.g. `0.75rem`, box-shadow strings).
+**Problem:** The `get_design_tokens` tool previously read raw SCSS/CSS files at runtime and used regex filters (`CATEGORY_LINE_FILTERS`, `readFilteredLines`) to extract relevant lines. For categories like `spacing`, `density`, and `elevation`, the SCSS sources contained `@each` loops and mixins — the LLM received unexpanded code instead of usable values. The regex approach was fragile, required multiline continuation handling, and produced inconsistent output.
 
-**Decision:** Three categories (`spacing`, `elevation`, `density`) now read from **compiled** files that contain concrete primitive values:
+**Decision:** The `prebuild` step now parses CSS custom properties from compiled sources (`@db-ux/db-theme/_default_variables.scss` and `foundations/build/styles/density/classes/all.css`) into a single structured `assets/tokens/tokens.json`. This JSON file is categorised by token type (spacing, elevation, colors, typography, etc.) and contains concrete primitive values.
 
-| Source file                                        | Contains                                                |
-| -------------------------------------------------- | ------------------------------------------------------- |
-| `foundations/scss/defaults/default-variables.scss` | All primitive `--db-*` values (whitelabel theme)        |
-| `@db-ux/db-theme/.../\_default_variables.scss`     | All primitive `--db-*` values (DB brand theme) ★ used   |
-| `foundations/build/styles/density/classes/all.css` | Density class overrides (expressive/regular/functional) |
+At runtime, `tokens.ts` loads `tokens.json` via `fs.readFile` + `JSON.parse` and returns the requested category as typed JSON. For categories not covered by the JSON (e.g. `animation`, `transitions`), the tool falls back to raw SCSS from the manifest.
 
-Other categories (`colors`, `typography`, `animation`, `transitions`) continue to use raw SCSS from the manifest, since those files contain direct variable declarations without loops.
+**Removed:** `CATEGORY_LINE_FILTERS`, `readFilteredLines`, `readCompiledTokens`, `resolveTokenFile`, `COMPILED_CATEGORIES`, `TOKEN_COMPILED_FILES`.
 
-**Multiline handling:** The `readFilteredLines()` function detects when a CSS declaration spans multiple lines (e.g. elevation box-shadows) and captures continuation lines.
+### ADR-4: Type-Safe Migration Map (migration from Markdown regex parsing)
 
-**Asset resolution:** The `prebuild` step copies both compiled files into `assets/tokens/`. The `resolveTokenFile()` function reads strictly from `assets/tokens/` — there is no monorepo fallback. If the file is missing, `null` is returned and the server surfaces the error.
+**Status:** Implemented (April 2026)
+
+**Problem:** The `scan_v2_migration` tool previously parsed Markdown tables from migration guide files (`component-migration.md`, `color-migration.md`, `icon-migration.md`) at runtime using regex (`matchAll`). Functions like `parseComponentMap`, `parseColorMap`, and `parseIconMap` were fragile, required async caching (`ensureMaps`, `getManifest`), and broke silently when the Markdown format changed.
+
+**Decision:** Migration mappings are now defined as a typed TypeScript object in `src/data/db-ui-migration-map.ts` — the Single Source of Truth. The scanner imports `migrationData` directly (synchronous, no caching needed) and performs lookups against `migrationData.components`, `migrationData.colors`, and `migrationData.icons`.
+
+**Removed:** `parseComponentMap`, `parseColorMap`, `parseIconMap`, async caching logic, and the `.md` files that served as data sources for the scanner.
+
+### ADR-5: Static Visual Assets (no build-time or runtime image processing)
+
+**Status:** Implemented (May 2026)
+
+**Problem:** The previous approach used `sharp` as a devDependency to downsample source PNGs at build time (`scripts/build-visuals.ts`). This added a heavy native C++ dependency to the build toolchain, slowed down prebuild, and complicated CI environments with restricted network access.
+
+**Decision:** Pre-optimised JPEG files are committed directly to `assets/visuals/` in the repository. No build-time image processing step exists. The `sharp` dependency has been removed entirely. At runtime, `tools/visuals.ts` reads the static JPEGs via `fs.readFile` and returns Base64-encoded MCP image blocks.
+
+**Removed:** `scripts/build-visuals.ts`, `src/data/visuals-source/` (original PNGs), `sharp` devDependency.
 
 ## Prebuild Pipeline
 
@@ -128,23 +142,27 @@ NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monore
 "build": "node scripts/prebuild.ts && node esbuild.js"
 ```
 
-The prebuild script (native TypeScript, Node 24) copies assets for standalone (npx) operation:
+The prebuild script (native TypeScript, Node 24) is the central orchestrator that prepares all assets and metadata for standalone (npx) operation:
 
 ```text
 prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
-prebuild:tokens-dir     → mkdir -p assets/tokens/
-prebuild:token-defaults → cpr @db-ux/db-theme/.../_default_variables.scss → assets/tokens/db-variables.scss
-prebuild:token-density  → cpr foundations/.../density/classes/all.css → assets/tokens/ (soft-fail: build artifact)
+prebuild:tokens         → parse CSS custom properties from @db-ux/db-theme/_default_variables.scss
+                          + foundations/build/density/classes/all.css → assets/tokens/tokens.json
+                          (internal --db-base-* tokens are filtered out to prevent LLM misuse)
+prebuild:manifest       → build-manifest.ts → src/manifest.json
+                          (component metadata, examples, icons, tokens, docs, migration guides)
 ```
+
+After prebuild completes, `esbuild.js` performs only the final bundling step (`src/index.ts → dist/index.js`).
 
 **Hard vs. soft failures:**
 
 - Migration docs and DB theme tokens **must** exist → hard error (`throw new Error`)
-- Density CSS is a build artifact from foundations → soft warning (may not exist before `npm run build` in foundations)
+- Density CSS is a build artifact from foundations → soft warning (tokens.json will be incomplete but valid)
 
 The `"files"` array in `package.json` includes `"assets"`, so all prebuild outputs are shipped with the npm package.
 
-**⚠️ Build artifacts in `assets/migration/` and `assets/tokens/` must NEVER be committed to Git.** The `.gitignore` excludes their contents while preserving the directories via `.gitkeep`.
+**⚠️ Build artifacts in `assets/migration/` and `assets/tokens/` must NEVER be committed to Git.** The `.gitignore` excludes their contents while preserving the directories via `.gitkeep`. The `assets/visuals/` directory contains pre-optimised static JPEGs that **are** committed to Git.
 
 ## Critical Development Rules
 
@@ -215,20 +233,22 @@ During development inside the monorepo, Node 24 runs TypeScript natively:
 
 ### Tools (LLM-callable functions)
 
-| Tool                           | Description                                                                                                                                                                      |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available component names                                                                                                                                            |
-| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                               |
-| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                         |
-| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                              |
-| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                 |
-| `list_design_token_categories` | Returns all available design token categories (incl. `elevation`)                                                                                                                |
-| `get_design_tokens`            | Returns CSS custom properties for a token category. For spacing/elevation/density: compiled primitive values. For colors/typography/animation/transitions: SCSS declarations.    |
-| `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                               |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                      |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                  |
-| `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                            |
-| `scan_v2_migration`            | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating. |
+| Tool                           | Description                                                                                                                                                                                                            |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available component names                                                                                                                                                                                  |
+| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                                                                     |
+| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                                                               |
+| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                                                                    |
+| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                                                       |
+| `list_design_token_categories` | Returns all available design token categories (incl. `elevation`)                                                                                                                                                      |
+| `get_design_tokens`            | Returns CSS custom properties for a token category. Reads from structured `assets/tokens/tokens.json` (prebuild-generated). Falls back to SCSS from manifest for categories not in JSON (e.g. animation, transitions). |
+| `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                                                                     |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                                                            |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                        |
+| `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                                                                  |
+| `scan_v2_migration`            | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.                                       |
+| `list_visuals`                 | Returns all available visual reference names (e.g. dashboard, form, table).                                                                                                                                            |
+| `get_visual_reference`         | Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a Base64-encoded MCP image block. No native dependencies at runtime.                                                                      |
 
 ### Manifest (embedded data)
 
@@ -245,7 +265,8 @@ At build time, `build-manifest.ts` collects all component metadata and example s
 **What does NOT go into the manifest:**
 
 - ADRs, research docs, `.vitepress` internals
-- Compiled token files for spacing/elevation/density (read at runtime via `TOKEN_COMPILED_FILES`)
+- Structured `assets/tokens/tokens.json` (prebuild-generated, read separately at runtime)
+- Migration scanner data (`src/data/db-ui-migration-map.ts` — compiled into the bundle, not the manifest)
 
 ## Development
 

@@ -50,6 +50,7 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 });
 
 const { resolveSafePath } = await import('../utils/index.js');
+const { resetTokensCache } = await import('../tools/tokens.js');
 const {
 	handleListComponents,
 	handleGetComponentDetails,
@@ -60,7 +61,9 @@ const {
 	handleGetExampleCode,
 	handleDocsSearch,
 	handleListMigrationGuides,
-	handleGetMigrationGuide
+	handleGetMigrationGuide,
+	handleListVisuals,
+	handleGetVisualReference
 } = await import('../tools/index.js');
 const {
 	handleScaffoldPagePrompt,
@@ -297,6 +300,7 @@ describe('handleGetDesignTokens', () => {
 		const scss =
 			'--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
 		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: scss })));
+		resetTokensCache({}); // Disable JSON lookups → force manifest fallback
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
 
@@ -307,6 +311,7 @@ describe('handleGetDesignTokens', () => {
 
 	it('returns an error for an unknown category', async () => {
 		resetManifestCache(JSON.parse(makeManifest()));
+		resetTokensCache({}); // Disable JSON lookups
 
 		const result = await handleGetDesignTokens({
 			category: 'nonexistent-category'
@@ -801,21 +806,30 @@ describe('handleAuditAccessibilityPrompt', () => {
 	});
 });
 
+import { platform } from 'node:os';
+import { resolve } from 'node:path';
+
 // ---------------------------------------------------------------------------
 // resolveSafePath — unit tests for path traversal protection
 // ---------------------------------------------------------------------------
 describe('resolveSafePath', () => {
-	const BASE = '/mock/base/dir';
+	// Use a base that resolves consistently on both Windows and Unix
+	const BASE = resolve('/mock/base/dir').replaceAll('\\', '/');
+	const normalise = (p: string) => p.replaceAll('\\', '/');
 
 	describe('valid paths', () => {
 		it('resolves a normal nested path inside the base', () => {
 			expect(
-				resolveSafePath(BASE, 'button/examples/variant.example.tsx')
+				normalise(
+					resolveSafePath(BASE, 'button/examples/variant.example.tsx')
+				)
 			).toBe(`${BASE}/button/examples/variant.example.tsx`);
 		});
 
 		it('resolves a single filename inside the base', () => {
-			expect(resolveSafePath(BASE, 'button')).toBe(`${BASE}/button`);
+			expect(normalise(resolveSafePath(BASE, 'button'))).toBe(
+				`${BASE}/button`
+			);
 		});
 	});
 
@@ -866,16 +880,27 @@ describe('resolveSafePath', () => {
 
 	describe('absolute path injection', () => {
 		it('rejects Unix absolute path /var/log/syslog', () => {
+			// On Windows /var/log/syslog resolves within the current drive,
+			// which may or may not be inside BASE — skip on Windows.
+			if (platform() === 'win32') return;
 			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow(
 				'Path traversal detected'
 			);
 		});
 
-		// On Unix, backslashes are literal filename characters — resolves safely inside base.
-		it('treats Windows-style path as a literal subdirectory on Unix', () => {
-			expect(
-				resolveSafePath(BASE, 'C:\\Windows\\System32').startsWith(BASE)
-			).toBe(true);
+		// On Windows C:\path is absolute and escapes the base — throws.
+		// On Unix backslashes are literal filename chars — resolves inside base.
+		it('handles Windows-style path correctly per platform', () => {
+			const input = 'C:\\Windows\\System32';
+			if (process.platform === 'win32') {
+				expect(() => resolveSafePath(BASE, input)).toThrow(
+					'Path traversal detected'
+				);
+			} else {
+				expect(resolveSafePath(BASE, input).startsWith(BASE)).toBe(
+					true
+				);
+			}
 		});
 	});
 });
@@ -1001,7 +1026,7 @@ describe('handleMigrateComponentPrompt', () => {
 		);
 	});
 
-	it('mentions get_component_visual as optional visual validation in Step 2', () => {
+	it('mentions get_visual_reference as optional visual validation in Step 2', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<div class="layout">Content</div>',
 			source_context: 'native-html',
@@ -1009,7 +1034,7 @@ describe('handleMigrateComponentPrompt', () => {
 		});
 
 		const text = result.messages[0].content.text;
-		expect(text).toContain('get_component_visual');
+		expect(text).toContain('get_visual_reference');
 		expect(text).toContain('OPTIONAL');
 	});
 
@@ -1050,7 +1075,6 @@ describe('handleVerifyMigratedCode', () => {
 // ---------------------------------------------------------------------------
 describe('handleScanV2Migration', () => {
 	let handleScanV2Migration: (typeof import('../tools/scanner.js'))['handleScanV2Migration'];
-	let resetScannerCache: (typeof import('../tools/scanner.js'))['resetScannerCache'];
 
 	/** Creates a temp file inside process.cwd() and returns its path. */
 	function writeCwdTemp(name: string, content: string): string {
@@ -1064,30 +1088,6 @@ describe('handleScanV2Migration', () => {
 	beforeEach(async () => {
 		const mod = await import('../tools/scanner.js');
 		handleScanV2Migration = mod.handleScanV2Migration;
-		resetScannerCache = mod.resetScannerCache;
-
-		// Reset scanner cache so maps are re-parsed from fresh manifest
-		resetScannerCache();
-
-		// Reset manifest with migration guides so the scanner can build its maps
-		resetManifestCache(
-			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
-						'component-migration':
-							'**button** — `elm-button`->`db-button`. **card** — `cmp-card`->`db-card`.',
-						'color-migration':
-							'| `db-color-red-500` | `--db-brand-bg-inverted` | `--db-brand-on-bg` |',
-						'icon-migration':
-							'`account`→`person`, `search`→`magnifying_glass`'
-					}
-				)
-			)
-		);
 	});
 
 	it('detects v2 component tags and returns suggestions', async () => {
@@ -1124,8 +1124,12 @@ describe('handleScanV2Migration', () => {
 
 			expect(output).toContain('db-color-red-500');
 			expect(output).toContain('"type": "color"');
-			expect(output).toContain('--db-brand-bg-inverted');
-			expect(output).toContain('--db-brand-on-bg');
+			expect(output).toContain(
+				'--db-brand-bg-inverted-contrast-low-default'
+			);
+			expect(output).toContain(
+				'--db-brand-on-bg-basic-emphasis-70-default'
+			);
 		} finally {
 			unlinkSync(tmp);
 		}
@@ -1215,40 +1219,6 @@ describe('handleScanV2Migration', () => {
 		}
 	});
 
-	it('falls back to legacy db-ui- prefixed guide keys', async () => {
-		// Reset scanner cache to force re-parsing with new manifest
-		resetScannerCache();
-
-		// Simulate old manifest format with db-ui- prefix
-		resetManifestCache(
-			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
-						'db-ui-component-migration':
-							'**toggle** — `elm-toggle`->`db-switch`.'
-					}
-				)
-			)
-		);
-
-		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp('legacy', '<elm-toggle>Dark</elm-toggle>');
-
-		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
-			const output = text(result.content[0]);
-
-			expect(output).toContain('elm-toggle');
-			expect(output).toContain('"suggestion": "db-switch"');
-		} finally {
-			unlinkSync(tmp);
-		}
-	});
-
 	// --- Security tests ---
 
 	it('🔒 rejects file paths outside workspace (path traversal)', async () => {
@@ -1265,5 +1235,91 @@ describe('handleScanV2Migration', () => {
 		});
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('Path traversal');
+	});
+});
+
+// ---------------------------------------------------------------------------
+// list_visuals
+// ---------------------------------------------------------------------------
+describe('handleListVisuals', () => {
+	it('returns an array of available visual names', async () => {
+		const result = await handleListVisuals();
+
+		expect(result.isError).toBeUndefined();
+		const visuals: string[] = JSON.parse(text(result.content[0]));
+		expect(Array.isArray(visuals)).toBe(true);
+		// prebuild generates these from src/data/visuals-source/
+		expect(visuals).toContain('dashboard');
+		expect(visuals).toContain('form');
+		expect(visuals).toContain('table');
+		expect(visuals).toContain('landingpage');
+	});
+});
+
+// ---------------------------------------------------------------------------
+// get_visual_reference
+// ---------------------------------------------------------------------------
+describe('handleGetVisualReference', () => {
+	it('returns a Base64 image block for an existing visual', async () => {
+		const result = await handleGetVisualReference({ name: 'dashboard' });
+
+		expect(result.isError).toBeUndefined();
+		expect(result.content).toHaveLength(2);
+
+		// First block: image
+		const imgBlock = result.content[0] as {
+			type: string;
+			data: string;
+			mimeType: string;
+		};
+		expect(imgBlock.type).toBe('image');
+		expect(imgBlock.mimeType).toBe('image/jpeg');
+		expect(typeof imgBlock.data).toBe('string');
+		expect(imgBlock.data.length).toBeGreaterThan(100);
+
+		// Validate Base64 is decodable and starts with JPEG magic bytes
+		const buffer = Buffer.from(imgBlock.data, 'base64');
+		expect(buffer[0]).toBe(0xff);
+		expect(buffer[1]).toBe(0xd8);
+		expect(buffer[2]).toBe(0xff);
+
+		// Second block: text description
+		const txtBlock = result.content[1] as { type: string; text: string };
+		expect(txtBlock.type).toBe('text');
+		expect(txtBlock.text).toContain('dashboard');
+	});
+
+	it('returns an error for a non-existent visual', async () => {
+		const result = await handleGetVisualReference({
+			name: 'nonexistent-image-xyz'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('nonexistent-image-xyz');
+		expect(text(result.content[0])).toContain('No visual found');
+	});
+
+	it('lists available visuals in the error message', async () => {
+		const result = await handleGetVisualReference({
+			name: 'does-not-exist'
+		});
+
+		expect(result.isError).toBe(true);
+		const errorText = text(result.content[0]);
+		// Error should mention at least one available visual
+		expect(errorText).toMatch(/dashboard|form|table|landingpage/);
+	});
+
+	it('does not import sharp at runtime (no native dependencies)', async () => {
+		// Verify that visuals.ts does not contain any sharp import
+		const { readFileSync } = await import('node:fs');
+		const { resolve } = await import('node:path');
+		const source = readFileSync(
+			resolve(import.meta.dirname, '../tools/visuals.ts'),
+			'utf-8'
+		);
+		expect(source).not.toContain("from 'sharp'");
+		expect(source).not.toContain('import sharp');
+		expect(source).not.toContain("require('sharp')");
 	});
 });

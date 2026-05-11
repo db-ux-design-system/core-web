@@ -54,7 +54,7 @@ You MUST follow this exact workflow using your MCP tools BEFORE writing any code
    b. Execute 'get_design_tokens' for every category you need (e.g. "colors", "spacing", "typography"). Use only the returned CSS custom properties (--db-*) — never hardcode values.
    c. If any icon prop is required, execute 'list_icons' and copy the exact name from the returned array.
 
-5. OPTIONAL — VISUAL VALIDATION: If you are uncertain about the visual structure, z-index stacking, or spatial hierarchy of any component or layout, call 'get_component_visual' with the component or layout name. This returns a downsampled reference screenshot. Use sparingly — only when textual docs are insufficient.
+5. OPTIONAL — VISUAL VALIDATION: If you are uncertain about the visual structure, z-index stacking, or spatial hierarchy of any component or layout, call 'get_visual_reference' with the component or layout name. This returns a downsampled reference screenshot. Use sparingly — only when textual docs are insufficient.
 
 Native HTML replacement rules (enforce strictly):
 - <button>      → DBButton

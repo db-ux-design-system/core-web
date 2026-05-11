@@ -205,7 +205,7 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
  * and docs, then writes the result to src/manifest.json.
  * Calls process.exit(1) if any component failed to process.
  */
-async function buildManifest() {
+export async function buildManifest() {
 	const componentEntries = await readdir(COMPONENTS_DIR, {
 		withFileTypes: true
 	});
@@ -253,7 +253,7 @@ async function buildManifest() {
 	if (hasErrors) process.exit(1);
 }
 
-// Only run when executed directly (not when imported by tests)
-if (!process.env.VITEST) {
+// Only run when executed directly (not when imported by prebuild.ts or tests)
+if (!process.env.VITEST && process.argv[1]?.endsWith('build-manifest.ts')) {
 	await buildManifest();
 }

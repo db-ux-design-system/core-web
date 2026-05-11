@@ -16,3 +16,4 @@ export {
 	handleListDesignTokenCategories
 } from './tokens.js';
 export { handleVerifyMigratedCode } from './verify.js';
+export { handleGetVisualReference, handleListVisuals } from './visuals.js';

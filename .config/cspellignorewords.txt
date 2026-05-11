@@ -187,5 +187,13 @@ regioguide
 rollator
 sepa
 stepless
+steppless
 violett
 peaceiris
+xlarge
+pnpm
+categorised
+Categorises
+categorise
+optimised
+optimise

@@ -19,10 +19,12 @@ import {
 	handleGetDesignTokens,
 	handleGetExampleCode,
 	handleGetMigrationGuide,
+	handleGetVisualReference,
 	handleListComponents,
 	handleListDesignTokenCategories,
 	handleListIcons,
 	handleListMigrationGuides,
+	handleListVisuals,
 	handleScanV2Migration,
 	handleVerifyMigratedCode
 } from './tools';
@@ -33,10 +35,12 @@ import {
 	getDesignTokensSchema,
 	getExampleCodeSchema,
 	getMigrationGuideSchema,
+	getVisualReferenceSchema,
 	listComponentsSchema,
 	listDesignTokenCategoriesSchema,
 	listIconsSchema,
 	listMigrationGuidesSchema,
+	listVisualsSchema,
 	scanV2MigrationSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
@@ -48,10 +52,12 @@ export {
 	handleGetDesignTokens,
 	handleGetExampleCode,
 	handleGetMigrationGuide,
+	handleGetVisualReference,
 	handleListComponents,
 	handleListDesignTokenCategories,
 	handleListIcons,
 	handleListMigrationGuides,
+	handleListVisuals,
 	handleScanV2Migration,
 	handleVerifyMigratedCode
 } from './tools/index.js';
@@ -109,6 +115,12 @@ server.registerTool(
 	'scan_v2_migration',
 	scanV2MigrationSchema,
 	handleScanV2Migration
+);
+server.registerTool('list_visuals', listVisualsSchema, handleListVisuals);
+server.registerTool(
+	'get_visual_reference',
+	getVisualReferenceSchema,
+	handleGetVisualReference
 );
 
 // Prompts

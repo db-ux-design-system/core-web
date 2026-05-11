@@ -139,3 +139,25 @@ export const scanV2MigrationSchema = {
 			)
 	}
 };
+
+export const listVisualsSchema = {
+	description:
+		'Returns all available visual reference names (e.g. dashboard, form, table). ' +
+		'Call this first to discover which visuals exist before requesting one.'
+};
+
+export const getVisualReferenceSchema = {
+	description:
+		'Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a ' +
+		'Base64-encoded image block. Use this when you need visual context for complex layouts, ' +
+		'z-index reasoning, or verifying visual hierarchies. Call list_visuals first to see ' +
+		'available names.',
+	inputSchema: {
+		name: z
+			.string()
+			.max(100)
+			.describe(
+				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names."
+			)
+	}
+};

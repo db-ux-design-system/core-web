@@ -183,6 +183,11 @@
 	position: fixed;
 	overflow: hidden auto;
 	inset-inline-start: variables.$db-spacing-fixed-xl;
+
+	.db-drawer-container[data-direction="left"] & {
+		inset-inline: auto variables.$db-spacing-fixed-xl;
+	}
+
 	inset-block: calc(#{component.$min-mobile-header-height})
 		calc(#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2);
 }

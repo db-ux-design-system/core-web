@@ -20,7 +20,7 @@ const App = () => (
 
 		{/* With Sub-Navigation */}
 		<DBNavigationItem
-			slotSubNavigation={
+			subNavigation={
 				<>
 					<DBNavigationItem>
 						<Link to="mypath">Sub-Navi-Item 1</Link>

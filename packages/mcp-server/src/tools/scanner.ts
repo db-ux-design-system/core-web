@@ -1,14 +1,8 @@
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
-import {
-	type ToolResult,
-	err,
-	findGuide,
-	MAX_JSON_OUTPUT,
-	truncate
-} from '../utils';
-import { getManifest } from '../utils/manifest';
+import { migrationData } from '../data/db-ui-migration-map';
+import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
 const MAX_SCAN_SIZE = 5 * 1024 * 1024;
@@ -23,84 +17,6 @@ interface ScanFinding {
 	found: string;
 	context: string;
 	suggestion?: string;
-}
-
-// ---------------------------------------------------------------------------
-// Migration-Map Builders (parsed once, cached)
-// ---------------------------------------------------------------------------
-
-let componentMap: Map<string, string> | undefined;
-let colorMap: Map<string, { bg: string; fg: string }> | undefined;
-let iconMap: Map<string, string> | undefined;
-
-/**
- * Resets the cached migration maps. Used in tests to force re-parsing
- * after switching to a different manifest.
- */
-export function resetScannerCache(): void {
-	componentMap = undefined;
-	colorMap = undefined;
-	iconMap = undefined;
-}
-
-/**
- * Parses `component-migration.md` into a Map<oldClass, newClass>.
- * Extracts patterns like `cmp-card`->`db-card` or `elm-button`->`db-button`.
- */
-function parseComponentMap(content: string): Map<string, string> {
-	const map = new Map<string, string>();
-	// Match patterns: `old-tag`->`new-tag`
-	for (const match of content.matchAll(
-		/`((?:cmp|elm|rea)-[\w-]+)`\s*->\s*`(db-[\w-]+)`/g
-	)) {
-		map.set(match[1], match[2]);
-	}
-	return map;
-}
-
-/**
- * Parses `color-migration.md` into a Map<oldColor, {bg, fg}>.
- * Supports GFM table format: | `db-color-xxx` | `--db-bg-token` | `--db-fg-token` |
- */
-function parseColorMap(
-	content: string
-): Map<string, { bg: string; fg: string }> {
-	const map = new Map<string, { bg: string; fg: string }>();
-	for (const match of content.matchAll(
-		/\|\s*`(db-color-[\w-]+)`\s*\|\s*`([^`]+)`\s*\|\s*`([^`]+)`\s*\|/g
-	)) {
-		map.set(match[1], { bg: match[2], fg: match[3] });
-	}
-	return map;
-}
-
-/**
- * Parses `icon-migration.md` into a Map<oldIcon, newIcon>.
- * Format: `old`→`new`, `old`→`new`, ...
- */
-function parseIconMap(content: string): Map<string, string> {
-	const map = new Map<string, string>();
-	for (const match of content.matchAll(/`([\w-]+)`→`([\w-]+)`/g)) {
-		map.set(match[1], match[2]);
-	}
-	return map;
-}
-
-/**
- * Lazily builds all migration lookup maps from the manifest.
- * Parsed once, then cached for subsequent calls.
- */
-async function ensureMaps(): Promise<void> {
-	if (componentMap && colorMap && iconMap) return;
-
-	const manifest = await getManifest();
-	const guides = manifest.migrationGuides ?? {};
-
-	componentMap = parseComponentMap(
-		findGuide(guides, 'component-migration') ?? ''
-	);
-	colorMap = parseColorMap(findGuide(guides, 'color-migration') ?? '');
-	iconMap = parseIconMap(findGuide(guides, 'icon-migration') ?? '');
 }
 
 // ---------------------------------------------------------------------------
@@ -132,7 +48,7 @@ const RE_ICON_ATTR =
 
 /**
  * Scans a single line for all v2 migration patterns.
- * Returns findings with deterministic suggestions from the migration guides.
+ * Returns findings with deterministic suggestions from the migration data.
  */
 function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const findings: ScanFinding[] = [];
@@ -147,7 +63,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			found: old,
 			context: ctx.trim()
 		};
-		const replacement = componentMap?.get(old);
+		const replacement = migrationData.components[old];
 		if (replacement) {
 			finding.suggestion = replacement;
 		}
@@ -177,7 +93,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			found: old,
 			context: ctx.trim()
 		};
-		const replacement = colorMap?.get(old);
+		const replacement = migrationData.colors[old];
 		if (replacement) {
 			finding.suggestion = `BG: ${replacement.bg}${replacement.fg ? `, FG: ${replacement.fg}` : ''}`;
 		}
@@ -188,7 +104,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	for (const match of line.matchAll(RE_ICON_ATTR)) {
 		const old = match[1];
 		// Only flag if it's actually a known v2 icon name
-		const replacement = iconMap?.get(old);
+		const replacement = migrationData.icons[old];
 		if (replacement && replacement !== old) {
 			findings.push({
 				line: lineNumber,
@@ -213,10 +129,10 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  * Deterministically scans for:
  * - v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*)
  * - v2 color tokens (db-color-*)
- * - v2 icon names (cross-referenced against the icon migration guide)
+ * - v2 icon names (cross-referenced against the icon migration data)
  *
  * Returns a JSON report with line numbers, findings, and migration suggestions
- * resolved from docs/migration/db-ui/*.md — no LLM guessing needed.
+ * resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
  */
 export async function handleScanV2Migration({
 	filePath
@@ -252,9 +168,6 @@ export async function handleScanV2Migration({
 			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
 		);
 	}
-
-	// Build migration maps (lazy, cached)
-	await ensureMaps();
 
 	// Read and scan
 	const content = await readFile(absolutePath, 'utf-8');
