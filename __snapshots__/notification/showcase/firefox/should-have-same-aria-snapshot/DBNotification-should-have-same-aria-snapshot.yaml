@@ -40,7 +40,9 @@
   - article: "False"
   - link "Show Timestamp"
   - article: (Default) False
-  - article: True 10 min ago
+  - article:
+    - text: "True"
+    - time: 10 min ago
   - link "Examples - VariantDocked":
   - article: Text
   - article: Text & Icon
@@ -97,7 +99,8 @@
     - text: Text & Textlink Block
     - link "Textlink"
   - article:
-    - text: Text & Textlink Block & Timed 10 min ago
+    - text: Text & Textlink Block & Timed
+    - time: 10 min ago
     - link "Textlink"
   - article:
     - text: Headline Text & Headline & Textlink Inline & Closeable
@@ -107,13 +110,18 @@
     - text: Headline Text & Icon & Headline & Textlink Inline & Closeable
     - link "Textlink"
     - button "Close"
-  - article: Text & Timed 10 min ago
   - article:
-    - text: Text & Timed & Closeable 10 min ago
+    - text: Text & Timed
+    - time: 10 min ago
+  - article:
+    - text: Text & Timed & Closeable
+    - time: 10 min ago
     - button "Close"
   - article:
-    - text: Headline Text & Headline & Timed & Closeable 10 min ago
+    - text: Headline Text & Headline & Timed & Closeable
+    - time: 10 min ago
     - button "Close"
   - article:
-    - text: Headline Text & Icon & Headline & Timed & Closeable 10 min ago
+    - text: Headline Text & Icon & Headline & Timed & Closeable
+    - time: 10 min ago
     - button "Close"
