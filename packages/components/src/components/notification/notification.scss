@@ -131,7 +131,7 @@
 	// If an inline link is present, it takes precedence over the timestamp
 	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
 	// Progressive enhancement - timestamps gracefully shown in older browsers
-	&[data-link-variant="inline"]:has(> a) {
+	&[data-link-variant="inline"]:has(> a, > db-link) {
 		> [data-area="timestamp"] {
 			display: none;
 		}
