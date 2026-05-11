@@ -69,7 +69,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			</div>
 			<Show
 				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
-				<time data-area="timestamp" datetime={props.timestampDatetime}>
+				<time data-area="timestamp" dateTime={props.timestampDatetime}>
 					{props.timestamp}
 				</time>
 			</Show>
