@@ -29,6 +29,10 @@
 		}
 	}
 
+	&[data-wrap="false"] {
+		white-space: nowrap;
+	}
+
 	@each $name, $colors in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);

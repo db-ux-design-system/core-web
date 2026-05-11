@@ -1421,9 +1421,6 @@
   - text: Custom Search Filter
   - group:
     - article:
-      - text: Search
-      - searchbox "Search"
-      - status
       - radiogroup "id-10aasds4-Custom Search Filter":
         - list:
           - listitem:

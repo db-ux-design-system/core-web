@@ -10,17 +10,22 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "npm-run-all nuxt:prepare build:*",
+    "build": "pnpm run nuxt:prepare && pnpm run build:nuxt",
     "build:nuxt": "nuxt build",
-    "dev": "npm-run-all nuxt:prepare dev:*",
+    "dev": "pnpm run nuxt:prepare && pnpm run dev:nuxt",
     "dev:nuxt": "nuxt dev --open",
     "generate": "nuxt generate",
     "nuxt:prepare": "nuxt prepare",
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "nuxt": "4.2.2",
-    "vue": "3.5.27",
-    "vue-router": "4.6.4"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*",
+    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.9.0",
+    "nuxt": "4.4.4",
+    "vue": "3.5.34",
+    "vue-router": "5.0.6"
   }
 }

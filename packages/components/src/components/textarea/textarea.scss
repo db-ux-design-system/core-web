@@ -74,8 +74,8 @@
 
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 				z-index: 1;
-				border-block-end: none;
-				border-inline-end: none;
+				border-block-end: 0;
+				border-inline-end: 0;
 			}
 
 			&:has(textarea:read-only)::after {

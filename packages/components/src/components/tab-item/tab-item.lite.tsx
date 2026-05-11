@@ -141,7 +141,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
-				htmlFor={props.id}
+				htmlFor={props.id ?? props.propOverrides?.id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
 				data-show-icon={getBooleanAsString(
@@ -159,7 +159,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					type="radio"
 					role="tab"
 					name={state._name}
-					id={props.id}
+					id={props.id ?? props.propOverrides?.id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>
 

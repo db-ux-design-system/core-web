@@ -64,7 +64,7 @@ export default function DBHeader(props: DBHeaderProps) {
 		<header
 			ref={_ref}
 			class={cls('db-header', props.className)}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer

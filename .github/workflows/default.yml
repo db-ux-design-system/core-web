@@ -37,20 +37,13 @@ concurrency:
 
 jobs:
   init:
-    # Skip the entire pipeline for changeset release PRs as they only contain version bumps
-    if: |
-      !(
-        github.event_name == 'pull_request' &&
-        startsWith(github.head_ref, 'changeset-release/') &&
-        github.event.pull_request.head.repo.full_name == github.repository &&
-        github.event.pull_request.user.login == 'dbux-auto-merge-pr[bot]'
-      )
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
     with:
       release: ${{ github.event_name == 'release' }}
 
   lint:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-lint-self-healing.yml
     needs: [init]
     secrets: inherit
@@ -62,8 +55,10 @@ jobs:
     needs: [lint]
 
   build-packages:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-build-packages:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-packages.result == 'failure' }}
@@ -72,24 +67,29 @@ jobs:
     needs: [build-packages]
 
   build-stories:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-stories.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-build-stories:
-    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-stories]
 
   init-playwright:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-init-playwright.yml
     needs: [init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
+    secrets: inherit
 
   cancel-on-failure-build-outputs:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-outputs.result == 'failure' }}
@@ -97,15 +97,22 @@ jobs:
     secrets: inherit
     needs: [build-outputs]
 
+  test-vite-plugin:
+    uses: ./.github/workflows/02-vite-plugin-test.yml
+    needs: [build-outputs]
+    secrets: inherit
+
   test-components:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -248,6 +255,7 @@ jobs:
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
@@ -256,6 +264,7 @@ jobs:
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
@@ -264,6 +273,7 @@ jobs:
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-react, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
@@ -272,6 +282,7 @@ jobs:
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
@@ -280,6 +291,7 @@ jobs:
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, init, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}
@@ -287,6 +299,7 @@ jobs:
   regenerate-snapshots-components:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-components.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: components
@@ -295,6 +308,7 @@ jobs:
   regenerate-snapshots-foundations:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: foundations
@@ -303,6 +317,7 @@ jobs:
   regenerate-snapshots-patternhub:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       path: ${{ needs.init.outputs.baseUrl }}
@@ -318,6 +333,7 @@ jobs:
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -330,6 +346,7 @@ jobs:
         needs.test-showcase-stencil.result == 'failure'
       )
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: showcases
@@ -372,7 +389,33 @@ jobs:
       - name: 🎉 Checks done
         env:
           IS_RELEASE: ${{ github.event_name == 'release' }}
+          IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
+          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
+          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
+          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
+          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
+          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
+          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
+          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
+          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
+          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
+          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
+          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
+          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
+          echo "resultBuildOutputs: $resultBuildOutputs"
+          echo "resultTestPackages: $resultTestPackages"
+          echo "resultTestFoundations: $resultTestFoundations"
+          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
+          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
+          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
+          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
+          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
+          echo "resultTestScreenReader: $resultTestScreenReader"
+          if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
+            echo "🎉 Changeset release PR - skipping checks."
+            exit 0
+          fi
           resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
           resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
           resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
@@ -386,6 +429,7 @@ jobs:
           resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
@@ -407,6 +451,7 @@ jobs:
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
+             [[ $resultTestVitePlugin == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
@@ -438,13 +483,15 @@ jobs:
         build-showcase-patternhub,
         build-outputs,
         test-components,
+        test-vite-plugin,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-screen-reader
+        test-screen-reader,
+        init
       ]
 
   deploy:
@@ -452,9 +499,11 @@ jobs:
     if: |
       ${{
       !cancelled() && github.actor != 'dependabot[bot]' &&
-      (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system')
+      (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
+      needs.init.outputs.isChangesetRelease != 'true'
       }}
     needs: [checks-done, init]
+    secrets: inherit
     with:
       release: ${{ needs.init.outputs.release }}
       preRelease: ${{ needs.init.outputs.preRelease }}

@@ -39,7 +39,7 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-tag', props.className)}
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}

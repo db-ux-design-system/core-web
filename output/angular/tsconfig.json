@@ -22,6 +22,7 @@
 		"target": "es2017",
 		"module": "es2020",
 		"lib": ["es2022", "dom"],
+		"types": ["node"],
 		"declarationMap": false,
 		"allowSyntheticDefaultImports": true,
 		"useDefineForClassFields": false,
