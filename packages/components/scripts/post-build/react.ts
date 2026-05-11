@@ -1,6 +1,6 @@
 import components, { Overwrite } from './components';
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
@@ -93,13 +93,14 @@ const overwriteFragmentMap = (input: string) => {
  * Invoker Commands API type augmentation for React.
  * Adds the `command` and `commandfor` HTML attributes to React's ButtonHTMLAttributes
  * until React's type definitions natively support them.
- * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API 
+ * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
  * TODO: This augmentation can be removed once React's type definitions natively support these attributes (https://github.com/search?q=repo%3Afacebook%2Freact+commandfor&type=pullrequests)
  */
 const writeInvokerCommandsTypes = (tmp?: boolean) => {
-	const outputFolder = `../../${tmp ? 'output/tmp' : 'output'}/react/src`;
-	const typesFilePath = `${outputFolder}/invoker-commands.ts`;
-	const content = `/**
+	const outputFolder = `../../${tmp ? 'output/tmp' : 'output'}/react`;
+	const srcFolder = `${outputFolder}/src`;
+	const content = `
+/**
  * Type augmentation for Invoker Commands API
  * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
  *
@@ -109,8 +110,6 @@ const writeInvokerCommandsTypes = (tmp?: boolean) => {
  * TODO: This augmentation can be removed once React's type definitions
  * natively support these attributes.
  */
-import "react";
-
 declare module "react" {
 	interface ButtonHTMLAttributes<T> {
 		command?: string | undefined;
@@ -118,15 +117,35 @@ declare module "react" {
 	}
 }
 `;
-	writeFileSync(typesFilePath, content);
 
-	// Add import to index.ts so the augmentation is included in the build output
-	const indexFilePath = `${outputFolder}/index.ts`;
-	const indexContent = readFileSync(indexFilePath).toString('utf-8');
-	if (!indexContent.includes('invoker-commands')) {
-		writeFileSync(indexFilePath, indexContent + `\nimport './invoker-commands';\n`);
+	for (const filePath of [
+		`${srcFolder}/invoker-commands.ts`,
+		`${srcFolder}/invoker-commands.d.ts`,
+		`${outputFolder}/dist/invoker-commands.js`,
+		`${outputFolder}/dist/invoker-commands.d.ts`,
+		...(tmp
+			? []
+			: [
+					'../../build-outputs/react/dist/invoker-commands.js',
+					'../../build-outputs/react/dist/invoker-commands.d.ts'
+				])
+	]) {
+		rmSync(filePath, { force: true });
 	}
-}; 
+
+	const indexFilePath = `${srcFolder}/index.ts`;
+	let indexContent = readFileSync(indexFilePath).toString('utf-8');
+	indexContent = indexContent.replace(
+		/\nimport(?: type \{\} from)? ['"]\.\/invoker-commands['"];\n?/g,
+		'\n'
+	);
+
+	if (!indexContent.includes('commandfor?: string | undefined;')) {
+		indexContent += content;
+	}
+
+	writeFileSync(indexFilePath, indexContent);
+};
 
 export default (tmp?: boolean) => {
 	try {
