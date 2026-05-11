@@ -807,6 +807,7 @@ export const migrationData: MigrationData = {
 		regioguide: 'regio_guide',
 		reservation: 'reservation',
 		'standing-room': 'standing_room',
+		// cSpell:ignore steppless
 		'steppless-entry': 'stepless_entry',
 		'support-dog': 'support_dog',
 		breakfast: 'breakfast',
