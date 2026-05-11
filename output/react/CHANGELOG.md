@@ -1,5 +1,10 @@
 # @db-ux/react-core-components
 
+## 4.7.3
+
+_version bump_
+
+
 ## 4.7.2
 
 ### Patch Changes

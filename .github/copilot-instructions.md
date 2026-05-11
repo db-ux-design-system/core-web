@@ -277,30 +277,6 @@ If possible, start by writing a test that you could use to verify your solution,
 
 Remember: This is a design system used by Deutsche Bahn applications. Always ensure changes maintain accessibility, consistency, and brand compliance.
 
-## Known Issues and Workarounds
-
-### Installation Issues
-
-- **chromedriver fails**: Use `npm install --ignore-scripts` - this is expected in restricted network environments
-- **Font decoding fails**: Expected with placeholder credentials - does not affect basic development
-
-### Build Issues
-
-- **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
-- **Stencil warnings**: Component prop name conflicts are expected and documented
-
-### Git hook issues
-
-**Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
-
-```bash
-git commit -m "Your commit message" --no-verify
-```
-
-### Network Restrictions
-
-- **Docker registry access**: E2E testing requires Docker and may need proxy configuration
-- **Asset downloads**: DB Theme assets require valid credentials from Deutsche Bahn Marketing Portal
 
 ## General code styles and approaches
 

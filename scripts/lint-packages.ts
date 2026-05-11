@@ -69,7 +69,7 @@ for (const { pkgJson, packagePath, messages, error } of results) {
 
 	if (messages.length > 0) {
 		for (const message of messages) {
-			console.error(`  ${formatMessage(message, pkgJson)}`);
+			console.error(`  ${formatMessage(message, pkgJson!)}`);
 		}
 
 		console.error(`❌ ${name} - Publint found ${messages.length} issue(s)`);
