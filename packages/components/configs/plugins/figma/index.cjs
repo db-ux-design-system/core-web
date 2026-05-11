@@ -1,7 +1,7 @@
 // eslint-disable-next-line unicorn/import-style
-const { join } = require('node:path');
+const { join, dirname } = require('node:path');
 const { env, loadEnvFile } = require('node:process');
-const { writeFileSync } = require('node:fs');
+const { writeFileSync, mkdirSync } = require('node:fs');
 
 const envPath = join(__dirname, '..', '..', '..', '..', '..', '.env');
 
@@ -208,7 +208,7 @@ const buildTemplate = (json, target) => {
 			const ccValueMap =
 				fProp.type === 'boolean'
 					? { False: false, True: true }
-					: fProp.value;
+					: (fProp.value ?? {});
 			const ccValueMapSerialized = escapeUnsafeChars(
 				JSON.stringify(ccValueMap)
 			);
@@ -528,6 +528,7 @@ module.exports = () => ({
 					.split('\\')
 					.pop();
 				try {
+					mkdirSync(dirname(jsonPath), { recursive: true });
 					writeFileSync(
 						jsonPath,
 						getBatchJson({ urls, componentId, templateFileName })
