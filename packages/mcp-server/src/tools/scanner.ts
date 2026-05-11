@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
-import { migrationData } from '../data/migration-map';
+import { migrationData } from '../data/db-ui-migration-map';
 import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
@@ -132,7 +132,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  * - v2 icon names (cross-referenced against the icon migration data)
  *
  * Returns a JSON report with line numbers, findings, and migration suggestions
- * resolved from the statically imported migration-map.ts — no LLM guessing needed.
+ * resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
  */
 export async function handleScanV2Migration({
 	filePath
