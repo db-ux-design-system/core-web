@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["--yes", "@db-ux/mcp-server"]
+		}
+	}
+}
