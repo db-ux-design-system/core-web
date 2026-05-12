@@ -13,7 +13,7 @@ const MAX_SCAN_SIZE = 5 * 1024 * 1024;
 
 interface ScanFinding {
 	line: number;
-	type: 'component' | 'color' | 'icon';
+	type: 'component' | 'color' | 'icon' | 'import';
 	found: string;
 	context: string;
 	suggestion?: string;
@@ -41,6 +41,18 @@ const RE_V2_COLOR = /\b(db-color-[\w-]+)/g;
 /** Matches icon references: icon="xxx" or icon='xxx' or data-icon="xxx" */
 const RE_ICON_ATTR =
 	/(?:icon|data-icon|data-icon-leading|data-icon-trailing|iconName)\s*=\s*["'](\w+)["']/g;
+
+/** Matches v2 npm package imports: @db-ui/react-components, @db-ui/ngx-components, @db-ui/v-components, @db-ui/elements */
+const RE_V2_IMPORT =
+	/['"](@db-ui\/(?:react-components|ngx-components|v-components|elements))['"]/g;
+
+/** Maps v2 package names to their v3 equivalents */
+const V2_PACKAGE_MAP: Record<string, string> = {
+	'@db-ui/react-components': '@db-ux/react-core-components',
+	'@db-ui/ngx-components': '@db-ux/ngx-core-components',
+	'@db-ui/v-components': '@db-ux/v-core-components',
+	'@db-ui/elements': '@db-ux/core-components'
+};
 
 // ---------------------------------------------------------------------------
 // Core Scanner
@@ -114,6 +126,18 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 				suggestion: replacement
 			});
 		}
+	}
+
+	// --- v2 npm package imports (@db-ui/*) ---
+	for (const match of line.matchAll(RE_V2_IMPORT)) {
+		const old = match[1];
+		findings.push({
+			line: lineNumber,
+			type: 'import',
+			found: old,
+			context: ctx.trim(),
+			suggestion: `Replace with ${V2_PACKAGE_MAP[old] ?? '@db-ux/core-components'}. Update all named imports to v3 component names.`
+		});
 	}
 
 	return findings;
@@ -202,6 +226,7 @@ export async function handleScanV2Migration({
 	).length;
 	const colorCount = findings.filter((f) => f.type === 'color').length;
 	const iconCount = findings.filter((f) => f.type === 'icon').length;
+	const importCount = findings.filter((f) => f.type === 'import').length;
 	const uniqueComponents = [
 		...new Set(
 			findings.filter((f) => f.type === 'component').map((f) => f.found)
@@ -214,6 +239,7 @@ export async function handleScanV2Migration({
 		`- ${componentCount} component(s): ${uniqueComponents.join(', ') || 'none'}`,
 		`- ${colorCount} color token(s)`,
 		`- ${iconCount} icon(s)`,
+		`- ${importCount} legacy import(s)`,
 		'',
 		'## Findings',
 		'```json',
