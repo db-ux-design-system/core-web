@@ -1,4 +1,14 @@
 import { execSync } from 'node:child_process';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
+
+try {
+	process.loadEnvFile(join(currentDir, '..', '.env'));
+} catch {
+	/* File doesn't exist, skip */
+}
 
 /**
  * Parses figma connect output and removes fields that vary across environments
@@ -21,5 +31,6 @@ export const getParsedFigmaConnect = (): string => {
 		}
 	}
 
-	return JSON.stringify(parsed, null, 2);
+	const figmaFile = process.env.FIGMA_FILE ?? 'FIGMA_FILE';
+	return JSON.stringify(parsed, null, 2).replaceAll(figmaFile, 'FIGMA_FILE');
 };
