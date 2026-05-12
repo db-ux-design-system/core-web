@@ -46,7 +46,7 @@
     "build-showcases": "pnpm --filter scripts run build-showcases",
     "build-storybooks": "pnpm --filter scripts run build-storybooks",
     "changeset": "changeset",
-    "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts",
+    "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts && prettier --no-error-on-unmatched-pattern **/CHANGELOG.md --write",
     "clean": "git clean -dfx --exclude=.env && node scripts/npx-from-dev-dependencies.mjs husky",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
