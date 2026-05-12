@@ -30,6 +30,7 @@ jobs:
 
       - name: ⚡ Run Test
         env:
+          FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
           pnpm --filter=${{ matrix.target }}-figma run test
