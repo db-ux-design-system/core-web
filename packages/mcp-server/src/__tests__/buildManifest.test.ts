@@ -10,7 +10,7 @@ vi.mock('node:fs/promises', () => ({
 
 const { existsSync } = await import('node:fs');
 const { readFile, writeFile } = await import('node:fs/promises');
-const { processComponent } = await import('../build-manifest.js');
+const { processComponent } = await import('../../scripts/build-manifest.js');
 
 const BASE = '/mock/components';
 const OUTPUT = '/mock/output';
