@@ -1,0 +1,50 @@
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
+
+export type FigmaSelectProps = {
+	label?: string;
+	variant?: string;
+	required?: boolean;
+	showRequiredAsterisk?: boolean;
+	disabled?: boolean;
+	validation?: string;
+	showIcon?: boolean;
+};
+
+const selectProps: Record<string, FigmaProp> = {
+	label: { type: 'string', key: '✏️ Label' },
+	variant: {
+		type: 'enum',
+		key: '💻 Variant',
+		value: { Above: 'above', Floating: 'floating' }
+	},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	disabled: { type: 'boolean', key: 'Disabled' },
+	validation: {
+		type: 'enum',
+		key: 'Validation',
+		value: {
+			'(Def) No Validation': 'no-validation',
+			Valid: 'valid',
+			Invalid: 'invalid'
+		}
+	},
+	showIcon: { type: 'boolean', key: 'Show Icon' }
+};
+
+export const selects: FigmaCodeConnect = {
+	urls: [
+		// Above Empty
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3900:5134',
+		// Above Selected
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3900:25648',
+		// Floating Empty
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:4692',
+		// Floating Selected
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:5527'
+	],
+	props: selectProps
+};
+
+export const aboveSelects = selects;
+export const floatingSelects = selects;

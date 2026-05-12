@@ -23,10 +23,8 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 2. **Install dependencies**:
 
     ```bash
-    pnpm install --ignore-scripts
+    pnpm install
     ```
-
-    **NOTE**: Use the `--ignore-scripts` flag because the chromedriver package attempts to download binaries during installation, which fails in restricted corporate networks (e.g., behind firewalls or proxies). This workaround prevents installation errors in such environments.
 
 ### Build and Test
 
@@ -276,7 +274,6 @@ If possible, start by writing a test that you could use to verify your solution,
 4. **Isolate issue**: Build individual packages using workspace commands
 
 Remember: This is a design system used by Deutsche Bahn applications. Always ensure changes maintain accessibility, consistency, and brand compliance.
-
 
 ## General code styles and approaches
 

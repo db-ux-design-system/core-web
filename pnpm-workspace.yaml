@@ -5,6 +5,7 @@ packages:
   - "storybooks/*"
   - "docs"
   - "scripts"
+  - "figma-code-connect/*"
 
 allowBuilds:
   "@compodoc/compodoc": false

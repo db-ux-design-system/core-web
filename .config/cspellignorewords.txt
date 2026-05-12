@@ -188,7 +188,9 @@ rollator
 sepa
 stepless
 violett
+figd
 peaceiris
+infotexts
 xlarge
 pnpm
 categorised
