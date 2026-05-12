@@ -15,6 +15,7 @@ export const getParsedFigmaConnect = (): string => {
 		delete entry._codeConnectFilePath;
 		delete entry.metadata;
 		delete entry.figmaNode;
+		delete entry.url;
 		if (typeof entry.template === 'string') {
 			entry.template = entry.template.replaceAll('\\u002F', '/');
 		}
