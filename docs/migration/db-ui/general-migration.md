@@ -26,6 +26,18 @@ Do NOT use color tokens for `box-shadow`. Use: `--db-elevation-sm` (subtle/press
 
 Replace all inline `style` attributes, as they bypass theming, density, and dark mode. Follow this strict priority: 1) use component props, 2) use external CSS/SCSS classes with tokens, 3) use inline styles with tokens only as an absolute last resort.
 
+## Icon Font Setup
+
+Icons in v3 are rendered via an icon font. The CSS import from `@db-ux/core-components` includes the icon CSS rules but NOT the `@font-face` declarations. These must be imported separately from the foundations package:
+
+```tsx
+// main.tsx — order matters!
+import "@db-ux/core-foundations/build/styles/icons/rollup.css";
+import "@db-ux/core-components/build/styles/rollup.css";
+```
+
+Without the icons import, icon names will be displayed as plain text instead of symbols.
+
 ## Spacing
 
 Replace hardcoded `px`/`rem` in `padding`, `margin`, `gap`, `inset`, `top`/`right`/`bottom`/`left` with `--db-spacing-fixed-*` tokens. For responsive spacing use `--db-spacing-responsive-*`.

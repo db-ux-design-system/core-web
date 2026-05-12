@@ -30,6 +30,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss
 // index.scss
+@forward "@db-ux/core-foundations/build/styles/icons/rollup"; // Icon-Fonts
 @forward "@db-ux/core-components/build/styles/rollup";
 ```
 
@@ -39,6 +40,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```tsx
 // main.tsx
+import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Icon-Fonts
 import "@db-ux/core-components/build/styles/rollup.css";
 ```
 
