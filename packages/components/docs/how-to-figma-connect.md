@@ -15,17 +15,19 @@ Each component with Figma integration has a `figma/` folder:
 ```text
 src/components/button/figma/
 ├── button.figma.ts                  # Configuration mapping Figma properties to code props
-├── text.button.figma.lite.tsx       # Mitosis component for the "with text" variant
-└── no-text.button.figma.lite.tsx    # Mitosis component for the "no text" variant
+└── button.figma.lite.tsx            # Mitosis component (single file — all variants share the same JSX)
 ```
 
-If all variants share the same JSX structure, a single lite file is enough:
+Some components have multiple Figma component sets with structurally different JSX and require separate lite files per variant:
 
 ```text
-src/components/checkbox/figma/
-├── checkbox.figma.ts
-└── checkbox.figma.lite.tsx
+src/components/badge/figma/
+├── badge.figma.ts
+├── badge.figma.lite.tsx             # Standard badge variant
+└── dot.badge.figma.lite.tsx         # Dot badge variant (different JSX structure)
 ```
+
+Use a **single lite file** when all Figma component sets produce the same JSX (variants only differ in prop values like `size` or `variant`). Use **multiple lite files** when the JSX structure itself differs between sets (e.g. different children or slots).
 
 ## How the Plugin Works
 
@@ -438,7 +440,7 @@ if (showIconLeading) {
 
 > **Do not add the prop to the lite file** — the plugin injects it automatically.
 
-## Merging Variants into One File
+## Single vs Multiple Lite Files
 
 If multiple Figma component sets produce identical JSX (only differing in a prop value like `size`), merge them into a single lite file:
 
@@ -468,7 +470,7 @@ export const checkboxes: FigmaCodeConnect = {
 1. Generate all Figma files via Mitosis:
 
     ```shell
-    npm run generate:figma --workspace=@db-ux/core-components
+    pnpm run generate:figma --workspace=@db-ux/core-components
     ```
 
 2. Check the generated output in `figma-code-connect/react-figma/src/`.
@@ -476,7 +478,7 @@ export const checkboxes: FigmaCodeConnect = {
 3. Run the tests:
 
     ```shell
-    npm run test --workspace=react-figma
+    pnpm run test --workspace=react-figma
     ```
 
 ### Update snapshots
@@ -484,9 +486,9 @@ export const checkboxes: FigmaCodeConnect = {
 After any change to `.figma.ts` or `.figma.lite.tsx` files, update the snapshots for all three frameworks:
 
 ```shell
-npm run test:update --workspace=react-figma
-npm run test:update --workspace=angular-figma
-npm run test:update --workspace=vue-figma
+pnpm run test:update --workspace=react-figma
+pnpm run test:update --workspace=angular-figma
+pnpm run test:update --workspace=vue-figma
 ```
 
 > **When required:** Whenever you add a new component, change URLs, change props, or change example templates. The CI will fail if snapshots are out of date.
@@ -523,5 +525,5 @@ These files **must be committed** — they are the baseline for CI.
 2. Publish:
 
     ```shell
-    npm run connect --workspace=react-figma
+    pnpm run connect --workspace=react-figma
     ```

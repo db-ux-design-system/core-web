@@ -4,12 +4,15 @@ import { describe, test } from 'vitest';
 describe('figma', () => {
 	test('check if preview works', () => {
 		try {
-			execSync(
-				'npx figma connect preview --file src/components/button/figma/text.button.figma.ts'
-			);
-		} catch {
-			// Preview may fail due to API limits (Payload Too Large) or network issues
-			// This is not a code error - the parse test covers correctness
+			execSync('npx figma connect preview', { stdio: 'pipe' });
+		} catch (error: any) {
+			const output =
+				(error.stdout?.toString() ?? '') +
+				(error.stderr?.toString() ?? '');
+			// CLI exits non-zero for parser warnings even when preview succeeds
+			if (!output.includes('Previewing')) {
+				throw error;
+			}
 		}
 	});
 });

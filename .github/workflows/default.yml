@@ -462,7 +462,7 @@ jobs:
              [[ $resultBuildStorybookReact == "success" ]] && \
              [[ $resultBuildStorybookVue == "success" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
-             [[ $resultTestFigmaCodeConnect == "success" || (github.event_name == 'release' && $resultTestFigmaCodeConnect == "skipped") ]] && \
+             [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
              [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \

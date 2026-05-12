@@ -10,6 +10,6 @@
 		"target": "ESNext",
 		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
-		"types": ["@figma/code-connect/figma-types"]
+		"types": ["@figma/code-connect/figma-types", "node"]
 	}
 }

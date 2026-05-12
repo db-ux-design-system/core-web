@@ -2,6 +2,6 @@
 	"codeConnect": {
 		"include": ["src/**/*.figma.batch.json"],
 		"label": "Vue",
-		"language": "jsx"
+		"language": "html"
 	}
 }
