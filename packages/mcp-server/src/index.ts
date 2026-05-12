@@ -1,11 +1,13 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
 	handleAuditAccessibilityPrompt,
+	handleMigrateComponentPrompt,
 	handleReviewUiCodePrompt,
 	handleScaffoldPagePrompt
 } from './prompts';
 import {
 	auditAccessibilitySchema,
+	migrateComponentSchema,
 	reviewUiCodeSchema,
 	scaffoldPageSchema
 } from './prompts/schemas.js';
@@ -17,10 +19,14 @@ import {
 	handleGetDesignTokens,
 	handleGetExampleCode,
 	handleGetMigrationGuide,
+	handleGetVisualReference,
 	handleListComponents,
 	handleListDesignTokenCategories,
 	handleListIcons,
-	handleListMigrationGuides
+	handleListMigrationGuides,
+	handleListVisuals,
+	handleScanV2Migration,
+	handleVerifyMigratedCode
 } from './tools';
 import {
 	docsSearchSchema,
@@ -29,10 +35,14 @@ import {
 	getDesignTokensSchema,
 	getExampleCodeSchema,
 	getMigrationGuideSchema,
+	getVisualReferenceSchema,
 	listComponentsSchema,
 	listDesignTokenCategoriesSchema,
 	listIconsSchema,
-	listMigrationGuidesSchema
+	listMigrationGuidesSchema,
+	listVisualsSchema,
+	scanV2MigrationSchema,
+	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
 export {
@@ -42,10 +52,14 @@ export {
 	handleGetDesignTokens,
 	handleGetExampleCode,
 	handleGetMigrationGuide,
+	handleGetVisualReference,
 	handleListComponents,
 	handleListDesignTokenCategories,
 	handleListIcons,
-	handleListMigrationGuides
+	handleListMigrationGuides,
+	handleListVisuals,
+	handleScanV2Migration,
+	handleVerifyMigratedCode
 } from './tools/index.js';
 export { resolveSafePath } from './utils/index.js';
 
@@ -92,6 +106,22 @@ server.registerTool(
 	getMigrationGuideSchema,
 	handleGetMigrationGuide
 );
+server.registerTool(
+	'verify_migrated_code',
+	verifyMigratedCodeSchema,
+	handleVerifyMigratedCode
+);
+server.registerTool(
+	'scan_v2_migration',
+	scanV2MigrationSchema,
+	handleScanV2Migration
+);
+server.registerTool('list_visuals', listVisualsSchema, handleListVisuals);
+server.registerTool(
+	'get_visual_reference',
+	getVisualReferenceSchema,
+	handleGetVisualReference
+);
 
 // Prompts
 server.registerPrompt(
@@ -103,6 +133,11 @@ server.registerPrompt(
 	'review_ui_code',
 	reviewUiCodeSchema,
 	handleReviewUiCodePrompt
+);
+server.registerPrompt(
+	'migrate_component',
+	migrateComponentSchema,
+	handleMigrateComponentPrompt
 );
 server.registerPrompt(
 	'audit_accessibility',
