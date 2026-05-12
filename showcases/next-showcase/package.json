@@ -17,7 +17,7 @@
     "next:dev": "next dev --turbopack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
     "start": "next start",
-    "setup:browserslist": "cpr ../../.browserslistrc .browserslistrc"
+    "setup:browserslist": "cpr -o ../../.browserslistrc .browserslistrc"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
