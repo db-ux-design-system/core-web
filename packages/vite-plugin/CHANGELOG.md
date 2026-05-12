@@ -1,5 +1,9 @@
 # @db-ux/core-vite-plugin
 
+## 4.8.0
+
+_version bump_
+
 ## 4.7.3
 
 _version bump_
