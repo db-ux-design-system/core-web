@@ -34,8 +34,7 @@ export default function BrandVariants() {
 	return (
 		<Fragment>
 			<DBBrand>(Default) With Logo</DBBrand>
-			<DBBrand hideLogo={true}>No Logo</DBBrand>
-			<DBBrand hideLogo={true}>
+			<DBBrand>
 				<img
 					src={state.getImage()}
 					alt="this is a fancy placeholder logo"
