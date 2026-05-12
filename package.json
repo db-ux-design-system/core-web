@@ -14,7 +14,7 @@
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
-  "packageManager": "pnpm@11.0.0",
+  "packageManager": "pnpm@11.0.9+sha512.34ce82e6780233cf9cad8685029a8f81d2e06196c5a9bad98879f7424940c6817c4e4524fb7d38b8553ceed48b9758b8ebaf1abd3600c232c4c8cf7366086f38",
   "engines": {
     "node": ">= 24"
   },
@@ -46,7 +46,7 @@
     "build-showcases": "pnpm --filter scripts run build-showcases",
     "build-storybooks": "pnpm --filter scripts run build-storybooks",
     "changeset": "changeset",
-    "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts",
+    "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts && prettier --no-error-on-unmatched-pattern **/CHANGELOG.md --write",
     "clean": "git clean -dfx --exclude=.env && node scripts/npx-from-dev-dependencies.mjs husky",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
