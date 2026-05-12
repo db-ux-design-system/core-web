@@ -72,7 +72,8 @@
 		"**/showcases/react-showcase/src/utils/navigation-item.tsx",
 		"**/playwright-report/**/*",
 		"**/examples/**/*.example.lite.tsx",
-		"**/packages/eslint-plugin/src/rules/**"
+		"**/packages/eslint-plugin/src/rules/**",
+		"**/packages/foundations/assets/images/**"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true
