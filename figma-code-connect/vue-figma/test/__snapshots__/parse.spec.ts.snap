@@ -8,7 +8,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -21,7 +21,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -34,7 +34,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -47,7 +47,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -60,7 +60,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -73,7 +73,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -86,7 +86,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -99,7 +99,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -112,7 +112,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -125,7 +125,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -138,7 +138,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -151,7 +151,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -164,7 +164,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -177,7 +177,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -190,7 +190,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -203,7 +203,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -216,7 +216,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -229,7 +229,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -242,7 +242,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -255,7 +255,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -268,7 +268,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -281,7 +281,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -294,7 +294,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -307,7 +307,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -320,7 +320,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -333,7 +333,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -346,7 +346,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -359,7 +359,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -372,7 +372,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -385,7 +385,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -398,7 +398,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -411,7 +411,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -424,7 +424,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -437,7 +437,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -450,7 +450,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -463,7 +463,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -476,7 +476,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -489,7 +489,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -502,7 +502,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -515,7 +515,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -528,7 +528,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -541,7 +541,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -554,7 +554,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -567,7 +567,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -580,7 +580,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -593,7 +593,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -606,7 +606,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -619,7 +619,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -632,7 +632,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -645,7 +645,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -658,7 +658,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -671,7 +671,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -684,7 +684,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -697,7 +697,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -710,7 +710,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -723,7 +723,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -736,7 +736,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -749,7 +749,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -762,7 +762,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -775,7 +775,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -788,7 +788,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -801,7 +801,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -814,7 +814,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -827,7 +827,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -840,7 +840,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -853,7 +853,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -866,7 +866,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -879,7 +879,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -892,7 +892,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -905,7 +905,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -918,7 +918,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -931,7 +931,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -944,7 +944,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -957,7 +957,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -970,7 +970,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -983,7 +983,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -996,7 +996,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1009,7 +1009,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1022,7 +1022,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1035,7 +1035,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1048,7 +1048,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1061,7 +1061,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1074,7 +1074,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1087,7 +1087,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1100,7 +1100,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1113,7 +1113,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1126,7 +1126,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1139,7 +1139,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1152,7 +1152,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
@@ -1165,7 +1165,7 @@ exports[`figma > check if parse has same snapshot 1`] = `
       "nestable": true,
       "isParserless": true
     },
-    "language": "jsx",
+    "language": "html",
     "label": "Vue",
     "source": "",
     "sourceLocation": {
