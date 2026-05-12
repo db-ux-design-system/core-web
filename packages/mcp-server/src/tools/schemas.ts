@@ -28,13 +28,13 @@ export const listDesignTokenCategoriesSchema = {
 
 export const getDesignTokensSchema = {
 	description:
-		'Returns CSS custom properties (--db-*) and SCSS variables ($db-*) for a given design token category.',
+		'Returns CSS custom properties (--db-*) for a given design token category. For spacing, elevation, and density, returns compiled primitive values (rem, px, box-shadow). For colors, typography, animation, and transitions, returns SCSS variable declarations.',
 	inputSchema: {
 		category: z
 			.string()
 			.max(100)
 			.describe(
-				"Token category, e.g. 'colors', 'spacing', 'typography'. Use list_design_token_categories to get available categories."
+				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories."
 			)
 	}
 };
@@ -63,7 +63,7 @@ export const getExampleCodeSchema = {
 
 export const docsSearchSchema = {
 	description:
-		'Searches the DB UX conceptual documentation (guidelines, A11y, migration, ADRs) or component-specific markdown docs.',
+		'Searches the DB UX component and foundation documentation (guidelines, Accessibility, framework-specific docs). Only docs from packages/components/ and packages/foundations/docs/ are included. For migration guides, use list_migration_guides and get_migration_guide instead.',
 	inputSchema: {
 		query: z
 			.string()
@@ -84,17 +84,10 @@ export const docsSearchSchema = {
 				"Required if category is 'component' (e.g., 'button', 'navigation')."
 			),
 		docType: z
-			.enum([
-				'React',
-				'Angular',
-				'Vue',
-				'HTML',
-				'Migration',
-				'Accessibility'
-			])
+			.enum(['React', 'Angular', 'Vue', 'HTML', 'Accessibility'])
 			.optional()
 			.describe(
-				"Optional: The specific doc file to read for a component (e.g., 'Migration')."
+				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead."
 			)
 	}
 };
@@ -116,7 +109,54 @@ export const getMigrationGuideSchema = {
 				'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.'
 			)
 			.describe(
-				"Exact guide name as returned by list_migration_guides, e.g. 'db-ui-color-migration' or 'db-ui-icon-migration'."
+				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'."
+			)
+	}
+};
+
+export const verifyMigratedCodeSchema = {
+	description:
+		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
+		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
+		'If errors are found, fix the code and call the tool again (max 3 attempts).'
+};
+
+export const scanV2MigrationSchema = {
+	description:
+		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
+		'Scans a source file for DB UI v2 patterns (v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*), ' +
+		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
+		'with exact line numbers and deterministic migration suggestions resolved from ' +
+		'the official migration guides. This gives you a precise migration plan before ' +
+		'you start generating code — no guessing needed.',
+	inputSchema: {
+		filePath: z
+			.string()
+			.max(500)
+			.describe(
+				'Absolute path or path relative to the workspace root of the file to scan.'
+			)
+	}
+};
+
+export const listVisualsSchema = {
+	description:
+		'Returns all available visual reference names (e.g. dashboard, form, table). ' +
+		'Call this first to discover which visuals exist before requesting one.'
+};
+
+export const getVisualReferenceSchema = {
+	description:
+		'Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a ' +
+		'Base64-encoded image block. Use this when you need visual context for complex layouts, ' +
+		'z-index reasoning, or verifying visual hierarchies. Call list_visuals first to see ' +
+		'available names.',
+	inputSchema: {
+		name: z
+			.string()
+			.max(100)
+			.describe(
+				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names."
 			)
 	}
 };
