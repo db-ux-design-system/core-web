@@ -2,6 +2,6 @@
 	"codeConnect": {
 		"include": ["src/**/*.figma.batch.json"],
 		"label": "Angular",
-		"language": "typescript"
+		"language": "html"
 	}
 }
