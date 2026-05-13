@@ -1,4 +1,5 @@
 import { onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import { Fragment } from 'react';
 import DBDivider from '../../components/divider/divider.lite';
 import DBLink from '../../components/link/link.lite';
 import { delay } from '../../utils';
@@ -48,20 +49,22 @@ export default function LinkWrapperShowcase(props: Props) {
 	});
 
 	return (
-		<Show when={pageParam === null || pageParam === getPage()}>
-			<div>
-				<Show when={pageParam === null}>
-					<DBDivider></DBDivider>
-					<DBLink
-						content="external"
-						class="link-headline"
-						target="_blank"
-						href={getHref()}>
-						{props.exampleName}
-					</DBLink>
-				</Show>
-				<Slot />
-			</div>
-		</Show>
+		<Fragment>
+			<Show when={pageParam === null || pageParam === getPage()}>
+				<div>
+					<Show when={pageParam === null}>
+						<DBDivider></DBDivider>
+						<DBLink
+							content="external"
+							class="link-headline"
+							target="_blank"
+							href={getHref()}>
+							{props.exampleName}
+						</DBLink>
+					</Show>
+					<Slot />
+				</div>
+			</Show>
+		</Fragment>
 	);
 }

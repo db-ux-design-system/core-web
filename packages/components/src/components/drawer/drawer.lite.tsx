@@ -9,7 +9,13 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
-import { cls, delay, getBooleanAsString, isKeyboardEvent } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	isKeyboardEvent
+} from '../../utils';
 import DBButton from '../button/button.lite';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -62,8 +68,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 		},
 		handleDialogOpen: () => {
 			if (_ref) {
-				const open = Boolean(props.open);
-				if (open && !_ref.open) {
+				const dialogOpen = getBoolean(props.open);
+				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(
 							'data-transition'
@@ -86,7 +92,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						}
 					}, 1);
 				}
-				if (!open && _ref.open) {
+				if (!dialogOpen && _ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).dataset[
 							'transition'

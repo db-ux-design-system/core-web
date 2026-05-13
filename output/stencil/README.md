@@ -82,9 +82,29 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 
 ## Usage
 
+This package provides two output variants:
+
+### Default (requires `@stencil/core` as peer dependency)
+
+The default entry point uses Stencil's lazy-loading loader. `@stencil/core` must be installed separately.
+
+```shell
+npm i @stencil/core
+```
+
 ```js
 // main.js
 import { defineCustomElements } from "@db-ux/wc-core-components";
+defineCustomElements();
+```
+
+### Bundle (no external dependencies)
+
+The bundle entry point is fully self-contained — `@stencil/core` is bundled in and does not need to be installed separately.
+
+```js
+// main.js
+import { defineCustomElements } from "@db-ux/wc-core-components/bundle";
 defineCustomElements();
 ```
 

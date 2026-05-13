@@ -46,7 +46,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			if (props.open === undefined) {
+				state._open = newStateOpen;
+			}
 		}
 	});
 
@@ -69,6 +71,12 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			state._name = props.name;
 		}
 	}, [props.name]);
+
+	onUpdate(() => {
+		if (props.open) {
+			state._open = props.open;
+		}
+	}, [props.open]);
 
 	// jscpd:ignore-end
 
