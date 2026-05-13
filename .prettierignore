@@ -3,6 +3,11 @@ public/
 pnpm-lock.yaml
 build/
 node_modules
+output/**/src
+output/**/dist
+output/**/playwright
+output/angular/.angular
+output/stencil/.stencil
 build-outputs
 build-showcases
 packages/foundations/scripts/generate-icon-fonts/styles/**
