@@ -819,6 +819,9 @@ importers:
       '@angular/compiler-cli':
         specifier: 21.2.12
         version: 21.2.12(@angular/compiler@21.2.12)(typescript@5.9.3)
+      '@db-ux/core-postcss-plugin':
+        specifier: workspace:*
+        version: link:../../packages/postcss-plugin
       '@types/node':
         specifier: 25.6.2
         version: 25.6.2
@@ -1114,6 +1117,9 @@ importers:
         specifier: 7.15.0
         version: 7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
+      '@db-ux/core-postcss-plugin':
+        specifier: workspace:*
+        version: link:../../packages/postcss-plugin
       '@types/node':
         specifier: 25.6.2
         version: 25.6.2
@@ -1248,6 +1254,9 @@ importers:
         specifier: 5.0.6
         version: 5.0.6(@vue/compiler-sfc@3.5.34)(vue@3.5.34(typescript@5.9.3))
     devDependencies:
+      '@db-ux/core-postcss-plugin':
+        specifier: workspace:*
+        version: link:../../packages/postcss-plugin
       '@vitejs/plugin-vue':
         specifier: 6.0.6
         version: 6.0.6(vite@8.0.10(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.34(typescript@5.9.3))

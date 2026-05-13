@@ -31,6 +31,7 @@
     "vue-router": "5.0.6"
   },
   "devDependencies": {
+    "@db-ux/core-postcss-plugin": "workspace:*",
     "@vitejs/plugin-vue": "6.0.6",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
