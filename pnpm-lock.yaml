@@ -60,8 +60,8 @@ importers:
         specifier: 3.9.0
         version: 3.9.0
       '@double-great/stylelint-a11y':
-        specifier: 3.4.11
-        version: 3.4.11(stylelint@17.11.0(typescript@5.9.3))
+        specifier: 3.4.12
+        version: 3.4.12(stylelint@17.11.0(typescript@5.9.3))
       '@figma/code-connect':
         specifier: 1.4.4
         version: 1.4.4
@@ -3026,8 +3026,8 @@ packages:
     resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
     engines: {node: '>=14.17.0'}
 
-  '@double-great/stylelint-a11y@3.4.11':
-    resolution: {integrity: sha512-tmDDJg20J9b/see7y/fPjPCtnYLyp6LrLkK9/+cm5GokmMtXjKd7VfYMykDxCh87Sjn6nwLJGYciQiWqobMMRA==}
+  '@double-great/stylelint-a11y@3.4.12':
+    resolution: {integrity: sha512-vwKhCKAthwKKIRGMK9m/HORJpfVTg06VT039uK9wVyAKaq0IPo5Bj5cY6Lh/i52Mof7Qc7/mczyT/6VF09uFxg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: '>=16.0.0'
@@ -20153,7 +20153,7 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@double-great/stylelint-a11y@3.4.11(stylelint@17.11.0(typescript@5.9.3))':
+  '@double-great/stylelint-a11y@3.4.12(stylelint@17.11.0(typescript@5.9.3))':
     dependencies:
       postcss: 8.5.14
       stylelint: 17.11.0(typescript@5.9.3)
@@ -21777,7 +21777,7 @@ snapshots:
       https-proxy-agent: 7.0.6
       node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 8.1.0
-      semver: 7.8.0
+      semver: 7.7.4
       tar: 7.5.15
     transitivePeerDependencies:
       - encoding
@@ -22063,7 +22063,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.8.0
+      semver: 7.7.4
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -22164,7 +22164,7 @@ snapshots:
       magicast: 0.5.2
       pathe: 2.0.3
       pkg-types: 2.3.1
-      semver: 7.8.0
+      semver: 7.7.4
 
   '@nuxt/devtools@3.2.4(vite@8.0.10(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.34(typescript@5.9.3))':
     dependencies:
@@ -26297,12 +26297,12 @@ snapshots:
 
   css-loader@7.1.3(webpack@5.105.2(esbuild@0.27.3)(lightningcss@1.32.0)(postcss@8.5.12)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.14)
-      postcss: 8.5.14
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.14)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.14)
-      postcss-modules-scope: 3.2.1(postcss@8.5.14)
-      postcss-modules-values: 4.0.0(postcss@8.5.14)
+      icss-utils: 5.1.0(postcss@8.5.12)
+      postcss: 8.5.12
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.12)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.12)
+      postcss-modules-scope: 3.2.1(postcss@8.5.12)
+      postcss-modules-values: 4.0.0(postcss@8.5.12)
       postcss-value-parser: 4.2.0
       semver: 7.7.4
     optionalDependencies:
@@ -27168,7 +27168,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@10.3.0(jiti@2.7.0)):
     dependencies:
       eslint: 10.3.0(jiti@2.7.0)
-      semver: 7.8.0
+      semver: 7.7.4
 
   eslint-config-next@16.2.6(@typescript-eslint/parser@8.59.3(eslint@10.3.0(jiti@2.7.0))(typescript@5.9.3))(eslint-plugin-import-x@4.16.2(@typescript-eslint/utils@8.59.3(eslint@10.3.0(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint@10.3.0(jiti@2.7.0)))(eslint@10.3.0(jiti@2.7.0))(typescript@5.9.3):
     dependencies:
@@ -28955,6 +28955,10 @@ snapshots:
   iconv-lite@0.7.2:
     dependencies:
       safer-buffer: 2.1.2
+
+  icss-utils@5.1.0(postcss@8.5.12):
+    dependencies:
+      postcss: 8.5.12
 
   icss-utils@5.1.0(postcss@8.5.14):
     dependencies:
@@ -31083,7 +31087,7 @@ snapshots:
       rollup: 4.60.3
       rollup-plugin-visualizer: 7.0.1(rolldown@1.0.0-rc.17)(rollup@4.60.3)
       scule: 1.3.0
-      semver: 7.8.0
+      semver: 7.7.4
       serve-placeholder: 2.0.2
       serve-static: 2.2.1
       source-map: 0.7.6
@@ -31205,7 +31209,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.8.0
+      semver: 7.7.4
       tar: 7.5.15
       tinyglobby: 0.2.16
       undici: 6.25.0
@@ -31273,7 +31277,7 @@ snapshots:
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.8.0
+      semver: 7.7.4
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -32350,9 +32354,20 @@ snapshots:
       postcss: 8.5.14
       postcss-selector-parser: 7.1.1
 
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.12):
+    dependencies:
+      postcss: 8.5.12
+
   postcss-modules-extract-imports@3.1.0(postcss@8.5.14):
     dependencies:
       postcss: 8.5.14
+
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.12):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.12)
+      postcss: 8.5.12
+      postcss-selector-parser: 7.1.1
+      postcss-value-parser: 4.2.0
 
   postcss-modules-local-by-default@4.2.0(postcss@8.5.14):
     dependencies:
@@ -32361,10 +32376,20 @@ snapshots:
       postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
 
+  postcss-modules-scope@3.2.1(postcss@8.5.12):
+    dependencies:
+      postcss: 8.5.12
+      postcss-selector-parser: 7.1.1
+
   postcss-modules-scope@3.2.1(postcss@8.5.14):
     dependencies:
       postcss: 8.5.14
       postcss-selector-parser: 7.1.1
+
+  postcss-modules-values@4.0.0(postcss@8.5.12):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.12)
+      postcss: 8.5.12
 
   postcss-modules-values@4.0.0(postcss@8.5.14):
     dependencies:
@@ -33184,7 +33209,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.5.14
+      postcss: 8.5.12
       source-map: 0.6.1
 
   resolve@1.22.12:
