@@ -1,1 +1,1 @@
-["(Default) With Logo","graphic, this is a fancy placeholder logo","Custom Logo"]
+["(Default) With Logo Logo Variant","graphic, this is a fancy placeholder logo","Custom Logo"]
