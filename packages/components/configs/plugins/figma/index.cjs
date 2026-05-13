@@ -68,9 +68,9 @@ const getInstanceCall = (figmaProperty) => {
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties['${textKey}'])[0]?.getString('${textKey}')`;
 	}
 	if (type === 'conditionalProp')
-		return `instance.getInstanceSwap('${key}')?.executeTemplate().example`;
+		return `instance.getInstanceSwap('${key}')?.executeTemplate()?.example`;
 	if (type === 'iconSwap')
-		return `instance.getInstanceSwap('${key}')?.executeTemplate().example`;
+		return `instance.getInstanceSwap('${key}')?.executeTemplate()?.example`;
 	if (type === 'boolean')
 		return `instance.getEnum('${key}', { 'False': false, 'True': true })`;
 	if (type === 'string') return `instance.getString('${key}')`;
@@ -81,16 +81,23 @@ const getInstanceCall = (figmaProperty) => {
 			([, v]) => v instanceof Object && v.key && v.type === 'iconSwap'
 		);
 		if (allIconSwaps) {
+			const { guardKey } = figmaProperty;
 			const [[, firstInst], ...rest] = entries;
-			if (rest.length === 0)
-				return `instance.getInstanceSwap('${firstInst.key}')?.executeTemplate().example`;
-			const conditions = rest
-				.map(
-					([figmaVal, inst]) =>
-						`instance.getPropertyValue('${key}') === '${figmaVal}' ? instance.getInstanceSwap('${inst.key}')`
-				)
-				.join(' : ');
-			return `(\n\t${conditions} : instance.getInstanceSwap('${firstInst.key}')\n)?.executeTemplate().example`;
+			let swapExpr;
+			if (rest.length === 0) {
+				swapExpr = `typeof instance.getPropertyValue('${firstInst.key}') === 'string' ? instance.getInstanceSwap('${firstInst.key}')?.executeTemplate()?.example : undefined`;
+			} else {
+				const conditions = rest
+					.map(
+						([figmaVal, inst]) =>
+							`instance.getPropertyValue('${key}') === '${figmaVal}' ? (typeof instance.getPropertyValue('${inst.key}') === 'string' ? instance.getInstanceSwap('${inst.key}') : undefined)`
+					)
+					.join(' : ');
+				swapExpr = `(\n\t${conditions} : (typeof instance.getPropertyValue('${firstInst.key}') === 'string' ? instance.getInstanceSwap('${firstInst.key}') : undefined)\n)?.executeTemplate()?.example`;
+			}
+			return guardKey
+				? `(instance.getPropertyValue('${guardKey}') === true || instance.getPropertyValue('${guardKey}') === 'True') ? (${swapExpr}) : undefined`
+				: swapExpr;
 		}
 		const allInstances = entries.every(
 			([, v]) => v instanceof Object && v.key && v.type === 'instance'
@@ -203,8 +210,22 @@ const buildTemplate = (json, target) => {
 			} else {
 				attrStr = `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
 			}
-			const ccChild = `codeConnect?.children.find((c) => c.type === 'INSTANCE' && c.name.trim() === '${figmaKey}') as figma.InstanceHandle | undefined`;
+			const ccChild = `codeConnect?.children.find((c) => c.type === 'INSTANCE' && c.name.includes('${figmaKey}')) as figma.InstanceHandle | undefined`;
 			const ccRawValue = `Object.values((_cc_${propName} as figma.InstanceHandle)?.properties ?? {})[0]?.value`;
+			// allIconSwaps / allInstances enums can't be resolved from a CC child value
+			const enumVals =
+				fProp.type === 'enum' ? Object.values(fProp.value ?? {}) : [];
+			const isIconSwapEnum =
+				enumVals.length > 0 &&
+				enumVals.every(
+					(v) => v instanceof Object && v.type === 'iconSwap'
+				);
+			const isInstanceEnum =
+				enumVals.length > 0 &&
+				enumVals.every(
+					(v) => v instanceof Object && v.type === 'instance'
+				);
+			const skipCcFallback = isIconSwapEnum || isInstanceEnum;
 			const ccValueMap =
 				fProp.type === 'boolean'
 					? { False: false, True: true }
@@ -217,8 +238,10 @@ const buildTemplate = (json, target) => {
 					? `((v) => { const s = String(v); return ((${ccValueMapSerialized} as Record<string, unknown>)[s] ?? (${ccValueMapSerialized} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | boolean | undefined; })(${ccRawValue})`
 					: `${ccRawValue} as string | undefined`;
 			return [
-				`const _cc_${propName} = ${ccChild}`,
-				`const _${propName} = ['string', 'boolean'].includes(typeof instance.getPropertyValue('${figmaKey}')) ? ${valueExpr} : _cc_${propName} ? ${ccMappedValue} : undefined`,
+				...(!skipCcFallback
+					? [`const _cc_${propName} = ${ccChild}`]
+					: []),
+				`const _${propName} = ['string', 'boolean'].includes(typeof instance.getPropertyValue('${figmaKey}')) ? ${valueExpr}${skipCcFallback ? '' : ` : _cc_${propName} ? ${ccMappedValue}`} : undefined`,
 				`let ${propName} = ''`,
 				`if (_${propName} !== undefined && _${propName} !== null && String(_${propName}) !== 'undefined') {`,
 				`\t${propName} = ${attrStr}`,
@@ -257,10 +280,10 @@ const buildTemplate = (json, target) => {
 		})
 		.join('\n');
 
-	// FIX: use _${guardProp} (raw value) not ${guardProp} (fragment string)
+	// conditionalProp: single icon swap guarded by a Figma boolean property key
 	const conditionalPropDeclarations = conditionalPropEntries
 		.map(([propName, fProp]) => {
-			const { guardProp, attrName } = fProp;
+			const { guardKey, attrName } = fProp;
 			const attrAssign =
 				target === 'angular'
 					? `\t${propName} = \`\\n\\t\\t[${attrName}]="\${_${propName}Value}"\``
@@ -270,7 +293,7 @@ const buildTemplate = (json, target) => {
 			return [
 				`const _${propName}Value = ${getInstanceCall(fProp)}`,
 				`let ${propName} = ''`,
-				`if (_${guardProp}) {`,
+				`if (instance.getPropertyValue('${guardKey}') === true || instance.getPropertyValue('${guardKey}') === 'True') {`,
 				attrAssign,
 				`}`
 			].join('\n');

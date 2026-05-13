@@ -41,13 +41,13 @@ const inputProps: Record<string, FigmaProp> = {
 	iconLeading: {
 		type: 'conditionalProp',
 		key: '🔄 Icon Leading',
-		guardProp: 'showIconLeading',
+		guardKey: 'Show Icon Leading',
 		attrName: 'icon'
 	},
 	iconTrailing: {
 		type: 'conditionalProp',
 		key: '🔄 Icon Trailing',
-		guardProp: 'showIconTrailing',
+		guardKey: 'Show Icon Trailing',
 		attrName: 'iconTrailing'
 	},
 	showMessage: { type: 'boolean', key: 'Show Message' },

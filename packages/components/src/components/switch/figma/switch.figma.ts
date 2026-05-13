@@ -36,13 +36,13 @@ const switchProps: Record<string, FigmaProp> = {
 	iconLeading: {
 		type: 'conditionalProp',
 		key: '🔄 Icon Leading',
-		guardProp: 'visualAid',
+		guardKey: 'Visual Aid',
 		attrName: 'iconLeading'
 	},
 	iconTrailing: {
 		type: 'conditionalProp',
 		key: '🔄 Icon Trailing',
-		guardProp: 'visualAid',
+		guardKey: 'Visual Aid',
 		attrName: 'iconTrailing'
 	},
 	validation: {

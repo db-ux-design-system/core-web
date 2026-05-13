@@ -22,7 +22,7 @@ const navigationItemProps: Record<string, FigmaProp> = {
 	icon: {
 		type: 'conditionalProp',
 		key: '🔄 Icon',
-		guardProp: 'showIcon',
+		guardKey: 'Show Icon',
 		attrName: 'icon'
 	}
 };

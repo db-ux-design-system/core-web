@@ -99,7 +99,7 @@ const dotBadgeProps: Record<string, FigmaProp> = {
 	semantic: semanticProp,
 	emphasis: emphasisProp,
 	placement: cornerPlacementProp,
-	label: textProp
+	label: { type: 'string', key: '✏️ Text' }
 };
 
 export const dotBadges: FigmaCodeConnect = {

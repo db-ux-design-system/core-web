@@ -51,6 +51,7 @@ const buttonProps: Record<string, FigmaProp> = {
 	iconLeading: {
 		type: 'enum',
 		key: 'Size',
+		guardKey: 'Show Icon Leading',
 		value: {
 			Small: { type: 'iconSwap', key: '🔄 Icon Leading Small' },
 			'(Def) Medium': { type: 'iconSwap', key: '🔄 Icon Leading Medium' }
@@ -59,6 +60,7 @@ const buttonProps: Record<string, FigmaProp> = {
 	iconTrailing: {
 		type: 'enum',
 		key: 'Size',
+		guardKey: 'Show Icon Trailing',
 		value: {
 			Small: { type: 'iconSwap', key: '🔄 Icon Trailing Small' },
 			'(Def) Medium': { type: 'iconSwap', key: '🔄 Icon Trailing Medium' }
