@@ -51,8 +51,8 @@ importers:
         specifier: '*'
         version: 4.7.2(stylelint@17.11.0(typescript@5.9.3))
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -253,8 +253,8 @@ importers:
         specifier: 21.2.12
         version: 21.2.12(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.12(@angular/animations@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@types/node':
         specifier: 25.6.0
         version: 25.6.0
@@ -677,8 +677,8 @@ importers:
         version: 3.3.3
     devDependencies:
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@types/node':
         specifier: 25.6.0
         version: 25.6.0
@@ -701,8 +701,8 @@ importers:
   scripts:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -792,8 +792,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -874,8 +874,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -929,8 +929,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -969,8 +969,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -996,8 +996,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1096,8 +1096,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1175,8 +1175,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1236,8 +1236,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1355,8 +1355,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1407,8 +1407,8 @@ importers:
   storybooks/react-storybook:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1468,8 +1468,8 @@ importers:
   storybooks/vue-storybook:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 5.6.2
-        version: 5.6.2
+        specifier: 5.7.0
+        version: 5.7.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -3014,8 +3014,8 @@ packages:
   '@db-ux/db-theme-illustrative-icons@3.3.0':
     resolution: {integrity: sha512-ilJByxzkS3HyU4DHH3n4eMJpA0UzYcIZO1+MAy9vMeu17+LbMP+ebTVjfViSGPqqJZQnBiG3FUNJeuIdMQvrqQ==}
 
-  '@db-ux/db-theme@5.6.2':
-    resolution: {integrity: sha512-2oxnQx+5X+YCpig3HodcG1NP5XtLXe9ZH65PYc/VmpA+AntC4ezy8zI90AmAecYsudKfS4s7GEdkmv1mhtuUfg==}
+  '@db-ux/db-theme@5.7.0':
+    resolution: {integrity: sha512-UeVJ3F7a2ZJen8lBThHsr+/Erla2lIbtTklDmIY2cKbkBmoUmCg0xIfUttNfY9/Q/KzLp5/zDXCPTZWarwInyQ==}
 
   '@db-ux/icon-font-tools@0.3.6':
     resolution: {integrity: sha512-JvQqwJ8x6afUdw8pvsjUp64m5jcabbZXny0MNU7J20obOzPfGBFEewJfg5baNhqycTkdAyj8RhShNE4CNu14gg==}
@@ -20042,7 +20042,7 @@ snapshots:
 
   '@db-ux/db-theme-illustrative-icons@3.3.0': {}
 
-  '@db-ux/db-theme@5.6.2':
+  '@db-ux/db-theme@5.7.0':
     dependencies:
       '@db-ux/db-theme-fonts': 2.0.5
       '@db-ux/db-theme-icons': 3.9.0

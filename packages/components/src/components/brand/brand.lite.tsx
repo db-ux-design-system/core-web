@@ -5,7 +5,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBBrandProps, DBBrandState } from './model';
 
 useMetadata({});
@@ -22,7 +22,8 @@ export default function DBBrand(props: DBBrandProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-brand', props.className)}>
+			class={cls('db-brand', props.className)}
+			data-no-text={getBooleanAsString(props.noText)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
