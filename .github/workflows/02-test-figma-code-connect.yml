@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/pnpm-cache
 
       - name: ⏬ Download figma code connect
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: figma-code-connect
           path: figma-code-connect
