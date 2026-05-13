@@ -88,10 +88,10 @@
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
-    "@inquirer/prompts": "8.4.2",
+    "@inquirer/prompts": "8.4.3",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
-    "inquirer": "13.4.2",
+    "inquirer": "13.4.3",
     "npm-run-all2": "8.0.4",
     "publint": "0.3.20",
     "replace-in-file": "8.4.0",
