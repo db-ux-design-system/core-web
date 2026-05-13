@@ -38,7 +38,7 @@ export type DBNavigationItemDefaultProps = {
 	subNavigationExpanded?: boolean | string;
 
 	/**
-	 * Force hide sub-navigation
+	 * Force hide sub-navigation - for web component output
 	 */
 	hideSubNavigation?: boolean;
 };

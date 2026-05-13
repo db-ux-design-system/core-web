@@ -1141,30 +1141,6 @@ importers:
 
   showcases/stencil-showcase:
     dependencies:
-      '@angular/animations':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))
-      '@angular/common':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
-      '@angular/compiler':
-        specifier: 21.2.12
-        version: 21.2.12
-      '@angular/core':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/forms':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.12(@angular/animations@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
-      '@angular/platform-browser':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/animations@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))
-      '@angular/platform-browser-dynamic':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@21.2.12)(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.12(@angular/animations@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))
-      '@angular/router':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.12(@angular/animations@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@db-ux/core-components':
         specifier: workspace:*
         version: link:../../packages/components
@@ -1180,49 +1156,25 @@ importers:
       '@db-ux/db-theme-icons':
         specifier: 3.9.0
         version: 3.9.0
-      '@stencil/core':
-        specifier: 4.43.4
-        version: 4.43.4
-      rxjs:
-        specifier: 7.8.2
-        version: 7.8.2
-      tslib:
-        specifier: 2.8.1
-        version: 2.8.1
-      zone.js:
-        specifier: 0.15.1
-        version: 0.15.1
+      '@db-ux/wc-core-components':
+        specifier: workspace:*
+        version: link:../../output/stencil
     devDependencies:
-      '@angular-devkit/build-angular':
-        specifier: 21.2.10
-        version: 21.2.10(a5a5dda4f6f5d62103bd065a43728a87)
-      '@angular/build':
-        specifier: 21.2.10
-        version: 21.2.10(acdf1bfcebc93407c440fe055c79a9d1)
-      '@angular/cli':
-        specifier: 21.2.10
-        version: 21.2.10(@types/node@25.6.2)(chokidar@5.0.0)
-      '@angular/compiler-cli':
-        specifier: 21.2.12
-        version: 21.2.12(@angular/compiler@21.2.12)(typescript@5.9.3)
-      '@types/node':
-        specifier: 25.6.2
-        version: 25.6.2
       cross-env:
         specifier: 10.1.0
         version: 10.1.0
       http-server:
         specifier: 14.1.1
         version: 14.1.1
-      ng-packagr:
-        specifier: 21.2.3
-        version: 21.2.3(@angular/compiler-cli@21.2.12(@angular/compiler@21.2.12)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3)
-      npm-run-all2:
-        specifier: 8.0.4
-        version: 8.0.4
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+      vite:
+        specifier: 8.0.11
+        version: 8.0.11(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0)
+      vite-plugin-static-copy:
+        specifier: 4.1.0
+        version: 4.1.0(vite@8.0.11(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0))
 
   showcases/vue-showcase:
     dependencies:
@@ -16470,6 +16422,12 @@ packages:
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true
+
+  vite-plugin-static-copy@4.1.0:
+    resolution: {integrity: sha512-9XOarNV7LgP0KBB7AApxdgFikLXx3daZdqjC3AevYsL6MrUH62zphonLUs2a6LZc1HN1GY+vQdheZ8VVJb6dQQ==}
+    engines: {node: ^22.0.0 || >=24.0.0}
+    peerDependencies:
+      vite: ^6.0.0 || ^7.0.0 || ^8.0.0
 
   vite-plugin-vue-tracer@1.3.0:
     resolution: {integrity: sha512-Cgfce6VikzOw5MUJTpeg50s5rRjzU1Vr61ZjuHunVVHLjZZ5AUlgyExHthZ3r59vtoz9W2rDt23FYG81avYBKw==}
@@ -35772,6 +35730,14 @@ snapshots:
       '@nuxt/kit': 4.4.4(magicast@0.5.2)
     transitivePeerDependencies:
       - supports-color
+
+  vite-plugin-static-copy@4.1.0(vite@8.0.11(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0)):
+    dependencies:
+      chokidar: 3.6.0
+      p-map: 7.0.4
+      picocolors: 1.1.1
+      tinyglobby: 0.2.16
+      vite: 8.0.11(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0)
 
   vite-plugin-vue-tracer@1.3.0(vite@8.0.11(@types/node@25.7.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.34(typescript@5.9.3)):
     dependencies:

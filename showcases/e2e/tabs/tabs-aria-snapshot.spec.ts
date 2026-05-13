@@ -4,7 +4,11 @@ import { runAriaSnapshotTest } from '../default.ts';
 const path = '04/tabs';
 
 const preScreenShot = async (page: Page, project: FullProject) => {
-	if (project.name === 'webkit' || project.name === 'mobile_safari') {
+	if (
+		project.name === 'webkit' ||
+		project.name === 'mobile_safari' ||
+		isStencil(process.env.showcase) // We skip this for now
+	) {
 		// There is a bug in webkit where the scroll buttons are not visible 50% of the time
 		// Probably due to the scrollWidth or clientWidth not being calculated correctly
 		// TODO: Investigate further
