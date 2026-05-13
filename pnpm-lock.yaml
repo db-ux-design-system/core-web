@@ -117,8 +117,8 @@ importers:
         specifier: 4.0.9
         version: 4.0.9
       lint-staged:
-        specifier: 16.4.0
-        version: 16.4.0
+        specifier: 17.0.4
+        version: 17.0.4
       markdownlint-cli:
         specifier: 0.48.0
         version: 0.48.0
@@ -11905,9 +11905,9 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@16.4.0:
-    resolution: {integrity: sha512-lBWt8hujh/Cjysw5GYVmZpFHXDCgZzhrOm8vbcUdobADZNOK/bRshr2kM3DfgrrtR1DQhfupW9gnIXOfiFi+bw==}
-    engines: {node: '>=20.17'}
+  lint-staged@17.0.4:
+    resolution: {integrity: sha512-+rU9lSUyVOZ/hDUmRLVGzyS2v73cDdQjX+XQz1AaOdIE4RysLq0HoPW2HrrgeNCLklkhi904VBU1bmgWLHVnkA==}
+    engines: {node: '>=22.22.1'}
     hasBin: true
 
   listenercount@1.0.1:
@@ -11916,6 +11916,10 @@ packages:
   listhen@1.10.0:
     resolution: {integrity: sha512-kfz4C0OrC6IpaVMtYDJtf6PFjurxe9NBBoDAh/o2p587INryFOO4DQ9OetbCdDrWFt1m1CJKvYrzkGsuPHw8nQ==}
     hasBin: true
+
+  listr2@10.2.1:
+    resolution: {integrity: sha512-7I5knELsJKTUjXG+A6BkKAiGkW1i25fNa/xlUl9hFtk15WbE9jndA89xu5FzQKrY5llajE1hfZZFMILXkDHk/Q==}
+    engines: {node: '>=22.13.0'}
 
   listr2@9.0.5:
     resolution: {integrity: sha512-ME4Fb83LgEgwNw96RKNvKV4VTLuXfoKudAmm2lP8Kk87KaMK0/Xrx/aAkMWmT8mDb+3MlFDspfbCs7adjRxA2g==}
@@ -17009,6 +17013,10 @@ packages:
 
   workbox-window@7.4.1:
     resolution: {integrity: sha512-notZDH2u8VXaqyuD7xaqIfEFi6SRM4SUSd7ewe9PDsVqADuepxX2ZMY3uvuZGxzY5ZOsGC/vD3A/3smFtJt4/A==}
+
+  wrap-ansi@10.0.0:
+    resolution: {integrity: sha512-SGcvg80f0wUy2/fXES19feHMz8E0JoXv2uNgHOu4Dgi2OrCy1lqwFYEJz1BLbDI0exjPMe/ZdzZ/YpGECBG/aQ==}
+    engines: {node: '>=20'}
 
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
@@ -26273,7 +26281,7 @@ snapshots:
       '@cspell/cspell-types': 10.0.0
       comment-json: 4.6.2
       smol-toml: 1.6.1
-      yaml: 2.8.4
+      yaml: 2.9.0
 
   cspell-dictionary@10.0.0:
     dependencies:
@@ -29890,14 +29898,14 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@16.4.0:
+  lint-staged@17.0.4:
     dependencies:
-      commander: 14.0.3
-      listr2: 9.0.5
+      listr2: 10.2.1
       picomatch: 4.0.4
       string-argv: 0.3.2
       tinyexec: 1.1.2
-      yaml: 2.8.4
+    optionalDependencies:
+      yaml: 2.9.0
 
   listenercount@1.0.1: {}
 
@@ -29923,6 +29931,14 @@ snapshots:
       uqr: 0.1.3
     transitivePeerDependencies:
       - srvx
+
+  listr2@10.2.1:
+    dependencies:
+      cli-truncate: 5.2.0
+      eventemitter3: 5.0.4
+      log-update: 6.1.0
+      rfdc: 1.4.1
+      wrap-ansi: 10.0.0
 
   listr2@9.0.5:
     dependencies:
@@ -32431,7 +32447,7 @@ snapshots:
   postcss-load-config@5.1.0(jiti@2.7.0)(postcss@8.5.14)(tsx@4.21.0):
     dependencies:
       lilconfig: 3.1.3
-      yaml: 2.8.4
+      yaml: 2.9.0
     optionalDependencies:
       jiti: 2.7.0
       postcss: 8.5.14
@@ -36559,6 +36575,12 @@ snapshots:
     dependencies:
       '@types/trusted-types': 2.0.7
       workbox-core: 7.4.1
+
+  wrap-ansi@10.0.0:
+    dependencies:
+      ansi-styles: 6.2.3
+      string-width: 8.2.1
+      strip-ansi: 7.2.0
 
   wrap-ansi@6.2.0:
     dependencies:
