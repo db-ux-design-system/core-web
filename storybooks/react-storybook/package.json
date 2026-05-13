@@ -17,8 +17,8 @@
     "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
-    "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

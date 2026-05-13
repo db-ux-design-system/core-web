@@ -23,13 +23,14 @@ jobs:
         uses: ./.github/actions/pnpm-cache
 
       - name: ⏬ Download figma code connect
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: figma-code-connect
           path: figma-code-connect
 
       - name: ⚡ Run Test
         env:
+          FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
           pnpm --filter=${{ matrix.target }}-figma run test

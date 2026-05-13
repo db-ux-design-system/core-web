@@ -32,7 +32,7 @@
     "@angular/platform-browser-dynamic": "21.2.12",
     "@angular/router": "21.2.12",
     "@db-ux/db-theme": "5.7.0",
-    "@types/node": "25.6.0",
+    "@types/node": "25.6.2",
     "npm-run-all2": "8.0.4",
     "cpr": "3.0.1",
     "ng-packagr": "21.2.3",
