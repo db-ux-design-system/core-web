@@ -50,7 +50,7 @@
     "@angular/build": "21.2.10",
     "@angular/cli": "21.2.10",
     "@angular/compiler-cli": "21.2.12",
-    "@types/node": "25.6.2",
+    "@types/node": "25.7.0",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "ng-packagr": "21.2.3",
