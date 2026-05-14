@@ -30,7 +30,10 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss
 // index.scss
-@forward "@db-ux/core-components/build/styles/rollup";
+@forward "@db-ux/core-foundations/build/styles/theme/rollup";  // Palette tokens
+@forward "@db-ux/core-foundations/build/styles/bundle";         // Semantic tokens
+@forward "@db-ux/core-foundations/build/styles/icons/rollup";   // Icon fonts
+@forward "@db-ux/core-components/build/styles/rollup";          // Component styling
 ```
 
 </details>
@@ -38,8 +41,11 @@ Import the styles in scss or css. Based on your technology the file names could 
   <summary><strong>CSS</strong></summary>
 
 ```tsx
-// main.tsx
-import "@db-ux/core-components/build/styles/rollup.css";
+// main.tsx — order matters!
+import "@db-ux/core-foundations/build/styles/theme/rollup.css";  // Palette tokens
+import "@db-ux/core-foundations/build/styles/bundle.css";        // Semantic tokens
+import "@db-ux/core-foundations/build/styles/icons/rollup.css";  // Icon fonts
+import "@db-ux/core-components/build/styles/rollup.css";         // Component styling
 ```
 
 </details>

@@ -14,8 +14,8 @@
     "storybook": "storybook dev -p 6001"
   },
   "dependencies": {
-    "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -31,6 +31,6 @@
     "storybook": "10.3.6",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.59.2",
-    "vite": "8.0.10"
+    "vite": "8.0.11"
   }
 }
