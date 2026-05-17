@@ -1,5 +1,31 @@
 # @db-ux/core-foundations
 
+## 4.8.1
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+### Patch Changes
+
+- fix: `meta[name="color-scheme"]` HTML tag support - [see commit b23c57b](https://github.com/db-ux-design-system/core-web/commit/b23c57b9f735a88ceb4308f2d1bcf38092f50786)
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
 ## 4.6.1
 
 _version bump_

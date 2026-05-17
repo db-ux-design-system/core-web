@@ -163,7 +163,14 @@ export const collectVarsWithLayer = (
 	const addVar = (prop: string, value: string, layer: string | null) => {
 		const entries = varMap.get(prop);
 		if (entries) {
-			if (entries.some((e) => e.file === file && e.layer === layer))
+			if (
+				entries.some(
+					(e) =>
+						e.file === file &&
+						e.layer === layer &&
+						e.value === value
+				)
+			)
 				return;
 			entries.push({ value, layer, file });
 		} else {

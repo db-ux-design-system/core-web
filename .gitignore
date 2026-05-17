@@ -76,6 +76,7 @@ showcases/patternhub/public/iframe-resizer/*
 /core-web.iml
 /build-storybooks/
 **/blob-report
+/figma-code-connect/**/src/
 
 packages/mcp-server/src/manifest.json
 **/db-ux-detection-report.json

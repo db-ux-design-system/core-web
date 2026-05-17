@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "4.6.1",
+  "version": "4.8.1",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -42,12 +42,15 @@
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.59.1",
     "@vitejs/plugin-vue": "6.0.6",
+    "@vue/compiler-dom": "3.5.34",
+    "cpr": "3.0.1",
+    "npm-run-all2": "8.0.4",
     "replace-in-file": "8.4.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "vite": "8.0.9",
-    "vue": "3.5.31",
-    "vue-tsc": "3.2.7"
+    "vite": "8.0.12",
+    "vue": "3.5.34",
+    "vue-tsc": "3.2.8"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -56,7 +59,7 @@
   "sideEffects": false,
   "source": "src/index.ts",
   "dependencies": {
-    "@db-ux/core-components": "4.6.1",
-    "@db-ux/core-foundations": "4.6.1"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   }
 }
