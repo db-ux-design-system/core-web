@@ -2,6 +2,8 @@
 import {
 	DBButton,
 	DBCheckbox,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBRadio,
 	DBSelect,
@@ -10,6 +12,7 @@ import {
 } from "../../../../../output/vue/src";
 
 import { ref } from "vue";
+const drawerOpen = ref(false);
 const input = ref("");
 const select = ref("");
 const firstInput = ref("");
@@ -210,6 +213,21 @@ const reset = () => {
 				<dt>tags value</dt>
 				<dd>{{ JSON.stringify(tags) }}</dd>
 			</dl>
+
+			<h2>Drawer Test</h2>
+			<p>
+				Test: Click "Open Drawer", then mouse down inside the drawer
+				content, drag to the backdrop, and release. The drawer should
+				NOT close.
+			</p>
+			<DBButton @click="drawerOpen = true">Open Drawer</DBButton>
+			<DBDrawer :open="drawerOpen" @close="drawerOpen = false">
+				<template #drawer-header>Drawer Header</template>
+				<DBInfotext style="margin: 100px; display: flex">
+					Test: Mouse down here, drag to backdrop, release. Drawer
+					should stay open.
+				</DBInfotext>
+			</DBDrawer>
 		</div>
 	</div>
 </template>
