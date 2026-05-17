@@ -1,6 +1,6 @@
 assets/fonts/**/sources/
 public/
-package-lock.json
+pnpm-lock.yaml
 build/
 node_modules
 output
