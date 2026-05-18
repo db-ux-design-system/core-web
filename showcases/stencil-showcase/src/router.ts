@@ -87,7 +87,8 @@ function updateActiveNavItem(): void {
  * Handle route changes by rendering the appropriate content.
  */
 function handleRoute(): void {
-	const container = document.querySelector<HTMLElement>('#main-content');
+	const container = document.querySelector<HTMLElement>('main');
+	console.log('handleRoute', container);
 	if (!container) return;
 
 	const { category, component, parameters } = parseHash(
@@ -118,8 +119,22 @@ function handleRoute(): void {
  * Listens for hashchange events and handles the initial route on page load.
  */
 export function initRouter(): void {
-	globalThis.addEventListener('hashchange', handleRoute);
-	handleRoute();
+	const page = document.querySelector('db-page');
+
+	const observer = new MutationObserver(() => {
+		if (page?.classList.contains('hydrated')) {
+			observer.disconnect();
+			globalThis.addEventListener('hashchange', handleRoute);
+			handleRoute();
+		}
+	});
+
+	if (page?.classList.contains('hydrated')) {
+		globalThis.addEventListener('hashchange', handleRoute);
+		handleRoute();
+	} else if (page) {
+		observer.observe(page, { attributeFilter: ['class'] });
+	}
 }
 
 /**

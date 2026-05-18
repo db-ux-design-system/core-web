@@ -19,6 +19,7 @@ export default defineConfig({
 	],
 	build: {
 		outDir: '../../build-showcases/stencil-showcase',
-		emptyOutDir: true
+		emptyOutDir: true,
+		cssMinify: 'esbuild'
 	}
 });

@@ -109,7 +109,6 @@ export function renderNavigation(): void {
 					${renderNavItems(NAVIGATION_ITEMS)}
 				</db-navigation>
 			</db-header>
-			<main id="main-content"></main>
 		</db-page>
 	`;
 }
