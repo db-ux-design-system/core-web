@@ -11,10 +11,10 @@ export type FigmaCheckboxProps = {
 };
 
 const checkboxProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Label' },
+	label: { type: 'textContent', key: 'Label' },
 	size: {
 		type: 'enum',
-		key: '💻 Size',
+		key: 'Size',
 		value: { Medium: 'medium', Small: 'small' }
 	},
 	disabled: { type: 'boolean', key: 'Disabled' },
@@ -31,7 +31,7 @@ const checkboxProps: Record<string, FigmaProp> = {
 	},
 	message: {
 		type: 'validationMessage',
-		key: '✏️ Text',
+		key: 'Text',
 		conditionProp: 'validation',
 		map: {
 			invalid: 'invalidMessage',

@@ -15,13 +15,13 @@ export type FigmaTextareaProps = {
 const textareaProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Above: 'above', Floating: 'floating' }
 	},
-	label: { type: 'string', key: '✏️ Label' },
-	placeholder: { type: 'string', key: '✏️ Placeholder' },
+	label: { type: 'string', key: 'Label' },
+	placeholder: { type: 'string', key: 'Placeholder' },
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',
@@ -35,7 +35,7 @@ const textareaProps: Record<string, FigmaProp> = {
 	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
-		key: '✏️ Text',
+		key: 'Text',
 		conditionProp: 'validation',
 		map: {
 			invalid: 'invalidMessage',

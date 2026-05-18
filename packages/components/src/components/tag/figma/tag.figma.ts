@@ -2,25 +2,12 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaTagProps = {
 	label?: string;
-	emphasis?: string;
 	semantic?: string;
-	behavior?: string;
 	disabled?: boolean;
 	checked?: boolean;
 	showCheckState?: boolean;
-	overflow?: boolean;
-	noText?: boolean;
 	showIcon?: boolean;
 	icon?: string;
-	_childrenType?: string;
-};
-
-const emphasisProp: Record<string, FigmaProp> = {
-	emphasis: {
-		type: 'enum',
-		key: '💻 Emphasis',
-		value: { '(Def) Weak': 'weak', Strong: 'strong' }
-	}
 };
 
 const semanticProp: Record<string, FigmaProp> = {
@@ -39,62 +26,36 @@ const semanticProp: Record<string, FigmaProp> = {
 };
 
 const labelProp: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Text' }
-};
-
-const overflowProp: Record<string, FigmaProp> = {
-	overflow: { type: 'boolean', key: 'Overflow' }
+	label: { type: 'textContent', key: 'Text' }
 };
 
 const iconProps: Record<string, FigmaProp> = {
-	noText: { type: 'boolean', key: '💻 No Text' },
-	showIcon: { type: 'boolean', key: '💻 Show Icon' },
+	showIcon: { type: 'boolean', key: 'Show Icon' },
 	icon: {
 		type: 'conditionalProp',
-		key: '🔄 Icon',
-		guardKey: '💻 Show Icon',
+		key: 'Icon',
+		guardKey: 'Show Icon',
 		attrName: 'icon'
 	}
 };
 
 const staticProps: Record<string, FigmaProp> = {
 	...labelProp,
-	...emphasisProp,
 	...semanticProp,
-	...overflowProp,
-	...iconProps,
-	behavior: {
-		type: 'enum',
-		key: '💻 Behavior',
-		value: { '(Def) Static': 'static', Removable: 'removable' }
-	}
+	...iconProps
 };
 
 const interactiveProps: Record<string, FigmaProp> = {
 	...labelProp,
-	...emphasisProp,
 	...semanticProp,
-	...overflowProp,
 	...iconProps,
-	_childrenType: {
-		type: 'enum',
-		key: '💻 Children',
-		value: { 'button | link': 'button' }
-	},
 	disabled: { type: 'boolean', key: 'Disabled' }
 };
 
 const interactiveToggleProps: Record<string, FigmaProp> = {
 	...labelProp,
-	...emphasisProp,
 	...semanticProp,
-	...overflowProp,
 	...iconProps,
-	_childrenType: {
-		type: 'enum',
-		key: '💻 Children',
-		value: { 'checkbox | radio': 'checkbox' }
-	},
 	disabled: { type: 'boolean', key: 'Disabled' },
 	checked: { type: 'boolean', key: 'Checked' },
 	showCheckState: { type: 'boolean', key: 'Show Check State' }

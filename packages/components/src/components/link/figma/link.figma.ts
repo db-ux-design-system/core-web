@@ -9,15 +9,15 @@ export type FigmaLinkProps = {
 };
 
 const linkProps: Record<string, FigmaProp> = {
-	text: { type: 'textContent', key: '✏️ Text' },
+	text: { type: 'textContent', key: 'Text' },
 	content: {
 		type: 'enum',
-		key: '💻 Content',
+		key: 'Content',
 		value: { Internal: 'internal', External: 'external' }
 	},
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Adaptive: 'adaptive', Brand: 'brand' }
 	},
 	size: {

@@ -9,7 +9,7 @@ export type FigmaPopoverProps = {
 const popoverProps: Record<string, FigmaProp> = {
 	placement: {
 		type: 'enum',
-		key: '💻 Placement',
+		key: 'Placement',
 		value: {
 			Default: 'auto',
 			Top: 'top',
@@ -28,7 +28,7 @@ const popoverProps: Record<string, FigmaProp> = {
 			None: 'none'
 		}
 	},
-	_children: { type: 'children', key: 'Children' }
+	_children: { type: 'nestedConnectedInstances' }
 };
 
 export const popovers: FigmaCodeConnect = {

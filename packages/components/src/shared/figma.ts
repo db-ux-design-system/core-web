@@ -99,8 +99,8 @@ export type FigmaConnectedInstancesProp = {
  */
 export type FigmaNestedConnectedInstancesProp = {
 	type: 'nestedConnectedInstances';
-	/** Import string to filter by (e.g. 'DBAccordionItem'). Only instances whose template nestedImports contain this string are included. */
-	filter: string;
+	/** Import string to filter by (e.g. 'DBAccordionItem'). Only instances whose template nestedImports contain this string are included. When omitted, all connected instances are included. */
+	filter?: string;
 };
 
 /**

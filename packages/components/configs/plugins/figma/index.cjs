@@ -51,29 +51,33 @@ const getInstanceCall = (figmaProperty) => {
 	}
 	if (type === 'nestedConnectedInstances') {
 		const { filter } = figmaProperty;
-		return `instance.findConnectedInstances((node) => node.hasCodeConnect(), { traverseInstances: true }).filter((node) => node.type === 'INSTANCE').filter((node) => node.executeTemplate().example.some((section) => section.type === 'CODE' && section.nestedImports?.some((i) => i.includes('${filter}')))).reverse().flatMap((child) => child.executeTemplate().example)`;
+		const filterStep = filter
+			? `.filter((node) => node.executeTemplate().example.some((section) => section.type === 'CODE' && section.nestedImports?.some((i) => i.includes('${filter}'))))`
+			: '';
+		const reverseStep = filter ? '.reverse()' : '';
+		return `instance.findConnectedInstances((node) => node.hasCodeConnect(), { traverseInstances: true }).filter((node) => node.type === 'INSTANCE')${filterStep}${reverseStep}.flatMap((child) => child.executeTemplate().example)`;
 	}
-	if (type === 'children') return `instance.getSlot('${key}')`;
-	if (type === 'textContent') return `instance.getString('${key}')`;
+	if (type === 'children') return `instance.getSlot(_findKey('${key}'))`;
+	if (type === 'textContent') return `instance.getString(_findKey('${key}'))`;
 	if (type === 'nestedText') {
 		const { layerName, key: textKey } = figmaProperty;
-		return `instance.findInstance('${layerName}')?.getString('${textKey}')`;
+		return `instance.findInstance('${layerName}')?.getString(_findKey('${textKey}'))`;
 	}
 	if (type === 'connectedText') {
 		const { key: textKey, index = 0 } = figmaProperty;
-		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties['${textKey}'])[${index}]?.getString('${textKey}')`;
+		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties[_findKey('${textKey}')])[${index}]?.getString(_findKey('${textKey}'))`;
 	}
 	if (type === 'validationMessage') {
 		const { key: textKey } = figmaProperty;
-		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties['${textKey}'])[0]?.getString('${textKey}')`;
+		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties[_findKey('${textKey}')])[0]?.getString(_findKey('${textKey}'))`;
 	}
 	if (type === 'conditionalProp')
-		return `instance.getInstanceSwap('${key}')?.executeTemplate()?.example`;
+		return `((r) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example)`;
 	if (type === 'iconSwap')
-		return `instance.getInstanceSwap('${key}')?.executeTemplate()?.example`;
+		return `((r) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example)`;
 	if (type === 'boolean')
-		return `instance.getEnum('${key}', { 'False': false, 'True': true })`;
-	if (type === 'string') return `instance.getString('${key}')`;
+		return `instance.getEnum(_findKey('${key}'), { 'False': false, 'True': true })`;
+	if (type === 'string') return `instance.getString(_findKey('${key}'))`;
 
 	if (type === 'enum' && value) {
 		const entries = Object.entries(value);
@@ -82,22 +86,16 @@ const getInstanceCall = (figmaProperty) => {
 		);
 		if (allIconSwaps) {
 			const { guardKey } = figmaProperty;
-			const [[, firstInst], ...rest] = entries;
-			let swapExpr;
-			if (rest.length === 0) {
-				swapExpr = `typeof instance.getPropertyValue('${firstInst.key}') === 'string' ? instance.getInstanceSwap('${firstInst.key}')?.executeTemplate()?.example : undefined`;
-			} else {
-				const conditions = rest
-					.map(
-						([figmaVal, inst]) =>
-							`instance.getPropertyValue('${key}') === '${figmaVal}' ? (typeof instance.getPropertyValue('${inst.key}') === 'string' ? instance.getInstanceSwap('${inst.key}') : undefined)`
-					)
-					.join(' : ');
-				swapExpr = `(\n\t${conditions} : (typeof instance.getPropertyValue('${firstInst.key}') === 'string' ? instance.getInstanceSwap('${firstInst.key}') : undefined)\n)?.executeTemplate()?.example`;
-			}
-			return guardKey
-				? `(instance.getPropertyValue('${guardKey}') === true || instance.getPropertyValue('${guardKey}') === 'True') ? (${swapExpr}) : undefined`
-				: swapExpr;
+			// Build per-entry swap lines
+			const swapLines = entries.map(
+				([figmaVal, inst]) =>
+					`if (instance.getPropertyValue(_findKey('${key}')) === '${figmaVal}' && typeof instance.getPropertyValue(_findKey('${inst.key}')) === 'string') { _swap = instance.getInstanceSwap(_findKey('${inst.key}')); }`
+			);
+			const guardOpen = guardKey
+				? `if (instance.getPropertyValue(_findKey('${guardKey}')) === true || instance.getPropertyValue(_findKey('${guardKey}')) === 'True') {`
+				: null;
+			// Return a multi-line block marker — handled in attrDeclarations
+			return { __iconSwapBlock__: true, swapLines, guardOpen };
 		}
 		const allInstances = entries.every(
 			([, v]) => v instanceof Object && v.key && v.type === 'instance'
@@ -118,12 +116,12 @@ const getInstanceCall = (figmaProperty) => {
 			.filter(([, v]) => !(v instanceof Object && v.key && v.type))
 			.map(([k, v]) => `  '${k}': ${JSON.stringify(v)}`)
 			.join(',\n');
-		return `instance.getEnum('${key}', {\n${plainEntries}\n})`;
+		return `instance.getEnum(_findKey('${key}'), {\n${plainEntries}\n})`;
 	}
 
 	if (type === 'instance')
-		return `instance.getInstanceSwap('${key}')?.executeTemplate()?.example`;
-	return `instance.getString('${key}')`;
+		return `instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example`;
+	return `instance.getString(_findKey('${key}'))`;
 };
 
 const isStringType = (fProp) => {
@@ -197,6 +195,44 @@ const buildTemplate = (json, target) => {
 		.map(([propName, fProp]) => {
 			const figmaKey = fProp.key || null;
 			const valueExpr = getInstanceCall(fProp);
+			// allIconSwaps generates a block object instead of an inline expression
+			if (
+				valueExpr &&
+				typeof valueExpr === 'object' &&
+				valueExpr.__iconSwapBlock__
+			) {
+				const { swapLines, guardOpen, unwrap } = valueExpr;
+				const isStr = true; // icon names are strings
+				const attrStr = isStr
+					? `\`\\n\\t\\t${propName}="\${_${propName}}"\``
+					: `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
+				const innerLines = [
+					`let _swap_${propName}: figma.InstanceHandle | undefined`,
+					...swapLines.map((l) =>
+						l.replace(/_swap/g, `_swap_${propName}`)
+					),
+					`const _${propName} = ((r: any) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(_swap_${propName}?.executeTemplate()?.example)`
+				];
+				const lines = [`let ${propName} = ''`];
+				if (guardOpen) {
+					lines.push(guardOpen);
+					for (const l of innerLines) lines.push(`\t${l}`);
+					lines.push(
+						`\tif (_${propName} !== undefined && _${propName} !== null) {`
+					);
+					lines.push(`\t\t${propName} = ${attrStr}`);
+					lines.push(`\t}`);
+					lines.push(`}`);
+				} else {
+					for (const l of innerLines) lines.push(l);
+					lines.push(
+						`if (_${propName} !== undefined && _${propName} !== null) {`
+					);
+					lines.push(`\t${propName} = ${attrStr}`);
+					lines.push(`}`);
+				}
+				return lines.join('\n');
+			}
 			const isStr = isStringType(fProp);
 			let attrStr;
 			if (isStr) {
@@ -241,7 +277,7 @@ const buildTemplate = (json, target) => {
 				...(!skipCcFallback
 					? [`const _cc_${propName} = ${ccChild}`]
 					: []),
-				`const _${propName} = ['string', 'boolean'].includes(typeof instance.getPropertyValue('${figmaKey}')) ? ${valueExpr}${skipCcFallback ? '' : ` : _cc_${propName} ? ${ccMappedValue}`} : undefined`,
+				`const _${propName} = ['string', 'boolean'].includes(typeof instance.getPropertyValue(_findKey('${figmaKey}'))) ? ${valueExpr}${skipCcFallback ? '' : ` : _cc_${propName} ? ${ccMappedValue}`} : undefined`,
 				`let ${propName} = ''`,
 				`if (_${propName} !== undefined && _${propName} !== null && String(_${propName}) !== 'undefined') {`,
 				`\t${propName} = ${attrStr}`,
@@ -293,7 +329,7 @@ const buildTemplate = (json, target) => {
 			return [
 				`const _${propName}Value = ${getInstanceCall(fProp)}`,
 				`let ${propName} = ''`,
-				`if (instance.getPropertyValue('${guardKey}') === true || instance.getPropertyValue('${guardKey}') === 'True') {`,
+				`if ((instance.getPropertyValue(_findKey('${guardKey}')) === true || instance.getPropertyValue(_findKey('${guardKey}')) === 'True') && _${propName}Value !== undefined && _${propName}Value !== null) {`,
 				attrAssign,
 				`}`
 			].join('\n');
@@ -568,7 +604,7 @@ module.exports = () => ({
 			const importsArray = importsEntry ? `[${importsEntry}]` : '[]';
 
 			return (
-				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _cc = instance.findInstance('\u2699\ufe0f Code Connect')\nconst codeConnect = _cc.type === 'INSTANCE' ? _cc : undefined\n\n" +
+				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _cc = instance.findInstance('\u2699\ufe0f Code Connect')\nconst codeConnect = _cc.type === 'INSTANCE' ? _cc : undefined\nconst _findKey = (name: string) => Object.keys(instance.properties).find((k) => k === name || k.endsWith(' ' + name) || k.endsWith(name)) ?? name\n\n" +
 				allDeclarations +
 				'export default {\n  example: figma.code`' +
 				exampleWithProps +

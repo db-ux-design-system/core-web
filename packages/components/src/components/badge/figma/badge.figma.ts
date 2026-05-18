@@ -41,11 +41,11 @@ const emphasisProp: FigmaProp = {
 	}
 };
 
-const textProp: FigmaProp = { type: 'textContent', key: '✏️ Text' };
+const textProp: FigmaProp = { type: 'textContent', key: 'Text' };
 
 const allPlacementProp: FigmaProp = {
 	type: 'enum',
-	key: '💻 Placement',
+	key: 'Placement',
 	value: {
 		inline: 'inline',
 		'corner-top-left': 'corner-top-left',
@@ -59,7 +59,7 @@ const allPlacementProp: FigmaProp = {
 
 const cornerPlacementProp: FigmaProp = {
 	type: 'enum',
-	key: '💻 Placement',
+	key: 'Placement',
 	value: {
 		'corner-top-left': 'corner-top-left',
 		'corner-top-right': 'corner-top-right',
@@ -80,8 +80,8 @@ const baseBadgeProps: Record<string, FigmaProp> = {
 		type: 'enum',
 		key: 'Size',
 		value: {
-			'(Def) Small': { type: 'iconSwap', key: '🔄 Icon Small' },
-			Medium: { type: 'iconSwap', key: '🔄 Icon Medium' }
+			'(Def) Small': { type: 'iconSwap', key: 'Icon Small' },
+			Medium: { type: 'iconSwap', key: 'Icon Medium' }
 		}
 	}
 };
@@ -99,7 +99,7 @@ const dotBadgeProps: Record<string, FigmaProp> = {
 	semantic: semanticProp,
 	emphasis: emphasisProp,
 	placement: cornerPlacementProp,
-	label: { type: 'string', key: '✏️ Text' }
+	label: { type: 'string', key: 'Text' }
 };
 
 export const dotBadges: FigmaCodeConnect = {

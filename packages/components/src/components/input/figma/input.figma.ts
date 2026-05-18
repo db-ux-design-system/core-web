@@ -19,13 +19,13 @@ export type FigmaInputProps = {
 const inputProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Above: 'above', Floating: 'floating' }
 	},
-	label: { type: 'string', key: '✏️ Label' },
-	placeholder: { type: 'string', key: '✏️ Placeholder' },
+	label: { type: 'string', key: 'Label' },
+	placeholder: { type: 'string', key: 'Placeholder' },
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',
@@ -40,20 +40,20 @@ const inputProps: Record<string, FigmaProp> = {
 	showIconTrailing: { type: 'boolean', key: 'Show Icon Trailing' },
 	iconLeading: {
 		type: 'conditionalProp',
-		key: '🔄 Icon Leading',
+		key: 'Icon Leading',
 		guardKey: 'Show Icon Leading',
 		attrName: 'icon'
 	},
 	iconTrailing: {
 		type: 'conditionalProp',
-		key: '🔄 Icon Trailing',
+		key: 'Icon Trailing',
 		guardKey: 'Show Icon Trailing',
 		attrName: 'iconTrailing'
 	},
 	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
-		key: '✏️ Text',
+		key: 'Text',
 		conditionProp: 'validation',
 		map: {
 			invalid: 'invalidMessage',

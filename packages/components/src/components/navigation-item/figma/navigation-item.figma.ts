@@ -10,10 +10,10 @@ export type FigmaNavigationItemProps = {
 };
 
 const navigationItemProps: Record<string, FigmaProp> = {
-	text: { type: 'textContent', key: '✏️ Text' },
+	text: { type: 'textContent', key: 'Text' },
 	width: {
 		type: 'enum',
-		key: '💻 Width',
+		key: 'Width',
 		value: { Auto: 'auto', Full: 'full' }
 	},
 	disabled: { type: 'boolean', key: 'Disabled' },
@@ -21,7 +21,7 @@ const navigationItemProps: Record<string, FigmaProp> = {
 	showIcon: { type: 'boolean', key: 'Show Icon' },
 	icon: {
 		type: 'conditionalProp',
-		key: '🔄 Icon',
+		key: 'Icon',
 		guardKey: 'Show Icon',
 		attrName: 'icon'
 	}

@@ -11,14 +11,14 @@ export type FigmaSelectProps = {
 };
 
 const selectProps: Record<string, FigmaProp> = {
-	label: { type: 'string', key: '✏️ Label' },
+	label: { type: 'string', key: 'Label' },
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Above: 'above', Floating: 'floating' }
 	},
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',

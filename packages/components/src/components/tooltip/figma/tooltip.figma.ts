@@ -13,7 +13,7 @@ export type FigmaTooltipProps = {
 };
 
 const tooltipProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Label' },
+	label: { type: 'textContent', key: 'Label' },
 	emphasis: {
 		type: 'enum',
 		key: 'Emphasis',

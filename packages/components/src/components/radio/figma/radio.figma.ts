@@ -11,14 +11,14 @@ export type FigmaRadioProps = {
 };
 
 const radioProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Label' },
+	label: { type: 'textContent', key: 'Label' },
 	size: {
 		type: 'enum',
-		key: '💻 Size',
+		key: 'Size',
 		value: { Medium: 'medium', Small: 'small' }
 	},
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	checked: { type: 'boolean', key: 'Checked' },
 	validation: {
