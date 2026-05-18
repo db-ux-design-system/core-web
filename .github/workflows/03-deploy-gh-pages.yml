@@ -94,7 +94,7 @@ jobs:
           pnpm --silent tsx scripts/github/build-gh-page.ts
 
       - name: 🥅 Deploy to GH-Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public

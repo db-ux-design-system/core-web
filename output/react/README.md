@@ -21,19 +21,19 @@ npm i @db-ux/react-core-components
 
 Import the styles in scss or css. Based on your technology the file names could be different.
 
--   Default (relative): points to `../assets`
--   Rollup (rollup): points to `@db-ux/core-foundations/assets`
--   Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+- Default (relative): points to `../assets`
+- Rollup (rollup): points to `@db-ux/core-foundations/assets`
+- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
 
 ```scss
 // index.scss
-@forward "@db-ux/core-foundations/build/styles/theme/rollup";  // Palette tokens
-@forward "@db-ux/core-foundations/build/styles/bundle";         // Semantic tokens
-@forward "@db-ux/core-foundations/build/styles/icons/rollup";   // Icon fonts
-@forward "@db-ux/core-components/build/styles/rollup";          // Component styling
+@forward "@db-ux/core-foundations/build/styles/theme/rollup"; // Palette tokens
+@forward "@db-ux/core-foundations/build/styles/bundle"; // Semantic tokens
+@forward "@db-ux/core-foundations/build/styles/icons/rollup"; // Icon fonts
+@forward "@db-ux/core-components/build/styles/rollup"; // Component styling
 ```
 
 </details>
@@ -42,10 +42,10 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```tsx
 // main.tsx — order matters!
-import "@db-ux/core-foundations/build/styles/theme/rollup.css";  // Palette tokens
-import "@db-ux/core-foundations/build/styles/bundle.css";        // Semantic tokens
-import "@db-ux/core-foundations/build/styles/icons/rollup.css";  // Icon fonts
-import "@db-ux/core-components/build/styles/rollup.css";         // Component styling
+import "@db-ux/core-foundations/build/styles/theme/rollup.css"; // Palette tokens
+import "@db-ux/core-foundations/build/styles/bundle.css"; // Semantic tokens
+import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Icon fonts
+import "@db-ux/core-components/build/styles/rollup.css"; // Component styling
 ```
 
 </details>
@@ -57,9 +57,9 @@ Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](htt
 ```ts
 // vite.config.ts
 export default defineConfig({
-  build: {
-    cssMinify: "esbuild"
-  }
+	build: {
+		cssMinify: "esbuild"
+	}
 });
 ```
 
@@ -74,11 +74,15 @@ import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
 
 export default defineConfig({
-  css: {
-    lightningcss: {
-      targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
-    }
-  }
+	css: {
+		lightningcss: {
+			targets: browserslistToTargets(
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
+		}
+	}
 });
 ```
 
@@ -88,22 +92,22 @@ export default defineConfig({
 
 Starting with Next 16, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `next.config.ts` like this:
 
-````ts
+```ts
 // next.config.ts
 
-import type { NextConfig } from 'next'
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	experimental: {
 		useLightningcss: true,
 		lightningCssFeatures: {
-			exclude: ['light-dark'],
-		},
-	},
-}
+			exclude: ["light-dark"]
+		}
+	}
+};
 
-export default nextConfig
-````
+export default nextConfig;
+```
 
 ### DB Theme
 

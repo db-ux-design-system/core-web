@@ -20,7 +20,7 @@
   "dependencies": {
     "@angular/animations": "21.2.12",
     "@angular/common": "21.2.12",
-    "@angular/compiler": "21.2.12",
+    "@angular/compiler": "21.2.13",
     "@angular/core": "21.2.12",
     "@angular/forms": "21.2.12",
     "@angular/platform-browser": "21.2.12",
@@ -30,7 +30,7 @@
     "@angular/ssr": "21.2.10",
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*",
-    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
     "express": "5.2.1",
