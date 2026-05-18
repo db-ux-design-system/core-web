@@ -104,6 +104,9 @@ export function renderNavigation(): void {
 		<db-page variant="fixed" fadeIn="true">
 			<db-header slot="header">
 				<db-brand slot="brand">Showcase</db-brand>
+				<db-select slot="metaNavigation" variant="floating" label="Nothing">
+					<option>Nothing here for stencil</option>
+				</db-select>
 				<db-navigation aria-label="main-navigation">
 					<db-navigation-item hideSubNavigation="true"><a href="#/">Home</a></db-navigation-item>
 					${renderNavItems(NAVIGATION_ITEMS)}
