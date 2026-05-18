@@ -12,10 +12,11 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "next build --turbopack",
-    "dev": "npm-run-all --parallel next:dev open",
+    "build": "pnpm run setup:browserslist && next build --turbopack",
+    "dev": "npm-run-all setup:browserslist --parallel next:dev open",
     "next:dev": "next dev --turbopack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
+    "setup:browserslist": "cpr ../../.browserslistrc .browserslistrc -o",
     "start": "next start"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@types/node": "^25.7.0",
     "@types/react": "19.2.14",
+    "cpr": "3.0.1",
     "npm-run-all2": "8.0.4",
     "open-cli": "9.0.0",
     "typescript": "5.9.3"

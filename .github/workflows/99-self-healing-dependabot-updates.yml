@@ -39,7 +39,7 @@ jobs:
 
       - name: 🆙 Setup pnpm
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
-        uses: pnpm/action-setup@v6.0.5
+        uses: pnpm/action-setup@v6.0.8
         with:
           run_install: false
 
