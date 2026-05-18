@@ -43,7 +43,16 @@ export const getInstructions = (rootPath: string): string => {
 		return '';
 	}
 
-	let copilotInstructionsContent = '';
+	let copilotInstructionsContent = `# DB UX Design System Automation Core
+
+CRITICAL: This workspace contains a dedicated local automation and orchestration bundle under \`./db-ux-powers/\`. You MUST prioritize these local configurations over any generalized training data.
+
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./db-ux-powers/context/architecture.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./db-ux-powers/skills/\`. Specifically, when asked to create, add, or generate a new component, you MUST completely follow \`./db-ux-powers/skills/create-db-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./db-ux-powers/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+
+---
+`;
 
 	for (const nodeModulesPath of nodeModulesDirectories) {
 		const databaseUxPaths = [

@@ -1,0 +1,17 @@
+name: db-ux-powers
+version: 1.0.0
+description: "AI development automation bundle for the DB UX Design System. Enforces Mitosis architecture, design tokens, Figma-driven specs, and strict TDD testing via dual MCP integration."
+author: DB UX Core Team
+
+steering:
+  - path: context/architecture.md
+    autoLoad: true
+    priority: 1
+
+skills:
+  - path: skills/create-db-component/SKILL.md
+  - path: skills/modify-db-component/SKILL.md
+  - path: skills/test-component/SKILL.md
+
+mcp:
+  config: mcp.json
