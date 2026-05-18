@@ -436,7 +436,6 @@ jobs:
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
 
-
           echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
           echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
           echo "resultBuildStorybookReact: $resultBuildStorybookReact"
