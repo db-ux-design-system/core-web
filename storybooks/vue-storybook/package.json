@@ -14,7 +14,7 @@
     "storybook": "storybook dev -p 6007"
   },
   "dependencies": {
-    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
     "vue": "3.5.34"
@@ -30,7 +30,7 @@
     "eslint-plugin-storybook": "10.3.6",
     "storybook": "10.3.6",
     "typescript": "~5.9.3",
-    "vite": "8.0.10",
+    "vite": "8.0.12",
     "vue-tsc": "3.2.8"
   }
 }

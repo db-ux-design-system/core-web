@@ -37,7 +37,7 @@ jobs:
 
       - name: 🧬 Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@v3.1.1
         with:
           app-id: ${{ vars.AUTO_MERGE_APP_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
@@ -46,7 +46,7 @@ jobs:
       - name: 🧩 Changesets Action
         id: changesets
         if: github.event_name == 'push'
-        uses: changesets/action@v1.7.0
+        uses: changesets/action@v1.8.0
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"

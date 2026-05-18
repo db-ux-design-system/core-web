@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "4.7.3",
+  "version": "4.8.1",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -36,8 +36,8 @@
     "@types/react": "19.2.14",
     "cpr": "3.0.1",
     "playwright": "1.59.1",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "typescript": "5.9.3"
   },
   "publishConfig": {
