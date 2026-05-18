@@ -44,9 +44,12 @@ minimumReleaseAgeExclude:
   - postcss@8.5.10
   - uuid@11.1.1
   - ip-address@10.1.1
+  - svelte@5.55.7
+  - devalue@5.8.1
 
 overrides:
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
+  devalue@>=5.6.3 <=5.8.0: ^5.8.1
   file-type@>=13.0.0 <21.3.1: ^21.3.1
   got@<11.8.5: ^11.8.5
   ip-address@<=10.1.0: ^10.1.1
@@ -58,6 +61,9 @@ overrides:
   svelte@<4.2.19: ^4.2.19
   svelte@<=5.51.4: ^5.51.5
   svelte@<=5.53.4: ^5.53.5
+  svelte@<=5.55.6: ^5.55.7
+  svelte@>=5.46.0 <=5.55.6: ^5.55.7
+  svelte@>=5.51.5 <=5.55.6: ^5.55.7
   uuid@>=11.0.0 <11.1.1: ^11.1.1
 
 saveExact: true
