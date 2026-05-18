@@ -198,3 +198,4 @@ Categorises
 categorise
 optimised
 optimise
+browserslistrc
