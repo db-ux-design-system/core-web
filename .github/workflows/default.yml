@@ -408,27 +408,6 @@ jobs:
           IS_RELEASE: ${{ github.event_name == 'release' }}
           IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
-          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
-          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
-          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
-          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
-          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
-          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
-          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
-          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
-          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
-          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
-          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
-          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
-          echo "resultBuildOutputs: $resultBuildOutputs"
-          echo "resultTestPackages: $resultTestPackages"
-          echo "resultTestFoundations: $resultTestFoundations"
-          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
-          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
-          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
-          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
-          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
-          echo "resultTestScreenReader: $resultTestScreenReader"
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
             echo "🎉 Changeset release PR - skipping checks."
             exit 0
@@ -456,6 +435,29 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
+
+
+          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
+          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
+          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
+          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
+          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
+          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
+          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
+          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
+          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
+          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
+          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
+          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
+          echo "resultBuildOutputs: $resultBuildOutputs"
+          echo "resultTestPackages: $resultTestPackages"
+          echo "resultTestFoundations: $resultTestFoundations"
+          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
+          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
+          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
+          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
+          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
+          echo "resultTestScreenReader: $resultTestScreenReader"
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
@@ -543,7 +545,7 @@ jobs:
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
-    if: ${{ github.event_name == 'release' }}
+    if: ${{ !cancelled() && github.event_name == 'release' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit
