@@ -1,5 +1,5 @@
 import { expect, test, type FullProject, type Page } from '@playwright/test';
-import { runAriaSnapshotTest } from '../default.ts';
+import { isStencil, runAriaSnapshotTest } from '../default.ts';
 
 const path = '04/tabs';
 
