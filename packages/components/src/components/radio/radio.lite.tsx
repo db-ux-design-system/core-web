@@ -206,9 +206,8 @@ export default function DBRadio(props: DBRadioProps) {
 					state.handleFocus(event)
 				}
 			/>
-			<Show when={props.label} else={props.children}>
-				{props.label}
-			</Show>
+			<Show when={props.label}>{props.label}</Show>
+			{props.children}
 		</label>
 	);
 }

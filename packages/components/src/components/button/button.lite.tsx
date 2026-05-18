@@ -53,9 +53,8 @@ export default function DBButton(props: DBButtonProps) {
 			value={props.value}
 			command={props.command}
 			commandfor={props.commandfor}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</button>
 	);
 }
