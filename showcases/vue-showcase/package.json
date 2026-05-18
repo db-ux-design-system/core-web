@@ -31,11 +31,12 @@
     "vue-router": "5.0.6"
   },
   "devDependencies": {
+    "@db-ux/core-postcss-plugin": "workspace:*",
     "@vitejs/plugin-vue": "6.0.6",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.0.10",
+    "vite": "8.0.12",
     "vue-tsc": "3.2.8"
   }
 }

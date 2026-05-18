@@ -29,9 +29,8 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-size={props.size}
 			data-wrap={getBooleanAsString(props.wrap)}
 			data-show-icon-leading={getBooleanAsString(props.showIcon ?? true)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</span>
 	);
 }

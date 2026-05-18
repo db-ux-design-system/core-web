@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-vite-plugin",
-  "version": "4.8.0",
+  "version": "4.8.1",
   "type": "module",
   "description": "Vite plugin for optimized DB UX Design System CSS imports",
   "repository": {
@@ -47,12 +47,12 @@
   },
   "devDependencies": {
     "@db-ux/db-theme": "5.7.0",
-    "@types/node": "25.6.2",
+    "@types/node": "25.7.0",
     "cpr": "3.0.1",
     "npm-run-all2": "8.0.4",
     "typescript": "5.9.3",
-    "vite": "8.0.10",
-    "vitest": "4.1.5"
+    "vite": "8.0.12",
+    "vitest": "4.1.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
