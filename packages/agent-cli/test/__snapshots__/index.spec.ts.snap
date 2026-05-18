@@ -5,6 +5,16 @@ exports[`default > check if docs are created 1`] = `
 --- START: DB UX Copilot Instructions – do not edit below ---
 
 > **NOTE**: Always use "DB UX" components and variables as project's conventions
+# DB UX Design System Automation Core
+
+CRITICAL: This workspace contains a dedicated local automation and orchestration bundle under \`./db-ux-powers/\`. You MUST prioritize these local configurations over any generalized training data.
+
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./db-ux-powers/context/architecture.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./db-ux-powers/skills/\`. Specifically, when asked to create, add, or generate a new component, you MUST completely follow \`./db-ux-powers/skills/create-db-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./db-ux-powers/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+
+---
+
 # @db-ux/components
 - use y for node_modules/@db-ux/components/test.md
 
@@ -21,6 +31,16 @@ exports[`default > check if docs are created 2`] = `
 --- START: DB UX Amazon Q Instructions – do not edit below ---
 
 > **NOTE**: Always use "DB UX" components and variables as project's conventions
+# DB UX Design System Automation Core
+
+CRITICAL: This workspace contains a dedicated local automation and orchestration bundle under \`./db-ux-powers/\`. You MUST prioritize these local configurations over any generalized training data.
+
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./db-ux-powers/context/architecture.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./db-ux-powers/skills/\`. Specifically, when asked to create, add, or generate a new component, you MUST completely follow \`./db-ux-powers/skills/create-db-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./db-ux-powers/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+
+---
+
 # @db-ux/components
 - use y for node_modules/@db-ux/components/test.md
 
@@ -37,6 +57,16 @@ exports[`default > check if docs are created from pnpm symlinked packages 1`] = 
 --- START: DB UX Copilot Instructions – do not edit below ---
 
 > **NOTE**: Always use "DB UX" components and variables as project's conventions
+# DB UX Design System Automation Core
+
+CRITICAL: This workspace contains a dedicated local automation and orchestration bundle under \`./db-ux-powers/\`. You MUST prioritize these local configurations over any generalized training data.
+
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./db-ux-powers/context/architecture.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./db-ux-powers/skills/\`. Specifically, when asked to create, add, or generate a new component, you MUST completely follow \`./db-ux-powers/skills/create-db-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./db-ux-powers/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+
+---
+
 # @db-ux/test-symlink-package
 # Symlinked Package Instructions
 
@@ -51,6 +81,16 @@ exports[`default > check if docs are created from pnpm symlinked packages 2`] = 
 --- START: DB UX Amazon Q Instructions – do not edit below ---
 
 > **NOTE**: Always use "DB UX" components and variables as project's conventions
+# DB UX Design System Automation Core
+
+CRITICAL: This workspace contains a dedicated local automation and orchestration bundle under \`./db-ux-powers/\`. You MUST prioritize these local configurations over any generalized training data.
+
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./db-ux-powers/context/architecture.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./db-ux-powers/skills/\`. Specifically, when asked to create, add, or generate a new component, you MUST completely follow \`./db-ux-powers/skills/create-db-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./db-ux-powers/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+
+---
+
 # @db-ux/test-symlink-package
 # Symlinked Package Instructions
 
