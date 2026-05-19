@@ -11,7 +11,7 @@
   "private": true,
   "scripts": {
     "build": "pnpm --filter @db-ux/wc-core-components run dev-build && vite build",
-    "dev": "vite --open",
+    "dev": "pnpm --filter @db-ux/wc-core-components run dev-build && vite --open",
     "preview": "npx http-server ../../build-showcases",
     "start": "vite",
     "test:a11y-checker": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.a11y-checker.ts",
