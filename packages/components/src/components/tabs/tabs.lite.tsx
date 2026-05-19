@@ -447,7 +447,10 @@ export default function DBTabs(props: DBTabsProps) {
 		// 1. Calculate final start index synchronously to avoid race conditions
 		let startIndex = 0;
 
-		if (props.initialSelectedIndex !== undefined) {
+		if (props.activeIndex !== undefined) {
+			const parsedIndex = Number(props.activeIndex);
+			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
+		} else if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
 			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
 		} else if (props.initialSelectedMode === 'manually') {
