@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import TabsControlled from '../examples/controlled.example.lite';
 import TabsDensity from '../examples/density.example.lite';
 import TabsDisabled from '../examples/disabled.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
@@ -67,6 +68,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Nested Tabs">
 				<CardWrapperShowcase>
 					<TabsNested />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Controlled">
+				<CardWrapperShowcase>
+					<TabsControlled />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">
