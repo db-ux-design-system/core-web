@@ -73,7 +73,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	}, [props.name]);
 
 	onUpdate(() => {
-		if (props.open) {
+		if (props.open !== undefined) {
 			state._open = props.open;
 		}
 	}, [props.open]);
