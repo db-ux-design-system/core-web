@@ -544,7 +544,7 @@ jobs:
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
-    if: ${{ !cancelled() && github.event_name == 'release' }}
+    if: ${{ !cancelled() && github.event_name == 'release' && needs.checks-done.result == 'success' && needs.build-outputs.result == 'success' && needs.init.result == 'success' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit
