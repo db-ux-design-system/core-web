@@ -326,12 +326,10 @@ export default function DBTabs(props: DBTabsProps) {
 					_ref.querySelector('[role="tablist"]');
 
 				if (container) {
-					if (!container.getAttribute('aria-orientation')) {
-						container.setAttribute(
-							'aria-orientation',
-							props.orientation ?? 'horizontal'
-						);
-					}
+					container.setAttribute(
+						'aria-orientation',
+						props.orientation ?? 'horizontal'
+					);
 
 					if (props.behavior === 'arrows') {
 						state.evaluateScrollButtons(container);
