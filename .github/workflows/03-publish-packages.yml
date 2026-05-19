@@ -39,7 +39,13 @@ jobs:
           name: db-ux-outputs
           path: build-outputs
 
+      - name: 📰 Dry Run to NPM Registries
+        if: { { github.event_name == 'release' } }
+        run: |
+          pnpm pack --recursive --filter "@db-ux/*" --config.ignore-scripts=true --dry-run --json
+
       - name: 📰 Publish to NPM Registries
+        if: { { github.event_name == 'release' } }
         run: |
           node scripts/github/publish-npm.js
         env:
