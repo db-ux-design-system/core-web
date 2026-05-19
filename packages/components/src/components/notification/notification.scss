@@ -13,8 +13,8 @@
 
 %timestamp-line-height-adjustments {
 	// Adjusts line-height for elements when timestamp is present
-	&:has(span) {
-		header,
+	&:has([data-area="timestamp"]) {
+		[data-area="head"],
 		p,
 		&::before,
 		.db-button {
@@ -59,7 +59,7 @@
 	}
 
 	// headline
-	header {
+	[data-area="head"] {
 		grid-area: head;
 
 		&,
@@ -101,7 +101,7 @@
 	}
 
 	// timestamp
-	span {
+	[data-area="timestamp"] {
 		@extend %db-overwrite-font-size-sm;
 
 		grid-area: timestamp;
@@ -114,7 +114,7 @@
 	}
 
 	// Inline links stay within content flow
-	&[data-link-variant="inline"] a {
+	&[data-link-variant="inline"] > :is(a, db-link) {
 		// 1. Assign the link to the "timestamp" area.
 		//    All layouts (overlay and default) must recognize this area.
 		grid-area: timestamp;
@@ -131,15 +131,15 @@
 	// If an inline link is present, it takes precedence over the timestamp
 	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
 	// Progressive enhancement - timestamps gracefully shown in older browsers
-	&[data-link-variant="inline"]:has(a) {
-		> span {
+	&[data-link-variant="inline"]:has(> a, > db-link) {
+		> [data-area="timestamp"] {
 			display: none;
 		}
 	}
 
 	// Block links get placed in grid area (default behavior)
 	// This applies when linkVariant is "block" or not specified
-	&:not([data-link-variant="inline"]) a {
+	&:not([data-link-variant="inline"]) > :is(a, db-link) {
 		grid-area: link;
 		white-space: nowrap;
 	}
@@ -179,7 +179,7 @@
 	// This applies when linkVariant is "block" (explicit or default when links are present)
 	&:not([data-variant="overlay"]) {
 		&[data-link-variant="block"],
-		&:not([data-link-variant]):has(a) {
+		&:not([data-link-variant]):has(> a, > db-link) {
 			@extend %grid-layout-variant-not-overlay;
 		}
 	}

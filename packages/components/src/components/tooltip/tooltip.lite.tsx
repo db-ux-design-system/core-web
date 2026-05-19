@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -170,6 +171,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
+			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</i>
 	);
