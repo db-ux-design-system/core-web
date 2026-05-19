@@ -211,7 +211,7 @@ const buildTemplate = (json, target) => {
 					...swapLines.map((l) =>
 						l.replace(/_swap/g, `_swap_${propName}`)
 					),
-					`const _${propName} = ((r: any) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(_swap_${propName}?.executeTemplate()?.example)`
+					`const _${propName} = _swap_${propName}?.executeTemplate()?.example`
 				];
 				const lines = [`let ${propName} = ''`];
 				if (guardOpen) {
@@ -604,7 +604,7 @@ module.exports = () => ({
 			const importsArray = importsEntry ? `[${importsEntry}]` : '[]';
 
 			return (
-				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _cc = instance.findInstance('\u2699\ufe0f Code Connect')\nconst codeConnect = _cc.type === 'INSTANCE' ? _cc : undefined\nconst _findKey = (name: string) => Object.keys(instance.properties).find((k) => k === name || k.endsWith(' ' + name) || k.endsWith(name)) ?? name\n\n" +
+				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _ccLayer = instance.findLayers((n) => n.type === 'INSTANCE' && n.name.includes('\u2699\ufe0f Code Connect'), { traverseInstances: true })[0]\nconst codeConnect = _ccLayer?.type === 'INSTANCE' ? _ccLayer as figma.InstanceHandle : undefined\nconst _findKey = (name: string) => Object.keys(instance.properties).find((k) => k === name || k.replace(/^[^a-zA-Z]+/, '') === name) ?? name\n\n" +
 				allDeclarations +
 				'export default {\n  example: figma.code`' +
 				exampleWithProps +

@@ -11,14 +11,6 @@ export type FigmaButtonProps = {
 	showIconTrailing?: boolean;
 	iconLeading?: string;
 	iconTrailing?: string;
-};
-
-export type FigmaIconButtonProps = {
-	size?: string;
-	width?: string;
-	disabled?: boolean;
-	noText?: boolean;
-	variant?: string;
 	icon?: string;
 };
 
