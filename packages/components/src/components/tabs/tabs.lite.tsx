@@ -193,8 +193,7 @@ export default function DBTabs(props: DBTabsProps) {
 					// Skip disabled tabs when navigating with arrow keys
 					const isForward =
 						key === 'ArrowRight' || key === 'ArrowDown';
-					const maxAttempts = length;
-					for (let i = 0; i < maxAttempts; i++) {
+					for (let i = 0; i < length; i++) {
 						const candidate = buttons[
 							nextIndex
 						] as HTMLButtonElement;
