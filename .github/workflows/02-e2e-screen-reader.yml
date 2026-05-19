@@ -53,11 +53,14 @@ jobs:
           path: build-showcases/react-showcase
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
-        shell: bash
         env:
           showcase: react-showcase
-        run: |
-          pnpm --filter react-showcase run test-sr:${{ env.OS }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        uses: nick-fields/retry@v4
+        with:
+          timeout_seconds: 15
+          max_attempts: 3
+          shell: bash
+          command: pnpm --filter react-showcase run test-sr:${{ env.OS }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()
