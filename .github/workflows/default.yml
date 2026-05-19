@@ -347,7 +347,8 @@ jobs:
     if: |
       github.event_name == 'release' ||
       needs.init.outputs.test-ally == 'true' ||
-      github.event.pull_request == null
+      github.event.pull_request == null ||
+      github.event.pull_request.number == 6725
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
     secrets: inherit
