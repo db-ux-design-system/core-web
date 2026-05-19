@@ -29,10 +29,13 @@ Or add it to your MCP client config:
 4. `docs_search` — search guidelines, accessibility docs, or component-specific documentation if needed
 5. `get_example_code` — fetch the real generated code for the target framework
 6. `list_design_token_categories` — get available token categories if unsure which to query
-7. `get_design_tokens` — retrieve spacing, color, and typography tokens
+7. `get_design_tokens` — retrieve spacing, elevation, density, color, and typography tokens
 8. `list_icons` — look up the exact icon name before using any icon prop
 9. `list_migration_guides` — list all available migration guides before any migration task
 10. `get_migration_guide` — load the full content of a specific migration guide
+11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
+12. `get_visual_reference` — _(optional, use sparingly)_ if you need visual context for complex layouts, call this tool with the visual name to receive a pre-optimised static JPEG reference image
+13. `scan_v2_migration` — **call FIRST when migrating a file.** Scans a source file for v2 patterns (CSS classes `cmp-*`, `elm-*`, `rea-*`, Web Components `<db-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
 
 ### DON'Ts — these are hard violations:
 
@@ -41,6 +44,8 @@ Or add it to your MCP client config:
 - **NEVER** hardcode color values (`#d40000`, `rgb(...)`) — use design tokens exclusively
 - **NEVER** write inline styles (`style="margin: 15px"`)
 - **NEVER** invent or guess icon names — always call `list_icons` first
+- **NEVER** output migrated code to the user without calling `verify_migrated_code` first — the self-correction loop (max 3 attempts) is mandatory
+- **NEVER** use `// @ts-nocheck`, `// @ts-ignore`, `// @ts-expect-error`, `eslint-disable`, or any other compiler/linter bypass directive to "fix" errors — solve the underlying issue instead
 
 ### DOs:
 
@@ -52,6 +57,17 @@ Or add it to your MCP client config:
 	<button style="background: #d40000; margin: 15px">Continue</button>
 </div>
 ```
+
+### Migration workflow (MANDATORY when the user asks to migrate, refactor, or upgrade legacy code):
+
+When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX v3, you **MUST** follow this exact 5-step workflow — do NOT skip any step:
+
+1. **File Scan** — Call `analyze_v2_migration` with the file path. This returns a deterministic JSON report of all v2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
+2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → DB UX v3 Component → Rationale.
+3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
+4. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.
+5. **Code Verification (MANDATORY for react/angular/vue)** — Call `verify_migrated_code`. If errors are returned, fix and retry (max 3 attempts). For `web-components` and `html` targets, skip this step, as they lack a strict compilation/type-checking step for automated verification in our sandbox.
+6. **Final Output** — Present: "Migration Analysis" (mapping table), "Migrated Code" (✅ VERIFIED or ⚠️ WARNING with diagnostics), "Accessibility Statement".
 
 ---
 
@@ -77,6 +93,7 @@ Generates the initial structure of a complete web page or complex module. Enforc
 2. **Component Discovery** — Calls `list_components` to verify every planned block maps to a DB UX component. Reports missing components instead of falling back to native HTML
 3. **Props & Examples** — For each component: `get_component_props` → `get_component_details` → `get_example_code` with the target framework
 4. **Token & Asset Validation** — `list_design_token_categories` → `get_design_tokens` for needed categories, `list_icons` for any icon props
+5. **Visual Validation (optional)** — If uncertain about layout structure or visual hierarchy, call `get_component_visual` for a reference screenshot
 
 **Output structure:**
 
@@ -113,7 +130,7 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` — Legacy Refactoring
 
-Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern DB UX architecture.
+Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern DB UX architecture. Includes a **mandatory code verification step** before presenting results.
 
 **Parameters:**
 
@@ -125,16 +142,17 @@ Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern D
 
 **Workflow:**
 
-1. **Knowledge Acquisition** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes
-2. **Asset Scanning** — Scans for color references (CSS classes, hex values, legacy `--db-color-*` variables) and icon references. Loads `color-migration` and `icon-migration` guides as sole source of truth. Flags any values not found in the tables
-3. **DB UX Mapping** — Calls `list_components`, `get_component_props`, and `get_example_code` to verify modern equivalents
-4. **Token Migration** — Calls `get_design_tokens` to replace legacy CSS variables, utility classes, or hardcoded values
+1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes
+2. **Component Discovery & Props Retrieval** — Calls `list_components`, `get_component_props`, `get_component_details`, and `get_example_code` to verify modern equivalents. Calls `get_design_tokens` to replace legacy CSS variables or hardcoded values. Calls `list_icons` for any icon references. Optionally calls `get_component_visual` when uncertain about layout structures or visual hierarchies
+3. **Code Generation** — Generates the complete migrated component code. **Does NOT output this to the user yet**
+4. **Code Verification & Self-Correction (MANDATORY)** — Calls `verify_migrated_code` with the generated code and framework. If the tool returns compiler errors, the AI analyzes the diagnostics, fixes the code, and retries. This loop runs for a **maximum of 3 attempts**. If verification still fails after 3 attempts, the AI presents the code with a prominent ⚠️ warning block containing the remaining errors
+5. **Final Output** — Presents the verified code (✅ on success, ⚠️ with diagnostics on failure)
 
 **Output structure:**
 
 1. "Migration Analysis" — Maps each legacy element to its modern replacement, referencing migration guide rules
-2. "Refactored Code" — Fully migrated, production-ready code with correct `@db-ux/*` imports
-3. "Actionable Post-Migration Notes" — Behavioral shifts, ARIA states to verify, colors/icons not found in migration tables
+2. "Migrated Code" — Fully migrated, production-ready code with correct `@db-ux/*` imports. Marked ✅ VERIFIED or ⚠️ WARNING with remaining diagnostics
+3. "Accessibility Statement" — Confirmation of WCAG 2.2 AA compliance through the selected DB UX components
 
 ### `audit_accessibility` — Deep A11y Scan
 

@@ -10,7 +10,7 @@ vi.mock('node:fs/promises', () => ({
 
 const { existsSync } = await import('node:fs');
 const { readFile, writeFile } = await import('node:fs/promises');
-const { processComponent } = await import('../build-manifest.js');
+const { processComponent } = await import('../../scripts/build-manifest.js');
 
 const BASE = '/mock/components';
 const OUTPUT = '/mock/output';
@@ -92,12 +92,13 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		// Simulate: 'button' succeeds, 'broken' throws during readFile
 		vi.mocked(existsSync).mockImplementation(
 			(p: any) =>
-				String(p).includes('button/model.ts') ||
-				String(p).includes('broken/model.ts')
+				(String(p).includes('button') &&
+					String(p).includes('model.ts')) ||
+				(String(p).includes('broken') && String(p).includes('model.ts'))
 		);
 		vi.mocked(readFile).mockImplementation((p: any) => {
 			if (String(p).includes('broken'))
-				throw new Error('ENOENT: broken component');
+				return Promise.reject(new Error('ENOENT: broken component'));
 			return Promise.resolve('// button props' as any);
 		});
 

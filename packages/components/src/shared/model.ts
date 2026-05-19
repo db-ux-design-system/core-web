@@ -599,7 +599,7 @@ export type RoleProps = {
 
 export type TextProps = {
 	/**
-	 * Alternative for default slot/children.
+	 * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
 	 */
 	text?: string;
 };
