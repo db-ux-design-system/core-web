@@ -26,6 +26,6 @@
 			"@components/components/*": ["../../output/react/src/components/*"]
 		}
 	},
-	"include": ["src"],
+	"include": ["src", "../shared"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
