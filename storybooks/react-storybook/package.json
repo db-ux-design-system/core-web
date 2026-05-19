@@ -14,27 +14,29 @@
     "storybook": "storybook dev -p 6005"
   },
   "dependencies": {
+    "@db-ux/db-theme": "5.7.0",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.9.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "@faker-js/faker": "10.3.0",
     "@tanstack/match-sorter-utils": "8.19.4",
-    "@tanstack/react-table": "8.21.3",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@tanstack/react-table": "8.21.3"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.3",
-    "@storybook/addon-docs": "10.2.19",
-    "@storybook/react-vite": "10.2.19",
+    "@eslint/js": "10.0.1",
+    "@storybook/addon-docs": "10.3.6",
+    "@storybook/react-vite": "10.3.6",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.4",
-    "eslint": "9.39.3",
-    "eslint-plugin-react-hooks": "7.0.1",
+    "@vitejs/plugin-react": "6.0.1",
+    "eslint": "10.3.0",
     "eslint-plugin-react-refresh": "0.5.2",
-    "eslint-plugin-storybook": "10.2.19",
-    "globals": "17.4.0",
-    "storybook": "10.2.19",
+    "eslint-plugin-storybook": "10.3.6",
+    "globals": "17.6.0",
+    "storybook": "10.3.6",
     "typescript": "~5.9.3",
-    "typescript-eslint": "8.57.1",
-    "vite": "7.3.1"
+    "typescript-eslint": "^8.59.3",
+    "vite": "8.0.13"
   }
 }

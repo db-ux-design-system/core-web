@@ -21,16 +21,19 @@ npm i @db-ux/react-core-components
 
 Import the styles in scss or css. Based on your technology the file names could be different.
 
--   Default (relative): points to `../assets`
--   Rollup (rollup): points to `@db-ux/core-foundations/assets`
--   Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+- Default (relative): points to `../assets`
+- Rollup (rollup): points to `@db-ux/core-foundations/assets`
+- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
 
 ```scss
 // index.scss
-@forward "@db-ux/core-components/build/styles/rollup";
+@forward "@db-ux/core-foundations/build/styles/theme/rollup"; // Palette tokens
+@forward "@db-ux/core-foundations/build/styles/bundle"; // Semantic tokens
+@forward "@db-ux/core-foundations/build/styles/icons/rollup"; // Icon fonts
+@forward "@db-ux/core-components/build/styles/rollup"; // Component styling
 ```
 
 </details>
@@ -38,20 +41,25 @@ Import the styles in scss or css. Based on your technology the file names could 
   <summary><strong>CSS</strong></summary>
 
 ```tsx
-// main.tsx
-import "@db-ux/core-components/build/styles/rollup.css";
+// main.tsx — order matters!
+import "@db-ux/core-foundations/build/styles/theme/rollup.css"; // Palette tokens
+import "@db-ux/core-foundations/build/styles/bundle.css"; // Semantic tokens
+import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Icon fonts
+import "@db-ux/core-components/build/styles/rollup.css"; // Component styling
 ```
 
 </details>
 
-> **Vite 8 Note:** Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `vite.config.ts` like this:
+### Vite 8
+
+Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). To keep CSS output stable, configure `vite.config.ts` like this:
 
 ```ts
 // vite.config.ts
 export default defineConfig({
-  build: {
-    cssMinify: "esbuild"
-  }
+	build: {
+		cssMinify: "esbuild"
+	}
 });
 ```
 
@@ -66,15 +74,40 @@ import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
 
 export default defineConfig({
-  css: {
-    lightningcss: {
-      targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
-    }
-  }
+	css: {
+		lightningcss: {
+			targets: browserslistToTargets(
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
+		}
+	}
 });
 ```
 
 > **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
+
+### Next 16
+
+Starting with Next 16, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `next.config.ts` like this:
+
+```ts
+// next.config.ts
+
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+	experimental: {
+		useLightningcss: true,
+		lightningCssFeatures: {
+			exclude: ["light-dark"]
+		}
+	}
+};
+
+export default nextConfig;
+```
 
 ### DB Theme
 
@@ -104,6 +137,44 @@ npx @db-ux/agent-cli
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
 📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+
+## Code Quality
+
+To enforce correct usage of DB UX Design System components in your React project, we provide the [`@db-ux/core-eslint-plugin`](https://www.npmjs.com/package/@db-ux/core-eslint-plugin) ESLint plugin.
+
+### Installation
+
+```shell
+npm install eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-dev
+```
+
+### Setup
+
+```js
+// eslint.config.js
+import dbUx from "@db-ux/core-eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+	{
+		files: ["**/*.ts", "**/*.tsx"],
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				ecmaVersion: "latest",
+				sourceType: "module",
+				ecmaFeatures: { jsx: true }
+			}
+		},
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
+];
+```
+
+📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
 
 ## Deutsche Bahn brand
 

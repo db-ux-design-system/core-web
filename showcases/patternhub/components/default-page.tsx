@@ -36,10 +36,10 @@ const DefaultPage = ({
 	children,
 	noNavigation
 }: PropsWithChildren<{ noNavigation?: boolean }>) => {
-	const [fullscreen, setFullscreen] = useState<boolean>(false);
-	const [noH1, setNoH1] = useState<boolean>(false);
-	const [properties, setProperties] = useState<boolean>(false);
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+	const [fullscreen, setFullscreen] = useState(false);
+	const [noH1, setNoH1] = useState(false);
+	const [properties, setProperties] = useState(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [lastScroll, setLastScroll] = useState<string>();
 	const [previousNavigationItem, setPreviousNavigationItem] = useState<
 		NavigationItem | undefined
@@ -50,7 +50,7 @@ const DefaultPage = ({
 	const [breadcrumb, setBreadcrumb] = useState<NavigationItem[]>();
 	const router = useRouter();
 
-	const [mode, setMode] = useState<boolean>(
+	const [mode, setMode] = useState(
 		localStorage.getItem(colorModeKey) === null
 			? globalThis.matchMedia?.(preferDark).matches
 			: localStorage.getItem(colorModeKey) === 'dark'
