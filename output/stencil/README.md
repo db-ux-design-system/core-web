@@ -19,9 +19,9 @@ npm i @db-ux/wc-core-components
 
 Import the styles in scss or css. Based on your technology the file names could be different.
 
--   Default (relative): points to `../assets`
--   Rollup (rollup): points to `@db-ux/core-foundations/assets`
--   Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+- Default (relative): points to `../assets`
+- Rollup (rollup): points to `@db-ux/core-foundations/assets`
+- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
@@ -49,9 +49,9 @@ Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](htt
 ```ts
 // vite.config.ts
 export default defineConfig({
-  build: {
-    cssMinify: "esbuild"
-  }
+	build: {
+		cssMinify: "esbuild"
+	}
 });
 ```
 
@@ -66,11 +66,15 @@ import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
 
 export default defineConfig({
-  css: {
-    lightningcss: {
-      targets: browserslistToTargets(browserslist(">= 0.5%, last 2 major versions, Firefox ESR, not dead"))
-    }
-  }
+	css: {
+		lightningcss: {
+			targets: browserslistToTargets(
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
+		}
+	}
 });
 ```
 
