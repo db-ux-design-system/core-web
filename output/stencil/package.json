@@ -24,7 +24,6 @@
     "CHANGELOG.md",
     "agent",
     "bundle/",
-    "dist/",
     "dist/"
   ],
   "scripts": {
@@ -33,11 +32,11 @@
     "build:cem": "cem analyze",
     "dev-build": "stencil build --config stencil.config.dev.ts",
     "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
-    "mv:bundle": "cpr bundle ../../build-outputs/wc-core-components/bundle -o",
+    "mv:bundle": "cpr bundle ../../build-outputs/wc-core-components/bundle --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
-    "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
+    "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist --overwrite",
+    "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json --overwrite",
+    "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md --overwrite",
     "start": "stencil build --watch --config stencil.config.dev.ts"
   },
   "dependencies": {
