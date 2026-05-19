@@ -7,9 +7,5 @@ useMetadata({
 });
 
 export default function NotificationFigmaLite(props: FigmaNotificationProps) {
-	return (
-		<DBNotification link={props.link} timestamp={props.timestamp}>
-			{props.text}
-		</DBNotification>
-	);
+	return <DBNotification link={props.link}>{props.text}</DBNotification>;
 }

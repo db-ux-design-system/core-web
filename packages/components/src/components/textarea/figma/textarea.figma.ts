@@ -6,6 +6,7 @@ export type FigmaTextareaProps = {
 	placeholder?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
+	readonly?: boolean;
 	disabled?: boolean;
 	validation?: string;
 	showMessage?: boolean;
@@ -22,6 +23,7 @@ const textareaProps: Record<string, FigmaProp> = {
 	placeholder: { type: 'string', key: 'Placeholder' },
 	required: { type: 'boolean', key: 'Required' },
 	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
+	readonly: { type: 'boolean', key: 'Readonly' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',

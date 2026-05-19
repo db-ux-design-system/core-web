@@ -6,6 +6,7 @@ export type FigmaSelectProps = {
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
 	disabled?: boolean;
+	readonly?: boolean;
 	validation?: string;
 	showIcon?: boolean;
 };
@@ -20,6 +21,7 @@ const selectProps: Record<string, FigmaProp> = {
 	required: { type: 'boolean', key: 'Required' },
 	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
+	readonly: { type: 'boolean', key: 'Readonly' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',

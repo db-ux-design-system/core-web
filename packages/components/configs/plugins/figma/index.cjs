@@ -76,7 +76,7 @@ const getInstanceCall = (figmaProperty) => {
 	if (type === 'iconSwap')
 		return `((r) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example)`;
 	if (type === 'boolean')
-		return `instance.getEnum(_findKey('${key}'), { 'False': false, 'True': true })`;
+		return `(instance.getEnum(_findKey('${key}'), { 'False': false, 'True': true }) || instance.getBoolean('${key}'))`;
 	if (type === 'string') return `instance.getString(_findKey('${key}'))`;
 
 	if (type === 'enum' && value) {

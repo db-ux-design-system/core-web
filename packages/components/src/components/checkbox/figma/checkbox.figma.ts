@@ -3,6 +3,8 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaCheckboxProps = {
 	label?: string;
 	size?: string;
+	required?: boolean;
+	showRequiredAsterisk?: boolean;
 	disabled?: boolean;
 	checked?: boolean;
 	indeterminate?: boolean;
@@ -17,6 +19,8 @@ const checkboxProps: Record<string, FigmaProp> = {
 		key: 'Size',
 		value: { Medium: 'medium', Small: 'small' }
 	},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	checked: { type: 'boolean', key: 'Checked' },
 	indeterminate: { type: 'boolean', key: 'Indeterminate' },
