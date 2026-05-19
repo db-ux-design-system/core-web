@@ -1,14 +1,10 @@
 import * as esbuild from 'esbuild';
-import { execSync } from 'node:child_process';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Step 1: generate the embedded manifest from live monorepo data
-execSync('npx tsx src/build-manifest.ts', { stdio: 'inherit', cwd: __dirname });
-
-// Step 2: bundle src/index.ts → build/index.js
+// Bundle src/index.ts → dist/index.js
 // All paths are absolute so this script is safe to invoke from any cwd
 // (e.g. `node ../../packages/mcp-server/esbuild.js` from packages/components/).
 await esbuild.build({

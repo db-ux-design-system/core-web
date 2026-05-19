@@ -5,29 +5,3 @@
 #__next {
 	block-size: 100%;
 }
-
-html {
-	--lightningcss-light: initial;
-	--lightningcss-dark: ;
-
-	color-scheme: light dark;
-
-	@media (prefers-color-scheme: dark) {
-		--lightningcss-light: ;
-		--lightningcss-dark: initial;
-	}
-
-	&[data-theme="light"] {
-		--lightningcss-light: initial;
-		--lightningcss-dark: ;
-
-		color-scheme: light;
-	}
-
-	&[data-theme="dark"] {
-		--lightningcss-light: ;
-		--lightningcss-dark: initial;
-
-		color-scheme: dark;
-	}
-}
