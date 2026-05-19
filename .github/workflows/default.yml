@@ -544,6 +544,7 @@ jobs:
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
+    if: ${{ needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit
