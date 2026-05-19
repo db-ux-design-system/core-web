@@ -15,9 +15,11 @@ jobs:
   playwright-screen-reader:
     name: 🧪🎭 - screen-reader - ${{ matrix.os }} - react - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ${{ matrix.os }}
+    concurrency:
+      group: screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
+      cancel-in-progress: false
     strategy:
       fail-fast: false
-      max-parallel: 1 # Run one attempt at a time
       matrix:
         # TODO: enable again after guidepup controlling Voiceover on MacOS 14 and 15 gets more stable
         # https://github.com/actions/runner-images/issues/11257 needs to get fixed for that
@@ -26,7 +28,6 @@ jobs:
         os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
-        attempt: [1, 2, 3] # 3 total attempts
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v6
@@ -59,7 +60,7 @@ jobs:
         env:
           showcase: react-showcase
         run: |
-          pnpm --filter react-showcase run test-sr:${{ env.OS }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter react-showcase run test-sr:${{ env.OS }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --retries=2
 
       - name: 🆙 Upload test results
         if: failure()
