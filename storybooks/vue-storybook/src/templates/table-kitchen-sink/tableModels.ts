@@ -78,7 +78,7 @@ export const columns: ColumnDef<Person>[] = [
 			h(
 				DBCheckbox,
 				{
-					'data-table-row-action': 'true',
+					'data-table-row-trigger': 'true',
 					label: 'Select All',
 					showLabel: false,
 					checked: table.getIsAllRowsSelected(),
@@ -92,7 +92,7 @@ export const columns: ColumnDef<Person>[] = [
 			h(
 				DBCheckbox,
 				{
-					'data-table-row-action': 'true',
+					'data-table-row-trigger': 'true',
 					label: 'Select Row',
 					showLabel: false,
 					checked: row.getIsSelected(),

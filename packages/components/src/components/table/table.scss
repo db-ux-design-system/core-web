@@ -42,7 +42,7 @@
 	}
 
 	&:not([data-divider="none"]) {
-		&:not([data-variant="floating"]) {
+		&:not([data-variant="spaced"]) {
 			&[data-divider="both"],
 			&[data-divider="vertical"] {
 				tr {
@@ -110,7 +110,7 @@
 	}
 }
 
-%floating-table-variant {
+%spaced-table-variant {
 	table {
 		row-gap: variables.$db-spacing-fixed-xs;
 	}
@@ -140,7 +140,7 @@
 
 %variant {
 	&:not([data-variant]),
-	&[data-variant="joined"],
+	&[data-variant="flat"],
 	&[data-variant="zebra"] {
 		table {
 			border-inline: component.$component-border;
@@ -157,14 +157,6 @@
 			> tr:nth-child(odd) {
 				background-color: colors.$db-adaptive-bg-basic-level-2-default;
 			}
-
-			.db-table-row {
-				&[data-interactive="true"] {
-					@include table-row.table-row-interactive-checked("") {
-						@extend %db-informational-variables;
-					}
-				}
-			}
 		}
 
 		thead {
@@ -174,13 +166,13 @@
 		}
 	}
 
-	&[data-variant="floating"] {
-		@extend %floating-table-variant;
+	&[data-variant="spaced"] {
+		@extend %spaced-table-variant;
 	}
 
 	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
 		&[data-mobile-variant="list"] {
-			@extend %floating-table-variant;
+			@extend %spaced-table-variant;
 
 			table {
 				--db-table-columns-size: 1fr;

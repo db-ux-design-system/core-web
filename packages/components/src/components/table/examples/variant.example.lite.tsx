@@ -6,7 +6,7 @@ import { subHeaderEmphasisWeakTable } from './data';
 
 useMetadata({
 	storybookTitle: 'Variant',
-	storybookNames: ['(Default) Joined', 'Floating'],
+	storybookNames: ['(Default) Flat', 'Spaced'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
@@ -22,13 +22,13 @@ export default function TableVariant() {
 					gap: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					(Default) Joined
+					(Default) Flat
 				</DBInfotext>
 				<DBTable
 					data={subHeaderEmphasisWeakTable}
-					variant="joined"
+					variant="flat"
 					divider="both"
-					captionPlain="(Default) Joined"
+					captionPlain="(Default) Flat"
 				/>
 			</div>
 			<div
@@ -59,13 +59,13 @@ export default function TableVariant() {
 					gap: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Floating
+					Spaced
 				</DBInfotext>
 				<DBTable
 					data={subHeaderEmphasisWeakTable}
-					variant="floating"
+					variant="spaced"
 					divider="both"
-					captionPlain="Floating"
+					captionPlain="Spaced"
 				/>
 			</div>
 		</Fragment>

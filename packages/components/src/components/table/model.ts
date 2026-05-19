@@ -9,7 +9,7 @@ export const DBTableRowSizeList = [
 ] as const;
 export type DBTableRowSizeType = (typeof DBTableRowSizeList)[number];
 
-export const DBTableVariantList = ['joined', 'zebra', 'floating'] as const;
+export const DBTableVariantList = ['flat', 'zebra', 'spaced'] as const;
 export type DBTableVariantType = (typeof DBTableVariantList)[number];
 
 export const DBTableDividerList = [
@@ -77,8 +77,8 @@ export type DBTableDefaultProps = {
 
 	/**
 	 * Change the layout of the table
-	 * floating: card style table
-	 * joined: classic table
+	 * spaced: card style table
+	 * flat: classic table
 	 */
 	variant?: DBTableVariantType;
 

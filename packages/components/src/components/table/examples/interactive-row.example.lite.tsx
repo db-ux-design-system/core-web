@@ -12,7 +12,7 @@ import { StorybookTableArgTypes } from './_table.arg.types';
 
 useMetadata({
 	storybookTitle: 'Interactive Row',
-	storybookNames: ['Joined', 'Floating'],
+	storybookNames: ['Flat', 'Spaced'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
@@ -29,9 +29,9 @@ export default function TableInteractiveRow() {
 					padding: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Joined
+					Flat
 				</DBInfotext>
-				<DBTable captionPlain="Joined">
+				<DBTable captionPlain="Flat">
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
@@ -58,7 +58,7 @@ export default function TableInteractiveRow() {
 									className="db-button"
 									href="#"
 									data-variant="ghost"
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									data-no-text="true"
 									data-icon="arrow_up_right">
 									Open Link
@@ -78,7 +78,7 @@ export default function TableInteractiveRow() {
 									className="db-button"
 									href="#"
 									data-variant="ghost"
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									data-no-text="true"
 									data-icon="arrow_up_right">
 									Open Link
@@ -98,7 +98,7 @@ export default function TableInteractiveRow() {
 									className="db-button"
 									href="#"
 									data-variant="ghost"
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									data-no-text="true"
 									data-icon="arrow_up_right">
 									Open Link
@@ -119,9 +119,9 @@ export default function TableInteractiveRow() {
 					padding: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Floating
+					Spaced
 				</DBInfotext>
-				<DBTable variant="floating" captionPlain="Floating">
+				<DBTable variant="spaced" captionPlain="Spaced">
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
@@ -148,7 +148,7 @@ export default function TableInteractiveRow() {
 									className="db-button"
 									href="#"
 									data-variant="ghost"
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									data-no-text="true"
 									data-icon="arrow_up_right">
 									Open Link
@@ -168,7 +168,7 @@ export default function TableInteractiveRow() {
 									className="db-button"
 									href="#"
 									data-variant="ghost"
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									data-no-text="true"
 									data-icon="arrow_up_right">
 									Open Link
@@ -188,7 +188,7 @@ export default function TableInteractiveRow() {
 									className="db-button"
 									href="#"
 									data-variant="ghost"
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									data-no-text="true"
 									data-icon="arrow_up_right">
 									Open Link

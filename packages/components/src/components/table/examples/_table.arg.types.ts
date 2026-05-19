@@ -16,7 +16,7 @@ export const StorybookTableArgTypes: Record<string, InputType> = {
 	},
 	variant: {
 		control: 'select',
-		options: ['joined', 'zebra', 'floating']
+		options: ['flat', 'zebra', 'spaced']
 	},
 	mobileVariant: {
 		control: 'select',

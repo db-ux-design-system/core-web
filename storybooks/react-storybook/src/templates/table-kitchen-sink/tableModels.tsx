@@ -82,7 +82,7 @@ export const columns: ColumnDef<Person>[] = [
 		id: 'select',
 		header: ({ table }) => (
 			<DBCheckbox
-				data-table-row-action="true"
+				data-table-row-trigger="true"
 				label="Select All"
 				showLabel={false}
 				checked={table.getIsAllRowsSelected()}
@@ -93,7 +93,7 @@ export const columns: ColumnDef<Person>[] = [
 		),
 		cell: ({ row }) => (
 			<DBCheckbox
-				data-table-row-action="true"
+				data-table-row-trigger="true"
 				label="Select All"
 				showLabel={false}
 				checked={row.getIsSelected()}

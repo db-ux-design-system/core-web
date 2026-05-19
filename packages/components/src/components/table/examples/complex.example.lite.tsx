@@ -16,7 +16,7 @@ import { StorybookTableArgTypes } from './_table.arg.types';
 
 useMetadata({
 	storybookTitle: 'Complex',
-	storybookNames: ['Joined', 'Zebra', 'Floating', 'Mobile variant: List'],
+	storybookNames: ['Flat', 'Zebra', 'Spaced', 'Mobile variant: List'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
@@ -37,15 +37,15 @@ export default function TableComplex() {
 					gap: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Joined
+					Flat
 				</DBInfotext>
 				<DBTable
 					columnSizes={state.columnSizes}
-					captionPlain="Joined, sortable columns are Link.">
+					captionPlain="Flat, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
-								<DBCheckbox showLabel={false} name="joined">
+								<DBCheckbox showLabel={false} name="flat">
 									Check All
 									<DBTooltip placement="top">
 										Check All
@@ -96,8 +96,8 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
-									name="joined">
+									data-table-row-trigger="true"
+									name="flat">
 									Check Red
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -141,8 +141,8 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
-									name="joined">
+									data-table-row-trigger="true"
+									name="flat">
 									Check Yellow
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -185,8 +185,8 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
-									name="joined">
+									data-table-row-trigger="true"
+									name="flat">
 									Check Green
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -297,7 +297,7 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									name="zebra">
 									Check Red
 								</DBCheckbox>
@@ -342,7 +342,7 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									name="zebra">
 									Check Yellow
 								</DBCheckbox>
@@ -386,7 +386,7 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									name="zebra">
 									Check Green
 								</DBCheckbox>
@@ -438,16 +438,16 @@ export default function TableComplex() {
 					gap: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Floating
+					Spaced
 				</DBInfotext>
 				<DBTable
 					columnSizes={state.columnSizes}
-					variant="floating"
-					captionPlain="Floating, sortable columns are Link.">
+					variant="spaced"
+					captionPlain="Spaced, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
-								<DBCheckbox showLabel={false} name="floating">
+								<DBCheckbox showLabel={false} name="spaced">
 									Check All
 									<DBTooltip placement="top">
 										Check All
@@ -498,8 +498,8 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
-									name="floating">
+									data-table-row-trigger="true"
+									name="spaced">
 									Check Red
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -543,8 +543,8 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
-									name="floating">
+									data-table-row-trigger="true"
+									name="spaced">
 									Check Yellow
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -587,8 +587,8 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
-									name="floating">
+									data-table-row-trigger="true"
+									name="spaced">
 									Check Green
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -642,7 +642,7 @@ export default function TableComplex() {
 				</DBInfotext>
 				<DBTable
 					columnSizes={state.columnSizes}
-					variant="floating"
+					variant="spaced"
 					mobileVariant="list"
 					captionPlain="Mobile variant: List, sortable columns are Link.">
 					<DBTableHead>
@@ -699,7 +699,7 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row" data-header="Check">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									name="list">
 									Check Red
 								</DBCheckbox>
@@ -744,7 +744,7 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row" data-header="Check">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									name="list">
 									Check Yellow
 								</DBCheckbox>
@@ -788,7 +788,7 @@ export default function TableComplex() {
 							<DBTableHeaderCell scope="row" data-header="Check">
 								<DBCheckbox
 									showLabel={false}
-									data-table-row-action="true"
+									data-table-row-trigger="true"
 									name="list">
 									Check Green
 								</DBCheckbox>

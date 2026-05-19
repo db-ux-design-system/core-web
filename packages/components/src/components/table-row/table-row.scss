@@ -4,7 +4,7 @@
 @use "./../../styles/internal/table-components";
 
 $interactive-elements: ':is(input,button,a,select,textarea,[role="button"],[role="link"],[tabindex]:not([tabindex="-1"]))';
-$interactive-row-action: '[data-table-row-action="true"]';
+$interactive-row-action: '[data-table-row-trigger="true"]';
 $interactive-nested-child: "#{$interactive-row-action} input,textarea,select";
 $interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$interactive-nested-child})";
 
@@ -14,14 +14,25 @@ $interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$i
 	inset: 0;
 }
 
-@mixin table-row-interactive-checked($with-hover: ":not(:hover, :active)") {
+@mixin table-row-interactive-checked {
 	&:has(
-		input:is(
-				[type="radio"],
-				[type="checkbox"]
-			)#{$interactive-child}:checked#{$with-hover}
+		input:is([type="radio"], [type="checkbox"])#{$interactive-child}:checked
 	) {
 		@content;
+	}
+}
+
+@mixin table-row-interactive-state($state: "hover") {
+	&:has(
+		#{$interactive-child}:#{$state}:not(
+				:disabled,
+				[aria-disabled="true"],
+				[tabindex="-1"]
+			)
+	) {
+		@include helpers.cursor-pointer {
+			@content;
+		}
 	}
 }
 
@@ -39,31 +50,32 @@ $interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$i
 		}
 
 		@include table-row-interactive-checked {
-			background-color: colors.$db-adaptive-bg-basic-level-2-default;
-		}
+			@extend %db-informational-variables;
 
-		&:has(
-			#{$interactive-child}:hover:not(
-					:disabled,
-					[aria-disabled="true"],
-					[tabindex="-1"]
-				)
-		) {
-			@include helpers.cursor-pointer {
+			background-color: colors.$db-adaptive-bg-basic-level-2-default;
+
+			&,
+			span,
+			p,
+			a {
+				font-weight: bold;
+			}
+
+			@include table-row-interactive-state {
 				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 			}
-		}
 
-		&:has(
-			#{$interactive-child}:active:not(
-					:disabled,
-					[aria-disabled="true"],
-					[tabindex="-1"]
-				)
-		) {
-			@include helpers.cursor-pointer {
+			@include table-row-interactive-state("active") {
 				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
 			}
+		}
+
+		@include table-row-interactive-state {
+			background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
+		}
+
+		@include table-row-interactive-state("active") {
+			background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
 		}
 
 		&:has(#{$interactive-child}:focus-visible) {

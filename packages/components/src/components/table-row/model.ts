@@ -28,7 +28,7 @@ export type DBTableRowDefaultProps = {
 	subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
 
 	/**
-	 * If true marks the row as interactive, which checks for child with data-table-row-action="true"
+	 * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
 	 */
 	interactive?: boolean | string;
 };

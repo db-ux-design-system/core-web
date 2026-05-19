@@ -9,7 +9,7 @@ import type { Person } from '../makeData';
 	imports: [DBCheckbox, DBTooltip],
 	template: `
 		<db-checkbox
-			data-table-row-action="true"
+			data-table-row-trigger="true"
 			[label]="'Select All'"
 			[showLabel]="false"
 			[checked]="table.getIsAllRowsSelected()"
@@ -29,7 +29,7 @@ export class SelectHeaderComponent {
 	imports: [DBCheckbox, DBTooltip],
 	template: `
 		<db-checkbox
-			data-table-row-action="true"
+			data-table-row-trigger="true"
 			[label]="'Select Row'"
 			[showLabel]="false"
 			[checked]="row.getIsSelected()"
