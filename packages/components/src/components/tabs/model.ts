@@ -73,12 +73,12 @@ export type DBTabsEventProps = {
 	/**
 	 * Informs the user if the current tab index has changed.
 	 */
-	indexChange?: (index?: number) => void;
+	indexChange?: (index: number) => void;
 
 	/**
 	 * Informs the user if the current tab index has changed.
 	 */
-	onIndexChange?: (index?: number) => void;
+	onIndexChange?: (index: number) => void;
 
 	/**
 	 * Fires when the active tab changes and a `value` prop is set on the tab items.
