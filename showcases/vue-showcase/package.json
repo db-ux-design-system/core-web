@@ -36,7 +36,7 @@
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.0.12",
+    "vite": "8.0.13",
     "vue-tsc": "3.2.8"
   }
 }
