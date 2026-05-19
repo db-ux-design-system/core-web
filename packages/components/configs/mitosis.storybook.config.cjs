@@ -8,7 +8,10 @@ const vue = require('./vue/index.cjs');
  */
 module.exports = {
 	files: ['**/*.example.lite.tsx'],
-	exclude: ['**/tabs/examples/nested.example.lite.tsx'],
+	exclude: [
+		'**/tabs/examples/nested.example.lite.tsx',
+		'**/tabs/examples/controlled.example.lite.tsx'
+	],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
 	getTargetPath: ({ target }) => {
