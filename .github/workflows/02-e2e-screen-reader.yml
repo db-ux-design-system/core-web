@@ -57,7 +57,7 @@ jobs:
           showcase: react-showcase
         uses: nick-fields/retry@v4
         with:
-          timeout_seconds: 15
+          timeout_minutes: 10
           max_attempts: 3
           shell: bash
           command: pnpm --filter react-showcase run test-sr:${{ env.OS }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
