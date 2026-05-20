@@ -1,6 +1,8 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, type FullProject, type Page, test } from '@playwright/test';
+import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
+import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
@@ -206,18 +208,54 @@ export const runAxeCoreTest = ({
 };
 
 export const runA11yCheckerTest = ({
-	path: _path,
-	fixedHeight: _fixedHeight,
-	aCheckerDisableRules: _aCheckerDisableRules,
-	preChecker: _preChecker,
-	skipChecker: _skip,
-	skip: _skipConfig
+	path,
+	fixedHeight,
+	aCheckerDisableRules,
+	preChecker,
+	skipChecker,
+	skip
 }: A11yCheckerTestType) => {
-	test('test with accessibility checker', async () => {
-		test.skip(
-			true,
-			'accessibility-checker currently relies on page.executeAsync, which is not available on Playwright Page'
-		);
+	test('test with accessibility checker', async ({ page }, { project }) => {
+		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
+			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
+			// we don't need to check for mobile device - it just changes the viewport
+			test.skip();
+		}
+
+		test.slow(); // Easy way to triple the default timeout
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
+		}
+
+		await gotoPage(page, path, lvl1, fixedHeight);
+
+		if (preChecker) {
+			await preChecker(page);
+		}
+
+		let failures: any[] = [];
+		try {
+			// Makes a call against https://cdn.jsdelivr.net/npm/accessibility-checker-engine
+			const { report } = await getCompliance(page, path);
+
+			if (isCheckerError(report)) {
+				failures = report.details;
+			} else {
+				failures = report.results.filter(
+					({ level, ruleId }: IBaselineResult) =>
+						level.toString() === 'violation' &&
+						!aCheckerDisableRules?.includes(ruleId)
+				);
+			}
+		} catch (error) {
+			console.error(error);
+			failures.push(error);
+		} finally {
+			await close();
+		}
+
+		expect(failures).toEqual([]);
 	});
 };
 
