@@ -23,31 +23,23 @@ export default function TabsControlled() {
 				<div data-sb-replace="Use external buttons to control active tab">
 					<DBButton
 						variant="outlined"
-						onClick={() => {
-							state.activeTabIndex = 0;
-						}}>
+						onClick={() => (state.activeTabIndex = 0)}>
 						Select Tab 1
 					</DBButton>
 					<DBButton
 						variant="outlined"
-						onClick={() => {
-							state.activeTabIndex = 1;
-						}}>
+						onClick={() => (state.activeTabIndex = 1)}>
 						Select Tab 2
 					</DBButton>
 					<DBButton
 						variant="outlined"
-						onClick={() => {
-							state.activeTabIndex = 2;
-						}}>
+						onClick={() => (state.activeTabIndex = 2)}>
 						Select Tab 3
 					</DBButton>
 				</div>
 				<DBTabs
 					activeIndex={state.activeTabIndex}
-					onIndexChange={(index) => {
-						state.activeTabIndex = index;
-					}}>
+					onIndexChange={(index) => (state.activeTabIndex = index)}>
 					<DBTabList>
 						<DBTabItem>Tab 1</DBTabItem>
 						<DBTabItem>Tab 2</DBTabItem>
