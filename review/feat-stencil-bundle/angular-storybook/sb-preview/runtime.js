@@ -30,17 +30,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../../node_modules/picocolors/picocolors.browser.js
-var require_picocolors_browser = __commonJS({
-  "../../node_modules/picocolors/picocolors.browser.js"(exports, module2) {
-    var x = String, create = function() {
-      return { isColorSupported: !1, reset: x, bold: x, dim: x, italic: x, underline: x, inverse: x, hidden: x, strikethrough: x, black: x, red: x, green: x, yellow: x, blue: x, magenta: x, cyan: x, white: x, gray: x, bgBlack: x, bgRed: x, bgGreen: x, bgYellow: x, bgBlue: x, bgMagenta: x, bgCyan: x, bgWhite: x, blackBright: x, redBright: x, greenBright: x, yellowBright: x, blueBright: x, magentaBright: x, cyanBright: x, whiteBright: x, bgBlackBright: x, bgRedBright: x, bgGreenBright: x, bgYellowBright: x, bgBlueBright: x, bgMagentaBright: x, bgCyanBright: x, bgWhiteBright: x };
-    };
-    module2.exports = create();
-    module2.exports.createColors = create;
-  }
-});
-
 // ../../node_modules/@ngard/tiny-isequal/index.js
 var require_tiny_isequal = __commonJS({
   "../../node_modules/@ngard/tiny-isequal/index.js"(exports) {
@@ -6554,6 +6543,17 @@ var require_lib = __commonJS({
   }
 });
 
+// ../../node_modules/picocolors/picocolors.browser.js
+var require_picocolors_browser = __commonJS({
+  "../../node_modules/picocolors/picocolors.browser.js"(exports, module2) {
+    var x = String, create = function() {
+      return { isColorSupported: !1, reset: x, bold: x, dim: x, italic: x, underline: x, inverse: x, hidden: x, strikethrough: x, black: x, red: x, green: x, yellow: x, blue: x, magenta: x, cyan: x, white: x, gray: x, bgBlack: x, bgRed: x, bgGreen: x, bgYellow: x, bgBlue: x, bgMagenta: x, bgCyan: x, bgWhite: x, blackBright: x, redBright: x, greenBright: x, yellowBright: x, blueBright: x, magentaBright: x, cyanBright: x, whiteBright: x, bgBlackBright: x, bgRedBright: x, bgGreenBright: x, bgYellowBright: x, bgBlueBright: x, bgMagentaBright: x, bgCyanBright: x, bgWhiteBright: x };
+    };
+    module2.exports = create();
+    module2.exports.createColors = create;
+  }
+});
+
 // ../../node_modules/css.escape/css.escape.js
 var require_css_escape = __commonJS({
   "../../node_modules/css.escape/css.escape.js"(exports, module2) {
@@ -11485,9 +11485,6 @@ var require_browser_dtector_umd_min = __commonJS({
 // src/core-events/index.ts
 var core_events_exports = {};
 __export(core_events_exports, {
-  AI_PROMPT_NUDGE: () => AI_PROMPT_NUDGE,
-  AI_SETUP_ANALYTICS_REQUEST: () => AI_SETUP_ANALYTICS_REQUEST,
-  AI_SETUP_ANALYTICS_RESPONSE: () => AI_SETUP_ANALYTICS_RESPONSE,
   ARGTYPES_INFO_REQUEST: () => ARGTYPES_INFO_REQUEST,
   ARGTYPES_INFO_RESPONSE: () => ARGTYPES_INFO_RESPONSE,
   CHANNEL_CREATED: () => CHANNEL_CREATED,
@@ -11531,7 +11528,8 @@ __export(core_events_exports, {
   SHARED_STATE_CHANGED: () => SHARED_STATE_CHANGED,
   SHARED_STATE_SET: () => SHARED_STATE_SET,
   SHARE_ISOLATE_MODE: () => SHARE_ISOLATE_MODE,
-  SIDEBAR_FILTER_CHANGED: () => SIDEBAR_FILTER_CHANGED,
+  SHARE_POPOVER_OPENED: () => SHARE_POPOVER_OPENED,
+  SHARE_STORY_LINK: () => SHARE_STORY_LINK,
   STORIES_COLLAPSE_ALL: () => STORIES_COLLAPSE_ALL,
   STORIES_EXPAND_ALL: () => STORIES_EXPAND_ALL,
   STORY_ARGS_UPDATED: () => STORY_ARGS_UPDATED,
@@ -11555,7 +11553,7 @@ __export(core_events_exports, {
   UPDATE_STORY_ARGS: () => UPDATE_STORY_ARGS,
   default: () => core_events_default
 });
-var events = /* @__PURE__ */ ((events2) => (events2.CHANNEL_WS_DISCONNECT = "channelWSDisconnect", events2.CHANNEL_CREATED = "channelCreated", events2.CONFIG_ERROR = "configError", events2.STORY_INDEX_INVALIDATED = "storyIndexInvalidated", events2.STORY_SPECIFIED = "storySpecified", events2.SET_CONFIG = "setConfig", events2.SET_STORIES = "setStories", events2.SET_INDEX = "setIndex", events2.SET_CURRENT_STORY = "setCurrentStory", events2.CURRENT_STORY_WAS_SET = "currentStoryWasSet", events2.FORCE_RE_RENDER = "forceReRender", events2.FORCE_REMOUNT = "forceRemount", events2.PRELOAD_ENTRIES = "preloadStories", events2.STORY_PREPARED = "storyPrepared", events2.DOCS_PREPARED = "docsPrepared", events2.STORY_CHANGED = "storyChanged", events2.STORY_UNCHANGED = "storyUnchanged", events2.STORY_RENDERED = "storyRendered", events2.STORY_FINISHED = "storyFinished", events2.STORY_MISSING = "storyMissing", events2.STORY_ERRORED = "storyErrored", events2.STORY_THREW_EXCEPTION = "storyThrewException", events2.STORY_RENDER_PHASE_CHANGED = "storyRenderPhaseChanged", events2.STORY_HOT_UPDATED = "storyHotUpdated", events2.PLAY_FUNCTION_THREW_EXCEPTION = "playFunctionThrewException", events2.UNHANDLED_ERRORS_WHILE_PLAYING = "unhandledErrorsWhilePlaying", events2.UPDATE_STORY_ARGS = "updateStoryArgs", events2.STORY_ARGS_UPDATED = "storyArgsUpdated", events2.RESET_STORY_ARGS = "resetStoryArgs", events2.SET_FILTER = "setFilter", events2.SET_GLOBALS = "setGlobals", events2.UPDATE_GLOBALS = "updateGlobals", events2.GLOBALS_UPDATED = "globalsUpdated", events2.REGISTER_SUBSCRIPTION = "registerSubscription", events2.PREVIEW_INITIALIZED = "previewInitialized", events2.PREVIEW_KEYDOWN = "previewKeydown", events2.PREVIEW_BUILDER_PROGRESS = "preview_builder_progress", events2.SELECT_STORY = "selectStory", events2.STORIES_COLLAPSE_ALL = "storiesCollapseAll", events2.STORIES_EXPAND_ALL = "storiesExpandAll", events2.DOCS_RENDERED = "docsRendered", events2.SHARED_STATE_CHANGED = "sharedStateChanged", events2.SHARED_STATE_SET = "sharedStateSet", events2.NAVIGATE_URL = "navigateUrl", events2.UPDATE_QUERY_PARAMS = "updateQueryParams", events2.REQUEST_WHATS_NEW_DATA = "requestWhatsNewData", events2.RESULT_WHATS_NEW_DATA = "resultWhatsNewData", events2.SET_WHATS_NEW_CACHE = "setWhatsNewCache", events2.TOGGLE_WHATS_NEW_NOTIFICATIONS = "toggleWhatsNewNotifications", events2.TELEMETRY_ERROR = "telemetryError", events2.FILE_COMPONENT_SEARCH_REQUEST = "fileComponentSearchRequest", events2.FILE_COMPONENT_SEARCH_RESPONSE = "fileComponentSearchResponse", events2.SAVE_STORY_REQUEST = "saveStoryRequest", events2.SAVE_STORY_RESPONSE = "saveStoryResponse", events2.ARGTYPES_INFO_REQUEST = "argtypesInfoRequest", events2.ARGTYPES_INFO_RESPONSE = "argtypesInfoResponse", events2.CREATE_NEW_STORYFILE_REQUEST = "createNewStoryfileRequest", events2.CREATE_NEW_STORYFILE_RESPONSE = "createNewStoryfileResponse", events2.GHOST_STORIES_REQUEST = "ghostStoriesRequest", events2.GHOST_STORIES_RESPONSE = "ghostStoriesResponse", events2.AI_SETUP_ANALYTICS_RESPONSE = "aiSetupAnalyticsResponse", events2.AI_SETUP_ANALYTICS_REQUEST = "aiSetupAnalyticsRequest", events2.OPEN_IN_EDITOR_REQUEST = "openInEditorRequest", events2.OPEN_IN_EDITOR_RESPONSE = "openInEditorResponse", events2.MANAGER_INERT_ATTRIBUTE_CHANGED = "managerInertAttributeChanged", events2.SHARE_ISOLATE_MODE = "shareIsolateMode", events2.AI_PROMPT_NUDGE = "aiPromptNudge", events2.SIDEBAR_FILTER_CHANGED = "sidebarFilterChanged", events2))(events || {}), core_events_default = events, {
+var events = /* @__PURE__ */ ((events2) => (events2.CHANNEL_WS_DISCONNECT = "channelWSDisconnect", events2.CHANNEL_CREATED = "channelCreated", events2.CONFIG_ERROR = "configError", events2.STORY_INDEX_INVALIDATED = "storyIndexInvalidated", events2.STORY_SPECIFIED = "storySpecified", events2.SET_CONFIG = "setConfig", events2.SET_STORIES = "setStories", events2.SET_INDEX = "setIndex", events2.SET_CURRENT_STORY = "setCurrentStory", events2.CURRENT_STORY_WAS_SET = "currentStoryWasSet", events2.FORCE_RE_RENDER = "forceReRender", events2.FORCE_REMOUNT = "forceRemount", events2.PRELOAD_ENTRIES = "preloadStories", events2.STORY_PREPARED = "storyPrepared", events2.DOCS_PREPARED = "docsPrepared", events2.STORY_CHANGED = "storyChanged", events2.STORY_UNCHANGED = "storyUnchanged", events2.STORY_RENDERED = "storyRendered", events2.STORY_FINISHED = "storyFinished", events2.STORY_MISSING = "storyMissing", events2.STORY_ERRORED = "storyErrored", events2.STORY_THREW_EXCEPTION = "storyThrewException", events2.STORY_RENDER_PHASE_CHANGED = "storyRenderPhaseChanged", events2.STORY_HOT_UPDATED = "storyHotUpdated", events2.PLAY_FUNCTION_THREW_EXCEPTION = "playFunctionThrewException", events2.UNHANDLED_ERRORS_WHILE_PLAYING = "unhandledErrorsWhilePlaying", events2.UPDATE_STORY_ARGS = "updateStoryArgs", events2.STORY_ARGS_UPDATED = "storyArgsUpdated", events2.RESET_STORY_ARGS = "resetStoryArgs", events2.SET_FILTER = "setFilter", events2.SET_GLOBALS = "setGlobals", events2.UPDATE_GLOBALS = "updateGlobals", events2.GLOBALS_UPDATED = "globalsUpdated", events2.REGISTER_SUBSCRIPTION = "registerSubscription", events2.PREVIEW_INITIALIZED = "previewInitialized", events2.PREVIEW_KEYDOWN = "previewKeydown", events2.PREVIEW_BUILDER_PROGRESS = "preview_builder_progress", events2.SELECT_STORY = "selectStory", events2.STORIES_COLLAPSE_ALL = "storiesCollapseAll", events2.STORIES_EXPAND_ALL = "storiesExpandAll", events2.DOCS_RENDERED = "docsRendered", events2.SHARED_STATE_CHANGED = "sharedStateChanged", events2.SHARED_STATE_SET = "sharedStateSet", events2.NAVIGATE_URL = "navigateUrl", events2.UPDATE_QUERY_PARAMS = "updateQueryParams", events2.REQUEST_WHATS_NEW_DATA = "requestWhatsNewData", events2.RESULT_WHATS_NEW_DATA = "resultWhatsNewData", events2.SET_WHATS_NEW_CACHE = "setWhatsNewCache", events2.TOGGLE_WHATS_NEW_NOTIFICATIONS = "toggleWhatsNewNotifications", events2.TELEMETRY_ERROR = "telemetryError", events2.FILE_COMPONENT_SEARCH_REQUEST = "fileComponentSearchRequest", events2.FILE_COMPONENT_SEARCH_RESPONSE = "fileComponentSearchResponse", events2.SAVE_STORY_REQUEST = "saveStoryRequest", events2.SAVE_STORY_RESPONSE = "saveStoryResponse", events2.ARGTYPES_INFO_REQUEST = "argtypesInfoRequest", events2.ARGTYPES_INFO_RESPONSE = "argtypesInfoResponse", events2.CREATE_NEW_STORYFILE_REQUEST = "createNewStoryfileRequest", events2.CREATE_NEW_STORYFILE_RESPONSE = "createNewStoryfileResponse", events2.GHOST_STORIES_REQUEST = "ghostStoriesRequest", events2.GHOST_STORIES_RESPONSE = "ghostStoriesResponse", events2.OPEN_IN_EDITOR_REQUEST = "openInEditorRequest", events2.OPEN_IN_EDITOR_RESPONSE = "openInEditorResponse", events2.MANAGER_INERT_ATTRIBUTE_CHANGED = "managerInertAttributeChanged", events2.SHARE_STORY_LINK = "shareStoryLink", events2.SHARE_ISOLATE_MODE = "shareIsolateMode", events2.SHARE_POPOVER_OPENED = "sharePopoverOpened", events2))(events || {}), core_events_default = events, {
   CHANNEL_WS_DISCONNECT,
   CHANNEL_CREATED,
   CONFIG_ERROR,
@@ -11616,14 +11614,12 @@ var events = /* @__PURE__ */ ((events2) => (events2.CHANNEL_WS_DISCONNECT = "cha
   ARGTYPES_INFO_RESPONSE,
   GHOST_STORIES_REQUEST,
   GHOST_STORIES_RESPONSE,
-  AI_SETUP_ANALYTICS_RESPONSE,
-  AI_SETUP_ANALYTICS_REQUEST,
   OPEN_IN_EDITOR_REQUEST,
   OPEN_IN_EDITOR_RESPONSE,
   MANAGER_INERT_ATTRIBUTE_CHANGED,
+  SHARE_STORY_LINK,
   SHARE_ISOLATE_MODE,
-  AI_PROMPT_NUDGE,
-  SIDEBAR_FILTER_CHANGED
+  SHARE_POPOVER_OPENED
 } = events;
 
 // ../../node_modules/@storybook/global/dist/index.mjs
@@ -13539,7 +13535,6 @@ __export(preview_errors_exports, {
   ElementA11yParameterError: () => ElementA11yParameterError,
   EmptyIndexError: () => EmptyIndexError,
   ImplicitActionsDuringRendering: () => ImplicitActionsDuringRendering,
-  InvalidBlockOfPropError: () => InvalidBlockOfPropError,
   MdxFileWithNoCsfReferencesError: () => MdxFileWithNoCsfReferencesError,
   MissingRenderToCanvasError: () => MissingRenderToCanvasError,
   MissingStoryAfterHmrError: () => MissingStoryAfterHmrError,
@@ -13577,10 +13572,7 @@ function appendErrorRef(url) {
 }
 var StorybookError = class _StorybookError extends Error {
   constructor(props) {
-    super(
-      _StorybookError.getFullMessage(props),
-      props.cause === void 0 ? void 0 : { cause: props.cause }
-    );
+    super(_StorybookError.getFullMessage(props));
     /**
      * Data associated with the error. Used to provide additional information in the error message or
      * to be passed to telemetry.
@@ -13938,15 +13930,6 @@ This is deprecated and won't work in Storybook 8 anymore.
     });
     this.data = data;
   }
-}, InvalidBlockOfPropError = class extends StorybookError {
-  constructor() {
-    super({
-      name: "InvalidBlockOfPropError",
-      category: "BLOCKS" /* BLOCKS */,
-      code: 1,
-      message: "Unexpected `of={undefined}`, did you mistype a CSF file reference?"
-    });
-  }
 }, UnsupportedViewportDimensionError = class extends StorybookError {
   constructor(data) {
     super({
@@ -13982,7 +13965,6 @@ This is deprecated and won't work in Storybook 8 anymore.
 var types_exports = {};
 __export(types_exports, {
   Addon_TypesEnum: () => Addon_TypesEnum,
-  CHANGE_DETECTION_STATUS_TYPE_ID: () => CHANGE_DETECTION_STATUS_TYPE_ID,
   CoreWebpackCompiler: () => CoreWebpackCompiler,
   Feature: () => Feature,
   SupportedBuilder: () => SupportedBuilder,
@@ -13995,16 +13977,10 @@ __export(types_exports, {
 var Addon_TypesEnum = /* @__PURE__ */ ((Addon_TypesEnum2) => (Addon_TypesEnum2.TAB = "tab", Addon_TypesEnum2.PANEL = "panel", Addon_TypesEnum2.TOOL = "tool", Addon_TypesEnum2.TOOLEXTRA = "toolextra", Addon_TypesEnum2.PREVIEW = "preview", Addon_TypesEnum2.experimental_PAGE = "page", Addon_TypesEnum2.experimental_TEST_PROVIDER = "test-provider", Addon_TypesEnum2))(Addon_TypesEnum || {});
 
 // src/types/modules/frameworks.ts
-var SupportedFramework = /* @__PURE__ */ ((SupportedFramework2) => (SupportedFramework2.ANGULAR = "angular", SupportedFramework2.EMBER = "ember", SupportedFramework2.HTML_VITE = "html-vite", SupportedFramework2.NEXTJS = "nextjs", SupportedFramework2.NEXTJS_VITE = "nextjs-vite", SupportedFramework2.PREACT_VITE = "preact-vite", SupportedFramework2.REACT_NATIVE_WEB_VITE = "react-native-web-vite", SupportedFramework2.REACT_VITE = "react-vite", SupportedFramework2.REACT_WEBPACK5 = "react-webpack5", SupportedFramework2.SERVER_WEBPACK5 = "server-webpack5", SupportedFramework2.SVELTE_VITE = "svelte-vite", SupportedFramework2.SVELTEKIT = "sveltekit", SupportedFramework2.TANSTACK_REACT = "tanstack-react", SupportedFramework2.VUE3_VITE = "vue3-vite", SupportedFramework2.WEB_COMPONENTS_VITE = "web-components-vite", SupportedFramework2.HTML_RSBUILD = "html-rsbuild", SupportedFramework2.NUXT = "nuxt", SupportedFramework2.QWIK = "qwik", SupportedFramework2.REACT_RSBUILD = "react-rsbuild", SupportedFramework2.SOLID = "solid", SupportedFramework2.VUE3_RSBUILD = "vue3-rsbuild", SupportedFramework2.WEB_COMPONENTS_RSBUILD = "web-components-rsbuild", SupportedFramework2))(SupportedFramework || {});
+var SupportedFramework = /* @__PURE__ */ ((SupportedFramework2) => (SupportedFramework2.ANGULAR = "angular", SupportedFramework2.EMBER = "ember", SupportedFramework2.HTML_VITE = "html-vite", SupportedFramework2.NEXTJS = "nextjs", SupportedFramework2.NEXTJS_VITE = "nextjs-vite", SupportedFramework2.PREACT_VITE = "preact-vite", SupportedFramework2.REACT_NATIVE_WEB_VITE = "react-native-web-vite", SupportedFramework2.REACT_VITE = "react-vite", SupportedFramework2.REACT_WEBPACK5 = "react-webpack5", SupportedFramework2.SERVER_WEBPACK5 = "server-webpack5", SupportedFramework2.SVELTE_VITE = "svelte-vite", SupportedFramework2.SVELTEKIT = "sveltekit", SupportedFramework2.VUE3_VITE = "vue3-vite", SupportedFramework2.WEB_COMPONENTS_VITE = "web-components-vite", SupportedFramework2.HTML_RSBUILD = "html-rsbuild", SupportedFramework2.NUXT = "nuxt", SupportedFramework2.QWIK = "qwik", SupportedFramework2.REACT_RSBUILD = "react-rsbuild", SupportedFramework2.SOLID = "solid", SupportedFramework2.VUE3_RSBUILD = "vue3-rsbuild", SupportedFramework2.WEB_COMPONENTS_RSBUILD = "web-components-rsbuild", SupportedFramework2))(SupportedFramework || {});
 
 // src/types/modules/renderers.ts
 var SupportedRenderer = /* @__PURE__ */ ((SupportedRenderer2) => (SupportedRenderer2.REACT = "react", SupportedRenderer2.REACT_NATIVE = "react-native", SupportedRenderer2.VUE3 = "vue3", SupportedRenderer2.ANGULAR = "angular", SupportedRenderer2.EMBER = "ember", SupportedRenderer2.PREACT = "preact", SupportedRenderer2.SVELTE = "svelte", SupportedRenderer2.QWIK = "qwik", SupportedRenderer2.HTML = "html", SupportedRenderer2.WEB_COMPONENTS = "web-components", SupportedRenderer2.SERVER = "server", SupportedRenderer2.SOLID = "solid", SupportedRenderer2.NUXT = "nuxt", SupportedRenderer2))(SupportedRenderer || {});
-
-// src/server-errors.ts
-var import_picocolors = __toESM(require_picocolors_browser(), 1);
-
-// src/shared/status-store/index.ts
-var CHANGE_DETECTION_STATUS_TYPE_ID = "storybook/change-detection";
 
 // src/types/modules/webpack.ts
 var CoreWebpackCompiler = /* @__PURE__ */ ((CoreWebpackCompiler2) => (CoreWebpackCompiler2.Babel = "babel", CoreWebpackCompiler2.SWC = "swc", CoreWebpackCompiler2))(CoreWebpackCompiler || {});
@@ -14013,7 +13989,7 @@ var CoreWebpackCompiler = /* @__PURE__ */ ((CoreWebpackCompiler2) => (CoreWebpac
 var SupportedBuilder = /* @__PURE__ */ ((SupportedBuilder2) => (SupportedBuilder2.WEBPACK5 = "webpack5", SupportedBuilder2.VITE = "vite", SupportedBuilder2.RSBUILD = "rsbuild", SupportedBuilder2))(SupportedBuilder || {});
 
 // src/types/modules/features.ts
-var Feature = /* @__PURE__ */ ((Feature2) => (Feature2.DOCS = "docs", Feature2.TEST = "test", Feature2.ONBOARDING = "onboarding", Feature2.A11Y = "a11y", Feature2.AI = "ai", Feature2))(Feature || {});
+var Feature = /* @__PURE__ */ ((Feature2) => (Feature2.DOCS = "docs", Feature2.TEST = "test", Feature2.ONBOARDING = "onboarding", Feature2.A11Y = "a11y", Feature2))(Feature || {});
 
 // src/types/modules/languages.ts
 var SupportedLanguage = /* @__PURE__ */ ((SupportedLanguage2) => (SupportedLanguage2.JAVASCRIPT = "javascript", SupportedLanguage2.TYPESCRIPT = "typescript", SupportedLanguage2))(SupportedLanguage || {});
@@ -21478,7 +21454,7 @@ function computeAccessibleName(root2) {
 }
 
 // ../../node_modules/@testing-library/jest-dom/dist/matchers-35e4d3bd.mjs
-var import_aria_query = __toESM(require_lib(), 1), import_picocolors2 = __toESM(require_picocolors_browser(), 1), import_css = __toESM(require_css_escape(), 1), GenericTypeError = class extends Error {
+var import_aria_query = __toESM(require_lib(), 1), import_picocolors = __toESM(require_picocolors_browser(), 1), import_css = __toESM(require_css_escape(), 1), GenericTypeError = class extends Error {
   constructor(expectedString, received, matcherFn, context) {
     super(), Error.captureStackTrace && Error.captureStackTrace(this, matcherFn);
     let withType = "";
@@ -22067,7 +22043,7 @@ function expectedDiff(diffFn, expected, computedStyles) {
     (obj, prop) => Object.assign(obj, { [prop]: computedStyles.getPropertyValue(prop) }),
     {}
   );
-  return diffFn(printoutStyles(expected), printoutStyles(received)).replace(`${import_picocolors2.default.red("+ Received")}
+  return diffFn(printoutStyles(expected), printoutStyles(received)).replace(`${import_picocolors.default.red("+ Received")}
 `, "");
 }
 function toHaveStyle(htmlElement, css) {
@@ -22758,7 +22734,7 @@ var extensions = Object.freeze({
 
 // ../../node_modules/@testing-library/jest-dom/dist/matchers.mjs
 var import_redent2 = __toESM(require_redent(), 1);
-var import_aria_query2 = __toESM(require_lib(), 1), import_picocolors3 = __toESM(require_picocolors_browser(), 1), import_css2 = __toESM(require_css_escape(), 1);
+var import_aria_query2 = __toESM(require_lib(), 1), import_picocolors2 = __toESM(require_picocolors_browser(), 1), import_css2 = __toESM(require_css_escape(), 1);
 
 // ../../node_modules/@vitest/utils/dist/index.js
 var jsTokens_1, hasRequiredJsTokens;
@@ -25450,10 +25426,10 @@ function createDOMElementFilter(filterNode) {
     }
   };
 }
-var picocolors2 = null, readFileSync = null, codeFrameColumns = null;
+var picocolors = null, readFileSync = null, codeFrameColumns = null;
 try {
   let nodeRequire = module && module.require;
-  readFileSync = nodeRequire.call(module, "fs").readFileSync, codeFrameColumns = nodeRequire.call(module, "@babel/code-frame").codeFrameColumns, picocolors2 = nodeRequire.call(module, "picocolors");
+  readFileSync = nodeRequire.call(module, "fs").readFileSync, codeFrameColumns = nodeRequire.call(module, "@babel/code-frame").codeFrameColumns, picocolors = nodeRequire.call(module, "picocolors");
 } catch {
 }
 function getCodeFrame(frame) {
@@ -25472,7 +25448,7 @@ function getCodeFrame(frame) {
     highlightCode: !0,
     linesBelow: 0
   });
-  return picocolors2.dim(frameLocation) + `
+  return picocolors.dim(frameLocation) + `
 ` + codeFrame + `
 `;
 }
@@ -30955,7 +30931,7 @@ var isEmptyRender = (element) => {
   return !(rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && Number(style.opacity) > 0 && style.display !== "none");
 }, afterEach = async ({ reporting, canvasElement, globals }) => {
   try {
-    if (!globals.renderAnalysis?.enabled)
+    if (!globals.ghostStories)
       return;
     let emptyRender = isEmptyRender(canvasElement.firstElementChild ?? canvasElement);
     emptyRender && reporting.addReport({
