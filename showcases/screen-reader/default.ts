@@ -200,7 +200,7 @@ export const runTest = async ({
 
 	await page.waitForTimeout(500);
 
-	await testFn?.(voiceOver, nvda);
+	await testFn?.(voiceOver, nvda, page);
 	await postTestFn?.(voiceOver, nvda, retry);
 	recorder?.();
 };

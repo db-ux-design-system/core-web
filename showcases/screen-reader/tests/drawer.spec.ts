@@ -8,9 +8,13 @@ test.describe('DBDrawer', () => {
 		title: 'autofocus',
 		description: 'should autofocus',
 		url: './#/01/drawer?page=density',
-		async testFn(voiceOver, nvda) {
+		async testFn(voiceOver, nvda, page) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.act();
+			if (page) {
+				await page.waitForTimeout(1000);
+			}
+
 			await screenReader?.next();
 		},
 		async postTestFn(voiceOver, nvda, retry) {
