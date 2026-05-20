@@ -453,7 +453,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		max-inline-size: 25ch;
+		max-inline-size: 100%;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
