@@ -37,13 +37,13 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@angular-eslint/utils": "21.3.1",
+    "@angular-eslint/utils": "21.4.0",
     "@typescript-eslint/utils": "^8.59.3"
   },
   "devDependencies": {
-    "@angular-eslint/bundled-angular-compiler": "21.3.1",
-    "@angular-eslint/template-parser": "21.3.1",
-    "@angular-eslint/test-utils": "21.3.1",
+    "@angular-eslint/bundled-angular-compiler": "21.4.0",
+    "@angular-eslint/template-parser": "21.4.0",
+    "@angular-eslint/test-utils": "21.4.0",
     "@typescript-eslint/parser": "8.59.3",
     "@typescript-eslint/rule-tester": "8.59.3",
     "cpr": "3.0.1",
