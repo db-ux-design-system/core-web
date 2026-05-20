@@ -1,5 +1,11 @@
 # @db-ux/core-postcss-plugin
 
+## 4.9.0
+
+### Patch Changes
+
+- fix: color deduplication merging transparent and semi-transparent values with the same hex base into one value - [see commit 762297f](https://github.com/db-ux-design-system/core-web/commit/762297ffc404829364598fd04f96fb62cc13b0c6)
+
 ## 4.8.0
 
 _version bump_
