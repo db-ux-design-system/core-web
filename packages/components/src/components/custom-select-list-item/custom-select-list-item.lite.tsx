@@ -72,6 +72,12 @@ export default function DBCustomSelectListItem(
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			role={!props.isGroupTitle ? 'option' : undefined}
+			aria-selected={
+				!props.isGroupTitle
+					? getBooleanAsString(getBoolean(props.checked, 'checked'))
+					: undefined
+			}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
 				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle
