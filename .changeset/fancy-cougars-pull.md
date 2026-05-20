@@ -1,5 +1,9 @@
 ---
-"@db-ux/core-components": patch
+"@db-ux/core-components": minor
+"@db-ux/ngx-core-components": minor
+"@db-ux/react-core-components": minor
+"@db-ux/wc-core-components": minor
+"@db-ux/v-core-components": minor
 ---
 
-fix: remove hard character limit to align label and input width
+feat: replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles.
