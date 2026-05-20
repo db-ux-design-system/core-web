@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "4.8.1",
+  "version": "4.8.0",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
@@ -59,7 +59,7 @@
     "postcss-cli": "11.0.1",
     "prettier": "3.8.3",
     "sass": "1.99.0",
-    "tsx": "4.22.0",
+    "tsx": "4.22.1",
     "typescript": "5.9.3",
     "vite": "8.0.13"
   },
