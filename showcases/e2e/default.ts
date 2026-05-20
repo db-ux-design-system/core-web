@@ -5,6 +5,9 @@ import { createRequire } from 'node:module';
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
+import type { Checker } from 'accessibility-checker-engine';
+import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
+
 const density = 'regular';
 
 export type SkipType = {
@@ -237,10 +240,10 @@ export const runA11yCheckerTest = ({
 			const enginePath = require.resolve('accessibility-checker-engine');
 			await page.addScriptTag({ path: enginePath });
 
-			const results = await page.evaluate(async () => {
+			const results: Issue[] = await page.evaluate(async () => {
 				const { ace } = globalThis as any;
 				if (!ace?.Checker) return [];
-				const checker = new ace.Checker();
+				const checker: Checker = new ace.Checker();
 				const report = await checker.check(document, [
 					'IBM_Accessibility'
 				]);
@@ -248,8 +251,8 @@ export const runA11yCheckerTest = ({
 			});
 
 			failures = results.filter(
-				(result: any) =>
-					result.level?.toString() === 'violation' &&
+				(result: Issue) =>
+					result.value.includes('FAIL') &&
 					!aCheckerDisableRules?.includes(result.ruleId)
 			);
 		} catch (error) {
