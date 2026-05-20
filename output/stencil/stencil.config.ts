@@ -6,9 +6,9 @@ export const config: Config = {
 	outputTargets: [
 		{
 			type: 'dist-custom-elements',
-			"dir": 'bundle',
+			dir: 'bundle',
 			externalRuntime: false,
-			customElementsExportBehavior: "bundle"
+			customElementsExportBehavior: 'bundle'
 		},
 		{
 			type: 'dist'

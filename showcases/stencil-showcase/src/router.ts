@@ -88,7 +88,6 @@ function updateActiveNavItem(): void {
  */
 function handleRoute(): void {
 	const container = document.querySelector<HTMLElement>('main');
-	console.log('handleRoute', container);
 	if (!container) return;
 
 	const { category, component, parameters } = parseHash(

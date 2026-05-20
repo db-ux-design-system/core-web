@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "4.8.1",
+  "version": "4.8.0",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
@@ -37,7 +37,7 @@
     "dev:angular": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"npm run compile:angular\"",
     "dev:html": "pnpm run copy-assets && pnpm run build-assets && pnpm run build-style:01_sass && vite --open",
     "dev:react": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"pnpm run compile:react\"",
-    "dev:scss": "sass src:build --load-path=node_modules --watch",
+    "dev:scss": "sass src:build --load-path=node_modules --watch --source-map",
     "dev:stencil": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"pnpm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"pnpm run compile:vue\"",
     "generate:agent": "mitosis build --config=configs/mitosis.agent.config.cjs",
@@ -67,8 +67,8 @@
     "postcss-cli": "11.0.1",
     "replace-in-file": "8.4.0",
     "sass": "1.99.0",
-    "storybook": "10.3.6",
-    "tsx": "4.21.0",
+    "storybook": "10.4.0",
+    "tsx": "4.22.1",
     "vitest": "4.1.6"
   },
   "publishConfig": {

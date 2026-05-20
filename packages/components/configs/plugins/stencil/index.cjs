@@ -14,6 +14,11 @@ const deleteConnectedElement = () => {
 module.exports = () => ({
 	code: {
 		post: (code) => {
+			if (!code.includes('componentDidLoad() {')) {
+				console.warn(
+					'[stencil plugin] componentDidLoad() { not found — skipping deleteConnectedElement injection'
+				);
+			}
 			return code
 				.replaceAll('for={', 'htmlFor={')
 				.replaceAll(
