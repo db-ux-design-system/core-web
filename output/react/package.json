@@ -17,7 +17,8 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all tsc --parallel mv:*",
+    "build": "npm-run-all --parallel tsc vite --sequential mv:*",
+    "vite": "vite build",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
@@ -42,7 +43,9 @@
     "playwright": "1.60.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite": "7.0.3",
+    "@vitejs/plugin-react": "4.5.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
