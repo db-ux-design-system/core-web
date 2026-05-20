@@ -39,7 +39,9 @@ export default function TabsControlled() {
 				</div>
 				<DBTabs
 					activeIndex={state.activeTabIndex}
-					onIndexChange={(index) => (state.activeTabIndex = index)}>
+					onIndexChange={(event: any) =>
+						(state.activeTabIndex = event?.detail ?? event)
+					}>
 					<DBTabList>
 						<DBTabItem>Tab 1</DBTabItem>
 						<DBTabItem>Tab 2</DBTabItem>
