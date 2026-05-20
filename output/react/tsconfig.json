@@ -4,6 +4,7 @@
 		"allowUnreachableCode": false,
 		"allowSyntheticDefaultImports": true,
 		"declaration": true,
+		"emitDeclarationOnly": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"esModuleInterop": true,
@@ -28,6 +29,8 @@
 		"src/**/*.spec.tsx",
 		"src/**/*.example.tsx",
 		"src/**/*.showcase.tsx",
+		"src/**/*.showcase-only.ts",
+		"src/**/*.showcase-only.tsx",
 		"src/**/*.arg.types.ts"
 	],
 	"compileOnSave": false,
