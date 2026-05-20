@@ -45,7 +45,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "typescript": "5.9.3",
-    "vite": "6.3.5"
+    "vite": "^6.4.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
