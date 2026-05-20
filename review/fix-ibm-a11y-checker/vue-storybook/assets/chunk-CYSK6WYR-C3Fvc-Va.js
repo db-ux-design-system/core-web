@@ -1,1 +1,0 @@
-import{i as e}from"./preload-helper-Bwhmo3a_.js";var t,n,r=e((()=>{t=e=>`control-${e.replace(/\s+/g,`-`)}`,n=e=>`set-${e.replace(/\s+/g,`-`)}`}));export{n,r,t};
