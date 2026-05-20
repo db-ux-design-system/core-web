@@ -593,9 +593,9 @@
         - cell "Click":
           - button "Click"
   - link "Variant"
-  - text: (Default) Joined
-  - table "(Default) Joined":
-    - caption: (Default) Joined
+  - text: (Default) Flat
+  - table "(Default) Flat":
+    - caption: (Default) Flat
     - rowgroup:
       - row "A B C":
         - columnheader "A"
@@ -651,9 +651,9 @@
       - row "Footer 1 Footer 2":
         - rowheader "Footer 1"
         - cell "Footer 2"
-  - text: Floating
-  - table "Floating":
-    - caption: Floating
+  - text: Spaced
+  - table "Spaced":
+    - caption: Spaced
     - rowgroup:
       - row "A B C":
         - columnheader "A"
@@ -1529,9 +1529,9 @@
         - cell "Footer 2":
           - link "Footer 2"
   - link "Interactive Row"
-  - text: Joined
-  - table "Joined":
-    - caption: Joined
+  - text: Flat
+  - table "Flat":
+    - caption: Flat
     - rowgroup:
       - row "Comp A Comp B Action":
         - columnheader "Comp A"
@@ -1556,9 +1556,9 @@
           - button "Click"
         - cell "Open Link":
           - link "Open Link"
-  - text: Floating
-  - table "Floating":
-    - caption: Floating
+  - text: Spaced
+  - table "Spaced":
+    - caption: Spaced
     - rowgroup:
       - row "Comp A Comp B Action":
         - columnheader "Comp A"
@@ -1584,9 +1584,9 @@
         - cell "Open Link":
           - link "Open Link"
   - link "Complex Example"
-  - text: Joined
-  - table "Joined, sortable columns are Link.":
-    - caption: Joined, sortable columns are Link.
+  - text: Flat
+  - table "Flat, sortable columns are Link.":
+    - caption: Flat, sortable columns are Link.
     - rowgroup:
       - row "Check All Link Sort Link Tag Infotext Text Input Button":
         - columnheader "Check All":
@@ -1716,9 +1716,9 @@
           - status
         - cell "More":
           - button "More"
-  - text: Floating
-  - table "Floating, sortable columns are Link.":
-    - caption: Floating, sortable columns are Link.
+  - text: Spaced
+  - table "Spaced, sortable columns are Link.":
+    - caption: Spaced, sortable columns are Link.
     - rowgroup:
       - row "Check All Link Sort Link Tag Infotext Text Input Button":
         - columnheader "Check All":
