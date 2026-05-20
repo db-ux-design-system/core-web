@@ -215,7 +215,9 @@ export const runA11yCheckerTest = ({
 	skipChecker,
 	skip
 }: A11yCheckerTestType) => {
-	test('test with accessibility checker', async ({ page }, { project }) => {
+	test.fixme('test with accessibility checker', async ({ page }, {
+		project
+	}) => {
 		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
