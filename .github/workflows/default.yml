@@ -534,7 +534,7 @@ jobs:
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publish-figma-code-connect:
-    if: ${{ !cancelled() && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
+    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
     needs: [checks-done, test-figma-code-connect]
     secrets: inherit
