@@ -124,7 +124,6 @@ export default function TableComplex() {
 									label="Red"
 									showLabel={false}
 									placeholder="Red"
-									required
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
@@ -325,7 +324,6 @@ export default function TableComplex() {
 									label="Red"
 									showLabel={false}
 									placeholder="Red"
-									required
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
@@ -526,7 +524,6 @@ export default function TableComplex() {
 									label="Red"
 									showLabel={false}
 									placeholder="Red"
-									required
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
@@ -727,7 +724,6 @@ export default function TableComplex() {
 									label="Red"
 									showLabel={false}
 									placeholder="Red"
-									required
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
