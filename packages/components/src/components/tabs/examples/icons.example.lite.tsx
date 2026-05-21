@@ -63,29 +63,6 @@ export default function TabsIcons() {
 					<DBTabPanel>Settings content</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div class="fit-content-container">
-				<DBInfotext icon="none" size="small" semantic="informational">
-					icon-only:
-				</DBInfotext>
-				<DBTabs>
-					<DBTabList>
-						<DBTabItem label="Home" icon="house" showIcon={true} />
-						<DBTabItem
-							label="Search"
-							icon="magnifying_glass"
-							showIcon={true}
-						/>
-						<DBTabItem
-							label="Calendar"
-							icon="calendar"
-							showIcon={true}
-						/>
-					</DBTabList>
-					<DBTabPanel>Home content</DBTabPanel>
-					<DBTabPanel>Search content</DBTabPanel>
-					<DBTabPanel>Calendar content</DBTabPanel>
-				</DBTabs>
-			</div>
 		</Fragment>
 	);
 }
