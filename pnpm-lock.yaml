@@ -1515,6 +1515,9 @@ importers:
       '@vue/tsconfig':
         specifier: 0.9.1
         version: 0.9.1(typescript@5.9.3)(vue@3.5.34(typescript@5.9.3))
+      cross-env:
+        specifier: 10.1.0
+        version: 10.1.0
       eslint-plugin-storybook:
         specifier: 10.4.0
         version: 10.4.0(eslint@10.4.0(jiti@2.7.0))(storybook@10.4.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(typescript@5.9.3)
@@ -22844,7 +22847,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.0
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -32495,7 +32498,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.4
+      semver: 7.8.0
       tar: 7.5.15
       tinyglobby: 0.2.16
       undici: 6.25.0
@@ -32563,7 +32566,7 @@ snapshots:
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.0
 
   npm-normalize-package-bin@4.0.0: {}
 
