@@ -38,7 +38,9 @@ export default function DBCustomSelectListItem(
 	const state: DBCustomSelectListItemState =
 		useStore<DBCustomSelectListItemState>({
 			hasDivider: false,
+			_checked: props.checked,
 			handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+				state._checked = (event.target as HTMLInputElement)?.checked;
 				event.stopPropagation();
 				if (props.onChange) {
 					props.onChange(event);
@@ -56,7 +58,7 @@ export default function DBCustomSelectListItem(
 					return;
 				}
 
-				return getBoolean(props.checked, 'checked')
+				return getBoolean(state._checked, 'checked')
 					? 'check'
 					: 'x_placeholder';
 			}
@@ -68,6 +70,10 @@ export default function DBCustomSelectListItem(
 		state.hasDivider = Boolean(props.isGroupTitle || props.showDivider);
 	}, [props.isGroupTitle, props.showDivider]);
 
+	onUpdate(() => {
+		state._checked = props.checked;
+	}, [props.checked]);
+
 	return (
 		<li
 			ref={_ref}
@@ -75,7 +81,7 @@ export default function DBCustomSelectListItem(
 			role={!props.isGroupTitle ? 'option' : undefined}
 			aria-selected={
 				!props.isGroupTitle
-					? getBooleanAsString(getBoolean(props.checked, 'checked'))
+					? getBooleanAsString(getBoolean(state._checked, 'checked'))
 					: undefined
 			}
 			class={cls('db-custom-select-list-item', props.className, {
@@ -99,7 +105,7 @@ export default function DBCustomSelectListItem(
 						type={props.type}
 						name={props.name}
 						form={props.name}
-						checked={getBoolean(props.checked, 'checked')}
+						checked={getBoolean(state._checked, 'checked')}
 						disabled={getBoolean(props.disabled, 'disabled')}
 						value={props.value}
 						data-disable-focus="true"
