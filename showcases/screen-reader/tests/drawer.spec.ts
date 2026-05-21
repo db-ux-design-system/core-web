@@ -1,4 +1,9 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import {
+	generateSnapshot,
+	getTest,
+	STABILIZATION_DELAY,
+	testDefault
+} from '../default';
 
 const test = getTest();
 
@@ -11,10 +16,7 @@ test.describe('DBDrawer', () => {
 		async testFn(voiceOver, nvda, page) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.act();
-			if (page) {
-				await page.waitForTimeout(1000);
-			}
-
+			await page.waitForTimeout(STABILIZATION_DELAY);
 			await screenReader?.next();
 		},
 		async postTestFn(voiceOver, nvda, retry) {

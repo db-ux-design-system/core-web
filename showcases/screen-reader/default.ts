@@ -110,6 +110,8 @@ export const generateSnapshot = async (
 	expect(snapshot).toMatchSnapshot();
 };
 
+export const STABILIZATION_DELAY = 1000;
+
 const SWITCH_APPLICATION = {
 	keyCode: [WindowsKeyCodes.Escape],
 	modifiers: [WindowsModifiers.Alt]
