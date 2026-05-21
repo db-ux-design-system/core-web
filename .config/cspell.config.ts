@@ -45,6 +45,7 @@ export default defineConfig({
 		'packages/mcp-server/src/manifest.json',
 		'storybooks/angular-storybook/src/components/documentation.json',
 		'packages/foundations/src/all-icons.ts',
+		'.github/CODEOWNERS',
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
