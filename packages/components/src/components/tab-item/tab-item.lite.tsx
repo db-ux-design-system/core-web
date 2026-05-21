@@ -32,7 +32,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		initialized: false,
 		internalActive: false,
 		internalTabIndex: -1,
-		getCurrentTabIndex() {
+		getCurrentTabIndex(): number {
 			return props.tabIndex !== undefined
 				? Number(props.tabIndex)
 				: state.internalTabIndex;
@@ -175,7 +175,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 			class={cls('db-tab-item', props.className)}
 			// suppresses native browser tooltips inherited from parent elements
 			title=""
-			aria-label={getBoolean(props.noText) ? props.label : undefined}
+			aria-label={
+				!props.children && props.label ? props.label : undefined
+			}
 			aria-selected={
 				(
 					props.active !== undefined
@@ -194,43 +196,27 @@ export default function DBTabItem(props: DBTabItemProps) {
 					? getBoolean(props.active)
 					: state.internalActive
 			}
-			data-no-text={getBoolean(props.noText) ? 'true' : undefined}
 			data-value={props.value}
 			onClick={(event) => state.handleClick(event)}>
-			<Show when={!props.noText}>
-				{/* wrapper needed for accurate width measurement via refs */}
-				<span
-					ref={_labelRef}
-					class="db-tab-label"
-					title=""
-					data-icon={
-						getBoolean(props.showIconLeading ?? props.showIcon)
-							? (props.iconLeading ?? props.icon)
-							: undefined
-					}
-					data-icon-trailing={
-						getBoolean(props.showIconTrailing)
-							? props.iconTrailing
-							: undefined
-					}>
-					<Show when={props.label}>{props.label}</Show>
-					<Show when={!props.label}>
-						<Slot />
-					</Show>
-				</span>
-			</Show>
-			<Show when={getBoolean(props.noText)}>
-				{/* icon-only: render label span without text, icon shown via CSS ::before */}
-				<span
-					class="db-tab-label"
-					aria-hidden="true"
-					data-icon={
-						getBoolean(props.showIconLeading ?? props.showIcon)
-							? (props.iconLeading ?? props.icon)
-							: undefined
-					}
-				/>
-			</Show>
+			{/* wrapper needed for accurate width measurement via refs */}
+			<span
+				ref={_labelRef}
+				class="db-tab-label"
+				title=""
+				data-icon={
+					getBoolean(props.showIconLeading ?? props.showIcon)
+						? (props.iconLeading ?? props.icon)
+						: undefined
+				}
+				data-icon-trailing={
+					getBoolean(props.showIconTrailing)
+						? props.iconTrailing
+						: undefined
+				}>
+				<Show when={props.children}>
+					<Slot />
+				</Show>
+			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
 				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
 			</Show>

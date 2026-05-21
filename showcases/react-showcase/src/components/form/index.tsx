@@ -355,8 +355,7 @@ const FormComponent = () => {
 						</DBTabItem>
 						<DBTabItem
 							icon="x_placeholder"
-							label="Placeholder"
-							noText={true}></DBTabItem>
+							label="Placeholder"></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,

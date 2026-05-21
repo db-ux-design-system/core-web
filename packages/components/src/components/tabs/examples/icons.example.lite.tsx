@@ -8,11 +8,7 @@ import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
 	storybookTitle: 'Icons',
-	storybookNames: [
-		'with leading icons',
-		'with trailing icons',
-		'icon-only (noText)'
-	],
+	storybookNames: ['with leading icons', 'with trailing icons', 'icon-only'],
 	storybookArgTypes: StorybookTabsArgTypes
 });
 
@@ -69,27 +65,20 @@ export default function TabsIcons() {
 			</div>
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
-					icon-only (noText):
+					icon-only:
 				</DBInfotext>
 				<DBTabs>
 					<DBTabList>
-						<DBTabItem
-							label="Home"
-							icon="house"
-							showIcon={true}
-							noText={true}
-						/>
+						<DBTabItem label="Home" icon="house" showIcon={true} />
 						<DBTabItem
 							label="Search"
 							icon="magnifying_glass"
 							showIcon={true}
-							noText={true}
 						/>
 						<DBTabItem
 							label="Calendar"
 							icon="calendar"
 							showIcon={true}
-							noText={true}
 						/>
 					</DBTabList>
 					<DBTabPanel>Home content</DBTabPanel>

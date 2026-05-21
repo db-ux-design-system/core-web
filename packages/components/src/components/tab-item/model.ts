@@ -23,10 +23,6 @@ export type DBTabItemDefaultProps = {
 	 */
 	label?: string;
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
-	 */
-	noText?: boolean | string;
-	/**
 	 * Set the tabIndex manually (internal use for roving tabindex).
 	 */
 	tabIndex?: number | string;

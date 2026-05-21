@@ -566,7 +566,6 @@ export default function DBTabs(props: DBTabsProps) {
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
-								noText={tab.noText}
 								onClick={() => state.activateTab(index)}
 							/>
 						)}
