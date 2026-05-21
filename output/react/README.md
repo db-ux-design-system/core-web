@@ -5,50 +5,29 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
-
-> **Note:** Find more information about specific components [here](https://design-system.deutschebahn.com/core-web/review/main)
+A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web). Find more information and component documentation at [design-system.deutschebahn.com](https://design-system.deutschebahn.com/documentation/get-started/).
 
 ## Install
 
 ```shell
-npm i @db-ux/react-core-components
+npm i @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations
+# or
+pnpm i @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations
 ```
-
-> **Note:** This will install [`@db-ux/core-foundations`](https://www.npmjs.com/package/@db-ux/core-foundations) and [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
-Import the styles in scss or css. Based on your technology the file names could be different.
+Import the styles in your main CSS file:
 
-- Default (relative): points to `../assets`
-- Rollup (rollup): points to `@db-ux/core-foundations/assets`
-- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+```css
+/* index.css */
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss
-// index.scss
-@forward "@db-ux/core-foundations/build/styles/theme/rollup"; // Palette tokens
-@forward "@db-ux/core-foundations/build/styles/bundle"; // Semantic tokens
-@forward "@db-ux/core-foundations/build/styles/icons/rollup"; // Icon fonts
-@forward "@db-ux/core-components/build/styles/rollup"; // Component styling
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
-
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
-
-```tsx
-// main.tsx — order matters!
-import "@db-ux/core-foundations/build/styles/theme/rollup.css"; // Palette tokens
-import "@db-ux/core-foundations/build/styles/bundle.css"; // Semantic tokens
-import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Icon fonts
-import "@db-ux/core-components/build/styles/rollup.css"; // Component styling
-```
-
-</details>
 
 ### Vite 8
 
@@ -86,8 +65,6 @@ export default defineConfig({
 });
 ```
 
-> **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
-
 ### Next 16
 
 Starting with Next 16, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `next.config.ts` like this:
@@ -116,10 +93,11 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 ## Usage
 
 ```tsx
-import { DBButton } from '@db-ux/react-core-components';
-...
-<DBButton icon="x_placeholder" onClick={()=>{console.log("Test")}}>Test</DBButton>
-...
+import { DBButton } from "@db-ux/react-core-components";
+
+<DBButton variant="brand" onClick={() => console.log("clicked")}>
+	Click me
+</DBButton>;
 ```
 
 ## AI Agent Support
@@ -136,7 +114,7 @@ npx @db-ux/agent-cli
 
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
-📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+📖 **[Learn more about `@db-ux/agent-cli` node package](https://www.npmjs.com/package/@db-ux/agent-cli)**
 
 ## Code Quality
 

@@ -5,49 +5,34 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
-
-> **Note:** Find more information about specific components [here](https://design-system.deutschebahn.com/core-web/review/main)
+A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web). Find more information and component documentation at [design-system.deutschebahn.com](https://design-system.deutschebahn.com/documentation/get-started/).
 
 ## Install
 
 ```shell
-npm i @db-ux/v-core-components
+npm i @db-ux/v-core-components @db-ux/core-components @db-ux/core-foundations
+# or
+pnpm i @db-ux/v-core-components @db-ux/core-components @db-ux/core-foundations
 ```
-
-> **Note:** This will install [`@db-ux/core-foundations`](https://www.npmjs.com/package/@db-ux/core-foundations) and [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
-Import the styles in scss or css. Based on your technology the file names could be different.
+Import the styles in your main CSS file:
 
-- Default (relative): points to `../assets`
-- Rollup (rollup): points to `@db-ux/core-foundations/assets`
-- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+```css
+/* style.css */
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss
-// style.scss
-@forward "@db-ux/core-components/build/styles/rollup";
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 ```ts
 // main.ts
-import "./style.scss";
+import "./style.css";
 ```
-
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
-
-```ts
-// main.ts
-import "@db-ux/core-components/build/styles/rollup.css";
-```
-
-</details>
 
 ### Vite 8
 
@@ -85,8 +70,6 @@ export default defineConfig({
 });
 ```
 
-> **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
-
 ### DB Theme
 
 In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages README).
@@ -99,7 +82,7 @@ import { DBButton } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBButton icon="x_placeholder">Test</DBButton>
+	<DBButton variant="brand">Click me</DBButton>
 </template>
 ```
 
@@ -108,14 +91,15 @@ import { DBButton } from "@db-ux/v-core-components";
 We add `v-model` support which fires on every change.
 But you can use normal `@` events as well.
 
-Both Inputs in this example do the same:
+Both inputs in this example do the same:
 
-```html
+```vue
 <script setup lang="ts">
-	import { DbInput } from "@db-ux/v-core-components";
-	import { ref } from "vue";
-	const input = ref("");
+import { DBInput } from "@db-ux/v-core-components";
+import { ref } from "vue";
+const input = ref("");
 </script>
+
 <template>
 	<DBInput
 		label="Inputfield"
@@ -126,7 +110,7 @@ Both Inputs in this example do the same:
 		label="Inputfield"
 		name="input-name"
 		:value="input"
-		@change="e => input = e.target.value"
+		@change="(e) => (input = e.target.value)"
 	></DBInput>
 </template>
 ```
@@ -145,7 +129,7 @@ npx @db-ux/agent-cli
 
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
-📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+📖 **[Learn more about `@db-ux/agent-cli` node package](https://www.npmjs.com/package/@db-ux/agent-cli)**
 
 ## Code Quality
 

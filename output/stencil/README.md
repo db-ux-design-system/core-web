@@ -5,42 +5,29 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A web-component library containing all components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
+A web-component library containing all components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web). Find more information and component documentation at [design-system.deutschebahn.com](https://design-system.deutschebahn.com/documentation/get-started/).
 
 ## Install
 
 ```shell
-npm i @db-ux/wc-core-components
+npm i @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
+# or
+pnpm i @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
 ```
-
-> **Note:** This will install [`@db-ux/core-foundations`](https://www.npmjs.com/package/@db-ux/core-foundations) and [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
-Import the styles in scss or css. Based on your technology the file names could be different.
+Import the styles in your main CSS file:
 
-- Default (relative): points to `../assets`
-- Rollup (rollup): points to `@db-ux/core-foundations/assets`
-- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+```css
+/* index.css */
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss
-// index.scss
-@forward "@db-ux/core-components/build/styles/rollup";
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
-
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
-
-```js
-// main.js
-import "@db-ux/core-components/build/styles/rollup.css";
-```
-
-</details>
 
 ### Vite 8
 
@@ -78,13 +65,13 @@ export default defineConfig({
 });
 ```
 
-> **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
-
 ### DB Theme
 
 In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages README).
 
 ## Usage
+
+The components work in any HTML context. Register them once at your app entry point:
 
 ```js
 // main.js
@@ -92,10 +79,10 @@ import { defineCustomElements } from "@db-ux/wc-core-components";
 defineCustomElements();
 ```
 
+Then use them anywhere in your HTML:
+
 ```html
-...
-<db-button icon="x_placeholder">Test</db-button>
-...
+<db-button variant="brand">Click me</db-button>
 ```
 
 ## VSCode autocomplete
@@ -124,7 +111,7 @@ npx @db-ux/agent-cli
 
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
-📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+📖 **[Learn more about `@db-ux/agent-cli` node package](https://www.npmjs.com/package/@db-ux/agent-cli)**
 
 ## Deutsche Bahn brand
 
