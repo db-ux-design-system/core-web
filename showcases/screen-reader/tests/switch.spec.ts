@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { getTest, STABILIZATION_DELAY, testDefault } from '../default';
 
 const test = getTest();
 
@@ -9,12 +9,13 @@ test.describe('DBSwitch', () => {
 		description:
 			'should toggle switches, should not toggle disabled switch',
 		url: './#/03/switch?page=checked',
-		async testFn(voiceOver, nvda) {
+		async testFn(voiceOver, nvda, page) {
 			if (nvda) {
 				await nvda?.previous(); // Focus "switch 1"
 				await nvda?.act(); // Interact "switch 1"
 				await nvda?.next(); // Focus "switch 2"
 				await nvda?.act(); // Interact "switch 2"
+				await page.waitForTimeout(STABILIZATION_DELAY);
 				await nvda?.next(); // Focus "switch 3"
 			} else if (voiceOver) {
 				await voiceOver?.previous(); // Focus "switch 1"

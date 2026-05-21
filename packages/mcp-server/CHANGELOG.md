@@ -1,5 +1,9 @@
 # @db-ux/mcp-server
 
+## 4.9.0
+
+_version bump_
+
 ## 4.8.0
 
 ### Minor Changes
