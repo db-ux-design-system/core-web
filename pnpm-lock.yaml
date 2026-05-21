@@ -116,8 +116,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       jscpd:
-        specifier: 4.2.2
-        version: 4.2.2
+        specifier: 4.2.3
+        version: 4.2.3
       lint-staged:
         specifier: 17.0.5
         version: 17.0.5
@@ -4698,20 +4698,20 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@jscpd/badge-reporter@4.2.2':
-    resolution: {integrity: sha512-03ngWGBtvdL6dRC7+Q/4FdoUozN4KBHpaJ1SjGnPaMuPoEmcGDdw7W/+HfhPWSwpzam3lfTM2yBsGhrG2g3LqQ==}
+  '@jscpd/badge-reporter@4.2.3':
+    resolution: {integrity: sha512-yNvbwWl/NwogHT5XrHyqXgF9yVZeLWA2QOhGqYTopvgi7LsSbDumpOqOcJMHP9Z4RalhMfahh+dVXFSI7tMcaA==}
 
-  '@jscpd/core@4.2.2':
-    resolution: {integrity: sha512-YheyoZAVIeZXyQ5mE1lZ+no8Rs8bo02PXnTfW6PN9QrPUOlRsuJ0br5F3T/H6GU8S2DUP5gUJPOp1Lz7oxN+aA==}
+  '@jscpd/core@4.2.3':
+    resolution: {integrity: sha512-VQ2gH+tiI51ty3PBRD4HClNNgyX/VH9cs0dcFKuywxDzLQ64jYp7vhJPcqnyiVX9tVEIAa12sucRHQP/VHwugA==}
 
-  '@jscpd/finder@4.2.2':
-    resolution: {integrity: sha512-HGsvprcIVTjSU3x8+Ofb5mKq2gRYYZ8Cd1O00w97x8GWUub5sHLGOdvlP4Bw19FVoZzBz+1pjnF5dDvzEoj4rg==}
+  '@jscpd/finder@4.2.3':
+    resolution: {integrity: sha512-ZpjviFAg6zLojQHS+owvrn8DG1OY1d4835Je4LUKzbMurndmQDhvRRFDkN9V6xPn6gvRaMVkJHN2tyljsnUjWA==}
 
-  '@jscpd/html-reporter@4.2.2':
-    resolution: {integrity: sha512-pw+spkYfgWNiDH9bURB0jWzGlfbpQjc8gUe3c726qzPSgMUe9QB3fBA44e9iAJP/o0jtizgUd4MZHyWRbVAw1w==}
+  '@jscpd/html-reporter@4.2.3':
+    resolution: {integrity: sha512-kp1pqJXCKwyRu5mJK5IvXdFQEDHWQDb7svLFlbVXGI0dVH1y1XNl8mrIrSoRw+0AySxhDkuSyIlQOSDC2GRwQg==}
 
-  '@jscpd/tokenizer@4.2.2':
-    resolution: {integrity: sha512-haV7OWM2xzQ3I7tWgNTAOcR+kkFr0lYxkdnTOSd5Pve4QGx1Jk7kwk9gotqpXTd6AauaPnBdfHPxeZrUY21QYA==}
+  '@jscpd/tokenizer@4.2.3':
+    resolution: {integrity: sha512-RvjD7/hwqtcQC9MWOl31odTti6kGCFxZ77DKEhwyMn+r6oVEUFbXgcGvzn0GC/wuTl7f3j5MF9JNMeTneOFwYA==}
 
   '@jsonjoy.com/base64@1.1.2':
     resolution: {integrity: sha512-q6XAnWQDIMA3+FTiOYajoYqySkO+JSat0ytXGSuRdq9uXE7o92gzuQwQM14xaCRlBLGq3v5miDGC4vkVTn54xA==}
@@ -11994,11 +11994,11 @@ packages:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
-  jscpd-sarif-reporter@4.2.2:
-    resolution: {integrity: sha512-qpLhFZ6pVJcIjvEcUVRxnsrQuTbRY7bBnAgzXY9th0mL1uYhb1ii+SkMcBrBchH23vFfZu/9EG4lIxLCGfEpCQ==}
+  jscpd-sarif-reporter@4.2.3:
+    resolution: {integrity: sha512-rM0LM5S0kdASLCtDsr1s51rJOPf8nubaxaWQUTWVVPda1UMPymXbELG+A3Rgpoa4D4QFUFfXqz60Jn/W+vlFtA==}
 
-  jscpd@4.2.2:
-    resolution: {integrity: sha512-zmoSXtG5Dsgo3QHhnsA06okqnKu3DlYBeAuD7MRnNQoNiL13UgBBh28pEEhe0tyR4yqYXk4Q3GAFoHx5cY+oDw==}
+  jscpd@4.2.3:
+    resolution: {integrity: sha512-/1BEga1E1cY56/sdQOzU/PFtnea+n1beqG8/Xx4HopG9c5rkUO8ptnu9En8Xf1ILGW6KSWidV4vLQTm2FGYvpw==}
     hasBin: true
 
   jsdom@24.1.3:
@@ -16923,8 +16923,8 @@ packages:
   vue-component-type-helpers@2.2.12:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
 
-  vue-component-type-helpers@3.3.0:
-    resolution: {integrity: sha512-vwR8DDsBysI9NWXa0okPFpCcW+BUC3sPTuLBNo1faMzw4QWMFd+3/lFYFu29ZN0q+8UReXWJHEYesC9dcXYCLg==}
+  vue-component-type-helpers@3.3.1:
+    resolution: {integrity: sha512-pu58kqxmVyEH6VfNYW1UyEfR3XAnJ27ZXT3yzXxxpjLxVzAbyC35Zk/nm/RMs7ijWnJNSd9fWkeex2OhUsx3MA==}
 
   vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
@@ -21918,20 +21918,20 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@jscpd/badge-reporter@4.2.2':
+  '@jscpd/badge-reporter@4.2.3':
     dependencies:
       badgen: 3.3.2
       colors: 1.4.0
       fs-extra: 11.3.5
 
-  '@jscpd/core@4.2.2':
+  '@jscpd/core@4.2.3':
     dependencies:
       eventemitter3: 5.0.4
 
-  '@jscpd/finder@4.2.2':
+  '@jscpd/finder@4.2.3':
     dependencies:
-      '@jscpd/core': 4.2.2
-      '@jscpd/tokenizer': 4.2.2
+      '@jscpd/core': 4.2.3
+      '@jscpd/tokenizer': 4.2.3
       blamer: 1.0.7
       bytes: 3.1.2
       cli-table3: 0.6.5
@@ -21941,15 +21941,15 @@ snapshots:
       markdown-table: 2.0.0
       pug: 3.0.4
 
-  '@jscpd/html-reporter@4.2.2':
+  '@jscpd/html-reporter@4.2.3':
     dependencies:
       colors: 1.4.0
       fs-extra: 11.3.5
       pug: 3.0.4
 
-  '@jscpd/tokenizer@4.2.2':
+  '@jscpd/tokenizer@4.2.3':
     dependencies:
-      '@jscpd/core': 4.2.2
+      '@jscpd/core': 4.2.3
       spark-md5: 3.0.2
 
   '@jsonjoy.com/base64@1.1.2(tslib@2.8.1)':
@@ -22442,7 +22442,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.8.0
+      semver: 7.7.4
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -24161,7 +24161,7 @@ snapshots:
       storybook: 10.4.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       type-fest: 2.19.0
       vue: 3.5.34(typescript@5.9.3)
-      vue-component-type-helpers: 3.3.0
+      vue-component-type-helpers: 3.3.1
 
   '@stylistic/eslint-plugin@5.10.0(eslint@10.3.0(jiti@2.7.0))':
     dependencies:
@@ -27806,7 +27806,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@10.3.0(jiti@2.7.0)):
     dependencies:
       eslint: 10.3.0(jiti@2.7.0)
-      semver: 7.8.0
+      semver: 7.7.4
 
   eslint-config-next@16.2.6(@typescript-eslint/parser@8.59.3(eslint@10.3.0(jiti@2.7.0))(typescript@5.9.3))(eslint-plugin-import-x@4.16.2(@typescript-eslint/utils@8.59.4(eslint@10.3.0(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint@10.3.0(jiti@2.7.0)))(eslint@10.3.0(jiti@2.7.0))(typescript@5.9.3):
     dependencies:
@@ -30113,23 +30113,23 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jscpd-sarif-reporter@4.2.2:
+  jscpd-sarif-reporter@4.2.3:
     dependencies:
       colors: 1.4.0
       fs-extra: 11.3.5
       node-sarif-builder: 3.4.0
 
-  jscpd@4.2.2:
+  jscpd@4.2.3:
     dependencies:
-      '@jscpd/badge-reporter': 4.2.2
-      '@jscpd/core': 4.2.2
-      '@jscpd/finder': 4.2.2
-      '@jscpd/html-reporter': 4.2.2
-      '@jscpd/tokenizer': 4.2.2
+      '@jscpd/badge-reporter': 4.2.3
+      '@jscpd/core': 4.2.3
+      '@jscpd/finder': 4.2.3
+      '@jscpd/html-reporter': 4.2.3
+      '@jscpd/tokenizer': 4.2.3
       colors: 1.4.0
       commander: 5.1.0
       fs-extra: 11.3.5
-      jscpd-sarif-reporter: 4.2.2
+      jscpd-sarif-reporter: 4.2.3
 
   jsdom@24.1.3:
     dependencies:
@@ -31825,7 +31825,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.8.0
+      semver: 7.7.4
       tar: 7.5.15
       tinyglobby: 0.2.16
       undici: 6.25.0
@@ -31893,7 +31893,7 @@ snapshots:
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.8.0
+      semver: 7.7.4
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -36475,7 +36475,7 @@ snapshots:
 
   vue-component-type-helpers@2.2.12: {}
 
-  vue-component-type-helpers@3.3.0: {}
+  vue-component-type-helpers@3.3.1: {}
 
   vue-devtools-stub@0.1.0: {}
 
