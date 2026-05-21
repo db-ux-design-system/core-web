@@ -25,7 +25,8 @@ const linkProps: Record<string, FigmaProp> = {
 		key: 'Size',
 		value: { '(Def) Medium': 'medium', Small: 'small' }
 	},
-	disabled: { type: 'boolean', key: 'Disabled' }
+	disabled: { type: 'boolean', key: 'Disabled' },
+	showIcon: { type: 'boolean', key: 'Show Icon' }
 };
 
 export const links: FigmaCodeConnect = {

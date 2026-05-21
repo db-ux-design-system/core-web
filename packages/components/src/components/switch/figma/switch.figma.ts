@@ -2,6 +2,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaSwitchProps = {
 	label?: string;
+	showLabel?: boolean;
 	size?: string;
 	variant?: string;
 	required?: boolean;
@@ -18,6 +19,7 @@ export type FigmaSwitchProps = {
 
 const switchProps: Record<string, FigmaProp> = {
 	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
 		key: 'Size',

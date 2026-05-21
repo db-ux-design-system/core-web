@@ -43,7 +43,7 @@ const emphasisProp: FigmaProp = {
 
 const textProp: FigmaProp = { type: 'textContent', key: 'Text' };
 
-const allPlacementProp: FigmaProp = {
+const placementProp: FigmaProp = {
 	type: 'enum',
 	key: 'Placement',
 	value: {
@@ -57,24 +57,11 @@ const allPlacementProp: FigmaProp = {
 	}
 };
 
-const cornerPlacementProp: FigmaProp = {
-	type: 'enum',
-	key: 'Placement',
-	value: {
-		'corner-top-left': 'corner-top-left',
-		'corner-top-right': 'corner-top-right',
-		'corner-center-left': 'corner-center-left',
-		'corner-center-right': 'corner-center-right',
-		'corner-bottom-left': 'corner-bottom-left',
-		'corner-bottom-right': 'corner-bottom-right'
-	}
-};
-
 const baseBadgeProps: Record<string, FigmaProp> = {
 	size: sizeProp,
 	semantic: semanticProp,
 	emphasis: emphasisProp,
-	placement: allPlacementProp,
+	placement: placementProp,
 	text: textProp,
 	icon: {
 		type: 'enum',
@@ -98,7 +85,7 @@ const dotBadgeProps: Record<string, FigmaProp> = {
 	size: sizeProp,
 	semantic: semanticProp,
 	emphasis: emphasisProp,
-	placement: cornerPlacementProp,
+	placement: placementProp,
 	label: { type: 'string', key: 'Text' }
 };
 

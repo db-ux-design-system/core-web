@@ -3,6 +3,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaInputProps = {
 	variant?: string;
 	label?: string;
+	showLabel?: boolean;
 	placeholder?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
@@ -24,6 +25,7 @@ const inputProps: Record<string, FigmaProp> = {
 		value: { Above: 'above', Floating: 'floating' }
 	},
 	label: { type: 'string', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	placeholder: { type: 'string', key: 'Placeholder' },
 	required: { type: 'boolean', key: 'Required' },
 	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },

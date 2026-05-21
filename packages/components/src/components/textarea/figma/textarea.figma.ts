@@ -3,11 +3,15 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaTextareaProps = {
 	variant?: string;
 	label?: string;
+	showLabel?: boolean;
 	placeholder?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
 	readonly?: boolean;
 	disabled?: boolean;
+	resize?: string;
+	showResizer?: boolean;
+	fieldSizing?: string;
 	validation?: string;
 	showMessage?: boolean;
 	message?: string;
@@ -20,11 +24,28 @@ const textareaProps: Record<string, FigmaProp> = {
 		value: { Above: 'above', Floating: 'floating' }
 	},
 	label: { type: 'string', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	placeholder: { type: 'string', key: 'Placeholder' },
 	required: { type: 'boolean', key: 'Required' },
 	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	readonly: { type: 'boolean', key: 'Readonly' },
 	disabled: { type: 'boolean', key: 'Disabled' },
+	resize: {
+		type: 'enum',
+		key: 'Resize',
+		value: {
+			both: 'both',
+			horizontal: 'horizontal',
+			none: 'none',
+			vertical: 'vertical'
+		}
+	},
+	showResizer: { type: 'boolean', key: 'Show Resizer' },
+	fieldSizing: {
+		type: 'enum',
+		key: 'Field Sizing',
+		value: { '(Def) Fixed': 'fixed', Content: 'content' }
+	},
 	validation: {
 		type: 'enum',
 		key: 'Validation',

@@ -69,7 +69,7 @@ const getInstanceCall = (figmaProperty) => {
 	}
 	if (type === 'validationMessage') {
 		const { key: textKey } = figmaProperty;
-		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties[_findKey('${textKey}')])[0]?.getString(_findKey('${textKey}'))`;
+		return `((n) => n?.getString(Object.keys(n.properties).find((k) => k === '${textKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${textKey}') ?? '${textKey}'))(instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').find((node) => !!Object.keys(node.properties).find((k) => k === '${textKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${textKey}')))`;
 	}
 	if (type === 'conditionalProp')
 		return `((r) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example)`;
@@ -246,7 +246,7 @@ const buildTemplate = (json, target) => {
 			} else {
 				attrStr = `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
 			}
-			const ccChild = `codeConnect?.children.find((c) => c.type === 'INSTANCE' && c.name.includes('${figmaKey}')) as figma.InstanceHandle | undefined`;
+			const ccChild = `_ccLayers.flatMap((l) => l.children).find((c) => c.type === 'INSTANCE' && c.name.includes('${figmaKey}')) as figma.InstanceHandle | undefined`;
 			const ccRawValue = `Object.values((_cc_${propName} as figma.InstanceHandle)?.properties ?? {})[0]?.value`;
 			// allIconSwaps / allInstances enums can't be resolved from a CC child value
 			const enumVals =
@@ -604,7 +604,7 @@ module.exports = () => ({
 			const importsArray = importsEntry ? `[${importsEntry}]` : '[]';
 
 			return (
-				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _ccLayer = instance.findLayers((n) => n.type === 'INSTANCE' && n.name.includes('\u2699\ufe0f Code Connect'), { traverseInstances: true })[0]\nconst codeConnect = _ccLayer?.type === 'INSTANCE' ? _ccLayer as figma.InstanceHandle : undefined\nconst _findKey = (name: string) => Object.keys(instance.properties).find((k) => k === name || k.replace(/^[^a-zA-Z]+/, '') === name) ?? name\n\n" +
+				"import figma from 'figma'\n\nconst instance = figma.selectedInstance\nconst _ccLayers = instance.findLayers((n) => n.type === 'INSTANCE' && n.name.includes('\u2699\ufe0f Code Connect'), { traverseInstances: true }).filter((n) => n.type === 'INSTANCE') as figma.InstanceHandle[]\nconst _findKey = (name: string) => Object.keys(instance.properties).find((k) => k === name || k.replace(/^[^a-zA-Z]+/, '') === name) ?? name\n\n" +
 				allDeclarations +
 				'export default {\n  example: figma.code`' +
 				exampleWithProps +

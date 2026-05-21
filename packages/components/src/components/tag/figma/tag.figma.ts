@@ -3,6 +3,10 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaTagProps = {
 	label?: string;
 	semantic?: string;
+	behavior?: string;
+	emphasis?: string;
+	noText?: boolean;
+	overflow?: boolean;
 	disabled?: boolean;
 	checked?: boolean;
 	showCheckState?: boolean;
@@ -10,7 +14,8 @@ export type FigmaTagProps = {
 	icon?: string;
 };
 
-const semanticProp: Record<string, FigmaProp> = {
+const sharedProps: Record<string, FigmaProp> = {
+	label: { type: 'textContent', key: 'Text' },
 	semantic: {
 		type: 'enum',
 		key: 'Semantic',
@@ -22,40 +27,42 @@ const semanticProp: Record<string, FigmaProp> = {
 			Successful: 'successful',
 			Warning: 'warning'
 		}
-	}
-};
-
-const labelProp: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: 'Text' }
-};
-
-const iconProps: Record<string, FigmaProp> = {
+	},
 	showIcon: { type: 'boolean', key: 'Show Icon' },
 	icon: {
 		type: 'conditionalProp',
 		key: 'Icon',
 		guardKey: 'Show Icon',
 		attrName: 'icon'
-	}
+	},
+	emphasis: {
+		type: 'enum',
+		key: 'Emphasis',
+		value: { weak: 'weak', strong: 'strong' }
+	},
+	noText: { type: 'boolean', key: 'No Text' },
+	overflow: { type: 'boolean', key: 'Overflow' }
 };
 
 const staticProps: Record<string, FigmaProp> = {
-	...labelProp,
-	...semanticProp,
-	...iconProps
+	...sharedProps,
+	behavior: {
+		type: 'enum',
+		key: 'Behavior',
+		value: {
+			static: 'static',
+			removable: 'removable'
+		}
+	}
 };
 
 const interactiveProps: Record<string, FigmaProp> = {
-	...labelProp,
-	...semanticProp,
-	...iconProps,
+	...sharedProps,
 	disabled: { type: 'boolean', key: 'Disabled' }
 };
 
 const interactiveToggleProps: Record<string, FigmaProp> = {
-	...labelProp,
-	...semanticProp,
-	...iconProps,
+	...sharedProps,
 	disabled: { type: 'boolean', key: 'Disabled' },
 	checked: { type: 'boolean', key: 'Checked' },
 	showCheckState: { type: 'boolean', key: 'Show Check State' }
@@ -69,11 +76,11 @@ export const staticTag: FigmaCodeConnect = {
 		// weak static icon
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:18483',
 		// weak removable
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19514',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19950',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442-19514',
 		// strong static
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19575',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19630',
+		// strong removable
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:20661'
 	],
 	props: staticProps

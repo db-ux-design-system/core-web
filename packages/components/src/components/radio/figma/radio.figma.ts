@@ -2,6 +2,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaRadioProps = {
 	label?: string;
+	showLabel?: boolean;
 	size?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
@@ -12,6 +13,7 @@ export type FigmaRadioProps = {
 
 const radioProps: Record<string, FigmaProp> = {
 	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
 		key: 'Size',

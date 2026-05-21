@@ -52,7 +52,7 @@ const tooltipProps: Record<string, FigmaProp> = {
 	delay: {
 		type: 'enum',
 		key: 'Delay',
-		value: { '(Def) None': 'none', Slow: 'slow', Fast: 'fast' }
+		value: { None: 'none', Slow: 'slow', Fast: 'fast' }
 	},
 	gap: { type: 'boolean', key: 'Gap' }
 };

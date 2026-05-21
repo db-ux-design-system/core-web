@@ -28,7 +28,14 @@ const popoverProps: Record<string, FigmaProp> = {
 			None: 'none'
 		}
 	},
-	_children: { type: 'nestedConnectedInstances' }
+	_children: { type: 'nestedConnectedInstances' },
+	animation: { type: 'boolean', key: 'Animation' },
+	delay: {
+		type: 'enum',
+		key: 'Delay',
+		value: { None: 'none', Slow: 'slow', Fast: 'fast' }
+	},
+	gap: { type: 'boolean', key: 'Gap' }
 };
 
 export const popovers: FigmaCodeConnect = {

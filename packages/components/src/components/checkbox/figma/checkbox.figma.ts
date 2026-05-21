@@ -2,6 +2,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaCheckboxProps = {
 	label?: string;
+	showLabel?: boolean;
 	size?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
@@ -9,11 +10,13 @@ export type FigmaCheckboxProps = {
 	checked?: boolean;
 	indeterminate?: boolean;
 	validation?: string;
+	showMessage?: boolean;
 	message?: string;
 };
 
 const checkboxProps: Record<string, FigmaProp> = {
 	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
 		key: 'Size',
@@ -42,7 +45,8 @@ const checkboxProps: Record<string, FigmaProp> = {
 			valid: 'validMessage',
 			default: 'message'
 		}
-	}
+	},
+	showMessage: { type: 'boolean', key: 'Show Message' }
 };
 
 export const checkboxes: FigmaCodeConnect = {
