@@ -125,7 +125,9 @@ dbtabitem {
 
 	[data-orientation="vertical"] & {
 		max-inline-size: 100%;
+		inline-size: 100%;
 		flex-shrink: 1;
+		justify-content: flex-start;
 	}
 
 	&[aria-selected="true"],
