@@ -2,4 +2,4 @@
 "@db-ux/core-foundations": patch
 ---
 
-fix: wrong path for whitelabel theme relative.css
+fix: correct default relative asset base for fonts/icons in `build/styles/theme/relative.css` and other `*relative.css` files
