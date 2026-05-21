@@ -4,21 +4,21 @@
   - text: Functional
   - group:
     - article:
-      - radiogroup "id-10206-Functional":
+      - listbox "id-10206-Functional":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -26,21 +26,21 @@
   - text: (Default) Regular
   - group:
     - article:
-      - radiogroup "id-10207-(Default) Regular":
+      - listbox "id-10207-(Default) Regular":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -48,21 +48,21 @@
   - text: Expressive
   - group:
     - article:
-      - radiogroup "id-10208-Expressive":
+      - listbox "id-10208-Expressive":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -71,21 +71,21 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "id-10209-(Default) False":
+      - listbox "id-10209-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -93,21 +93,21 @@
   - text: "True"
   - group:
     - article:
-      - group "id-10210-True":
+      - listbox "id-10210-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -116,21 +116,21 @@
   - text: (Default) Above
   - group:
     - article:
-      - radiogroup "id-10211-(Default) Above":
+      - listbox "id-10211-(Default) Above":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -138,21 +138,21 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10212-Floating":
+      - listbox "id-10212-Floating":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -161,21 +161,21 @@
   - text: (Default) True
   - group:
     - article:
-      - radiogroup "id-10213-(Default) True":
+      - listbox "id-10213-(Default) True":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -183,21 +183,21 @@
   - text: "False"
   - group:
     - article:
-      - radiogroup "id-10214-False":
+      - listbox "id-10214-False":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -206,21 +206,21 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "id-10215-(Default) False":
+      - listbox "id-10215-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -228,21 +228,21 @@
   - text: "True"
   - group:
     - article:
-      - radiogroup "id-10216-True":
+      - listbox "id-10216-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -252,21 +252,21 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "id-10217-(Default) False":
+      - listbox "id-10217-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -274,21 +274,21 @@
   - text: "True"
   - group:
     - article:
-      - radiogroup "id-10218-True":
+      - listbox "id-10218-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -297,21 +297,21 @@
   - text: (Default) No Validation
   - group:
     - article:
-      - radiogroup "id-102061-(Default) No Validation":
+      - listbox "id-102061-(Default) No Validation":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -319,21 +319,21 @@
   - text: Invalid
   - group:
     - article:
-      - radiogroup "id-102062-Invalid":
+      - listbox "id-102062-Invalid":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -342,21 +342,21 @@
   - text: Valid
   - group:
     - article:
-      - radiogroup "id-102063-Valid":
+      - listbox "id-102063-Valid":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -366,21 +366,21 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10219-(Default) False":
+      - listbox "id-10219-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -388,21 +388,21 @@
   - text: "True"
   - group:
     - article:
-      - group "id-10220-True":
+      - listbox "id-10220-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -411,21 +411,21 @@
   - text: (Default) True
   - group:
     - article:
-      - group "id-1021s9-(Default) True":
+      - listbox "id-1021s9-(Default) True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -433,21 +433,21 @@
   - text: "False"
   - group:
     - article:
-      - group "id-10s220-False":
+      - listbox "id-10s220-False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -456,21 +456,21 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10221-(Default) False":
+      - listbox "id-10221-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -478,21 +478,21 @@
   - text: "True"
   - group:
     - article:
-      - group "id-10222-True":
+      - listbox "id-10222-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -501,21 +501,21 @@
   - text: (Default) Full
   - group:
     - article:
-      - radiogroup "id-10223-(Default) Full":
+      - listbox "id-10223-(Default) Full":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -523,21 +523,21 @@
   - text: Auto
   - group:
     - article:
-      - radiogroup "id-10224-Auto":
+      - listbox "id-10224-Auto":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -546,21 +546,21 @@
   - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
-      - radiogroup "id-10227-(Default) Fixed":
+      - listbox "id-10227-(Default) Fixed":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -568,21 +568,21 @@
   - text: Auto
   - group:
     - article:
-      - radiogroup "id-10228-Auto":
+      - listbox "id-10228-Auto":
         - list:
-          - listitem:
+          - option "1":
             - radio "1"
             - text: "1"
-          - listitem:
+          - option "2":
             - radio "2"
             - text: "2"
-          - listitem:
+          - option "3":
             - radio "3"
             - text: "3"
-          - listitem:
+          - option "4":
             - radio "4"
             - text: "4"
-          - listitem:
+          - option "5":
             - radio "5"
             - text: "5"
       - button "Close"
@@ -590,21 +590,21 @@
   - text: Full
   - group:
     - article:
-      - radiogroup "id-10229-Full":
+      - listbox "id-10229-Full":
         - list:
-          - listitem:
+          - option "1":
             - radio "1"
             - text: "1"
-          - listitem:
+          - option "2":
             - radio "2"
             - text: "2"
-          - listitem:
+          - option "3":
             - radio "3"
             - text: "3"
-          - listitem:
+          - option "4":
             - radio "4"
             - text: "4"
-          - listitem:
+          - option "5":
             - radio "5"
             - text: "5"
       - button "Close"
@@ -612,21 +612,21 @@
   - text: "Form Field Width: Auto (Default) Fixed"
   - group:
     - article:
-      - radiogroup "id-10233-(Default) Fixed":
+      - listbox "id-10233-(Default) Fixed":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -634,21 +634,21 @@
   - text: Auto
   - group:
     - article:
-      - radiogroup "id-10234-Auto":
+      - listbox "id-10234-Auto":
         - list:
-          - listitem:
+          - option "1":
             - radio "1"
             - text: "1"
-          - listitem:
+          - option "2":
             - radio "2"
             - text: "2"
-          - listitem:
+          - option "3":
             - radio "3"
             - text: "3"
-          - listitem:
+          - option "4":
             - radio "4"
             - text: "4"
-          - listitem:
+          - option "5":
             - radio "5"
             - text: "5"
       - button "Close"
@@ -656,21 +656,21 @@
   - text: Full
   - group:
     - article:
-      - radiogroup "id-10235-Full":
+      - listbox "id-10235-Full":
         - list:
-          - listitem:
+          - option "1":
             - radio "1"
             - text: "1"
-          - listitem:
+          - option "2":
             - radio "2"
             - text: "2"
-          - listitem:
+          - option "3":
             - radio "3"
             - text: "3"
-          - listitem:
+          - option "4":
             - radio "4"
             - text: "4"
-          - listitem:
+          - option "5":
             - radio "5"
             - text: "5"
       - button "Close"
@@ -679,21 +679,21 @@
   - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
-      - radiogroup "id-10238-(Default) Bottom":
+      - listbox "id-10238-(Default) Bottom":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -701,21 +701,21 @@
   - text: Top
   - group:
     - article:
-      - radiogroup "id-10239-Top":
+      - listbox "id-10239-Top":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -723,21 +723,21 @@
   - text: "Form Field Width: Auto (Default) Bottom-Start"
   - group:
     - article:
-      - radiogroup "id-10243-(Default) Bottom-Start":
+      - listbox "id-10243-(Default) Bottom-Start":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -745,21 +745,21 @@
   - text: Bottom-End
   - group:
     - article:
-      - radiogroup "id-10244-Bottom-End":
+      - listbox "id-10244-Bottom-End":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -767,21 +767,21 @@
   - text: Top-Start
   - group:
     - article:
-      - radiogroup "id-10245-Top-Start":
+      - listbox "id-10245-Top-Start":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -789,21 +789,21 @@
   - text: Top-End
   - group:
     - article:
-      - radiogroup "id-10246-Top-End":
+      - listbox "id-10246-Top-End":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -812,21 +812,21 @@
   - text: (Default) Text
   - group:
     - article:
-      - group "id-10247-(Default) Text":
+      - listbox "id-10247-(Default) Text":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -834,21 +834,21 @@
   - text: Amount
   - group:
     - article:
-      - group "id-10248-Amount":
+      - listbox "id-10248-Amount":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -856,21 +856,21 @@
   - text: Tag
   - group:
     - article:
-      - group "id-10249-Tag":
+      - listbox "id-10249-Tag":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -879,21 +879,21 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10250-(Default) False":
+      - listbox "id-10250-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -908,21 +908,21 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10252-(Default) False":
+      - listbox "id-10252-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -939,36 +939,36 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "id-10254-(Default) False":
+      - listbox "id-10254-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
-          - listitem:
+          - option "Option 6":
             - checkbox "Option 6"
             - text: Option 6
-          - listitem:
+          - option "Option 7":
             - checkbox "Option 7"
             - text: Option 7
-          - listitem:
+          - option "Option 8":
             - checkbox "Option 8"
             - text: Option 8
-          - listitem:
+          - option "Option 9":
             - checkbox "Option 9"
             - text: Option 9
-          - listitem:
+          - option "Option 10":
             - checkbox "Option 10"
             - text: Option 10
       - button "Close"
@@ -979,21 +979,21 @@
       - text: Search
       - searchbox "Search"
       - status
-      - group "id-10255-True":
+      - listbox "id-10255-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1002,24 +1002,24 @@
   - text: (Default) False
   - group:
     - article:
-      - group "id-10256-(Default) False":
+      - listbox "id-10256-(Default) False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
-          - listitem:
+          - option "Option 6":
             - checkbox "Option 6"
             - text: Option 6
       - button "Close"
@@ -1029,21 +1029,21 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "id-10257-True":
+      - listbox "id-10257-True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1052,21 +1052,21 @@
   - text: (Default) True
   - group:
     - article:
-      - group "id-10258-(Default) True":
+      - listbox "id-10258-(Default) True":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1074,21 +1074,21 @@
   - text: "False"
   - group:
     - article:
-      - group "id-10259-False":
+      - listbox "id-10259-False":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1097,21 +1097,21 @@
   - text: Icons
   - group:
     - article:
-      - radiogroup "id-10260-Icons":
+      - listbox "id-10260-Icons":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -1119,21 +1119,21 @@
   - text: Less than 6
   - group:
     - article:
-      - radiogroup "id-10261-Less than 6":
+      - listbox "id-10261-Less than 6":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -1141,20 +1141,20 @@
   - text: Option Group Title
   - group:
     - article:
-      - radiogroup "id-10262-Option Group Title":
+      - listbox "id-10262-Option Group Title":
         - list:
           - listitem: Option group 1
-          - listitem:
+          - option "G1:Option 1":
             - radio "G1:Option 1"
             - text: G1:Option 1
-          - listitem:
+          - option "G1:Option 2":
             - radio "G1:Option 2"
             - text: G1:Option 2
           - listitem: Option group 2
-          - listitem:
+          - option "G2:Option 1":
             - radio "G2:Option 1"
             - text: G2:Option 1
-          - listitem:
+          - option "G2:Option 2":
             - radio "G2:Option 2"
             - text: G2:Option 2
       - button "Close"
@@ -1162,18 +1162,18 @@
   - text: Option Groups
   - group:
     - article:
-      - radiogroup "id-10263-Option Groups":
+      - listbox "id-10263-Option Groups":
         - list:
-          - listitem:
+          - option "G1:Option 1":
             - radio "G1:Option 1"
             - text: G1:Option 1
-          - listitem:
+          - option "G1:Option 2":
             - radio "G1:Option 2"
             - text: G1:Option 2
-          - listitem:
+          - option "G2:Option 1":
             - radio "G2:Option 1"
             - text: G2:Option 1
-          - listitem:
+          - option "G2:Option 2":
             - radio "G2:Option 2"
             - text: G2:Option 2
       - button "Close"
@@ -1181,27 +1181,27 @@
   - text: More than 6
   - group:
     - article:
-      - radiogroup "id-10264-More than 6":
+      - listbox "id-10264-More than 6":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
-          - listitem:
+          - option "Option 6":
             - radio "Option 6"
             - text: Option 6
-          - listitem:
+          - option "Option 7":
             - radio "Option 7"
             - text: Option 7
       - button "Close"
@@ -1212,36 +1212,36 @@
       - text: Search
       - searchbox "Search"
       - status
-      - radiogroup "id-10265-More than 10":
+      - listbox "id-10265-More than 10":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
-          - listitem:
+          - option "Option 6":
             - radio "Option 6"
             - text: Option 6
-          - listitem:
+          - option "Option 7":
             - radio "Option 7"
             - text: Option 7
-          - listitem:
+          - option "Option 8":
             - radio "Option 8"
             - text: Option 8
-          - listitem:
+          - option "Option 9":
             - radio "Option 9"
             - text: Option 9
-          - listitem:
+          - option "Option 10":
             - radio "Option 10"
             - text: Option 10
       - button "Close"
@@ -1250,21 +1250,21 @@
   - text: Less than 6
   - group:
     - article:
-      - group "id-10266-Less than 6":
+      - listbox "id-10266-Less than 6":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1272,20 +1272,20 @@
   - text: Option Group Title
   - group:
     - article:
-      - group "id-10267-Option Group Title":
+      - listbox "id-10267-Option Group Title":
         - list:
           - listitem: Option group 1
-          - listitem:
+          - option "G1:Option 1":
             - checkbox "G1:Option 1"
             - text: G1:Option 1
-          - listitem:
+          - option "G1:Option 2":
             - checkbox "G1:Option 2"
             - text: G1:Option 2
           - listitem: Option group 2
-          - listitem:
+          - option "G2:Option 1":
             - checkbox "G2:Option 1"
             - text: G2:Option 1
-          - listitem:
+          - option "G2:Option 2":
             - checkbox "G2:Option 2"
             - text: G2:Option 2
       - button "Close"
@@ -1293,18 +1293,18 @@
   - text: Option Groups
   - group:
     - article:
-      - group "id-10268-Option Groups":
+      - listbox "id-10268-Option Groups":
         - list:
-          - listitem:
+          - option "G1:Option 1":
             - checkbox "G1:Option 1"
             - text: G1:Option 1
-          - listitem:
+          - option "G1:Option 2":
             - checkbox "G1:Option 2"
             - text: G1:Option 2
-          - listitem:
+          - option "G2:Option 1":
             - checkbox "G2:Option 1"
             - text: G2:Option 1
-          - listitem:
+          - option "G2:Option 2":
             - checkbox "G2:Option 2"
             - text: G2:Option 2
       - button "Close"
@@ -1314,27 +1314,27 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "id-10269-More than 6":
+      - listbox "id-10269-More than 6":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
-          - listitem:
+          - option "Option 6":
             - checkbox "Option 6"
             - text: Option 6
-          - listitem:
+          - option "Option 7":
             - checkbox "Option 7"
             - text: Option 7
       - button "Close"
@@ -1347,36 +1347,36 @@
       - status
       - checkbox "Select all"
       - text: Select all
-      - group "id-10270-More than 10":
+      - listbox "id-10270-More than 10":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
-          - listitem:
+          - option "Option 6":
             - checkbox "Option 6"
             - text: Option 6
-          - listitem:
+          - option "Option 7":
             - checkbox "Option 7"
             - text: Option 7
-          - listitem:
+          - option "Option 8":
             - checkbox "Option 8"
             - text: Option 8
-          - listitem:
+          - option "Option 9":
             - checkbox "Option 9"
             - text: Option 9
-          - listitem:
+          - option "Option 10 very long item with may break into a new line":
             - checkbox "Option 10 very long item with may break into a new line"
             - text: Option 10 very long item with may break into a new line
       - button "Close"
@@ -1385,21 +1385,21 @@
   - text: Tag grow
   - group:
     - article:
-      - group "id-10271-Tag grow":
+      - listbox "id-10271-Tag grow":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1407,21 +1407,21 @@
   - text: Tag grow + auto
   - group:
     - article:
-      - group "id-10272-Tag grow + auto":
+      - listbox "id-10272-Tag grow + auto":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - checkbox "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - checkbox "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - checkbox "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
@@ -1433,9 +1433,9 @@
       - text: Search
       - searchbox "Search": "1"
       - status
-      - group "id-10as4-Search Value":
+      - listbox "id-10as4-Search Value":
         - list:
-          - listitem:
+          - option "Option 1":
             - checkbox "Option 1"
             - text: Option 1
       - button "Close"
@@ -1444,21 +1444,21 @@
   - group:
     - text: "Selected: Label controlled"
     - article:
-      - radiogroup "id-10aasds4-Custom Selected Label":
+      - listbox "id-10aasds4-Custom Selected Label":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -1466,21 +1466,21 @@
   - text: Transform Selected Label
   - group:
     - article:
-      - radiogroup "id-10aasds4-Transform Selected Label":
+      - listbox "id-10aasds4-Transform Selected Label":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -1488,21 +1488,21 @@
   - text: Custom Search Filter
   - group:
     - article:
-      - radiogroup "id-10aasds4-Custom Search Filter":
+      - listbox "id-10aasds4-Custom Search Filter":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -1511,21 +1511,21 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10300-Floating":
+      - listbox "id-10300-Floating":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
@@ -1533,21 +1533,21 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10301-Floating":
+      - listbox "id-10301-Floating":
         - list:
-          - listitem:
+          - option "Option 1":
             - radio "Option 1"
             - text: Option 1
-          - listitem:
+          - option "Option 2":
             - radio "Option 2"
             - text: Option 2
-          - listitem:
+          - option "Option 3":
             - radio "Option 3"
             - text: Option 3
-          - listitem:
+          - option "Option 4":
             - radio "Option 4"
             - text: Option 4
-          - listitem:
+          - option "Option 5":
             - radio "Option 5"
             - text: Option 5
       - button "Close"
