@@ -14,9 +14,11 @@
     "storybook": "storybook dev -p 6007"
   },
   "dependencies": {
+    "@db-ux/core-components": "workspace:*",
     "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
+    "@db-ux/v-core-components": "workspace:*",
     "@faker-js/faker": "10.3.0",
     "@tanstack/match-sorter-utils": "8.19.4",
     "@tanstack/vue-table": "8.21.3",

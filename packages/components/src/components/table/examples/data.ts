@@ -1,5 +1,5 @@
-import { DBTableRowDefaultProps } from '../../table-row/model';
-import { DBTableData } from '../model';
+import type { DBTableRowDefaultProps } from '../../table-row/model';
+import type { DBTableData } from '../model';
 
 const defaultHeader: DBTableRowDefaultProps[] = [
 	{

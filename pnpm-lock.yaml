@@ -1377,6 +1377,9 @@ importers:
       '@db-ux/db-theme-icons':
         specifier: 3.9.0
         version: 3.9.0
+      '@db-ux/ngx-core-components':
+        specifier: workspace:*
+        version: link:../../output/angular
       '@faker-js/faker':
         specifier: 10.3.0
         version: 10.3.0
@@ -1429,6 +1432,9 @@ importers:
 
   storybooks/react-storybook:
     dependencies:
+      '@db-ux/core-components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@db-ux/db-theme':
         specifier: 5.7.0
         version: 5.7.0
@@ -1438,6 +1444,9 @@ importers:
       '@db-ux/db-theme-icons':
         specifier: 3.9.0
         version: 3.9.0
+      '@db-ux/react-core-components':
+        specifier: workspace:*
+        version: link:../../output/react
       '@faker-js/faker':
         specifier: 10.3.0
         version: 10.3.0
@@ -1499,6 +1508,9 @@ importers:
 
   storybooks/vue-storybook:
     dependencies:
+      '@db-ux/core-components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@db-ux/db-theme':
         specifier: 5.7.0
         version: 5.7.0
@@ -1508,6 +1520,9 @@ importers:
       '@db-ux/db-theme-icons':
         specifier: 3.9.0
         version: 3.9.0
+      '@db-ux/v-core-components':
+        specifier: workspace:*
+        version: link:../../output/vue
       '@faker-js/faker':
         specifier: 10.3.0
         version: 10.3.0

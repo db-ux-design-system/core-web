@@ -1,4 +1,8 @@
-import { DBTableCellProps, GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	DBTableCellProps,
+	GlobalProps,
+	GlobalState
+} from '../../shared/model';
 
 export type DBTableDataCellDefaultProps = {};
 

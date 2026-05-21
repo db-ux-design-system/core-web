@@ -1,5 +1,5 @@
-import { GlobalProps, GlobalState, WidthProps } from '../../shared/model';
-import { DBTableRowDefaultProps } from '../table-row/model';
+import type { GlobalProps, GlobalState, WidthProps } from '../../shared/model';
+import type { DBTableRowDefaultProps } from '../table-row/model';
 
 export const DBTableRowSizeList = [
 	'x-small',
