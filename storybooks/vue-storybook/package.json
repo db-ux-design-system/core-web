@@ -11,7 +11,7 @@
   "private": true,
   "scripts": {
     "build": "storybook build --output-dir ../../build-storybooks/vue-storybook",
-    "storybook": "storybook dev -p 6007"
+    "storybook": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6007"
   },
   "dependencies": {
     "@db-ux/db-theme": "5.7.0",
@@ -27,6 +27,7 @@
     "@storybook/vue3-vite": "10.4.0",
     "@vitejs/plugin-vue": "6.0.7",
     "@vue/tsconfig": "0.9.1",
+    "cross-env": "10.1.0",
     "eslint-plugin-storybook": "10.4.0",
     "storybook": "10.4.0",
     "typescript": "~5.9.3",
