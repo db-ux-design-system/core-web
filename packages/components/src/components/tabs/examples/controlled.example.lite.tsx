@@ -15,8 +15,8 @@ useMetadata({
 export default function TabsControlled() {
 	const state = useStore({
 		activeTabIndex: 0,
-		setTab: (event: any) => {
-			state.activeTabIndex = event?.detail ?? event;
+		setTab(event: any) {
+			state.activeTabIndex = event;
 		}
 	});
 
