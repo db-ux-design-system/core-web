@@ -30,6 +30,28 @@ Import the styles in your main CSS file:
 @import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
+### PostCSS Plugin (recommended)
+
+We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
+
+```shell
+npm i @db-ux/core-postcss-plugin --save-dev
+```
+
+Create a `postcss.config.json` in your project root:
+
+```json
+{
+	"plugins": {
+		"@db-ux/core-postcss-plugin": {}
+	}
+}
+```
+
+> Angular CLI (`@angular/build:application`) only supports JSON-based PostCSS configs and loads plugins by name via `require()`. Works in both `ng build` and `ng serve`.
+
+📖 **[Learn more about `@db-ux/core-postcss-plugin` node package](https://www.npmjs.com/package/@db-ux/core-postcss-plugin)**
+
 ### Resolve assets
 
 The current default development config in `angular.json` doesn't use output hashing. This may cause an issue loading the fonts. Look at [this](https://github.com/angular/angular-cli/issues/26347) for more information.
@@ -144,6 +166,35 @@ export default [
 ```
 
 📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
+
+## Stylelint
+
+To validate correct usage of DB UX Design System tokens in your CSS/SCSS, use the [`@db-ux/core-stylelint`](https://www.npmjs.com/package/@db-ux/core-stylelint) plugin.
+
+### Installation
+
+```shell
+npm install stylelint @db-ux/core-stylelint --save-dev
+```
+
+### Setup
+
+Add to your `.stylelintrc.json`:
+
+```json
+{
+	"plugins": ["@db-ux/core-stylelint"],
+	"rules": {
+		"db-ux/use-spacings": [true],
+		"db-ux/use-sizing": [true],
+		"db-ux/use-border-width": [true],
+		"db-ux/use-border-radius": [true],
+		"db-ux/use-border-color": [true]
+	}
+}
+```
+
+📖 **[Learn more about `@db-ux/core-stylelint` node package](https://www.npmjs.com/package/@db-ux/core-stylelint)**
 
 ## Deutsche Bahn brand
 

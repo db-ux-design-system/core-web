@@ -18,7 +18,63 @@ pnpm i @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundatio
 
 ## Styling Dependencies
 
-Import the styles in your main CSS file:
+### Vite Plugin
+
+If you're using Vite, you can use the [`@db-ux/core-vite-plugin`](https://www.npmjs.com/package/@db-ux/core-vite-plugin) which simplifies the CSS setup to a single import.
+
+```shell
+npm i @db-ux/core-vite-plugin --save-dev
+```
+
+Add the plugin to your `vite.config.ts`:
+
+```ts
+import { defineConfig } from "vite";
+import dbUxPlugin from "@db-ux/core-vite-plugin";
+
+export default defineConfig({
+	plugins: [dbUxPlugin()]
+});
+```
+
+Then import the plugin in your CSS file:
+
+```css
+/* index.css */
+@import "@db-ux/core-vite-plugin/index.css";
+```
+
+📖 **[Learn more about `@db-ux/core-vite-plugin` node package](https://www.npmjs.com/package/@db-ux/core-vite-plugin)**
+
+### PostCSS Plugin (recommended)
+
+We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
+
+```shell
+npm i @db-ux/core-postcss-plugin --save-dev
+```
+
+Configure it in `vite.config.ts`:
+
+```ts
+import { defineConfig } from "vite";
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
+
+export default defineConfig({
+	css: {
+		transformer: "postcss", // required for Vite 8+ (default: 'lightningcss')
+		postcss: {
+			plugins: [dbUxFlatten()]
+		}
+	}
+});
+```
+
+📖 **[Learn more about `@db-ux/core-postcss-plugin` node package](https://www.npmjs.com/package/@db-ux/core-postcss-plugin)**
+
+### Manual CSS Setup
+
+If you're not using Vite or prefer manual setup, import the styles in your main CSS file:
 
 ```css
 /* index.css */
@@ -154,6 +210,35 @@ export default [
 ```
 
 📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
+
+## Stylelint
+
+To validate correct usage of DB UX Design System tokens in your CSS/SCSS, use the [`@db-ux/core-stylelint`](https://www.npmjs.com/package/@db-ux/core-stylelint) plugin.
+
+### Installation
+
+```shell
+npm install stylelint @db-ux/core-stylelint --save-dev
+```
+
+### Setup
+
+Add to your `.stylelintrc.json`:
+
+```json
+{
+	"plugins": ["@db-ux/core-stylelint"],
+	"rules": {
+		"db-ux/use-spacings": [true],
+		"db-ux/use-sizing": [true],
+		"db-ux/use-border-width": [true],
+		"db-ux/use-border-radius": [true],
+		"db-ux/use-border-color": [true]
+	}
+}
+```
+
+📖 **[Learn more about `@db-ux/core-stylelint` node package](https://www.npmjs.com/package/@db-ux/core-stylelint)**
 
 ## Deutsche Bahn brand
 
