@@ -201,7 +201,7 @@ const buildTemplate = (json, target) => {
 				typeof valueExpr === 'object' &&
 				valueExpr.__iconSwapBlock__
 			) {
-				const { swapLines, guardOpen, unwrap } = valueExpr;
+				const { swapLines, guardOpen } = valueExpr;
 				const isStr = true; // icon names are strings
 				const attrStr = isStr
 					? `\`\\n\\t\\t${propName}="\${_${propName}}"\``
