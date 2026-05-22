@@ -46,6 +46,7 @@
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.60.0",
     "@vitejs/plugin-vue": "6.0.7",
+    "@vue/compiler-dom": "3.5.34",
     "cpr": "3.0.1",
     "npm-run-all2": "8.0.4",
     "replace-in-file": "8.4.0",
