@@ -40,7 +40,7 @@ export default function TabsControlled() {
 				<DBTabs
 					activeIndex={state.activeTabIndex}
 					onIndexChange={(event: any) =>
-						(state.activeTabIndex = event?.detail ?? event)
+						(state.activeTabIndex = event)
 					}>
 					<DBTabList>
 						<DBTabItem>Tab 1</DBTabItem>
