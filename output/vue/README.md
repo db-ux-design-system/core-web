@@ -5,7 +5,8 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web). Find more information and component documentation at [design-system.deutschebahn.com](https://design-system.deutschebahn.com/documentation/get-started/).
+A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
+We also provide more information about specific components. This information is in our [Design System documentation](https://design-system.deutschebahn.com/documentation/get-started/).
 
 ## Install
 
