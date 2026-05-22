@@ -19,7 +19,7 @@
 		"noUnusedParameters": false,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["vite/client", "node"],
+		"types": ["vite/client", "node", "react"],
 		"paths": {
 			"@components": ["../../output/react/src"],
 			"@components/src/*": ["../../output/react/src/*"],
