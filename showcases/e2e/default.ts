@@ -1,10 +1,12 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, type FullProject, type Page, test } from '@playwright/test';
-import { close, getCompliance } from 'accessibility-checker';
-import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
-import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
+import { createRequire } from 'node:module';
+
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
+
+import type { Checker } from 'accessibility-checker-engine';
+import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
 
 const density = 'regular';
 
@@ -78,9 +80,6 @@ const gotoPage = async (
 
 	await setScrollViewport(page, fixedHeight)();
 };
-
-const isCheckerError = (object: unknown): object is ICheckerError =>
-	typeof object === 'object' && object !== null && 'details' in object;
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
@@ -215,9 +214,7 @@ export const runA11yCheckerTest = ({
 	skipChecker,
 	skip
 }: A11yCheckerTestType) => {
-	test.fixme('test with accessibility checker', async ({ page }, {
-		project
-	}) => {
+	test('test with accessibility checker', async ({ page }, { project }) => {
 		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
@@ -238,23 +235,30 @@ export const runA11yCheckerTest = ({
 
 		let failures: any[] = [];
 		try {
-			// Makes a call against https://cdn.jsdelivr.net/npm/accessibility-checker-engine
-			const { report } = await getCompliance(page, path);
+			// Inject the accessibility-checker engine from local node_modules
+			const require = createRequire(import.meta.url);
+			const enginePath = require.resolve('accessibility-checker-engine');
+			await page.addScriptTag({ path: enginePath });
 
-			if (isCheckerError(report)) {
-				failures = report.details;
-			} else {
-				failures = report.results.filter(
-					({ level, ruleId }: IBaselineResult) =>
-						level.toString() === 'violation' &&
-						!aCheckerDisableRules?.includes(ruleId)
-				);
-			}
+			const results: Issue[] = await page.evaluate(async () => {
+				const { ace } = globalThis as any;
+				if (!ace?.Checker) return [];
+				const checker: Checker = new ace.Checker();
+				const report = await checker.check(document, [
+					'IBM_Accessibility'
+				]);
+				return report.results ?? [];
+			});
+
+			failures = results.filter(
+				(result: Issue) =>
+					result.value.includes('VIOLATION') &&
+					result.value.includes('FAIL') &&
+					!aCheckerDisableRules?.includes(result.ruleId)
+			);
 		} catch (error) {
 			console.error(error);
 			failures.push(error);
-		} finally {
-			await close();
 		}
 
 		expect(failures).toEqual([]);

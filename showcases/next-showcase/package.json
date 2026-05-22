@@ -30,7 +30,7 @@
     "react-dom": "19.2.6"
   },
   "devDependencies": {
-    "@types/node": "^25.8.0",
+    "@types/node": "^25.9.0",
     "@types/react": "19.2.14",
     "cpr": "3.0.1",
     "npm-run-all2": "8.0.4",
