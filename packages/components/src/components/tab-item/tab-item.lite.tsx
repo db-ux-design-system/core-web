@@ -3,7 +3,6 @@ import {
 	onUnMount,
 	onUpdate,
 	Show,
-	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -175,9 +174,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			class={cls('db-tab-item', props.className)}
 			// suppresses native browser tooltips inherited from parent elements
 			title=""
-			aria-label={
-				!props.children && props.label ? props.label : undefined
-			}
+			aria-label={props.ariaLabel}
 			aria-selected={
 				(
 					props.active !== undefined
@@ -213,9 +210,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 						? props.iconTrailing
 						: undefined
 				}>
-				<Show when={props.children}>
-					<Slot />
-				</Show>
+				<Show when={props.label}>{props.label}</Show>
+				<Show when={props.children}>{props.children}</Show>
 			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
 				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
