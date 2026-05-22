@@ -10,7 +10,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
@@ -73,8 +73,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	}, [props.name]);
 
 	onUpdate(() => {
-		if (props.open !== undefined) {
-			state._open = props.open;
+		const nextOpen = getBoolean(props.open);
+		if (nextOpen !== undefined) {
+			state._open = nextOpen;
 		}
 	}, [props.open]);
 
