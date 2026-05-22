@@ -1,4 +1,4 @@
-import { GlobalProps } from '../../shared/model';
+import type { GlobalProps } from '../../shared/model';
 
 export type DBTabListDefaultProps = {};
 
