@@ -15,7 +15,7 @@
   "dependencies": {
     "@angular/animations": "21.2.13",
     "@angular/common": "21.2.13",
-    "@angular/compiler": "21.2.13",
+    "@angular/compiler": "21.2.14",
     "@angular/core": "21.2.13",
     "@angular/forms": "21.2.13",
     "@angular/platform-browser": "21.2.13",
@@ -38,7 +38,7 @@
     "@compodoc/compodoc": "1.2.1",
     "@storybook/addon-docs": "10.4.0",
     "@storybook/angular": "10.4.0",
-    "@types/node": "25.8.0",
+    "@types/node": "25.9.0",
     "eslint-plugin-storybook": "10.4.0",
     "storybook": "10.4.0"
   }

@@ -30,7 +30,8 @@ export type DefaultTestType = {
 	url: string;
 	testFn?: (
 		voiceOver?: VoiceOverPlaywright,
-		nvda?: NVDAPlaywright
+		nvda?: NVDAPlaywright,
+		page?: Page
 	) => Promise<void>;
 	postTestFn?: (
 		voiceOver?: VoiceOverPlaywright,
