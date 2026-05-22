@@ -1,5 +1,11 @@
 /** Supported target frameworks for DB UX component code generation. */
-export type Framework = 'react' | 'angular' | 'vue' | 'web-components' | 'html';
+export type Framework =
+	| 'react'
+	| 'angular'
+	| 'vue'
+	| 'web-components'
+	| 'html'
+	| 'vanilla';
 
 /** Maps each framework to its corresponding @db-ux/* Npm package name. */
 export const FRAMEWORK_PKG: Record<Framework, string> = {
@@ -7,5 +13,6 @@ export const FRAMEWORK_PKG: Record<Framework, string> = {
 	angular: '@db-ux/ngx-core-components',
 	vue: '@db-ux/v-core-components',
 	'web-components': '@db-ux/wc-core-components',
-	html: '@db-ux/core-components'
+	html: '@db-ux/core-components',
+	vanilla: '@db-ux/core-components'
 };

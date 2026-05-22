@@ -1,0 +1,22 @@
+{
+  "name": "angular-figma",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Publish figma code connect",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "connect": "npx figma connect publish --force",
+    "test": "vitest run --config vitest.config.ts",
+    "test:update": "vitest run --config vitest.config.ts --update"
+  },
+  "devDependencies": {
+    "@figma/code-connect": "1.4.5",
+    "@types/node": "25.9.0",
+    "vitest": "4.1.6"
+  }
+}

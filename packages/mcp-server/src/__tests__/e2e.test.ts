@@ -51,4 +51,28 @@ describe('MCP server — stdio transport', () => {
 		expect(Array.isArray(components)).toBe(true);
 		expect(components).toContain('button');
 	}, 10_000);
+
+	it('responds to list_visuals with available visual names', async () => {
+		const response = await client.callTool({ name: 'list_visuals' });
+
+		expect(response.isError).toBeFalsy();
+
+		const text =
+			(response.content as Array<{ type: string; text: string }>).find(
+				(c) => c.type === 'text'
+			)?.text ?? '';
+
+		const visuals: string[] = JSON.parse(text);
+		expect(Array.isArray(visuals)).toBe(true);
+		expect(visuals).toContain('dashboard');
+	}, 10_000);
+
+	it('responds to get_visual_reference with an error for unknown name', async () => {
+		const response = await client.callTool({
+			name: 'get_visual_reference',
+			arguments: { name: 'nonexistent-xyz' }
+		});
+
+		expect(response.isError).toBeTruthy();
+	}, 10_000);
 });

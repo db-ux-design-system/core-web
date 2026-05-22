@@ -10,7 +10,7 @@ vi.mock('node:fs/promises', () => ({
 
 const { existsSync } = await import('node:fs');
 const { readFile, writeFile } = await import('node:fs/promises');
-const { processComponent } = await import('../build-manifest.js');
+const { processComponent } = await import('../../scripts/build-manifest.js');
 
 const BASE = '/mock/components';
 const OUTPUT = '/mock/output';
@@ -19,7 +19,7 @@ beforeEach(() => {
 	vi.resetAllMocks();
 	// Default: no example dirs exist
 	vi.mocked(existsSync).mockReturnValue(false);
-	vi.mocked(writeFile).mockResolvedValue(undefined as any);
+	vi.mocked(writeFile).mockResolvedValue(undefined);
 });
 
 describe('processComponent', () => {
@@ -30,10 +30,10 @@ describe('processComponent', () => {
 		);
 		vi.mocked(readFile).mockImplementation(async (p: any) => {
 			if (String(p).includes('model.ts'))
-				return 'export interface ButtonProps {}' as any;
+				return 'export interface ButtonProps {}';
 			if (String(p).includes('showcase'))
-				return 'exampleName="Variant" exampleName="Size"' as any;
-			return '' as any;
+				return 'exampleName="Variant" exampleName="Size"';
+			return '';
 		});
 
 		const result = await processComponent('button', BASE, OUTPUT);
@@ -88,13 +88,14 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		// Simulate: 'button' succeeds, 'broken' throws during readFile
 		vi.mocked(existsSync).mockImplementation(
 			(p: any) =>
-				String(p).includes('button/model.ts') ||
-				String(p).includes('broken/model.ts')
+				(String(p).includes('button') &&
+					String(p).includes('model.ts')) ||
+				(String(p).includes('broken') && String(p).includes('model.ts'))
 		);
 		vi.mocked(readFile).mockImplementation(async (p: any) => {
 			if (String(p).includes('broken'))
 				throw new Error('ENOENT: broken component');
-			return '// button props' as any;
+			return '// button props';
 		});
 
 		const results = await Promise.all([

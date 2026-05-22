@@ -1,4 +1,4 @@
-import type { AtRule, ChildNode, Declaration, Root, Rule } from 'postcss';
+import type { AtRule, ChildNode, Declaration, Root } from 'postcss';
 import type { VarEntry } from '../data.js';
 
 /**
@@ -194,14 +194,14 @@ export const collectVarsWithLayer = (
 		}
 
 		if (parent?.type === 'rule') {
-			const rule = parent as Rule;
+			const rule = parent;
 			if (!isRootSelector(rule.selector)) {
 				dynamicVars.add(decl.prop);
 			}
 		}
 
 		if (parent?.type === 'rule') {
-			const rule = parent as Rule;
+			const rule = parent;
 			if (
 				isRootSelector(rule.selector) &&
 				rule.parent?.type === 'atrule'

@@ -11,10 +11,8 @@ useMetadata({
 export default function SwitchVariant() {
 	return (
 		<Fragment>
-			<DBSwitch label="(Default) Trailing">(Default) Trailing</DBSwitch>
-			<DBSwitch label="Leading" variant="leading">
-				Leading
-			</DBSwitch>
+			<DBSwitch label="(Default) Trailing" />
+			<DBSwitch label="Leading" variant="leading" />
 		</Fragment>
 	);
 }

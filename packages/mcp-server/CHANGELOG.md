@@ -1,5 +1,31 @@
 # @db-ux/mcp-server
 
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+### Minor Changes
+
+- feat: add type-safe migration map as single source of truth for the v2→v3 scanner. - [see commit f7324f3](https://github.com/db-ux-design-system/core-web/commit/f7324f3576335dcad4a1922c430a576ab01b03fa)
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
 ## 4.6.1
 
 _version bump_

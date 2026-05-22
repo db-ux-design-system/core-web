@@ -51,9 +51,8 @@ export default function DBButton(props: DBButtonProps) {
 			name={props.name}
 			form={props.form}
 			value={props.value}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</button>
 	);
 }
