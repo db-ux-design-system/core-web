@@ -29,7 +29,7 @@ const FRAMEWORKS = [
 ] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
-/** Reads a file and returns its content, or undefined if the file does not exist. */
+/** Reads a file and returns its content, or `undefined` if the file does not exist. */
 async function readOptional(path: string): Promise<string | undefined> {
 	if (!existsSync(path)) return undefined;
 	return readFile(path, 'utf-8');

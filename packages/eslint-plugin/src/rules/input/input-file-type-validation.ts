@@ -28,7 +28,7 @@ export default {
 			const multiple = getAttributeValue(node, 'multiple');
 
 			if (type === 'file') {
-				if (accept === null) {
+				if (accept === undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -38,7 +38,7 @@ export default {
 					});
 				}
 			} else {
-				if (multiple !== null) {
+				if (multiple !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -48,7 +48,7 @@ export default {
 					});
 				}
 
-				if (accept !== null) {
+				if (accept !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -76,21 +76,21 @@ export default {
 			const multiple = getAttributeValue(openingElement, 'multiple');
 
 			if (type === 'file') {
-				if (accept === null) {
+				if (accept === undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
 					});
 				}
 			} else {
-				if (multiple !== null) {
+				if (multiple !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
 
-				if (accept !== null) {
+				if (accept !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT

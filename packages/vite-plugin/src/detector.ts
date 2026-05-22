@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 /**
  * Walk up the directory tree from `root` to locate a package path inside node_modules.
  * Handles monorepo hoisting where dependencies may live in a parent node_modules.
- * Returns the resolved absolute path or undefined if not found.
+ * Returns the resolved absolute path or `undefined` if not found.
  */
 export function resolvePackagePath(
 	root: string,

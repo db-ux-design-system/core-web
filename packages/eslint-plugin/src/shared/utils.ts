@@ -51,8 +51,7 @@ function isAngularElement(node: any): node is AngularElement {
 export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
-	// eslint-disable-next-line @typescript-eslint/no-restricted-types
-): string | boolean | null {
+): string | boolean | undefined {
 	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
@@ -69,7 +68,7 @@ export function getAttributeValue(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
 		if (input) return true;
-		return null;
+		return undefined;
 	}
 
 	if (isVElement(node)) {
@@ -98,7 +97,7 @@ export function getAttributeValue(
 				keyName === `:${kebabAttrName}`
 			);
 		});
-		if (!attr) return null;
+		if (!attr) return undefined;
 		if (!attr.value) return true;
 		return attr.value.value;
 	}
@@ -108,11 +107,11 @@ export function getAttributeValue(
 		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
 	) as TSESTree.JSXAttribute | undefined;
 
-	if (!attr) return null;
+	if (!attr) return undefined;
 	if (!attr.value) return true;
 	if (attr.value.type === 'Literal') return attr.value.value as string;
 	if (attr.value.type === 'JSXExpressionContainer') return true;
-	return null;
+	return undefined;
 }
 
 export function hasChildOfType(
