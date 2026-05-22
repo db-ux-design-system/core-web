@@ -199,6 +199,7 @@ categorise
 optimised
 optimise
 browserslistrc
+# Usernames
 mfranzke
-nmerget
 michaelmkraus
+nmerget
