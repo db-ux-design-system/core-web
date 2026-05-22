@@ -117,12 +117,6 @@
     - tab "Info"
     - tab "Settings"
   - tabpanel "Notifications": Notifications content
-  - text: "icon-only (noText):"
-  - tablist:
-    - tab "Home" [selected]
-    - tab "Search"
-    - tab "Calendar"
-  - tabpanel "Home": Home content
   - link "Disabled"
   - text: "with disabled tab in the middle:"
   - tablist:
@@ -158,6 +152,15 @@
     - tab "Settings"
   - tabpanel "Overview":
     - paragraph: Overview content without nested tabs.
+  - link "Controlled"
+  - button "Select Tab 1"
+  - button "Select Tab 2"
+  - button "Select Tab 3"
+  - tablist:
+    - tab "Tab 1" [selected]
+    - tab "Tab 2"
+    - tab "Tab 3"
+  - tabpanel "Tab 1": Content of Tab 1
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
