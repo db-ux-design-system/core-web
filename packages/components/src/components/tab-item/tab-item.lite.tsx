@@ -211,7 +211,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 						: undefined
 				}>
 				<Show when={props.label}>{props.label}</Show>
-				<Show when={props.children}>{props.children}</Show>
+				{props.children}
 			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
 				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>

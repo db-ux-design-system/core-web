@@ -14,7 +14,10 @@ useMetadata({
 
 export default function TabsControlled() {
 	const state = useStore({
-		activeTabIndex: 0
+		activeTabIndex: 0,
+		setTab: (event: any) => {
+			state.activeTabIndex = event?.detail ?? event;
+		}
 	});
 
 	return (
@@ -39,9 +42,7 @@ export default function TabsControlled() {
 				</div>
 				<DBTabs
 					activeIndex={state.activeTabIndex}
-					onIndexChange={(event: any) =>
-						(state.activeTabIndex = event)
-					}>
+					onIndexChange={(event: any) => state.setTab(event)}>
 					<DBTabList>
 						<DBTabItem>Tab 1</DBTabItem>
 						<DBTabItem>Tab 2</DBTabItem>
