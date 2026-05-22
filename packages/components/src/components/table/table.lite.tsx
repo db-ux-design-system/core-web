@@ -44,6 +44,8 @@ export default function DBTable(props: DBTableProps) {
 	onUpdate(() => {
 		if (props.data) {
 			state._data = state.convertData();
+		} else {
+			state._data = undefined;
 		}
 	}, [props.data]);
 
@@ -87,6 +89,8 @@ export default function DBTable(props: DBTableProps) {
 			});
 
 			state._style = columnStyles;
+		} else {
+			state._style = undefined;
 		}
 	}, [props.columnSizes]);
 
