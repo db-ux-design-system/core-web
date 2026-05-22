@@ -1,6 +1,6 @@
 # @db-ux/core-migration
 
-## 4.8.1
+## 4.9.0
 
 _version bump_
 

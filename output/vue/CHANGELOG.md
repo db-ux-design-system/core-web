@@ -1,8 +1,14 @@
 # @db-ux/v-core-components
 
-## 4.8.1
+## 4.9.0
 
-_version bump_
+### Minor Changes
+
+- refactor: allow text and children to be used together in components - [see commit cecb833](https://github.com/db-ux-design-system/core-web/commit/cecb833e2d2b2d15b47f9ac1ed57ccf1040374f0):
+    - feat: add `text` property to components that previously only supported children for their label, like e.g. `DBTooltip`.
+    - refactor: allow `text` property and components children to be used in parallel in components. Previously, `text` and children were mutually exclusive.
+    - refactor(`DBRadio`, `DBCheckbox`, `DBSwitch`): `label` and `children` can now be used together. Previously they were mutually exclusive.
+    - fix(`DBTag`): changed render order of `children` and `text` to align with design (children rendered before text).
 
 ## 4.8.0
 
@@ -193,7 +199,7 @@ _version bump_
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
 
-              - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+          - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 
