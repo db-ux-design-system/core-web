@@ -270,9 +270,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
-				<Show when={props.label} else={props.children}>
-					{props.label}
-				</Show>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>

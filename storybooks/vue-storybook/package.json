@@ -14,23 +14,23 @@
     "storybook": "storybook dev -p 6007"
   },
   "dependencies": {
-    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
     "vue": "3.5.34"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "5.1.2",
-    "@storybook/addon-a11y": "10.3.6",
-    "@storybook/addon-docs": "10.3.6",
-    "@storybook/addon-vitest": "10.3.6",
-    "@storybook/vue3-vite": "10.3.6",
-    "@vitejs/plugin-vue": "6.0.6",
+    "@chromatic-com/storybook": "5.2.1",
+    "@storybook/addon-a11y": "10.4.0",
+    "@storybook/addon-docs": "10.4.0",
+    "@storybook/addon-vitest": "10.4.0",
+    "@storybook/vue3-vite": "10.4.0",
+    "@vitejs/plugin-vue": "6.0.7",
     "@vue/tsconfig": "0.9.1",
-    "eslint-plugin-storybook": "10.3.6",
-    "storybook": "10.3.6",
+    "eslint-plugin-storybook": "10.4.0",
+    "storybook": "10.4.0",
     "typescript": "~5.9.3",
-    "vite": "8.0.10",
-    "vue-tsc": "3.2.8"
+    "vite": "8.0.13",
+    "vue-tsc": "3.3.0"
   }
 }

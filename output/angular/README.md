@@ -21,9 +21,9 @@ npm i @db-ux/ngx-core-components
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
--   Default (relative): points to `../assets`
--   Rollup (rollup): points to `@db-ux/core-foundations/assets`
--   Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+- Default (relative): points to `../assets`
+- Rollup (rollup): points to `@db-ux/core-foundations/assets`
+- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>

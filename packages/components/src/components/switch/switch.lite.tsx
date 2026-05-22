@@ -268,9 +268,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 						event: GeneralKeyboardEvent<HTMLInputElement>
 					) => state.handleKeyDown(event)}
 				/>
-				<Show when={props.label} else={props.children}>
-					{props.label}
-				</Show>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
