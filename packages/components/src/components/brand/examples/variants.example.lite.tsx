@@ -9,7 +9,7 @@ import { StorybookBrandArgTypes } from './_brand.arg.types';
 
 useMetadata({
 	storybookTitle: 'Variants',
-	storybookNames: ['(Default) With Logo', 'No Logo', 'Custom Logo'],
+	storybookNames: ['(Default) With Logo', 'Logo Variant', 'Custom Logo'],
 	storybookArgTypes: StorybookBrandArgTypes
 });
 
