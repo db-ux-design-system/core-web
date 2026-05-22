@@ -1,12 +1,12 @@
-import {
+import type {
 	GlobalProps,
 	InitializedState,
 	OrientationProps,
 	TabItemAlignmentProps,
 	WidthType
 } from '../../shared/model';
-import { DBTabItemProps } from '../tab-item/model';
-import { DBTabPanelProps } from '../tab-panel/model';
+import type { DBTabItemProps } from '../tab-item/model';
+import type { DBTabPanelProps } from '../tab-panel/model';
 
 export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
 export type TabsBehaviorType = (typeof TabsBehaviorList)[number];

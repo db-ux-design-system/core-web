@@ -1,4 +1,4 @@
-import {
+import type {
 	ActiveProps,
 	ClickEventProps,
 	GlobalProps,
