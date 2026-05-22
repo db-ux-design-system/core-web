@@ -371,9 +371,6 @@ importers:
       '@vitejs/plugin-vue':
         specifier: 6.0.7
         version: 6.0.7(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.22.2)(yaml@2.9.0))(vue@3.5.34(typescript@5.9.3))
-      '@vue/compiler-dom':
-        specifier: 3.5.34
-        version: 3.5.34
       cpr:
         specifier: 3.0.1
         version: 3.0.1
@@ -396,8 +393,8 @@ importers:
         specifier: 3.5.34
         version: 3.5.34(typescript@5.9.3)
       vue-tsc:
-        specifier: 3.3.0
-        version: 3.3.0(typescript@5.9.3)
+        specifier: 3.2.9
+        version: 3.2.9(typescript@5.9.3)
 
   packages/agent-cli:
     dependencies:
@@ -1281,8 +1278,8 @@ importers:
         specifier: 8.0.13
         version: 8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(terser@5.47.1)(tsx@4.22.2)(yaml@2.9.0)
       vue-tsc:
-        specifier: 3.3.0
-        version: 3.3.0(typescript@5.9.3)
+        specifier: 3.2.9
+        version: 3.2.9(typescript@5.9.3)
 
   storybooks/_storybook:
     dependencies:
@@ -7984,6 +7981,9 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  '@vue/language-core@3.2.9':
+    resolution: {integrity: sha512-ie0ojt/0fU/GfIogh+zgHbaYRPlt9S+cLOxcWwF7nTSFh897BVgnFKL2byT4kpp1mlqYWZ2psGwSniyE2xsxYw==}
 
   '@vue/language-core@3.3.0':
     resolution: {integrity: sha512-EyUxq1b8Yoxk6hQ6X33BIRnfFLb9Rbm9w/8G8y6uMxlQu7CW7yy9JS/z54xSpIvBvVWX6Lt5v1aBGwmrqD4aJw==}
@@ -16974,6 +16974,12 @@ packages:
       pinia:
         optional: true
 
+  vue-tsc@3.2.9:
+    resolution: {integrity: sha512-qm8/nbo+9eZc1SCndm9wT+gq23pM+wRIdHY0wjm83B3lIginHTwcdrLUyTrKjDWXbMVNjKegNrnymhpdqnCL3A==}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=5.0.0'
+
   vue-tsc@3.3.0:
     resolution: {integrity: sha512-kY8RcoTOENASi0P1GLPvJgA2+hoGF+t8We1UGgmnAb1r/GjTUMSE3zz+WGfjPORZNnBHdAt67sVPhBLXWunkeg==}
     hasBin: true
@@ -25274,6 +25280,16 @@ snapshots:
       path-browserify: 1.0.1
     optionalDependencies:
       typescript: 5.9.3
+
+  '@vue/language-core@3.2.9':
+    dependencies:
+      '@volar/language-core': 2.4.28
+      '@vue/compiler-dom': 3.5.34
+      '@vue/shared': 3.5.34
+      alien-signals: 3.2.1
+      muggle-string: 0.4.1
+      path-browserify: 1.0.1
+      picomatch: 4.0.4
 
   '@vue/language-core@3.3.0':
     dependencies:
@@ -36548,6 +36564,12 @@ snapshots:
       yaml: 2.9.0
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.34
+
+  vue-tsc@3.2.9(typescript@5.9.3):
+    dependencies:
+      '@volar/typescript': 2.4.28
+      '@vue/language-core': 3.2.9
+      typescript: 5.9.3
 
   vue-tsc@3.3.0(typescript@5.9.3):
     dependencies:
