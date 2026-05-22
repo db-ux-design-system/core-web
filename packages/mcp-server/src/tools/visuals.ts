@@ -34,14 +34,15 @@ async function listAvailableVisuals(): Promise<string[]> {
 		.map((f) => basename(f, extname(f)));
 }
 
-/** Resolves a visual name to its file path, or null if not found. */
-async function resolveVisualPath(name: string): Promise<string | null> {
+/** Resolves a visual name to its file path, or undefined if not found. */
+async function resolveVisualPath(name: string): Promise<string | undefined> {
 	const files = await readVisualsDir();
 	for (const ext of SUPPORTED_EXTENSIONS) {
 		const target = `${name}${ext}`;
 		if (files.includes(target)) return join(VISUALS_DIR, target);
 	}
-	return null;
+
+	return undefined;
 }
 
 /** Maps file extension to MIME type. */
@@ -49,14 +50,21 @@ function mimeTypeForExt(filePath: string): string {
 	const ext = extname(filePath).toLowerCase();
 	switch (ext) {
 		case '.jpg':
-		case '.jpeg':
+		case '.jpeg': {
 			return 'image/jpeg';
-		case '.png':
+		}
+
+		case '.png': {
 			return 'image/png';
-		case '.webp':
+		}
+
+		case '.webp': {
 			return 'image/webp';
-		default:
+		}
+
+		default: {
 			return 'application/octet-stream';
+		}
 	}
 }
 
@@ -111,6 +119,7 @@ export async function handleGetVisualReference({
 
 	if (!imagePath) {
 		const available = await listAvailableVisuals();
+
 		return err(
 			`No visual found for '${name}'. ` +
 				(available.length > 0

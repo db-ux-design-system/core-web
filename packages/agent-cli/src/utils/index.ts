@@ -1,32 +1,36 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import {
+	existsSync,
+	readdirSync,
+	readFileSync,
+	realpathSync,
+	statSync
+} from 'node:fs';
+import { basename, dirname, join, relative, resolve } from 'node:path';
 
 function findAllNodeModulesDirectories(
 	directory: string,
 	found = new Set<string>()
 ): Set<string> {
-	if (!fs.existsSync(directory)) {
+	if (!existsSync(directory)) {
 		return found;
 	}
 
-	const entries = fs
-		.readdirSync(directory, { withFileTypes: true })
-		.sort((a, b) => a.name.localeCompare(b.name, 'en'));
+	const entries = readdirSync(directory, { withFileTypes: true }).sort(
+		(a, b) => a.name.localeCompare(b.name, 'en')
+	);
 	for (const entry of entries) {
-		const fullPath = path.resolve(directory, entry.name);
-		// Use statSync to follow symlinks (important for pnpm compatibility)
+		const fullPath = resolve(directory, entry.name);
 		let isDirectory = false;
 		try {
-			const stats = fs.statSync(fullPath);
+			const stats = statSync(fullPath);
 			isDirectory = stats.isDirectory();
 		} catch {
-			// Skip entries that can't be accessed
 			continue;
 		}
 
 		if (isDirectory) {
 			if (entry.name === 'node_modules') {
-				found.add(fs.realpathSync(fullPath));
+				found.add(realpathSync(fullPath));
 			} else if (!entry.name.startsWith('.')) {
 				findAllNodeModulesDirectories(fullPath, found);
 			}
@@ -47,39 +51,39 @@ export const getInstructions = (rootPath: string): string => {
 
 	for (const nodeModulesPath of nodeModulesDirectories) {
 		const databaseUxPaths = [
-			path.join(nodeModulesPath, '@db-ux/'),
-			path.join(nodeModulesPath, '@db-ux-inner-source/')
+			join(nodeModulesPath, '@db-ux/'),
+			join(nodeModulesPath, '@db-ux-inner-source/')
 		];
 
 		for (const databaseUxPath of databaseUxPaths) {
-			if (!fs.existsSync(databaseUxPath)) {
+			if (!existsSync(databaseUxPath)) {
 				continue;
 			}
 
-			const packages = fs.readdirSync(databaseUxPath, {
+			const packages = readdirSync(databaseUxPath, {
 				withFileTypes: true
 			});
 			for (const package_ of packages) {
-				let packagePath = path.resolve(databaseUxPath, package_.name);
-				// Use statSync to follow symlinks (important for pnpm compatibility)
+				let packagePath = resolve(databaseUxPath, package_.name);
 				let isDirectory = false;
 				try {
-					const stats = fs.statSync(packagePath);
+					const stats = statSync(packagePath);
 					isDirectory = stats.isDirectory();
 					// Handle text-file-based symlinks (e.g., Yarn PnP .pnp.cjs creates text files containing relative paths)
 					// These aren't OS-level symlinks, so statSync() sees them as regular files
 					if (!isDirectory && stats.isFile()) {
-						const content = fs
-							.readFileSync(packagePath, 'utf8')
-							.trim();
+						const content = readFileSync(
+							packagePath,
+							'utf8'
+						).trim();
 						if (!content.includes('\n')) {
-							const targetPath = path.resolve(
-								path.dirname(packagePath),
+							const targetPath = resolve(
+								dirname(packagePath),
 								content
 							);
 							if (
-								fs.existsSync(targetPath) &&
-								fs.statSync(targetPath).isDirectory()
+								existsSync(targetPath) &&
+								statSync(targetPath).isDirectory()
 							) {
 								isDirectory = true;
 								packagePath = targetPath;
@@ -87,22 +91,18 @@ export const getInstructions = (rootPath: string): string => {
 						}
 					}
 				} catch {
-					// Skip entries that can't be accessed
 					continue;
 				}
 
 				if (isDirectory) {
-					const instructionsPath = path.join(
+					const instructionsPath = join(
 						packagePath,
 						'agent',
 						'_instructions.md'
 					);
-					if (fs.existsSync(instructionsPath)) {
-						let content = fs.readFileSync(instructionsPath, 'utf8');
-						const relativePath = path.relative(
-							rootPath,
-							packagePath
-						);
+					if (existsSync(instructionsPath)) {
+						let content = readFileSync(instructionsPath, 'utf8');
+						const relativePath = relative(rootPath, packagePath);
 						content = content
 							.replaceAll(
 								'__agent-path__',
@@ -112,7 +112,7 @@ export const getInstructions = (rootPath: string): string => {
 								'**agent-path**',
 								relativePath.replaceAll('\\', '/')
 							);
-						copilotInstructionsContent += `\n# ${path.basename(databaseUxPath)}/${package_.name}\n${content}\n`;
+						copilotInstructionsContent += `\n# ${basename(databaseUxPath)}/${package_.name}\n${content}\n`;
 					}
 				}
 			}

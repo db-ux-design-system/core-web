@@ -6,7 +6,7 @@ export type ImageContent = { type: 'image'; data: string; mimeType: string };
 
 /** Standard return type for all MCP tool handlers. */
 export type ToolResult = {
-	content: (TextContent | ImageContent)[];
+	content: Array<TextContent | ImageContent>;
 	isError?: boolean;
 };
 

@@ -10,8 +10,8 @@ import { getManifest } from '../utils/manifest';
  * implicitly excluded because they don't match any whitelisted prefix.
  */
 const DOCS_ALLOWED_PREFIXES = [
-	'packages/components/', // component-specific docs
-	'packages/foundations/docs/' // foundation docs
+	'packages/components/', // Component-specific docs
+	'packages/foundations/docs/' // Foundation docs
 ];
 
 /** Returns true if the given manifest doc path is within the whitelist. */
@@ -84,7 +84,7 @@ export async function handleDocsSearch({
 			for (const [path, content] of Object.entries(manifest.docs)) {
 				if (results.length >= 3) break;
 				// Normalize Windows backslashes to forward slashes
-				const normalizedPath = path.replace(/\\/g, '/');
+				const normalizedPath = path.replaceAll('\\', '/');
 				// Defense-in-depth: skip docs outside whitelisted directories
 				if (!isAllowedDocPath(normalizedPath)) continue;
 

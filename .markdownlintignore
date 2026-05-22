@@ -11,3 +11,6 @@ CODE-OF-CONDUCT.md
 packages/mcp-server/docs/**
 docs/migration/db-ui/color-migration.md
 docs/migration/db-ui/icon-migration.md
+**/playwright-report/**
+**/test-results/**
+scripts/public/**

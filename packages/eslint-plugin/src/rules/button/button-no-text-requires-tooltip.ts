@@ -25,7 +25,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const noText = getAttributeValue(node, 'noText');
-			if (noText === null) return;
+			if (noText === undefined) return;
 
 			const icon =
 				getAttributeValue(node, 'icon') ||
@@ -85,7 +85,7 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const noText = getAttributeValue(openingElement, 'noText');
-			if (noText === null) return;
+			if (noText === undefined) return;
 
 			const icon =
 				getAttributeValue(openingElement, 'icon') ||

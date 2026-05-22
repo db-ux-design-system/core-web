@@ -87,14 +87,26 @@ const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
  * Serialises a partial manifest structure and parses it back for use as a
  * resetManifestCache override.
  */
-function makeManifest(
-	components: Record<string, unknown> = {},
-	icons: string[] = [],
-	tokens: Record<string, string> = {},
-	docs: Record<string, string> = {},
-	migrationGuides: Record<string, string> = {}
-) {
-	return JSON.stringify({ icons, components, tokens, docs, migrationGuides });
+function makeManifest({
+	components,
+	icons,
+	tokens,
+	docs,
+	migrationGuides
+}: {
+	components?: Record<string, unknown>;
+	icons?: string[];
+	tokens?: Record<string, string>;
+	docs?: Record<string, string>;
+	migrationGuides?: Record<string, string>;
+} = {}) {
+	return JSON.stringify({
+		icons: icons ?? [],
+		components: components ?? {},
+		tokens: tokens ?? {},
+		docs: docs ?? {},
+		migrationGuides: migrationGuides ?? {}
+	});
 }
 
 /**
@@ -152,7 +164,9 @@ beforeEach(() => {
 // ---------------------------------------------------------------------------
 describe('handleListComponents', () => {
 	it('returns component names from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({ button: {}, input: {} })));
+		resetManifestCache(
+			JSON.parse(makeManifest({ components: { button: {}, input: {} } }))
+		);
 
 		const result = await handleListComponents();
 
@@ -178,10 +192,12 @@ describe('handleGetComponentDetails', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: {
-						props: null,
-						examples: ['Variant', 'Show Icon Leading'],
-						exampleCode: {}
+					components: {
+						button: {
+							props: null,
+							examples: ['Variant', 'Show Icon Leading'],
+							exampleCode: {}
+						}
 					}
 				})
 			)
@@ -200,7 +216,9 @@ describe('handleGetComponentDetails', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: { props: null, examples: [], exampleCode: {} }
+					components: {
+						button: { props: null, examples: [], exampleCode: {} }
+					}
 				})
 			)
 		);
@@ -232,7 +250,13 @@ describe('handleGetComponentProps', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: { props: FAKE_PROPS, examples: [], exampleCode: {} }
+					components: {
+						button: {
+							props: FAKE_PROPS,
+							examples: [],
+							exampleCode: {}
+						}
+					}
 				})
 			)
 		);
@@ -260,7 +284,13 @@ describe('handleGetComponentProps', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					'no-props': { props: null, examples: [], exampleCode: {} }
+					components: {
+						'no-props': {
+							props: null,
+							examples: [],
+							exampleCode: {}
+						}
+					}
 				})
 			)
 		);
@@ -280,7 +310,7 @@ describe('handleGetComponentProps', () => {
 describe('handleListDesignTokenCategories', () => {
 	it('returns categories from manifest.tokens', async () => {
 		resetManifestCache(
-			JSON.parse(makeManifest({}, [], { colors: '', spacing: '' }))
+			JSON.parse(makeManifest({ tokens: { colors: '', spacing: '' } }))
 		);
 
 		const result = await handleListDesignTokenCategories();
@@ -308,7 +338,9 @@ describe('handleGetDesignTokens', () => {
 	it('returns filtered --db-* lines from manifest.tokens', async () => {
 		const scss =
 			'--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
-		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: scss })));
+		resetManifestCache(
+			JSON.parse(makeManifest({ tokens: { colors: scss } }))
+		);
 		resetTokensCache({}); // Disable JSON lookups → force manifest fallback
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
@@ -338,12 +370,14 @@ describe('handleListIcons', () => {
 	it('returns icon names from the manifest', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest({}, [
-					'arrow_down',
-					'chevron_right',
-					'person',
-					'alarm_clock'
-				])
+				makeManifest({
+					icons: [
+						'arrow_down',
+						'chevron_right',
+						'person',
+						'alarm_clock'
+					]
+				})
 			)
 		);
 
@@ -357,7 +391,7 @@ describe('handleListIcons', () => {
 	});
 
 	it('returns empty array when manifest has no icons (manifest mode does not read migration file)', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [])));
+		resetManifestCache(JSON.parse(makeManifest({ icons: [] })));
 
 		const result = await handleListIcons();
 
@@ -376,13 +410,17 @@ describe('handleGetExampleCode', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: {
-						props: null,
-						examples: ['Variant'],
-						exampleCode: {
-							react: { 'variant.example.tsx': FAKE_EXAMPLE_CODE },
-							angular: {},
-							vue: {}
+					components: {
+						button: {
+							props: null,
+							examples: ['Variant'],
+							exampleCode: {
+								react: {
+									'variant.example.tsx': FAKE_EXAMPLE_CODE
+								},
+								angular: {},
+								vue: {}
+							}
 						}
 					}
 				})
@@ -403,10 +441,12 @@ describe('handleGetExampleCode', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: {
-						props: null,
-						examples: [],
-						exampleCode: { react: {}, angular: {}, vue: {} }
+					components: {
+						button: {
+							props: null,
+							examples: [],
+							exampleCode: { react: {}, angular: {}, vue: {} }
+						}
 					}
 				})
 			)
@@ -559,17 +599,13 @@ describe('handleListMigrationGuides', () => {
 	it('returns guide names from the manifest', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
+				makeManifest({
+					migrationGuides: {
 						'db-ui-color-migration':
 							'# DB-UI → DB-UX Color Migration',
 						'db-ui-component-migration': '# DB UI to DB UX'
 					}
-				)
+				})
 			)
 		);
 
@@ -597,15 +633,11 @@ describe('handleGetMigrationGuide', () => {
 	it('returns the full markdown content of a guide', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
+				makeManifest({
+					migrationGuides: {
 						'db-ui-component-migration': '# DB UI to DB UX'
 					}
-				)
+				})
 			)
 		);
 
@@ -637,15 +669,12 @@ describe('handleDocsSearch', () => {
 	it('returns matching docs from the manifest', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{
+				makeManifest({
+					docs: {
 						'packages/foundations/docs/Colors.md':
 							'# Colors\nHow to use adaptive colors in the design system.'
 					}
-				)
+				})
 			)
 		);
 
@@ -661,14 +690,9 @@ describe('handleDocsSearch', () => {
 	it('returns no-match message when query has no results', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{
-						'packages/foundations/docs/Colors.md': '# Colors'
-					}
-				)
+				makeManifest({
+					docs: { 'packages/foundations/docs/Colors.md': '# Colors' }
+				})
 			)
 		);
 
@@ -684,11 +708,8 @@ describe('handleDocsSearch', () => {
 	it('filters out docs from blacklisted directories', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{
+				makeManifest({
+					docs: {
 						'docs/migration/v1.x.x-to-v2.0.0.md':
 							'# Migration guide content',
 						'docs/adr/adr-01-framework.md':
@@ -698,7 +719,7 @@ describe('handleDocsSearch', () => {
 						'packages/components/src/components/button/docs/React.md':
 							'# Button React docs'
 					}
-				)
+				})
 			)
 		);
 
@@ -1284,7 +1305,8 @@ describe('handleGetVisualReference', () => {
 		expect(imgBlock.data.length).toBeGreaterThan(100);
 
 		// Validate Base64 is decodable and starts with JPEG magic bytes
-		const buffer = Buffer.from(imgBlock.data, 'base64');
+		const { Buffer: NodeBuffer } = await import('node:buffer');
+		const buffer = NodeBuffer.from(imgBlock.data, 'base64');
 		expect(buffer[0]).toBe(0xff);
 		expect(buffer[1]).toBe(0xd8);
 		expect(buffer[2]).toBe(0xff);

@@ -99,7 +99,7 @@ export function getAttributeValue(
 		});
 		if (!attr) return undefined;
 		if (!attr.value) return true;
-		return attr.value.value;
+		return attr.value.value ?? true;
 	}
 
 	const variants = new Set([attrName, `[${attrName}]`, `:${attrName}`]);

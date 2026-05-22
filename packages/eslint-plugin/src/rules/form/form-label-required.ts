@@ -53,7 +53,7 @@ export default {
 				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
-				(label === null || label === '') &&
+				(label === undefined || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
@@ -104,7 +104,7 @@ export default {
 				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
-				(label === null || label === '') &&
+				(label === undefined || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
 				context.report({

@@ -46,7 +46,7 @@ export default {
 					child.type === 'Element$1'
 			);
 
-			if (text === null && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -94,7 +94,7 @@ export default {
 					child.type === 'VExpressionContainer'
 			);
 
-			if (text === null && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,

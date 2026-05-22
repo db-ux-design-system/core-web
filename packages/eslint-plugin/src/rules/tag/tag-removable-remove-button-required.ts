@@ -26,7 +26,7 @@ export default {
 
 			const removeButton = getAttributeValue(node, 'removeButton');
 
-			if (removeButton === null || removeButton === '') {
+			if (removeButton === undefined || removeButton === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -56,7 +56,7 @@ export default {
 				'removeButton'
 			);
 
-			if (removeButton === null || removeButton === '') {
+			if (removeButton === undefined || removeButton === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED

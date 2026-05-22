@@ -61,7 +61,7 @@ export default {
 				];
 			const value = getAttributeValue(node, attribute);
 
-			if (value === null || value === '') {
+			if (value === undefined || value === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -159,7 +159,7 @@ export default {
 				];
 			const value = getAttributeValue(openingElement, attribute);
 
-			if (value === null || value === '') {
+			if (value === undefined || value === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,

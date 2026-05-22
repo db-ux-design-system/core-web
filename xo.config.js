@@ -159,7 +159,12 @@ const xoConfig = [
 		rules: {
 			'import-x/extensions': 0, // Bundled
 			'@typescript-eslint/strict-void-return': 0, // CLI entry point
-			'unicorn/no-array-sort': 0 // Intentional
+			'unicorn/no-array-sort': 0, // Intentional
+			'@typescript-eslint/no-unsafe-assignment': 0, // Node.js fs/path calls
+			'@typescript-eslint/no-unsafe-call': 0, // Node.js fs/path calls
+			'@typescript-eslint/no-unsafe-argument': 0, // Node.js fs/path calls
+			'@typescript-eslint/no-unsafe-return': 0, // Node.js fs/path calls
+			'@typescript-eslint/restrict-plus-operands': 0 // String concatenation
 		}
 	},
 	{

@@ -41,7 +41,7 @@ export default {
 			const options = getAttributeValue(node, 'options');
 			const hasChildren = hasOptionChildren(node);
 
-			if (options === null && !hasChildren) {
+			if (options === undefined && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -66,7 +66,7 @@ export default {
 			const options = getAttributeValue(openingElement, 'options');
 			const hasChildren = hasOptionChildren(node);
 
-			if (options === null && !hasChildren) {
+			if (options === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS
