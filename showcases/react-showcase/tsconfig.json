@@ -20,6 +20,7 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"types": ["vite/client", "node", "react"],
+		"typeRoots": ["./node_modules/@types", "../../node_modules/@types"],
 		"paths": {
 			"@components": ["../../output/react/src"],
 			"@components/src/*": ["../../output/react/src/*"],
