@@ -34,7 +34,7 @@
     "cpr": "3.0.1",
     "esbuild": "0.28.0",
     "npm-run-all2": "8.0.4",
-    "tsx": "4.22.1",
+    "tsx": "4.22.2",
     "vitest": "4.1.6"
   },
   "publishConfig": {
