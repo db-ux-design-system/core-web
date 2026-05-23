@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@db-ux/db-theme": "5.7.0",
-    "@types/node": "25.9.0",
+    "@types/node": "25.9.1",
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.0",
     "typescript": "5.9.3",

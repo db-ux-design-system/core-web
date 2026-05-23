@@ -38,7 +38,7 @@
     "@compodoc/compodoc": "1.2.1",
     "@storybook/addon-docs": "10.4.0",
     "@storybook/angular": "10.4.0",
-    "@types/node": "25.9.0",
+    "@types/node": "25.9.1",
     "eslint-plugin-storybook": "10.4.0",
     "storybook": "10.4.0"
   }
