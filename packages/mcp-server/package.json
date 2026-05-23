@@ -47,7 +47,7 @@
     "@db-ux/db-theme-icons": "3.9.0",
     "cpr": "3.0.1",
     "esbuild": "0.28.0",
-    "npm-run-all2": "8.0.4",
+    "npm-run-all2": "9.0.0",
     "tsx": "4.22.2",
     "typescript": "5.9.3",
     "vitest": "4.1.6"
