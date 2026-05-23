@@ -47,7 +47,7 @@
     "@typescript-eslint/parser": "8.59.4",
     "@typescript-eslint/rule-tester": "8.59.4",
     "cpr": "3.0.1",
-    "npm-run-all2": "8.0.4",
+    "npm-run-all2": "9.0.0",
     "typescript": "5.9.3",
     "vitest": "4.1.6",
     "vue-eslint-parser": "10.4.0"
