@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/ngx-core-components",
-  "version": "4.9.0",
+  "version": "4.9.1",
   "type": "module",
   "description": "Angular components @db-ux/core-components",
   "repository": {
@@ -39,7 +39,7 @@
     "@types/node": "25.9.0",
     "cpr": "3.0.1",
     "ng-packagr": "21.2.3",
-    "npm-run-all2": "8.0.4",
+    "npm-run-all2": "9.0.0",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
