@@ -33,9 +33,9 @@ According to [w3.org](https://www.w3.org/WAI/ARIA/apg/patterns/switch/) there is
 - When on, the switch element has state `aria-checked` set to `true`.
 - When off, the switch element has state `aria-checked` set to `false`.
 - If the switch element is an HTML `<input type="checkbox">`, it uses the HTML `checked` attribute instead of the `aria-checked` property.
-- If a set of switches is presented as a logical group with a visible label, either:
-    - The switches are included in an element with `role="group"` that has the property `aria-labelledby` set to the ID of the element containing the group label.
-    - The set is contained in an HTML `fieldset` and the label for the set is contained in an HTML legend element.
+- If a set of switches is presented as a logical group with a visible label:
+    - **Preferred**: The set is contained in an HTML `fieldset` and the label for the set is contained in an HTML `legend` element.
+    - Alternative: The switches are included in an element with `role="group"` that has the property `aria-labelledby` set to the ID of the element containing the group label.
 - If the presentation includes additional descriptive static text relevant to a switch or switch group, the switch or switch group has the property `aria-describedby` set to the ID of the element containing the description.
 
 ### CSS
