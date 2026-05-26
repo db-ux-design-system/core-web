@@ -13,9 +13,11 @@ const setProjectStatus = () => {
 	const projectId = exec(
 		`gh project list --owner db-ux-design-system --format json | jq -r --arg num "${projectNumber}" '.projects[] | select(.number == ($num | tonumber)) | .id'`
 	);
+
 	const itemId = exec(
 		`gh project item-list "${projectNumber}" --owner db-ux-design-system --limit 5000 --format json | jq -r --arg pr_url "${prUrl}" '.items[] | select(.content.url == $pr_url) | .id'`
 	);
+
 	const fieldId = exec(
 		`gh project field-list "${projectNumber}" --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id'`
 	);
