@@ -11,9 +11,9 @@ We also provide more information about specific components. This information is 
 ## Install
 
 ```shell
-npm i @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations
+npm install @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations
 # or
-pnpm i @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations
+pnpm install @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations
 ```
 
 ## Styling Dependencies
@@ -23,7 +23,7 @@ pnpm i @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundatio
 If you're using Vite, you can use the [`@db-ux/core-vite-plugin`](https://www.npmjs.com/package/@db-ux/core-vite-plugin) which simplifies the CSS setup to a single import.
 
 ```shell
-npm i @db-ux/core-vite-plugin --save-dev
+npm install @db-ux/core-vite-plugin --save-dev
 ```
 
 Add the plugin to your `vite.config.ts`:

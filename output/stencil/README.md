@@ -11,9 +11,9 @@ We also provide more information about specific components. This information is 
 ## Install
 
 ```shell
-npm i @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
+npm install @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
 # or
-pnpm i @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
+pnpm install @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
 ```
 
 ## Styling Dependencies
@@ -23,7 +23,7 @@ pnpm i @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
 If you're using Vite, you can use the [`@db-ux/core-vite-plugin`](https://www.npmjs.com/package/@db-ux/core-vite-plugin) which simplifies the CSS setup to a single import.
 
 ```shell
-npm i @db-ux/core-vite-plugin --save-dev
+npm install @db-ux/core-vite-plugin --save-dev
 ```
 
 Add the plugin to your `vite.config.ts`:
@@ -51,7 +51,7 @@ Then import the plugin in your CSS file:
 We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
 
 ```shell
-npm i @db-ux/core-postcss-plugin --save-dev
+npm install @db-ux/core-postcss-plugin --save-dev
 ```
 
 Configure it in `vite.config.ts`:
