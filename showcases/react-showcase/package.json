@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
-    "@types/node": "25.9.0",
-    "@types/react": "19.2.14",
+    "@types/node": "25.9.1",
+    "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "cross-env": "10.1.0",

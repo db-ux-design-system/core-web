@@ -48,7 +48,7 @@
     "@vitejs/plugin-vue": "6.0.7",
     "@vue/compiler-dom": "3.5.34",
     "cpr": "3.0.1",
-    "npm-run-all2": "9.0.0",
+    "npm-run-all2": "9.0.1",
     "replace-in-file": "8.4.0",
     "tsx": "4.22.3",
     "typescript": "5.9.3",
