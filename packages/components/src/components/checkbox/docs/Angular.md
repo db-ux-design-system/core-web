@@ -20,18 +20,17 @@ import { DBCheckbox } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<ul>
+<fieldset>
+	<legend>Checkbox group example</legend>
 	@for (checkboxName of checkboxNames; track checkboxName) {
-	<li>
 		<db-checkbox
 			(change)="checkbox = checkboxName"
 			[label]="'Checkbox ' + checkboxName"
 			[value]="checkboxName"
 			name="CheckboxGroup"
 		></db-checkbox>
-	</li>
 	}
-</ul>
+</fieldset>
 ```
 
 ```ts app.component.ts
