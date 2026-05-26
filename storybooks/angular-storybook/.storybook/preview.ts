@@ -1,6 +1,5 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import type { Preview } from '@storybook/angular';
-import { StoryContext } from 'storybook/internal/csf';
+import type { Preview, StoryContext } from '@storybook/angular';
 import docJson from '../src/components/documentation.json';
 setCompodocJson(docJson);
 

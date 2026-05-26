@@ -1,0 +1,15 @@
+{
+	"include": [".", "../parse-utils.ts", "../vitest.config.ts"],
+	"compilerOptions": {
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"composite": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true,
+		"types": ["@figma/code-connect/figma-types", "node"]
+	}
+}

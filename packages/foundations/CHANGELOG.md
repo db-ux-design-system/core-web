@@ -1,5 +1,37 @@
 # @db-ux/core-foundations
 
+## 4.9.1
+
+### Patch Changes
+
+- fix: correct default relative asset base for fonts/icons in `build/styles/theme/relative.css` and other `*relative.css` files - [see commit f465d98](https://github.com/db-ux-design-system/core-web/commit/f465d98c2c091dfe8d9f8f1f461d8073c52a5f15)
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+### Patch Changes
+
+- fix: `meta[name="color-scheme"]` HTML tag support - [see commit b23c57b](https://github.com/db-ux-design-system/core-web/commit/b23c57b9f735a88ceb4308f2d1bcf38092f50786)
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
 ## 4.6.1
 
 _version bump_

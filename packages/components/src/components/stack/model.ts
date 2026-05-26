@@ -1,4 +1,8 @@
-import { GapSpacingProps, GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GapSpacingProps,
+	GlobalProps,
+	GlobalState
+} from '../../shared/model';
 
 export const StackVariantList = ['simple', 'divider'] as const;
 export type StackVariantType = (typeof StackVariantList)[number];

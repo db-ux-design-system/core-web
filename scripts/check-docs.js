@@ -14,7 +14,7 @@ const config = {
 	// Root directory to search from
 	rootDir: path.join(process.cwd(), '.'),
 	// Workspace packages directories (can be multiple)
-	packagesDirs: ['packages', 'output'],
+	packagesDirs: ['packages', 'output', 'build-outputs'],
 	// Debug mode - set to true to see all references found
 	debug: process.argv.includes('--debug') || process.env.DEBUG === 'true',
 	// Folder patterns to ignore
@@ -26,6 +26,36 @@ const config = {
 		'showcases/patternhub/public/docs/migration/**'
 	]
 };
+
+/**
+ * Build a lookup map from npm package name to actual directory name
+ * by scanning all workspace package directories.
+ */
+const buildPackageDirMap = () => {
+	const map = new Map();
+	for (const packagesDir of config.packagesDirs) {
+		const dirPath = path.join(config.rootDir, packagesDir);
+		if (!fs.existsSync(dirPath)) continue;
+		for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+			if (!entry.isDirectory()) continue;
+			const pkgJsonPath = path.join(dirPath, entry.name, 'package.json');
+			if (!fs.existsSync(pkgJsonPath)) continue;
+			try {
+				const { name } = JSON.parse(
+					fs.readFileSync(pkgJsonPath, 'utf8')
+				);
+				if (name) {
+					if (!map.has(name)) map.set(name, []);
+					map.get(name).push(path.join(packagesDir, entry.name));
+				}
+			} catch {}
+		}
+	}
+
+	return map;
+};
+
+const packageDirMap = buildPackageDirMap();
 
 /**
  * Find all markdown files in the repository
@@ -235,21 +265,21 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 	// This supports both monorepo workspace paths and installed package paths.
 	const possiblePaths = [];
 
+	// Use the lookup map to find actual directories for this package
+	const packageDirs = packageDirMap.get(packageName) || [
+		// Fallback: try deriving from package name
+		...config.packagesDirs.map((dir) => path.join(dir, packageDirName))
+	];
+
 	for (const variation of fileVariations) {
-		for (const packagesDir of config.packagesDirs) {
+		for (const relativeDir of packageDirs) {
 			possiblePaths.push(
 				// Direct workspace package
-				path.join(
-					config.rootDir,
-					packagesDir,
-					packageDirName,
-					variation
-				),
+				path.join(config.rootDir, relativeDir, variation),
 				// Workspace node_modules
 				path.join(
 					config.rootDir,
-					packagesDir,
-					packageDirName,
+					relativeDir,
 					'node_modules',
 					packageName,
 					variation
