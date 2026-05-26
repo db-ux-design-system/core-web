@@ -44,7 +44,7 @@
     "@angular/cli": "21.2.12",
     "@angular/compiler-cli": "21.2.14",
     "@types/express": "5.0.6",
-    "@types/node": "25.9.0",
+    "@types/node": "25.9.1",
     "cpr": "3.0.1",
     "typescript": "5.9.3"
   }
