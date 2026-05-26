@@ -43,7 +43,7 @@
     "npm-run-all2": "9.0.0",
     "postcss": "8.5.14",
     "typescript": "5.9.3",
-    "vitest": "4.1.6"
+    "vitest": "4.1.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
