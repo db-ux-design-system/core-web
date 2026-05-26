@@ -11,8 +11,7 @@ useMetadata({
 
 export default function CheckboxShowLabel() {
 	return (
-		<fieldset>
-			<legend>Show Label</legend>
+		<div role="group" aria-label="Show Label">
 			<DBCheckbox name="Label" showLabel={true}>
 				(Default) True
 			</DBCheckbox>
@@ -24,6 +23,6 @@ export default function CheckboxShowLabel() {
 					False
 				</DBInfotext>
 			</div>
-		</fieldset>
+		</div>
 	);
 }

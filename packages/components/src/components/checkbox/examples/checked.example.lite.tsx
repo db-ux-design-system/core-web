@@ -11,8 +11,7 @@ useMetadata({
 export default function CheckboxChecked() {
 	const [checked, setChecked] = useState<boolean>(true);
 	return (
-		<fieldset>
-			<legend>Checked</legend>
+		<div role="group" aria-label="Checked">
 			<DBCheckbox name="State" checked={false}>
 				(Default) False
 			</DBCheckbox>
@@ -30,6 +29,6 @@ export default function CheckboxChecked() {
 				})}>
 				True
 			</DBCheckbox>
-		</fieldset>
+		</div>
 	);
 }

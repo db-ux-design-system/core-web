@@ -10,8 +10,7 @@ useMetadata({
 
 export default function CheckboxValidation() {
 	return (
-		<fieldset>
-			<legend>Validation</legend>
+		<div role="group" aria-label="Validation">
 			<DBCheckbox name="Validation" validation="no-validation">
 				(Default) No validation
 			</DBCheckbox>
@@ -27,6 +26,6 @@ export default function CheckboxValidation() {
 				validMessage="Valid message">
 				Valid
 			</DBCheckbox>
-		</fieldset>
+		</div>
 	);
 }

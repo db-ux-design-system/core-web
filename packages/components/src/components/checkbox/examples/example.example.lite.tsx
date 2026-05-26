@@ -10,13 +10,12 @@ useMetadata({
 
 export default function CheckboxExample() {
 	return (
-		<fieldset>
-			<legend>Example</legend>
+		<div role="group" aria-label="Example">
 			<div style={{ width: '100px' }}>
 				<DBCheckbox checked={true} name="Example">
 					Long label
 				</DBCheckbox>
 			</div>
-		</fieldset>
+		</div>
 	);
 }
