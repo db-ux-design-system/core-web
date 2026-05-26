@@ -424,6 +424,7 @@ $input-valid-types:
 			);
 
 		@include helpers.not-disabled {
+			// cursor: initial — text/textarea inputs should use the text cursor, not pointer
 			@include helpers.hover(initial) {
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 			}

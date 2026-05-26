@@ -27,9 +27,9 @@ $disabled-state: ':disabled,[aria-disabled="true"],[tabindex="-1"],:has(:disable
 	}
 }
 
-@mixin active($cursor: pointer) {
+@mixin active() {
 	&:active {
-		cursor: var(--db-overwrite-cursor, #{$cursor});
+		cursor: $cursor-pointer;
 		@content;
 	}
 }
