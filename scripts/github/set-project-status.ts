@@ -5,10 +5,23 @@ const exec = (command: string): string =>
 	execSync(command, { encoding: 'utf8' }).trim();
 
 const setProjectStatus = () => {
-	const projectNumber = process.env.PROJECT_NUMBER ?? '6';
+	const projectNumber = process.env.PROJECT_NUMBER;
 	const prUrl = process.env.PR_URL;
 	const eventAction = process.env.EVENT_ACTION;
 	const isDraft = process.env.IS_DRAFT === 'true';
+
+	if (!projectNumber) {
+		console.error('Missing required env var: PROJECT_NUMBER');
+		process.exit(1);
+	}
+	if (!prUrl) {
+		console.error('Missing required env var: PR_URL');
+		process.exit(1);
+	}
+	if (!eventAction) {
+		console.error('Missing required env var: EVENT_ACTION');
+		process.exit(1);
+	}
 
 	const projectId = exec(
 		`gh project list --owner db-ux-design-system --format json | jq -r --arg num "${projectNumber}" '.projects[] | select(.number == ($num | tonumber)) | .id'`
@@ -25,6 +38,13 @@ const setProjectStatus = () => {
 	console.log(`PROJECT_ID: ${projectId}`);
 	console.log(`ITEM_ID: ${itemId}`);
 	console.log(`FIELD_ID: ${fieldId}`);
+
+	if (!projectId || !itemId || !fieldId) {
+		console.error(
+			`Lookup failed — projectId: "${projectId}", itemId: "${itemId}", fieldId: "${fieldId}". Skipping item-edit.`
+		);
+		return;
+	}
 
 	// Determine the project board status based on the event type:
 	// - review_requested: a reviewer was added, move to active review
@@ -57,6 +77,13 @@ const setProjectStatus = () => {
 	);
 
 	console.log(`OPTION_ID: ${optionId}`);
+
+	if (!optionId) {
+		console.error(
+			`Status option "${statusName}" not found in project field. Skipping item-edit.`
+		);
+		return;
+	}
 
 	exec(
 		`gh project item-edit --project-id "${projectId}" --id "${itemId}" --field-id "${fieldId}" --single-select-option-id "${optionId}"`

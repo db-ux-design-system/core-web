@@ -25,7 +25,7 @@ jobs:
       - name: 🗿 Set project status
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-          PROJECT_NUMBER: 6
+          PROJECT_NUMBER: ${{ vars.PROJECT_NUMBER }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           EVENT_ACTION: ${{ github.event.action }}
           IS_DRAFT: ${{ github.event.pull_request.draft }}

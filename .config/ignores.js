@@ -16,6 +16,7 @@ const ignoreFolders = [
 	'output/**/*',
 	'**/test/**/*',
 	'**/playwright.*.ts',
+	'figma-code-connect',
 	'playwright-report/**/*',
 	'storybooks/**/.storybook/**/*'
 ];

@@ -14,7 +14,7 @@ These are the features that we use or plan to integrate, which are stable in the
 | [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color) (planned)                            | 121 (13.01.2024) | 64 (11.12.2018)  | 26.2 (12.12.2025) |
 | [Popover](https://caniuse.com/mdn-api_htmlelement_popover) (planned)                                                                            | 114 (30.05.2023) | 125 (16.04.2024) | 17 (26.09.2023)   |
 | [`requestClose()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/requestClose#browser_compatibility) (planned)             | 134 (04.03.2025) | 139 (27.05.2025) | 18.4 (31.03.2025) |
-| [`:open` CSS pseudo class](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:open#browser_compatibility) (planned)          | 133 (04.02.2025) | 136 (04.03.2025) | 26.5 (tbd)        |
+| [`:open` CSS pseudo class](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:open#browser_compatibility)                    | 133 (04.02.2025) | 136 (04.03.2025) | 26.5              |
 
 Popover is loosely depending on Anchor Positioning.
 
