@@ -104,8 +104,7 @@ jobs:
       - name: 👩🔬 Test a11y-checker with Playwright 🎭
         shell: bash
         if: |
-          github.event.pull_request != null &&
-          inputs.test-ally == 'true'
+          github.event.pull_request != null
         run: |
           pnpm --filter ${{ inputs.showcase }} run test:a11y-checker --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 

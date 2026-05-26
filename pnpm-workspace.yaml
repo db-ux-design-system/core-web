@@ -5,6 +5,7 @@ packages:
   - "storybooks/*"
   - "docs"
   - "scripts"
+  - "figma-code-connect/*"
 
 allowBuilds:
   "@compodoc/compodoc": false
@@ -43,6 +44,8 @@ minimumReleaseAgeExclude:
   - postcss@8.5.10
   - uuid@11.1.1
   - ip-address@10.1.1
+  - svelte@5.55.7
+  - webpack-dev-server@5.2.4
 
 overrides:
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
@@ -57,6 +60,8 @@ overrides:
   svelte@<4.2.19: ^4.2.19
   svelte@<=5.51.4: ^5.51.5
   svelte@<=5.53.4: ^5.53.5
+  svelte@<=5.55.6: ^5.55.7
   uuid@>=11.0.0 <11.1.1: ^11.1.1
+  webpack-dev-server@<=5.2.3: ^5.2.4
 
 saveExact: true

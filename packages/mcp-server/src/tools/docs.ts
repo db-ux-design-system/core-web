@@ -2,6 +2,24 @@ import { type ToolResult, withTimeout } from '../utils';
 import { getManifest } from '../utils/manifest';
 
 /**
+ * Whitelisted path prefixes for docs_search results (using forward slashes
+ * as manifest keys always use POSIX-style paths from path.relative()).
+ * Only docs whose manifest key starts with one of these prefixes are returned.
+ *
+ * Blacklisted directories (migration/, adr/, research/, .vitepress/) are
+ * implicitly excluded because they don't match any whitelisted prefix.
+ */
+const DOCS_ALLOWED_PREFIXES = [
+	'packages/components/', // component-specific docs
+	'packages/foundations/docs/' // foundation docs
+];
+
+/** Returns true if the given manifest doc path is within the whitelist. */
+function isAllowedDocPath(docPath: string): boolean {
+	return DOCS_ALLOWED_PREFIXES.some((prefix) => docPath.startsWith(prefix));
+}
+
+/**
  * Builds a ToolResult from a list of matched document snippets.
  * Returns at most 3 results and appends a truncation notice when more were found.
  */
@@ -30,9 +48,9 @@ function buildResults(results: string[], query: string): ToolResult {
 
 /**
  * Searches DB UX documentation for a given query string.
- * Supports two scopes:
- * - "global": searches the top-level docs/ directory recursively.
- * - "component": searches the docs/ folder of a specific component.
+ * Only docs from whitelisted directories (component docs and foundation docs)
+ * are searched. Migration guides, ADRs, research, and infrastructure files
+ * are explicitly excluded to reduce token consumption and prevent hallucinations.
  *
  * Falls back to the embedded manifest when running outside the monorepo.
  * Applies a 10-second timeout to prevent hanging on large directory trees.
@@ -63,7 +81,37 @@ export async function handleDocsSearch({
 			const results: string[] = [];
 			for (const [path, content] of Object.entries(manifest.docs)) {
 				if (results.length >= 3) break;
-				const haystack = (path + '\n' + content).toLowerCase();
+				// Normalize Windows backslashes to forward slashes
+				const normalizedPath = path.replace(/\\/g, '/');
+				// Defense-in-depth: skip docs outside whitelisted directories
+				if (!isAllowedDocPath(normalizedPath)) continue;
+
+				// Scope filter: when category is 'component' and componentName is given,
+				// only match docs within that component's directory.
+				if (
+					category === 'component' &&
+					componentName &&
+					!normalizedPath.includes(`/components/${componentName}/`)
+				) {
+					continue;
+				}
+
+				// Doc type filter: when docType is given, only match docs whose
+				// filename contains the type (e.g. 'Accessibility', 'React').
+				if (
+					docType &&
+					!normalizedPath
+						.toLowerCase()
+						.includes(docType.toLowerCase())
+				) {
+					continue;
+				}
+
+				const haystack = (
+					normalizedPath +
+					'\n' +
+					content
+				).toLowerCase();
 				const isMatch =
 					searchTerms.length === 0 ||
 					searchTerms.every((term) => haystack.includes(term));
@@ -72,7 +120,7 @@ export async function handleDocsSearch({
 						content.length > 3000
 							? content.substring(0, 3000) + '\n... [TRUNCATED]'
 							: content;
-					results.push(`--- ${path} ---\n${snippet}`);
+					results.push(`--- ${normalizedPath} ---\n${snippet}`);
 				}
 			}
 			return buildResults(results, query);

@@ -114,7 +114,7 @@
 	}
 
 	// Inline links stay within content flow
-	&[data-link-variant="inline"] :is(> a, > db-link) {
+	&[data-link-variant="inline"] > :is(a, db-link) {
 		// 1. Assign the link to the "timestamp" area.
 		//    All layouts (overlay and default) must recognize this area.
 		grid-area: timestamp;
@@ -139,7 +139,7 @@
 
 	// Block links get placed in grid area (default behavior)
 	// This applies when linkVariant is "block" or not specified
-	&:not([data-link-variant="inline"]) :is(> a, > db-link) {
+	&:not([data-link-variant="inline"]) > :is(a, db-link) {
 		grid-area: link;
 		white-space: nowrap;
 	}
