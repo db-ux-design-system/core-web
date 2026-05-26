@@ -51,7 +51,7 @@ Then import the plugin in your CSS file:
 We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
 
 ```shell
-npm i @db-ux/core-postcss-plugin --save-dev
+npm install @db-ux/core-postcss-plugin --save-dev
 ```
 
 Configure it in `vite.config.ts`:
