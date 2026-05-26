@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-migration",
-  "version": "4.6.1",
+  "version": "4.9.1",
   "type": "module",
   "description": "Migration script for changing your code in between DB UX Design System v3 versions regarding BREAKING CHANGES.",
   "repository": {
@@ -18,11 +18,11 @@
   ],
   "scripts": {
     "build": "node esbuild.js",
-    "copy-build": "npm-run-all copy-build:*",
-    "copy-build:build": "cpr build ../../build-outputs/migration/build -o",
-    "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/migration/CHANGELOG.md --overwrite",
-    "copy-build:package.json": "cpr package.json ../../build-outputs/migration/package.json -o",
-    "copy-build:readme": "cpr README.md ../../build-outputs/migration/README.md -o",
+    "copy-output": "run-p copy-output:*",
+    "copy-output:build": "cpr build ../../build-outputs/migration/build -o",
+    "copy-output:changelog": "cpr CHANGELOG.md ../../build-outputs/migration/CHANGELOG.md --overwrite",
+    "copy-output:package.json": "cpr package.json ../../build-outputs/migration/package.json -o",
+    "copy-output:readme": "cpr README.md ../../build-outputs/migration/README.md -o",
     "test": "vitest run --config vitest.config.ts",
     "test:migration": "tsx src/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },
@@ -34,8 +34,9 @@
   "devDependencies": {
     "cpr": "3.0.1",
     "esbuild": "0.28.0",
-    "tsx": "4.21.0",
-    "vitest": "4.1.5"
+    "npm-run-all2": "9.0.0",
+    "tsx": "4.22.3",
+    "vitest": "4.1.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
