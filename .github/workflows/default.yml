@@ -67,7 +67,7 @@ jobs:
     needs: [build-packages]
 
   build-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system'}}
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-figma-code-connect.yml
     needs: [init]
 
@@ -114,7 +114,7 @@ jobs:
     secrets: inherit
 
   test-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system'}}
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
     needs: [build-figma-code-connect, init]
     secrets: inherit
@@ -408,27 +408,6 @@ jobs:
           IS_RELEASE: ${{ github.event_name == 'release' }}
           IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
-          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
-          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
-          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
-          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
-          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
-          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
-          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
-          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
-          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
-          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
-          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
-          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
-          echo "resultBuildOutputs: $resultBuildOutputs"
-          echo "resultTestPackages: $resultTestPackages"
-          echo "resultTestFoundations: $resultTestFoundations"
-          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
-          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
-          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
-          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
-          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
-          echo "resultTestScreenReader: $resultTestScreenReader"
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
             echo "🎉 Changeset release PR - skipping checks."
             exit 0
@@ -456,6 +435,28 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
+
+          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
+          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
+          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
+          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
+          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
+          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
+          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
+          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
+          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
+          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
+          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
+          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
+          echo "resultBuildOutputs: $resultBuildOutputs"
+          echo "resultTestPackages: $resultTestPackages"
+          echo "resultTestFoundations: $resultTestFoundations"
+          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
+          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
+          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
+          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
+          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
+          echo "resultTestScreenReader: $resultTestScreenReader"
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
@@ -520,7 +521,8 @@ jobs:
       ${{
       !cancelled() && github.actor != 'dependabot[bot]' &&
       (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
-      needs.init.outputs.isChangesetRelease != 'true'
+      needs.init.outputs.isChangesetRelease != 'true' &&
+      needs.checks-done.result == 'success'
       }}
     needs: [checks-done, init]
     secrets: inherit
@@ -532,7 +534,7 @@ jobs:
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publish-figma-code-connect:
-    if: ${{ !cancelled() && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' }}
+    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
     needs: [checks-done, test-figma-code-connect]
     secrets: inherit
@@ -543,7 +545,7 @@ jobs:
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
-    if: ${{ github.event_name == 'release' }}
+    if: ${{ !cancelled() && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit

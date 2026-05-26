@@ -1,8 +1,8 @@
+import dbUxFlatten from '@db-ux/core-postcss-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import dbUxFlatten from '../../packages/postcss-plugin/build/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

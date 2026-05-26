@@ -28,9 +28,8 @@ export default function DBIcon(props: DBIconProps) {
 			data-icon-weight={props.weight}
 			data-icon-variant={props.variant}
 			aria-hidden="true">
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</span>
 	);
 }
