@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/agent-cli",
-  "version": "4.5.3",
+  "version": "4.9.1",
   "type": "module",
   "description": "CLI for DB UX Design System generate AI agent instructions",
   "repository": {
@@ -18,11 +18,11 @@
   ],
   "scripts": {
     "build": "node esbuild.js",
-    "copy-build": "npm-run-all copy-build:*",
-    "copy-build:build": "cpr build ../../build-outputs/agent-cli/build --overwrite",
-    "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/agent-cli/CHANGELOG.md --overwrite",
-    "copy-build:package.json": "cpr package.json ../../build-outputs/agent-cli/package.json --overwrite",
-    "copy-build:readme": "cpr README.md ../../build-outputs/agent-cli/README.md --overwrite",
+    "copy-output": "run-p copy-output:*",
+    "copy-output:build": "cpr build ../../build-outputs/agent-cli/build --overwrite",
+    "copy-output:changelog": "cpr CHANGELOG.md ../../build-outputs/agent-cli/CHANGELOG.md --overwrite",
+    "copy-output:package.json": "cpr package.json ../../build-outputs/agent-cli/package.json --overwrite",
+    "copy-output:readme": "cpr README.md ../../build-outputs/agent-cli/README.md --overwrite",
     "test": "vitest run --config vitest.config.ts",
     "test:cli": "tsx src/cli.ts --help",
     "test:update": "vitest run --config vitest.config.ts --update"
@@ -32,9 +32,10 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.27.3",
-    "tsx": "4.21.0",
-    "vitest": "3.2.4"
+    "esbuild": "0.28.0",
+    "npm-run-all2": "9.0.0",
+    "tsx": "4.22.3",
+    "vitest": "4.1.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

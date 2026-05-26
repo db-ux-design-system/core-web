@@ -1,0 +1,14 @@
+{
+	"include": ["."],
+	"compilerOptions": {
+		"strict": true,
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"resolveJsonModule": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true,
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"skipLibCheck": true
+	}
+}

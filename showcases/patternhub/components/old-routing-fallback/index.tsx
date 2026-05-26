@@ -32,7 +32,7 @@ const OldRoutingFallback = () => {
 				}
 
 				// This is for the old implementation to work with iframes
-				const allNavigationItems = getAllNavigationItems().sort(
+				const allNavigationItems = getAllNavigationItems().toSorted(
 					(a, b) => {
 						if ((a.path?.length ?? 0) > (b.path?.length ?? 0)) {
 							return -1;
@@ -48,7 +48,7 @@ const OldRoutingFallback = () => {
 							item.path?.endsWith(component) &&
 							item.path?.split('/').length > 3
 					)
-					.sort(
+					.toSorted(
 						(a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0)
 					);
 

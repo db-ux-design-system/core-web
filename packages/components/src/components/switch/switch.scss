@@ -15,6 +15,7 @@ $switch-active-thumb-size: calc(#{form-components.$font-size-height});
 $checked-active-transition-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
+$switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 %active-transition {
 	&::before {
@@ -64,9 +65,8 @@ $checked-active-transition-size: calc(
 
 		appearance: none;
 		margin-inline-end: 0;
-		inline-size: calc(
-			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
-		);
+		inline-size: $switch-inline-size;
+		min-inline-size: $switch-inline-size;
 		block-size: form-components.$font-size-height;
 		box-sizing: content-box;
 
@@ -184,10 +184,6 @@ $checked-active-transition-size: calc(
 	}
 
 	&[data-size="small"] {
-		> label {
-			gap: variables.$db-spacing-fixed-2xs;
-		}
-
 		input {
 			@extend %db-overwrite-font-size-xs;
 		}

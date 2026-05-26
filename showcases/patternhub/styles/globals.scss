@@ -5,7 +5,7 @@
 @use "@db-ux/core-components/build/components/section/section";
 @use "@db-ux/core-foundations/build/styles/helpers/display";
 
-@forward "@db-ux/core-components/build/styles/webpack";
+@forward "@db-ux/core-components/build/styles/bundle";
 @forward "@db-ux/db-theme/build/styles/webpack";
 
 :root:not(:has(.db-page)) {

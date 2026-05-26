@@ -21,9 +21,9 @@ npm i @db-ux/ngx-core-components
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
--   Default (relative): points to `../assets`
--   Rollup (rollup): points to `@db-ux/core-foundations/assets`
--   Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+- Default (relative): points to `../assets`
+- Rollup (rollup): points to `@db-ux/core-foundations/assets`
+- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
@@ -128,6 +128,39 @@ npx @db-ux/agent-cli
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
 📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+
+## Code Quality
+
+To enforce correct usage of DB UX Design System components in your Angular templates, we provide the [`@db-ux/core-eslint-plugin`](https://www.npmjs.com/package/@db-ux/core-eslint-plugin) ESLint plugin.
+
+### Installation
+
+```shell
+npm install eslint @db-ux/core-eslint-plugin @angular-eslint/template-parser --save-dev
+```
+
+### Setup
+
+```js
+// eslint.config.js
+import dbUx from "@db-ux/core-eslint-plugin";
+import angularTemplateParser from "@angular-eslint/template-parser";
+
+export default [
+	{
+		files: ["**/*.html"],
+		languageOptions: {
+			parser: angularTemplateParser
+		},
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
+];
+```
+
+📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
 
 ## Deutsche Bahn brand
 

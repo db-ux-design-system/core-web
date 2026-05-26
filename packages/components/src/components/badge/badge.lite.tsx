@@ -56,9 +56,8 @@ export default function DBBadge(props: DBBadgeProps) {
 				props.placement?.startsWith('corner') &&
 				(props.label ?? DEFAULT_LABEL)
 			}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</span>
 	);
 }
