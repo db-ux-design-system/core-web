@@ -23,12 +23,12 @@ import { DBCheckbox } from '@db-ux/ngx-core-components';
 <fieldset>
 	<legend>Checkbox group example</legend>
 	@for (checkboxName of checkboxNames; track checkboxName) {
-		<db-checkbox
-			(change)="checkbox = checkboxName"
-			[label]="'Checkbox ' + checkboxName"
-			[value]="checkboxName"
-			name="CheckboxGroup"
-		></db-checkbox>
+	<db-checkbox
+		(change)="checkbox = checkboxName"
+		[label]="'Checkbox ' + checkboxName"
+		[value]="checkboxName"
+		name="CheckboxGroup"
+	></db-checkbox>
 	}
 </fieldset>
 ```
