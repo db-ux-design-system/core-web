@@ -1,11 +1,6 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls, getNumber } from '../../utils';
-import { DBTableDataCellProps, DBTableDataCellState } from './model';
+import { DBTableDataCellProps } from './model';
 
 useMetadata({});
 
@@ -14,10 +9,6 @@ useDefaultProps<DBTableDataCellProps>({});
 export default function DBTableDataCell(props: DBTableDataCellProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLTableCellElement | any>(undefined);
-	// jscpd:ignore-start
-	const state = useStore<DBTableDataCellState>({});
-	// jscpd:ignore-end
-
 	return (
 		<td
 			ref={_ref}

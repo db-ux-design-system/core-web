@@ -1,11 +1,6 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls, getBooleanAsString, getNumber } from '../../utils';
-import { DBTableHeaderCellProps, DBTableHeaderCellState } from './model';
+import { DBTableHeaderCellProps } from './model';
 
 useMetadata({});
 
@@ -14,10 +9,6 @@ useDefaultProps<DBTableHeaderCellProps>({});
 export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLTableCellElement | any>(undefined);
-	// jscpd:ignore-start
-	const state = useStore<DBTableHeaderCellState>({});
-	// jscpd:ignore-end
-
 	return (
 		<th
 			ref={_ref}

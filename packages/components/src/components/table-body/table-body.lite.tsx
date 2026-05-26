@@ -3,13 +3,12 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef,
-	useStore
+	useRef
 } from '@builder.io/mitosis';
 import { cls, uuid } from '../../utils';
 import { DBTableRowProps } from '../table-row/model';
 import DBTableRow from '../table-row/table-row.lite';
-import { DBTableBodyProps, DBTableBodyState } from './model';
+import { DBTableBodyProps } from './model';
 
 useMetadata({});
 
@@ -18,10 +17,6 @@ useDefaultProps<DBTableBodyProps>({});
 export default function DBTableBody(props: DBTableBodyProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLTableSectionElement | any>(undefined);
-	// jscpd:ignore-start
-	const state = useStore<DBTableBodyState>({});
-	// jscpd:ignore-end
-
 	return (
 		<tbody
 			ref={_ref}
