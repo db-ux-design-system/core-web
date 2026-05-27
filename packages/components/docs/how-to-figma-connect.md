@@ -1,4 +1,4 @@
-# How to Connect Figma Components
+﻿# How to Connect Figma Components
 
 This guide explains how to connect Figma components to code components using [Figma Code Connect](https://www.figma.com/developers/api#code-connect) and [Mitosis](https://github.com/BuilderIO/mitosis).
 
@@ -240,21 +240,21 @@ export default function AccordionFigmaLite(props: FigmaAccordionProps) {
 
 ## Property Types
 
-| Type                       | Description                                                                                                                           |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `string`                   | Direct text input — `instance.getString(key)`                                                                                         |
-| `boolean`                  | Figma `False/True` toggle — `instance.getEnum(key, { 'False': false, 'True': true })` — shorthand for the common boolean enum pattern |
-| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                                                   |
-| `children`                 | Named slot content — `instance.getSlot(key)`                                                                                          |
-| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                                                           |
-| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`                                          |
-| `iconSwap`                 | Icon instance swap rendered as plain string attribute — `getInstanceSwap(key)?.executeTemplate().example`                             |
-| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                                                |
-| `connectedText`            | Text from the first code-connected child with that property key                                                                       |
-| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                                            |
-| `conditionalProp`          | Single icon swap rendered as a named attribute only when a boolean Figma property (`guardKey`) is `'True'`                            |
-| `connectedInstances`       | All direct code-connected child instances rendered as children                                                                        |
-| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                                                          |
+| Type                       | Description                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `string`                   | Direct text input — `instance.getString(key)`                                                                                                   |
+| `boolean`                  | Figma `False/True` toggle — `instance.getEnum(key, { 'False': false, 'True': true })` — shorthand for the common boolean enum pattern           |
+| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                                                             |
+| `children`                 | Named slot content — `instance.getSlot(key)`                                                                                                    |
+| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                                                                     |
+| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`                                                    |
+| `iconSwap`                 | Icon instance swap rendered as plain string attribute — extracts `CODE` section `.code` from `getInstanceSwap(key)?.executeTemplate()?.example` |
+| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                                                          |
+| `connectedText`            | Text from the first code-connected child with that property key                                                                                 |
+| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                                                      |
+| `conditionalProp`          | Single icon swap rendered as a named attribute only when a boolean Figma property (`guardKey`) is `'True'`                                      |
+| `connectedInstances`       | All direct code-connected child instances rendered as children                                                                                  |
+| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                                                                    |
 
 ### `boolean` — Figma False/True toggles
 
@@ -446,11 +446,18 @@ iconLeading: {
 Generates:
 
 ```js
-const _iconLeadingValue = instance
-	.getInstanceSwap("🔄 Icon Leading")
-	?.executeTemplate()?.example;
+const _iconLeadingValue = ((r) =>
+	r && r[0]?.type === "CODE" ? r[0].code : undefined)(
+	instance.getInstanceSwap(_findKey("Show Icon Leading"))?.executeTemplate()
+		?.example
+);
 let iconLeading = "";
-if (_showIconLeading) {
+if (
+	(instance.getPropertyValue(_findKey("Show Icon Leading")) === true ||
+		instance.getPropertyValue(_findKey("Show Icon Leading")) === "True") &&
+	_iconLeadingValue !== undefined &&
+	_iconLeadingValue !== null
+) {
 	iconLeading = `\n\t\ticon="${_iconLeadingValue}"`;
 }
 ```

@@ -76,7 +76,7 @@ const getInstanceCall = (figmaProperty) => {
 	if (type === 'iconSwap')
 		return `((r) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example)`;
 	if (type === 'boolean')
-		return `(instance.getEnum(_findKey('${key}'), { 'False': false, 'True': true }) || instance.getBoolean('${key}'))`;
+		return `(instance.getEnum(_findKey('${key}'), { 'False': false, 'True': true }) ?? instance.getBoolean(_findKey('${key}')))`;
 	if (type === 'string') return `instance.getString(_findKey('${key}'))`;
 
 	if (type === 'enum' && value) {
@@ -211,7 +211,8 @@ const buildTemplate = (json, target) => {
 					...swapLines.map((l) =>
 						l.replace(/_swap/g, `_swap_${propName}`)
 					),
-					`const _${propName} = _swap_${propName}?.executeTemplate()?.example`
+					`const _${propName}Example = _swap_${propName}?.executeTemplate()?.example`,
+					`const _${propName} = Array.isArray(_${propName}Example) ? _${propName}Example.find((section) => section.type === 'CODE')?.code : undefined`
 				];
 				const lines = [`let ${propName} = ''`];
 				if (guardOpen) {
