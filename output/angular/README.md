@@ -11,7 +11,7 @@ We also provide more information about specific components. This information is 
 ## Install
 
 ```shell
-pnpm install @db-ux/ngx-core-components @db-ux/core-components @db-ux/core-foundations
+pnpm add @db-ux/ngx-core-components @db-ux/core-components @db-ux/core-foundations --save-dev
 ```
 
 ## Styling Dependencies
