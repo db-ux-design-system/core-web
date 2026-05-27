@@ -52,6 +52,7 @@ jobs:
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' }}
         shell: bash
         run: |
+          echo "email=$(git log -1 --format='%ae')"
           echo "email=$(git log -1 --format='%ae')" >> $GITHUB_OUTPUT
 
       - name: 🚘 Auto-commit fixes
@@ -73,8 +74,7 @@ jobs:
           ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
             contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
         run: |
-          echo "❌ Self-healing fixes were applied on a PR already opened by github-actions[bot]."
-          echo "This indicates an auto-commit loop. Please fix the remaining issues manually."
+          echo "⚠️ Last commit was by a bot (${{ steps.commit_author.outputs.email }}). Skipping auto-commit to prevent loop."
           exit 1
 
       - name: ℹ️ Log fixes needed (non-PR context)
