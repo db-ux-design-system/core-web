@@ -57,6 +57,13 @@ jobs:
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: ❌ Fail when fixes cannot be committed on bot PRs
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && endsWith(github.actor, '[bot]') }}
+        run: |
+          echo "❌ Self-healing fixes were applied but this PR was opened by a bot (${GITHUB_ACTOR})."
+          echo "Auto-commit is skipped for bot PRs. Please apply the fixes manually."
+          exit 1
+
       - name: ℹ️ Log fixes needed (non-PR context)
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name != 'pull_request' }}
         run: |

@@ -11,6 +11,8 @@
  */
 
 import { spawn, type ChildProcess } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // ─── Interfaces ──────────────────────────────────────────────────────────────
 
@@ -53,15 +55,18 @@ export const checkFixMap: CheckConfig[] = [
 		name: 'lint',
 		checkCommand: 'pnpm run lint',
 		fixCommands: [
-			{ command: 'pnpm', args: ['run', 'lint:xo', '--fix'] },
-			{ command: 'pnpm', args: ['run', 'lint:stylelint', '--fix'] },
-			{ command: 'pnpm', args: ['run', 'lint:markdownlint', '--fix'] }
+			{ command: 'pnpm', args: ['run', 'lint:xo', '--', '--fix'] },
+			{ command: 'pnpm', args: ['run', 'lint:stylelint', '--', '--fix'] },
+			{
+				command: 'pnpm',
+				args: ['run', 'lint:markdownlint', '--', '--fix']
+			}
 		]
 	},
 	{
 		name: 'test',
 		checkCommand: 'pnpm run test',
-		fixCommands: [{ command: 'pnpm', args: ['run', 'test', '--update'] }]
+		fixCommands: []
 	},
 	{
 		name: 'check:format',
@@ -174,6 +179,8 @@ export async function spawnCommand(
  */
 async function runCheck(
 	config: CheckConfig,
+	spawn_: typeof spawnCommand,
+	cmdTimeout: number,
 	abortSignal?: AbortSignal
 ): Promise<CheckResult> {
 	const start = Date.now();
@@ -183,8 +190,8 @@ async function runCheck(
 	const command = parts[0];
 	const args = parts.slice(1);
 
-	const result = await spawnCommand(command, args, {
-		timeoutMs: commandTimeoutMs,
+	const result = await spawn_(command, args, {
+		timeoutMs: cmdTimeout,
 		abortSignal
 	});
 
@@ -219,6 +226,8 @@ async function runCheck(
 /* eslint-disable no-await-in-loop -- Sequential execution is intentional to avoid file conflicts */
 async function runFixes(
 	config: CheckConfig,
+	spawn_: typeof spawnCommand,
+	cmdTimeout: number,
 	abortSignal?: AbortSignal
 ): Promise<string[]> {
 	const applied: string[] = [];
@@ -227,8 +236,8 @@ async function runFixes(
 		const fixDescription = `${fix.command} ${fix.args.join(' ')}`;
 		log(`🔧 Running fix: ${fixDescription}`);
 
-		const result = await spawnCommand(fix.command, fix.args, {
-			timeoutMs: commandTimeoutMs,
+		const result = await spawn_(fix.command, fix.args, {
+			timeoutMs: cmdTimeout,
 			abortSignal
 		});
 
@@ -317,6 +326,8 @@ export async function orchestrate(
 	}
 ): Promise<OrchestratorResult> {
 	const timeout = options?.totalTimeoutMs ?? totalTimeoutMs;
+	const cmdTimeout = options?.commandTimeoutMs ?? commandTimeoutMs;
+	const spawn_ = options?.spawnFn ?? spawnCommand;
 	const abortController = new AbortController();
 
 	// Set up total timeout
@@ -331,7 +342,7 @@ export async function orchestrate(
 		// Phase 1: Run all checks in parallel
 		log('🚀 Starting parallel checks...');
 		const checkPromises = checks.map(async (config) =>
-			runCheck(config, abortController.signal)
+			runCheck(config, spawn_, cmdTimeout, abortController.signal)
 		);
 		const checkResults = await Promise.allSettled(checkPromises);
 
@@ -372,7 +383,12 @@ export async function orchestrate(
 		for (const config of failedChecks) {
 			log(`🔧 Fixing: ${config.name}`);
 			// eslint-disable-next-line no-await-in-loop
-			const fixes = await runFixes(config, abortController.signal);
+			const fixes = await runFixes(
+				config,
+				spawn_,
+				cmdTimeout,
+				abortController.signal
+			);
 			allFixesApplied.push(...fixes);
 		}
 
@@ -380,22 +396,22 @@ export async function orchestrate(
 		const detectChanges = options?.detectChangesFn ?? detectFileChanges;
 		const filesChanged = await detectChanges();
 
-		if (filesChanged) {
-			log('✅ Fixes produced file changes. Exiting with code 2.');
+		if (!filesChanged) {
+			log('❌ Fixes did not produce file changes. Exiting with code 1.');
 			return {
-				exitCode: exitFixedWithChanges,
+				exitCode: exitUnfixable,
 				checkResults: results,
 				fixesApplied: allFixesApplied,
-				filesChanged: true
+				filesChanged: false
 			};
 		}
 
-		log('❌ Fixes did not produce file changes. Exiting with code 1.');
+		log('✅ Fixes applied. Exiting with code 2.');
 		return {
-			exitCode: exitUnfixable,
+			exitCode: exitFixedWithChanges,
 			checkResults: results,
 			fixesApplied: allFixesApplied,
-			filesChanged: false
+			filesChanged: true
 		};
 	} finally {
 		clearTimeout(totalTimer);
@@ -404,9 +420,9 @@ export async function orchestrate(
 
 // ─── Main Entry Point ────────────────────────────────────────────────────────
 
-const isDirectExecution = process.argv[1]?.includes(
-	'self-healing-orchestrator'
-);
+const isDirectExecution =
+	process.argv[1] !== undefined &&
+	path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 
 if (isDirectExecution) {
 	log('🏁 Self-Healing CI Orchestrator starting...');
