@@ -1,0 +1,81 @@
+# Validation Workflow
+#
+# This workflow runs lint, test, and format checks via a TypeScript orchestrator.
+# The orchestrator runs checks in parallel, attempts auto-fixes for failures,
+# and signals results via exit codes:
+#   0 = all checks passed
+#   1 = unfixable failures (job fails)
+#   2 = fixes applied (auto-commit on PR events, including first-time bot PRs like dependabot)
+#         auto-commit is blocked when github-actions[bot] is the actor to prevent infinite loops
+
+name: Validate
+
+on:
+  workflow_call:
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: ⏬️ Checkout repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: 🏗️ Pre-build @db-ux/core-stylelint
+        run: pnpm --filter @db-ux/core-stylelint run build
+
+      - name: 🏗️ Pre-build @db-ux/core-eslint-plugin
+        run: pnpm --filter @db-ux/core-eslint-plugin run build
+
+      - name: 🏗️ Pre-build nuxt-showcase (nuxt:prepare)
+        run: pnpm --filter nuxt-showcase run nuxt:prepare
+
+      - name: 🚀 Run validation orchestrator
+        id: orchestrator
+        run: |
+          pnpm run validate && exit_code=0 || exit_code=$?
+          echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
+
+      - name: 🚘 Auto-commit fixes
+        if: |
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
+            (!endsWith(github.actor, '[bot]') || (endsWith(github.actor, '[bot]') && github.actor != 'github-actions[bot]')) }}
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-codestyle-fixes"
+          commit-message: "style: auto-fix codestyle issues"
+          commit-files: "."
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ❌ Fail when auto-fix loop detected (github-actions[bot] triggered fixes again)
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && github.actor == 'github-actions[bot]' }}
+        run: |
+          echo "❌ Self-healing fixes were applied on a PR already opened by github-actions[bot]."
+          echo "This indicates an auto-commit loop. Please fix the remaining issues manually."
+          exit 1
+
+      - name: ℹ️ Log fixes needed (non-PR context)
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name != 'pull_request' }}
+        run: |
+          echo "⚠️ Self-healing fixes were applied but cannot be auto-committed outside of a pull request context."
+          echo "Please commit the changes manually."
+
+      - name: ❌ Fail on unfixable issues
+        if: ${{ steps.orchestrator.outputs.exit_code == '1' }}
+        run: |
+          echo "❌ Checks failed and could not be auto-fixed."
+          echo "Please review the orchestrator output above and fix remaining issues manually."
+          exit 1
