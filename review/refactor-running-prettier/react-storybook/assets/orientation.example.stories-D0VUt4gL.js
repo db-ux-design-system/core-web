@@ -1,0 +1,17 @@
+import{i as e}from"./preload-helper-BUN_eUXr.js";import{t}from"./jsx-runtime-DHtYmPz4.js";import{Q as n,c as r,i,o as a,t as o,u as s}from"./src-xt3LvDYB.js";var c,l,u,d,f,p;e((()=>{o(),c=t(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBTabs/Orientation`,component:i,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:l(),onTabSelect:l()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},width:{control:`select`,options:[`full`,`auto`]},alignment:{control:`select`,options:[`start`,`center`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},name:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onTabSelect:{action:`onTabSelect`}}},d={args:{orientation:`horizontal`,children:(0,c.jsxs)(c.Fragment,{children:[(0,c.jsxs)(r,{children:[(0,c.jsx)(s,{children:`Test 1`}),(0,c.jsx)(s,{children:`Test 2`}),(0,c.jsx)(s,{children:`Test 3`})]}),(0,c.jsx)(a,{children:`Tab Panel 1`}),(0,c.jsx)(a,{children:`Tab Panel 2`}),(0,c.jsx)(a,{children:`Tab Panel 3`})]})},render:e=>(0,c.jsxs)(`div`,{className:`fit-content-container`,children:[(0,c.jsx)(n,{icon:`none`,size:`small`,semantic:`informational`,children:`horizontal:`}),(0,c.jsx)(i,{...e})]})},f={args:{orientation:`vertical`,children:(0,c.jsxs)(c.Fragment,{children:[(0,c.jsxs)(r,{children:[(0,c.jsx)(s,{children:`Test 1`}),(0,c.jsx)(s,{children:`Test 2`}),(0,c.jsx)(s,{children:`Test 3`})]}),(0,c.jsx)(a,{children:`Tab Panel 1`}),(0,c.jsx)(a,{children:`Tab Panel 2`}),(0,c.jsx)(a,{children:`Tab Panel 3`})]})},render:e=>(0,c.jsxs)(`div`,{className:`fit-content-container`,children:[(0,c.jsx)(n,{icon:`none`,size:`small`,semantic:`informational`,children:`vertical:`}),(0,c.jsx)(i,{...e})]})},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "horizontal",
+    "children": <><DBTabList><DBTabItem>Test 1</DBTabItem><DBTabItem>Test 2</DBTabItem><DBTabItem>Test 3</DBTabItem></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    horizontal:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "vertical",
+    "children": <><DBTabList><DBTabItem>Test 1</DBTabItem><DBTabItem>Test 2</DBTabItem><DBTabItem>Test 3</DBTabItem></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    vertical:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...f.parameters?.docs?.source}}},p=[`horizontal`,`vertical`]}))();export{p as __namedExportsOrder,u as default,d as horizontal,f as vertical};
