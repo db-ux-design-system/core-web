@@ -21,8 +21,7 @@ default: true
 # Rules by id #
 ###############
 MD004: false # Unordered list style
-MD007:
-  indent: 4 # Unordered list indentation
+MD007: false # Unordered list indentation — owned by Prettier
 MD010: false
 MD013:
   line_length: 600 # Line length 80 is far too short
