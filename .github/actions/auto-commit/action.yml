@@ -9,7 +9,7 @@ inputs:
     description: "The message you want to commit"
     required: true
   commit-files:
-    description: "The files which should be commited with `git add xxx`"
+    description: "The files which should be committed with `git add xxx`"
     required: true
   auto-merge-app-id:
     description: "The id for github app to allow auto-merge"
