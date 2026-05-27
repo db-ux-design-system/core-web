@@ -11,8 +11,6 @@ We also provide more information about specific components. This information is 
 ## Install
 
 ```shell
-npm install @db-ux/ngx-core-components @db-ux/core-components @db-ux/core-foundations
-# or
 pnpm install @db-ux/ngx-core-components @db-ux/core-components @db-ux/core-foundations
 ```
 
@@ -35,7 +33,7 @@ Import the styles in your main CSS file:
 We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
 
 ```shell
-npm install @db-ux/core-postcss-plugin --save-dev
+pnpm add @db-ux/core-postcss-plugin --save-dev
 ```
 
 Create a `postcss.config.json` in your project root:
@@ -141,7 +139,7 @@ To enforce correct usage of DB UX Design System components in your Angular templ
 ### Installation
 
 ```shell
-npm install eslint @db-ux/core-eslint-plugin @angular-eslint/template-parser --save-dev
+pnpm add eslint @db-ux/core-eslint-plugin @angular-eslint/template-parser --save-dev
 ```
 
 ### Setup
@@ -174,7 +172,7 @@ To validate correct usage of DB UX Design System tokens in your CSS/SCSS, use th
 ### Installation
 
 ```shell
-npm install stylelint @db-ux/core-stylelint --save-dev
+pnpm add stylelint @db-ux/core-stylelint --save-dev
 ```
 
 ### Setup
