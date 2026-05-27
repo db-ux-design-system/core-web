@@ -46,6 +46,7 @@
     "build-showcases": "pnpm --filter scripts run build-showcases",
     "build-storybooks": "pnpm --filter scripts run build-storybooks",
     "changeset": "changeset",
+    "check:format": "prettier --check .",
     "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts && prettier --no-error-on-unmatched-pattern **/CHANGELOG.md --write",
     "clean": "git clean -dfx --exclude=.env && node scripts/npx-from-dev-dependencies.mjs husky",
     "codestyle": "prettier . --write",
@@ -71,7 +72,8 @@
     "test": "pnpm --filter scripts run test",
     "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
-    "update:dependency:playwright": "node scripts/github/update-playwright.js"
+    "update:dependency:playwright": "node scripts/github/update-playwright.js",
+    "validate": "tsx scripts/self-healing-orchestrator.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.3",
