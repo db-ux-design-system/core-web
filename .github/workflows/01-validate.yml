@@ -5,8 +5,8 @@
 # and signals results via exit codes:
 #   0 = all checks passed
 #   1 = unfixable failures (job fails)
-#   2 = fixes applied (auto-commit on PR events, including first-time bot PRs like dependabot)
-#         auto-commit is blocked when github-actions[bot] is the actor to prevent infinite loops
+#   2 = fixes applied (auto-commit on PR events, blocked when the latest commit was made by
+#         github-actions[bot] — checked via git log author email — to prevent infinite loops)
 
 name: Validate
 
@@ -47,9 +47,17 @@ jobs:
           pnpm run validate && exit_code=0 || exit_code=$?
           echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
 
+      - name: 🔍 Check latest commit author
+        id: commit_author
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          AUTHOR=$(git log -1 --format='%ae')
+          echo "email=$AUTHOR" >> $GITHUB_OUTPUT
+
       - name: 🚘 Auto-commit fixes
         if: |
-          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && github.actor != 'github-actions[bot]' }}
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'github-actions[bot]') }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
@@ -60,7 +68,9 @@ jobs:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ❌ Fail when auto-fix loop detected (github-actions[bot] triggered fixes again)
-        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && github.actor == 'github-actions[bot]' }}
+        if: |
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
+            contains(steps.commit_author.outputs.email, 'github-actions[bot]') }}
         run: |
           echo "❌ Self-healing fixes were applied on a PR already opened by github-actions[bot]."
           echo "This indicates an auto-commit loop. Please fix the remaining issues manually."
