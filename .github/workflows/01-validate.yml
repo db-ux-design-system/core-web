@@ -49,8 +49,7 @@ jobs:
 
       - name: 🚘 Auto-commit fixes
         if: |
-          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
-            (!endsWith(github.actor, '[bot]') || (endsWith(github.actor, '[bot]') && github.actor != 'github-actions[bot]')) }}
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && github.actor != 'github-actions[bot]' }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
