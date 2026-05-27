@@ -66,7 +66,7 @@ jobs:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⚠️ Skip auto-commit (bot triggered fixes again)
-        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(github.event.pull_request.head.sha, 'github-actions[bot]@users.noreply.github.com') }}
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && contains(github.event.pull_request.head.sha, 'github-actions[bot]@users.noreply.github.com') }}
         run: |
           echo "⚠️ Last commit was by a bot (${{ github.event.pull_request.head.sha }}). Skipping auto-commit to prevent loop."
 
