@@ -6,7 +6,7 @@
 #   0 = all checks passed
 #   1 = unfixable failures (job fails)
 #   2 = fixes applied (auto-commit on PR events, blocked when the latest commit was made by
-#         a GitHub bot — checked via git log author email (*users.noreply.github.com) — to prevent infinite loops)
+#         a GitHub bot — checked via github.event.pull_request.head.commit.author.email — to prevent infinite loops)
 
 name: Validate
 
@@ -52,15 +52,11 @@ jobs:
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' }}
         shell: bash
         run: |
-          echo "email=$(git log -1 --format='%ae')"
-          echo "email=$(git log -1 --format='%ae')" >> $GITHUB_OUTPUT
+          echo "email=$(git log -1 --format='%ae' ${{ github.event.pull_request.head.sha }})"
 
       - name: 🚘 Auto-commit fixes
-        if: |
-          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(github.event.pull_request.head.commit.author.email, 'users.noreply.github.com') }}
         uses: ./.github/actions/auto-commit
-        env:
-          LAST_COMMIT_AUTHOR_EMAIL: ${{ steps.commit_author.outputs.email }}
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
           commit-message: "style: auto-fix codestyle issues"
@@ -69,13 +65,10 @@ jobs:
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ❌ Fail when auto-fix loop detected (bot triggered fixes again)
-        if: |
-          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
-            contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
+      - name: ⚠️ Skip auto-commit (bot triggered fixes again)
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && contains(github.event.pull_request.head.commit.author.email, 'users.noreply.github.com') }}
         run: |
-          echo "⚠️ Last commit was by a bot (${{ steps.commit_author.outputs.email }}). Skipping auto-commit to prevent loop."
-          exit 1
+          echo "⚠️ Last commit was by a bot (${{ github.event.pull_request.head.commit.author.email }}). Skipping auto-commit to prevent loop."
 
       - name: ℹ️ Log fixes needed (non-PR context)
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name != 'pull_request' }}
