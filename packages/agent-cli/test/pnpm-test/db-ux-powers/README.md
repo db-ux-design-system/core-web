@@ -62,10 +62,12 @@ db-ux-powers/
 
 ## MCP Servers Required
 
-| Server                        | Token env var        |
-| ----------------------------- | -------------------- |
-| `@db-ux/mcp-server`           | — (no auth needed)   |
-| `@anthropic/mcp-server-figma` | `FIGMA_ACCESS_TOKEN` |
+| Server              | Connection                              |
+| ------------------- | --------------------------------------- |
+| `@db-ux/mcp-server` | stdio (no auth needed)                  |
+| Figma Desktop MCP   | HTTP/SSE at `http://127.0.0.1:3845/mcp` |
+
+> **Note:** The Figma Desktop MCP server requires the Figma Desktop App to be running with Dev Mode MCP enabled.
 
 ## Adding New Skills
 

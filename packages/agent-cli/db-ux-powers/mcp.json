@@ -20,18 +20,10 @@
 				"get_visual_reference"
 			]
 		},
-		"figma": {
-			"command": "npx",
-			"args": ["--yes", "@anthropic/mcp-server-figma"],
-			"env": {
-				"FIGMA_ACCESS_TOKEN": "${FIGMA_ACCESS_TOKEN}"
-			},
-			"tools": [
-				"figma_get_node",
-				"figma_get_file",
-				"figma_get_styles",
-				"figma_get_variables"
-			]
+		"figma-desktop": {
+			"type": "sse",
+			"url": "http://127.0.0.1:3845/mcp",
+			"timeout": 60
 		}
 	}
 }

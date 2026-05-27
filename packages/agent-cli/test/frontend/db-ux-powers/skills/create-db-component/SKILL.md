@@ -36,10 +36,10 @@ tools:
     - db-ux/list_icons
     - db-ux/docs_search
     - db-ux/verify_migrated_code
-    - figma/figma_get_file
-    - figma/figma_get_node
-    - figma/figma_get_styles
-    - figma/figma_get_variables
+    - figma-desktop/figma_get_file
+    - figma-desktop/figma_get_node
+    - figma-desktop/figma_get_styles
+    - figma-desktop/figma_get_variables
 
 outputs:
     - "packages/components/src/components/{component_slug}/"
