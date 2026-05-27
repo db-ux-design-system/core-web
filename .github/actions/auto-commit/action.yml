@@ -31,9 +31,6 @@ runs:
         if [[ -z "$(git status --porcelain)" ]]; then
           echo "No changes to commit. Skipping auto-commit step."
           echo "changes_detected=false" >> $GITHUB_ENV
-        elif [[ "$LAST_COMMIT_AUTHOR_EMAIL" == *"github-actions[bot]"* ]]; then
-          echo "Last commit was by github-actions[bot]. Skipping to prevent loop."
-          echo "changes_detected=false" >> $GITHUB_ENV
         else
           echo "Changes detected. Proceeding with creating a new branch and commit changes."
           echo "changes_detected=true" >> $GITHUB_ENV

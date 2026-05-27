@@ -6,7 +6,7 @@
 #   0 = all checks passed
 #   1 = unfixable failures (job fails)
 #   2 = fixes applied (auto-commit on PR events, blocked when the latest commit was made by
-#         github-actions[bot] — checked via git log author email — to prevent infinite loops)
+#         a GitHub bot — checked via git log author email (*users.noreply.github.com) — to prevent infinite loops)
 
 name: Validate
 
@@ -56,7 +56,7 @@ jobs:
 
       - name: 🚘 Auto-commit fixes
         if: |
-          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' }}
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
         uses: ./.github/actions/auto-commit
         env:
           LAST_COMMIT_AUTHOR_EMAIL: ${{ steps.commit_author.outputs.email }}
@@ -68,10 +68,10 @@ jobs:
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ❌ Fail when auto-fix loop detected (github-actions[bot] triggered fixes again)
+      - name: ❌ Fail when auto-fix loop detected (bot triggered fixes again)
         if: |
           ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
-            contains(steps.commit_author.outputs.email, 'github-actions[bot]') }}
+            contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
         run: |
           echo "❌ Self-healing fixes were applied on a PR already opened by github-actions[bot]."
           echo "This indicates an auto-commit loop. Please fix the remaining issues manually."
