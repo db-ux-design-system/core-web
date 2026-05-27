@@ -71,9 +71,18 @@ export const checkFixMap: CheckConfig[] = [
 	{
 		name: 'check:format',
 		checkCommand: 'pnpm run check:format',
-		fixCommands: [{ command: 'pnpm', args: ['run', 'codestyle'] }]
+		fixCommands: []
 	}
 ];
+
+/**
+ * Fix command that always runs last, after all other fixers, to ensure
+ * prettier formats whatever was changed by lint/markdownlint/stylelint/xo.
+ */
+export const finalFixCommand: FixCommand = {
+	command: 'pnpm',
+	args: ['run', 'codestyle']
+};
 
 // ─── Logging ─────────────────────────────────────────────────────────────────
 
@@ -377,6 +386,7 @@ export async function orchestrate(
 		}
 
 		// Phase 2: Run fixes sequentially for failed checks (in order: lint, test, check:format)
+		// then always run prettier last to format whatever was changed by other fixers
 		log(`🔧 ${failedChecks.length} check(s) failed. Running fixes...`);
 		const allFixesApplied: string[] = [];
 
@@ -390,6 +400,21 @@ export async function orchestrate(
 				abortController.signal
 			);
 			allFixesApplied.push(...fixes);
+		}
+
+		// Always run prettier last so it formats any files changed by other fixers
+		log(
+			`🔧 Running final formatter: ${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+		);
+		const finalResult = await spawn_(
+			finalFixCommand.command,
+			finalFixCommand.args,
+			{ timeoutMs: cmdTimeout, abortSignal: abortController.signal }
+		);
+		if (finalResult.exitCode === 0) {
+			allFixesApplied.push(
+				`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+			);
 		}
 
 		// Phase 3: Detect file changes

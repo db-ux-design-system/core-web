@@ -52,8 +52,7 @@ jobs:
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' }}
         shell: bash
         run: |
-          AUTHOR=$(git log -1 --format='%ae')
-          echo "email=$AUTHOR" >> $GITHUB_OUTPUT
+          echo "email=$(git log -1 --format='%ae')" >> $GITHUB_OUTPUT
 
       - name: 🚘 Auto-commit fixes
         if: |

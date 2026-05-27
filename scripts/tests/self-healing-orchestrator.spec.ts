@@ -3,6 +3,7 @@ import {
 	exitAllPassed,
 	exitFixedWithChanges,
 	exitUnfixable,
+	finalFixCommand,
 	orchestrate,
 	type CheckConfig,
 	type CommandExecResult
@@ -73,7 +74,8 @@ describe('exit code 1 – unfixable', () => {
 		const spawnFn = vi
 			.fn()
 			.mockImplementationOnce(fail) // Check fails
-			.mockImplementationOnce(pass); // Fix succeeds
+			.mockImplementationOnce(pass) // Fix succeeds
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
 			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
@@ -85,7 +87,10 @@ describe('exit code 1 – unfixable', () => {
 	});
 
 	test('returns exitUnfixable when check has no fix commands and no files changed', async () => {
-		const spawnFn = vi.fn().mockImplementation(fail);
+		const spawnFn = vi
+			.fn()
+			.mockImplementationOnce(fail) // Check fails
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate([check('test')], {
 			spawnFn,
@@ -93,7 +98,7 @@ describe('exit code 1 – unfixable', () => {
 		});
 
 		expect(result.exitCode).toBe(exitUnfixable);
-		expect(result.fixesApplied).toHaveLength(0);
+		expect(result.fixesApplied).toHaveLength(1); // Only finalFixCommand
 	});
 });
 
@@ -104,7 +109,8 @@ describe('exit code 2 – fixed with changes', () => {
 		const spawnFn = vi
 			.fn()
 			.mockImplementationOnce(fail) // Check fails
-			.mockImplementationOnce(pass); // Fix succeeds
+			.mockImplementationOnce(pass) // Fix succeeds
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
 			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
@@ -113,7 +119,10 @@ describe('exit code 2 – fixed with changes', () => {
 
 		expect(result.exitCode).toBe(exitFixedWithChanges);
 		expect(result.filesChanged).toBe(true);
-		expect(result.fixesApplied).toEqual(['pnpm run lint:fix']);
+		expect(result.fixesApplied).toEqual([
+			'pnpm run lint:fix',
+			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+		]);
 	});
 
 	test('collects fixes from multiple failed checks', async () => {
@@ -122,14 +131,12 @@ describe('exit code 2 – fixed with changes', () => {
 			.mockImplementationOnce(fail) // Lint check fails
 			.mockImplementationOnce(fail) // Format check fails
 			.mockImplementationOnce(pass) // Lint fix
-			.mockImplementationOnce(pass); // Format fix
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
 			[
 				check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }]),
-				check('check:format', [
-					{ command: 'pnpm', args: ['run', 'codestyle'] }
-				])
+				check('check:format')
 			],
 			{ spawnFn, detectChangesFn: hasChanges }
 		);
@@ -137,7 +144,7 @@ describe('exit code 2 – fixed with changes', () => {
 		expect(result.exitCode).toBe(exitFixedWithChanges);
 		expect(result.fixesApplied).toEqual([
 			'pnpm run lint:fix',
-			'pnpm run codestyle'
+			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
 		]);
 	});
 });
@@ -161,7 +168,8 @@ describe('timeout handling', () => {
 		const spawnFn = vi
 			.fn()
 			.mockImplementationOnce(timeout) // Check times out
-			.mockImplementationOnce(pass); // Fix runs
+			.mockImplementationOnce(pass) // Fix runs
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
 			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
@@ -176,7 +184,8 @@ describe('timeout handling', () => {
 			.fn()
 			.mockImplementationOnce(fail) // Check fails
 			.mockImplementationOnce(timeout) // First fix times out
-			.mockImplementationOnce(pass); // Second fix succeeds
+			.mockImplementationOnce(pass) // Second fix succeeds
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
 			[
@@ -188,8 +197,11 @@ describe('timeout handling', () => {
 			{ spawnFn, detectChangesFn: hasChanges }
 		);
 
-		// Only the second fix (which succeeded) should be in fixesApplied
-		expect(result.fixesApplied).toEqual(['pnpm run lint:fix2']);
+		// Only the second fix and finalFixCommand should be in fixesApplied
+		expect(result.fixesApplied).toEqual([
+			'pnpm run lint:fix2',
+			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+		]);
 	});
 });
 
@@ -245,7 +257,10 @@ describe('abort signal propagation', () => {
 describe('change detection', () => {
 	test('uses custom detectChangesFn', async () => {
 		const detectFn = vi.fn().mockImplementation(hasChanges);
-		const spawnFn = vi.fn().mockImplementation(fail);
+		const spawnFn = vi
+			.fn()
+			.mockImplementationOnce(fail) // Check fails
+			.mockImplementationOnce(pass); // FinalFixCommand
 
 		await orchestrate([check('lint')], {
 			spawnFn,
@@ -256,16 +271,20 @@ describe('change detection', () => {
 	});
 
 	test('filesChanged reflects detectChangesFn result', async () => {
-		const spawnFn = vi.fn().mockImplementation(fail);
-
 		const withChanges = await orchestrate([check('lint')], {
-			spawnFn,
+			spawnFn: vi
+				.fn()
+				.mockImplementationOnce(fail)
+				.mockImplementationOnce(pass),
 			detectChangesFn: hasChanges
 		});
 		expect(withChanges.filesChanged).toBe(true);
 
 		const withoutChanges = await orchestrate([check('lint')], {
-			spawnFn: vi.fn().mockImplementation(fail),
+			spawnFn: vi
+				.fn()
+				.mockImplementationOnce(fail)
+				.mockImplementationOnce(pass),
 			detectChangesFn: noChanges
 		});
 		expect(withoutChanges.filesChanged).toBe(false);
