@@ -207,7 +207,7 @@ _version bump_
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
 
-                          - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+                            - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 
