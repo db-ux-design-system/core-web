@@ -56,8 +56,10 @@ jobs:
 
       - name: 🚘 Auto-commit fixes
         if: |
-          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'github-actions[bot]') }}
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' }}
         uses: ./.github/actions/auto-commit
+        env:
+          LAST_COMMIT_AUTHOR_EMAIL: ${{ steps.commit_author.outputs.email }}
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
           commit-message: "style: auto-fix codestyle issues"
