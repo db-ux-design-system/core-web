@@ -5,7 +5,8 @@
 # and signals results via exit codes:
 #   0 = all checks passed
 #   1 = unfixable failures (job fails)
-#   2 = fixes applied (auto-commit on PR events)
+#   2 = fixes applied (auto-commit on PR events, including first-time bot PRs like dependabot)
+#         auto-commit is blocked when github-actions[bot] is the actor to prevent infinite loops
 
 name: Validate
 
@@ -47,7 +48,9 @@ jobs:
           echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
 
       - name: 🚘 Auto-commit fixes
-        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !endsWith(github.actor, '[bot]') }}
+        if: |
+          ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' &&
+            (!endsWith(github.actor, '[bot]') || (endsWith(github.actor, '[bot]') && github.actor != 'github-actions[bot]')) }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
@@ -57,11 +60,11 @@ jobs:
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ❌ Fail when fixes cannot be committed on bot PRs
-        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && endsWith(github.actor, '[bot]') }}
+      - name: ❌ Fail when auto-fix loop detected (github-actions[bot] triggered fixes again)
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && github.actor == 'github-actions[bot]' }}
         run: |
-          echo "❌ Self-healing fixes were applied but this PR was opened by a bot (${GITHUB_ACTOR})."
-          echo "Auto-commit is skipped for bot PRs. Please apply the fixes manually."
+          echo "❌ Self-healing fixes were applied on a PR already opened by github-actions[bot]."
+          echo "This indicates an auto-commit loop. Please fix the remaining issues manually."
           exit 1
 
       - name: ℹ️ Log fixes needed (non-PR context)
