@@ -19,7 +19,6 @@
 	font: inherit;
 	color: inherit;
 	flex-shrink: 0;
-	z-index: 2;
 	max-inline-size: variables.$db-sizing-2xl;
 
 	@extend %transparent-border;
