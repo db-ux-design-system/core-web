@@ -61,15 +61,13 @@ jobs:
           fetch-depth: 0
           fetch-tags: false
 
-      # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
+      # https://github.com/marketplace/actions/trufflehog-oss#general-usage
       - name: 🐷 TruffleHog OSS
         if: ${{ github.event.pull_request != null && github.event.pull_request.head.repo.owner.login == 'db-ux-design-system' }} # only scan on pull-requests
         uses: trufflesecurity/trufflehog@main
         with:
-          # Setting base to an empty string scans the entire branch, per TruffleHog OSS advanced usage:
-          # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
-          base: ""
-          head: ${{ github.ref_name }}
+          base: ${{ github.event.pull_request.base.sha }}
+          head: ${{ github.event.pull_request.head.sha }}
           extra_args: --results=verified,unknown
 
       - name: 🔄 Init Cache Default
