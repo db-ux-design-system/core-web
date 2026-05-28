@@ -53,7 +53,6 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 export type DBTabItemDefaultState = {
 	internalActive: boolean | undefined;
 	internalTabIndex: number;
-	getCurrentTabIndex: () => number;
 	_resizeObserver: ResizeObserver | null | undefined;
 	_ariaSelectedListener: { fn: (event: any) => void } | null;
 	handleClick: (event: any) => void;

@@ -31,11 +31,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		initialized: false,
 		internalActive: false,
 		internalTabIndex: -1,
-		getCurrentTabIndex(): number {
-			return props.tabIndex !== undefined
-				? Number(props.tabIndex)
-				: state.internalTabIndex;
-		},
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
@@ -80,7 +75,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onMount(() => {
 		state.internalActive = getBoolean(props.active) || false;
-		state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
+		state.internalTabIndex =
+			props.tabIndex !== undefined
+				? Number(props.tabIndex)
+				: getBoolean(props.active)
+					? 0
+					: -1;
 
 		if (typeof window !== 'undefined') {
 			const setupObserverAndCheck = () => {
@@ -147,9 +147,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 	onUpdate(() => {
 		if (props.active !== undefined) {
 			state.internalActive = getBoolean(props.active) || false;
-			state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
+			if (props.tabIndex === undefined) {
+				state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
+			}
 		}
 	}, [props.active]);
+
+	// Sync tabIndex from prop
+	onUpdate(() => {
+		if (props.tabIndex !== undefined) {
+			state.internalTabIndex = Number(props.tabIndex);
+		}
+	}, [props.tabIndex]);
 
 	// Manually sync DOM attributes
 	onUpdate(() => {
@@ -176,7 +185,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			aria-selected={getBooleanAsString(state.internalActive)}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={state.getCurrentTabIndex()}
+			tabIndex={state.internalTabIndex}
 			id={props.id}
 			data-active={state.internalActive}
 			data-value={props.value}
@@ -200,7 +209,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				{props.children}
 			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
-				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
+				<DBTooltip placement="bottom">{state.tooltipText}</DBTooltip>
 			</Show>
 		</button>
 	);
