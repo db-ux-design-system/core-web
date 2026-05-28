@@ -11,9 +11,7 @@ We also provide more information about specific components. This information is 
 ## Install
 
 ```shell
-npm install @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
-# or
-pnpm install @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations
+pnpm add @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations --save-dev
 ```
 
 ## Styling Dependencies
@@ -23,7 +21,7 @@ pnpm install @db-ux/wc-core-components @db-ux/core-components @db-ux/core-founda
 If you're using Vite, you can use the [`@db-ux/core-vite-plugin`](https://www.npmjs.com/package/@db-ux/core-vite-plugin) which simplifies the CSS setup to a single import.
 
 ```shell
-npm install @db-ux/core-vite-plugin --save-dev
+pnpm add @db-ux/core-vite-plugin --save-dev
 ```
 
 Add the plugin to your `vite.config.ts`:
@@ -51,7 +49,7 @@ Then import the plugin in your CSS file:
 We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
 
 ```shell
-npm install @db-ux/core-postcss-plugin --save-dev
+pnpm add @db-ux/core-postcss-plugin --save-dev
 ```
 
 Configure it in `vite.config.ts`:
@@ -177,7 +175,7 @@ To validate correct usage of DB UX Design System tokens in your CSS/SCSS, use th
 ### Installation
 
 ```shell
-npm install stylelint @db-ux/core-stylelint --save-dev
+pnpm add stylelint @db-ux/core-stylelint --save-dev
 ```
 
 ### Setup
