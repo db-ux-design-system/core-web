@@ -9,15 +9,15 @@ export type FigmaLinkProps = {
 };
 
 const linkProps: Record<string, FigmaProp> = {
-	text: { type: 'textContent', key: '✏️ Text' },
+	text: { type: 'textContent', key: 'Text' },
 	content: {
 		type: 'enum',
-		key: '💻 Content',
+		key: 'Content',
 		value: { Internal: 'internal', External: 'external' }
 	},
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Adaptive: 'adaptive', Brand: 'brand' }
 	},
 	size: {
@@ -25,7 +25,8 @@ const linkProps: Record<string, FigmaProp> = {
 		key: 'Size',
 		value: { '(Def) Medium': 'medium', Small: 'small' }
 	},
-	disabled: { type: 'boolean', key: 'Disabled' }
+	disabled: { type: 'boolean', key: 'Disabled' },
+	showIcon: { type: 'boolean', key: 'Show Icon' }
 };
 
 export const links: FigmaCodeConnect = {
