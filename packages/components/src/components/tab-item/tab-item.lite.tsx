@@ -142,6 +142,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	onUpdate(() => {
 		if (props.active !== undefined) {
 			state.internalActive = getBoolean(props.active) || false;
+			state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
 		}
 	}, [props.active]);
 
