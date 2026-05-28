@@ -56,7 +56,7 @@ jobs:
           echo "email=$(git log -1 --format='%ae' HEAD)" >> $GITHUB_OUTPUT
 
       - name: 🚘 Auto-commit fixes
-        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'github-actions[bot]@users.noreply.github.com') }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
@@ -67,7 +67,7 @@ jobs:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⚠️ Skip auto-commit (bot triggered fixes again)
-        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && contains(steps.commit_author.outputs.email, 'users.noreply.github.com') }}
+        if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && contains(steps.commit_author.outputs.email, 'github-actions[bot]@users.noreply.github.com') }}
         run: |
           echo "⚠️ Last commit was by a bot (${{ steps.commit_author.outputs.email }}). Skipping auto-commit to prevent loop."
           exit 1
