@@ -29,8 +29,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	const state = useStore<DBTabItemState>({
 		initialized: false,
-		internalActive: false,
-		internalTabIndex: -1,
+		_active: false,
+		_tabIndex: -1,
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
@@ -70,8 +70,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 	});
 
 	onMount(() => {
-		state.internalActive = getBoolean(props.active) || false;
-		state.internalTabIndex =
+		state._active = getBoolean(props.active) || false;
+		state._tabIndex =
 			props.tabIndex !== undefined
 				? Number(props.tabIndex)
 				: getBoolean(props.active)
@@ -113,12 +113,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 		if (_ref) {
 			const listener = (event: any) => {
-				state.internalActive = event.detail.selected;
+				state._active = event.detail.selected;
 				if (props.tabIndex === undefined) {
 					if (event.detail.tabIndex !== undefined) {
-						state.internalTabIndex = event.detail.tabIndex;
+						state._tabIndex = event.detail.tabIndex;
 					} else {
-						state.internalTabIndex = event.detail.selected ? 0 : -1;
+						state._tabIndex = event.detail.selected ? 0 : -1;
 					}
 				}
 			};
@@ -139,9 +139,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Update internal active state when the active prop changes
 	onUpdate(() => {
 		if (props.active !== undefined) {
-			state.internalActive = getBoolean(props.active) || false;
+			state._active = getBoolean(props.active) || false;
 			if (props.tabIndex === undefined) {
-				state.internalTabIndex = getBoolean(props.active) ? 0 : -1;
+				state._tabIndex = getBoolean(props.active) ? 0 : -1;
 			}
 		}
 	}, [props.active]);
@@ -149,7 +149,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Sync tabIndex from prop
 	onUpdate(() => {
 		if (props.tabIndex !== undefined) {
-			state.internalTabIndex = Number(props.tabIndex);
+			state._tabIndex = Number(props.tabIndex);
 		}
 	}, [props.tabIndex]);
 
@@ -175,12 +175,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 			class={cls('db-tab-item', props.className)}
 			// suppresses native browser tooltips inherited from parent elements
 			title=""
-			aria-selected={getBooleanAsString(state.internalActive)}
+			aria-selected={getBooleanAsString(state._active)}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={state.internalTabIndex}
+			tabIndex={state._tabIndex}
 			id={props.id}
-			data-active={state.internalActive}
+			data-active={state._active}
 			data-value={props.value}
 			data-icon={props.iconLeading ?? props.icon}
 			data-show-icon={getBooleanAsString(
