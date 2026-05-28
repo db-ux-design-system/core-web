@@ -53,12 +53,14 @@
 				@extend %icon;
 
 				margin-inline-end: 0;
+				flex-shrink: 0;
 			}
 		}
 
 		&[data-icon-trailing]:not([data-show-icon-trailing="false"]) {
 			&::after {
 				margin-inline-start: 0;
+				flex-shrink: 0;
 			}
 		}
 	}
@@ -74,6 +76,7 @@
 	}
 
 	[data-orientation="vertical"] & .db-tab-label {
+		display: block;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
