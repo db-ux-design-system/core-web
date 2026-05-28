@@ -163,7 +163,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	});
+	}, [_ref, state.isTruncated]);
 
 	return (
 		<button
