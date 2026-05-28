@@ -154,13 +154,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Manually sync DOM attributes
 	onUpdate(() => {
 		if (_ref) {
-			const isDisabled = getBoolean(props.disabled);
-			const disabledStr = isDisabled ? 'true' : 'false';
-
-			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
-				_ref?.setAttribute('aria-disabled', disabledStr);
-			}
-
 			if (!state.isTruncated) {
 				if (_ref.hasAttribute('data-has-tooltip')) {
 					_ref.removeAttribute('data-has-tooltip');
