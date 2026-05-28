@@ -448,7 +448,7 @@ Generates:
 ```js
 const _iconLeadingValue = ((r) =>
 	r && r[0]?.type === "CODE" ? r[0].code : undefined)(
-	instance.getInstanceSwap(_findKey("Show Icon Leading"))?.executeTemplate()
+	instance.getInstanceSwap(_findKey("🔄 Icon Leading"))?.executeTemplate()
 		?.example
 );
 let iconLeading = "";
