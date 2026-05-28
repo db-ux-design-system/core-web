@@ -13,7 +13,7 @@ export type FigmaTooltipProps = {
 };
 
 const tooltipProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Label' },
+	label: { type: 'textContent', key: 'Label' },
 	emphasis: {
 		type: 'enum',
 		key: 'Emphasis',
@@ -52,7 +52,7 @@ const tooltipProps: Record<string, FigmaProp> = {
 	delay: {
 		type: 'enum',
 		key: 'Delay',
-		value: { '(Def) None': 'none', Slow: 'slow', Fast: 'fast' }
+		value: { None: 'none', Slow: 'slow', Fast: 'fast' }
 	},
 	gap: { type: 'boolean', key: 'Gap' }
 };
