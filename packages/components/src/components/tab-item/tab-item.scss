@@ -9,7 +9,7 @@
 .db-tab-item {
 	position: relative;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-	padding: variables.$db-spacing-fixed-xs;
+	padding: variables.$db-spacing-responsive-xs;
 	overflow: visible;
 	align-items: center;
 	justify-content: center;
@@ -84,18 +84,6 @@
 
 	@extend %db-puls;
 	@include helpers.display(flex);
-
-	[data-density="functional"] & {
-		padding: variables.$db-spacing-fixed-2xs;
-
-		@extend %db-overwrite-font-size-sm;
-	}
-
-	[data-density="expressive"] & {
-		padding: variables.$db-spacing-fixed-sm;
-
-		@extend %db-overwrite-font-size-lg;
-	}
 
 	&::after {
 		inline-size: 0;
