@@ -183,7 +183,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					: 'false'
 			}
 			aria-controls={props.ariaControls}
-			disabled={getBoolean(props.disabled) ? true : undefined}
+			disabled={getBoolean(props.disabled, 'disabled')}
 			tabIndex={state.getCurrentTabIndex()}
 			id={props.id}
 			data-active={
