@@ -5,12 +5,6 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/db-puls";
 
-db-tab-item,
-dbtabitem {
-	display: contents;
-	vertical-align: top; // fallback if display: contents fails: prevents baseline gap
-}
-
 .db-tab-item {
 	position: relative;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
