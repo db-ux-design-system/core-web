@@ -1,4 +1,4 @@
-﻿# How to Connect Figma Components
+# How to Connect Figma Components
 
 This guide explains how to connect Figma components to code components using [Figma Code Connect](https://www.figma.com/developers/api#code-connect) and [Mitosis](https://github.com/BuilderIO/mitosis).
 
