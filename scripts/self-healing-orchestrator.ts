@@ -1,30 +1,29 @@
-/**
- * Self-Healing CI Orchestrator
- *
- * Runs lint, test, and check:format in parallel, attempts auto-fixes on failure,
- * and exits with a code indicating the result for the GitHub Actions workflow.
- *
- * Exit codes:
- *   0 - All checks passed
- *   1 - Checks failed, fixes did not produce changes (unfixable)
- *   2 - Checks failed, fixes produced file changes
- */
+// Self-Healing CI Orchestrator
+//
+// Runs lint, test, and check:format in parallel, attempts auto-fixes on failure,
+// and exits with a code indicating the result for the GitHub Actions workflow.
+//
+// Exit codes:
+//   0 - All checks passed
+//   1 - Checks failed, fixes did not produce changes (unfixable)
+//   2 - Checks failed, fixes produced file changes
 
 import { spawn, type ChildProcess } from 'node:child_process';
 import path from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 // ─── Interfaces ──────────────────────────────────────────────────────────────
 
-export type FixCommand = {
+export type Command = {
 	command: string;
 	args: string[];
 };
 
 export type CheckConfig = {
 	name: string;
-	checkCommand: string;
-	fixCommands: FixCommand[];
+	checkCommand: Command;
+	fixCommands: Command[];
 };
 
 export type CheckResult = {
@@ -52,36 +51,188 @@ export const totalTimeoutMs = 300_000; // 300 seconds total
 
 export const checkFixMap: CheckConfig[] = [
 	{
-		name: 'lint',
-		checkCommand: 'pnpm run lint',
+		name: 'lint:xo',
+		checkCommand: { command: 'pnpm', args: ['run', 'lint:xo', '--quiet'] },
 		fixCommands: [
-			{ command: 'pnpm', args: ['run', 'lint:xo', '--', '--fix'] },
-			{ command: 'pnpm', args: ['run', 'lint:stylelint', '--', '--fix'] },
+			{ command: 'pnpm', args: ['run', 'lint:xo', '--fix', '--quiet'] }
+		]
+	},
+	{
+		name: 'lint:stylelint',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['run', 'lint:stylelint', '--quiet']
+		},
+		fixCommands: [
 			{
 				command: 'pnpm',
-				args: ['run', 'lint:markdownlint', '--', '--fix']
+				args: ['run', 'lint:stylelint', '--fix', '--quiet']
 			}
 		]
 	},
 	{
-		name: 'test',
-		checkCommand: 'pnpm run test',
+		name: 'lint:markdownlint',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['run', 'lint:markdownlint', '--quiet']
+		},
+		fixCommands: [
+			{
+				command: 'pnpm',
+				args: ['run', 'lint:markdownlint', '--fix', '--quiet']
+			}
+		]
+	},
+	{
+		name: 'lint:codespell',
+		checkCommand: { command: 'pnpm', args: ['run', 'lint:codespell'] }, // Cspell already has --quiet in the script
 		fixCommands: []
 	},
 	{
+		name: 'lint:jscpd',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['run', 'lint:jscpd', '--silent']
+		},
+		fixCommands: []
+	},
+	{
+		name: 'lint:package-json',
+		checkCommand: { command: 'pnpm', args: ['run', 'lint:package-json'] },
+		fixCommands: []
+	},
+	{
+		name: 'test:scripts',
+		checkCommand: {
+			command: 'pnpm',
+			args: [
+				'--filter',
+				'scripts',
+				'run',
+				'test:scripts',
+				'--reporter=dot'
+			]
+		},
+		fixCommands: []
+	},
+	{
+		name: 'test:agent-cli',
+		checkCommand: {
+			command: 'pnpm',
+			args: [
+				'--filter',
+				'@db-ux/agent-cli',
+				'run',
+				'test',
+				'--reporter=dot'
+			]
+		},
+		fixCommands: [
+			{
+				command: 'pnpm',
+				args: ['--filter', '@db-ux/agent-cli', 'run', 'test:update']
+			}
+		]
+	},
+	{
+		name: 'test:components',
+		checkCommand: {
+			command: 'pnpm',
+			args: [
+				'--filter',
+				'@db-ux/core-components',
+				'run',
+				'test',
+				'--reporter=dot'
+			]
+		},
+		fixCommands: []
+	},
+	{
+		name: 'test:eslint-plugin',
+		checkCommand: {
+			command: 'pnpm',
+			args: [
+				'--filter',
+				'@db-ux/core-eslint-plugin',
+				'run',
+				'test',
+				'--reporter=dot'
+			]
+		},
+		fixCommands: [
+			{
+				command: 'pnpm',
+				args: [
+					'--filter',
+					'@db-ux/core-eslint-plugin',
+					'run',
+					'test:update'
+				]
+			}
+		]
+	},
+	{
+		name: 'test:mcp-server',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['--filter', '@db-ux/mcp-server', 'run', 'test']
+		},
+		fixCommands: []
+	},
+	{
+		name: 'test:migration',
+		checkCommand: {
+			command: 'pnpm',
+			args: [
+				'--filter',
+				'@db-ux/core-migration',
+				'run',
+				'test',
+				'--reporter=dot'
+			]
+		},
+		fixCommands: []
+	},
+	{
+		name: 'test:postcss-plugin',
+		checkCommand: {
+			command: 'pnpm',
+			args: [
+				'--filter',
+				'@db-ux/core-postcss-plugin',
+				'run',
+				'test',
+				'--reporter=dot'
+			]
+		},
+		fixCommands: [
+			{
+				command: 'pnpm',
+				args: [
+					'--filter',
+					'@db-ux/core-postcss-plugin',
+					'run',
+					'test:update'
+				]
+			}
+		]
+	},
+	{
 		name: 'check:format',
-		checkCommand: 'pnpm run check:format',
+		checkCommand: {
+			command: 'prettier',
+			args: ['--check', '.', '--log-level', 'warn']
+		},
 		fixCommands: []
 	}
 ];
 
-/**
- * Fix command that always runs last, after all other fixers, to ensure
- * prettier formats whatever was changed by lint/markdownlint/stylelint/xo.
- */
-export const finalFixCommand: FixCommand = {
-	command: 'pnpm',
-	args: ['run', 'codestyle']
+// Fix command that always runs last, after all other fixers, to ensure
+// prettier formats whatever was changed by lint/markdownlint/stylelint/xo.
+export const finalFixCommand: Command = {
+	command: 'prettier',
+	args: ['.', '--write', '--log-level', 'warn']
 };
 
 // ─── Logging ─────────────────────────────────────────────────────────────────
@@ -106,10 +257,8 @@ export type CommandExecResult = {
 	timedOut: boolean;
 };
 
-/**
- * Spawns a command and returns a promise that resolves with the exit code.
- * Kills the process if it exceeds the timeout or if the abort signal fires.
- */
+// Spawns a command and returns a promise that resolves with the exit code.
+// Kills the process if it exceeds the timeout or if the abort signal fires.
 export async function spawnCommand(
 	command: string,
 	args: string[],
@@ -117,8 +266,8 @@ export async function spawnCommand(
 ): Promise<CommandExecResult> {
 	return new Promise((resolve) => {
 		let child: ChildProcess;
-		let timedOut = false;
-		let settled = false;
+		let hasTimedOut = false;
+		let hasSettled = false;
 
 		try {
 			child = spawn(command, args, {
@@ -131,22 +280,22 @@ export async function spawnCommand(
 		}
 
 		const timeout = setTimeout(() => {
-			timedOut = true;
+			hasTimedOut = true;
 			child.kill('SIGTERM');
 			// Force kill after 5s if SIGTERM doesn't work
 			setTimeout(() => {
-				if (!settled) {
+				if (!hasSettled) {
 					child.kill('SIGKILL');
 				}
 			}, 5000);
 		}, options.timeoutMs);
 
 		const onAbort = () => {
-			if (!settled) {
-				timedOut = true;
+			if (!hasSettled) {
+				hasTimedOut = true;
 				child.kill('SIGTERM');
 				setTimeout(() => {
-					if (!settled) {
+					if (!hasSettled) {
 						child.kill('SIGKILL');
 					}
 				}, 5000);
@@ -160,7 +309,7 @@ export async function spawnCommand(
 		}
 
 		child.on('error', () => {
-			settled = true;
+			hasSettled = true;
 			clearTimeout(timeout);
 			if (options.abortSignal) {
 				options.abortSignal.removeEventListener('abort', onAbort);
@@ -170,22 +319,20 @@ export async function spawnCommand(
 		});
 
 		child.on('close', (code) => {
-			settled = true;
+			hasSettled = true;
 			clearTimeout(timeout);
 			if (options.abortSignal) {
 				options.abortSignal.removeEventListener('abort', onAbort);
 			}
 
-			resolve({ exitCode: code ?? undefined, timedOut });
+			resolve({ exitCode: code ?? undefined, timedOut: hasTimedOut });
 		});
 	});
 }
 
 // ─── Check Execution ─────────────────────────────────────────────────────────
 
-/**
- * Runs a single check command and returns the result.
- */
+// Runs a single check command and returns the result.
 async function runCheck(
 	config: CheckConfig,
 	spawn_: typeof spawnCommand,
@@ -195,14 +342,14 @@ async function runCheck(
 	const start = Date.now();
 	log(`🔍 Running check: ${config.name}`);
 
-	const parts = config.checkCommand.split(' ');
-	const command = parts[0];
-	const args = parts.slice(1);
-
-	const result = await spawn_(command, args, {
-		timeoutMs: cmdTimeout,
-		abortSignal
-	});
+	const result = await spawn_(
+		config.checkCommand.command,
+		config.checkCommand.args,
+		{
+			timeoutMs: cmdTimeout,
+			abortSignal
+		}
+	);
 
 	const duration = Date.now() - start;
 
@@ -228,10 +375,8 @@ async function runCheck(
 
 // ─── Fix Execution ───────────────────────────────────────────────────────────
 
-/**
- * Runs fix commands sequentially for a failed check.
- * Returns the list of fix command descriptions that were applied.
- */
+// Runs fix commands sequentially for a failed check.
+// Returns the list of fix command descriptions that were applied.
 /* eslint-disable no-await-in-loop -- Sequential execution is intentional to avoid file conflicts */
 async function runFixes(
 	config: CheckConfig,
@@ -272,10 +417,8 @@ async function runFixes(
 
 // ─── Git Status ──────────────────────────────────────────────────────────────
 
-/**
- * Detects file changes via `git status --porcelain`.
- * Returns true if there are uncommitted changes.
- */
+// Detects file changes via `git status --porcelain`.
+// Returns true if there are uncommitted changes.
 export async function detectFileChanges(): Promise<boolean> {
 	return new Promise((resolve) => {
 		let output = '';
@@ -320,11 +463,24 @@ export async function detectFileChanges(): Promise<boolean> {
 	});
 }
 
-// ─── Orchestrator ────────────────────────────────────────────────────────────
+// ─── Summary Table ───────────────────────────────────────────────────────────
 
-/**
- * Main orchestration function. Exported for testability.
- */
+function printSummaryTable(results: CheckResult[]): void {
+	const rows = results.map((r) => ({
+		check: r.name,
+		status: r.timedOut
+			? '⏱️ timeout'
+			: r.passed
+				? '✅ passed'
+				: '❌ failed',
+		durationSeconds: Math.round(r.duration / 1000)
+	}));
+	console.table(rows);
+}
+
+// ─── Orchestrator ─────────────────────────────────────────────────────────────
+
+// Main orchestration function. Exported for testability.
 export async function orchestrate(
 	checks: CheckConfig[] = checkFixMap,
 	options?: {
@@ -377,6 +533,7 @@ export async function orchestrate(
 
 		if (failedChecks.length === 0) {
 			log('✅ All checks passed!');
+			printSummaryTable(results);
 			return {
 				exitCode: exitAllPassed,
 				checkResults: results,
@@ -385,7 +542,7 @@ export async function orchestrate(
 			};
 		}
 
-		// Phase 2: Run fixes sequentially for failed checks (in order: lint, test, check:format)
+		// Phase 2: Run fixes sequentially for failed checks
 		// then always run prettier last to format whatever was changed by other fixers
 		log(`🔧 ${failedChecks.length} check(s) failed. Running fixes...`);
 		const allFixesApplied: string[] = [];
@@ -419,10 +576,11 @@ export async function orchestrate(
 
 		// Phase 3: Detect file changes
 		const detectChanges = options?.detectChangesFn ?? detectFileChanges;
-		const filesChanged = await detectChanges();
+		const hasFilesChanged = await detectChanges();
 
-		if (!filesChanged) {
+		if (!hasFilesChanged) {
 			log('❌ Fixes did not produce file changes. Exiting with code 1.');
+			printSummaryTable(results);
 			return {
 				exitCode: exitUnfixable,
 				checkResults: results,
@@ -432,6 +590,7 @@ export async function orchestrate(
 		}
 
 		log('✅ Fixes applied. Exiting with code 2.');
+		printSummaryTable(results);
 		return {
 			exitCode: exitFixedWithChanges,
 			checkResults: results,

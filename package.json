@@ -57,7 +57,7 @@
     "lint": "run-p lint:*",
     "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "pnpm tsx scripts/lint-packages.ts publint",
-    "lint:codespell": "cspell . --config .config/cspell.config.ts",
+    "lint:codespell": "cspell . --config .config/cspell.config.ts --quiet",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:package-json": "npmPkgJsonLint packages/*/package.json --configFile .config/.npmpackagejsonlintrc.json",

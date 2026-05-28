@@ -6,6 +6,7 @@ import {
 	finalFixCommand,
 	orchestrate,
 	type CheckConfig,
+	type Command,
 	type CommandExecResult
 } from '../self-healing-orchestrator.js';
 
@@ -29,12 +30,9 @@ const timeout = async (): Promise<CommandExecResult> => ({
 const noChanges = async () => false;
 const hasChanges = async () => true;
 
-const check = (
-	name: string,
-	fixCommands: CheckConfig['fixCommands'] = []
-): CheckConfig => ({
+const check = (name: string, fixCommands: Command[] = []): CheckConfig => ({
 	name,
-	checkCommand: `pnpm run ${name}`,
+	checkCommand: { command: 'pnpm', args: ['run', name] },
 	fixCommands
 });
 
