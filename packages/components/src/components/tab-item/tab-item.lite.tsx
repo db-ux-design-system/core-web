@@ -8,7 +8,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
 import type { DBTabItemProps, DBTabItemState } from './model';
 
@@ -173,24 +173,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 			class={cls('db-tab-item', props.className)}
 			// suppresses native browser tooltips inherited from parent elements
 			title=""
-			aria-selected={
-				(
-					props.active !== undefined
-						? getBoolean(props.active)
-						: state.internalActive
-				)
-					? 'true'
-					: 'false'
-			}
+			aria-selected={getBooleanAsString(state.internalActive)}
 			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
 			tabIndex={state.getCurrentTabIndex()}
 			id={props.id}
-			data-active={
-				props.active !== undefined
-					? getBoolean(props.active)
-					: state.internalActive
-			}
+			data-active={state.internalActive}
 			data-value={props.value}
 			onClick={(event) => state.handleClick(event)}>
 			{/* wrapper needed for accurate width measurement via refs */}
