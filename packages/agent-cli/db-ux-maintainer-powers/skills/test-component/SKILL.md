@@ -30,7 +30,6 @@ requires:
 tools:
     - db-ux/list_components
     - db-ux/get_component_props
-    - db-ux/verify_migrated_code
 
 outputs:
     - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"
@@ -165,7 +164,6 @@ cd packages/components && npx playwright test src/components/{component_slug}/{c
 
 ### Step 5: Final Validation
 
-1. Call `verify_migrated_code` to ensure build integrity.
 2. Run full test suite: `pnpm run test` (confirm no regressions).
 3. Report results to user:
     - Number of tests: passed / failed / skipped.
@@ -179,7 +177,6 @@ cd packages/components && npx playwright test src/components/{component_slug}/{c
 - [ ] All failures classified
 - [ ] Fixes applied per failure type
 - [ ] Tests pass after fix
-- [ ] `verify_migrated_code` passes
 - [ ] No regressions in full test suite
 - [ ] All snapshot updates justified with explicit explanation
 

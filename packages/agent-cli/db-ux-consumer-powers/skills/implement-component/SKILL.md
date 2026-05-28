@@ -36,7 +36,6 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/get_design_tokens
     - db-ux/docs_search
-    - db-ux/verify_migrated_code
 
 outputs:
     - "{target_file}"
@@ -44,7 +43,7 @@ outputs:
 on_error:
     max_retries: 3
     actions:
-        - log: "Call verify_migrated_code and fix reported errors before retrying."
+        - log: "Re-check component props and example code via MCP tools before retrying."
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
@@ -52,7 +51,7 @@ on_error:
 
 ## Pre-Conditions
 
-1. `context/architecture.md` is loaded in context.
+1. `context/guidelines.md` is loaded in context.
 2. MCP server (`@db-ux/mcp-server`) is connected.
 3. The target `{framework}` is known.
 4. The `@db-ux/*-core-components` package is installed in the project.
@@ -108,10 +107,6 @@ For each component identified:
     - No inline styles with magic numbers
     - No custom ARIA workarounds when DB UX handles accessibility
 
-### Phase 7: Verify
-
-1. Call `verify_migrated_code`. Fix errors. Repeat up to 3 times.
-
 ## Output Checklist
 
 - [ ] `list_components` called — all components confirmed to exist
@@ -122,7 +117,6 @@ For each component identified:
 - [ ] No native HTML interactive elements where DB UX components exist
 - [ ] No invented icon names
 - [ ] No inline styles with magic numbers
-- [ ] `verify_migrated_code` passes without errors
 
 ## Red Flags & Anti-Rationalizations
 

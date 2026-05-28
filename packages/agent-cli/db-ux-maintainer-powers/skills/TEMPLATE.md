@@ -23,7 +23,6 @@ requires:
 tools:
     - db-ux/list_components
     - db-ux/get_component_props
-    - db-ux/verify_migrated_code
 
 outputs:
     - "packages/components/src/components/{component_slug}/"
@@ -31,7 +30,7 @@ outputs:
 on_error:
     max_retries: 3
     actions:
-        - log: "Call the verify_migrated_code MCP tool and fix reported errors before retrying."
+        - log: "Review the shell output (lint/test/build) and fix reported errors before retrying."
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
@@ -70,7 +69,6 @@ on_error:
 2. Ensure no duplicated logic.
 3. Run tests again. ALL MUST STILL PASS.
 4. Run `pnpm run build` to verify compilation.
-5. Call `verify_migrated_code` via MCP. Fix any errors. Repeat up to 3 times.
 
 ### Phase 4: Governance (Mandatory for Code Changes)
 
@@ -100,7 +98,6 @@ on_error:
 - [ ] `index.ts` re-exports component (NO type re-exports from `./model`)
 - [ ] All tests pass
 - [ ] `pnpm run build` passes
-- [ ] `verify_migrated_code` passes without errors
 - [ ] `pnpm run build-outputs` passes
 - [ ] Changeset created with appropriate bump type
 

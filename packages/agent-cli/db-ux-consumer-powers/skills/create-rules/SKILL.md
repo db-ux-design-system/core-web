@@ -43,7 +43,7 @@ on_error:
 
 ## Pre-Conditions
 
-1. `context/architecture.md` is loaded in context.
+1. `context/guidelines.md` is loaded in context.
 2. MCP server (`@db-ux/mcp-server`) is connected.
 3. The project at `{project_root}` has a `package.json`.
 

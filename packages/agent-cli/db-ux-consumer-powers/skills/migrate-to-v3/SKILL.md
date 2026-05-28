@@ -34,7 +34,6 @@ tools:
     - db-ux/list_icons
     - db-ux/get_design_tokens
     - db-ux/docs_search
-    - db-ux/verify_migrated_code
 
 outputs:
     - "{file_path}"
@@ -50,7 +49,7 @@ on_error:
 
 ## Pre-Conditions
 
-1. `context/architecture.md` is loaded in context.
+1. `context/guidelines.md` is loaded in context.
 2. MCP server (`@db-ux/mcp-server`) is connected.
 3. The source file at `{file_path}` is accessible.
 4. The target `{framework}` is known.
@@ -99,7 +98,7 @@ on_error:
 
 1. Call `scan_v2_migration({file_path})` again.
 2. If findings remain → address each individually, then re-scan.
-3. Call `verify_migrated_code`. Fix errors. Repeat up to 3 times.
+3. Repeat until the scan returns zero findings.
 
 ## Output Checklist
 
@@ -112,7 +111,6 @@ on_error:
 - [ ] All `cmp-*`, `elm-*`, `rea-*` classes removed
 - [ ] All `db-color-*` tokens replaced with v3 equivalents
 - [ ] Re-scan confirms zero remaining v2 patterns
-- [ ] `verify_migrated_code` passes without errors
 
 ## Red Flags & Anti-Rationalizations
 

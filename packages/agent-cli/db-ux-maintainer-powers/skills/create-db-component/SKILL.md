@@ -35,7 +35,6 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/list_icons
     - db-ux/docs_search
-    - db-ux/verify_migrated_code
     - figma-desktop/figma_get_file
     - figma-desktop/figma_get_node
     - figma-desktop/figma_get_styles
@@ -47,8 +46,7 @@ outputs:
 on_error:
     max_retries: 3
     actions:
-        - run: db-ux/verify_migrated_code
-        - log: "Fix errors reported by verify_migrated_code before retrying."
+        - log: "Review the shell output (lint/test/build) and fix reported errors before retrying."
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
@@ -319,10 +317,9 @@ export default function {component_name}Showcase(props: PatternhubProps) {
 
 1. Run `pnpm run test`. ALL MUST PASS.
 2. Run `pnpm run build`. MUST SUCCEED.
-3. Call `verify_migrated_code`. Fix errors. Repeat up to 3 times.
-4. Cross-check SCSS against Phase 0.2 mapping.
-5. Verify docs/, examples/, showcase/ are complete.
-6. Run tests again after refactor.
+3. Cross-check SCSS against Phase 0.2 mapping.
+4. Verify docs/, examples/, showcase/ are complete.
+5. Run tests again after refactor.
 
 ### Step 4: Agent Examples
 

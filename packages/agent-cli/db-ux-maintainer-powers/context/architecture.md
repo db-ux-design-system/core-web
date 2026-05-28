@@ -158,8 +158,6 @@ pnpm run test     # All Playwright tests pass (screenshots + a11y)
 pnpm run lint     # No linting violations
 ```
 
-After generating or modifying code, ALWAYS call `verify_migrated_code` (via MCP) to run typecheck, lint, and build verification. Fix errors. Repeat up to 3 times.
-
 ### Testing Rules (Invariant)
 
 - Use Playwright Component Testing (`@playwright/experimental-ct-react`).
@@ -176,17 +174,16 @@ After generating or modifying code, ALWAYS call `verify_migrated_code` (via MCP)
 
 These patterns are NEVER acceptable. Violations trigger immediate rejection.
 
-| Pattern                                      | Violation                                                     |
-| -------------------------------------------- | ------------------------------------------------------------- |
-| Native HTML elements (`<button>`, `<input>`) | Use DB UX components (`DBButton`, `DBInput`) when they exist. |
-| Inline styles with pixel values              | Use `var(--db-*)` tokens exclusively.                         |
-| Invented icon names                          | ALWAYS call `list_icons` via MCP first.                       |
-| Editing files in `output/`                   | Output is GENERATED. Edit `.lite.tsx` source only.            |
-| Skipping `model.ts`                          | Props MUST be typed. No exceptions.                           |
-| Export from `./<name>.lite`                  | Export from `./<name>` WITHOUT `.lite` suffix.                |
-| Re-exporting `./model` in `index.ts`         | Do NOT re-export model.                                       |
-| Missing `@use` in SCSS                       | Line 1 MUST be the variables import.                          |
-| Hardcoded colors/spacings in SCSS            | EVERY value MUST be a token.                                  |
-| Guessing Figma specs                         | ABORT without Figma URL. Query MCP.                           |
-| Skipping screenshot tests                    | `toHaveScreenshot()` is mandatory for ALL variants.           |
-| Missing `propOverrides?.id`                  | Use `props.id ?? props.propOverrides?.id`. Always.            |
+| Pattern                              | Violation                                           |
+| ------------------------------------ | --------------------------------------------------- |
+| Inline styles with pixel values      | Use `var(--db-*)` tokens exclusively.               |
+| Invented icon names                  | ALWAYS call `list_icons` via MCP first.             |
+| Editing files in `output/`           | Output is GENERATED. Edit `.lite.tsx` source only.  |
+| Skipping `model.ts`                  | Props MUST be typed. No exceptions.                 |
+| Export from `./<name>.lite`          | Export from `./<name>` WITHOUT `.lite` suffix.      |
+| Re-exporting `./model` in `index.ts` | Do NOT re-export model.                             |
+| Missing `@use` in SCSS               | Line 1 MUST be the variables import.                |
+| Hardcoded colors/spacings in SCSS    | EVERY value MUST be a token.                        |
+| Guessing Figma specs                 | ABORT without Figma URL. Query MCP.                 |
+| Skipping screenshot tests            | `toHaveScreenshot()` is mandatory for ALL variants. |
+| Missing `propOverrides?.id`          | Use `props.id ?? props.propOverrides?.id`. Always.  |

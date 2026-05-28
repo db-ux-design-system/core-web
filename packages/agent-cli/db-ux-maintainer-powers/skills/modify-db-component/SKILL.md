@@ -38,7 +38,6 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/list_icons
     - db-ux/docs_search
-    - db-ux/verify_migrated_code
 
 outputs:
     - "packages/components/src/components/{component_slug}/model.ts"
@@ -49,8 +48,7 @@ outputs:
 on_error:
     max_retries: 3
     actions:
-        - run: db-ux/verify_migrated_code
-        - log: "Fix errors reported by verify_migrated_code before retrying."
+        - log: "Review the shell output (lint/test/build) and fix reported errors before retrying."
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
@@ -152,9 +150,8 @@ If the change introduces a new visual variant or feature:
 
 1. Run `pnpm run build`. MUST SUCCEED.
 2. Run `pnpm run test`. ALL MUST PASS.
-3. Call `verify_migrated_code`. Fix errors. Repeat up to 3 times.
-4. Verify no hardcoded values in SCSS.
-5. Verify all new variants have screenshot tests.
+3. Verify no hardcoded values in SCSS.
+4. Verify all new variants have screenshot tests.
 
 ### Step 4: Governance and Framework Outputs
 
@@ -188,7 +185,6 @@ If the change introduces a new visual variant or feature:
 - [ ] Examples/showcase updated (if new visual feature)
 - [ ] `pnpm run build` passes
 - [ ] `pnpm run test` passes
-- [ ] `verify_migrated_code` passes
 - [ ] `pnpm run build-outputs` passes
 - [ ] Changeset created via `pnpm changeset`
 

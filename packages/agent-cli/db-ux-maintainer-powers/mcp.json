@@ -12,7 +12,6 @@
 				"list_design_token_categories",
 				"list_icons",
 				"docs_search",
-				"verify_migrated_code",
 				"list_migration_guides",
 				"get_migration_guide",
 				"scan_v2_migration",
