@@ -1,5 +1,23 @@
 # @db-ux/react-core-components
 
+## 4.9.1
+
+### Patch Changes
+
+- fix(switch): use `2lh` unit and add `min-inline-size` to prevent track from shrinking - [see commit 78c9fde](https://github.com/db-ux-design-system/core-web/commit/78c9fde67d9677f61eaa41761a088b9c1a9773a1)
+
+- fix(notification): remove empty grid gap when icon is hidden - [see commit 96f94c6](https://github.com/db-ux-design-system/core-web/commit/96f94c651391f014e2d073402c2700b524ccbf5e)
+
+## 4.9.0
+
+### Minor Changes
+
+- refactor: allow text and children to be used together in components - [see commit cecb833](https://github.com/db-ux-design-system/core-web/commit/cecb833e2d2b2d15b47f9ac1ed57ccf1040374f0):
+    - feat: add `text` property to components that previously only supported children for their label, like e.g. `DBTooltip`.
+    - refactor: allow `text` property and components children to be used in parallel in components. Previously, `text` and children were mutually exclusive.
+    - refactor(`DBRadio`, `DBCheckbox`, `DBSwitch`): `label` and `children` can now be used together. Previously they were mutually exclusive.
+    - fix(`DBTag`): changed render order of `children` and `text` to align with design (children rendered before text).
+
 ## 4.8.0
 
 ### Minor Changes
@@ -189,7 +207,7 @@ _version bump_
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
 
-                - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+                        - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 
