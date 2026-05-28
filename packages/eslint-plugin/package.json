@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-eslint-plugin",
-  "version": "4.9.0",
+  "version": "4.9.1",
   "type": "module",
   "description": "ESLint plugin for DB UX Design System components",
   "repository": {
@@ -47,9 +47,9 @@
     "@typescript-eslint/parser": "8.59.4",
     "@typescript-eslint/rule-tester": "8.59.4",
     "cpr": "3.0.1",
-    "npm-run-all2": "8.0.4",
+    "npm-run-all2": "9.0.1",
     "typescript": "5.9.3",
-    "vitest": "4.1.6",
+    "vitest": "4.1.7",
     "vue-eslint-parser": "10.4.0"
   },
   "publishConfig": {
