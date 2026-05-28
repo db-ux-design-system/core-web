@@ -151,7 +151,7 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 import { DBButton } from "@db-ux/react-core-components";
 
 <DBButton variant="brand" onClick={() => console.log("clicked")}>
-	Click me
+	Add item to cart
 </DBButton>;
 ```
 

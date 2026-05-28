@@ -137,7 +137,7 @@ import { DBButton } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBButton variant="brand">Click me</DBButton>
+	<DBButton variant="brand">Add item to cart</DBButton>
 </template>
 ```
 

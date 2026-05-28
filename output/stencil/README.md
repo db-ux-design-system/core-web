@@ -137,7 +137,7 @@ defineCustomElements();
 Then use them anywhere in your HTML:
 
 ```html
-<db-button variant="brand">Click me</db-button>
+<db-button variant="brand">Add item to cart</db-button>
 ```
 
 ## VSCode autocomplete
