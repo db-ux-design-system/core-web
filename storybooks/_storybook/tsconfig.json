@@ -26,5 +26,5 @@
 			"@components/src/*": ["../../output/react/src/*"]
 		}
 	},
-	"include": ["vite.config.ts"]
+	"include": ["vite.config.ts", "src"]
 }
