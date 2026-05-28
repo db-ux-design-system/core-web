@@ -110,11 +110,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 
 		state.initialized = true;
-	});
 
-	// Register aria-selected-changed listener once ref is available
-	onUpdate(() => {
-		if (_ref && state.initialized && !state._ariaSelectedListener) {
+		if (_ref) {
 			const listener = (event: any) => {
 				state.internalActive = event.detail.selected;
 				if (props.tabIndex === undefined) {
@@ -128,7 +125,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			state._ariaSelectedListener = { fn: listener };
 			_ref.addEventListener('aria-selected-changed', listener);
 		}
-	}, [_ref, state.initialized]);
+	});
 
 	// Disconnect the observer
 	onUnMount(() => {
