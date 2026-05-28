@@ -240,21 +240,21 @@ export default function AccordionFigmaLite(props: FigmaAccordionProps) {
 
 ## Property Types
 
-| Type                       | Description                                                                                                                           |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `string`                   | Direct text input — `instance.getString(key)`                                                                                         |
-| `boolean`                  | Figma `False/True` toggle — `instance.getEnum(key, { 'False': false, 'True': true })` — shorthand for the common boolean enum pattern |
-| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                                                   |
-| `children`                 | Named slot content — `instance.getSlot(key)`                                                                                          |
-| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                                                           |
-| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`                                          |
-| `iconSwap`                 | Icon instance swap rendered as plain string attribute — `getInstanceSwap(key)?.executeTemplate().example`                             |
-| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                                                |
-| `connectedText`            | Text from the first code-connected child with that property key                                                                       |
-| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                                            |
-| `conditionalProp`          | Attribute only rendered when a boolean guard prop is true (e.g. icons guarded by `showIcon`)                                          |
-| `connectedInstances`       | All direct code-connected child instances rendered as children                                                                        |
-| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                                                          |
+| Type                       | Description                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `string`                   | Direct text input — `instance.getString(key)`                                                                                                   |
+| `boolean`                  | Figma `False/True` toggle — `instance.getEnum(key, { 'False': false, 'True': true })` — shorthand for the common boolean enum pattern           |
+| `enum`                     | Maps Figma dropdown/toggle values to code values — `instance.getEnum(key, { ... })`                                                             |
+| `children`                 | Named slot content — `instance.getSlot(key)`                                                                                                    |
+| `textContent`              | Text rendered as children or screenreader label — `instance.getString(key)`                                                                     |
+| `instance`                 | Nested component instance swap — `instance.getInstanceSwap(key)?.executeTemplate()?.example`                                                    |
+| `iconSwap`                 | Icon instance swap rendered as plain string attribute — extracts `CODE` section `.code` from `getInstanceSwap(key)?.executeTemplate()?.example` |
+| `nestedText`               | Text from a named nested instance — `instance.findInstance(layerName)?.getString(key)`                                                          |
+| `connectedText`            | Text from the first code-connected child with that property key                                                                                 |
+| `validationMessage`        | Message text mapped to `message`/`invalidMessage`/`validMessage` based on a condition prop                                                      |
+| `conditionalProp`          | Single icon swap rendered as a named attribute only when a boolean Figma property (`guardKey`) is `'True'`                                      |
+| `connectedInstances`       | All direct code-connected child instances rendered as children                                                                                  |
+| `nestedConnectedInstances` | Code-connected children filtered by component name, traversing helper layers                                                                    |
 
 ### `boolean` — Figma False/True toggles
 
@@ -296,6 +296,23 @@ icon: {
 	value: {
 		Small: { type: "iconSwap", key: "🔄 Icon Small" },
 		"(Def) Medium": { type: "iconSwap", key: "🔄 Icon Medium" }
+	}
+}
+```
+
+The generator guards each swap with `typeof instance.getPropertyValue(swapKey) === 'string'` — so if the swap doesn't exist on a particular variant (e.g. a text-only badge), the prop is safely omitted.
+
+When the icon should only appear if a Figma boolean property is `'True'` (e.g. `Show Icon Leading`), add `guardKey`:
+
+```typescript
+// ✅ Size-based icon swap, only emitted when 'Show Icon Leading' === 'True'
+iconLeading: {
+	type: "enum",
+	key: "Size",
+	guardKey: "Show Icon Leading",
+	value: {
+		Small: { type: "iconSwap", key: "🔄 Icon Leading Small" },
+		"(Def) Medium": { type: "iconSwap", key: "🔄 Icon Leading Medium" }
 	}
 }
 ```
@@ -413,15 +430,15 @@ Injected as `<DBCheckbox${message} ...>`. When empty, nothing is rendered.
 
 > **Do not add the prop to the lite file** — the plugin injects it automatically.
 
-### `conditionalProp` — attribute only rendered when a guard is true
+### `conditionalProp` — single icon swap with guard and attribute name remap
 
-Use for icon props that should only appear when their `showIcon*` boolean is true:
+Use when a single icon swap should only appear when a Figma boolean property is `'True'`, **and** the attribute name differs from the prop name (e.g. `iconLeading` prop → `icon` attribute):
 
 ```typescript
 iconLeading: {
 	type: "conditionalProp",
 	key: "🔄 Icon Leading",
-	guardProp: "showIconLeading",
+	guardKey: "Show Icon Leading",
 	attrName: "icon"
 }
 ```
@@ -429,14 +446,23 @@ iconLeading: {
 Generates:
 
 ```js
-const _iconLeadingValue = instance
-	.getInstanceSwap("🔄 Icon Leading")
-	?.executeTemplate().example;
+const _iconLeadingValue = ((r) =>
+	r && r[0]?.type === "CODE" ? r[0].code : undefined)(
+	instance.getInstanceSwap(_findKey("🔄 Icon Leading"))?.executeTemplate()
+		?.example
+);
 let iconLeading = "";
-if (showIconLeading) {
+if (
+	(instance.getPropertyValue(_findKey("Show Icon Leading")) === true ||
+		instance.getPropertyValue(_findKey("Show Icon Leading")) === "True") &&
+	_iconLeadingValue !== undefined &&
+	_iconLeadingValue !== null
+) {
 	iconLeading = `\n\t\ticon="${_iconLeadingValue}"`;
 }
 ```
+
+If the attribute name matches the prop name and you need size-based swap selection, use `enum` + `guardKey` instead (see [`iconSwap`](#iconswap--icon-instance-swaps)).
 
 > **Do not add the prop to the lite file** — the plugin injects it automatically.
 
