@@ -104,8 +104,8 @@ export type FigmaNestedConnectedInstancesProp = {
 };
 
 /**
- * Wraps an iconSwap prop so it is only rendered when a boolean Figma property is 'True'.
- * Generates: let icon = ''; if (getPropertyValue(guardKey) === 'True') { icon = `\n\t\ticon="${iconLeading}"` }
+ * Wraps an iconSwap prop so it is only rendered when a boolean Figma property is enabled.
+ * Generates: let icon = ''; if (getPropertyValue(guardKey) === true || getPropertyValue(guardKey) === 'True') { icon = `\n\t\ticon="${iconLeading}"` }
  */
 export type FigmaConditionalProp = {
 	type: 'conditionalProp';
