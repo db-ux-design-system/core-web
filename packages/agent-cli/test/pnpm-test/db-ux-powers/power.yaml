@@ -1,6 +1,0 @@
-name: "db-ux-consumer"
-description: "Official AI integration for consuming the DB UX Design System v3 in applications."
-skills:
-  - skills/migrate-to-v3/SKILL.md
-  - skills/implement-component/SKILL.md
-  - skills/create-rules/SKILL.md

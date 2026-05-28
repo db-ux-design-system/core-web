@@ -1,7 +1,26 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { describe, expect, test } from 'vitest';
+import { afterAll, describe, expect, test } from 'vitest';
 import { action } from '../src';
+
+const TEST_DIRS = ['test/frontend', 'test/pnpm-test'];
+const GENERATED_ARTIFACTS = [
+	'db-ux-powers',
+	'.github',
+	'.amazonq',
+	'.cursorrules'
+];
+
+const cleanup = () => {
+	for (const dir of TEST_DIRS) {
+		for (const artifact of GENERATED_ARTIFACTS) {
+			const target = path.resolve(dir, artifact);
+			if (fs.existsSync(target)) {
+				fs.rmSync(target, { recursive: true, force: true });
+			}
+		}
+	}
+};
 
 const checkExpectations = (copilotFile: string, amazonqFile: string) => {
 	const copilotContent = fs.readFileSync(copilotFile).toString();
@@ -13,6 +32,10 @@ const checkExpectations = (copilotFile: string, amazonqFile: string) => {
 };
 
 describe('default', () => {
+	afterAll(() => {
+		cleanup();
+	});
+
 	test('check if docs are created', async () => {
 		const copilotFile = path.resolve(
 			'test/frontend/.github/copilot-instructions.md'
