@@ -35,15 +35,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		tooltipText: '',
 		_resizeObserver: null,
 		_ariaSelectedListener: null,
-		handleClick: (event: any) => {
-			if (event && event.preventDefault) {
-				event.preventDefault();
-			}
-
-			if (!getBoolean(props.disabled) && props.onClick) {
-				props.onClick(event);
-			}
-		},
 		checkTruncation: () => {
 			if (_labelRef) {
 				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
@@ -195,7 +186,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 			)}
 			data-icon-trailing={props.iconTrailing}
 			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event) => {
+				if (props.onClick) {
+					props.onClick(event);
+				}
+			}}>
 			{/* wrapper needed for accurate width measurement via refs */}
 			<span ref={_labelRef} class="db-tab-label">
 				<Show when={props.label}>{props.label}</Show>
