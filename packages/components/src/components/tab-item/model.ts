@@ -31,10 +31,6 @@ export type DBTabItemDefaultProps = {
 	 */
 	ariaControls?: string;
 	/**
-	 * Accessible label for the tab button, useful for icon-only tabs.
-	 */
-	ariaLabel?: string;
-	/**
 	 * Semantic value of this tab item. When set, onIndexChange will emit this value
 	 * (via the onValueChange event) instead of only the numeric index.
 	 * Useful for form binding (e.g. Angular FormControl, React useState).
