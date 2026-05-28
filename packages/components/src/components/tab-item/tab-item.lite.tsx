@@ -197,7 +197,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
 			onClick={(event) => state.handleClick(event)}>
 			{/* wrapper needed for accurate width measurement via refs */}
-			<span ref={_labelRef} class="db-tab-label" title="">
+			<span ref={_labelRef} class="db-tab-label">
 				<Show when={props.label}>{props.label}</Show>
 				{props.children}
 			</span>
