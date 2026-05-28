@@ -5,18 +5,14 @@ export type FigmaNotificationProps = {
 	semantic?: string;
 	headline?: string;
 	showHeadline?: boolean;
-	showIcon?: boolean;
-	closeable?: boolean;
-	linkVariant?: string;
 	text?: string;
 	link?: string;
-	timestamp?: string;
 };
 
 const notificationProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: {
 			Docked: 'docked',
 			Standalone: 'standalone',
@@ -34,18 +30,10 @@ const notificationProps: Record<string, FigmaProp> = {
 			Warning: 'warning'
 		}
 	},
-	headline: { type: 'string', key: '✏️ Headline' },
+	headline: { type: 'string', key: 'Headline' },
 	showHeadline: { type: 'boolean', key: 'Show Headline' },
-	showIcon: { type: 'boolean', key: 'Show Icon' },
-	closeable: { type: 'boolean', key: 'Closeable' },
-	linkVariant: {
-		type: 'enum',
-		key: '(Def) Link Variant: Block',
-		value: { False: 'block', True: 'inline' }
-	},
-	text: { type: 'textContent', key: '✏️ Text' },
-	link: { type: 'string', key: '✏️ Link' },
-	timestamp: { type: 'string', key: '✏️ Timestamp' }
+	text: { type: 'textContent', key: 'Text' },
+	link: { type: 'string', key: 'Link' }
 };
 
 export const notifications: FigmaCodeConnect = {

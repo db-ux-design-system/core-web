@@ -28,8 +28,7 @@ const sectionProps: Record<string, FigmaProp> = {
 		}
 	},
 	_children: {
-		type: 'children',
-		key: 'Children'
+		type: 'nestedConnectedInstances'
 	}
 };
 

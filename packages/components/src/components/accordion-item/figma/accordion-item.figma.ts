@@ -8,8 +8,8 @@ export type FigmaAccordionItemProps = {
 };
 
 const accordionItemProps: Record<string, FigmaProp> = {
-	headlinePlain: { type: 'string', key: '✏️ Headline' },
-	content: { type: 'textContent', key: '✏️ Text' },
+	headlinePlain: { type: 'string', key: 'Headline' },
+	content: { type: 'textContent', key: 'Text' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	defaultOpen: { type: 'boolean', key: 'Open' }
 };
