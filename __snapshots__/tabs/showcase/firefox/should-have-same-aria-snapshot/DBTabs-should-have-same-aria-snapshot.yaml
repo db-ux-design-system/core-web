@@ -113,7 +113,7 @@
   - tabpanel "Home": Home content
   - text: "with trailing icons:"
   - tablist:
-    - tab "Notifications" [selected]
+    - tab "Notifications"
     - tab "Info"
     - tab "Settings"
   - tabpanel "Notifications": Notifications content
