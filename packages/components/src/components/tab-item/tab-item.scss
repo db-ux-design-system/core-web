@@ -15,7 +15,6 @@
 	justify-content: center;
 	white-space: nowrap;
 	border-radius: variables.$db-border-radius-sm;
-	cursor: pointer;
 	font: inherit;
 	color: inherit;
 	flex-shrink: 0;
@@ -120,11 +119,12 @@
 		cursor: initial;
 	}
 
-	// TODO: Investigate why helpers.hover mixin doesn't work here
-	// Other components use @include helpers.hover directly, but for tab-item
-	// it doesn't apply the hover effect. Using native pseudo-classes as workaround.
+	// Cannot use @include helpers.hover here because the mixin EXCLUDES
+	// [tabindex="-1"] elements. Tab items use roving tabindex where inactive
+	// tabs have tabindex="-1" but should still show hover effects.
 	&:not(:disabled):hover,
 	&:not(:disabled):focus-visible {
+		cursor: pointer;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 }
