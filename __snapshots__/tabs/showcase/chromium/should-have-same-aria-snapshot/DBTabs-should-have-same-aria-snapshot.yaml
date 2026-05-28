@@ -100,7 +100,7 @@
   - link "Truncation"
   - text: "truncated tab label (vertical only):"
   - tablist:
-    - tab "Very long tab label that gets truncated"
+    - tab "Very long tab label that gets truncated" [selected]
     - tab "Another long label"
     - tab "Short"
   - tabpanel "Very long tab label that gets truncated": Tab Panel 1
