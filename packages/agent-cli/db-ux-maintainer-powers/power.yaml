@@ -1,4 +1,4 @@
-name: db-ux-powers
+name: db-ux-maintainer
 version: 1.0.0
 description: "AI development automation bundle for the DB UX Design System. Enforces Mitosis architecture, design tokens, Figma-driven specs, and strict TDD testing via dual MCP integration."
 author: DB UX Core Team

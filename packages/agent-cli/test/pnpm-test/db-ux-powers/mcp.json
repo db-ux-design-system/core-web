@@ -15,15 +15,8 @@
 				"verify_migrated_code",
 				"list_migration_guides",
 				"get_migration_guide",
-				"scan_v2_migration",
-				"list_visuals",
-				"get_visual_reference"
+				"scan_v2_migration"
 			]
-		},
-		"figma-desktop": {
-			"type": "sse",
-			"url": "http://127.0.0.1:3845/mcp",
-			"timeout": 60
 		}
 	}
 }

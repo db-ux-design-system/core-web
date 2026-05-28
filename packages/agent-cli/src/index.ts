@@ -8,11 +8,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const copyPowers = (rootPath: string) => {
-	const source = path.resolve(__dirname, '..', 'db-ux-powers');
+	const source = path.resolve(__dirname, '..', 'db-ux-consumer-powers');
 	const destination = path.resolve(rootPath, 'db-ux-powers');
 
 	if (!fs.existsSync(source)) {
-		console.error('db-ux-powers source folder not found at', source);
+		console.error(
+			'db-ux-consumer-powers source folder not found at',
+			source
+		);
 		return;
 	}
 

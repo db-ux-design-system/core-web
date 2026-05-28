@@ -1,4 +1,4 @@
-# db-ux-powers
+# db-ux-maintainer-powers
 
 > Local AI automation bundle for the DB UX Design System.
 
@@ -16,7 +16,7 @@ A [Kiro Power](https://www.promptz.dev/powers) / [Superpowers](https://github.co
 ## Structure
 
 ```text
-db-ux-powers/
+db-ux-maintainer-powers/
 ├── power.yaml          # Manifest (steering, skills, mcp)
 ├── POWER.md            # Human-readable scope & invariants
 ├── mcp.json            # MCP server configuration

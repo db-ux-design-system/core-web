@@ -14,7 +14,8 @@
   "main": "build/index.js",
   "files": [
     "CHANGELOG.md",
-    "build"
+    "build",
+    "db-ux-consumer-powers"
   ],
   "scripts": {
     "build": "node esbuild.js",

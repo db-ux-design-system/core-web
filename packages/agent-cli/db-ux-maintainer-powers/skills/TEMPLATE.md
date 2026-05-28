@@ -83,6 +83,7 @@ on_error:
     This MUST succeed. It generates Angular, React, Vue, and Stencil outputs from the `.lite.tsx` source.
 
 2. Create a changeset:
+
     ```bash
     pnpm changeset
     ```
