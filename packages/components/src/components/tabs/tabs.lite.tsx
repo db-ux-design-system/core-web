@@ -319,8 +319,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 		initTabList() {
 			if (_ref) {
-				const container: HTMLElement | null =
-					_ref.querySelector('[role="tablist"]');
+				const container =
+					state._getScrollContainer() as HTMLElement | null;
 
 				if (container) {
 					container.setAttribute(
@@ -367,7 +367,7 @@ export default function DBTabs(props: DBTabsProps) {
 			const currentIndex =
 				activeIndex !== undefined ? activeIndex : state.activeTabIndex;
 			if (_ref) {
-				const tabListEl = _ref.querySelector('[role="tablist"]');
+				const tabListEl = state._getScrollContainer();
 				const panels = Array.from<HTMLElement>(
 					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 				).filter((panel) => panel.closest('.db-tabs') === _ref);
@@ -497,7 +497,7 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 
 		if (_ref) {
-			const tabListEl = _ref.querySelector('[role="tablist"]');
+			const tabListEl = state._getScrollContainer();
 
 			if (tabListEl) {
 				const observer = new MutationObserver(() => {
