@@ -6,49 +6,83 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
-
-> **Note:** Find more information about specific components [here](https://design-system.deutschebahn.com/core-web/review/main)
+We also provide more information about specific components. This information is in our [Design System documentation](https://design-system.deutschebahn.com/documentation/get-started/).
 
 ## Install
 
 ```shell
-npm i @db-ux/react-core-components
+pnpm add @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations --save-dev
 ```
-
-> **Note:** This will install [`@db-ux/core-foundations`](https://www.npmjs.com/package/@db-ux/core-foundations) and [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
-Import the styles in scss or css. Based on your technology the file names could be different.
+### Vite Plugin
 
-- Default (relative): points to `../assets`
-- Rollup (rollup): points to `@db-ux/core-foundations/assets`
-- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
+If you're using Vite, you can use the [`@db-ux/core-vite-plugin`](https://www.npmjs.com/package/@db-ux/core-vite-plugin) which simplifies the CSS setup to a single import.
 
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss
-// index.scss
-@forward "@db-ux/core-foundations/build/styles/theme/rollup"; // Palette tokens
-@forward "@db-ux/core-foundations/build/styles/bundle"; // Semantic tokens
-@forward "@db-ux/core-foundations/build/styles/icons/rollup"; // Icon fonts
-@forward "@db-ux/core-components/build/styles/rollup"; // Component styling
+```shell
+pnpm add @db-ux/core-vite-plugin --save-dev
 ```
 
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
+Add the plugin to your `vite.config.ts`:
 
-```tsx
-// main.tsx — order matters!
-import "@db-ux/core-foundations/build/styles/theme/rollup.css"; // Palette tokens
-import "@db-ux/core-foundations/build/styles/bundle.css"; // Semantic tokens
-import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Icon fonts
-import "@db-ux/core-components/build/styles/rollup.css"; // Component styling
+```ts
+import { defineConfig } from "vite";
+import dbUxPlugin from "@db-ux/core-vite-plugin";
+
+export default defineConfig({
+	plugins: [dbUxPlugin()]
+});
 ```
 
-</details>
+Then import the plugin in your CSS file:
+
+```css
+/* index.css */
+@import "@db-ux/core-vite-plugin/index.css";
+```
+
+📖 **[Learn more about `@db-ux/core-vite-plugin` node package](https://www.npmjs.com/package/@db-ux/core-vite-plugin)**
+
+### PostCSS Plugin (recommended)
+
+We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
+
+```shell
+pnpm add @db-ux/core-postcss-plugin --save-dev
+```
+
+Configure it in `vite.config.ts`:
+
+```ts
+import { defineConfig } from "vite";
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
+
+export default defineConfig({
+	css: {
+		transformer: "postcss", // required for Vite 8+ (default: 'lightningcss')
+		postcss: {
+			plugins: [dbUxFlatten()]
+		}
+	}
+});
+```
+
+📖 **[Learn more about `@db-ux/core-postcss-plugin` node package](https://www.npmjs.com/package/@db-ux/core-postcss-plugin)**
+
+### Manual CSS Setup
+
+If you're not using Vite or prefer manual setup, import the styles in your main CSS file:
+
+```css
+/* index.css */
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
+
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+```
 
 ### Vite 8
 
@@ -86,8 +120,6 @@ export default defineConfig({
 });
 ```
 
-> **Note:** The `@db-ux/core-components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
-
 ### Next 16
 
 Starting with Next 16, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `next.config.ts` like this:
@@ -116,10 +148,11 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 ## Usage
 
 ```tsx
-import { DBButton } from '@db-ux/react-core-components';
-...
-<DBButton icon="x_placeholder" onClick={()=>{console.log("Test")}}>Test</DBButton>
-...
+import { DBButton } from "@db-ux/react-core-components";
+
+<DBButton variant="brand" onClick={() => console.log("clicked")}>
+	Add item to cart
+</DBButton>;
 ```
 
 ## AI Agent Support
@@ -136,7 +169,7 @@ npx @db-ux/agent-cli
 
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
-📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+📖 **[Learn more about `@db-ux/agent-cli` node package](https://www.npmjs.com/package/@db-ux/agent-cli)**
 
 ## Code Quality
 
@@ -145,7 +178,7 @@ To enforce correct usage of DB UX Design System components in your React project
 ### Installation
 
 ```shell
-npm install eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-dev
+pnpm add eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-dev
 ```
 
 ### Setup
@@ -175,6 +208,35 @@ export default [
 ```
 
 📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
+
+## Stylelint
+
+To validate correct usage of DB UX Design System tokens in your CSS/SCSS, use the [`@db-ux/core-stylelint`](https://www.npmjs.com/package/@db-ux/core-stylelint) plugin.
+
+### Installation
+
+```shell
+pnpm add stylelint @db-ux/core-stylelint --save-dev
+```
+
+### Setup
+
+Add to your `.stylelintrc.json`:
+
+```json
+{
+	"plugins": ["@db-ux/core-stylelint"],
+	"rules": {
+		"db-ux/use-spacings": [true],
+		"db-ux/use-sizing": [true],
+		"db-ux/use-border-width": [true],
+		"db-ux/use-border-radius": [true],
+		"db-ux/use-border-color": [true]
+	}
+}
+```
+
+📖 **[Learn more about `@db-ux/core-stylelint` node package](https://www.npmjs.com/package/@db-ux/core-stylelint)**
 
 ## Deutsche Bahn brand
 
