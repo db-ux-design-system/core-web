@@ -23,7 +23,11 @@ export default function TabsControlled() {
 	return (
 		<Fragment>
 			<div class="fit-content-container">
-				<div data-sb-replace="Use external buttons to control active tab">
+				<div
+					data-sb-replace="Use external buttons to control active tab"
+					class="db-stack"
+					data-gap="fixed-xs"
+					data-direction="row">
 					<DBButton
 						variant="outlined"
 						onClick={() => (state.activeTabIndex = 0)}>
