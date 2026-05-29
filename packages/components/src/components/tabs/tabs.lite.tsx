@@ -15,6 +15,17 @@ import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
+const NAVIGATION_KEYS = [
+	'ArrowRight',
+	'ArrowDown',
+	'ArrowLeft',
+	'ArrowUp',
+	'Home',
+	'End',
+	'Enter',
+	' '
+] as const;
+
 useDefaultProps<DBTabsProps>({
 	tabItemWidth: 'auto',
 	tabItemAlignment: 'start',
@@ -129,18 +140,8 @@ export default function DBTabs(props: DBTabsProps) {
 			if (!_ref) return;
 
 			const key = event.key;
-			const navigationKeys = [
-				'ArrowRight',
-				'ArrowDown',
-				'ArrowLeft',
-				'ArrowUp',
-				'Home',
-				'End',
-				'Enter',
-				' '
-			];
 
-			if (!navigationKeys.includes(key)) {
+			if (!NAVIGATION_KEYS.includes(key)) {
 				return;
 			}
 
