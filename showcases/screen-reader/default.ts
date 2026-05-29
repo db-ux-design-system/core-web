@@ -80,6 +80,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 		return result;
 	});
 
+export const STABILIZATION_DELAY = 1000;
+
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
 	retry?: number,
