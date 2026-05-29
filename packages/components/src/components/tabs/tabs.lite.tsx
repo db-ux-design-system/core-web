@@ -459,7 +459,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// 2. Support deep linking: URL hash takes precedence over initial index
 		if (typeof window !== 'undefined' && window.location.hash) {
 			const hashId = window.location.hash.substring(1);
-			const name = state._name;
+			const name = 'tabs-' + (props.label || state._generatedName);
 			const prefix = `${name}-tab-`;
 
 			if (hashId.startsWith(prefix)) {
