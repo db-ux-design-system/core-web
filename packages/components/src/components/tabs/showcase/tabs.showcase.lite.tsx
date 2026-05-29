@@ -7,13 +7,13 @@ import TabsDensity from '../examples/density.example.lite';
 import TabsDisabled from '../examples/disabled.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
 import TabsIcons from '../examples/icons.example.lite';
+import TabsInitialSelection from '../examples/initialSelection.example.lite';
 import TabsNested from '../examples/nested.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
 import TabsSlotWithBadge from '../examples/slotWithBadge.example.lite';
 import TabItemWidth from '../examples/tabItemWidth.example.lite';
 import TabsTruncation from '../examples/truncation.example.lite';
-import TabsUrlSync from '../examples/urlSync.example.lite';
 
 export default function TabsShowcase(props: PatternhubProps) {
 	return (
@@ -62,7 +62,7 @@ export default function TabsShowcase(props: PatternhubProps) {
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="URL Sync">
 				<CardWrapperShowcase>
-					<TabsUrlSync />
+					<TabsInitialSelection />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Nested Tabs">

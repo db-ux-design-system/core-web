@@ -7,20 +7,24 @@ import DBTabs from '../tabs.lite';
 import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
-	storybookTitle: 'URL Sync',
-	storybookNames: ['initialSelectedIndex via URL', 'value-based URL sync'],
+	storybookTitle: 'Initial Selection',
+	storybookNames: [
+		'Pre-selected via initialSelectedIndex',
+		'Pre-selected with value props'
+	],
 	storybookArgTypes: StorybookTabsArgTypes
 });
 
-export default function TabsUrlSync() {
+export default function TabsInitialSelection() {
 	return (
 		<Fragment>
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
-					3rd tab pre-selected via initialSelectedIndex with a value
-					parsed from URL parameter:
+					3rd tab pre-selected via initialSelectedIndex (also supports
+					deep linking via URL hash, e.g.
+					#tabs-initial-selection-tab-1):
 				</DBInfotext>
-				<DBTabs initialSelectedIndex={2} label="url-sync-index">
+				<DBTabs initialSelectedIndex={2} label="initial-selection">
 					<DBTabList>
 						<DBTabItem>Overview</DBTabItem>
 						<DBTabItem>Details</DBTabItem>
@@ -35,7 +39,7 @@ export default function TabsUrlSync() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					2nd tab pre-selected with value props and 'onValueChange':
 				</DBInfotext>
-				<DBTabs initialSelectedIndex={1} label="url-sync-value">
+				<DBTabs initialSelectedIndex={1} label="value-selection">
 					<DBTabList>
 						<DBTabItem value="overview">Overview</DBTabItem>
 						<DBTabItem value="details">Details</DBTabItem>
