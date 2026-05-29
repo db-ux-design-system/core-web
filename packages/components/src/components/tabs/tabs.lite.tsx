@@ -8,23 +8,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import { cls, NAVIGATION_KEYS, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
-
-const NAVIGATION_KEYS = [
-	'ArrowRight',
-	'ArrowDown',
-	'ArrowLeft',
-	'ArrowUp',
-	'Home',
-	'End',
-	'Enter',
-	' '
-] as const;
 
 useDefaultProps<DBTabsProps>({
 	tabItemWidth: 'auto',
