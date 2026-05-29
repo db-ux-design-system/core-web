@@ -97,7 +97,7 @@ const testProps = () => {
 			window.location.hash = '#tabs-my-deep-link-tab-1';
 		});
 		const component = await mount(
-			<DBTabs name="my-deep-link">
+			<DBTabs label="my-deep-link">
 				<DBTabList>
 					<DBTabItem>Tab 0</DBTabItem>
 					<DBTabItem>Tab 1</DBTabItem>
