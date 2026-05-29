@@ -36,6 +36,9 @@ export default function DBTabs(props: DBTabsProps) {
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
 		_pendingRafId: null,
 		_scrollListener: null,
+		// Cached DOM references – updated by initTabs, used by syncSelection for fast access
+		_tabButtons: [] as HTMLElement[],
+		_tabPanels: [] as HTMLElement[],
 
 		_id: 'tabs-base-id',
 		_name: 'tabs-base-name',
@@ -49,20 +52,15 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		activateTab(index: number) {
-			// Prevent activating a disabled tab
-			if (_ref) {
-				const tabList = _ref.querySelector('[role="tablist"]');
-				if (tabList) {
-					const tabs = Array.from(
-						tabList.querySelectorAll('[role="tab"]')
-					);
-					const tab = tabs[index] as HTMLButtonElement | undefined;
-					if (
-						tab?.disabled ||
-						tab?.getAttribute('aria-disabled') === 'true'
-					) {
-						return;
-					}
+			// Prevent activating a disabled tab using cached references
+			const buttons = state._tabButtons;
+			if (buttons.length > 0) {
+				const tab = buttons[index] as HTMLButtonElement | undefined;
+				if (
+					tab?.disabled ||
+					tab?.getAttribute('aria-disabled') === 'true'
+				) {
+					return;
 				}
 			}
 			if (state.activeTabIndex !== index) {
@@ -72,16 +70,41 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 				// Emit value of the newly active tab item if value props are set
 				if (props.onValueChange) {
-					const tabList = _ref?.querySelector('[role="tablist"]');
-					const tabs = tabList
-						? Array.from(tabList.querySelectorAll('[role="tab"]'))
-						: [];
-					const value = (tabs[index] as HTMLElement | undefined)
+					const value = (buttons[index] as HTMLElement | undefined)
 						?.dataset?.['value'];
 					props.onValueChange(value);
 				}
-				state.initTabs(index);
+				state.syncSelection(index);
 			}
+		},
+
+		// Lightweight method that only toggles selection state on cached references.
+		// Does NOT re-query the DOM or set up IDs/ARIA – that's initTabs' job.
+		syncSelection(activeIndex?: number) {
+			const currentIndex =
+				activeIndex !== undefined ? activeIndex : state.activeTabIndex;
+			const buttons = state._tabButtons;
+			const panels = state._tabPanels;
+
+			buttons.forEach((button, index) => {
+				const isSelected = currentIndex === index;
+				button.dispatchEvent(
+					new CustomEvent('aria-selected-changed', {
+						detail: {
+							selected: isSelected,
+							tabIndex:
+								currentIndex === index ||
+								(currentIndex === -1 && index === 0)
+									? 0
+									: -1
+						}
+					})
+				);
+			});
+
+			panels.forEach((panel, index) => {
+				panel.hidden = currentIndex !== index;
+			});
 		},
 
 		handleClick(event: any) {
@@ -95,11 +118,7 @@ export default function DBTabs(props: DBTabsProps) {
 			const button = target.closest('[role="tab"]');
 			if (!button || !_ref) return;
 
-			const tabList = _ref?.querySelector('[role="tablist"]');
-			if (!tabList) return;
-			const buttons = Array.from(
-				tabList.querySelectorAll('[role="tab"]')
-			);
+			const buttons = state._tabButtons;
 			const index = buttons.indexOf(button as HTMLElement);
 
 			if (index !== -1) {
@@ -127,18 +146,13 @@ export default function DBTabs(props: DBTabsProps) {
 				return;
 			}
 
-			const tabList = _ref.querySelector('[role="tablist"]');
-			if (!tabList) return;
-			const buttons = Array.from(
-				tabList.querySelectorAll('[role="tab"]')
-			);
+			const buttons = state._tabButtons;
+			if (buttons.length === 0) return;
 
 			// find currently focused element within the buttons list
 			let currentIndex = -1;
 			if (typeof document !== 'undefined') {
 				// Traverse Shadow DOM boundaries to find the truly focused element.
-				// document.activeElement only returns the shadow host when focus is inside a Shadow DOM,
-				// so we must walk through each shadowRoot to reach the actual focused element.
 				let activeEl: Element | null = document.activeElement;
 				while (activeEl?.shadowRoot?.activeElement) {
 					activeEl = activeEl.shadowRoot.activeElement;
@@ -260,7 +274,6 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// Detects RTL direction on the scroll container via computed style.
-		// Cached per evaluation cycle – no need for persistent state since it's synchronous.
 		_isRtl(): boolean {
 			const container = state._getScrollContainer();
 			return (
@@ -271,8 +284,6 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// Determines the visibility of scroll buttons based on the container's scroll position.
-		// Uses Math.abs(scrollLeft) because browsers return negative scrollLeft values in RTL layouts
-		// (Chrome, Edge, Firefox all use 0 → negative; Safari historically used reversed positive values).
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			if (!needsScroll) {
@@ -285,15 +296,11 @@ export default function DBTabs(props: DBTabsProps) {
 			const maxScroll = tList.scrollWidth - tList.clientWidth;
 			const tolerance = 2;
 
-			// scrollPos=0 means "at inline-start" in both LTR and RTL
 			state.showScrollStart = scrollPos > tolerance;
 			state.showScrollEnd = scrollPos < maxScroll - tolerance;
 		},
 
 		// Scrolls the tab list container horizontally by a specified distance.
-		// The `toStart` parameter means "scroll towards inline-start" (visually left in LTR, right in RTL).
-		// scrollBy({ left }) always operates in the physical axis, so we must invert the step in RTL
-		// to map the logical direction (start/end) to the correct physical direction.
 		scroll(toStart?: boolean) {
 			const container = state._getScrollContainer();
 			if (!container) {
@@ -304,9 +311,6 @@ export default function DBTabs(props: DBTabsProps) {
 			const isLeft = !!toStart;
 			const isRtl = state._isRtl();
 
-			// Map logical direction (start/end) to physical direction.
-			// In LTR: toStart=true → scroll left (negative), toEnd → scroll right (positive).
-			// In RTL: directions are inverted physically.
 			if (isLeft !== isRtl) {
 				step *= -1;
 			}
@@ -358,9 +362,8 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
-		// Initializes tab items and panels, setting up IDs, ARIA attributes and event listeners
-		// activeIndex parameter allows passing the new index directly, avoiding React stale closure
-		// issues where state.activeTabIndex still holds the old value after setState
+		// Full initialization: queries DOM, caches references, sets up IDs and ARIA attributes.
+		// Only called on mount and when the MutationObserver detects structural changes.
 		initTabs(activeIndex?: number) {
 			const currentIndex =
 				activeIndex !== undefined ? activeIndex : state.activeTabIndex;
@@ -375,6 +378,10 @@ export default function DBTabs(props: DBTabsProps) {
 				const buttons = Array.from<HTMLElement>(
 					tabListEl.querySelectorAll('[role="tab"]')
 				);
+
+				// Cache references for fast access in syncSelection, activateTab, handleClick, handleKeyDown
+				state._tabButtons = buttons;
+				state._tabPanels = panels;
 
 				buttons.forEach((button, index) => {
 					const isSelected = currentIndex === index;

@@ -118,6 +118,9 @@ export type DBTabsDefaultState = {
 	_updateCachedTabs: () => void;
 	initTabList: () => void;
 	initTabs: (activeIndex?: number) => void;
+	syncSelection: (activeIndex?: number) => void;
+	_tabButtons: HTMLElement[];
+	_tabPanels: HTMLElement[];
 	_resizeObserver?: ResizeObserver | null;
 	_observer?: MutationObserver | null;
 	_pendingRafId: number | null;
