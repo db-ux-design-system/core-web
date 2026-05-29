@@ -9,7 +9,8 @@
 .db-tab-item {
 	position: relative;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-	padding: variables.$db-spacing-responsive-xs;
+	padding: variables.$db-spacing-fixed-xs;
+	margin: 0;
 	overflow: visible;
 	align-items: center;
 	justify-content: center;
