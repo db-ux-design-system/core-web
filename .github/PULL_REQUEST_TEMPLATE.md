@@ -1,31 +1,19 @@
 ## Proposed changes
 
-<!-- Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request. If it fixes a bug or resolves a feature request, be sure to link to that issue. -->
-
 resolves # (issue number)
 
-## Types of changes
+## Checklist
 
-<!-- What types of changes does your code introduce?
-_Put an `x` in the boxes that apply_ -->
+### Code Quality
+- [ ] I have reviewed my own code (self-review)
+- [ ] I have reviewed my changes locally with an AI assistant (e.g. GitHub Copilot, Kiro, etc.)
+- [ ] No hardcoded values, magic numbers, or debug code left in
 
-- [ ] Bugfix (non-breaking change that fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Refactoring (improvements to existing components or architectural decisions)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation Update (if none of the other choices apply)
+### Validation
+- [ ] I have added/updated tests that cover my changes
+- [ ] I have tested across all relevant frameworks (React, Angular, Vue) if applicable
 
-<!-- ## Checklist
-
-_Put an `x` in the boxes that apply.
-
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] I have added necessary documentation (if appropriate)
--->
-
-## Further comments
-
-<!-- If this is a relatively large or complex change, kick off the discussion by explaining why you chose the solution you did and what alternatives you considered, etc...
-
-❤️ Thank you!
--->
+### General
+- [ ] My branch is up to date with the target branch
+- [ ] The PR title follows the conventional commits format (e.g. `feat:`, `fix:`, `chore:`)
+- [ ] If architecture, structure, or conventions changed inside a `packages/*` folder, the corresponding `AGENTS.md` has been updated
