@@ -573,7 +573,6 @@ export default function DBTabs(props: DBTabsProps) {
 						<DBTabPanel
 							key={props.label + 'tab-panel' + index}
 							id={state.getPanelId(index)}
-							ariaLabelledby={state.getTabId(index)}
 							content={tab.content}
 							hidden={!state.isIndexActive(index)}>
 							{tab.children}
