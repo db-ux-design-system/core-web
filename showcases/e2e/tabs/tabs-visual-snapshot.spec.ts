@@ -22,6 +22,8 @@ test.describe('DBTabs', () => {
 	getDefaultScreenshotTest({
 		path,
 		preScreenShot,
+		// Increased tolerance due to scroll button visibility timing and
+		// subpixel rendering differences of tab indicators across browsers.
 		ratio: '0.02'
 	});
 });
