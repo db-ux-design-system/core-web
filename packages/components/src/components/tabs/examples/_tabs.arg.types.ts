@@ -10,7 +10,7 @@ export const StorybookTabsArgTypes: Record<string, InputType> = {
 	behavior: { control: 'select', options: ['scrollbar', 'arrows'] },
 	initialSelectedIndex: { control: 'number' },
 	initialSelectedMode: { control: 'select', options: ['auto', 'manually'] },
-	name: { control: 'text' },
+	label: { control: 'text' },
 	tabs: { control: 'object' },
 	arrowScrollDistance: { control: 'number' },
 	id: { control: 'text' },
