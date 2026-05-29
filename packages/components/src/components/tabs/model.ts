@@ -1,12 +1,20 @@
 import type {
+	AlignmentType,
 	GlobalProps,
 	InitializedState,
 	OrientationProps,
-	TabItemAlignmentProps,
 	WidthType
 } from '../../shared/model';
 import type { DBTabItemProps } from '../tab-item/model';
 import type { DBTabPanelProps } from '../tab-panel/model';
+
+export type TabItemAlignmentType = AlignmentType;
+export type TabItemAlignmentProps = {
+	/**
+	 * Define the tab-item alignment in full width
+	 */
+	tabItemAlignment?: TabItemAlignmentType | string;
+};
 
 export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
 export type TabsBehaviorType = (typeof TabsBehaviorList)[number];

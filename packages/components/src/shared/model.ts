@@ -647,14 +647,8 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export const TabItemAlignmentList = ['start', 'center', 'end'] as const;
-export type TabItemAlignmentType = (typeof TabItemAlignmentList)[number];
-export type TabItemAlignmentProps = {
-	/**
-	 * Define the tab-item alignment in full width
-	 */
-	tabItemAlignment?: TabItemAlignmentType | string;
-};
+export const AlignmentList = ['start', 'center', 'end'] as const;
+export type AlignmentType = (typeof AlignmentList)[number];
 
 export type ActiveProps = {
 	/**

@@ -13,16 +13,16 @@ export type StackDirectionType = (typeof StackDirectionList)[number];
 export const StackAlignmentList = [
 	'stretch',
 	'start',
-	'end',
-	'center'
+	'center',
+	'end'
 ] as const;
 export type StackAlignmentType = (typeof StackAlignmentList)[number];
 
 export const StackJustifyContentList = [
 	'space-between',
 	'start',
-	'end',
-	'center'
+	'center',
+	'end'
 ] as const;
 export type StackJustifyContentType = (typeof StackJustifyContentList)[number];
 
