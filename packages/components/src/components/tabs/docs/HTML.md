@@ -24,7 +24,7 @@ For general installation and configuration take a look at the [components](https
 						<input
 							type="radio"
 							id="my-tabs-tab-0"
-							name="my-tabs"
+							label="my-tabs"
 						/>Test 1
 					</label>
 				</li>
@@ -36,7 +36,7 @@ For general installation and configuration take a look at the [components](https
 						<input
 							type="radio"
 							id="my-tabs-tab-1"
-							name="my-tabs"
+							label="my-tabs"
 						/>Test 2
 					</label>
 				</li>
@@ -48,7 +48,7 @@ For general installation and configuration take a look at the [components](https
 						<input
 							type="radio"
 							id="my-tabs-tab-2"
-							name="my-tabs"
+							label="my-tabs"
 						/>Test 3
 					</label>
 				</li>

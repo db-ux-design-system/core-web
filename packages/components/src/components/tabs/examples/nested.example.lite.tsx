@@ -19,7 +19,7 @@ export default function TabsNested() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					Nested Tabs:
 				</DBInfotext>
-				<DBTabs name="outer-tabs">
+				<DBTabs label="outer-tabs">
 					<DBTabList>
 						<DBTabItem>Overview</DBTabItem>
 						<DBTabItem>Details</DBTabItem>
@@ -29,7 +29,7 @@ export default function TabsNested() {
 						<p>Overview content without nested tabs.</p>
 					</DBTabPanel>
 					<DBTabPanel>
-						<DBTabs name="inner-tabs">
+						<DBTabs label="inner-tabs">
 							<DBTabList>
 								<DBTabItem>Sub-Tab A</DBTabItem>
 								<DBTabItem>Sub-Tab B</DBTabItem>

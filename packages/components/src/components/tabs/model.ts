@@ -52,9 +52,9 @@ export type DBTabsDefaultProps = {
 	initialSelectedMode?: TabsInitialSelectedModeType;
 
 	/**
-	 * The name of the tab bar, is required for grouping multiple tabs together. Will overwrite names from children.
+	 * Accessible label for the tab bar (used as aria-label on the tablist).
 	 */
-	name?: string;
+	label?: string;
 
 	/**
 	 * Provide simple tabs with label + text as content

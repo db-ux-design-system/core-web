@@ -20,7 +20,7 @@ export default function TabsUrlSync() {
 					3rd tab pre-selected via initialSelectedIndex with a value
 					parsed from URL parameter:
 				</DBInfotext>
-				<DBTabs initialSelectedIndex={2} name="url-sync-index">
+				<DBTabs initialSelectedIndex={2} label="url-sync-index">
 					<DBTabList>
 						<DBTabItem>Overview</DBTabItem>
 						<DBTabItem>Details</DBTabItem>
@@ -35,7 +35,7 @@ export default function TabsUrlSync() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					2nd tab pre-selected with value props and 'onValueChange':
 				</DBInfotext>
-				<DBTabs initialSelectedIndex={1} name="url-sync-value">
+				<DBTabs initialSelectedIndex={1} label="url-sync-value">
 					<DBTabList>
 						<DBTabItem value="overview">Overview</DBTabItem>
 						<DBTabItem value="details">Details</DBTabItem>

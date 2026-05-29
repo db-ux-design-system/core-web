@@ -42,7 +42,7 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		_name() {
-			return 'tabs-' + (props.name || state._generatedName);
+			return 'tabs-' + (props.label || state._generatedName);
 		},
 
 		getTabId(index: number | string) {
@@ -356,8 +356,8 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 					}
 
-					if (props.name && !container.getAttribute('aria-label')) {
-						container.setAttribute('aria-label', props.name ?? '');
+					if (props.label && !container.getAttribute('aria-label')) {
+						container.setAttribute('aria-label', props.label ?? '');
 					}
 				}
 			}
@@ -459,7 +459,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// 2. Support deep linking: URL hash takes precedence over initial index
 		if (typeof window !== 'undefined' && window.location.hash) {
 			const hashId = window.location.hash.substring(1);
-			const name = props.name ? 'tabs-' + props.name : state._name();
+			const name = props.label ? 'tabs-' + props.label : state._name();
 			const prefix = `${name}-tab-`;
 
 			if (hashId.startsWith(prefix)) {
@@ -554,11 +554,11 @@ export default function DBTabs(props: DBTabsProps) {
 			<Show when={props.tabs}>
 				<DBTabList
 					orientation={props.orientation}
-					ariaLabel={props.name}>
+					ariaLabel={props.label}>
 					<For each={state._cachedTabs}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
-								key={props.name + 'tab-item' + index}
+								key={props.label + 'tab-item' + index}
 								id={state.getTabId(index)}
 								ariaControls={state.getPanelId(index)}
 								active={state.isIndexActive(index)}
@@ -574,7 +574,7 @@ export default function DBTabs(props: DBTabsProps) {
 				<For each={state._cachedTabs}>
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
-							key={props.name + 'tab-panel' + index}
+							key={props.label + 'tab-panel' + index}
 							id={state.getPanelId(index)}
 							ariaLabelledby={state.getTabId(index)}
 							content={tab.content}
