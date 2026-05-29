@@ -19,12 +19,12 @@ export default function DBTabList(props: DBTabListProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tab-list-' + uuid();
+		state._id = props.id || props.propOverrides?.id || 'tab-list-' + uuid();
 	});
 	return (
 		<div
 			ref={_ref}
-			id={state._id}
+			id={state._id ?? props.propOverrides?.id}
 			class={cls('db-tab-list', props.className)}
 			role="tablist"
 			aria-orientation={props.orientation || 'horizontal'}
