@@ -22,27 +22,11 @@ export default function TabsSlotWithBadge() {
 				</DBInfotext>
 				<DBTabs>
 					<DBTabList>
-						<DBTabItem>
-							<span
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: '8px'
-								}}>
-								Messages
-								<DBBadge semantic="informational">134</DBBadge>
-							</span>
+						<DBTabItem label="Messages">
+							<DBBadge semantic="informational">134</DBBadge>
 						</DBTabItem>
-						<DBTabItem>
-							<span
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: '8px'
-								}}>
-								Notifications
-								<DBBadge semantic="neutral">433</DBBadge>
-							</span>
+						<DBTabItem label="Notifications">
+							<DBBadge semantic="neutral">433</DBBadge>
 						</DBTabItem>
 						<DBTabItem>Settings</DBTabItem>
 					</DBTabList>
