@@ -12,11 +12,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			id={props.id ?? props.propOverrides?.id}
 			role="tabpanel"
 			tabIndex={props.hidden ? -1 : 0}
-			hidden={props.hidden}
-			aria-label={props.ariaLabel}
-			aria-labelledby={
-				props.ariaLabel ? undefined : props.ariaLabelledby
-			}>
+			hidden={props.hidden}>
 			<Show when={props.content}>{props.content}</Show>
 			{props.children}
 		</div>

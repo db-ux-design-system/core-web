@@ -176,7 +176,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			// suppresses native browser tooltips inherited from parent elements
 			title=""
 			aria-selected={getBooleanAsString(state._active)}
-			aria-controls={props.ariaControls}
 			disabled={getBoolean(props.disabled) ? true : undefined}
 			tabIndex={state._tabIndex}
 			id={props.id}

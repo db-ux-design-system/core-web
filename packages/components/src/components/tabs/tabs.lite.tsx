@@ -552,15 +552,12 @@ export default function DBTabs(props: DBTabsProps) {
 				</DBButton>
 			</Show>
 			<Show when={props.tabs}>
-				<DBTabList
-					orientation={props.orientation}
-					ariaLabel={props.label}>
+				<DBTabList>
 					<For each={state._cachedTabs}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.label + 'tab-item' + index}
 								id={state.getTabId(index)}
-								ariaControls={state.getPanelId(index)}
 								active={state.isIndexActive(index)}
 								tabIndex={state.getTabItemTabIndex(index)}
 								label={tab.label}

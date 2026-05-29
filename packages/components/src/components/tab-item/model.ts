@@ -27,10 +27,6 @@ export type DBTabItemDefaultProps = {
 	 */
 	tabIndex?: number | string;
 	/**
-	 * The id of the panel this tab controls (WAI-ARIA).
-	 */
-	ariaControls?: string;
-	/**
 	 * Semantic value of this tab item. When set, onIndexChange will emit this value
 	 * (via the onValueChange event) instead of only the numeric index.
 	 * Useful for form binding (e.g. Angular FormControl, React useState).
