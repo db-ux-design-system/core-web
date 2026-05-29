@@ -70,7 +70,7 @@ const getTabsFallback = ({
 				{children}:
 			</DBInfotext>
 			<DBTabs
-				name={children?.toString()}
+				label={children?.toString()}
 				orientation={orientation}
 				tabItemWidth={tabItemWidth}
 				tabItemAlignment={tabItemAlignment}
