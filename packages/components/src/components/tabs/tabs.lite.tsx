@@ -37,20 +37,15 @@ export default function DBTabs(props: DBTabsProps) {
 		_pendingRafId: null,
 		_scrollListener: null,
 
-		_id() {
-			return props.id || state._generatedId;
-		},
-
-		_name() {
-			return 'tabs-' + (props.label || state._generatedName);
-		},
+		_id: 'tabs-base-id',
+		_name: 'tabs-base-name',
 
 		getTabId(index: number | string) {
-			return `${state._name()}-tab-${index}`;
+			return `${state._name}-tab-${index}`;
 		},
 
 		getPanelId(index: number | string) {
-			return `${state._name()}-tab-panel-${index}`;
+			return `${state._name}-tab-panel-${index}`;
 		},
 
 		activateTab(index: number) {
@@ -432,6 +427,12 @@ export default function DBTabs(props: DBTabsProps) {
 		state._updateCachedTabs();
 	}, [props.tabs]);
 
+	// Sync derived IDs when props change
+	onUpdate(() => {
+		state._id = props.id || state._generatedId;
+		state._name = 'tabs-' + (props.label || state._generatedName);
+	}, [props.id, props.label]);
+
 	// Controlled mode: sync external activeIndex changes to internal state
 	onUpdate(() => {
 		if (props.activeIndex !== undefined) {
@@ -443,6 +444,10 @@ export default function DBTabs(props: DBTabsProps) {
 	}, [props.activeIndex]);
 
 	onMount(() => {
+		// Compute derived IDs
+		state._id = props.id || state._generatedId;
+		state._name = 'tabs-' + (props.label || state._generatedName);
+
 		// 1. Calculate final start index synchronously to avoid race conditions
 		let startIndex = 0;
 
@@ -459,7 +464,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// 2. Support deep linking: URL hash takes precedence over initial index
 		if (typeof window !== 'undefined' && window.location.hash) {
 			const hashId = window.location.hash.substring(1);
-			const name = props.label ? 'tabs-' + props.label : state._name();
+			const name = state._name;
 			const prefix = `${name}-tab-`;
 
 			if (hashId.startsWith(prefix)) {
@@ -532,7 +537,7 @@ export default function DBTabs(props: DBTabsProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? props.propOverrides?.id ?? state._id()}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
