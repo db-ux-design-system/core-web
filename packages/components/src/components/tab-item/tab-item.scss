@@ -110,8 +110,7 @@
 		justify-content: flex-start;
 	}
 
-	&[aria-selected="true"],
-	&[data-active="true"] {
+	&[aria-selected="true"] {
 		font-weight: 700;
 	}
 

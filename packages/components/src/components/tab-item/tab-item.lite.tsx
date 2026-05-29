@@ -179,7 +179,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			disabled={getBoolean(props.disabled) ? true : undefined}
 			tabIndex={state._tabIndex}
 			id={props.id}
-			data-active={state._active}
 			data-value={props.value}
 			onClick={(event) => state.handleClick(event)}>
 			{/* wrapper needed for accurate width measurement via refs */}
