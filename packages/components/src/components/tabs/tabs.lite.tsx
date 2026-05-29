@@ -108,15 +108,13 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		handleClick(event: any) {
-			// In props-mode (props.tabs), tab activation is handled via onClick on each DBTabItem directly.
-			// In slot-mode (!props.tabs), clicks bubble up and are handled here via DOM traversal.
-			if (props.tabs) {
-				return;
-			}
-
 			const target = event.target as HTMLElement;
 			const button = target.closest('[role="tab"]');
 			if (!button || !_ref) return;
+
+			// Guard against nested tabs: only handle clicks for tabs belonging to this instance
+			const parentTabs = button.closest('.db-tabs');
+			if (parentTabs !== _ref) return;
 
 			const buttons = state._tabButtons;
 			const index = buttons.indexOf(button as HTMLElement);
