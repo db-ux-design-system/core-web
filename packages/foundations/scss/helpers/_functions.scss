@@ -20,7 +20,7 @@ $disabled-state: ':disabled,[aria-disabled="true"],[tabindex="-1"],:has(:disable
 }
 
 @mixin hover($cursor: pointer) {
-	// stylelint-disable a11y/selector-pseudo-class-focus
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
 	&:hover {
 		cursor: var(--db-overwrite-cursor, #{$cursor});
 		@content;
