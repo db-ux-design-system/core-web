@@ -36,17 +36,17 @@
     "next": "16.2.6",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "react-router-dom": "7.15.0"
+    "react-router-dom": "7.15.1"
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
-    "@types/node": "25.7.0",
-    "@types/react": "19.2.14",
+    "@types/node": "25.9.1",
+    "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.1",
+    "@vitejs/plugin-react": "6.0.2",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.0.12"
+    "vite": "8.0.14"
   }
 }
