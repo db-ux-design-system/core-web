@@ -18,33 +18,33 @@ const getDefaultScreenshotTest = async (
 
 for (const group of Components) {
 	for (const component of group.subNavigation) {
-		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(
+		test.describe(component.name, () => {
+			void getDefaultScreenshotTest(
 				component.name,
 				`docs`,
-				`./components/${component.name}/docs/Angular`,
+				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();
 				}
 			);
 		});
-		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(
+		test.describe(component.name, () => {
+			void getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`./components/${component.name}/overview?fullscreen=true`,
+				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
-					const firstH2 = page.locator('h1').first();
-					await expect(firstH2).toBeVisible();
+					const firstH1 = page.locator('h1').first();
+					await expect(firstH1).toBeVisible();
 				}
 			);
 		});
-		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(
+		test.describe(component.name, () => {
+			void getDefaultScreenshotTest(
 				component.name,
 				`properties`,
-				`./components/${component.name}/properties?fullscreen=true&noh1=true`,
+				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();

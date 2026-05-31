@@ -65,7 +65,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 				const open = Boolean(props.open);
 				if (open && !_ref.open) {
 					if (dialogContainerRef) {
-						dialogContainerRef.hidden = false;
+						(dialogContainerRef as HTMLDivElement).removeAttribute(
+							'data-transition'
+						);
 					}
 					if (
 						props.position === 'absolute' ||
@@ -76,15 +78,21 @@ export default function DBDrawer(props: DBDrawerProps) {
 					} else {
 						_ref.showModal();
 					}
+					void delay(() => {
+						if (dialogContainerRef) {
+							(dialogContainerRef as HTMLDivElement).dataset[
+								'transition'
+							] = 'open';
+						}
+					}, 1);
 				}
 				if (!open && _ref.open) {
 					if (dialogContainerRef) {
-						dialogContainerRef.hidden = true;
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'close';
 					}
-					delay(() => {
-						if (dialogContainerRef) {
-							dialogContainerRef.hidden = false;
-						}
+					void delay(() => {
 						_ref?.close();
 					}, 401);
 				}
@@ -113,7 +121,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}

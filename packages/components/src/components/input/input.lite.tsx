@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -34,6 +35,7 @@ import {
 	getHideProp,
 	getInputValue,
 	getNumber,
+	getStep,
 	hasVoiceOver,
 	isArrayOfStrings,
 	isIOSSafari,
@@ -41,6 +43,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -49,7 +52,7 @@ import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required'],
+		nativeAttributes: ['disabled', 'required', 'value'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
@@ -69,8 +72,9 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: undefined,
-		_value: undefined,
+		_value: '',
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -106,8 +110,15 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -124,18 +135,45 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -160,18 +198,28 @@ export default function DBInput(props: DBInputProps) {
 						}))
 					: _list) || []
 			);
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `input-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -202,6 +250,42 @@ export default function DBInput(props: DBInputProps) {
 		state._value = props.value;
 	}, [props.value]);
 
+	onUpdate(() => {
+		// If angular uses ngModel value and _value are null
+		// then the value will be set afterward and the _ref will be refreshed
+		const addResetListener = useTarget({
+			angular: !(props.value === null && state._value === null),
+			default: true
+		});
+
+		if (_ref && addResetListener) {
+			const defaultValue = useTarget({
+				react: (props as any).defaultValue,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addValueResetEventListener(
+				_ref,
+				{ value: props.value, defaultValue },
+				(event) => {
+					state.handleChange(event, true);
+					state.handleInput(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
+
 	return (
 		<div
 			class={cls('db-input', props.className)}
@@ -226,11 +310,12 @@ export default function DBInput(props: DBInputProps) {
 				name={props.name}
 				type={props.type || 'text'}
 				multiple={getBoolean(props.multiple, 'multiple')}
+				accept={props.accept}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				step={getNumber(props.step)}
-				value={props.value ?? state._value}
+				step={getStep(props.step)}
+				value={props.value ?? state._value ?? ''}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}

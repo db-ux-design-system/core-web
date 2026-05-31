@@ -20,7 +20,7 @@ export default function DBStack(props: DBStackProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-stack', props.className)}
 			data-gap={props.gap}
 			data-variant={props.variant}

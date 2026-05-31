@@ -33,6 +33,8 @@ import { DBCheckbox, DBInfotext } from "@db-ux/v-core-components";
 		Example Checkbox
 	</DBCheckbox>
 
-	<DBInfotext id="checkbox-message"> Example <strong>Text</strong> </DBInfotext>
+	<DBInfotext id="checkbox-message">
+		Example <strong>Text</strong>
+	</DBInfotext>
 </template>
 ```

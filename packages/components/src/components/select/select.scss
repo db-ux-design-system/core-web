@@ -6,7 +6,6 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-select-placeholder {
 	@extend %select-absolute-placeholder;
@@ -45,9 +44,12 @@
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
-	&:has(> select option:checked:not(.placeholder)) {
-		[id$="-placeholder"] {
-			@include display.display(none);
+	select:is(:has(option:checked:not(.placeholder)), :open) {
+		& ~ [id$="-placeholder"],
+		// Hide the placeholder and an inserted empty `option` with
+		// `data-show-empty-option="false"` once a non-placeholder option is selected or the `select` is open
+		option[data-show-empty-option="false"] {
+			display: none;
 		}
 	}
 }

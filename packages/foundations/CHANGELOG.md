@@ -1,5 +1,181 @@
 # @db-ux/core-foundations
 
+## 4.9.1
+
+### Patch Changes
+
+- fix: correct default relative asset base for fonts/icons in `build/styles/theme/relative.css` and other `*relative.css` files - [see commit f465d98](https://github.com/db-ux-design-system/core-web/commit/f465d98c2c091dfe8d9f8f1f461d8073c52a5f15)
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+### Patch Changes
+
+- fix: `meta[name="color-scheme"]` HTML tag support - [see commit b23c57b](https://github.com/db-ux-design-system/core-web/commit/b23c57b9f735a88ceb4308f2d1bcf38092f50786)
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+## 4.5.4
+
+### Patch Changes
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+## 4.5.3
+
+_version bump_
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with hover state when using DBPopover/Tooltip with animation - [see commit bc4801b](https://github.com/db-ux-design-system/core-web/commit/bc4801bf0b32d5dc4fd8e29626a6122e34fb6ada)
+
+## 4.5.0
+
+_version bump_
+
+## 4.4.3
+
+_version bump_
+
+## 4.4.2
+
+_version bump_
+
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+## 4.4.0
+
+_version bump_
+
+## 4.3.2
+
+_version bump_
+
+## 4.3.1
+
+_version bump_
+
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 9e03702](https://github.com/db-ux-design-system/core-web/commit/9e0370266511fa99085ff837e430ad83f28856ec)
+
+## 4.2.6
+
+_version bump_
+
+## 4.2.5
+
+_version bump_
+
+## 4.2.4
+
+### Patch Changes
+
+- refactor(Open Sans): added missing Ukrainian glyph - [see commit d6c15a7](https://github.com/db-ux-design-system/core-web/commit/d6c15a72759ad2c076eb2dc0b4de1e2d75e63a68)
+
+## 4.2.3
+
+### Patch Changes
+
+- fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings - [see commit e1be60a](https://github.com/db-ux-design-system/core-web/commit/e1be60a871596107d8026390b194f0730c84a8ad)
+
+- refactor(css): replacing slow selector - [see commit 1133c21](https://github.com/db-ux-design-system/core-web/commit/1133c216ab5ec802241c6986fc9287ff22a287b0)
+
+## 4.2.2
+
+_version bump_
+
+## 4.2.1
+
+_version bump_
+
+## 4.2.0
+
+_version bump_
+
+## 4.1.0
+
+_version bump_
+
+## 4.0.4
+
+_version bump_
+
+## 4.0.3
+
+_version bump_
+
+## 4.0.2
+
+### Patch Changes
+
+- chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
+    - fix: add some missing variables
+
+- fix(tailwind): add individual color theme files for all color variants - [see commit e8d58bd](https://github.com/db-ux-design-system/core-web/commit/e8d58bde01039a3d233105c2c72efa71c619c4b4):
+    - Create separate CSS files for each color
+    - Move colors.css to colors/ subdirectory with adaptive theme
+    - Add colors/index.css that imports all color variants
+    - Update theme/index.css to import from colors/index.css
+        - burgundy
+        - critical
+        - cyan
+        - green
+        - informational
+        - light-green
+        - neutral
+        - orange
+        - pink
+        - red
+        - successful
+        - turquoise
+        - violet
+        - warning
+        - yellow
+
 ## 4.0.1
 
 ### Patch Changes
@@ -25,7 +201,7 @@ _version bump_
 ### Patch Changes
 
 - enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
-  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+    - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
 
 ## 3.1.17
 

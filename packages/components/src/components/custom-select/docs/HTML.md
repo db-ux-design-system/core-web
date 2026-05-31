@@ -39,7 +39,7 @@ For general installation and configuration take a look at the [components](https
 									class="db-custom-select-list-item-checkbox"
 									id="option-1"
 									type="radio"
-									name="multi-selct"
+									name="multi-select"
 									value="Option 1"
 									data-disable-focus="true"
 								/>
@@ -52,7 +52,7 @@ For general installation and configuration take a look at the [components](https
 									class="db-custom-select-list-item-checkbox"
 									id="option-2"
 									type="radio"
-									name="multi-selct"
+									name="multi-select"
 									value="Option 2"
 									data-disable-focus="true"
 								/>
@@ -65,7 +65,7 @@ For general installation and configuration take a look at the [components](https
 									class="db-custom-select-list-item-checkbox"
 									id="option-3"
 									type="radio"
-									name="multi-selct"
+									name="multi-select"
 									value="Option 3"
 									data-disable-focus="true"
 								/>
@@ -78,7 +78,7 @@ For general installation and configuration take a look at the [components](https
 									class="db-custom-select-list-item-checkbox"
 									id="option-4"
 									type="radio"
-									name="multi-selct"
+									name="multi-select"
 									value="Option 4"
 									data-disable-focus="true"
 								/>
@@ -91,7 +91,7 @@ For general installation and configuration take a look at the [components](https
 									class="db-custom-select-list-item-checkbox"
 									id="option-5"
 									type="radio"
-									name="multi-selct"
+									name="multi-select"
 									value="Option 5"
 									data-disable-focus="true"
 								/>

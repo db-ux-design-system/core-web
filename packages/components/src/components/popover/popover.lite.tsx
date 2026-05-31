@@ -36,7 +36,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			const article = _ref.querySelector('article');
 			if (article) {
 				// This is a workaround for angular
-				utilsDelay(() => {
+				void utilsDelay(() => {
 					handleFixedPopover(
 						article,
 						_ref,
@@ -160,7 +160,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-popover', props.className)}>
 			<Slot name="trigger" />
 			<article

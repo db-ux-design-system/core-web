@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔭 Add url for preview page
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const { default: previewUrlPrDescription } = await import('${{ github.workspace }}/scripts/github/preview-url-pr-description.js');

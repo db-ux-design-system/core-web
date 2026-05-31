@@ -7,6 +7,7 @@
 @use "../../styles/dialog-init";
 
 %direction-right {
+	transform: translateX(110%);
 	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
@@ -16,6 +17,7 @@
 }
 
 %direction-left {
+	transform: translateX(-110%);
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
@@ -30,14 +32,13 @@
 		/// @propertyname max-block-size
 		/// @cssprop --db-drawer-max-height
 		/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: var(
 			--db-drawer-max-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
-		min-block-size: var(
-			--db-drawer-min-height,
-			calc(100% - #{variables.$db-spacing-fixed-xl})
-		);
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		min-block-size: var(--db-drawer-min-height, auto);
 		max-inline-size: none;
 	}
 }
@@ -45,6 +46,7 @@
 %direction-up {
 	@extend %full-horizontal;
 
+	transform: translateY(110%);
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -56,6 +58,7 @@
 %direction-down {
 	@extend %full-horizontal;
 
+	transform: translateY(-110%);
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -135,10 +138,9 @@ $spacings: (
 
 .db-drawer {
 	.db-drawer-container {
-		@extend %direction-right;
 		@extend %spacing-drawer;
-		@include helpers.display(flex);
 
+		display: flex;
 		flex-direction: column;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		block-size: 100%;
@@ -160,14 +162,13 @@ $spacings: (
 			///   <div class="db-drawer db-drawer-wide">
 			///     <!-- wide drawer -->
 			///   </div>
+			/* stylelint-disable-next-line db-ux/use-sizing */
 			max-inline-size: var(
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
-			min-inline-size: var(
-				--db-drawer-min-width,
-				calc(100% - #{variables.$db-spacing-fixed-xl})
-			);
+			/* stylelint-disable-next-line db-ux/use-sizing */
+			min-inline-size: var(--db-drawer-min-width, auto);
 
 			&:not([data-direction]),
 			&[data-direction="right"] {
@@ -191,6 +192,17 @@ $spacings: (
 			box-shadow: variables.$db-elevation-md;
 		}
 
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
+				#{variables.$db-transition-timing-emotional};
+		}
+
+		&:not([data-direction]),
+		&[data-direction="right"] {
+			@extend %direction-right;
+		}
+
 		&[data-direction="left"] {
 			@extend %direction-left;
 		}
@@ -204,7 +216,8 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include helpers.display(none);
+			display: none;
+
 			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
@@ -223,7 +236,7 @@ $spacings: (
 
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
-				@include helpers.display(flex);
+				display: flex;
 			}
 		}
 	}
@@ -237,7 +250,7 @@ $spacings: (
 		background-color: transparent;
 
 		&[open] {
-			@include helpers.display(flex);
+			display: flex;
 		}
 
 		&:not([data-direction]),
@@ -264,51 +277,24 @@ $spacings: (
 
 	&[open] {
 		.db-drawer-container {
-			@media screen and (prefers-reduced-motion: no-preference) {
+			&[data-transition="open"] {
 				&:not([data-direction]),
-				&[data-direction="right"] {
-					animation: show-right-to-left
-						#{variables.$db-transition-straight-show};
-				}
-
+				&[data-direction="right"],
 				&[data-direction="left"] {
-					animation: show-left-to-right
-						#{variables.$db-transition-straight-show};
+					transform: none;
 				}
 
-				&[data-direction="up"] {
-					animation: show-bottom-to-top
-						#{variables.$db-transition-straight-show};
-				}
-
+				&[data-direction="up"],
 				&[data-direction="down"] {
-					animation: show-top-to-bottom
-						#{variables.$db-transition-straight-show};
+					transform: none;
 				}
 			}
 
-			&[hidden] {
-				@media screen and (prefers-reduced-motion: no-preference) {
-					&:not([data-direction]),
-					&[data-direction="right"] {
-						animation: hide-right-to-left
-							#{variables.$db-transition-straight-hide};
-					}
-
-					&[data-direction="left"] {
-						animation: hide-left-to-right
-							#{variables.$db-transition-straight-hide};
-					}
-
-					&[data-direction="up"] {
-						animation: hide-bottom-to-top
-							#{variables.$db-transition-straight-hide};
-					}
-
-					&[data-direction="down"] {
-						animation: hide-top-to-bottom
-							#{variables.$db-transition-straight-hide};
-					}
+			&[data-transition="close"] {
+				@media (prefers-reduced-motion: no-preference) {
+					transition: transform
+						#{variables.$db-transition-duration-slow}
+						#{variables.$db-transition-timing-emotional};
 				}
 			}
 		}

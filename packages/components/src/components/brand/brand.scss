@@ -1,11 +1,11 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-brand {
 	@extend %db-overwrite-font-size-md;
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	gap: variables.$db-spacing-fixed-sm;
 	align-items: center;
@@ -22,7 +22,9 @@
 			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
 		);
 
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		inline-size: $logo-size;
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: $logo-size;
 	}
 

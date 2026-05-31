@@ -21,5 +21,13 @@ export const translations: Record<string, string[]> = {
 	unavailable: ['nicht verfügbar'],
 	'check box': ['Kontrollfeld'],
 	collapsed: ['reduziert'],
-	expanded: ['erweitert']
+	expanded: ['erweitert'],
+	items: ['Einträgen'],
+	link: ['Link'],
+	'list, with': ['Liste, mit'],
+	'Please check this box if you want to proceed': [
+		'Klicke dieses Kästchen an, wenn du fortfahren möchtest'
+	],
+	'out of list': ['Liste Ende'],
+	'navigation landmark': ['Navigation Sprungmarke']
 };

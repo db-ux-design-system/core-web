@@ -7,14 +7,22 @@
 
 ### prop 1
 
+<!-- markdownlint-disable MD060 -->
+
 | Before   | Status  |     After     | Description |
 | -------- | :-----: | :-----------: | ----------- |
 | `valueX` | 🔁 / ❌ | `valueY` / ❌ | optional    |
 | `valueZ` | 🔁 / ❌ | `valueZ` / ❌ | optional    |
+
+<!-- markdownlint-enable MD060 -->
 
 ### prop 2
 
+<!-- markdownlint-disable MD060 -->
+
 | Before   | Status  |     After     | Description |
 | -------- | :-----: | :-----------: | ----------- |
 | `valueX` | 🔁 / ❌ | `valueY` / ❌ | optional    |
 | `valueZ` | 🔁 / ❌ | `valueZ` / ❌ | optional    |
+
+<!-- markdownlint-enable MD060 -->

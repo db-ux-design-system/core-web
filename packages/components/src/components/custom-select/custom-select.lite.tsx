@@ -2,6 +2,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -48,6 +49,7 @@ import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
+	addResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -103,6 +105,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_infoTextId: undefined,
 		_validity: 'no-validation',
 		_userInteraction: false,
+		abortController: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_selectedLabels: '',
@@ -137,7 +140,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
+				state.setDescById(state._invalidMessageId);
 				state._invalidMessage =
 					props.invalidMessage ||
 					selectRef?.validationMessage ||
@@ -154,7 +157,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				selectRef?.validity.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId;
+				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
@@ -162,10 +165,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
+				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				state._descByIds = state._placeholderId;
+				state.setDescById(state._placeholderId);
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
@@ -257,7 +260,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void
+			event?: ClickEvent<HTMLButtonElement> | void | any
 		) => {
 			if (event) {
 				event.stopPropagation();
@@ -422,6 +425,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						activeElement.click();
 
 						event.preventDefault();
+					} else if (
+						activeElement.getAttribute('type') === 'search'
+					) {
+						// When Enter is pressed in search field, select the first available option
+						const firstOption = state._options?.find(
+							(opt) => !opt.isGroupTitle && !opt.disabled
+						);
+						if (firstOption?.value) {
+							state.handleSelect(firstOption.value);
+							event.preventDefault();
+						}
 					}
 				}
 			} else if (
@@ -445,10 +459,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					if (event.relatedTarget) {
 						const relatedTarget =
 							event.relatedTarget as HTMLElement;
-						if (!detailsRef.contains(relatedTarget)) {
+						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
+						// Inside a <dialog> there is some focus problem because of the top-layer
+						// We do not want to focus <dialog> itself
+						if (
+							!detailsRef.contains(relatedTarget) &&
+							relatedTarget.localName !== 'dialog'
+						) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							delay(() => (detailsRef.open = false), 1);
+							void delay(() => (detailsRef.open = false), 1);
 						}
 					}
 				}
@@ -641,24 +661,29 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		selectAllChecked: false,
-		selectAllIndeterminate: false
+		selectAllIndeterminate: false,
+		resetIds: () => {
+			const mId =
+				props.id ??
+				props.propOverrides?.id ??
+				`custom-select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
+			state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+			state._summaryId = mId + '-summary';
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state._selectedLabelsId = mId + '-selected-labels';
+			state._infoTextId = mId + '-info';
+		}
 	});
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.id ?? `custom-select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
-		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
-		state._summaryId = mId + '-summary';
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-		state._selectedLabelsId = mId + '-selected-labels';
-		state._infoTextId = mId + '-info';
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
@@ -672,6 +697,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			});
 		}
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (detailsRef) {
@@ -749,6 +780,31 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state.handleValidation();
 		}
 	}, [state._values, selectRef]);
+
+	onUpdate(() => {
+		if (selectRef) {
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			const initialValues = props.values;
+			addResetEventListener(
+				selectRef,
+				() => {
+					const resetValue = initialValues
+						? initialValues
+						: selectRef.value
+							? [selectRef.value]
+							: [];
+					state.handleOptionSelected(resetValue);
+					state.handleValidation();
+				},
+				controller.signal
+			);
+		}
+	}, [selectRef]);
 
 	onUpdate(() => {
 		state._validity = props.validation;
@@ -853,6 +909,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			DEFAULT_INVALID_MESSAGE;
 	}, [selectRef, props.invalidMessage]);
 
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
+
 	function satisfyReact(event: any) {
 		// This is a function to satisfy React
 		event.stopPropagation();
@@ -890,6 +950,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={selectRef}
 					form={props.form}
 					name={props.name}
+					data-custom-validity={state._validity}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
@@ -928,6 +989,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						id={state._summaryId}
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
+						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
 							<span
@@ -935,16 +997,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									props.selectedType === 'tag'
 								)}
 								id={state._selectedLabelsId}>
+								<Show when={props.selectedPrefix}>
+									<span data-visually-hidden="true">
+										{props.selectedPrefix}
+									</span>
+								</Show>
 								{state._selectedLabels}
 							</span>
 						</Show>
 						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
-									{(
-										option: CustomSelectOptionType,
-										index: number
-									) => (
+									{(option: CustomSelectOptionType) => (
 										<DBTag
 											key={useTarget({
 												vue: undefined,
@@ -1136,6 +1200,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					size="small"
 					name={state._id}
 					form={state._id}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">

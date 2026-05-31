@@ -1,0 +1,43 @@
+---
+name: Vite Plugin Test
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  test-vite-plugin:
+    name: Test Vite Plugin
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-foundations-build
+          path: packages/foundations/build
+
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-output
+          path: output
+
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-components-build
+          path: packages/components/build
+
+      - name: 🧪 Run Vite Plugin Tests
+        run: pnpm --filter @db-ux/core-vite-plugin run test

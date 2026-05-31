@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -26,6 +27,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -34,7 +36,13 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		nativeAttributes: [
+			'disabled',
+			'required',
+			'checked',
+			'indeterminate',
+			'value'
+		],
 		signals: {
 			writeable: ['disabled', 'checked']
 		}
@@ -55,6 +63,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessage: undefined,
 		_descByIds: undefined,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -87,10 +96,25 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () =>
@@ -108,18 +132,28 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `checkbox-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `checkbox-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -177,6 +211,34 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.initialized = false;
 		}
 	}, [state.initialized, _ref, props.checked]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 	// jscpd:ignore-end
 
 	return (
@@ -208,9 +270,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
-				<Show when={props.label} else={props.children}>
-					{props.label}
-				</Show>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>

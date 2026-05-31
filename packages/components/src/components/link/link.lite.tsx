@@ -17,12 +17,13 @@ export default function DBLink(props: DBLinkProps) {
 	return (
 		<a
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-link', props.className)}
 			href={props.href}
 			target={props.target}
 			rel={props.rel}
 			role={props.role}
+			referrerPolicy={props.referrerpolicy ?? props.referrerPolicy}
 			hrefLang={props.hreflang}
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
@@ -31,9 +32,8 @@ export default function DBLink(props: DBLinkProps) {
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
 			data-wrap={getBooleanAsString(props.wrap)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</a>
 	);
 }

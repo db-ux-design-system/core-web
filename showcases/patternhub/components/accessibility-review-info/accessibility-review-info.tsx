@@ -11,27 +11,35 @@ const AccessibilityReviewInfo = (
 	accessibilityReview?: AccessibilityReviewInfoType
 ) => {
 	const [semantic, setSemantic] = useState<SemanticType>('critical');
-	const [text, setText] = useState<string>('Missing');
+	const [text, setText] = useState('Missing');
 
 	useEffect(() => {
-		if (accessibilityReview && accessibilityReview.status === 'DONE') {
-			setSemantic('successful');
-			setText('Done');
-		} else if (
-			accessibilityReview &&
-			accessibilityReview.status === 'REVIEW'
-		) {
-			setSemantic('warning');
-			setText('In review');
-		} else if (
-			accessibilityReview &&
-			accessibilityReview.status === 'PROGRESS'
-		) {
-			setSemantic('warning');
-			setText('In progress');
-		} else {
-			setSemantic('critical');
-			setText('Missing');
+		if (accessibilityReview) {
+			switch (accessibilityReview?.status) {
+				case 'DONE': {
+					setSemantic('successful');
+					setText('Done');
+					break;
+				}
+
+				case 'REVIEW': {
+					setSemantic('warning');
+					setText('In review');
+					break;
+				}
+
+				case 'PROGRESS': {
+					setSemantic('warning');
+					setText('In progress');
+					break;
+				}
+
+				default: {
+					setSemantic('critical');
+					setText('Missing');
+					break;
+				}
+			}
 		}
 	}, [accessibilityReview]);
 

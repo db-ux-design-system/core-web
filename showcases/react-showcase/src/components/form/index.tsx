@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -6,6 +5,8 @@ import {
 	DBCheckbox,
 	DBCustomSelect,
 	DBDivider,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBLink,
 	DBPopover,
@@ -18,26 +19,25 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../../output/react/src';
-import type {
-	ChangeEvent,
-	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+} from '@components';
+import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
+import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
+	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [input, setInput] = useState('');
-	const [dateinput, setDateinput] = useState('');
+	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
 	const [textareaChildren, setTextareaChildren] = useState('');
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
-	const [checked, setChecked] = useState<boolean[]>([true, false]);
+	const [checked, setChecked] = useState([true, false]);
 
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
-	const [tabsTest, setTabsTest] = useState<boolean>(false);
+	const [tabsTest, setTabsTest] = useState(false);
 
-	const [multiSelectValue, setMultiSelectValue] = useState<
+	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
 	>(['o2']);
 
@@ -95,7 +95,7 @@ const FormComponent = () => {
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
-							label="Textinput"
+							label="Text Input"
 							placeholder="Placeholder"
 							message="Description"
 							icon="x_placeholder"
@@ -118,8 +118,9 @@ const FormComponent = () => {
 							label="Date input"
 							message="Description"
 							name="input-date-name"
+							value={dataInput}
 							onChange={(event) => {
-								setDateinput(event.target.value);
+								setDataInput(event.target.value);
 							}}
 							type="date"
 						/>
@@ -254,6 +255,7 @@ const FormComponent = () => {
 							type="button"
 							onClick={() => {
 								setInput('reset');
+								setDataInput('');
 							}}>
 							Reset and Toggle
 						</DBButton>
@@ -282,7 +284,7 @@ const FormComponent = () => {
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
 					<dt>date inputs value</dt>
-					<dd>{dateinput || 'No date input set'}</dd>
+					<dd>{dataInput || 'No date input set'}</dd>
 					<dt>textarea values</dt>
 					<dd>{textarea || 'No Textrea set'}</dd>
 					<dd>{textareaChildren || 'No Textrea set'}</dd>
@@ -491,16 +493,45 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
+				<DBButton
+					onClick={() => {
+						setDrawerOpen(true);
+					}}>
+					Open Drawer
+				</DBButton>
+				<DBDrawer
+					onClose={() => {
+						setDrawerOpen(false);
+					}}
+					open={drawerOpen}
+					spacing="none">
+					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
+						Test infotext
+						<DBTooltip placement="bottom-start">
+							Test tooltip
+						</DBTooltip>
+					</DBInfotext>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
+				</DBDrawer>
+
 				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
-						Beschreibungstext
+						Text
 					</DBTooltip>
 				</DBTag>
 				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
-						Beschreibungstext
+						Text
 					</DBTooltip>
 				</DBButton>
 
@@ -525,16 +556,16 @@ const FormComponent = () => {
 						selectAllLabel="Select all"
 						searchLabel="Search"
 						noResultsText="No matching filter"
-						values={multiSelectValue}
+						values={customSelectValue}
 						onOptionSelected={(value) => {
-							setMultiSelectValue(value);
+							setCustomSelectValue(value);
 						}}
 					/>
 					<DBButton
 						onClick={() => {
-							setMultiSelectValue([]);
+							setCustomSelectValue([]);
 						}}>
-						Reset Multiselect
+						Reset CustomSelect
 					</DBButton>
 					<DBButton type="submit">Submit</DBButton>
 				</form>

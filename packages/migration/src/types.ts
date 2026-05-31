@@ -1,4 +1,4 @@
-export type ProgrammOptionsType = {
+export type ProgramOptionsType = {
 	name: string;
 	short?: string;
 	long?: string;
@@ -10,6 +10,15 @@ export type ProgrammOptionsType = {
 
 export type OptionsType = {
 	src: string;
-	type: (string | 'colorQ32024' | 'iconQ32024' | 'v005_v006' | 'v006_v007')[];
+	type: (
+		| string
+		| 'colorQ32024'
+		| 'iconQ32024'
+		| 'v005_v006'
+		| 'v006_v007'
+		| 'v007_v100'
+		| 'v100_v200'
+		| 'v200_v300'
+	)[];
 	dryRun?: string | boolean;
 };

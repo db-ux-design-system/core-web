@@ -7,7 +7,11 @@ Object.defineProperty(globalThis, 'window', {
 });
 
 import { describe, expect, it } from 'vitest';
-import { getFloatingProps } from './floating-components';
+import {
+	getFloatingProps,
+	handleFixedDropdown,
+	handleFixedPopover
+} from './floating-components';
 
 describe('getFloatingProps', () => {
 	it('calculates the dimensions correctly', () => {
@@ -70,5 +74,57 @@ describe('getFloatingProps', () => {
 			top: 0,
 			width: 0
 		});
+	});
+});
+
+describe('handleFixedPopover', () => {
+	it('does not throw when element or parent is null', () => {
+		expect(() =>
+			handleFixedPopover(
+				null as unknown as HTMLElement,
+				{} as HTMLElement,
+				'bottom'
+			)
+		).not.toThrow();
+		expect(() =>
+			handleFixedPopover(
+				{} as HTMLElement,
+				null as unknown as HTMLElement,
+				'bottom'
+			)
+		).not.toThrow();
+		expect(() =>
+			handleFixedPopover(
+				null as unknown as HTMLElement,
+				null as unknown as HTMLElement,
+				'bottom'
+			)
+		).not.toThrow();
+	});
+});
+
+describe('handleFixedDropdown', () => {
+	it('does not throw when element or parent is null', () => {
+		expect(() =>
+			handleFixedDropdown(
+				null as unknown as HTMLElement,
+				{} as HTMLElement,
+				'bottom'
+			)
+		).not.toThrow();
+		expect(() =>
+			handleFixedDropdown(
+				{} as HTMLElement,
+				null as unknown as HTMLElement,
+				'bottom'
+			)
+		).not.toThrow();
+		expect(() =>
+			handleFixedDropdown(
+				null as unknown as HTMLElement,
+				null as unknown as HTMLElement,
+				'bottom'
+			)
+		).not.toThrow();
 	});
 });

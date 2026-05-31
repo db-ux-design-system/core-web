@@ -30,6 +30,10 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'custom-button'
+	},
+
+	{
 		name: 'stack'
 	},
 	{
@@ -75,6 +79,11 @@ export const getComponents = (): Component[] => [
 				{
 					from: 'attr.checked',
 					to: 'checked'
+				},
+				{
+					from: `
+      <select`,
+					to: '<select'
 				}
 			],
 			react: [
@@ -178,6 +187,12 @@ export const getComponents = (): Component[] => [
 					to: '{{value()}}</textarea>'
 				}
 			],
+			vue: [
+				{
+					from: '</textarea>',
+					to: '{{value}}</textarea>'
+				}
+			],
 			react: [{ from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLTextAreaElement' }]
 		}
@@ -214,9 +229,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'select',
 		overwrites: {
-			angular: [
-				{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }
-			],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
 			react: [
 				// React not allowing selected for options
 				{ from: 'selected={option.selected}', to: '' },
@@ -225,7 +238,11 @@ export const getComponents = (): Component[] => [
 			],
 			stencil: [
 				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
-				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' }
+				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' },
+				{
+					from: 'this.value ?? this._value ?? ""',
+					to: 'this.value ?? this._value ?? undefined'
+				}
 			]
 		},
 		config: {
@@ -358,20 +375,7 @@ export const getComponents = (): Component[] => [
 			vue: [{ from: ', index', to: '' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
-			angular: [
-				{ from: '<HTMLElement>', to: '<HTMLInputElement>' },
-				{
-					from: 'writeValue(value: any) {',
-					to:
-						'writeValue(value: any) {\n' +
-						'if (!value && (this.type() === "date" ||\n' +
-						'			this.type() === "time" ||\n' +
-						'			this.type() === "week" ||\n' +
-						'			this.type() === "month" ||\n' +
-						'			this.type() === "datetime-local"\n' +
-						'			)) return;'
-				}
-			]
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }]
 		},
 		config: {
 			vue: {

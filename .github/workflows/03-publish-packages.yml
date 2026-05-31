@@ -18,29 +18,37 @@ on:
 
 jobs:
   publish:
-    name: Publish latest package versions to GitHub Packages
+    name: Publish (or dry-run) latest package versions to npmjs.com registry
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       id-token: write
       contents: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: ⏬ Download outputs
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-outputs
           path: build-outputs
 
+      - name: 📰 Dry Run PNPM Pack
+        if: ${{ github.event_name != 'release' }}
+        run: |
+          pnpm pack --recursive --filter "@db-ux/*" --config.ignore-scripts=true --dry-run --json
+
       - name: 📰 Publish to NPM Registries
+        if: ${{ github.event_name == 'release' }}
         run: |
           node scripts/github/publish-npm.js
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
           VALID_SEMVER_VERSION: ${{ inputs.version }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

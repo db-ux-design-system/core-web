@@ -2,7 +2,7 @@
 
 import { IconTypes } from '@db-ux/core-foundations';
 
-export type GlobalProps = {
+export interface GlobalProps {
 	/**
 	 * default slot
 	 */
@@ -28,7 +28,15 @@ export type GlobalProps = {
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
-};
+
+	/**
+	 * Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id
+	 */
+	propOverrides?: PropOverridesType;
+}
+
+// We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
+export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
 export type GlobalState = {
 	_id?: string;
@@ -509,6 +517,10 @@ export type FromValidState = {
 	_invalidMessage?: string;
 };
 
+export type ResetIdState = {
+	resetIds: () => void;
+};
+
 export type FormState = {
 	_messageId?: string;
 	_validMessageId?: string;
@@ -522,7 +534,12 @@ export type FormState = {
 	 * This is an internal Fallback
 	 */
 	_voiceOverFallback?: string;
-};
+
+	/**
+	 * We use this to remove form event listener
+	 */
+	abortController?: AbortController;
+} & ResetIdState;
 
 export type InitializedState = {
 	initialized: boolean;
@@ -563,18 +580,26 @@ export type LinkProps = {
 	 */
 	rel?: string;
 	/**
-	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 * How much of the referrer to send when following the link.
+	 * @deprecated use `referrerPolicy` instead
 	 */
-	role?: string;
+	referrerpolicy?: LinkReferrerPolicyType;
 	/**
 	 * How much of the referrer to send when following the link.
 	 */
-	referrerpolicy?: LinkReferrerPolicyType;
+	referrerPolicy?: LinkReferrerPolicyType;
+};
+
+export type RoleProps = {
+	/**
+	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 */
+	role?: string;
 };
 
 export type TextProps = {
 	/**
-	 * Alternative for default slot/children.
+	 * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
 	 */
 	text?: string;
 };
@@ -591,6 +616,7 @@ export type ClickEventProps<T> = {
 	 * React specific onClick to pass to forward ref.
 	 */
 	onClick?: (event: ClickEvent<T>) => void;
+	click?: (event: ClickEvent<T>) => void;
 };
 
 export type ClickEventState<T> = {
@@ -644,7 +670,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T> | any) => void;
+	handleInput: (event: InputEvent<T> | any, reset?: boolean) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -654,7 +680,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T> | any) => void;
+	handleChange: (event: ChangeEvent<T> | any, reset?: boolean) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -701,6 +727,13 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
+export type NoTextProps = {
+	/**
+	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 */
+	noText?: boolean | string;
+};
+
 export type ValueLabelType = {
 	value: string;
 	label?: string;
@@ -718,3 +751,11 @@ export type PopoverState = {
 	handleEnter: (parent?: HTMLElement) => void;
 	handleLeave: (event?: any) => void;
 } & DocumentScrollState;
+
+// TODO: Remove this after we migrate to one-platform
+export interface PatternhubProps {
+	/**
+	 * Used for Patternhub
+	 */
+	isPatternhub?: boolean;
+}

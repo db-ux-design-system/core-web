@@ -21,6 +21,10 @@ const generateExampleJSX = () => {
 	const imports = [];
 	const examples = [];
 	for (const { name } of elements) {
+		if (!name.startsWith('db-')) {
+			continue;
+		}
+
 		const componentName = getComponentName(name);
 		imports.push(`DB${transformToUpperComponentName(componentName)}`);
 		const path = `${sharedPath}/${componentName}.json`;

@@ -22,15 +22,14 @@ export default function DBIcon(props: DBIconProps) {
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}
 			data-icon-weight={props.weight}
 			data-icon-variant={props.variant}
 			aria-hidden="true">
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</span>
 	);
 }

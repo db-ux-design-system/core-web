@@ -33,4 +33,46 @@ test.describe('DBSwitch', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+
+	test('should toggle on ENTER key press', async ({ mount, page }) => {
+		const component = await mount(<DBSwitch>Test Switch</DBSwitch>);
+		const input = component.locator(
+			'input[type="checkbox"][role="switch"]'
+		);
+
+		// Initially unchecked
+		await expect(input).not.toBeChecked();
+
+		// Focus the input
+		await input.focus();
+
+		// Press ENTER key
+		await page.keyboard.press('Enter');
+
+		// Should be checked after ENTER key press
+		await expect(input).toBeChecked();
+
+		// Press ENTER key again
+		await page.keyboard.press('Enter');
+
+		// Should be unchecked after second ENTER key press
+		await expect(input).not.toBeChecked();
+	});
+
+	test('should toggle on SPACE key press', async ({ mount, page }) => {
+		const component = await mount(<DBSwitch>Test Switch</DBSwitch>);
+		const input = component.locator('input[type="checkbox"]');
+
+		// Initially unchecked
+		await expect(input).not.toBeChecked();
+
+		// Focus the input
+		await input.focus();
+
+		// Press SPACE key (default checkbox behavior)
+		await page.keyboard.press('Space');
+
+		// Should be checked after SPACE key press
+		await expect(input).toBeChecked();
+	});
 });

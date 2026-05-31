@@ -1,4 +1,4 @@
-import { DBInput } from '@db-ux/react-core-components/src';
+import { DBInput } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
@@ -29,13 +29,6 @@ const FormInputs = () => {
 				onChange={(event) => {
 					setUncontrolled(event.target.value);
 				}}
-			/>
-			<DBInput
-				label="Test label"
-				variant="floating"
-				invalidMessage="Test message"
-				validMessage=""
-				required
 			/>
 		</FormWrapper>
 	);

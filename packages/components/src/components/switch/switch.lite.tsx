@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -16,7 +17,11 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import {
+	ChangeEvent,
+	GeneralKeyboardEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -28,6 +33,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -36,7 +42,13 @@ import { DBSwitchProps, DBSwitchState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		nativeAttributes: [
+			'disabled',
+			'required',
+			'checked',
+			'indeterminate',
+			'value'
+		],
 		signals: {
 			writeable: ['disabled', 'checked']
 		}
@@ -56,7 +68,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_invalidMessage: undefined as string | undefined,
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
-
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -99,11 +111,19 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			state._descByIds = undefined;
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
 			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
 				default: () => {
 					if (props.onChange) {
 						props.onChange(event);
@@ -111,6 +131,13 @@ export default function DBSwitch(props: DBSwitchProps) {
 				}
 			});
 			state.handleValidation();
+
+			useTarget({
+				angular: () => {
+					handleFrameworkEventAngular(state, event, 'checked');
+				},
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -121,16 +148,38 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		handleKeyDown: (event: GeneralKeyboardEvent<HTMLInputElement>) => {
+			// Support ENTER key for toggling the switch (a11y requirement)
+			if (event.key === 'Enter') {
+				event.preventDefault();
+				// Toggle the switch by clicking it programmatically
+				if (!props.disabled) {
+					(_ref as HTMLInputElement)?.click();
+				}
+			}
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `switch-${uuid()}`;
+			state._id = mId;
+			state._messageId = `${mId}${DEFAULT_MESSAGE_ID_SUFFIX}`;
+			state._validMessageId = `${mId}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
+			state._invalidMessageId = `${mId}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id ?? `switch-${uuid()}`;
-		state._messageId = `${state._id}${DEFAULT_MESSAGE_ID_SUFFIX}`;
-		state._validMessageId = `${state._id}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
-		state._invalidMessageId = `${state._id}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
+		state.resetIds();
 		state.handleValidation();
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state.handleValidation();
@@ -144,6 +193,40 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.checked
 	]);
 
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 	// jscpd:ignore-end
 
 	return (
@@ -181,10 +264,12 @@ export default function DBSwitch(props: DBSwitchProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
+					onKeyDown={(
+						event: GeneralKeyboardEvent<HTMLInputElement>
+					) => state.handleKeyDown(event)}
 				/>
-				<Show when={props.label} else={props.children}>
-					{props.label}
-				</Show>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
@@ -208,9 +293,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state._invalidMessage ??
-					props.invalidMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}

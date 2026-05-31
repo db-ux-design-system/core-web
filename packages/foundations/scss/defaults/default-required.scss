@@ -10,34 +10,37 @@
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
-/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-@layer #{helpers.$layer-variables} {
-	:is(:root, :host) {
-		@extend %db-font-size-md;
+:root,
+:host {
+	@extend %db-font-size-md;
 
-		/* COLORS */
+	/* COLORS */
+	@include default-color-icons.get-color-icons-light;
+
+	@media (prefers-color-scheme: dark) {
+		@include default-color-icons.get-color-icons-dark;
+	}
+
+	[data-mode="dark"] {
+		@include default-color-icons.get-color-icons-dark;
+	}
+
+	[data-mode="light"] {
 		@include default-color-icons.get-color-icons-light;
-
-		@media (prefers-color-scheme: dark) {
-			@include default-color-icons.get-color-icons-dark;
-		}
-
-		[data-mode="dark"] {
-			@include default-color-icons.get-color-icons-dark;
-		}
-
-		[data-mode="light"] {
-			@include default-color-icons.get-color-icons-light;
-		}
 	}
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
-html:not(:has(> head > meta[name="color-scheme"])) {
-	color-scheme: light dark;
+:root {
+	color-scheme: var(--db-color-scheme, light dark);
+
+	// We need to provide the possibility to set the color-scheme via CSS Custom Property, but not set a fallback based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
+	&:has([name="color-scheme"]:is([content~="light"], [content~="dark"])) {
+		color-scheme: var(--db-color-scheme);
+	}
 }
 
-/* TODO: Switch to attr() as soon as this one is fully supported */
+// TODO: Switch to attr() as soon as this one is fully supported
 [data-mode="light"] {
 	color-scheme: light;
 }
@@ -66,7 +69,9 @@ body {
 }
 
 // Box sizing
-html {
+*,
+::before,
+::after {
 	box-sizing: var(--db-box-sizing, border-box);
 }
 
@@ -76,12 +81,6 @@ html {
 	-webkit-font-smoothing: antialiased;
 	font-synthesis: none;
 	text-rendering: optimizelegibility;
-}
-
-*,
-::before,
-::after {
-	box-sizing: inherit;
 }
 
 // Make sure every elements has the current color from container above

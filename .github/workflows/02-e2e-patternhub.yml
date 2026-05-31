@@ -6,7 +6,7 @@ on:
       version:
         required: true
         type: string
-      path:
+      baseUrl:
         required: false
         type: string
 
@@ -23,31 +23,34 @@ jobs:
       options: --user 1001
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
@@ -56,11 +59,11 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
+          NEXT_PUBLIC_BASE_PATH: ${{ inputs.baseUrl }}
         run: |
-          mkdir -p ./build-showcases${{ inputs.path }}
-          cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.path }}
-          npm run test:e2e --workspace=patternhub
+          mkdir -p ./build-showcases${{ inputs.baseUrl }}
+          cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.baseUrl }}
+          pnpm --filter patternhub run test:e2e
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -70,7 +73,7 @@ jobs:
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: patternhub-playwright-results
           path: ./showcases/patternhub/test-results

@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/component";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
 
@@ -15,8 +15,7 @@
 	}
 
 	> menu {
-		@include display.display(flex);
-
+		display: flex;
 		flex-direction: column;
 		padding: 0;
 		margin: 0;
@@ -37,7 +36,7 @@
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 						--db-icon-trailing: "chevron_down";
 
-						@media screen and (prefers-reduced-motion: no-preference) {
+						@media (prefers-reduced-motion: no-preference) {
 							transition: form-components.$dropdown-icon-transition;
 						}
 					}
@@ -102,7 +101,7 @@
 	&[data-force-close="true"] {
 		> menu menu {
 			@include screen-sizes.screen("md") {
-				@include display.display(none);
+				@include helpers.display(none);
 			}
 		}
 	}

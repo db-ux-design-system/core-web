@@ -1,4 +1,4 @@
-import {
+import type {
 	BaseFormProps,
 	ClickEvent,
 	CloseEventState,
@@ -20,9 +20,9 @@ import {
 	ValidationType,
 	WidthType
 } from '../../shared/model';
-import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
-import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
-import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
+import type { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import type { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
+import type { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
 
 export type CustomSelectOptionType = {
 	/**
@@ -190,6 +190,12 @@ export type DBCustomSelectDefaultProps = {
 	 * You need to define the empty state as well based on selected options.
 	 */
 	selectedLabels?: string;
+
+	/**
+	 * Optional: Prefix text announced by screen readers before the selection
+	 * (e.g. "Selected").
+	 */
+	selectedPrefix?: string;
 
 	/**
 	 * Change the selected type for values shown in multi select

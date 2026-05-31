@@ -99,3 +99,6 @@ export const TESTING_VIEWPORTS = [
 	{ name: 'tablet', width: 768, height: 1024 },
 	{ name: 'mobile', ...DEFAULT_VIEWPORT }
 ];
+
+export const DB_UX_LOCAL_STORAGE_FRAMEWORK = 'db-ux-framework';
+export const DB_UX_LOCAL_STORAGE_MODE = 'db-ux-mode';

@@ -39,7 +39,7 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-tag', props.className)}
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
@@ -51,10 +51,8 @@ export default function DBTag(props: DBTagProps) {
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>
 			<Slot name="content" />
-
-			{props.children}
-
 			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 
 			<Show when={props.behavior === 'removable'}>
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}

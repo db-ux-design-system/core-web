@@ -14,7 +14,11 @@ const ignoreFolders = [
 	'build-outputs/**/*',
 	'build-showcases/**/*',
 	'output/**/*',
-	'**/playwright.*.ts'
+	'**/test/**/*',
+	'**/playwright.*.ts',
+	'figma-code-connect',
+	'playwright-report/**/*',
+	'storybooks/**/.storybook/**/*'
 ];
 
 export default ignoreFolders;

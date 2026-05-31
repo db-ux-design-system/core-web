@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 📥 Get gh-pages tar
         run: wget --quiet https://github.com/db-ux-design-system/core-web/tarball/gh-pages
@@ -27,7 +27,7 @@ jobs:
 
       - name: 🗑️ Clean all preview pages
         id: cleanup
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           result-encoding: json
           script: |
@@ -35,7 +35,7 @@ jobs:
             return await cleanUpPages({github, context});
 
       - name: 🥅 Deploy to GH-Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
