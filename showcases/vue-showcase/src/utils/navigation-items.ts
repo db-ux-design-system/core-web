@@ -9,6 +9,7 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
+import FooterShowcase from '@components/components/footer/showcase/footer.showcase.vue';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
@@ -227,6 +228,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/header',
 				label: 'Header',
 				component: markRaw(HeaderShowcase)
+			},
+			{
+				path: '/01/footer',
+				label: 'Footer',
+				component: markRaw(FooterShowcase)
 			}
 		])
 	},

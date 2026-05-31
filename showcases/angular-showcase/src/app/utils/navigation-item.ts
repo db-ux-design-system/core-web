@@ -11,6 +11,7 @@ import { CheckboxComponent } from '../components/checkbox.component';
 import { CustomSelectComponent } from '../components/custom-select.component';
 import { DividerComponent } from '../components/divider.component';
 import { DrawerComponent } from '../components/drawer.component';
+import { FooterComponent } from '../components/footer.component';
 import { HeaderComponent } from '../components/header.component';
 import { HomeComponent } from '../components/home/home.component';
 import { IconComponent } from '../components/icon.component';
@@ -179,6 +180,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/header',
 				label: 'Header',
 				component: HeaderComponent
+			},
+			{
+				path: '01/footer',
+				label: 'Footer',
+				component: FooterComponent
 			}
 		])
 	},

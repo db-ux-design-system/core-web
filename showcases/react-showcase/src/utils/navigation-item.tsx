@@ -1,4 +1,5 @@
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
+import FooterShowcase from '@components/components/footer/showcase/footer.showcase';
 
 import Home from '../components/home';
 
@@ -183,6 +184,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'header',
 				label: 'Header',
 				component: <HeaderShowcase />
+			},
+			{
+				path: 'footer',
+				label: 'Footer',
+				component: <FooterShowcase />
 			}
 		])
 	},
