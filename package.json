@@ -14,7 +14,7 @@
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
-  "packageManager": "pnpm@11.1.2+sha512.415a1cc25974731e75455c1468371be74c5aa5fb7621b50d4056d222451609f11412f23fd602e6169f1e060466641f798597e1be961a10688836a67b16569499",
+  "packageManager": "pnpm@11.4.0+sha512.f0febc7e37552ab485494a914241b338e0b3580b93d54ce31f00933015880863129038a1b4ae4e414a0ee63ac35bf21197e990172c4a68256450b5636310968f",
   "engines": {
     "node": ">= 24"
   },
@@ -94,8 +94,8 @@
     "@guidepup/setup": "0.21.0",
     "@playwright/experimental-ct-core": "1.60.0",
     "@playwright/test": "1.60.0",
-    "@typescript-eslint/eslint-plugin": "8.59.4",
-    "@typescript-eslint/parser": "8.59.4",
+    "@typescript-eslint/eslint-plugin": "8.60.0",
+    "@typescript-eslint/parser": "8.60.0",
     "accessibility-checker-engine": "4.0.18",
     "cspell": "10.0.0",
     "eslint": "10.4.0",
@@ -104,7 +104,7 @@
     "eslint-plugin-package-json": "1.1.0",
     "eslint-plugin-prettier": "5.5.5",
     "husky": "9.1.7",
-    "jscpd": "4.2.3",
+    "jscpd": "4.2.4",
     "lint-staged": "17.0.5",
     "markdownlint-cli": "0.48.0",
     "npm-package-json-lint": "10.4.0",

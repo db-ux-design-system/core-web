@@ -2,24 +2,29 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaSelectProps = {
 	label?: string;
+	showLabel?: boolean;
 	variant?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
 	disabled?: boolean;
+	readonly?: boolean;
 	validation?: string;
+	showMessage?: boolean;
 	showIcon?: boolean;
 };
 
 const selectProps: Record<string, FigmaProp> = {
-	label: { type: 'string', key: '✏️ Label' },
+	label: { type: 'string', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Above: 'above', Floating: 'floating' }
 	},
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
+	readonly: { type: 'boolean', key: 'Readonly' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',
@@ -29,7 +34,8 @@ const selectProps: Record<string, FigmaProp> = {
 			Invalid: 'invalid'
 		}
 	},
-	showIcon: { type: 'boolean', key: 'Show Icon' }
+	showIcon: { type: 'boolean', key: 'Show Icon' },
+	showMessage: { type: 'boolean', key: 'Show Message' }
 };
 
 export const selects: FigmaCodeConnect = {

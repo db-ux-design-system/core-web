@@ -1,1 +1,1 @@
-["button. dialog. document. clickable, Close, button. dialog. button, Close","Functional"]
+["dialog. document. clickable, Close, button. dialog. button, Close","Functional"]
