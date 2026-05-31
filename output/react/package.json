@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "4.9.0",
+  "version": "4.9.1",
   "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {
@@ -36,9 +36,9 @@
   },
   "devDependencies": {
     "@playwright/experimental-ct-react": "1.60.0",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.15",
     "cpr": "3.0.1",
-    "npm-run-all2": "8.0.4",
+    "npm-run-all2": "9.0.1",
     "playwright": "1.60.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",

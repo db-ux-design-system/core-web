@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import type { GlobalProps, GlobalState } from '../../shared/model';
 
 export const PageVariantList = ['auto', 'fixed'] as const;
 export type PageVariantType = (typeof PageVariantList)[number];
