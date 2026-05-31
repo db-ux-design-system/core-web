@@ -1,4 +1,4 @@
-import {
+import type {
 	ClickEventState,
 	DocumentScrollState,
 	EmphasisProps,
@@ -9,6 +9,7 @@ import {
 	PopoverProps,
 	PopoverState,
 	ResetIdState,
+	TextProps,
 	WrapProps
 } from '../../shared/model';
 
@@ -33,7 +34,8 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	EmphasisProps &
 	PlacementProps &
 	PopoverProps &
-	WrapProps;
+	WrapProps &
+	TextProps;
 
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;

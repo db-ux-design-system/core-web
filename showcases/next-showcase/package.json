@@ -12,25 +12,29 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "next build --turbopack",
-    "dev": "npm-run-all open next:dev",
+    "build": "pnpm run setup:browserslist && next build --turbopack",
+    "dev": "npm-run-all setup:browserslist --parallel next:dev open",
     "next:dev": "next dev --turbopack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
+    "setup:browserslist": "cpr ../../.browserslistrc .browserslistrc -o",
     "start": "next start"
   },
   "dependencies": {
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*",
+    "@db-ux/db-theme": "5.7.0",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.9.0",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
-    "@types/node": "25.5.2",
-    "@types/react": "19.2.14",
-    "npm-run-all2": "8.0.4",
+    "@types/node": "^25.9.1",
+    "@types/react": "19.2.15",
+    "cpr": "3.0.1",
+    "npm-run-all2": "9.0.1",
     "open-cli": "9.0.0",
     "typescript": "5.9.3"
-  },
-  "overrides": {
-    "cross-spawn": "7.0.6"
   }
 }

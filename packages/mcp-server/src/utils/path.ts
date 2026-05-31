@@ -1,33 +1,33 @@
-import { join, resolve, sep } from 'node:path';
+import { join, resolve } from 'node:path';
 
-const SERVER_DIR = import.meta.dirname;
-/** Absolute path to the monorepo root (core-web/). */
-export const REPO_ROOT = resolve(SERVER_DIR, '../../../..');
-/** Absolute path to the component source directory. */
-export const COMPONENTS_DIR = join(
-	REPO_ROOT,
-	'packages/components/src/components'
-);
-/** Absolute path to the framework output directory. */
-export const OUTPUT_DIR = join(REPO_ROOT, 'output');
-/** Absolute path to the foundations package root. */
-export const FOUNDATIONS_DIR = join(REPO_ROOT, 'packages/foundations');
-/** Absolute path to the top-level docs directory. */
-export const DOCS_DIR = join(REPO_ROOT, 'docs');
-/** Absolute path to the migration guides directory. */
-export const MIGRATION_DIR = join(
-	REPO_ROOT,
-	'packages/mcp-server/docs/migration'
-);
-/** Maps each design token category name to its corresponding SCSS source file. */
-export const TOKEN_FILES: Record<string, string> = {
-	colors: join(FOUNDATIONS_DIR, 'scss/colors/_variables.scss'),
-	typography: join(FOUNDATIONS_DIR, 'scss/fonts/_variables.scss'),
-	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
-	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
-	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
-	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
-};
+/**
+ * Normalizes a path to use forward slashes on all platforms.
+ * Used internally so that startsWith checks work cross-platform.
+ */
+function normalize(p: string): string {
+	return p.replaceAll('\\', '/');
+}
+
+/**
+ * Absolute path to the assets directory shipped with the published package.
+ * The prebuild step copies all required assets (tokens, migration guides, etc.)
+ * into this directory. The server reads strictly from here — no monorepo fallbacks.
+ */
+const ASSETS_DIR = join(import.meta.dirname, '../../assets');
+
+/** Absolute path to the migration guide assets. */
+export const MIGRATION_ASSETS_DIR = join(ASSETS_DIR, 'migration');
+
+/**
+ * Finds a migration guide by name, falling back to the legacy `db-ui-`
+ * prefixed key for backwards compatibility with older manifest formats.
+ */
+export function findGuide(
+	guides: Record<string, string>,
+	name: string
+): string | undefined {
+	return guides[name] ?? guides[`db-ui-${name}`];
+}
 
 /**
  * Resolves a user-supplied path relative to a base directory and ensures the
@@ -39,14 +39,14 @@ export const TOKEN_FILES: Record<string, string> = {
  * @throws {Error} When the resolved path escapes the base directory.
  */
 export function resolveSafePath(baseDir: string, userPath: string): string {
-	const absoluteBase = resolve(baseDir);
+	const absoluteBase = normalize(resolve(baseDir));
 	let decoded = userPath;
 	while (decoded !== decodeURIComponent(decoded)) {
 		decoded = decodeURIComponent(decoded);
 	}
-	const absoluteRequested = resolve(baseDir, decoded);
+	const absoluteRequested = normalize(resolve(baseDir, decoded));
 	if (
-		!absoluteRequested.startsWith(absoluteBase + sep) &&
+		!absoluteRequested.startsWith(absoluteBase + '/') &&
 		absoluteRequested !== absoluteBase
 	) {
 		throw new Error('Path traversal detected');

@@ -1,3 +1,4 @@
+import dbUxFlatten from '@db-ux/core-postcss-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,6 +14,9 @@ export default defineConfig({
 		outDir: '../../build-showcases/react-showcase',
 		emptyOutDir: true,
 		cssMinify: 'esbuild'
+	},
+	optimizeDeps: {
+		include: ['next/navigation', 'next/router']
 	},
 	define: {
 		process: {
@@ -35,6 +39,9 @@ export default defineConfig({
 		}
 	},
 	css: {
-		devSourcemap: true // Enables source maps in dev mode for CSS
+		devSourcemap: true, // Enables source maps in dev mode for CSS
+		postcss: {
+			plugins: [dbUxFlatten()]
+		}
 	}
 });

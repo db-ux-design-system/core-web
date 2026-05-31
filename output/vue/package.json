@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "4.5.4",
+  "version": "4.9.1",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -23,40 +23,43 @@
     }
   },
   "files": [
-    "dist/",
+    "CHANGELOG.md",
     "agent",
-    "CHANGELOG.md"
+    "dist/"
   ],
   "scripts": {
     "build": "npm-run-all --parallel build:* --parallel mv:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
-    "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
     "mv:agent": "cpr agent ../../build-outputs/vue/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
+    "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
     "test:components": "playwright test --config playwright.config.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
+  },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.59.1",
-    "@vitejs/plugin-vue": "6.0.5",
+    "@playwright/experimental-ct-vue": "1.60.0",
+    "@vitejs/plugin-vue": "6.0.7",
+    "@vue/compiler-dom": "3.5.34",
+    "cpr": "3.0.1",
+    "npm-run-all2": "9.0.1",
     "replace-in-file": "8.4.0",
-    "tsx": "4.21.0",
+    "tsx": "4.22.3",
     "typescript": "5.9.3",
-    "vite": "8.0.6",
-    "vue": "^3.5.31",
-    "vue-tsc": "^3.2.6"
+    "vite": "8.0.14",
+    "vue": "3.5.34",
+    "vue-tsc": "3.3.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "sideEffects": false,
-  "source": "src/index.ts",
-  "dependencies": {
-    "@db-ux/core-components": "4.5.4",
-    "@db-ux/core-foundations": "4.5.4"
-  }
+  "source": "src/index.ts"
 }

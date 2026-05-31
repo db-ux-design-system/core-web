@@ -47,7 +47,7 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list div[role] > div:not([class^="db-"]),
+.variants-list div[role] > div:not([class^="db-"], [data-area]),
 .variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;
@@ -180,11 +180,6 @@ main .db-header {
 
 .stack-container {
 	padding: var(--db-spacing-fixed-xs);
-}
-
-.stack-show-alignment {
-	border: var(--db-border-width-3xs) dashed
-		var(--db-adaptive-on-bg-basic-emphasis-60-default);
 }
 
 .dummy-component {

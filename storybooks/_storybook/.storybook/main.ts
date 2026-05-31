@@ -1,7 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from '@storybook/react-vite';
 import { createRequire } from 'node:module';
-
 import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -19,16 +18,35 @@ const baseUrl = process.env.BASE_URL || '';
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: [getAbsolutePath('@storybook/addon-docs')],
+	staticDirs: ['../public'],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {}
 	},
-	async viteFinal(config) {
+	async viteFinal(config, { configType }) {
 		const { mergeConfig } = await import('vite');
+
+		const isDev = configType === 'DEVELOPMENT';
+		const frameworkUrls = {
+			angular: isDev
+				? 'http://localhost:6006'
+				: `${baseUrl}/angular-storybook`,
+			react: isDev
+				? 'http://localhost:6005'
+				: `${baseUrl}/react-storybook`,
+			vue: isDev ? 'http://localhost:6007' : `${baseUrl}/vue-storybook`
+		};
 
 		return mergeConfig(config, {
 			// TODO: Remove `/storybook` after removing patternhub
-			base: `${baseUrl}/composition-storybook`
+			base: `${baseUrl}/composition-storybook`,
+			build: {
+				cssMinify: 'esbuild'
+			},
+			define: {
+				// eslint-disable-next-line @typescript-eslint/naming-convention
+				__FRAMEWORK_URLS__: JSON.stringify(frameworkUrls)
+			}
 		});
 	},
 	refs: (_, { configType }) => {
