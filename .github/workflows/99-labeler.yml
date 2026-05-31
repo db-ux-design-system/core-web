@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🏷️ Labeler
-        uses: actions/labeler@v6
+        uses: actions/labeler@v6.1.0
         continue-on-error: true
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"

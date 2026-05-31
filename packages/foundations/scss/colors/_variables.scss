@@ -1,5 +1,9 @@
-$variants: "neutral", "brand", "critical", "successful", "warning", "informational";
-$variant-colors: "neutral", "critical", "successful", "warning", "informational";
+/* stylelint-disable-next-line scss/dollar-variable-colon-space-after */
+$variants:
+	"neutral", "brand", "critical", "successful", "warning", "informational";
+/* stylelint-disable-next-line scss/dollar-variable-colon-space-after */
+$variant-colors:
+	"neutral", "critical", "successful", "warning", "informational";
 $on-background-colors:
 	"emphasis-100", "emphasis-90", "emphasis-80", "emphasis-70", "emphasis-60",
 	"emphasis-50";

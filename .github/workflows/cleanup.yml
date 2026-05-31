@@ -27,7 +27,7 @@ jobs:
 
       - name: 🗑️ Clean all preview pages
         id: cleanup
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           result-encoding: json
           script: |
@@ -35,7 +35,7 @@ jobs:
             return await cleanUpPages({github, context});
 
       - name: 🥅 Deploy to GH-Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public

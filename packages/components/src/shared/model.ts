@@ -30,7 +30,7 @@ export interface GlobalProps {
 	autofocus?: boolean | string;
 
 	/**
-	 * Allows overriding specific props on nested elements or internal component structure.
+	 * Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id
 	 */
 	propOverrides?: PropOverridesType;
 }
@@ -599,7 +599,7 @@ export type RoleProps = {
 
 export type TextProps = {
 	/**
-	 * Alternative for default slot/children.
+	 * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
 	 */
 	text?: string;
 };

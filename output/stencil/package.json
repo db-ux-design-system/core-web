@@ -1,12 +1,12 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "4.5.3",
+  "version": "4.9.1",
+  "type": "module",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
-  "type": "module",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -17,9 +17,9 @@
     }
   },
   "files": [
-    "dist/",
+    "CHANGELOG.md",
     "agent",
-    "CHANGELOG.md"
+    "dist/"
   ],
   "scripts": {
     "build": "npm-run-all build:* --parallel mv:*",
@@ -33,22 +33,26 @@
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
     "start": "stencil build --watch --config stencil.config.dev.ts"
   },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
+  },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",
-    "@stencil/core": "4.43.2",
+    "@stencil/core": "4.43.4",
+    "@types/node": "25.9.1",
     "cem-plugin-expanded-types": "1.4.0",
+    "cpr": "3.0.1",
     "custom-element-jet-brains-integration": "1.7.0",
     "custom-element-vs-code-integration": "1.5.0",
-    "workbox-build": "7.4.0"
+    "npm-run-all2": "9.0.1",
+    "storybook": "10.4.1",
+    "workbox-build": "7.4.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "web-types": "./dist/web-types.json",
   "customElements": "dist/custom-elements.json",
-  "dependencies": {
-    "@db-ux/core-components": "4.5.3",
-    "@db-ux/core-foundations": "4.5.3"
-  }
+  "web-types": "./dist/web-types.json"
 }

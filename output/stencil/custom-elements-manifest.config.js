@@ -1,7 +1,7 @@
-import { generateVsCodeCustomElementData } from 'custom-element-vs-code-integration';
 import { getTsProgram } from 'cem-plugin-expanded-types';
-import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 import { generateJetBrainsWebTypes } from 'custom-element-jet-brains-integration';
+import { generateVsCodeCustomElementData } from 'custom-element-vs-code-integration';
+import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 
 const outdir = './dist';
 

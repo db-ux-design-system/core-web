@@ -14,7 +14,7 @@ function getAbsolutePath(value: string): string {
 	return dirname(require.resolve(join(value, 'package.json')));
 }
 const config: StorybookConfig = {
-	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	// TODO: Include html output when addon-html supports v10 https://github.com/whitespace-se/storybook-addon-html/pull/149
 	addons: ['@storybook/addon-docs'],
 	staticDirs: ['../public'],
@@ -26,7 +26,10 @@ const config: StorybookConfig = {
 		const { mergeConfig } = await import('vite');
 		const baseUrl = process.env.BASE_URL || '';
 		return mergeConfig(config, {
-			base: `${baseUrl}/react-storybook`
+			base: `${baseUrl}/react-storybook`,
+			build: {
+				cssMinify: 'esbuild'
+			}
 		});
 	}
 };
