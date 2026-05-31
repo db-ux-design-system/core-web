@@ -1,4 +1,9 @@
-import { getTest, STABILIZATION_DELAY, testDefault } from '../default';
+import {
+	generateSnapshot,
+	getTest,
+	STABILIZATION_DELAY,
+	testDefault
+} from '../default';
 
 const test = getTest();
 
@@ -27,6 +32,23 @@ test.describe('DBSwitch', () => {
 				await voiceOver?.next(); // Focus "switch 3"
 				await voiceOver?.act(); // Interact "switch 1"
 				await voiceOver?.next(); // Focus "switch 3 inline text"
+			}
+		},
+		async postTestFn(voiceOver, nvda, retry) {
+			if (nvda) {
+				/*
+				 * There is a timing issue for windows which results in different outputs in CICD.
+				 * We avoid this by replacing the generated log files
+				 */
+				await generateSnapshot(nvda, retry, (phraseLog) =>
+					phraseLog.map((log) =>
+						log
+							// NVDA sometimes shows "blank"
+							.replace('blank', 'check box, not checked, True')
+					)
+				);
+			} else if (voiceOver) {
+				await generateSnapshot(voiceOver, retry);
 			}
 		}
 	});

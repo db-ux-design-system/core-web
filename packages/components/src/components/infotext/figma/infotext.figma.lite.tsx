@@ -7,5 +7,5 @@ useMetadata({
 });
 
 export default function InfotextFigmaLite(props: FigmaInfotextProps) {
-	return <DBInfotext>Infotext</DBInfotext>;
+	return <DBInfotext>{props.text}</DBInfotext>;
 }

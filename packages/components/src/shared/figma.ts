@@ -13,6 +13,12 @@ export type FigmaEnumProp = {
 	key: string;
 	/** Map of Figma variant value → code value. Values can be strings, booleans, numbers, or instance swaps. */
 	value: Record<string, string | boolean | number | FigmaInstanceProp>;
+	/**
+	 * Optional Figma boolean property key that guards this prop.
+	 * When set, the resolved value is only emitted if getPropertyValue(guardKey) === 'True'.
+	 * Useful for icon swaps that are only present when a show-flag is enabled.
+	 */
+	guardKey?: string;
 };
 
 /** A simple scalar prop. */
@@ -93,20 +99,20 @@ export type FigmaConnectedInstancesProp = {
  */
 export type FigmaNestedConnectedInstancesProp = {
 	type: 'nestedConnectedInstances';
-	/** Import string to filter by (e.g. 'DBAccordionItem'). Only instances whose template nestedImports contain this string are included. */
-	filter: string;
+	/** Import string to filter by (e.g. 'DBAccordionItem'). Only instances whose template nestedImports contain this string are included. When omitted, all connected instances are included. */
+	filter?: string;
 };
 
 /**
- * Wraps an iconSwap prop so it is only rendered when a boolean guard prop is true.
- * Generates: let icon = ''; if (showIconLeading) { icon = `\n\t\ticon="${iconLeading}"` }
+ * Wraps an iconSwap prop so it is only rendered when a boolean Figma property is enabled.
+ * Generates: let icon = ''; if (getPropertyValue(guardKey) === true || getPropertyValue(guardKey) === 'True') { icon = `\n\t\ticon="${iconLeading}"` }
  */
 export type FigmaConditionalProp = {
 	type: 'conditionalProp';
 	/** The Figma property key of the icon instance swap. */
 	key: string;
-	/** The prop name of the boolean guard (e.g. 'showIconLeading'). */
-	guardProp: string;
+	/** The Figma boolean property key that guards this prop (e.g. 'Show Icon Leading'). */
+	guardKey: string;
 	/** The attribute name to render (e.g. 'icon'). */
 	attrName: string;
 };

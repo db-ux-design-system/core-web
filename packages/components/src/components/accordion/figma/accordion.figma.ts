@@ -9,7 +9,7 @@ export type FigmaAccordionProps = {
 const accordionProps: Record<string, FigmaProp> = {
 	behavior: {
 		type: 'enum',
-		key: '💻 Behavior',
+		key: 'Behavior',
 		value: {
 			multiple: 'multiple',
 			single: 'single'

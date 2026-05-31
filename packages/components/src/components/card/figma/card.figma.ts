@@ -4,13 +4,13 @@ export type FigmaCardProps = {
 	elevationLevel?: string;
 	spacing?: string;
 	behavior?: string;
-	_children?: string;
+	_children?: any[];
 };
 
 const cardProps: Record<string, FigmaProp> = {
 	elevationLevel: {
 		type: 'enum',
-		key: '💻 Elevation Level',
+		key: 'Elevation Level',
 		value: {
 			'1': '1',
 			'2': '2',
@@ -35,9 +35,11 @@ const cardProps: Record<string, FigmaProp> = {
 			Interactive: 'interactive'
 		}
 	},
+	// Renders all children inside the card's Children slot.
+	// Connected instances render via their own Code Connect template.
+	// Non-connected wrapper frames render as plain <div> elements.
 	_children: {
-		type: 'children',
-		key: 'Children'
+		type: 'nestedConnectedInstances'
 	}
 };
 
