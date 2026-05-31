@@ -310,7 +310,7 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._id}
 				name={props.name}
 				size={props.size}
-				value={props.value ?? state._value}
+				value={props.value ?? state._value ?? ''}
 				autocomplete={props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
