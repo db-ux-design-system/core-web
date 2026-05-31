@@ -41,7 +41,7 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-	navigationItems.sort((a: NavItem, b: NavItem) =>
+	navigationItems.toSorted((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);
 

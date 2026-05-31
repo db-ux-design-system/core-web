@@ -1,0 +1,18 @@
+{
+	"include": ["src"],
+	"compilerOptions": {
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"composite": false,
+		"declaration": true,
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"resolveJsonModule": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true,
+		"outDir": "build",
+		"rootDir": "src",
+		"esModuleInterop": true
+	}
+}

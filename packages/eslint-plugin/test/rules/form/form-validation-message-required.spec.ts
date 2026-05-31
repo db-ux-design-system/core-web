@@ -1,6 +1,7 @@
+import * as angularTemplateParser from '@angular-eslint/template-parser';
 import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { describe, it } from 'vitest';
+
 import rule from '../../../src/rules/form/form-validation-message-required.js';
 
 const ruleTester = new RuleTester({
@@ -11,121 +12,118 @@ const ruleTester = new RuleTester({
 	}
 });
 
-const angularRuleTester = new AngularRuleTester();
+const angularRuleTester = new AngularRuleTester({
+	languageOptions: {
+		parser: angularTemplateParser
+	}
+});
 
 describe('form-validation-message-required', () => {
-	it('should validate rule', () => {
-		ruleTester.run('form-validation-message-required', rule, {
-			valid: [
-				{ code: '<DBInput label="Name" />' },
-				{
-					code: '<DBInput label="Name" required invalidMessage="Required" />'
-				},
-				{
-					code: '<DBInput label="Name" :required="true" invalidMessage="Required" />'
-				},
-				{
-					code: '<DBTextarea label="Text" maxLength={100} invalidMessage="Too long" />'
-				},
-				{
-					code: '<DBInput label="Age" min={18} invalidMessage="Must be 18+" />'
-				},
-				{
-					code: '<DBInput label="Email" pattern=".*@.*" invalidMessage="Invalid email" />'
-				},
-				{
-					code: '<DBSelect label="Country" required invalidMessage="Required" />'
-				},
-				{ code: '<DBRadio required>Option</DBRadio>' }
-			],
-			invalid: [
-				{
-					code: '<DBInput label="Name" required />',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: {
-								component: 'DBInput',
-								attribute: 'required'
-							}
+	ruleTester.run('form-validation-message-required', rule, {
+		valid: [
+			{ code: '<DBInput label="Name" />' },
+			{
+				code: '<DBInput label="Name" required invalidMessage="Required" />'
+			},
+			{
+				code: '<DBTextarea label="Text" maxLength={100} invalidMessage="Too long" />'
+			},
+			{
+				code: '<DBInput label="Age" min={18} invalidMessage="Must be 18+" />'
+			},
+			{
+				code: '<DBInput label="Email" pattern=".*@.*" invalidMessage="Invalid email" />'
+			},
+			{
+				code: '<DBSelect label="Country" required invalidMessage="Required" />'
+			},
+			{ code: '<DBRadio required>Option</DBRadio>' }
+		],
+		invalid: [
+			{
+				code: '<DBInput label="Name" required />',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: {
+							component: 'DBInput',
+							attribute: 'required'
 						}
-					]
-				},
-				{
-					code: '<DBTextarea label="Text" maxLength={100} />',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: {
-								component: 'DBTextarea',
-								attribute: 'maxLength'
-							}
+					}
+				]
+			},
+			{
+				code: '<DBTextarea label="Text" maxLength={100} />',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: {
+							component: 'DBTextarea',
+							attribute: 'maxLength'
 						}
-					]
-				},
-				{
-					code: '<DBInput label="Text" minLength={5} />',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: {
-								component: 'DBInput',
-								attribute: 'minLength'
-							}
+					}
+				]
+			},
+			{
+				code: '<DBInput label="Text" minLength={5} />',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: {
+							component: 'DBInput',
+							attribute: 'minLength'
 						}
-					]
-				},
-				{
-					code: '<DBInput label="Age" min={18} />',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: { component: 'DBInput', attribute: 'min' }
+					}
+				]
+			},
+			{
+				code: '<DBInput label="Age" min={18} />',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: { component: 'DBInput', attribute: 'min' }
+					}
+				]
+			},
+			{
+				code: '<DBInput label="Score" max={100} />',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: { component: 'DBInput', attribute: 'max' }
+					}
+				]
+			},
+			{
+				code: '<DBInput label="Email" pattern=".*@.*" />',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: { component: 'DBInput', attribute: 'pattern' }
+					}
+				]
+			},
+			{
+				code: '<DBCheckbox required>Accept</DBCheckbox>',
+				errors: [
+					{
+						messageId: 'missingInvalidMessage',
+						data: {
+							component: 'DBCheckbox',
+							attribute: 'required'
 						}
-					]
-				},
-				{
-					code: '<DBInput label="Score" max={100} />',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: { component: 'DBInput', attribute: 'max' }
-						}
-					]
-				},
-				{
-					code: '<DBInput label="Email" pattern=".*@.*" />',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: { component: 'DBInput', attribute: 'pattern' }
-						}
-					]
-				},
-				{
-					code: '<DBCheckbox required>Accept</DBCheckbox>',
-					errors: [
-						{
-							messageId: 'missingInvalidMessage',
-							data: {
-								component: 'DBCheckbox',
-								attribute: 'required'
-							}
-						}
-					]
-				}
-			]
-		});
+					}
+				]
+			}
+		]
 	});
 
-	it('should validate rule (Angular)', () => {
-		angularRuleTester.run('form-validation-message-required', rule, {
-			valid: [
-				{
-					code: '<db-input label="Name" [required]="true" invalidMessage="Required"></db-input>'
-				}
-			],
-			invalid: []
-		});
+	angularRuleTester.run('form-validation-message-required (Angular)', rule, {
+		valid: [
+			{
+				code: '<db-input label="Name" [required]="true" invalidMessage="Required"></db-input>'
+			}
+		],
+		invalid: []
 	});
 });

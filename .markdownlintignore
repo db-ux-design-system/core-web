@@ -8,3 +8,6 @@ build-showcases/**
 showcases/**/public/**
 CODE-OF-CONDUCT.md
 **/agent/**
+packages/mcp-server/docs/**
+docs/migration/db-ui/color-migration.md
+docs/migration/db-ui/icon-migration.md

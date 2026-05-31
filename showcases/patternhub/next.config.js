@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import remarkTransformLinks from './scripts/remark-transform-links.js';
 
 const withMDX = generated({
-	extension: /\.mdx?$/,
+	extension: /\.mdx?$/v,
 	options: {
 		remarkPlugins: [remarkGfm, remarkTransformLinks],
 		rehypePlugins: [rehypeSlug],
