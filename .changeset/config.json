@@ -32,7 +32,11 @@
 		"patternhub",
 		"react-showcase",
 		"stencil-showcase",
-		"vue-showcase"
+		"vue-showcase",
+		"composition-storybook",
+		"angular-storybook",
+		"react-storybook",
+		"vue-storybook"
 	],
 	"linked": [],
 	"access": "public",

@@ -926,6 +926,21 @@ describe('postcss-flatten-db-variables', () => {
 		});
 	});
 
+	describe('transparent vs semi-transparent same hex', () => {
+		it('should keep both transparent and semi-transparent values when hex base is the same', async () => {
+			const input = `
+:root {
+	--db-color-full: #ff0000;
+	--db-color-semi: #ff000080;
+	--my-full: var(--db-color-full);
+	--my-semi: var(--db-color-semi);
+}`;
+			const output = await run(input);
+			expect(output).toContain('--my-full: #ff0000');
+			expect(output).toContain('--my-semi: #ff000080');
+		});
+	});
+
 	describe('@layer priority', () => {
 		it('should use higher-priority layer value when same var is in multiple layers', async () => {
 			const input = `

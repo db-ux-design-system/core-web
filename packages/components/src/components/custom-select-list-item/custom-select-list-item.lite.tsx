@@ -101,9 +101,8 @@ export default function DBCustomSelectListItem(
 							state.handleChange(event)
 						}
 					/>
-					<Show when={props.label} else={props.children}>
-						{props.label}
-					</Show>
+					<Show when={props.label}>{props.label}</Show>
+					{props.children}
 				</label>
 			</Show>
 		</li>

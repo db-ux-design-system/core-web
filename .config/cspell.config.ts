@@ -35,6 +35,7 @@ export default defineConfig({
 		'**/scripts/public/**',
 		'**/test/**',
 		'**/__tests__/**',
+		'**/public/**',
 		'packages/migration/src/migration/color-q32024.ts',
 		'packages/mcp-server/docs/migration/db-ui-icon-migration.md',
 		'packages/mcp-server/docs/migration/db-ui-color-migration.md',
