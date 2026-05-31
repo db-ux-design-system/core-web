@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= name %>/model.ts
 ---
-import {
+import type {
 <% if(formValue!=="no"){   -%>
 	ChangeEventProps,
 	ChangeEventState,

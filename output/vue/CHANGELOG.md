@@ -1,9 +1,22 @@
 # @db-ux/v-core-components
 
-## 4.8.1
+## 4.9.1
 
-_version bump_
+### Patch Changes
 
+- fix(switch): use `2lh` unit and add `min-inline-size` to prevent track from shrinking - [see commit 78c9fde](https://github.com/db-ux-design-system/core-web/commit/78c9fde67d9677f61eaa41761a088b9c1a9773a1)
+
+- fix(notification): remove empty grid gap when icon is hidden - [see commit 96f94c6](https://github.com/db-ux-design-system/core-web/commit/96f94c651391f014e2d073402c2700b524ccbf5e)
+
+## 4.9.0
+
+### Minor Changes
+
+- refactor: allow text and children to be used together in components - [see commit cecb833](https://github.com/db-ux-design-system/core-web/commit/cecb833e2d2b2d15b47f9ac1ed57ccf1040374f0):
+    - feat: add `text` property to components that previously only supported children for their label, like e.g. `DBTooltip`.
+    - refactor: allow `text` property and components children to be used in parallel in components. Previously, `text` and children were mutually exclusive.
+    - refactor(`DBRadio`, `DBCheckbox`, `DBSwitch`): `label` and `children` can now be used together. Previously they were mutually exclusive.
+    - fix(`DBTag`): changed render order of `children` and `text` to align with design (children rendered before text).
 
 ## 4.8.0
 
@@ -52,7 +65,7 @@ _version bump_
 - docs(vite): mentioning version 8 configuration in `README.md` file - [see commit 4c5fc92](https://github.com/db-ux-design-system/core-web/commit/4c5fc9266402d9585087f4738a1a800cff1515f1)
 
 - fix(number input): prevent from clearing on intermediate decimal entry - [see commit aa85967](https://github.com/db-ux-design-system/core-web/commit/aa85967ffeaa685f6b647069d0e1d415d812dc87):
-  - fix(input,textarea): allow using `undefined` as `value`
+    - fix(input,textarea): allow using `undefined` as `value`
 
 ## 4.5.4
 
@@ -194,7 +207,7 @@ _version bump_
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
 
-      - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+                  - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 
@@ -215,14 +228,14 @@ _version bump_
 - refactor(notification): update and simplify grid layout for block link variant - [see commit cb83f96](https://github.com/db-ux-design-system/core-web/commit/cb83f966eaf29c85b4cf0079750bdd563f216d6e)
 
 - fix(DBCustomSelect): properly announce selected options - [see commit 773edeb](https://github.com/db-ux-design-system/core-web/commit/773edeb943a085eb79e1c8d59059137b2830fbf0):
-  - feat(DBCustomSelect): introduce new property `selectedPrefix`
+    - feat(DBCustomSelect): introduce new property `selectedPrefix`
 
 ### Patch Changes
 
 - fix(DBCustomSelect): automatically handle form reset events - [see commit 6af5246](https://github.com/db-ux-design-system/core-web/commit/6af5246b3b2e6febdc6ff6342ba1a8eb10184d14):
-  - An event listener is now added for every form component (input, custom-select, etc.) when a `form` property is passed.
-  - This listener detects form resets and updates the component's internal value/checked state accordingly.
-  - > **Note**: This does not work for `ngModel` in Angular.
+    - An event listener is now added for every form component (input, custom-select, etc.) when a `form` property is passed.
+    - This listener detects form resets and updates the component's internal value/checked state accordingly.
+    - > **Note**: This does not work for `ngModel` in Angular.
 
 - fix(button): Replace fixed height with min-height for buttons to allow dynamic height adjustment when text wraps - [see commit d1fd2c4](https://github.com/db-ux-design-system/core-web/commit/d1fd2c4e58a5ed6f75fab44700cd2d93c7232474)
 
@@ -257,9 +270,9 @@ _version bump_
 ### Major Changes
 
 - feat: Switch stable rework - [see commit cb2deb0](https://github.com/db-ux-design-system/core-web/commit/cb2deb0f1c54900d1967483aea05d81279c02f59):
-  - **BREAKING CHANGE**: remove `emphasis` property
-  - introduce validation (invalid and valid)
-  - configurable label position
+    - **BREAKING CHANGE**: remove `emphasis` property
+    - introduce validation (invalid and valid)
+    - configurable label position
 
 - **BREAKING CHANGE**: refactor(Custom Select): renamed `ariaListLabel` property to `listLabel` - [see commit 966d5ad](https://github.com/db-ux-design-system/core-web/commit/966d5ad01f00d0ca1707cc316a63e2d431fff1e9)
 
@@ -278,12 +291,12 @@ _version bump_
 ### Patch Changes
 
 - fix(DBTabs): ensure navigation arrows appear correctly on window resize - [see commit 4e65e00](https://github.com/db-ux-design-system/core-web/commit/4e65e00d280cae18baee03b5a7a9b13eec063835):
-  - This update resolves an issue where navigation arrows in DBTabs would not appear or update correctly when the window was resized. The component now properly responds to resize events, ensuring arrows are always shown or hidden as needed.
+    - This update resolves an issue where navigation arrows in DBTabs would not appear or update correctly when the window was resized. The component now properly responds to resize events, ensuring arrows are always shown or hidden as needed.
 
 - fix(select): jumping placeholder for label above - [see commit 7ed8d22](https://github.com/db-ux-design-system/core-web/commit/7ed8d2225102e0e9044437e95917e11eef4bc73f)
 
 - enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
-  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+    - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
 
 ## 3.1.17
 
@@ -297,8 +310,8 @@ _version bump_
 ### Patch Changes
 
 - a28eb71: fix(custom-select): keyboard navigation for option groups in single-select mode - [see commit 6d60bab](https://github.com/db-ux-design-system/core-web/commit/6d60bab2eb87f16a9ffa942085bffd658564769c):
-  - Fixes a keyboard accessibility issue where users could not navigate to options in subsequent option groups using arrow keys in single-select mode.
-  - Now, all options are accessible via keyboard regardless of group boundaries.
+    - Fixes a keyboard accessibility issue where users could not navigate to options in subsequent option groups using arrow keys in single-select mode.
+    - Now, all options are accessible via keyboard regardless of group boundaries.
 - fix: JS framework core-components packages are missing `@db-ux` dependencies - [see commit 49df866](https://github.com/db-ux-design-system/core-web/commit/49df866e753a9459f5acdca4ad1e19141b477471)
 
 ## 3.1.15

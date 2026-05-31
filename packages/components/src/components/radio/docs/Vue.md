@@ -15,16 +15,18 @@ const radioNames = ["X", "Y", "Z"];
 </script>
 
 <template>
-	<ul>
-		<li v-for="radioName in radioNames">
-			<DBRadio
-				@change="radio = radioName"
-				name="radio-group"
-				:value="radioName"
-			>
-				Radio {{ radioName }}
-			</DBRadio>
-		</li>
-	</ul>
+	<fieldset>
+		<legend>Radio group example</legend>
+		<DBRadio
+			v-for="radioName in radioNames"
+			:key="radioName"
+			@change="radio = radioName"
+			name="radio-group"
+			:value="radioName"
+			:checked="radio === radioName"
+		>
+			Radio {{ radioName }}
+		</DBRadio>
+	</fieldset>
 </template>
 ```
