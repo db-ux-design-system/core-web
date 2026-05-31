@@ -3,10 +3,15 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaTextareaProps = {
 	variant?: string;
 	label?: string;
+	showLabel?: boolean;
 	placeholder?: string;
 	required?: boolean;
 	showRequiredAsterisk?: boolean;
+	readonly?: boolean;
 	disabled?: boolean;
+	resize?: string;
+	showResizer?: boolean;
+	fieldSizing?: string;
 	validation?: string;
 	showMessage?: boolean;
 	message?: string;
@@ -15,14 +20,32 @@ export type FigmaTextareaProps = {
 const textareaProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Above: 'above', Floating: 'floating' }
 	},
-	label: { type: 'string', key: '✏️ Label' },
-	placeholder: { type: 'string', key: '✏️ Placeholder' },
+	label: { type: 'string', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
+	placeholder: { type: 'string', key: 'Placeholder' },
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
+	readonly: { type: 'boolean', key: 'Readonly' },
 	disabled: { type: 'boolean', key: 'Disabled' },
+	resize: {
+		type: 'enum',
+		key: 'Resize',
+		value: {
+			both: 'both',
+			horizontal: 'horizontal',
+			none: 'none',
+			vertical: 'vertical'
+		}
+	},
+	showResizer: { type: 'boolean', key: 'Show Resizer' },
+	fieldSizing: {
+		type: 'enum',
+		key: 'Field Sizing',
+		value: { '(Def) Fixed': 'fixed', Content: 'content' }
+	},
 	validation: {
 		type: 'enum',
 		key: 'Validation',
@@ -35,7 +58,7 @@ const textareaProps: Record<string, FigmaProp> = {
 	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
-		key: '✏️ Text',
+		key: 'Text',
 		conditionProp: 'validation',
 		map: {
 			invalid: 'invalidMessage',
