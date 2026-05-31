@@ -285,7 +285,7 @@ export const getBreadcrumb = (path: string) => {
 	const tree: NavigationItem[] = getAllNavigationItems(true);
 	return tree
 		.filter((navItem) => path.includes(navItem.path ?? ''))
-		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
+		.toSorted((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
 export const getAllComponentGroupNames = (): string[] => {

@@ -12,7 +12,6 @@ dependencyGraph.json
 source/_meta/_head.mustache
 source/_meta/_foot.mustache
 
-!e2e/.env
 .env
 **/*/.env
 
@@ -72,8 +71,13 @@ showcases/patternhub/public/iframe-resizer/*
 !/scripts/tests/fixtures/out
 /output/**/docs/
 /output/**/agent/
-/packages/agent-cli/test/.github/copilot-instructions.md
-/packages/agent-cli/test/.amazonq/rules/db-ux.md
+/packages/agent-cli/test/**/.github/copilot-instructions.md
+/packages/agent-cli/test/**/.amazonq/rules/db-ux.md
 /core-web.iml
 /build-storybooks/
 **/blob-report
+/figma-code-connect/**/src/
+
+packages/mcp-server/src/manifest.json
+**/db-ux-detection-report.json
+showcases/next-showcase/.browserslistrc

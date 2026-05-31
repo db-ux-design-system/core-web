@@ -46,6 +46,7 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
@@ -57,6 +58,7 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-build-packages:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-packages.result == 'failure' }}
@@ -64,13 +66,25 @@ jobs:
     secrets: inherit
     needs: [build-packages]
 
+  build-figma-code-connect:
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    uses: ./.github/workflows/01-build-figma-code-connect.yml
+    needs: [init]
+
+  cancel-on-failure-figma-code-connect:
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-figma-code-connect.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-figma-code-connect]
+
   build-stories:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-stories.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-build-stories:
-    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-stories]
@@ -79,12 +93,14 @@ jobs:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-init-playwright.yml
     needs: [init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
+    secrets: inherit
 
   cancel-on-failure-build-outputs:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-outputs.result == 'failure' }}
@@ -92,15 +108,28 @@ jobs:
     secrets: inherit
     needs: [build-outputs]
 
+  test-vite-plugin:
+    uses: ./.github/workflows/02-vite-plugin-test.yml
+    needs: [build-outputs]
+    secrets: inherit
+
+  test-figma-code-connect:
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    uses: ./.github/workflows/02-test-figma-code-connect.yml
+    needs: [build-figma-code-connect, init]
+    secrets: inherit
+
   test-components:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -243,6 +272,7 @@ jobs:
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
@@ -251,6 +281,7 @@ jobs:
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
@@ -259,6 +290,7 @@ jobs:
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-react, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
@@ -267,6 +299,7 @@ jobs:
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
@@ -275,6 +308,7 @@ jobs:
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, init, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}
@@ -282,6 +316,7 @@ jobs:
   regenerate-snapshots-components:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-components.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: components
@@ -290,6 +325,7 @@ jobs:
   regenerate-snapshots-foundations:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: foundations
@@ -298,6 +334,7 @@ jobs:
   regenerate-snapshots-patternhub:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       path: ${{ needs.init.outputs.baseUrl }}
@@ -313,6 +350,7 @@ jobs:
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -325,6 +363,7 @@ jobs:
         needs.test-showcase-stencil.result == 'failure'
       )
     uses: ./.github/workflows/02-e2e-regenerate.yml
+    secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: showcases
@@ -369,6 +408,34 @@ jobs:
           IS_RELEASE: ${{ github.event_name == 'release' }}
           IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
+          if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
+            echo "🎉 Changeset release PR - skipping checks."
+            exit 0
+          fi
+          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
+          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
+          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
+          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
+          resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
+          resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
+          resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
+          resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
+          resultBuildShowcaseNext="${{ needs.build-showcase-next.result }}"
+          resultBuildShowcaseVue="${{ needs.build-showcase-vue.result }}"
+          resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
+          resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
+          resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
+          resultTestPackages="${{ needs.test-components.result }}"
+          resultTestFoundations="${{ needs.test-foundations.result }}"
+          resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
+          resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
+          resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
+          resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
+          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
+          resultTestScreenReader="${{ needs.test-screen-reader.result }}"
+          resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
+
           echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
           echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
           echo "resultBuildStorybookReact: $resultBuildStorybookReact"
@@ -390,44 +457,21 @@ jobs:
           echo "resultTestShowcaseVue: $resultTestShowcaseVue"
           echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
           echo "resultTestScreenReader: $resultTestScreenReader"
-          if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
-            echo "🎉 Changeset release PR - skipping checks."
-            exit 0
-          fi
-          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
-          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
-          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
-          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
-          resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
-          resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
-          resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
-          resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
-          resultBuildShowcaseNext="${{ needs.build-showcase-next.result }}"
-          resultBuildShowcaseVue="${{ needs.build-showcase-vue.result }}"
-          resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
-          resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
-          resultBuildOutputs="${{ needs.build-outputs.result }}"
-          resultTestPackages="${{ needs.test-components.result }}"
-          resultTestFoundations="${{ needs.test-foundations.result }}"
-          resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
-          resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
-          resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
-          resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
-          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
-          resultTestScreenReader="${{ needs.test-screen-reader.result }}"
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
              [[ $resultBuildStorybookReact == "success" ]] && \
              [[ $resultBuildStorybookVue == "success" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
-            [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
+             [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
+             [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
              [[ $resultTestShowcaseReact == "success" ]] && \
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
+             [[ $resultTestVitePlugin == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
@@ -458,14 +502,17 @@ jobs:
         build-showcase-nuxt,
         build-showcase-patternhub,
         build-outputs,
+        test-figma-code-connect,
         test-components,
+        test-vite-plugin,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
         test-showcase-patternhub,
         test-foundations,
-        test-screen-reader
+        test-screen-reader,
+        init
       ]
 
   deploy:
@@ -474,9 +521,11 @@ jobs:
       ${{
       !cancelled() && github.actor != 'dependabot[bot]' &&
       (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
-      needs.init.outputs.isChangesetRelease != 'true'
+      needs.init.outputs.isChangesetRelease != 'true' &&
+      needs.checks-done.result == 'success'
       }}
     needs: [checks-done, init]
+    secrets: inherit
     with:
       release: ${{ needs.init.outputs.release }}
       preRelease: ${{ needs.init.outputs.preRelease }}
@@ -484,13 +533,19 @@ jobs:
       repoName: ${{ needs.init.outputs.repoName }}
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
+  publish-figma-code-connect:
+    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
+    uses: ./.github/workflows/03-publish-figma-code-connect.yml
+    needs: [checks-done, test-figma-code-connect]
+    secrets: inherit
+
   preview-url-pr-description:
     if: ${{ !cancelled() && github.event.pull_request != null }}
     needs: [deploy]
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
-    if: ${{ github.event_name == 'release' }}
+    if: ${{ !cancelled() && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit

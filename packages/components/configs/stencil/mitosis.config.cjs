@@ -4,7 +4,7 @@ const stencil = require('./index.cjs');
  */
 module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
-	exclude: ['src/**/*.agent.lite.tsx'],
+	exclude: ['src/**/*.agent.lite.tsx', 'src/**/*.figma.*'],
 	targets: ['stencil'],
 	dest: '../../output/tmp',
 	options: {

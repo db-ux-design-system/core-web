@@ -16,62 +16,83 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download components build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download migration build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-migration-build
           path: packages/migration/build
 
       - name: ⏬ Download stylelint build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
       - name: ⏬ Download eslint-plugin build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-eslint-plugin-build
           path: packages/eslint-plugin/build
 
+      - name: ⏬ Download postcss-plugin build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-postcss-plugin-build
+          path: packages/postcss-plugin/build
+
+      - name: ⏬ Download vite-plugin build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-vite-plugin-build
+          path: packages/vite-plugin/build
+
       - name: ⏬ Download agent-cli build
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
 
+      - name: ⏬ Download mcp-server build
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-mcp-server-build
+          path: packages/mcp-server/dist
+
       - name: ⏬ Download output
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: db-ux-output
           path: output
 
       - name: 🔨 Build outputs
         run: |
-          npm run generate:agent
-          npm run build-outputs
+          pnpm run generate:agent
+          pnpm run build-outputs
 
       - name: 📦 Validate Package Publishing
         run: |
-          npm run lint-packages
-          npm run lint-docs-file-references
+          pnpm run lint-packages
+          pnpm run lint-docs-file-references
 
       - name: ⏫ Upload outputs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: db-ux-outputs
           path: build-outputs

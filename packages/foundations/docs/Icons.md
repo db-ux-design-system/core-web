@@ -7,7 +7,7 @@
 
 ## How to include icons
 
-For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
+For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../README.md).
 
 If you only want to use the icons from this library and not the full CSS, take a look at the "Edge case: Using only icons without the full CSS" section of this page.
 
@@ -31,6 +31,8 @@ You can control the size/weight of icons by using the `data-icon-weight` attribu
 | `before` |    `data-icon-weight="24"`     | `<span data-icon="user" data-icon-weight="24">Text</span>`                |
 | `before` | `data-icon-weight-before="32"` | `<span data-icon="user" data-icon-weight-before="32">Text</span>`         |
 | `after`  | `data-icon-weight-after="20"`  | `<span data-icon-trailing="user" data-icon-weight-after="20">Text</span>` |
+
+If you need to adjust the size of the icons more precisely, you can also set the `--db-icon-font-size` CSS custom property. Please bear in mind that you need to select an `icon-weight` to go with this icon font size from the available options, as each weight includes more or fewer details depending on the resulting size.
 
 ### Icon variant (family)
 
@@ -136,9 +138,10 @@ declare module "@db-ux/core-foundations" {
 If you want to use only the icons from this library without including the complete CSS, you can copy or reference just the icon-related files:
 
 ```css
+/* bundler.css */
 @import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
 @import "@db-ux/db-theme-icons/build/styles/default-font.css";
-@import "@db-ux/db-theme-icons/build/styles/rollup.css";
+@import "@db-ux/db-theme-icons/build/styles/[rollup|webpack|relative].css";
 ```
 
 or
@@ -146,7 +149,7 @@ or
 ```bash
 cp "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css" …;
 cp "node_modules/@db-ux/db-theme-icons/build/styles/default-font.css" …;
-cp "node_modules/@db-ux/db-theme-icons/build/styles/relative.css" …;
+cp "node_modules/@db-ux/db-theme-icons/build/styles/[relative|absolute].css" …;
 ```
 
 You need to copy or reference the correct `.css` file out of your project. There are multiple files depending on the bundler you use:

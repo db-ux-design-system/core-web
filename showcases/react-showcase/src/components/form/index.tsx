@@ -24,7 +24,7 @@ import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [input, setInput] = useState('');
 	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -32,10 +32,10 @@ const FormComponent = () => {
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
-	const [checked, setChecked] = useState<boolean[]>([true, false]);
+	const [checked, setChecked] = useState([true, false]);
 
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
-	const [tabsTest, setTabsTest] = useState<boolean>(false);
+	const [tabsTest, setTabsTest] = useState(false);
 
 	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
