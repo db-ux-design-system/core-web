@@ -157,7 +157,6 @@ $spacings: (
 		);
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		margin-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
-		/* stylelint-disable-next-line db-ux/use-spacings */
 		inline-size: 100%;
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
