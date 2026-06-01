@@ -7,77 +7,64 @@
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<h1>Horizontal</h1>
-		<div
-			class="db-tab-list"
-			data-orientation="horizontal"
-			aria-orientation="horizontal"
-		>
-			<label class="db-tab" htmlFor="test1" role="tab">
-				<input type="radio" name="test" id="test1" />
-				label 1
-			</label>
+		<div class="db-tab-list" role="tablist" aria-orientation="horizontal">
+			<button type="button" class="db-tab-item" role="tab">
+				<span class="db-tab-label">label 1</span>
+			</button>
 
-			<label class="db-tab" htmlFor="test2" role="tab">
-				<input type="radio" name="test" id="test2" checked />
-				active
-			</label>
-
-			<label
-				class="db-tab"
-				htmlFor="test3"
+			<button
+				type="button"
+				class="db-tab-item"
 				role="tab"
-				data-icon="x_placeholder"
+				aria-selected="true"
 			>
-				<input type="radio" name="test" id="test3" />
-				icon - text (leading)
-			</label>
+				<span class="db-tab-label">active</span>
+			</button>
 
-			<label
-				class="db-tab"
-				htmlFor="test4"
-				role="tab"
-				data-icon-trailing="x_placeholder"
-			>
-				<input type="radio" name="test" id="test4" />
-				text - icon (trailing)
-			</label>
+			<button type="button" class="db-tab-item" role="tab">
+				<span class="db-tab-label" data-icon="x_placeholder">
+					icon - text (leading)
+				</span>
+			</button>
+
+			<button type="button" class="db-tab-item" role="tab">
+				<span class="db-tab-label" data-icon-trailing="x_placeholder">
+					text - icon (trailing)
+				</span>
+			</button>
 		</div>
 
 		<h1>Vertical</h1>
 		<div
 			class="db-tab-list"
-			data-orientation="vertical"
+			role="tablist"
 			aria-orientation="vertical"
+			data-orientation="vertical"
 		>
-			<label class="db-tab" htmlFor="test1v" role="tab">
-				<input type="radio" name="testv" id="test1v" />
-				label 1
-			</label>
+			<button type="button" class="db-tab-item" role="tab">
+				<span class="db-tab-label">label 1</span>
+			</button>
 
-			<label class="db-tab" htmlFor="test2v" role="tab">
-				<input type="radio" name="testv" id="test2v" checked />
-				active
-			</label>
-
-			<label
-				class="db-tab"
-				htmlFor="test3v"
+			<button
+				type="button"
+				class="db-tab-item"
 				role="tab"
-				data-icon="x_placeholder"
+				aria-selected="true"
 			>
-				<input type="radio" name="testv" id="test3v" />
-				icon - text (leading)
-			</label>
+				<span class="db-tab-label">active</span>
+			</button>
 
-			<label
-				class="db-tab"
-				htmlFor="test4v"
-				role="tab"
-				data-icon-trailing="x_placeholder"
-			>
-				<input type="radio" name="testv" id="test4v" />
-				text - icon (trailing)
-			</label>
+			<button type="button" class="db-tab-item" role="tab">
+				<span class="db-tab-label" data-icon="x_placeholder">
+					icon - text (leading)
+				</span>
+			</button>
+
+			<button type="button" class="db-tab-item" role="tab">
+				<span class="db-tab-label" data-icon-trailing="x_placeholder">
+					text - icon (trailing)
+				</span>
+			</button>
 		</div>
 	</body>
 </html>

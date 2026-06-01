@@ -6,117 +6,73 @@
 		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<h2>Angular Example</h2>
-		<db-tabs ng-_reflect-arrow-scroll-distance="75">
-			<div class="db-tabs">
-				<db-tab-list>
-					<div
-						role="tablist"
-						class="db-tab-list"
-						id="tab-list-d1abe676-4c30-4219-b957-f1a397d54a0b"
-						aria-orientation="horizontal"
-					>
-						<db-tab
-							ng-_reflect-label="functional"
-							ng-_reflect-index="0"
-						>
-							<label
-								role="tab"
-								class="db-tab"
-								for="functional-tab-0"
-								aria-controls="functional-tab-panel-0"
-								data-width="auto"
-								data-alignment="start"
-							>
-								<input
-									type="radio"
-									label="functional"
-									id="functional-tab-0"
-								/>Test 1</label
-							>
-						</db-tab>
-						<db-tab
-							ng-_reflect-label="functional"
-							ng-_reflect-index="1"
-						>
-							<label
-								role="tab"
-								class="db-tab"
-								for="functional-tab-1"
-								aria-controls="functional-tab-panel-1"
-								data-width="auto"
-								data-alignment="start"
-							>
-								<input
-									type="radio"
-									label="functional"
-									id="functional-tab-1"
-								/>
-								Test 2
-							</label>
-						</db-tab>
-						<db-tab
-							ng-_reflect-label="functional"
-							ng-_reflect-index="2"
-						>
-							<label
-								role="tab"
-								class="db-tab"
-								for="functional-tab-2"
-								aria-controls="functional-tab-panel-2"
-								data-width="auto"
-								data-alignment="start"
-							>
-								<input
-									type="radio"
-									label="functional"
-									id="functional-tab-2"
-								/>
-								Test 3
-							</label>
-						</db-tab>
-					</div>
-				</db-tab-list>
-				<db-tab-panel
-					ng-_reflect-label="functional"
-					ng-_reflect-index="0"
+		<div class="db-tabs">
+			<div
+				role="tablist"
+				class="db-tab-list"
+				aria-label="Example Tabs"
+				aria-orientation="horizontal"
+			>
+				<button
+					type="button"
+					class="db-tab-item"
+					role="tab"
+					id="example-tab-0"
+					aria-controls="example-tab-panel-0"
+					aria-selected="true"
+					tabindex="0"
 				>
-					<article
-						role="tabpanel"
-						class="db-tab-panel"
-						id="functional-tab-panel-0"
-						aria-labelledby="functional-tab-0"
-					>
-						Tab Panel 1
-					</article>
-				</db-tab-panel>
-				<db-tab-panel
-					ng-_reflect-label="functional"
-					ng-_reflect-index="1"
+					<span class="db-tab-label">Test 1</span>
+				</button>
+				<button
+					type="button"
+					class="db-tab-item"
+					role="tab"
+					id="example-tab-1"
+					aria-controls="example-tab-panel-1"
+					aria-selected="false"
+					tabindex="-1"
 				>
-					<article
-						role="tabpanel"
-						class="db-tab-panel"
-						id="functional-tab-panel-1"
-						aria-labelledby="functional-tab-1"
-					>
-						Tab Panel 2
-					</article>
-				</db-tab-panel>
-				<db-tab-panel
-					ng-_reflect-label="functional"
-					ng-_reflect-index="2"
+					<span class="db-tab-label">Test 2</span>
+				</button>
+				<button
+					type="button"
+					class="db-tab-item"
+					role="tab"
+					id="example-tab-2"
+					aria-controls="example-tab-panel-2"
+					aria-selected="false"
+					tabindex="-1"
 				>
-					<article
-						role="tabpanel"
-						class="db-tab-panel"
-						id="functional-tab-panel-2"
-						aria-labelledby="functional-tab-2"
-					>
-						Tab Panel 3
-					</article>
-				</db-tab-panel>
+					<span class="db-tab-label">Test 3</span>
+				</button>
 			</div>
-		</db-tabs>
+			<div
+				role="tabpanel"
+				class="db-tab-panel"
+				id="example-tab-panel-0"
+				aria-labelledby="example-tab-0"
+			>
+				Tab Panel 1
+			</div>
+			<div
+				role="tabpanel"
+				class="db-tab-panel"
+				id="example-tab-panel-1"
+				aria-labelledby="example-tab-1"
+				hidden
+			>
+				Tab Panel 2
+			</div>
+			<div
+				role="tabpanel"
+				class="db-tab-panel"
+				id="example-tab-panel-2"
+				aria-labelledby="example-tab-2"
+				hidden
+			>
+				Tab Panel 3
+			</div>
+		</div>
 	</body>
 </html>

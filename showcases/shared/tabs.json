@@ -441,8 +441,7 @@
 						"props": {
 							"label": "Home",
 							"icon": "house",
-							"showIcon": true,
-							"noText": true
+							"showIcon": true
 						}
 					},
 					{
@@ -450,8 +449,7 @@
 						"props": {
 							"label": "Search",
 							"icon": "magnifying_glass",
-							"showIcon": true,
-							"noText": true
+							"showIcon": true
 						}
 					},
 					{
@@ -459,8 +457,7 @@
 						"props": {
 							"label": "Calendar",
 							"icon": "calendar",
-							"showIcon": true,
-							"noText": true
+							"showIcon": true
 						}
 					}
 				]
@@ -471,7 +468,7 @@
 		],
 		"examples": [
 			{
-				"name": "icon-only (noText)",
+				"name": "icon-only",
 				"props": { "name": "icons-only" }
 			}
 		]
