@@ -116,3 +116,9 @@ HALT IMMEDIATELY if you catch yourself thinking:
 | "I'll skip accessibility testing"          | STOP. Add axe-core assertions. Accessibility is mandatory.     |
 | "This variant isn't worth testing"         | STOP. Test ALL variants in `VariantList`.                      |
 | "I don't need a changeset for a small fix" | STOP. All logic changes in `src/` require a changeset.         |
+| "I'll read the ref in onMount"             | STOP. Use `onUpdate` with the initialized-pattern.             |
+| "I'll call this function in JSX bindings"  | STOP. Store the value in `state`, update via `onUpdate`.       |
+| "I'll add aria-disabled to this button"    | STOP. Native `disabled` is sufficient. Don't duplicate state.  |
+| "I'll use border: none for a clean look"   | STOP. Use `@extend %transparent-border` for HCM support.       |
+| "I'll add cursor: pointer manually"        | STOP. Use `@include helpers.hover { ... }` mixin.              |
+| "I'll exclude this file from storybook"    | STOP. Fix the example to be Mitosis-compatible instead.        |

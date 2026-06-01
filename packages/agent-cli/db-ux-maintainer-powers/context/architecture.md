@@ -38,6 +38,17 @@ import {
 } from "@builder.io/mitosis";
 ```
 
+### Mitosis API & Lifecycle Rules
+
+These rules are **invariant** and stem from hard-learned refactoring failures.
+
+| #   | Rule                                                                                                                                               | Rationale                                                                              |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 1   | ❌ NEVER access `_ref` inside `onMount` for DOM operations. Use `onUpdate` with the **initialized-pattern** instead.                               | `_ref` is not guaranteed to be attached when `onMount` fires in all framework outputs. |
+| 2   | ❌ NEVER call functions inside JSX property bindings (e.g. `prop={state.fn()}`). Store the computed value in `state` and update it via `onUpdate`. | Function calls in JSX bindings break Mitosis compilation for Angular and Vue outputs.  |
+| 3   | ❌ NEVER use getter functions (e.g. `_id() { return ... }`) in `useStore` for derived values. Compute them in `onMount`/`onUpdate`.                | Getter functions produce inconsistent output across frameworks.                        |
+| 4   | **State Convention**: Internal state variables MUST use the `_` prefix (e.g. `_active`). NEVER use `internal` as a prefix.                         | Consistent naming convention across all components.                                    |
+
 ---
 
 ## 2. Mandatory File Architecture
@@ -135,6 +146,11 @@ packages/components/src/components/<name>/
 5. NEVER use `!important`.
 6. NEVER nest deeper than 3 levels.
 7. NO hardcoded colors, spacings, sizings, or border-radius values.
+8. ❌ NEVER use `border: 0` or `border: none`. ALWAYS use `@extend %transparent-border` for High Contrast Mode support.
+9. ⚠️ **RED FLAG**: Overriding `padding`/`font-size` via `[data-density="..."]` means token usage is wrong. Density tokens MUST resolve correctly automatically.
+10. **Hover Mixin**: Interactive components MUST use `@include helpers.hover { ... }`. NEVER manually add `cursor: pointer`.
+11. **Text Truncation**: Elements using `text-overflow: ellipsis` MUST NOT be a flex child with `overflow: hidden` on a flex container. Switch to `display: block`.
+12. **Icon Placement**: Icon `data-` attributes MUST be placed on the interactive root element, NOT on the inner text label `<span>`.
 
 ### TypeScript & Component API
 
@@ -143,6 +159,17 @@ packages/components/src/components/<name>/
 3. EVERY prop MUST have a JSDoc comment.
 4. Variant lists MUST be `as const` arrays with derived union types.
 5. **Element ID binding** — Framework compatibility requires: `id={props.id ?? props.propOverrides?.id}`. NEVER use `id={props.id}` alone.
+
+### Accessibility & DOM Rules
+
+These rules protect accessibility compliance and correct DOM semantics.
+
+| #   | Rule                                                                                                                                                                | Rationale                                                                                                                        |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | ❌ NEVER expose dedicated `ariaLabel`, `ariaDescribedby`, etc. props unless internally reused. Frameworks pass these natively.                                      | Custom aria props shadow the framework's built-in attribute forwarding and lead to double-declarations.                          |
+| 2   | ❌ NEVER call `event.preventDefault()` in button click handlers unless handling specific form-submissions. Let events bubble.                                       | Calling `preventDefault` swallows the event and breaks parent listeners and framework routing.                                   |
+| 3   | **Label Prop**: Props providing an accessible label MUST be named `label`, not `name`. (`name` is reserved for form-grouping.)                                      | `name` has semantic meaning in HTML forms (`<input name="...">`). Using it for labels causes confusion and bugs.                 |
+| 4   | **Attribute Cleanup**: Tooltip attribute cleanup (`data-has-tooltip`, `aria-describedby`) MUST be handled in `DBTooltip.onUnMount`, not in the consuming component. | Cleanup responsibility belongs to the component that sets the attribute. Delegating it to consumers creates orphaned attributes. |
 
 ---
 
@@ -169,6 +196,14 @@ pnpm run lint     # No linting violations
 - Include `toHaveScreenshot()` for EVERY variant (visual regression).
 - Include `ariaSnapshot()` + `toMatchSnapshot()` (accessibility structure).
 - Declare test JSX variables with `: any` type annotation BEFORE test blocks.
+- **Visual Snapshots**: ALWAYS add a comment explaining WHY a custom ratio tolerance was set in snapshot tests.
+
+### Type System Rules
+
+| #   | Rule                                                                                                                                             | Rationale                                                                     |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| 1   | **Global Types**: Reusable type unions (like alignment) MUST be defined in `shared/model.ts` and extended locally.                               | Prevents type duplication and ensures consistency across components.          |
+| 2   | ⚠️ **RED FLAG**: Adding files to `exclude` in `mitosis.storybook.config.cjs` is **forbidden**. Fix the example to be Mitosis-compatible instead. | Excluding files hides compilation problems and creates silent technical debt. |
 
 ### Forbidden Patterns (Invariant)
 
@@ -187,3 +222,9 @@ These patterns are NEVER acceptable. Violations trigger immediate rejection.
 | Guessing Figma specs                 | ABORT without Figma URL. Query MCP.                 |
 | Skipping screenshot tests            | `toHaveScreenshot()` is mandatory for ALL variants. |
 | Missing `propOverrides?.id`          | Use `props.id ?? props.propOverrides?.id`. Always.  |
+| `border: 0` or `border: none`        | Use `@extend %transparent-border` for HCM support.  |
+| `cursor: pointer` without mixin      | Use `@include helpers.hover { ... }` instead.       |
+| `aria-disabled` on native `<button>` | Native `disabled` attribute is sufficient.          |
+| Function calls in JSX bindings       | Store in `state`, update via `onUpdate`.            |
+| `_ref` access in `onMount`           | Use `onUpdate` with initialized-pattern.            |
+| Excluding files in storybook config  | Fix the example to be Mitosis-compatible.           |
