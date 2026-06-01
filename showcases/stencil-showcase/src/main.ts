@@ -1,15 +1,9 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter, withHashLocation } from '@angular/router';
-import { defineCustomElements } from '../../../output/stencil/dist/loader';
-import { AppComponent } from '../../angular-showcase/src/app/app.component';
-import { getRoutes } from '../../angular-showcase/src/app/utils/navigation-item';
+import { renderNavigation } from './navigation';
+import { initRouter } from './router';
+import './styles.css';
 
-defineCustomElements(undefined, {
-	// TODO: Fix issues with double slots to solve this issue
-	exclude: ['db-header', 'db-navigation', 'db-navigation-item', 'db-page']
-});
+// Render the navigation shell
+renderNavigation();
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-bootstrapApplication(AppComponent, {
-	providers: [provideRouter(getRoutes(), withHashLocation())]
-});
+// Initialize hash-based routing
+initRouter();
