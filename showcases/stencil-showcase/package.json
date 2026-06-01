@@ -1,6 +1,7 @@
 {
   "name": "stencil-showcase",
   "version": "0.0.0",
+  "type": "module",
   "description": "Stencil showcase",
   "repository": {
     "type": "git",
@@ -9,52 +10,30 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "pnpm run build:_stencil && pnpm run build:angular",
-    "build:_stencil": "pnpm --filter @db-ux/wc-core-components run dev-build",
-    "build:angular": "ng build",
-    "dev": "run-p dev:angular dev:stencil",
-    "dev:angular": "ng serve --port 4202 --serve-path stencil-showcase --open",
-    "dev:stencil": "pnpm --filter @db-ux/wc-core-components run start",
-    "ng": "ng",
+    "build": "pnpm --filter @db-ux/wc-core-components run dev-build && vite build",
+    "dev": "pnpm --filter @db-ux/wc-core-components run dev-build && vite --open",
     "preview": "npx http-server ../../build-showcases",
-    "start": "ng serve --port 4202 --serve-path stencil-showcase",
+    "start": "vite",
     "test:a11y-checker": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.a11y-checker.ts",
     "test:aria-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
     "test:axe-core": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts",
-    "test:ui": "pnpm run test:e2e -- --ui",
-    "test:visual-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
-    "watch": "ng build --watch --configuration development"
+    "test:ui": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts --ui",
+    "test:visual-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "@angular/animations": "21.2.14",
-    "@angular/common": "21.2.14",
-    "@angular/compiler": "21.2.14",
-    "@angular/core": "21.2.14",
-    "@angular/forms": "21.2.14",
-    "@angular/platform-browser": "21.2.14",
-    "@angular/platform-browser-dynamic": "21.2.14",
-    "@angular/router": "21.2.14",
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*",
     "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
-    "@stencil/core": "4.43.4",
-    "rxjs": "7.8.2",
-    "tslib": "2.8.1",
-    "zone.js": "0.15.1"
+    "@db-ux/wc-core-components": "workspace:*"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.12",
-    "@angular/build": "21.2.12",
-    "@angular/cli": "21.2.12",
-    "@angular/compiler-cli": "21.2.14",
-    "@types/node": "25.9.1",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
-    "ng-packagr": "21.2.3",
-    "npm-run-all2": "9.0.1",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite": "8.0.14",
+    "vite-plugin-static-copy": "4.1.0"
   }
 }
