@@ -16,7 +16,7 @@ export type DBAccordionItemDefaultProps = {
 	/**
 	 * State for the accordion item
 	 */
-	open?: boolean;
+	open?: boolean | string;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the element.
 	 */

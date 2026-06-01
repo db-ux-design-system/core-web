@@ -85,13 +85,13 @@ function renderNavItems(items: NavItem[]): string {
 					${item.children
 						.map(
 							(child) =>
-								`<db-navigation-item slot="subNavigation" hideSubNavigation="true"><a href="#/${child.path}">${child.label}</a></db-navigation-item>`
+								`<db-navigation-item slot="subNavigation" hide-sub-navigation="true"><a href="#/${child.path}">${child.label}</a></db-navigation-item>`
 						)
 						.join('')}
 				</db-navigation-item>`;
 			}
 
-			return `<db-navigation-item hideSubNavigation="true"><a href="#/${item.path}">${item.label}</a></db-navigation-item>`;
+			return `<db-navigation-item hide-sub-navigation="true"><a href="#/${item.path}">${item.label}</a></db-navigation-item>`;
 		})
 		.join('');
 }
@@ -101,14 +101,14 @@ export function renderNavigation(): void {
 	if (!app) return;
 
 	app.innerHTML = `
-		<db-page variant="fixed" fadeIn="true">
+		<db-page variant="fixed" fade-in="true">
 			<db-header slot="header">
 				<db-brand slot="brand">Showcase</db-brand>
 				<db-select slot="metaNavigation" variant="floating" label="Nothing">
 					<option>Nothing here for stencil</option>
 				</db-select>
 				<db-navigation aria-label="main-navigation">
-					<db-navigation-item hideSubNavigation="true"><a href="#/">Home</a></db-navigation-item>
+					<db-navigation-item hide-sub-navigation="true"><a href="#/">Home</a></db-navigation-item>
 					${renderNavItems(NAVIGATION_ITEMS)}
 				</db-navigation>
 			</db-header>

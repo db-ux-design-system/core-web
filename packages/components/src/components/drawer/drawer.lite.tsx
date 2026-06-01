@@ -68,7 +68,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 		},
 		handleDialogOpen: () => {
 			if (_ref) {
-				const dialogOpen = getBoolean(props.open);
+				const dialogOpen = getBoolean(props.open, 'open');
 				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(

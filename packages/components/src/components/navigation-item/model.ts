@@ -40,7 +40,7 @@ export type DBNavigationItemDefaultProps = {
 	/**
 	 * Force hide sub-navigation - for web component output
 	 */
-	hideSubNavigation?: boolean;
+	hideSubNavigation?: boolean | string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &

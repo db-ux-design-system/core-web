@@ -73,7 +73,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	}, [props.name]);
 
 	onUpdate(() => {
-		const nextOpen = getBoolean(props.open);
+		const nextOpen = getBoolean(props.open, 'open');
 		if (nextOpen !== undefined) {
 			state._open = nextOpen;
 		}
