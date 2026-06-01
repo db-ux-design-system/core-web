@@ -2,6 +2,7 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaSwitchProps = {
 	label?: string;
+	showLabel?: boolean;
 	size?: string;
 	variant?: string;
 	required?: boolean;
@@ -17,32 +18,33 @@ export type FigmaSwitchProps = {
 };
 
 const switchProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Label' },
+	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
-		key: '💻 Size',
+		key: 'Size',
 		value: { Medium: 'medium', Small: 'small' }
 	},
 	variant: {
 		type: 'enum',
-		key: '💻 Variant',
+		key: 'Variant',
 		value: { Trailing: 'trailing', Leading: 'leading' }
 	},
 	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: '💻 Show Required Asterisk' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	checked: { type: 'boolean', key: 'Checked' },
 	visualAid: { type: 'boolean', key: 'Visual Aid' },
 	iconLeading: {
 		type: 'conditionalProp',
-		key: '🔄 Icon Leading',
-		guardProp: 'visualAid',
+		key: 'Icon Leading',
+		guardKey: 'Visual Aid',
 		attrName: 'iconLeading'
 	},
 	iconTrailing: {
 		type: 'conditionalProp',
-		key: '🔄 Icon Trailing',
-		guardProp: 'visualAid',
+		key: 'Icon Trailing',
+		guardKey: 'Visual Aid',
 		attrName: 'iconTrailing'
 	},
 	validation: {
@@ -57,7 +59,7 @@ const switchProps: Record<string, FigmaProp> = {
 	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
-		key: '✏️ Text',
+		key: 'Text',
 		conditionProp: 'validation',
 		map: {
 			invalid: 'invalidMessage',
@@ -88,8 +90,3 @@ export const switches: FigmaCodeConnect = {
 	],
 	props: switchProps
 };
-
-export const mediumLeadingSwitches = switches;
-export const mediumTrailingSwitches = switches;
-export const smallLeadingSwitches = switches;
-export const smallTrailingSwitches = switches;
