@@ -14,7 +14,7 @@
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
-  "packageManager": "pnpm@11.4.0+sha512.f0febc7e37552ab485494a914241b338e0b3580b93d54ce31f00933015880863129038a1b4ae4e414a0ee63ac35bf21197e990172c4a68256450b5636310968f",
+  "packageManager": "pnpm@11.5.0+sha512.dbfcc4f81cf48597afd4bc391ffdf12c11f1a9fb83a395bfa6b0a2d9cc2fd8ffebafdb1ccbd529632153f793904c2615b7f09fe1a345473fd1c35845172a8eb1",
   "engines": {
     "node": ">= 24"
   },
@@ -46,6 +46,7 @@
     "build-showcases": "pnpm --filter scripts run build-showcases",
     "build-storybooks": "pnpm --filter scripts run build-storybooks",
     "changeset": "changeset",
+    "check:format": "prettier --check .",
     "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts && prettier --no-error-on-unmatched-pattern **/CHANGELOG.md --write",
     "clean": "git clean -dfx --exclude=.env && node scripts/npx-from-dev-dependencies.mjs husky",
     "codestyle": "prettier . --write",
@@ -56,7 +57,7 @@
     "lint": "run-p lint:*",
     "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "pnpm tsx scripts/lint-packages.ts publint",
-    "lint:codespell": "cspell . --config .config/cspell.config.ts",
+    "lint:codespell": "cspell . --config .config/cspell.config.ts --quiet",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:package-json": "npmPkgJsonLint packages/*/package.json --configFile .config/.npmpackagejsonlintrc.json",
@@ -71,7 +72,8 @@
     "test": "pnpm --filter scripts run test",
     "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
-    "update:dependency:playwright": "node scripts/github/update-playwright.js"
+    "update:dependency:playwright": "node scripts/github/update-playwright.js",
+    "validate": "tsx scripts/self-healing-orchestrator.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.3",

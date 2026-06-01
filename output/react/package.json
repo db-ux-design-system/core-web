@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "4.9.1",
+  "version": "4.10.0",
   "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {
@@ -17,7 +17,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all tsc --parallel mv:*",
+    "build": "npm-run-all --parallel tsc vite --sequential mv:*",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
@@ -28,7 +28,8 @@
     "test:components": "playwright test --config playwright.config.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui",
     "test:windows": "playwright test --config playwright.screen-reader.win.ts",
-    "tsc": "tsc --project . --sourceMap false"
+    "tsc": "tsc --project . --sourceMap false",
+    "vite": "vite build"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
@@ -37,12 +38,14 @@
   "devDependencies": {
     "@playwright/experimental-ct-react": "1.60.0",
     "@types/react": "19.2.15",
+    "@vitejs/plugin-react": "4.5.2",
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.1",
     "playwright": "1.60.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite": "8.0.14"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

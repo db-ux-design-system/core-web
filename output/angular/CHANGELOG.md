@@ -1,5 +1,13 @@
 # @db-ux/ngx-core-components
 
+## 4.10.0
+
+### Minor Changes
+
+- feat(`DBAccordionItem`): add `open` prop to control the expanded state of an accordion item programmatically. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
+
+- refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
+
 ## 4.9.1
 
 ### Patch Changes
@@ -206,8 +214,7 @@ _version bump_
 - DBInput: inserting an empty string doesn't reset/empty date or time related form fields - [see commit 884b03d](https://github.com/db-ux-design-system/core-web/commit/884b03d3997ffad725c99f63480563f309a046ef)
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
-
-                  - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+    - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 

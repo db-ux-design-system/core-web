@@ -15,6 +15,7 @@
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"outDir": "dist",
+		"emitDeclarationOnly": true,
 		"removeComments": false,
 		"sourceMap": true,
 		"jsx": "react",
@@ -28,6 +29,7 @@
 		"src/**/*.spec.tsx",
 		"src/**/*.example.tsx",
 		"src/**/*.showcase.tsx",
+		"src/**/*.showcase-only.tsx",
 		"src/**/*.arg.types.ts"
 	],
 	"compileOnSave": false,

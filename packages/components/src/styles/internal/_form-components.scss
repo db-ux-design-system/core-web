@@ -423,8 +423,11 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		@include helpers.not-disabled {
+			// cursor: revert — text/textarea inputs should use the text cursor, not pointer
+			@include helpers.hover(revert) {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
 		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {
@@ -453,7 +456,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		max-inline-size: 25ch;
+		max-inline-size: var(--db-label-max-size, 100%);
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
