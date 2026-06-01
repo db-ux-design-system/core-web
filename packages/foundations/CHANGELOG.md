@@ -1,5 +1,11 @@
 # @db-ux/core-foundations
 
+## 4.9.1
+
+### Patch Changes
+
+- fix: correct default relative asset base for fonts/icons in `build/styles/theme/relative.css` and other `*relative.css` files - [see commit f465d98](https://github.com/db-ux-design-system/core-web/commit/f465d98c2c091dfe8d9f8f1f461d8073c52a5f15)
+
 ## 4.9.0
 
 _version bump_

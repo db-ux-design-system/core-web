@@ -6,52 +6,55 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 An Angular library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
-
-> **Note:** Find more information about specific components [here](https://design-system.deutschebahn.com/core-web/review/main)
+We also provide more information about specific components. This information is in our [Design System documentation](https://design-system.deutschebahn.com/documentation/get-started/).
 
 ## Install
 
 ```shell
-npm i @db-ux/ngx-core-components
+pnpm add @db-ux/ngx-core-components @db-ux/core-components @db-ux/core-foundations --save-dev
 ```
-
-> **Note:** This will install [`@db-ux/core-foundations`](https://www.npmjs.com/package/@db-ux/core-foundations) and [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
-Import the styles in `scss` or `css`. Based on your technology the file names could be different.
+Import the styles in your main CSS file:
 
-- Default (relative): points to `../assets`
-- Rollup (rollup): points to `@db-ux/core-foundations/assets`
-- Webpack (webpack): points to `~@db-ux/core-foundations/assets`
-
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss styles.scss
-// styles.scss
-@forward "@db-ux/core-components/build/styles/rollup";
-```
-
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
-
-```css styles.css
+```css
 /* styles.css */
-@import "@db-ux/core-components/build/styles/rollup.css";
+@layer whitelabel-theme, db-ux;
+/* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
+
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
-</details>
+### PostCSS Plugin (recommended)
 
-> **Note:** The `relative` file contains optional and all components styles. If you consider performance issues see [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) for more information.
+We recommend using the [`@db-ux/core-postcss-plugin`](https://www.npmjs.com/package/@db-ux/core-postcss-plugin) to reduce your bundle size. It flattens CSS custom properties by resolving `var()`, `calc()`, `color-mix()`, and `light-dark()` at build time, removing unused declarations.
+
+```shell
+pnpm add @db-ux/core-postcss-plugin --save-dev
+```
+
+Create a `postcss.config.json` in your project root:
+
+```json
+{
+	"plugins": {
+		"@db-ux/core-postcss-plugin": {}
+	}
+}
+```
+
+> Angular CLI (`@angular/build:application`) only supports JSON-based PostCSS configs and loads plugins by name via `require()`. Works in both `ng build` and `ng serve`.
+
+📖 **[Learn more about `@db-ux/core-postcss-plugin` node package](https://www.npmjs.com/package/@db-ux/core-postcss-plugin)**
 
 ### Resolve assets
 
 The current default development config in `angular.json` doesn't use output hashing. This may cause an issue loading the fonts. Look at [this](https://github.com/angular/angular-cli/issues/26347) for more information.
 
-As a solution add `
-"outputHashing": "media"` to `configurations/development` in`angular.json`.
+As a solution add `"outputHashing": "media"` to `configurations/development` in `angular.json`.
 
 ### DB Theme
 
@@ -59,8 +62,8 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 
 ## Usage
 
-```ts app.component.ts
-//app.component.ts
+```ts
+// app.component.ts
 import { DBButton } from '@db-ux/ngx-core-components';
 
 @Component({
@@ -68,13 +71,13 @@ import { DBButton } from '@db-ux/ngx-core-components';
 	imports: [
 		// ...,
 		DBButton
-    ],
+	],
 	standalone: true
 	// ...
 })
 ```
 
-```html app.component.html
+```html
 <!-- app.component.html -->
 <db-button variant="brand">Button</db-button>
 ```
@@ -83,7 +86,7 @@ import { DBButton } from '@db-ux/ngx-core-components';
 
 There are 3 ways to use Events in Angular:
 
-**[ngModel](https://angular.io/api/forms/NgModel)**
+**[ngModel](https://angular.dev/api/forms/NgModel)**
 
 ```html
 <db-input
@@ -93,7 +96,7 @@ There are 3 ways to use Events in Angular:
 ></db-input>
 ```
 
-**[FormControl](https://angular.io/api/forms/FormControl)**
+**[FormControl](https://angular.dev/api/forms/FormControl)**
 
 ```html
 <db-input
@@ -103,7 +106,7 @@ There are 3 ways to use Events in Angular:
 ></db-input>
 ```
 
-**[change](https://developer.mozilla.org/de/docs/Web/API/HTMLElement/change_event)**
+**[change](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)**
 
 ```html
 <db-input
@@ -127,7 +130,7 @@ npx @db-ux/agent-cli
 
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
-📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+📖 **[Learn more about `@db-ux/agent-cli` node package](https://www.npmjs.com/package/@db-ux/agent-cli)**
 
 ## Code Quality
 
@@ -136,7 +139,7 @@ To enforce correct usage of DB UX Design System components in your Angular templ
 ### Installation
 
 ```shell
-npm install eslint @db-ux/core-eslint-plugin @angular-eslint/template-parser --save-dev
+pnpm add eslint @db-ux/core-eslint-plugin @angular-eslint/template-parser --save-dev
 ```
 
 ### Setup
@@ -161,6 +164,35 @@ export default [
 ```
 
 📖 **[Learn more about `@db-ux/core-eslint-plugin` node package](https://www.npmjs.com/package/@db-ux/core-eslint-plugin)**
+
+## Stylelint
+
+To validate correct usage of DB UX Design System tokens in your CSS/SCSS, use the [`@db-ux/core-stylelint`](https://www.npmjs.com/package/@db-ux/core-stylelint) plugin.
+
+### Installation
+
+```shell
+pnpm add stylelint @db-ux/core-stylelint --save-dev
+```
+
+### Setup
+
+Add to your `.stylelintrc.json`:
+
+```json
+{
+	"plugins": ["@db-ux/core-stylelint"],
+	"rules": {
+		"db-ux/use-spacings": [true],
+		"db-ux/use-sizing": [true],
+		"db-ux/use-border-width": [true],
+		"db-ux/use-border-radius": [true],
+		"db-ux/use-border-color": [true]
+	}
+}
+```
+
+📖 **[Learn more about `@db-ux/core-stylelint` node package](https://www.npmjs.com/package/@db-ux/core-stylelint)**
 
 ## Deutsche Bahn brand
 
