@@ -46,8 +46,10 @@ minimumReleaseAgeExclude:
   - ip-address@10.1.1
   - svelte@5.55.7
   - webpack-dev-server@5.2.4
+  - vite@8.0.14
 
 overrides:
+  vite@>=7.0.0 <8.0.14: ^8.0.14
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   file-type@>=13.0.0 <21.3.1: ^21.3.1
   got@<11.8.5: ^11.8.5

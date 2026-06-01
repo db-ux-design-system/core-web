@@ -65,6 +65,7 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/.stencil
 /output/stencil/loader
 /output/stencil/www
+/output/stencil/bundle/
 **/.angular
 **/.next
 **/.nuxt

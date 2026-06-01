@@ -48,7 +48,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	onUpdate(() => {
 		// If we have a single behavior we first check for
 		// props.name otherwise for state_id
-		if (state.initialized) {
+		if (state.initialized && _ref) {
 			if (props.behavior === 'single') {
 				if (props.name) {
 					if (state._name !== props.name) {
