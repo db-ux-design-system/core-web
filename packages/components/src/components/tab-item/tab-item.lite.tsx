@@ -101,7 +101,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 					}
 				});
 			};
-			const hasIcon = props.showIcon && props.icon;
+			const hasIcon = !!(
+				props.iconLeading ??
+				props.icon ??
+				props.iconTrailing
+			);
 			if (hasIcon && document.fonts?.ready) {
 				document.fonts.ready.then(setupObserverAndCheck);
 			} else {
