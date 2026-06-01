@@ -1,5 +1,13 @@
 # @db-ux/core-components
 
+## 4.10.0
+
+### Minor Changes
+
+- feat(`DBAccordionItem`): add `open` prop to control the expanded state of an accordion item programmatically. - [see commit 2d916e3](https://github.com/db-ux-design-system/core-web/commit/2d916e33b50f85b9f74710a467fd11868dee9733)
+
+- refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
+
 ## 4.9.1
 
 ### Patch Changes
