@@ -42,11 +42,11 @@ src/
 
 ## Plugin Options
 
-| Option             | Default              | Description                                              |
-| ------------------ | -------------------- | -------------------------------------------------------- |
-| `removeAtProperty` | `true`               | Remove `@property` rules after resolving                 |
-| `removeResolved`   | `true`               | Remove declarations no longer referenced                 |
-| `dynamicPrefixes`  | `['--db-adaptive-']` | Prefixes always treated as dynamic, never resolved       |
+| Option             | Default              | Description                                        |
+| ------------------ | -------------------- | -------------------------------------------------- |
+| `removeAtProperty` | `true`               | Remove `@property` rules after resolving           |
+| `removeResolved`   | `true`               | Remove declarations no longer referenced           |
+| `dynamicPrefixes`  | `['--db-adaptive-']` | Prefixes always treated as dynamic, never resolved |
 
 ## Development Notes
 
