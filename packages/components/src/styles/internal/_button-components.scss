@@ -56,7 +56,8 @@
 		min-block-size: variables.$db-sizing-md;
 		block-size: max-content;
 		inline-size: fit-content;
-		padding-top: variables.$db-spacing-fixed-2xs; padding-bottom: variables.$db-spacing-fixed-2xs; padding-left: variables.$db-spacing-fixed-md; padding-right: variables.$db-spacing-fixed-md;
+		padding: logical variables.$db-spacing-fixed-2xs
+			variables.$db-spacing-fixed-md variables.$db-spacing-fixed-2xs;
 
 		// disable text-decoration if someone wants to use the button for an <a> tag
 		text-decoration: none;
