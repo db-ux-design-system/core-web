@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -55,7 +56,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (!parent) return;
 			if (_ref) {
 				// This is a workaround for angular
-				utilsDelay(() => {
+				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
 						handleFixedPopover(
@@ -88,18 +89,29 @@ export default function DBTooltip(props: DBTooltipProps) {
 				);
 			state.handleAutoPlacement(parent);
 			state._observer?.observe(state.getParent());
+		},
+		resetIds: () => {
+			state._id =
+				props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid();
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tooltip-' + uuid();
+		state.resetIds();
 		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
+				state.handleAutoPlacement(parent);
 				['mouseenter', 'focusin'].forEach((event) => {
 					parent.addEventListener(event, () =>
 						state.handleEnter(parent)
@@ -136,7 +148,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state.initialized = false;
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state._id]);
 
 	// jscpd:ignore-end
 
@@ -149,6 +161,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
+			data-wrap={getBooleanAsString(props.wrap)}
 			data-animation={getBooleanAsString(props.animation ?? true)}
 			data-delay={props.delay}
 			data-width={props.width}
@@ -159,6 +172,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
+			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</i>
 	);

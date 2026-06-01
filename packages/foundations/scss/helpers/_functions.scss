@@ -29,7 +29,12 @@ $cursor-pointer: var(--db-overwrite-cursor, pointer);
 
 @mixin hover() {
 	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
-	&:hover:not(:disabled, [aria-disabled="true"]) {
+	&:hover:not(
+			:disabled,
+			[aria-disabled="true"],
+			[tabindex="-1"],
+			:has(:disabled)
+		) {
 		@include cursor-pointer {
 			@content;
 		}
@@ -37,7 +42,12 @@ $cursor-pointer: var(--db-overwrite-cursor, pointer);
 }
 
 @mixin active() {
-	&:active:not(:disabled, [aria-disabled="true"]) {
+	&:active:not(
+			:disabled,
+			[aria-disabled="true"],
+			[tabindex="-1"],
+			:has(:disabled)
+		) {
 		@include cursor-pointer {
 			@content;
 		}

@@ -5,7 +5,7 @@
 @use "@db-ux/core-components/build/components/section/section";
 @use "@db-ux/core-foundations/build/styles/helpers/display";
 
-@forward "@db-ux/core-components/build/styles/webpack";
+@forward "@db-ux/core-components/build/styles/bundle";
 @forward "@db-ux/db-theme/build/styles/webpack";
 
 :root:not(:has(.db-page)) {
@@ -645,4 +645,11 @@ h6 {
 	> .db-tooltip {
 		min-inline-size: variables.$db-sizing-2xl;
 	}
+}
+
+.variants-card,
+.variants-card > .db-card {
+	min-block-size: var(--db-sizing-3xl);
+	contain: initial;
+	contain-intrinsic-size: initial;
 }

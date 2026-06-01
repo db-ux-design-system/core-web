@@ -1,9 +1,114 @@
 # @db-ux/core-foundations
 
-## 4.2.6
+## 4.10.0
 
 _version bump_
 
+## 4.9.1
+
+### Patch Changes
+
+- fix: correct default relative asset base for fonts/icons in `build/styles/theme/relative.css` and other `*relative.css` files - [see commit f465d98](https://github.com/db-ux-design-system/core-web/commit/f465d98c2c091dfe8d9f8f1f461d8073c52a5f15)
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+### Patch Changes
+
+- fix: `meta[name="color-scheme"]` HTML tag support - [see commit b23c57b](https://github.com/db-ux-design-system/core-web/commit/b23c57b9f735a88ceb4308f2d1bcf38092f50786)
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+## 4.5.4
+
+### Patch Changes
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+## 4.5.3
+
+_version bump_
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with hover state when using DBPopover/Tooltip with animation - [see commit bc4801b](https://github.com/db-ux-design-system/core-web/commit/bc4801bf0b32d5dc4fd8e29626a6122e34fb6ada)
+
+## 4.5.0
+
+_version bump_
+
+## 4.4.3
+
+_version bump_
+
+## 4.4.2
+
+_version bump_
+
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+## 4.4.0
+
+_version bump_
+
+## 4.3.2
+
+_version bump_
+
+## 4.3.1
+
+_version bump_
+
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 9e03702](https://github.com/db-ux-design-system/core-web/commit/9e0370266511fa99085ff837e430ad83f28856ec)
+
+## 4.2.6
+
+_version bump_
 
 ## 4.2.5
 

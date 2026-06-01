@@ -12,6 +12,7 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
+	getNotificationRole,
 	stringPropVisible
 } from '../../utils';
 import DBButton from '../button/button.lite';
@@ -37,10 +38,15 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<article
+		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-notification', props.className)}
+			role={getNotificationRole({
+				semantic: props.semantic,
+				role: props.role,
+				ariaLive: props.ariaLive
+			})}
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
 			data-variant={props.variant}
@@ -54,16 +60,17 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>
-				<header>{props.headline}</header>
+				<header data-area="head">{props.headline}</header>
 			</Show>
-			<p>
-				<Show when={props.text} else={props.children}>
-					{props.text}
-				</Show>
-			</p>
+			<div data-area="content">
+				<Show when={props.text}>{props.text}</Show>
+				{props.children}
+			</div>
 			<Show
 				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
-				<span>{props.timestamp}</span>
+				<time data-area="timestamp" dateTime={props.timestampDatetime}>
+					{props.timestamp}
+				</time>
 			</Show>
 
 			<Slot name="link" />
@@ -81,6 +88,6 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>
-		</article>
+		</div>
 	);
 }

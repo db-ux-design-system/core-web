@@ -44,15 +44,11 @@ const testAction = () => {
 	test(`should open and close drawer`, async ({ mount, page }) => {
 		let test: string = '';
 		const drawer: any = (
-			<DBDrawer onClose={() => (test = 'close')}>
+			<DBDrawer open={true} onClose={() => (test = 'close')}>
 				<span data-testid="test">Test</span>
 			</DBDrawer>
 		);
 		const component = await mount(drawer);
-		await page.evaluate(() => {
-			const selector = document.querySelector('dialog');
-			selector.showModal();
-		});
 		const testSpan = component.getByTestId('test');
 		await expect(testSpan).toBeVisible();
 		await component.getByRole('button').click();

@@ -17,7 +17,7 @@ export default function DBLink(props: DBLinkProps) {
 	return (
 		<a
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-link', props.className)}
 			href={props.href}
 			target={props.target}
@@ -32,9 +32,8 @@ export default function DBLink(props: DBLinkProps) {
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
 			data-wrap={getBooleanAsString(props.wrap)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</a>
 	);
 }

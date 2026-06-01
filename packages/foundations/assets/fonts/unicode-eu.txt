@@ -1,4 +1,4 @@
-# compare to https://symbl.cc/de/unicode-table/
+# compare to https://symbl.cc/de/unicode-table/ /// codespell:ignore symbl
 U+0000-024F # Latin (all)
 U+0020,U+0009,U+000A,U+000D # white space characters
 U+00E4,U+00F6,U+00FC,U+00DF # German characters

@@ -29,6 +29,9 @@ on:
       test-ally:
         description: "If aria-snapshots are changed"
         value: ${{ jobs.init.outputs.test-ally }}
+      isChangesetRelease:
+        description: "If this is a changeset release PR"
+        value: ${{ jobs.init.outputs.isChangesetRelease }}
       # Publish outputs
       release:
         description: "If the current tag is a release"
@@ -49,6 +52,7 @@ jobs:
       repoOwner: ${{ steps.result.outputs.owner }}
       version: ${{ steps.version.outputs.version }}
       test-ally: ${{ steps.ally.outputs.test-ally }}
+      isChangesetRelease: ${{ steps.changeset-check.outputs.isChangesetRelease }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
@@ -69,14 +73,14 @@ jobs:
           extra_args: --results=verified,unknown
 
       - name: 🔄 Init Cache Default
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: 🛤 Extract name and base
         id: extract-name-and-base
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           GITHUB_REF: ${{ github.ref }}
           RELEASE: ${{ inputs.release }}
@@ -98,16 +102,28 @@ jobs:
       - name: 🪁 Get playwright version
         id: version
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
+          OUTPUT=$(pnpm --silent tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩 Should Test a11y
         id: ally
         shell: bash
         run: |
-          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          ARIA_MAIN=$(pnpm --silent tsx scripts/github/snapshot-changes/check-main-aria.ts)
           echo "test-ally=$ARIA_MAIN"
           echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
+
+      - name: 🔄 Check if changeset release PR
+        id: changeset-check
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]] && \
+             [[ "${{ github.head_ref }}" == changeset-release/* ]] && \
+             [[ "${{ github.event.pull_request.head.repo.full_name }}" == "${{ github.repository }}" ]] && \
+             [[ "${{ github.event.pull_request.user.login }}" == "dbux-auto-merge-pr[bot]" ]]; then
+            echo "isChangesetRelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "isChangesetRelease=false" >> $GITHUB_OUTPUT
+          fi
 
   publish:
     name: Get and save publish version
@@ -122,12 +138,15 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: 💃🕺 Check if release or prerelease
         id: releaseCheck
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/get-release.ts)
+          OUTPUT=$(pnpm --silent tsx scripts/github/get-release.ts)
           if [[ $OUTPUT == "RELEASE" ]];
           then
             echo "release=true" >> $GITHUB_OUTPUT
@@ -153,7 +172,7 @@ jobs:
           PRE_RELEASE: ${{ steps.releaseCheck.outputs.preRelease }}
           TAG: ${{ steps.extractTag.outputs.tag }}
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/package-version.ts)
+          OUTPUT=$(pnpm --silent tsx scripts/github/package-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 🌳 Log Valid Version

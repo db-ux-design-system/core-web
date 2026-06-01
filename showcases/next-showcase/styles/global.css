@@ -1,0 +1,7 @@
+@import "@db-ux/core-components/build/styles/rollup.css";
+@import "@db-ux/db-theme/build/styles/rollup.css";
+
+/* stylelint-disable-next-line selector-id-pattern, selector-max-id */
+#__next {
+	block-size: 100%;
+}

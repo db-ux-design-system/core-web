@@ -1,0 +1,59 @@
+{
+  "name": "@db-ux/mcp-server",
+  "version": "4.10.0",
+  "type": "module",
+  "description": "MCP server for DB UX Design System – gives LLMs access to UI components and code examples",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "bin": {
+    "@db-ux/mcp-server": "./dist/index.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "agent",
+    "assets",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsx scripts/prebuild.ts && node esbuild.js",
+    "build-manifest": "tsx scripts/build-manifest.ts",
+    "copy-output": "run-p copy-output:*",
+    "copy-output:agent": "cpr agent ../../build-outputs/mcp-server/agent --overwrite",
+    "copy-output:assets": "cpr assets ../../build-outputs/mcp-server/assets --overwrite",
+    "copy-output:context": "cpr CONTEXT.md ../../build-outputs/mcp-server/CONTEXT.md --overwrite",
+    "copy-output:dist": "cpr dist ../../build-outputs/mcp-server/dist --overwrite",
+    "copy-output:package.json": "cpr package.json ../../build-outputs/mcp-server/package.json --overwrite",
+    "copy-output:readme": "cpr README.md ../../build-outputs/mcp-server/README.md --overwrite",
+    "dev": "pnpm run build && node dist/index.js",
+    "lint": "eslint src/ --ext .ts",
+    "start": "node dist/index.js",
+    "test": "pnpm run build && vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@db-ux/db-theme-icons": "3.9.0",
+    "cpr": "3.0.1",
+    "esbuild": "0.28.0",
+    "npm-run-all2": "9.0.1",
+    "tsx": "4.22.3",
+    "typescript": "5.9.3",
+    "vitest": "4.1.7"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

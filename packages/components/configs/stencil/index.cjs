@@ -1,5 +1,8 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
 const attributePassing = require('../plugins/attribute-passing/wrapper-component.cjs');
+const slotsPlugin = require('../plugins/stencil/slots.cjs');
+const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
+const stencilPlugin = require('../plugins/stencil/index.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToStencilOptions}
@@ -10,5 +13,11 @@ module.exports = {
 		enabled: true,
 		customRef: '_ref'
 	},
-	plugins: [onClickPlugin, attributePassing]
+	plugins: [
+		stencilPlugin,
+		attributePassingPlugin,
+		slotsPlugin,
+		onClickPlugin,
+		attributePassing
+	]
 };

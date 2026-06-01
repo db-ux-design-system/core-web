@@ -1,21 +1,23 @@
 import { AxeBuilder } from '@axe-core/playwright';
-import { expect, type Page, test } from '@playwright/test';
-import { close, getCompliance } from 'accessibility-checker';
-import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
-import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
-import { type FullProject } from 'playwright/types';
+import { expect, type FullProject, type Page, test } from '@playwright/test';
+import { createRequire } from 'node:module';
+
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
+
+import type { Checker } from 'accessibility-checker-engine';
+import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
 
 const density = 'regular';
 
 export type SkipType = {
 	angular?: boolean;
+	stencil?: boolean;
 };
 
 export type DefaultTestType = {
 	path: string;
-	fixedHeight?: number;
+	fixedHeight?: number | ((project: FullProject) => number | undefined);
 	skip?: SkipType;
 };
 
@@ -75,16 +77,18 @@ const gotoPage = async (
 	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
+
 	await setScrollViewport(page, fixedHeight)();
 };
-
-const isCheckerError = (object: any): object is ICheckerError =>
-	'details' in object;
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
 		const { showcase } = process.env;
-		if (skip.angular && showcase?.startsWith('angular')) {
+		if (skip.angular && isAngular('angular')) {
+			return true;
+		}
+
+		if (skip.stencil && isStencil(showcase)) {
 			return true;
 		}
 	}
@@ -109,7 +113,7 @@ export const getDefaultScreenshotTest = ({
 			test.skip();
 		}
 
-		const config: any = {};
+		const config: Record<string, unknown> = {};
 
 		if (maxDiffPixelRatio ?? diffPixel) {
 			if (maxDiffPixelRatio) {
@@ -121,6 +125,10 @@ export const getDefaultScreenshotTest = ({
 			}
 		} else if (isWebkit) {
 			config.maxDiffPixelRatio = 0.0123;
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);
@@ -163,6 +171,10 @@ export const runAxeCoreTest = ({
 			(!isLevelOne && shouldSkipA11yTest(project))
 		) {
 			test.skip();
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, color, fixedHeight, density);
@@ -211,6 +223,10 @@ export const runA11yCheckerTest = ({
 
 		test.slow(); // Easy way to triple the default timeout
 
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
+		}
+
 		await gotoPage(page, path, lvl1, fixedHeight);
 
 		if (preChecker) {
@@ -219,23 +235,30 @@ export const runA11yCheckerTest = ({
 
 		let failures: any[] = [];
 		try {
-			// Makes a call against https://cdn.jsdelivr.net/npm/accessibility-checker-engine
-			const { report } = await getCompliance(page, path);
+			// Inject the accessibility-checker engine from local node_modules
+			const require = createRequire(import.meta.url);
+			const enginePath = require.resolve('accessibility-checker-engine');
+			await page.addScriptTag({ path: enginePath });
 
-			if (isCheckerError(report)) {
-				failures = report.details;
-			} else {
-				failures = report.results.filter(
-					({ level, ruleId }: IBaselineResult) =>
-						level.toString() === 'violation' &&
-						!aCheckerDisableRules?.includes(ruleId)
-				);
-			}
+			const results: Issue[] = await page.evaluate(async () => {
+				const { ace } = globalThis as any;
+				if (!ace?.Checker) return [];
+				const checker: Checker = new ace.Checker();
+				const report = await checker.check(document, [
+					'IBM_Accessibility'
+				]);
+				return report.results ?? [];
+			});
+
+			failures = results.filter(
+				(result: Issue) =>
+					result.value.includes('VIOLATION') &&
+					result.value.includes('FAIL') &&
+					!aCheckerDisableRules?.includes(result.ruleId)
+			);
 		} catch (error) {
 			console.error(error);
 			failures.push(error);
-		} finally {
-			await close();
 		}
 
 		expect(failures).toEqual([]);
@@ -255,6 +278,10 @@ export const runAriaSnapshotTest = ({
 		if (shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight, density);

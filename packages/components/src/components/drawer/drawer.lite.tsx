@@ -9,7 +9,13 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
-import { cls, delay, getBooleanAsString, isKeyboardEvent } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	isKeyboardEvent
+} from '../../utils';
 import DBButton from '../button/button.lite';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -62,10 +68,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 		},
 		handleDialogOpen: () => {
 			if (_ref) {
-				const open = Boolean(props.open);
-				if (open && !_ref.open) {
+				const dialogOpen = getBoolean(props.open, 'open');
+				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
-						dialogContainerRef.hidden = false;
+						(dialogContainerRef as HTMLDivElement).removeAttribute(
+							'data-transition'
+						);
 					}
 					if (
 						props.position === 'absolute' ||
@@ -76,15 +84,21 @@ export default function DBDrawer(props: DBDrawerProps) {
 					} else {
 						_ref.showModal();
 					}
-				}
-				if (!open && _ref.open) {
-					if (dialogContainerRef) {
-						dialogContainerRef.hidden = true;
-					}
-					delay(() => {
+					void delay(() => {
 						if (dialogContainerRef) {
-							dialogContainerRef.hidden = false;
+							(dialogContainerRef as HTMLDivElement).dataset[
+								'transition'
+							] = 'open';
 						}
+					}, 1);
+				}
+				if (!dialogOpen && _ref.open) {
+					if (dialogContainerRef) {
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'close';
+					}
+					void delay(() => {
 						_ref?.close();
 					}, 401);
 				}
@@ -113,7 +127,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}

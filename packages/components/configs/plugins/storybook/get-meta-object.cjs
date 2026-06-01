@@ -15,14 +15,14 @@ const extractMetadata = (target, name, meta) => {
 			title = metadata.storybookTitle;
 		}
 		if (metadata.storybookArgTypes) {
-			// Transform argTypes for Angular (convert event handlers)
+			// For Angular, skip action-based event handler entries entirely —
+			// Angular resolves @Output() bindings automatically and these keys
+			// are not valid properties on the typed Props interface, causing
+			// TypeScript compilation errors.
 			if (target === 'angular') {
 				Object.entries(metadata.storybookArgTypes).forEach(
 					([key, value]) => {
-						if (key.startsWith('on') && value?.action) {
-							const newKey = key.slice(2).toLowerCase();
-							argTypes[newKey] = { ...value, action: newKey };
-						} else {
+						if (!(key.startsWith('on') && value?.action)) {
 							argTypes[key] = value;
 						}
 					}
@@ -37,81 +37,68 @@ const extractMetadata = (target, name, meta) => {
 };
 
 /**
- * Generates render function based on target framework
- * @param {string} target - Target framework (react, angular, vue)
- * @param {string} componentName - Component name
- * @param {string} componentNameLowercase - Lowercase component name
- * @returns {string} Render function code
+ * Generates explicit fn() args for argTypes that define an action.
+ * This replaces implicit Storybook actions (created by argTypesRegex) with
+ * explicit fn() spies, preventing SB_PREVIEW_API_0002 errors when event
+ * handlers are called during component rendering.
+ * @param {Object} argTypes - ArgTypes object
+ * @returns {string} Generated args section or empty string
  */
-const getRenderFunction = (target, componentName, componentNameLowercase) => {
-	if (target === 'react') {
-		return `render: (properties) => (
-		<${componentName} {...properties}>{properties.children}</${componentName}>
-	),`;
-	}
+const getFnArgs = (argTypes) => {
+	const fnArgEntries = Object.entries(argTypes)
+		.filter(([, value]) => value?.action)
+		.map(([key]) => `\t"${key}": fn()`);
 
-	if (target === 'angular') {
-		const argsToTemplateString = '${argsToTemplate(args)}';
-		const childrenString = '${children}';
-		return `
-	render: ({ children, ...args }) => ({
-		props: args,
-		template: \`<db-${componentNameLowercase} ${argsToTemplateString}>${childrenString}</db-${componentNameLowercase}>\`
-	}),`;
-	}
-
-	if (target === 'vue') {
-		const childrenString = '${args.default}';
-		return `
-		render: (args) => ({
-		components: { ${componentName} },
-		setup() {
-			return { args };
-		},
-		template: \`
-      <${componentName} v-bind="args">
-      ${childrenString}
-      </${componentName}>
-    \`,
-	}),`;
-	}
+	return fnArgEntries.length > 0
+		? `args: {\n${fnArgEntries.join(',\n')}\n\t},`
+		: '';
 };
 
 /**
  * Generates the Storybook meta object for a component
  * @param {Object} params - Parameters object
  * @param {string} params.target - Target framework (react, angular, vue)
- * @param {string} params.componentNameLowercase - Lowercase component name
  * @param {string} params.componentName - Component name
  * @param {string} params.name - Story name
  * @param {Object} params.meta - Metadata object
+ * @param {Array<string>} params.allImports - All imports
  * @returns {string} Generated meta object code
  */
-const getMetaObject = ({
-	target,
-	componentNameLowercase,
-	componentName,
-	name,
-	meta
-}) => {
+const getMetaObject = ({ target, componentName, name, meta, allImports }) => {
 	const { title, argTypes } = extractMetadata(target, name, meta);
-
-	const render = getRenderFunction(target, componentName, componentNameLowercase);
+	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 
 	const metaType =
 		target === 'angular'
 			? `${componentName}Props`
 			: `typeof ${componentName}`;
 
+	let decorators = '';
+
+	if (target === 'angular' && filteredImports.length) {
+		decorators = `
+	decorators: [
+		moduleMetadata({
+			imports: [${filteredImports.join(',')}],
+		}),
+	],`;
+	}
+
+	// Angular handles event actions differently via its own mechanism; adding
+	// explicit fn() args would generate properties that don't exist in the
+	// Angular component's typed Props interface, causing TypeScript errors.
+	const argsSection = target !== 'angular' ? getFnArgs(argTypes) : '';
+
 	return `
 const meta: Meta<${metaType}> = {
 	title: 'Components/${componentName}/${title}',
 	component: ${componentName},
-	${render}
+	${decorators}
 	parameters: {
 		layout: 'centered'
 	},
 	tags: ['autodocs'],
+	${argsSection}
 	argTypes: ${JSON.stringify(argTypes)}
 } satisfies Meta<${metaType}>;
 

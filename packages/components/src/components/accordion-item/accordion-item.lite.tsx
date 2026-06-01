@@ -9,9 +9,8 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
@@ -26,7 +25,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const _ref = useRef<HTMLDetailsElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
-		_id: DEFAULT_ID,
 		_open: false,
 		_name: undefined,
 		initialized: false,
@@ -48,12 +46,13 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			if (props.open === undefined) {
+				state._open = newStateOpen;
+			}
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'accordion-item-' + uuid();
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}
@@ -73,10 +72,19 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		}
 	}, [props.name]);
 
+	onUpdate(() => {
+		const nextOpen = getBoolean(props.open, 'open');
+		if (nextOpen !== undefined) {
+			state._open = nextOpen;
+		}
+	}, [props.open]);
+
 	// jscpd:ignore-end
 
 	return (
-		<li id={state._id} class={cls('db-accordion-item', props.className)}>
+		<li
+			id={props.id ?? props.propOverrides?.id}
+			class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
@@ -91,9 +99,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 					</Show>
 				</summary>
 				<div>
-					<Show when={props.text} else={props.children}>
-						{props.text}
-					</Show>
+					<Show when={props.text}>{props.text}</Show>
+					{props.children}
 				</div>
 			</details>
 		</li>

@@ -1,6 +1,5 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import type { Preview } from '@storybook/angular';
-import { StoryContext } from 'storybook/internal/csf';
+import type { Preview, StoryContext } from '@storybook/angular';
 import docJson from '../src/components/documentation.json';
 setCompodocJson(docJson);
 
@@ -12,6 +11,7 @@ const preview: Preview = {
 				date: /Date$/i
 			}
 		},
+		actions: { argTypesRegex: '^on.*' },
 		docs: {
 			toc: {
 				headingSelector: 'h1, h3',
@@ -20,7 +20,9 @@ const preview: Preview = {
 			source: {
 				transform: async (code: string, context: StoryContext) => {
 					let result = code;
-					for (const [key, value] of Object.entries(context['allArgs'])) {
+					for (const [key, value] of Object.entries(
+						context['allArgs']
+					)) {
 						result = result
 							.replaceAll(`"${key}"`, `"${value}"`)
 							.replaceAll(`[${key}]`, (substring) => {
@@ -30,10 +32,7 @@ const preview: Preview = {
 
 								return substring;
 							})
-							.replaceAll(
-								`this['${key}']`,
-								`'${value}'`
-							);
+							.replaceAll(`this['${key}']`, `'${value}'`);
 					}
 
 					return result;

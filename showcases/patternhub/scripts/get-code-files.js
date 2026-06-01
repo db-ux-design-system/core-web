@@ -93,7 +93,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				// console.error(e);
 			}
 
-			exampleCode = exampleCode?.replace(/;/g, '').trim();
+			exampleCode = exampleCode?.replaceAll(';', '').trim();
 
 			result += `
 				<DBTabPanel>

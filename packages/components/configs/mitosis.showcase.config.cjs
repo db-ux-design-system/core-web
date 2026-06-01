@@ -2,10 +2,7 @@
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
-	files: [
-		'src/**/*.showcase.lite.tsx',
-		'src/**/*.example.lite.tsx'
-	],
+	files: ['src/**/*.showcase.lite.tsx', 'src/**/*.example.lite.tsx'],
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',
 	options: {

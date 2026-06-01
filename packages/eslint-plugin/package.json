@@ -1,0 +1,59 @@
+{
+  "name": "@db-ux/core-eslint-plugin",
+  "version": "4.10.0",
+  "type": "module",
+  "description": "ESLint plugin for DB UX Design System components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "build"
+  ],
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "db-ux"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "copy-output": "run-p copy:*",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/eslint-plugin/CHANGELOG.md --overwrite",
+    "copy:outputs": "cpr build ../../build-outputs/eslint-plugin/build -o",
+    "copy:package.json": "cpr package.json ../../build-outputs/eslint-plugin/package.json -o",
+    "copy:readme": "cpr README.md ../../build-outputs/eslint-plugin/README.md -o",
+    "test": "vitest run --config vitest.config.ts",
+    "test:update": "vitest run --config vitest.config.ts --update"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0"
+  },
+  "dependencies": {
+    "@angular-eslint/utils": "21.4.0",
+    "@typescript-eslint/utils": "^8.60.0"
+  },
+  "devDependencies": {
+    "@angular-eslint/bundled-angular-compiler": "21.4.0",
+    "@angular-eslint/template-parser": "21.4.0",
+    "@angular-eslint/test-utils": "21.4.0",
+    "@typescript-eslint/parser": "8.60.0",
+    "@typescript-eslint/rule-tester": "8.60.0",
+    "cpr": "3.0.1",
+    "npm-run-all2": "9.0.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.7",
+    "vue-eslint-parser": "10.4.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

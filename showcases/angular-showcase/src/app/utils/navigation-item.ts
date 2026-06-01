@@ -1,34 +1,35 @@
 import { Routes } from '@angular/router';
-import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
-import { AccordionComponent } from '../components/accordion/accordion.component';
-import { BadgeComponent } from '../components/badge/badge.component';
-import { BrandComponent } from '../components/brand/brand.component';
-import { ButtonComponent } from '../components/button.component';
-import { CardComponent } from '../components/card/card.component';
-import { CheckboxComponent } from '../components/checkbox/checkbox.component';
-import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
-import { DividerComponent } from '../components/divider/divider.component';
-import { DrawerComponent } from '../components/drawer/drawer.component';
-import { HeaderComponent } from '../components/header/header.component';
+import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
+import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
+import { BadgeShowcase } from '@components/components/badge/showcase/badge.showcase';
+import { BrandShowcase } from '@components/components/brand/showcase/brand.showcase';
+import { ButtonShowcase } from '@components/components/button/showcase/button.showcase';
+import { CardShowcase } from '@components/components/card/showcase/card.showcase';
+import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
+import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
+import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
+import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
+import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
+import { HeaderShowcase } from '@components/components/header/showcase/header.showcase';
+import { IconShowcase } from '@components/components/icon/showcase/icon.showcase';
+import { InfotextShowcase } from '@components/components/infotext/showcase/infotext.showcase';
+import { InputShowcase } from '@components/components/input/showcase/input.showcase';
+import { LinkShowcase } from '@components/components/link/showcase/link.showcase';
+import { NavigationItemShowcase } from '@components/components/navigation-item/showcase/navigation-item.showcase';
+import { NavigationShowcase } from '@components/components/navigation/showcase/navigation.showcase';
+import { NotificationShowcase } from '@components/components/notification/showcase/notification.showcase';
+import { PopoverShowcase } from '@components/components/popover/showcase/popover.showcase';
+import { RadioShowcase } from '@components/components/radio/showcase/radio.showcase';
+import { SectionShowcase } from '@components/components/section/showcase/section.showcase';
+import { SelectShowcase } from '@components/components/select/showcase/select.showcase';
+import { StackShowcase } from '@components/components/stack/showcase/stack.showcase';
+import { SwitchShowcase } from '@components/components/switch/showcase/switch.showcase';
+import { TabItemShowcase } from '@components/components/tab-item/showcase/tab-item.showcase';
+import { TabsShowcase } from '@components/components/tabs/showcase/tabs.showcase';
+import { TagShowcase } from '@components/components/tag/showcase/tag.showcase';
+import { TextareaShowcase } from '@components/components/textarea/showcase/textarea.showcase';
+import { TooltipShowcase } from '@components/components/tooltip/showcase/tooltip.showcase';
 import { HomeComponent } from '../components/home/home.component';
-import { IconComponent } from '../components/icon/icon.component';
-import { InfotextComponent } from '../components/infotext/infotext.component';
-import { InputComponent } from '../components/input/input.component';
-import { LinkComponent } from '../components/link/link.component';
-import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-import { NavigationComponent } from '../components/navigation/navigation.component';
-import { NotificationComponent } from '../components/notification/notification.component';
-import { PopoverComponent } from '../components/popover/popover.component';
-import { RadioComponent } from '../components/radio/radio.component';
-import { SectionComponent } from '../components/section/section.component';
-import { SelectComponent } from '../components/select/select.component';
-import { StackComponent } from '../components/stack/stack.component';
-import { SwitchComponent } from '../components/switch/switch.component';
-import { TabItemComponent } from '../components/tab-item/tab-item.component';
-import { TabsComponent } from '../components/tabs/tabs.component';
-import { TagComponent } from '../components/tag/tag.component';
-import { TextareaComponent } from '../components/textarea/textarea.component';
-import { TooltipComponent } from '../components/tooltip/tooltip.component';
 
 export type NavItem = {
 	path: string;
@@ -38,7 +39,7 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-	navigationItems.sort((a: NavItem, b: NavItem) =>
+	navigationItems.toSorted((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);
 
@@ -50,9 +51,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			{
 				path: '06/notification',
 				label: 'Notification',
-				component: NotificationComponent
+				component: NotificationShowcase
 			},
-			{ path: '06/badge', label: 'Badge', component: BadgeComponent }
+			{ path: '06/badge', label: 'Badge', component: BadgeShowcase }
 		])
 	},
 
@@ -63,12 +64,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			{
 				path: '05/navigation-item',
 				label: 'NavigationItem',
-				component: NavigationItemComponent
+				component: NavigationItemShowcase
 			},
 			{
 				path: '05/navigation',
 				label: 'Navigation',
-				component: NavigationComponent
+				component: NavigationShowcase
 			}
 		])
 	},
@@ -77,40 +78,40 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
-			{ path: '04/icon', label: 'Icon', component: IconComponent },
+			{ path: '04/icon', label: 'Icon', component: IconShowcase },
 			{
 				path: '04/brand',
 				label: 'Brand',
-				component: BrandComponent
+				component: BrandShowcase
 			},
 			{
 				path: '04/tooltip',
 				label: 'Tooltip',
-				component: TooltipComponent
+				component: TooltipShowcase
 			},
 			{
 				path: '04/infotext',
 				label: 'Infotext',
-				component: InfotextComponent
+				component: InfotextShowcase
 			},
-			{ path: '04/tag', label: 'Tag', component: TagComponent },
+			{ path: '04/tag', label: 'Tag', component: TagShowcase },
 			{
 				path: '04/accordion',
 				label: 'Accordion',
-				component: AccordionComponent
+				component: AccordionShowcase
 			},
 			{
 				path: '04/accordion-item',
 				label: 'AccordionItem',
-				component: AccordionItemComponent
+				component: AccordionItemShowcase
 			},
 			{
 				path: '04/tab-item',
 				label: 'TabItem',
-				component: TabItemComponent
+				component: TabItemShowcase
 			},
 
-			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
+			{ path: '04/tabs', label: 'Tabs', component: TabsShowcase }
 		])
 	},
 	{
@@ -120,58 +121,63 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			{
 				path: '03/custom-select',
 				label: 'CustomSelect',
-				component: CustomSelectComponent
+				component: CustomSelectShowcase
 			},
-			{ path: '03/input', label: 'Input', component: InputComponent },
+			{ path: '03/input', label: 'Input', component: InputShowcase },
 			{
 				path: '03/textarea',
 				label: 'Textarea',
-				component: TextareaComponent
+				component: TextareaShowcase
 			},
-			{ path: '03/radio', label: 'Radio', component: RadioComponent },
+			{ path: '03/radio', label: 'Radio', component: RadioShowcase },
 			{
 				path: '03/checkbox',
 				label: 'Checkbox',
-				component: CheckboxComponent
+				component: CheckboxShowcase
 			},
-			{ path: '03/switch', label: 'Switch', component: SwitchComponent },
-			{ path: '03/select', label: 'Select', component: SelectComponent }
+			{ path: '03/switch', label: 'Switch', component: SwitchShowcase },
+			{ path: '03/select', label: 'Select', component: SelectShowcase }
 		])
 	},
 	{
 		path: '02',
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
-			{ path: '02/link', label: 'Link', component: LinkComponent },
-			{ path: '02/button', label: 'Button', component: ButtonComponent }
+			{ path: '02/link', label: 'Link', component: LinkShowcase },
+			{ path: '02/button', label: 'Button', component: ButtonShowcase },
+			{
+				path: '02/custom-button',
+				label: 'CustomButton',
+				component: CustomButtonShowcase
+			}
 		])
 	},
 	{
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
-			{ path: '01/stack', label: 'Stack', component: StackComponent },
-			{ path: '01/card', label: 'Card', component: CardComponent },
-			{ path: '01/drawer', label: 'Drawer', component: DrawerComponent },
+			{ path: '01/stack', label: 'Stack', component: StackShowcase },
+			{ path: '01/card', label: 'Card', component: CardShowcase },
+			{ path: '01/drawer', label: 'Drawer', component: DrawerShowcase },
 			{
 				path: '01/divider',
 				label: 'Divider',
-				component: DividerComponent
+				component: DividerShowcase
 			},
 			{
 				path: '01/popover',
 				label: 'Popover',
-				component: PopoverComponent
+				component: PopoverShowcase
 			},
 			{
 				path: '01/section',
 				label: 'Section',
-				component: SectionComponent
+				component: SectionShowcase
 			},
 			{
 				path: '01/header',
 				label: 'Header',
-				component: HeaderComponent
+				component: HeaderShowcase
 			}
 		])
 	},

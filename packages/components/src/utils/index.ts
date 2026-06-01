@@ -91,7 +91,7 @@ export const getBooleanAsString = (originBool?: boolean | string): any => {
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return String(Boolean(originBool));
+		return String(originBool === 'true');
 	}
 
 	return String(originBool);
@@ -103,8 +103,8 @@ export const getBoolean = (
 ): boolean | undefined => {
 	if (originBool === undefined || originBool === null) return;
 
-	if (typeof originBool === 'string' && propertyName) {
-		return Boolean(propertyName === originBool || originBool);
+	if (typeof originBool === 'string') {
+		return Boolean(propertyName === originBool || originBool === 'true');
 	}
 
 	return Boolean(originBool);
@@ -133,9 +133,7 @@ export const getNumber = (
  * @param step - The step value, which can be a number, string, or undefined.
  * @returns The step value as a number or the string "any", or undefined.
  */
-export const getStep = (
-	step?: number | string
-): number | 'any' | undefined => {
+export const getStep = (step?: number | string): number | 'any' | undefined => {
 	if (step === undefined || step === null) {
 		return;
 	}
@@ -166,13 +164,16 @@ export const getInputValue = (
 		: value;
 };
 
+const toBool = (value: boolean | string): boolean =>
+	typeof value === 'string' ? value === 'true' : value;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	return getBooleanAsString(!Boolean(show));
+	return getBooleanAsString(!toBool(show));
 };
 
 export const stringPropVisible = (
@@ -181,9 +182,9 @@ export const stringPropVisible = (
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
-	} else {
-		return Boolean(showString) && Boolean(givenString);
 	}
+
+	return toBool(showString) && Boolean(givenString);
 };
 
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
@@ -201,3 +202,39 @@ export const isKeyboardEvent = <T>(
 	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
 ): event is GeneralKeyboardEvent<T> =>
 	(event as GeneralKeyboardEvent<T>).key !== undefined;
+
+/**
+ * Maps semantic values to appropriate ARIA roles for notifications
+ * @param semantic - The semantic type of the notification
+ * @param role - The aria role of the notification
+ * @param ariaLive - The aria-live of the notification
+ * @returns The appropriate ARIA role or undefined for default behavior
+ */
+export const getNotificationRole = ({
+	semantic,
+	role,
+	ariaLive
+}: {
+	semantic?: string;
+	role?: string;
+	ariaLive?: string;
+}): string | undefined => {
+	if (role) {
+		return role;
+	}
+
+	if (ariaLive) {
+		return 'article';
+	}
+
+	switch (semantic) {
+		case 'critical':
+		case 'warning':
+			return 'alert';
+		case 'informational':
+		case 'successful':
+			return 'status';
+		default:
+			return 'article';
+	}
+};
