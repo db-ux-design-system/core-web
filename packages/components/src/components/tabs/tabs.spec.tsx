@@ -54,6 +54,42 @@ const testActions = () => {
 			component.getByRole('tab', { name: 'Test 2' })
 		).toHaveAttribute('aria-selected', 'true');
 	});
+
+	test('should fire onValueChange with value when tabs have value props', async ({
+		mount
+	}) => {
+		let receivedValue: string | undefined = 'initial';
+		const component = await mount(
+			<DBTabs onValueChange={(value?: string) => (receivedValue = value)}>
+				<DBTabList>
+					<DBTabItem value="tab-a">Tab A</DBTabItem>
+					<DBTabItem value="tab-b">Tab B</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel A</DBTabPanel>
+				<DBTabPanel>Panel B</DBTabPanel>
+			</DBTabs>
+		);
+		await component.getByRole('tab', { name: 'Tab B' }).click();
+		expect(receivedValue).toBe('tab-b');
+	});
+
+	test('should fire onValueChange with undefined when tabs have no value props', async ({
+		mount
+	}) => {
+		let receivedValue: string | undefined = 'initial';
+		const component = await mount(
+			<DBTabs onValueChange={(value?: string) => (receivedValue = value)}>
+				<DBTabList>
+					<DBTabItem>Tab X</DBTabItem>
+					<DBTabItem>Tab Y</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel X</DBTabPanel>
+				<DBTabPanel>Panel Y</DBTabPanel>
+			</DBTabs>
+		);
+		await component.getByRole('tab', { name: 'Tab Y' }).click();
+		expect(receivedValue).toBeUndefined();
+	});
 };
 
 const testA11y = () => {
