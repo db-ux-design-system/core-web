@@ -95,7 +95,7 @@
     - tab "Nürnberg"
     - tab "Dresden"
     - tab "Bremen"
-  - tabpanel "Test 1": Berlin
+  - tabpanel "Berlin"
   - button "Scroll end"
   - link "Truncation"
   - text: "truncated tab label (vertical only):"
@@ -103,54 +103,54 @@
     - tab "Very long tab label that gets truncated" [selected]
     - tab "Another long label"
     - tab "Short"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel "Very long tab label that gets truncated": Tab Panel 1
   - link "Icons"
   - text: "with leading icons:"
   - tablist:
     - tab "Home" [selected]
     - tab "Search"
     - tab "Calendar"
-  - tabpanel "Test 1": Home content
+  - tabpanel "Home": Home content
   - text: "with trailing icons:"
   - tablist:
     - tab "Notifications" [selected]
     - tab "Info"
     - tab "Settings"
-  - tabpanel "Test 1": Notifications content
+  - tabpanel "Notifications": Notifications content
   - link "Disabled"
   - text: "with disabled tab in the middle:"
   - tablist:
     - tab "Active Tab" [selected]
     - tab "Disabled Tab" [disabled]
     - tab "Another Tab"
-  - tabpanel "Test 1": Panel for active tab
+  - tabpanel "Active Tab": Panel for active tab
   - link "Slot with Badge"
   - text: "tab-items with badges:"
   - tablist:
     - tab "Messages 134" [selected]
     - tab "Notifications 433"
     - tab "Settings"
-  - tabpanel "Test 1": Messages content
+  - tabpanel "Messages 134": Messages content
   - link "URL Sync"
   - text: "3rd tab pre-selected via initialSelectedIndex (also supports deep linking via URL hash, e.g. #tabs-initial-selection-tab-1):"
   - tablist "initial-selection":
     - tab "Overview"
     - tab "Details"
     - tab "Settings" [selected]
-  - tabpanel "Test 3": Settings content
+  - tabpanel "Settings": Settings content
   - text: "2nd tab pre-selected with value props and 'onValueChange':"
   - tablist "value-selection":
     - tab "Overview"
     - tab "Details" [selected]
     - tab "Settings"
-  - tabpanel "Test 2": Details content
+  - tabpanel "Details": Details content
   - link "Nested Tabs"
   - text: "Nested Tabs:"
   - tablist "outer-tabs":
     - tab "Overview" [selected]
     - tab "Details"
     - tab "Settings"
-  - tabpanel "Test 1":
+  - tabpanel "Overview":
     - paragraph: Overview content without nested tabs.
   - link "Controlled"
   - button "Select Tab 1"
@@ -160,7 +160,7 @@
     - tab "Tab 1" [selected]
     - tab "Tab 2"
     - tab "Tab 3"
-  - tabpanel "Test 1": Content of Tab 1
+  - tabpanel "Tab 1": Content of Tab 1
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
