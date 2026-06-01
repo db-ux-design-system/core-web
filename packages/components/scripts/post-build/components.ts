@@ -218,6 +218,16 @@ export const getComponents = (): Component[] => [
 					from: 'onMouseMove={(event)',
 					to: 'onMouseMove={(event: any)'
 				}
+			],
+			stencil: [
+				{
+					from: '<slot>',
+					/* This is a workaround for stencil.
+						At the moment the navigation is broken in stencil and will be fixed in the db-shell.
+						Until then we need to add a named slot for the button, because web-components allow only one default slot.
+					*/
+					to: '<slot name="expandButton">'
+				}
 			]
 		},
 		config: {
