@@ -71,10 +71,10 @@ function renderShowcasePage(
  */
 function updateActiveNavItem(): void {
 	const navLinks = document.querySelectorAll('db-navigation-item a');
-	const currentHash = globalThis.location.hash || '#/';
+	const currentHash = (globalThis.location.hash || '#/').split('?')[0];
 
 	for (const link of navLinks) {
-		const href = link.getAttribute('href') ?? '';
+		const href = (link.getAttribute('href') ?? '').split('?')[0];
 		if (href === currentHash) {
 			link.setAttribute('aria-current', 'page');
 		} else {

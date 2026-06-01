@@ -1,4 +1,4 @@
-import {
+import type {
 	ClickEvent,
 	ClickEventProps,
 	ClickEventState,
@@ -13,7 +13,7 @@ import {
 	WidthProps,
 	WrapProps
 } from '../../shared/model';
-import { NavigationItemSafeTriangle } from '../../utils/navigation';
+import type { NavigationItemSafeTriangle } from '../../utils/navigation';
 
 export type DBNavigationItemDefaultProps = {
 	/**

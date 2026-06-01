@@ -1,6 +1,6 @@
 const deleteConnectedElement = () => {
 	return (
-		'if(document && this.rootElement && this.rootElement.dataset.connect){\n' +
+		'if(typeof document !== "undefined" && this.rootElement && this.rootElement.dataset.connect){\n' +
 		'const connectedElement = document.querySelector(`[data-connect-id="${this.rootElement.dataset.connect}"]`);\n' +
 		'if (connectedElement){\n' +
 		'connectedElement.remove();\n' +

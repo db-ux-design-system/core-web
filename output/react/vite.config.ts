@@ -10,6 +10,7 @@ export default defineConfig({
 			formats: ['es']
 		},
 		outDir: 'dist',
+		emptyOutDir: false,
 		rollupOptions: {
 			external: [
 				'react',

@@ -1,12 +1,14 @@
 import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaInfotextProps = {
+	text?: string;
 	semantic?: string;
 	size?: string;
 	showIcon?: boolean;
 };
 
 const infotextProps: Record<string, FigmaProp> = {
+	text: { type: 'textContent', key: 'Text' },
 	semantic: {
 		type: 'enum',
 		key: 'Semantic',
