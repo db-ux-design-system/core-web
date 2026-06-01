@@ -8,7 +8,7 @@
 
 - refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
 
-- feat: add bundled output (`bundle/`) so the web-components package can be consumed directly via a single script import without a bundler. - [see commit 810fc22](https://github.com/db-ux-design-system/core-web/commit/810fc2226ab7394924309745f440ca62dd76589c)
+- feat: add bundled output (`bundle/`) so the web-components package can be consumed directly via a single script import without a bundler. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
 
 ## 4.9.1
 
