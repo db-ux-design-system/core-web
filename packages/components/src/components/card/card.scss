@@ -14,17 +14,19 @@
 		font: inherit;
 	}
 
-	@include helpers.hover {
-		> .db-card,
-		> db-card > .db-card {
-			background-color: var(--db-card-background-color-hovered);
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			> .db-card,
+			> db-card > .db-card {
+				background-color: var(--db-card-background-color-hovered);
+			}
 		}
-	}
 
-	@include helpers.active {
-		> .db-card,
-		> db-card > .db-card {
-			background-color: var(--db-card-background-color-pressed);
+		@include helpers.active {
+			> .db-card,
+			> db-card > .db-card {
+				background-color: var(--db-card-background-color-pressed);
+			}
 		}
 	}
 }
@@ -42,12 +44,14 @@
 	background-color: var(--db-card-background-color-default);
 
 	&[data-behavior="interactive"] {
-		@include helpers.hover {
-			background-color: var(--db-card-background-color-hovered);
-		}
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				background-color: var(--db-card-background-color-hovered);
+			}
 
-		@include helpers.active {
-			background-color: var(--db-card-background-color-pressed);
+			@include helpers.active {
+				background-color: var(--db-card-background-color-pressed);
+			}
 		}
 	}
 
