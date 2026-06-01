@@ -18,6 +18,10 @@
     "./bundle": {
       "types": "./bundle/index.d.ts",
       "import": "./bundle/index.js"
+    },
+    "./bundle/index.js": {
+      "types": "./bundle/index.d.ts",
+      "import": "./bundle/index.js"
     }
   },
   "files": [
