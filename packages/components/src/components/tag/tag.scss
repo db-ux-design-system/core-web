@@ -88,6 +88,10 @@
 	) {
 		block-size: 100%;
 	}
+
+	&:has(input[type="radio"]:checked) {
+		--db-overwrite-cursor: default;
+	}
 }
 
 .db-tag {
