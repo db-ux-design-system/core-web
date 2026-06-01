@@ -37,6 +37,7 @@
 		"**/README.md",
 		"**/test-results/**",
 		"**/tests/**",
+		"**/AGENTS.md",
 		"**/test/**",
 		"**/tsconfig.json",
 		"**/e2e/**/*.spec.ts",
