@@ -10,12 +10,12 @@ export type FigmaDrawerProps = {
 const drawerProps: Record<string, FigmaProp> = {
 	direction: {
 		type: 'enum',
-		key: '💻 Direction',
+		key: 'Direction',
 		value: { Right: 'right', Left: 'left', Bottom: 'up', Top: 'down' }
 	},
 	size: {
 		type: 'enum',
-		key: '💻 Size',
+		key: 'Size',
 		value: { Medium: 'medium', Full: 'full' }
 	},
 	rounded: { type: 'boolean', key: 'Rounded' },

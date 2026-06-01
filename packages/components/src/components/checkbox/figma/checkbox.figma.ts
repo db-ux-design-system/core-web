@@ -2,21 +2,28 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaCheckboxProps = {
 	label?: string;
+	showLabel?: boolean;
 	size?: string;
+	required?: boolean;
+	showRequiredAsterisk?: boolean;
 	disabled?: boolean;
 	checked?: boolean;
 	indeterminate?: boolean;
 	validation?: string;
+	showMessage?: boolean;
 	message?: string;
 };
 
 const checkboxProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: '✏️ Label' },
+	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
-		key: '💻 Size',
+		key: 'Size',
 		value: { Medium: 'medium', Small: 'small' }
 	},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
 	disabled: { type: 'boolean', key: 'Disabled' },
 	checked: { type: 'boolean', key: 'Checked' },
 	indeterminate: { type: 'boolean', key: 'Indeterminate' },
@@ -31,14 +38,15 @@ const checkboxProps: Record<string, FigmaProp> = {
 	},
 	message: {
 		type: 'validationMessage',
-		key: '✏️ Text',
+		key: 'Text',
 		conditionProp: 'validation',
 		map: {
 			invalid: 'invalidMessage',
 			valid: 'validMessage',
 			default: 'message'
 		}
-	}
+	},
+	showMessage: { type: 'boolean', key: 'Show Message' }
 };
 
 export const checkboxes: FigmaCodeConnect = {
