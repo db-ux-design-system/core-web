@@ -95,7 +95,7 @@ if (
 	parent.type === 'JSXElement' ||
 	parent.type === 'VElement' ||
 	parent.type === 'Element' ||
-	child.type === "Element$1"
+	parent.type === "Element$1"
 ) {
 ```
 

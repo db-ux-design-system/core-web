@@ -245,7 +245,7 @@ If possible, start by writing a test that you could use to verify your solution,
 ### Modifying Existing Components
 
 1. Make changes in `packages/components/src/components/[name]/`
-2. Adapt those changes into the `showcases/vue-showcase`, `showcases/angular-showcase` and `showcases/react-showcase` folders.
+2. Update examples in `packages/components/src/components/[name]/examples/`; showcase files are generated from these and must not be edited manually.
 3. **Always run**: `pnpm run build && pnpm run dev`
 4. **Manual validation**: Test component behavior in browser
 5. **Before committing**: `pnpm run test && pnpm run build-outputs`
@@ -298,9 +298,9 @@ git push origin <branch-name>
 ```
 
 > Branch names must use `-` as separator (e.g. `feat-my-feature`, `fix-button-style`). Never use `/` — it breaks preview URLs.
-
+>
 > The second `-m` is the commit body. Always include a concise summary of **what** was changed and **why**. This is used as the PR description.
-
+>
 > If Husky blocks the commit due to a missing `.env`, add `--no-verify` (see "Git hook issues" above).
 
 ### 3. PR Description
