@@ -61,7 +61,8 @@ const xoConfig = [
 	{
 		files: ['./**/vite.config.ts'],
 		rules: {
-			'@typescript-eslint/no-unsafe-call': 0 // We don't need this tsc will handle it anyway
+			'@typescript-eslint/no-unsafe-call': 0, // We don't need this tsc will handle it anyway
+			'@typescript-eslint/no-unsafe-assignment': 0 // We don't need this tsc will handle it anyway
 		}
 	},
 	{
