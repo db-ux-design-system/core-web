@@ -14,6 +14,5 @@ resolves # (issue number)
 - [ ] I have tested across all relevant frameworks (React, Angular, Vue) if applicable
 
 ### General
-- [ ] My branch is up to date with the target branch
 - [ ] The PR title follows the conventional commits format (e.g. `feat:`, `fix:`, `chore:`)
 - [ ] If architecture, structure, or conventions changed inside a `packages/*` folder, the corresponding `AGENTS.md` has been updated
