@@ -7,4 +7,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-refactor: simplify cursor-pointer mixin for inputs and fix tab-item hover/active states
+refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states
