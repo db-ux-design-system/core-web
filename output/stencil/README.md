@@ -148,7 +148,7 @@ The bundle entry point is fully self-contained — `@stencil/core` is bundled in
 
 ```js
 // main.js
-import { defineCustomElements } from "@db-ux/wc-core-components/bundle";
+import { defineCustomElements } from "@db-ux/wc-core-components/bundle/index.js";
 defineCustomElements();
 ```
 
