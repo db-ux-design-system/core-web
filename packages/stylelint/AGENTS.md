@@ -17,13 +17,13 @@ pnpm run test    # Run vitest
 
 ## Available Rules
 
-| Rule                    | Validates                              |
-| ----------------------- | -------------------------------------- |
-| `db-ux/use-spacings`    | margins, paddings, gaps                |
-| `db-ux/use-sizing`      | height, width, block-size, inline-size |
-| `db-ux/use-border-width`| border-width & border                  |
-| `db-ux/use-border-radius`| border-radius                         |
-| `db-ux/use-border-color`| border-color & border                  |
+| Rule                      | Validates                              |
+| ------------------------- | -------------------------------------- |
+| `db-ux/use-spacings`      | margins, paddings, gaps                |
+| `db-ux/use-sizing`        | height, width, block-size, inline-size |
+| `db-ux/use-border-width`  | border-width & border                  |
+| `db-ux/use-border-radius` | border-radius                          |
+| `db-ux/use-border-color`  | border-color & border                  |
 
 ## Structure
 
@@ -40,15 +40,18 @@ Every rule supports:
 
 ```json5
 {
-  "db-ux/use-xxx": [true, {
-    "allowCalc": true,          // Allow all calc() functions
-    "ignore": ["test.scss"],    // Ignore specific files
-    "allow": {
-      "startsWith": ["map.get"],
-      "includes": ["--custom-gap"],
-      "exact": ["$custom-padding"]
-    }
-  }]
+	"db-ux/use-xxx": [
+		true,
+		{
+			allowCalc: true, // Allow all calc() functions
+			ignore: ["test.scss"], // Ignore specific files
+			allow: {
+				startsWith: ["map.get"],
+				includes: ["--custom-gap"],
+				exact: ["$custom-padding"]
+			}
+		}
+	]
 }
 ```
 

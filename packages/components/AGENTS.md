@@ -88,7 +88,7 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually
 2. **Check `src/shared/model.ts` first** before adding any new prop — it may already exist as a shared type (see Shared Props section below)
-3. **Check other `**/model.ts` files** — if a similar prop exists in another component, consider moving it to `src/shared/model.ts` before reusing it
+3. **Check other `**/model.ts`files** — if a similar prop exists in another component, consider moving it to`src/shared/model.ts` before reusing it
 4. Edit `model.ts` for prop changes (breaking change if props are added/removed/renamed/retyped → needs `major` changeset)
 5. Edit the `.lite.tsx` for template/logic changes
 6. **Check `src/styles/internal/` first** before writing new SCSS — the style may already exist as a shared internal mixin/placeholder (see Shared Styles section below)
@@ -103,20 +103,20 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File | What it covers |
-| --- | --- |
+| File                      | What it covers                                          |
+| ------------------------- | ------------------------------------------------------- |
 | `_button-components.scss` | Ghost button appearance, button-like interactive states |
-| `_form-components.scss` | Shared form element styles (inputs, selects, textareas) |
-| `_link-components.scss` | Link-like appearance and states |
-| `_tag-components.scss` | Tag/badge/chip shared styles |
-| `_stack-components.scss` | Stack/layout shared styles |
-| `_select-components.scss` | Select/dropdown shared styles |
-| `_popover-component.scss` | Popover/tooltip positioning and appearance |
-| `_icon-passing.scss` | Icon passing via data attributes |
-| `_custom-elements.scss` | Custom element host/shadow styles |
-| `_component.scss` | Base component resets and defaults |
-| `_db-puls.scss` | DB Puls animation |
-| `_scrollbar.scss` | Scrollbar styling |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas) |
+| `_link-components.scss`   | Link-like appearance and states                         |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                            |
+| `_stack-components.scss`  | Stack/layout shared styles                              |
+| `_select-components.scss` | Select/dropdown shared styles                           |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance              |
+| `_icon-passing.scss`      | Icon passing via data attributes                        |
+| `_custom-elements.scss`   | Custom element host/shadow styles                       |
+| `_component.scss`         | Base component resets and defaults                      |
+| `_db-puls.scss`           | DB Puls animation                                       |
+| `_scrollbar.scss`         | Scrollbar styling                                       |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
 
