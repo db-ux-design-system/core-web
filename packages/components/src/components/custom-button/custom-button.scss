@@ -58,12 +58,14 @@ $icon-padding-custom-button: calc(
 	}
 
 	label:has(input[type="checkbox"]:checked) {
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
-		}
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
+			}
 
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-inverted-contrast-max-pressed;
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-inverted-contrast-max-pressed;
+			}
 		}
 	}
 

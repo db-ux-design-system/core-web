@@ -35,12 +35,14 @@
 	&[data-variant="brand"] {
 		color: colors.$db-brand-on-bg-basic-emphasis-80-default;
 
-		@include helpers.hover {
-			color: #{colors.$db-brand-on-bg-basic-emphasis-80-hovered};
-		}
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				color: #{colors.$db-brand-on-bg-basic-emphasis-80-hovered};
+			}
 
-		@include helpers.active {
-			color: #{colors.$db-brand-on-bg-basic-emphasis-80-pressed};
+			@include helpers.active {
+				color: #{colors.$db-brand-on-bg-basic-emphasis-80-pressed};
+			}
 		}
 	}
 
