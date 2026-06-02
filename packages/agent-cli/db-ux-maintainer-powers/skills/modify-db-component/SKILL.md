@@ -124,9 +124,8 @@ If the spec has syntax errors, fix them first and re-run until you get clean "mi
 
 #### 2b: Update `{component_slug}.lite.tsx`
 
-- Apply changes corresponding to the `model.ts` update.
-- If adding a variant: ensure `data-variant` renders the new value.
-- If adding a prop: wire it into JSX (e.g. `data-<prop>={props.<prop>}`).
+- Read the existing `.lite.tsx` to understand the current component structure and patterns.
+- Apply changes corresponding to the `model.ts` update, following the patterns already used in the component.
 - NEVER use inline styles in `.lite.tsx` components.
 - PRESERVE `id={props.id ?? props.propOverrides?.id}` pattern.
 - PRESERVE `cls('db-{component_slug}', props.className)` usage.
