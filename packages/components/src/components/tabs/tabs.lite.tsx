@@ -40,8 +40,8 @@ export default function DBTabs(props: DBTabsProps) {
 		_tabButtons: [] as HTMLElement[],
 		_tabPanels: [] as HTMLElement[],
 
-		_id: 'tabs-base-id',
-		_name: 'tabs-base-name',
+		_id: 'tabs-' + uuid(),
+		_name: 'tabs-' + uuid(),
 
 		getTabId(index: number | string) {
 			return `${state._name}-tab-${index}`;
