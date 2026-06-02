@@ -35,15 +35,15 @@ build/         # Compiled output — never commit
 
 ## Plugin Options
 
-| Option             | Default     | Description                                                        |
-| ------------------ | ----------- | ------------------------------------------------------------------ |
-| `include`          | auto-detect | Force-include specific components, foundations, colors, densities  |
-| `exclude`          | none        | Exclude specific components, foundations, colors, densities        |
-| `optimize`         | `true`      | Remove unused CSS variable declarations                            |
+| Option             | Default     | Description                                                       |
+| ------------------ | ----------- | ----------------------------------------------------------------- |
+| `include`          | auto-detect | Force-include specific components, foundations, colors, densities |
+| `exclude`          | none        | Exclude specific components, foundations, colors, densities       |
+| `optimize`         | `true`      | Remove unused CSS variable declarations                           |
 | `theme`            | auto-detect | Preferred theme package name (e.g. `"db-theme"`)                  |
-| `additionalLayers` | none        | Append custom layers before/after the auto-generated layer order   |
-| `overrideLayers`   | none        | Fully replace the auto-generated `@layer` statement                |
-| `debug`            | `false`     | Write `db-ux-detection-report.json` for troubleshooting            |
+| `additionalLayers` | none        | Append custom layers before/after the auto-generated layer order  |
+| `overrideLayers`   | none        | Fully replace the auto-generated `@layer` statement               |
+| `debug`            | `false`     | Write `db-ux-detection-report.json` for troubleshooting           |
 
 ## Important Notes
 
