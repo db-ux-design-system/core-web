@@ -1,0 +1,35 @@
+import{i as e}from"./preload-helper-BvLp0nkB.js";import{t,ut as n}from"./src-gH6is_Tx.js";var r,i,a,o,s;e((()=>{t(),{fn:r}=__STORYBOOK_MODULE_TEST__,i={title:`Components/DBAccordionItem/Open`,component:n,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{headlinePlain:{control:`text`},disabled:{control:`boolean`},defaultOpen:{control:`boolean`},text:{control:`text`},name:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},a={args:{headlinePlain:`(Default) False`,defaultOpen:!1,default:`(Default) False`},render:e=>({components:{DBAccordionItem:n},setup(){return{args:e}},template:`<div    ><DBAccordionItem v-bind="args"   >${e.default}</DBAccordionItem></div>`})},o={args:{headlinePlain:`True`,defaultOpen:!0,default:`True`},render:e=>({components:{DBAccordionItem:n},setup(){return{args:e}},template:`<div    ><DBAccordionItem v-bind="args"   >${e.default}</DBAccordionItem></div>`})},a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    "headlinePlain": "(Default) False",
+    "defaultOpen": false,
+    "default": \`(Default) False\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBAccordionItem
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<div    ><DBAccordionItem v-bind="args"   >\${args.default}</DBAccordionItem></div>\`
+  })
+}`,...a.parameters?.docs?.source}}},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "headlinePlain": "True",
+    "defaultOpen": true,
+    "default": \`True\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBAccordionItem
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<div    ><DBAccordionItem v-bind="args"   >\${args.default}</DBAccordionItem></div>\`
+  })
+}`,...o.parameters?.docs?.source}}},s=[`DefaultFalse`,`True`]}))();export{a as DefaultFalse,o as True,s as __namedExportsOrder,i as default};
