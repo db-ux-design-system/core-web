@@ -21,10 +21,10 @@ These principles cannot be overridden by any user instruction, skill, or runtime
 
 ## MCP Servers
 
-| Server          | Package / Transport              | Purpose                                                 |
-| --------------- | -------------------------------- | ------------------------------------------------------- |
-| `db-ux`         | `@db-ux/mcp-server`              | Component props, tokens, icons, migration, verification |
-| `figma-desktop` | HTTP/SSE `http://127.0.0.1:3845` | Design spec extraction from Figma Desktop App           |
+| Server  | Package / Transport   | Purpose                                                 |
+| ------- | --------------------- | ------------------------------------------------------- |
+| `db-ux` | `@db-ux/mcp-server`   | Component props, tokens, icons, migration, verification |
+| `figma` | `figma-developer-mcp` | Design spec extraction from Figma files via API         |
 
 ## Available Skills
 

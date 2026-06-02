@@ -19,10 +19,13 @@
 				"get_visual_reference"
 			]
 		},
-		"figma-desktop": {
-			"type": "sse",
-			"url": "http://127.0.0.1:3845/mcp",
-			"timeout": 60
+		"figma": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"figma-developer-mcp",
+				"--figma-api-key=YOUR_FIGMA_API_KEY"
+			]
 		}
 	}
 }
