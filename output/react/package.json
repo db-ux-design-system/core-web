@@ -17,7 +17,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all --parallel tsc vite --sequential mv:*",
+    "build": "npm-run-all --parallel tsc vite --sequential tsc:esm-fix mv:*",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
@@ -29,6 +29,7 @@
     "test:components:ui": "playwright test --config playwright.config.ts --ui",
     "test:windows": "playwright test --config playwright.screen-reader.win.ts",
     "tsc": "tsc --project . --sourceMap false",
+    "tsc:esm-fix": "tsc-esm-fix dist",
     "vite": "vite build"
   },
   "dependencies": {
@@ -44,6 +45,7 @@
     "playwright": "1.60.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "tsc-esm-fix": "3.1.2",
     "typescript": "5.9.3",
     "vite": "8.0.14"
   },
