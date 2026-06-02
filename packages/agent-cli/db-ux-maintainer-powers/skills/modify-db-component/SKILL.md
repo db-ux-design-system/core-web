@@ -126,6 +126,7 @@ If the spec has syntax errors, fix them first and re-run until you get clean "mi
 
 - Read the existing `.lite.tsx` to understand the current component structure and patterns.
 - Apply changes corresponding to the `model.ts` update, following the patterns already used in the component.
+- Check `packages/components/src/styles/internal/` for shared internal styles and mixins. Also review other components for similar patterns that could be combined or reused.
 - NEVER use inline styles in `.lite.tsx` components.
 - PRESERVE `id={props.id ?? props.propOverrides?.id}` pattern.
 - PRESERVE `cls('db-{component_slug}', props.className)` usage.
