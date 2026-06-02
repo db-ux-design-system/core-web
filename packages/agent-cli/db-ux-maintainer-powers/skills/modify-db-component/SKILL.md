@@ -117,7 +117,7 @@ If the spec has syntax errors, fix them first and re-run until you get clean "mi
 
 #### 2a: Update `model.ts`
 
-- If adding a variant: add it to the `{component_name}VariantList` array.
+- Read the existing `model.ts` to understand the current type definitions and prop structure.
 - If adding a prop: add it to `DB{component_name}DefaultProps` with a JSDoc comment.
 - If changing a type: update the type definition.
 - NEVER remove existing props without explicit user confirmation (breaking change).
