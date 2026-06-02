@@ -67,6 +67,8 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/www
 /output/stencil/bundle/
 **/.angular
+**/.next
+**/.nuxt
 /scripts/public/
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
@@ -82,4 +84,4 @@ showcases/patternhub/public/iframe-resizer/*
 packages/mcp-server/src/manifest.json
 **/db-ux-detection-report.json
 showcases/next-showcase/.browserslistrc
-.kiro/specs
+/.kiro/specs/
