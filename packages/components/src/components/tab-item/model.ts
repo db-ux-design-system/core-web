@@ -1,6 +1,5 @@
 import type {
 	ActiveProps,
-	ClickEventProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -36,7 +35,6 @@ export type DBTabItemDefaultProps = {
 
 export type DBTabItemProps = DBTabItemDefaultProps &
 	GlobalProps &
-	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	ShowIconProps &
 	IconTrailingProps &
@@ -51,7 +49,6 @@ export type DBTabItemDefaultState = {
 	_tabIndex: number;
 	_resizeObserver: ResizeObserver | null | undefined;
 	_ariaSelectedListener: { fn: (event: any) => void } | null;
-	handleClick: (event: any) => void;
 	isTruncated: boolean;
 	checkTruncation: () => void;
 	tooltipText: string;
