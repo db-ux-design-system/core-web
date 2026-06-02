@@ -98,11 +98,11 @@ Rules:
 - ALL new variants MUST get aria-snapshot tests.
 - Axe-core accessibility test scope (`.db-{component_slug}`) remains unchanged.
 
-**After updating the spec, build the project and run the showcase tests:**
+**After updating the spec, build the project, generate outputs, and run the component tests from `output/react`:**
 
 ```bash
 pnpm run build && pnpm run build-outputs
-cd showcases/react-showcase && pnpm run test:e2e
+cd output/react && pnpm run test:components
 ```
 
 **The RED phase is only complete if:**

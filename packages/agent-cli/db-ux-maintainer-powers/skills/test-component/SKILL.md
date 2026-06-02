@@ -76,16 +76,16 @@ If `component_name` is not explicitly provided, derive it deterministically from
 
 ### Step 1: Run Tests
 
-Execute the component's E2E tests from a showcase directory (e.g. `react-showcase`):
+Execute the component's tests from `output/react` (specs are generated there after `pnpm run build-outputs`):
 
 ```bash
-cd showcases/react-showcase && cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts -g "DB{component_name}"
+cd output/react && npx playwright test --config playwright.config.ts -g "DB{component_name}"
 ```
 
-Alternatively, run all E2E tests for the showcase:
+Alternatively, run all component tests:
 
 ```bash
-cd showcases/react-showcase && pnpm run test:e2e
+cd output/react && pnpm run test:components
 ```
 
 **Example:** For `component_slug = navigation-item`, convert to `component_name = NavigationItem`, then grep for `DBNavigationItem`.
