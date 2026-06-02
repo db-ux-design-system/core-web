@@ -123,8 +123,13 @@
 	// [tabindex="-1"] elements. Tab items use roving tabindex where inactive
 	// tabs have tabindex="-1" but should still show hover effects.
 	&:not(:disabled):hover,
-	&:not(:disabled):focus-visible {
+	&:not(:disabled):focus {
 		cursor: pointer;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	}
+
+	&:not(:disabled):active {
+		cursor: pointer;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 }
