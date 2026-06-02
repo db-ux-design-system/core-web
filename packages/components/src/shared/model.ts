@@ -769,7 +769,8 @@ export type DBTableCellProps = {
 	colSpan?: number | string;
 
 	/**
-	 * The **`colSpan`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+	 * Lowercase HTML attribute alternative to `colSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).
+	 * If both `colSpan` and `colspan` are provided, `colSpan` takes precedence.
 	 *
 	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
 	 */
@@ -789,7 +790,8 @@ export type DBTableCellProps = {
 	 */
 	rowSpan?: number | string;
 	/**
-	 * The **`rowSpan`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+	 * Lowercase HTML attribute alternative to `rowSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).
+	 * If both `rowSpan` and `rowspan` are provided, `rowSpan` takes precedence.
 	 *
 	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
 	 */

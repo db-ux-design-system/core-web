@@ -3,10 +3,9 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "./../../styles/internal/table-components";
 
-$interactive-elements: ':is(input,button,a,select,textarea,[role="button"],[role="link"],[tabindex]:not([tabindex="-1"]))';
 $interactive-row-action: '[data-table-row-trigger="true"]';
 $interactive-nested-child: "#{$interactive-row-action} input,textarea,select";
-$interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$interactive-nested-child})";
+$interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-elements}),#{$interactive-nested-child})";
 
 %full-absolute {
 	content: "";
@@ -23,16 +22,9 @@ $interactive-child: ":is(#{$interactive-row-action}#{$interactive-elements},#{$i
 }
 
 @mixin table-row-interactive-state($state: "hover") {
-	&:has(
-		#{$interactive-child}:#{$state}:not(
-				:disabled,
-				[aria-disabled="true"],
-				[tabindex="-1"]
-			)
-	) {
-		@include helpers.cursor-pointer {
-			@content;
-		}
+	&:has(#{$interactive-child}:#{$state}:not(#{helpers.$disabled-state})) {
+		cursor: helpers.$cursor-pointer;
+		@content;
 	}
 }
 

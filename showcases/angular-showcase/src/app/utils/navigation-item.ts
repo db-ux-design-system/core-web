@@ -1,7 +1,5 @@
 import { TableComponent } from '../components/table.component';
 
-import { CustomButtonComponent } from '../components/custom-button.component';
-
 import { Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';

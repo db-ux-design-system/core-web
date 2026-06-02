@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -6,6 +6,17 @@
 		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<div class="db-table-footer">Test</div>
+		<div class="db-table">
+			<table>
+				<tfoot class="db-table-footer">
+					<tr class="db-table-row">
+						<th class="db-table-header-cell" scope="row">
+							Footer 1
+						</th>
+						<td class="db-table-data-cell" colspan="2">Footer 2</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 	</body>
 </html>

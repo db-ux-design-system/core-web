@@ -65,6 +65,7 @@ body,
 /* stylelint-enable selector-max-id */
 
 body {
+	color: inherit;
 	font-family: var(--db-font-family-sans);
 }
 
@@ -83,17 +84,6 @@ body {
 	text-rendering: optimizelegibility;
 }
 
-// Make sure every elements has the current color from container above
-body,
-button,
-input,
-textarea,
-summary,
-select,
-a {
-	color: inherit;
-}
-
 // Media
 img,
 embed,
@@ -110,15 +100,10 @@ iframe {
 }
 
 // Focus styles
-:is(
-	a,
-	button,
-	input,
-	textarea,
-	summary,
-	select,
-	[tabindex]:not([tabindex="-1"])
-) {
+:is(#{helpers.$interactive-elements}) {
+	// Make sure every elements has the current color from container above
+	color: inherit;
+
 	&:focus-visible {
 		@extend %focus-placeholder;
 	}

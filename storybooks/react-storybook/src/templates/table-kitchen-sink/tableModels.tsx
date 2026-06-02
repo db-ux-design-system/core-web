@@ -94,12 +94,12 @@ export const columns: ColumnDef<Person>[] = [
 		cell: ({ row }) => (
 			<DBCheckbox
 				data-table-row-trigger="true"
-				label="Select All"
+				label="Select Row"
 				showLabel={false}
 				checked={row.getIsSelected()}
 				indeterminate={row.getIsSomeSelected()}
 				onChange={row.getToggleSelectedHandler()}>
-				<DBTooltip placement="top">Select All</DBTooltip>
+				<DBTooltip placement="top">Select Row</DBTooltip>
 			</DBCheckbox>
 		),
 		footer: ({ table }) => {
