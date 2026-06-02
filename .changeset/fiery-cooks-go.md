@@ -2,4 +2,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(docs): import path for `defineCustomElements` example in `README`
+refactor: enhanced imports matrix and adjusted import path for `defineCustomElements` example in `README`
