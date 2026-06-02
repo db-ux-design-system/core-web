@@ -72,4 +72,3 @@ For framework-specific component imports:
 | Angular        | `@db-ux/ngx-core-components`   | `import { DBButton } from '@db-ux/ngx-core-components'` (standalone components, add to `imports` array)                             |
 | Vue            | `@db-ux/v-core-components`     | `import { DBButton } from '@db-ux/v-core-components'`                                                                               |
 | Web Components | `@db-ux/wc-core-components`    | `import { defineCustomElements } from '@db-ux/wc-core-components'; defineCustomElements();` (call once, then use all `<db-*>` tags) |
-| HTML/CSS only  | `@db-ux/core-components`       | Use CSS classes: `class="db-button"` with `data-variant` attributes                                                                 |
