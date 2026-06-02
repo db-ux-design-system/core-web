@@ -5,6 +5,10 @@ export type FigmaDrawerProps = {
 	size?: string;
 	rounded?: boolean;
 	spacing?: string;
+	backdrop?: boolean;
+	open?: boolean;
+	drawerHeader?: string;
+	_children?: any;
 };
 
 const drawerProps: Record<string, FigmaProp> = {
@@ -28,6 +32,22 @@ const drawerProps: Record<string, FigmaProp> = {
 			Large: 'large',
 			None: 'none'
 		}
+	},
+	// TODO: Backdrop will be refactored by Design
+	backdrop: { type: 'boolean', key: 'Backdrop' },
+	open: { type: 'boolean', key: 'Open' },
+	drawerHeader: {
+		type: 'string',
+		key: 'Text',
+		layer: '↳ Drawer HEADER'
+	},
+
+	// Renders all children inside the card's Children slot.
+	// Connected instances render via their own Code Connect template.
+	// Non-connected wrapper frames render as plain <div> elements.
+	_children: {
+		type: 'children',
+		key: 'Children'
 	}
 };
 

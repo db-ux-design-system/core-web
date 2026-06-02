@@ -7,5 +7,5 @@ useMetadata({
 });
 
 export default function DrawerFigmaLite(props: FigmaDrawerProps) {
-	return <DBDrawer>Content</DBDrawer>;
+	return <DBDrawer>{props._children}</DBDrawer>;
 }
