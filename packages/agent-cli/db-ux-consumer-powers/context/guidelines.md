@@ -66,10 +66,10 @@ DB UX components require both the theme and component styles. Import them using 
 
 For framework-specific component imports:
 
-| Framework      | Package                        | Import Pattern                                                      |
-| -------------- | ------------------------------ | ------------------------------------------------------------------- |
-| React          | `@db-ux/react-core-components` | `import { DBButton, DBInput } from '@db-ux/react-core-components'`  |
-| Angular        | `@db-ux/ngx-core-components`   | `import { DBButtonModule } from '@db-ux/ngx-core-components'`       |
-| Vue            | `@db-ux/v-core-components`     | `import { DBButton } from '@db-ux/v-core-components'`               |
-| Web Components | `@db-ux/wc-core-components`    | `import '@db-ux/wc-core-components'`                                |
-| HTML/CSS only  | `@db-ux/core-components`       | Use CSS classes: `class="db-button"` with `data-variant` attributes |
+| Framework      | Package                        | Import Pattern                                                                                                                      |
+| -------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| React          | `@db-ux/react-core-components` | `import { DBButton, DBInput } from '@db-ux/react-core-components'`                                                                  |
+| Angular        | `@db-ux/ngx-core-components`   | `import { DBButton } from '@db-ux/ngx-core-components'` (standalone components, add to `imports` array)                             |
+| Vue            | `@db-ux/v-core-components`     | `import { DBButton } from '@db-ux/v-core-components'`                                                                               |
+| Web Components | `@db-ux/wc-core-components`    | `import { defineCustomElements } from '@db-ux/wc-core-components'; defineCustomElements();` (call once, then use all `<db-*>` tags) |
+| HTML/CSS only  | `@db-ux/core-components`       | Use CSS classes: `class="db-button"` with `data-variant` attributes                                                                 |
