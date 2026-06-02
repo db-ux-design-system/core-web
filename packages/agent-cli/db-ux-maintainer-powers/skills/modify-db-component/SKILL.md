@@ -132,10 +132,10 @@ If the spec has syntax errors, fix them first and re-run until you get clean "mi
 
 #### 2c: Update `{component_slug}.scss`
 
-1. Call `list_design_token_categories` then `get_design_tokens` for relevant categories.
-2. Add styles using ONLY `--db-*` tokens.
-3. Use `&[data-variant="<new-variant>"]` for new variants.
-4. Line 1 MUST remain `@use`. NO hardcoded values. NO `!important`. Max 3 levels.
+1. Read the existing `.scss` to understand the current styling patterns.
+2. Call `list_design_token_categories` then `get_design_tokens` for relevant categories.
+3. Add styles using SCSS variables (`variables.$db-*`) from `@db-ux/core-foundations/build/styles/variables`. Only use CSS custom properties (`var(--db-*)`) as a fallback when no SCSS variable is available.
+4. Line 1 MUST remain `@use`. NO hardcoded values. NO `!important`. Max 3 levels of nesting.
 
 #### 2d: Update Examples and Showcase (if applicable)
 
