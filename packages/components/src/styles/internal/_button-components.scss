@@ -20,12 +20,14 @@
 %button-outlined-ghost-colors {
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+		}
 
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		}
 	}
 }
 
@@ -34,14 +36,16 @@
 	color: colors.$db-brand-on-origin-default;
 	border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 
-	@include helpers.hover {
-		background-color: colors.$db-brand-origin-hovered;
-		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: colors.$db-brand-origin-hovered;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		}
 
-	@include helpers.active {
-		background-color: colors.$db-brand-origin-pressed;
-		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		@include helpers.active {
+			background-color: colors.$db-brand-origin-pressed;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		}
 	}
 }
 
@@ -141,12 +145,14 @@
 		#{$selector} {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
-			}
+			@include helpers.not-disabled {
+				@include helpers.hover {
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+				}
 
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+				@include helpers.active {
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+				}
 			}
 		}
 	}

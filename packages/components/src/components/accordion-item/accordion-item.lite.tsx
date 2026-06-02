@@ -10,7 +10,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
@@ -46,7 +46,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			if (props.open === undefined) {
+				state._open = newStateOpen;
+			}
 		}
 	});
 
@@ -70,6 +72,13 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		}
 	}, [props.name]);
 
+	onUpdate(() => {
+		const nextOpen = getBoolean(props.open, 'open');
+		if (nextOpen !== undefined) {
+			state._open = nextOpen;
+		}
+	}, [props.open]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -90,9 +99,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 					</Show>
 				</summary>
 				<div>
-					<Show when={props.text} else={props.children}>
-						{props.text}
-					</Show>
+					<Show when={props.text}>{props.text}</Show>
+					{props.children}
 				</div>
 			</details>
 		</li>

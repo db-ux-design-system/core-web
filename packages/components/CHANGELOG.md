@@ -1,5 +1,65 @@
 # @db-ux/core-components
 
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+### Minor Changes
+
+- feat(`DBAccordionItem`): add `open` prop to control the expanded state of an accordion item programmatically. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
+
+- refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
+
+## 4.9.1
+
+### Patch Changes
+
+- fix(switch): use `2lh` unit and add `min-inline-size` to prevent track from shrinking - [see commit 78c9fde](https://github.com/db-ux-design-system/core-web/commit/78c9fde67d9677f61eaa41761a088b9c1a9773a1)
+
+- fix(notification): remove empty grid gap when icon is hidden - [see commit 96f94c6](https://github.com/db-ux-design-system/core-web/commit/96f94c651391f014e2d073402c2700b524ccbf5e)
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+### Minor Changes
+
+- Notification content now supports additional inline elements like `span` without styling collisions. And added the possibility to set the duration as a machine-readable value via the new `timestampDatetime` property - [see commit dae5149](https://github.com/db-ux-design-system/core-web/commit/dae514902f92a74cb95a3a3adab205d560174692)
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+### Patch Changes
+
+- fix(navigation): changed transform inside the drawer led to overlapping sub-navigation on smaller viewports - [see commit dd88a33](https://github.com/db-ux-design-system/core-web/commit/dd88a339fe6e7510e964c6979eeee84f4e40df59)
+
+## 4.7.1
+
+### Patch Changes
+
+- fix(dialog): re-added missing styles to native `dialog` HTML element. We'll most likely remove those later again, and provide a DBDialog component. - [see commit ce1b5a0](https://github.com/db-ux-design-system/core-web/commit/ce1b5a061ad0ef14a0ff415aa3a00fa06f217479)
+
+## 4.7.0
+
+### Minor Changes
+
+- DBSelect: correctly hiding empty `option` element for _placeholder_ or _floating label_ components with property `showEmptyOption=false` - [see commit ec01b5c](https://github.com/db-ux-design-system/core-web/commit/ec01b5cb56e1fc05911d33cbff0fc8f385644628)
+
+- refactor(notification): not enforcing a paragraph for it's contents anymore. You could set any block level elements now as children. - [see commit 3170b3a](https://github.com/db-ux-design-system/core-web/commit/3170b3a6ef57bb73fa32b3176b7b8cf651a38641) and [commit 2ebe315](https://github.com/db-ux-design-system/core-web/commit/2ebe3156cd45e3702cf4acdc4224cd34da31d907)
+
+### Patch Changes
+
+- docs(HTML): added Invoker Commands to header and drawer "how to use" documentation - [see commit b9d2c39](https://github.com/db-ux-design-system/core-web/commit/b9d2c396a2af7c65e0e2fab5517e257d3797ffda)
+
 ## 4.6.1
 
 ### Patch Changes

@@ -65,7 +65,10 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/.stencil
 /output/stencil/loader
 /output/stencil/www
+/output/stencil/bundle/
 **/.angular
+**/.next
+**/.nuxt
 /scripts/public/
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
@@ -76,6 +79,9 @@ showcases/patternhub/public/iframe-resizer/*
 /core-web.iml
 /build-storybooks/
 **/blob-report
+/figma-code-connect/**/src/
 
 packages/mcp-server/src/manifest.json
 **/db-ux-detection-report.json
+showcases/next-showcase/.browserslistrc
+/.kiro/specs/

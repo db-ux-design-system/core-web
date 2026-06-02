@@ -60,7 +60,7 @@ The `bundle.css` applies those default:
 
 ### CSS
 
-Default assets path for `relative.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].css`.
+Default assets path for `relative.css` is `../../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].css`.
 
 #### Import
 

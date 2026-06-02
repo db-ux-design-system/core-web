@@ -32,9 +32,8 @@ export default function DBLink(props: DBLinkProps) {
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
 			data-wrap={getBooleanAsString(props.wrap)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</a>
 	);
 }
