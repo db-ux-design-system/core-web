@@ -1,16 +1,14 @@
 {
-  "enabled": true,
-  "name": "Prettier Format on Save",
-  "description": "Runs prettier --write on source code files when they are saved to automatically format code.",
-  "version": "1",
-  "when": {
-    "type": "fileEdited",
-    "patterns": [
-      "*"
-    ]
-  },
-  "then": {
-    "type": "runCommand",
-    "command": "prettier --write $KIRO_FILE_PATH"
-  }
+	"enabled": true,
+	"name": "Prettier Format on Save",
+	"description": "Runs prettier --write on source code files when they are saved to automatically format code.",
+	"version": "1",
+	"when": {
+		"type": "fileEdited",
+		"patterns": ["*"]
+	},
+	"then": {
+		"type": "runCommand",
+		"command": "pnpm exec prettier --write --ignore-unknown \"$KIRO_FILE_PATH\""
+	}
 }
