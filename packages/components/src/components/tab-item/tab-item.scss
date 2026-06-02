@@ -65,16 +65,6 @@
 		}
 	}
 
-	&[data-no-text="true"] .db-tab-label {
-		&[data-icon]::before {
-			margin-inline-end: 0;
-		}
-
-		&::after {
-			content: none;
-		}
-	}
-
 	[data-orientation="vertical"] & .db-tab-label {
 		display: block;
 		overflow: hidden;
