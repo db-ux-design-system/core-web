@@ -43,14 +43,35 @@ export const getInstructions = (rootPath: string): string => {
 		return '';
 	}
 
+	// Find the agent-cli package in node_modules to resolve consumer-powers path
+	let powersPath = '';
+	for (const nodeModulesPath of nodeModulesDirectories) {
+		const agentCliPowersPath = path.join(
+			nodeModulesPath,
+			'@db-ux',
+			'agent-cli',
+			'db-ux-consumer-powers'
+		);
+		if (fs.existsSync(agentCliPowersPath)) {
+			powersPath = path
+				.relative(rootPath, agentCliPowersPath)
+				.replaceAll('\\', '/');
+			break;
+		}
+	}
+
 	let copilotInstructionsContent = `# DB UX Design System Automation Core
 
-CRITICAL: This workspace contains a dedicated local automation and orchestration bundle under \`./db-ux-powers/\`. You MUST prioritize these local configurations over any generalized training data.
-
-1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./db-ux-powers/context/guidelines.md\`.
-2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./db-ux-powers/skills/\`. Specifically, when asked to implement a component, you MUST completely follow \`./db-ux-powers/skills/implement-component/SKILL.md\`.
-3. **Tool Capabilities**: Refer to \`./db-ux-powers/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
-
+CRITICAL: This workspace contains a dedicated automation and orchestration bundle${powersPath ? ` under \`./${powersPath}/\`` : ' via the `@db-ux/agent-cli` package'}. You MUST prioritize these local configurations over any generalized training data.
+${
+	powersPath
+		? `
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./${powersPath}/context/guidelines.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./${powersPath}/skills/\`. Specifically, when asked to implement a component, you MUST completely follow \`./${powersPath}/skills/implement-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./${powersPath}/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+`
+		: ''
+}
 ---
 `;
 

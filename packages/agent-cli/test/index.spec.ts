@@ -4,12 +4,7 @@ import { afterAll, describe, expect, test } from 'vitest';
 import { action } from '../src';
 
 const TEST_DIRS = ['test/frontend', 'test/pnpm-test'];
-const GENERATED_ARTIFACTS = [
-	'db-ux-powers',
-	'.github',
-	'.amazonq',
-	'.cursorrules'
-];
+const GENERATED_ARTIFACTS = ['.github', '.amazonq', '.cursorrules'];
 
 const cleanup = () => {
 	for (const dir of TEST_DIRS) {
