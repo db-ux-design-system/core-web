@@ -7,9 +7,5 @@ useMetadata({
 });
 
 export default function CustomSelectFigmaLite(props: FigmaCustomSelectProps) {
-	return (
-		<DBCustomSelect
-			name="custom-select"
-		/>
-	);
+	return <DBCustomSelect name="custom-select" />;
 }
