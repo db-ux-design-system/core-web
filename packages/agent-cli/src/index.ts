@@ -12,11 +12,9 @@ const copyPowers = (rootPath: string) => {
 	const destination = path.resolve(rootPath, 'db-ux-powers');
 
 	if (!fs.existsSync(source)) {
-		console.error(
-			'db-ux-consumer-powers source folder not found at',
-			source
+		throw new Error(
+			`db-ux-consumer-powers source folder not found at ${source}. Ensure the package is built correctly.`
 		);
-		return;
 	}
 
 	fs.cpSync(source, destination, { recursive: true, force: true });
