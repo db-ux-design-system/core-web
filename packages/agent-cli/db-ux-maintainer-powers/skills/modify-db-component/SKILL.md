@@ -140,12 +140,14 @@ If the spec has syntax errors, fix them first and re-run until you get clean "mi
 
 #### 2d: Update Examples and Showcase (if applicable)
 
-If the change introduces a new visual variant or feature:
+If the change introduces a new visual variant or feature, update files **inside `packages/components/src/components/{component_slug}/`** (NOT in `showcases/`):
 
 1. Create or update `examples/<feature>.example.lite.tsx`.
 2. Update `examples/_{component_slug}.arg.types.ts` with new control options.
 3. Update `showcase/{component_slug}.showcase.lite.tsx` to include the new example.
 4. Update `agent/{component_slug}.agent.lite.tsx` with new usage example.
+
+Showcase files in `showcases/` are generated from these and must not be edited manually.
 
 ### Step 3: QUALITY CHECK
 
