@@ -1,5 +1,13 @@
 # @db-ux/wc-core-components
 
+## 4.10.1
+
+### Patch Changes
+
+- refactor: enhanced imports matrix and adjusted import path for `defineCustomElements` example in `README` - [see commit da9e96a](https://github.com/db-ux-design-system/core-web/commit/da9e96a2e8044c6586da206f39b8a9746fd05ab8)
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
 ## 4.10.0
 
 ### Minor Changes
