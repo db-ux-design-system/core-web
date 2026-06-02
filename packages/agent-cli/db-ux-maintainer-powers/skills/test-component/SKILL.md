@@ -76,16 +76,16 @@ If `component_name` is not explicitly provided, derive it deterministically from
 
 ### Step 1: Run Tests
 
-Execute the component's tests in isolation using the **file path** (most reliable):
+Execute the component's E2E tests from a showcase directory (e.g. `react-showcase`):
 
 ```bash
-cd packages/components && npx playwright test src/components/{component_slug}/{component_slug}.spec.tsx
+cd showcases/react-showcase && cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts -g "DB{component_name}"
 ```
 
-Alternatively, use grep with the PascalCase component name:
+Alternatively, run all E2E tests for the showcase:
 
 ```bash
-pnpm run test -- --grep "DB{component_name}"
+cd showcases/react-showcase && pnpm run test:e2e
 ```
 
 **Example:** For `component_slug = navigation-item`, convert to `component_name = NavigationItem`, then grep for `DBNavigationItem`.
@@ -112,9 +112,7 @@ For EACH failing test, classify the failure:
 
 Only update when the rendered delta is intentional and explicitly explained. Before running the update command, state WHY the visual change is expected (e.g. "variant X was added in the previous modification step"). If you cannot explain the delta, treat it as unintentional and go to the "false" path below.
 
-```bash
-cd packages/components && npx playwright test src/components/{component_slug}/{component_slug}.spec.tsx --update-snapshots
-```
+**Note:** Do NOT run `regenerate:screenshots` locally. Snapshots are generated automatically in CI/CD.
 
 **If `update_snapshots` is false (default):**
 
