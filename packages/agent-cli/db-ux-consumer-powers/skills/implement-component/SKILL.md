@@ -17,7 +17,7 @@ inputs:
     - name: framework
       type: string
       required: true
-      description: "Target framework: react, angular, vue, web-components, or html"
+      description: "Target framework: react, angular, vue, or web-components"
     - name: target_file
       type: string
       required: false

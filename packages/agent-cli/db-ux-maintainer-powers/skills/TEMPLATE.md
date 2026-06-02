@@ -60,7 +60,7 @@ on_error:
 
 1. Create `model.ts` with typed props and state.
 2. Create `<component_slug>.lite.tsx` with minimal code to pass ALL tests.
-3. Create `<component_slug>.scss` using ONLY `--db-*` tokens.
+3. Create `<component_slug>.scss` using SCSS variables (`variables.$db-*`). Use CSS custom properties (`var(--db-*)`) only as fallback.
 4. Run tests. ALL MUST PASS.
 
 ### Phase 3: REFACTOR – Clean & Verify
@@ -93,7 +93,7 @@ on_error:
 
 - [ ] `model.ts` exists with `DB<ComponentName>Props` and `DB<ComponentName>State`
 - [ ] `<component_slug>.lite.tsx` exists and uses Mitosis patterns
-- [ ] `<component_slug>.scss` exists and uses ONLY tokens
+- [ ] `<component_slug>.scss` exists and uses SCSS variables (`variables.$db-*`) for tokens
 - [ ] `<component_slug>.spec.tsx` exists with variant + a11y tests
 - [ ] `index.ts` re-exports component (NO type re-exports from `./model`)
 - [ ] All tests pass
@@ -105,20 +105,20 @@ on_error:
 
 HALT IMMEDIATELY if you catch yourself thinking:
 
-| Thought                                    | Response                                                       |
-| ------------------------------------------ | -------------------------------------------------------------- |
-| "I'll write tests later"                   | STOP. Write tests NOW. Phase 1 is non-negotiable.              |
-| "This is simple enough to skip model.ts"   | STOP. Every component gets typed props. No exceptions.         |
-| "I'll just use a quick inline style"       | STOP. Use `--db-*` tokens. Check MCP with `get_design_tokens`. |
-| "I'll hardcode this color for now"         | STOP. Call `get_design_tokens` from MCP. Use the token.        |
-| "The output/ files need a quick fix"       | STOP. NEVER edit output/. Fix the `.lite.tsx` source.          |
-| "I don't need to check the icon name"      | STOP. Call `list_icons` from MCP. Use the exact name.          |
-| "I'll skip accessibility testing"          | STOP. Add axe-core assertions. Accessibility is mandatory.     |
-| "This variant isn't worth testing"         | STOP. Test ALL variants in `VariantList`.                      |
-| "I don't need a changeset for a small fix" | STOP. All logic changes in `src/` require a changeset.         |
-| "I'll read the ref in onMount"             | STOP. Use `onUpdate` with the initialized-pattern.             |
-| "I'll call this function in JSX bindings"  | STOP. Store the value in `state`, update via `onUpdate`.       |
-| "I'll add aria-disabled to this button"    | STOP. Native `disabled` is sufficient. Don't duplicate state.  |
-| "I'll use border: none for a clean look"   | STOP. Use `@extend %transparent-border` for HCM support.       |
-| "I'll add cursor: pointer manually"        | STOP. Use `@include helpers.hover { ... }` mixin.              |
-| "I'll exclude this file from storybook"    | STOP. Fix the example to be Mitosis-compatible instead.        |
+| Thought                                    | Response                                                                          |
+| ------------------------------------------ | --------------------------------------------------------------------------------- |
+| "I'll write tests later"                   | STOP. Write tests NOW. Phase 1 is non-negotiable.                                 |
+| "This is simple enough to skip model.ts"   | STOP. Every component gets typed props. No exceptions.                            |
+| "I'll just use a quick inline style"       | STOP. Use SCSS variables (`variables.$db-*`). Check MCP with `get_design_tokens`. |
+| "I'll hardcode this color for now"         | STOP. Call `get_design_tokens` from MCP. Use the SCSS variable.                   |
+| "The output/ files need a quick fix"       | STOP. NEVER edit output/. Fix the `.lite.tsx` source.                             |
+| "I don't need to check the icon name"      | STOP. Call `list_icons` from MCP. Use the exact name.                             |
+| "I'll skip accessibility testing"          | STOP. Add axe-core assertions. Accessibility is mandatory.                        |
+| "This variant isn't worth testing"         | STOP. Test ALL variants in `VariantList`.                                         |
+| "I don't need a changeset for a small fix" | STOP. All logic changes in `src/` require a changeset.                            |
+| "I'll read the ref in onMount"             | STOP. Use `onUpdate` with the initialized-pattern.                                |
+| "I'll call this function in JSX bindings"  | STOP. Store the value in `state`, update via `onUpdate`.                          |
+| "I'll add aria-disabled to this button"    | STOP. Native `disabled` is sufficient. Don't duplicate state.                     |
+| "I'll use border: none for a clean look"   | STOP. Use `@extend %transparent-border` for HCM support.                          |
+| "I'll add cursor: pointer manually"        | STOP. Use `@include helpers.hover { ... }` mixin.                                 |
+| "I'll exclude this file from storybook"    | STOP. Fix the example to be Mitosis-compatible instead.                           |

@@ -35,10 +35,10 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/list_icons
     - db-ux/docs_search
-    - figma-desktop/figma_get_file
-    - figma-desktop/figma_get_node
-    - figma-desktop/figma_get_styles
-    - figma-desktop/figma_get_variables
+    - figma/get_file
+    - figma/get_node
+    - figma/get_styles
+    - figma/get_variables
 
 outputs:
     - "packages/components/src/components/{component_slug}/"
@@ -78,8 +78,8 @@ Throughout this skill:
 
 1. Extract the file key and node ID from the provided Figma URL.
     - URL format: `https://www.figma.com/file/<fileKey>/...?node-id=<nodeId>`
-    - Pass both `fileKey` and `nodeId` as parameters to `figma_get_node`.
-2. Call `figma_get_node` with `fileKey` and `nodeId` to retrieve the component frame.
+    - Pass both `fileKey` and `nodeId` as parameters to `get_node`.
+2. Call `get_node` with `fileKey` and `nodeId` to retrieve the component frame.
 3. Extract from the Figma response:
     - **Spacing**: padding, gap, margin values from Auto Layout properties.
     - **Sizing**: width, height constraints.
@@ -87,15 +87,15 @@ Throughout this skill:
     - **Typography**: font family, size, weight, line-height.
     - **Border radius**: corner radius values.
     - **Variants**: all variant properties defined in the Figma component set.
-4. Call `figma_get_variables` to resolve any Figma variable references to their actual values.
-5. Call `figma_get_styles` if the component references shared Figma styles.
+4. Call `get_variables` to resolve any Figma variable references to their actual values.
+5. Call `get_styles` if the component references shared Figma styles.
 6. Document ALL extracted values. These are the ground truth for implementation.
 
 #### Phase 0.2: DB UX Token Mapping (`@db-ux/mcp-server`)
 
 1. Call `list_components`. ABORT if component already exists.
 2. Call `list_design_token_categories` to discover available categories. Then call `get_design_tokens` with the categories identified in Phase 0.1 (spacing, sizing, colors, radius).
-3. Map EVERY Figma value to its corresponding `--db-*` token:
+3. Map EVERY Figma value to its corresponding SCSS variable (`variables.$db-*`) or CSS custom property (`var(--db-*)`) as fallback:
     - Figma padding 8px: find matching `--db-spacing-fixed-*` token.
     - Figma color #EC0016 (background): find matching `--db-*-bg-*` token.
     - Figma color #000000 (text): find matching `--db-*-on-bg-*` token.
@@ -360,16 +360,16 @@ Create `agent/{component_slug}.agent.lite.tsx` with usage examples.
 
 ## Red Flags
 
-| Thought                      | Response                                |
-| ---------------------------- | --------------------------------------- |
-| "Figma link is missing"      | STOP. ABORT. Demand URL.                |
-| "I'll write tests later"     | STOP. Step 1 is FIRST.                  |
-| "I don't need model.ts"      | STOP. Every component gets typed props. |
-| "A quick hardcoded color"    | STOP. Use `var(--db-*)`.                |
-| "I'll skip MCP query"        | STOP. Step 0 is mandatory.              |
-| "Icon is probably 'close'"   | STOP. Call `list_icons`.                |
-| "Edit React output directly" | STOP. `.lite.tsx` ONLY.                 |
-| "I'll use px"                | STOP. Use tokens.                       |
-| "Export from .lite"          | STOP. No `.lite` suffix.                |
-| "Skip changeset"             | STOP. Governance requires it.           |
-| "build-outputs is optional"  | STOP. It is mandatory.                  |
+| Thought                      | Response                                      |
+| ---------------------------- | --------------------------------------------- |
+| "Figma link is missing"      | STOP. ABORT. Demand URL.                      |
+| "I'll write tests later"     | STOP. Step 1 is FIRST.                        |
+| "I don't need model.ts"      | STOP. Every component gets typed props.       |
+| "A quick hardcoded color"    | STOP. Use SCSS variables (`variables.$db-*`). |
+| "I'll skip MCP query"        | STOP. Step 0 is mandatory.                    |
+| "Icon is probably 'close'"   | STOP. Call `list_icons`.                      |
+| "Edit React output directly" | STOP. `.lite.tsx` ONLY.                       |
+| "I'll use px"                | STOP. Use tokens.                             |
+| "Export from .lite"          | STOP. No `.lite` suffix.                      |
+| "Skip changeset"             | STOP. Governance requires it.                 |
+| "build-outputs is optional"  | STOP. It is mandatory.                        |
