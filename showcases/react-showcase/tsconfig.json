@@ -19,13 +19,13 @@
 		"noUnusedParameters": false,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"typeRoots": ["./node_modules/@types", "../../node_modules/@types"],
+		"types": ["vite/client", "node"],
 		"paths": {
 			"@components": ["../../output/react/src"],
 			"@components/src/*": ["../../output/react/src/*"],
 			"@components/components/*": ["../../output/react/src/components/*"]
 		}
 	},
-	"include": ["src", "../shared"],
+	"include": ["src"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
