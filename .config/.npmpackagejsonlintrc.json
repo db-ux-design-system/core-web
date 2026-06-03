@@ -28,9 +28,9 @@
 				"exports",
 				"files",
 				"scripts",
+				"peerDependencies",
 				"dependencies",
 				"devDependencies",
-				"peerDependencies",
 				"publishConfig"
 			]
 		]
