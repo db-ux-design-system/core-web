@@ -1,5 +1,16 @@
-@import "../../angular-showcase/src/styles.css";
+@layer db-theme, db-ux;
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "../../showcase-styles.css";
 
 .hydrated {
 	display: contents;
+}
+
+.variants-list > * > div:not([class^="db-"]) {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--db-spacing-fixed-md);
 }
