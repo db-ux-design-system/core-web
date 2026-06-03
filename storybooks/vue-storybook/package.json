@@ -17,7 +17,7 @@
     "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
-    "vue": "3.5.34"
+    "vue": "3.5.35"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.2.1",
@@ -32,6 +32,6 @@
     "storybook": "10.4.1",
     "typescript": "~5.9.3",
     "vite": "8.0.14",
-    "vue-tsc": "3.3.2"
+    "vue-tsc": "3.3.3"
   }
 }
