@@ -24,7 +24,7 @@ jobs:
         os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/pnpm-cache
