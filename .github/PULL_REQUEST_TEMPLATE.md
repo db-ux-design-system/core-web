@@ -6,7 +6,7 @@ resolves # (issue number)
 
 ### Code Quality
 
-- [ ] I have reviewed my own code (self-review)
+- [ ] I have reviewed my own code (self-review), including the screen- and snapshots
 - [ ] I have reviewed my changes locally with an AI assistant (e.g. GitHub Copilot, Kiro, etc.)
 - [ ] No hardcoded values, magic numbers, or debug code left in
 
