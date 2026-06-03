@@ -91,9 +91,12 @@ export const handleFixedDropdown = (
 	} = getFloatingProps(element, parent, placement);
 
 	const fullWidth = element.dataset['width'] === 'full';
+	const autoWidth = element.dataset['width'] === 'auto';
 
 	if (fullWidth) {
 		element.style.inlineSize = `${width}px`;
+	} else if (autoWidth) {
+		element.style.minInlineSize = `${width}px`;
 	}
 
 	if (

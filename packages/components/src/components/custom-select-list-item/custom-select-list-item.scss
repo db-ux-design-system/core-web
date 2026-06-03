@@ -56,6 +56,9 @@ db-custom-select-list-item:not(:last-of-type) {
 		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 
 		inline-size: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 
 		&:has(input:checked) {
 			font-weight: 700;

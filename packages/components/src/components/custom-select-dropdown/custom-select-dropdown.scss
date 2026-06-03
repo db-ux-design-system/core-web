@@ -24,6 +24,10 @@
 		);
 	}
 
+	&[data-width="auto"] {
+		inline-size: max-content;
+	}
+
 	&[data-width="full"] {
 		inline-size: 100%;
 	}
