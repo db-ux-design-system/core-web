@@ -99,7 +99,7 @@
     "@typescript-eslint/eslint-plugin": "8.60.0",
     "@typescript-eslint/parser": "8.60.0",
     "accessibility-checker-engine": "4.0.18",
-    "cspell": "10.0.0",
+    "cspell": "10.0.1",
     "eslint": "10.4.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-xo": "0.52.0",
