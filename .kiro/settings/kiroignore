@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# IDE settings
+.vscode/
+
+# Environment & secrets
+.env
