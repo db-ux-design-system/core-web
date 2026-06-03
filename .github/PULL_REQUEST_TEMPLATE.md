@@ -17,5 +17,5 @@ resolves # (issue number)
 
 ### General
 
-- [ ] The PR title follows the conventional commits format (e.g. `feat:`, `fix:`, `chore:`), as in [Git Commit Conventions](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md#git-commits-conventions)
+- [ ] The PR title follows the conventional commits format (e.g. `feat:`, `fix:`, `chore:`), as in [Git Commit Conventions](docs/conventions.md#git-commits-conventions)
 - [ ] If architecture, structure, or conventions changed inside a `packages/*` folder, the corresponding `AGENTS.md` has been updated
