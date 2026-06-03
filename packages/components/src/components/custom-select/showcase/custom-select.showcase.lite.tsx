@@ -4,6 +4,7 @@ import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import CustomSelectDensity from '../examples/density.example.lite';
 import CustomSelectDisabled from '../examples/disabled.example.lite';
+import CustomSelectDropdownWidthAuto from '../examples/dropdown-width-auto.example.lite';
 import CustomSelectDropdownWidth from '../examples/dropdown-width.example.lite';
 import CustomSelectExampleOtherConfiguration from '../examples/example-other-configuration.example.lite';
 import CustomSelectExampletags from '../examples/example-tags.example.lite';
@@ -90,6 +91,11 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Dropdown Width">
 				<CardWrapperShowcase>
 					<CustomSelectDropdownWidth />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Dropdown Width Auto Edge Cases">
+				<CardWrapperShowcase>
+					<CustomSelectDropdownWidthAuto />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Placement">
