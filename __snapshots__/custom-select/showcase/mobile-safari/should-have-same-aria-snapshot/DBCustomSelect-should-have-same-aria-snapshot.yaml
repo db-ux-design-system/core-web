@@ -675,6 +675,80 @@
             - text: "5"
       - button "Close"
   - status
+  - link "Dropdown Width Auto Edge Cases"
+  - text: "Long option text with dropdownWidth=\"auto\" — text wraps instead of being truncated or keeping single line Auto: Long Options"
+  - group:
+    - article:
+      - radiogroup "auto-long-options":
+        - list:
+          - listitem:
+            - radio "Dieser extrem lange Optionstext sollte eigentlich nicht umbrechen sondern sauber abgeschnitten werden"
+            - text: Dieser extrem lange Optionstext sollte eigentlich nicht umbrechen sondern sauber abgeschnitten werden
+          - listitem:
+            - radio "Ein weiterer viel zu langer Text der das Dropdown sprengt und haesslich umbricht"
+            - text: Ein weiterer viel zu langer Text der das Dropdown sprengt und haesslich umbricht
+          - listitem:
+            - radio "Kurz"
+            - text: Kurz
+          - listitem:
+            - radio "Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf"
+            - text: Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf
+          - listitem:
+            - radio "Muenchen Hbf Gleis 15 Abfahrt Richtung Stuttgart mit Umstieg in Augsburg"
+            - text: Muenchen Hbf Gleis 15 Abfahrt Richtung Stuttgart mit Umstieg in Augsburg
+      - button "Close"
+  - status
+  - text: "Wide trigger (400px) with short options and dropdownWidth=\"auto\" — dropdown should be at least as wide as the trigger Auto: Wide Trigger, Short Options"
+  - group:
+    - article:
+      - radiogroup "auto-wide-trigger-short-options":
+        - list:
+          - listitem:
+            - radio "A"
+            - text: A
+          - listitem:
+            - radio "B"
+            - text: B
+          - listitem:
+            - radio "C"
+            - text: C
+      - button "Close"
+  - status
+  - text: "Narrow trigger (150px) with long options and dropdownWidth=\"auto\" — dropdown should grow to fit content but not exceed viewport Auto: Narrow Trigger"
+  - group:
+    - article:
+      - radiogroup "auto-narrow-trigger-long-options":
+        - list:
+          - listitem:
+            - radio "Frankfurt(Main)Hbf nach Berlin Hbf"
+            - text: Frankfurt(Main)Hbf nach Berlin Hbf
+          - listitem:
+            - radio "Hamburg-Altona via Hannover Hbf"
+            - text: Hamburg-Altona via Hannover Hbf
+          - listitem:
+            - radio "Koeln Messe/Deutz (tief)"
+            - text: Koeln Messe/Deutz (tief)
+      - button "Close"
+  - status
+  - text: "Mixed option lengths with dropdownWidth=\"auto\" — dropdown width should accommodate the longest option Auto: Mixed Lengths"
+  - group:
+    - article:
+      - radiogroup "auto-mixed-lengths":
+        - list:
+          - listitem:
+            - radio "OK"
+            - text: OK
+          - listitem:
+            - radio "Mittellanger Optionstext hier"
+            - text: Mittellanger Optionstext hier
+          - listitem:
+            - radio "Dieser Optionstext ist deutlich laenger als alle anderen und sollte die Breite bestimmen"
+            - text: Dieser Optionstext ist deutlich laenger als alle anderen und sollte die Breite bestimmen
+          - listitem:
+            - radio "Kurz"
+            - text: Kurz
+      - button "Close"
+  - status
   - link "Placement"
   - text: "Form Field Width: Full (Default) Bottom"
   - group:
