@@ -67,29 +67,39 @@ $icon-padding: calc(
 		}
 	}
 
-	// This @supports should exclude Mozilla Firefox
+	// Universal date/time types: Custom icons for all browsers (Chromium, Firefox, Safari)
+	&:has(input[type="date"]),
+	&:has(input[type="datetime-local"]) {
+		--db-form-component-padding-inline-end: calc(
+			1lh + #{variables.$db-spacing-fixed-xs}
+		);
+	}
+
+	&:has(input[type="date"]),
+	&:has(input[type="datetime-local"]) {
+		@include icons.set-icon("calendar", "after");
+	}
+
+	&:has(input[type="time"]) {
+		@include icons.set-icon("clock", "after");
+	}
+
+	// Ensure custom icons (::after) don't block clicks on native triggers
+	&::after {
+		pointer-events: none;
+	}
+
+	// WebKit-only types: Firefox doesn't support month/week and renders them as text,
+	// so we must not show a calendar icon there.
 	// TODO: Reevaluate after Mozilla is supporting week and month input types
 	@supports selector(::-webkit-calendar-picker-indicator) {
 		&:has(input[type="week"]) {
 			--db-form-component-padding-inline-end: #{$icon-padding};
 		}
 
-		&:has(input[type="date"]),
-		&:has(input[type="datetime-local"]) {
-			--db-form-component-padding-inline-end: calc(
-				1lh + #{variables.$db-spacing-fixed-xs}
-			);
-		}
-
-		&:has(input[type="date"]),
 		&:has(input[type="week"]),
-		&:has(input[type="datetime-local"]),
 		&:has(input[type="month"]) {
 			@include icons.set-icon("calendar", "after");
-		}
-
-		&:has(input[type="time"]) {
-			@include icons.set-icon("clock", "after");
 		}
 	}
 
@@ -145,6 +155,7 @@ $icon-padding: calc(
 			background-image: none;
 			position: absolute;
 			inset-inline-end: var(--db-spacing-fixed-sm);
+			z-index: 1;
 
 			// Those are set by browser on element directly
 			display: block !important;
