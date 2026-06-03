@@ -423,8 +423,11 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		@include helpers.not-disabled {
+			// cursor: revert — text/textarea inputs should use the text cursor, not pointer
+			@include helpers.hover(revert) {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
 		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {

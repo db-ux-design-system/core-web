@@ -148,7 +148,7 @@ The bundle entry point is fully self-contained — `@stencil/core` is bundled in
 
 ```js
 // main.js
-import { defineCustomElements } from "@db-ux/wc-core-components/bundle";
+import { defineCustomElements } from "@db-ux/wc-core-components/bundle/index.js";
 defineCustomElements();
 ```
 
@@ -230,7 +230,7 @@ Contributions are very welcome, please refer to the [contribution guide](https:/
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
+community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/.github/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

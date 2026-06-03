@@ -1,5 +1,11 @@
 # @db-ux/v-core-components
 
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
 ## 4.10.0
 
 ### Minor Changes
@@ -214,8 +220,7 @@ _version bump_
 - fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
-
-                        - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+    - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 

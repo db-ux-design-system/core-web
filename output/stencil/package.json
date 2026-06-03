@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "4.10.0",
+  "version": "4.10.1",
   "type": "module",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
@@ -18,6 +18,10 @@
     "./bundle": {
       "types": "./bundle/index.d.ts",
       "import": "./bundle/index.js"
+    },
+    "./bundle/*.js": {
+      "types": "./bundle/*.d.ts",
+      "import": "./bundle/*.js"
     }
   },
   "files": [
