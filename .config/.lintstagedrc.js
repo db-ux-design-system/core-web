@@ -11,5 +11,5 @@ export default {
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
 	'**/package.json': [() => 'pnpm install', 'pnpm run lint:package-json'],
 	'*': 'cspell --config .config/cspell.config.ts --no-must-find-files --quiet',
-	'scripts/**/*': [() => 'pnpm run test']
+	'scripts/**/*': [() => 'pnpm --filter scripts test:scripts']
 };
