@@ -34,7 +34,7 @@ Random unrelated output
 
 describe('mergeIgnoreWords', () => {
 	test('trims and merges words into sorted unique output', () => {
-		const existing = '  Zebra\nAlpha\n\nBeta  \n';
+		const existing = '  Zebra\nAlpha # Username\n\nBeta  \n';
 		const merged = mergeIgnoreWords(existing, ['Beta', 'Gamma', '  Delta']);
 
 		expect(merged).toBe('Alpha\nBeta\nDelta\nGamma\nZebra\n');
