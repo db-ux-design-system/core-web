@@ -86,7 +86,12 @@ export const checkFixMap: CheckConfig[] = [
 	{
 		name: 'lint:codespell',
 		checkCommand: { command: 'pnpm', args: ['run', 'lint:codespell'] }, // Cspell already has --quiet in the script
-		fixCommands: []
+		fixCommands: [
+			{
+				command: 'pnpm',
+				args: ['run', 'lint:codespell:fix']
+			}
+		]
 	},
 	{
 		name: 'lint:jscpd',
