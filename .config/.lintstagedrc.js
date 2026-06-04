@@ -10,5 +10,6 @@ export default {
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
 	'**/package.json': [() => 'pnpm install', 'pnpm run lint:package-json'],
-	'*': 'cspell --config .config/cspell.config.ts --no-must-find-files --quiet'
+	'*': 'cspell --config .config/cspell.config.ts --no-must-find-files --quiet',
+	'scripts/**/*': [() => 'pnpm run test']
 };
