@@ -32,22 +32,38 @@ export function extractUnknownWords(output) {
 }
 
 export function mergeIgnoreWords(content, words) {
-	const existing = new Set(
-		content
-			.split(/\r?\n/)
-			.map((word) => normalizeIgnoreWord(word))
-			.filter(Boolean)
-	);
+	const entries = new Map();
+
+	for (const line of content.split(/\r?\n/)) {
+		const normalizedWord = normalizeIgnoreWord(line);
+
+		if (!normalizedWord) {
+			continue;
+		}
+
+		// Persist original line incl. comment
+		entries.set(normalizedWord, line);
+	}
 
 	for (const word of words) {
 		const normalizedWord = word.trim();
 
-		if (normalizedWord) {
-			existing.add(normalizedWord);
+		if (!normalizedWord) {
+			continue;
+		}
+
+		// Not overwriting existing entries incl. comment
+		if (!entries.has(normalizedWord)) {
+			entries.set(normalizedWord, normalizedWord);
 		}
 	}
 
-	return [...existing].toSorted().join('\n') + '\n';
+	return (
+		[...entries.entries()]
+			.toSorted(([wordA], [wordB]) => wordA.localeCompare(wordB))
+			.map(([, originalLine]) => originalLine)
+			.join('\n') + '\n'
+	);
 }
 
 export async function addWords(words, ignoreFile = IGNORE_FILE) {
