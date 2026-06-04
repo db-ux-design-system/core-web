@@ -11,7 +11,12 @@ const execFileAsync = promisify(execFile);
 async function addWords(words) {
 	const content = await readFile(IGNORE_FILE, 'utf8');
 
-	const existing = new Set(content.split(/\r?\n/).filter(Boolean));
+	const existing = new Set(
+		content
+			.split(/\r?\n/)
+			.map((line) => line.trim())
+			.filter(Boolean)
+	);
 
 	for (const word of words) {
 		existing.add(word);
@@ -22,13 +27,20 @@ async function addWords(words) {
 
 async function main() {
 	try {
-		await execFileAsync('pnpm', ['run', 'lint:codespell']);
+		await execFileAsync(
+			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
+			['run', 'lint:codespell']
+		);
 	} catch (error) {
 		const output = `${error.stdout ?? ''}\n${error.stderr ?? ''}`;
 
-		const words = [...output.matchAll(/Unknown word\s+\(([^)]+)\)/g)].map(
-			(match) => match[1]
-		);
+		const words = [
+			...new Set(
+				[...output.matchAll(/Unknown word\s+\(([^)]+)\)/g)]
+					.map((match) => match[1]?.trim())
+					.filter(Boolean)
+			)
+		];
 
 		if (words.length === 0) {
 			throw error;
@@ -36,7 +48,9 @@ async function main() {
 
 		await addWords(words);
 
-		console.log(`Added ${words.length} words.`);
+		console.log(
+			`Ensured ${words.length} word(s) are listed in ${IGNORE_FILE}.`
+		);
 	}
 }
 
