@@ -94,8 +94,8 @@ importers:
         specifier: 8.60.1
         version: 8.60.1(eslint@10.4.0(jiti@2.7.0))(typescript@5.9.3)
       accessibility-checker-engine:
-        specifier: 4.0.24
-        version: 4.0.24
+        specifier: 4.0.26
+        version: 4.0.26
       cspell:
         specifier: 10.0.1
         version: 10.0.1
@@ -751,8 +751,8 @@ importers:
         specifier: 2.7.4
         version: 2.7.4(chokidar@3.6.0)
       tar:
-        specifier: 7.5.15
-        version: 7.5.15
+        specifier: 7.5.16
+        version: 7.5.16
       typedoc:
         specifier: 0.28.19
         version: 0.28.19(typescript@5.9.3)
@@ -8747,8 +8747,8 @@ packages:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
     engines: {node: '>= 0.6'}
 
-  accessibility-checker-engine@4.0.24:
-    resolution: {integrity: sha512-udtUZuNZoIvyk0Pfvgb1nWU+Cw1LeCyYclRj7ZNRh9qmNwI8/AtinWzw/yvndJ34DmrWMvYJqdSfoWC2RlH/zg==}
+  accessibility-checker-engine@4.0.26:
+    resolution: {integrity: sha512-OTBl2r+5p5dMqgrMWRgelidENqDwB8wAix4rTAvbw7w9nRc3uQ5m3cey7O+SHj+n31D6vgidw9U+xzz6ekPn9A==}
 
   acorn-import-attributes@1.9.5:
     resolution: {integrity: sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==}
@@ -16389,8 +16389,8 @@ packages:
   tar-stream@3.2.0:
     resolution: {integrity: sha512-ojzvCvVaNp6aOTFmG7jaRD0meowIAuPc3cMMhSgKiVWws1GyHbGd/xvnyuRKcKlMpt3qvxx6r0hreCNITP9hIg==}
 
-  tar@7.5.15:
-    resolution: {integrity: sha512-dzGK0boVlC4W5QFuQN1EFSl3bIDYsk7Tj40U6eIBnK2k/8ml7TZ5agbI5j5+qnoVcAA+rNtBml8SEiLxZpNqRQ==}
+  tar@7.5.16:
+    resolution: {integrity: sha512-56adEpPMouktRlBLXiaYFFzZ/3+JXa8P9n7WbR+ibIjtviN55mEaOkiysCnPnWm+7kkui1Dn8J9l+g6zV8731w==}
     engines: {node: '>=18'}
 
   teex@1.0.1:
@@ -23349,7 +23349,7 @@ snapshots:
       node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 8.1.0
       semver: 7.8.1
-      tar: 7.5.15
+      tar: 7.5.16
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -26749,7 +26749,7 @@ snapshots:
       mime-types: 3.0.2
       negotiator: 1.0.0
 
-  accessibility-checker-engine@4.0.24: {}
+  accessibility-checker-engine@4.0.26: {}
 
   acorn-import-attributes@1.9.5(acorn@8.16.0):
     dependencies:
@@ -27470,7 +27470,7 @@ snapshots:
       minipass-pipeline: 1.2.4
       p-map: 7.0.4
       ssri: 12.0.0
-      tar: 7.5.15
+      tar: 7.5.16
       unique-filename: 4.0.0
 
   cacache@20.0.4:
@@ -33185,7 +33185,7 @@ snapshots:
       nopt: 8.1.0
       proc-log: 5.0.0
       semver: 7.8.1
-      tar: 7.5.15
+      tar: 7.5.16
       tinyglobby: 0.2.17
       which: 5.0.0
     transitivePeerDependencies:
@@ -33199,7 +33199,7 @@ snapshots:
       nopt: 9.0.0
       proc-log: 6.1.0
       semver: 7.8.1
-      tar: 7.5.15
+      tar: 7.5.16
       tinyglobby: 0.2.17
       undici: 6.26.0
       which: 6.0.1
@@ -33967,7 +33967,7 @@ snapshots:
       promise-retry: 2.0.1
       sigstore: 4.1.1
       ssri: 13.0.1
-      tar: 7.5.15
+      tar: 7.5.16
     transitivePeerDependencies:
       - supports-color
 
@@ -36524,7 +36524,7 @@ snapshots:
       - bare-buffer
       - react-native-b4a
 
-  tar@7.5.15:
+  tar@7.5.16:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
