@@ -66,5 +66,6 @@
 		"**/packages/eslint-plugin/src/rules/**"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
-	"absolute": true
+	"absolute": true,
+	"gitignore": true
 }
