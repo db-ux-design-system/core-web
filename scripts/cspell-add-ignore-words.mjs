@@ -5,7 +5,9 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
-const IGNORE_FILE = fileURLToPath(new URL('../.config/cspellignorewords.txt', import.meta.url));
+const IGNORE_FILE = fileURLToPath(
+	new URL('../.config/cspellignorewords.txt', import.meta.url)
+);
 // Security: Using execFile instead of exec to eliminate shell injection risks
 // execFile directly executes the binary without involving a shell
 const execFileAsync = promisify(execFile);
@@ -18,6 +20,10 @@ const normalizeIgnoreWord = (line) => {
 	}
 
 	return line.trim();
+};
+
+const hasComment = (line) => {
+	return line.includes('#');
 };
 
 export function extractUnknownWords(output) {
@@ -40,27 +46,25 @@ export function mergeIgnoreWords(content, words) {
 			continue;
 		}
 
-		// Persist original line incl. comment
-		entries.set(normalizedWord, line);
+		const storedLine = hasComment(line) ? line.trimEnd() : normalizedWord;
+
+		entries.set(normalizedWord, storedLine);
 	}
 
 	for (const word of words) {
 		const normalizedWord = word.trim();
 
-		if (!normalizedWord) {
+		if (!normalizedWord || entries.has(normalizedWord)) {
 			continue;
 		}
 
-		// Not overwriting existing entries incl. comment
-		if (!entries.has(normalizedWord)) {
-			entries.set(normalizedWord, normalizedWord);
-		}
+		entries.set(normalizedWord, normalizedWord);
 	}
 
 	return (
 		[...entries.entries()]
-			.toSorted(([wordA], [wordB]) => wordA.localeCompare(wordB))
-			.map(([, originalLine]) => originalLine)
+			.toSorted(([a], [b]) => a.localeCompare(b))
+			.map(([, line]) => line)
 			.join('\n') + '\n'
 	);
 }

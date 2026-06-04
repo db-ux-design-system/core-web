@@ -37,7 +37,7 @@ describe('mergeIgnoreWords', () => {
 		const existing = '  Zebra\nAlpha # Username\n\nBeta  \n';
 		const merged = mergeIgnoreWords(existing, ['Beta', 'Gamma', '  Delta']);
 
-		expect(merged).toBe('Alpha\nBeta\nDelta\nGamma\nZebra\n');
+		expect(merged).toBe('Alpha # Username\nBeta\nDelta\nGamma\nZebra\n');
 	});
 });
 
