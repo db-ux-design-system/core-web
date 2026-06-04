@@ -1,5 +1,8 @@
 import { execFile } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
 const IGNORE_FILE = '.config/cspellignorewords.txt';
@@ -8,9 +11,17 @@ const IGNORE_FILE = '.config/cspellignorewords.txt';
 // execFile directly executes the binary without involving a shell
 const execFileAsync = promisify(execFile);
 
-async function addWords(words) {
-	const content = await readFile(IGNORE_FILE, 'utf8');
+export function extractUnknownWords(output) {
+	return [
+		...new Set(
+			[...output.matchAll(/Unknown word\s+\(([^)]+)\)/g)]
+				.map((match) => match[1]?.trim())
+				.filter(Boolean)
+		)
+	];
+}
 
+export function mergeIgnoreWords(content, words) {
 	const existing = new Set(
 		content
 			.split(/\r?\n/)
@@ -19,13 +30,21 @@ async function addWords(words) {
 	);
 
 	for (const word of words) {
-		existing.add(word);
+		const normalizedWord = word.trim();
+		if (normalizedWord) {
+			existing.add(normalizedWord);
+		}
 	}
 
-	await writeFile(IGNORE_FILE, [...existing].toSorted().join('\n') + '\n');
+	return [...existing].toSorted().join('\n') + '\n';
 }
 
-async function main() {
+export async function addWords(words, ignoreFile = IGNORE_FILE) {
+	const content = await readFile(ignoreFile, 'utf8');
+	await writeFile(ignoreFile, mergeIgnoreWords(content, words));
+}
+
+export async function main() {
 	try {
 		await execFileAsync(
 			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
@@ -33,14 +52,7 @@ async function main() {
 		);
 	} catch (error) {
 		const output = `${error.stdout ?? ''}\n${error.stderr ?? ''}`;
-
-		const words = [
-			...new Set(
-				[...output.matchAll(/Unknown word\s+\(([^)]+)\)/g)]
-					.map((match) => match[1]?.trim())
-					.filter(Boolean)
-			)
-		];
+		const words = extractUnknownWords(output);
 
 		if (words.length === 0) {
 			throw error;
@@ -54,4 +66,10 @@ async function main() {
 	}
 }
 
-await main();
+const selfPath = fileURLToPath(import.meta.url);
+const isDirectExecution = process.argv.some(
+	(arg) => arg !== undefined && path.resolve(arg) === selfPath
+);
+if (isDirectExecution) {
+	await main();
+}
