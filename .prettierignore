@@ -21,3 +21,4 @@ showcases/patternhub/testing-table.ts
 packages/mcp-server/assets/**
 package-lock.json
 *.d.ts
+scripts/tests/fixtures/
