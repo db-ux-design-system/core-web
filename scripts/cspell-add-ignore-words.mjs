@@ -5,8 +5,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
-const IGNORE_FILE = '.config/cspellignorewords.txt';
-
+const IGNORE_FILE = fileURLToPath(new URL('../.config/cspellignorewords.txt', import.meta.url));
 // Security: Using execFile instead of exec to eliminate shell injection risks
 // execFile directly executes the binary without involving a shell
 const execFileAsync = promisify(execFile);
