@@ -29,7 +29,7 @@ const resolveDataImports = (imports) => {
 	if (!imports || imports.length === 0) return '';
 
 	return imports
-		.filter((imp) => imp.path === "./data")
+		.filter((imp) => imp.path === './data')
 		.map((imp) => {
 			const namedImports = Object.keys(imp.imports).join(', ');
 			return `import { ${namedImports} } from '${imp.path}';`;

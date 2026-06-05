@@ -10,7 +10,6 @@ useMetadata({
 	storybookArgTypes: StorybookTableArgTypes
 });
 
-
 export default function TableShowCaption() {
 	return (
 		<Fragment>
