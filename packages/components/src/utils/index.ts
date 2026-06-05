@@ -82,10 +82,14 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
- * Some frameworks like stencil would not add "true" as value for a prop
- * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
- * @param originBool Some boolean to convert to string
- * @param propertyName Name of the property to check for
+ * Converts boolean-like inputs to "true" or "false" strings.
+ * Handles HTML-style boolean attributes where an empty string or the
+ * attribute's own name as value (e.g. noText="noText") should be treated as true.
+ * Some frameworks like Stencil do not add "true" as value for a prop
+ * if it is used in a framework like Angular e.g.: [disabled]="myDisabledProp"
+ * @param originBool Boolean or string value to convert
+ * @param propertyName The prop/attribute name — when originBool is a string equal
+ *   to this name (case-insensitive), it is treated as true
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getBooleanAsString = (
