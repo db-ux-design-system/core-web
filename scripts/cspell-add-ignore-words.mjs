@@ -63,7 +63,9 @@ export function mergeIgnoreWords(content, words) {
 
 	return (
 		[...entries.entries()]
-			.toSorted(([a], [b]) => a.localeCompare(b))
+			.toSorted(([a], [b]) =>
+				a.toLowerCase().localeCompare(b.toLowerCase())
+			)
 			.map(([, line]) => line)
 			.join('\n') + '\n'
 	);
