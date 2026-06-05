@@ -31,6 +31,7 @@ const config: StorybookConfig = {
 			angular: isDev
 				? 'http://localhost:6006'
 				: `${baseUrl}/angular-storybook`,
+			html: isDev ? 'http://localhost:6008' : `${baseUrl}/html-storybook`,
 			react: isDev
 				? 'http://localhost:6005'
 				: `${baseUrl}/react-storybook`,
@@ -57,6 +58,11 @@ const config: StorybookConfig = {
 					url: 'http://localhost:6006',
 					expanded: false
 				},
+				html: {
+					title: 'HTML',
+					url: 'http://localhost:6008',
+					expanded: false
+				},
 				react: {
 					title: 'React',
 					url: 'http://localhost:6005',
@@ -73,6 +79,11 @@ const config: StorybookConfig = {
 			angular: {
 				title: 'Angular',
 				url: `${baseUrl}/angular-storybook`,
+				expanded: false
+			},
+			html: {
+				title: 'HTML',
+				url: `${baseUrl}/html-storybook`,
 				expanded: false
 			},
 			react: {
