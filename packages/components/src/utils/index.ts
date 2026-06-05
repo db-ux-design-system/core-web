@@ -98,7 +98,7 @@ export const getBooleanAsString = (
 		return String(
 			originBool === '' ||
 				originBool === 'true' ||
-				propertyName === originBool
+				propertyName?.toLowerCase() === originBool.toLowerCase()
 		);
 	}
 
@@ -115,7 +115,7 @@ export const getBoolean = (
 		return Boolean(
 			originBool === '' ||
 			originBool === 'true' ||
-			propertyName === originBool
+			propertyName?.toLowerCase() === originBool.toLowerCase()
 		);
 	}
 
