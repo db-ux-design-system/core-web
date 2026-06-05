@@ -74,6 +74,12 @@ jobs:
           name: db-ux-vue-storybook
           path: build-storybooks/vue-storybook
 
+      - name: ⏬ Download html-storybook
+        uses: actions/download-artifact@v8
+        with:
+          name: db-ux-html-storybook
+          path: build-storybooks/html-storybook
+
       - name: 🦵🦿 I like to move it move it
         shell: bash
         run: |
