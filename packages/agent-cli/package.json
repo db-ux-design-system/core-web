@@ -28,14 +28,14 @@
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "dependencies": {
-    "commander": "14.0.3"
+    "commander": "15.0.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
     "esbuild": "0.28.0",
     "npm-run-all2": "9.0.1",
-    "tsx": "4.22.3",
-    "vitest": "4.1.7"
+    "tsx": "4.22.4",
+    "vitest": "4.1.8"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

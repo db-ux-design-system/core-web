@@ -64,6 +64,22 @@ export * from './components/tab-list';
 export * from './components/tab-list/model';
 export * from './components/tab-panel';
 export * from './components/tab-panel/model';
+export * from './components/table';
+export * from './components/table-body';
+export * from './components/table-body/model';
+export * from './components/table-caption';
+export * from './components/table-caption/model';
+export * from './components/table-data-cell';
+export * from './components/table-data-cell/model';
+export * from './components/table-footer';
+export * from './components/table-footer/model';
+export * from './components/table-head';
+export * from './components/table-head/model';
+export * from './components/table-header-cell';
+export * from './components/table-header-cell/model';
+export * from './components/table-row';
+export * from './components/table-row/model';
+export * from './components/table/model';
 export * from './components/tabs';
 export * from './components/tabs/model';
 export * from './components/tag';
@@ -79,27 +95,3 @@ export * from './utils/document-scroll-listener';
 export * from './utils/floating-components';
 export * from './utils/index';
 export * from './utils/navigation';
-export * from "./components/table";
-export * from "./components/table/model";
-
-export * from "./components/table-caption";
-export * from "./components/table-caption/model";
-
-export * from "./components/table-head";
-export * from "./components/table-head/model";
-
-export * from "./components/table-body";
-export * from "./components/table-body/model";
-
-export * from "./components/table-footer";
-export * from "./components/table-footer/model";
-
-export * from "./components/table-row";
-export * from "./components/table-row/model";
-
-export * from "./components/table-header-cell";
-export * from "./components/table-header-cell/model";
-
-export * from "./components/table-data-cell";
-export * from "./components/table-data-cell/model";
-
