@@ -7,7 +7,7 @@ import {
 	addWords,
 	extractUnknownWords,
 	mergeIgnoreWords
-} from '../cspell-add-ignore-words.mjs';
+} from '../cspell-add-ignore-words.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturesDir = path.join(__dirname, 'fixtures');

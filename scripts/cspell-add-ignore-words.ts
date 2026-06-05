@@ -3,16 +3,35 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { promisify } from 'node:util';
 
-const IGNORE_FILE = fileURLToPath(
+const ignoreFilePath = fileURLToPath(
 	new URL('../.config/cspellignorewords.txt', import.meta.url)
 );
-// Security: Using execFile instead of exec to eliminate shell injection risks
-// execFile directly executes the binary without involving a shell
-const execFileAsync = promisify(execFile);
+type ExecFileError = Error & { stdout?: string; stderr?: string };
 
-const normalizeIgnoreWord = (line) => {
+const runCodespell = async (): Promise<void> => {
+	await new Promise<void>((resolve, reject) => {
+		// Security: Using execFile instead of exec to eliminate shell injection risks
+		// execFile directly executes the binary without involving a shell
+		execFile(
+			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
+			['run', 'lint:codespell'],
+			(error, stdout, stderr) => {
+				if (error) {
+					const execError = error as ExecFileError;
+					execError.stdout = stdout;
+					execError.stderr = stderr;
+					reject(execError);
+					return;
+				}
+
+				resolve();
+			}
+		);
+	});
+};
+
+const normalizeIgnoreWord = (line: string): string => {
 	const commentIndex = line.indexOf('#');
 
 	if (commentIndex !== -1) {
@@ -22,11 +41,11 @@ const normalizeIgnoreWord = (line) => {
 	return line.trim();
 };
 
-const hasComment = (line) => {
+const hasComment = (line: string): boolean => {
 	return line.includes('#');
 };
 
-export function extractUnknownWords(output) {
+export function extractUnknownWords(output: string): string[] {
 	return [
 		...new Set(
 			[...output.matchAll(/Unknown word\s+\(([^)]+)\)/g)]
@@ -36,8 +55,8 @@ export function extractUnknownWords(output) {
 	];
 }
 
-export function mergeIgnoreWords(content, words) {
-	const entries = new Map();
+export function mergeIgnoreWords(content: string, words: string[]): string {
+	const entries = new Map<string, string>();
 
 	for (const line of content.split(/\r?\n/)) {
 		const normalizedWord = normalizeIgnoreWord(line);
@@ -71,21 +90,22 @@ export function mergeIgnoreWords(content, words) {
 	);
 }
 
-export async function addWords(words, ignoreFile = IGNORE_FILE) {
+export async function addWords(
+	words: string[],
+	ignoreFile = ignoreFilePath
+): Promise<void> {
 	const content = await readFile(ignoreFile, 'utf8');
 	await writeFile(ignoreFile, mergeIgnoreWords(content, words));
 }
 
-export async function main() {
+export async function main(): Promise<void> {
 	try {
-		await execFileAsync(
-			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
-			['run', 'lint:codespell']
-		);
+		await runCodespell();
 
 		console.log('No spelling issues found.');
-	} catch (error) {
-		const output = `${error.stdout ?? ''}\n${error.stderr ?? ''}`;
+	} catch (error: unknown) {
+		const execError = error as ExecFileError;
+		const output = `${execError.stdout ?? ''}\n${execError.stderr ?? ''}`;
 		const words = extractUnknownWords(output);
 
 		if (words.length === 0) {
@@ -95,7 +115,7 @@ export async function main() {
 		await addWords(words);
 
 		console.log(
-			`Ensured ${words.length} word(s) are listed in ${IGNORE_FILE}.`
+			`Ensured ${words.length} word(s) are listed in ${ignoreFilePath}.`
 		);
 	}
 }
