@@ -6,11 +6,7 @@ npm-debug.log
 .idea
 **/build/
 **/dist/
-build-old/
 out/
-dependencyGraph.json
-source/_meta/_head.mustache
-source/_meta/_foot.mustache
 
 .env
 **/*/.env
