@@ -3,7 +3,6 @@ const angularPlugin = require('../plugins/angular/index.cjs');
 const angularSlotsPlugin = require('../plugins/angular/slots.cjs');
 const classNamePlugin = require('../plugins/angular/className.cjs');
 const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
-const attributePassing = require('../plugins/attribute-passing/wrapper-component.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToAngularOptions}
@@ -16,7 +15,6 @@ module.exports = {
 	},
 	api: 'signals',
 	plugins: [
-		attributePassing,
 		attributePassingPlugin,
 		angularSlotsPlugin,
 		classNamePlugin,

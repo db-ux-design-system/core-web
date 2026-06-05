@@ -1,7 +1,6 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
-const attributePassing = require('../plugins/attribute-passing/wrapper-component.cjs');
-const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
+const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 
 /**
@@ -13,11 +12,5 @@ module.exports = {
 		enabled: true,
 		customRef: '_ref'
 	},
-	plugins: [
-		stencilPlugin,
-		attributePassingPlugin,
-		slotsPlugin,
-		onClickPlugin,
-		attributePassing
-	]
+	plugins: [stencilPlugin, attributePassingPlugin, slotsPlugin, onClickPlugin]
 };
