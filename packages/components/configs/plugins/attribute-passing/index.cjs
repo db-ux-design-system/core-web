@@ -55,7 +55,7 @@ module.exports = () => ({
      if(mutations.some(mutation=>
      {
         const attr = (mutation.target as HTMLElement).attributes.getNamedItem(
-          mutation.attributeName
+          mutation.attributeName ?? ""
         );
 
         return attr?.value !== mutation.oldValue;
