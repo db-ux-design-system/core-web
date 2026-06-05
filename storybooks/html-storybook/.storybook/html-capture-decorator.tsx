@@ -15,7 +15,7 @@ export const htmlCaptureDecorator: Decorator = (Story, context) => {
 			const html = containerRef.current.innerHTML;
 			htmlSourceMap.set(context.id, html);
 		}
-	});
+	}, [context.id]);
 
 	return (
 		<div ref={containerRef} style={{ display: 'contents' }}>

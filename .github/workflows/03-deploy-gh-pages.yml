@@ -86,6 +86,7 @@ jobs:
           mv build-showcases/patternhub out
           mv build-storybooks/composition-storybook out/composition-storybook
           mv build-storybooks/angular-storybook out/angular-storybook
+          mv build-storybooks/html-storybook out/html-storybook
           mv build-storybooks/react-storybook out/react-storybook
           mv build-storybooks/vue-storybook out/vue-storybook
 
