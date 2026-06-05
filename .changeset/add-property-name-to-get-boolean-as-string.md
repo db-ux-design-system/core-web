@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-Add missing `propertyName` parameter to all `getBooleanAsString` calls across components for consistent string-based boolean parsing.
+fix: Add missing `propertyName` parameter to all `getBooleanAsString` calls across components for consistent string-based boolean parsing.

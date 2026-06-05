@@ -95,7 +95,11 @@ export const getBooleanAsString = (
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return String(propertyName === originBool || originBool === 'true');
+		return String(
+			originBool === '' ||
+				originBool === 'true' ||
+				propertyName === originBool
+		);
 	}
 
 	return String(originBool);
@@ -108,7 +112,11 @@ export const getBoolean = (
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return Boolean(propertyName === originBool || originBool === 'true');
+		return Boolean(
+			originBool === '' ||
+			originBool === 'true' ||
+			propertyName === originBool
+		);
 	}
 
 	return Boolean(originBool);
@@ -169,7 +177,7 @@ export const getInputValue = (
 };
 
 const toBool = (value: boolean | string): boolean =>
-	typeof value === 'string' ? value === 'true' : value;
+	typeof value === 'string' ? value !== 'false' : value;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
