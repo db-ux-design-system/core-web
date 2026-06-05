@@ -7,7 +7,7 @@ import {
 	addWords,
 	extractUnknownWords,
 	mergeIgnoreWords
-} from '../cspell-add-ignore-words.js';
+} from '../cspell-add-ignore-words.ts'; // eslint-disable-line n/file-extension-in-import
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturesDir = path.join(__dirname, 'fixtures');
