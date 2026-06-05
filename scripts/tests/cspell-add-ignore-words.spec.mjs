@@ -33,6 +33,10 @@ describe('extractUnknownWords', () => {
 
 		expect(extractUnknownWords(input)).toEqual(['Foobar', 'Baz']);
 	});
+	test('handles missing / empty unknown words', async () => {
+		expect(extractUnknownWords('')).toEqual([]);
+		expect(extractUnknownWords('no matches here')).toEqual([]);
+	});
 });
 
 describe('mergeIgnoreWords', () => {
