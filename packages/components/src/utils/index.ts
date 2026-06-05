@@ -85,13 +85,17 @@ export const delay = (fn: () => void, ms: number) =>
  * Some frameworks like stencil would not add "true" as value for a prop
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
+ * @param propertyName Name of the property to check for
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getBooleanAsString = (originBool?: boolean | string): any => {
+export const getBooleanAsString = (
+	originBool?: boolean | string,
+	propertyName?: string
+): any => {
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return String(originBool === 'true');
+		return String(propertyName === originBool || originBool === 'true');
 	}
 
 	return String(originBool);
@@ -173,7 +177,7 @@ export const getHideProp = (show?: boolean | string): any => {
 		return undefined;
 	}
 
-	return getBooleanAsString(!toBool(show));
+	return getBooleanAsString(!toBool(show), 'show');
 };
 
 export const stringPropVisible = (

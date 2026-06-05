@@ -17,14 +17,18 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 			class={cls('db-custom-button', props.className)}
 			data-icon={props.iconLeading ?? props.icon}
 			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon
+				props.showIconLeading ?? props.showIcon,
+				'showIcon'
 			)}
 			data-icon-trailing={props.iconTrailing}
-			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing,
+				'showIconTrailing'
+			)}
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
-			data-no-text={getBooleanAsString(props.noText)}>
+			data-no-text={getBooleanAsString(props.noText, 'noText')}>
 			{props.children}
 		</div>
 	);

@@ -39,15 +39,19 @@ export default function DBButton(props: DBButtonProps) {
 			disabled={getBoolean(props.disabled, 'disabled')}
 			data-icon={props.iconLeading ?? props.icon}
 			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon
+				props.showIconLeading ?? props.showIcon,
+				'showIcon'
 			)}
 			data-icon-trailing={props.iconTrailing}
-			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing,
+				'showIconTrailing'
+			)}
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
-			data-wrap={getBooleanAsString(props.wrap)}
-			data-no-text={getBooleanAsString(props.noText)}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			name={props.name}
 			form={props.form}
 			value={props.value}>

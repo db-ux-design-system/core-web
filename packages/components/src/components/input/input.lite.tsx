@@ -292,13 +292,15 @@ export default function DBInput(props: DBInputProps) {
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon
+				props.showIconLeading ?? props.showIcon,
+				'showIcon'
 			)}
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-show-icon-trailing={getBooleanAsString(
-				props.showIconTrailing
+				props.showIconTrailing,
+				'showIconTrailing'
 			)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
