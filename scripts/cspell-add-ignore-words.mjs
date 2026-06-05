@@ -82,6 +82,8 @@ export async function main() {
 			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
 			['run', 'lint:codespell']
 		);
+
+		console.log('No spelling issues found.');
 	} catch (error) {
 		const output = `${error.stdout ?? ''}\n${error.stderr ?? ''}`;
 		const words = extractUnknownWords(output);
