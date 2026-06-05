@@ -97,9 +97,8 @@ export async function main() {
 }
 
 const selfPath = fileURLToPath(import.meta.url);
-const isDirectExecution = process.argv.some(
-	(arg) => arg !== undefined && path.resolve(arg) === selfPath
-);
+const isDirectExecution =
+	process.argv[1] !== undefined && path.resolve(process.argv[1]) === selfPath;
 
 if (isDirectExecution) {
 	await main();
