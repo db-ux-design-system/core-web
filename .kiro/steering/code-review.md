@@ -10,10 +10,43 @@ Guide for performing PR code reviews in this repository using GitHub MCP tools.
 
 ### Step 1: Identify the PR
 
-Ask the user for:
+**Single PR review:** Ask the user for:
 
 - The PR number to review
 - The repository owner and name (default: the current repo)
+
+**Batch review mode:** If the user does not mention a specific PR (e.g. "review my open PRs", "review all PRs"), use the batch review workflow described below.
+
+### Batch Review Mode
+
+When no specific PR is given, create a Kiro spec with tasks for each open PR:
+
+1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository.
+2. **Check for prior AI review timestamp**: For each PR, read its description body. Look for a section like:
+    ```
+    <!-- AI-REVIEW-TIMESTAMP: 2026-06-08T12:00:00Z -->
+    ```
+3. **Compare with latest commit**: Use the PR's `head.sha` and compare with `mcp_github_list_commits` to check if there are commits after the timestamp.
+4. **Generate a spec with tasks**: Create a `.kiro/specs/code-review-batch/tasks.md` with one task per PR:
+    - If a timestamp exists AND no new commits since then → mark the task as `optional` (skip review)
+    - If no timestamp or new commits exist → mark the task as `pending` (needs review)
+5. **Execute tasks**: Process each pending task using the normal review workflow (Steps 2–6).
+
+### AI Review Timestamp
+
+After completing a review for a PR, **always update the PR description** to include or update the AI review timestamp. Use `mcp_github_update_pull_request` to append/update this HTML comment at the end of the PR body:
+
+```
+<!-- AI-REVIEW-TIMESTAMP: <ISO-8601-UTC> -->
+```
+
+Example:
+
+```
+<!-- AI-REVIEW-TIMESTAMP: 2026-06-08T14:30:00Z -->
+```
+
+This allows subsequent batch reviews to skip PRs that haven't changed since the last review.
 
 ### Step 2: Gather PR Details and Checkout the Branch
 
