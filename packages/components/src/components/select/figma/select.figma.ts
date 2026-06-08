@@ -11,6 +11,10 @@ export type FigmaSelectProps = {
 	validation?: string;
 	showMessage?: boolean;
 	showIcon?: boolean;
+	placeholder?: string;
+	icon?: string;
+	value?: string;
+	message?: string;
 };
 
 const selectProps: Record<string, FigmaProp> = {
@@ -35,7 +39,25 @@ const selectProps: Record<string, FigmaProp> = {
 		}
 	},
 	showIcon: { type: 'boolean', key: 'Show Icon' },
-	showMessage: { type: 'boolean', key: 'Show Message' }
+	showMessage: { type: 'boolean', key: 'Show Message' },
+	icon: {
+		type: 'conditionalProp',
+		key: 'Icon',
+		guardKey: 'Show Icon',
+		attrName: 'icon'
+	},
+	placeholder: { type: 'string', key: 'Placeholder' },
+	value: { type: 'string', key: 'Text' },
+	message: {
+		type: 'validationMessage',
+		key: 'Text',
+		conditionProp: 'validation',
+		map: {
+			invalid: 'invalidMessage',
+			valid: 'validMessage',
+			default: 'message'
+		}
+	}
 };
 
 export const selects: FigmaCodeConnect = {
