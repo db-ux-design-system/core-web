@@ -13,8 +13,8 @@ export type StackDirectionType = (typeof StackDirectionList)[number];
 export const StackAlignmentList = [
 	'stretch',
 	'start',
-	'center',
-	'end'
+	'end',
+	'center'
 ] as const;
 export type StackAlignmentType = (typeof StackAlignmentList)[number];
 
