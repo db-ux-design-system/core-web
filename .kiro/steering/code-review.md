@@ -143,16 +143,28 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 
 Use `mcp_github_pull_request_review_write` to submit the review.
 
-**Correct sequence for reviews with inline comments:**
+**Always add inline line comments** for every specific issue found during review. Each issue should have a comment on the exact line(s) it refers to. Additionally, include a summary body in the review submission that provides an overview of all findings.
+
+**Correct sequence:**
 
 1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create` (omit `event` to keep it pending)
-2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each inline comment
+2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each specific issue, placed on the relevant line in the diff. Every actionable finding must have its own line comment — do not only summarize in the review body.
 3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` and the appropriate event:
     - **APPROVE** — No blocking issues, code is ready to merge
     - **COMMENT** — Minor suggestions, non-blocking feedback
     - **REQUEST_CHANGES** — Blocking issues that must be addressed
+    - Include a summary body that lists all findings as an overview.
 
-**For reviews without inline comments**, you can create and submit in one step by calling `mcp_github_pull_request_review_write` with method `create` and providing the `event` parameter.
+**For reviews without inline comments** (e.g. pure approvals), you can create and submit in one step by calling `mcp_github_pull_request_review_write` with method `create` and providing the `event` parameter.
+
+## Responding to Review Feedback
+
+When fixing issues raised in a code review, **always reply to each review thread** explaining what was changed:
+
+1. **Reply to every conversation**: After pushing fixes, go through each open review thread and add a reply using `mcp_github_add_reply_to_pull_request_comment`.
+2. **Explain what was done**: State which commit contains the fix and briefly describe what was changed and why. Example: "Fixed in abc1234. Changed X to Y because Z."
+3. **Do not leave threads unanswered**: Unresolved conversations block merging in many repositories. Even if the fix is obvious, a short acknowledgment helps reviewers verify the fix without re-reading the full diff.
+4. **For threads you disagree with**: Explain your reasoning respectfully. If you choose not to make the suggested change, say why.
 
 ## Feedback Guidelines
 
