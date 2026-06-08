@@ -6,7 +6,7 @@ resolves # (issue number)
 
 ### Code Quality
 
-- [ ] I have reviewed my own code (self-review)
+- [ ] I have reviewed my own code (self-review), including the screen- and snapshots
 - [ ] I have reviewed my changes locally with an AI assistant (e.g. GitHub Copilot, Kiro, etc.)
 - [ ] No hardcoded values, magic numbers, or debug code left in
 
@@ -17,5 +17,5 @@ resolves # (issue number)
 
 ### General
 
-- [ ] The PR title follows the conventional commits format (e.g. `feat:`, `fix:`, `chore:`)
+- [ ] The PR title follows the conventional commits format (e.g. `feat:`, `fix:`, `chore:`), as in [Git Commit Conventions](docs/conventions.md#git-commits-conventions)
 - [ ] If architecture, structure, or conventions changed inside a `packages/*` folder, the corresponding `AGENTS.md` has been updated
