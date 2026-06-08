@@ -12,6 +12,12 @@ import type {
 	WidthProps
 } from '../../shared/model';
 
+/**
+ * DBTabItem is designed to be used exclusively inside a DBTabs container.
+ * The parent DBTabs manages selection state via a custom DOM event ('aria-selected-changed').
+ * Using DBTabItem standalone (without DBTabs) will leave the item in its initial `active` state
+ * since no parent dispatches the selection event.
+ */
 export type DBTabItemDefaultProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the tab-item.
