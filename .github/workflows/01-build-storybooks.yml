@@ -47,11 +47,18 @@ jobs:
           path: packages/components/build
 
       - name: ⏫ Download stories
-        if: ${{ inputs.storybook != 'composition-storybook' }}
+        if: ${{ inputs.storybook != 'composition-storybook' && inputs.storybook != 'html-storybook' }}
         uses: actions/download-artifact@v8
         with:
           name: ${{ inputs.storybook }}-stories
           path: storybooks/${{ inputs.storybook }}/src
+
+      - name: ⏫ Download stories for html-storybook
+        if: ${{ inputs.storybook == 'html-storybook' }}
+        uses: actions/download-artifact@v8
+        with:
+          name: react-storybook-stories
+          path: storybooks/react-storybook/src/components
 
       - name: 🔨 Build ${{ inputs.storybook }}
         env:
