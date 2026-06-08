@@ -41,7 +41,7 @@ Verify each item:
 - [ ] Tested across all relevant frameworks (React, Angular, Vue) if applicable
 - [ ] Run `pnpm run build` — verify it passes
 - [ ] Run `pnpm run test` — verify tests pass
-- [ ] Run `pnpm run lint` — verify no lint errors
+- [ ] Run `pnpm run lint` — verify no lint errors (known issue: may fail if Nuxt showcase hasn't been run — see AGENTS.md)
 
 #### General
 

@@ -26,7 +26,7 @@ The conventions and anti-patterns to check are documented in a shared reference:
 When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
 1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository.
-2. **Check for prior AI review timestamp**: For each PR, read its description body. Look for a section like:
+2. **Check for prior AI review timestamp**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). Look for a comment containing:
     ```
     <!-- AI-REVIEW-TIMESTAMP: 2026-06-08T12:00:00Z -->
     ```
@@ -35,14 +35,17 @@ When no specific PR is given, create a Kiro spec with tasks for each open PR:
     - If a timestamp exists AND no new commits since then → mark the task as `optional` (skip review)
     - If no timestamp or new commits exist → mark the task as `pending` (needs review)
 5. **Execute tasks**: Process each pending task using the normal review workflow (Steps 2–6).
+6. **Cleanup**: After all tasks are processed, delete the `.kiro/specs/code-review-batch/` directory to avoid accumulating stale spec files.
 
 ### AI Review Timestamp
 
-After completing a review for a PR, **always update the PR description** to include or update the AI review timestamp. Use `mcp_github_update_pull_request` to append/update this HTML comment at the end of the PR body:
+After completing a review for a PR, **always post a PR comment** (using `mcp_github_add_issue_comment`) containing the AI review timestamp as an HTML comment:
 
 ```
 <!-- AI-REVIEW-TIMESTAMP: <ISO-8601-UTC> -->
 ```
+
+Use a PR comment rather than modifying the PR description body — this avoids overwriting author-formatted descriptions and prevents timestamps from being lost if the author edits their description later.
 
 This allows subsequent batch reviews to skip PRs that haven't changed since the last review.
 
@@ -123,13 +126,12 @@ Use `mcp_github_pull_request_review_write` to submit the review.
 
 **Always add inline line comments** for every specific issue found during review. Each issue should have a comment on the exact line(s) it refers to. Additionally, include a summary body in the review submission that provides an overview of all findings.
 
-**Never APPROVE directly.** Instead:
+**Never APPROVE directly** (the review is posted under a human user's PAT — auto-approving could bypass branch protection intent and misrepresent human sign-off). Instead:
 
 1. Submit the review as **COMMENT** (not APPROVE).
 2. If the PR looks good and has no blocking issues, add a separate PR comment (using `mcp_github_add_issue_comment`) that:
     - Tags the user like `@nmerget` to inform them the PR can be approved
-    - Includes a short message like "🤖 Hey @nmerget — this PR looks good to go! You can approve and merge."
-    - Includes a fun/celebratory GIF (use a markdown image link to a gif, e.g. from giphy: `![LGTM](https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif)`)
+    - Includes a short message like "🤖 Hey @nmerget — this PR looks good to go! You can approve and merge. 🎉🚀"
 
 **Correct sequence for reviews with findings:**
 
@@ -140,7 +142,7 @@ Use `mcp_github_pull_request_review_write` to submit the review.
     - **REQUEST_CHANGES** — Blocking issues that must be addressed
     - Prefix the summary body with "🤖 **AI Review**"
 
-**For reviews without issues** (PR looks good), submit as **COMMENT** with a body like "🤖 **AI Review** — No issues found. LGTM!" and then post a separate issue comment tagging the user with a GIF.
+**For reviews without issues** (PR looks good), submit as **COMMENT** with a body like "🤖 **AI Review** — No issues found. LGTM!" and then post a separate issue comment tagging the user with a celebratory message (🎉🚀).
 
 ## Responding to Review Feedback
 
