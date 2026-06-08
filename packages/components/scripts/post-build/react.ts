@@ -1,13 +1,7 @@
 import components, { Overwrite } from './components';
 
-import {
-	existsSync,
-	readdirSync,
-	readFileSync,
-	statSync,
-	writeFileSync
-} from 'node:fs';
-import { dirname, extname, resolve } from 'node:path';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { extname, resolve } from 'node:path';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
@@ -114,74 +108,76 @@ const collectSourceFiles = (root: string): string[] => {
 	return sourceFiles;
 };
 
-const resolveEsmImportPath = (
-	importPath: string,
-	sourceFilePath: string
-): string => {
-	if (!importPath.startsWith('.')) {
-		return importPath;
-	}
-
-	if (/\.(js|mjs|cjs|json|css|scss)$/.test(importPath)) {
-		return importPath;
-	}
-
-	const absoluteImportPath = resolve(dirname(sourceFilePath), importPath);
-
-	if (
-		existsSync(absoluteImportPath) &&
-		statSync(absoluteImportPath).isDirectory()
-	) {
-		if (
-			existsSync(resolve(absoluteImportPath, 'index.ts')) ||
-			existsSync(resolve(absoluteImportPath, 'index.tsx'))
-		) {
-			return `${importPath}/index.js`;
-		}
-	}
-
-	if (
-		existsSync(`${absoluteImportPath}.ts`) ||
-		existsSync(`${absoluteImportPath}.tsx`)
-	) {
-		return `${importPath}.js`;
-	}
-
-	return importPath;
-};
-
 const overwriteEsmImportExtensions = (tmp?: boolean) => {
 	const sourceRoot = `../../${tmp ? 'output/tmp' : 'output'}/react/src`;
 	const sourceFiles = collectSourceFiles(sourceRoot);
 
 	for (const sourceFilePath of sourceFiles) {
-		const sourceCode = readFileSync(sourceFilePath).toString('utf-8');
-
-		const withFromImports = sourceCode.replace(
-			/(from\s+['"])(\.[^'"]+)(['"])/g,
-			(_match, prefix: string, importPath: string, suffix: string) => {
-				const resolvedImportPath = resolveEsmImportPath(
-					importPath,
-					sourceFilePath
-				);
-				return `${prefix}${resolvedImportPath}${suffix}`;
-			}
-		);
-
-		const normalizedSourceCode = withFromImports.replace(
-			/(import\s+['"])(\.[^'"]+)(['"])/g,
-			(_match, prefix: string, importPath: string, suffix: string) => {
-				const resolvedImportPath = resolveEsmImportPath(
-					importPath,
-					sourceFilePath
-				);
-				return `${prefix}${resolvedImportPath}${suffix}`;
-			}
-		);
-
-		if (normalizedSourceCode !== sourceCode) {
-			writeFileSync(sourceFilePath, normalizedSourceCode);
+		// Only process files in components/ folder, skip shared/ utilities
+		if (!sourceFilePath.includes('/components/')) {
+			continue;
 		}
+
+		let sourceCode = readFileSync(sourceFilePath).toString('utf-8');
+
+		// Fix imports: remove .js from shared utilities but keep it for components
+		const lines = sourceCode.split('\n');
+		const fixedLines = lines.map((line) => {
+			// Remove .js from shared utilities
+			line = line.replace(
+				/from ['"](\.[^'"]*\/shared\/examples\/[^'"]*?)\.js['"]/g,
+				"from '$1'"
+			);
+			line = line.replace(
+				/from ['"](\.[^'"]*\/shared\/showcase\/[^'"]*?)\.js['"]/g,
+				"from '$1'"
+			);
+			line = line.replace(
+				/from ['"](\.[^'"]*\/shared\/constants)\.js['"]/g,
+				"from '$1'"
+			);
+			line = line.replace(
+				/from ['"](\.[^'"]*\/shared\/figma)\.js['"]/g,
+				"from '$1'"
+			);
+			line = line.replace(
+				/from ['"](\.[^'"]*\/shared\/show-code-link)\.js['"]/g,
+				"from '$1'"
+			);
+
+			// Remove .js from showcase and example imports
+			line = line.replace(
+				/from ['"](\.[^'"]*\.showcase)['"]/g,
+				"from '$1'"
+			);
+			line = line.replace(
+				/from ['"](\.[^'"]*\.example)['"]/g,
+				"from '$1'"
+			);
+
+			// Same for import statements
+			line = line.replace(
+				/import ['"](\.[^'"]*\/shared\/examples\/[^'"]*?)\.js['"]/g,
+				"import '$1'"
+			);
+			line = line.replace(
+				/import ['"](\.[^'"]*\/shared\/showcase\/[^'"]*?)\.js['"]/g,
+				"import '$1'"
+			);
+			line = line.replace(
+				/import ['"](\.[^'"]*\.showcase)['"]/g,
+				"import '$1'"
+			);
+			line = line.replace(
+				/import ['"](\.[^'"]*\.example)['"]/g,
+				"import '$1'"
+			);
+
+			return line;
+		});
+
+		const fixedCode = fixedLines.join('\n');
+		writeFileSync(sourceFilePath, fixedCode);
 	}
 };
 
