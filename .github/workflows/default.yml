@@ -355,6 +355,7 @@ jobs:
   test-screen-reader:
     if: |
       github.event_name == 'release' ||
+      github.event_name == 'workflow_dispatch' ||
       needs.init.outputs.test-ally == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
