@@ -209,12 +209,13 @@ Use `mcp_github_pull_request_review_write` to submit the review.
 
 ## Responding to Review Feedback
 
-When fixing issues raised in a code review, **always reply to each review thread** explaining what was changed:
+When fixing issues raised in a code review, **always reply to each review thread** explaining what was changed, and **resolve the thread** once the fix is applied:
 
 1. **Reply to every conversation**: After pushing fixes, go through each open review thread and add a reply using `mcp_github_add_reply_to_pull_request_comment`.
 2. **Explain what was done**: State which commit contains the fix and briefly describe what was changed and why. Example: "Fixed in abc1234. Changed X to Y because Z."
-3. **Do not leave threads unanswered**: Unresolved conversations block merging in many repositories. Even if the fix is obvious, a short acknowledgment helps reviewers verify the fix without re-reading the full diff.
-4. **For threads you disagree with**: Explain your reasoning respectfully. If you choose not to make the suggested change, say why.
+3. **Resolve the thread**: After replying, call `mcp_github_pull_request_review_write` with method `resolve_thread` and the thread's `threadId` (node ID, e.g. `PRRT_kwDOxxx`). This closes the conversation so it no longer blocks merging.
+4. **Do not leave threads unanswered or unresolved**: Unresolved conversations block merging in many repositories. Even if the fix is obvious, a short acknowledgment helps reviewers verify the fix without re-reading the full diff.
+5. **For threads you disagree with**: Explain your reasoning respectfully. If you choose not to make the suggested change, say why — but still resolve the thread after explaining.
 
 ## Feedback Guidelines
 
