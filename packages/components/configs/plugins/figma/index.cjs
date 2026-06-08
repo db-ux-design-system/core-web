@@ -58,7 +58,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 		const filterStep = filter
 			? `.filter((node) => node.executeTemplate().example.some((section) => section.type === 'CODE' && section.nestedImports?.some((i) => i.includes('${filter}'))))`
 			: '';
-		// Reverse to match Figma's visual stacking order (bottom-to-top) with DOM render order (top-to-bottom)
+		// Reverse because Figma pushes elements one by one, so the first ends up last
 		const reverseStep = filter ? '.reverse()' : '';
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect(), { traverseInstances: true }).filter((node) => node.type === 'INSTANCE')${filterStep}${reverseStep}.flatMap((child) => child.executeTemplate().example)`;
 	}
@@ -102,7 +102,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 				return `'${subPropName}': item.getString(Object.keys(item.properties).find((k) => k === '${subKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${subKey}') ?? '${subKey}')`;
 			})
 			.join(', ');
-		// Reverse to match Figma's visual stacking order (bottom-to-top) with DOM render order (top-to-bottom)
+		// Reverse because Figma pushes elements one by one, so the first ends up last
 		return `instance.findLayers((node) => node.type === 'INSTANCE' && node.name.includes('${filter}'), { traverseInstances: true }).reverse().filter((node) => node.type === 'INSTANCE').map((item) => ({ ${propMapEntries} }))`;
 	}
 	if (type === 'conditionalProp')
@@ -306,7 +306,7 @@ const buildTemplate = (json, target) => {
 			} else {
 				attrStr = `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
 			}
-			// Reverse children to prioritize the last (deepest) match in Figma's layer stack
+			// Reverse because Figma pushes elements one by one, so the first ends up last
 			const ccChild = `_ccLayers.flatMap((l) => l.children).reverse().find((c) => c.type === 'INSTANCE' && c.name.includes('${figmaKey}')) as figma.InstanceHandle | undefined`;
 			const ccRawValue = `Object.values((_cc_${propName} as figma.InstanceHandle)?.properties ?? {})[0]?.value`;
 			// allIconSwaps / allInstances enums can't be resolved from a CC child value
