@@ -9,7 +9,7 @@ export const checkSnapshotChanges = (aria = true, branch = ''): boolean => {
 			.split('\n')
 			.filter(Boolean);
 
-		// Check if any file in __snapshots__ with the name *-aria-snapshot.yml has changed
+		// Check if any file in __snapshots__ with the name *-aria-snapshot.yaml or *-screenshot.png has changed
 		return changedFiles.some(
 			(file) =>
 				file.startsWith('__snapshots__') &&

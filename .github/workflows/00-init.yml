@@ -32,6 +32,37 @@ on:
       isChangesetRelease:
         description: "If this is a changeset release PR"
         value: ${{ jobs.init.outputs.isChangesetRelease }}
+      # Change detection outputs
+      docsOnly:
+        description: "Only docs/config files changed - skip all builds and tests"
+        value: ${{ jobs.init.outputs.docsOnly }}
+      changesFoundations:
+        description: "packages/foundations changed"
+        value: ${{ jobs.init.outputs.changesFoundations }}
+      changesComponents:
+        description: "packages/components changed"
+        value: ${{ jobs.init.outputs.changesComponents }}
+      changesOutput:
+        description: "output/ directory changed"
+        value: ${{ jobs.init.outputs.changesOutput }}
+      changesShowcases:
+        description: "showcases/ directory changed"
+        value: ${{ jobs.init.outputs.changesShowcases }}
+      changesVitePlugin:
+        description: "packages/vite-plugin changed"
+        value: ${{ jobs.init.outputs.changesVitePlugin }}
+      changesFigma:
+        description: "packages/figma-code-connect changed"
+        value: ${{ jobs.init.outputs.changesFigma }}
+      changesStorybook:
+        description: "packages/components examples or storybook config changed"
+        value: ${{ jobs.init.outputs.changesStorybook }}
+      changesPatternhub:
+        description: "docs/ or patternhub-relevant content changed"
+        value: ${{ jobs.init.outputs.changesPatternhub }}
+      needsFullPipeline:
+        description: "Root config or unknown changes - run everything"
+        value: ${{ jobs.init.outputs.needsFullPipeline }}
       # Publish outputs
       release:
         description: "If the current tag is a release"
@@ -53,6 +84,16 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       test-ally: ${{ steps.ally.outputs.test-ally }}
       isChangesetRelease: ${{ steps.changeset-check.outputs.isChangesetRelease }}
+      docsOnly: ${{ steps.changes.outputs.docsOnly }}
+      changesFoundations: ${{ steps.changes.outputs.changesFoundations }}
+      changesComponents: ${{ steps.changes.outputs.changesComponents }}
+      changesOutput: ${{ steps.changes.outputs.changesOutput }}
+      changesShowcases: ${{ steps.changes.outputs.changesShowcases }}
+      changesVitePlugin: ${{ steps.changes.outputs.changesVitePlugin }}
+      changesFigma: ${{ steps.changes.outputs.changesFigma }}
+      changesStorybook: ${{ steps.changes.outputs.changesStorybook }}
+      changesPatternhub: ${{ steps.changes.outputs.changesPatternhub }}
+      needsFullPipeline: ${{ steps.changes.outputs.needsFullPipeline }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
@@ -109,7 +150,7 @@ jobs:
         id: ally
         shell: bash
         run: |
-          ARIA_MAIN=$(pnpm --silent tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          ARIA_MAIN=$(pnpm --silent tsx scripts/github/change-detection/check-main-aria.ts)
           echo "test-ally=$ARIA_MAIN"
           echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
 
@@ -124,6 +165,25 @@ jobs:
           else
             echo "isChangesetRelease=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: 🔍 Detect changed paths
+        id: changes
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          CHANGES=$(pnpm --silent tsx scripts/github/change-detection/detect-changes.ts)
+          echo "Raw changes: $CHANGES"
+          echo "docsOnly=$(echo "$CHANGES" | jq -r '.["docs-only"]')" >> $GITHUB_OUTPUT
+          echo "changesFoundations=$(echo "$CHANGES" | jq -r '.foundations')" >> $GITHUB_OUTPUT
+          echo "changesComponents=$(echo "$CHANGES" | jq -r '.components')" >> $GITHUB_OUTPUT
+          echo "changesOutput=$(echo "$CHANGES" | jq -r '.output')" >> $GITHUB_OUTPUT
+          echo "changesShowcases=$(echo "$CHANGES" | jq -r '.showcases')" >> $GITHUB_OUTPUT
+          echo "changesVitePlugin=$(echo "$CHANGES" | jq -r '.["vite-plugin"]')" >> $GITHUB_OUTPUT
+          echo "changesFigma=$(echo "$CHANGES" | jq -r '.figma')" >> $GITHUB_OUTPUT
+          echo "changesStorybook=$(echo "$CHANGES" | jq -r '.storybook')" >> $GITHUB_OUTPUT
+          echo "changesPatternhub=$(echo "$CHANGES" | jq -r '.patternhub')" >> $GITHUB_OUTPUT
+          echo "needsFullPipeline=$(echo "$CHANGES" | jq -r '.["needs-full-pipeline"]')" >> $GITHUB_OUTPUT
 
   publish:
     name: Get and save publish version
