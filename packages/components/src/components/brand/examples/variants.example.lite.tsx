@@ -34,9 +34,7 @@ export default function BrandVariants() {
 	return (
 		<Fragment>
 			<DBBrand>(Default) With Logo</DBBrand>
-			<DBBrand data-logo="db-systel" noText>
-				Logo Variant
-			</DBBrand>
+			<DBBrand data-logo="db-systel" noText aria-label="Logo Variant" />
 			<DBBrand>
 				<img
 					src={state.getImage()}
