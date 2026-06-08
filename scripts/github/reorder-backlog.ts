@@ -8,6 +8,8 @@
  * 2. Non-community issues second (highest priority, lowest effort)
  * 3. Issues with no status or "Backlog" status go to the end
  *
+ * Additionally archives "Done" items older than 1 month.
+ *
  * Never moves issues that are "In progress" or "Waiting for feedback".
  *
  * Usage: npx tsx scripts/github/reorder-backlog.ts [--dry-run]
@@ -19,7 +21,6 @@ import { unlinkSync, writeFileSync } from 'node:fs';
 
 const owner = 'db-ux-design-system';
 const repo = 'core-web';
-const projectNumber = 6;
 const projectId = 'PVT_kwDOC6qtR84Ay9u1';
 
 const priorityFieldId = 32_123_222;
@@ -44,34 +45,47 @@ const effortRank: Record<string, number> = {
 };
 const defaultEffortRank = 4;
 
-const protectedStatuses = new Set([
-	'🏗 In progress',
-	'🎶 Waiting for feedback',
-	'🎁 Ready for review',
-	'👀 Actively In Review',
-	'⏰ready for release',
-	'✅ Done'
-]);
+// Max age for Done items before archiving (in milliseconds)
+const archiveThresholdMs = 30 * 24 * 60 * 60 * 1000; // 1 month
 
 // --- Types ---
 
-type ProjectItemContent = {
-	number: number;
-	repository: string;
-	title: string;
-	type: 'Issue' | 'PullRequest' | 'DraftIssue';
-};
-
-type ProjectItem = {
+type ProjectItemNode = {
 	id: string;
-	content: ProjectItemContent;
-	labels?: string[];
-	status?: string;
+	updatedAt: string;
+	fieldValues: {
+		nodes: Array<{
+			__typename: string;
+			field?: { name: string };
+			name?: string;
+		}>;
+	};
+	content:
+		| {
+				__typename: string;
+				number?: number;
+				title?: string;
+				repository?: { nameWithOwner: string };
+				labels?: { nodes: Array<{ name: string }> };
+				closedAt?: string | undefined;
+		  }
+		| undefined;
 };
 
-type ProjectItemList = {
-	items: ProjectItem[];
-	totalCount: number;
+type PageInfo = {
+	hasNextPage: boolean;
+	endCursor: string | undefined;
+};
+
+type ProjectItemsResponse = {
+	data: {
+		node: {
+			items: {
+				nodes: ProjectItemNode[];
+				pageInfo: PageInfo;
+			};
+		};
+	};
 };
 
 type IssueFieldValue = {
@@ -98,17 +112,30 @@ type SortableItem = {
 
 // --- Helpers ---
 
-const gh = (args: string): string => {
+const ghGraphql = (query: string): string => {
+	const temporaryFile = 'tmp-gh-query.graphql';
+	writeFileSync(temporaryFile, query);
 	try {
-		return execSync(`gh ${args}`, {
+		return execSync('gh api graphql -F query=@tmp-gh-query.graphql', {
 			encoding: 'utf8',
 			maxBuffer: 50 * 1024 * 1024
 		}).trim();
+	} finally {
+		unlinkSync(temporaryFile);
+	}
+};
+
+const ghRest = (endpoint: string): string => {
+	try {
+		return execSync(`gh api ${endpoint}`, {
+			encoding: 'utf8',
+			maxBuffer: 10 * 1024 * 1024
+		}).trim();
 	} catch (error: unknown) {
 		const message = error instanceof Error ? error.message : String(error);
-		console.error(`gh command failed: gh ${args}`);
+		console.error(`gh api failed: ${endpoint}`);
 		console.error(message);
-		process.exit(1);
+		throw error;
 	}
 };
 
@@ -116,6 +143,319 @@ const sleep = async (ms: number): Promise<void> =>
 	new Promise<void>((resolve) => {
 		setTimeout(resolve, ms);
 	});
+
+const getItemStatus = (item: ProjectItemNode): string | undefined => {
+	for (const fv of item.fieldValues.nodes) {
+		if (
+			fv.__typename === 'ProjectV2ItemFieldSingleSelectValue' &&
+			fv.field?.name === 'Status'
+		) {
+			return fv.name;
+		}
+	}
+
+	return undefined;
+};
+
+// --- Fetch project items via GraphQL with pagination ---
+
+const fetchProjectItems = async (
+	statusFilter?: string
+): Promise<ProjectItemNode[]> => {
+	const allItems: ProjectItemNode[] = [];
+	let cursor: string | undefined;
+	let page = 0;
+
+	while (true) {
+		page++;
+		const afterClause = cursor ? `, after: "${cursor}"` : '';
+
+		const query = `{
+  node(id: "${projectId}") {
+    ... on ProjectV2 {
+      items(first: 100${afterClause}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          id
+          updatedAt
+          fieldValues(first: 10) {
+            nodes {
+              __typename
+              ... on ProjectV2ItemFieldSingleSelectValue {
+                field { name }
+                name
+              }
+            }
+          }
+          content {
+            __typename
+            ... on Issue {
+              number
+              title
+              closedAt
+              repository { nameWithOwner }
+              labels(first: 20) { nodes { name } }
+            }
+            ... on PullRequest {
+              number
+              title
+              repository { nameWithOwner }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+		process.stdout.write(`   Fetching page ${String(page)}...\r`);
+		const raw = ghGraphql(query);
+		const response = JSON.parse(raw) as ProjectItemsResponse;
+		const { nodes, pageInfo } = response.data.node.items;
+
+		for (const node of nodes) {
+			if (statusFilter) {
+				const status = getItemStatus(node);
+				if (status !== statusFilter) continue;
+			}
+
+			allItems.push(node);
+		}
+
+		if (!pageInfo.hasNextPage) break;
+		cursor = pageInfo.endCursor;
+
+		// Small delay between pages
+		// eslint-disable-next-line no-await-in-loop
+		await sleep(200);
+	}
+
+	console.log('');
+	return allItems;
+};
+
+// --- Fetch backlog items (Backlog status + no status) ---
+
+const fetchBacklogItems = async (): Promise<ProjectItemNode[]> => {
+	const allItems: ProjectItemNode[] = [];
+	let cursor: string | undefined;
+	let page = 0;
+
+	while (true) {
+		page++;
+		const afterClause = cursor ? `, after: "${cursor}"` : '';
+
+		const query = `{
+  node(id: "${projectId}") {
+    ... on ProjectV2 {
+      items(first: 100${afterClause}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          id
+          updatedAt
+          fieldValues(first: 10) {
+            nodes {
+              __typename
+              ... on ProjectV2ItemFieldSingleSelectValue {
+                field { name }
+                name
+              }
+            }
+          }
+          content {
+            __typename
+            ... on Issue {
+              number
+              title
+              closedAt
+              repository { nameWithOwner }
+              labels(first: 20) { nodes { name } }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+		process.stdout.write(`   Fetching page ${String(page)}...\r`);
+		const raw = ghGraphql(query);
+		const response = JSON.parse(raw) as ProjectItemsResponse;
+		const { nodes, pageInfo } = response.data.node.items;
+
+		for (const node of nodes) {
+			// Only include Issues from core-web
+			if (node.content?.__typename !== 'Issue') continue;
+			if (node.content.repository?.nameWithOwner !== `${owner}/${repo}`)
+				continue;
+
+			const status = getItemStatus(node);
+
+			// Include items with "Backlog" status or no status
+			if (status === 'Backlog' || !status) {
+				allItems.push(node);
+			}
+		}
+
+		if (!pageInfo.hasNextPage) break;
+		cursor = pageInfo.endCursor;
+
+		// eslint-disable-next-line no-await-in-loop
+		await sleep(200);
+	}
+
+	console.log('');
+	return allItems;
+};
+
+// --- Fetch Done items for archiving ---
+
+const fetchDoneItems = async (): Promise<ProjectItemNode[]> => {
+	const allItems: ProjectItemNode[] = [];
+	let cursor: string | undefined;
+	let page = 0;
+
+	while (true) {
+		page++;
+		const afterClause = cursor ? `, after: "${cursor}"` : '';
+
+		const query = `{
+  node(id: "${projectId}") {
+    ... on ProjectV2 {
+      items(first: 100${afterClause}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          id
+          updatedAt
+          fieldValues(first: 10) {
+            nodes {
+              __typename
+              ... on ProjectV2ItemFieldSingleSelectValue {
+                field { name }
+                name
+              }
+            }
+          }
+          content {
+            __typename
+            ... on Issue {
+              number
+              title
+              closedAt
+              repository { nameWithOwner }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+		process.stdout.write(
+			`   Scanning for Done items, page ${String(page)}...\r`
+		);
+		const raw = ghGraphql(query);
+		const response = JSON.parse(raw) as ProjectItemsResponse;
+		const { nodes, pageInfo } = response.data.node.items;
+
+		for (const node of nodes) {
+			const status = getItemStatus(node);
+			if (status === '✅ Done') {
+				allItems.push(node);
+			}
+		}
+
+		if (!pageInfo.hasNextPage) break;
+		cursor = pageInfo.endCursor;
+
+		// eslint-disable-next-line no-await-in-loop
+		await sleep(200);
+	}
+
+	console.log('');
+	return allItems;
+};
+
+// --- Archive old Done items ---
+
+const archiveDoneItems = async (dryRun: boolean): Promise<number> => {
+	console.log(
+		'\n🗄️  Checking for Done items to archive (older than 1 month)...'
+	);
+	const doneItems = await fetchDoneItems();
+	console.log(`   Found ${String(doneItems.length)} items in Done status`);
+
+	const now = Date.now();
+	const toArchive = doneItems.filter((item) => {
+		// Use closedAt if available, otherwise updatedAt
+		const dateString = item.content?.closedAt ?? item.updatedAt;
+		const itemDate = new Date(dateString).getTime();
+		return now - itemDate > archiveThresholdMs;
+	});
+
+	console.log(`   ${String(toArchive.length)} items are older than 1 month`);
+
+	if (toArchive.length === 0 || dryRun) {
+		if (dryRun && toArchive.length > 0) {
+			console.log('   🏜️  DRY RUN — would archive these items:');
+			for (const item of toArchive.slice(0, 10)) {
+				const title = item.content?.title ?? '(unknown)';
+				console.log(`      - ${title}`);
+			}
+
+			if (toArchive.length > 10) {
+				console.log(
+					`      ... and ${String(toArchive.length - 10)} more`
+				);
+			}
+		}
+
+		return 0;
+	}
+
+	console.log(`   Archiving ${String(toArchive.length)} items...`);
+
+	for (let i = 0; i < toArchive.length; i++) {
+		const item = toArchive[i];
+		process.stdout.write(
+			`   [${String(i + 1)}/${String(toArchive.length)}] Archiving...\r`
+		);
+
+		const mutation = `mutation {
+  archiveProjectV2Item(input: {
+    projectId: "${projectId}"
+    itemId: "${item.id}"
+  }) {
+    item { id }
+  }
+}`;
+
+		try {
+			ghGraphql(mutation);
+		} catch {
+			console.warn(`\n   ⚠️  Failed to archive item ${item.id}`);
+		}
+
+		if (i % 5 === 4) {
+			// eslint-disable-next-line no-await-in-loop
+			await sleep(300);
+		}
+	}
+
+	console.log(`\n   ✅ Archived ${String(toArchive.length)} Done items`);
+	return toArchive.length;
+};
+
+// --- Fetch issue fields and build sortable list ---
 
 const extractFieldValues = (
 	issueData: IssueApiResponse
@@ -144,24 +484,16 @@ const extractFieldValues = (
 	return { priority, effort };
 };
 
-const executeMutation = (mutation: string): void => {
-	const temporaryFile = 'tmp-mutation.graphql';
-	writeFileSync(temporaryFile, mutation);
-	try {
-		gh(`api graphql -F query=@${temporaryFile}`);
-	} finally {
-		unlinkSync(temporaryFile);
-	}
-};
-
 const fetchIssueFields = async (
-	items: ProjectItem[]
+	items: ProjectItemNode[]
 ): Promise<SortableItem[]> => {
 	const sortableItems: SortableItem[] = [];
 
 	for (let i = 0; i < items.length; i++) {
 		const item = items[i];
-		const { number } = item.content;
+		const number = item.content?.number;
+		if (!number) continue;
+
 		process.stdout.write(
 			`   [${String(i + 1)}/${String(items.length)}] #${String(number)}...\r`
 		);
@@ -170,8 +502,8 @@ const fetchIssueFields = async (
 		let effort = '';
 
 		try {
-			const issueJson = gh(
-				`api repos/${owner}/${repo}/issues/${String(number)}`
+			const issueJson = ghRest(
+				`repos/${owner}/${repo}/issues/${String(number)}`
 			);
 			const issueData = JSON.parse(issueJson) as IssueApiResponse;
 			const fields = extractFieldValues(issueData);
@@ -183,14 +515,14 @@ const fetchIssueFields = async (
 			);
 		}
 
-		const isCommunity =
-			item.labels?.some((label) =>
-				label.toLowerCase().includes('communityfeedback')
-			) ?? false;
+		const labels = item.content?.labels?.nodes ?? [];
+		const isCommunity = labels.some((label) =>
+			label.name.toLowerCase().includes('communityfeedback')
+		);
 
 		sortableItems.push({
 			number,
-			title: item.content.title,
+			title: item.content?.title ?? '',
 			itemId: item.id,
 			isCommunity,
 			priority: priority || '(none)',
@@ -206,9 +538,11 @@ const fetchIssueFields = async (
 		}
 	}
 
-	console.log(''); // Clear the \r line
+	console.log('');
 	return sortableItems;
 };
+
+// --- Reorder items via GraphQL ---
 
 const reorderItems = async (sortedItems: SortableItem[]): Promise<void> => {
 	let previousItemId: string | undefined;
@@ -237,10 +571,9 @@ const reorderItems = async (sortedItems: SortableItem[]): Promise<void> => {
   }
 }`;
 
-		executeMutation(mutation);
+		ghGraphql(mutation);
 		previousItemId = item.itemId;
 
-		// Rate limit protection
 		if (i % 5 === 4) {
 			// eslint-disable-next-line no-await-in-loop
 			await sleep(300);
@@ -257,37 +590,29 @@ const reorderBacklog = async () => {
 		console.log('🏜️  DRY RUN — no mutations will be executed\n');
 	}
 
-	// Step 1: Fetch all project items
-	console.log('📦 Fetching project items...');
-	const rawItems = gh(
-		`project item-list ${String(projectNumber)} --owner ${owner} --limit 2000 --format json`
-	);
-	const projectData = JSON.parse(rawItems) as ProjectItemList;
-	console.log(`   Total items in project: ${String(projectData.totalCount)}`);
+	// Step 0: Archive old Done items
+	const archived = await archiveDoneItems(dryRun);
+	if (archived > 0) {
+		console.log(`   (freed ${String(archived)} items from the project)`);
+	}
 
-	// Step 2: Filter to backlog issues from core-web
-	const targetItems = projectData.items.filter(
-		(item) =>
-			item.content?.type === 'Issue' &&
-			item.content.repository === `${owner}/${repo}` &&
-			!protectedStatuses.has(item.status ?? '') &&
-			(item.status === 'Backlog' || !item.status)
-	);
-
+	// Step 1: Fetch backlog items via targeted GraphQL query
+	console.log('\n📦 Fetching backlog items from core-web...');
+	const backlogItems = await fetchBacklogItems();
 	console.log(
-		`   Backlog/no-status issues from ${repo}: ${String(targetItems.length)}`
+		`   Found ${String(backlogItems.length)} backlog/no-status issues`
 	);
 
-	if (targetItems.length === 0) {
+	if (backlogItems.length === 0) {
 		console.log('✅ Nothing to reorder.');
 		return;
 	}
 
-	// Step 3: Fetch Priority & Effort for each issue
+	// Step 2: Fetch Priority & Effort for each issue
 	console.log('\n🔍 Fetching issue fields (Priority & Effort)...');
-	const sortableItems = await fetchIssueFields(targetItems);
+	const sortableItems = await fetchIssueFields(backlogItems);
 
-	// Step 4: Sort
+	// Step 3: Sort
 	const communityItems = sortableItems
 		.filter((item) => item.isCommunity)
 		.toSorted(
@@ -304,7 +629,7 @@ const reorderBacklog = async () => {
 
 	const sortedItems = [...communityItems, ...nonCommunityItems];
 
-	// Step 5: Print sorted order
+	// Step 4: Print sorted order
 	console.log('\n📋 Sorted order:');
 	if (communityItems.length > 0) {
 		console.log(
@@ -324,7 +649,7 @@ const reorderBacklog = async () => {
 		);
 	}
 
-	// Step 6: Reorder via GraphQL mutations
+	// Step 5: Reorder via GraphQL mutations
 	if (dryRun) {
 		console.log(
 			'\n🏜️  DRY RUN complete. No changes were made to the project.'
