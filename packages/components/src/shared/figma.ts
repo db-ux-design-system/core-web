@@ -88,14 +88,15 @@ export type FigmaValidationMessageProp = FigmaBaseProp & {
 /**
  * Renders all direct code-connected child instances as children.
  * Generates: instance.findConnectedInstances((node) => node.hasCodeConnect())
- *   .map((child) => child.executeTemplate().example)
+ *   .flatMap((child) => child.executeTemplate().example)
  *
- * When `filter` is provided, only instances whose template nestedImports contain
- * that import string are included.
+ * When `filter` is provided, only instances whose **name** includes the filter string
+ * are included. Note: this differs from `nestedConnectedInstances` where filter matches
+ * against nestedImports.
  */
 export type FigmaConnectedInstancesProp = FigmaBaseProp & {
 	type: 'connectedInstances';
-	/** Import string to filter by (e.g. 'DBAccordionItem'). Only instances whose template nestedImports contain this string are included. When omitted, all connected instances are included. */
+	/** Instance name substring to filter by (e.g. 'Navigation'). Only instances whose node name includes this string are included. When omitted, all connected instances are included. */
 	filter?: string;
 };
 

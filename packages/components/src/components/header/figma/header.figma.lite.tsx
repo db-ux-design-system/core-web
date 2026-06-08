@@ -12,22 +12,16 @@ export default function HeaderFigmaLite(props: FigmaHeaderProps) {
 		<DBHeader
 			brand={<DBBrand>Application Name</DBBrand>}
 			metaNavigation={
-				<span>
-					TODO: Replace these placeholders with proper Code Connect
-					mappings — they cannot be resolved automatically
-				</span>
+				/* TODO: Replace with proper Code Connect mapping */
+				undefined
 			}
 			primaryAction={
-				<span>
-					TODO: Replace these placeholders with proper Code Connect
-					mappings — they cannot be resolved automatically
-				</span>
+				/* TODO: Replace with proper Code Connect mapping */
+				undefined
 			}
 			secondaryAction={
-				<span>
-					TODO: Replace these placeholders with proper Code Connect
-					mappings — they cannot be resolved automatically
-				</span>
+				/* TODO: Replace with proper Code Connect mapping */
+				undefined
 			}>
 			{props._children}
 		</DBHeader>

@@ -48,7 +48,9 @@ const getInstanceCall = (figmaProperty, propName) => {
 
 	if (type === 'connectedInstances') {
 		const { filter } = figmaProperty;
+		// Filter by instance node name (not nestedImports like nestedConnectedInstances)
 		const filterStep = filter ? ` && node.name.includes('${filter}')` : '';
+		// flatMap because executeTemplate().example returns an array of code sections
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect()${filterStep}).flatMap((child) => child.executeTemplate().example)`;
 	}
 	if (type === 'nestedConnectedInstances') {
@@ -56,6 +58,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 		const filterStep = filter
 			? `.filter((node) => node.executeTemplate().example.some((section) => section.type === 'CODE' && section.nestedImports?.some((i) => i.includes('${filter}'))))`
 			: '';
+		// Reverse to match Figma's visual stacking order (bottom-to-top) with DOM render order (top-to-bottom)
 		const reverseStep = filter ? '.reverse()' : '';
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect(), { traverseInstances: true }).filter((node) => node.type === 'INSTANCE')${filterStep}${reverseStep}.flatMap((child) => child.executeTemplate().example)`;
 	}
@@ -99,6 +102,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 				return `'${subPropName}': item.getString(Object.keys(item.properties).find((k) => k === '${subKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${subKey}') ?? '${subKey}')`;
 			})
 			.join(', ');
+		// Reverse to match Figma's visual stacking order (bottom-to-top) with DOM render order (top-to-bottom)
 		return `instance.findLayers((node) => node.type === 'INSTANCE' && node.name.includes('${filter}'), { traverseInstances: true }).reverse().filter((node) => node.type === 'INSTANCE').map((item) => ({ ${propMapEntries} }))`;
 	}
 	if (type === 'conditionalProp')
@@ -302,6 +306,7 @@ const buildTemplate = (json, target) => {
 			} else {
 				attrStr = `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
 			}
+			// Reverse children to prioritize the last (deepest) match in Figma's layer stack
 			const ccChild = `_ccLayers.flatMap((l) => l.children).reverse().find((c) => c.type === 'INSTANCE' && c.name.includes('${figmaKey}')) as figma.InstanceHandle | undefined`;
 			const ccRawValue = `Object.values((_cc_${propName} as figma.InstanceHandle)?.properties ?? {})[0]?.value`;
 			// allIconSwaps / allInstances enums can't be resolved from a CC child value
@@ -396,8 +401,11 @@ const buildTemplate = (json, target) => {
 			const sourceExpr = fProp.layer
 				? `((_ccLayers.find((l) => l.name.includes('${fProp.layer}')) ?? instance) as figma.InstanceHandle)`
 				: `instance`;
+			// For layer-scoped props, check the guard on the layer instance directly.
+			// For root-level props (no layer), check Code Connect layer children for a matching
+			// boolean toggle instance (e.g. 'Show Icon' toggle rendered as a child instance).
 			const guardCheck = fProp.layer
-				? `_${propName}GuardSource.getPropertyValue(_findKey('${guardKey}', _${propName}GuardSource)) === true || _${propName}GuardSource.getPropertyValue(_findKey('${guardKey}', _${propName}GuardSource)) === 'True'`
+				? `_${propName}Source.getPropertyValue(_findKey('${guardKey}', _${propName}Source)) === true || _${propName}Source.getPropertyValue(_findKey('${guardKey}', _${propName}Source)) === 'True'`
 				: `_ccLayers.flatMap((l) => l.children).filter((c): c is figma.InstanceHandle => c.type === 'INSTANCE').some((c) => c.name.includes('${guardKey}') && (c.properties?.Value?.value === 'true' || c.properties?.Value?.value === 'True' || c.properties?.Value?.value === true))`;
 			return [
 				`const _${propName}Source = ${sourceExpr}`,
