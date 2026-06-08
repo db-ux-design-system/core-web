@@ -132,7 +132,6 @@ export type DBTabsDefaultState = {
 	handleClick: (event: any) => void;
 	handleKeyDown: (event: any) => void;
 	isIndexActive: (index: number | string) => boolean;
-	getTabItemTabIndex: (index: number | string) => 0 | -1;
 };
 
 export type DBTabsState = DBTabsDefaultState & InitializedState;

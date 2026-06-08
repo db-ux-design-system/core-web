@@ -1,5 +1,4 @@
 import type {
-	ActiveProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -14,9 +13,8 @@ import type {
 
 /**
  * DBTabItem is designed to be used exclusively inside a DBTabs container.
- * The parent DBTabs manages selection state via a custom DOM event ('aria-selected-changed').
- * Using DBTabItem standalone (without DBTabs) will leave the item in its initial `active` state
- * since no parent dispatches the selection event.
+ * The parent DBTabs manages selection state (aria-selected, tabindex) via direct
+ * DOM attribute manipulation. DBTabItem itself is purely presentational.
  */
 export type DBTabItemDefaultProps = {
 	/**
@@ -47,14 +45,10 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 	IconLeadingProps &
 	ShowIconTrailingProps &
 	ShowIconLeadingProps &
-	ActiveProps &
 	WidthProps;
 
 export type DBTabItemDefaultState = {
-	_active: boolean | undefined;
-	_tabIndex: number;
 	_resizeObserver: ResizeObserver | null | undefined;
-	_ariaSelectedListener: { fn: (event: any) => void } | null;
 	isTruncated: boolean;
 	checkTruncation: () => void;
 	tooltipText: string;

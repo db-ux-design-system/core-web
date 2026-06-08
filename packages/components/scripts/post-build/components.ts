@@ -122,7 +122,7 @@ export const getComponents = (): Component[] => [
 		name: 'tabs',
 		config: {
 			react: {
-				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+				propsPassingFilter: ['onIndexChange', 'onValueChange']
 			}
 		}
 	},

@@ -88,18 +88,13 @@ export default function DBTabs(props: DBTabsProps) {
 
 			buttons.forEach((button, index) => {
 				const isSelected = currentIndex === index;
-				button.dispatchEvent(
-					new CustomEvent('aria-selected-changed', {
-						detail: {
-							selected: isSelected,
-							tabIndex:
-								currentIndex === index ||
-								(currentIndex === -1 && index === 0)
-									? 0
-									: -1
-						}
-					})
-				);
+				const tabIndex =
+					currentIndex === index ||
+					(currentIndex === -1 && index === 0)
+						? 0
+						: -1;
+				button.setAttribute('aria-selected', String(isSelected));
+				button.setAttribute('tabindex', String(tabIndex));
 			});
 
 			panels.forEach((panel, index) => {
@@ -222,15 +217,6 @@ export default function DBTabs(props: DBTabsProps) {
 
 		isIndexActive(index: number | string) {
 			return state.activeTabIndex === Number(index);
-		},
-
-		getTabItemTabIndex(index: number | string) {
-			const i = Number(index);
-			// only the active tab should be reachable via Tab key
-			return state.activeTabIndex === i ||
-				(state.activeTabIndex === -1 && i === 0)
-				? 0
-				: -1;
 		},
 
 		_cachedTabs: [] as DBSimpleTabProps[],
@@ -385,18 +371,13 @@ export default function DBTabs(props: DBTabsProps) {
 						button.setAttribute('aria-controls', panelId);
 					}
 
-					button.dispatchEvent(
-						new CustomEvent('aria-selected-changed', {
-							detail: {
-								selected: isSelected,
-								tabIndex:
-									currentIndex === index ||
-									(currentIndex === -1 && index === 0)
-										? 0
-										: -1
-							}
-						})
-					);
+					const tabIndex =
+						currentIndex === index ||
+						(currentIndex === -1 && index === 0)
+							? 0
+							: -1;
+					button.setAttribute('aria-selected', String(isSelected));
+					button.setAttribute('tabindex', String(tabIndex));
 
 					if (panel) {
 						if (!panel.id) {
@@ -561,12 +542,9 @@ export default function DBTabs(props: DBTabsProps) {
 							<DBTabItem
 								key={props.label + 'tab-item' + index}
 								id={state.getTabId(index)}
-								active={state.isIndexActive(index)}
-								tabIndex={state.getTabItemTabIndex(index)}
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
-								onClick={() => state.activateTab(index)}
 							/>
 						)}
 					</For>
@@ -589,7 +567,6 @@ export default function DBTabs(props: DBTabsProps) {
 					class="tabs-scroll-end"
 					variant="ghost"
 					icon="chevron_right"
-					type="button"
 					noText
 					onClick={() => state.scroll(false)}>
 					{props.scrollEndLabel}

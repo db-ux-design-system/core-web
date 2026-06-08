@@ -29,12 +29,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	const state = useStore<DBTabItemState>({
 		initialized: false,
-		_active: false,
-		_tabIndex: -1,
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
-		_ariaSelectedListener: null,
 		checkTruncation: () => {
 			if (_labelRef) {
 				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
@@ -65,14 +62,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 	});
 
 	onMount(() => {
-		state._active = getBoolean(props.active) || false;
-		state._tabIndex =
-			props.tabIndex !== undefined
-				? Number(props.tabIndex)
-				: getBoolean(props.active)
-					? 0
-					: -1;
-
 		if (typeof window !== 'undefined') {
 			const setupObserverAndCheck = () => {
 				requestAnimationFrame(() => {
@@ -111,49 +100,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 		state.initialized = true;
 	});
 
-	// One-shot: register aria-selected-changed listener once _ref is available
-	onUpdate(() => {
-		if (_ref && state.initialized && !state._ariaSelectedListener) {
-			const listener = (event: any) => {
-				state._active = event.detail.selected;
-				if (props.tabIndex === undefined) {
-					if (event.detail.tabIndex !== undefined) {
-						state._tabIndex = event.detail.tabIndex;
-					} else {
-						state._tabIndex = event.detail.selected ? 0 : -1;
-					}
-				}
-			};
-			state._ariaSelectedListener = { fn: listener };
-			_ref.addEventListener('aria-selected-changed', listener);
-		}
-	}, [_ref, state.initialized]);
-
 	// Disconnect the observer
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
-		const _listener = state._ariaSelectedListener;
-		if (_ref && _listener) {
-			_ref.removeEventListener('aria-selected-changed', _listener.fn);
-		}
 	});
-
-	// Update internal active state when the active prop changes
-	onUpdate(() => {
-		if (props.active !== undefined) {
-			state._active = getBoolean(props.active) || false;
-			if (props.tabIndex === undefined) {
-				state._tabIndex = getBoolean(props.active) ? 0 : -1;
-			}
-		}
-	}, [props.active]);
-
-	// Sync tabIndex from prop
-	onUpdate(() => {
-		if (props.tabIndex !== undefined) {
-			state._tabIndex = Number(props.tabIndex);
-		}
-	}, [props.tabIndex]);
 
 	// Manually sync DOM attributes
 	onUpdate(() => {
@@ -177,9 +127,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			class={cls('db-tab-item', props.className)}
 			// Suppress native browser tooltip only when custom truncation tooltip is active
 			title={state.isTruncated ? '' : undefined}
-			aria-selected={getBooleanAsString(state._active)}
 			disabled={getBoolean(props.disabled) ? true : undefined}
-			tabIndex={state._tabIndex}
 			id={props.id}
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}
