@@ -104,7 +104,7 @@ Throughout this skill:
     - Figma border-radius 4px: find matching `--db-border-radius-*` token.
 4. If a Figma value has NO matching token: FLAG it. Do NOT hardcode. Ask user for guidance.
 5. Call `list_icons` if the component uses icons in Figma.
-6. Call `get_component_details` on a structurally similar existing component (same interaction family: form-control, container, navigation, feedback). If no similar component exists, state that explicitly and skip.
+6. Call `get_component_details` on a structurally similar existing component (same interaction family: form-control, container, navigation or feedback). If no similar component exists, state that explicitly and skip.
 7. Store ALL mapped token results. Reference them in SCSS implementation.
 
 ### Step 1: RED - Write Failing Tests
