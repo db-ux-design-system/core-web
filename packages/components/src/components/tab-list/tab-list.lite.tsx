@@ -24,7 +24,7 @@ export default function DBTabList(props: DBTabListProps) {
 	return (
 		<div
 			ref={_ref}
-			id={state._id ?? props.propOverrides?.id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			class={cls('db-tab-list', props.className)}
 			role="tablist">
 			{props.children}
