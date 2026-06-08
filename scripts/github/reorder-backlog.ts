@@ -33,6 +33,10 @@ const effortFieldId = 32_123_225;
 const statusFieldId = 'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0';
 const backlogOptionId = 'eddf8fe8';
 const inProgressOptionId = 'c2179bcd';
+const waitingForFeedbackOptionId = '830d17a3';
+
+// Team members (codeowners)
+const codeowners = new Set(['mfranzke', 'nmerget', 'michaelmkraus']);
 
 const priorityRank: Record<string, number> = {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -77,6 +81,7 @@ type ProjectItemNode = {
 				repository?: { nameWithOwner: string };
 				labels?: { nodes: Array<{ name: string }> };
 				closedAt?: string | undefined;
+				author?: { login: string };
 		  }
 		| undefined;
 };
@@ -149,7 +154,7 @@ const ghGraphql = (query: string): string => {
 
 const ghRest = (endpoint: string): string => {
 	try {
-		return execSync(`gh api ${endpoint}`, {
+		return execSync(`gh api "${endpoint}"`, {
 			encoding: 'utf8',
 			maxBuffer: 10 * 1024 * 1024
 		}).trim();
@@ -242,6 +247,7 @@ const fetchProjectItems = async (
               number
               title
               closedAt
+              author { login }
               repository { nameWithOwner }
               ${labelsFragment}
             }
@@ -482,6 +488,102 @@ const reorderItems = async (sortedItems: SortableItem[]): Promise<void> => {
 	}
 };
 
+// --- Process "Waiting for Feedback" items ---
+
+const processWaitingForFeedback = async (
+	items: ProjectItemNode[],
+	dryRun: boolean
+): Promise<void> => {
+	console.log('\n⏳ Processing "Waiting for Feedback" items...');
+	const waitingItems = items.filter(
+		(item) => getItemStatus(item) === '🎶 Waiting for feedback'
+	);
+
+	if (waitingItems.length === 0) {
+		console.log('   ✅ No items waiting for feedback');
+		return;
+	}
+
+	console.log(
+		`   Found ${String(waitingItems.length)} items waiting for feedback`
+	);
+
+	for (const item of waitingItems) {
+		const number = item.content?.number;
+		if (!number) continue;
+
+		const issueAuthor = item.content?.author?.login;
+		if (!issueAuthor) continue;
+
+		// Fetch the latest comment
+		let lastCommentAuthor: string | undefined;
+		try {
+			const commentsJson = ghRest(
+				`repos/${owner}/${repo}/issues/${String(number)}/comments?per_page=100`
+			);
+			const comments = JSON.parse(commentsJson) as Array<{
+				user?: { login: string };
+			}>;
+			lastCommentAuthor = comments.at(-1)?.user?.login;
+		} catch {
+			console.warn(
+				`\n   ⚠️  Could not fetch comments for #${String(number)}`
+			);
+			continue;
+		}
+
+		if (!lastCommentAuthor) continue;
+
+		if (lastCommentAuthor === issueAuthor) {
+			// Creator responded → move back to Backlog (codeowners need to act)
+			console.log(
+				`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
+			);
+			if (!dryRun) {
+				const mutation = `mutation {
+  updateProjectV2ItemFieldValue(input: {
+    projectId: "${projectId}"
+    itemId: "${item.id}"
+    fieldId: "${statusFieldId}"
+    value: { singleSelectOptionId: "${backlogOptionId}" }
+  }) {
+    projectV2Item { id }
+  }
+}`;
+				try {
+					ghGraphql(mutation);
+				} catch {
+					console.warn(
+						`\n   ⚠️  Failed to move #${String(number)} to Backlog`
+					);
+				}
+			}
+		} else if (!codeowners.has(lastCommentAuthor)) {
+			// Last comment is not from a codeowner and not from the creator → post stale comment
+			console.log(
+				`   💬 #${String(number)}: no codeowner response → posting stale reminder`
+			);
+			if (!dryRun) {
+				try {
+					const body =
+						'👋 @' +
+						issueAuthor +
+						' — This issue has been waiting for feedback for a while. Is this still an issue for you? If so, please let us know and we will prioritize accordingly. If not, feel free to close it. Thanks!';
+					execSync(
+						`gh issue comment ${String(number)} --repo ${owner}/${repo} --body "${body}"`,
+						{ encoding: 'utf8' }
+					);
+				} catch {
+					console.warn(
+						`\n   ⚠️  Failed to post comment on #${String(number)}`
+					);
+				}
+			}
+		}
+		// If last comment is from a codeowner → do nothing, still waiting for the creator
+	}
+};
+
 // --- Main ---
 
 const reorderBacklog = async () => {
@@ -579,6 +681,9 @@ const reorderBacklog = async () => {
 	if (moveToInProgress.length === 0 && moveToBacklog.length === 0) {
 		console.log('   ✅ All statuses are in sync');
 	}
+
+	// Step 0c: Process "Waiting for Feedback" items
+	await processWaitingForFeedback(allCoreWebItems, dryRun);
 
 	// Step 1: Fetch backlog items via targeted GraphQL query
 	console.log('\n📦 Fetching backlog items from core-web...');
