@@ -172,8 +172,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 			type="button"
 			role="tab"
 			class={cls('db-tab-item', props.className)}
-			// suppresses native browser tooltips inherited from parent elements
-			title=""
+			// Suppress native browser tooltip only when custom truncation tooltip is active
+			title={state.isTruncated ? '' : undefined}
 			aria-selected={getBooleanAsString(state._active)}
 			disabled={getBoolean(props.disabled) ? true : undefined}
 			tabIndex={state._tabIndex}
