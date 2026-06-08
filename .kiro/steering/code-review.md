@@ -141,12 +141,14 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 
 - Include `@use "@db-ux/core-foundations/build/styles/variables";` when using design token variables (some files may need other imports first, e.g. `@use "sass:map"`)
 - Root selector: `.db-<name>`
+- Define styles for states via standard selectors or aria-annotations, like e.g. `:disabled` instead of `.disabled` and `[aria-current="page"]` instead of `.active`
 - Variants via `data-*` attribute selectors: `&[data-variant="brand"]`
 - No `border: 0` or `border: none` — use `@extend %transparent-border` (support for High Contrast Mode)
 - No manual `cursor: pointer` — use `@include helpers.hover { ... }`
 - No excessive nesting — keep it readable and maintainable
 - No `!important`
-- No hardcoded colors, spacings, sizings, or border-radius values
+- No hardcoded colors, spacings, sizings, or border-radius values, but only SCSS Variables provided by Foundations
+- Do NOT use utility-classes like tailwind.
 
 **model.ts Rules:**
 
@@ -173,8 +175,8 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 **Forbidden Patterns (immediate rejection):**
 
 - Inline styles with pixel values
-- Invented icon names (must verify via MCP `list_icons`)
-- Editing files in `output/`
+- Invented icon names (must verify via `@db-ux/mcp-agent` MCP `list_icons`)
+- Editing generated files in `output/`
 - Skipping `model.ts`
 - Guessing Figma specs without Figma URL
 - `aria-disabled` on native `<button>` (use native `disabled`)
