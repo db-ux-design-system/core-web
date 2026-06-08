@@ -31,10 +31,10 @@ const arbRef = fc.oneof(
 	fc.constant('refs/heads/feature/some-feature'),
 	fc
 		.string({ minLength: 1, maxLength: 30 })
-		.map((s) => `refs/heads/${s.replace(/\s/g, '-')}`),
+		.map((s) => `refs/heads/${s.replaceAll(/\s/g, '-')}`),
 	fc
 		.string({ minLength: 1, maxLength: 30 })
-		.map((s) => `refs/pull/${s.replace(/\s/g, '-')}/merge`)
+		.map((s) => `refs/pull/${s.replaceAll(/\s/g, '-')}/merge`)
 );
 
 /** Arbitrary for generating random event names */
@@ -44,7 +44,9 @@ const arbEventName = fc.oneof(
 	fc.constant('merge_group'),
 	fc.constant('release'),
 	fc.constant('workflow_dispatch'),
-	fc.string({ minLength: 1, maxLength: 20 }).map((s) => s.replace(/\s/g, ''))
+	fc
+		.string({ minLength: 1, maxLength: 20 })
+		.map((s) => s.replaceAll(/\s/g, ''))
 );
 
 /** Arbitrary for non-main refs (never produces 'refs/heads/main') */
@@ -54,10 +56,10 @@ const arbNonMainRef = fc.oneof(
 	fc
 		.string({ minLength: 1, maxLength: 30 })
 		.filter((s) => s !== 'main')
-		.map((s) => `refs/heads/${s.replace(/\s/g, '-')}`),
+		.map((s) => `refs/heads/${s.replaceAll(/\s/g, '-')}`),
 	fc
 		.string({ minLength: 1, maxLength: 30 })
-		.map((s) => `refs/pull/${s.replace(/\s/g, '-')}/merge`)
+		.map((s) => `refs/pull/${s.replaceAll(/\s/g, '-')}/merge`)
 );
 
 /** Arbitrary for non-release, non-merge_group event names */
@@ -68,7 +70,7 @@ const arbNonProtectedEventName = fc.oneof(
 	fc
 		.string({ minLength: 1, maxLength: 20 })
 		.filter((s) => s !== 'release' && s !== 'merge_group')
-		.map((s) => s.replace(/\s/g, ''))
+		.map((s) => s.replaceAll(/\s/g, ''))
 );
 
 describe('cancel-in-progress expression property tests', () => {

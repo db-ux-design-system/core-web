@@ -13,11 +13,11 @@ import { describe, expect, test } from 'vitest';
  *   format('{0}-{1}', github.workflow, github.ref)
  * }}
  */
-interface EventContext {
+type EventContext = {
 	event_name: string;
 	ref: string;
 	workflow: string;
-}
+};
 
 const WORKFLOW_NAME = 'Default Pipeline';
 
@@ -25,9 +25,11 @@ function evaluateConcurrencyGroup(context: EventContext): string {
 	if (context.event_name === 'release') {
 		return `release-${context.ref}`;
 	}
+
 	if (context.event_name === 'merge_group') {
 		return `merge-queue-${context.ref}`;
 	}
+
 	return `${context.workflow}-${context.ref}`;
 }
 

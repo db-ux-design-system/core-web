@@ -14,15 +14,15 @@ const workflow = loadDefaultWorkflow(import.meta.dirname);
 
 // --- GitHub Actions condition evaluator ---
 
-interface GitHubContext {
+type GitHubContext = {
 	event_name: string;
 	ref: string;
 	actor: string;
 	repository_owner: string;
 	event: {
-		pull_request: object | null;
+		pull_request: Record<string, unknown> | undefined;
 	};
-}
+};
 
 /**
  * Simplified evaluator for GitHub Actions `if:` expressions.
@@ -84,17 +84,17 @@ function evaluateExpression(
 	// Handle equality comparisons
 	if (expr.includes('==')) {
 		const [left, right] = expr.split('==').map((s) => s.trim());
-		const leftVal = resolveValue(left, context, needsOutputs);
-		const rightVal = resolveValue(right, context, needsOutputs);
-		return leftVal === rightVal;
+		const leftValue = resolveValue(left, context, needsOutputs);
+		const rightValue = resolveValue(right, context, needsOutputs);
+		return leftValue === rightValue;
 	}
 
 	// Handle inequality comparisons
 	if (expr.includes('!=')) {
 		const [left, right] = expr.split('!=').map((s) => s.trim());
-		const leftVal = resolveValue(left, context, needsOutputs);
-		const rightVal = resolveValue(right, context, needsOutputs);
-		return leftVal !== rightVal;
+		const leftValue = resolveValue(left, context, needsOutputs);
+		const rightValue = resolveValue(right, context, needsOutputs);
+		return leftValue !== rightValue;
 	}
 
 	// Handle !cancelled() within more complex expressions
@@ -146,27 +146,27 @@ function resolveValue(
 	}
 
 	// Needs outputs
-	const needsMatch = expr.match(/^needs\.([^.]+)\.outputs\.([^.]+)$/);
+	const needsMatch = /^needs\.([^.]+)\.outputs\.([^.]+)$/.exec(expr);
 	if (needsMatch) {
 		const [, jobName, outputName] = needsMatch;
 		return needsOutputs[jobName]?.[outputName] ?? '';
 	}
 
 	// Needs result
-	const needsResultMatch = expr.match(/^needs\.([^.]+)\.result$/);
+	const needsResultMatch = /^needs\.([^.]+)\.result$/.exec(expr);
 	if (needsResultMatch) {
 		return 'success'; // Assume success for property testing
 	}
 
-	// contains() function
-	const containsMatch = expr.match(/^contains\((.+),\s*(.+)\)$/);
+	// Contains() function
+	const containsMatch = /^contains\((.+),\s*(.+)\)$/.exec(expr);
 	if (containsMatch) {
 		const [, haystack, needle] = containsMatch;
-		const haystackVal = String(
+		const haystackValue = String(
 			resolveValue(haystack, context, needsOutputs)
 		);
-		const needleVal = String(resolveValue(needle, context, needsOutputs));
-		return haystackVal.includes(needleVal) ? 'true' : null;
+		const needleValue = String(resolveValue(needle, context, needsOutputs));
+		return haystackValue.includes(needleValue) ? 'true' : null;
 	}
 
 	return expr;
@@ -208,7 +208,7 @@ const mergeGroupContextArbitrary: fc.Arbitrary<GitHubContext> = fc.record({
 			.string({ minLength: 1, maxLength: 50 })
 			.map((s) => `refs/heads/gh-readonly-queue/main/pr-${s}`),
 		fc
-			.tuple(fc.nat({ max: 9999 }), fc.nat({ max: 0xffffffff }))
+			.tuple(fc.nat({ max: 9999 }), fc.nat({ max: 0xff_ff_ff_ff }))
 			.map(
 				([n, hex]) =>
 					`refs/heads/gh-readonly-queue/main/pr-${n}-${hex.toString(16).padStart(8, '0')}`
@@ -301,7 +301,7 @@ describe('default.yml job condition evaluation (property-based)', () => {
 							testContext,
 							needsOutputs
 						);
-						return result === true;
+						return result;
 					}),
 					{ numRuns: 100 }
 				);
@@ -372,7 +372,7 @@ describe('default.yml job condition evaluation (property-based)', () => {
 							context,
 							needsOutputs
 						);
-						return result === false;
+						return !result;
 					}),
 					{ numRuns: 100 }
 				);
