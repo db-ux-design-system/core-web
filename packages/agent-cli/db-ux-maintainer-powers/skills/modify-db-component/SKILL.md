@@ -183,7 +183,7 @@ Showcase files in `showcases/` are generated from these and must not be edited m
 - [ ] Tests updated FIRST (RED phase)
 - [ ] RED phase verified:  ran `test` command, non-zero exit captured
 - [ ] `model.ts` updated
-- [ ] `.lite.tsx` updated (no inline styles, propOverrides preserved)
+- [ ] `.lite.tsx` updated (no inline styles, `propOverrides` preserved)
 - [ ] `.scss` updated (tokens only)
 - [ ] Examples/showcase updated (if new visual feature)
 - [ ] `pnpm run build` passes
