@@ -132,7 +132,7 @@ Only update when the rendered delta is intentional and explicitly explained. Bef
 
 1. Read the violation details: `id`, `impact`, `nodes`, `help`.
 2. Identify the DOM element causing the violation.
-3. Fix in `.lite.tsx`:
+3. Fix in `.lite.tsx`, e.g.:
     - Missing `aria-label`: add label prop handling.
     - Missing role: add `role` attribute.
     - Color contrast: update SCSS with accessible token.
