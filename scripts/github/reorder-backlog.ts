@@ -29,6 +29,11 @@ const projectId = 'PVT_kwDOC6qtR84Ay9u1';
 const priorityFieldId = 32_123_222;
 const effortFieldId = 32_123_225;
 
+// Project field IDs
+const statusFieldId = 'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0';
+const backlogOptionId = 'eddf8fe8';
+const inProgressOptionId = 'c2179bcd';
+
 const priorityRank: Record<string, number> = {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	Urgent: 1,
@@ -61,6 +66,7 @@ type ProjectItemNode = {
 			__typename: string;
 			field?: { name: string };
 			name?: string;
+			pullRequests?: { nodes: Array<{ number: number; state: string }> };
 		}>;
 	};
 	content:
@@ -173,6 +179,19 @@ const getItemStatus = (item: ProjectItemNode): string | undefined => {
 	return undefined;
 };
 
+const hasOpenPullRequest = (item: ProjectItemNode): boolean => {
+	for (const fv of item.fieldValues.nodes) {
+		if (
+			fv.__typename === 'ProjectV2ItemFieldPullRequestValue' &&
+			fv.pullRequests?.nodes.some((pr) => pr.state === 'OPEN')
+		) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
 // --- Paginated project item fetcher ---
 
 const fetchProjectItems = async (
@@ -202,12 +221,18 @@ const fetchProjectItems = async (
         nodes {
           id
           updatedAt
-          fieldValues(first: 10) {
+          fieldValues(first: 15) {
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
                 field { ... on ProjectV2SingleSelectField { name } }
                 name
+              }
+              ... on ProjectV2ItemFieldPullRequestValue {
+                field { ... on ProjectV2Field { name } }
+                pullRequests(first: 5) {
+                  nodes { number state }
+                }
               }
             }
           }
@@ -472,6 +497,89 @@ const reorderBacklog = async () => {
 		console.log(`   (freed ${String(archived)} items from the project)`);
 	}
 
+	// Step 0b: Sync status based on linked PRs
+	console.log('\n🔄 Syncing status based on linked pull requests...');
+	const allCoreWebItems = await fetchProjectItems(
+		(node) => {
+			if (node.content?.__typename !== 'Issue') return false;
+			return (
+				node.content.repository?.nameWithOwner === `${owner}/${repo}`
+			);
+		},
+		'Scanning',
+		true
+	);
+
+	// Backlog items with open PR → move to In Progress
+	const moveToInProgress = allCoreWebItems.filter((item) => {
+		const status = getItemStatus(item);
+		return (status === 'Backlog' || !status) && hasOpenPullRequest(item);
+	});
+
+	// In Progress items without open PR → move back to Backlog
+	const moveToBacklog = allCoreWebItems.filter((item) => {
+		const status = getItemStatus(item);
+		return status === '🏗 In progress' && !hasOpenPullRequest(item);
+	});
+
+	if (moveToInProgress.length > 0) {
+		console.log(
+			`   📤 ${String(moveToInProgress.length)} backlog items have open PRs → moving to "In Progress"`
+		);
+		if (!dryRun) {
+			for (const item of moveToInProgress) {
+				const mutation = `mutation {
+  updateProjectV2ItemFieldValue(input: {
+    projectId: "${projectId}"
+    itemId: "${item.id}"
+    fieldId: "${statusFieldId}"
+    value: { singleSelectOptionId: "${inProgressOptionId}" }
+  }) {
+    projectV2Item { id }
+  }
+}`;
+				try {
+					ghGraphql(mutation);
+				} catch {
+					console.warn(
+						`\n   ⚠️  Failed to move item #${String(item.content?.number)} to In Progress`
+					);
+				}
+			}
+		}
+	}
+
+	if (moveToBacklog.length > 0) {
+		console.log(
+			`   📥 ${String(moveToBacklog.length)} in-progress items have no open PRs → moving to "Backlog"`
+		);
+		if (!dryRun) {
+			for (const item of moveToBacklog) {
+				const mutation = `mutation {
+  updateProjectV2ItemFieldValue(input: {
+    projectId: "${projectId}"
+    itemId: "${item.id}"
+    fieldId: "${statusFieldId}"
+    value: { singleSelectOptionId: "${backlogOptionId}" }
+  }) {
+    projectV2Item { id }
+  }
+}`;
+				try {
+					ghGraphql(mutation);
+				} catch {
+					console.warn(
+						`\n   ⚠️  Failed to move item #${String(item.content?.number)} to Backlog`
+					);
+				}
+			}
+		}
+	}
+
+	if (moveToInProgress.length === 0 && moveToBacklog.length === 0) {
+		console.log('   ✅ All statuses are in sync');
+	}
+
 	// Step 1: Fetch backlog items via targeted GraphQL query
 	console.log('\n📦 Fetching backlog items from core-web...');
 	const backlogItems = await fetchProjectItems(
@@ -512,8 +620,8 @@ const reorderBacklog = async () => {
   updateProjectV2ItemFieldValue(input: {
     projectId: "${projectId}"
     itemId: "${item.id}"
-    fieldId: "PVTSSF_lADOC6qtR84Ay9u1zgo1SA0"
-    value: { singleSelectOptionId: "eddf8fe8" }
+    fieldId: "${statusFieldId}"
+    value: { singleSelectOptionId: "${backlogOptionId}" }
   }) {
     projectV2Item { id }
   }
