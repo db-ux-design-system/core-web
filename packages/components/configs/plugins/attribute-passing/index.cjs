@@ -102,6 +102,17 @@ module.exports = () => ({
 						"attr && attr.name !== 'data-density' &&"
 					)
 					.replace(
+						'element.setAttribute(attr.name, attr.value);\n' +
+							'          parent.removeAttribute(attr.name);',
+						// Remove attribute from child if value is empty, otherwise forward it
+						'if (attr.value) {\n' +
+							'            element.setAttribute(attr.name, attr.value);\n' +
+							'          } else {\n' +
+							'            element.removeAttribute(attr.name);\n' +
+							'          }\n' +
+							'          parent.removeAttribute(attr.name);'
+					)
+					.replace(
 						'`${currentClass ? `${currentClass} ` : ""}${value}`',
 						'`${currentClass ? currentClass : ""}${value ? ` ${value}`: ""}`'
 					);
