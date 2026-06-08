@@ -499,6 +499,51 @@ const reorderBacklog = async () => {
 		return;
 	}
 
+	// Step 1b: Set status to "Backlog" for items with no status
+	const noStatusItems = backlogItems.filter((item) => !getItemStatus(item));
+
+	if (noStatusItems.length > 0 && !dryRun) {
+		console.log(
+			`\n📌 Setting ${String(noStatusItems.length)} no-status items to "Backlog"...`
+		);
+		for (let i = 0; i < noStatusItems.length; i++) {
+			const item = noStatusItems[i];
+			process.stdout.write(
+				`   [${String(i + 1)}/${String(noStatusItems.length)}] Setting status...\r`
+			);
+
+			const mutation = `mutation {
+  updateProjectV2ItemFieldValue(input: {
+    projectId: "${projectId}"
+    itemId: "${item.id}"
+    fieldId: "PVTSSF_lADOC6qtR84Ay9u1zgo1SA0"
+    value: { singleSelectOptionId: "eddf8fe8" }
+  }) {
+    projectV2Item { id }
+  }
+}`;
+
+			try {
+				ghGraphql(mutation);
+			} catch {
+				console.warn(
+					`\n   ⚠️  Failed to set status for item ${item.id}`
+				);
+			}
+
+			if (i % 5 === 4) {
+				// eslint-disable-next-line no-await-in-loop
+				await sleep(300);
+			}
+		}
+
+		console.log('');
+	} else if (noStatusItems.length > 0) {
+		console.log(
+			`\n   🏜️  DRY RUN — would set ${String(noStatusItems.length)} items to "Backlog" status`
+		);
+	}
+
 	// Step 2: Fetch Priority & Effort for each issue
 	console.log('\n🔍 Fetching issue fields (Priority & Effort)...');
 	const sortableItems = await fetchIssueFields(backlogItems);
