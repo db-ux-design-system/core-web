@@ -112,7 +112,7 @@ For EACH failing test, classify the failure:
 
 Only update when the rendered delta is intentional and explicitly explained. Before running the update command, state WHY the visual change is expected (e.g. "variant X was added in the previous modification step"). If you cannot explain the delta, treat it as unintentional and go to the "false" path below.
 
-**Note:** Do NOT run `regenerate:screenshots` locally. Snapshots are generated automatically in CI/CD.
+**Note:** Do NOT run `regenerate:screenshots` node script locally. Snapshots are generated automatically in CI/CD.
 
 **If `update_snapshots` is false (default):**
 
