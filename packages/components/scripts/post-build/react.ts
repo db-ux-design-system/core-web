@@ -1,7 +1,6 @@
 import components, { Overwrite } from './components';
 
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { extname, resolve } from 'node:path';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
@@ -90,97 +89,6 @@ const overwriteFragmentMap = (input: string) => {
 		.join('\n');
 };
 
-const collectSourceFiles = (root: string): string[] => {
-	const sourceFiles: string[] = [];
-
-	for (const entry of readdirSync(root, { withFileTypes: true })) {
-		const entryPath = resolve(root, entry.name);
-		if (entry.isDirectory()) {
-			sourceFiles.push(...collectSourceFiles(entryPath));
-			continue;
-		}
-
-		if (entry.isFile() && ['.ts', '.tsx'].includes(extname(entry.name))) {
-			sourceFiles.push(entryPath);
-		}
-	}
-
-	return sourceFiles;
-};
-
-const overwriteEsmImportExtensions = (tmp?: boolean) => {
-	const sourceRoot = `../../${tmp ? 'output/tmp' : 'output'}/react/src`;
-	const sourceFiles = collectSourceFiles(sourceRoot);
-
-	for (const sourceFilePath of sourceFiles) {
-		// Only process files in components/ folder, skip shared/ utilities
-		if (!sourceFilePath.includes('/components/')) {
-			continue;
-		}
-
-		let sourceCode = readFileSync(sourceFilePath).toString('utf-8');
-
-		// Fix imports: remove .js from shared utilities but keep it for components
-		const lines = sourceCode.split('\n');
-		const fixedLines = lines.map((line) => {
-			// Remove .js from shared utilities
-			line = line.replace(
-				/from ['"](\.[^'"]*\/shared\/examples\/[^'"]*?)\.js['"]/g,
-				"from '$1'"
-			);
-			line = line.replace(
-				/from ['"](\.[^'"]*\/shared\/showcase\/[^'"]*?)\.js['"]/g,
-				"from '$1'"
-			);
-			line = line.replace(
-				/from ['"](\.[^'"]*\/shared\/constants)\.js['"]/g,
-				"from '$1'"
-			);
-			line = line.replace(
-				/from ['"](\.[^'"]*\/shared\/figma)\.js['"]/g,
-				"from '$1'"
-			);
-			line = line.replace(
-				/from ['"](\.[^'"]*\/shared\/show-code-link)\.js['"]/g,
-				"from '$1'"
-			);
-
-			// Remove .js from showcase and example imports
-			line = line.replace(
-				/from ['"](\.[^'"]*\.showcase)['"]/g,
-				"from '$1'"
-			);
-			line = line.replace(
-				/from ['"](\.[^'"]*\.example)['"]/g,
-				"from '$1'"
-			);
-
-			// Same for import statements
-			line = line.replace(
-				/import ['"](\.[^'"]*\/shared\/examples\/[^'"]*?)\.js['"]/g,
-				"import '$1'"
-			);
-			line = line.replace(
-				/import ['"](\.[^'"]*\/shared\/showcase\/[^'"]*?)\.js['"]/g,
-				"import '$1'"
-			);
-			line = line.replace(
-				/import ['"](\.[^'"]*\.showcase)['"]/g,
-				"import '$1'"
-			);
-			line = line.replace(
-				/import ['"](\.[^'"]*\.example)['"]/g,
-				"import '$1'"
-			);
-
-			return line;
-		});
-
-		const fixedCode = fixedLines.join('\n');
-		writeFileSync(sourceFilePath, fixedCode);
-	}
-};
-
 export default (tmp?: boolean) => {
 	try {
 		overwriteEvents(tmp);
@@ -229,7 +137,7 @@ export default DB${upperComponentName};`
 					from: 'import * as React from "react";',
 					to:
 						'import * as React from "react";\n ' +
-						'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
+						'import { filterPassingProps, getRootProps } from "../../utils/react.js";\n'
 				},
 				{
 					from: 'ref={_ref}',
@@ -271,8 +179,6 @@ export default DB${upperComponentName};`
 
 			runReplacements(replacements, component, 'react', tsxFile);
 		}
-
-		overwriteEsmImportExtensions(tmp);
 	} catch (error) {
 		console.error('Error occurred:', error);
 	}
