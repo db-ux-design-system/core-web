@@ -351,7 +351,6 @@ Create `agent/{component_slug}.agent.lite.tsx` with usage examples.
 - [ ] `{component_slug}.scss` with tokens only
 - [ ] `{component_slug}.spec.tsx` with screenshots + a11y
 - [ ] `index.ts` (no `.lite`, no model re-export)
-- [ ] `index.html` preview
 - [ ] `docs/`, `examples/`, `showcase/`, `agent/` complete
 - [ ] `pnpm run build` passes
 - [ ] `pnpm run test` passes
