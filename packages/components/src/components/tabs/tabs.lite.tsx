@@ -428,12 +428,15 @@ export default function DBTabs(props: DBTabsProps) {
 		state._name = 'tabs-' + (props.label || state._generatedName);
 	}, [props.id, props.label]);
 
-	// Controlled mode: sync external activeIndex changes to internal state
+	// Controlled mode: sync external activeIndex changes to internal state.
+	// Intentionally bypasses activateTab to avoid firing onIndexChange/onValueChange
+	// back to the consumer (which would create feedback loops for controlled props).
 	onUpdate(() => {
 		if (props.activeIndex !== undefined) {
 			const newIndex = Number(props.activeIndex);
 			if (!isNaN(newIndex) && newIndex !== state.activeTabIndex) {
-				state.activateTab(newIndex);
+				state.activeTabIndex = newIndex;
+				state.syncSelection(newIndex);
 			}
 		}
 	}, [props.activeIndex]);
