@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
 
       - name: 🔭 Add url for preview page
         uses: actions/github-script@v9

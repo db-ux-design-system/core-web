@@ -44,7 +44,7 @@ jobs:
 
   lint:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/01-lint-test.yml
+    uses: ./.github/workflows/01-validate.yml
     needs: [init]
     secrets: inherit
 
@@ -162,6 +162,14 @@ jobs:
     needs: [build-packages, init, build-stories]
     with:
       storybook: vue-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
+
+  build-storybook-html:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init, build-stories]
+    with:
+      storybook: html-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
     secrets: inherit
 
@@ -414,6 +422,7 @@ jobs:
           fi
           resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
           resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
+          resultBuildStorybookHtml="${{ needs.build-storybook-html.result }}"
           resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
           resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
@@ -438,6 +447,7 @@ jobs:
 
           echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
           echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
+          echo "resultBuildStorybookHtml: $resultBuildStorybookHtml"
           echo "resultBuildStorybookReact: $resultBuildStorybookReact"
           echo "resultBuildStorybookVue: $resultBuildStorybookVue"
           echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
@@ -460,6 +470,7 @@ jobs:
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
+             [[ $resultBuildStorybookHtml == "success" ]] && \
              [[ $resultBuildStorybookReact == "success" ]] && \
              [[ $resultBuildStorybookVue == "success" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
@@ -491,6 +502,7 @@ jobs:
       [
         build-storybook-composition,
         build-storybook-angular,
+        build-storybook-html,
         build-storybook-react,
         build-storybook-vue,
         build-showcase-stencil,
