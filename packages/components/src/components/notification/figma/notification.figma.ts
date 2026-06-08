@@ -73,3 +73,15 @@ export const notifications: FigmaCodeConnect = {
 	],
 	props: notificationProps
 };
+
+export const imageNotifications: FigmaCodeConnect = {
+	urls: [
+		// (Def) Docked - Image
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:15630',
+		// Standalone - Image
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35454:16447',
+		// Overlay - Image
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35454:17920'
+	],
+	props: notificationProps
+};

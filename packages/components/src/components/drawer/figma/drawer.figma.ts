@@ -5,9 +5,9 @@ export type FigmaDrawerProps = {
 	size?: string;
 	rounded?: boolean;
 	spacing?: string;
-	backdrop?: boolean;
-	open?: boolean;
+	showBackdrop?: boolean;
 	drawerHeader?: string;
+	showText?: boolean;
 	_children?: any;
 };
 
@@ -33,12 +33,15 @@ const drawerProps: Record<string, FigmaProp> = {
 			None: 'none'
 		}
 	},
-	// TODO: Backdrop will be refactored by Design
-	backdrop: { type: 'boolean', key: 'Backdrop' },
-	open: { type: 'boolean', key: 'Open' },
+	showBackdrop: { type: 'boolean', key: 'Show Backdrop' },
 	drawerHeader: {
 		type: 'string',
-		key: 'Text',
+		key: '✏️ Text',
+		layer: '↳ Drawer HEADER'
+	},
+	showText: {
+		type: 'boolean',
+		key: 'Show Text',
 		layer: '↳ Drawer HEADER'
 	},
 	_children: {
@@ -49,11 +52,16 @@ const drawerProps: Record<string, FigmaProp> = {
 
 export const drawers: FigmaCodeConnect = {
 	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:24042',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:24813',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:25261',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:25709',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=1:26157'
+		// (Def) Right
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35452:6313',
+		// Left
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:7783',
+		// Bottom
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:8027',
+		// Top
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:8244',
+		// Full
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35471:17307'
 	],
 	props: drawerProps
 };
