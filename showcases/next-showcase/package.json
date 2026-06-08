@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
-    "@types/react": "19.2.16",
+    "@types/react": "19.2.17",
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.1",
     "open-cli": "9.0.0",
