@@ -66,7 +66,16 @@ const fixFileImports = (filePath) => {
 };
 
 /**
+ * Files matching these patterns are consumed as raw source by the Patternhub
+ * (Next.js transpilePackages) and are excluded from tsc compilation.
+ * They must NOT receive .js extensions because no compiled .js counterpart exists.
+ */
+const EXCLUDED_PATTERNS =
+	/\.(showcase|showcase-only|example|arg\.types)\.(ts|tsx)$/;
+
+/**
  * Recursively collects all .ts/.tsx files under a directory.
+ * Excludes showcase/example files that are not compiled by tsc.
  * @param {string} dir
  * @returns {string[]}
  */
@@ -77,7 +86,10 @@ const collectFiles = (dir) => {
 		const fullPath = path.resolve(dir, entry.name);
 		if (entry.isDirectory()) {
 			results.push(...collectFiles(fullPath));
-		} else if (/\.(ts|tsx)$/.test(entry.name)) {
+		} else if (
+			/\.(ts|tsx)$/.test(entry.name) &&
+			!EXCLUDED_PATTERNS.test(entry.name)
+		) {
 			results.push(fullPath);
 		}
 	}
