@@ -12,12 +12,15 @@
  *
  * Never moves issues that are "In progress" or "Waiting for feedback".
  *
- * Usage: npx tsx scripts/github/reorder-backlog.ts [--dry-run]
+ * Usage: node scripts/github/reorder-backlog.ts [--dry-run]
  * Requires: gh CLI authenticated with `project` scope
  */
 
 import { execSync } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { unlinkSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 const owner = 'db-ux-design-system';
 const repo = 'core-web';
@@ -113,19 +116,15 @@ type SortableItem = {
 // --- Helpers ---
 
 const ghGraphql = (query: string): string => {
-	const temporaryFile = 'tmp-gh-query.graphql';
+	const temporaryFile = join(tmpdir(), `gh-query-${randomUUID()}.graphql`);
 	writeFileSync(temporaryFile, query);
 	try {
-		const result = execSync(
-			'gh api graphql -F query=@tmp-gh-query.graphql',
-			{
-				encoding: 'utf8',
-				maxBuffer: 50 * 1024 * 1024
-			}
-		).trim();
+		const result = execSync(`gh api graphql -F query=@${temporaryFile}`, {
+			encoding: 'utf8',
+			maxBuffer: 50 * 1024 * 1024
+		}).trim();
 		return result;
 	} catch (error: unknown) {
-		unlinkSync(temporaryFile);
 		const message = error instanceof Error ? error.message : String(error);
 		if (message.includes('rate limit')) {
 			console.error('\n❌ GraphQL rate limit exceeded. Try again later.');
@@ -174,10 +173,12 @@ const getItemStatus = (item: ProjectItemNode): string | undefined => {
 	return undefined;
 };
 
-// --- Fetch project items via GraphQL with pagination ---
+// --- Paginated project item fetcher ---
 
 const fetchProjectItems = async (
-	statusFilter?: string
+	filter: (node: ProjectItemNode) => boolean,
+	progressLabel: string,
+	includeLabels = false
 ): Promise<ProjectItemNode[]> => {
 	const allItems: ProjectItemNode[] = [];
 	let cursor: string | undefined;
@@ -186,6 +187,9 @@ const fetchProjectItems = async (
 	while (true) {
 		page++;
 		const afterClause = cursor ? `, after: "${cursor}"` : '';
+		const labelsFragment = includeLabels
+			? 'labels(first: 20) { nodes { name } }'
+			: '';
 
 		const query = `{
   node(id: "${projectId}") {
@@ -214,12 +218,7 @@ const fetchProjectItems = async (
               title
               closedAt
               repository { nameWithOwner }
-              labels(first: 20) { nodes { name } }
-            }
-            ... on PullRequest {
-              number
-              title
-              repository { nameWithOwner }
+              ${labelsFragment}
             }
           }
         }
@@ -228,165 +227,13 @@ const fetchProjectItems = async (
   }
 }`;
 
-		process.stdout.write(`   Fetching page ${String(page)}...\r`);
+		process.stdout.write(`   ${progressLabel}, page ${String(page)}...\r`);
 		const raw = ghGraphql(query);
 		const response = JSON.parse(raw) as ProjectItemsResponse;
 		const { nodes, pageInfo } = response.data.node.items;
 
 		for (const node of nodes) {
-			if (statusFilter) {
-				const status = getItemStatus(node);
-				if (status !== statusFilter) continue;
-			}
-
-			allItems.push(node);
-		}
-
-		if (!pageInfo.hasNextPage) break;
-		cursor = pageInfo.endCursor;
-
-		// Small delay between pages
-		// eslint-disable-next-line no-await-in-loop
-		await sleep(200);
-	}
-
-	console.log('');
-	return allItems;
-};
-
-// --- Fetch backlog items (Backlog status + no status) ---
-
-const fetchBacklogItems = async (): Promise<ProjectItemNode[]> => {
-	const allItems: ProjectItemNode[] = [];
-	let cursor: string | undefined;
-	let page = 0;
-
-	while (true) {
-		page++;
-		const afterClause = cursor ? `, after: "${cursor}"` : '';
-
-		const query = `{
-  node(id: "${projectId}") {
-    ... on ProjectV2 {
-      items(first: 100${afterClause}) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          id
-          updatedAt
-          fieldValues(first: 10) {
-            nodes {
-              __typename
-              ... on ProjectV2ItemFieldSingleSelectValue {
-                field { ... on ProjectV2SingleSelectField { name } }
-                name
-              }
-            }
-          }
-          content {
-            __typename
-            ... on Issue {
-              number
-              title
-              closedAt
-              repository { nameWithOwner }
-              labels(first: 20) { nodes { name } }
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
-
-		process.stdout.write(`   Fetching page ${String(page)}...\r`);
-		const raw = ghGraphql(query);
-		const response = JSON.parse(raw) as ProjectItemsResponse;
-		const { nodes, pageInfo } = response.data.node.items;
-
-		for (const node of nodes) {
-			// Only include Issues from core-web
-			if (node.content?.__typename !== 'Issue') continue;
-			if (node.content.repository?.nameWithOwner !== `${owner}/${repo}`)
-				continue;
-
-			const status = getItemStatus(node);
-
-			// Include items with "Backlog" status or no status
-			if (status === 'Backlog' || !status) {
-				allItems.push(node);
-			}
-		}
-
-		if (!pageInfo.hasNextPage) break;
-		cursor = pageInfo.endCursor;
-
-		// eslint-disable-next-line no-await-in-loop
-		await sleep(200);
-	}
-
-	console.log('');
-	return allItems;
-};
-
-// --- Fetch Done items for archiving ---
-
-const fetchDoneItems = async (): Promise<ProjectItemNode[]> => {
-	const allItems: ProjectItemNode[] = [];
-	let cursor: string | undefined;
-	let page = 0;
-
-	while (true) {
-		page++;
-		const afterClause = cursor ? `, after: "${cursor}"` : '';
-
-		const query = `{
-  node(id: "${projectId}") {
-    ... on ProjectV2 {
-      items(first: 100${afterClause}) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          id
-          updatedAt
-          fieldValues(first: 10) {
-            nodes {
-              __typename
-              ... on ProjectV2ItemFieldSingleSelectValue {
-                field { ... on ProjectV2SingleSelectField { name } }
-                name
-              }
-            }
-          }
-          content {
-            __typename
-            ... on Issue {
-              number
-              title
-              closedAt
-              repository { nameWithOwner }
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
-
-		process.stdout.write(
-			`   Scanning for Done items, page ${String(page)}...\r`
-		);
-		const raw = ghGraphql(query);
-		const response = JSON.parse(raw) as ProjectItemsResponse;
-		const { nodes, pageInfo } = response.data.node.items;
-
-		for (const node of nodes) {
-			const status = getItemStatus(node);
-			if (status === '✅ Done') {
+			if (filter(node)) {
 				allItems.push(node);
 			}
 		}
@@ -408,12 +255,16 @@ const archiveDoneItems = async (dryRun: boolean): Promise<number> => {
 	console.log(
 		'\n🗄️  Checking for Done items to archive (older than 1 month)...'
 	);
-	const doneItems = await fetchDoneItems();
+
+	const doneItems = await fetchProjectItems(
+		(node) => getItemStatus(node) === '✅ Done',
+		'Scanning for Done items'
+	);
+
 	console.log(`   Found ${String(doneItems.length)} items in Done status`);
 
 	const now = Date.now();
 	const toArchive = doneItems.filter((item) => {
-		// Use closedAt if available, otherwise updatedAt
 		const dateString = item.content?.closedAt ?? item.updatedAt;
 		const itemDate = new Date(dateString).getTime();
 		return now - itemDate > archiveThresholdMs;
@@ -627,7 +478,18 @@ const reorderBacklog = async () => {
 
 	// Step 1: Fetch backlog items via targeted GraphQL query
 	console.log('\n📦 Fetching backlog items from core-web...');
-	const backlogItems = await fetchBacklogItems();
+	const backlogItems = await fetchProjectItems(
+		(node) => {
+			if (node.content?.__typename !== 'Issue') return false;
+			if (node.content.repository?.nameWithOwner !== `${owner}/${repo}`)
+				return false;
+			const status = getItemStatus(node);
+			return status === 'Backlog' || !status;
+		},
+		'Fetching',
+		true
+	);
+
 	console.log(
 		`   Found ${String(backlogItems.length)} backlog/no-status issues`
 	);
