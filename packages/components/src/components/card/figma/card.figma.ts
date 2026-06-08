@@ -35,11 +35,9 @@ const cardProps: Record<string, FigmaProp> = {
 			Interactive: 'interactive'
 		}
 	},
-	// Renders all children inside the card's Children slot.
-	// Connected instances render via their own Code Connect template.
-	// Non-connected wrapper frames render as plain <div> elements.
 	_children: {
-		type: 'nestedConnectedInstances'
+		type: 'children',
+		key: 'Children'
 	}
 };
 
