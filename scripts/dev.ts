@@ -3,10 +3,6 @@ import childProcess from 'node:child_process';
 
 const answersFrameworkPairs = [
 	{
-		answers: ['plain-html'],
-		framework: 'plain-html'
-	},
-	{
 		answers: ['stencil'],
 		framework: 'stencil'
 	},
@@ -27,11 +23,8 @@ const currentAnswers = await checkbox({
 	message: 'Select frameworks to develop with:',
 	choices: [
 		{
-			value: 'plain-html',
+			value: 'patternhub',
 			checked: true
-		},
-		{
-			value: 'patternhub'
 		},
 		{
 			value: 'angular'
@@ -83,8 +76,6 @@ const startDev = () => {
 	}
 
 	for (const currentAnswer of currentAnswers) {
-		if (currentAnswer === 'plain-html') continue;
-
 		startCommand += ` start-showcase:${currentAnswer}`;
 	}
 

@@ -18,7 +18,6 @@ pnpm run generate:component     # Scaffold a new component (hygen)
 pnpm run generate:docs          # Regenerate component docs
 pnpm run generate:showcase      # Generate showcase files via Mitosis
 pnpm run generate:stories       # Generate Storybook stories via Mitosis
-pnpm run dev:html               # Dev server for plain HTML showcase
 pnpm run dev:react              # Watch + recompile React output
 pnpm run dev:vue                # Watch + recompile Vue output
 pnpm run dev:angular            # Watch + recompile Angular output
