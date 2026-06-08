@@ -181,7 +181,7 @@ Showcase files in `showcases/` are generated from these and must not be edited m
 - [ ] Component confirmed to exist via `list_components`
 - [ ] Existing files analyzed
 - [ ] Tests updated FIRST (RED phase)
-- [ ] RED phase verified: test command ran, non-zero exit captured
+- [ ] RED phase verified:  ran `test` command, non-zero exit captured
 - [ ] `model.ts` updated
 - [ ] `.lite.tsx` updated (no inline styles, propOverrides preserved)
 - [ ] `.scss` updated (tokens only)
