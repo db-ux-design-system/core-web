@@ -1,4 +1,5 @@
 import type {
+	ActiveProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -45,6 +46,7 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 	IconLeadingProps &
 	ShowIconTrailingProps &
 	ShowIconLeadingProps &
+	ActiveProps &
 	WidthProps;
 
 export type DBTabItemDefaultState = {
