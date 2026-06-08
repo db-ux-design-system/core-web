@@ -353,7 +353,9 @@ const FormComponent = () => {
 						<DBTabItem icon="x_placeholder" iconTrailing="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="x_placeholder"></DBTabItem>
+						<DBTabItem
+							icon="x_placeholder"
+							label="Icon only tab"></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
