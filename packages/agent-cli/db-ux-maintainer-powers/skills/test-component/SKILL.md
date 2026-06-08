@@ -79,7 +79,7 @@ If `component_name` is not explicitly provided, derive it deterministically from
 Execute the component's tests from `output/react` (specs are generated there after `pnpm run build-outputs`):
 
 ```bash
-cd output/react && npx playwright test --config playwright.config.ts -g "DB{component_name}"
+cd output/react && pnpm exec playwright test --config playwright.config.ts -g "DB{component_name}"
 ```
 
 Alternatively, run all component tests:
