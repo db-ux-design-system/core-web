@@ -1588,14 +1588,14 @@
   - table "Flat, sortable columns are Link.":
     - caption: Flat, sortable columns are Link.
     - rowgroup:
-      - row "Check All Link Sort Link Tag Infotext Text Input Button":
+      - row "Check All Link Sort button Tag Infotext Text Input Button":
         - columnheader "Check All":
           - checkbox "Check All"
           - text: Check All
           - status
-        - columnheader "Link Sort Link":
+        - columnheader "Link Sort button":
           - text: Link
-          - button "Sort Link"
+          - button "Sort button"
         - columnheader "Tag"
         - columnheader "Infotext"
         - columnheader "Text"
@@ -1654,14 +1654,14 @@
   - table "Zebra, sortable columns are Link.":
     - caption: Zebra, sortable columns are Link.
     - rowgroup:
-      - row "Check All Link Sort Link Tag Infotext Text Input Button":
+      - row "Check All Link Sort button Tag Infotext Text Input Button":
         - columnheader "Check All":
           - checkbox "Check All"
           - text: Check All
           - status
-        - columnheader "Link Sort Link":
+        - columnheader "Link Sort button":
           - text: Link
-          - button "Sort Link"
+          - button "Sort button"
         - columnheader "Tag"
         - columnheader "Infotext"
         - columnheader "Text"
@@ -1720,14 +1720,14 @@
   - table "Spaced, sortable columns are Link.":
     - caption: Spaced, sortable columns are Link.
     - rowgroup:
-      - row "Check All Link Sort Link Tag Infotext Text Input Button":
+      - row "Check All Link Sort button Tag Infotext Text Input Button":
         - columnheader "Check All":
           - checkbox "Check All"
           - text: Check All
           - status
-        - columnheader "Link Sort Link":
+        - columnheader "Link Sort button":
           - text: Link
-          - button "Sort Link"
+          - button "Sort button"
         - columnheader "Tag"
         - columnheader "Infotext"
         - columnheader "Text"
@@ -1786,14 +1786,14 @@
   - 'table "Mobile variant: List, sortable columns are Link."':
     - caption: "Mobile variant: List, sortable columns are Link."
     - rowgroup:
-      - row "Check All Link Sort Link Tag Infotext Text Input Button":
+      - row "Check All Link Sort button Tag Infotext Text Input Button":
         - columnheader "Check All":
           - checkbox "Check All"
           - text: Check All
           - status
-        - columnheader "Link Sort Link":
+        - columnheader "Link Sort button":
           - text: Link
-          - button "Sort Link"
+          - button "Sort button"
         - columnheader "Tag"
         - columnheader "Infotext"
         - columnheader "Text"
