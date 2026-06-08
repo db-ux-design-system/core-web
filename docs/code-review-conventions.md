@@ -64,7 +64,7 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 ### Forbidden Patterns (immediate rejection)
 
 - Inline styles with pixel values
-- Invented icon names (must verify via `@db-ux/mcp-agent` MCP `list_icons`)
+- Invented icon names (must verify via `@db-ux/mcp-server` MCP `list_icons`)
 - Editing generated files in `output/`
 - Skipping `model.ts`
 - Implementing designs without referencing the Figma URL in the PR description or linked issue

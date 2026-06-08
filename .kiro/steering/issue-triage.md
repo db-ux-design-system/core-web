@@ -187,9 +187,9 @@ Add matching labels alongside the `🤖ai-triaged` label (see next step).
 
 Add the label `🤖ai-triaged` to mark that this issue has been processed by the AI triage bot.
 
-**Note**: This label may not exist yet. If the GitHub API returns an error when adding it, the label will be auto-created by GitHub when assigned (GitHub auto-creates labels on issues). Alternatively, create it manually first with color `7057ff` and description `Issue triaged by AI bot`.
+**Label creation**: Before assigning the label, verify it exists using `mcp_github_get_label`. If the label does not exist, create it first using `mcp_github_issue_write` with the `labels` array (GitHub auto-creates labels when assigned via the API). If that fails, inform the user that the label needs to be created manually with color `7057ff` and description `Issue triaged by AI bot`.
 
-Use `mcp_github_issue_write` (method: `update`) with the full label list (existing + new labels).
+**Preserving existing labels**: To avoid accidentally removing labels added by other users or automations, always **re-read the current labels** immediately before updating (using `mcp_github_issue_read` method `get_labels`). Then merge the new labels into the current set. Use `mcp_github_issue_write` (method: `update`) with the **complete merged label list** (all existing labels + new labels to add).
 
 ### Step 7: Post Summary Comment
 
@@ -242,6 +242,8 @@ To help us resolve this faster, please provide:
 - <list specific missing required fields>
 ```
 
+**Important**: For incomplete issues, do **NOT** add the `🤖ai-triaged` label yet. Instead, add a `⏳waiting-for-info` label (or equivalent). This ensures the issue will be re-triaged in subsequent batch runs once the author provides the missing information. Only add `🤖ai-triaged` after the issue is rated ✅ Complete or ⚠️ Partial.
+
 ---
 
 ## Batch Issue Triage
@@ -257,7 +259,10 @@ Use mcp_github_list_issues with:
   - owner: db-ux-design-system
   - repo: core-web
   - state: OPEN
+  - perPage: 100
 ```
+
+**Paginate**: Follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false. Collect all pages before filtering.
 
 Then filter out any issues that already have the `🤖ai-triaged` label in their labels array.
 
