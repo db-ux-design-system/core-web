@@ -143,19 +143,28 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 
 Use `mcp_github_pull_request_review_write` to submit the review.
 
+**AI Review Identification:** Since the review is posted via a personal access token (PAT) under a human user's avatar, **always prefix the review body and every line comment with 🤖** to make it clear this is an AI-generated review. Example: "🤖 **AI Review** — ..." for the summary body, and "🤖 ..." for each line comment.
+
 **Always add inline line comments** for every specific issue found during review. Each issue should have a comment on the exact line(s) it refers to. Additionally, include a summary body in the review submission that provides an overview of all findings.
 
-**Correct sequence:**
+**Never APPROVE directly.** Instead:
+
+1. Submit the review as **COMMENT** (not APPROVE).
+2. If the PR looks good and has no blocking issues, add a separate PR comment (using `mcp_github_add_issue_comment`) that:
+    - Tags the user `@nmerget` to inform them the PR can be approved
+    - Includes a short message like "🤖 Hey @nmerget — this PR looks good to go! You can approve and merge."
+    - Includes a fun/celebratory GIF (use a markdown image link to a gif, e.g. from giphy: `![LGTM](https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif)`)
+
+**Correct sequence for reviews with findings:**
 
 1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create` (omit `event` to keep it pending)
-2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each specific issue, placed on the relevant line in the diff. Every actionable finding must have its own line comment — do not only summarize in the review body.
-3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` and the appropriate event:
-    - **APPROVE** — No blocking issues, code is ready to merge
+2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each specific issue, placed on the relevant line in the diff. Every actionable finding must have its own line comment — do not only summarize in the review body. Prefix each comment with 🤖.
+3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` with event **COMMENT** or **REQUEST_CHANGES** (never APPROVE):
     - **COMMENT** — Minor suggestions, non-blocking feedback
     - **REQUEST_CHANGES** — Blocking issues that must be addressed
-    - Include a summary body that lists all findings as an overview.
+    - Prefix the summary body with "🤖 **AI Review**"
 
-**For reviews without inline comments** (e.g. pure approvals), you can create and submit in one step by calling `mcp_github_pull_request_review_write` with method `create` and providing the `event` parameter.
+**For reviews without issues** (PR looks good), submit as **COMMENT** with a body like "🤖 **AI Review** — No issues found. LGTM!" and then post a separate issue comment tagging the user with a GIF.
 
 ## Responding to Review Feedback
 
