@@ -1,0 +1,36 @@
+---
+name: Reorder Backlog
+
+permissions:
+  contents: read
+  issues: read
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Every Monday at 06:00 UTC
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  reorder:
+    name: Reorder UX Engineering Backlog
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6.0.2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🔀 Reorder backlog
+        run: npx tsx scripts/github/reorder-backlog.ts
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
