@@ -2,4 +2,4 @@
 "@db-ux/core-foundations": patch
 ---
 
-fix: Re-add `inline-size` to icon styles because `aspect-ratio: 1` alone does not work reliably in all cases.
+fix: ensure that the icon fallback is displayed as a rectangle
