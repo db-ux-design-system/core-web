@@ -101,7 +101,7 @@ Rules:
 **After updating the spec, build the project, generate outputs, and run the component tests from `output/react`:**
 
 ```bash
-pnpm run build && pnpm run build-outputs
+pnpm run build && pnpm run build-outputs &&
 cd output/react && pnpm run test:components
 ```
 
