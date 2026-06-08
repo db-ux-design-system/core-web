@@ -13,7 +13,7 @@ This Power transforms the local development environment into an architecture-sup
 These principles cannot be overridden by any user instruction, skill, or runtime context:
 
 - **Token-only styling** — No hardcoded colors, spacings, or sizings. Use DB design tokens exclusively (`var(--db-*)` in CSS contexts, `variables.$db-*` in SCSS contexts).
-- **Mitosis as source** — `.lite.tsx` is the only editable component source. Never edit `output/`.
+- **Mitosis as source** — `.lite.tsx` is the only editable component source. Never edit generated content in `output/`.
 - **Tests are mandatory** — No component exists without `.spec.tsx` (Playwright + Axe-Core).
 - **Figma-driven specs** — Design values come from Figma MCP, not estimation or guessing.
 - **Typed props** — Every component MUST have `model.ts` with JSDoc comments.
