@@ -16,10 +16,10 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-button', props.className)}
 			data-icon={props.iconLeading ?? props.icon}
-			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon,
-				'showIcon'
-			)}
+			data-show-icon={
+				getBooleanAsString(props.showIconLeading, 'showIconLeading') ||
+				getBooleanAsString(props.showIcon, 'showIcon')
+			}
 			data-icon-trailing={props.iconTrailing}
 			data-show-icon-trailing={getBooleanAsString(
 				props.showIconTrailing,

@@ -291,10 +291,10 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon,
-				'showIcon'
-			)}
+			data-show-icon={
+				getBooleanAsString(props.showIconLeading, 'showIconLeading') ||
+				getBooleanAsString(props.showIcon, 'showIcon')
+			}
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

@@ -45,6 +45,18 @@ describe('getBooleanAsString', () => {
 		expect(getBooleanAsString('random', 'showIcon')).toBe('false');
 	});
 
+	it('returns "false" when showIconLeading value is compared against wrong propertyName', () => {
+		// This documents the bug where propertyName was hardcoded to 'showIcon'
+		// but the value came from showIconLeading prop
+		expect(getBooleanAsString('showIconLeading', 'showIcon')).toBe('false');
+	});
+
+	it('returns "true" when showIconLeading value matches its own propertyName', () => {
+		expect(getBooleanAsString('showIconLeading', 'showIconLeading')).toBe(
+			'true'
+		);
+	});
+
 	it('ignores propertyName when originBool is a boolean', () => {
 		expect(getBooleanAsString(true, 'showIcon')).toBe('true');
 		expect(getBooleanAsString(false, 'showIcon')).toBe('false');

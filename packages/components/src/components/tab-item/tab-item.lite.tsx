@@ -147,10 +147,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 				htmlFor={props.id ?? props.propOverrides?.id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
-				data-show-icon={getBooleanAsString(
-					props.showIconLeading ?? props.showIcon,
-					'showIcon'
-				)}
+				data-show-icon={
+					getBooleanAsString(
+						props.showIconLeading,
+						'showIconLeading'
+					) || getBooleanAsString(props.showIcon, 'showIcon')
+				}
 				data-show-icon-trailing={getBooleanAsString(
 					props.showIconTrailing,
 					'showIconTrailing'
