@@ -396,11 +396,14 @@ const buildTemplate = (json, target) => {
 			const sourceExpr = fProp.layer
 				? `((_ccLayers.find((l) => l.name.includes('${fProp.layer}')) ?? instance) as figma.InstanceHandle)`
 				: `instance`;
+			const guardCheck = fProp.layer
+				? `_${propName}GuardSource.getPropertyValue(_findKey('${guardKey}', _${propName}GuardSource)) === true || _${propName}GuardSource.getPropertyValue(_findKey('${guardKey}', _${propName}GuardSource)) === 'True'`
+				: `_ccLayers.flatMap((l) => l.children).filter((c): c is figma.InstanceHandle => c.type === 'INSTANCE').some((c) => c.name.includes('${guardKey}') && (c.properties?.Value?.value === 'true' || c.properties?.Value?.value === 'True' || c.properties?.Value?.value === true))`;
 			return [
 				`const _${propName}Source = ${sourceExpr}`,
-				`const _${propName}Value = ((r) => r && r[0]?.type === 'CODE' ? r[0].code : undefined)(_${propName}Source.getInstanceSwap(_findKey('${key}', _${propName}Source))?.executeTemplate()?.example)`,
+				`const _${propName}Value = ((r) => r && r[0]?.type === 'CODE' ? r[0].code : r)(_${propName}Source.getInstanceSwap(_findKey('${key}', _${propName}Source))?.executeTemplate()?.example)`,
 				`let ${propName} = ''`,
-				`if ((_${propName}Source.getPropertyValue(_findKey('${guardKey}', _${propName}Source)) === true || _${propName}Source.getPropertyValue(_findKey('${guardKey}', _${propName}Source)) === 'True') && _${propName}Value !== undefined && _${propName}Value !== null) {`,
+				`if ((${guardCheck}) && _${propName}Value !== undefined && _${propName}Value !== null) {`,
 				attrAssign,
 				`}`
 			].join('\n');

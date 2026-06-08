@@ -1,7 +1,5 @@
 import { useMetadata } from '@builder.io/mitosis';
 import DBBrand from '../../brand/brand.lite';
-import DBButton from '../../button/button.lite';
-import DBLink from '../../link/link.lite';
 import { DBHeader } from '../index';
 import { FigmaHeaderProps, headers } from './header.figma';
 
@@ -14,28 +12,22 @@ export default function HeaderFigmaLite(props: FigmaHeaderProps) {
 		<DBHeader
 			brand={<DBBrand>Application Name</DBBrand>}
 			metaNavigation={
-				<>
-					<DBLink href="#">Imprint</DBLink>
-					<DBLink href="#">Help</DBLink>
-				</>
+				<span>
+					TODO: Replace these placeholders with proper Code Connect
+					mappings — they cannot be resolved automatically
+				</span>
 			}
 			primaryAction={
-				<DBButton icon="magnifying_glass" variant="ghost" noText>
-					Search
-				</DBButton>
+				<span>
+					TODO: Replace these placeholders with proper Code Connect
+					mappings — they cannot be resolved automatically
+				</span>
 			}
 			secondaryAction={
-				<>
-					<DBButton icon="x_placeholder" variant="ghost" noText>
-						Profile
-					</DBButton>
-					<DBButton icon="x_placeholder" variant="ghost" noText>
-						Notification
-					</DBButton>
-					<DBButton icon="x_placeholder" variant="ghost" noText>
-						Help
-					</DBButton>
-				</>
+				<span>
+					TODO: Replace these placeholders with proper Code Connect
+					mappings — they cannot be resolved automatically
+				</span>
 			}>
 			{props._children}
 		</DBHeader>

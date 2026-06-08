@@ -21,6 +21,7 @@ export type FigmaCustomSelectProps = {
 	message?: string;
 	showClearSelection?: boolean;
 	clearSelectionText?: string;
+	showSearch?: boolean;
 	showLoading?: boolean;
 	showNoResults?: boolean;
 	showSelectAll?: boolean;

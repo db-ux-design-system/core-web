@@ -41,10 +41,6 @@ const drawerProps: Record<string, FigmaProp> = {
 		key: 'Text',
 		layer: '↳ Drawer HEADER'
 	},
-
-	// Renders all children inside the card's Children slot.
-	// Connected instances render via their own Code Connect template.
-	// Non-connected wrapper frames render as plain <div> elements.
 	_children: {
 		type: 'children',
 		key: 'Children'
