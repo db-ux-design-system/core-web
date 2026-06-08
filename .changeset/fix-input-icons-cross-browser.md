@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-Fix DBInput date/time custom icon behavior across browsers and keep native picker/cancel hit targets clickable.
+fix(DBInput): date/time custom icon behavior across browsers and keep native picker/cancel hit targets clickable.
