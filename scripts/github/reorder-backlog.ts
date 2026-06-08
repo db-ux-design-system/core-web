@@ -443,11 +443,7 @@ const reorderItems = async (sortedItems: SortableItem[]): Promise<void> => {
     itemId: "${item.itemId}"
     ${afterClause}
   }) {
-    items {
-      nodes {
-        id
-      }
-    }
+    clientMutationId
   }
 }`;
 
