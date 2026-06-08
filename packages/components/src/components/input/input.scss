@@ -67,25 +67,30 @@ $icon-padding: calc(
 		}
 	}
 
-	// Universal date/time types: Custom icons for all browsers (Chromium, Firefox, Safari)
+	// Universal date/time types: custom icons for all browsers (Chromium, Firefox, Safari)
 	&:has(input[type="date"]),
 	&:has(input[type="datetime-local"]) {
 		--db-form-component-padding-inline-end: calc(
 			1lh + #{variables.$db-spacing-fixed-xs}
 		);
-	}
 
-	&:has(input[type="date"]),
-	&:has(input[type="datetime-local"]) {
 		@include icons.set-icon("calendar", "after");
 	}
 
 	&:has(input[type="time"]) {
+		--db-form-component-padding-inline-end: calc(
+			1lh + #{variables.$db-spacing-fixed-xs}
+		);
+
 		@include icons.set-icon("clock", "after");
 	}
 
-	// Ensure custom icons (::after) don't block clicks on native triggers
-	&::after {
+	// Ensure custom icons (::after) don't block clicks on date/time native triggers
+	&:has(
+			input[type="date"],
+			input[type="datetime-local"],
+			input[type="time"]
+		)::after {
 		pointer-events: none;
 	}
 
@@ -155,6 +160,8 @@ $icon-padding: calc(
 			background-image: none;
 			position: absolute;
 			inset-inline-end: var(--db-spacing-fixed-sm);
+
+			// Keep native (invisible) hit target above the custom ::after icon layer.
 			z-index: 1;
 
 			// Those are set by browser on element directly
