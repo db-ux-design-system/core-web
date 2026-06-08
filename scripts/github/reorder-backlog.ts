@@ -33,7 +33,6 @@ const effortFieldId = 32_123_225;
 const statusFieldId = 'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0';
 const backlogOptionId = 'eddf8fe8';
 const inProgressOptionId = 'c2179bcd';
-const waitingForFeedbackOptionId = '830d17a3';
 
 // Team members (codeowners)
 const codeowners = new Set(['mfranzke', 'nmerget', 'michaelmkraus']);
