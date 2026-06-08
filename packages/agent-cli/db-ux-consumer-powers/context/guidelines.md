@@ -8,7 +8,7 @@
 
 - **NEVER** use native interactive HTML elements (`<button>`, `<input>`, `<select>`, `<textarea>`) when a DB UX component exists.
 - **ALWAYS** use DB UX equivalents: `DBButton`, `DBInput`, `DBSelect`, `DBTextarea`.
-- **DO NOT** replace `<a>` tags with `DBLink` when they are used for framework routing (e.g. react-router `<Link>`, Angular `routerLink`). Only replace `<a>` when it is explicitly styled as a standalone UI action.
+- **DO NOT** replace `<a href>` tags with `DBLink` when they are used for framework routing (e.g. react-router `<Link>`, Angular `routerLink`). Only replace `<a href>` when it is explicitly styled as a standalone UI action.
 - **Layout**: Use `DBStack`, `DBSection`, or `DBCard` for layout grouping instead of bare `<div>` wrappers. A plain `<div>` is only acceptable when no semantic grouping or design system layout is needed.
 
 ## Tokens
