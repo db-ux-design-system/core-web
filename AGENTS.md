@@ -287,6 +287,7 @@ Manual-inclusion steering files for specialized workflows. Activate in Kiro chat
 | -------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `#code-review`       | `.kiro/steering/code-review.md`       | Perform a PR code review using GitHub MCP tools (checkout branch, gather context, review, submit feedback) |
 | `#pre-commit-review` | `.kiro/steering/pre-commit-review.md` | Self-review checklist before committing and pushing to a new branch                                        |
+| `#issue-triage`      | `.kiro/steering/issue-triage.md`      | Triage issues: validate template, label, set priority/effort, post AI summary, batch-process new issues    |
 
 ---
 
