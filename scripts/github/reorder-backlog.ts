@@ -685,6 +685,76 @@ const reorderBacklog = async () => {
 	// Step 0c: Process "Waiting for Feedback" items
 	await processWaitingForFeedback(allCoreWebItems, dryRun);
 
+	// Step 0d: Add unconnected open issues to the project
+	console.log('\n🔗 Checking for open issues not in the project...');
+	const projectIssueNumbers = new Set(
+		allCoreWebItems
+			.filter((item) => item.content?.number)
+			.map((item) => item.content!.number!)
+	);
+
+	// Fetch open issues from repo that have the communityFeedback label but aren't in the project
+	let unconnectedCount = 0;
+	try {
+		let page = 1;
+		let hasMore = true;
+		while (hasMore) {
+			const issuesJson = ghRest(
+				`repos/${owner}/${repo}/issues?state=open&per_page=100&page=${String(page)}`
+			);
+			const issues = JSON.parse(issuesJson) as Array<{
+				number: number;
+				html_url: string;
+				title: string;
+				pull_request?: unknown;
+			}>;
+
+			if (issues.length === 0) {
+				hasMore = false;
+				break;
+			}
+
+			for (const issue of issues) {
+				// Skip PRs (they have a pull_request field)
+				if (issue.pull_request) continue;
+				if (projectIssueNumbers.has(issue.number)) continue;
+
+				console.log(
+					`   ➕ Adding #${String(issue.number)} to project: ${issue.title.slice(0, 50)}`
+				);
+				if (dryRun) {
+					unconnectedCount++;
+					continue;
+				}
+
+				try {
+					execSync(
+						`gh project item-add 6 --owner ${owner} --url "${issue.html_url}"`,
+						{ encoding: 'utf8' }
+					);
+					unconnectedCount++;
+				} catch {
+					console.warn(
+						`\n   ⚠️  Failed to add #${String(issue.number)} to project`
+					);
+				}
+			}
+
+			page++;
+		}
+	} catch (error: unknown) {
+		console.warn('   ⚠️  Error fetching open issues from repo');
+		console.warn(error instanceof Error ? error.message : String(error));
+	}
+
+	if (unconnectedCount > 0) {
+		console.log(
+			`   Added ${String(unconnectedCount)} issues to the project`
+		);
+	} else {
+		console.log('   ✅ All open issues are already in the project');
+	}
+
 	// Step 1: Fetch backlog items via targeted GraphQL query
 	console.log('\n📦 Fetching backlog items from core-web...');
 	const backlogItems = await fetchProjectItems(
