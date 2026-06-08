@@ -64,9 +64,9 @@ export default function TableComplex() {
 										variant="ghost"
 										icon="arrows_vertical"
 										noText>
-										Sort Link
+										Sort button
 										<DBTooltip placement="top">
-											Sort Link
+											Sort button
 										</DBTooltip>
 									</DBButton>
 								</div>
@@ -264,9 +264,9 @@ export default function TableComplex() {
 										variant="ghost"
 										icon="arrows_vertical"
 										noText>
-										Sort Link
+										Sort button
 										<DBTooltip placement="top">
-											Sort Link
+											Sort button
 										</DBTooltip>
 									</DBButton>
 								</div>
@@ -464,9 +464,9 @@ export default function TableComplex() {
 										variant="ghost"
 										icon="arrows_vertical"
 										noText>
-										Sort Link
+										Sort button
 										<DBTooltip placement="top">
-											Sort Link
+											Sort button
 										</DBTooltip>
 									</DBButton>
 								</div>
@@ -664,9 +664,9 @@ export default function TableComplex() {
 										variant="ghost"
 										icon="arrows_vertical"
 										noText>
-										Sort Link
+										Sort button
 										<DBTooltip placement="top">
-											Sort Link
+											Sort button
 										</DBTooltip>
 									</DBButton>
 								</div>

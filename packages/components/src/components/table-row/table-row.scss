@@ -4,7 +4,7 @@
 @use "./../../styles/internal/table-components";
 
 $interactive-row-action: '[data-table-row-trigger="true"]';
-$interactive-nested-child: "#{$interactive-row-action} input,textarea,select";
+$interactive-nested-child: "#{$interactive-row-action} :is(input, textarea, select)";
 $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-elements}),#{$interactive-nested-child})";
 
 %full-absolute {
