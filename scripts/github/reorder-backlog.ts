@@ -116,12 +116,29 @@ const ghGraphql = (query: string): string => {
 	const temporaryFile = 'tmp-gh-query.graphql';
 	writeFileSync(temporaryFile, query);
 	try {
-		return execSync('gh api graphql -F query=@tmp-gh-query.graphql', {
-			encoding: 'utf8',
-			maxBuffer: 50 * 1024 * 1024
-		}).trim();
-	} finally {
+		const result = execSync(
+			'gh api graphql -F query=@tmp-gh-query.graphql',
+			{
+				encoding: 'utf8',
+				maxBuffer: 50 * 1024 * 1024
+			}
+		).trim();
+		return result;
+	} catch (error: unknown) {
 		unlinkSync(temporaryFile);
+		const message = error instanceof Error ? error.message : String(error);
+		if (message.includes('rate limit')) {
+			console.error('\n❌ GraphQL rate limit exceeded. Try again later.');
+			process.exit(1);
+		}
+
+		throw error;
+	} finally {
+		try {
+			unlinkSync(temporaryFile);
+		} catch {
+			// File already removed
+		}
 	}
 };
 
@@ -185,7 +202,7 @@ const fetchProjectItems = async (
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
-                field { name }
+                field { ... on ProjectV2SingleSelectField { name } }
                 name
               }
             }
@@ -263,7 +280,7 @@ const fetchBacklogItems = async (): Promise<ProjectItemNode[]> => {
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
-                field { name }
+                field { ... on ProjectV2SingleSelectField { name } }
                 name
               }
             }
@@ -340,7 +357,7 @@ const fetchDoneItems = async (): Promise<ProjectItemNode[]> => {
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
-                field { name }
+                field { ... on ProjectV2SingleSelectField { name } }
                 name
               }
             }
@@ -441,7 +458,19 @@ const archiveDoneItems = async (dryRun: boolean): Promise<number> => {
 
 		try {
 			ghGraphql(mutation);
-		} catch {
+		} catch (error: unknown) {
+			const message =
+				error instanceof Error ? error.message : String(error);
+			if (message.includes('required scopes')) {
+				console.error(
+					'\n   ❌ Token lacks `project` write scope. Archiving requires a token with the `project` scope.'
+				);
+				console.error(
+					'      Skipping archive step. This will work in CI with the GitHub App token.'
+				);
+				return 0;
+			}
+
 			console.warn(`\n   ⚠️  Failed to archive item ${item.id}`);
 		}
 
