@@ -1,6 +1,13 @@
 import components, { Overwrite } from './components';
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	readdirSync,
+	readFileSync,
+	statSync,
+	writeFileSync
+} from 'node:fs';
+import { dirname, extname, resolve } from 'node:path';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
@@ -87,6 +94,95 @@ const overwriteFragmentMap = (input: string) => {
 			return line;
 		})
 		.join('\n');
+};
+
+const collectSourceFiles = (root: string): string[] => {
+	const sourceFiles: string[] = [];
+
+	for (const entry of readdirSync(root, { withFileTypes: true })) {
+		const entryPath = resolve(root, entry.name);
+		if (entry.isDirectory()) {
+			sourceFiles.push(...collectSourceFiles(entryPath));
+			continue;
+		}
+
+		if (entry.isFile() && ['.ts', '.tsx'].includes(extname(entry.name))) {
+			sourceFiles.push(entryPath);
+		}
+	}
+
+	return sourceFiles;
+};
+
+const resolveEsmImportPath = (
+	importPath: string,
+	sourceFilePath: string
+): string => {
+	if (!importPath.startsWith('.')) {
+		return importPath;
+	}
+
+	if (/\.(js|mjs|cjs|json|css|scss)$/.test(importPath)) {
+		return importPath;
+	}
+
+	const absoluteImportPath = resolve(dirname(sourceFilePath), importPath);
+
+	if (
+		existsSync(absoluteImportPath) &&
+		statSync(absoluteImportPath).isDirectory()
+	) {
+		if (
+			existsSync(resolve(absoluteImportPath, 'index.ts')) ||
+			existsSync(resolve(absoluteImportPath, 'index.tsx'))
+		) {
+			return `${importPath}/index.js`;
+		}
+	}
+
+	if (
+		existsSync(`${absoluteImportPath}.ts`) ||
+		existsSync(`${absoluteImportPath}.tsx`)
+	) {
+		return `${importPath}.js`;
+	}
+
+	return importPath;
+};
+
+const overwriteEsmImportExtensions = (tmp?: boolean) => {
+	const sourceRoot = `../../${tmp ? 'output/tmp' : 'output'}/react/src`;
+	const sourceFiles = collectSourceFiles(sourceRoot);
+
+	for (const sourceFilePath of sourceFiles) {
+		const sourceCode = readFileSync(sourceFilePath).toString('utf-8');
+
+		const withFromImports = sourceCode.replace(
+			/(from\s+['"])(\.[^'"]+)(['"])/g,
+			(_match, prefix: string, importPath: string, suffix: string) => {
+				const resolvedImportPath = resolveEsmImportPath(
+					importPath,
+					sourceFilePath
+				);
+				return `${prefix}${resolvedImportPath}${suffix}`;
+			}
+		);
+
+		const normalizedSourceCode = withFromImports.replace(
+			/(import\s+['"])(\.[^'"]+)(['"])/g,
+			(_match, prefix: string, importPath: string, suffix: string) => {
+				const resolvedImportPath = resolveEsmImportPath(
+					importPath,
+					sourceFilePath
+				);
+				return `${prefix}${resolvedImportPath}${suffix}`;
+			}
+		);
+
+		if (normalizedSourceCode !== sourceCode) {
+			writeFileSync(sourceFilePath, normalizedSourceCode);
+		}
+	}
 };
 
 export default (tmp?: boolean) => {
@@ -179,6 +275,8 @@ export default DB${upperComponentName};`
 
 			runReplacements(replacements, component, 'react', tsxFile);
 		}
+
+		overwriteEsmImportExtensions(tmp);
 	} catch (error) {
 		console.error('Error occurred:', error);
 	}
