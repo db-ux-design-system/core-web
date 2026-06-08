@@ -1,5 +1,17 @@
 # @db-ux/core-postcss-plugin
 
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
 ## 4.9.1
 
 _version bump_
