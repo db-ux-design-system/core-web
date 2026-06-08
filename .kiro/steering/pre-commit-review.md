@@ -110,7 +110,9 @@ Once all checks pass:
     <summary of what changed and why>
     ```
 
-5. **Push with tracking**: `git push -u origin <branch-name>`
+5. **Let Husky run** — Do NOT use `--no-verify` unless Husky blocks due to a missing `.env` `COMMIT_MAIL`. The pre-commit hook validates the branch name, checks `COMMIT_MAIL`, and runs `lint-staged` (linting + Prettier). These checks must pass before pushing.
+
+6. **Push with tracking**: `git push -u origin <branch-name>`
 
 ### Step 7: PR Description Preparation
 
@@ -137,5 +139,5 @@ pnpm run build-outputs # ~2min — framework outputs build
 - Leaving `console.log` or debug statements
 - Committing generated `output/` files that should only change via `.lite.tsx`
 - Branch names with `/` (breaks CI preview URLs)
-- Missing `--no-verify` when Husky blocks due to missing `.env` `COMMIT_MAIL`
+- Using `--no-verify` unnecessarily — Husky runs branch name validation, `COMMIT_MAIL` check, and `lint-staged` (linting + Prettier). Only skip if `.env` `COMMIT_MAIL` is missing.
 - Committing on `main` instead of creating a feature branch first

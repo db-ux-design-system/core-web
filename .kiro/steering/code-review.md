@@ -126,6 +126,14 @@ For each changed file, check:
 
 Apply the conventions from `docs/code-review-conventions.md` (included above via file reference).
 
+### Step 5b: Verify Husky Compliance
+
+When reviewing a PR, check that the Husky pre-commit hook would pass for the changes:
+
+- **Branch name validation** — branch name follows the `-` separator convention (no `/`)
+- **lint-staged** — changed files pass linting and Prettier formatting
+- If the PR has CI lint failures that correspond to lint-staged checks, flag them — the author likely bypassed Husky with `--no-verify`
+
 ### Step 6: Submit the Review
 
 Use `mcp_github_pull_request_review_write` to submit the review.
