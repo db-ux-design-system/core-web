@@ -90,6 +90,42 @@ const testActions = () => {
 		await component.getByRole('tab', { name: 'Tab Y' }).click();
 		expect(receivedValue).toBeUndefined();
 	});
+
+	test('should ignore bubbled change events from nested controls in tab panels', async ({
+		mount
+	}) => {
+		expect(activeTabIndex).toBe(undefined);
+
+		const component = await mount(
+			<DBTabs onIndexChange={(index: number) => (activeTabIndex = index)}>
+				<DBTabList>
+					<DBTabItem>Tab 1</DBTabItem>
+					<DBTabItem>Tab 2</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>
+					<label>
+						<input data-testid="nested-checkbox" type="checkbox" />
+						Nested control
+					</label>
+				</DBTabPanel>
+				<DBTabPanel>Panel 2</DBTabPanel>
+			</DBTabs>
+		);
+
+		const nestedCheckbox = component.getByTestId('nested-checkbox');
+		await nestedCheckbox.evaluate((el) => {
+			el.dispatchEvent(new Event('input', { bubbles: true }));
+			el.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+
+		expect(activeTabIndex).toBe(undefined);
+		await expect(
+			component.getByRole('tab', { name: 'Tab 1' })
+		).toHaveAttribute('aria-selected', 'true');
+		await expect(
+			component.getByRole('tab', { name: 'Tab 2' })
+		).toHaveAttribute('aria-selected', 'false');
+	});
 };
 
 const testA11y = () => {
