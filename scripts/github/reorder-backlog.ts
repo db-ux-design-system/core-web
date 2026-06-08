@@ -35,7 +35,12 @@ const backlogOptionId = 'eddf8fe8';
 const inProgressOptionId = 'c2179bcd';
 
 // Team members (codeowners)
-const codeowners = new Set(['mfranzke', 'nmerget', 'michaelmkraus']);
+const codeowners = new Set([
+	'mfranzke',
+	'nmerget',
+	'michaelmkraus',
+	'bruno-sch'
+]);
 
 const priorityRank: Record<string, number> = {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -59,6 +64,12 @@ const defaultEffortRank = 4;
 // Max age for Done items before archiving (in milliseconds)
 const archiveThresholdMs = 30 * 24 * 60 * 60 * 1000; // 1 month
 
+// Stale threshold for "Waiting for Feedback" reminders (14 days)
+const staleThresholdMs = 14 * 24 * 60 * 60 * 1000;
+
+// Bot login used for posting reminders (GitHub App)
+const botLogin = 'db-ux-design-system[bot]';
+
 // --- Types ---
 
 type ProjectItemNode = {
@@ -69,7 +80,10 @@ type ProjectItemNode = {
 			__typename: string;
 			field?: { name: string };
 			name?: string;
-			pullRequests?: { nodes: Array<{ number: number; state: string }> };
+			pullRequests?: {
+				nodes: Array<{ number: number; state: string }>;
+				pageInfo?: { hasNextPage: boolean };
+			};
 		}>;
 	};
 	content:
@@ -234,8 +248,9 @@ const fetchProjectItems = async (
               }
               ... on ProjectV2ItemFieldPullRequestValue {
                 field { ... on ProjectV2Field { name } }
-                pullRequests(first: 5) {
+                pullRequests(first: 50) {
                   nodes { number state }
+                  pageInfo { hasNextPage }
                 }
               }
             }
@@ -287,8 +302,14 @@ const archiveDoneItems = async (dryRun: boolean): Promise<number> => {
 	);
 
 	const doneItems = await fetchProjectItems(
-		(node) => getItemStatus(node) === '✅ Done',
-		'Scanning for Done items'
+		(node) => {
+			if (node.content?.__typename !== 'Issue') return false;
+			if (node.content.repository?.nameWithOwner !== `${owner}/${repo}`)
+				return false;
+			return getItemStatus(node) === '✅ Done';
+		},
+		'Scanning for Done items',
+		false
 	);
 
 	console.log(`   Found ${String(doneItems.length)} items in Done status`);
@@ -413,9 +434,12 @@ const fetchIssueFields = async (
 
 		try {
 			const issueJson = ghRest(
-				`repos/${owner}/${repo}/issues/${String(number)}`
+				`repos/${owner}/${repo}/issues/${String(number)}/issue-field-values`
 			);
-			const issueData = JSON.parse(issueJson) as IssueApiResponse;
+			const fieldValues = JSON.parse(issueJson) as IssueFieldValue[];
+			const issueData: IssueApiResponse = {
+				issue_field_values: fieldValues
+			};
 			const fields = extractFieldValues(issueData);
 			priority = fields.priority;
 			effort = fields.effort;
@@ -514,16 +538,23 @@ const processWaitingForFeedback = async (
 		const issueAuthor = item.content?.author?.login;
 		if (!issueAuthor) continue;
 
-		// Fetch the latest comment
+		// Fetch the latest comment by paginating to the last page
 		let lastCommentAuthor: string | undefined;
+		let lastCommentCreatedAt: string | undefined;
 		try {
+			// First, get page 1 to check if there are more pages via Link header
+			// Use sort=created&direction=desc to get latest comment first
 			const commentsJson = ghRest(
-				`repos/${owner}/${repo}/issues/${String(number)}/comments?per_page=100`
+				`repos/${owner}/${repo}/issues/${String(number)}/comments?per_page=1&sort=created&direction=desc`
 			);
 			const comments = JSON.parse(commentsJson) as Array<{
 				user?: { login: string };
+				created_at?: string;
 			}>;
-			lastCommentAuthor = comments.at(-1)?.user?.login;
+			if (comments.length > 0) {
+				lastCommentAuthor = comments[0]?.user?.login;
+				lastCommentCreatedAt = comments[0]?.created_at;
+			}
 		} catch {
 			console.warn(
 				`\n   ⚠️  Could not fetch comments for #${String(number)}`
@@ -532,6 +563,11 @@ const processWaitingForFeedback = async (
 		}
 
 		if (!lastCommentAuthor) continue;
+
+		// Skip if the last comment is from our bot (already reminded)
+		if (lastCommentAuthor === botLogin) {
+			continue;
+		}
 
 		if (lastCommentAuthor === issueAuthor) {
 			// Creator responded → move back to Backlog (codeowners need to act)
@@ -558,7 +594,17 @@ const processWaitingForFeedback = async (
 				}
 			}
 		} else if (!codeowners.has(lastCommentAuthor)) {
-			// Last comment is not from a codeowner and not from the creator → post stale comment
+			// Last comment is not from a codeowner and not from the creator
+			// Check staleness before posting a reminder
+			const commentAge = lastCommentCreatedAt
+				? Date.now() - new Date(lastCommentCreatedAt).getTime()
+				: 0;
+
+			if (commentAge < staleThresholdMs) {
+				// Not stale yet, skip
+				continue;
+			}
+
 			console.log(
 				`   💬 #${String(number)}: no codeowner response → posting stale reminder`
 			);
@@ -617,12 +663,6 @@ const reorderBacklog = async () => {
 		return (status === 'Backlog' || !status) && hasOpenPullRequest(item);
 	});
 
-	// In Progress items without open PR → move back to Backlog
-	const moveToBacklog = allCoreWebItems.filter((item) => {
-		const status = getItemStatus(item);
-		return status === '🏗 In progress' && !hasOpenPullRequest(item);
-	});
-
 	if (moveToInProgress.length > 0) {
 		console.log(
 			`   📤 ${String(moveToInProgress.length)} backlog items have open PRs → moving to "In Progress"`
@@ -650,34 +690,7 @@ const reorderBacklog = async () => {
 		}
 	}
 
-	if (moveToBacklog.length > 0) {
-		console.log(
-			`   📥 ${String(moveToBacklog.length)} in-progress items have no open PRs → moving to "Backlog"`
-		);
-		if (!dryRun) {
-			for (const item of moveToBacklog) {
-				const mutation = `mutation {
-  updateProjectV2ItemFieldValue(input: {
-    projectId: "${projectId}"
-    itemId: "${item.id}"
-    fieldId: "${statusFieldId}"
-    value: { singleSelectOptionId: "${backlogOptionId}" }
-  }) {
-    projectV2Item { id }
-  }
-}`;
-				try {
-					ghGraphql(mutation);
-				} catch {
-					console.warn(
-						`\n   ⚠️  Failed to move item #${String(item.content?.number)} to Backlog`
-					);
-				}
-			}
-		}
-	}
-
-	if (moveToInProgress.length === 0 && moveToBacklog.length === 0) {
+	if (moveToInProgress.length === 0) {
 		console.log('   ✅ All statuses are in sync');
 	}
 
@@ -696,10 +709,9 @@ const reorderBacklog = async () => {
 	let unconnectedCount = 0;
 	try {
 		let page = 1;
-		let hasMore = true;
-		while (hasMore) {
+		while (true) {
 			const issuesJson = ghRest(
-				`repos/${owner}/${repo}/issues?state=open&per_page=100&page=${String(page)}`
+				`repos/${owner}/${repo}/issues?state=open&labels=communityFeedback&per_page=100&page=${String(page)}`
 			);
 			const issues = JSON.parse(issuesJson) as Array<{
 				number: number;
@@ -709,7 +721,6 @@ const reorderBacklog = async () => {
 			}>;
 
 			if (issues.length === 0) {
-				hasMore = false;
 				break;
 			}
 
