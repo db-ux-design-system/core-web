@@ -15,14 +15,23 @@ Ask the user for:
 - The PR number to review
 - The repository owner and name (default: the current repo)
 
-### Step 2: Checkout the Branch
+### Step 2: Gather PR Details and Checkout the Branch
+
+First, get the PR details to determine the head branch:
+
+1. Use `mcp_github_pull_request_read` with method `get` to get the PR details including the head branch name and head repository.
+2. Ensure your local worktree is clean (`git status --short` should be empty). If not, stash or commit local changes first.
+3. Fetch and checkout the PR branch:
 
 ```bash
-git fetch origin
+# For PRs from the same repo:
+git fetch origin <branch-name>
 git checkout <branch-name>
-```
 
-Use `mcp_github_pull_request_read` with method `get` to get the PR details including the head branch name.
+# For PRs from forks (use PR ref):
+git fetch origin pull/<number>/head:pr-<number>
+git checkout pr-<number>
+```
 
 ### Step 3: Gather PR Context
 
@@ -30,15 +39,17 @@ Use GitHub MCP tools to gather all necessary context:
 
 1. **PR Details** — `mcp_github_pull_request_read` (method: `get`) for title, description, author, linked issues
 2. **PR Diff** — `mcp_github_pull_request_read` (method: `get_diff`) to see all changes
-3. **Changed Files** — `mcp_github_pull_request_read` (method: `get_files`) for file list and stats
+3. **Changed Files** — `mcp_github_pull_request_read` (method: `get_files`) for file list and stats. **Paginate**: continue fetching with incrementing `page` until all files are retrieved.
 4. **CI Status** — `mcp_github_pull_request_read` (method: `get_check_runs`) to check if tests pass
-5. **Existing Reviews** — `mcp_github_pull_request_read` (method: `get_review_comments`) to see prior feedback
+5. **Existing Reviews** — `mcp_github_pull_request_read` (method: `get_review_comments`) to see prior feedback threads. **Paginate**: follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false.
+6. **Review Summaries** — `mcp_github_pull_request_read` (method: `get_reviews`) for submitted approvals, change requests, or review bodies without inline threads.
 
 ### Step 4: Understand Business Context
 
 - Read the linked issue (if any) using `mcp_github_issue_read`
 - Check PR description against the PR template checklist in `.github/PULL_REQUEST_TEMPLATE.md`
 - Understand the scope: is this a feature, bugfix, refactor, or chore?
+- **Read scoped AGENTS.md files**: For each changed file under `packages/*`, read the corresponding `packages/<name>/AGENTS.md` to understand package-specific conventions before reviewing.
 
 ### Step 5: Perform the Review
 
@@ -65,12 +76,12 @@ For each changed file, check:
 
 Based on the DB UX Design System conventions:
 
-- **Accessibility** — Are changes accessible? ARIA attributes, keyboard navigation, screen reader support
+- **Accessibility** — Are changes accessible? Semantic HTML elements, ARIA attributes as complementary annotations if needed, keyboard navigation, screen reader support
 - **Design Tokens** — Are hardcoded values used instead of design tokens from foundations?
 - **Cross-Framework** — If component changes: do they work across React, Angular, Vue, Web Components?
 - **CSS/SCSS** — No `!important` abuse, proper use of CSS custom properties, no hardcoded colors/spacing
-- **TypeScript** — No `any` types, proper type narrowing, interfaces over type aliases for objects
-- **Changesets** — Were changes made in `packages/components/src` or `packages/foundations/scss`? A changeset should be present.
+- **TypeScript** — No `any` types, proper type narrowing, follow existing project patterns (type aliases for component props)
+- **Changesets** — Were changes made in `packages/components/src` or `packages/foundations/scss`? A changeset should be present with all required packages listed.
 
 #### Phase 4: Mitosis & Component Architecture Checks
 
@@ -79,7 +90,7 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 **Mitosis Rules:**
 
 - `.lite.tsx` is the ONLY editable component source — never edit `output/` directly
-- No function calls inside JSX property bindings (e.g. `prop={state.fn()}`) — store in state, update via `onUpdate`
+- No complex function calls inside JSX property bindings that break code generation — simple helper calls like `cls(...)`, `getBooleanAsString(...)`, `getBoolean(...)` are acceptable as they are established patterns in the codebase
 - No `_ref` access inside `onMount` — use `onUpdate` with the initialized-pattern
 - No getter functions in `useStore` for derived values — compute in `onMount`/`onUpdate`
 - Internal state variables use `_` prefix (e.g. `_active`), never `internal`
@@ -87,32 +98,34 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 
 **SCSS Rules:**
 
-- Line 1 MUST be: `@use "@db-ux/core-foundations/build/styles/variables";`
+- Include `@use "@db-ux/core-foundations/build/styles/variables";` when using design token variables (some files may need other imports first, e.g. `@use "sass:map"`)
 - Root selector: `.db-<name>`
 - Variants via `data-*` attribute selectors: `&[data-variant="brand"]`
-- No `border: 0` or `border: none` — use `@extend %transparent-border` (High Contrast Mode)
+- No `border: 0` or `border: none` — use `@extend %transparent-border` (support for High Contrast Mode)
 - No manual `cursor: pointer` — use `@include helpers.hover { ... }`
-- No nesting deeper than 3 levels
+- No excessive nesting — keep it readable and maintainable
 - No `!important`
 - No hardcoded colors, spacings, sizings, or border-radius values
 
 **model.ts Rules:**
 
-- Props type: `DB<ComponentName>Props`
+- Props type: `DB<ComponentName>Props` (use type aliases — this is the established project pattern)
 - Every prop MUST have a JSDoc comment
 - Variant lists MUST be `as const` arrays with derived union types
 
-**Testing Rules:**
+**Testing Rules (for public standalone components):**
 
-- Every component MUST have a `.spec.tsx` (Playwright + Axe-Core)
-- ALL variants must be tested with `toHaveScreenshot()` (visual regression)
+- Every public component MUST have a `.spec.tsx` (Playwright + Axe-Core)
+- Include representative screenshot tests with `toHaveScreenshot()` (visual regression) — exhaustive variant coverage is handled by the showcase/E2E snapshot layer
 - Include `ariaSnapshot()` + `toMatchSnapshot()` (accessibility structure)
 - Wrap tests in `test.describe('DB<Name>', () => { ... })`
 - Use `DEFAULT_VIEWPORT` for viewport setting
+- Internal/helper components (e.g. `custom-select-dropdown`, `tab-item`) may be tested through their parent component instead of standalone specs
 
-**File Structure:**
+**File Structure (for public standalone components):**
 
-- Check that new components have the complete file tree: `.lite.tsx`, `.scss`, `.spec.tsx`, `model.ts`, `index.ts`, `index.html`, `docs/`, `examples/`, `showcase/`
+- Check that new public components have the complete file tree: `.lite.tsx`, `.scss`, `.spec.tsx`, `model.ts`, `index.ts`, `index.html`, `docs/`, `examples/`, `showcase/`
+- Internal/helper components only need: source, style, model, and index files
 - `index.ts` export path must be `./<name>` WITHOUT `.lite` suffix
 - Do NOT re-export `./model` in `index.ts`
 
@@ -128,13 +141,18 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 
 ### Step 6: Submit the Review
 
-Use `mcp_github_pull_request_review_write` to submit the review:
+Use `mcp_github_pull_request_review_write` to submit the review.
 
-- **APPROVE** — No blocking issues, code is ready to merge
-- **COMMENT** — Minor suggestions, non-blocking feedback
-- **REQUEST_CHANGES** — Blocking issues that must be addressed
+**Correct sequence for reviews with inline comments:**
 
-For individual line comments, use `mcp_github_add_comment_to_pending_review`.
+1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create` (omit `event` to keep it pending)
+2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each inline comment
+3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` and the appropriate event:
+    - **APPROVE** — No blocking issues, code is ready to merge
+    - **COMMENT** — Minor suggestions, non-blocking feedback
+    - **REQUEST_CHANGES** — Blocking issues that must be addressed
+
+**For reviews without inline comments**, you can create and submit in one step by calling `mcp_github_pull_request_review_write` with method `create` and providing the `event` parameter.
 
 ## Feedback Guidelines
 
@@ -199,7 +217,7 @@ Based on `.github/PULL_REQUEST_TEMPLATE.md`:
 - [ ] Tests added/updated for the changes
 - [ ] Edge cases covered
 - [ ] Tests pass in CI (`get_check_runs`)
-- [ ] If component change: all variants tested with `toHaveScreenshot()` and `ariaSnapshot()`
+- [ ] If component change: representative variants tested with `toHaveScreenshot()` and `ariaSnapshot()`
 
 ### Documentation & Changesets
 
@@ -220,7 +238,6 @@ These are handled by tooling (linters, formatters, CI):
 - Import ordering
 - Linting violations (ESLint, Stylelint)
 - Spelling (CSpell)
-- Snapshot differences (handled in CI)
 
 ## Common Anti-Patterns to Flag
 
@@ -235,18 +252,18 @@ These are handled by tooling (linters, formatters, CI):
 ### CSS/SCSS
 
 - `transition: all` (specify properties explicitly)
-- Nesting deeper than 3 levels
+- Excessive nesting that hurts readability
 - Using `!important`
 - Hardcoded colors/spacing instead of design tokens (`variables.$db-*` or `var(--db-*)`)
 - Animating layout properties (width, height, top, left)
 - `border: 0` or `border: none` instead of `@extend %transparent-border`
 - Manual `cursor: pointer` instead of `@include helpers.hover { ... }`
-- Missing `@use "@db-ux/core-foundations/build/styles/variables";` as line 1
+- Missing `@use "@db-ux/core-foundations/build/styles/variables";` when token variables are used
 - Overriding `padding`/`font-size` via `[data-density="..."]` (tokens should resolve automatically)
 
 ### Mitosis / Components
 
-- Function calls inside JSX property bindings (`prop={state.fn()}`)
+- Complex function calls inside JSX property bindings that break code generation (simple helpers like `cls(...)` are fine)
 - Accessing `_ref` inside `onMount` instead of `onUpdate` with initialized-pattern
 - Getter functions in `useStore` for derived values
 - Internal state without `_` prefix
@@ -266,4 +283,4 @@ These are handled by tooling (linters, formatters, CI):
 - New dependencies without justification
 - Mixing concerns (UI logic + business logic in same file)
 - Adding files to `exclude` in `mitosis.storybook.config.cjs` (fix the example instead)
-- Missing component files (incomplete file structure per architecture spec)
+- Missing component files (incomplete file structure for public components)
