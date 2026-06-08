@@ -44,6 +44,14 @@ Use GitHub MCP tools to gather all necessary context:
 5. **Existing Reviews** — `mcp_github_pull_request_read` (method: `get_review_comments`) to see prior feedback threads. **Paginate**: follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false.
 6. **Review Summaries** — `mcp_github_pull_request_read` (method: `get_reviews`) for submitted approvals, change requests, or review bodies without inline threads.
 
+**Important — Avoid duplicate feedback:** Before posting any comment, check the existing review threads (from step 5) and PR comments. Do not raise an issue that has already been:
+
+- Raised in a prior review thread (resolved or unresolved)
+- Dismissed by the PR author with a valid explanation
+- Marked as outdated (the code was already changed)
+
+Only comment on genuinely new or unaddressed issues.
+
 ### Step 4: Understand Business Context
 
 - Read the linked issue (if any) using `mcp_github_issue_read`
@@ -151,7 +159,7 @@ Use `mcp_github_pull_request_review_write` to submit the review.
 
 1. Submit the review as **COMMENT** (not APPROVE).
 2. If the PR looks good and has no blocking issues, add a separate PR comment (using `mcp_github_add_issue_comment`) that:
-    - Tags the user `@nmerget` to inform them the PR can be approved
+    - Tags the user like `@nmerget` to inform them the PR can be approved
     - Includes a short message like "🤖 Hey @nmerget — this PR looks good to go! You can approve and merge."
     - Includes a fun/celebratory GIF (use a markdown image link to a gif, e.g. from giphy: `![LGTM](https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif)`)
 
