@@ -2,56 +2,56 @@
 <div class="form-container">
 	<div>
 		<db-input
-			name="ngModelInput"
-			[(ngModel)]="model.input"
-			label="Input with ngModel"
-			placeholder="Placeholder"
-			message="Description"
+			[(ngmodel)]="model.input"
 			icon="x_placeholder"
+			label="Input with ngModel"
+			message="Description"
+			name="ngModelInput"
+			placeholder="Placeholder"
 		>
 		</db-input>
 
 		<db-textarea
-			name="textarea"
-			label="Textarea Controlled"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			[value]="textarea"
 			(change)="changeTextarea('textarea', $event)"
-		></db-textarea>
-
-		<db-textarea
+			[value]="textarea"
+			icon="x_placeholder"
+			label="Textarea Controlled"
+			message="Description"
 			name="textarea"
-			label="Textarea with defaultValue"
 			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			(change)="changeTextarea('textareaDefaultValue', $event)"
 		></db-textarea>
 
 		<db-textarea
-			name="ngModelTextarea"
-			[(ngModel)]="model.textarea"
-			label="Textarea with ngModel"
-			placeholder="Placeholder"
-			message="Description"
+			(change)="changeTextarea('textareaDefaultValue', $event)"
 			icon="x_placeholder"
+			label="Textarea with defaultValue"
+			message="Description"
+			name="textarea"
+			placeholder="Placeholder"
+		></db-textarea>
+
+		<db-textarea
+			[(ngmodel)]="model.textarea"
+			icon="x_placeholder"
+			label="Textarea with ngModel"
+			message="Description"
+			name="ngModelTextarea"
+			placeholder="Placeholder"
 			value="Textarea"
 		></db-textarea>
 
 		<db-checkbox
-			[(ngModel)]="model.checkbox2"
-			name="checkbox2"
+			[(ngmodel)]="model.checkbox2"
 			label="Checkbox ngModel"
+			name="checkbox2"
 		></db-checkbox>
 
 		<p>DBSelect:</p>
 		<db-select
-			name="ngModelSelect"
-			[(ngModel)]="model.select"
+			[(ngmodel)]="model.select"
 			label="Select with ngModel"
 			message="Description"
+			name="ngModelSelect"
 		>
 			<option value="test1">Test1</option>
 			<option value="test2">Test2</option>
@@ -61,126 +61,127 @@
 		</db-select>
 
 		<p>Reactive Forms Example:</p>
-		<form [formGroup]="form" (submit)="onFormSubmit()">
+		<form (submit)="onFormSubmit()" [formgroup]="form">
 			<fieldset>
 				<legend>Input:</legend>
 
 				<db-input
-					name="form"
 					id="form"
+					formcontrolname="input"
+					icon="x_placeholder"
 					label="Textinput"
-					placeholder="Placeholder"
 					message="Description"
-					icon="x_placeholder"
-					formControlName="input"
+					name="form"
+					placeholder="Placeholder"
 				>
 				</db-input>
 
 				<db-input
-					name="form"
 					id="datalist"
-					label="Textinput with Datalist"
-					placeholder="Placeholder"
-					message="Description"
-					[dataList]="dataList"
+					[datalist]="dataList"
 					icon="x_placeholder"
+					label="Textinput with Datalist"
+					message="Description"
+					name="form"
+					placeholder="Placeholder"
 				>
 				</db-input>
 
 				<db-input
-					name="form"
+					type="date"
+					formcontrolname="dateinput"
 					label="Date input"
 					message="Description"
-					type="date"
-					formControlName="dateinput"
+					name="form"
 				>
 				</db-input>
 
 				<p>Radio:</p>
 				<ul>
 					@for (radioName of array; track radioName) {
-						<li>
-							<db-radio
-								label="Label"
-								name="RadioGroup"
-								[value]="radioName"
-								(change)="model.radio = radioName"
-								[label]="getRadioName(radioName)"
-							></db-radio>
-						</li>
+					<li>
+						<db-radio
+							(change)="model.radio = radioName"
+							[label]="getRadioName(radioName)"
+							[value]="radioName"
+							label="Label"
+							name="RadioGroup"
+						></db-radio>
+					</li>
 					}
 				</ul>
 
 				<p>Textarea:</p>
 
 				<db-textarea
-					name="textarea"
 					id="textarea"
-					label="Textarea"
-					placeholder="Placeholder"
-					message="Description"
+					formcontrolname="textarea"
 					icon="x_placeholder"
-					formControlName="textarea"
+					label="Textarea"
+					message="Description"
+					name="textarea"
+					placeholder="Placeholder"
 				></db-textarea>
 
 				<p>Tags:</p>
 				<ul>
 					@for (tag of array; track tag; let i = $index) {
-						<li>
-							<db-tag
-								[semantic]="i === 0 ? undefined : 'successful'"
-								[emphasis]="i === 2 ? 'strong' : 'weak'"
-								><db-checkbox (change)="changeTags(tag)">{{
-									getTagName(tag)
+					<li>
+						<db-tag
+							[emphasis]="i === 2 ? 'strong' : 'weak'"
+							[semantic]="i === 0 ? undefined : 'successful'"
+						>
+							<db-checkbox (change)="changeTags(tag)">{{
+								getTagName(tag)
 								}}</db-checkbox></db-tag
 							>
-						</li>
+					</li>
 					}
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
-					formControlName="checkbox"
-					name="checkbox4"
+					formcontrolname="checkbox"
 					label="Checkbox formControl value"
+					name="checkbox4"
 				></db-checkbox>
 				<db-divider></db-divider>
 				<db-checkbox
-					name="checkbox"
-					value="Checkbox checked"
-					label="Checkbox Indeterminate"
+					(change)="handleChange1($event)"
 					[checked]="checked[0] && checked[1]"
 					[indeterminate]="checked[0] !== checked[1]"
-					(change)="handleChange1($event)"
+					label="Checkbox Indeterminate"
+					name="checkbox"
+					value="Checkbox checked"
 				></db-checkbox>
 				<fieldset>
 					<legend>Checkboxes</legend>
 					<db-checkbox
-						[checked]="checked[0]"
 						(change)="handleChange2($event)"
-						name="checkbox2"
+						[checked]="checked[0]"
 						label="Checkbox"
+						name="checkbox2"
 					></db-checkbox>
 					<db-checkbox
-						[checked]="checked[1]"
 						(change)="handleChange3($event)"
-						name="checkbox3"
+						[checked]="checked[1]"
 						label="Checkbox"
+						name="checkbox3"
 					></db-checkbox>
 				</fieldset>
 				<db-checkbox
-					name="checkbox4"
-					label="Checkbox with defaultValue"
 					[checked]="true"
+					label="Checkbox with defaultValue"
+					name="checkbox4"
 				></db-checkbox>
 				<p>Select:</p>
 				<db-select
-					name="select"
-					label="Select"
-					placeholder="Placeholder"
-					message="Description"
-					icon="x_placeholder"
-					formControlName="select"
 					(change)="handleChange4($event)"
+					formcontrolname="select"
+					icon="x_placeholder"
+					label="Select"
+					message="Description"
+					name="select"
+					placeholder="Placeholder"
 				>
 					<option value="test1">Test1</option>
 					<option value="test2">Test2</option>
@@ -189,16 +190,16 @@
 					<option value="test5">Test5</option>
 				</db-select>
 				<!-- <db-select
-        [value]="select"
-        label="Label"
-        (change)="select = $event.target.value"
-        >
-        <option value="test1">Test1</option>
-        <option value="test2">Test2</option>
-        <option value="test3">Test3</option>
-        <option value="test4">Test4</option>
-        <option value="test5">Test5</option>
-      </db-select> -->
+					[value]="select"
+					label="Label"
+					(change)="select = $event.target.value"
+					>
+					<option value="test1">Test1</option>
+					<option value="test2">Test2</option>
+					<option value="test3">Test3</option>
+					<option value="test4">Test4</option>
+					<option value="test5">Test5</option>
+					</db-select> -->
 				<p>Button:</p>
 				<db-button type="button" (click)="resetValues()">
 					Reset
@@ -211,8 +212,8 @@
 
 		<p>Switch with Angular signals</p>
 		<db-switch
-			[checked]="checkedSignal()"
 			(change)="handleChange($event)"
+			[checked]="checkedSignal()"
 			label="My Switch"
 		>
 		</db-switch>
@@ -227,9 +228,9 @@
 			<dt>inputs value</dt>
 			<dd>
 				{{
-					form.get("input")?.value
-						? form.get("input")?.value
-						: "No Input set"
+				form.get("input")?.value
+				? form.get("input")?.value
+				: "No Input set"
 				}}
 			</dd>
 			<dt>NgModel inputs value</dt>
@@ -239,17 +240,17 @@
 			<dt>textarea default value</dt>
 			<dd>
 				{{
-					textareaDefaultValue
-						? textareaDefaultValue
-						: "No textareaDefaultValue set"
+				textareaDefaultValue
+				? textareaDefaultValue
+				: "No textareaDefaultValue set"
 				}}
 			</dd>
 			<dt>textareas value</dt>
 			<dd>
 				{{
-					form.get("textarea")?.value
-						? form.get("textarea")?.value
-						: "No Textarea set"
+				form.get("textarea")?.value
+				? form.get("textarea")?.value
+				: "No Textarea set"
 				}}
 			</dd>
 			<dt>NgModel textareas value</dt>
@@ -275,27 +276,33 @@
 			<dt>tags value</dt>
 			<dd>{{ getTags() }}</dd>
 
-			<br />
-			<db-tag><db-checkbox>Checkbox</db-checkbox></db-tag>
-			<db-tag><db-radio>Checkbox</db-radio></db-tag>
-			<db-tag><db-button>Checkbox</db-button></db-tag>
-			<br />
+			<br>
+			<db-tag>
+				<db-checkbox>Checkbox</db-checkbox>
+			</db-tag>
+			<db-tag>
+				<db-radio>Checkbox</db-radio>
+			</db-tag>
+			<db-tag>
+				<db-button>Checkbox</db-button>
+			</db-tag>
+			<br>
 
 			<db-tabs orientation="vertical">
 				<db-tab-list>
 					<db-tab-item icon="x_placeholder"
-						>Airplane Button</db-tab-item
+					>Airplane Button</db-tab-item
 					>
-					<db-tab-item iconTrailing="cancel"
-						>Cancel Button</db-tab-item
+					<db-tab-item icontrailing="cancel"
+					>Cancel Button</db-tab-item
 					>
-					<db-tab-item iconTrailing="cancel">
+					<db-tab-item icontrailing="cancel">
 						Long Button Label with a lot of text
 					</db-tab-item>
-					<db-tab-item icon="x_placeholder" iconTrailing="cancel">
+					<db-tab-item icon="x_placeholder" icontrailing="cancel">
 						Another Button Label with a lot of text
 					</db-tab-item>
-					<db-tab-item icon="x_placeholder"></db-tab-item>
+					<db-tab-item icon="x_placeholder" label="Icon only tab"></db-tab-item>
 				</db-tab-list>
 				<db-tab-panel>
 					It is a long established fact that a reader will be
