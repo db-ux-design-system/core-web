@@ -99,15 +99,15 @@
 				<p>Radio:</p>
 				<ul>
 					@for (radioName of array; track radioName) {
-					<li>
-						<db-radio
-							(change)="model.radio = radioName"
-							[label]="getRadioName(radioName)"
-							[value]="radioName"
-							label="Label"
-							name="RadioGroup"
-						></db-radio>
-					</li>
+						<li>
+							<db-radio
+								(change)="model.radio = radioName"
+								[label]="getRadioName(radioName)"
+								[value]="radioName"
+								label="Label"
+								name="RadioGroup"
+							></db-radio>
+						</li>
 					}
 				</ul>
 
@@ -126,16 +126,16 @@
 				<p>Tags:</p>
 				<ul>
 					@for (tag of array; track tag; let i = $index) {
-					<li>
-						<db-tag
-							[emphasis]="i === 2 ? 'strong' : 'weak'"
-							[semantic]="i === 0 ? undefined : 'successful'"
-						>
-							<db-checkbox (change)="changeTags(tag)">{{
-								getTagName(tag)
+						<li>
+							<db-tag
+								[emphasis]="i === 2 ? 'strong' : 'weak'"
+								[semantic]="i === 0 ? undefined : 'successful'"
+							>
+								<db-checkbox (change)="changeTags(tag)">{{
+									getTagName(tag)
 								}}</db-checkbox></db-tag
 							>
-					</li>
+						</li>
 					}
 				</ul>
 				<p>Checkbox:</p>
@@ -228,9 +228,9 @@
 			<dt>inputs value</dt>
 			<dd>
 				{{
-				form.get("input")?.value
-				? form.get("input")?.value
-				: "No Input set"
+					form.get("input")?.value
+						? form.get("input")?.value
+						: "No Input set"
 				}}
 			</dd>
 			<dt>NgModel inputs value</dt>
@@ -240,17 +240,17 @@
 			<dt>textarea default value</dt>
 			<dd>
 				{{
-				textareaDefaultValue
-				? textareaDefaultValue
-				: "No textareaDefaultValue set"
+					textareaDefaultValue
+						? textareaDefaultValue
+						: "No textareaDefaultValue set"
 				}}
 			</dd>
 			<dt>textareas value</dt>
 			<dd>
 				{{
-				form.get("textarea")?.value
-				? form.get("textarea")?.value
-				: "No Textarea set"
+					form.get("textarea")?.value
+						? form.get("textarea")?.value
+						: "No Textarea set"
 				}}
 			</dd>
 			<dt>NgModel textareas value</dt>
@@ -276,7 +276,7 @@
 			<dt>tags value</dt>
 			<dd>{{ getTags() }}</dd>
 
-			<br>
+			<br />
 			<db-tag>
 				<db-checkbox>Checkbox</db-checkbox>
 			</db-tag>
@@ -286,15 +286,15 @@
 			<db-tag>
 				<db-button>Checkbox</db-button>
 			</db-tag>
-			<br>
+			<br />
 
 			<db-tabs orientation="vertical">
 				<db-tab-list>
 					<db-tab-item icon="x_placeholder"
-					>Airplane Button</db-tab-item
+						>Airplane Button</db-tab-item
 					>
 					<db-tab-item icontrailing="cancel"
-					>Cancel Button</db-tab-item
+						>Cancel Button</db-tab-item
 					>
 					<db-tab-item icontrailing="cancel">
 						Long Button Label with a lot of text
@@ -302,7 +302,10 @@
 					<db-tab-item icon="x_placeholder" icontrailing="cancel">
 						Another Button Label with a lot of text
 					</db-tab-item>
-					<db-tab-item icon="x_placeholder" label="Icon only tab"></db-tab-item>
+					<db-tab-item
+						icon="x_placeholder"
+						label="Icon only tab"
+					></db-tab-item>
 				</db-tab-list>
 				<db-tab-panel>
 					It is a long established fact that a reader will be
