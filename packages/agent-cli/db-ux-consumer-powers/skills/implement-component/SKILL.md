@@ -54,7 +54,7 @@ on_error:
 1. `context/guidelines.md` is loaded in context.
 2. MCP server (`@db-ux/mcp-server`) is connected.
 3. The target `{framework}` is known.
-4. The `@db-ux/*-core-components` package is installed in the project.
+4. The `@db-ux/*-core-components` node package is installed in the project.
 
 ## Workflow
 
