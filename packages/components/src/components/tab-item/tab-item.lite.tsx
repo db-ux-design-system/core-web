@@ -62,7 +62,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 	});
 
 	onMount(() => {
-		if (typeof window !== 'undefined') {
+		state.initialized = true;
+	});
+
+	// Setup truncation check and resize observer once the label ref and
+	// initialization are both available.
+	onUpdate(() => {
+		if (
+			typeof window !== 'undefined' &&
+			_labelRef &&
+			state.initialized &&
+			!state._resizeObserver
+		) {
 			const setupObserverAndCheck = () => {
 				requestAnimationFrame(() => {
 					state.checkTruncation();
@@ -74,7 +85,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 							labelEl.textContent ||
 							'';
 					}
-					if (_labelRef) {
+					if (_labelRef && !state._resizeObserver) {
 						const resizeObserver = new ResizeObserver(() => {
 							requestAnimationFrame(() => {
 								state.checkTruncation();
@@ -96,9 +107,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				setupObserverAndCheck();
 			}
 		}
-
-		state.initialized = true;
-	});
+	}, [_labelRef, state.initialized]);
 
 	// Disconnect the observer
 	onUnMount(() => {
