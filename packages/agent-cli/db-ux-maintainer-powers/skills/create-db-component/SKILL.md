@@ -271,24 +271,6 @@ export { default as DB{component_name} } from './{component_slug}';
 
 Do NOT re-export from `./model`. Do NOT use `.lite` suffix.
 
-#### 2e: Create `index.html`
-
-```html
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>DB{component_name}</title>
-		<link rel="stylesheet" href="/styles/relative.css" />
-	</head>
-	<body style="padding: var(--db-spacing-fixed-md)">
-		<div class="db-{component_slug}">Preview Content</div>
-	</body>
-</html>
-```
-
-**Exception**: Inline styles are forbidden everywhere EXCEPT the minimal token-based padding on `<body>` in this `index.html` preview scaffold.
-
 #### 2f: Create Documentation, Examples and Showcase
 
 1. **docs/**: Create `Angular.md`, `HTML.md`, `React.md`, `Vue.md`, `Migration.md`.
