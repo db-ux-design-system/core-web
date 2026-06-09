@@ -142,7 +142,7 @@ packages/components/src/components/<name>/
 3. Use `data-*` attribute selectors for variants: `&[data-variant="brand"]`.
 4. Use `variables.$db-*` for SCSS variable access.
 5. NEVER use `!important`.
-6. NEVER nest deeper than 3 levels.
+6. Keep nesting shallow and only use additional nesting when it clearly improves readability. Prefer extracting shared/internal styles over deeply nested selectors.
 7. NO hardcoded colors, spacings, sizings, or border-radius values.
 8. ❌ NEVER use `border: 0` or `border: none`. ALWAYS use `@extend %transparent-border` for High Contrast Mode support.
 9. ⚠️ **RED FLAG**: Overriding `padding`/`font-size` via `[data-density="..."]` means token usage is wrong. Density tokens MUST resolve correctly automatically.
