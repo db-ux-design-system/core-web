@@ -251,6 +251,7 @@ Rules:
 @use "@db-ux/core-foundations/build/styles/variables";
 
 .db-{component_slug} {
+  // Styling like e.g.:
   padding: variables.$db-spacing-fixed-sm;
   block-size: variables.$db-sizing-md;
 
