@@ -8,7 +8,7 @@ import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
 	storybookTitle: 'Icons',
-	storybookNames: ['with leading icons', 'with trailing icons', 'icon-only'],
+	storybookNames: ['with leading icons', 'with trailing icons'],
 	storybookArgTypes: StorybookTabsArgTypes
 });
 

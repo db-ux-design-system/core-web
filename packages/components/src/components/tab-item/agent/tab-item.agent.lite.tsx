@@ -26,7 +26,7 @@ export default function TabItem() {
 			<h2>5. Label Property</h2>
 			<DBTabItem label="Tab Item Label">Tab Item with Label</DBTabItem>
 
-			<h2>6. Icon-only Tab</h2>
+			<h2>6. Tab with Icon and Label</h2>
 			<DBTabItem label="User Profile" icon="user" showIcon />
 		</>
 	);
