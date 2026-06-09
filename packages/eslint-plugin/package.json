@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-eslint-plugin",
-  "version": "4.10.1",
+  "version": "4.10.2",
   "type": "module",
   "description": "ESLint plugin for DB UX Design System components",
   "repository": {
@@ -50,7 +50,7 @@
     "npm-run-all2": "9.0.1",
     "typescript": "5.9.3",
     "vitest": "4.1.8",
-    "vue-eslint-parser": "10.4.0"
+    "vue-eslint-parser": "10.4.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

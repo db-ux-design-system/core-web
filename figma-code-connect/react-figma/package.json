@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@figma/code-connect": "1.4.7",
-    "@types/node": "25.9.1",
+    "@types/node": "25.9.2",
     "vitest": "4.1.8"
   }
 }

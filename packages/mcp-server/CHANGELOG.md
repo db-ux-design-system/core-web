@@ -1,5 +1,9 @@
 # @db-ux/mcp-server
 
+## 4.10.2
+
+_version bump_
+
 ## 4.10.1
 
 _version bump_
