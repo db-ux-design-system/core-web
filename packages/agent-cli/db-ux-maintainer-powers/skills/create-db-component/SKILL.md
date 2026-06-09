@@ -17,10 +17,18 @@ inputs:
       type: string
       required: false
       description: "Optional PascalCase symbol name (e.g. 'NavigationItem'). If omitted, derive it from component_slug."
-    - name: figma_url
+    - name: figma_file_key
       type: string
       required: true
-      description: "Figma URL to the component specification"
+      description: "Figma file key (e.g. from https://www.figma.com/file/<fileKey>/...)."
+    - name: figma_node_id
+      type: string
+      required: true
+      description: "Figma node ID of the target component/frame (e.g. 1234-5678)."
+    - name: figma_url
+      type: string
+      required: false
+      description: "Optional full Figma URL. Use only as fallback when file key and node ID are not provided separately."
 
 requires:
     - context: context/architecture.md
@@ -67,8 +75,9 @@ Throughout this skill:
 2. MCP (`@db-ux/mcp-server`) IS connected.
 3. Figma MCP IS connected.
 4. `component_slug` IS provided by user. Derive `component_name` from `component_slug` unless explicitly provided.
-5. **Figma URL** IS provided by user. If missing: ABORT immediately. Do NOT proceed without a Figma link.
-6. Call `list_components` to verify the component does NOT already exist.
+5. `figma_file_key` and `figma_node_id` ARE provided by user.
+6. If either is missing, use `figma_url` only as a fallback source to extract them. If still unresolved: ABORT.
+7. Call `list_components` to verify the component does NOT already exist.
 
 ## Execution
 
@@ -76,20 +85,20 @@ Throughout this skill:
 
 #### Phase 0.1: Figma Specs (Figma MCP)
 
-1. Extract the file key and node ID from the provided Figma URL.
+1. Use `figma_file_key` and `figma_node_id` provided by the user as the primary source of truth.
+2. If one of them is missing, extract the missing value from `figma_url` as fallback.
     - URL format: `https://www.figma.com/file/<fileKey>/...?node-id=<nodeId>`
-    - Pass both `fileKey` and `nodeId` as parameters to `get_node`.
-2. Call `get_node` with `fileKey` and `nodeId` to retrieve the component frame.
-3. Extract from the Figma response:
+3. Call `get_node` with `fileKey` and `nodeId` to retrieve the component frame.
+4. Extract from the Figma response:
     - **Spacing**: padding, gap, margin values from Auto Layout properties.
     - **Sizing**: width, height constraints.
     - **Colors**: fill colors, stroke colors, text colors (as Figma variable references or hex values).
     - **Typography**: font family, size, weight, line-height.
     - **Border radius**: corner radius values.
     - **Variants**: all variant properties defined in the Figma component set.
-4. Call `get_variables` to resolve any Figma variable references to their actual values.
-5. Call `get_styles` if the component references shared Figma styles.
-6. Document ALL extracted values. These are the ground truth for implementation.
+5. Call `get_variables` to resolve any Figma variable references to their actual values.
+6. Call `get_styles` if the component references shared Figma styles.
+7. Document ALL extracted values. These are the ground truth for implementation.
 
 #### Phase 0.2: DB UX Token Mapping (`@db-ux/mcp-server` node package)
 
