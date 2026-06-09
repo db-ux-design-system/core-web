@@ -87,7 +87,7 @@ export default function DBTabs(props: DBTabsProps) {
 			const buttons = state._tabButtons;
 			const panels = state._tabPanels;
 
-			buttons.forEach((button, index) => {
+			buttons.forEach((button: HTMLElement, index: number) => {
 				const isSelected = currentIndex === index;
 				const tabIndex =
 					currentIndex === index ||
@@ -98,7 +98,7 @@ export default function DBTabs(props: DBTabsProps) {
 				button.setAttribute('tabindex', String(tabIndex));
 			});
 
-			panels.forEach((panel, index) => {
+			panels.forEach((panel: HTMLElement, index: number) => {
 				panel.hidden = currentIndex !== index;
 			});
 		},
@@ -358,7 +358,7 @@ export default function DBTabs(props: DBTabsProps) {
 				state._tabButtons = buttons;
 				state._tabPanels = panels;
 
-				buttons.forEach((button, index) => {
+				buttons.forEach((button: HTMLElement, index: number) => {
 					const isSelected = currentIndex === index;
 					const panel = panels[index];
 
