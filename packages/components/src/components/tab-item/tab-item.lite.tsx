@@ -146,7 +146,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			class={cls('db-tab-item', props.className)}
 			// Suppress native browser tooltip only when custom truncation tooltip is active
 			title={state.isTruncated ? '' : undefined}
-			disabled={getBoolean(props.disabled) ? true : undefined}
+			disabled={getBoolean(props.disabled, 'disabled') ? true : undefined}
 			id={props.id}
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}
