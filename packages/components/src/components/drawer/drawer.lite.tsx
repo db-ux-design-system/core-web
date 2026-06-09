@@ -142,7 +142,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
-				data-rounded={getBooleanAsString(props.rounded)}>
+				data-rounded={getBooleanAsString(props.rounded, 'rounded')}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
 						<Slot name="drawerHeader" />
