@@ -66,9 +66,21 @@ export default function DBTable(props: DBTableProps) {
 							row.querySelectorAll<HTMLElement>(':is(td,th)');
 						cells.forEach((cell, index) => {
 							const headerCell = headerCells[index];
-							if (headerCell && headerCell.textContent) {
-								cell.dataset['header'] =
-									headerCell.textContent.trim();
+							if (headerCell) {
+								// Use only direct text nodes to avoid including text from nested elements (e.g. sort buttons)
+								const directText = Array.from(
+									headerCell.childNodes
+								)
+									.filter(
+										(node) =>
+											node.nodeType === Node.TEXT_NODE
+									)
+									.map((node) => node.textContent?.trim())
+									.filter(Boolean)
+									.join(' ');
+								if (directText) {
+									cell.dataset['header'] = directText;
+								}
 							}
 						});
 					});

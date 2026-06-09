@@ -22,7 +22,13 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 }
 
 @mixin table-row-interactive-state($state: "hover") {
-	&:has(#{$interactive-child}:#{$state}:not(#{helpers.$disabled-state})) {
+	&:has(
+		#{$interactive-child}:#{$state}:not(
+				:disabled,
+				[aria-disabled="true"],
+				[tabindex="-1"]
+			)
+	) {
 		cursor: helpers.$cursor-pointer;
 		@content;
 	}
@@ -36,7 +42,7 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 	&[data-interactive="true"] {
 		position: relative;
 
-		td #{helpers.$interactive-elements}:not(#{$interactive-row-action}) {
+		td :not(#{$interactive-row-action}) {
 			position: relative;
 			z-index: 1;
 		}
