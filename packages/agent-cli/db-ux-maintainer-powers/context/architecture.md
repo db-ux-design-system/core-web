@@ -63,7 +63,7 @@ packages/components/src/components/<name>/
 ├── model.ts                           # TypeScript interfaces (Props, State, VariantList)
 ├── index.ts                           # Re-export: export { default as DB<Name> } from './<name>';
 ├── index.html                         # Full HTML5 dev preview with /styles/relative.css
-├── docs/                              # Framework-specific documentation
+├── docs/                              # JS Framework-specific documentation
 │   ├── Angular.md
 │   ├── HTML.md
 │   ├── React.md
