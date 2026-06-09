@@ -115,7 +115,7 @@ export type DBTabsDefaultState = {
 	_cachedTabs: DBSimpleTabProps[];
 	_updateCachedTabs: () => void;
 	initTabList: () => void;
-	initTabs: (activeIndex?: number) => void;
+	initTabs: () => void;
 	syncSelection: (activeIndex?: number) => void;
 	_tabButtons: HTMLElement[];
 	_tabPanels: HTMLElement[];
@@ -123,7 +123,7 @@ export type DBTabsDefaultState = {
 	_observer?: MutationObserver | null;
 	_pendingRafId: number | null;
 	_scrollListener: { fn: () => void } | null;
-	activeTabIndex: number;
+	_activeIndex: number;
 	activateTab: (index: number) => void;
 	getTabId: (index: number | string) => string;
 	getPanelId: (index: number | string) => string;

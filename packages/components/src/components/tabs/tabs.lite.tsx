@@ -26,7 +26,7 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabsState>({
-		activeTabIndex: 0,
+		_activeIndex: 0,
 		initialized: false,
 		showScrollStart: false,
 		showScrollEnd: false,
@@ -64,8 +64,8 @@ export default function DBTabs(props: DBTabsProps) {
 					return;
 				}
 			}
-			if (state.activeTabIndex !== index) {
-				state.activeTabIndex = index;
+			if (state._activeIndex !== index) {
+				state._activeIndex = index;
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
@@ -83,7 +83,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// Does NOT re-query the DOM or set up IDs/ARIA – that's initTabs' job.
 		syncSelection(activeIndex?: number) {
 			const currentIndex =
-				activeIndex !== undefined ? activeIndex : state.activeTabIndex;
+				activeIndex !== undefined ? activeIndex : state._activeIndex;
 			const buttons = state._tabButtons;
 			const panels = state._tabPanels;
 
@@ -155,7 +155,7 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 
 			if (currentIndex === -1) {
-				currentIndex = state.activeTabIndex;
+				currentIndex = state._activeIndex;
 			}
 
 			if (buttons.length > 0) {
@@ -217,7 +217,7 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		isIndexActive(index: number | string) {
-			return state.activeTabIndex === Number(index);
+			return state._activeIndex === Number(index);
 		},
 
 		_cachedTabs: [] as DBSimpleTabProps[],
@@ -337,11 +337,10 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
-		// Full initialization: queries DOM, caches references, sets up IDs and ARIA attributes.
+		// Caches button/panel references and sets up static IDs/ARIA wiring.
+		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
-		initTabs(activeIndex?: number) {
-			const currentIndex =
-				activeIndex !== undefined ? activeIndex : state.activeTabIndex;
+		initTabs() {
 			if (_ref) {
 				const tabListEl = state._getScrollContainer();
 				const panels = Array.from<HTMLElement>(
@@ -359,7 +358,6 @@ export default function DBTabs(props: DBTabsProps) {
 				state._tabPanels = panels;
 
 				buttons.forEach((button: HTMLElement, index: number) => {
-					const isSelected = currentIndex === index;
 					const panel = panels[index];
 
 					const tabId = button.id || state.getTabId(index);
@@ -372,14 +370,6 @@ export default function DBTabs(props: DBTabsProps) {
 						button.setAttribute('aria-controls', panelId);
 					}
 
-					const tabIndex =
-						currentIndex === index ||
-						(currentIndex === -1 && index === 0)
-							? 0
-							: -1;
-					button.setAttribute('aria-selected', String(isSelected));
-					button.setAttribute('tabindex', String(tabIndex));
-
 					if (panel) {
 						if (!panel.id) {
 							panel.id = panelId;
@@ -390,9 +380,6 @@ export default function DBTabs(props: DBTabsProps) {
 						) {
 							panel.setAttribute('aria-labelledby', tabId);
 						}
-
-						// toggle visibility
-						panel.hidden = !isSelected;
 					}
 				});
 			}
@@ -418,18 +405,32 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	}, [state._id]);
 
-	// Controlled mode: sync external activeIndex changes to internal state.
-	// Intentionally bypasses activateTab to avoid firing onIndexChange/onValueChange
-	// back to the consumer (which would create feedback loops for controlled props).
+	// Controlled mode: mirror external activeIndex into internal state.
+	// The syncSelection onUpdate below then runs the same way as for internal changes.
 	onUpdate(() => {
 		if (props.activeIndex !== undefined) {
 			const newIndex = Number(props.activeIndex);
-			if (!isNaN(newIndex) && newIndex !== state.activeTabIndex) {
-				state.activeTabIndex = newIndex;
-				state.syncSelection(newIndex);
+			if (!isNaN(newIndex)) {
+				state._activeIndex = newIndex;
 			}
 		}
 	}, [props.activeIndex]);
+
+	// Apply selection once the active index and the cached button references
+	// are available. Keeps DOM mutations out of initTabs and ensures we never
+	// sync against a not-yet-queried DOM. Panels are included as a dependency so
+	// the selection re-runs when they change, but are not required (tabs may be
+	// used without panels).
+	onUpdate(() => {
+		if (state.initialized && state._tabButtons.length > 0) {
+			state.syncSelection(state._activeIndex);
+		}
+	}, [
+		state._tabButtons,
+		state._tabPanels,
+		state._activeIndex,
+		state.initialized
+	]);
 
 	onMount(() => {
 		// Compute derived IDs
@@ -464,15 +465,17 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 
 		// 3. Set initial state synchronously
-		state.activeTabIndex = startIndex;
+		state._activeIndex = startIndex;
 		state.initialized = true;
 		state._updateCachedTabs();
 
-		// 4. Trigger single initial DOM update after paint
+		// 4. Trigger single initial DOM update after paint.
+		// initTabs caches refs + static ARIA; the syncSelection onUpdate then
+		// applies the selection once _tabButtons is populated.
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				state.initTabList();
-				state.initTabs(startIndex);
+				state.initTabs();
 			});
 		}
 
@@ -486,13 +489,12 @@ export default function DBTabs(props: DBTabsProps) {
 					state._pendingRafId = requestAnimationFrame(() => {
 						state._pendingRafId = null;
 						state.initTabList();
-						state.initTabs(state.activeTabIndex);
+						state.initTabs();
 					});
 				});
 
-				// Observe only the tablist (not panel content) to avoid unnecessary
-				// re-evaluations when user content inside panels changes.
-				// childList only – attribute changes (set by initTabs) are not observed, preventing infinite loops.
+				// Observe only the tablist child list (tab additions/removals).
+				// attribute changes (set by syncSelection) are not observed, preventing infinite loops.
 				observer.observe(tabListEl, {
 					childList: true,
 					subtree: true
