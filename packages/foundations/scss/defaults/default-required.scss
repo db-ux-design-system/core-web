@@ -85,7 +85,12 @@ body {
 
 // Make sure every elements has the current color from container above
 body,
-#{helpers.$interactive-elements} {
+button,
+input,
+textarea,
+summary,
+select,
+a {
 	color: inherit;
 }
 
@@ -104,11 +109,9 @@ iframe {
 	border: 0;
 }
 
-// Focus styles
-:is(#{helpers.$interactive-elements}) {
-	&:focus-visible {
-		@extend %focus-placeholder;
-	}
+// Override default focus visible
+:focus-visible {
+	@extend %focus-placeholder;
 }
 
 // List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
