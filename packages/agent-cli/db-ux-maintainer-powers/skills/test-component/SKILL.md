@@ -82,7 +82,7 @@ If `component_name` is not explicitly provided, derive it deterministically from
 
 1. Call `list_components` to confirm the component exists.
 2. Read `packages/components/src/components/{component_slug}/{component_slug}.spec.tsx` to understand existing tests.
-3. Run `pnpm run build` to ensure the component is compiled with latest changes.
+3. Run `pnpm run build && pnpm run build-outputs` to ensure the component and all generated framework files are up to date.
 
 ### Step 1: Run Tests
 
