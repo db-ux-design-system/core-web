@@ -79,7 +79,7 @@ For non-DB applications, import only the component styles. The default theme or 
 
 For JavaScript framework-specific component imports:
 
-| Framework      | Package                        | Import Pattern                                                                                                                      |
+| Framework      | Node package                   | Import Pattern                                                                                                                      |
 | -------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | React          | `@db-ux/react-core-components` | `import { DBButton, DBInput } from '@db-ux/react-core-components'`                                                                  |
 | Angular        | `@db-ux/ngx-core-components`   | `import { DBButton } from '@db-ux/ngx-core-components'` (standalone components, add to `imports` array)                             |
