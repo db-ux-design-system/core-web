@@ -92,7 +92,7 @@ For each component identified:
 ### Phase 5: Check Documentation (if needed)
 
 1. For accessibility requirements: call `docs_search(query, "accessibility")`.
-2. For framework-specific notes: call `docs_search(query, "framework")`.
+2. For JS framework-specific notes: call `docs_search(query, "framework")`.
 
 ### Phase 6: Write Code
 
