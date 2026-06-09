@@ -62,7 +62,6 @@ packages/components/src/components/<name>/
 ├── <name>.spec.tsx                    # Playwright component test (screenshots + a11y)
 ├── model.ts                           # TypeScript interfaces (Props, State, VariantList)
 ├── index.ts                           # Re-export: export { default as DB<Name> } from './<name>';
-├── index.html                         # Full HTML5 dev preview with /styles/relative.css
 ├── docs/                              # JS Framework-specific documentation
 │   ├── Angular.md
 │   ├── HTML.md
