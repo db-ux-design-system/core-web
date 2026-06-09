@@ -55,7 +55,8 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			{ path: '04/accordion', label: 'Accordion' },
 			{ path: '04/accordion-item', label: 'AccordionItem' },
 			{ path: '04/tab-item', label: 'TabItem' },
-			{ path: '04/tabs', label: 'Tabs' }
+			{ path: '04/tabs', label: 'Tabs' },
+			{ path: '04/table', label: 'Table' }
 		])
 	},
 	{

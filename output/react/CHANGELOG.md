@@ -1,5 +1,17 @@
 # @db-ux/react-core-components
 
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+### Patch Changes
+
+- fix: Add missing `propertyName` parameter to all `getBooleanAsString` calls across components for consistent string-based boolean parsing. - [see commit 6c11be5](https://github.com/db-ux-design-system/core-web/commit/6c11be54397c425607103f44b987b752efffb6d5)
+
+- fix: Remove unwanted whitespace characters from rendered output to prevent layout shifts - [see commit a0f23a4](https://github.com/db-ux-design-system/core-web/commit/a0f23a4a3e715414de3d045b59b88dc3ac28d5e7)
+
 ## 4.10.2
 
 _version bump_
