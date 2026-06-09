@@ -51,7 +51,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: ${{ inputs.storybook }}-stories
-          path: storybooks/${{ inputs.storybook }}/src/components
+          path: storybooks/${{ inputs.storybook }}/src
 
       - name: ⏫ Download stories for html-storybook
         if: ${{ inputs.storybook == 'html-storybook' }}

@@ -29,16 +29,16 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: angular-storybook-stories
-          path: storybooks/angular-storybook/src/components
+          path: storybooks/angular-storybook/src
 
       - name: ⏫ Upload react stories
         uses: actions/upload-artifact@v7
         with:
           name: react-storybook-stories
-          path: storybooks/react-storybook/src/components
+          path: storybooks/react-storybook/src
 
       - name: ⏫ Upload vue stories
         uses: actions/upload-artifact@v7
         with:
           name: vue-storybook-stories
-          path: storybooks/vue-storybook/src/components
+          path: storybooks/vue-storybook/src
