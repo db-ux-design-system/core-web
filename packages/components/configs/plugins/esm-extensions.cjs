@@ -3,8 +3,9 @@ const path = require('node:path');
 
 /**
  * Resolves a relative import specifier to an explicit ESM path with .js extension.
- * - Directory with index.ts(x) → ./dir/index.js
- * - File .ts(x) → ./file.js
+ * Works on compiled output (dist/) where files are .js and .d.ts.
+ * - Directory with index.js → ./dir/index.js
+ * - File .js exists → ./file.js
  * - Already has extension or is not relative → unchanged
  *
  * @param {string} importPath - The import specifier (e.g. './model', '../utils')
@@ -25,16 +26,13 @@ const resolveEsmPath = (importPath, fromFile) => {
 
 	// Is it a directory with an index file?
 	if (fs.existsSync(absolute) && fs.statSync(absolute).isDirectory()) {
-		if (
-			fs.existsSync(path.join(absolute, 'index.ts')) ||
-			fs.existsSync(path.join(absolute, 'index.tsx'))
-		) {
+		if (fs.existsSync(path.join(absolute, 'index.js'))) {
 			return `${importPath}/index.js`;
 		}
 	}
 
-	// Is it a file (.ts or .tsx)?
-	if (fs.existsSync(`${absolute}.ts`) || fs.existsSync(`${absolute}.tsx`)) {
+	// Is it a file (.js)?
+	if (fs.existsSync(`${absolute}.js`)) {
 		return `${importPath}.js`;
 	}
 
@@ -66,16 +64,8 @@ const fixFileImports = (filePath) => {
 };
 
 /**
- * Files matching these patterns are consumed as raw source by the Patternhub
- * (Next.js transpilePackages) and are excluded from tsc compilation.
- * They must NOT receive .js extensions because no compiled .js counterpart exists.
- */
-const EXCLUDED_PATTERNS =
-	/\.(showcase|showcase-only|example|arg\.types)\.(ts|tsx)$/;
-
-/**
- * Recursively collects all .ts/.tsx files under a directory.
- * Excludes showcase/example files that are not compiled by tsc.
+ * Recursively collects all .js and .d.ts files under a directory.
+ * These are the compiled outputs that need ESM extension fixing.
  * @param {string} dir
  * @returns {string[]}
  */
@@ -86,10 +76,7 @@ const collectFiles = (dir) => {
 		const fullPath = path.resolve(dir, entry.name);
 		if (entry.isDirectory()) {
 			results.push(...collectFiles(fullPath));
-		} else if (
-			/\.(ts|tsx)$/.test(entry.name) &&
-			!EXCLUDED_PATTERNS.test(entry.name)
-		) {
+		} else if (/\.(js|d\.ts)$/.test(entry.name)) {
 			results.push(fullPath);
 		}
 	}
@@ -97,36 +84,37 @@ const collectFiles = (dir) => {
 };
 
 /**
- * Mitosis build.post plugin that appends explicit .js extensions to all
- * relative import/export specifiers in generated output files.
+ * Fixes ESM import extensions in compiled output (dist/) directory.
+ * Must be run AFTER tsc compilation, not on source files.
  *
- * This ensures the output is valid ESM that works in strict environments
- * like Node.js and Vitest without needing tsc-esm-fix or Vite.
+ * Source files in src/ are consumed directly as TypeScript by showcases
+ * (via transpilePackages/Turbopack), so they must NOT have .js extensions.
+ * Only the compiled dist/ output (published to npm) needs explicit .js extensions.
+ *
+ * @param {string} distDir - Absolute path to the dist directory
+ */
+const fixDistImports = (distDir) => {
+	for (const filePath of collectFiles(distDir)) {
+		fixFileImports(filePath);
+	}
+};
+
+/**
+ * Mitosis build.post plugin — intentionally a no-op.
+ * ESM extension fixing is now handled post-tsc via fixDistImports().
  *
  * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
 module.exports = () => ({
 	name: 'esm-extensions',
 	build: {
-		post: (targetContext, files) => {
-			if (!files) return;
-
-			const allOutputFiles = [
-				...(files.componentFiles || []),
-				...(files.nonComponentFiles || [])
-			];
-
-			if (allOutputFiles.length === 0) return;
-
-			// Determine the src directory from the first file's outputDir
-			const outputDir = path.resolve(allOutputFiles[0].outputDir);
-			const srcDir = path.resolve(outputDir, 'src');
-
-			// Fix ALL .ts/.tsx files in the entire src directory
-			// This covers component barrels, shared utils, and root index.ts
-			for (const filePath of collectFiles(srcDir)) {
-				fixFileImports(filePath);
-			}
+		post: () => {
+			// No-op: extensions are fixed post-tsc by fix-esm-imports.cjs
 		}
 	}
 });
+
+module.exports.fixDistImports = fixDistImports;
+module.exports.resolveEsmPath = resolveEsmPath;
+module.exports.fixFileImports = fixFileImports;
+module.exports.collectFiles = collectFiles;

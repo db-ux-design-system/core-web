@@ -2,7 +2,6 @@ const onClickPlugin = require('../plugins/on-click.cjs');
 const defineOptionsPlugin = require('../plugins/vue/define-options.cjs');
 const useIdPlugin = require('../plugins/useId.cjs');
 const slotsPlugin = require('../plugins/vue/slots.cjs');
-const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToVueOptions}
@@ -10,11 +9,5 @@ const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
 module.exports = {
 	typescript: true,
 	api: 'composition',
-	plugins: [
-		useIdPlugin,
-		onClickPlugin,
-		defineOptionsPlugin,
-		slotsPlugin,
-		esmExtensionsPlugin
-	]
+	plugins: [useIdPlugin, onClickPlugin, defineOptionsPlugin, slotsPlugin]
 };
