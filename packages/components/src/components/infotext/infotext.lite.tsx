@@ -26,8 +26,11 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
-			data-wrap={getBooleanAsString(props.wrap)}
-			data-show-icon-leading={getBooleanAsString(props.showIcon ?? true)}>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			data-show-icon-leading={getBooleanAsString(
+				props.showIcon ?? true,
+				'showIcon'
+			)}>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</span>
