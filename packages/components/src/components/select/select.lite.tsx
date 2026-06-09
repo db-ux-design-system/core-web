@@ -299,7 +299,7 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
@@ -336,7 +336,8 @@ export default function DBSelect(props: DBSelectProps) {
 						class="placeholder"
 						value=""
 						data-show-empty-option={getBooleanAsString(
-							state.shouldShowEmptyOption()
+							state.shouldShowEmptyOption(),
+							'showEmptyOption'
 						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
