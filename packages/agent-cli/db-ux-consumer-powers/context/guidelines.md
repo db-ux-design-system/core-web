@@ -77,7 +77,7 @@ For non-DB applications, import only the component styles. The default theme or 
 @import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
-For framework-specific component imports:
+For JavaScript framework-specific component imports:
 
 | Framework      | Package                        | Import Pattern                                                                                                                      |
 | -------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
