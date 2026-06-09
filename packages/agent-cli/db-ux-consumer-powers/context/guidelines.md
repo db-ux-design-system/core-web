@@ -60,7 +60,7 @@ DB UX Design System is **white-label by default**. Components work out of the bo
 
 ### Deutsche Bahn applications (DB Theme)
 
-If you are building a website or application **for Deutsche Bahn**, you must additionally install `@db-ux/db-theme` to apply the official DB branding (colors, fonts, etc.):
+If you are building a website or application **for Deutsche Bahn (DB)**, you must additionally install `@db-ux/db-theme` to apply the official DB branding (colors, fonts, etc.):
 
 ```css
 @layer db-theme, db-ux;
