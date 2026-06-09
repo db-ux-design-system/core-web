@@ -24,8 +24,10 @@
 			"args": [
 				"-y",
 				"figma-developer-mcp",
-				"--figma-api-key=YOUR_FIGMA_API_KEY"
-			]
+				"--figma-api-key=YOUR_FIGMA_API_KEY",
+				"--stdio"
+			],
+			"tools": ["get_figma_data", "download_figma_images"]
 		}
 	}
 }

@@ -43,10 +43,8 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/list_icons
     - db-ux/docs_search
-    - figma/get_file
-    - figma/get_node
-    - figma/get_styles
-    - figma/get_variables
+    - figma/get_figma_data
+    - figma/download_figma_images
 
 outputs:
     - "packages/components/src/components/{component_slug}/"
@@ -88,7 +86,7 @@ Throughout this skill:
 1. Use `figma_file_key` and `figma_node_id` provided by the user as the primary source of truth.
 2. If one of them is missing, extract the missing value from `figma_url` as fallback.
     - URL format: `https://www.figma.com/file/<fileKey>/...?node-id=<nodeId>`
-3. Call `get_node` with `fileKey` and `nodeId` to retrieve the component frame.
+3. Call `get_figma_data` with `fileKey` and `nodeId` to retrieve the component frame and its design data.
 4. Extract from the Figma response:
     - **Spacing**: padding, gap, margin values from Auto Layout properties.
     - **Sizing**: width, height constraints.
@@ -96,9 +94,8 @@ Throughout this skill:
     - **Typography**: font family, size, weight, line-height.
     - **Border radius**: corner radius values.
     - **Variants**: all variant properties defined in the Figma component set.
-5. Call `get_variables` to resolve any Figma variable references to their actual values.
-6. Call `get_styles` if the component references shared Figma styles.
-7. Document ALL extracted values. These are the ground truth for implementation.
+5. Variable references and styles are included in the `get_figma_data` response — extract them from the returned data structure.
+6. Document ALL extracted values. These are the ground truth for implementation.
 
 #### Phase 0.2: DB UX Token Mapping (`@db-ux/mcp-server` node package)
 

@@ -38,9 +38,8 @@ requires:
 tools:
     - db-ux/list_components
     - db-ux/get_component_props
-    - figma/get_node
-    - figma/get_styles
-    - figma/get_variables
+    - figma/get_figma_data
+    - figma/download_figma_images
 
 outputs:
     - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"

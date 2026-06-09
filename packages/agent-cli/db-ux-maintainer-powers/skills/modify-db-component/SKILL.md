@@ -46,9 +46,8 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/list_icons
     - db-ux/docs_search
-    - figma/get_node
-    - figma/get_styles
-    - figma/get_variables
+    - figma/get_figma_data
+    - figma/download_figma_images
 
 outputs:
     - "packages/components/src/components/{component_slug}/model.ts"
