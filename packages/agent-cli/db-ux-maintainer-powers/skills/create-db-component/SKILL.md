@@ -15,8 +15,8 @@ inputs:
       description: "Component directory name in kebab-case (e.g. 'navigation-item', 'tooltip')"
     - name: component_name
       type: string
-      required: true
-      description: "Component symbol name in PascalCase (e.g. 'NavigationItem', 'Tooltip')"
+      required: false
+      description: "Optional PascalCase symbol name (e.g. 'NavigationItem'). If omitted, derive it from component_slug."
     - name: figma_url
       type: string
       required: true
@@ -57,7 +57,7 @@ on_error:
 Throughout this skill:
 
 - `{component_slug}` = kebab-case directory/file name (e.g. `navigation-item`)
-- `{component_name}` = PascalCase symbol name (e.g. `NavigationItem`)
+- `{component_name}` = PascalCase symbol name derived from `{component_slug}` (e.g. `navigation-item` -> `NavigationItem`)
 - `DB{component_name}` = full component class name (e.g. `DBNavigationItem`)
 - `.db-{component_slug}` = CSS class (e.g. `.db-navigation-item`)
 
@@ -66,7 +66,7 @@ Throughout this skill:
 1. `context/architecture.md` IS in context.
 2. MCP (`@db-ux/mcp-server`) IS connected.
 3. Figma MCP IS connected.
-4. `component_slug` and `component_name` ARE provided by user.
+4. `component_slug` IS provided by user. Derive `component_name` from `component_slug` unless explicitly provided.
 5. **Figma URL** IS provided by user. If missing: ABORT immediately. Do NOT proceed without a Figma link.
 6. Call `list_components` to verify the component does NOT already exist.
 
