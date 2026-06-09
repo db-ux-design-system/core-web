@@ -17,7 +17,7 @@
 	white-space: nowrap;
 	border-radius: variables.$db-border-radius-sm;
 	font: inherit;
-	color: inherit;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	flex-shrink: 0;
 	max-inline-size: variables.$db-sizing-2xl;
 
