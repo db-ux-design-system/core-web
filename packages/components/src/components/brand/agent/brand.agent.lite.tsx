@@ -8,8 +8,8 @@ export default function Brand() {
 			<h2>1. Default Brand</h2>
 			<DBBrand>Default Brand</DBBrand>
 
-			<h2>2. Icon Visibility</h2>
-			<DBBrand showIcon={false}>Icon Hidden</DBBrand>
+			<h2>2. Logo Only (No Text)</h2>
+			<DBBrand noText aria-label="Brand Logo" />
 
 			<h2>3. Custom Text</h2>
 			<DBBrand text="Custom Brand Text">With Custom Text</DBBrand>
