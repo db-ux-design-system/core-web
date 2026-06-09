@@ -31,6 +31,6 @@ jobs:
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
 
       - name: 🔀 Reorder backlog
-        run: node --experimental-strip-types scripts/github/reorder-backlog.ts
+        run: node scripts/github/reorder-backlog.ts
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
