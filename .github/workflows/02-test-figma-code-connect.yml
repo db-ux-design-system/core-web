@@ -17,7 +17,7 @@ jobs:
         target: [angular, react, vue]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
