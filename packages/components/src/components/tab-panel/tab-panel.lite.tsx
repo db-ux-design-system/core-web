@@ -11,8 +11,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			class={cls('db-tab-panel', props.className)}
 			id={props.id ?? props.propOverrides?.id}
 			role="tabpanel"
-			tabIndex={props.hidden ? -1 : 0}
-			hidden={props.hidden}>
+			tabIndex={props.hidden ? -1 : 0}>
 			<Show when={props.content}>{props.content}</Show>
 			{props.children}
 		</div>
