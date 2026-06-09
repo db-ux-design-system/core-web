@@ -18,7 +18,6 @@ export default function DBInfotext(props: DBInfotextProps) {
 	const state = useStore<DBInfotextState>({});
 	// jscpd:ignore-end
 
-	// TODO: Check if this should be a div or a span
 	return (
 		<span
 			ref={_ref}

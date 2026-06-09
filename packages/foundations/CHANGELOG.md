@@ -1,5 +1,13 @@
 # @db-ux/core-foundations
 
+## 4.10.2
+
+### Patch Changes
+
+- refactor: replaced external fallback icon font as inline base64 to ensure it loads with CSS even when the font file cannot be fetched, preventing layout shifts. - [see commit 8a6b622](https://github.com/db-ux-design-system/core-web/commit/8a6b622179dfd3fc61cecd149cd3b61a40147f92)
+
+- fix: ensure that the icon fallback is displayed as a rectangle - [see commit 6ebc636](https://github.com/db-ux-design-system/core-web/commit/6ebc6361f06fbb44476435b1f011def97318d586)
+
 ## 4.10.1
 
 ### Patch Changes
