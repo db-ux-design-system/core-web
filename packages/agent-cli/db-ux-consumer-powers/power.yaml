@@ -5,3 +5,6 @@ author: DB UX Core Team
 skills:
   - skills/migrate-to-v3/SKILL.md
   - skills/implement-component/SKILL.md
+
+mcp:
+  config: mcp.json
