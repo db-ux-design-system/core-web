@@ -2,11 +2,10 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef,
-	useStore
+	useRef
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
-import { DBBrandProps, DBBrandState } from './model';
+import { DBBrandProps } from './model';
 
 useMetadata({});
 
@@ -14,9 +13,6 @@ useDefaultProps<DBBrandProps>({});
 
 export default function DBBrand(props: DBBrandProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBBrandState>({});
-	// jscpd:ignore-end
 
 	return (
 		<div
