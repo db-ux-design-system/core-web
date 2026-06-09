@@ -316,10 +316,6 @@ export default function DBTabs(props: DBTabsProps) {
 							state._resizeObserver = observer;
 						}
 					}
-
-					if (props.label && !container.getAttribute('aria-label')) {
-						container.setAttribute('aria-label', props.label ?? '');
-					}
 				}
 			}
 		},
@@ -402,6 +398,14 @@ export default function DBTabs(props: DBTabsProps) {
 			);
 		}
 	}, [_ref, props.orientation]);
+
+	// Reflect label changes onto the tablist's aria-label
+	onUpdate(() => {
+		if (_ref && props.label) {
+			const container = state._getScrollContainer() as HTMLElement | null;
+			container?.setAttribute('aria-label', props.label);
+		}
+	}, [_ref, props.label]);
 
 	// Controlled mode: mirror external activeIndex into internal state.
 	// The syncSelection onUpdate below then runs the same way as for internal changes.
