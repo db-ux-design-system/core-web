@@ -300,8 +300,9 @@ export default function DBTabs(props: DBTabsProps) {
 						'aria-orientation',
 						props.orientation ?? 'horizontal'
 					);
-					if (props.label) {
-						container.setAttribute('aria-label', props.label);
+					const label = props.label;
+					if (label) {
+						container.setAttribute('aria-label', label);
 					}
 
 					if (props.behavior === 'arrows') {
