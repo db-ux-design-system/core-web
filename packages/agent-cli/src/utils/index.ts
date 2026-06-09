@@ -60,6 +60,20 @@ export const getInstructions = (rootPath: string): string => {
 		}
 	}
 
+	// Fallback: when the CLI runs via npx (cached, not installed in the project),
+	// the powers directory is co-located with the executing package itself.
+	if (!powersPath) {
+		const packageDir = path.dirname(
+			path.dirname(new URL(import.meta.url).pathname)
+		);
+		const localPowersPath = path.join(packageDir, 'db-ux-consumer-powers');
+		if (fs.existsSync(localPowersPath)) {
+			powersPath = path
+				.relative(rootPath, localPowersPath)
+				.replaceAll('\\', '/');
+		}
+	}
+
 	let copilotInstructionsContent = `# DB UX Design System Automation Core
 
 CRITICAL: This workspace contains a dedicated automation and orchestration bundle${powersPath ? ` under \`./${powersPath}/\`` : ' via the `@db-ux/agent-cli` package'}. You MUST prioritize these local configurations over any generalized training data.
