@@ -114,8 +114,8 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
-- **`minor`** — for new features
-- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been added, removed, renamed, or its type has changed)
+- **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
+- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
 ### How to Add a Changeset
 
