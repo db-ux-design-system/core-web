@@ -92,8 +92,9 @@ For each component identified:
 
 ### Phase 5: Check Documentation (if needed)
 
-1. For accessibility requirements: call `docs_search(query, "accessibility")`.
-2. For JS framework-specific notes: call `docs_search(query, "framework")`.
+1. For accessibility requirements: call `docs_search({ query: "<topic>", category: "global", docType: "Accessibility" })`.
+2. For component-specific accessibility docs: call `docs_search({ query: "<topic>", category: "component", componentName: "<name>", docType: "Accessibility" })`.
+3. For JS framework-specific notes: call `docs_search({ query: "<topic>", category: "component", componentName: "<name>", docType: "React" | "Angular" | "Vue" | "HTML" })`.
 
 ### Phase 6: Write Code
 
