@@ -166,7 +166,7 @@ export function categorizeFile(
 		return true;
 	}
 
-	// figma-code-connect/ (lives at repo root, not under packages/)
+	// Figma-code-connect/ (lives at repo root, not under packages/)
 	if (file.startsWith('figma-code-connect/')) {
 		categories.figma = true;
 
@@ -202,7 +202,7 @@ export function categorizeFile(
 	}
 
 	// Change detection scripts affect showcase/test behavior
-	// (these scripts determine which tests run, so changes should trigger the test suite to verify)
+	// (These scripts determine which tests run, so changes should trigger the test suite to verify)
 	if (file.startsWith('scripts/github/change-detection/')) {
 		categories.showcases = true;
 

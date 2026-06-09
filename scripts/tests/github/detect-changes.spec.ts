@@ -25,7 +25,7 @@ describe('detect-changes categorization logic', () => {
 			// Not docs-only
 			['.github/workflows/default.yml', false],
 			['packages/components/src/button.ts', false],
-			['docs/index.md', false], // docs/ is patternhub, not docs-only
+			['docs/index.md', false], // Docs/ is patternhub, not docs-only
 			['scripts/build.ts', false],
 			['nested/README.md', false] // Only root-level .md
 		])('%s → %s', (file, expected) => {

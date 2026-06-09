@@ -14,15 +14,17 @@ const workflow = loadDefaultWorkflow(import.meta.dirname);
 
 // --- GitHub Actions condition evaluator ---
 
-interface GitHubContext {
+// GitHub context shape mirrors the GitHub Actions expression context.
+// Property names use underscores to match GitHub's API naming (e.g., event_name, pull_request).
+type GitHubContext = {
 	event_name: string;
 	ref: string;
 	actor: string;
 	repository_owner: string;
 	event: {
-		pull_request: object | null;
+		pull_request: Record<string, unknown> | undefined;
 	};
-}
+};
 
 /**
  * Simplified evaluator for GitHub Actions `if:` expressions.
@@ -34,12 +36,12 @@ function evaluateCondition(
 	needsOutputs: Record<string, Record<string, string>> = {}
 ): boolean {
 	// Strip surrounding ${{ }} if present
-	let expr = condition.trim();
-	if (expr.startsWith('${{') && expr.endsWith('}}')) {
-		expr = expr.slice(3, -2).trim();
+	let expression = condition.trim();
+	if (expression.startsWith('${{') && expression.endsWith('}}')) {
+		expression = expression.slice(3, -2).trim();
 	}
 
-	return evaluateExpression(expr, context, needsOutputs);
+	return evaluateExpression(expression, context, needsOutputs);
 }
 
 function evaluateExpression(
@@ -84,22 +86,22 @@ function evaluateExpression(
 	// Handle equality comparisons
 	if (expr.includes('==')) {
 		const [left, right] = expr.split('==').map((s) => s.trim());
-		const leftVal = resolveValue(left, context, needsOutputs);
-		const rightVal = resolveValue(right, context, needsOutputs);
-		return leftVal === rightVal;
+		const leftValue = resolveValue(left, context, needsOutputs);
+		const rightValue = resolveValue(right, context, needsOutputs);
+		return leftValue === rightValue;
 	}
 
 	// Handle inequality comparisons
 	if (expr.includes('!=')) {
 		const [left, right] = expr.split('!=').map((s) => s.trim());
-		const leftVal = resolveValue(left, context, needsOutputs);
-		const rightVal = resolveValue(right, context, needsOutputs);
-		return leftVal !== rightVal;
+		const leftValue = resolveValue(left, context, needsOutputs);
+		const rightValue = resolveValue(right, context, needsOutputs);
+		return leftValue !== rightValue;
 	}
 
 	// Handle !cancelled() within more complex expressions
 	if (expr.includes('!cancelled()')) {
-		// For expressions containing !cancelled(), replace it with true
+		// Replace !cancelled() with true for evaluation
 		const replaced = expr.replace('!cancelled()', 'true');
 		return evaluateExpression(replaced, context, needsOutputs);
 	}
@@ -113,6 +115,7 @@ function evaluateExpression(
 	return resolved !== null && resolved !== undefined && resolved !== 'null';
 }
 
+// eslint-disable-next-line complexity
 function resolveValue(
 	expr: string,
 	context: GitHubContext,
@@ -140,33 +143,35 @@ function resolveValue(
 	if (expr === 'github.ref') return context.ref;
 	if (expr === 'github.actor') return context.actor;
 	if (expr === 'github.repository_owner') return context.repository_owner;
-	if (expr === 'github.event.pull_request') return context.event.pull_request;
+	if (expr === 'github.event.pull_request')
+		return context.event.pull_request ?? null;
 	if (expr === 'github.event.pull_request.head.repo.owner.login') {
 		return context.event.pull_request ? context.repository_owner : null;
 	}
 
 	// Needs outputs
-	const needsMatch = expr.match(/^needs\.([^.]+)\.outputs\.([^.]+)$/);
+	const needsMatch = /^needs\.([^.]+)\.outputs\.([^.]+)$/.exec(expr);
 	if (needsMatch) {
 		const [, jobName, outputName] = needsMatch;
 		return needsOutputs[jobName]?.[outputName] ?? '';
 	}
 
 	// Needs result
-	const needsResultMatch = expr.match(/^needs\.([^.]+)\.result$/);
+	const needsResultMatch = /^needs\.([^.]+)\.result$/.exec(expr);
 	if (needsResultMatch) {
-		return 'success'; // Assume success for property testing
+		// Assume success for property testing
+		return 'success';
 	}
 
-	// contains() function
-	const containsMatch = expr.match(/^contains\((.+),\s*(.+)\)$/);
+	// Contains() function
+	const containsMatch = /^contains\((.+),\s*(.+)\)$/.exec(expr);
 	if (containsMatch) {
 		const [, haystack, needle] = containsMatch;
-		const haystackVal = String(
+		const haystackValue = String(
 			resolveValue(haystack, context, needsOutputs)
 		);
-		const needleVal = String(resolveValue(needle, context, needsOutputs));
-		return haystackVal.includes(needleVal) ? 'true' : null;
+		const needleValue = String(resolveValue(needle, context, needsOutputs));
+		return haystackValue.includes(needleValue) ? 'true' : null;
 	}
 
 	return expr;
@@ -201,6 +206,7 @@ function splitLogicalOperator(expr: string, operator: string): string[] {
 
 // --- Arbitraries for generating random merge_group contexts ---
 
+/* eslint-disable @typescript-eslint/naming-convention */
 const mergeGroupContextArbitrary: fc.Arbitrary<GitHubContext> = fc.record({
 	event_name: fc.constant('merge_group'),
 	ref: fc.oneof(
@@ -208,7 +214,7 @@ const mergeGroupContextArbitrary: fc.Arbitrary<GitHubContext> = fc.record({
 			.string({ minLength: 1, maxLength: 50 })
 			.map((s) => `refs/heads/gh-readonly-queue/main/pr-${s}`),
 		fc
-			.tuple(fc.nat({ max: 9999 }), fc.nat({ max: 0xffffffff }))
+			.tuple(fc.nat({ max: 9999 }), fc.nat({ max: 0xff_ff_ff_ff }))
 			.map(
 				([n, hex]) =>
 					`refs/heads/gh-readonly-queue/main/pr-${n}-${hex.toString(16).padStart(8, '0')}`
@@ -223,8 +229,9 @@ const mergeGroupContextArbitrary: fc.Arbitrary<GitHubContext> = fc.record({
 		fc.constant('db-ux-design-system'),
 		fc.string({ minLength: 1, maxLength: 30 })
 	),
-	event: fc.constant({ pull_request: null })
+	event: fc.constant({ pull_request: undefined })
 });
+/* eslint-enable @typescript-eslint/naming-convention */
 
 // --- Job classification ---
 
@@ -274,6 +281,7 @@ describe('default.yml job condition evaluation (property-based)', () => {
 							condition.includes('db-ux-design-system')
 								? {
 										...context,
+										// eslint-disable-next-line @typescript-eslint/naming-convention
 										repository_owner: 'db-ux-design-system'
 									}
 								: context;
@@ -301,7 +309,8 @@ describe('default.yml job condition evaluation (property-based)', () => {
 							testContext,
 							needsOutputs
 						);
-						return result === true;
+
+						return result;
 					}),
 					{ numRuns: 100 }
 				);
@@ -372,7 +381,8 @@ describe('default.yml job condition evaluation (property-based)', () => {
 							context,
 							needsOutputs
 						);
-						return result === false;
+
+						return !result;
 					}),
 					{ numRuns: 100 }
 				);

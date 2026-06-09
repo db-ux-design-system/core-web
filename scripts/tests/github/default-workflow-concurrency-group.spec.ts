@@ -13,21 +13,23 @@ import { describe, expect, test } from 'vitest';
  *   format('{0}-{1}', github.workflow, github.ref)
  * }}
  */
-interface EventContext {
-	event_name: string;
+type EventContext = {
+	eventName: string;
 	ref: string;
 	workflow: string;
-}
+};
 
-const WORKFLOW_NAME = 'Default Pipeline';
+const workflowName = 'Default Pipeline';
 
 function evaluateConcurrencyGroup(context: EventContext): string {
-	if (context.event_name === 'release') {
+	if (context.eventName === 'release') {
 		return `release-${context.ref}`;
 	}
-	if (context.event_name === 'merge_group') {
+
+	if (context.eventName === 'merge_group') {
 		return `merge-queue-${context.ref}`;
 	}
+
 	return `${context.workflow}-${context.ref}`;
 }
 
@@ -54,14 +56,14 @@ describe('default.yml concurrency group expression - property tests', () => {
 						fc.pre(ref1 !== ref2);
 
 						const group1 = evaluateConcurrencyGroup({
-							event_name: 'merge_group',
+							eventName: 'merge_group',
 							ref: ref1,
-							workflow: WORKFLOW_NAME
+							workflow: workflowName
 						});
 						const group2 = evaluateConcurrencyGroup({
-							event_name: 'merge_group',
+							eventName: 'merge_group',
 							ref: ref2,
-							workflow: WORKFLOW_NAME
+							workflow: workflowName
 						});
 
 						expect(group1).not.toBe(group2);
@@ -75,9 +77,9 @@ describe('default.yml concurrency group expression - property tests', () => {
 			fc.assert(
 				fc.property(fc.string({ minLength: 1 }), (ref) => {
 					const group = evaluateConcurrencyGroup({
-						event_name: 'merge_group',
+						eventName: 'merge_group',
 						ref,
-						workflow: WORKFLOW_NAME
+						workflow: workflowName
 					});
 
 					expect(group).toBe(`merge-queue-${ref}`);
@@ -103,9 +105,9 @@ describe('default.yml concurrency group expression - property tests', () => {
 			fc.assert(
 				fc.property(fc.string({ minLength: 1 }), (ref) => {
 					const group = evaluateConcurrencyGroup({
-						event_name: 'release',
+						eventName: 'release',
 						ref,
-						workflow: WORKFLOW_NAME
+						workflow: workflowName
 					});
 
 					expect(group).toBe(`release-${ref}`);
@@ -128,7 +130,7 @@ describe('default.yml concurrency group expression - property tests', () => {
 					fc.string({ minLength: 1 }),
 					(eventName, ref, workflow) => {
 						const group = evaluateConcurrencyGroup({
-							event_name: eventName,
+							eventName,
 							ref,
 							workflow
 						});
@@ -148,12 +150,12 @@ describe('default.yml concurrency group expression - property tests', () => {
 						.filter((ref) => ref !== 'refs/heads/main'),
 					(ref) => {
 						const group = evaluateConcurrencyGroup({
-							event_name: 'pull_request',
+							eventName: 'pull_request',
 							ref,
-							workflow: WORKFLOW_NAME
+							workflow: workflowName
 						});
 
-						expect(group).toBe(`${WORKFLOW_NAME}-${ref}`);
+						expect(group).toBe(`${workflowName}-${ref}`);
 					}
 				),
 				{ numRuns: 200 }
@@ -167,12 +169,12 @@ describe('default.yml concurrency group expression - property tests', () => {
 					fc.string({ minLength: 1 }),
 					(ref, workflow) => {
 						const releaseGroup = evaluateConcurrencyGroup({
-							event_name: 'release',
+							eventName: 'release',
 							ref,
 							workflow
 						});
 						const pushGroup = evaluateConcurrencyGroup({
-							event_name: 'push',
+							eventName: 'push',
 							ref,
 							workflow
 						});
