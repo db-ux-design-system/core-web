@@ -310,9 +310,11 @@ export default function {component_name}Showcase(props: PatternhubProps) {
 
 1. Run `pnpm run test`. ALL MUST PASS.
 2. Run `pnpm run build`. MUST SUCCEED.
-3. Cross-check SCSS against Phase 0.2 mapping.
-4. Verify docs/, examples/, showcase/ are complete.
-5. Run tests again after refactor.
+3. Run `pnpm run build-showcases`. MUST SUCCEED.
+4. Run `pnpm run build-storybooks`. MUST SUCCEED.
+5. Cross-check SCSS against Phase 0.2 mapping.
+6. Verify docs/, examples/, showcase/ are complete.
+7. Run tests again after refactor.
 
 ### Step 4: Agent Examples
 
