@@ -18,12 +18,20 @@ inputs:
       description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
     - name: component_name
       type: string
-      required: true
-      description: "Component symbol name in PascalCase (e.g. 'Button', 'NavigationItem')"
+      required: false
+      description: "Optional PascalCase symbol name (e.g. 'Button'). If omitted, derive it from component_slug."
     - name: instruction
       type: string
       required: true
       description: "What to change (e.g. 'add a new variant called outline')"
+    - name: figma_file_key
+      type: string
+      required: false
+      description: "Figma file key. Required for visually-driven changes (new variant, layout, spacing). Not needed for purely technical refactorings."
+    - name: figma_node_id
+      type: string
+      required: false
+      description: "Figma node ID of the target component/frame. Required together with figma_file_key for visual changes."
 
 requires:
     - context: context/architecture.md
@@ -38,6 +46,9 @@ tools:
     - db-ux/list_design_token_categories
     - db-ux/list_icons
     - db-ux/docs_search
+    - figma/get_node
+    - figma/get_styles
+    - figma/get_variables
 
 outputs:
     - "packages/components/src/components/{component_slug}/model.ts"
@@ -59,7 +70,7 @@ on_error:
 Throughout this skill:
 
 - `{component_slug}` = kebab-case directory/file name (e.g. `navigation-item`)
-- `{component_name}` = PascalCase symbol name (e.g. `NavigationItem`)
+- `{component_name}` = PascalCase symbol name derived from `{component_slug}` (e.g. `navigation-item` -> `NavigationItem`)
 - `DB{component_name}` = full component class name (e.g. `DBNavigationItem`)
 - `.db-{component_slug}` = CSS class (e.g. `.db-navigation-item`)
 
@@ -67,8 +78,11 @@ Throughout this skill:
 
 1. `context/architecture.md` IS in context.
 2. MCP (`@db-ux/mcp-server`) IS connected.
-3. `component_slug` and `component_name` ARE provided and component EXISTS (verify via `list_components`).
-4. Modification instruction IS provided by user.
+3. `component_slug` IS provided by user. Derive `component_name` from `component_slug` unless explicitly provided.
+4. Component EXISTS (verify via `list_components`).
+5. Modification instruction IS provided by user.
+6. For visually-driven changes (new variant, layout, spacing): `figma_file_key` and `figma_node_id` SHOULD be provided. If missing for a visual change, ask user before proceeding.
+7. For purely technical changes (bug fix, API cleanup, refactoring): Figma is not required.
 
 ## Execution
 
