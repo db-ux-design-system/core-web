@@ -46,3 +46,4 @@ Thumbs.db
 storybook-static
 
 src/components
+src/shared
