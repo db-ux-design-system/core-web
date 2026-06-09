@@ -321,8 +321,8 @@ Create `agent/{component_slug}.agent.lite.tsx` with usage examples.
 
 2. **Create changeset:**
    `bash
- pnpm changeset
- `
+pnpm changeset
+`
    Select `@db-ux/core-components` and all framework output packages (`@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`). Bump: `minor`.
    As a changeset message, describe why we made a change and what changes to the developers. In most cases, we don't need to describe what we have changed internally, as the users are most curious about what changes for them.
 
