@@ -102,7 +102,7 @@ For each component identified:
     - Replace `<input>` → `DBInput`
     - Replace `<select>` → `DBSelect`
     - Replace `<textarea>` → `DBTextarea`
-    - Replace `<a>` → `DBLink` (only when styled as UI action, NOT for router links)
+    - Replace `<a href>` → `DBLink` (only when styled as UI action, NOT for router links)
     - Use `DBStack`, `DBSection`, `DBCard` for layout where semantically appropriate
     - No inline styles with magic numbers
     - No custom ARIA workarounds when DB UX handles accessibility
