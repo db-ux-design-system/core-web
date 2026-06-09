@@ -16,12 +16,20 @@ inputs:
       description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
     - name: component_name
       type: string
-      required: true
-      description: "Component symbol name in PascalCase (e.g. 'Button', 'NavigationItem')"
+      required: false
+      description: "Optional PascalCase symbol name (e.g. 'Button'). If omitted, derive it from component_slug."
     - name: update_snapshots
       type: boolean
       required: false
       description: "Whether to update failing screenshots instead of fixing code (default: false)"
+    - name: figma_file_key
+      type: string
+      required: false
+      description: "Figma file key. Useful when validating visual diffs against the Figma spec."
+    - name: figma_node_id
+      type: string
+      required: false
+      description: "Figma node ID of the target component/frame. Used together with figma_file_key for visual validation."
 
 requires:
     - context: context/architecture.md
@@ -30,6 +38,9 @@ requires:
 tools:
     - db-ux/list_components
     - db-ux/get_component_props
+    - figma/get_node
+    - figma/get_styles
+    - figma/get_variables
 
 outputs:
     - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"
