@@ -21,8 +21,7 @@ export default function TabsInitialSelection() {
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					3rd tab pre-selected via initialSelectedIndex (also supports
-					deep linking via URL hash, e.g.
-					#initial-selection-tab-1):
+					deep linking via URL hash, e.g. #initial-selection-tab-1):
 				</DBInfotext>
 				<DBTabs
 					id="initial-selection"
