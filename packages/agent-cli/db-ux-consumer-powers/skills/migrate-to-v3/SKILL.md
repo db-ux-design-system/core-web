@@ -102,12 +102,12 @@ on_error:
 
 ## Output Checklist
 
-- [ ] `scan_v2_migration` called — full v2 pattern list obtained
-- [ ] All relevant migration guides loaded via `get_migration_guide`
-- [ ] `list_components` called — all v3 replacement components confirmed
-- [ ] `get_component_props` and `get_example_code` called for each replacement
-- [ ] `list_icons` called if icon names changed
-- [ ] `get_design_tokens` called if color tokens changed
+- [ ] `scan_v2_migration` MCP tool called — full v2 pattern list obtained
+- [ ] All relevant migration guides loaded via `get_migration_guide` MCP tool
+- [ ] `list_components` MCP tool called — all v3 replacement components confirmed
+- [ ] `get_component_props` and `get_example_code` MCP tool called for each replacement
+- [ ] `list_icons` MCP tool called if icon names changed
+- [ ] `get_design_tokens` MCP tool called if color tokens changed
 - [ ] All `cmp-*`, `elm-*`, `rea-*` classes removed
 - [ ] All `db-color-*` tokens replaced with v3 equivalents
 - [ ] Re-scan confirms zero remaining v2 patterns
