@@ -270,7 +270,7 @@ Rules:
 }
 ```
 
-Rules: Line 1 = `@use`. Root = `.db-{component_slug}`. NO hardcoded values. Max 3 levels nesting.
+Rules: Line 1 = `@use`. Root = `.db-{component_slug}`. NO hardcoded values. Keep nesting shallow — prefer extracting shared/internal styles over deeply nested selectors.
 
 #### 2d: Create `index.ts`
 
