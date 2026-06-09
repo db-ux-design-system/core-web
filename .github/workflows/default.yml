@@ -14,6 +14,7 @@ on:
       - "main"
   release:
     types: [published]
+  workflow_dispatch:
 
 # We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
 # TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
@@ -322,7 +323,7 @@ jobs:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   regenerate-snapshots-components:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.test-components.result == 'failure' }}
+    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-components.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -331,7 +332,7 @@ jobs:
     needs: [test-components, init]
 
   regenerate-snapshots-foundations:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.test-foundations.result == 'failure' }}
+    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -340,7 +341,7 @@ jobs:
     needs: [test-foundations, init]
 
   regenerate-snapshots-patternhub:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
+    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -354,6 +355,7 @@ jobs:
   test-screen-reader:
     if: |
       github.event_name == 'release' ||
+      github.event_name == 'workflow_dispatch' ||
       needs.init.outputs.test-ally == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
@@ -364,7 +366,7 @@ jobs:
 
   regenerate-snapshots:
     if: |
-      github.event_name != 'release' && !cancelled() && !contains(github.actor,'[bot]') && (
+      github.event_name == 'pull_request' && !cancelled() && !contains(github.actor,'[bot]') && (
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
@@ -388,7 +390,7 @@ jobs:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
     if: |
-      ${{ github.event_name != 'release' && !cancelled() &&
+      ${{ github.event_name == 'pull_request' && !cancelled() &&
         ( needs.regenerate-snapshots-components.result == 'success' ||
         needs.regenerate-snapshots-foundations.result == 'success' ||
         needs.regenerate-snapshots-patternhub.result == 'success' ||
