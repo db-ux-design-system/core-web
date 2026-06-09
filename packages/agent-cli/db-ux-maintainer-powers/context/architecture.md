@@ -213,7 +213,7 @@ These patterns are NEVER acceptable. Violations trigger immediate rejection.
 | Pattern                              | Violation                                                                                    |
 | ------------------------------------ | -------------------------------------------------------------------------------------------- |
 | Inline styles with pixel values      | Use SCSS variables (`variables.$db-*`) or CSS custom properties (`var(--db-*)`) exclusively. |
-| Invented icon names                  | ALWAYS call `list_icons` via MCP first.                                                      |
+| Invented icon names                  | ALWAYS call `list_icons` tool via MCP first.                                                 |
 | Editing files in `output/`           | Output is GENERATED. Edit `.lite.tsx` source only.                                           |
 | Skipping `model.ts`                  | Props MUST be typed. No exceptions.                                                          |
 | Export from `./<name>.lite`          | Export from `./<name>` WITHOUT `.lite` suffix.                                               |
