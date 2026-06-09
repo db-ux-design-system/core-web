@@ -203,3 +203,5 @@ browserslistrc
 mfranzke
 michaelmkraus
 nmerget
+notext
+subcomponent
