@@ -110,10 +110,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={getBoolean(props.active)}
-			data-wrap={getBooleanAsString(props.wrap)}
-			aria-disabled={getBooleanAsString(props.disabled)}>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<Show
 				when={
 					!getBoolean(props.hideSubNavigation, 'hideSubNavigation') &&
