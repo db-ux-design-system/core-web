@@ -137,7 +137,7 @@ packages/components/src/components/<name>/
 
 ### SCSS Rules
 
-1. Line 1 of EVERY component SCSS file MUST be: `@use "@db-ux/core-foundations/build/styles/variables";`
+1. Every component SCSS file MUST include `@use "@db-ux/core-foundations/build/styles/variables";`. Additional internal helper imports via `@use` are allowed when needed.
 2. Component root selector: `.db-<name>`.
 3. Use `data-*` attribute selectors for variants: `&[data-variant="brand"]`.
 4. Use `variables.$db-*` for SCSS variable access.
@@ -209,22 +209,22 @@ pnpm run lint     # No linting violations
 
 These patterns are NEVER acceptable. Violations trigger immediate rejection.
 
-| Pattern                              | Violation                                                                                                                                                              |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Inline styles with pixel values      | Use SCSS variables (`variables.$db-*`) or CSS custom properties (`var(--db-*)`) exclusively.                                                                           |
-| Invented icon names                  | ALWAYS call `list_icons` tool via MCP first.                                                                                                                           |
-| Editing generated files in `output/` | Generated framework artifacts in `output/angular`, `output/react`, `output/vue`, and `output/stencil` must not be edited directly. Update source files and regenerate. |
-| Skipping `model.ts`                  | Props MUST be typed. No exceptions.                                                                                                                                    |
-| Export from `./<name>.lite`          | Export from `./<name>` WITHOUT `.lite` suffix.                                                                                                                         |
-| Re-exporting `./model` in `index.ts` | Do NOT re-export model.                                                                                                                                                |
-| Missing `@use` in SCSS               | Line 1 MUST be the variables import.                                                                                                                                   |
-| Hardcoded colors/spacings in SCSS    | EVERY value MUST be a token.                                                                                                                                           |
-| Guessing Figma specs                 | ABORT without Figma URL. Query Figma MCP.                                                                                                                              |
-| Skipping screenshot tests            | `toHaveScreenshot()` is mandatory for ALL variants.                                                                                                                    |
-| Missing `propOverrides?.id`          | Use `props.id ?? props.propOverrides?.id`. Always.                                                                                                                     |
-| `border: 0` or `border: none`        | Use `@extend %transparent-border` for HCM support.                                                                                                                     |
-| `cursor: pointer` without mixin      | Use `@include helpers.hover { ... }` instead.                                                                                                                          |
-| `aria-disabled` on native `<button>` | Native `disabled` attribute is sufficient.                                                                                                                             |
-| Function calls in JSX bindings       | Store in `state`, update via `onUpdate`.                                                                                                                               |
-| `_ref` access in `onMount`           | Use `onUpdate` with initialized-pattern.                                                                                                                               |
-| Excluding files in storybook config  | Fix the example to be Mitosis-compatible.                                                                                                                              |
+| Pattern                                      | Violation                                                                                                                                                              |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Inline styles with pixel values              | Use SCSS variables (`variables.$db-*`) or CSS custom properties (`var(--db-*)`) exclusively.                                                                           |
+| Invented icon names                          | ALWAYS call `list_icons` tool via MCP first.                                                                                                                           |
+| Editing generated files in `output/`         | Generated framework artifacts in `output/angular`, `output/react`, `output/vue`, and `output/stencil` must not be edited directly. Update source files and regenerate. |
+| Skipping `model.ts`                          | Props MUST be typed. No exceptions.                                                                                                                                    |
+| Export from `./<name>.lite`                  | Export from `./<name>` WITHOUT `.lite` suffix.                                                                                                                         |
+| Re-exporting `./model` in `index.ts`         | Do NOT re-export model.                                                                                                                                                |
+| Missing foundations variables import in SCSS | Component SCSS files MUST include `@use "@db-ux/core-foundations/build/styles/variables";`. Additional internal helper `@use` imports are allowed.                     |
+| Hardcoded colors/spacings in SCSS            | EVERY value MUST be a token.                                                                                                                                           |
+| Guessing Figma specs                         | ABORT without Figma URL. Query Figma MCP.                                                                                                                              |
+| Skipping screenshot tests                    | `toHaveScreenshot()` is mandatory for ALL variants.                                                                                                                    |
+| Missing `propOverrides?.id`                  | Use `props.id ?? props.propOverrides?.id`. Always.                                                                                                                     |
+| `border: 0` or `border: none`                | Use `@extend %transparent-border` for HCM support.                                                                                                                     |
+| `cursor: pointer` without mixin              | Use `@include helpers.hover { ... }` instead.                                                                                                                          |
+| `aria-disabled` on native `<button>`         | Native `disabled` attribute is sufficient.                                                                                                                             |
+| Function calls in JSX bindings               | Store in `state`, update via `onUpdate`.                                                                                                                               |
+| `_ref` access in `onMount`                   | Use `onUpdate` with initialized-pattern.                                                                                                                               |
+| Excluding files in storybook config          | Fix the example to be Mitosis-compatible.                                                                                                                              |
