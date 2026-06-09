@@ -4,8 +4,7 @@
 .db-page-document {
 	@media screen {
 		overflow: hidden;
-		block-size: 100%;
-		block-size: 100dvh;
+		block-size: 100lvh;
 	}
 }
 
@@ -37,16 +36,11 @@
 		&[data-variant="fixed"] {
 			@include header-footer-style;
 
-			block-size: 100%;
-			min-block-size: 100%;
+			block-size: 100lvh;
+			min-block-size: 100lvh;
 			flex-direction: column;
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
-
-			@supports (height: 100dvh) {
-				block-size: 100dvh;
-				min-block-size: 100dvh;
-			}
 
 			@include helpers.display(flex);
 
