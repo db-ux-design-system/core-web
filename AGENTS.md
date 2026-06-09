@@ -174,6 +174,7 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - If a migration guide for the upcoming major version (determined by the current `version` e.g. in `packages/foundations/package.json`) already exists, append your breaking change to it.
 - If none exists yet, create one following the structure of existing guides (see `docs/migration/` for examples).
 - Each breaking change entry should have a heading describing what changed and a brief explanation of how to migrate. A table of changed properties could help our users to understand the necessary changes easier than a thousand words.
+- **When creating a new migration guide file**, also add it to the migration index list in `README.md` (under "In between DB UX Design System Core versions") so consumers can discover it. Insert it at the top of the list following the existing format.
 
 ## Common Tasks
 
