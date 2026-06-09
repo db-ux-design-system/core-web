@@ -166,10 +166,10 @@ const testProps = () => {
 	test('should activate tab based on URL hash', async ({ mount, page }) => {
 		await page.setViewportSize({ width: 1920, height: 1080 });
 		await page.evaluate(() => {
-			window.location.hash = '#tabs-my-deep-link-tab-1';
+			window.location.hash = '#my-deep-link-tab-1';
 		});
 		const component = await mount(
-			<DBTabs label="my-deep-link">
+			<DBTabs id="my-deep-link" label="my-deep-link">
 				<DBTabList>
 					<DBTabItem>Tab 0</DBTabItem>
 					<DBTabItem>Tab 1</DBTabItem>

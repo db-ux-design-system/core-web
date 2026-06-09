@@ -22,9 +22,12 @@ export default function TabsInitialSelection() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					3rd tab pre-selected via initialSelectedIndex (also supports
 					deep linking via URL hash, e.g.
-					#tabs-initial-selection-tab-1):
+					#initial-selection-tab-1):
 				</DBInfotext>
-				<DBTabs initialSelectedIndex={2} label="initial-selection">
+				<DBTabs
+					id="initial-selection"
+					initialSelectedIndex={2}
+					label="initial-selection">
 					<DBTabList>
 						<DBTabItem>Overview</DBTabItem>
 						<DBTabItem>Details</DBTabItem>
