@@ -1,3 +1,16 @@
+---
+name: "db-ux-consumer"
+description: "AI integration for consuming the DB UX Design System v3 in applications. Provides skills to implement UI and migrate from v2."
+keywords:
+    - db-ux
+    - design system
+    - deutsche bahn
+    - component
+    - implement
+    - migrate
+    - v3
+---
+
 # DB UX Consumer Powers
 
 This bundle equips AI agents to assist application developers using the DB UX Design System v3.
