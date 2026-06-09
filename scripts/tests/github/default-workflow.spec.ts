@@ -34,18 +34,28 @@ describe('default.yml workflow structure', () => {
 		];
 
 		test.each(prOnlyJobs)(
-			'%s has condition requiring github.event_name == pull_request',
+			'%s has condition gated to pull-request / changeset-release variants',
 			(jobName) => {
 				const job = workflow.jobs[jobName];
 				expect(job).toBeDefined();
-				expect(job.if).toContain("github.event_name == 'pull_request'");
+				expect(job.if).toContain(
+					"needs.init.outputs.eventVariant == 'pull-request'"
+				);
+				expect(job.if).toContain(
+					"needs.init.outputs.eventVariant == 'changeset-release'"
+				);
 			}
 		);
 
-		test('preview-url-pr-description has condition with github.event.pull_request != null', () => {
+		test('preview-url-pr-description is gated to pull-request / changeset-release variants', () => {
 			const job = workflow.jobs['preview-url-pr-description'];
 			expect(job).toBeDefined();
-			expect(job.if).toContain('github.event.pull_request != null');
+			expect(job.if).toContain(
+				"needs.init.outputs.eventVariant == 'pull-request'"
+			);
+			expect(job.if).toContain(
+				"needs.init.outputs.eventVariant == 'changeset-release'"
+			);
 		});
 	});
 
@@ -55,5 +65,30 @@ describe('default.yml workflow structure', () => {
 			expect(job).toBeDefined();
 			expect(job.if).toContain('!cancelled()');
 		});
+	});
+
+	describe('init dependency integrity', () => {
+		// Any job that reads needs.init.outputs.* must list `init` as a direct
+		// dependency — the needs context only exposes direct dependencies, so a
+		// missing `init` would silently resolve those outputs to empty strings.
+		const jobsReferencingInit = Object.entries(workflow.jobs).filter(
+			([, job]) => {
+				const serialized = JSON.stringify(job);
+				return serialized.includes('needs.init.outputs.');
+			}
+		);
+
+		test('there is at least one job referencing init outputs', () => {
+			expect(jobsReferencingInit.length).toBeGreaterThan(0);
+		});
+
+		test.each(jobsReferencingInit.map(([name]) => name))(
+			'%s lists init as a direct dependency',
+			(jobName) => {
+				const job = workflow.jobs[jobName];
+				expect(job.needs).toBeDefined();
+				expect(job.needs).toContain('init');
+			}
+		);
 	});
 });

@@ -12,6 +12,7 @@
  * - patternhub: docs/ or patternhub-relevant content changed
  * - output: output/ directory changed
  * - showcases: showcases/ directory changed
+ * - aria: __snapshots__ aria-snapshot.yaml files changed (gates screen-reader tests)
  * - vite-plugin: packages/vite-plugin changed
  * - figma: figma-code-connect/ or packages/components/ ** /figma/ ** changed
  * - postcss-plugin: packages/postcss-plugin changed (lint only)
@@ -33,6 +34,7 @@ export type ChangeCategories = {
 	patternhub: boolean;
 	output: boolean;
 	showcases: boolean;
+	aria: boolean;
 	'vite-plugin': boolean;
 	figma: boolean;
 	'postcss-plugin': boolean;
@@ -91,6 +93,22 @@ export function isRootConfig(file: string): boolean {
 	];
 
 	return rootConfigPatterns.some((pattern) => pattern.test(file));
+}
+
+/**
+ * Categorizes a file under `__snapshots__/`. Always marks showcases, and
+ * additionally marks aria when an aria-snapshot changed (which gates the
+ * costly screen-reader tests).
+ */
+export function categorizeSnapshotFile(
+	file: string,
+	categories: ChangeCategories
+): void {
+	categories.showcases = true;
+
+	if (file.endsWith('-aria-snapshot.yaml')) {
+		categories.aria = true;
+	}
 }
 
 export function categorizeFile(
@@ -154,7 +172,7 @@ export function categorizeFile(
 
 	// __snapshots__/ (aria/visual) — need showcase builds + tests
 	if (file.startsWith('__snapshots__/')) {
-		categories.showcases = true;
+		categorizeSnapshotFile(file, categories);
 
 		return true;
 	}
@@ -233,6 +251,7 @@ export function categorizeChanges(files: string[]): ChangeCategories {
 			patternhub: true,
 			output: true,
 			showcases: true,
+			aria: true,
 			'vite-plugin': true,
 			figma: true,
 			'postcss-plugin': true,
@@ -252,6 +271,7 @@ export function categorizeChanges(files: string[]): ChangeCategories {
 		patternhub: false,
 		output: false,
 		showcases: false,
+		aria: false,
 		'vite-plugin': false,
 		figma: false,
 		'postcss-plugin': false,

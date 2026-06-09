@@ -148,6 +148,30 @@ describe('detect-changes categorization logic', () => {
 			expect(result.showcases).toBe(true);
 		});
 
+		test('__snapshots__/ aria-snapshot.yaml sets aria flag', () => {
+			const result = categorizeChanges([
+				'__snapshots__/react-showcase/button-aria-snapshot.yaml'
+			]);
+			expect(result.aria).toBe(true);
+			expect(result.showcases).toBe(true);
+		});
+
+		test('__snapshots__/ screenshot.png maps to showcases without aria', () => {
+			const result = categorizeChanges([
+				'__snapshots__/react-showcase/button-screenshot.png'
+			]);
+			expect(result.aria).toBe(false);
+			expect(result.showcases).toBe(true);
+		});
+
+		test('other __snapshots__/ files do not set aria', () => {
+			const result = categorizeChanges([
+				'__snapshots__/react-showcase/some-other-file.txt'
+			]);
+			expect(result.aria).toBe(false);
+			expect(result.showcases).toBe(true);
+		});
+
 		test('vite-plugin change is isolated', () => {
 			const result = categorizeChanges([
 				'packages/vite-plugin/src/index.ts'

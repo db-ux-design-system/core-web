@@ -26,12 +26,11 @@ on:
       playwrightVersion:
         description: "Current playwright version"
         value: ${{ jobs.init.outputs.version }}
-      test-ally:
-        description: "If aria-snapshots are changed"
-        value: ${{ jobs.init.outputs.test-ally }}
-      isChangesetRelease:
-        description: "If this is a changeset release PR"
-        value: ${{ jobs.init.outputs.isChangesetRelease }}
+      eventVariant:
+        description: >-
+          The trigger variant for the run. One of: pull-request,
+          changeset-release, main-push, merge-queue, release, workflow-dispatch.
+        value: ${{ jobs.init.outputs.eventVariant }}
       # Change detection outputs
       docsOnly:
         description: "Only docs/config files changed - skip all builds and tests"
@@ -48,6 +47,9 @@ on:
       changesShowcases:
         description: "showcases/ directory changed"
         value: ${{ jobs.init.outputs.changesShowcases }}
+      changesAria:
+        description: "aria-snapshot.yaml files changed (gates screen-reader tests)"
+        value: ${{ jobs.init.outputs.changesAria }}
       changesVitePlugin:
         description: "packages/vite-plugin changed"
         value: ${{ jobs.init.outputs.changesVitePlugin }}
@@ -82,13 +84,13 @@ jobs:
       repoName: ${{ steps.result.outputs.repo }}
       repoOwner: ${{ steps.result.outputs.owner }}
       version: ${{ steps.version.outputs.version }}
-      test-ally: ${{ steps.ally.outputs.test-ally }}
-      isChangesetRelease: ${{ steps.changeset-check.outputs.isChangesetRelease }}
+      eventVariant: ${{ steps.event-variant.outputs.eventVariant }}
       docsOnly: ${{ steps.changes.outputs.docsOnly }}
       changesFoundations: ${{ steps.changes.outputs.changesFoundations }}
       changesComponents: ${{ steps.changes.outputs.changesComponents }}
       changesOutput: ${{ steps.changes.outputs.changesOutput }}
       changesShowcases: ${{ steps.changes.outputs.changesShowcases }}
+      changesAria: ${{ steps.changes.outputs.changesAria }}
       changesVitePlugin: ${{ steps.changes.outputs.changesVitePlugin }}
       changesFigma: ${{ steps.changes.outputs.changesFigma }}
       changesStorybook: ${{ steps.changes.outputs.changesStorybook }}
@@ -146,25 +148,46 @@ jobs:
           OUTPUT=$(pnpm --silent tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
-      - name: 👩 Should Test a11y
-        id: ally
+      - name: 🧭 Determine event variant
+        id: event-variant
         shell: bash
+        env:
+          # Pass context through env to avoid script injection. github.head_ref
+          # is attacker-controllable (branch name) and must never be inlined
+          # into the run script via ${{ }}.
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          REPOSITORY: ${{ github.repository }}
         run: |
-          ARIA_MAIN=$(pnpm --silent tsx scripts/github/change-detection/check-main-aria.ts)
-          echo "test-ally=$ARIA_MAIN"
-          echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
-
-      - name: 🔄 Check if changeset release PR
-        id: changeset-check
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]] && \
-             [[ "${{ github.head_ref }}" == changeset-release/* ]] && \
-             [[ "${{ github.event.pull_request.head.repo.full_name }}" == "${{ github.repository }}" ]] && \
-             [[ "${{ github.event.pull_request.user.login }}" == "dbux-auto-merge-pr[bot]" ]]; then
-            echo "isChangesetRelease=true" >> $GITHUB_OUTPUT
+          VARIANT=""
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            # changeset-release is a privileged variant (skips all checks), so
+            # the detection must be strict: the PR must originate from a
+            # same-repo branch (write access required, no forks) AND be opened
+            # by the changeset bot. Branch name alone is NOT a trust boundary.
+            if [[ "$HEAD_REF" == changeset-release/* ]] && \
+               [[ "$PR_HEAD_REPO" == "$REPOSITORY" ]] && \
+               [[ "$PR_AUTHOR" == "dbux-auto-merge-pr[bot]" ]]; then
+              VARIANT="changeset-release"
+            else
+              VARIANT="pull-request"
+            fi
+          elif [[ "$EVENT_NAME" == "push" ]] && [[ "$REF" == "refs/heads/main" ]]; then
+            VARIANT="main-push"
+          elif [[ "$EVENT_NAME" == "merge_group" ]]; then
+            VARIANT="merge-queue"
+          elif [[ "$EVENT_NAME" == "release" ]]; then
+            VARIANT="release"
+          elif [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            VARIANT="workflow-dispatch"
           else
-            echo "isChangesetRelease=false" >> $GITHUB_OUTPUT
+            VARIANT="$EVENT_NAME"
           fi
+          echo "eventVariant=$VARIANT"
+          echo "eventVariant=$VARIANT" >> "$GITHUB_OUTPUT"
 
       - name: 🔍 Detect changed paths
         id: changes
@@ -179,6 +202,7 @@ jobs:
           echo "changesComponents=$(echo "$CHANGES" | jq -r '.components')" >> $GITHUB_OUTPUT
           echo "changesOutput=$(echo "$CHANGES" | jq -r '.output')" >> $GITHUB_OUTPUT
           echo "changesShowcases=$(echo "$CHANGES" | jq -r '.showcases')" >> $GITHUB_OUTPUT
+          echo "changesAria=$(echo "$CHANGES" | jq -r '.aria')" >> $GITHUB_OUTPUT
           echo "changesVitePlugin=$(echo "$CHANGES" | jq -r '.["vite-plugin"]')" >> $GITHUB_OUTPUT
           echo "changesFigma=$(echo "$CHANGES" | jq -r '.figma')" >> $GITHUB_OUTPUT
           echo "changesStorybook=$(echo "$CHANGES" | jq -r '.storybook')" >> $GITHUB_OUTPUT
