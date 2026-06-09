@@ -52,6 +52,10 @@ export default function DBTabs(props: DBTabsProps) {
 			return `${state._id}-tab-panel-${index}`;
 		},
 
+		getBaseId() {
+			return props.id ?? props.propOverrides?.id;
+		},
+
 		activateTab(index: number) {
 			// Prevent activating a disabled tab using cached references
 			const buttons = state._tabButtons;
@@ -452,10 +456,12 @@ export default function DBTabs(props: DBTabsProps) {
 			startIndex = -1;
 		}
 
-		// 2. Support deep linking: URL hash takes precedence over initial index
-		if (typeof window !== 'undefined' && window.location.hash) {
+		// 2. Support deep linking via URL hash. Requires an explicit id, derived
+		// from props because state._id is not committed synchronously in React.
+		const baseId = state.getBaseId();
+		if (typeof window !== 'undefined' && window.location.hash && baseId) {
 			const hashId = window.location.hash.substring(1);
-			const prefix = `${state._id}-tab-`;
+			const prefix = `${baseId}-tab-`;
 
 			if (hashId.startsWith(prefix)) {
 				const indexStr = hashId.replace(prefix, '');
@@ -472,13 +478,10 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 		state._updateCachedTabs();
 
-		// 4. Trigger single initial DOM update after paint.
-		// initTabs caches refs + static ARIA; the syncSelection onUpdate then
-		// applies the selection once _tabButtons is populated.
+		// 4. Init tablist after paint. initTabs runs via onUpdate([state._id]).
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				state.initTabList();
-				state.initTabs();
 			});
 		}
 

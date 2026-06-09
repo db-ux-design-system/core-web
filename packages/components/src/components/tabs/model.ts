@@ -127,6 +127,7 @@ export type DBTabsDefaultState = {
 	activateTab: (index: number) => void;
 	getTabId: (index: number | string) => string;
 	getPanelId: (index: number | string) => string;
+	getBaseId: () => string | undefined;
 	handleClick: (event: any) => void;
 	handleKeyDown: (event: any) => void;
 };
