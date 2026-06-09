@@ -478,10 +478,16 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 		state._updateCachedTabs();
 
-		// 4. Init tablist after paint. initTabs runs via onUpdate([state._id]).
+		// 4. Init tablist + tabs after paint, then apply the initial selection
+		// explicitly with the locally computed startIndex. Doing it here (instead
+		// of relying solely on the onUpdate chain) makes the initial state
+		// deterministic across frameworks, where state updates and watcher/effect
+		// ordering differ. The onUpdate hooks still handle later prop changes.
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				state.initTabList();
+				state.initTabs();
+				state.syncSelection(startIndex);
 			});
 		}
 
