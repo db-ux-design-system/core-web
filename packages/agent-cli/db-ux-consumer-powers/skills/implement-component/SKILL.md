@@ -62,8 +62,9 @@ on_error:
 
 1. Identify all UI components needed from the `{description}`.
 2. Call `list_components()`.
-3. Confirm every needed component exists in the returned list.
-4. If a component does NOT exist: STOP. Do not use native HTML elements or invent custom components.
+3. Confirm which needed components exist in the returned list and which do not.
+4. If a needed DB UX component exists: use it. Do NOT rebuild or replace it with a custom alternative.
+5. If a needed direct DB UX component does NOT exist: compose the UI from verified DB UX building blocks that do exist (for example `DBButton`, `DBInput`, `DBCard`, `DBSection`, `DBStack`). Do not invent a fake DB UX component name or fall back to native interactive HTML elements when a suitable DB UX building block exists.
 
 ### Phase 2: Load Props and Examples
 
@@ -110,6 +111,8 @@ For each component identified:
 ## Output Checklist
 
 - [ ] `list_components` called — all components confirmed to exist
+- [ ] Existing DB UX components reused wherever available instead of being rebuilt
+- [ ] Missing direct components implemented only by composing verified DB UX building blocks
 - [ ] `get_component_props` called — prop API known for each component
 - [ ] `get_example_code` called for each component with correct framework
 - [ ] `list_icons` called — all icon names copied verbatim
@@ -120,11 +123,13 @@ For each component identified:
 
 ## Red Flags & Anti-Rationalizations
 
-| Thought                              | Response                                                           |
-| ------------------------------------ | ------------------------------------------------------------------ |
-| "I know this icon name"              | STOP. Call `list_icons`. Copy the exact name.                      |
-| "I'll just use a native button here" | STOP. Use `DBButton`. No exceptions.                               |
-| "16px is fine for spacing"           | STOP. Call `get_design_tokens("spacing")`. Use the token.          |
-| "I'll hardcode this color"           | STOP. Call `get_design_tokens("colors")`. Use `var(--db-color-*)`. |
-| "I don't need the example code"      | STOP. Call `get_example_code`. Adapt, don't rewrite from scratch.  |
-| "This prop probably exists"          | STOP. Call `get_component_props`. Verify the exact API.            |
+| Thought                                            | Response                                                           |
+| -------------------------------------------------- | ------------------------------------------------------------------ |
+| "I know this icon name"                            | STOP. Call `list_icons`. Copy the exact name.                      |
+| "I'll just use a native button here"               | STOP. Use `DBButton`. No exceptions.                               |
+| "This component doesn't exist, so I must stop"     | STOP. Reuse the existing DB UX building blocks that do exist.      |
+| "I'll recreate an existing DB UX component myself" | STOP. Use the shipped DB UX component instead of rebuilding it.    |
+| "16px is fine for spacing"                         | STOP. Call `get_design_tokens("spacing")`. Use the token.          |
+| "I'll hardcode this color"                         | STOP. Call `get_design_tokens("colors")`. Use `var(--db-color-*)`. |
+| "I don't need the example code"                    | STOP. Call `get_example_code`. Adapt, don't rewrite from scratch.  |
+| "This prop probably exists"                        | STOP. Call `get_component_props`. Verify the exact API.            |
