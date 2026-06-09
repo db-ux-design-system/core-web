@@ -25,14 +25,14 @@
 ## Icons
 
 - **NEVER** guess or invent icon names.
-- **ALWAYS** verify icon names by calling the `list_icons` MCP tool before use.
+- **ALWAYS** verify icon names by calling the `list_icons` MCP tool exposed by the DB UX MCP server (`@db-ux/mcp-server`) before use.
 - Icon names use **underscores**: `arrow_right`, `chevron_down` — not `arrow-right` or `arrowRight`.
 
 ## MCP Workflow & Discovery
 
 **This section is NON-NEGOTIABLE. AI agents MUST follow this workflow for every UI task.**
 
-An agent must NEVER generate DB UX code from memory or assumptions. Every value — component names, prop APIs, icon names, token values — MUST be grounded in live data from the MCP server.
+An agent must NEVER generate DB UX code from memory or assumptions. Every value — component names, prop APIs, icon names, token values — MUST be grounded in live data from the DB UX MCP server (`@db-ux/mcp-server`).
 
 ### Mandatory Steps (in order)
 
