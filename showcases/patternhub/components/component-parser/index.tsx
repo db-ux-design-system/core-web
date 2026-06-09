@@ -24,6 +24,7 @@ import {
 	DBStack,
 	DBSwitch,
 	DBTabItem,
+	DBTable,
 	DBTabList,
 	DBTabPanel,
 	DBTabs,
@@ -352,6 +353,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'table') {
+		return (
+			<DBTable className={className} {...props}>
+				{resolvedContent}
+			</DBTable>
 		);
 	}
 
