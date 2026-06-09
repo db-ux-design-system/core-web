@@ -88,7 +88,7 @@ on_error:
 ### Phase 5: Apply Migration
 
 1. Apply ALL findings from the scan report. Do not skip any.
-2. Replace v2 Web Components with framework-native v3 components using verified props.
+2. Replace v2 Web Components with JS framework-native v3 components using verified props.
 3. Remove all `cmp-*`, `elm-*`, `rea-*` CSS classes.
 4. Replace all `db-color-*` tokens with verified v3 equivalents.
 5. Use exact icon names from `list_icons()` — never guess.
