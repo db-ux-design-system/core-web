@@ -66,10 +66,10 @@ on_error:
 
 1. Call `list_migration_guides()`.
 2. For each pattern category found in the scan, call `get_migration_guide(guideName)`:
-    - `cmp-*` / `elm-*` / `rea-*` classes → component-specific guide
-    - `db-color-*` tokens → `color-migration` guide
-    - Icon name changes → `icon-migration` guide
-3. Record replacement mappings from each guide.
+    - `cmp-*` / `elm-*` / `rea-*` classes → component-specific migration guide
+    - `db-color-*` tokens → `color-migration` migration guide
+    - Icon name changes → `icon-migration` migration guide
+3. Record replacement mappings from each migration guide.
 
 ### Phase 3: Verify Target Components
 
