@@ -26,9 +26,10 @@ export default function DBTableFooter(props: DBTableFooterProps) {
 				<For each={props.rows}>
 					{(row: DBTableRowProps, index: number) => (
 						<DBTableRow
-							key={`${props.id ?? uuid()}-table-footer-row-${index}`}
+							key={`${row.id ?? props.id ?? uuid()}-table-footer-row-${index}`}
 							cells={row.cells}
 							className={row.className ?? row.class}
+							interactive={row.interactive}
 							id={row.id}
 						/>
 					)}

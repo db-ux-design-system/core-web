@@ -66,11 +66,7 @@ export default function DBTable(props: DBTableProps) {
 							row.querySelectorAll<HTMLElement>(':is(td,th)');
 						cells.forEach((cell, index) => {
 							const headerCell = headerCells[index];
-							if (
-								headerCell &&
-								headerCell.textContent &&
-								!cell.dataset['header']
-							) {
+							if (headerCell && headerCell.textContent) {
 								cell.dataset['header'] =
 									headerCell.textContent.trim();
 							}
@@ -79,7 +75,7 @@ export default function DBTable(props: DBTableProps) {
 				}
 			}, 1);
 		}
-	}, [props.mobileVariant, _ref]);
+	}, [props.mobileVariant, _ref, state._data]);
 
 	onUpdate(() => {
 		if (props.columnSizes) {
@@ -106,13 +102,9 @@ export default function DBTable(props: DBTableProps) {
 			data-show-caption={getBooleanAsString(props.showCaption)}
 			data-sticky-header={props.stickyHeader}>
 			<table ref={_ref} id={props.id}>
-				<caption>
-					<Show
-						when={props.captionPlain}
-						else={<Slot name="caption" />}>
-						{props.captionPlain}
-					</Show>
-				</caption>
+				<Show when={props.captionPlain} else={<Slot name="caption" />}>
+					<caption>{props.captionPlain}</caption>
+				</Show>
 				<Show when={state._data} else={props.children}>
 					<Show when={state._data?.header}>
 						<DBTableHead rows={state._data?.header} />

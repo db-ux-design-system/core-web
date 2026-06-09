@@ -49,7 +49,7 @@ export default function DBTableRow(props: DBTableRowProps) {
 							when={cell.headerCell}
 							else={
 								<DBTableDataCell
-									key={`${props.id ?? uuid()}-table-row-data-cell-${index}`}
+									key={`${cell.id ?? props.id ?? uuid()}-table-row-data-cell-${index}`}
 									id={cell.id}
 									className={cell.className ?? cell.class}
 									horizontalAlignment={
@@ -90,7 +90,7 @@ export default function DBTableRow(props: DBTableRowProps) {
 								</DBTableDataCell>
 							}>
 							<DBTableHeaderCell
-								key={`${props.id ?? uuid()}-table-row-header-cell-${index}`}
+								key={`${cell.id ?? props.id ?? uuid()}-table-row-header-cell-${index}`}
 								id={cell.id}
 								abbr={state.getHeaderCell(cell)?.abbr}
 								scope={state.getHeaderCell(cell)?.scope}

@@ -73,6 +73,10 @@
 }
 
 %set-grid-cells {
+	// NOTE: This selector counts DOM child elements per row to determine column count.
+	// When cells use colSpan, the logical column count is higher than the child count.
+	// For tables with colSpan, use the `columnSizes` prop or set
+	// `--db-table-grid-template-columns` directly to define the correct grid tracks.
 	@for $num from 1 through 20 {
 		&:has(
 				tr

@@ -15,6 +15,10 @@
 			grid-column: span var(--db-table-cell-span, #{$span});
 		}
 
+		// NOTE: rowspan with CSS Grid/subgrid has limited support since each <tr>
+		// is an independent grid container. This rule provides visual row height
+		// expansion within a single row only. For full native rowspan behavior,
+		// consumers should use the slotted (children) approach with native table elements.
 		&[rowspan="#{$span}"] {
 			grid-row: span var(--db-table-cell-span, #{$span});
 		}

@@ -38,10 +38,11 @@ export default function DBTableHead(props: DBTableHeadProps) {
 				<For each={props.rows}>
 					{(row: DBTableRowProps, index: number) => (
 						<DBTableRow
-							key={`${props.id ?? uuid()}-table-head-row-${index}`}
+							key={`${row.id ?? props.id ?? uuid()}-table-head-row-${index}`}
 							cells={state.getCells(row.cells)}
 							className={row.className ?? row.class}
 							subHeaderEmphasis={row.subHeaderEmphasis}
+							interactive={row.interactive}
 							id={row.id}
 						/>
 					)}
