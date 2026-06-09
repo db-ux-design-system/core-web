@@ -151,7 +151,8 @@ packages/components/src/components/<name>/
 10. **Hover Mixin**: Interactive components MUST use `@include helpers.hover { ... }`. NEVER manually add `cursor: pointer`.
 11. **Text Truncation**: Elements using `text-overflow: ellipsis` MUST NOT be a flex child with `overflow: hidden` on a flex container. Switch to `display: block`.
 12. **Icon Placement**: Icon `data-` attributes MUST be placed on the interactive root element, NOT on the inner text label `<span>`.
-
+14. Define styles for states via standard selectors or aria-annotations, like e.g. `:disabled` instead of `.disabled` and `[aria-current="page"]` instead of `.active`
+15. Do NOT use utility-classes like tailwind.
 ### TypeScript & Component API
 
 1. Props composition: `DB<Name>DefaultProps` & `GlobalProps` → `DB<Name>Props`.
