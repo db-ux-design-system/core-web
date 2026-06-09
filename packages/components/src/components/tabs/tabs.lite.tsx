@@ -299,11 +299,6 @@ export default function DBTabs(props: DBTabsProps) {
 					state._getScrollContainer() as HTMLElement | null;
 
 				if (container) {
-					container.setAttribute(
-						'aria-orientation',
-						props.orientation ?? 'horizontal'
-					);
-
 					if (props.behavior === 'arrows') {
 						state.evaluateScrollButtons(container);
 
@@ -404,6 +399,17 @@ export default function DBTabs(props: DBTabsProps) {
 			state.initTabs();
 		}
 	}, [state._id]);
+
+	// Reflect orientation changes onto the tablist's aria-orientation
+	onUpdate(() => {
+		if (_ref) {
+			const container = state._getScrollContainer() as HTMLElement | null;
+			container?.setAttribute(
+				'aria-orientation',
+				props.orientation ?? 'horizontal'
+			);
+		}
+	}, [_ref, props.orientation]);
 
 	// Controlled mode: mirror external activeIndex into internal state.
 	// The syncSelection onUpdate below then runs the same way as for internal changes.
