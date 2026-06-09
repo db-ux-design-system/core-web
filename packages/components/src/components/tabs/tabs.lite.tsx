@@ -401,9 +401,10 @@ export default function DBTabs(props: DBTabsProps) {
 
 	// Reflect label changes onto the tablist's aria-label
 	onUpdate(() => {
-		if (_ref && props.label) {
+		const label = props.label;
+		if (_ref && label) {
 			const container = state._getScrollContainer() as HTMLElement | null;
-			container?.setAttribute('aria-label', props.label);
+			container?.setAttribute('aria-label', label);
 		}
 	}, [_ref, props.label]);
 
