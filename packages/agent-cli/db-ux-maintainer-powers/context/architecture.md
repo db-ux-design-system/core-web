@@ -220,7 +220,7 @@ These patterns are NEVER acceptable. Violations trigger immediate rejection.
 | Re-exporting `./model` in `index.ts` | Do NOT re-export model.                                                                      |
 | Missing `@use` in SCSS               | Line 1 MUST be the variables import.                                                         |
 | Hardcoded colors/spacings in SCSS    | EVERY value MUST be a token.                                                                 |
-| Guessing Figma specs                 | ABORT without Figma URL. Query MCP.                                                          |
+| Guessing Figma specs                 | ABORT without Figma URL. Query Figma MCP.                                                    |
 | Skipping screenshot tests            | `toHaveScreenshot()` is mandatory for ALL variants.                                          |
 | Missing `propOverrides?.id`          | Use `props.id ?? props.propOverrides?.id`. Always.                                           |
 | `border: 0` or `border: none`        | Use `@extend %transparent-border` for HCM support.                                           |
