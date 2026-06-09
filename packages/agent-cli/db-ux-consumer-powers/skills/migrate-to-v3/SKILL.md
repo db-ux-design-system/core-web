@@ -17,7 +17,7 @@ inputs:
     - name: framework
       type: string
       required: true
-      description: "Target framework: react, angular, vue, or web-components"
+      description: "Target JS framework: react, angular, vue, or web-components"
 
 requires:
     - context: context/guidelines.md
