@@ -141,9 +141,9 @@ const testComponent = () => {
     await expect(component).toHaveScreenshot();
   });
 
-  // Inline the variant list from Figma Phase 0.1 directly here.
-  // Do NOT import from model.ts (it does not exist yet in RED phase).
-  for (const variant of ['variant1', 'variant2' /* replace with Figma variants */]) {
+  // AI-REPLACE: Inline the real variant list from Figma Phase 0.1 here.
+  // AI-NOTE: Do NOT import from model.ts — it does not exist yet in RED phase.
+  for (const variant of ['variant1', 'variant2' /* AI-REPLACE: use real Figma variants */]) {
     const variantComp: any = <DB{component_name} variant={variant}>Content</DB{component_name}>;
 
     test(`should contain text for variant ${variant}`, async ({ mount }) => {
@@ -203,11 +203,11 @@ If the spec has syntax errors, fix them first and re-run until you get clean "mi
 ```typescript
 import { GlobalProps, GlobalState } from '../../shared/model';
 
-export const {component_name}VariantList = [/* variants from Figma Phase 0.1 */] as const;
+export const {component_name}VariantList = [/* AI-REPLACE: insert real variants from Figma Phase 0.1 */] as const;
 export type {component_name}VariantType = (typeof {component_name}VariantList)[number];
 
 export type DB{component_name}DefaultProps = {
-  /** JSDoc description */
+  /** AI-REPLACE: Add real JSDoc description for this prop */
   variant?: {component_name}VariantType;
 };
 
@@ -260,12 +260,12 @@ Rules:
 @use "@db-ux/core-foundations/build/styles/variables";
 
 .db-{component_slug} {
-  // Styling like e.g.:
+  // AI-REPLACE: Add real styles using mapped tokens from Phase 0.2
   padding: variables.$db-spacing-fixed-sm;
   block-size: variables.$db-sizing-md;
 
-  &[data-variant="..."] {
-    // variant-specific styles
+  &[data-variant="..."] { /* AI-REPLACE: use real variant name */
+    // AI-REPLACE: variant-specific styles using tokens
   }
 }
 ```
