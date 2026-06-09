@@ -328,6 +328,11 @@ export default function DBTabs(props: DBTabsProps) {
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
 		initTabs() {
+			// Resolve base id from props first, fall back to committed state id.
+			// Bail out if none yet (state._id not committed in React/Vue) to avoid colliding "undefined-*" ids.
+			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
+			if (!baseId) return;
+
 			if (_ref) {
 				const tabListEl = state._getScrollContainer();
 				const panels = Array.from<HTMLElement>(
@@ -347,8 +352,8 @@ export default function DBTabs(props: DBTabsProps) {
 				buttons.forEach((button: HTMLElement, index: number) => {
 					const panel = panels[index];
 
-					const tabId = button.id || state.getTabId(index);
-					const panelId = panel?.id || state.getPanelId(index);
+					const tabId = button.id || `${baseId}-tab-${index}`;
+					const panelId = panel?.id || `${baseId}-tab-panel-${index}`;
 
 					if (!button.id) {
 						button.id = tabId;
