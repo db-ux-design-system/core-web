@@ -50,7 +50,7 @@ on_error:
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
-# Skill: Create DB Component
+# Skill: Create Deutsche Bahn (DB) Component
 
 ## Variable Convention
 
