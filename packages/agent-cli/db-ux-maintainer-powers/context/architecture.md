@@ -83,7 +83,6 @@ packages/components/src/components/<name>/
 | File / Folder     | Rule                                                                                                                                                           |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `index.ts`        | Export path MUST be `./<name>` — WITHOUT `.lite` suffix. Do NOT re-export from `./model`.                                                                      |
-| `index.html`      | Full `<!doctype html>` document. Stylesheet: `/styles/relative.css`.                                                                                           |
 | `model.ts`        | MUST exist. Props MUST be typed. NEVER skip.                                                                                                                   |
 | `<name>.lite.tsx` | MUST exist. This IS the component.                                                                                                                             |
 | `<name>.spec.tsx` | MUST exist. Tests are NOT optional.                                                                                                                            |
