@@ -216,10 +216,6 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
-		isIndexActive(index: number | string) {
-			return state._activeIndex === Number(index);
-		},
-
 		_cachedTabs: [] as DBSimpleTabProps[],
 
 		// Parses the tabs prop and caches the result in state._cachedTabs.
@@ -569,8 +565,7 @@ export default function DBTabs(props: DBTabsProps) {
 						<DBTabPanel
 							key={props.label + 'tab-panel' + index}
 							id={state.getPanelId(index)}
-							content={tab.content}
-							hidden={!state.isIndexActive(index)}>
+							content={tab.content}>
 							{tab.children}
 						</DBTabPanel>
 					)}
