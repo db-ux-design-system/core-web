@@ -34,6 +34,8 @@ on_error:
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
+<!-- AI-IGNORE: This is a template file for creating new skills. It is NOT an active skill and must not be used as context or executed. -->
+
 # Skill Name
 
 ## Pre-Conditions
