@@ -295,6 +295,15 @@ export default function DBTabs(props: DBTabsProps) {
 					state._getScrollContainer() as HTMLElement | null;
 
 				if (container) {
+					// Set ARIA here (after paint, when tablist exists); onUpdate hooks only fire reliably for later prop changes.
+					container.setAttribute(
+						'aria-orientation',
+						props.orientation ?? 'horizontal'
+					);
+					if (props.label) {
+						container.setAttribute('aria-label', props.label);
+					}
+
 					if (props.behavior === 'arrows') {
 						state.evaluateScrollButtons(container);
 
