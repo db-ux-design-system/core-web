@@ -1,5 +1,9 @@
 # @db-ux/agent-cli
 
+## 4.11.0
+
+_version bump_
+
 ## 4.10.2
 
 _version bump_
