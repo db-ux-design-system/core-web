@@ -1,6 +1,7 @@
 // Minimal service worker for PWA installability
-self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('install', () => globalThis.skipWaiting());
 self.addEventListener('activate', (event) =>
-	event.waitUntil(self.clients.claim())
+	event.waitUntil(globalThis.clients.claim())
 );
-self.addEventListener('fetch', () => {});
+self.addEventListener('fetch', () => {
+});
