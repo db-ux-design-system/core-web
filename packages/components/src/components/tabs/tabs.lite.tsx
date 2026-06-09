@@ -26,8 +26,6 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabsState>({
-		_generatedId: 'tabs-' + uuid(),
-		_generatedName: uuid(),
 		activeTabIndex: 0,
 		initialized: false,
 		showScrollStart: false,
@@ -40,15 +38,18 @@ export default function DBTabs(props: DBTabsProps) {
 		_tabButtons: [] as HTMLElement[],
 		_tabPanels: [] as HTMLElement[],
 
-		_id: 'tabs-' + uuid(),
-		_name: 'tabs-' + uuid(),
+		_id: undefined,
+
+		resetIds: () => {
+			state._id = props.id ?? props.propOverrides?.id ?? `tabs-${uuid()}`;
+		},
 
 		getTabId(index: number | string) {
-			return `${state._name}-tab-${index}`;
+			return `${state._id}-tab-${index}`;
 		},
 
 		getPanelId(index: number | string) {
-			return `${state._name}-tab-panel-${index}`;
+			return `${state._id}-tab-panel-${index}`;
 		},
 
 		activateTab(index: number) {
@@ -403,11 +404,19 @@ export default function DBTabs(props: DBTabsProps) {
 		state._updateCachedTabs();
 	}, [props.tabs]);
 
-	// Sync derived IDs when props change
+	// Reset IDs when the id prop changes
 	onUpdate(() => {
-		state._id = props.id || state._generatedId;
-		state._name = 'tabs-' + (props.label || state._generatedName);
-	}, [props.id, props.label]);
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
+
+	// Re-initialize child IDs/ARIA whenever the base id is (re)assigned
+	onUpdate(() => {
+		if (state._id) {
+			state.initTabs();
+		}
+	}, [state._id]);
 
 	// Controlled mode: sync external activeIndex changes to internal state.
 	// Intentionally bypasses activateTab to avoid firing onIndexChange/onValueChange
@@ -424,8 +433,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 	onMount(() => {
 		// Compute derived IDs
-		state._id = props.id || state._generatedId;
-		state._name = 'tabs-' + (props.label || state._generatedName);
+		state.resetIds();
 
 		// 1. Calculate final start index synchronously to avoid race conditions
 		let startIndex = 0;
@@ -443,8 +451,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// 2. Support deep linking: URL hash takes precedence over initial index
 		if (typeof window !== 'undefined' && window.location.hash) {
 			const hashId = window.location.hash.substring(1);
-			const name = 'tabs-' + (props.label || state._generatedName);
-			const prefix = `${name}-tab-`;
+			const prefix = `${state._id}-tab-`;
 
 			if (hashId.startsWith(prefix)) {
 				const indexStr = hashId.replace(prefix, '');
