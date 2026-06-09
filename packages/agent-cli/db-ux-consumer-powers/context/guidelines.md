@@ -38,7 +38,7 @@ An agent must NEVER generate DB UX code from memory or assumptions. Every value 
 
 1. **`list_components()`** — Confirm the component exists before using it. If it does not exist: STOP. Do not invent a custom replacement.
 
-2. **`get_component_props(componentName)`** — Load the exact prop API. Never assume prop names, types, or allowed values. Props change between versions.
+2. **`get_component_props(componentName)`** — Load the exact prop API. Never assume prop names, types, or allowed values. Props may change between versions/releases.
 
 3. **`get_component_details(componentName)`** — Discover available examples and understand the component's capabilities.
 
