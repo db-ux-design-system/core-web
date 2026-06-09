@@ -77,14 +77,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			const setupObserverAndCheck = () => {
 				requestAnimationFrame(() => {
 					state.checkTruncation();
-					const labelEl = _labelRef;
-					if (labelEl && !labelEl.dataset.label) {
-						labelEl.dataset.label =
-							props.label ||
-							labelEl.innerText ||
-							labelEl.textContent ||
-							'';
-					}
 					if (_labelRef && !state._resizeObserver) {
 						const resizeObserver = new ResizeObserver(() => {
 							requestAnimationFrame(() => {
