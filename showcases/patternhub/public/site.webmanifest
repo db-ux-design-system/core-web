@@ -1,14 +1,31 @@
 {
-	"short_name": "",
-	"name": "",
+	"short_name": "DB UX",
+	"name": "DB UX Design System",
 	"icons": [
 		{
-			"src": "/assets/images/db_logo.svg",
-			"type": "image/svg",
-			"sizes": "192x192"
+			"src": "icon-512.svg",
+			"type": "image/svg+xml",
+			"sizes": "512x512",
+			"purpose": "any"
 		}
 	],
-	"start_url": "/",
+	"screenshots": [
+		{
+			"src": "screenshot-wide.svg",
+			"sizes": "1280x720",
+			"type": "image/svg+xml",
+			"form_factor": "wide"
+		},
+		{
+			"src": "screenshot-mobile.svg",
+			"sizes": "390x844",
+			"type": "image/svg+xml",
+			"form_factor": "narrow"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"orientation": "portrait",
 	"background_color": "#fdfdfd",
 	"theme_color": "#fdfdfd"
 }
