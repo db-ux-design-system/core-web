@@ -91,7 +91,7 @@ Throughout this skill:
 5. Call `get_styles` if the component references shared Figma styles.
 6. Document ALL extracted values. These are the ground truth for implementation.
 
-#### Phase 0.2: DB UX Token Mapping (`@db-ux/mcp-server`)
+#### Phase 0.2: DB UX Token Mapping (`@db-ux/mcp-server` node package)
 
 1. Call `list_components`. ABORT if component already exists.
 2. Call `list_design_token_categories` to discover available categories. Then call `get_design_tokens` with the categories identified in Phase 0.1 (spacing, sizing, colors, radius).
