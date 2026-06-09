@@ -58,7 +58,7 @@ on_error:
 
 ### Phase 1: Scan
 
-1. Call `scan_v2_migration({file_path})`.
+1. Call `scan_v2_migration({ filePath: "{file_path}" })`.
 2. Capture the full findings report: v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`), Web Components (`<db-*>`), color tokens (`db-color-*`), icon names.
 3. If the scan returns zero findings → file is already v3. Call `docs_search` to confirm if uncertain. STOP.
 
@@ -96,7 +96,7 @@ on_error:
 
 ### Phase 6: Verify
 
-1. Call `scan_v2_migration({file_path})` again.
+1. Call `scan_v2_migration({ filePath: "{file_path}" })` again.
 2. If findings remain → address each individually, then re-scan.
 3. Repeat until the scan returns zero findings.
 
