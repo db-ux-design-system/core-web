@@ -160,5 +160,5 @@ Changes in `packages/components/src` require a changeset for:
 `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
 
 - `patch` — bug fix
-- `minor` — new feature or example
-- `major` — any prop in `model.ts` added, removed, renamed, or retyped
+- `minor` — new feature or example, or any prop added in `model.ts`
+- `major` — any prop in `model.ts` removed, renamed, or retyped
