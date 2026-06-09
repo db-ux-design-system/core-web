@@ -571,7 +571,7 @@ export default function DBTabs(props: DBTabsProps) {
 					{props.scrollStartLabel}
 				</DBButton>
 			</Show>
-			<Show when={props.tabs}>
+			<Show when={props.tabs} else={props.children}>
 				<DBTabList>
 					<For each={state._cachedTabs}>
 						{(tab: DBSimpleTabProps, index: number) => (
@@ -596,7 +596,6 @@ export default function DBTabs(props: DBTabsProps) {
 					)}
 				</For>
 			</Show>
-			<Show when={!props.tabs}>{props.children}</Show>
 			<Show when={state.showScrollEnd}>
 				<DBButton
 					class="tabs-scroll-end"
