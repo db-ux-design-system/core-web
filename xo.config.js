@@ -8,6 +8,8 @@ const xoConfig = [
 			'**/*.vue',
 			// We don't need to check for stories - they will be generated
 			'storybooks/*/src/**',
+			// Html-storybook has no tsconfig project setup for XO
+			'storybooks/html-storybook/vite.config.ts',
 			'scripts/check-docs.js'
 		]
 	},
