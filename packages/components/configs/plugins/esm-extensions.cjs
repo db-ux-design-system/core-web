@@ -2,11 +2,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 /**
- * Resolves a relative import specifier to an explicit ESM path with .js extension.
- * Works on compiled output (dist/) where files are .js and .d.ts.
- * - Directory with index.js → ./dir/index.js
- * - File .js exists → ./file.js
- * - Already has extension or is not relative → unchanged
+ * Resolves a relative import specifier to an explicit ESM path with a .js
+ * extension. Runs on the generated Mitosis source (.ts/.tsx), so the on-disk
+ * counterparts are TypeScript files that tsc later emits as .js.
+ * - Directory with index.ts(x) → ./dir/index.js
+ * - File .ts(x)                → ./file.js
+ * - Already has an extension or is not relative → unchanged
  *
  * @param {string} importPath - The import specifier (e.g. './model', '../utils')
  * @param {string} fromFile   - Absolute path of the file containing the import
@@ -17,31 +18,64 @@ const resolveEsmPath = (importPath, fromFile) => {
 		return importPath;
 	}
 
-	if (/\.(js|mjs|cjs|json|css|scss)$/.test(importPath)) {
+	// Skip specifiers that already carry an explicit extension.
+	// `.vue` is included because this plugin also runs for the Vue output;
+	// without it, `./foo.vue` would fall through to the filesystem checks
+	// below and trigger unnecessary work (and could be rewritten incorrectly
+	// if a `foo.vue.ts` ever existed).
+	if (/\.(js|mjs|cjs|json|css|scss|vue)$/.test(importPath)) {
 		return importPath;
 	}
 
 	const baseDir = path.dirname(fromFile);
 	const absolute = path.resolve(baseDir, importPath);
 
-	// Is it a directory with an index file?
-	if (fs.existsSync(absolute) && fs.statSync(absolute).isDirectory()) {
-		if (fs.existsSync(path.join(absolute, 'index.js'))) {
-			return `${importPath}/index.js`;
-		}
+	// Directory import → append /index.js
+	if (
+		fs.existsSync(absolute) &&
+		fs.statSync(absolute).isDirectory() &&
+		(fs.existsSync(path.join(absolute, 'index.ts')) ||
+			fs.existsSync(path.join(absolute, 'index.tsx')))
+	) {
+		return `${importPath}/index.js`;
 	}
 
-	// Is it a file (.js)?
-	if (fs.existsSync(`${absolute}.js`)) {
+	// File import → append .js for the TS sources tsc compiles to .js.
+	if (fs.existsSync(`${absolute}.ts`) || fs.existsSync(`${absolute}.tsx`)) {
 		return `${importPath}.js`;
 	}
 
+	// Vue single-file components are emitted with an explicit `.vue` extension
+	// in the import already (handled by the early-return above). A barrel that
+	// re-exports `./<name>` (without extension) pointing at a `<name>.vue`
+	// file is left untouched: Vite/vue-tsc resolve `.vue` natively, and there
+	// is no `.js` counterpart to point at.
+	if (
+		fs.existsSync(`${absolute}.vue`) ||
+		(fs.existsSync(absolute) &&
+			fs.statSync(absolute).isDirectory() &&
+			fs.existsSync(path.join(absolute, 'index.vue')))
+	) {
+		return importPath;
+	}
+
+	// Could not resolve. Leave the import untouched, but surface it during the
+	// build so a missing file or changed structure does not silently propagate
+	// to consumers as a hard-to-debug runtime error.
+	console.warn(
+		`[esm-extensions] Could not resolve relative import "${importPath}" from "${fromFile}"`
+	);
 	return importPath;
 };
 
 /**
- * Fixes all relative import/export specifiers in a file
- * by appending explicit .js extensions.
+ * Fixes all relative import/export specifiers in a file by appending explicit
+ * .js extensions.
+ *
+ * The regex matches relative specifiers in `import`/`export ... from` clauses
+ * as well as bare side-effect imports (`import './foo'`). Mitosis output does
+ * not currently emit relative side-effect imports, but they are handled
+ * correctly if they ever appear.
  *
  * @param {string} filePath - Absolute path to the file
  */
@@ -64,57 +98,56 @@ const fixFileImports = (filePath) => {
 };
 
 /**
- * Recursively collects all .js and .d.ts files under a directory.
- * These are the compiled outputs that need ESM extension fixing.
- * @param {string} dir
- * @returns {string[]}
+ * Files matching these patterns are consumed as raw source by the showcases
+ * (Next.js transpilePackages / Turbopack) and are excluded from tsc
+ * compilation. They must NOT receive .js extensions because no compiled .js
+ * counterpart is ever emitted for them.
  */
-const collectFiles = (dir) => {
-	if (!fs.existsSync(dir)) return [];
-	const results = [];
-	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-		const fullPath = path.resolve(dir, entry.name);
-		if (entry.isDirectory()) {
-			results.push(...collectFiles(fullPath));
-		} else if (/\.(js|d\.ts)$/.test(entry.name)) {
-			results.push(fullPath);
-		}
-	}
-	return results;
-};
+const EXCLUDED_PATTERNS =
+	/\.(showcase|showcase-only|example|arg\.types)\.(ts|tsx)$/;
 
 /**
- * Fixes ESM import extensions in compiled output (dist/) directory.
- * Must be run AFTER tsc compilation, not on source files.
+ * Mitosis build.post plugin that appends explicit .js extensions to all
+ * relative import/export specifiers in generated output files.
  *
- * Source files in src/ are consumed directly as TypeScript by showcases
- * (via transpilePackages/Turbopack), so they must NOT have .js extensions.
- * Only the compiled dist/ output (published to npm) needs explicit .js extensions.
- *
- * @param {string} distDir - Absolute path to the dist directory
- */
-const fixDistImports = (distDir) => {
-	for (const filePath of collectFiles(distDir)) {
-		fixFileImports(filePath);
-	}
-};
-
-/**
- * Mitosis build.post plugin — intentionally a no-op.
- * ESM extension fixing is now handled post-tsc via fixDistImports().
+ * This produces valid ESM that works in strict environments like Node.js and
+ * Vitest without needing tsc-esm-fix or Vite, and is reused across the React,
+ * Vue and Stencil outputs which all share the same problem.
  *
  * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
 module.exports = () => ({
 	name: 'esm-extensions',
 	build: {
-		post: () => {
-			// No-op: extensions are fixed post-tsc by fix-esm-imports.cjs
+		post: (targetContext, files) => {
+			if (!files) return;
+
+			// `componentFiles` + `nonComponentFiles` together cover every file
+			// the Mitosis build wrote for this target (components, barrels,
+			// shared utils, models) — no filesystem walk needed. The main
+			// Mitosis config's `files` glob (`src/**/*.{lite.tsx,ts}`) also
+			// matches showcase/example sources, so those generated files appear
+			// here too. They are consumed as raw TS and excluded from tsc, so
+			// they must be skipped (see EXCLUDED_PATTERNS).
+			const allOutputFiles = [
+				...(files.componentFiles || []),
+				...(files.nonComponentFiles || [])
+			];
+
+			for (const file of allOutputFiles) {
+				if (EXCLUDED_PATTERNS.test(file.outputFilePath)) {
+					continue;
+				}
+
+				const filePath = path.resolve(
+					file.outputDir,
+					file.outputFilePath
+				);
+				fixFileImports(filePath);
+			}
 		}
 	}
 });
 
-module.exports.fixDistImports = fixDistImports;
 module.exports.resolveEsmPath = resolveEsmPath;
 module.exports.fixFileImports = fixFileImports;
-module.exports.collectFiles = collectFiles;

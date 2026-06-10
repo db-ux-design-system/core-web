@@ -17,8 +17,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all tsc fix-esm mv:*",
-    "fix-esm": "node fix-esm-imports.cjs",
+    "build": "npm-run-all tsc mv:*",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
@@ -38,7 +37,6 @@
   "devDependencies": {
     "@playwright/experimental-ct-react": "1.60.0",
     "@types/react": "19.2.17",
-    "@vitejs/plugin-react": "6.0.2",
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.1",
     "playwright": "1.60.0",

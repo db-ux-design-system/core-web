@@ -299,9 +299,6 @@ importers:
       '@types/react':
         specifier: 19.2.17
         version: 19.2.17
-      '@vitejs/plugin-react':
-        specifier: 6.0.2
-        version: 6.0.2(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       cpr:
         specifier: 3.0.1
         version: 3.0.1
