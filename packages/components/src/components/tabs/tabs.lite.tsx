@@ -103,7 +103,9 @@ export default function DBTabs(props: DBTabsProps) {
 			});
 
 			panels.forEach((panel: HTMLElement, index: number) => {
-				panel.hidden = currentIndex !== index;
+				const isSelected = currentIndex === index;
+				panel.hidden = !isSelected;
+				panel.setAttribute('tabindex', isSelected ? '0' : '-1');
 			});
 		},
 
