@@ -1,3 +1,5 @@
+import { TableComponent } from '../components/table.component';
+
 import { Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
@@ -110,6 +112,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'TabItem',
 				component: TabItemShowcase
 			},
+			{ path: '04/table', label: 'Table', component: TableComponent },
 
 			{ path: '04/tabs', label: 'Tabs', component: TabsShowcase }
 		])

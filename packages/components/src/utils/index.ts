@@ -82,16 +82,28 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
- * Some frameworks like stencil would not add "true" as value for a prop
- * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
- * @param originBool Some boolean to convert to string
+ * Converts boolean-like inputs to "true" or "false" strings.
+ * Handles HTML-style boolean attributes where an empty string or the
+ * attribute's own name as value (e.g. noText="noText") should be treated as true.
+ * Some frameworks like Stencil do not add "true" as value for a prop
+ * if it is used in a framework like Angular e.g.: [disabled]="myDisabledProp"
+ * @param originBool Boolean or string value to convert
+ * @param propertyName The prop/attribute name — when originBool is a string equal
+ *   to this name (case-insensitive), it is treated as true
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getBooleanAsString = (originBool?: boolean | string): any => {
+export const getBooleanAsString = (
+	originBool?: boolean | string,
+	propertyName?: string
+): any => {
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return String(originBool === 'true');
+		return String(
+			originBool === '' ||
+				originBool === 'true' ||
+				propertyName?.toLowerCase() === originBool.toLowerCase()
+		);
 	}
 
 	return String(originBool);
@@ -104,7 +116,11 @@ export const getBoolean = (
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return Boolean(propertyName === originBool || originBool === 'true');
+		return Boolean(
+			originBool === '' ||
+			originBool === 'true' ||
+			propertyName?.toLowerCase() === originBool.toLowerCase()
+		);
 	}
 
 	return Boolean(originBool);
@@ -165,7 +181,7 @@ export const getInputValue = (
 };
 
 const toBool = (value: boolean | string): boolean =>
-	typeof value === 'string' ? value === 'true' : value;
+	typeof value === 'string' ? value !== 'false' : value;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
@@ -173,7 +189,7 @@ export const getHideProp = (show?: boolean | string): any => {
 		return undefined;
 	}
 
-	return getBooleanAsString(!toBool(show));
+	return getBooleanAsString(!toBool(show), 'show');
 };
 
 export const stringPropVisible = (
