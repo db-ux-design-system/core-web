@@ -1195,8 +1195,8 @@ importers:
         specifier: 8.0.16
         version: 8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
       vite-plugin-static-copy:
-        specifier: 4.1.0
-        version: 4.1.0(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
+        specifier: 4.1.1
+        version: 4.1.1(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
 
   showcases/vue-showcase:
     dependencies:
@@ -17076,8 +17076,8 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  vite-plugin-static-copy@4.1.0:
-    resolution: {integrity: sha512-9XOarNV7LgP0KBB7AApxdgFikLXx3daZdqjC3AevYsL6MrUH62zphonLUs2a6LZc1HN1GY+vQdheZ8VVJb6dQQ==}
+  vite-plugin-static-copy@4.1.1:
+    resolution: {integrity: sha512-GrlA8YklrAfSyxJ4M3fdQLOo9oNkp56IM9FYgX/WtEgeIFkPwhu4wzpufBCIuNKCa6Fn77FkRdYxkHqV0FwjAw==}
     engines: {node: ^22.0.0 || >=24.0.0}
     peerDependencies:
       vite: ^8.0.14
@@ -23054,7 +23054,7 @@ snapshots:
       rc9: 3.0.1
       scule: 1.3.0
       semver: 7.8.3
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       ufo: 1.6.4
       unctx: 2.5.0
       untyped: 2.0.0
@@ -24769,7 +24769,7 @@ snapshots:
     dependencies:
       minimatch: 10.2.5
       path-browserify: 1.0.1
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
 
   '@tufjs/canonical-json@2.0.0': {}
 
@@ -25326,7 +25326,7 @@ snapshots:
       debug: 4.4.3(supports-color@5.5.0)
       minimatch: 10.2.5
       semver: 7.8.1
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -25341,7 +25341,7 @@ snapshots:
       debug: 4.4.3(supports-color@5.5.0)
       minimatch: 10.2.5
       semver: 7.8.1
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -25356,7 +25356,7 @@ snapshots:
       debug: 4.4.3(supports-color@5.5.0)
       minimatch: 10.2.5
       semver: 7.8.3
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -28549,7 +28549,7 @@ snapshots:
       get-tsconfig: 4.14.0
       is-bun-module: 2.0.0
       stable-hash: 0.0.5
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       unrs-resolver: 1.12.2
     optionalDependencies:
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.60.0(eslint@10.4.1(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@10.4.1(jiti@2.7.0))
@@ -32620,7 +32620,7 @@ snapshots:
       proc-log: 5.0.0
       semver: 7.8.3
       tar: 7.5.15
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       which: 5.0.0
     transitivePeerDependencies:
       - supports-color
@@ -32634,7 +32634,7 @@ snapshots:
       proc-log: 6.1.0
       semver: 7.8.3
       tar: 7.5.15
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       undici: 6.25.0
       which: 6.0.1
 
@@ -35775,7 +35775,7 @@ snapshots:
       lines-and-columns: 1.2.4
       mz: 2.7.0
       pirates: 4.0.7
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       ts-interface-checker: 0.1.13
 
   super-regex@1.1.0:
@@ -36979,12 +36979,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-static-copy@4.1.0(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)):
+  vite-plugin-static-copy@4.1.1(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)):
     dependencies:
       chokidar: 3.6.0
       p-map: 7.0.4
       picocolors: 1.1.1
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       vite: 8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
 
   vite-plugin-vue-tracer@1.4.0(vite@8.0.16(@types/node@25.9.2)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(vue@3.5.35(typescript@6.0.3)):
