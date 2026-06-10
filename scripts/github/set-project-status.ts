@@ -14,10 +14,12 @@ const setProjectStatus = () => {
 		console.error('Missing required env var: PROJECT_NUMBER');
 		process.exit(1);
 	}
+	
 	if (!prUrl) {
 		console.error('Missing required env var: PR_URL');
 		process.exit(1);
 	}
+	
 	if (!eventAction) {
 		console.error('Missing required env var: EVENT_ACTION');
 		process.exit(1);
