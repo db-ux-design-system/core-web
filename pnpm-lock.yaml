@@ -27016,7 +27016,7 @@ snapshots:
 
   chromatic@16.10.0:
     dependencies:
-      semver: 7.8.2
+      semver: 7.8.1
 
   chrome-trace-event@1.0.4: {}
 
