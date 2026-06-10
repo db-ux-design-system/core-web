@@ -35,6 +35,12 @@
 		align-items: center;
 		gap: variables.$db-spacing-fixed-xs;
 
+		.db-tab-label-text {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
 		&[data-icon]:not([data-show-icon="false"]) {
 			&::before {
 				@extend %icon;
@@ -53,10 +59,7 @@
 	}
 
 	[data-orientation="vertical"] & .db-tab-label {
-		display: block;
 		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 	}
 
 	@extend %db-puls;

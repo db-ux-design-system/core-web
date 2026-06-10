@@ -143,7 +143,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}
 			<span
-				ref={_labelRef}
 				class="db-tab-label"
 				data-icon={props.iconLeading ?? props.icon}
 				data-show-icon={getBooleanAsString(
@@ -153,8 +152,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-show-icon-trailing={getBooleanAsString(
 					props.showIconTrailing
 				)}>
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
+				{/* only the text truncates – icons stay visible */}
+				<span ref={_labelRef} class="db-tab-label-text">
+					<Show when={props.label}>{props.label}</Show>
+					{props.children}
+				</span>
 			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
 				<DBTooltip placement="bottom">{state.tooltipText}</DBTooltip>
