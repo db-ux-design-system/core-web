@@ -114,8 +114,8 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
-- **`minor`** — for new features
-- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been added, removed, renamed, or its type has changed)
+- **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
+- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
 ### How to Add a Changeset
 
@@ -129,14 +129,25 @@ npx changeset
 - Choose `patch` (fix), `minor` (feature), or `major` (breaking change) as the bump type.
 - Write a short description of the change.
 
-Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards:
+Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards.
+
+### Changeset Description Format
+
+The changeset description **must** follow the same conventional prefix style used for git commits (`<type>: <short description>`). Common prefixes (compare to our [conventions](docs/conventions.md)):
+
+- `feat:` — new feature
+- `fix:` — bug fix
+- `refactor:` — code restructuring without behavior change
+- `docs:` — documentation changes
+
+**Examples:**
 
 ```markdown
 ---
 "@db-ux/core-components": minor
 ---
 
-Short description of the feature.
+feat: add `size` property to DBButton component
 ```
 
 ```markdown
@@ -144,7 +155,7 @@ Short description of the feature.
 "@db-ux/core-components": patch
 ---
 
-Short description of the fix.
+fix: resolve incorrect focus ring color in high-contrast mode
 ```
 
 ```markdown
@@ -152,7 +163,7 @@ Short description of the fix.
 "@db-ux/core-components": major
 ---
 
-Short description of the breaking change.
+refactor: rename `colour` property to `color` across all components
 ```
 
 ## Common Tasks

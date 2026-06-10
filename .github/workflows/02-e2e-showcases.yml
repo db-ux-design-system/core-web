@@ -28,7 +28,7 @@ jobs:
         shardTotal: [5]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 2
 

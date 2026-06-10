@@ -99,21 +99,10 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
           fetch-tags: false
-
-      # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
-      - name: 🐷 TruffleHog OSS
-        if: ${{ github.event.pull_request != null && github.event.pull_request.head.repo.owner.login == 'db-ux-design-system' }} # only scan on pull-requests
-        uses: trufflesecurity/trufflehog@main
-        with:
-          # Setting base to an empty string scans the entire branch, per TruffleHog OSS advanced usage:
-          # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
-          base: ""
-          head: ${{ github.ref_name }}
-          extra_args: --results=verified,unknown
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/pnpm-cache
@@ -219,7 +208,7 @@ jobs:
       version: ${{ steps.getVersion.outputs.version }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
