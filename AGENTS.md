@@ -114,8 +114,8 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
-- **`minor`** — for new features
-- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been added, removed, renamed, or its type has changed)
+- **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
+- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
 ### How to Add a Changeset
 
@@ -129,14 +129,25 @@ npx changeset
 - Choose `patch` (fix), `minor` (feature), or `major` (breaking change) as the bump type.
 - Write a short description of the change.
 
-Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards:
+Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards.
+
+### Changeset Description Format
+
+The changeset description **must** follow the same conventional prefix style used for git commits (`<type>: <short description>`). Common prefixes (compare to our [conventions](docs/conventions.md)):
+
+- `feat:` — new feature
+- `fix:` — bug fix
+- `refactor:` — code restructuring without behavior change
+- `docs:` — documentation changes
+
+**Examples:**
 
 ```markdown
 ---
 "@db-ux/core-components": minor
 ---
 
-Short description of the feature.
+feat: add `size` property to DBButton component
 ```
 
 ```markdown
@@ -144,7 +155,7 @@ Short description of the feature.
 "@db-ux/core-components": patch
 ---
 
-Short description of the fix.
+fix: resolve incorrect focus ring color in high-contrast mode
 ```
 
 ```markdown
@@ -152,8 +163,19 @@ Short description of the fix.
 "@db-ux/core-components": major
 ---
 
-Short description of the breaking change.
+refactor: rename `colour` property to `color` across all components
 ```
+
+### Migration Guides for Major Changes
+
+Most `major` changeset entries indicate a breaking change that requires consumers to update their code. In these cases, **always create or update a migration guide** in `docs/migration/`.
+
+- Use the naming convention `vX.x.x-to-vY.0.0.md` (e.g. `v4.x.x-to-v5.0.0.md`).
+- If a migration guide for the upcoming major version (determined by the current `version` e.g. in `packages/foundations/package.json`) already exists, append your breaking change to it.
+- If none exists yet, create one following the structure of existing guides (see `docs/migration/` for examples).
+- Each breaking change entry should have a heading describing what changed and a brief explanation of how to migrate. A table of changed properties could help our users to understand the necessary changes easier than a thousand words.
+- **When creating a new migration guide file**, also add it to the migration index list in `README.md` (under "In between DB UX Design System Core versions") so consumers can discover it. Insert it at the top of the list following the existing format.
+- **PR labeling:** If the GitHub MCP is available, add the `Breaking Change` label to the pull request. If the MCP is not available, inform the developer to add the `Breaking Change` label manually.
 
 ## Common Tasks
 

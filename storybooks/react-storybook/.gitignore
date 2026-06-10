@@ -27,3 +27,4 @@ dist-ssr
 storybook-static
 
 src/components
+src/shared

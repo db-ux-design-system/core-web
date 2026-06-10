@@ -1,0 +1,6 @@
+# Generated test artifacts (created by CLI during test runs)
+test/**/db-ux-powers/
+test/**/.amazonq/
+test/**/.github/
+test/**/.cursorrules
+

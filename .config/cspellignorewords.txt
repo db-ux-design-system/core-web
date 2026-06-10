@@ -142,6 +142,7 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+rowspan
 TSES
 trufflesecurity
 elif
@@ -199,6 +200,8 @@ categorise
 optimised
 optimise
 browserslistrc
+notext
+subcomponent
 # GitHub Project IDs
 PVTSSF
 ADOC
