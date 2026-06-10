@@ -65,14 +65,16 @@ export function getChangedFiles(baseBranch: string): string[] {
 export function isDocsOnlyFile(file: string): boolean {
 	const docsOnlyPatterns = [
 		/^\.changeset\//,
-		/^\.github\/(?!workflows\/)/,
+		// Non-workflow, non-action .github files (templates, CODEOWNERS, etc.).
+		// .github/workflows/ and .github/actions/ are executable CI and handled
+		// by isRootConfig (which is checked first in categorizeFile).
+		/^\.github\/(?!workflows\/|actions\/)/,
 		/^\.amazonq\//,
 		/^\.claude\//,
 		/^\.kiro\//,
 		/^[^/]*\.md$/,
 		/^LICENSE/,
 		/^\.editorconfig$/,
-		/^\.browserslistrc$/,
 		/^\.gitattributes$/,
 		/^\.gitignore$/
 	];
@@ -89,22 +91,42 @@ export function isRootConfig(file: string): boolean {
 		/^\.nvmrc$/,
 		/^\.env/,
 		/^\.config\//,
-		/^\.github\/workflows\//
+		/^\.github\/workflows\//,
+		// Custom GitHub Actions are executable workflow dependencies (e.g.
+		// playwright-cache, auto-commit) consumed by the build/test jobs.
+		/^\.github\/actions\//,
+		// Browser target config: copied into showcases (e.g. next-showcase
+		// setup:browserslist) and alters generated browser-targeted output.
+		/^\.browserslistrc$/
 	];
 
 	return rootConfigPatterns.some((pattern) => pattern.test(file));
 }
 
 /**
- * Categorizes a file under `__snapshots__/`. Always marks showcases, and
- * additionally marks aria when an aria-snapshot changed (which gates the
+ * Categorizes a file under `__snapshots__/`. Snapshots are organized as
+ * `__snapshots__/<name>/<component|showcase|patternhub>/...` (plus
+ * `__snapshots__/foundations/<browser>/...`), so the relevant test suite is
+ * derived from the path segment instead of always selecting showcases.
+ * Additionally marks aria when an aria-snapshot changed (which gates the
  * costly screen-reader tests).
  */
 export function categorizeSnapshotFile(
 	file: string,
 	categories: ChangeCategories
 ): void {
-	categories.showcases = true;
+	if (file.includes('/component/')) {
+		categories.components = true;
+	} else if (file.includes('/patternhub/')) {
+		categories.patternhub = true;
+	} else if (file.startsWith('__snapshots__/foundations/')) {
+		categories.foundations = true;
+	} else if (file.includes('/showcase/')) {
+		categories.showcases = true;
+	} else {
+		// Unknown snapshot layout — be safe and run the showcase suites.
+		categories.showcases = true;
+	}
 
 	if (file.endsWith('-aria-snapshot.yaml')) {
 		categories.aria = true;
@@ -148,7 +170,13 @@ export function categorizeFile(
 		if (file.includes('/figma/')) {
 			categories.figma = true;
 		} else if (file.includes('/examples/')) {
+			// Examples generate Storybooks but are also imported by the
+			// component showcase modules and rendered in Patternhub, so their
+			// build + E2E suites must run to catch behavioral/visual/a11y
+			// regressions in the rendered examples.
 			categories.storybook = true;
+			categories.showcases = true;
+			categories.patternhub = true;
 		} else {
 			categories.components = true;
 		}
@@ -330,14 +358,33 @@ const isCliExecution =
 if (isCliExecution) {
 	const eventName = process.env.GITHUB_EVENT_NAME ?? '';
 	const ref = process.env.GITHUB_REF ?? '';
+	// For pull_request events GitHub exposes the target branch via
+	// GITHUB_BASE_REF (the workflow maps github.base_ref to it).
+	const baseRef = process.env.GITHUB_BASE_REF ?? '';
 
-	const baseBranch =
-		eventName === 'push' && ref === 'refs/heads/main'
-			? 'HEAD~1'
-			: 'origin/main...HEAD';
+	let categories: ChangeCategories;
 
-	const changedFiles = getChangedFiles(baseBranch);
-	const categories = categorizeChanges(changedFiles);
+	if (eventName === 'release' || eventName === 'workflow_dispatch') {
+		// Release checks out the tag (origin/main...HEAD can be empty) and a
+		// workflow_dispatch from an unchanged main has the same problem. Both
+		// events are intended to run the full pipeline, so bypass path
+		// detection and force every category on.
+		categories = categorizeChanges(['__unknown__']);
+	} else {
+		let baseBranch: string;
+		if (eventName === 'push' && ref === 'refs/heads/main') {
+			baseBranch = 'HEAD~1';
+		} else if (eventName === 'pull_request' && baseRef) {
+			// Diff against the PR's actual base branch (which may not be main).
+			baseBranch = `origin/${baseRef}...HEAD`;
+		} else {
+			// Merge_group and any other event: validate against main.
+			baseBranch = 'origin/main...HEAD';
+		}
+
+		const changedFiles = getChangedFiles(baseBranch);
+		categories = categorizeChanges(changedFiles);
+	}
 
 	// Output as JSON for the workflow to parse
 	console.log(JSON.stringify(categories));

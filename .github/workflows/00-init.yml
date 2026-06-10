@@ -183,6 +183,7 @@ jobs:
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_REF: ${{ github.ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
           CHANGES=$(pnpm --silent tsx scripts/github/change-detection/detect-changes.ts)
           echo "Raw changes: $CHANGES"

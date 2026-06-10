@@ -49,9 +49,11 @@ concurrency:
 # - lint-only (eslint-plugin, stylelint, postcss-plugin) → lint only
 # - root-config / needs-full-pipeline      → everything
 #
-# NOTE: .github/workflows/** changes are classified as root-config and
-# trigger the full pipeline, because workflow changes can affect any job.
-# Non-workflow .github/** files (e.g., CODEOWNERS, templates) are docs-only.
+# NOTE: .github/workflows/** and .github/actions/** changes are classified as
+# root-config and trigger the full pipeline, because workflows and the custom
+# actions they consume can affect any job. .browserslistrc is also root-config
+# (it is copied into showcases and alters generated browser-targeted output).
+# Other .github/** files (e.g., CODEOWNERS, templates) are docs-only.
 #
 # Release and workflow_dispatch events always run the full pipeline.
 # Push-to-main skips tests (merge queue already validated them).
@@ -654,13 +656,25 @@ jobs:
           IS_MAIN_PUSH: ${{ needs.init.outputs.eventVariant == 'main-push' }}
           IS_DOCS_ONLY: ${{ needs.init.outputs.docsOnly }}
         run: |
+          resultLint="${{ needs.lint.result }}"
+
+          # Lint runs as an independent validation workflow on every code
+          # change (including docs-only). It is part of the required gate, so a
+          # failed lint must block the queue even when builds/tests are skipped.
+          # "skipped" is acceptable (changeset-release / main-push skip lint).
+          if [[ "$resultLint" != "success" && "$resultLint" != "skipped" ]]; then
+            echo "❌ lint: $resultLint"
+            echo "Lint validation failed."
+            exit 1
+          fi
+
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
             echo "🎉 Changeset release PR - skipping checks."
             exit 0
           fi
 
           if [[ "$IS_DOCS_ONLY" == "true" ]]; then
-            echo "📄 Docs-only change - no builds or tests required."
+            echo "📄 Docs-only change - no builds or tests required (lint verified above)."
             exit 0
           fi
 
@@ -771,6 +785,7 @@ jobs:
           fi
     needs:
       [
+        lint,
         build-packages,
         build-storybook-composition,
         build-storybook-angular,
@@ -801,6 +816,12 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
+    # The deploy workflow unconditionally downloads the patternhub artifact and
+    # all five storybook artifacts, so it must only run when every one of those
+    # builds actually produced its artifact. Path filtering can skip them (e.g.
+    # a showcases-only change skips patternhub + storybooks), which would make
+    # the download step fail. Requiring 'success' (not 'skipped') on each build
+    # gates deployment on the complete artifact set being present.
     if: >-
       ${{
         !cancelled() &&
@@ -810,9 +831,25 @@ jobs:
          github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
         needs.init.outputs.eventVariant != 'changeset-release' &&
         needs.init.outputs.docsOnly != 'true' &&
-        needs.checks-done.result == 'success'
+        needs.checks-done.result == 'success' &&
+        needs.build-showcase-patternhub.result == 'success' &&
+        needs.build-storybook-composition.result == 'success' &&
+        needs.build-storybook-angular.result == 'success' &&
+        needs.build-storybook-react.result == 'success' &&
+        needs.build-storybook-vue.result == 'success' &&
+        needs.build-storybook-html.result == 'success'
       }}
-    needs: [checks-done, init]
+    needs:
+      [
+        checks-done,
+        init,
+        build-showcase-patternhub,
+        build-storybook-composition,
+        build-storybook-angular,
+        build-storybook-react,
+        build-storybook-vue,
+        build-storybook-html
+      ]
     secrets: inherit
     with:
       release: ${{ needs.init.outputs.release }}

@@ -19,11 +19,12 @@ describe('detect-changes categorization logic', () => {
 			['.kiro/specs/feature/tasks.md', true],
 			['LICENSE', true],
 			['.editorconfig', true],
-			['.browserslistrc', true],
 			['.gitattributes', true],
 			['.gitignore', true],
 			// Not docs-only
 			['.github/workflows/default.yml', false],
+			['.github/actions/playwright-cache/action.yml', false],
+			['.browserslistrc', false], // Now root-config (affects generated output)
 			['packages/components/src/button.ts', false],
 			['docs/index.md', false], // Docs/ is patternhub, not docs-only
 			['scripts/build.ts', false],
@@ -45,6 +46,8 @@ describe('detect-changes categorization logic', () => {
 			['.env.template', true],
 			['.config/cspell.config.ts', true],
 			['.github/workflows/default.yml', true],
+			['.github/actions/auto-commit/action.yml', true],
+			['.browserslistrc', true],
 			// Not root config
 			['packages/components/package.json', false],
 			['README.md', false],
@@ -116,11 +119,15 @@ describe('detect-changes categorization logic', () => {
 			expect(result['vite-plugin']).toBe(true); // Via output cascade
 		});
 
-		test('component example file → storybook (not components)', () => {
+		test('component example file → storybook + showcases + patternhub (not components)', () => {
 			const result = categorizeChanges([
 				'packages/components/src/components/button/examples/default.tsx'
 			]);
 			expect(result.storybook).toBe(true);
+			// Examples are imported by showcase modules and rendered in
+			// Patternhub, so their suites must run too.
+			expect(result.showcases).toBe(true);
+			expect(result.patternhub).toBe(true);
 			expect(result.components).toBe(false);
 			expect(result['docs-only']).toBe(false);
 		});
@@ -141,24 +148,55 @@ describe('detect-changes categorization logic', () => {
 			expect(result.output).toBe(false);
 		});
 
-		test('__snapshots__/ change maps to showcases', () => {
+		test('__snapshots__/ component change maps to components', () => {
+			const result = categorizeChanges([
+				'__snapshots__/button/component/button-screenshot.png'
+			]);
+			expect(result.components).toBe(true);
+			// Components cascade to showcases too
+			expect(result.showcases).toBe(true);
+		});
+
+		test('__snapshots__/ showcase change maps to showcases (not components)', () => {
+			const result = categorizeChanges([
+				'__snapshots__/button/showcase/button-screenshot.png'
+			]);
+			expect(result.showcases).toBe(true);
+			expect(result.components).toBe(false);
+		});
+
+		test('__snapshots__/ patternhub change maps to patternhub', () => {
+			const result = categorizeChanges([
+				'__snapshots__/button/patternhub/button-screenshot.png'
+			]);
+			expect(result.patternhub).toBe(true);
+		});
+
+		test('__snapshots__/foundations change maps to foundations', () => {
+			const result = categorizeChanges([
+				'__snapshots__/foundations/chromium/colors-screenshot.png'
+			]);
+			expect(result.foundations).toBe(true);
+		});
+
+		test('__snapshots__/ unknown layout falls back to showcases', () => {
 			const result = categorizeChanges([
 				'__snapshots__/button-aria-snapshot.yaml'
 			]);
 			expect(result.showcases).toBe(true);
 		});
 
-		test('__snapshots__/ aria-snapshot.yaml sets aria flag', () => {
+		test('__snapshots__/ component aria-snapshot.yaml sets aria flag', () => {
 			const result = categorizeChanges([
-				'__snapshots__/react-showcase/button-aria-snapshot.yaml'
+				'__snapshots__/button/component/button-aria-snapshot.yaml'
 			]);
 			expect(result.aria).toBe(true);
-			expect(result.showcases).toBe(true);
+			expect(result.components).toBe(true);
 		});
 
-		test('__snapshots__/ screenshot.png maps to showcases without aria', () => {
+		test('__snapshots__/ screenshot.png does not set aria', () => {
 			const result = categorizeChanges([
-				'__snapshots__/react-showcase/button-screenshot.png'
+				'__snapshots__/button/showcase/button-screenshot.png'
 			]);
 			expect(result.aria).toBe(false);
 			expect(result.showcases).toBe(true);
@@ -166,7 +204,7 @@ describe('detect-changes categorization logic', () => {
 
 		test('other __snapshots__/ files do not set aria', () => {
 			const result = categorizeChanges([
-				'__snapshots__/react-showcase/some-other-file.txt'
+				'__snapshots__/button/showcase/some-other-file.txt'
 			]);
 			expect(result.aria).toBe(false);
 			expect(result.showcases).toBe(true);
@@ -265,6 +303,22 @@ describe('detect-changes categorization logic', () => {
 			const result = categorizeChanges(['.github/CODEOWNERS']);
 			expect(result['docs-only']).toBe(true);
 			expect(result['needs-full-pipeline']).toBe(false);
+		});
+
+		test('.github/actions/ changes trigger full pipeline', () => {
+			const result = categorizeChanges([
+				'.github/actions/playwright-cache/action.yml'
+			]);
+			expect(result['root-config']).toBe(true);
+			expect(result['needs-full-pipeline']).toBe(true);
+			expect(result['docs-only']).toBe(false);
+		});
+
+		test('.browserslistrc change triggers full pipeline', () => {
+			const result = categorizeChanges(['.browserslistrc']);
+			expect(result['root-config']).toBe(true);
+			expect(result['needs-full-pipeline']).toBe(true);
+			expect(result['docs-only']).toBe(false);
 		});
 
 		test('unknown file path triggers full pipeline', () => {
