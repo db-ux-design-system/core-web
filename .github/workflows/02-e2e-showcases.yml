@@ -9,9 +9,6 @@ on:
       showcase:
         required: true
         type: string
-      test-ally:
-        required: false
-        type: string
 
 permissions:
   actions: write
@@ -71,42 +68,10 @@ jobs:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
 
-      # We test everything for patternhub and main branch
       - name: 👩🔬 Test showcase with Playwright 🎭
         shell: bash
-        if: github.event.pull_request == null
-        env:
-          NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
           pnpm --filter ${{ inputs.showcase }} run test:e2e --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      # We check if aria-snapshots were changed
-      - name: 👩🔬 Test aria-snapshots with Playwright 🎭
-        id: aria-snapshots
-        shell: bash
-        if: github.event.pull_request != null
-        run: |
-          pnpm --filter ${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - name: 👩🔬 Test visual-snapshots with Playwright 🎭
-        id: visual-snapshots
-        shell: bash
-        if: github.event.pull_request != null
-        run: |
-          pnpm --filter ${{ inputs.showcase }} run test:visual-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - name: 👩🔬 Test axe-core with Playwright 🎭
-        shell: bash
-        if: github.event.pull_request != null
-        run: |
-          pnpm --filter ${{ inputs.showcase }} run test:axe-core --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - name: 👩🔬 Test a11y-checker with Playwright 🎭
-        shell: bash
-        if: |
-          github.event.pull_request != null
-        run: |
-          pnpm --filter ${{ inputs.showcase }} run test:a11y-checker --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()

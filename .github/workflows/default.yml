@@ -12,29 +12,52 @@ on:
   push:
     branches:
       - "main"
+  merge_group:
   release:
     types: [published]
   workflow_dispatch:
 
-# We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
-# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
-# NOTE: Concurrency is disabled for release events as they should always run to completion
 concurrency:
-  # Creates a unique concurrency group identifier for release events using the git reference
   group: >-
     ${{
       github.event_name == 'release' &&
       format('release-{0}', github.ref) ||
-      github.actor == 'dependabot[bot]' &&
-      'dependabot' ||
+      github.event_name == 'merge_group' &&
+      format('merge-queue-{0}', github.ref) ||
       format('{0}-{1}', github.workflow, github.ref)
     }}
   cancel-in-progress: >-
     ${{
       github.event_name != 'release' &&
-      github.actor != 'dependabot[bot]' &&
+      github.event_name != 'merge_group' &&
       github.ref != 'refs/heads/main'
     }}
+# =============================================================================
+# PATH-BASED OPTIMIZATION
+# =============================================================================
+# The init job detects which directories changed and outputs flags.
+# Jobs use these flags to skip work that's irrelevant to the change.
+#
+# Change category → Jobs that run:
+# - docs-only (*.md, .changeset/**, .amazonq/**, .claude/**, .kiro/**)  → lint only
+# - foundations (packages/foundations/**)    → lint, build-packages, storybooks, patternhub, test-foundations
+# - components (packages/components/**)     → lint, build-packages, storybooks, patternhub, showcases, test-components
+# - output (output/**)                      → lint, build-packages, build-outputs, test-vite-plugin, showcases
+# - showcases (showcases/**)               → lint, build-packages, showcase builds + tests
+# - vite-plugin (packages/vite-plugin/**) → lint, build-packages, build-outputs, test-vite-plugin
+# - figma (figma-code-connect/**, packages/components/**/figma/**) → lint, build-figma-code-connect, test-figma-code-connect
+# - lint-only (eslint-plugin, stylelint, postcss-plugin) → lint only
+# - root-config / needs-full-pipeline      → everything
+#
+# NOTE: .github/workflows/** and .github/actions/** changes are classified as
+# root-config and trigger the full pipeline, because workflows and the custom
+# actions they consume can affect any job. .browserslistrc is also root-config
+# (it is copied into showcases and alters generated browser-targeted output).
+# Other .github/** files (e.g., CODEOWNERS, templates) are docs-only.
+#
+# Release and workflow_dispatch events always run the full pipeline.
+# Push-to-main skips tests (merge queue already validated them).
+# =============================================================================
 
 jobs:
   init:
@@ -43,98 +66,184 @@ jobs:
     with:
       release: ${{ github.event_name == 'release' }}
 
+  # Fail-fast: cancel the whole run as soon as any build job fails, to free up
+  # runner minutes. Replaces the previous per-job cancel-on-failure-* jobs.
+  # Skipped on release (we never want to abort a release run mid-flight).
+  cancel-on-failure:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'release' &&
+        !cancelled() &&
+        contains(needs.*.result, 'failure')
+      }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs:
+      [
+        init,
+        lint,
+        build-packages,
+        build-figma-code-connect,
+        build-stories,
+        build-outputs,
+        build-showcase-stencil,
+        build-showcase-angular,
+        build-showcase-angular-ssr,
+        build-showcase-react,
+        build-showcase-next,
+        build-showcase-vue,
+        build-showcase-nuxt,
+        build-showcase-patternhub
+      ]
+
+  # Lint runs for all code changes (skips only on push-to-main and changeset releases)
   lint:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.eventVariant != 'main-push'
+      }}
     uses: ./.github/workflows/01-validate.yml
     needs: [init]
     secrets: inherit
 
-  cancel-on-failure-lint:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [lint]
-
+  # Build packages when code changes affect foundations, components, output, showcases, or vite-plugin
   build-packages:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.docsOnly != 'true'
+      }}
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
     secrets: inherit
 
-  cancel-on-failure-build-packages:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-packages.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-packages]
-
+  # Figma code connect: only when figma files changed or full pipeline needed
   build-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    if: >-
+      ${{
+        github.repository_owner == 'db-ux-design-system' &&
+        needs.init.outputs.eventVariant != 'release' &&
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.eventVariant != 'main-push' &&
+        (needs.init.outputs.needsFullPipeline == 'true' || needs.init.outputs.changesFigma == 'true')
+      }}
     uses: ./.github/workflows/01-build-figma-code-connect.yml
     needs: [init]
 
-  cancel-on-failure-figma-code-connect:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-figma-code-connect.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-figma-code-connect]
-
+  # Build stories: needed for storybooks (only when examples or storybook config changed)
   build-stories:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesStorybook == 'true')
+      }}
     uses: ./.github/workflows/01-build-stories.yml
     needs: [init]
     secrets: inherit
 
-  cancel-on-failure-build-stories:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-stories]
-
+  # Playwright init: only when tests will actually run
   init-playwright:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesFoundations == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesShowcases == 'true' ||
+         needs.init.outputs.changesOutput == 'true')
+      }}
     uses: ./.github/workflows/01-init-playwright.yml
     needs: [init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
+  # Build outputs: when output/, components, vite-plugin changed or full pipeline
   build-outputs:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesVitePlugin == 'true')
+      }}
     uses: ./.github/workflows/01-build-outputs.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
 
-  cancel-on-failure-build-outputs:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-outputs.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-outputs]
-
+  # Test vite-plugin: when output/, vite-plugin changed or full pipeline
   test-vite-plugin:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesVitePlugin == 'true')
+      }}
     uses: ./.github/workflows/02-vite-plugin-test.yml
-    needs: [build-outputs]
+    needs: [build-outputs, init]
     secrets: inherit
 
+  # Test figma code connect: only when figma files changed or full pipeline
   test-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    if: >-
+      ${{
+        github.repository_owner == 'db-ux-design-system' &&
+        needs.init.outputs.eventVariant != 'release' &&
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.eventVariant != 'main-push' &&
+        (needs.init.outputs.needsFullPipeline == 'true' || needs.init.outputs.changesFigma == 'true')
+      }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
     needs: [build-figma-code-connect, init]
     secrets: inherit
 
+  # Test components: when components changed or full pipeline
   test-components:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true')
+      }}
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
+  # Test foundations: when foundations changed or full pipeline
   test-foundations:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesFoundations == 'true')
+      }}
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
+  # Storybook builds: only when examples changed or storybook dependency updated
   build-storybook-composition:
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesStorybook == 'true')
+      }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -143,6 +252,12 @@ jobs:
     secrets: inherit
 
   build-storybook-angular:
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesStorybook == 'true')
+      }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -151,6 +266,12 @@ jobs:
     secrets: inherit
 
   build-storybook-react:
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesStorybook == 'true')
+      }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -159,6 +280,12 @@ jobs:
     secrets: inherit
 
   build-storybook-vue:
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesStorybook == 'true')
+      }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -167,6 +294,12 @@ jobs:
     secrets: inherit
 
   build-storybook-html:
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesStorybook == 'true')
+      }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -174,156 +307,226 @@ jobs:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
     secrets: inherit
 
+  # Showcase builds: when components, output, or showcases changed or full pipeline
   build-showcase-stencil:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: stencil-showcase
 
-  cancel-on-failure-build-showcase-stencil:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-stencil.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-stencil]
-
   build-showcase-angular:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: angular-showcase
 
-  cancel-on-failure-build-showcase-angular:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-angular.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-angular]
-
   build-showcase-angular-ssr:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: angular-ssr-showcase
 
-  cancel-on-failure-build-showcase-angular-ssr:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-angular-ssr.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-angular-ssr]
-
   build-showcase-react:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: react-showcase
 
-  cancel-on-failure-build-showcase-react:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-react.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-react]
-
   build-showcase-next:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: next-showcase
 
-  cancel-on-failure-build-showcase-next:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-next.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-next]
-
   build-showcase-vue:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: vue-showcase
 
-  cancel-on-failure-build-showcase-vue:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-vue.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-vue]
-
   build-showcase-nuxt:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: nuxt-showcase
 
-  cancel-on-failure-build-showcase-nuxt:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-nuxt.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-nuxt]
-
+  # Patternhub: when docs/, foundations, or components changed
   build-showcase-patternhub:
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesPatternhub == 'true')
+      }}
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages, init]
     with:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
     secrets: inherit
 
-  cancel-on-failure-build-showcase-patternhub:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-patternhub]
-
+  # Showcase tests: same conditions as showcase builds
   test-showcase-stencil:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-angular:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-react:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-react, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-vue:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesComponents == 'true' ||
+         needs.init.outputs.changesOutput == 'true' ||
+         needs.init.outputs.changesShowcases == 'true')
+      }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-patternhub:
+    if: >-
+      ${{
+        needs.init.outputs.eventVariant != 'main-push' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.needsFullPipeline == 'true' ||
+         needs.init.outputs.changesPatternhub == 'true')
+      }}
     uses: ./.github/workflows/02-e2e-patternhub.yml
-    needs: [build-showcase-patternhub, init, init]
+    needs: [build-showcase-patternhub, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}
 
+  # Skips on merge_group events (condition requires pull_request)
   regenerate-snapshots-components:
-    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-components.result == 'failure' }}
+    if: >-
+      ${{
+        (needs.init.outputs.eventVariant == 'pull-request' ||
+         needs.init.outputs.eventVariant == 'changeset-release') &&
+        !cancelled() &&
+        needs.test-components.result == 'failure'
+      }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -331,8 +534,15 @@ jobs:
       type: components
     needs: [test-components, init]
 
+  # Skips on merge_group events (condition requires pull_request)
   regenerate-snapshots-foundations:
-    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-foundations.result == 'failure' }}
+    if: >-
+      ${{
+        (needs.init.outputs.eventVariant == 'pull-request' ||
+         needs.init.outputs.eventVariant == 'changeset-release') &&
+        !cancelled() &&
+        needs.test-foundations.result == 'failure'
+      }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -340,8 +550,15 @@ jobs:
       type: foundations
     needs: [test-foundations, init]
 
+  # Skips on merge_group events (condition requires pull_request)
   regenerate-snapshots-patternhub:
-    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
+    if: >-
+      ${{
+        (needs.init.outputs.eventVariant == 'pull-request' ||
+         needs.init.outputs.eventVariant == 'changeset-release') &&
+        !cancelled() &&
+        needs.test-showcase-patternhub.result == 'failure'
+      }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -350,28 +567,40 @@ jobs:
       type: patternhub
     needs: [build-showcase-patternhub, test-showcase-patternhub, init]
 
-  # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
-  # For releases, it always runs
+  # Screen reader test (costly guidepup/VoiceOver runs): only in the merge queue.
+  # PRs and push-to-main skip these — they run once per merge_group validation
+  # against the latest base, plus on release/workflow_dispatch.
   test-screen-reader:
-    if: |
-      github.event_name == 'release' ||
-      github.event_name == 'workflow_dispatch' ||
-      needs.init.outputs.test-ally == 'true' ||
-      github.event.pull_request == null
+    if: >-
+      ${{
+        needs.init.outputs.docsOnly != 'true' &&
+        (needs.init.outputs.eventVariant == 'release' ||
+         needs.init.outputs.eventVariant == 'workflow-dispatch' ||
+         (needs.init.outputs.eventVariant == 'merge-queue' &&
+          (needs.init.outputs.changesAria == 'true' ||
+           needs.init.outputs.needsFullPipeline == 'true' ||
+           needs.init.outputs.changesComponents == 'true' ||
+           needs.init.outputs.changesShowcases == 'true')))
+      }}
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
+  # Skips on merge_group events (condition requires pull_request)
   regenerate-snapshots:
-    if: |
-      github.event_name == 'pull_request' && !cancelled() && !contains(github.actor,'[bot]') && (
-        needs.test-showcase-angular.result == 'failure' ||
-        needs.test-showcase-react.result == 'failure' ||
-        needs.test-showcase-vue.result == 'failure' ||
-        needs.test-showcase-stencil.result == 'failure'
-      )
+    if: >-
+      ${{
+        (needs.init.outputs.eventVariant == 'pull-request' ||
+         needs.init.outputs.eventVariant == 'changeset-release') &&
+        !cancelled() &&
+        !contains(github.actor, '[bot]') &&
+        (needs.test-showcase-angular.result == 'failure' ||
+         needs.test-showcase-react.result == 'failure' ||
+         needs.test-showcase-vue.result == 'failure' ||
+         needs.test-showcase-stencil.result == 'failure')
+      }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
@@ -386,22 +615,27 @@ jobs:
         init
       ]
 
+  # Skips on merge_group events (condition requires pull_request)
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
-    if: |
-      ${{ github.event_name == 'pull_request' && !cancelled() &&
-        ( needs.regenerate-snapshots-components.result == 'success' ||
-        needs.regenerate-snapshots-foundations.result == 'success' ||
-        needs.regenerate-snapshots-patternhub.result == 'success' ||
-        needs.regenerate-snapshots.result == 'success' )
+    if: >-
+      ${{
+        (needs.init.outputs.eventVariant == 'pull-request' ||
+         needs.init.outputs.eventVariant == 'changeset-release') &&
+        !cancelled() &&
+        (needs.regenerate-snapshots-components.result == 'success' ||
+         needs.regenerate-snapshots-foundations.result == 'success' ||
+         needs.regenerate-snapshots-patternhub.result == 'success' ||
+         needs.regenerate-snapshots.result == 'success')
       }}
     needs:
       [
         regenerate-snapshots-components,
         regenerate-snapshots-foundations,
         regenerate-snapshots-patternhub,
-        regenerate-snapshots
+        regenerate-snapshots,
+        init
       ]
     with:
       showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
@@ -409,19 +643,41 @@ jobs:
       foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
       patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
+  # Reports status on all events including merge_group (required check for Merge Queue gate)
+  # Accepts "skipped" for jobs that were correctly skipped due to path filtering or push-to-main
   checks-done:
     if: ${{ !cancelled() }}
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-24.04
     steps:
       - name: 🎉 Checks done
         env:
-          IS_RELEASE: ${{ github.event_name == 'release' }}
-          IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
+          IS_RELEASE: ${{ needs.init.outputs.eventVariant == 'release' }}
+          IS_CHANGESET_RELEASE: ${{ needs.init.outputs.eventVariant == 'changeset-release' }}
+          IS_MAIN_PUSH: ${{ needs.init.outputs.eventVariant == 'main-push' }}
+          IS_DOCS_ONLY: ${{ needs.init.outputs.docsOnly }}
         run: |
+          resultLint="${{ needs.lint.result }}"
+
+          # Lint runs as an independent validation workflow on every code
+          # change (including docs-only). It is part of the required gate, so a
+          # failed lint must block the queue even when builds/tests are skipped.
+          # "skipped" is acceptable (changeset-release / main-push skip lint).
+          if [[ "$resultLint" != "success" && "$resultLint" != "skipped" ]]; then
+            echo "❌ lint: $resultLint"
+            echo "Lint validation failed."
+            exit 1
+          fi
+
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
             echo "🎉 Changeset release PR - skipping checks."
             exit 0
           fi
+
+          if [[ "$IS_DOCS_ONLY" == "true" ]]; then
+            echo "📄 Docs-only change - no builds or tests required (lint verified above)."
+            exit 0
+          fi
+
           resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
           resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
           resultBuildStorybookHtml="${{ needs.build-storybook-html.result }}"
@@ -437,7 +693,7 @@ jobs:
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
-          resultTestPackages="${{ needs.test-components.result }}"
+          resultTestComponents="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
           resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
@@ -447,61 +703,90 @@ jobs:
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
 
-          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
-          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
-          echo "resultBuildStorybookHtml: $resultBuildStorybookHtml"
-          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
-          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
-          echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
-          echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
-          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
-          echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
-          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
-          echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
-          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
-          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
-          echo "resultBuildOutputs: $resultBuildOutputs"
-          echo "resultTestPackages: $resultTestPackages"
-          echo "resultTestFoundations: $resultTestFoundations"
-          echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
-          echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
-          echo "resultTestShowcaseReact: $resultTestShowcaseReact"
-          echo "resultTestShowcaseVue: $resultTestShowcaseVue"
-          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
-          echo "resultTestScreenReader: $resultTestScreenReader"
+          echo "IS_MAIN_PUSH: $IS_MAIN_PUSH"
+          echo "IS_DOCS_ONLY: $IS_DOCS_ONLY"
 
-          if [[ $resultBuildStorybookComposition == "success" ]] && \
-             [[ $resultBuildStorybookAngular == "success" ]] && \
-             [[ $resultBuildStorybookHtml == "success" ]] && \
-             [[ $resultBuildStorybookReact == "success" ]] && \
-             [[ $resultBuildStorybookVue == "success" ]] && \
-             [[ $resultTestFoundations == "success" ]] && \
-             [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
-             [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
-             [[ $resultTestShowcaseStencil == "success" ]] && \
-             [[ $resultTestShowcaseAngular == "success" ]] && \
-             [[ $resultTestShowcaseReact == "success" ]] && \
-             [[ $resultTestShowcaseVue == "success" ]] && \
-             [[ $resultTestShowcasePatternhub == "success" ]] && \
-             [[ $resultTestPackages == "success" ]] && \
-             [[ $resultTestVitePlugin == "success" ]] && \
-             [[ $resultBuildOutputs == "success" ]] && \
-             [[ $resultBuildShowcaseStencil == "success" ]] && \
-             [[ $resultBuildShowcaseAngular == "success" ]] && \
-             [[ $resultBuildShowcaseAngularSSR == "success" ]] && \
-             [[ $resultBuildShowcaseReact == "success" ]] && \
-             [[ $resultBuildShowcaseNext == "success" ]] && \
-             [[ $resultBuildShowcaseVue == "success" ]] && \
-             [[ $resultBuildShowcaseNuxt == "success" ]] && \
-             [[ $resultBuildShowcasePatternhub == "success" ]]; then
-             echo "🎉 All tests were successful."
-            exit 0
-          else
-             echo "Some tests were failing."
+          # On push-to-main, verify builds that still run (tests skipped, validated by merge queue)
+          if [[ "$IS_MAIN_PUSH" == "true" ]]; then
+            echo "📦 Push to main - only verifying build results (tests skipped, validated by merge queue)."
+            resultBuildPackages="${{ needs.build-packages.result }}"
+            FAILED=false
+
+            check_main_result() {
+              local name=$1
+              local result=$2
+              if [[ "$result" != "success" && "$result" != "skipped" ]]; then
+                echo "❌ $name: $result"
+                FAILED=true
+              fi
+            }
+
+            check_main_result "build-packages" "$resultBuildPackages"
+            check_main_result "build-storybook-composition" "$resultBuildStorybookComposition"
+            check_main_result "build-storybook-angular" "$resultBuildStorybookAngular"
+            check_main_result "build-storybook-html" "$resultBuildStorybookHtml"
+            check_main_result "build-storybook-react" "$resultBuildStorybookReact"
+            check_main_result "build-storybook-vue" "$resultBuildStorybookVue"
+            check_main_result "build-showcase-patternhub" "$resultBuildShowcasePatternhub"
+
+            if [[ "$FAILED" == "true" ]]; then
+              echo "Some builds were failing."
+              exit 1
+            else
+              echo "🎉 All required builds were successful."
+              exit 0
+            fi
+          fi
+
+          # For PR/merge_group/release: verify all jobs that ran succeeded
+          # Jobs that were skipped due to path filtering are allowed
+          FAILED=false
+
+          check_result() {
+            local name=$1
+            local result=$2
+            if [[ "$result" != "success" && "$result" != "skipped" ]]; then
+              echo "❌ $name: $result"
+              FAILED=true
+            fi
+          }
+
+          check_result "build-storybook-composition" "$resultBuildStorybookComposition"
+          check_result "build-storybook-angular" "$resultBuildStorybookAngular"
+          check_result "build-storybook-html" "$resultBuildStorybookHtml"
+          check_result "build-storybook-react" "$resultBuildStorybookReact"
+          check_result "build-storybook-vue" "$resultBuildStorybookVue"
+          check_result "build-showcase-stencil" "$resultBuildShowcaseStencil"
+          check_result "build-showcase-angular" "$resultBuildShowcaseAngular"
+          check_result "build-showcase-angular-ssr" "$resultBuildShowcaseAngularSSR"
+          check_result "build-showcase-react" "$resultBuildShowcaseReact"
+          check_result "build-showcase-next" "$resultBuildShowcaseNext"
+          check_result "build-showcase-vue" "$resultBuildShowcaseVue"
+          check_result "build-showcase-nuxt" "$resultBuildShowcaseNuxt"
+          check_result "build-showcase-patternhub" "$resultBuildShowcasePatternhub"
+          check_result "build-outputs" "$resultBuildOutputs"
+          check_result "test-vite-plugin" "$resultTestVitePlugin"
+          check_result "test-components" "$resultTestComponents"
+          check_result "test-foundations" "$resultTestFoundations"
+          check_result "test-showcase-stencil" "$resultTestShowcaseStencil"
+          check_result "test-showcase-angular" "$resultTestShowcaseAngular"
+          check_result "test-showcase-react" "$resultTestShowcaseReact"
+          check_result "test-showcase-vue" "$resultTestShowcaseVue"
+          check_result "test-showcase-patternhub" "$resultTestShowcasePatternhub"
+          check_result "test-screen-reader" "$resultTestScreenReader"
+          check_result "test-figma-code-connect" "$resultTestFigmaCodeConnect"
+
+          if [[ "$FAILED" == "true" ]]; then
+            echo "Some checks were failing."
             exit 1
+          else
+            echo "🎉 All checks passed (skipped jobs are OK due to path filtering)."
+            exit 0
           fi
     needs:
       [
+        lint,
+        build-packages,
         build-storybook-composition,
         build-storybook-angular,
         build-storybook-html,
@@ -531,14 +816,40 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: |
+    # The deploy workflow unconditionally downloads the patternhub artifact and
+    # all five storybook artifacts, so it must only run when every one of those
+    # builds actually produced its artifact. Path filtering can skip them (e.g.
+    # a showcases-only change skips patternhub + storybooks), which would make
+    # the download step fail. Requiring 'success' (not 'skipped') on each build
+    # gates deployment on the complete artifact set being present.
+    if: >-
       ${{
-      !cancelled() && github.actor != 'dependabot[bot]' &&
-      (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
-      needs.init.outputs.isChangesetRelease != 'true' &&
-      needs.checks-done.result == 'success'
+        !cancelled() &&
+        github.actor != 'dependabot[bot]' &&
+        ((needs.init.outputs.eventVariant != 'pull-request' &&
+          needs.init.outputs.eventVariant != 'changeset-release') ||
+         github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
+        needs.init.outputs.eventVariant != 'changeset-release' &&
+        needs.init.outputs.docsOnly != 'true' &&
+        needs.checks-done.result == 'success' &&
+        needs.build-showcase-patternhub.result == 'success' &&
+        needs.build-storybook-composition.result == 'success' &&
+        needs.build-storybook-angular.result == 'success' &&
+        needs.build-storybook-react.result == 'success' &&
+        needs.build-storybook-vue.result == 'success' &&
+        needs.build-storybook-html.result == 'success'
       }}
-    needs: [checks-done, init]
+    needs:
+      [
+        checks-done,
+        init,
+        build-showcase-patternhub,
+        build-storybook-composition,
+        build-storybook-angular,
+        build-storybook-react,
+        build-storybook-vue,
+        build-storybook-html
+      ]
     secrets: inherit
     with:
       release: ${{ needs.init.outputs.release }}
@@ -548,14 +859,29 @@ jobs:
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publish-figma-code-connect:
-    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
+    if: >-
+      ${{
+        !cancelled() &&
+        github.actor != 'dependabot[bot]' &&
+        needs.init.outputs.eventVariant != 'release' &&
+        github.repository_owner == 'db-ux-design-system' &&
+        github.ref == 'refs/heads/main' &&
+        needs.checks-done.result == 'success'
+      }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
-    needs: [checks-done, test-figma-code-connect]
+    needs: [checks-done, test-figma-code-connect, init]
     secrets: inherit
 
+  # Skips on merge_group events (only runs on pull requests)
   preview-url-pr-description:
-    if: ${{ !cancelled() && github.event.pull_request != null }}
-    needs: [deploy]
+    if: >-
+      ${{
+        !cancelled() &&
+        (needs.init.outputs.eventVariant == 'pull-request' ||
+         needs.init.outputs.eventVariant == 'changeset-release') &&
+        needs.init.outputs.docsOnly != 'true'
+      }}
+    needs: [deploy, init]
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
