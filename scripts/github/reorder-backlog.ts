@@ -146,10 +146,6 @@ type IssueFieldValue = {
 	};
 };
 
-type IssueApiResponse = {
-	issue_field_values?: IssueFieldValue[];
-};
-
 type SortableItem = {
 	number: number;
 	title: string;
@@ -319,26 +315,18 @@ const fetchProjectItems = async (
 // --- Fetch issue fields and build sortable list ---
 
 const extractFieldValues = (
-	issueData: IssueApiResponse
+	fieldValues: IssueFieldValue[]
 ): { priority: string; effort: string } => {
 	let priority = '';
 	let effort = '';
 
-	if (issueData.issue_field_values) {
-		for (const fv of issueData.issue_field_values) {
-			if (
-				fv.issue_field_id === priorityFieldId &&
-				fv.single_select_option
-			) {
-				priority = fv.single_select_option.name;
-			}
+	for (const fv of fieldValues) {
+		if (fv.issue_field_id === priorityFieldId && fv.single_select_option) {
+			priority = fv.single_select_option.name;
+		}
 
-			if (
-				fv.issue_field_id === effortFieldId &&
-				fv.single_select_option
-			) {
-				effort = fv.single_select_option.name;
-			}
+		if (fv.issue_field_id === effortFieldId && fv.single_select_option) {
+			effort = fv.single_select_option.name;
 		}
 	}
 
@@ -367,10 +355,7 @@ const fetchIssueFields = async (
 				`repos/${owner}/${repo}/issues/${String(number)}/issue-field-values`
 			);
 			const fieldValues = JSON.parse(issueJson) as IssueFieldValue[];
-			const issueData: IssueApiResponse = {
-				issue_field_values: fieldValues
-			};
-			const fields = extractFieldValues(issueData);
+			const fields = extractFieldValues(fieldValues);
 			priority = fields.priority;
 			effort = fields.effort;
 		} catch (error: unknown) {
@@ -382,7 +367,8 @@ const fetchIssueFields = async (
 			const message =
 				error instanceof Error ? error.message : String(error);
 			throw new Error(
-				`Failed to fetch issue fields for #${String(number)}: ${message}`
+				`Failed to fetch issue fields for #${String(number)}: ${message}`,
+				{ cause: error }
 			);
 		}
 
