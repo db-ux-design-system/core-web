@@ -3,17 +3,6 @@ import { TableComponent } from '../components/table.component';
 import { ControlPanelMobileComponent } from '../components/control-panel-mobile/control-panel-mobile.component';
 
 import { Routes } from '@angular/router';
-import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
-import { AccordionComponent } from '../components/accordion/accordion.component';
-import { BadgeComponent } from '../components/badge/badge.component';
-import { BrandComponent } from '../components/brand/brand.component';
-import { ButtonComponent } from '../components/button/button.component';
-import { CardComponent } from '../components/card/card.component';
-import { CheckboxComponent } from '../components/checkbox/checkbox.component';
-import { ControlPanelDesktopComponent } from '../components/control-panel-desktop/control-panel-desktop.component';
-import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
-import { DividerComponent } from '../components/divider/divider.component';
-import { DrawerComponent } from '../components/drawer/drawer.component';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
 import { BadgeShowcase } from '@components/components/badge/showcase/badge.showcase';
@@ -25,7 +14,6 @@ import { CustomButtonShowcase } from '@components/components/custom-button/showc
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
 import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
-import { HeaderShowcase } from '@components/components/header/showcase/header.showcase';
 import { IconShowcase } from '@components/components/icon/showcase/icon.showcase';
 import { InfotextShowcase } from '@components/components/infotext/showcase/infotext.showcase';
 import { InputShowcase } from '@components/components/input/showcase/input.showcase';
@@ -44,6 +32,7 @@ import { TabsShowcase } from '@components/components/tabs/showcase/tabs.showcase
 import { TagShowcase } from '@components/components/tag/showcase/tag.showcase';
 import { TextareaShowcase } from '@components/components/textarea/showcase/textarea.showcase';
 import { TooltipShowcase } from '@components/components/tooltip/showcase/tooltip.showcase';
+import { ControlPanelDesktopComponent } from '../components/control-panel-desktop/control-panel-desktop.component';
 import { HomeComponent } from '../components/home/home.component';
 
 export type NavItem = {

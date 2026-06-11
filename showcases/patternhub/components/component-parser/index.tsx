@@ -33,7 +33,6 @@ import {
 } from '@components';
 import { useEffect, useState } from 'react';
 
-import { useEffect, useState } from 'react';
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);

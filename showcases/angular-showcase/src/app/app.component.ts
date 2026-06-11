@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
@@ -32,19 +32,19 @@ import {
 	standalone: true,
 	schemas: [],
 	imports: [
-				FormsModule,
-				RouterOutlet,
-				MetaNavigationComponent,
-				PrimaryActionsComponent,
-				SecondaryActionsComponent,
-				NavItemComponent,
-				DBShell,
-				DBControlPanelBrand,
-				DBControlPanelDesktop,
-				DBControlPanelMobile,
-				DBNavigation,
-				DBShellSubNavigation
-			],
+		FormsModule,
+		RouterOutlet,
+		MetaNavigationComponent,
+		PrimaryActionsComponent,
+		SecondaryActionsComponent,
+		NavItemComponent,
+		DBShell,
+		DBControlPanelBrand,
+		DBControlPanelDesktop,
+		DBControlPanelMobile,
+		DBNavigation,
+		DBShellSubNavigation
+	],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {

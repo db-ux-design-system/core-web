@@ -2,17 +2,7 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 
 import ControlPanelMobileComponent from '../components/control-panel-mobile';
 
-import AccordionComponent from '../components/accordion';
-import AccordionItemComponent from '../components/accordion-item';
-import BadgeComponent from '../components/badge';
-import BrandComponent from '../components/brand';
-import ButtonComponent from '../components/button';
-import CardComponent from '../components/card';
-import CheckboxComponent from '../components/checkbox';
 import ControlPanelDesktopComponent from '../components/control-panel-desktop';
-import CustomSelectComponent from '../components/custom-select';
-import DividerComponent from '../components/divider';
-import DrawerComponent from '../components/drawer';
 import Home from '../components/home';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
@@ -25,7 +15,6 @@ import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
-import HeaderShowcase from '@components/components/header/showcase/header.showcase';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
@@ -169,10 +158,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'CustomButton',
 				component: <CustomButtonShowcase />
 			},
-			{path: 'link',
-				label: 'Link',
-				component: <LinkShowcase />
-			},
+			{ path: 'link', label: 'Link', component: <LinkShowcase /> },
 			{ path: 'button', label: 'Button', component: <ButtonShowcase /> }
 		])
 	},

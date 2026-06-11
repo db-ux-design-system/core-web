@@ -9,7 +9,6 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
-import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
 import InputShowcase from '@components/components/input/showcase/input.showcase.vue';
@@ -31,18 +30,8 @@ import TextareaShowcase from '@components/components/textarea/showcase/textarea.
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
-import AccordionItem from '../components/accordion-item/AccordionItem.vue';
-import Accordion from '../components/accordion/Accordion.vue';
-import Badge from '../components/badge/Badge.vue';
-import Brand from '../components/brand/Brand.vue';
-import Button from '../components/button/Button.vue';
-import Card from '../components/card/Card.vue';
-import Checkbox from '../components/checkbox/Checkbox.vue';
 import ControlPanelDesktop from '../components/control-panel-desktop/ControlPanelDesktop.vue';
 import ControlPanelMobile from '../components/control-panel-mobile/ControlPanelMobile.vue';
-import CustomSelect from '../components/custom-select/CustomSelect.vue';
-import Divider from '../components/divider/Divider.vue';
-import Drawer from '../components/drawer/Drawer.vue';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
