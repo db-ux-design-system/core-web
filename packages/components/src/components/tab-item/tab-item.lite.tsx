@@ -106,6 +106,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 		state._resizeObserver?.disconnect();
 	});
 
+	// Re-check truncation when the label content changes. The ResizeObserver only
+	// fires on box-size changes, not when the text content (and thus scrollWidth)
+	// changes while the box stays the same size.
+	onUpdate(() => {
+		if (_labelRef && state.initialized) {
+			state.checkTruncation();
+		}
+	}, [props.label]);
+
 	// Manually sync DOM attributes
 	onUpdate(() => {
 		if (_ref) {

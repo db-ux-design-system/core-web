@@ -370,11 +370,13 @@ export default function DBTabs(props: DBTabsProps) {
 					if (!button.id) {
 						button.id = tabId;
 					}
-					if (!button.getAttribute('aria-controls')) {
-						button.setAttribute('aria-controls', panelId);
-					}
 
 					if (panel) {
+						// Only wire aria-controls when a matching panel exists,
+						// otherwise the tab would reference a non-existent id.
+						if (!button.getAttribute('aria-controls')) {
+							button.setAttribute('aria-controls', panelId);
+						}
 						if (!panel.id) {
 							panel.id = panelId;
 						}
@@ -422,10 +424,14 @@ export default function DBTabs(props: DBTabsProps) {
 
 	// Reflect label changes onto the tablist's aria-label
 	onUpdate(() => {
-		const label = props.label;
-		if (_ref && label) {
+		if (_ref) {
+			const label = props.label;
 			const container = state._getScrollContainer() as HTMLElement | null;
-			container?.setAttribute('aria-label', label);
+			if (label) {
+				container?.setAttribute('aria-label', label);
+			} else {
+				container?.removeAttribute('aria-label');
+			}
 		}
 	}, [_ref, props.label]);
 
@@ -581,8 +587,12 @@ export default function DBTabs(props: DBTabsProps) {
 								key={props.label + 'tab-item' + index}
 								id={state.getTabId(index)}
 								label={tab.label}
-								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
+								showIcon={tab.showIcon}
+								iconTrailing={tab.iconTrailing}
+								showIconTrailing={tab.showIconTrailing}
+								disabled={tab.disabled}
+								value={tab.value}
 							/>
 						)}
 					</For>
