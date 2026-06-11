@@ -363,7 +363,7 @@ importers:
         version: 10.4.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       workbox-build:
         specifier: 7.4.1
-        version: 7.4.1(@types/babel__core@7.20.5)(supports-color@5.5.0)
+        version: 7.4.1(@types/babel__core@7.20.5)
 
   output/vue:
     dependencies:
@@ -17874,7 +17874,7 @@ snapshots:
       '@babel/plugin-transform-async-generator-functions': 7.29.0(@babel/core@7.29.0)
       '@babel/plugin-transform-async-to-generator': 7.28.6(@babel/core@7.29.0)
       '@babel/plugin-transform-runtime': 7.29.0(@babel/core@7.29.0(supports-color@5.5.0))
-      '@babel/preset-env': 7.29.2(@babel/core@7.29.0(supports-color@5.5.0))
+      '@babel/preset-env': 7.29.2(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       '@babel/runtime': 7.29.2
       '@discoveryjs/json-ext': 0.6.3
       '@ngtools/webpack': 21.2.14(@angular/compiler-cli@21.2.16(@angular/compiler@21.2.16)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.105.2(esbuild@0.27.3)(lightningcss@1.32.0)(postcss@8.5.15))
@@ -18744,7 +18744,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.0(supports-color@5.5.0))':
+  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)':
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
       '@babel/helper-compilation-targets': 7.29.7
@@ -18755,7 +18755,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.0)(supports-color@5.5.0)':
+  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.0)':
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
       '@babel/helper-compilation-targets': 7.29.7
@@ -19705,7 +19705,7 @@ snapshots:
       '@babel/core': 7.29.0(supports-color@5.5.0)
       '@babel/helper-module-imports': 7.28.6
       '@babel/helper-plugin-utils': 7.28.6
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0(supports-color@5.5.0))
+      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.29.0(supports-color@5.5.0))
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
       semver: 6.3.1
@@ -19717,7 +19717,7 @@ snapshots:
       '@babel/core': 7.29.0(supports-color@5.5.0)
       '@babel/helper-module-imports': 7.28.6
       '@babel/helper-plugin-utils': 7.28.6
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0)(supports-color@5.5.0)
+      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.29.0)
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0)
       semver: 6.3.1
@@ -19924,7 +19924,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/preset-env@7.29.2(@babel/core@7.29.0(supports-color@5.5.0))':
+  '@babel/preset-env@7.29.2(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)':
     dependencies:
       '@babel/compat-data': 7.29.3
       '@babel/core': 7.29.0(supports-color@5.5.0)
@@ -19992,7 +19992,7 @@ snapshots:
       '@babel/plugin-transform-unicode-regex': 7.27.1(@babel/core@7.29.0)
       '@babel/plugin-transform-unicode-sets-regex': 7.28.6(@babel/core@7.29.0)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.29.0)
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0(supports-color@5.5.0))
+      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       babel-plugin-polyfill-corejs3: 0.14.2(@babel/core@7.29.0(supports-color@5.5.0))
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
       core-js-compat: 3.49.0
@@ -20068,7 +20068,7 @@ snapshots:
       '@babel/plugin-transform-unicode-regex': 7.27.1(@babel/core@7.29.0)
       '@babel/plugin-transform-unicode-sets-regex': 7.28.6(@babel/core@7.29.0)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.29.0)
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0)(supports-color@5.5.0)
+      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0)
       babel-plugin-polyfill-corejs3: 0.14.2(@babel/core@7.29.0)
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0)
       core-js-compat: 3.49.0
@@ -20076,7 +20076,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/preset-env@7.29.3(@babel/core@7.29.0)(supports-color@5.5.0)':
+  '@babel/preset-env@7.29.3(@babel/core@7.29.0)':
     dependencies:
       '@babel/compat-data': 7.29.3
       '@babel/core': 7.29.0(supports-color@5.5.0)
@@ -20145,7 +20145,7 @@ snapshots:
       '@babel/plugin-transform-unicode-regex': 7.27.1(@babel/core@7.29.0)
       '@babel/plugin-transform-unicode-sets-regex': 7.28.6(@babel/core@7.29.0)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.29.0)
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0)(supports-color@5.5.0)
+      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0)
       babel-plugin-polyfill-corejs3: 0.14.2(@babel/core@7.29.0)
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0)
       core-js-compat: 3.49.0
@@ -26505,20 +26505,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.0(supports-color@5.5.0)):
+  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0):
     dependencies:
       '@babel/compat-data': 7.29.3
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.0)(supports-color@5.5.0):
+  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.0):
     dependencies:
       '@babel/compat-data': 7.29.3
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)(supports-color@5.5.0)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -26534,7 +26534,7 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.13.0(@babel/core@7.29.0(supports-color@5.5.0)):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       core-js-compat: 3.49.0
     transitivePeerDependencies:
       - supports-color
@@ -26542,7 +26542,7 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.13.0(@babel/core@7.29.0):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)(supports-color@5.5.0)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)
       core-js-compat: 3.49.0
     transitivePeerDependencies:
       - supports-color
@@ -26550,7 +26550,7 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.14.2(@babel/core@7.29.0(supports-color@5.5.0)):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       core-js-compat: 3.49.0
     transitivePeerDependencies:
       - supports-color
@@ -26558,7 +26558,7 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.14.2(@babel/core@7.29.0):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)(supports-color@5.5.0)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)
       core-js-compat: 3.49.0
     transitivePeerDependencies:
       - supports-color
@@ -26573,14 +26573,14 @@ snapshots:
   babel-plugin-polyfill-regenerator@0.6.8(@babel/core@7.29.0(supports-color@5.5.0)):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
   babel-plugin-polyfill-regenerator@0.6.8(@babel/core@7.29.0):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)(supports-color@5.5.0)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -37984,11 +37984,11 @@ snapshots:
     dependencies:
       workbox-core: 7.4.1
 
-  workbox-build@7.4.1(@types/babel__core@7.20.5)(supports-color@5.5.0):
+  workbox-build@7.4.1(@types/babel__core@7.20.5):
     dependencies:
       '@apideck/better-ajv-errors': 0.3.7(ajv@8.20.0)
       '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/preset-env': 7.29.3(@babel/core@7.29.0)(supports-color@5.5.0)
+      '@babel/preset-env': 7.29.3(@babel/core@7.29.0)
       '@babel/runtime': 7.29.2
       '@rollup/plugin-babel': 6.1.0(@babel/core@7.29.0)(@types/babel__core@7.20.5)(rollup@4.60.3)
       '@rollup/plugin-node-resolve': 16.0.3(rollup@4.60.3)
