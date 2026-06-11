@@ -24,8 +24,8 @@
     "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
-    "nuxt": "4.4.6",
+    "nuxt": "4.4.7",
     "vue": "3.5.35",
-    "vue-router": "5.0.7"
+    "vue-router": "5.1.0"
   }
 }

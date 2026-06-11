@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
@@ -47,11 +47,18 @@ jobs:
           path: packages/components/build
 
       - name: ⏫ Download stories
-        if: ${{ inputs.storybook != 'composition-storybook' }}
+        if: ${{ inputs.storybook != 'composition-storybook' && inputs.storybook != 'html-storybook' }}
         uses: actions/download-artifact@v8
         with:
           name: ${{ inputs.storybook }}-stories
-          path: storybooks/${{ inputs.storybook }}/src/components
+          path: storybooks/${{ inputs.storybook }}/src
+
+      - name: ⏫ Download stories for html-storybook
+        if: ${{ inputs.storybook == 'html-storybook' }}
+        uses: actions/download-artifact@v8
+        with:
+          name: react-storybook-stories
+          path: storybooks/react-storybook/src/components
 
       - name: 🔨 Build ${{ inputs.storybook }}
         env:

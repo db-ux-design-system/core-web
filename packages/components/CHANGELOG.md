@@ -1,5 +1,19 @@
 # @db-ux/core-components
 
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+### Patch Changes
+
+- fix: Remove unwanted whitespace characters from rendered output to prevent layout shifts - [see commit a0f23a4](https://github.com/db-ux-design-system/core-web/commit/a0f23a4a3e715414de3d045b59b88dc3ac28d5e7)
+
+## 4.10.2
+
+_version bump_
+
 ## 4.10.1
 
 ### Patch Changes

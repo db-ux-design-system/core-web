@@ -86,7 +86,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-accordion-item', props.className)}>
 			<details
-				aria-disabled={getBooleanAsString(props.disabled)}
+				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 				ref={_ref}
 				name={state._name}
 				open={state._open}>
