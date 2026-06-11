@@ -1,6 +1,6 @@
 # Dependency Update Strategy
 
-This document explains the rationale behind our Dependabot configuration and GitHub Actions pinning strategy.
+This document explains the rationale behind our Dependabot configuration and GitHub Actions pinning strategy. The decision for Dependabot itself is documented in the [Dependency automation ADR](adr/adr-03-dependency-automation.md).
 
 ## Why only patch updates are auto-merged
 
