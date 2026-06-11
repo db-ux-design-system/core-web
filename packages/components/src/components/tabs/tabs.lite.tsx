@@ -107,8 +107,8 @@ export default function DBTabs(props: DBTabsProps) {
 					currentIndex >= buttons.length ||
 					!isEnabled(buttons[currentIndex])
 				) {
-					const fallback = buttons.findIndex(
-						(button: HTMLElement) => isEnabled(button)
+					const fallback = buttons.findIndex((button: HTMLElement) =>
+						isEnabled(button)
 					);
 					currentIndex = fallback;
 				}
@@ -167,10 +167,7 @@ export default function DBTabs(props: DBTabsProps) {
 			// being consumed by the wrong tablist.
 			const target = event.target as HTMLElement;
 			const focusedButton = target?.closest('[role="tab"]');
-			if (
-				!focusedButton ||
-				focusedButton.closest('.db-tabs') !== _ref
-			) {
+			if (!focusedButton || focusedButton.closest('.db-tabs') !== _ref) {
 				return;
 			}
 
