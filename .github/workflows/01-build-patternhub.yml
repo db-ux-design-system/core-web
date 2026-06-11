@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
@@ -26,19 +26,19 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components build
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-components-build
           path: packages/components/build
@@ -55,7 +55,7 @@ jobs:
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT
 
       - name: ⏫ Upload Patternhub
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
