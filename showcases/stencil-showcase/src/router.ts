@@ -56,8 +56,10 @@ function renderShowcasePage(
 ): void {
 	const showcaseTag = `${component}-showcase`;
 
-	// Build attribute string from query params for Playwright compatibility
+	// Build attribute string from query params for Playwright compatibility.
+	// The `settings` param only controls the shell layout, not the showcase.
 	const attributes = [...parameters.entries()]
+		.filter(([key]) => key !== 'settings')
 		.map(([key, value]) => `${key}="${value}"`)
 		.join(' ');
 
@@ -118,21 +120,21 @@ function handleRoute(): void {
  * Listens for hashchange events and handles the initial route on page load.
  */
 export function initRouter(): void {
-	const page = document.querySelector('db-page');
+	const shell = document.querySelector('db-shell');
 
 	const observer = new MutationObserver(() => {
-		if (page?.classList.contains('hydrated')) {
+		if (shell?.classList.contains('hydrated')) {
 			observer.disconnect();
 			globalThis.addEventListener('hashchange', handleRoute);
 			handleRoute();
 		}
 	});
 
-	if (page?.classList.contains('hydrated')) {
+	if (shell?.classList.contains('hydrated')) {
 		globalThis.addEventListener('hashchange', handleRoute);
 		handleRoute();
-	} else if (page) {
-		observer.observe(page, { attributeFilter: ['class'] });
+	} else if (shell) {
+		observer.observe(shell, { attributeFilter: ['class'] });
 	}
 }
 

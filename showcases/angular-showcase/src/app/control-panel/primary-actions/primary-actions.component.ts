@@ -1,12 +1,4 @@
-import {
-	AfterViewInit,
-	Component,
-	CUSTOM_ELEMENTS_SCHEMA,
-	ElementRef,
-	input,
-	signal,
-	viewChild
-} from '@angular/core';
+import { Component, ElementRef, input, signal, viewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -16,7 +8,6 @@ import {
 	DBDrawer,
 	DBSelect,
 	DBTooltip,
-	delay,
 	DENSITIES,
 	DENSITY,
 	SEMANTIC,
@@ -26,29 +17,23 @@ import {
 	DefaultSettings,
 	defaultSettings,
 	defaultSettingsMapping
-} from '../../../../../shared/default-component-data';
-import { environment } from '../../../environments/environment';
+} from '../../../../../settings';
 
 @Component({
 	selector: 'app-primary-actions',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
+	schemas: [],
 	imports: [
-		environment.webComponents
-			? []
-			: [
-					DBControlPanelPrimaryActions,
-					DBButton,
-					DBDrawer,
-					DBSelect,
-					ReactiveFormsModule,
-					DBTooltip,
-					DBDivider
-				]
+		DBControlPanelPrimaryActions,
+		DBButton,
+		DBDrawer,
+		DBSelect,
+		ReactiveFormsModule,
+		DBTooltip,
+		DBDivider
 	],
 	templateUrl: './primary-actions.component.html'
 })
-export class PrimaryActionsComponent implements AfterViewInit {
-	isWebComponent = environment.webComponents;
+export class PrimaryActionsComponent {
 	defaultSettingsMapping = Object.entries(defaultSettingsMapping);
 
 	metaRef = viewChild<ElementRef>('metaRef');
@@ -66,43 +51,6 @@ export class PrimaryActionsComponent implements AfterViewInit {
 		private readonly router: Router,
 		private readonly route: ActivatedRoute
 	) {}
-
-	ngAfterViewInit() {
-		if (this.isWebComponent) {
-			void delay(() => {
-				const {
-					controlPanelDesktopPosition,
-					controlPanelMobilePosition,
-					navigationMobileVariant,
-					navigationDesktopVariant,
-					subNavigationVariant,
-					subNavigation,
-					subNavigationMobilePosition,
-					subNavigationDesktopPosition
-				} = this.settings();
-				const data = [
-					this.density(),
-					this.color(),
-					controlPanelDesktopPosition,
-					navigationDesktopVariant,
-					controlPanelMobilePosition,
-					navigationMobileVariant,
-					subNavigation,
-					subNavigationDesktopPosition,
-					subNavigationMobilePosition,
-					subNavigationVariant
-				];
-				const selects =
-					this.metaRef()?.nativeElement.querySelectorAll('select');
-				if (selects) {
-					for (const select of selects) {
-						const index: number = [...selects].indexOf(select);
-						select.value = data[index];
-					}
-				}
-			}, 1000);
-		}
-	}
 
 	changeSettings = (event: any, key: string) => {
 		const changedSettings: any = {

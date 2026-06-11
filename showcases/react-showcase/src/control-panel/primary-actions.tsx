@@ -12,7 +12,7 @@ import { Fragment, useState } from 'react';
 import {
 	type DefaultSettings,
 	defaultSettingsMapping
-} from '../../../shared/default-component-data';
+} from '../../../settings';
 
 export type PrimaryActionsProps = {
 	color: string;

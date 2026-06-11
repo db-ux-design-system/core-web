@@ -103,12 +103,14 @@ export default function DBNavigationItemGroup(
 			// We delay this because the navigation variant check is delayed as well
 			void delay(() => {
 				const element = _ref as HTMLLIElement;
-				const nav = element.closest<HTMLElement>('.db-navigation');
+				if (element) {
+					const nav = element.closest<HTMLElement>('.db-navigation');
 
-				state.hasPopup =
-					!nav ||
-					!nav.dataset['variant'] ||
-					nav.dataset['variant'] === 'popover';
+					state.hasPopup =
+						!nav ||
+						!nav.dataset['variant'] ||
+						nav.dataset['variant'] === 'popover';
+				}
 			}, 200);
 		}
 	}, [_ref, state.initialized]);
@@ -150,6 +152,7 @@ export default function DBNavigationItemGroup(
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			<button
 				ref={_buttonRef}

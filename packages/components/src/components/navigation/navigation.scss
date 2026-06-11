@@ -102,7 +102,7 @@
 			}
 
 			a {
-				@include icons.set-icon("intermediary_stop");
+				@include icons.set-icon("circle_small");
 			}
 		}
 
@@ -140,7 +140,7 @@
 				~ .db-navigation-item-group-menu {
 					visibility: visible;
 					block-size: auto;
-					/* stylelint-disable-next-line declaration-property-value-no-unknown */
+					/* stylelint-disable-next-line declaration-property-value-no-unknown,db-ux/use-sizing */
 					block-size: calc-size(auto, size);
 				}
 			}

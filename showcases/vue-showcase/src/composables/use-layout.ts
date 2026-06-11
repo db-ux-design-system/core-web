@@ -1,7 +1,7 @@
 import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { defaultSettings } from '../../../shared/default-component-data';
+import { defaultSettings } from '../../../settings';
 import {
 	getSortedNavigationItems,
 	navigationItems
@@ -10,9 +10,9 @@ import {
 export const useLayout = () => {
 	const router = useRouter();
 	const route = useRoute();
-	const density = ref(DENSITY.REGULAR);
-	const color = ref(SEMANTIC.NEUTRAL);
-	const settings = ref(defaultSettings);
+	const density = ref<string>(DENSITY.REGULAR);
+	const color = ref<string>(SEMANTIC.NEUTRAL);
+	const settings = ref<any>(defaultSettings);
 	const page = ref();
 	const fullscreen = ref();
 

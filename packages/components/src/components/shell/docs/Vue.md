@@ -15,7 +15,7 @@ import { DBShell, DBControlPanelDesktop } from "@db-ux/v-core-components";
 		<DBControlPanelDesktop slot="control-panel-desktop"
 			>...</DBControlPanelDesktop
 		>
-		<main class="db-main">Main Shell</main>
+		Main Shell
 	</DBShell>
 </template>
 ```

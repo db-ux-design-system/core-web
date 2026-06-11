@@ -26,6 +26,8 @@ import { useEffect, useId, useState } from 'react';
 const FormComponent = () => {
 	const tabsId = useId();
 	const tabsVerticalId = useId();
+	const [drawerOpen, setDrawerOpen] = useState(false);
+
 	const [input, setInput] = useState('');
 	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');

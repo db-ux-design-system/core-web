@@ -1,10 +1,11 @@
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
-import BrandShowcase from '@components/components/brand/showcase/brand.showcase.vue';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
+import ControlPanelDesktop from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase.vue';
+import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
@@ -20,6 +21,7 @@ import PopoverShowcase from '@components/components/popover/showcase/popover.sho
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase.vue';
 import SectionShowcase from '@components/components/section/showcase/section.showcase.vue';
 import SelectShowcase from '@components/components/select/showcase/select.showcase.vue';
+import Shell from '@components/components/shell/showcase/shell.showcase.vue';
 import StackShowcase from '@components/components/stack/showcase/stack.showcase.vue';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase.vue';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase.vue';
@@ -30,8 +32,6 @@ import TextareaShowcase from '@components/components/textarea/showcase/textarea.
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
-import ControlPanelDesktop from '../components/control-panel-desktop/ControlPanelDesktop.vue';
-import ControlPanelMobile from '../components/control-panel-mobile/ControlPanelMobile.vue';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
@@ -85,11 +85,6 @@ export const navigationItems: NavItem[] = [
 		path: '/04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
-			{
-				path: '/04/brand',
-				label: 'Brand',
-				component: markRaw(BrandShowcase)
-			},
 			{
 				path: '/04/infotext',
 				label: 'Infotext',
@@ -231,7 +226,7 @@ export const navigationItems: NavItem[] = [
 				component: markRaw(SectionShowcase)
 			},
 			{
-				path: '/01/header',
+				path: '/01/control-panel-desktop',
 				label: 'ControlPanelDesktop',
 				component: markRaw(ControlPanelDesktop)
 			},
@@ -239,6 +234,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/control-panel-mobile',
 				label: 'ControlPanelMobile',
 				component: markRaw(ControlPanelMobile)
+			},
+			{
+				path: '/01/shell',
+				label: 'Shell',
+				component: markRaw(Shell)
 			}
 		])
 	},

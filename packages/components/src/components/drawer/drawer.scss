@@ -7,7 +7,9 @@
 @use "../../styles/dialog-init";
 
 %direction-right {
-	transform: translateX(110%);
+	&:not([data-transition="open"]) {
+		transform: translateX(110%);
+	}
 	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
@@ -17,7 +19,9 @@
 }
 
 %direction-left {
-	transform: translateX(-110%);
+	&:not([data-transition="open"]) {
+		transform: translateX(-110%);
+	}
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
@@ -39,14 +43,16 @@
 		);
 		/* stylelint-disable-next-line db-ux/use-sizing */
 		min-block-size: var(--db-drawer-min-height, auto);
-		max-inline-size: 100vw;
+		max-inline-size: none;
 	}
 }
 
 %direction-up {
 	@extend %full-horizontal;
 
-	transform: translateY(110%);
+	&:not([data-transition="open"]) {
+		transform: translateY(110%);
+	}
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -58,7 +64,9 @@
 %direction-down {
 	@extend %full-horizontal;
 
-	transform: translateY(-110%);
+	&:not([data-transition="open"]) {
+		transform: translateY(-110%);
+	}
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -279,16 +287,7 @@ $spacings: (
 	&[open] {
 		.db-drawer-container {
 			&[data-transition="open"] {
-				&:not([data-direction]),
-				&[data-direction="right"],
-				&[data-direction="left"] {
-					transform: none;
-				}
-
-				&[data-direction="up"],
-				&[data-direction="down"] {
-					transform: none;
-				}
+				transform: none;
 			}
 
 			&[data-transition="close"] {

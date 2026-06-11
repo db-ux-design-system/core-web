@@ -14,7 +14,7 @@ const App = () => (
 			<DBControlPanelDesktop>...</DBControlPanelDesktop>
 		}
 	>
-		<main class="db-main">Main Shell</main>
+		Main Shell
 	</DBShell>
 );
 

@@ -1,65 +1,8 @@
 import { type ReactElement } from 'react';
-import AccordionComponent from '../../react-showcase/src/components/accordion';
-import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
-import BadgeComponent from '../../react-showcase/src/components/badge';
-import ButtonComponent from '../../react-showcase/src/components/button';
-import CardComponent from '../../react-showcase/src/components/card';
-import CheckboxComponent from '../../react-showcase/src/components/checkbox';
-import ControlPanelDesktop from '../../react-showcase/src/components/control-panel-desktop';
-import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
-import DividerComponent from '../../react-showcase/src/components/divider';
-import DrawerComponent from '../../react-showcase/src/components/drawer';
-import InfotextComponent from '../../react-showcase/src/components/infotext';
-import InputComponent from '../../react-showcase/src/components/input';
-import LinkComponent from '../../react-showcase/src/components/link';
-import NavigationComponent from '../../react-showcase/src/components/navigation';
-import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
-import NotificationComponent from '../../react-showcase/src/components/notification';
-import PopoverComponent from '../../react-showcase/src/components/popover';
-import RadioComponent from '../../react-showcase/src/components/radio';
-import SectionComponent from '../../react-showcase/src/components/section';
-import SelectComponent from '../../react-showcase/src/components/select';
-import StackComponent from '../../react-showcase/src/components/stack';
-import SwitchComponent from '../../react-showcase/src/components/switch';
-import TabItemComponent from '../../react-showcase/src/components/tab-item';
-import TabsComponent from '../../react-showcase/src/components/tabs';
-import TagComponent from '../../react-showcase/src/components/tag';
-import TextareaComponent from '../../react-showcase/src/components/textarea';
-import TooltipComponent from '../../react-showcase/src/components/tooltip';
-import * as accordionCode from '../components/code-docs/accordion';
-import * as accordionItemCode from '../components/code-docs/accordion-item';
-import * as badgeCode from '../components/code-docs/badge';
-import * as buttonCode from '../components/code-docs/button';
-import * as linkCode from '../components/code-docs/link';
 // Import * as iconCode from '../components/code-docs/icon';
-import ControlPanelMobileComponent from '../../react-showcase/src/components/control-panel-mobile';
-import * as cardCode from '../components/code-docs/card';
-import * as checkboxCode from '../components/code-docs/checkbox';
-import * as controlPanelDesktopCode from '../components/code-docs/control-panel-desktop';
-import * as ControlPanelMobileCode from '../components/code-docs/control-panel-mobile';
-import * as customSelectCode from '../components/code-docs/custom-select';
-import * as dividerCode from '../components/code-docs/divider';
-import * as drawerCode from '../components/code-docs/drawer';
-import * as infotextCode from '../components/code-docs/infotext';
-import * as inputCode from '../components/code-docs/input';
-import * as navigationCode from '../components/code-docs/navigation';
-import * as navigationItemCode from '../components/code-docs/navigation-item';
-import * as notificationCode from '../components/code-docs/notification';
-import * as popoverCode from '../components/code-docs/popover';
-import * as radioCode from '../components/code-docs/radio';
-import * as sectionCode from '../components/code-docs/section';
-import * as selectCode from '../components/code-docs/select';
-import * as stackCode from '../components/code-docs/stack';
-import * as switchCode from '../components/code-docs/switch';
-import * as tabItemCode from '../components/code-docs/tab-item';
-import * as tabsCode from '../components/code-docs/tabs';
-import * as tagCode from '../components/code-docs/tag';
-import * as textareaCode from '../components/code-docs/textarea';
-import * as tooltipCode from '../components/code-docs/tooltip';
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
-import BrandShowcase from '@components/components/brand/showcase/brand.showcase';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -67,7 +10,6 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
-import HeaderShowcase from '@components/components/header/showcase/header.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
@@ -86,8 +28,10 @@ import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
-import type { ReactElement } from 'react';
 
+import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
+import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
+import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -102,13 +46,14 @@ export type NavigationItem = {
 const nameComponentMap = {
 	accordion: <AccordionShowcase isPatternhub />,
 
-	'control-panel-mobile': (
-		<ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />
-	),
+	'control-panel-mobile': <ControlPanelMobileShowcase isPatternhub />,
+
+	'control-panel-desktop': <ControlPanelDesktopShowcase isPatternhub />,
+
+	shell: <ShellShowcase isPatternhub />,
 
 	'accordion-item': <AccordionItemShowcase isPatternhub />,
 	badge: <BadgeShowcase isPatternhub />,
-	brand: <BrandShowcase isPatternhub />,
 	button: <ButtonShowcase isPatternhub />,
 	card: <CardShowcase isPatternhub />,
 	checkbox: <CheckboxShowcase isPatternhub />,
@@ -116,7 +61,6 @@ const nameComponentMap = {
 	'custom-select': <CustomSelectShowcase isPatternhub />,
 	divider: <DividerShowcase isPatternhub />,
 	drawer: <DrawerShowcase isPatternhub />,
-	header: <HeaderShowcase isPatternhub />,
 	infotext: <InfotextShowcase isPatternhub />,
 	input: <InputShowcase isPatternhub />,
 	link: <LinkShowcase isPatternhub />,

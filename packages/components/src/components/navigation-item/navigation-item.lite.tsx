@@ -1,4 +1,5 @@
 import {
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -22,9 +23,11 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-navigation-item', props.className)}
 			data-icon={props.icon}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-active={getBooleanAsString(props.active)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
+			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 			<Slot name="additionalInformation"></Slot>
 			<DBTooltip placement="right" delay="slow">

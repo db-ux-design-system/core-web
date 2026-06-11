@@ -12,7 +12,7 @@ For general installation and configuration take a look at the [components](https
 		<control-panel-desktop class="db-control-panel-desktop"
 			>...</control-panel-desktop
 		>
-		<main class="db-main">Main Shell</main>
+		Main Shell
 	</div>
 </body>
 ```

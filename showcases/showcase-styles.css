@@ -51,28 +51,44 @@
 	align-items: center;
 	gap: var(--db-spacing-fixed-md);
 
-.variants-list div[role] > div:not([class^="db-"], [data-area]),
-.variants-list > div:not([class^="db-"]) {
-	align-items: center;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: var(--db-spacing-fixed-md);
-}
+	.variants-list div[role] > div:not([class^="db-"], [data-area]),
+	.variants-list > div:not([class^="db-"]) {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--db-spacing-fixed-md);
+	}
 
 	.db-shell {
 		&:is(
 			:not([data-control-panel-desktop-position]),
 			[data-control-panel-desktop-position="top"]
 		) {
-			block-size: 200px;
+			block-size: var(--db-container-2xs);
+			inline-size: 100%
 		}
 
 		&[data-control-panel-desktop-position="left"] {
-			block-size: 500px;
+			block-size: var(--db-container-lg);
+			inline-size: 100%
 		}
 	}
 
+	&:has([placeholder="(Default) Basic"]) {
+		margin-block: 0 auto;
+	}
+
+	&:has(.db-shell) {
+		flex-direction: column;
+		align-items: center;
+
+		> div {
+			justify-content: center;
+			inline-size: 100%;
+		}
+	}
+}
 
 .variants-list > db-popover > .db-popover > db-button > button,
 .variants-list > .db-popover > button,
@@ -85,22 +101,6 @@
 .variants-list * > .db-input,
 .variants-list * > .db-textarea {
 	align-self: flex-end;
-}
-
-		&:has([placeholder="(Default) Basic"]) {
-			margin-block: 0 auto;
-		}
-	}
-
-	&:has(.db-shell) {
-		flex-direction: column;
-		align-items: center;
-
-		> div {
-			justify-content: center;
-			inline-size: 100%;
-		}
-	}
 }
 
 .html-code-container {
@@ -169,6 +169,7 @@
 .badge-inline-container .db-badge {
 	margin-inline-start: var(--db-spacing-responsive-md);
 }
+
 .fit-content-container {
 	flex-direction: column;
 	inline-size: fit-content;

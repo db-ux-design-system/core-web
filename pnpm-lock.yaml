@@ -736,7 +736,7 @@ importers:
         specifier: 13.0.6
         version: 13.0.6
       ignore:
-        specifier: ^7.0.5
+        specifier: 7.0.5
         version: 7.0.5
       inquirer:
         specifier: 14.0.2

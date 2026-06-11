@@ -87,6 +87,5 @@ export type DBTabsDefaultState = {
 };
 
 export type DBTabsState = DBTabsDefaultState &
-
 	InitializedState &
 	OverflowScrollButtonState;

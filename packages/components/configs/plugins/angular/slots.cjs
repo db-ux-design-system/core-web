@@ -50,89 +50,19 @@ const processNode = (node) => {
 	node.children?.forEach(processNode);
 };
 
-const headerDirectives = ['MetaNavigation', 'Navigation', 'SecondaryAction'];
-
 /**
  * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
 module.exports = () => ({
 	json: {
 		post: (json) => {
-			if (json.name.startsWith('Header')) {
-				for (const directive of headerDirectives) {
-					json.imports.push({
-						path: `../${directive}.directive`,
-						imports: {
-							[`${directive}Directive`]: `${directive}Directive`
-						},
-						importKind: 'value'
-					});
-				}
-			}
-			if (
-				['Header', 'Navigation'].some((exampleName) =>
-					json.name.startsWith(exampleName)
-				)
-			) {
-				json.imports.push({
-					path: `../${json.name.startsWith('NavigationItem') ? '' : '../navigation-item/'}NavigationContent.directive`,
-					imports: {
-						NavigationContentDirective: `NavigationContentDirective`
-					},
-					importKind: 'value'
-				});
-			}
-
 			json.children?.forEach(processNode);
 			return json;
 		}
 	},
 	code: {
 		post: (code, json) => {
-			// TODO: Remove the this when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
-			if (json.name.startsWith('Header')) {
-				code = code
-					.replace(
-						'imports: [',
-						`imports: [
-					${headerDirectives.join('Directive,')}Directive,`
-					)
-					.replaceAll(
-						'<db-navigation aria-label',
-						'<db-navigation *dbNavigation aria-label'
-					);
-			}
-			if (
-				['Header', 'Navigation'].some((exampleName) =>
-					json.name.startsWith(exampleName)
-				)
-			) {
-				// TODO: Remove the this when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
-				code = code
-					.replace(
-						'imports: [',
-						`imports: [
-					NavigationContentDirective,`
-					)
-					.replaceAll(
-						'a href="#"',
-						'a href="#" *dbNavigationContent'
-					);
-			}
-			return code
-				.replace(/SLOT="([^"]+)"/g, '$1')
-				.replaceAll(
-					'<ng-container meta-navigation',
-					'<ng-container *dbMetaNavigation'
-				)
-				.replaceAll(
-					'<ng-container secondary-action',
-					'<ng-container *dbSecondaryAction'
-				)
-				.replaceAll(
-					'<ng-container navigation-content',
-					'<ng-container *dbNavigationContent'
-				);
+			return code.replace(/SLOT="([^"]+)"/g, '$1');
 		}
 	}
 });

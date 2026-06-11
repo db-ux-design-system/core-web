@@ -10,7 +10,7 @@ import {
 	SEMANTICS
 } from "@components";
 import { ref } from "vue";
-import { defaultSettingsMapping } from "../../../shared/default-component-data";
+import { defaultSettingsMapping } from "../../../settings";
 import { useLayout } from "../composables/use-layout";
 
 const { density, color, onChange, settings } = useLayout();

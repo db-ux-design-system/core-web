@@ -316,10 +316,25 @@ export const handleFixedPopover = (
 		getAncestorHasCorrectedPlacement(element);
 	const noFloatingAncestor =
 		!ancestorWithCorrectedPlacement && !parentHasFloatingPosition;
+	const computedStyle = getComputedStyle(element);
 
-	const distance =
-		getComputedStyle(element)?.getPropertyValue('--db-popover-distance') ??
-		'0px';
+	// We skip if we don't have a floating popover
+	if (
+		computedStyle.position !== 'fixed' &&
+		computedStyle.position !== 'absolute'
+	) {
+		return;
+	}
+
+	let distance = computedStyle.getPropertyValue('--db-popover-distance');
+
+	if (!distance.length) {
+		distance = '0px';
+	}
+
+	const elementPlacement =
+		element?.dataset?.['placement'] ?? placement ?? 'bottom';
+
 	let {
 		top,
 		height,

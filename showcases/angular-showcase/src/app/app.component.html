@@ -12,7 +12,7 @@
 		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
 		[showSubNavigation]="settings.subNavigation === 'true'"
 	>
-		<db-shell-sub-navigation sub-navigation slot="subNavigation">
+		<db-shell-sub-navigation sub-navigation>
 			<db-navigation
 				aria-label="sub-navigation"
 				[variant]="settings.subNavigationVariant"
@@ -26,10 +26,10 @@
 			control-panel-desktop
 			slot="controlPanelDesktop"
 		>
-			<db-control-panel-brand brand slot="brand">
+			<db-control-panel-brand brand>
 				Showcase
 			</db-control-panel-brand>
-			<app-meta-navigation meta-navigation slot="metaNavigation" />
+			<app-meta-navigation meta-navigation />
 			<app-primary-actions
 				primary-actions
 				[density]="density"
@@ -52,13 +52,12 @@
 		</db-control-panel-desktop>
 		<db-control-panel-mobile
 			control-panel-mobile
-			slot="controlPanelMobile"
 			drawerHeadlinePlain="Showcase"
 		>
 			<db-control-panel-brand brand slot="brand">
 				Showcase
 			</db-control-panel-brand>
-			<app-meta-navigation meta-navigation slot="metaNavigation" />
+			<app-meta-navigation meta-navigation/>
 			<app-primary-actions
 				primary-actions
 				[density]="density"

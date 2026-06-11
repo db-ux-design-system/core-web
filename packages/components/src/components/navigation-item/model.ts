@@ -4,7 +4,10 @@ import type {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	ShowIconProps
+	ShowIconProps,
+	TextProps,
+	WidthProps,
+	WrapProps
 } from '../../shared/model';
 
 export type DBNavigationItemDefaultProps = {
@@ -34,8 +37,10 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
 	IconProps &
 	ShowIconProps &
+	WrapProps &
 	DisabledProps &
-	AdditionalInformationSlotProps;
+	AdditionalInformationSlotProps &
+	TextProps;
 
 export type DBNavigationItemDefaultState = {};
 

@@ -6,8 +6,6 @@ import { defineConfig } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 // https://vitejs.dev/config/
 export default defineConfig({
 	base: `/vue-showcase/`,
@@ -16,11 +14,6 @@ export default defineConfig({
 		outDir: '../../build-showcases/vue-showcase',
 		emptyOutDir: true,
 		cssMinify: 'esbuild'
-	},
-	resolve: {
-		alias: {
-			'@components': path.resolve(__dirname, '../../output/vue/src')
-		}
 	},
 	resolve: {
 		alias: {

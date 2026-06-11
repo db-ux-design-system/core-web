@@ -26,6 +26,6 @@ import { DBShell, DBControlPanelDesktop } from '@db-ux/ngx-core-components';
 	<db-control-panel-desktop control-panel-desktop
 		>...</db-control-panel-desktop
 	>
-	<main class="db-main">Main Shell</main>
+	Main Shell
 </db-shell>
 ```

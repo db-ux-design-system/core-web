@@ -11,7 +11,9 @@ import {
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
 	NavigationItemGroupVariant,
-	ShowIconProps
+	ShowIconProps,
+	type WidthProps,
+	type WrapProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DBNavigationItemDefaultProps } from '../navigation-item/model';
@@ -29,6 +31,7 @@ export type DBNavigationItemGroupDefaultProps = {
 };
 
 export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
+	WrapProps &
 	NavigationBackButtonProps &
 	ClickEventProps<HTMLButtonElement> &
 	GlobalProps &

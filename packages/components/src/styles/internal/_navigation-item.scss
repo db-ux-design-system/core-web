@@ -76,6 +76,11 @@
 	@include helpers.active {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
+
+	&[data-wrap="true"] {
+		white-space: normal;
+		text-align: start;
+	}
 }
 
 %navigation-item {
@@ -101,11 +106,6 @@
 		)
 	) {
 		inline-size: fit-content;
-	}
-
-	:is(a, .db-navigation-item-expand-button):first-of-type {
-		white-space: normal;
-		text-align: start;
 	}
 
 	&:has([aria-current="page"]),
