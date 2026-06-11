@@ -74,7 +74,7 @@
 				block-size variables.$db-transition-duration-fast
 					variables.$db-transition-timing-emotional,
 				inline-size variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional !important; // overrides physical `width`/`height` transition from %db-puls in _db-puls.scss
+					variables.$db-transition-timing-emotional;
 		}
 
 		[data-orientation="vertical"] & {
