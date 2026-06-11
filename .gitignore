@@ -7,6 +7,8 @@ npm-debug.log
 **/build/
 **/dist/
 out/
+pnpm-debug.log
+.pnpm-store
 
 .env
 **/*/.env
