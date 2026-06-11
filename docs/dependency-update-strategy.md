@@ -18,7 +18,7 @@ We want to actively decide when to adopt new capabilities rather than silently a
 
 ### Risk profile
 
-Patch versions are bug fixes and security patches with minimal behavioral changes. Minor versions can alter behavior in subtle ways — new defaults, new warnings, new peer dependency requirements — that deserve a human eye.
+Patch versions are bug fixes and security patches with minimal behavioral changes. Minor versions can alter behavior in subtle ways — new defaults, new warnings, new peer dependency requirements — that deserve a human judgement.
 
 ## Why GitHub Actions are pinned to commit SHAs
 
@@ -40,11 +40,11 @@ A commit SHA is a cryptographic hash of the exact content. It cannot be changed 
 
 ### Dependabot keeps us up-to-date
 
-Because we configure Dependabot for the `github-actions` package ecosystem, we still get automated PRs when new action versions are published. Dependabot resolves the new version's SHA for us, so we review the version bump (with its changelog) in a PR — the same workflow as our npm dependencies. This gives us the security of immutable references without the maintenance burden of manually tracking SHAs.
+Because we [configure Dependabot](../.github/dependabot.yml) for the `github-actions` package ecosystem, we still get automated PRs when new action versions are published. Dependabot resolves the new version's SHA for us, so we review the version bump (with its changelog) in a PR — the same workflow as our npm dependencies. This gives us the security of immutable references without the maintenance burden of manually tracking SHAs.
 
 ### Industry best practice
 
-GitHub's own [security hardening guide](https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions#using-third-party-actions) recommends pinning to full-length commit SHAs as the most secure option for third-party actions.
+GitHub's own [security hardening guide](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions) recommends pinning to full-length commit SHAs as the most secure option for third-party actions.
 
 ### In short
 
