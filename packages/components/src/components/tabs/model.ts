@@ -115,6 +115,7 @@ export type DBTabsDefaultState = {
 	_cachedTabs: DBSimpleTabProps[];
 	_updateCachedTabs: () => void;
 	initTabList: () => void;
+	_teardownScrollHandlers: () => void;
 	initTabs: () => void;
 	syncSelection: (activeIndex?: number) => void;
 	_tabButtons: HTMLElement[];

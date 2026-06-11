@@ -351,6 +351,20 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
+		// Removes the scroll listener + resize observer and hides the scroll buttons (arrows behavior teardown).
+		_teardownScrollHandlers() {
+			const _listener = state._scrollListener;
+			const _container = state._getScrollContainer();
+			if (_listener && _container) {
+				_container.removeEventListener('scroll', _listener.fn);
+			}
+			state._scrollListener = null;
+			state._resizeObserver?.disconnect();
+			state._resizeObserver = null;
+			state.showScrollStart = false;
+			state.showScrollEnd = false;
+		},
+
 		// Caches button/panel references and sets up static IDs/ARIA wiring.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
@@ -449,6 +463,17 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		}
 	}, [_ref, props.label]);
+
+	// Re-init or tear down the arrows scroll handling when behavior changes.
+	onUpdate(() => {
+		if (_ref) {
+			if (props.behavior === 'arrows') {
+				state.initTabList();
+			} else {
+				state._teardownScrollHandlers();
+			}
+		}
+	}, [_ref, props.behavior]);
 
 	// Controlled mode: mirror external activeIndex into internal state.
 	// The syncSelection onUpdate below then runs the same way as for internal changes.
@@ -561,13 +586,7 @@ export default function DBTabs(props: DBTabsProps) {
 			cancelAnimationFrame(rafId);
 			state._pendingRafId = null;
 		}
-		const _listener = state._scrollListener;
-		const _container = state._getScrollContainer();
-		if (_listener && _container) {
-			_container.removeEventListener('scroll', _listener.fn);
-		}
-		state._resizeObserver?.disconnect();
-		state._resizeObserver = null;
+		state._teardownScrollHandlers();
 		state._observer?.disconnect();
 		state._observer = null;
 	});
