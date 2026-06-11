@@ -69,9 +69,8 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 
-			const value = (buttons[index] as HTMLElement | undefined)?.dataset?.[
-				'value'
-			];
+			const value = (buttons[index] as HTMLElement | undefined)
+				?.dataset?.['value'];
 
 			// Controlled mode: never update state or the DOM optimistically.
 			// Only emit the change and let the parent drive selection via
