@@ -6,11 +6,10 @@
 "@db-ux/v-core-components": major
 ---
 
-Refactor DBTabs and DBTabItem.
+refactor: rework DBTabs and DBTabItem
 
-- **Breaking:** DBTabItem now renders a native `button` (`role="tab"`) instead of a radio `input`. The active state is managed by the parent DBTabs.
-- **Breaking:** Removed `checked`, `noText` and `name` from DBTabItem. Use icon-only tabs with `label` for accessibility; active state and naming are handled internally by DBTabs.
-- **Breaking:** Renamed DBTabs props `onTabSelect` → `onIndexChange`, `alignment` → `tabItemAlignment` and `width` → `tabItemWidth`.
-- **Breaking:** Deep linking via URL hash now derives the tab id from the `id` prop instead of `label`. Set an explicit `id` on DBTabs for deep links (e.g. `#my-tabs-tab-1`).
-- Added an automatic truncation tooltip that shows a DBTooltip for overflowing tab labels.
-- Fixed vertical tab layout, trailing icon positioning and tooltip placement.
+- **Breaking:** DBTabItem now renders a native `button` (`role="tab"`) instead of a radio `input`.
+- **Breaking:** Removed `checked`, `noText` and `name` from DBTabItem.
+- **Breaking:** Renamed DBTabs props `onTabSelect` → `onIndexChange`, `alignment` → `tabItemAlignment`, `width` → `tabItemWidth`.
+- **Breaking:** Deep linking derives the tab id from the `id` prop instead of `label`.
+- Added truncation tooltip for overflowing tab labels and fixed vertical layout, trailing icon and tooltip placement.

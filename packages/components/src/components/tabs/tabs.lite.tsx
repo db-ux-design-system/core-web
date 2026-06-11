@@ -68,15 +68,31 @@ export default function DBTabs(props: DBTabsProps) {
 					return;
 				}
 			}
+
+			const value = (buttons[index] as HTMLElement | undefined)?.dataset?.[
+				'value'
+			];
+
+			// Controlled mode: never update state or the DOM optimistically.
+			// Only emit the change and let the parent drive selection via
+			// props.activeIndex, which flows through onUpdate -> syncSelection.
+			if (props.activeIndex !== undefined) {
+				if (props.onIndexChange) {
+					props.onIndexChange(index);
+				}
+				if (props.onValueChange) {
+					props.onValueChange(value);
+				}
+				return;
+			}
+
+			// Uncontrolled mode: own the state and sync the DOM directly.
 			if (state._activeIndex !== index) {
 				state._activeIndex = index;
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
-				// Emit value of the newly active tab item if value props are set
 				if (props.onValueChange) {
-					const value = (buttons[index] as HTMLElement | undefined)
-						?.dataset?.['value'];
 					props.onValueChange(value);
 				}
 				state.syncSelection(index);
