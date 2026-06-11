@@ -16,7 +16,10 @@ module.exports = () => ({
 				filePath.includes('.example.lite') ||
 				filePath.includes('showcase.lite') ||
 				filePath.includes('figma.lite') ||
-				filePath.includes('agent.lite');
+				filePath.includes('agent.lite') ||
+				// Exclude table-body and table-row to make sure the mobile list works as expected
+				filePath.includes('table-body') ||
+				filePath.includes('table-row');
 
 			if (['angular', 'stencil'].includes(target) && !skipObserver) {
 				const componentTagName = `db-${dashCase(name.replace('DB', ''))}`;
