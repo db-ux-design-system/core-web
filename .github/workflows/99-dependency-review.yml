@@ -15,3 +15,7 @@ jobs:
         uses: actions/checkout@v6.0.3
       - name: 🔎 Dependency Review
         uses: actions/dependency-review-action@v5.0.0
+        with:
+          # marked@0.7.0 via sassdoc > sassdoc-theme-default > sassdoc-extras.
+          # Dev-only, abandoned dep chain — no patched version available in the 0.x range.
+          allow-ghsas: "GHSA-rrrm-qjm4-v8hf, GHSA-5v2h-r2cx-5xgj"
