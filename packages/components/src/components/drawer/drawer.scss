@@ -278,7 +278,16 @@ $spacings: (
 	&[open] {
 		.db-drawer-container {
 			&[data-transition="open"] {
-				transform: none;
+				&:not([data-direction]),
+				&[data-direction="right"],
+				&[data-direction="left"] {
+					transform: none;
+				}
+
+				&[data-direction="up"],
+				&[data-direction="down"] {
+					transform: none;
+				}
 			}
 
 			&[data-transition="close"] {
