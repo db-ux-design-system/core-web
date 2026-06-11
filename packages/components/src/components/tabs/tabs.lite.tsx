@@ -86,10 +86,33 @@ export default function DBTabs(props: DBTabsProps) {
 		// Lightweight method that only toggles selection state on cached references.
 		// Does NOT re-query the DOM or set up IDs/ARIA – that's initTabs' job.
 		syncSelection(activeIndex?: number) {
-			const currentIndex =
-				activeIndex !== undefined ? activeIndex : state._activeIndex;
 			const buttons = state._tabButtons;
 			const panels = state._tabPanels;
+
+			const requestedIndex =
+				activeIndex !== undefined ? activeIndex : state._activeIndex;
+
+			// Resolve the index to a valid, enabled tab so we never end up with a
+			// tablist that has no focusable entry point (out-of-range index, or an
+			// index pointing at a disabled tab). -1 (manual mode) is kept as-is.
+			let currentIndex = requestedIndex;
+			if (currentIndex !== -1 && buttons.length > 0) {
+				const isEnabled = (button?: HTMLElement) =>
+					!!button &&
+					!(button as HTMLButtonElement).disabled &&
+					button.getAttribute('aria-disabled') !== 'true';
+
+				if (
+					currentIndex < 0 ||
+					currentIndex >= buttons.length ||
+					!isEnabled(buttons[currentIndex])
+				) {
+					const fallback = buttons.findIndex(
+						(button: HTMLElement) => isEnabled(button)
+					);
+					currentIndex = fallback;
+				}
+			}
 
 			buttons.forEach((button: HTMLElement, index: number) => {
 				const isSelected = currentIndex === index;
@@ -139,81 +162,76 @@ export default function DBTabs(props: DBTabsProps) {
 			const buttons = state._tabButtons;
 			if (buttons.length === 0) return;
 
-			// find currently focused element within the buttons list
-			let currentIndex = -1;
-			if (typeof document !== 'undefined') {
-				const activeEl = document.activeElement;
-
-				if (activeEl) {
-					const focusedButton = (activeEl as HTMLElement).closest(
-						'[role="tab"]'
-					);
-					if (focusedButton) {
-						currentIndex = buttons.indexOf(
-							focusedButton as HTMLElement
-						);
-					}
-				}
+			// Only handle keys that originate from a tab owned by this instance.
+			// Prevents events from panel content or nested tabs bubbling up and
+			// being consumed by the wrong tablist.
+			const target = event.target as HTMLElement;
+			const focusedButton = target?.closest('[role="tab"]');
+			if (
+				!focusedButton ||
+				focusedButton.closest('.db-tabs') !== _ref
+			) {
+				return;
 			}
 
-			if (currentIndex === -1) {
-				currentIndex = state._activeIndex;
+			const currentIndex = buttons.indexOf(focusedButton as HTMLElement);
+			if (currentIndex === -1) return;
+
+			// handle activation (enter / space) -> change panel
+			if (key === 'Enter' || key === ' ') {
+				event.preventDefault();
+				state.activateTab(currentIndex);
+				return;
 			}
 
-			if (buttons.length > 0) {
-				// handle activation (enter / space) -> change panel
-				if (key === 'Enter' || key === ' ') {
-					event.preventDefault();
-					state.activateTab(currentIndex);
-					return;
-				}
+			// Navigation keys depend on orientation: horizontal uses Left/Right,
+			// vertical uses Up/Down (per WAI-ARIA tabs pattern). Home/End apply to both.
+			const isVertical = props.orientation === 'vertical';
+			const prevKey = isVertical ? 'ArrowUp' : 'ArrowLeft';
+			const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight';
 
-				// handle navigation (arrows) -> moves focus
-				let nextIndex: number | undefined;
-				const length = buttons.length;
+			// handle navigation (arrows) -> moves focus
+			let nextIndex: number | undefined;
+			const length = buttons.length;
 
-				if (key === 'ArrowRight' || key === 'ArrowDown') {
-					nextIndex = (currentIndex + 1) % length;
-				} else if (key === 'ArrowLeft' || key === 'ArrowUp') {
-					nextIndex = (currentIndex - 1 + length) % length;
-				} else if (key === 'Home') {
-					nextIndex = 0;
-				} else if (key === 'End') {
-					nextIndex = length - 1;
-				}
+			if (key === nextKey) {
+				nextIndex = (currentIndex + 1) % length;
+			} else if (key === prevKey) {
+				nextIndex = (currentIndex - 1 + length) % length;
+			} else if (key === 'Home') {
+				nextIndex = 0;
+			} else if (key === 'End') {
+				nextIndex = length - 1;
+			}
 
-				if (nextIndex !== undefined) {
-					event.preventDefault();
+			if (nextIndex !== undefined) {
+				event.preventDefault();
 
-					// Skip disabled tabs when navigating with arrow keys
-					const isForward =
-						key === 'ArrowRight' || key === 'ArrowDown';
-					for (let i = 0; i < length; i++) {
-						const candidate = buttons[
-							nextIndex
-						] as HTMLButtonElement;
-						if (
-							!candidate?.disabled &&
-							candidate?.getAttribute('aria-disabled') !== 'true'
-						) {
-							break;
-						}
-						if (isForward) {
-							nextIndex = (nextIndex + 1) % length;
-						} else {
-							nextIndex = (nextIndex - 1 + length) % length;
-						}
-					}
-
-					// do not activateTab here for manual activation, just move the focus
-					const nextButton = buttons[nextIndex] as HTMLElement;
+				// Skip disabled tabs when navigating with arrow keys
+				const isForward = key === nextKey;
+				for (let i = 0; i < length; i++) {
+					const candidate = buttons[nextIndex] as HTMLButtonElement;
 					if (
-						nextButton &&
-						!(nextButton as HTMLButtonElement).disabled &&
-						nextButton.getAttribute('aria-disabled') !== 'true'
+						!candidate?.disabled &&
+						candidate?.getAttribute('aria-disabled') !== 'true'
 					) {
-						nextButton.focus();
+						break;
 					}
+					if (isForward) {
+						nextIndex = (nextIndex + 1) % length;
+					} else {
+						nextIndex = (nextIndex - 1 + length) % length;
+					}
+				}
+
+				// do not activateTab here for manual activation, just move the focus
+				const nextButton = buttons[nextIndex] as HTMLElement;
+				if (
+					nextButton &&
+					!(nextButton as HTMLButtonElement).disabled &&
+					nextButton.getAttribute('aria-disabled') !== 'true'
+				) {
+					nextButton.focus();
 				}
 			}
 		},
