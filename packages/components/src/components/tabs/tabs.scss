@@ -8,6 +8,11 @@ $pulse-gap-offset: calc(
 	#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
 );
 
+// Space the focus outline needs outside the tab box: outline-offset + outline width.
+$focus-outline-reach: calc(
+	#{variables.$db-border-width-xs} + #{variables.$db-border-width-2xs}
+);
+
 %horizontal-pulse {
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
@@ -260,9 +265,13 @@ $pulse-gap-offset: calc(
 			}
 
 			.db-tab-list {
+				// Reserve room for the focus outline (outline-offset + width) at the
+				// top so it isn't clipped by overflow:auto, and compensate with a
+				// negative margin so tabs/track/buttons stay visually in place.
 				// stylelint-disable-next-line db-ux/use-spacings
-				padding: 0 0 $pulse-gap-offset;
-				margin-block-start: 0;
+				padding: $focus-outline-reach 0 $pulse-gap-offset;
+				// stylelint-disable-next-line db-ux/use-spacings
+				margin-block-start: calc(-1 * #{$focus-outline-reach});
 				background-image: none;
 
 				&::before {
