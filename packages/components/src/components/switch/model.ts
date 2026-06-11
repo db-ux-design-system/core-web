@@ -1,4 +1,4 @@
-import {
+import type {
 	ChangeEventProps,
 	ChangeEventState,
 	FocusEventProps,
@@ -35,7 +35,7 @@ export type DBSwitchProps = GlobalProps &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	FormCheckProps &
-	FormMessageProps &
+	Omit<FormMessageProps, 'variant'> &
 	SizeProps &
 	IconProps &
 	IconTrailingProps &

@@ -4,7 +4,8 @@
 	"compilerOptions": {
 		"paths": {
 			"@components": ["../../output/vue/src"],
-			"@components/src/*": ["../../output/vue/src/*"]
+			"@components/src/*": ["../../output/vue/src/*"],
+			"@components/components/*": ["../../output/vue/src/components/*"]
 		}
 	}
 }

@@ -54,6 +54,40 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'control-panel-mobile'
+	},{
+		name: 'table-data-cell'
+	},
+
+	{
+		name: 'table-header-cell'
+	},
+
+	{
+		name: 'table-row'
+	},
+
+	{
+		name: 'table-footer'
+	},
+
+	{
+		name: 'table-body'
+	},
+
+	{
+		name: 'table-head'
+	},
+
+	{
+		name: 'table-caption'
+	},
+
+	{
+		name: 'table'
+	},
+
+	{
+		name: 'custom-button'
 	},
 
 	{
@@ -241,6 +275,16 @@ export const getComponents = (): Component[] => [
 					from: 'onMouseMove={(event)',
 					to: 'onMouseMove={(event: any)'
 				}
+			],
+			stencil: [
+				{
+					from: '<slot>',
+					/* This is a workaround for stencil.
+						At the moment the navigation is broken in stencil and will be fixed in the db-shell.
+						Until then we need to add a named slot for the button, because web-components allow only one default slot.
+					*/
+					to: '<slot name="expandButton">'
+				}
 			]
 		}
 	},
@@ -256,7 +300,11 @@ export const getComponents = (): Component[] => [
 			],
 			stencil: [
 				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
-				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' }
+				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' },
+				{
+					from: 'this.value ?? this._value ?? ""',
+					to: 'this.value ?? this._value ?? undefined'
+				}
 			]
 		},
 		config: {
@@ -374,20 +422,7 @@ export const getComponents = (): Component[] => [
 			vue: [{ from: ', index', to: '' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
-			angular: [
-				{ from: '<HTMLElement>', to: '<HTMLInputElement>' },
-				{
-					from: 'writeValue(value: any) {',
-					to:
-						'writeValue(value: any) {\n' +
-						'if (!value && value !== "" && (this.type() === "date" ||\n' +
-						'			this.type() === "time" ||\n' +
-						'			this.type() === "week" ||\n' +
-						'			this.type() === "month" ||\n' +
-						'			this.type() === "datetime-local"\n' +
-						'			)) return;'
-				}
-			]
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }]
 		},
 		config: {
 			vue: {

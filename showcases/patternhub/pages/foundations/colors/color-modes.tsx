@@ -6,8 +6,8 @@ import DefaultPage from '../../../components/default-page';
 const colors = ['neutral', ...SEMANTICS];
 
 const ColorOverview = () => {
-	const [colorScheme, setColorScheme] = useState<string>('light');
-	const [colorScheme2, setColorScheme2] = useState<string>('light');
+	const [colorScheme, setColorScheme] = useState('light');
+	const [colorScheme2, setColorScheme2] = useState('light');
 	return (
 		<DefaultPage>
 			<h1>Color Schemes</h1>

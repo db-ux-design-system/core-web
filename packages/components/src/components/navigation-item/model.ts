@@ -1,4 +1,4 @@
-import {
+import type {
 	AdditionalInformationSlotProps,
 	DisabledProps,
 	GlobalProps,
@@ -23,6 +23,11 @@ export type DBNavigationItemDefaultProps = {
 	 * Set the text for the navigation-item
 	 */
 	text?: string;
+
+	/**
+	 * Force hide sub-navigation - for web component output
+	 */
+	hideSubNavigation?: boolean | string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &

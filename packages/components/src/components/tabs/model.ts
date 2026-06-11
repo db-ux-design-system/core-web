@@ -1,7 +1,6 @@
-import {
+import type {
 	AlignmentProps,
 	GlobalProps,
-	GlobalState,
 	InitializedState,
 	InputEvent,
 	OrientationProps,
@@ -9,8 +8,8 @@ import {
 	OverflowScrollButtonState,
 	WidthProps
 } from '../../shared/model';
-import { DBTabItemProps } from '../tab-item/model';
-import { DBTabPanelProps } from '../tab-panel/model';
+import type { DBTabItemProps } from '../tab-item/model';
+import type { DBTabPanelProps } from '../tab-panel/model';
 
 export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
 export type TabsBehaviorType = (typeof TabsBehaviorList)[number];
@@ -88,6 +87,6 @@ export type DBTabsDefaultState = {
 };
 
 export type DBTabsState = DBTabsDefaultState &
-	GlobalState &
+
 	InitializedState &
 	OverflowScrollButtonState;

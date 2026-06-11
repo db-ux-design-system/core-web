@@ -5,6 +5,8 @@ import {
 	DBCheckbox,
 	DBCustomSelect,
 	DBDivider,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBLink,
 	DBPopover,
@@ -16,26 +18,25 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea,
-	DBTooltip,
-	type ChangeEvent,
-	type ValueLabelType
+	DBTooltip
 } from '@components';
+import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useId, useState } from 'react';
 
 const FormComponent = () => {
 	const tabsId = useId();
 	const tabsVerticalId = useId();
 	const [input, setInput] = useState('');
-	const [dateinput, setDateinput] = useState('');
+	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
 	const [textareaChildren, setTextareaChildren] = useState('');
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
-	const [checked, setChecked] = useState<boolean[]>([true, false]);
+	const [checked, setChecked] = useState([true, false]);
 
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
-	const [tabsTest, setTabsTest] = useState<boolean>(false);
+	const [tabsTest, setTabsTest] = useState(false);
 
 	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
@@ -95,7 +96,7 @@ const FormComponent = () => {
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
-							label="Textinput"
+							label="Text Input"
 							placeholder="Placeholder"
 							message="Description"
 							icon="x_placeholder"
@@ -118,9 +119,9 @@ const FormComponent = () => {
 							label="Date input"
 							message="Description"
 							name="input-date-name"
-							value={dateinput}
+							value={dataInput}
 							onChange={(event) => {
-								setDateinput(event.target.value);
+								setDataInput(event.target.value);
 							}}
 							type="date"
 						/>
@@ -255,7 +256,7 @@ const FormComponent = () => {
 							type="button"
 							onClick={() => {
 								setInput('reset');
-								setDateinput('');
+								setDataInput('');
 							}}>
 							Reset and Toggle
 						</DBButton>
@@ -284,7 +285,7 @@ const FormComponent = () => {
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
 					<dt>date inputs value</dt>
-					<dd>{dateinput || 'No date input set'}</dd>
+					<dd>{dataInput || 'No date input set'}</dd>
 					<dt>textarea values</dt>
 					<dd>{textarea || 'No Textrea set'}</dd>
 					<dd>{textareaChildren || 'No Textrea set'}</dd>
@@ -494,16 +495,45 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
+				<DBButton
+					onClick={() => {
+						setDrawerOpen(true);
+					}}>
+					Open Drawer
+				</DBButton>
+				<DBDrawer
+					onClose={() => {
+						setDrawerOpen(false);
+					}}
+					open={drawerOpen}
+					spacing="none">
+					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
+						Test infotext
+						<DBTooltip placement="bottom-start">
+							Test tooltip
+						</DBTooltip>
+					</DBInfotext>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
+				</DBDrawer>
+
 				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
-						Beschreibungstext
+						Text
 					</DBTooltip>
 				</DBTag>
 				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
-						Beschreibungstext
+						Text
 					</DBTooltip>
 				</DBButton>
 

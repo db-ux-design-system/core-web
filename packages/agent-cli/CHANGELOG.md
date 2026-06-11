@@ -1,5 +1,103 @@
 # @db-ux/agent-cli
 
+## 4.11.0
+
+_version bump_
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
+## 4.9.1
+
+_version bump_
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+_version bump_
+
+## 4.5.4
+
+_version bump_
+
+## 4.5.3
+
+### Patch Changes
+
+- fix(agent-cli): add pnpm compatibility by following symlinks in `node_modules` - [see commit 28606fd](https://github.com/db-ux-design-system/core-web/commit/28606fdae48ca991cbe341c6a7ea5e0c420b3a46)
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+_version bump_
+
+## 4.5.0
+
+_version bump_
+
+## 4.4.3
+
+_version bump_
+
+## 4.4.2
+
+_version bump_
+
+## 4.4.1
+
+_version bump_
+
+## 4.4.0
+
+_version bump_
+
+## 4.3.2
+
+_version bump_
+
+## 4.3.1
+
+_version bump_
+
 ## 4.3.0
 
 ### Minor Changes

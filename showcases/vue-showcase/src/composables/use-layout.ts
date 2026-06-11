@@ -20,17 +20,18 @@ export const useLayout = () => {
 		() => `db-density-${density.value} db-color-${color.value}`
 	);
 
-	const onChange = async (event: any, target?: string) => {
+	const onChange = async (event: Event, target?: string) => {
+		const inputEvent = event as Event & { target: HTMLInputElement };
 		if (target) {
 			switch (target) {
 				case 'density': {
-					density.value = event.target.value;
+					density.value = inputEvent.target.value;
 
 					break;
 				}
 
 				case 'color': {
-					color.value = event.target.value;
+					color.value = inputEvent.target.value;
 
 					break;
 				}
@@ -57,7 +58,7 @@ export const useLayout = () => {
 
 	watch(
 		() => route.query,
-		async (query: any) => {
+		async (query: Record<string, string>) => {
 			if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
 				color.value = query[COLOR_CONST];
 			}

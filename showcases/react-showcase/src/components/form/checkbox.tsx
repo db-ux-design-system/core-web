@@ -1,4 +1,4 @@
-import { DBCheckbox } from '@db-ux/react-core-components/src';
+import { DBCheckbox } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 

@@ -8,7 +8,15 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--db-spacing-fixed-md);
-	padding: var(--db-spacing-fixed-md);
+
+	&:has(.component-header) {
+		padding: var(--db-spacing-fixed-md);
+	}
+}
+
+/* TODO: we're disabling the code link temporarily and need to reintegrate it afterwards */
+.show-code-link {
+	display: none;
 }
 
 .component-header {
@@ -20,20 +28,14 @@
 
 /* Linebreak for variant cards */
 .line-break {
-	inline-size: 100vw;
+	flex-basis: 100%;
 }
 
 .variants-card,
+.variants-card > db-card > .db-card,
 .variants-card > .db-card {
-	min-block-size: var(--db-sizing-3xl);
 	align-items: center;
 	justify-content: center;
-	padding: var(--db-spacing-fixed-xl);
-	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
-}
-
-db-card:is(.variants-card) > .db-card {
-	padding: var(--db-spacing-fixed-sm);
 }
 
 .variants-list .db-select,
@@ -46,13 +48,17 @@ db-card:is(.variants-card) > .db-card {
 	flex-wrap: wrap;
 	inline-size: 100%;
 	justify-content: center;
+	align-items: center;
 	gap: var(--db-spacing-fixed-md);
 
-	> div {
-		align-items: center;
-		display: flex;
-		gap: var(--db-spacing-fixed-md);
-	}
+.variants-list div[role] > div:not([class^="db-"], [data-area]),
+.variants-list > div:not([class^="db-"]) {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--db-spacing-fixed-md);
+}
 
 	.db-shell {
 		&:is(
@@ -67,10 +73,19 @@ db-card:is(.variants-card) > .db-card {
 		}
 	}
 
-	.db-select,
-	.db-input,
-	.db-textarea {
-		margin-block-start: auto;
+
+.variants-list > db-popover > .db-popover > db-button > button,
+.variants-list > .db-popover > button,
+.variants-list > * > db-button > button,
+.variants-list > button,
+.variants-list > .db-select,
+.variants-list > .db-input,
+.variants-list > .db-textarea,
+.variants-list * > .db-select,
+.variants-list * > .db-input,
+.variants-list * > .db-textarea {
+	align-self: flex-end;
+}
 
 		&:has([placeholder="(Default) Basic"]) {
 			margin-block: 0 auto;
@@ -99,7 +114,6 @@ db-card:is(.variants-card) > .db-card {
 }
 
 .link-headline {
-	display: block;
 	margin-block: var(--db-spacing-fixed-md);
 	font-weight: 700;
 }
@@ -155,6 +169,14 @@ db-card:is(.variants-card) > .db-card {
 .badge-inline-container .db-badge {
 	margin-inline-start: var(--db-spacing-responsive-md);
 }
+.fit-content-container {
+	flex-direction: column;
+	inline-size: fit-content;
+
+	.db-infotext {
+		align-self: flex-start;
+	}
+}
 
 .tab-hide-article article {
 	display: none !important;
@@ -167,11 +189,6 @@ db-card:is(.variants-card) > .db-card {
 
 .stack-container {
 	padding: var(--db-spacing-fixed-xs);
-}
-
-.stack-show-alignment {
-	border: var(--db-border-width-3xs) dashed
-		var(--db-adaptive-on-bg-basic-emphasis-60-default);
 }
 
 .dummy-component {
@@ -192,20 +209,6 @@ db-card:is(.variants-card) > .db-card {
 	}
 
 	text-wrap: nowrap;
-}
-
-.section-card-container {
-	display: grid;
-	gap: var(--db-spacing-fixed-sm);
-	grid-template-columns: repeat(1, minmax(0, 1fr));
-
-	@media screen and (width >= 768px) {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.db-card {
-		inline-size: 100%;
-	}
 }
 
 .nav-item-list {

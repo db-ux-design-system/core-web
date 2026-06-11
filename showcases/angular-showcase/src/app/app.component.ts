@@ -17,7 +17,6 @@ import {
 	defaultSettings,
 	DefaultSettings
 } from '../../../shared/default-component-data';
-import { environment } from '../environments/environment';
 import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
 import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
 import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
@@ -31,17 +30,8 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
-	imports: environment.webComponents
-		? [
-				FormsModule,
-				RouterOutlet,
-				NavItemComponent,
-				MetaNavigationComponent,
-				PrimaryActionsComponent,
-				SecondaryActionsComponent
-			]
-		: [
+	schemas: [],
+	imports: [
 				FormsModule,
 				RouterOutlet,
 				MetaNavigationComponent,
@@ -99,5 +89,13 @@ export class AppComponent implements OnInit {
 
 	getChangeableClasses = () => {
 		return `db-density-${this.density} db-color-${this.color}`;
+	};
+
+	onChange = async (_value: unknown) => {
+		await this.router.navigate([], {
+			relativeTo: this.route,
+			queryParams: { density: this.density, color: this.color },
+			queryParamsHandling: 'merge'
+		});
 	};
 }

@@ -25,7 +25,6 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
-		_id: 'tabs-' + uuid(),
 		_name: '',
 		initialized: false,
 		showScrollLeft: false,
@@ -233,7 +232,7 @@ export default function DBTabs(props: DBTabsProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? state._id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}

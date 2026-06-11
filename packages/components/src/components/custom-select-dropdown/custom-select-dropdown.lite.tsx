@@ -17,7 +17,7 @@ export default function DBCustomSelectDropdown(
 	return (
 		<article
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-select-dropdown db-card', props.className)}
 			data-spacing="none"
 			data-width={props.width}>

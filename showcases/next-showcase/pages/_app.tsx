@@ -13,7 +13,7 @@ import SecondaryActions from 'react-showcase/src/control-panel/secondary-actions
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
-import '../styles/global.scss';
+import '../styles/global.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const controlPanelDesktopId = useId();

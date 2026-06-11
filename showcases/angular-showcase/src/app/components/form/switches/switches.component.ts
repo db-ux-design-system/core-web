@@ -18,7 +18,8 @@ export class SwitchesComponent {
 	ngModel = true;
 	formControl: FormControl = new FormControl(true);
 
-	public handlePlainChange(event: any) {
-		this.plain = event.target.checked;
+	public handlePlainChange(event: Event | void) {
+		if (!event) return;
+		this.plain = (event.target as HTMLInputElement).checked;
 	}
 }

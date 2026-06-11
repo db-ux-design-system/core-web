@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import remarkTransformLinks from './scripts/remark-transform-links.js';
 
 const withMDX = generated({
-	extension: /\.mdx?$/,
+	extension: /\.mdx?$/v,
 	options: {
 		remarkPlugins: [remarkGfm, remarkTransformLinks],
 		rehypePlugins: [rehypeSlug],
@@ -24,7 +24,7 @@ const config = {
 		NEXT_SHOWCASE_VARIANT: 'next',
 		REDIRECT_URL_SEARCH_PARAMS: 'false',
 		NEXT_PUBLIC_APP_NAME: 'DB UX',
-		NEXT_PUBLIC_GITHUB_VERSION_SWITCHER: true,
+		NEXT_PUBLIC_GITHUB_VERSION_SWITCHER: 'true',
 		NEXT_PUBLIC_GITHUB_OWNER: 'db-ux-design-system',
 		NEXT_PUBLIC_GITHUB_REPO: 'core-web'
 	}

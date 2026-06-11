@@ -19,7 +19,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-navigation-item', props.className)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon)}

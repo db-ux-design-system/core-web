@@ -99,12 +99,7 @@ export default (tmp?: boolean) => {
 			to: ''
 		});
 
-		const replacements: Overwrite[] = [
-			{
-				from: /allowSignalWrites: true,/g,
-				to: ''
-			}
-		];
+		const replacements: Overwrite[] = [];
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(

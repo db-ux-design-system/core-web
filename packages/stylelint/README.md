@@ -33,6 +33,7 @@ Enable rules inside your `.stylelintrc.json` with:
 {
 	rules: {
 		"db-ux/use-spacings": [true], // margins, paddings, gaps
+		"db-ux/use-sizing": [true], // height, width, block-size, inline-size
 		"db-ux/use-border-width": [true], // border-width & border
 		"db-ux/use-border-radius": [true], // border-radius
 		"db-ux/use-border-color": [true] // border-color & border

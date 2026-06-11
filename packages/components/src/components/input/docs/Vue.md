@@ -26,7 +26,7 @@ To get DBInput work with `v-model` you have to use v-model argument syntax:
 
 ```typescript
 <DBInput
-	label="Textlabel"
+	label="Text Label"
 	placeholder="Start typing"
 	v-model:value="value"
 ></DBInput>
@@ -35,6 +35,6 @@ To get DBInput work with `v-model` you have to use v-model argument syntax:
 or using on-change listener:
 
 ```typescript
-<DBInput label="Textlabel" placeholder="Start" :value="modelAndChange" @change="($event) => { modelAndChange = $event.target.value;
+<DBInput label="Text Label" placeholder="Start" :value="modelAndChange" @change="($event) => { modelAndChange = $event.target.value;
 }"/> {{ modelAndChange }}
 ```

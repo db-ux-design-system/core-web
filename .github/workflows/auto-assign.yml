@@ -12,7 +12,7 @@ on:
 
 jobs:
   add_labels:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - uses: actions-ecosystem/action-add-assignees@v1
         if: ${{ !contains(github.actor,'[bot]') }}

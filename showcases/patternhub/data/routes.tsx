@@ -56,6 +56,38 @@ import * as tabsCode from '../components/code-docs/tabs';
 import * as tagCode from '../components/code-docs/tag';
 import * as textareaCode from '../components/code-docs/textarea';
 import * as tooltipCode from '../components/code-docs/tooltip';
+import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
+import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
+import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
+import BrandShowcase from '@components/components/brand/showcase/brand.showcase';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
+import CardShowcase from '@components/components/card/showcase/card.showcase';
+import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
+import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
+import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
+import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
+import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
+import HeaderShowcase from '@components/components/header/showcase/header.showcase';
+import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
+import InputShowcase from '@components/components/input/showcase/input.showcase';
+import LinkShowcase from '@components/components/link/showcase/link.showcase';
+import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
+import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
+import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
+import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
+import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
+import SectionShowcase from '@components/components/section/showcase/section.showcase';
+import SelectShowcase from '@components/components/select/showcase/select.showcase';
+import StackShowcase from '@components/components/stack/showcase/stack.showcase';
+import SwitchShowcase from '@components/components/switch/showcase/switch.showcase';
+import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase';
+import TableShowcase from '@components/components/table/showcase/table.showcase';
+import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
+import TagShowcase from '@components/components/tag/showcase/tag.showcase';
+import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
+import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
+import type { ReactElement } from 'react';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -68,75 +100,41 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	accordion: <AccordionShowcase isPatternhub />,
+
 	'control-panel-mobile': (
 		<ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />
 	),
 
-	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
-	stack: <StackComponent slotCode={stackCode} />,
-	button: <ButtonComponent slotCode={buttonCode} />,
-	link: <LinkComponent slotCode={linkCode} />,
-	// Icon: <IconComponent slotCode={iconCode} />,
-	tooltip: <TooltipComponent slotCode={tooltipCode} />,
-	infotext: <InfotextComponent slotCode={infotextCode} />,
-	tag: <TagComponent slotCode={tagCode} />,
-	accordion: (
-		<AccordionComponent
-			slotCode={accordionCode}
-			subComponent={
-				<AccordionItemComponent
-					isSubComponent={true}
-					componentName="accordion-item"
-					slotCode={accordionItemCode}
-				/>
-			}
-		/>
-	),
-	'accordion-item': <AccordionItemComponent slotCode={accordionItemCode} />,
-	tabs: (
-		<TabsComponent
-			slotCode={tabsCode}
-			subComponent={
-				<TabItemComponent
-					isSubComponent={true}
-					componentName="tab-item"
-					slotCode={tabItemCode}
-				/>
-			}
-		/>
-	),
-	'tab-item': <TabItemComponent slotCode={tabItemCode} />,
-	checkbox: <CheckboxComponent slotCode={checkboxCode} />,
-	input: <InputComponent slotCode={inputCode} />,
-	radio: <RadioComponent slotCode={radioCode} />,
-	select: <SelectComponent slotCode={selectCode} />,
-	switch: <SwitchComponent slotCode={switchCode} />,
-	textarea: <TextareaComponent slotCode={textareaCode} />,
-	notification: <NotificationComponent slotCode={notificationCode} />,
-	badge: <BadgeComponent slotCode={badgeCode} />,
-	card: <CardComponent slotCode={cardCode} />,
-	divider: <DividerComponent slotCode={dividerCode} />,
-	drawer: <DrawerComponent slotCode={drawerCode} />,
-	'control-panel-desktop': (
-		<ControlPanelDesktop slotCode={controlPanelDesktopCode} />
-	),
-	section: <SectionComponent slotCode={sectionCode} />,
-	navigation: (
-		<NavigationComponent
-			slotCode={navigationCode}
-			subComponent={
-				<NavigationItemComponent
-					isSubComponent={true}
-					componentName="navigation-item"
-					slotCode={navigationItemCode}
-				/>
-			}
-		/>
-	),
-	'navigation-item': (
-		<NavigationItemComponent slotCode={navigationItemCode} />
-	),
-	popover: <PopoverComponent slotCode={popoverCode} />
+	'accordion-item': <AccordionItemShowcase isPatternhub />,
+	badge: <BadgeShowcase isPatternhub />,
+	brand: <BrandShowcase isPatternhub />,
+	button: <ButtonShowcase isPatternhub />,
+	card: <CardShowcase isPatternhub />,
+	checkbox: <CheckboxShowcase isPatternhub />,
+	'custom-button': <CustomButtonShowcase isPatternhub />,
+	'custom-select': <CustomSelectShowcase isPatternhub />,
+	divider: <DividerShowcase isPatternhub />,
+	drawer: <DrawerShowcase isPatternhub />,
+	header: <HeaderShowcase isPatternhub />,
+	infotext: <InfotextShowcase isPatternhub />,
+	input: <InputShowcase isPatternhub />,
+	link: <LinkShowcase isPatternhub />,
+	navigation: <NavigationShowcase isPatternhub />,
+	'navigation-item': <NavigationItemShowcase isPatternhub />,
+	notification: <NotificationShowcase isPatternhub />,
+	popover: <PopoverShowcase isPatternhub />,
+	radio: <RadioShowcase isPatternhub />,
+	section: <SectionShowcase isPatternhub />,
+	select: <SelectShowcase isPatternhub />,
+	stack: <StackShowcase isPatternhub />,
+	switch: <SwitchShowcase isPatternhub />,
+	'tab-item': <TabItemShowcase isPatternhub />,
+	table: <TableShowcase isPatternhub />,
+	tabs: <TabsShowcase isPatternhub />,
+	tag: <TagShowcase isPatternhub />,
+	textarea: <TextareaShowcase isPatternhub />,
+	tooltip: <TooltipShowcase isPatternhub />
 };
 
 const addComponentsToNavigationItems = (
@@ -351,7 +349,7 @@ export const getBreadcrumb = (path: string) => {
 	const tree: NavigationItem[] = getAllNavigationItems(true);
 	return tree
 		.filter((navItem) => path.includes(navItem.path ?? ''))
-		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
+		.toSorted((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
 export const getAllComponentGroupNames = (): string[] => {

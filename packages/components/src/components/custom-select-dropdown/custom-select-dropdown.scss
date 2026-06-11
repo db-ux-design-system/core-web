@@ -17,6 +17,7 @@
 
 	&:not([data-width]),
 	&[data-width="fixed"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		inline-size: var(
 			--db-custom-select-dropdown-fixed-inline-size,
 			#{variables.$db-sizing-3xl}
@@ -76,7 +77,7 @@
 
 		&[data-icon="circular_arrows"] {
 			&::before {
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media (prefers-reduced-motion: no-preference) {
 					animation: rotate 1.5s linear 0s infinite normal none
 						running;
 				}

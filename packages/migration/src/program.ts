@@ -1,10 +1,10 @@
 import { program } from 'commander';
-import type { OptionsType, ProgrammOptionsType } from './types';
+import type { OptionsType, ProgramOptionsType } from './types';
 
 const startProgram = (
 	name: string,
 	description: string,
-	options: ProgrammOptionsType[],
+	options: ProgramOptionsType[],
 	action: (functionName: string, options: OptionsType) => void
 ) => {
 	program.name(name).description(description);

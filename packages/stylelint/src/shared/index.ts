@@ -17,6 +17,20 @@ export const defaultExact: string[] = [
 
 export const defaultColorsExact: string[] = ['transparent', 'currentcolor'];
 
+export const borderPropertiesExact: string[] = [
+	'border',
+	'border-top',
+	'border-right',
+	'border-bottom',
+	'border-left',
+	'border-block',
+	'border-block-start',
+	'border-block-end',
+	'border-inline',
+	'border-inline-start',
+	'border-inline-end'
+];
+
 export type IncludesAllowType = {
 	include: string;
 	and?: string[];
@@ -60,7 +74,12 @@ export const isAllowed = (
 ): boolean => {
 	const splitValue = Array.isArray(value)
 		? value
-		: value.replaceAll(/\s+/g, ' ').split(' ');
+		: value
+				.replaceAll(/\s+/g, ' ')
+				.replaceAll('( ', '(')
+				.replaceAll(', ', ',')
+				.replaceAll(' )', ')')
+				.split(' ');
 
 	const allowMap = splitValue.map(
 		(val) =>

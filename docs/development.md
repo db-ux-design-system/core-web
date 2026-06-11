@@ -58,7 +58,7 @@ cd output/${frameworkFolder}  (replace ${frameworkFolder} with the appropriate f
 npx playwright test --update-snapshots
 ```
 
-You can also use `docker-compose` to test or regenerate screenshots.
+You can regenerate showcase snapshots directly without docker-compose using:
 
-- testing: `docker-compose --file ./e2e/docker-compose.yml up`
-- update screenshots: `docker-compose --file ./e2e/docker-compose.regenerate.yml up`
+- `npm run regenerate:visual-snapshots --workspace=react-showcase`
+- `npm run regenerate:aria-snapshots --workspace=react-showcase`

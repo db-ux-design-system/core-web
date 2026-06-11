@@ -148,7 +148,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 	return (
 		<nav
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			data-variant={state._variant}
 			data-show-tree-line={getBooleanAsString(
 				props.showTreeLine ?? 'true'

@@ -1,4 +1,2 @@
-/* This is a predefined beginner friendly bundle for rollup apps */
-
-@use "@db-ux/core-foundations/build/styles/rollup.assets-paths";
-@forward "./relative";
+/* @deprecated This file will be removed in next major release */
+@forward "./bundle";
