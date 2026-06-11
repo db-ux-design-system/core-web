@@ -34,3 +34,15 @@ jobs:
         run: node scripts/github/reorder-backlog.ts
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          # Optional overrides. When the corresponding GitHub variable is not
+          # set these resolve to an empty string and the script falls back to
+          # its built-in defaults (see reorder-backlog.ts header).
+          PROJECT_ID: ${{ vars.BACKLOG_PROJECT_ID }}
+          PROJECT_NUMBER: ${{ vars.BACKLOG_PROJECT_NUMBER }}
+          PRIORITY_FIELD_ID: ${{ vars.BACKLOG_PRIORITY_FIELD_ID }}
+          EFFORT_FIELD_ID: ${{ vars.BACKLOG_EFFORT_FIELD_ID }}
+          STATUS_FIELD_ID: ${{ vars.BACKLOG_STATUS_FIELD_ID }}
+          BACKLOG_OPTION_ID: ${{ vars.BACKLOG_STATUS_BACKLOG_OPTION_ID }}
+          IN_PROGRESS_OPTION_ID: ${{ vars.BACKLOG_STATUS_IN_PROGRESS_OPTION_ID }}
+          COMMUNITY_FEEDBACK_LABEL: ${{ vars.BACKLOG_COMMUNITY_FEEDBACK_LABEL }}
+          WAITING_FOR_FEEDBACK_STATUS: ${{ vars.BACKLOG_WAITING_FOR_FEEDBACK_STATUS }}

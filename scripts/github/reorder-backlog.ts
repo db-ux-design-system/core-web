@@ -8,12 +8,18 @@
  * 2. Non-community issues second (highest priority, lowest effort)
  * 3. Issues with no status or "Backlog" status go to the end
  *
- * Additionally archives "Done" items older than 1 month.
- *
  * Never moves issues that are "In progress" or "Waiting for feedback".
  *
  * Usage: node scripts/github/reorder-backlog.ts [--dry-run]
  * Requires: gh CLI authenticated with `project` scope
+ *
+ * Configuration via environment variables (all optional, fall back to the
+ * defaults below). These can be provided as GitHub repository/organization
+ * variables so the IDs don't have to live in the source:
+ *   PROJECT_OWNER, PROJECT_REPO, PROJECT_ID, PROJECT_NUMBER,
+ *   PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
+ *   BACKLOG_OPTION_ID, IN_PROGRESS_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
+ *   WAITING_FOR_FEEDBACK_STATUS, REMINDER_BOT_LOGIN
  */
 
 import { execSync } from 'node:child_process';
@@ -22,25 +28,46 @@ import { unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const owner = 'db-ux-design-system';
-const repo = 'core-web';
-const projectId = 'PVT_kwDOC6qtR84Ay9u1';
+// Small helpers to read configuration from the environment while keeping a
+// sensible default. Empty strings (e.g. an unset GitHub variable) fall back too.
+const envString = (name: string, fallback: string): string => {
+	const value = process.env[name];
+	return value && value.length > 0 ? value : fallback;
+};
 
-const priorityFieldId = 32_123_222;
-const effortFieldId = 32_123_225;
+const envNumber = (name: string, fallback: number): number => {
+	const value = process.env[name];
+	return value && value.length > 0 ? Number(value) : fallback;
+};
+
+const owner = envString('PROJECT_OWNER', 'db-ux-design-system');
+const repo = envString('PROJECT_REPO', 'core-web');
+const projectId = envString('PROJECT_ID', 'PVT_kwDOC6qtR84Ay9u1');
+// Numeric project number, used by the `gh project item-add` CLI command
+const projectNumber = envString('PROJECT_NUMBER', '6');
+
+const priorityFieldId = envNumber('PRIORITY_FIELD_ID', 32_123_222);
+const effortFieldId = envNumber('EFFORT_FIELD_ID', 32_123_225);
 
 // Project field IDs
-const statusFieldId = 'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0';
-const backlogOptionId = 'eddf8fe8';
-const inProgressOptionId = 'c2179bcd';
+const statusFieldId = envString(
+	'STATUS_FIELD_ID',
+	'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0'
+);
+const backlogOptionId = envString('BACKLOG_OPTION_ID', 'eddf8fe8');
+const inProgressOptionId = envString('IN_PROGRESS_OPTION_ID', 'c2179bcd');
 
-// Team members (codeowners)
-const codeowners = new Set([
-	'mfranzke',
-	'nmerget',
-	'michaelmkraus',
-	'bruno-sch'
-]);
+// Label used to flag community feedback issues
+const communityFeedbackLabel = envString(
+	'COMMUNITY_FEEDBACK_LABEL',
+	'communityFeedback'
+);
+
+// Status name for items waiting on the issue author
+const waitingForFeedbackStatus = envString(
+	'WAITING_FOR_FEEDBACK_STATUS',
+	'🎶 Waiting for feedback'
+);
 
 const priorityRank: Record<string, number> = {
 	/* eslint-disable @typescript-eslint/naming-convention */
@@ -61,20 +88,18 @@ const effortRank: Record<string, number> = {
 };
 const defaultEffortRank = 4;
 
-// Max age for Done items before archiving (in milliseconds)
-const archiveThresholdMs = 30 * 24 * 60 * 60 * 1000; // 1 month
-
 // Stale threshold for "Waiting for Feedback" reminders (14 days)
 const staleThresholdMs = 14 * 24 * 60 * 60 * 1000;
 
-// Bot login used for posting reminders (GitHub App)
-const botLogin = 'db-ux-design-system[bot]';
+// Bot login used for posting reminders. This script is authenticated with the
+// AUTO_MERGE GitHub App, whose bot identity in this repository is
+// `dbux-auto-merge-pr[bot]`.
+const botLogin = envString('REMINDER_BOT_LOGIN', 'dbux-auto-merge-pr[bot]');
 
 // --- Types ---
 
 type ProjectItemNode = {
 	id: string;
-	updatedAt: string;
 	fieldValues: {
 		nodes: Array<{
 			__typename: string;
@@ -93,7 +118,6 @@ type ProjectItemNode = {
 				title?: string;
 				repository?: { nameWithOwner: string };
 				labels?: { nodes: Array<{ name: string }> };
-				closedAt?: string | undefined;
 				author?: { login: string };
 		  }
 		| undefined;
@@ -238,8 +262,7 @@ const fetchProjectItems = async (
         }
         nodes {
           id
-          updatedAt
-          fieldValues(first: 15) {
+          fieldValues(first: 50) {
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
@@ -260,7 +283,6 @@ const fetchProjectItems = async (
             ... on Issue {
               number
               title
-              closedAt
               author { login }
               repository { nameWithOwner }
               ${labelsFragment}
@@ -292,98 +314,6 @@ const fetchProjectItems = async (
 
 	console.log('');
 	return allItems;
-};
-
-// --- Archive old Done items ---
-
-const archiveDoneItems = async (dryRun: boolean): Promise<number> => {
-	console.log(
-		'\n🗄️  Checking for Done items to archive (older than 1 month)...'
-	);
-
-	const doneItems = await fetchProjectItems(
-		(node) => {
-			if (node.content?.__typename !== 'Issue') return false;
-			if (node.content.repository?.nameWithOwner !== `${owner}/${repo}`)
-				return false;
-			return getItemStatus(node) === '✅ Done';
-		},
-		'Scanning for Done items',
-		false
-	);
-
-	console.log(`   Found ${String(doneItems.length)} items in Done status`);
-
-	const now = Date.now();
-	const toArchive = doneItems.filter((item) => {
-		const dateString = item.content?.closedAt ?? item.updatedAt;
-		const itemDate = new Date(dateString).getTime();
-		return now - itemDate > archiveThresholdMs;
-	});
-
-	console.log(`   ${String(toArchive.length)} items are older than 1 month`);
-
-	if (toArchive.length === 0 || dryRun) {
-		if (dryRun && toArchive.length > 0) {
-			console.log('   🏜️  DRY RUN — would archive these items:');
-			for (const item of toArchive.slice(0, 10)) {
-				const title = item.content?.title ?? '(unknown)';
-				console.log(`      - ${title}`);
-			}
-
-			if (toArchive.length > 10) {
-				console.log(
-					`      ... and ${String(toArchive.length - 10)} more`
-				);
-			}
-		}
-
-		return 0;
-	}
-
-	console.log(`   Archiving ${String(toArchive.length)} items...`);
-
-	for (let i = 0; i < toArchive.length; i++) {
-		const item = toArchive[i];
-		process.stdout.write(
-			`   [${String(i + 1)}/${String(toArchive.length)}] Archiving...\r`
-		);
-
-		const mutation = `mutation {
-  archiveProjectV2Item(input: {
-    projectId: "${projectId}"
-    itemId: "${item.id}"
-  }) {
-    item { id }
-  }
-}`;
-
-		try {
-			ghGraphql(mutation);
-		} catch (error: unknown) {
-			const message =
-				error instanceof Error ? error.message : String(error);
-			if (message.includes('required scopes')) {
-				console.error(
-					'\n   ❌ Token lacks `project` write scope. Archiving requires a token with the `project` scope.'
-				);
-				console.error(
-					'      Skipping archive step. This will work in CI with the GitHub App token.'
-				);
-				return 0;
-			}
-
-			console.warn(`\n   ⚠️  Failed to archive item ${item.id}`);
-		}
-
-		if (i % 5 === 4) {
-			// eslint-disable-next-line no-await-in-loop
-			await sleep(300);
-		}
-	}
-
-	console.log(`\n   ✅ Archived ${String(toArchive.length)} Done items`);
-	return toArchive.length;
 };
 
 // --- Fetch issue fields and build sortable list ---
@@ -443,15 +373,24 @@ const fetchIssueFields = async (
 			const fields = extractFieldValues(issueData);
 			priority = fields.priority;
 			effort = fields.effort;
-		} catch {
-			console.warn(
-				`\n   ⚠️  Could not fetch fields for #${String(number)}`
+		} catch (error: unknown) {
+			// A failed read (rate limit, transient API error, missing scope)
+			// must not be silently treated as "no priority/effort", otherwise
+			// the whole backlog would be reordered based on incomplete data.
+			// Abort the run instead. Genuinely absent values returned by a
+			// successful request are fine and handled via the default ranks.
+			const message =
+				error instanceof Error ? error.message : String(error);
+			throw new Error(
+				`Failed to fetch issue fields for #${String(number)}: ${message}`
 			);
 		}
 
 		const labels = item.content?.labels?.nodes ?? [];
 		const isCommunity = labels.some((label) =>
-			label.name.toLowerCase().includes('communityfeedback')
+			label.name
+				.toLowerCase()
+				.includes(communityFeedbackLabel.toLowerCase())
 		);
 
 		sortableItems.push({
@@ -478,8 +417,16 @@ const fetchIssueFields = async (
 
 // --- Reorder items via GraphQL ---
 
-const reorderItems = async (sortedItems: SortableItem[]): Promise<void> => {
-	let previousItemId: string | undefined;
+const reorderItems = async (
+	sortedItems: SortableItem[],
+	anchorItemId: string | undefined
+): Promise<void> => {
+	// Seed the chain with the last project item that is NOT part of the
+	// backlog. Omitting afterId would move the first backlog item to the very
+	// top of the whole project (GitHub treats a missing afterId as "top"),
+	// pushing the entire backlog ahead of In Progress / Ready for Review items.
+	// Anchoring after the last non-backlog item keeps the backlog at the end.
+	let previousItemId: string | undefined = anchorItemId;
 
 	for (let i = 0; i < sortedItems.length; i++) {
 		const item = sortedItems[i];
@@ -519,7 +466,7 @@ const processWaitingForFeedback = async (
 ): Promise<void> => {
 	console.log('\n⏳ Processing "Waiting for Feedback" items...');
 	const waitingItems = items.filter(
-		(item) => getItemStatus(item) === '🎶 Waiting for feedback'
+		(item) => getItemStatus(item) === waitingForFeedbackStatus
 	);
 
 	if (waitingItems.length === 0) {
@@ -538,23 +485,42 @@ const processWaitingForFeedback = async (
 		const issueAuthor = item.content?.author?.login;
 		if (!issueAuthor) continue;
 
-		// Fetch the latest comment by paginating to the last page
+		// Fetch the actual latest comment. The REST "list issue comments"
+		// endpoint is ordered by ascending id and ignores sort/direction, so
+		// we use GraphQL `comments(last: 1)` to reliably get the newest one.
 		let lastCommentAuthor: string | undefined;
 		let lastCommentCreatedAt: string | undefined;
 		try {
-			// First, get page 1 to check if there are more pages via Link header
-			// Use sort=created&direction=desc to get latest comment first
-			const commentsJson = ghRest(
-				`repos/${owner}/${repo}/issues/${String(number)}/comments?per_page=1&sort=created&direction=desc`
-			);
-			const comments = JSON.parse(commentsJson) as Array<{
-				user?: { login: string };
-				created_at?: string;
-			}>;
-			if (comments.length > 0) {
-				lastCommentAuthor = comments[0]?.user?.login;
-				lastCommentCreatedAt = comments[0]?.created_at;
-			}
+			const query = `{
+  repository(owner: "${owner}", name: "${repo}") {
+    issue(number: ${String(number)}) {
+      comments(last: 1) {
+        nodes {
+          author { login }
+          createdAt
+        }
+      }
+    }
+  }
+}`;
+			const raw = ghGraphql(query);
+			const parsed = JSON.parse(raw) as {
+				data?: {
+					repository?: {
+						issue?: {
+							comments?: {
+								nodes?: Array<{
+									author?: { login?: string };
+									createdAt?: string;
+								}>;
+							};
+						};
+					};
+				};
+			};
+			const latest = parsed.data?.repository?.issue?.comments?.nodes?.[0];
+			lastCommentAuthor = latest?.author?.login;
+			lastCommentCreatedAt = latest?.createdAt;
 		} catch {
 			console.warn(
 				`\n   ⚠️  Could not fetch comments for #${String(number)}`
@@ -564,7 +530,7 @@ const processWaitingForFeedback = async (
 
 		if (!lastCommentAuthor) continue;
 
-		// Skip if the last comment is from our bot (already reminded)
+		// Skip if the last comment is from our reminder bot (already reminded).
 		if (lastCommentAuthor === botLogin) {
 			continue;
 		}
@@ -593,39 +559,42 @@ const processWaitingForFeedback = async (
 					);
 				}
 			}
-		} else if (!codeowners.has(lastCommentAuthor)) {
-			// Last comment is not from a codeowner and not from the creator
-			// Check staleness before posting a reminder
-			const commentAge = lastCommentCreatedAt
-				? Date.now() - new Date(lastCommentCreatedAt).getTime()
-				: 0;
 
-			if (commentAge < staleThresholdMs) {
-				// Not stale yet, skip
-				continue;
-			}
+			continue;
+		}
 
-			console.log(
-				`   💬 #${String(number)}: no codeowner response → posting stale reminder`
-			);
-			if (!dryRun) {
-				try {
-					const body =
-						'👋 @' +
-						issueAuthor +
-						' — This issue has been waiting for feedback for a while. Is this still an issue for you? If so, please let us know and we will prioritize accordingly. If not, feel free to close it. Thanks!';
-					execSync(
-						`gh issue comment ${String(number)} --repo ${owner}/${repo} --body "${body}"`,
-						{ encoding: 'utf8' }
-					);
-				} catch {
-					console.warn(
-						`\n   ⚠️  Failed to post comment on #${String(number)}`
-					);
-				}
+		// Latest comment is from someone other than the creator and the bot —
+		// either a codeowner who asked the author a question, or another
+		// contributor. In both cases the issue is waiting on the author, so we
+		// remind them once the comment is old enough (staleness threshold).
+		const commentAge = lastCommentCreatedAt
+			? Date.now() - new Date(lastCommentCreatedAt).getTime()
+			: 0;
+
+		if (commentAge < staleThresholdMs) {
+			// Not stale yet, skip.
+			continue;
+		}
+
+		console.log(
+			`   💬 #${String(number)}: still waiting → posting stale reminder`
+		);
+		if (!dryRun) {
+			try {
+				const body =
+					'👋 @' +
+					issueAuthor +
+					' — This issue has been waiting for feedback for a while. Is this still an issue for you? If so, please let us know and we will prioritize accordingly. If not, feel free to close it. Thanks!';
+				execSync(
+					`gh issue comment ${String(number)} --repo ${owner}/${repo} --body "${body}"`,
+					{ encoding: 'utf8' }
+				);
+			} catch {
+				console.warn(
+					`\n   ⚠️  Failed to post comment on #${String(number)}`
+				);
 			}
 		}
-		// If last comment is from a codeowner → do nothing, still waiting for the creator
 	}
 };
 
@@ -638,13 +607,7 @@ const reorderBacklog = async () => {
 		console.log('🏜️  DRY RUN — no mutations will be executed\n');
 	}
 
-	// Step 0: Archive old Done items
-	const archived = await archiveDoneItems(dryRun);
-	if (archived > 0) {
-		console.log(`   (freed ${String(archived)} items from the project)`);
-	}
-
-	// Step 0b: Sync status based on linked PRs
+	// Step 0: Sync status based on linked PRs
 	console.log('\n🔄 Syncing status based on linked pull requests...');
 	const allCoreWebItems = await fetchProjectItems(
 		(node) => {
@@ -694,10 +657,10 @@ const reorderBacklog = async () => {
 		console.log('   ✅ All statuses are in sync');
 	}
 
-	// Step 0c: Process "Waiting for Feedback" items
+	// Step 0b: Process "Waiting for Feedback" items
 	await processWaitingForFeedback(allCoreWebItems, dryRun);
 
-	// Step 0d: Add unconnected open issues to the project
+	// Step 0c: Add unconnected open issues to the project
 	console.log('\n🔗 Checking for open issues not in the project...');
 	const projectIssueNumbers = new Set(
 		allCoreWebItems
@@ -705,13 +668,14 @@ const reorderBacklog = async () => {
 			.map((item) => item.content!.number!)
 	);
 
-	// Fetch open issues from repo that have the communityFeedback label but aren't in the project
+	// Fetch open issues from repo that have the community-feedback label but
+	// aren't in the project yet
 	let unconnectedCount = 0;
 	try {
 		let page = 1;
 		while (true) {
 			const issuesJson = ghRest(
-				`repos/${owner}/${repo}/issues?state=open&labels=communityFeedback&per_page=100&page=${String(page)}`
+				`repos/${owner}/${repo}/issues?state=open&labels=${communityFeedbackLabel}&per_page=100&page=${String(page)}`
 			);
 			const issues = JSON.parse(issuesJson) as Array<{
 				number: number;
@@ -739,7 +703,7 @@ const reorderBacklog = async () => {
 
 				try {
 					execSync(
-						`gh project item-add 6 --owner ${owner} --url "${issue.html_url}"`,
+						`gh project item-add ${projectNumber} --owner ${owner} --url "${issue.html_url}"`,
 						{ encoding: 'utf8' }
 					);
 					unconnectedCount++;
@@ -766,7 +730,7 @@ const reorderBacklog = async () => {
 	}
 
 	// Step 1: Fetch backlog items via targeted GraphQL query
-	console.log('\n📦 Fetching backlog items from core-web...');
+	console.log(`\n📦 Fetching backlog items from ${repo}...`);
 	const backlogItems = await fetchProjectItems(
 		(node) => {
 			if (node.content?.__typename !== 'Issue') return false;
@@ -885,7 +849,25 @@ const reorderBacklog = async () => {
 	console.log(
 		`\n🔀 Reordering ${String(sortedItems.length)} items in project...`
 	);
-	await reorderItems(sortedItems);
+
+	// Determine the anchor: the last project item (any repo / status) that is
+	// not part of the backlog we're about to reorder. The backlog is chained
+	// after it so it always sits below the In Progress / Ready for Review etc.
+	// items instead of jumping to the top of the project.
+	const backlogItemIds = new Set(sortedItems.map((item) => item.itemId));
+	const allProjectItems = await fetchProjectItems(
+		() => true,
+		'Locating backlog anchor',
+		false
+	);
+	let anchorItemId: string | undefined;
+	for (const projectItem of allProjectItems) {
+		if (!backlogItemIds.has(projectItem.id)) {
+			anchorItemId = projectItem.id;
+		}
+	}
+
+	await reorderItems(sortedItems, anchorItemId);
 
 	console.log(
 		`\n\n✅ Done! Reordered ${String(sortedItems.length)} items in the backlog.`
