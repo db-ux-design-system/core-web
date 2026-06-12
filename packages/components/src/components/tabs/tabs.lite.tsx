@@ -250,24 +250,22 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
-		_cachedTabs: [] as DBSimpleTabProps[],
-
-		// Parses the tabs prop and caches the result in state._cachedTabs.
-		// Called in onMount and onUpdate([props.tabs]) so the JSX can reference
-		// state._cachedTabs without re-parsing on every render.
-		_updateCachedTabs() {
+		// Parses the tabs prop into a usable array. Side-effect-free so it can be
+		// called directly during render (SSR-safe): the server output then
+		// contains the tablist + panels instead of an empty shell that only
+		// appears after onMount on the client. Mitosis has no local JSX
+		// variables, so this is called from the Show/For below.
+		getTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
-					state._cachedTabs = JSON.parse(props.tabs as string);
+					return JSON.parse(props.tabs as string);
 				} else if (props.tabs) {
-					state._cachedTabs = props.tabs as DBSimpleTabProps[];
-				} else {
-					state._cachedTabs = [];
+					return props.tabs as DBSimpleTabProps[];
 				}
 			} catch (error) {
 				console.error(error);
-				state._cachedTabs = [];
 			}
+			return [];
 		},
 
 		// Returns the live tablist DOM element by querying _ref.
@@ -469,9 +467,17 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	});
 
-	// Re-cache parsed tabs when the prop changes (e.g. dynamic tab lists)
+	// Re-initialize when the declarative tabs prop changes (e.g. dynamic tab
+	// lists). getTabs() is evaluated directly in render, so no caching is needed;
+	// we just re-wire ids/ARIA and selection for the newly rendered DOM. The
+	// MutationObserver covers async/structural changes; this makes prop-driven
+	// updates deterministic across frameworks.
 	onUpdate(() => {
-		state._updateCachedTabs();
+		if (state.initialized) {
+			state.initTabList();
+			state.initTabs();
+			state.syncSelection(state._activeIndex);
+		}
 	}, [props.tabs]);
 
 	// Reset IDs when the id prop changes
@@ -587,7 +593,6 @@ export default function DBTabs(props: DBTabsProps) {
 		// 3. Set initial state synchronously
 		state._activeIndex = startIndex;
 		state.initialized = true;
-		state._updateCachedTabs();
 
 		// 4. Init tablist + tabs after paint, then apply the initial selection
 		// explicitly with the locally computed startIndex. Doing it here (instead
@@ -662,9 +667,9 @@ export default function DBTabs(props: DBTabsProps) {
 					{props.scrollStartLabel}
 				</DBButton>
 			</Show>
-			<Show when={state._cachedTabs.length} else={props.children}>
+			<Show when={state.getTabs().length} else={props.children}>
 				<DBTabList>
-					<For each={state._cachedTabs}>
+					<For each={state.getTabs()}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.label + 'tab-item' + index}
@@ -680,7 +685,7 @@ export default function DBTabs(props: DBTabsProps) {
 						)}
 					</For>
 				</DBTabList>
-				<For each={state._cachedTabs}>
+				<For each={state.getTabs()}>
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.label + 'tab-panel' + index}

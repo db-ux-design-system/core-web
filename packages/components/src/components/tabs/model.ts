@@ -113,8 +113,7 @@ export type DBTabsDefaultState = {
 	showScrollEnd?: boolean;
 	_isRtl: () => boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	_cachedTabs: DBSimpleTabProps[];
-	_updateCachedTabs: () => void;
+	getTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	_teardownScrollHandlers: () => void;
 	initTabs: () => void;
