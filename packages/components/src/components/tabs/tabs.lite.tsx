@@ -384,11 +384,9 @@ export default function DBTabs(props: DBTabsProps) {
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
 		initTabs() {
-			// Resolve base id from props first, fall back to committed state id; bail out if none yet (avoids "undefined-*" ids).
 			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
 			if (!baseId) return;
 
-			// When the base id changed, rewrite generated ids only; consumer-supplied ids are always preserved.
 			const previousBaseId = state._appliedBaseId;
 			const baseIdChanged = !!previousBaseId && previousBaseId !== baseId;
 
@@ -404,7 +402,6 @@ export default function DBTabs(props: DBTabsProps) {
 					tabListEl.querySelectorAll('[role="tab"]')
 				);
 
-				// Cache references for fast access in syncSelection, activateTab, handleClick, handleKeyDown
 				state._tabButtons = buttons;
 				state._tabPanels = panels;
 
@@ -414,7 +411,6 @@ export default function DBTabs(props: DBTabsProps) {
 					const tabId = `${baseId}-tab-${index}`;
 					const panelId = `${baseId}-tab-panel-${index}`;
 
-					// Generated tab id from the previous base id; only those are rewritten on base id change.
 					const wasGeneratedTabId =
 						baseIdChanged &&
 						button.id === `${previousBaseId}-tab-${index}`;
@@ -428,7 +424,6 @@ export default function DBTabs(props: DBTabsProps) {
 							baseIdChanged &&
 							panel.id === `${previousBaseId}-tab-panel-${index}`;
 
-						// Only wire aria-controls when a matching panel exists, otherwise the tab references a non-existent id.
 						const ariaControls =
 							button.getAttribute('aria-controls');
 						if (
@@ -456,7 +451,6 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 				});
 
-				// Remember the base id we just wired everything to.
 				state._appliedBaseId = baseId;
 			}
 		}
@@ -552,10 +546,8 @@ export default function DBTabs(props: DBTabsProps) {
 	]);
 
 	onMount(() => {
-		// Compute derived IDs
 		state.resetIds();
 
-		// Calculate final start index synchronously to avoid race conditions.
 		let startIndex = 0;
 
 		if (props.activeIndex !== undefined) {
@@ -568,7 +560,6 @@ export default function DBTabs(props: DBTabsProps) {
 			startIndex = -1;
 		}
 
-		// Deep linking via URL hash; uses props.id since state._id isn't committed synchronously in React.
 		const baseId = state.getBaseId();
 		if (typeof window !== 'undefined' && window.location.hash && baseId) {
 			const hashId = window.location.hash.substring(1);
@@ -584,11 +575,9 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		}
 
-		// Set initial state synchronously.
 		state._activeIndex = startIndex;
 		state.initialized = true;
 
-		// Init tablist + tabs after paint with the locally computed startIndex; deterministic across frameworks.
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				state.initTabList();
@@ -608,7 +597,6 @@ export default function DBTabs(props: DBTabsProps) {
 				});
 			});
 
-			// Observe the whole tabs container so async-rendered tablist/buttons still reach initTabs/syncSelection. childList/subtree only, no attributes (avoids loops).
 			observer.observe(_ref, {
 				childList: true,
 				subtree: true
