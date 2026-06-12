@@ -44,4 +44,4 @@ runs:
     - name: ⏬ Install Playwright's dependencies
       shell: bash
       if: steps.playwright-cache.outputs.cache-hit != 'true'
-      run: npx --no -- playwright install --with-deps ${{ env.BROWSERS }}
+      run: pnpm exec playwright install --with-deps ${{ env.BROWSERS }}
