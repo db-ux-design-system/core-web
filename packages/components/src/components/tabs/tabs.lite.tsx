@@ -340,19 +340,13 @@ export default function DBTabs(props: DBTabsProps) {
 					if (props.behavior === 'arrows') {
 						state.evaluateScrollButtons(container);
 
-						const _listener = state._scrollListener;
-						if (_listener && container) {
-							container.removeEventListener(
-								'scroll',
-								_listener.fn
-							);
-							state._scrollListener = null;
+						// Set up the scroll listener only once to avoid an Angular effect loop (initTabList reads + writes _scrollListener).
+						if (!state._scrollListener) {
+							const onScroll = () =>
+								state.evaluateScrollButtons(container);
+							state._scrollListener = { fn: onScroll };
+							container.addEventListener('scroll', onScroll);
 						}
-
-						const onScroll = () =>
-							state.evaluateScrollButtons(container);
-						state._scrollListener = { fn: onScroll };
-						container.addEventListener('scroll', onScroll);
 
 						if (!state._resizeObserver) {
 							const observer = new ResizeObserver(() => {
@@ -456,13 +450,13 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	});
 
-	// Re-initialize when the declarative tabs prop changes (e.g. dynamic tab
-	// lists). getTabs() is evaluated directly in render, so no caching is needed;
-	// we just re-wire ids/ARIA and selection for the newly rendered DOM. The
-	// MutationObserver covers async/structural changes; this makes prop-driven
-	// updates deterministic across frameworks.
+	// Re-initialize only when the declarative tabs prop is actually set and
+	// changes. getTabs() renders directly, so no caching is needed; we just
+	// re-wire ids/ARIA + selection for the freshly rendered DOM. Guarded by
+	// props.tabs so composition-API usage (children only) relies on the
+	// MutationObserver instead, avoiding a re-init feedback loop in Angular.
 	onUpdate(() => {
-		if (state.initialized) {
+		if (state.initialized && props.tabs) {
 			state.initTabList();
 			state.initTabs();
 			state.syncSelection(state._activeIndex);
