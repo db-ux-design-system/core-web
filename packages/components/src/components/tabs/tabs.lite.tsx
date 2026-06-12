@@ -384,14 +384,11 @@ export default function DBTabs(props: DBTabsProps) {
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
 		initTabs() {
-			// Resolve base id from props first, fall back to committed state id.
-			// Bail out if none yet (state._id not committed in React/Vue) to avoid colliding "undefined-*" ids.
+			// Resolve base id from props first, fall back to committed state id; bail out if none yet (avoids "undefined-*" ids).
 			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
 			if (!baseId) return;
 
-			// When the base id changed after a previous initialization, generated
-			// ids/aria-controls from the old base must be rewritten. Consumer-supplied
-			// ids (that don't follow our generated pattern) are always preserved.
+			// When the base id changed, rewrite generated ids only; consumer-supplied ids are always preserved.
 			const previousBaseId = state._appliedBaseId;
 			const baseIdChanged = !!previousBaseId && previousBaseId !== baseId;
 
@@ -417,8 +414,7 @@ export default function DBTabs(props: DBTabsProps) {
 					const tabId = `${baseId}-tab-${index}`;
 					const panelId = `${baseId}-tab-panel-${index}`;
 
-					// A previously generated tab id follows the old base pattern;
-					// only such ids are rewritten when the base id changes.
+					// Generated tab id from the previous base id; only those are rewritten on base id change.
 					const wasGeneratedTabId =
 						baseIdChanged &&
 						button.id === `${previousBaseId}-tab-${index}`;
@@ -432,8 +428,7 @@ export default function DBTabs(props: DBTabsProps) {
 							baseIdChanged &&
 							panel.id === `${previousBaseId}-tab-panel-${index}`;
 
-						// Only wire aria-controls when a matching panel exists,
-						// otherwise the tab would reference a non-existent id.
+						// Only wire aria-controls when a matching panel exists, otherwise the tab references a non-existent id.
 						const ariaControls =
 							button.getAttribute('aria-controls');
 						if (
@@ -560,7 +555,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// Compute derived IDs
 		state.resetIds();
 
-		// 1. Calculate final start index synchronously to avoid race conditions
+		// Calculate final start index synchronously to avoid race conditions.
 		let startIndex = 0;
 
 		if (props.activeIndex !== undefined) {
@@ -573,8 +568,7 @@ export default function DBTabs(props: DBTabsProps) {
 			startIndex = -1;
 		}
 
-		// 2. Support deep linking via URL hash. Requires an explicit id, derived
-		// from props because state._id is not committed synchronously in React.
+		// Deep linking via URL hash; uses props.id since state._id isn't committed synchronously in React.
 		const baseId = state.getBaseId();
 		if (typeof window !== 'undefined' && window.location.hash && baseId) {
 			const hashId = window.location.hash.substring(1);
@@ -590,15 +584,11 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		}
 
-		// 3. Set initial state synchronously
+		// Set initial state synchronously.
 		state._activeIndex = startIndex;
 		state.initialized = true;
 
-		// 4. Init tablist + tabs after paint, then apply the initial selection
-		// explicitly with the locally computed startIndex. Doing it here (instead
-		// of relying solely on the onUpdate chain) makes the initial state
-		// deterministic across frameworks, where state updates and watcher/effect
-		// ordering differ. The onUpdate hooks still handle later prop changes.
+		// Init tablist + tabs after paint with the locally computed startIndex; deterministic across frameworks.
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				state.initTabList();
@@ -618,13 +608,7 @@ export default function DBTabs(props: DBTabsProps) {
 				});
 			});
 
-			// Observe the whole tabs container (not just the tablist): when `tabs`
-			// is initially empty/undefined and populated later, or tabs are added
-			// asynchronously, the tablist itself appears after mount. Watching the
-			// container catches that so the new buttons/panels still reach
-			// initTabs/syncSelection. Only childList/subtree is observed (no
-			// attributes), so the attribute writes from initTabs/syncSelection
-			// don't retrigger the observer and cause an infinite loop.
+			// Observe the whole tabs container so async-rendered tablist/buttons still reach initTabs/syncSelection. childList/subtree only, no attributes (avoids loops).
 			observer.observe(_ref, {
 				childList: true,
 				subtree: true
