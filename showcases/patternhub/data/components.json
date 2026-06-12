@@ -151,6 +151,10 @@
 				"name": "control-panel-mobile"
 			},
 			{
+				"label": "DBShell",
+				"name": "shell"
+			},
+			{
 				"label": "DBSection",
 				"name": "section"
 			},

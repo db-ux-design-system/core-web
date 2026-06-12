@@ -30,6 +30,8 @@
 		"**/test/**",
 		"**/tsconfig.json",
 		"**/e2e/**/*.spec.ts",
+		"**/showcases/angular-showcase/src/app/app.component.html",
+		"**/packages/components/configs/plugins/**/slots.cjs",
 		"**/packages/components/scripts/post-build/components.ts",
 		"**/packages/components/src/components/**/*.spec.tsx",
 		"**/packages/components/src/components/**/index.html",

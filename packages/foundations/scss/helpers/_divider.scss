@@ -34,6 +34,7 @@
 			inset-inline: 0;
 
 			@include forced-color {
+				/* stylelint-disable-next-line db-ux/use-border-color */
 				border-block-start: variables.$db-border-width-3xs solid
 					var(--db-divider-bg-color);
 			}
@@ -44,6 +45,7 @@
 			inset-inline: 0;
 
 			@include forced-color {
+				/* stylelint-disable-next-line db-ux/use-border-color */
 				border-block-end: variables.$db-border-width-3xs solid
 					var(--db-divider-bg-color);
 			}
@@ -54,6 +56,7 @@
 			inset-block: 0;
 
 			@include forced-color {
+				/* stylelint-disable-next-line db-ux/use-border-color */
 				border-inline-start: variables.$db-border-width-3xs solid
 					var(--db-divider-bg-color);
 			}
@@ -64,6 +67,7 @@
 			inset-block: 0;
 
 			@include forced-color {
+				/* stylelint-disable-next-line db-ux/use-border-color */
 				border-inline-end: variables.$db-border-width-3xs solid
 					var(--db-divider-bg-color);
 			}

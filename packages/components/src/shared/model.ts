@@ -757,7 +757,7 @@ export type ControlPanelProps = {
 	primaryActions?: any;
 	/**
 	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
-	 * Desktop: Shown seperated by divider at the end of the control-panel-desktop
+	 * Desktop: Shown separated by divider at the end of the control-panel-desktop
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
 	secondaryActions?: any;
