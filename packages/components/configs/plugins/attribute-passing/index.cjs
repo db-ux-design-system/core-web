@@ -17,9 +17,11 @@ module.exports = () => ({
 				filePath.includes('showcase.lite') ||
 				filePath.includes('figma.lite') ||
 				filePath.includes('agent.lite') ||
-				// Exclude table-body and table-row to make sure the mobile list works as expected
+				// Exclude table-body, table-row, table-data-cell, table-header-cell to make sure the mobile list works as expected
 				filePath.includes('table-body') ||
-				filePath.includes('table-row');
+				filePath.includes('table-row') ||
+				filePath.includes('table-data-cell') ||
+				filePath.includes('table-header-cell');
 
 			if (['angular', 'stencil'].includes(target) && !skipObserver) {
 				const componentTagName = `db-${dashCase(name.replace('DB', ''))}`;
