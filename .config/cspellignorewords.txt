@@ -203,9 +203,10 @@ ghsas
 rrrm
 GHSA
 browserslistrc
+unreviewed
+notext
+subcomponent
 # Usernames
 mfranzke
 michaelmkraus
 nmerget
-notext
-subcomponent
