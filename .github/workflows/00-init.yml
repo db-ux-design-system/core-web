@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
           fetch-tags: false
@@ -69,7 +69,7 @@ jobs:
 
       - name: 🛤 Extract name and base
         id: extract-name-and-base
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           GITHUB_REF: ${{ github.ref }}
           RELEASE: ${{ inputs.release }}
@@ -124,7 +124,7 @@ jobs:
       version: ${{ steps.getVersion.outputs.version }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
