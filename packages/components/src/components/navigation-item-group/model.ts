@@ -12,7 +12,6 @@ import {
 	NavigationBehaviorState,
 	NavigationItemGroupVariant,
 	ShowIconProps,
-	type WidthProps,
 	type WrapProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
