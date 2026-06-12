@@ -135,14 +135,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 					delete parent.dataset['hasTooltip'];
 				}
 				if (state._id) {
-					if (
-						parent.getAttribute('aria-labelledby') === state._id
-					) {
+					if (parent.getAttribute('aria-labelledby') === state._id) {
 						parent.removeAttribute('aria-labelledby');
 					}
-					if (
-						parent.getAttribute('aria-describedby') === state._id
-					) {
+					if (parent.getAttribute('aria-describedby') === state._id) {
 						parent.removeAttribute('aria-describedby');
 					}
 				}
