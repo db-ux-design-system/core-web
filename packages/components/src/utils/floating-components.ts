@@ -93,6 +93,12 @@ export const handleFixedDropdown = (
 	const fullWidth = element.dataset['width'] === 'full';
 	const autoWidth = element.dataset['width'] === 'auto';
 
+	// Reset width-specific inline styles first so a previous mode (e.g. "auto")
+	// doesn't leave a stale minInlineSize/inlineSize behind when the dropdown
+	// width changes at runtime.
+	element.style.inlineSize = '';
+	element.style.minInlineSize = '';
+
 	if (fullWidth) {
 		element.style.inlineSize = `${width}px`;
 	} else if (autoWidth) {
