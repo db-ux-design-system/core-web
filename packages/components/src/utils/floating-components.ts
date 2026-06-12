@@ -106,7 +106,9 @@ export const handleFixedDropdown = (
 	// limit would otherwise drop the side margins or overflow horizontally.
 	let autoMinWidth = width;
 	if (autoWidth) {
-		const maxInlineSize = parseFloat(getComputedStyle(element).maxInlineSize);
+		const maxInlineSize = parseFloat(
+			getComputedStyle(element).maxInlineSize
+		);
 		if (!isNaN(maxInlineSize) && maxInlineSize > 0) {
 			autoMinWidth = Math.min(width, maxInlineSize);
 		}
