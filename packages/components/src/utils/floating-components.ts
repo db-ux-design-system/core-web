@@ -99,18 +99,29 @@ export const handleFixedDropdown = (
 	element.style.inlineSize = '';
 	element.style.minInlineSize = '';
 
+	// For auto width the dropdown is forced to be at least as wide as the trigger,
+	// but clamped to its own max-inline-size: CSS lets a min-inline-size override
+	// the max when the minimum is larger, so a trigger wider than the viewport
+	// limit would otherwise drop the side margins or overflow horizontally.
+	let autoMinWidth = width;
+	if (autoWidth) {
+		const maxInlineSize = parseFloat(getComputedStyle(element).maxInlineSize);
+		if (!isNaN(maxInlineSize) && maxInlineSize > 0) {
+			autoMinWidth = Math.min(width, maxInlineSize);
+		}
+	}
+
 	if (fullWidth) {
 		element.style.inlineSize = `${width}px`;
 	} else if (autoWidth) {
-		element.style.minInlineSize = `${width}px`;
+		element.style.minInlineSize = `${autoMinWidth}px`;
 	}
 
-	// For auto width the dropdown is forced to be at least as wide as the trigger
-	// (minInlineSize). getFloatingProps measured childWidth before that minimum
-	// was applied, so use the effective width here to keep end-aligned dropdowns
+	// getFloatingProps measured childWidth before the auto minimum was applied,
+	// so use the effective (clamped) width here to keep end-aligned dropdowns
 	// from extending past the trigger's right edge.
 	const effectiveChildWidth = autoWidth
-		? Math.max(childWidth, width)
+		? Math.max(childWidth, autoMinWidth)
 		: childWidth;
 
 	if (
