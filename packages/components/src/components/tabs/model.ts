@@ -105,6 +105,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 
 export type DBTabsDefaultState = {
 	_id?: string;
+	_appliedBaseId?: string;
 	resetIds: () => void;
 	_getScrollContainer: () => Element | null;
 	scroll: (toStart?: boolean) => void;

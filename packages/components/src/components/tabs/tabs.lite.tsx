@@ -40,6 +40,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 		_id: undefined,
 
+		_appliedBaseId: undefined,
+
 		resetIds: () => {
 			state._id = props.id ?? props.propOverrides?.id ?? `tabs-${uuid()}`;
 		},
@@ -389,6 +391,12 @@ export default function DBTabs(props: DBTabsProps) {
 			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
 			if (!baseId) return;
 
+			// When the base id changed after a previous initialization, generated
+			// ids/aria-controls from the old base must be rewritten. Consumer-supplied
+			// ids (that don't follow our generated pattern) are always preserved.
+			const previousBaseId = state._appliedBaseId;
+			const baseIdChanged = !!previousBaseId && previousBaseId !== baseId;
+
 			if (_ref) {
 				const tabListEl = state._getScrollContainer();
 				const panels = Array.from<HTMLElement>(
@@ -408,30 +416,54 @@ export default function DBTabs(props: DBTabsProps) {
 				buttons.forEach((button: HTMLElement, index: number) => {
 					const panel = panels[index];
 
-					const tabId = button.id || `${baseId}-tab-${index}`;
-					const panelId = panel?.id || `${baseId}-tab-panel-${index}`;
+					const tabId = `${baseId}-tab-${index}`;
+					const panelId = `${baseId}-tab-panel-${index}`;
 
-					if (!button.id) {
+					// A previously generated tab id follows the old base pattern;
+					// only such ids are rewritten when the base id changes.
+					const wasGeneratedTabId =
+						baseIdChanged &&
+						button.id === `${previousBaseId}-tab-${index}`;
+
+					if (!button.id || wasGeneratedTabId) {
 						button.id = tabId;
 					}
 
 					if (panel) {
+						const wasGeneratedPanelId =
+							baseIdChanged &&
+							panel.id === `${previousBaseId}-tab-panel-${index}`;
+
 						// Only wire aria-controls when a matching panel exists,
 						// otherwise the tab would reference a non-existent id.
-						if (!button.getAttribute('aria-controls')) {
+						const ariaControls =
+							button.getAttribute('aria-controls');
+						if (
+							!ariaControls ||
+							(baseIdChanged &&
+								ariaControls ===
+									`${previousBaseId}-tab-panel-${index}`)
+						) {
 							button.setAttribute('aria-controls', panelId);
 						}
-						if (!panel.id) {
+						if (!panel.id || wasGeneratedPanelId) {
 							panel.id = panelId;
 						}
+						const labelledBy = panel.getAttribute('aria-labelledby');
 						if (
-							!panel.getAttribute('aria-label') &&
-							!panel.getAttribute('aria-labelledby')
+							(!labelledBy ||
+								(baseIdChanged &&
+									labelledBy ===
+										`${previousBaseId}-tab-${index}`)) &&
+							!panel.getAttribute('aria-label')
 						) {
 							panel.setAttribute('aria-labelledby', tabId);
 						}
 					}
 				});
+
+				// Remember the base id we just wired everything to.
+				state._appliedBaseId = baseId;
 			}
 		}
 	});
