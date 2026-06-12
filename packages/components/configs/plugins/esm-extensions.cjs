@@ -45,18 +45,20 @@ const resolveEsmPath = (importPath, fromFile) => {
 		return `${importPath}.js`;
 	}
 
-	// Vue single-file components are emitted with an explicit `.vue` extension
-	// in the import already (handled by the early-return above). A barrel that
-	// re-exports `./<name>` (without extension) pointing at a `<name>.vue`
-	// file is left untouched: Vite/vue-tsc resolve `.vue` natively, and there
-	// is no `.js` counterpart to point at.
+	// Vue single-file components: a barrel that re-exports `./<name>` (without
+	// extension) pointing at a `<name>.vue` file gets the `.vue` extension
+	// appended directly. This avoids needing a separate post-build
+	// replaceInFileSync step and keeps all extension resolution in one place.
+	if (fs.existsSync(`${absolute}.vue`)) {
+		return `${importPath}.vue`;
+	}
+
 	if (
-		fs.existsSync(`${absolute}.vue`) ||
-		(fs.existsSync(absolute) &&
-			fs.statSync(absolute).isDirectory() &&
-			fs.existsSync(path.join(absolute, 'index.vue')))
+		fs.existsSync(absolute) &&
+		fs.statSync(absolute).isDirectory() &&
+		fs.existsSync(path.join(absolute, 'index.vue'))
 	) {
-		return importPath;
+		return `${importPath}/index.vue`;
 	}
 
 	// Could not resolve. Leave the import untouched, but surface it during the

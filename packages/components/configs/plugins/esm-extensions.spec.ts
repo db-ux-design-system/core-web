@@ -74,11 +74,11 @@ describe('resolveEsmPath', () => {
 		);
 	});
 
-	it('leaves a barrel re-export pointing at a .vue file untouched without warning', () => {
+	it('appends .vue to a barrel re-export pointing at a .vue file without warning', () => {
 		const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 		const from = writeFile('src/components/accordion/index.ts');
 		writeFile('src/components/accordion/accordion.vue');
-		expect(resolveEsmPath('./accordion', from)).toBe('./accordion');
+		expect(resolveEsmPath('./accordion', from)).toBe('./accordion.vue');
 		expect(warn).not.toHaveBeenCalled();
 	});
 
