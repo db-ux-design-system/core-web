@@ -587,7 +587,26 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 
 		if (_ref) {
-			const observer = new MutationObserver(() => {
+			const observer = new MutationObserver((mutations) => {
+				const isTabNode = (node: Node) => {
+					const element = node as Element;
+					return (
+						!!element.matches &&
+						(element.matches('[role="tab"], [role="tabpanel"]') ||
+							!!element.querySelector?.(
+								'[role="tab"], [role="tabpanel"]'
+							))
+					);
+				};
+
+				const hasTabChange = mutations.some(
+					(mutation) =>
+						Array.from(mutation.addedNodes).some(isTabNode) ||
+						Array.from(mutation.removedNodes).some(isTabNode)
+				);
+
+				if (!hasTabChange) return;
+
 				const rafId = state._pendingRafId;
 				if (rafId !== null) cancelAnimationFrame(rafId);
 				state._pendingRafId = requestAnimationFrame(() => {
