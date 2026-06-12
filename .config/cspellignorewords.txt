@@ -199,6 +199,9 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
 # Usernames
 mfranzke
