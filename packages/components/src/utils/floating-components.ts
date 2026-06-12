@@ -105,6 +105,14 @@ export const handleFixedDropdown = (
 		element.style.minInlineSize = `${width}px`;
 	}
 
+	// For auto width the dropdown is forced to be at least as wide as the trigger
+	// (minInlineSize). getFloatingProps measured childWidth before that minimum
+	// was applied, so use the effective width here to keep end-aligned dropdowns
+	// from extending past the trigger's right edge.
+	const effectiveChildWidth = autoWidth
+		? Math.max(childWidth, width)
+		: childWidth;
+
 	if (
 		correctedPlacement === 'top' ||
 		correctedPlacement === 'bottom' ||
@@ -116,7 +124,7 @@ export const handleFixedDropdown = (
 		correctedPlacement === 'top-end' ||
 		correctedPlacement === 'bottom-end'
 	) {
-		element.style.insetInlineStart = `${right - childWidth}px`;
+		element.style.insetInlineStart = `${right - effectiveChildWidth}px`;
 	}
 
 	if (correctedPlacement?.startsWith('top')) {
