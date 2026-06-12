@@ -449,7 +449,8 @@ export default function DBTabs(props: DBTabsProps) {
 						if (!panel.id || wasGeneratedPanelId) {
 							panel.id = panelId;
 						}
-						const labelledBy = panel.getAttribute('aria-labelledby');
+						const labelledBy =
+							panel.getAttribute('aria-labelledby');
 						if (
 							(!labelledBy ||
 								(baseIdChanged &&
