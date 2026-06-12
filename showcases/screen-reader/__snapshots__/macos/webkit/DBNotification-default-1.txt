@@ -1,1 +1,1 @@
-["Headline","functional","Close button","end of article"]
+["(Default) False","end of article","article","True"]
