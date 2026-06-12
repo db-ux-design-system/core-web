@@ -171,7 +171,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
-				// If the tooltip moved to a new parent (rare DOM rearrangement), tear down the old binding first.
 				if (
 					state._listenersAttached &&
 					state._attachedParent !== parent
@@ -227,8 +226,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 		}
 	}, [_ref, state.initialized, state._id]);
 
+	// Remove parent listeners/observers on unmount so stale closures don't fire after the tooltip is gone.
 	onUnMount(() => {
-		// Remove parent listeners/observers so stale closures don't fire after the tooltip is unmounted.
 		state._detachListeners();
 	});
 
