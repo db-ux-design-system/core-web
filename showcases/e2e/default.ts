@@ -51,7 +51,7 @@ export const hasWebComponentSyntax = (showcase?: string): boolean => {
 };
 
 export const waitForDBShell = async (page: Page) => {
-	const dbShell = page.locator('.db-shell');
+	const dbShell = page.locator('.db-shell:not([data-test-id])');
 	// We wait till db-shell fully loaded
 	await dbShell.evaluate((element) => {
 		element.style.transition = 'none';

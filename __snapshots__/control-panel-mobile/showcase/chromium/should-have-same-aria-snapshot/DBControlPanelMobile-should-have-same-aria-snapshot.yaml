@@ -1,0 +1,55 @@
+- main:
+  - heading "DBControlPanelMobile" [level=1]
+  - link "Density"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - link "Position"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - link "Variant"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - navigation "Flat Icon":
+    - list:
+      - listitem:
+        - link "Flat Icon"
+      - listitem:
+        - link "Flat Icon disabled" [disabled]
+  - navigation "Flat Icon No Text":
+    - list:
+      - listitem:
+        - link "Flat Icon No Text"
+      - listitem:
+        - link "Flat Icon No Text disabled" [disabled]
+  - link "Examples"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel DBControlPanel
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "Search"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - button "BurgerMenu"
+  - link "Examples Bottom"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel DBControlPanel
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "Search"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - text: DBControlPanel
+  - button "BurgerMenu"
+  - button "BurgerMenu"

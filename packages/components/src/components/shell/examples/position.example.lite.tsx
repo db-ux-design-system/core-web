@@ -1,15 +1,15 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBButton from '../../button/button.lite';
+import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
 import DBControlPanelDesktop from '../../control-panel-desktop/control-panel-desktop.lite';
+import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
+import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
+import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
+import DBLink from '../../link/link.lite';
+import DBNavigationItem from '../../navigation-item/navigation-item.lite';
+import DBNavigation from '../../navigation/navigation.lite';
 import DBShell from '../shell.lite';
 import { StorybookShellArgTypes } from './_shell.arg.types';
-import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
-import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
-import DBLink from '../../link/link.lite';
-import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
-import DBButton from '../../button/button.lite';
-import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
-import DBNavigation from '../../navigation/navigation.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 
 useMetadata({
 	storybookTitle: 'Position',
@@ -22,6 +22,8 @@ export default function ShellPosition() {
 		<Fragment>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
+					mainLabel="shell-position-top"
+					data-test-id="shell-position-top"
 					controlPanelDesktopPosition="top"
 					controlPanelDesktop={
 						<DBControlPanelDesktop
@@ -68,7 +70,7 @@ export default function ShellPosition() {
 									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBNavigation>
+							<DBNavigation aria-label="shell-position-top">
 								<DBNavigationItem
 									icon="x_placeholder"
 									tooltip="Item">
@@ -88,6 +90,8 @@ export default function ShellPosition() {
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
+					mainLabel="shell-position-left"
+					data-test-id="shell-position-left"
 					controlPanelDesktopPosition="left"
 					controlPanelDesktop={
 						<DBControlPanelDesktop
@@ -134,7 +138,7 @@ export default function ShellPosition() {
 									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBNavigation>
+							<DBNavigation aria-label="shell-position-left">
 								<DBNavigationItem
 									icon="x_placeholder"
 									tooltip="Item">

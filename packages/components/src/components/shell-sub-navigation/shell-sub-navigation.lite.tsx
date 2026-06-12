@@ -57,7 +57,7 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 	});
 
 	return (
-		<div
+		<aside
 			ref={_ref}
 			id={props.id ?? state._id}
 			data-open={getBooleanAsString(state._open)}
@@ -76,6 +76,6 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 					</DBTooltip>
 				</DBButton>
 			</div>
-		</div>
+		</aside>
 	);
 }

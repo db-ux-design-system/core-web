@@ -41,6 +41,11 @@ export type DBShellDefaultProps = {
 	mainClass?: string;
 
 	/**
+	 * Adds `aria-label` to `<main>` element
+	 */
+	mainLabel?: string;
+
+	/**
 	 * The slot can be used for React to set a subNavigation.
 	 */
 	subNavigation?: any;
