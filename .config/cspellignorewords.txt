@@ -205,9 +205,7 @@ GHSA
 browserslistrc
 unreviewed
 notext
-subcomponent
 prebundle
-notext
 subcomponent
 # Usernames
 mfranzke
