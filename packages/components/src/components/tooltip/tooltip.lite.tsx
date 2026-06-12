@@ -31,11 +31,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
-		_listenersAttached: false,
-		_attachedParent: null,
-		_enterListener: undefined,
-		_leaveListener: undefined,
-		_keyDownListener: undefined,
+		_boundListeners: [],
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -101,10 +97,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 				props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid();
 		},
 
-		// Detaches listeners/observers/data attributes added by this tooltip from its parent. Used by onUnMount and when re-attaching to a different parent.
+		// Detaches all listeners/observers added by this tooltip. Used by onUnMount to avoid stale closures firing after the tooltip is gone.
 		_detachListeners: () => {
-			const parent = state._attachedParent;
-
 			const callbackId = state._documentScrollListenerCallbackId;
 			if (callbackId) {
 				new DocumentScrollListener().removeCallback(callbackId);
@@ -114,40 +108,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 			state._observer?.disconnect();
 			state._observer = undefined;
 
-			if (parent && state._listenersAttached) {
-				const enter = state._enterListener;
-				const leave = state._leaveListener;
-				const keyDown = state._keyDownListener;
-				if (enter) {
-					parent.removeEventListener('mouseenter', enter);
-					parent.removeEventListener('focusin', enter);
-				}
-				if (leave) {
-					parent.removeEventListener('mouseleave', leave);
-					parent.removeEventListener('focusout', leave);
-				}
-				if (keyDown) {
-					parent.removeEventListener('keydown', keyDown);
-				}
-
-				if (parent.dataset['hasTooltip']) {
-					delete parent.dataset['hasTooltip'];
-				}
-				if (state._id) {
-					if (parent.getAttribute('aria-labelledby') === state._id) {
-						parent.removeAttribute('aria-labelledby');
-					}
-					if (parent.getAttribute('aria-describedby') === state._id) {
-						parent.removeAttribute('aria-describedby');
-					}
-				}
-			}
-
-			state._enterListener = undefined;
-			state._leaveListener = undefined;
-			state._keyDownListener = undefined;
-			state._attachedParent = null;
-			state._listenersAttached = false;
+			const bound = state._boundListeners ?? [];
+			bound.forEach((entry) => {
+				entry.parent.removeEventListener(entry.type, entry.fn);
+			});
+			state._boundListeners = [];
 		}
 	});
 
@@ -166,33 +131,28 @@ export default function DBTooltip(props: DBTooltipProps) {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
-				if (
-					state._listenersAttached &&
-					state._attachedParent !== parent
-				) {
-					state._detachListeners();
-				}
-
-				if (!state._listenersAttached) {
-					const enterListener = () => state.handleEnter(parent);
-					const leaveListener = () => state.handleLeave();
-					const keyDownListener = (event: any) =>
-						state.handleEscape(event);
-
-					state._enterListener = enterListener;
-					state._leaveListener = leaveListener;
-					state._keyDownListener = keyDownListener;
-					state._attachedParent = parent;
-					state._listenersAttached = true;
-
-					parent.addEventListener('mouseenter', enterListener);
-					parent.addEventListener('focusin', enterListener);
-					parent.addEventListener('keydown', keyDownListener);
-					parent.addEventListener('mouseleave', leaveListener);
-					parent.addEventListener('focusout', leaveListener);
-				}
-
 				state.handleAutoPlacement(parent);
+
+				const enterListener = () => state.handleEnter(parent);
+				const leaveListener = () => state.handleLeave();
+				const keyDownListener = (event: any) =>
+					state.handleEscape(event);
+
+				parent.addEventListener('mouseenter', enterListener);
+				parent.addEventListener('focusin', enterListener);
+				parent.addEventListener('keydown', keyDownListener);
+				parent.addEventListener('mouseleave', leaveListener);
+				parent.addEventListener('focusout', leaveListener);
+
+				state._boundListeners = [
+					...(state._boundListeners ?? []),
+					{ parent, type: 'mouseenter', fn: enterListener },
+					{ parent, type: 'focusin', fn: enterListener },
+					{ parent, type: 'keydown', fn: keyDownListener },
+					{ parent, type: 'mouseleave', fn: leaveListener },
+					{ parent, type: 'focusout', fn: leaveListener }
+				];
+
 				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
@@ -204,8 +164,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			if (
 				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window &&
-				!state._observer
+				'IntersectionObserver' in window
 			) {
 				state._observer = new IntersectionObserver((payload) => {
 					const entry = payload.find(
