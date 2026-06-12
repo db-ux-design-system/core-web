@@ -1,9 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {
-	DBNavigationItem,
-	NavigationContentDirective
-} from '../../../../../output/angular/src';
+import { DBNavigationItem, NavigationContentDirective } from '@components';
 import { environment } from '../../environments/environment';
 import { NavItem } from '../utils/navigation-item';
 
