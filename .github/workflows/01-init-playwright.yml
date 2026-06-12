@@ -20,7 +20,7 @@ jobs:
         os: [windows-2022, macos-14]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/pnpm-cache

@@ -27,7 +27,7 @@ jobs:
     steps:
       # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       - name: 🔄 Init Node & PNPM cache
         uses: ./.github/actions/pnpm-cache
@@ -46,7 +46,7 @@ jobs:
       - name: 🧩 Changesets Action
         id: changesets
         if: github.event_name == 'push'
-        uses: changesets/action@v1.8.0
+        uses: changesets/action@v1.9.0
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
