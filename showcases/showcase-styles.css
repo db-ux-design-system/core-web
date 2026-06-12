@@ -66,12 +66,12 @@
 			[data-control-panel-desktop-position="top"]
 		) {
 			block-size: var(--db-container-2xs);
-			inline-size: 100%
+			inline-size: 100%;
 		}
 
 		&[data-control-panel-desktop-position="left"] {
 			block-size: var(--db-container-lg);
-			inline-size: 100%
+			inline-size: 100%;
 		}
 	}
 

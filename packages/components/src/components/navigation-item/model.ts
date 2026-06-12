@@ -6,7 +6,6 @@ import type {
 	IconProps,
 	ShowIconProps,
 	TextProps,
-	WidthProps,
 	WrapProps
 } from '../../shared/model';
 
