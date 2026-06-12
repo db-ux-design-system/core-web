@@ -603,28 +603,29 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 
 		if (_ref) {
-			const tabListEl = state._getScrollContainer();
-
-			if (tabListEl) {
-				const observer = new MutationObserver(() => {
-					const rafId = state._pendingRafId;
-					if (rafId !== null) cancelAnimationFrame(rafId);
-					state._pendingRafId = requestAnimationFrame(() => {
-						state._pendingRafId = null;
-						state.initTabList();
-						state.initTabs();
-					});
+			const observer = new MutationObserver(() => {
+				const rafId = state._pendingRafId;
+				if (rafId !== null) cancelAnimationFrame(rafId);
+				state._pendingRafId = requestAnimationFrame(() => {
+					state._pendingRafId = null;
+					state.initTabList();
+					state.initTabs();
 				});
+			});
 
-				// Observe only the tablist child list (tab additions/removals).
-				// attribute changes (set by syncSelection) are not observed, preventing infinite loops.
-				observer.observe(tabListEl, {
-					childList: true,
-					subtree: true
-				});
+			// Observe the whole tabs container (not just the tablist): when `tabs`
+			// is initially empty/undefined and populated later, or tabs are added
+			// asynchronously, the tablist itself appears after mount. Watching the
+			// container catches that so the new buttons/panels still reach
+			// initTabs/syncSelection. Only childList/subtree is observed (no
+			// attributes), so the attribute writes from initTabs/syncSelection
+			// don't retrigger the observer and cause an infinite loop.
+			observer.observe(_ref, {
+				childList: true,
+				subtree: true
+			});
 
-				state._observer = observer;
-			}
+			state._observer = observer;
 		}
 	});
 
