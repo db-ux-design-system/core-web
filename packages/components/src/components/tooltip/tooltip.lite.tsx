@@ -105,10 +105,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_detachListeners: () => {
 			const parent = state._attachedParent;
 
-			if (state._documentScrollListenerCallbackId) {
-				new DocumentScrollListener().removeCallback(
-					state._documentScrollListenerCallbackId
-				);
+			const callbackId = state._documentScrollListenerCallbackId;
+			if (callbackId) {
+				new DocumentScrollListener().removeCallback(callbackId);
 				state._documentScrollListenerCallbackId = undefined;
 			}
 
