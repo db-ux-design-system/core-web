@@ -52,7 +52,7 @@ Pinning to SHAs turns a mutable, trust-based reference into an auditable, immuta
 
 ## Why npm dependencies use exact versions
 
-All npm packages in our `package.json` files are pinned to **exact versions** (no `^` or `~` range prefixes). Combined with our lockfile (`pnpm-lock.yaml`), this ensures every install resolves to the identical dependency tree.
+All npm packages in our `package.json` files are pinned to **exact versions** (no `^` or `~` range prefixes). Combined with our lockfile (`pnpm-lock.yaml`), this ensures every install resolves to the identical dependency tree. The rare places in the code places in which we don't follow this rule, are specific exceptions.
 
 ### Supply-chain security
 
