@@ -39,6 +39,12 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;
+	_listenersAttached?: boolean;
+	_attachedParent?: HTMLElement | null;
+	_enterListener?: () => void;
+	_leaveListener?: () => void;
+	_keyDownListener?: (event: any) => void;
+	_detachListeners: () => void;
 };
 
 export type DBTooltipState = DBTooltipDefaultState &
