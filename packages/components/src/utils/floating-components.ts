@@ -87,7 +87,8 @@ export const handleFixedDropdown = (
 		width,
 		right,
 		left,
-		correctedPlacement
+		correctedPlacement,
+		innerWidth
 	} = getFloatingProps(element, parent, placement);
 
 	const fullWidth = element.dataset['width'] === 'full';
@@ -124,23 +125,41 @@ export const handleFixedDropdown = (
 		? Math.max(childWidth, autoMinWidth)
 		: childWidth;
 
+	// getFloatingProps detects horizontal overflow assuming a centered element
+	// (it halves childWidth). The dropdown is actually start-aligned (inset =
+	// left), so for the wider auto dropdown re-check overflow against its full
+	// width and flip to end-alignment when it would extend past the viewport.
+	let dropdownPlacement = correctedPlacement;
 	if (
-		correctedPlacement === 'top' ||
-		correctedPlacement === 'bottom' ||
-		correctedPlacement === 'top-start' ||
-		correctedPlacement === 'bottom-start'
+		autoWidth &&
+		(dropdownPlacement === 'top' ||
+			dropdownPlacement === 'bottom' ||
+			dropdownPlacement === 'top-start' ||
+			dropdownPlacement === 'bottom-start') &&
+		left + effectiveChildWidth > innerWidth
+	) {
+		dropdownPlacement = dropdownPlacement.startsWith('top')
+			? 'top-end'
+			: 'bottom-end';
+	}
+
+	if (
+		dropdownPlacement === 'top' ||
+		dropdownPlacement === 'bottom' ||
+		dropdownPlacement === 'top-start' ||
+		dropdownPlacement === 'bottom-start'
 	) {
 		element.style.insetInlineStart = `${left}px`;
 	} else if (
-		correctedPlacement === 'top-end' ||
-		correctedPlacement === 'bottom-end'
+		dropdownPlacement === 'top-end' ||
+		dropdownPlacement === 'bottom-end'
 	) {
-		element.style.insetInlineStart = `${right - effectiveChildWidth}px`;
+		element.style.insetInlineStart = `${Math.max(right - effectiveChildWidth, 0)}px`;
 	}
 
-	if (correctedPlacement?.startsWith('top')) {
+	if (dropdownPlacement?.startsWith('top')) {
 		element.style.insetBlockStart = `${top - childHeight}px`;
-	} else if (correctedPlacement?.startsWith('bottom')) {
+	} else if (dropdownPlacement?.startsWith('bottom')) {
 		element.style.insetBlockStart = `${bottom}px`;
 	}
 
