@@ -3,10 +3,10 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ControlPanelMobileDensity from '../examples/density.example.lite';
+import ControlPanelMobileExamplesBottom from '../examples/examples-bottom.example.lite';
 import ControlPanelMobileExamples from '../examples/examples.example.lite';
 import ControlPanelMobilePosition from '../examples/position.example.lite';
 import ControlPanelMobileVariant from '../examples/variant.example.lite';
-import ControlPanelMobileExamplesBottom from '../examples/examples-bottom.example.lite';
 
 export default function ControlPanelMobileShowcase(props: PatternhubProps) {
 	return (
