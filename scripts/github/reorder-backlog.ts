@@ -606,43 +606,6 @@ const reorderBacklog = async () => {
 		true
 	);
 
-	// Backlog items with open PR → move to In Progress
-	const moveToInProgress = allCoreWebItems.filter((item) => {
-		const status = getItemStatus(item);
-		return (status === 'Backlog' || !status) && hasOpenPullRequest(item);
-	});
-
-	if (moveToInProgress.length > 0) {
-		console.log(
-			`   📤 ${String(moveToInProgress.length)} backlog items have open PRs → moving to "In Progress"`
-		);
-		if (!dryRun) {
-			for (const item of moveToInProgress) {
-				const mutation = `mutation {
-  updateProjectV2ItemFieldValue(input: {
-    projectId: "${projectId}"
-    itemId: "${item.id}"
-    fieldId: "${statusFieldId}"
-    value: { singleSelectOptionId: "${inProgressOptionId}" }
-  }) {
-    projectV2Item { id }
-  }
-}`;
-				try {
-					ghGraphql(mutation);
-				} catch {
-					console.warn(
-						`\n   ⚠️  Failed to move item #${String(item.content?.number)} to In Progress`
-					);
-				}
-			}
-		}
-	}
-
-	if (moveToInProgress.length === 0) {
-		console.log('   ✅ All statuses are in sync');
-	}
-
 	// Step 0b: Process "Waiting for Feedback" items
 	await processWaitingForFeedback(allCoreWebItems, dryRun);
 
