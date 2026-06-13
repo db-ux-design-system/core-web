@@ -43,8 +43,6 @@ const envNumber = (name: string, fallback: number): number => {
 const owner = envString('PROJECT_OWNER', 'db-ux-design-system');
 const repo = envString('PROJECT_REPO', 'core-web');
 const projectId = envString('PROJECT_ID', 'PVT_kwDOC6qtR84Ay9u1');
-// Numeric project number, used by the `gh project item-add` CLI command
-const projectNumber = envString('PROJECT_NUMBER', '6');
 
 const priorityFieldId = envNumber('PRIORITY_FIELD_ID', 32_123_222);
 const effortFieldId = envNumber('EFFORT_FIELD_ID', 32_123_225);
@@ -215,19 +213,6 @@ const getItemStatus = (item: ProjectItemNode): string | undefined => {
 	}
 
 	return undefined;
-};
-
-const hasOpenPullRequest = (item: ProjectItemNode): boolean => {
-	for (const fv of item.fieldValues.nodes) {
-		if (
-			fv.__typename === 'ProjectV2ItemFieldPullRequestValue' &&
-			fv.pullRequests?.nodes.some((pr) => pr.state === 'OPEN')
-		) {
-			return true;
-		}
-	}
-
-	return false;
 };
 
 // --- Paginated project item fetcher ---
