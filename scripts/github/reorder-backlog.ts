@@ -609,7 +609,6 @@ const reorderBacklog = async () => {
 	// Step 0b: Process "Waiting for Feedback" items
 	await processWaitingForFeedback(allCoreWebItems, dryRun);
 
-
 	// Step 1: Fetch backlog items via targeted GraphQL query
 	console.log(`\n📦 Fetching backlog items from ${repo}...`);
 	const backlogItems = await fetchProjectItems(
@@ -632,7 +631,6 @@ const reorderBacklog = async () => {
 		console.log('✅ Nothing to reorder.');
 		return;
 	}
-
 
 	// Step 2: Fetch Priority & Effort for each issue
 	console.log('\n🔍 Fetching issue fields (Priority & Effort)...');
