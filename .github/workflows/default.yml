@@ -35,6 +35,7 @@ concurrency:
       github.actor != 'dependabot[bot]' &&
       github.ref != 'refs/heads/main'
     }}
+  queue: max
 
 jobs:
   init:
