@@ -53,7 +53,6 @@ const statusFieldId = envString(
 	'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0'
 );
 const backlogOptionId = envString('BACKLOG_OPTION_ID', 'eddf8fe8');
-const inProgressOptionId = envString('IN_PROGRESS_OPTION_ID', 'c2179bcd');
 
 // Label used to flag community feedback issues
 const communityFeedbackLabel = envString(
