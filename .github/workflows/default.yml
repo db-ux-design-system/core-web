@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 # We'd like to run the queue for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
-# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again (if those two work well together).
+# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
 # NOTE: Concurrency is disabled for release events as they should always run to completion
 concurrency:
   # Creates a unique concurrency group identifier for release events using the git reference
