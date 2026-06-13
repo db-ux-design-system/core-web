@@ -16,8 +16,8 @@ on:
     types: [published]
   workflow_dispatch:
 
-# We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
-# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
+# We'd like to run the queue for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
+# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again (if those two work well together).
 # NOTE: Concurrency is disabled for release events as they should always run to completion
 concurrency:
   # Creates a unique concurrency group identifier for release events using the git reference
@@ -25,6 +25,7 @@ concurrency:
     ${{
       github.event_name == 'release' &&
       format('release-{0}', github.ref) ||
+      github.event_name == 'pull_request' &&
       github.actor == 'dependabot[bot]' &&
       'dependabot' ||
       format('{0}-{1}', github.workflow, github.ref)
@@ -35,7 +36,13 @@ concurrency:
       github.actor != 'dependabot[bot]' &&
       github.ref != 'refs/heads/main'
     }}
-  queue: max
+  queue: >-
+    ${{
+      github.event_name == 'pull_request' &&
+      github.actor == 'dependabot[bot]' &&
+      'max' ||
+      'single'
+    }}
 
 jobs:
   init:
