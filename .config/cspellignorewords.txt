@@ -205,7 +205,6 @@ GHSA
 browserslistrc
 unreviewed
 notext
-subcomponent
 prebundle
 subcomponent
 # GitHub Project IDs
