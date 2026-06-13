@@ -199,8 +199,14 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
 notext
+subcomponent
+unreviewed
+prebundle
 subcomponent
 # GitHub Project IDs
 PVTSSF
