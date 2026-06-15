@@ -17,7 +17,7 @@
   "dependencies": {
     "@db-ux/core-components": "file:../../../../../packages/components",
     "@db-ux/core-foundations": "file:../../../../../packages/foundations",
-    "@db-ux/db-theme": "5.6.2",
+    "@db-ux/db-theme": "5.7.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
     "@db-ux/v-core-components": "file:../../../../../output/vue",

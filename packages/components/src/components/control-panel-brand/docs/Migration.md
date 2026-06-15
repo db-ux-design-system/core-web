@@ -17,12 +17,14 @@
 > We removed all old properties, because control-panel-brand hasn't a wrapping anchor tag (`<a>`) anymore.
 > If you want to use a link around `db-control-panel-brand`, do it by yourself.
 
-| Before           | Status | After | Description                                                                                           |
-| ---------------- | :----: | :---: | ----------------------------------------------------------------------------------------------------- |
-| `siteNameLink`   |   ❌   |  ❌   | see Note                                                                                              |
-| `alt`            |   ❌   |  ❌   | see Note                                                                                              |
-| `anchorRef`      |   ❌   |  ❌   | see Note                                                                                              |
-| `anchorTitle`    |   ❌   |  ❌   | see Note                                                                                              |
-| `anchorRelation` |   ❌   |  ❌   | see Note                                                                                              |
-| `src`            |   ❌   |  ❌   | see Note                                                                                              |
-| `hideLogo`       |   🆕   |  ❌   | If you want a custom image, you can hide the default one and pass anything into the `children`/`slot` |
+| Before           | Status | After | Description                                                                                             |
+| ---------------- | :----: | :---: | ------------------------------------------------------------------------------------------------------- |
+| `hideLogo`       |   ❌   |  ❌   | Removed. The default logo now automatically hides if you place an `<img>` element inside the component. |
+| `icon`           |   ❌   |  ❌   | Removed. The logo is now rendered via CSS background image from the theme assets.                       |
+| `showIcon`       |   ❌   |  ❌   | Removed. See `icon`.                                                                                    |
+| `siteNameLink`   |   ❌   |  ❌   | see Note                                                                                                |
+| `alt`            |   ❌   |  ❌   | see Note                                                                                                |
+| `anchorRef`      |   ❌   |  ❌   | see Note                                                                                                |
+| `anchorTitle`    |   ❌   |  ❌   | see Note                                                                                                |
+| `anchorRelation` |   ❌   |  ❌   | see Note                                                                                                |
+| `src`            |   ❌   |  ❌   | see Note                                                                                                |

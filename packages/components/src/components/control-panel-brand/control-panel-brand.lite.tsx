@@ -18,11 +18,8 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 	return (
 		<div
 			ref={_ref}
-			data-icon={props.icon ?? DEFAULT_ICON}
-			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-control-panel-brand', props.className)}>
-			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</div>
 	);

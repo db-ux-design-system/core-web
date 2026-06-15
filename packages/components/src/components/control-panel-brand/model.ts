@@ -1,18 +1,9 @@
-import {
-	GlobalProps,
-	GlobalState,
-	IconProps,
-	ShowIconProps,
-	TextProps
-} from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBControlPanelBrandDefaultProps = {};
 
 export type DBControlPanelBrandProps = DBControlPanelBrandDefaultProps &
-	GlobalProps &
-	IconProps &
-	ShowIconProps &
-	TextProps;
+	GlobalProps;
 
 export type DBControlPanelBrandDefaultState = {};
 
