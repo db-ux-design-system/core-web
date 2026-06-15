@@ -2,14 +2,13 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
-	DBBrand,
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBControlPanelMobile,
 	DBCustomButton,
 	DBCustomSelect,
 	DBDivider,
-	DBHeader,
 	DBIcon,
 	DBInfotext,
 	DBInput,
@@ -24,15 +23,16 @@ import {
 	DBStack,
 	DBSwitch,
 	DBTabItem,
+	DBTable,
 	DBTabList,
 	DBTabPanel,
 	DBTabs,
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../output/react/src/index';
-
+} from '@components';
 import { useEffect, useState } from 'react';
+
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
@@ -123,14 +123,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'brand') {
-		return (
-			<DBBrand className={className} {...props}>
-				{resolvedContent}
-			</DBBrand>
-		);
-	}
-
 	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
@@ -152,14 +144,6 @@ const ComponentSwitch = ({
 			<DBDivider className={className} {...props}>
 				{resolvedContent}
 			</DBDivider>
-		);
-	}
-
-	if (type === 'header') {
-		return (
-			<DBHeader className={className} {...props}>
-				{resolvedContent}
-			</DBHeader>
 		);
 	}
 
@@ -355,11 +339,27 @@ const ComponentSwitch = ({
 		);
 	}
 
+	if (type === 'table') {
+		return (
+			<DBTable className={className} {...props}>
+				{resolvedContent}
+			</DBTable>
+		);
+	}
+
 	if (type === 'custom-button') {
 		return (
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'control-panel-mobile') {
+		return (
+			<DBControlPanelMobile className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelMobile>
 		);
 	}
 

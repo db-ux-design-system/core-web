@@ -97,7 +97,9 @@ export default function DBTabs(props: DBTabsProps) {
 		initTabs(init?: boolean) {
 			if (_ref) {
 				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item')
+					_ref.querySelectorAll(
+						':is(:scope > db-tab-list .db-tab-item, :scope > .db-tab-list .db-tab-item)'
+					)
 				);
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
@@ -240,7 +242,7 @@ export default function DBTabs(props: DBTabsProps) {
 			onChange={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
-					class="tabs-scroll-left"
+					class="overflow-scroll-left-button"
 					variant="ghost"
 					icon="chevron_left"
 					type="button"
@@ -276,7 +278,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
-					class="tabs-scroll-right"
+					class="overflow-scroll-right-button"
 					variant="ghost"
 					icon="chevron_right"
 					type="button"

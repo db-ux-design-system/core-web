@@ -30,7 +30,8 @@
 					"startsWith": [
 						"icons.$",
 						"component.$",
-						"form-components.$"
+						"form-components.$",
+						"calc-size("
 					],
 					"exact": ["$popover-gap-size", "$scrollbar-width"]
 				}

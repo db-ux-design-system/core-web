@@ -35,6 +35,20 @@ export interface GlobalProps {
 	propOverrides?: PropOverridesType;
 }
 
+export type StartSlotProps = {
+	/**
+	 * Slot for start content, for example add a custom component between an icon and a label.
+	 */
+	startSlot?: any;
+};
+
+export type EndSlotProps = {
+	/**
+	 * Slot for end content, for example add a custom component between an icon and a label.
+	 */
+	endSlot?: any;
+};
+
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
@@ -121,6 +135,14 @@ export type MarginProps = {
 	 */
 	margin?: MarginType;
 };
+
+export const ShellControlPanelDesktopPosition = ['top', 'left'] as const;
+export type ShellControlPanelDesktopPositionType =
+	(typeof ShellControlPanelDesktopPosition)[number];
+
+export const ShellControlPanelMobilePosition = ['top', 'bottom'] as const;
+export type ShellControlPanelMobilePositionType =
+	(typeof ShellControlPanelMobilePosition)[number];
 
 export const PlacementHorizontalList = [
 	'left',
@@ -316,11 +338,14 @@ export type ValueProps = {
 	value?: any;
 };
 
-export type BaseFormProps = {
+export type DisabledProps = {
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the form element.
+	 * The disabled attribute can be set to keep a user from clicking on the item.
 	 */
 	disabled?: boolean | string;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -330,7 +355,7 @@ export type BaseFormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
-};
+} & DisabledProps;
 
 export type CustomFormProps = {
 	/**
@@ -647,11 +672,11 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export const AlignmentList = ['start', 'center'] as const;
+export const AlignmentList = ['start', 'center', 'end'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
 	/**
-	 * Define the content alignment in full width
+	 * Define the content alignment
 	 */
 	alignment?: AlignmentType | string;
 };
@@ -720,11 +745,34 @@ export type NavigationBackButtonProps = {
 	backButtonText?: string;
 };
 
-export type AriaControlsProps = {
+export type ControlPanelProps = {
 	/**
-	 * Pass `aria-controls` to inner element
+	 * Slot to pass in the DBControlPanelBrand component
 	 */
-	controls?: string;
+	brand?: any;
+	/**
+	 * Slot to pass in a meta navigation.
+	 * Desktop: Above the regular control-panel-desktop
+	 * Mobile: Inside the drawer
+	 */
+	metaNavigation?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
+	 * Desktop: Shown next to the main-navigation
+	 * Mobile: Shown next to the control-panel-brand
+	 */
+	primaryActions?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Desktop: Shown separated by divider at the end of the control-panel-desktop
+	 * Mobile: Shown inside the drawer at the bottom.
+	 */
+	secondaryActions?: any;
+
+	/**
+	 * Adds ``aria-labelledby`` to the <nav> element.
+	 */
+	navigationLabeledBy?: string;
 };
 
 export type NoTextProps = {
@@ -737,6 +785,55 @@ export type NoTextProps = {
 export type ValueLabelType = {
 	value: string;
 	label?: string;
+};
+
+export type OverflowScrollButtonProps = {
+	/**
+	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
+	 */
+	arrowScrollDistance?: number | string;
+};
+
+export type OverflowScrollButtonState = {
+	scroll: (left?: boolean) => void;
+	showScrollLeft?: boolean;
+	showScrollRight?: boolean;
+	evaluateScrollButtons: (tabList: Element) => void;
+};
+
+export type SidebarProps = {
+	/**
+	 * Set the expanded/collapsed state initially for the left sidebar
+	 */
+	expanded?: boolean | string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button
+	 */
+	expandButtonTooltip?: string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
+	 */
+	expandButtonTooltipFn?: (open: boolean) => string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
+	 */
+	onExpandButtonTooltipFn?: (open: boolean) => string;
+};
+
+export type SidebarState = {
+	_open: boolean;
+	getToggleButtonText: () => string;
+};
+
+export const NavigationItemGroupVariantList = ['popover', 'tree'] as const;
+export type NavigationItemGroupVariantType =
+	(typeof NavigationItemGroupVariantList)[number];
+
+export type NavigationItemGroupVariant = {
+	variant?: NavigationItemGroupVariantType;
 };
 
 export type DocumentScrollState = {
@@ -759,3 +856,50 @@ export interface PatternhubProps {
 	 */
 	isPatternhub?: boolean;
 }
+
+export type DBTableCellProps = {
+	/**
+	 * The **`colSpan`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
+	 */
+	colSpan?: number | string;
+
+	/**
+	 * Lowercase HTML attribute alternative to `colSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).
+	 * If both `colSpan` and `colspan` are provided, `colSpan` takes precedence.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
+	 */
+	colspan?: number | string;
+
+	/**
+	 * The **`headers`** property of the HTMLTableCellElement interface contains a list of IDs of th elements that are _headers_ for this specific cell.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/headers)
+	 */
+	headers?: string;
+
+	/**
+	 * The **`rowSpan`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
+	 */
+	rowSpan?: number | string;
+	/**
+	 * Lowercase HTML attribute alternative to `rowSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).
+	 * If both `rowSpan` and `rowspan` are provided, `rowSpan` takes precedence.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
+	 */
+	rowspan?: number | string;
+
+	/**
+	 * Set the horizontal alignment of the cell content.
+	 */
+	horizontalAlignment?: AlignmentType;
+	/**
+	 * Set the vertical alignment of the cell content.
+	 */
+	verticalAlignment?: AlignmentType;
+};

@@ -1,5 +1,5 @@
 export type Overwrite = {
-	from: string | RegExp;
+	from: string | string[] | RegExp;
 	to: string;
 };
 
@@ -19,7 +19,6 @@ export type Component = {
 		angular?: {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
-			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
@@ -29,6 +28,65 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'control-panel-flat-icon-navigation'
+	},
+
+	{
+		name: 'shell-sub-navigation'
+	},
+
+	{
+		name: 'navigation-item-group'
+	},
+
+	{
+		name: 'control-panel-secondary-actions'
+	},
+
+	{
+		name: 'control-panel-primary-actions'
+	},
+
+	{
+		name: 'control-panel-meta-navigation'
+	},
+
+	{
+		name: 'control-panel-mobile'
+	},
+	{
+		name: 'table-data-cell'
+	},
+
+	{
+		name: 'table-header-cell'
+	},
+
+	{
+		name: 'table-row'
+	},
+
+	{
+		name: 'table-footer'
+	},
+
+	{
+		name: 'table-body'
+	},
+
+	{
+		name: 'table-head'
+	},
+
+	{
+		name: 'table-caption'
+	},
+
+	{
+		name: 'table'
+	},
+
 	{
 		name: 'custom-button'
 	},
@@ -206,35 +264,7 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'navigation-item',
-		overwrites: {
-			vue: [
-				{
-					from: 'navigationItemSafeTriangle: undefined',
-					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle'
-				}
-			],
-			react: [
-				{
-					from: 'onMouseMove={(event)',
-					to: 'onMouseMove={(event: any)'
-				}
-			],
-			stencil: [
-				{
-					from: '<slot>',
-					/* This is a workaround for stencil.
-						At the moment the navigation is broken in stencil and will be fixed in the db-shell.
-						Until then we need to add a named slot for the button, because web-components allow only one default slot.
-					*/
-					to: '<slot name="expandButton">'
-				}
-			]
-		},
-		config: {
-			angular: {
-				directives: [{ name: 'NavigationContent' }]
-			}
-		}
+		overwrites: {}
 	},
 	{
 		name: 'select',
@@ -350,33 +380,18 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'page'
+		name: 'shell'
 	},
 	{
-		name: 'header',
+		name: 'control-panel-desktop',
 		config: {
-			angular: {
-				directives: [
-					{
-						name: 'SecondaryAction',
-						ngContentName: 'secondary-action'
-					},
-					{
-						name: 'MetaNavigation',
-						ngContentName: 'meta-navigation'
-					},
-					{
-						name: 'Navigation'
-					}
-				]
-			},
 			react: {
 				propsPassingFilter: ['onToggle']
 			}
 		}
 	},
 	{
-		name: 'brand'
+		name: 'control-panel-brand'
 	},
 	{
 		name: 'input',

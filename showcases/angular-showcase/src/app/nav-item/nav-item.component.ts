@@ -1,10 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {
-	DBNavigationItem,
-	NavigationContentDirective
-} from '../../../../../output/angular/src';
-import { environment } from '../../environments/environment';
+import { DBNavigationItem, DBNavigationItemGroup } from '@components';
 import { NavItem } from '../utils/navigation-item';
 
 @Component({
@@ -14,15 +10,11 @@ import { NavItem } from '../utils/navigation-item';
 		RouterLink,
 		RouterLinkActive,
 		DBNavigationItem,
-		NavigationContentDirective
+		DBNavigationItemGroup
 	],
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
+	schemas: [],
 	standalone: true
 })
 export class NavItemComponent {
 	@Input({ required: true }) navItem!: NavItem;
-
-	getBackButtonText = () => {
-		return `Back to ${this.navItem.label}`;
-	};
 }

@@ -24,8 +24,8 @@
 		"name": "data-display",
 		"subNavigation": [
 			{
-				"label": "DBBrand",
-				"name": "brand"
+				"label": "DBControlPanelBrand",
+				"name": "control-panel-brand"
 			},
 			{
 				"label": "DBTooltip",
@@ -53,6 +53,10 @@
 				"label": "DBAccordionItem",
 				"name": "accordion-item",
 				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBTable",
+				"name": "table"
 			},
 			{
 				"label": "DBTabs",
@@ -139,8 +143,16 @@
 				"name": "drawer"
 			},
 			{
-				"label": "DBHeader",
-				"name": "header"
+				"label": "DBControlPanelDesktop",
+				"name": "control-panel-desktop"
+			},
+			{
+				"label": "DBControlPanelMobile",
+				"name": "control-panel-mobile"
+			},
+			{
+				"label": "DBShell",
+				"name": "shell"
 			},
 			{
 				"label": "DBSection",

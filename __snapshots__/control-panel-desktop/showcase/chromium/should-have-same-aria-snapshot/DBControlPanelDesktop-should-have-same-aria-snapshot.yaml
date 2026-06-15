@@ -1,0 +1,81 @@
+- main:
+  - heading "DBControlPanelDesktop" [level=1]
+  - link "Density"
+  - text: DBControlPanel
+  - navigation "Functional":
+    - list:
+      - listitem:
+        - link "Functional"
+      - listitem:
+        - link "Functional disabled" [disabled]
+  - text: DBControlPanel
+  - navigation "(Default) Regular":
+    - list:
+      - listitem:
+        - link "(Default) Regular"
+      - listitem:
+        - link "(Default) Regular disabled" [disabled]
+  - text: DBControlPanel
+  - navigation "Expressive":
+    - list:
+      - listitem:
+        - link "Expressive"
+      - listitem:
+        - link "Expressive disabled" [disabled]
+  - link "Width"
+  - text: DBControlPanel
+  - navigation "Full":
+    - list:
+      - listitem:
+        - link "Full"
+  - text: DBControlPanel
+  - navigation "Medium":
+    - list:
+      - listitem:
+        - link "Medium"
+  - text: DBControlPanel
+  - navigation "Large":
+    - list:
+      - listitem:
+        - link "Large"
+  - link "Orientation"
+  - text: DBControlPanel
+  - navigation "(Default) Horizontal":
+    - list:
+      - listitem:
+        - link "(Default) Horizontal"
+      - listitem:
+        - link "(Default) Horizontal disabled" [disabled]
+  - text: DBControlPanel
+  - navigation "Vertical":
+    - list:
+      - listitem:
+        - link "Vertical"
+      - listitem:
+        - link "Vertical disabled" [disabled]
+  - button "Collapse" [expanded]
+  - link "Examples"
+  - text: DBControlPanel
+  - navigation "With Application Name + Navigation":
+    - list:
+      - listitem:
+        - link "With Application Name + Navigation"
+      - listitem:
+        - link "With Application Name disabled" [disabled]
+  - text: DBControlPanel DBControlPanel
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - text: DBControlPanel
+  - button "Search"
+  - text: DBControlPanel
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - navigation "Without Application Name":
+    - list:
+      - listitem:
+        - link "Without Application Name"
+      - listitem:
+        - link "Without Application Name disabled" [disabled]

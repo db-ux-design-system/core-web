@@ -5,24 +5,16 @@ import { DBNavigation } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DESKTOP_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
 import { DBNavigationItem } from '../navigation-item';
+import { DBNavigationItemGroup } from '../navigation-item-group';
 
 const comp: any = (
 	<DBNavigation>
-		<DBNavigationItem
-			data-testid="test1"
-			subNavigation={
-				<DBNavigationItem data-testid="sub1">
-					<a href="#">Sub1</a>
-				</DBNavigationItem>
-			}>
-			{/*<template v-slot:sub-navigation>
-					<DBNavigationItem data-testid="sub1">
-					<a href="#">Sub1</a>
-				</DBNavigationItem>
-			</template>*/}
-			Test1
-		</DBNavigationItem>
-		<DBNavigationItem>
+		<DBNavigationItemGroup text="More">
+			<DBNavigationItem data-testid="sub1">
+				<a href="#">Sub1</a>
+			</DBNavigationItem>
+		</DBNavigationItemGroup>
+		<DBNavigationItem data-testid="test1">
 			<a href="#">Test2</a>
 		</DBNavigationItem>
 		<DBNavigationItem>

@@ -38,7 +38,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
-		"} from '../../../../../output/react/src';\n" +
+		"} from '@components';\n" +
 		"import { useFramework } from '../../framework-context';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();
@@ -143,7 +143,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 	if (FS.existsSync(path)) {
 		variants = JSON.parse(FS.readFileSync(path, 'utf8')).map((variant) => ({
 			...variant,
-			name: variant.name.replaceAll(/\s/gv, '').replaceAll(/\W/gv, '')
+			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, '')
 		}));
 
 		let indexFile = '';

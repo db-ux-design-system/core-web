@@ -59,11 +59,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
-						handleFixedPopover(
-							_ref,
-							parent,
-							(props.placement as unknown as string) ?? 'bottom'
-						);
+						handleFixedPopover(_ref, parent);
 					}
 				}, 1);
 			}
@@ -161,11 +157,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
-			data-wrap={getBooleanAsString(props.wrap)}
-			data-animation={getBooleanAsString(props.animation ?? true)}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			data-animation={getBooleanAsString(
+				props.animation ?? true,
+				'animation'
+			)}
 			data-delay={props.delay}
 			data-width={props.width}
-			data-show-arrow={getBooleanAsString(props.showArrow ?? true)}
+			data-show-arrow={getBooleanAsString(
+				props.showArrow ?? true,
+				'showArrow'
+			)}
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"

@@ -90,7 +90,9 @@
   "devDependencies": {
     "@inquirer/prompts": "8.5.2",
     "find-versions": "6.0.0",
+    "fs-extra": "11.3.0",
     "glob": "13.0.6",
+    "ignore": "7.0.5",
     "inquirer": "14.0.2",
     "npm-run-all2": "9.0.1",
     "publint": "0.3.21",

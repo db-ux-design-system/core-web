@@ -4,6 +4,8 @@ import type {
 	InitializedState,
 	InputEvent,
 	OrientationProps,
+	OverflowScrollButtonProps,
+	OverflowScrollButtonState,
 	WidthProps
 } from '../../shared/model';
 import type { DBTabItemProps } from '../tab-item/model';
@@ -18,10 +20,6 @@ export type TabsInitialSelectedModeType =
 
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export type DBTabsDefaultProps = {
-	/**
-	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
-	 */
-	arrowScrollDistance?: number | string;
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
@@ -74,15 +72,13 @@ export type DBTabsProps = DBTabsDefaultProps &
 	OrientationProps &
 	WidthProps &
 	AlignmentProps &
+	OverflowScrollButtonProps &
+	AlignmentProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
 	_name: string;
 	scrollContainer?: Element | null;
-	scroll: (left?: boolean) => void;
-	showScrollLeft?: boolean;
-	showScrollRight?: boolean;
-	evaluateScrollButtons: (tabList: Element) => void;
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
@@ -90,4 +86,6 @@ export type DBTabsDefaultState = {
 	_resizeObserver?: ResizeObserver;
 };
 
-export type DBTabsState = DBTabsDefaultState & InitializedState;
+export type DBTabsState = DBTabsDefaultState &
+	InitializedState &
+	OverflowScrollButtonState;

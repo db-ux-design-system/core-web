@@ -1,111 +1,98 @@
 <script setup lang="ts">
 import {
-	DBBrand,
-	DBButton,
-	DBHeader,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
 	DBNavigation,
-	DBPage,
-	DBSelect
-} from "../../../output/vue/src";
-import {
-	COLORS,
-	DENSITIES
-} from "../../../packages/components/src/shared/constants";
+	DBShell,
+	DBShellSubNavigation
+} from "@components";
 import NavItemComponent from "./NavItemComponent.vue";
 
 import { useLayout } from "./composables/use-layout";
+import MetaNavigation from "./control-panel/MetaNavigation.vue";
+import PrimaryActions from "./control-panel/PrimaryActions.vue";
+import SecondaryActions from "./control-panel/SecondaryActions.vue";
 
-const {
-	page,
-	fullscreen,
-	density,
-	color,
-	drawerOpen,
-	classNames,
-	onChange,
-	toggleDrawer,
-	sortedNavigation
-} = useLayout();
+const { page, fullscreen, classNames, sortedNavigation, settings } =
+	useLayout();
 </script>
 
 <template>
 	<div v-if="page || fullscreen" :class="classNames">
 		<router-view></router-view>
 	</div>
-	<DBPage
+	<DBShell
 		v-if="!page && !fullscreen"
-		variant="fixed"
-		documentOverflow="auto"
-		:fadeIn="true"
+		fadeIn
+		:controlPanelDesktopPosition="settings.controlPanelDesktopPosition"
+		:controlPanelMobilePosition="settings.controlPanelMobilePosition"
+		:subNavigationDesktopPosition="settings.subNavigationDesktopPosition"
+		:subNavigationMobilePosition="settings.subNavigationMobilePosition"
+		:show-sub-navigation="settings.subNavigation === 'true'"
 	>
-		<template v-slot:header>
-			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
-				<template v-slot:brand>
-					<DBBrand>Showcase</DBBrand>
-				</template>
-				<DBNavigation aria-label="main navigation">
+		<template v-slot:sub-navigation>
+			<DBShellSubNavigation>
+				<DBNavigation
+					:variant="settings.subNavigationVariant"
+					aria-label="sub navigation"
+				>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
 				</DBNavigation>
-				<template v-slot:call-to-action>
-					<DBButton
-						icon="magnifying_glass"
-						variant="ghost"
-						:no-text="true"
-					>
-						Search
-					</DBButton>
+			</DBShellSubNavigation>
+		</template>
+		<template v-slot:control-panel-desktop>
+			<DBControlPanelDesktop>
+				<template v-slot:brand>
+					<DBControlPanelBrand>Showcase</DBControlPanelBrand>
 				</template>
-				<template v-slot:action-bar>
-					<DBButton
-						icon="x_placeholder"
-						variant="ghost"
-						:no-text="true"
-					>
-						Profile
-					</DBButton>
-					<DBButton
-						icon="x_placeholder"
-						variant="ghost"
-						:no-text="true"
-					>
-						Notification
-					</DBButton>
-					<DBButton
-						icon="x_placeholder"
-						variant="ghost"
-						:no-text="true"
-					>
-						Help
-					</DBButton>
+				<DBNavigation
+					:variant="settings.navigationDesktopVariant"
+					aria-label="main navigation desktop"
+				>
+					<template v-for="item of sortedNavigation">
+						<NavItemComponent :navItem="item"></NavItemComponent>
+					</template>
+				</DBNavigation>
+				<template v-slot:primary-actions>
+					<PrimaryActions />
+				</template>
+				<template v-slot:secondary-actions>
+					<SecondaryActions />
 				</template>
 				<template v-slot:meta-navigation>
-					<DBSelect
-						label="Density"
-						variant="floating"
-						:value="density"
-						@change="onChange($event, 'density')"
-					>
-						<option v-for="ton of DENSITIES" :value="ton">
-							{{ ton }}
-						</option>
-					</DBSelect>
-					<DBSelect
-						label="Color"
-						variant="floating"
-						:value="color"
-						@change="onChange($event, 'color')"
-					>
-						<option v-for="col of COLORS" :value="col">
-							{{ col }}
-						</option>
-					</DBSelect>
+					<MetaNavigation />
 				</template>
-			</DBHeader>
+			</DBControlPanelDesktop>
+		</template>
+		<template v-slot:control-panel-mobile>
+			<DBControlPanelMobile drawerHeadlinePlain="Showcase">
+				<template v-slot:brand>
+					<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+				</template>
+				<DBNavigation
+					:variant="settings.navigationMobileVariant"
+					aria-label="main navigation mobile"
+				>
+					<template v-for="item of sortedNavigation">
+						<NavItemComponent :navItem="item"></NavItemComponent>
+					</template>
+				</DBNavigation>
+				<template v-slot:primary-actions>
+					<PrimaryActions />
+				</template>
+				<template v-slot:secondary-actions>
+					<SecondaryActions />
+				</template>
+				<template v-slot:meta-navigation>
+					<MetaNavigation />
+				</template>
+			</DBControlPanelMobile>
 		</template>
 		<div :class="classNames">
 			<router-view></router-view>
 		</div>
-	</DBPage>
+	</DBShell>
 </template>

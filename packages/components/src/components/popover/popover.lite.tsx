@@ -37,11 +37,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
-					handleFixedPopover(
-						article,
-						_ref,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+					handleFixedPopover(article, _ref);
 				}, 1);
 			}
 		},
@@ -166,9 +162,12 @@ export default function DBPopover(props: DBPopoverProps) {
 			<article
 				class="db-popover-content"
 				data-spacing={props.spacing}
-				data-gap={getBooleanAsString(props.gap)}
-				data-animation={getBooleanAsString(props.animation ?? true)}
-				data-open={getBooleanAsString(props.open)}
+				data-gap={getBooleanAsString(props.gap, 'gap')}
+				data-animation={getBooleanAsString(
+					props.animation ?? true,
+					'animation'
+				)}
+				data-open={getBooleanAsString(props.open, 'open')}
 				data-delay={props.delay}
 				data-width={props.width}
 				data-placement={props.placement}>

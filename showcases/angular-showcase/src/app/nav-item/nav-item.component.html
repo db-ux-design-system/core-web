@@ -1,27 +1,21 @@
-@if (navItem) {
-	<db-navigation-item [backButtonText]="getBackButtonText()">
-		@if (navItem.subNavigation) {
-			<ng-container sub-navigation slot="subNavigation">
-				@for (item of navItem.subNavigation; track item.label) {
-					<app-nav-item [navItem]="item" />
-				}
-			</ng-container>
+@if (navItem.subNavigation) {
+	<db-navigation-item-group [text]="navItem.label">
+		@for (item of navItem.subNavigation; track item.label) {
+			<app-nav-item [navItem]="item" />
 		}
-		<ng-container *dbNavigationContent>
-			@if (navItem.component) {
-				<a
-					[routerLink]="navItem.path"
-					[routerLinkActiveOptions]="{ exact: true }"
-					ariaCurrentWhenActive="page"
-					routerLinkActive="active"
-					queryParamsHandling="merge"
-				>
-					{{ navItem.label }}
-				</a>
-			}
-			@if (!navItem.component) {
+	</db-navigation-item-group>
+} @else {
+	<db-navigation-item>
+		@if (navItem.component) {
+			<a
+				[routerLink]="navItem.path"
+				[routerLinkActiveOptions]="{ exact: true }"
+				ariaCurrentWhenActive="page"
+				routerLinkActive="active"
+				queryParamsHandling="merge"
+			>
 				{{ navItem.label }}
-			}
-		</ng-container>
+			</a>
+		}
 	</db-navigation-item>
 }

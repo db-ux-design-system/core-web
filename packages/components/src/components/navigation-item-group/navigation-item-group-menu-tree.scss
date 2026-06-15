@@ -1,0 +1,37 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/navigation-item";
+
+%db-navigation-item-group-menu-tree {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	block-size: 0;
+	visibility: hidden;
+	overflow: hidden;
+	margin-inline-start: calc(#{form-components.$font-size-height});
+	gap: variables.$db-spacing-fixed-xs;
+	margin-block-start: variables.$db-spacing-fixed-xs;
+
+	@media screen and (prefers-reduced-motion: no-preference) {
+		transition: block-size #{variables.$db-transition-straight-emotional};
+	}
+
+	&:empty {
+		display: none;
+	}
+
+	.db-navigation-item-group-back-button {
+		display: none;
+	}
+
+	// Mobile
+	@include screen-sizes.screen("md", "max") {
+		--db-navigation-item-group-menu-mobile: 1;
+	}
+}

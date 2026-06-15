@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBNavigationItemGroup from '../../navigation-item-group/navigation-item-group.lite';
 import DBNavigationItem from '../navigation-item.lite';
 import { StorybookNavigationItemArgTypes } from './_navigation-item.arg.types';
 
@@ -12,31 +13,28 @@ export default function NavigationItemExpanded() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem>
-					<a href="#">(Default) False</a>
-				</DBNavigationItem>
+				<DBNavigationItemGroup text="(Default) False">
+					<DBNavigationItemGroup text="Also a navigation item with longer label">
+						<DBNavigationItem>
+							<a href="#">Navigation-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
+					<DBNavigationItem>
+						<a href="#">Navigation-Item 1</a>
+					</DBNavigationItem>
+				</DBNavigationItemGroup>
 			</ul>
 			<ul>
-				<DBNavigationItem
-					subNavigation={
-						<>
-							<DBNavigationItem
-								subNavigation={
-									<>
-										<DBNavigationItem>
-											<a href="#">Navigation-Item 2</a>
-										</DBNavigationItem>
-									</>
-								}>
-								Also a navigation item with longer label
-							</DBNavigationItem>
-							<DBNavigationItem>
-								<a href="#">Navigation-Item 1</a>
-							</DBNavigationItem>
-						</>
-					}>
-					True
-				</DBNavigationItem>
+				<DBNavigationItemGroup text="True" expanded={true}>
+					<DBNavigationItemGroup text="Also a navigation item with longer label">
+						<DBNavigationItem>
+							<a href="#">Navigation-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
+					<DBNavigationItem>
+						<a href="#">Navigation-Item 1</a>
+					</DBNavigationItem>
+				</DBNavigationItemGroup>
 			</ul>
 		</Fragment>
 	);

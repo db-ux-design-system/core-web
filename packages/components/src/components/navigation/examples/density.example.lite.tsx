@@ -1,5 +1,6 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
+import DBNavigationItemGroup from '../../navigation-item-group/navigation-item-group.lite';
 import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 import DBNavigation from '../navigation.lite';
 import { StorybookNavigationArgTypes } from './_navigation.arg.types';
@@ -29,33 +30,21 @@ export default function NavigationDensity() {
 						default: {}
 					})}
 					aria-labelledby="functional">
-					<DBNavigationItem
-						subNavigation={
-							<>
-								<DBNavigationItem
-									subNavigation={
-										<>
-											<DBNavigationItem>
-												<a href="#" aria-current="page">
-													Sub-Sub-Navi-Item 1
-												</a>
-											</DBNavigationItem>
-											<DBNavigationItem>
-												<a href="#">
-													Sub-Sub-Navi-Item 2
-												</a>
-											</DBNavigationItem>
-										</>
-									}>
-									Sub-Navi-Item 1
-								</DBNavigationItem>
-								<DBNavigationItem>
-									<a href="#">Sub-Navi-Item 2</a>
-								</DBNavigationItem>
-							</>
-						}>
-						Navi-Item 1
-					</DBNavigationItem>
+					<DBNavigationItemGroup text="Navi-Item 1">
+						<DBNavigationItemGroup text="Sub-Navi-Item 1">
+							<DBNavigationItem>
+								<a href="#" aria-current="page">
+									Sub-Sub-Navi-Item 1
+								</a>
+							</DBNavigationItem>
+							<DBNavigationItem>
+								<a href="#">Sub-Sub-Navi-Item 2</a>
+							</DBNavigationItem>
+						</DBNavigationItemGroup>
+						<DBNavigationItem>
+							<a href="#">Sub-Navi-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
@@ -80,33 +69,21 @@ export default function NavigationDensity() {
 						default: {}
 					})}
 					aria-labelledby="_default__regular">
-					<DBNavigationItem
-						subNavigation={
-							<>
-								<DBNavigationItem
-									subNavigation={
-										<>
-											<DBNavigationItem>
-												<a href="#" aria-current="page">
-													Sub-Sub-Navi-Item 1
-												</a>
-											</DBNavigationItem>
-											<DBNavigationItem>
-												<a href="#">
-													Sub-Sub-Navi-Item 2
-												</a>
-											</DBNavigationItem>
-										</>
-									}>
-									Sub-Navi-Item 1
-								</DBNavigationItem>
-								<DBNavigationItem>
-									<a href="#">Sub-Navi-Item 2</a>
-								</DBNavigationItem>
-							</>
-						}>
-						Navi-Item 1
-					</DBNavigationItem>
+					<DBNavigationItemGroup text="Navi-Item 1">
+						<DBNavigationItemGroup text="Sub-Navi-Item 1">
+							<DBNavigationItem>
+								<a href="#" aria-current="page">
+									Sub-Sub-Navi-Item 1
+								</a>
+							</DBNavigationItem>
+							<DBNavigationItem>
+								<a href="#">Sub-Sub-Navi-Item 2</a>
+							</DBNavigationItem>
+						</DBNavigationItemGroup>
+						<DBNavigationItem>
+							<a href="#">Sub-Navi-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
@@ -131,33 +108,21 @@ export default function NavigationDensity() {
 						default: {}
 					})}
 					aria-labelledby="expressive">
-					<DBNavigationItem
-						subNavigation={
-							<>
-								<DBNavigationItem
-									subNavigation={
-										<>
-											<DBNavigationItem>
-												<a href="#" aria-current="page">
-													Sub-Sub-Navi-Item 1
-												</a>
-											</DBNavigationItem>
-											<DBNavigationItem>
-												<a href="#">
-													Sub-Sub-Navi-Item 2
-												</a>
-											</DBNavigationItem>
-										</>
-									}>
-									Sub-Navi-Item 1
-								</DBNavigationItem>
-								<DBNavigationItem>
-									<a href="#">Sub-Navi-Item 2</a>
-								</DBNavigationItem>
-							</>
-						}>
-						Navi-Item 1
-					</DBNavigationItem>
+					<DBNavigationItemGroup text="Navi-Item 1">
+						<DBNavigationItemGroup text="Sub-Navi-Item 1">
+							<DBNavigationItem>
+								<a href="#" aria-current="page">
+									Sub-Sub-Navi-Item 1
+								</a>
+							</DBNavigationItem>
+							<DBNavigationItem>
+								<a href="#">Sub-Sub-Navi-Item 2</a>
+							</DBNavigationItem>
+						</DBNavigationItemGroup>
+						<DBNavigationItem>
+							<a href="#">Sub-Navi-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>

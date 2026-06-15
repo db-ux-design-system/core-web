@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBNavigationItemGroup from '../../navigation-item-group/navigation-item-group.lite';
 import DBNavigationItem from '../navigation-item.lite';
 import { StorybookNavigationItemArgTypes } from './_navigation-item.arg.types';
 
@@ -20,32 +21,23 @@ export default function NavigationItemWrap() {
 				style={{
 					width: '200px'
 				}}>
-				<DBNavigationItem
-					subNavigation={
-						<>
-							<DBNavigationItem
-								subNavigation={
-									<>
-										<DBNavigationItem>
-											<a href="#">Sub-Sub-Navi-Item 1</a>
-										</DBNavigationItem>
-										<DBNavigationItem>
-											<a href="#">Sub-Sub-Navi-Item 2</a>
-										</DBNavigationItem>
-									</>
-								}>
-								Sub-Navi-Item 1
-							</DBNavigationItem>
-							<DBNavigationItem>
-								<a href="#">Sub-Navi-Item 2</a>
-							</DBNavigationItem>
-						</>
-					}
+				<DBNavigationItemGroup
+					text="This is a very long text that is broken into multiple lines."
 					icon="x_placeholder"
 					showIcon={true}
 					wrap={true}>
-					This is a very long text that is broken into multiple lines.
-				</DBNavigationItem>
+					<DBNavigationItemGroup text="Sub-Navi-Item 1">
+						<DBNavigationItem>
+							<a href="#">Sub-Sub-Navi-Item 1</a>
+						</DBNavigationItem>
+						<DBNavigationItem>
+							<a href="#">Sub-Sub-Navi-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
+					<DBNavigationItem>
+						<a href="#">Sub-Navi-Item 2</a>
+					</DBNavigationItem>
+				</DBNavigationItemGroup>
 			</ul>
 		</Fragment>
 	);

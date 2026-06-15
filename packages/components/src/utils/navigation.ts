@@ -1,4 +1,4 @@
-import { handleDataOutside } from './floating-components';
+import { handleDataOutside, handleFixedPopover } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -12,7 +12,6 @@ export type TriangleData = {
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
 	return Boolean(
-		!target?.classList?.contains('db-navigation-item-expand-button') &&
 		target?.parentElement?.classList.contains('db-navigation-item')
 	);
 };
@@ -36,14 +35,15 @@ export class NavigationItemSafeTriangle {
 			return;
 		}
 
-		this.parentSubNavigation = this.element?.closest('.db-sub-navigation');
+		this.parentSubNavigation =
+			this.element?.closest('.db-navigation-item-group-menu') ??
+			this.element;
 
 		/*
 		 * only initiate if:
-		 * 1. item is not at root navigation level
 		 * 2. item is not in the mobile navigation / within db-drawer
 		 */
-		if (this.parentSubNavigation && !this.element.closest('.db-drawer')) {
+		if (!this.element.closest('.db-drawer')) {
 			this.init();
 		}
 	}
@@ -154,7 +154,7 @@ export class NavigationItemSafeTriangle {
 		return false;
 	}
 
-	private getTriangleCoordinates(variant: 'safe-triangle' | 'fill-gap'):
+	private getTriangleCoordinates():
 		| undefined
 		| {
 				lb: string;
@@ -164,18 +164,6 @@ export class NavigationItemSafeTriangle {
 		  } {
 		if (!this.triangleData) {
 			return;
-		}
-
-		if (variant === 'fill-gap') {
-			const itemHeight = `${this.triangleData.itemRect.height + 2 * this.triangleData.padding}px`;
-			const xStart = `${this.triangleData.parentElementWidth - this.triangleData.padding}px`;
-
-			return {
-				lb: `${xStart} ${itemHeight}`,
-				lt: `${xStart} 0`,
-				rt: '100% 0',
-				rb: `100% ${itemHeight}`
-			};
 		}
 
 		const tipX = this.getTriangleTipX();
@@ -192,7 +180,7 @@ export class NavigationItemSafeTriangle {
 		};
 	}
 
-	public followByMouseEvent(event: MouseEvent) {
+	public followByMouseEvent(event: any) {
 		if (
 			!this.initialized ||
 			!this.triangleData ||
@@ -207,9 +195,7 @@ export class NavigationItemSafeTriangle {
 
 		const isOverSubNavigation = this.hasMouseEnteredSubNavigation();
 
-		const coordinates = this.getTriangleCoordinates(
-			isOverSubNavigation ? 'fill-gap' : 'safe-triangle'
-		);
+		const coordinates = this.getTriangleCoordinates();
 
 		if (!coordinates) {
 			return;
@@ -226,7 +212,40 @@ export class NavigationItemSafeTriangle {
 	}
 }
 
-export default {
-	isEventTargetNavigationItem,
-	NavigationItemSafeTriangle
+export const handleSubNavigationPosition = (
+	element: HTMLElement,
+	level: number = 0
+) => {
+	for (const navItem of Array.from(
+		element.querySelectorAll('.db-navigation-item-group')
+	)) {
+		const subNavigation: HTMLElement | null = navItem.querySelector(
+			'.db-navigation-item-group-menu'
+		);
+		const button: HTMLElement | null = navItem.querySelector(
+			'.db-navigation-item-group-expand-button'
+		);
+		if (subNavigation && button) {
+			/*
+			 * This is set via css inside:
+			 * `packages/components/src/components/navigation-item-group/navigation-item-group-menu-popover.scss`.
+			 * We don't need to calculate the position of the menu as a popover.
+			 */
+			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
+				'--db-navigation-item-group-menu-mobile'
+			);
+			if (isMobile) return;
+
+			if (level > 0 || subNavigation.dataset['open'] === 'horizontal') {
+				// Sub-Navigation should be opened horizontal
+				handleFixedPopover(subNavigation, button, 'right-start');
+				subNavigation.dataset['open'] = 'horizontal';
+			} else {
+				// Sub-Navigation should be opened vertical
+				handleFixedPopover(subNavigation, button, 'bottom-start');
+				subNavigation.dataset['open'] = 'vertical';
+			}
+			handleSubNavigationPosition(subNavigation, level + 1);
+		}
+	}
 };

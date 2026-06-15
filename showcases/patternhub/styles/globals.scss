@@ -8,24 +8,16 @@
 @forward "@db-ux/core-components/build/styles/bundle";
 @forward "@db-ux/db-theme/build/styles/webpack";
 
-:root:not(:has(.db-page)) {
+:root:not(:has(.db-shell)) {
 	color-scheme: light;
 }
 
-body:not(:has(.db-page)) {
+body:not(:has(.db-shell)) {
 	padding-block-end: variables.$db-spacing-fixed-lg;
 }
 
 .db-main {
 	scroll-behavior: smooth;
-}
-
-#__next {
-	block-size: inherit;
-}
-
-#__next > div {
-	block-size: inherit;
 }
 
 db-mainnavigation {
@@ -92,36 +84,35 @@ iframe {
 	}
 }
 
-/* TODO: Use real table css in future */
-table {
+.static-table {
 	@extend %db-density-functional;
 
 	inline-size: 100%;
 	border-collapse: collapse;
-}
 
-table td,
-table th {
-	border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-	padding: variables.$db-spacing-fixed-md;
-	max-inline-size: 33vw;
-}
+	td,
+	th {
+		border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		padding: variables.$db-spacing-fixed-md;
+		max-inline-size: 33vw;
+	}
 
-table tr:nth-child(even) {
-	@extend %db-neutral-bg-basic-transparent-semi;
-}
+	tr:nth-child(even) {
+		@extend %db-neutral-bg-basic-transparent-semi;
+	}
 
-table th {
-	@extend %db-neutral-bg-basic-transparent-semi;
+	th {
+		@extend %db-neutral-bg-basic-transparent-semi;
 
-	padding-inline: variables.$db-spacing-fixed-md;
+		padding-inline: variables.$db-spacing-fixed-md;
+	}
 }
 
 .version-switcher {
 	max-inline-size: variables.$db-sizing-3xl;
 }
 
-/* Workaround for current db-page from db-ux-elements */
+/* Workaround for current db-shell from db-ux-elements */
 div[class^="ch-"] {
 	div,
 	span {

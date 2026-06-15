@@ -7,7 +7,10 @@
 @use "../../styles/dialog-init";
 
 %direction-right {
-	transform: translateX(110%);
+	&:not([data-transition="open"]) {
+		transform: translateX(110%);
+	}
+
 	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
@@ -17,7 +20,10 @@
 }
 
 %direction-left {
-	transform: translateX(-110%);
+	&:not([data-transition="open"]) {
+		transform: translateX(-110%);
+	}
+
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
@@ -46,7 +52,10 @@
 %direction-up {
 	@extend %full-horizontal;
 
-	transform: translateY(110%);
+	&:not([data-transition="open"]) {
+		transform: translateY(110%);
+	}
+
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -58,7 +67,10 @@
 %direction-down {
 	@extend %full-horizontal;
 
-	transform: translateY(-110%);
+	&:not([data-transition="open"]) {
+		transform: translateY(-110%);
+	}
+
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -237,6 +249,7 @@ $spacings: (
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
 				display: flex;
+				gap: variables.$db-spacing-fixed-md;
 			}
 		}
 	}
@@ -261,13 +274,13 @@ $spacings: (
 
 		&[data-direction="left"],
 		&[data-direction="down"] {
-			align-items: start;
+			align-items: flex-start;
 		}
 
 		&:not([data-direction]),
 		&[data-direction="right"],
 		&[data-direction="up"] {
-			align-items: end;
+			align-items: flex-end;
 		}
 
 		.db-drawer-container {
@@ -278,16 +291,7 @@ $spacings: (
 	&[open] {
 		.db-drawer-container {
 			&[data-transition="open"] {
-				&:not([data-direction]),
-				&[data-direction="right"],
-				&[data-direction="left"] {
-					transform: none;
-				}
-
-				&[data-direction="up"],
-				&[data-direction="down"] {
-					transform: none;
-				}
+				transform: none;
 			}
 
 			&[data-transition="close"] {

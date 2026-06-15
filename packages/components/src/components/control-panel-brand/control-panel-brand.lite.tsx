@@ -1,0 +1,26 @@
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
+import { DEFAULT_ICON } from '../../shared/constants';
+import { cls, getBooleanAsString } from '../../utils';
+import { DBControlPanelBrandProps } from './model';
+
+useMetadata({});
+
+useDefaultProps<DBControlPanelBrandProps>({});
+
+export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
+	const _ref = useRef<HTMLDivElement | any>(null);
+
+	return (
+		<div
+			ref={_ref}
+			id={props.id ?? props.propOverrides?.id}
+			class={cls('db-control-panel-brand', props.className)}>
+			{props.children}
+		</div>
+	);
+}
