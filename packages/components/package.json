@@ -59,7 +59,7 @@
     "@builder.io/mitosis-cli": "0.13.2",
     "@prettier/sync": "0.6.1",
     "cpr": "3.0.1",
-    "cssnano": "8.0.1",
+    "cssnano": "8.0.2",
     "hygen": "6.2.11",
     "nodemon": "3.1.14",
     "npm-run-all2": "9.0.1",
