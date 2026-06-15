@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/css/8be5e2fff73e366a.css" as="style"/><link rel="stylesheet" href="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/css/8be5e2fff73e366a.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/chunks/webpack-6538fcd682d414c9.js" defer=""></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/chunks/framework-79250bdf2b2e142c.js" defer=""></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/chunks/main-591956c82b1a2d10.js" defer=""></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/chunks/pages/_app-1cdb32feae9f19f3.js" defer=""></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/chunks/pages/components/data-display/table/docs/Vue-3a26979866d367fb.js" defer=""></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/5iNgkaZ56XldGaGAo2Uln/_buildManifest.js" defer=""></script><script src="/core-web/review/chore-agents-md-clarify-changeset-usage/_next/static/5iNgkaZ56XldGaGAo2Uln/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/chore-agents-md-clarify-changeset-usage/components/data-display/table/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/v-core-components">v-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/chore-agents-md-clarify-changeset-usage/components/data-display/table/docs/Vue?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-vue">&lt;!-- App.vue --&gt;
+&lt;script&gt;
+import {
+	DBTable,
+	DBTableHead,
+	DBTableBody,
+	DBTableRow,
+	DBTableHeaderCell,
+	DBTableDataCell
+} from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBTable captionPlain=&quot;Table Caption&quot;&gt;
+		&lt;DBTableHead&gt;
+			&lt;DBTableRow&gt;
+				&lt;DBTableHeaderCell scope=&quot;col&quot;&gt;A&lt;/DBTableHeaderCell&gt;
+				&lt;DBTableHeaderCell scope=&quot;col&quot;&gt;B&lt;/DBTableHeaderCell&gt;
+				&lt;DBTableHeaderCell scope=&quot;col&quot;&gt;C&lt;/DBTableHeaderCell&gt;
+			&lt;/DBTableRow&gt;
+		&lt;/DBTableHead&gt;
+		&lt;DBTableBody&gt;
+			&lt;DBTableRow&gt;
+				&lt;DBTableHeaderCell scope=&quot;row&quot;&gt;1&lt;/DBTableHeaderCell&gt;
+				&lt;DBTableDataCell&gt;2&lt;/DBTableDataCell&gt;
+				&lt;DBTableDataCell&gt;3&lt;/DBTableDataCell&gt;
+			&lt;/DBTableRow&gt;
+			&lt;DBTableRow&gt;
+				&lt;DBTableHeaderCell scope=&quot;row&quot;&gt;4&lt;/DBTableHeaderCell&gt;
+				&lt;DBTableDataCell&gt;5&lt;/DBTableDataCell&gt;
+				&lt;DBTableDataCell&gt;6&lt;/DBTableDataCell&gt;
+			&lt;/DBTableRow&gt;
+		&lt;/DBTableBody&gt;
+	&lt;/DBTable&gt;
+&lt;/template&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/table/docs/Vue","query":{},"buildId":"5iNgkaZ56XldGaGAo2Uln","assetPrefix":"/core-web/review/chore-agents-md-clarify-changeset-usage","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
