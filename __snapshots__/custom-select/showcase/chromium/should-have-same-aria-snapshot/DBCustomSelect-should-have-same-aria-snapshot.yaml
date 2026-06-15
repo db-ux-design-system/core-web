@@ -539,6 +539,9 @@
           - listitem:
             - radio "Option 5"
             - text: Option 5
+          - listitem:
+            - radio "Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf und Halle (Saale) Hbf"
+            - text: Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf und Halle (Saale) Hbf
   - status
   - text: Auto
   - group:
@@ -581,6 +584,9 @@
           - listitem:
             - radio "5"
             - text: "5"
+          - listitem:
+            - radio "Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf und Halle (Saale) Hbf"
+            - text: Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf und Halle (Saale) Hbf
   - status
   - text: "Form Field Width: Auto (Default) Fixed"
   - group:
@@ -646,17 +652,17 @@
             - text: "5"
   - status
   - link "Dropdown Width Auto Edge Cases"
-  - text: "Long option text with dropdownWidth=\"auto\" — text wraps instead of being truncated or keeping single line Auto: Long Options"
+  - text: "Long option text with dropdownWidth=\"auto\" — the dropdown grows to the longest option and the text stays on a single line (no wrapping, no truncation) Auto: Long Options"
   - group:
     - article:
       - radiogroup "auto-long-options":
         - list:
           - listitem:
-            - radio "Dieser extrem lange Optionstext sollte eigentlich nicht umbrechen sondern sauber abgeschnitten werden"
-            - text: Dieser extrem lange Optionstext sollte eigentlich nicht umbrechen sondern sauber abgeschnitten werden
+            - radio "Dieser extrem lange Optionstext bleibt im Auto-Modus in einer Zeile und das Dropdown waechst mit"
+            - text: Dieser extrem lange Optionstext bleibt im Auto-Modus in einer Zeile und das Dropdown waechst mit
           - listitem:
-            - radio "Ein weiterer viel zu langer Text der das Dropdown sprengt und haesslich umbricht"
-            - text: Ein weiterer viel zu langer Text der das Dropdown sprengt und haesslich umbricht
+            - radio "Ein weiterer viel zu langer Text der die Dropdown-Breite im Auto-Modus bestimmt"
+            - text: Ein weiterer viel zu langer Text der die Dropdown-Breite im Auto-Modus bestimmt
           - listitem:
             - radio "Kurz"
             - text: Kurz
