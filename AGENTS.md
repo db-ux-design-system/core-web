@@ -106,10 +106,10 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 **Always add a new changeset when making changes inside the following folders:**
 
-| Folder                      | Packages to include                                                                                                                                                                                               |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Folder                      | Packages to include                                                                                                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `packages/components/src`   | `@db-ux/core-components` (only if the changes also affect styling (SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                                         |
+| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                           |
 
 Use the following bump types for changeset entries:
 
