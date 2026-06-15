@@ -3,7 +3,6 @@ to: "<%= showcases ? `../../showcases/angular-showcase/src/app/components/${name
 ---
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { <%= h.changeCase.pascal(name) %>Showcase } from '@components/components/<%= name %>/showcase/<%= name %>.showcase';
-import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-<%= name %>',
