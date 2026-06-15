@@ -203,6 +203,10 @@ ghsas
 rrrm
 GHSA
 browserslistrc
+unreviewed
+notext
+prebundle
+subcomponent
 # Usernames
 mfranzke
 michaelmkraus
