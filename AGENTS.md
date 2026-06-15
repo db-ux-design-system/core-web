@@ -122,7 +122,7 @@ Use the following bump types for changeset entries:
 Run the following command and follow the interactive prompts:
 
 ```bash
-npx changeset
+pnpm exec changeset
 ```
 
 - Select the affected packages (see table above).
@@ -283,9 +283,24 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ## General code styles and approaches
 
+### Dependency pinning and package execution
+
+All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for supply-chain security, reproducibility, and deterministic builds. See `docs/dependency-update-strategy.md` for the full rationale.
+
+**Always use `pnpm exec` to run CLI tools** — never `npx` or `pnpm dlx`:
+
+| Command           | Behavior                                                              | Allowed |
+| ----------------- | --------------------------------------------------------------------- | ------- |
+| `pnpm exec <bin>` | Runs only from locally installed, pinned packages                     | ✅ Yes  |
+| `pnpm dlx <pkg>`  | Fetches latest from registry and executes (equivalent to `npx --yes`) | ❌ No   |
+| `npx <bin>`       | May fetch latest from registry if not installed locally               | ❌ No   |
+
+`pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
+
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
+- **Pin all third-party Actions to full commit SHAs** (not tags) for supply-chain security. Dependabot manages updates. See `docs/dependency-update-strategy.md` for the full rationale.
 
 ## Additional Resources
 

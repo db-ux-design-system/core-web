@@ -36,7 +36,7 @@ jobs:
       contents: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
@@ -45,37 +45,37 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: ⏬ Download composition-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-composition-storybook
           path: build-storybooks/composition-storybook
 
       - name: ⏬ Download angular-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-angular-storybook
           path: build-storybooks/angular-storybook
 
       - name: ⏬ Download react-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-react-storybook
           path: build-storybooks/react-storybook
 
       - name: ⏬ Download vue-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-vue-storybook
           path: build-storybooks/vue-storybook
 
       - name: ⏬ Download html-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-html-storybook
           path: build-storybooks/html-storybook
@@ -101,7 +101,7 @@ jobs:
           pnpm --silent tsx scripts/github/build-gh-page.ts
 
       - name: 🥅 Deploy to GH-Pages
-        uses: peaceiris/actions-gh-pages@v4.1.0
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
