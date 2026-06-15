@@ -56,9 +56,17 @@ db-custom-select-list-item:not(:last-of-type) {
 		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 
 		inline-size: 100%;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+
+		.db-custom-select-list-item-label {
+			// The label is a flex container (set-default-check-element), so
+			// text-overflow can't apply to the anonymous text node directly.
+			// Wrap the text in a shrinkable block so the ellipsis is shown.
+			min-inline-size: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: inherit;
+		}
 
 		&:has(input:checked) {
 			font-weight: 700;
