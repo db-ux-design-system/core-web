@@ -6,7 +6,7 @@ export default function ControlPanelBrand() {
 			<h1>DBControlPanelBrand Documentation Examples</h1>
 
 			<h2>1. Default Control Panel Brand</h2>
-			<DBControlPanelBrand/>
+			<DBControlPanelBrand />
 
 			<h2>2. Icon Visibility</h2>
 			<DBControlPanelBrand showIcon={false}>
