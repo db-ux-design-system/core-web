@@ -40,6 +40,8 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;
 	_attachedParent?: HTMLElement;
+	_attachedAttribute?: string;
+	_previousAttributeValue?: string;
 	_boundListeners?: {
 		parent: HTMLElement;
 		type: string;

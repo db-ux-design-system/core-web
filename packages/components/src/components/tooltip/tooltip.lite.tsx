@@ -32,6 +32,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
 		_attachedParent: undefined,
+		_attachedAttribute: undefined,
+		_previousAttributeValue: undefined,
 		_boundListeners: [],
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
@@ -121,20 +123,34 @@ export default function DBTooltip(props: DBTooltipProps) {
 			});
 			state._boundListeners = [];
 
-			// Remove attributes this tooltip set on its parent, but only while
-			// they still belong to this tooltip (avoid clobbering another one).
+			// Restore attributes this tooltip set on its parent. Only restore
+			// while the current value still matches what this tooltip wrote,
+			// to avoid clobbering a value set by another tooltip afterwards.
 			const parent = state._attachedParent;
 			if (parent) {
 				if (parent.dataset['hasTooltip'] === 'true') {
 					delete parent.dataset['hasTooltip'];
 				}
-				if (parent.getAttribute('aria-labelledby') === state._id) {
-					parent.removeAttribute('aria-labelledby');
+
+				const attribute = state._attachedAttribute;
+				if (attribute && parent.getAttribute(attribute) === state._id) {
+					// If the trigger declaratively supplied the same value
+					// itself (e.g. aria-describedby="tooltip-01"), restore it
+					// instead of removing it. The framework won't reapply an
+					// unchanged prop after the child cleanup.
+					if (state._previousAttributeValue !== undefined) {
+						parent.setAttribute(
+							attribute,
+							state._previousAttributeValue
+						);
+					} else {
+						parent.removeAttribute(attribute);
+					}
 				}
-				if (parent.getAttribute('aria-describedby') === state._id) {
-					parent.removeAttribute('aria-describedby');
-				}
+
 				state._attachedParent = undefined;
+				state._attachedAttribute = undefined;
+				state._previousAttributeValue = undefined;
 			}
 		}
 	});
@@ -178,11 +194,18 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 				parent.dataset['hasTooltip'] = 'true';
 
-				if (props.variant === 'label') {
-					parent.setAttribute('aria-labelledby', state._id);
-				} else {
-					parent.setAttribute('aria-describedby', state._id);
-				}
+				const attribute =
+					props.variant === 'label'
+						? 'aria-labelledby'
+						: 'aria-describedby';
+
+				// Capture the value the parent had before this tooltip writes
+				// to it, so we can restore it on cleanup instead of wrongly
+				// removing a value the trigger supplied declaratively.
+				state._previousAttributeValue =
+					parent.getAttribute(attribute) ?? undefined;
+				state._attachedAttribute = attribute;
+				parent.setAttribute(attribute, state._id);
 
 				state._attachedParent = parent;
 			}
