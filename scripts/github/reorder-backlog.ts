@@ -20,7 +20,7 @@
  *   PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
  *   BACKLOG_OPTION_ID, IN_PROGRESS_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
  *   WAITING_FOR_FEEDBACK_STATUS, WAITING_FOR_FEEDBACK_OPTION_ID,
- *   REMINDER_BOT_LOGIN
+ *   REMINDER_BOT_LOGIN, FEEDBACK_CODEOWNERS
  */
 
 import { execSync } from 'node:child_process';
@@ -99,6 +99,21 @@ const staleThresholdMs = 14 * 24 * 60 * 60 * 1000;
 // AUTO_MERGE GitHub App, whose bot identity in this repository is
 // `dbux-auto-merge-pr[bot]`.
 const botLogin = envString('REMINDER_BOT_LOGIN', 'dbux-auto-merge-pr[bot]');
+
+// Codeowners are the people who request feedback on an issue (see
+// .github/CODEOWNERS). A "Waiting for feedback" item is only considered to be
+// waiting on its author once one of these has asked a question, and the author
+// is only treated as having responded when they comment *after* that request.
+// Overridable via the comma-separated FEEDBACK_CODEOWNERS variable.
+const codeowners = new Set(
+	envString('FEEDBACK_CODEOWNERS', 'mfranzke,nmerget,michaelmkraus,bruno-sch')
+		.split(',')
+		.map((login) => login.trim().replace(/^@/, '').toLowerCase())
+		.filter((login) => login.length > 0)
+);
+
+const isCodeowner = (login: string | undefined): boolean =>
+	login !== undefined && codeowners.has(login.toLowerCase());
 
 // --- Types ---
 
@@ -187,17 +202,25 @@ const ghGraphql = (query: string): string => {
 	}
 };
 
-// Paginated REST helper. `gh api --paginate` follows every `Link` header and
-// concatenates array responses into a single JSON array, so endpoints whose
-// results span multiple pages (default 30 per page) are fully retrieved.
+// Paginated REST helper. `gh api --paginate` follows every `Link` header, but
+// without `--slurp` each page is emitted as a *separate* top-level JSON array,
+// so an endpoint that spans more than one page produces invalid JSON that
+// `JSON.parse` rejects. `--slurp` wraps every page into one outer array (an
+// array of arrays for array endpoints), which we flatten back into a single
+// array so the caller always receives one valid JSON document.
 const ghRestPaginated = (endpoint: string): string => {
 	const separator = endpoint.includes('?') ? '&' : '?';
 	const paged = `${endpoint}${separator}per_page=100`;
 	try {
-		return execSync(`gh api --paginate "${paged}"`, {
+		const raw = execSync(`gh api --paginate --slurp "${paged}"`, {
 			encoding: 'utf8',
 			maxBuffer: 10 * 1024 * 1024
 		}).trim();
+		const pages = JSON.parse(raw) as unknown[];
+		const flattened = pages.flatMap((page) =>
+			Array.isArray(page) ? (page as unknown[]) : [page]
+		);
+		return JSON.stringify(flattened);
 	} catch (error: unknown) {
 		const message = error instanceof Error ? error.message : String(error);
 		console.error(`gh api failed: ${paged}`);
@@ -262,6 +285,49 @@ const isWaitingForFeedback = (item: ProjectItemNode): boolean => {
 // reordered.
 const isOpenIssue = (item: ProjectItemNode): boolean =>
 	item.content?.__typename === 'Issue' && item.content.state === 'OPEN';
+
+// Validate that the configured Status field actually exists in the project
+// before any filtering happens. If `STATUS_FIELD_ID` is stale or mistyped,
+// `getStatusOptionId()` returns undefined for *every* item and `isBacklogItem`
+// would then treat active "In progress" / "Waiting for feedback" / review
+// items as "no status" and reposition them. Fail closed instead of silently
+// interpreting an unresolved field as "no status".
+const assertStatusFieldExists = (): void => {
+	const query = `{
+  node(id: "${statusFieldId}") {
+    __typename
+    ... on ProjectV2SingleSelectField { id }
+  }
+}`;
+
+	let resolvedId: string | undefined;
+	try {
+		const raw = ghGraphql(query);
+		const parsed = JSON.parse(raw) as {
+			data?: { node?: { __typename?: string; id?: string } | undefined };
+		};
+		const node = parsed.data?.node;
+		if (node?.__typename === 'ProjectV2SingleSelectField') {
+			resolvedId = node.id;
+		}
+	} catch (error: unknown) {
+		const message = error instanceof Error ? error.message : String(error);
+		throw new Error(
+			`Could not resolve the configured Status field (${statusFieldId}): ${message}. ` +
+				'Refusing to run so active items are not misclassified as "no status".',
+			{ cause: error }
+		);
+	}
+
+	if (resolvedId !== statusFieldId) {
+		throw new Error(
+			`Configured Status field (${statusFieldId}) was not found as a single-select ` +
+				`field in project ${projectId}. Refusing to run so active items are not ` +
+				'misclassified as "no status". Check the STATUS_FIELD_ID / ' +
+				'BACKLOG_STATUS_FIELD_ID configuration.'
+		);
+	}
+};
 
 // --- Paginated project item fetcher ---
 
@@ -476,16 +542,22 @@ const reorderItems = async (
 
 // --- Process "Waiting for Feedback" items ---
 
-// Fetch the actual latest comment. The REST "list issue comments" endpoint is
-// ordered by ascending id and ignores sort/direction, so we use GraphQL
-// `comments(last: 1)` to reliably get the newest one.
-const fetchLatestComment = (
-	number: number
-): { author: string | undefined; createdAt: string | undefined } => {
+type IssueComment = {
+	author: string | undefined;
+	createdAt: string | undefined;
+};
+
+// Fetch the most recent comments (newest last). The REST "list issue comments"
+// endpoint is ordered by ascending id and ignores sort/direction, so we use
+// GraphQL `comments(last: N)` to reliably get the newest ones. We need more
+// than the single latest comment so we can tell whether the issue author
+// responded *after* feedback was requested, rather than only inspecting who
+// commented last.
+const fetchRecentComments = (number: number): IssueComment[] => {
 	const query = `{
   repository(owner: "${owner}", name: "${repo}") {
     issue(number: ${String(number)}) {
-      comments(last: 1) {
+      comments(last: 30) {
         nodes {
           author { login }
           createdAt
@@ -509,8 +581,29 @@ const fetchLatestComment = (
 			};
 		};
 	};
-	const latest = parsed.data?.repository?.issue?.comments?.nodes?.[0];
-	return { author: latest?.author?.login, createdAt: latest?.createdAt };
+	const nodes = parsed.data?.repository?.issue?.comments?.nodes ?? [];
+	return nodes.map((node) => ({
+		author: node.author?.login,
+		createdAt: node.createdAt
+	}));
+};
+
+const timeOf = (comment: IssueComment | undefined): number =>
+	comment?.createdAt ? new Date(comment.createdAt).getTime() : 0;
+
+// Returns the most recent comment whose author satisfies `predicate`.
+const lastCommentBy = (
+	comments: IssueComment[],
+	predicate: (author: string) => boolean
+): IssueComment | undefined => {
+	for (let i = comments.length - 1; i >= 0; i--) {
+		const { author } = comments[i];
+		if (author && predicate(author)) {
+			return comments[i];
+		}
+	}
+
+	return undefined;
 };
 
 const moveItemToBacklog = (itemId: string, number: number): void => {
@@ -553,12 +646,9 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	const issueAuthor = item.content?.author?.login;
 	if (!issueAuthor) return;
 
-	let lastCommentAuthor: string | undefined;
-	let lastCommentCreatedAt: string | undefined;
+	let comments: IssueComment[];
 	try {
-		const latest = fetchLatestComment(number);
-		lastCommentAuthor = latest.author;
-		lastCommentCreatedAt = latest.createdAt;
+		comments = fetchRecentComments(number);
 	} catch {
 		console.warn(
 			`\n   ⚠️  Could not fetch comments for #${String(number)}`
@@ -566,13 +656,31 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 		return;
 	}
 
-	if (!lastCommentAuthor) return;
+	if (comments.length === 0) return;
 
-	// Skip if the last comment is from our reminder bot (already reminded).
-	if (lastCommentAuthor === botLogin) return;
+	// The feedback request is the latest comment from a codeowner — that is the
+	// point in time the issue started waiting on its author. Without such a
+	// request there is nothing to chase, so we leave the item untouched.
+	const feedbackRequest = lastCommentBy(comments, (author) =>
+		isCodeowner(author)
+	);
+	if (!feedbackRequest) return;
+	const feedbackRequestTime = timeOf(feedbackRequest);
 
-	if (lastCommentAuthor === issueAuthor) {
-		// Creator responded → move back to Backlog (codeowners need to act)
+	// Did the author respond *after* the feedback was requested? Comparing
+	// timestamps (rather than just "is the latest commenter the author")
+	// avoids treating an old author comment followed by a manual status change
+	// as a fresh response.
+	const lastAuthorComment = lastCommentBy(
+		comments,
+		(author) => author === issueAuthor
+	);
+	const authorResponded =
+		lastAuthorComment !== undefined &&
+		timeOf(lastAuthorComment) > feedbackRequestTime;
+
+	if (authorResponded) {
+		// Creator responded → move back to Backlog (codeowners need to act).
 		console.log(
 			`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
 		);
@@ -583,16 +691,20 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 		return;
 	}
 
-	// Latest comment is from someone other than the creator and the bot —
-	// either a codeowner who asked the author a question, or another
-	// contributor. In both cases the issue is waiting on the author, so we
-	// remind them once the comment is old enough (staleness threshold).
-	const commentAge = lastCommentCreatedAt
-		? Date.now() - new Date(lastCommentCreatedAt).getTime()
-		: 0;
+	// Author has not responded since the feedback request. If the bot already
+	// reminded *after* that request, don't remind again (prevents weekly
+	// repeats). A later third-party comment doesn't reset this, since we only
+	// look at codeowner requests, author responses and bot reminders.
+	const lastBotReminder = lastCommentBy(
+		comments,
+		(author) => author === botLogin
+	);
+	if (lastBotReminder && timeOf(lastBotReminder) > feedbackRequestTime) {
+		return;
+	}
 
-	if (commentAge < staleThresholdMs) {
-		// Not stale yet, skip.
+	// Only remind once the feedback request itself is old enough.
+	if (Date.now() - feedbackRequestTime < staleThresholdMs) {
 		return;
 	}
 
@@ -637,6 +749,10 @@ const reorderBacklog = async () => {
 	if (dryRun) {
 		console.log('🏜️  DRY RUN — no mutations will be executed\n');
 	}
+
+	// Fail closed if the configured Status field cannot be resolved, otherwise
+	// every item would look like "no status" and active items would be moved.
+	assertStatusFieldExists();
 
 	// Step 0: Sync status based on linked PRs
 	console.log('\n🔄 Syncing status based on linked pull requests...');

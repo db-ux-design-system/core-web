@@ -36,6 +36,12 @@ jobs:
         with:
           app-id: ${{ vars.AUTO_MERGE_APP_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          # Scope the token to the configured project owner/repository so the
+          # PROJECT_OWNER / PROJECT_REPO overrides actually grant access there.
+          # When the variables are unset these resolve to empty strings and the
+          # action falls back to the current repository (least privilege).
+          owner: ${{ vars.BACKLOG_PROJECT_OWNER }}
+          repositories: ${{ vars.BACKLOG_PROJECT_REPO }}
 
       - name: 🔀 Reorder backlog
         run: node scripts/github/reorder-backlog.ts
