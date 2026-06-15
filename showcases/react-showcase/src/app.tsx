@@ -51,7 +51,7 @@ const App = () => {
 			controlPanelMobile={
 				<DBControlPanelMobile
 					drawerHeadlinePlain="Showcase"
-					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<PrimaryActions
 							color={color}
@@ -69,7 +69,7 @@ const App = () => {
 			}
 			controlPanelDesktop={
 				<DBControlPanelDesktop
-					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
+					brand={<DBControlPanelBrand />}
 					metaNavigation={<MetaNavigation />}
 					primaryActions={
 						<PrimaryActions

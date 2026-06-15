@@ -46,7 +46,7 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 		<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop>
 				<template v-slot:brand>
-					<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
 				<DBNavigation
 					:variant="settings.navigationDesktopVariant"
@@ -70,7 +70,7 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 		<template v-slot:control-panel-mobile>
 			<DBControlPanelMobile drawerHeadlinePlain="Showcase">
 				<template v-slot:brand>
-					<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
 				<DBNavigation
 					:variant="settings.navigationMobileVariant"

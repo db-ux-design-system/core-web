@@ -56,9 +56,8 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 		block-size: fit-content;
-		inline-size: fit-content;
 		position: absolute;
-		min-inline-size: variables.$db-container-xs;
+		inline-size: variables.$db-container-xs;
 
 		// TODO: This causes some flash for angular navigation item group
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard

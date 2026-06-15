@@ -252,6 +252,10 @@ app-nav-item {
 	display: contents;
 }
 
-.db-control-panel-meta-navigation:first-of-type {
-	justify-content: flex-end;
+@media screen and (width >= 768px) {
+	.db-shell[data-control-panel-desktop-position="top"] {
+		.db-control-panel-meta-navigation:first-of-type {
+			justify-content: flex-end;
+		}
+	}
 }

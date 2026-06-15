@@ -17,11 +17,7 @@ export default function ControlPanelDesktopWidth() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {
@@ -40,11 +36,7 @@ export default function ControlPanelDesktopWidth() {
 				<DBControlPanelDesktop
 					orientation="horizontal"
 					width="medium"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {
@@ -63,11 +55,7 @@ export default function ControlPanelDesktopWidth() {
 				<DBControlPanelDesktop
 					orientation="horizontal"
 					width="large"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {

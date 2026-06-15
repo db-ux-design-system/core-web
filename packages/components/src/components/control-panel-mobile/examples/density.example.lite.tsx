@@ -19,11 +19,7 @@ export default function ControlPanelMobileDensity() {
 					data-density="functional"
 					position="top"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {
@@ -43,11 +39,7 @@ export default function ControlPanelMobileDensity() {
 					data-density="regular"
 					position="top"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {
@@ -67,11 +59,7 @@ export default function ControlPanelMobileDensity() {
 					data-density="expressive"
 					position="top"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {

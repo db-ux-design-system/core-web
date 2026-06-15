@@ -80,7 +80,9 @@ export default function DBControlPanelDesktop(
 			data-width={props.width}
 			data-orientation={props.orientation}
 			data-open={getBooleanAsString(state._open)}>
-			<Slot name="brand" />
+			<div class="db-control-panel-desktop-brand-container">
+				<Slot name="brand" />
+			</div>
 			<div
 				ref={_scrollContainerRef}
 				class="db-control-panel-desktop-scroll-container"

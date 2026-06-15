@@ -17,11 +17,7 @@ export default function ControlPanelDesktopOrientation() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {
@@ -48,11 +44,7 @@ export default function ControlPanelDesktopOrientation() {
 				}}>
 				<DBControlPanelDesktop
 					orientation="vertical"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {

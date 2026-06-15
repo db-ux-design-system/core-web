@@ -32,11 +32,7 @@ export default function ControlPanelMobileExamplesBottom() {
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
@@ -58,22 +54,14 @@ export default function ControlPanelMobileExamplesBottom() {
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 				/>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<DBControlPanelPrimaryActions>
 							<DBButton
@@ -112,11 +100,7 @@ export default function ControlPanelMobileExamplesBottom() {
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<DBControlPanelPrimaryActions>
 							<DBButton
@@ -133,11 +117,7 @@ export default function ControlPanelMobileExamplesBottom() {
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					secondaryActions={
 						<DBControlPanelSecondaryActions>
 							<DBButton
@@ -166,11 +146,7 @@ export default function ControlPanelMobileExamplesBottom() {
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					metaNavigation={
 						<DBControlPanelMetaNavigation>
 							<DBLink href="#">Imprint</DBLink>

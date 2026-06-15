@@ -18,11 +18,7 @@ export default function ControlPanelDesktopDensity() {
 				<DBControlPanelDesktop
 					data-density="functional"
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
@@ -42,11 +38,7 @@ export default function ControlPanelDesktopDensity() {
 				<DBControlPanelDesktop
 					data-density="regular"
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
@@ -66,11 +58,7 @@ export default function ControlPanelDesktopDensity() {
 				<DBControlPanelDesktop
 					data-density="expressive"
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },

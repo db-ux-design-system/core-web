@@ -18,11 +18,7 @@ export default function ControlPanelMobilePosition() {
 				<DBControlPanelMobile
 					position="top"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {
@@ -41,11 +37,7 @@ export default function ControlPanelMobilePosition() {
 				<DBControlPanelMobile
 					position="bottom"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: {

@@ -28,7 +28,7 @@ const {
 			<template v-slot:header>
 				<DBControlPanelDesktop>
 					<template v-slot:brand>
-						<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+						<DBControlPanelBrand data-logo="db-systel" />
 					</template>
 					<DBNavigation>
 						{{ page }}

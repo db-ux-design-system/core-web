@@ -20,11 +20,7 @@ export default function ControlPanelMobileVariant() {
 					variant="drawer"
 					position="top"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
@@ -45,11 +41,7 @@ export default function ControlPanelMobileVariant() {
 					position="bottom"
 					variant="flat-icon"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					flatIconNavigation={
 						<DBControlPanelFlatIconNavigation>
 							<DBNavigation
@@ -73,11 +65,7 @@ export default function ControlPanelMobileVariant() {
 					position="bottom"
 					variant="flat-icon"
 					drawerHeadlinePlain="DBControlPanel"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					flatIconNavigation={
 						<DBControlPanelFlatIconNavigation noText>
 							<DBNavigation

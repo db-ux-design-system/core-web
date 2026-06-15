@@ -6,8 +6,7 @@ import type {
 	IconProps,
 	ShowIconProps,
 	StartSlotProps,
-	TextProps,
-	WrapProps
+	TextProps
 } from '../../shared/model';
 
 export type DBNavigationItemDefaultProps = {
@@ -38,7 +37,6 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
 	IconProps &
 	ShowIconProps &
-	WrapProps &
 	DisabledProps &
 	TextProps;
 

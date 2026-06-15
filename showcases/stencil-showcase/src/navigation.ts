@@ -49,13 +49,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			{ path: '01/drawer', label: 'Drawer' },
 			{ path: '01/divider', label: 'Divider' },
 			{ path: '01/popover', label: 'Popover' },
-			{ path: '01/section', label: 'Section' },
-			{ path: '01/shell', label: 'Shell' },
-			{
-				path: '01/control-panel-desktop',
-				label: 'Control Panel Desktop'
-			},
-			{ path: '01/control-panel-mobile', label: 'Control Panel Mobile' }
+			{ path: '01/section', label: 'Section' }
 		])
 	},
 	{
@@ -101,7 +95,14 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		label: '05 Navigation',
 		children: sortNavItems([
 			{ path: '05/navigation-item', label: 'NavigationItem' },
-			{ path: '05/navigation', label: 'Navigation' }
+			{ path: '05/navigation', label: 'Navigation' },
+			{ path: '05/shell', label: 'Shell' },
+			{ path: '05/control-panel-brand', label: 'ControlPanelBrand' },
+			{
+				path: '05/control-panel-desktop',
+				label: 'Control Panel Desktop'
+			},
+			{ path: '05/control-panel-mobile', label: 'Control Panel Mobile' }
 		])
 	},
 	{
@@ -295,7 +296,7 @@ export function renderNavigation(): void {
 			</db-shell-sub-navigation>
 
 			<db-control-panel-desktop slot="controlPanelDesktop">
-				<db-control-panel-brand slot="brand">Showcase</db-control-panel-brand>
+				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>
 				${renderMetaNavigation()}
 				${renderPrimaryActions()}
 				${renderSecondaryActions()}
@@ -306,7 +307,7 @@ export function renderNavigation(): void {
 				slot="controlPanelMobile"
 				drawer-headline-plain="Showcase"
 			>
-				<db-control-panel-brand slot="brand">Showcase</db-control-panel-brand>
+				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>
 				${renderMetaNavigation()}
 				${renderPrimaryActions()}
 				${renderSecondaryActions()}

@@ -1,10 +1,11 @@
-import { Routes } from '@angular/router';
+import { type Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
 import { BadgeShowcase } from '@components/components/badge/showcase/badge.showcase';
 import { ButtonShowcase } from '@components/components/button/showcase/button.showcase';
 import { CardShowcase } from '@components/components/card/showcase/card.showcase';
 import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
+import { ControlPanelBrandShowcase } from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
 import { ControlPanelDesktopShowcase } from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
 import { ControlPanelMobileShowcase } from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
@@ -72,6 +73,26 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '05/navigation',
 				label: 'Navigation',
 				component: NavigationShowcase
+			},
+			{
+				path: '05/shell',
+				label: 'Shell',
+				component: ShellShowcase
+			},
+			{
+				path: '05/control-panel-brand',
+				label: 'ControlPanelBrand',
+				component: ControlPanelBrandShowcase
+			},
+			{
+				path: '05/control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: ControlPanelDesktopShowcase
+			},
+			{
+				path: '05/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: ControlPanelMobileShowcase
 			}
 		])
 	},
@@ -171,21 +192,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/section',
 				label: 'Section',
 				component: SectionShowcase
-			},
-			{
-				path: '01/control-panel-desktop',
-				label: 'ControlPanelDesktop',
-				component: ControlPanelDesktopShowcase
-			},
-			{
-				path: '01/control-panel-mobile',
-				label: 'ControlPanelMobile',
-				component: ControlPanelMobileShowcase
-			},
-			{
-				path: '01/shell',
-				label: 'Shell',
-				component: ShellShowcase
 			}
 		])
 	},

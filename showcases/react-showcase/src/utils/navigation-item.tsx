@@ -8,6 +8,7 @@ import BadgeShowcase from '@components/components/badge/showcase/badge.showcase'
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
+import ControlPanelBrandShowcase from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
 import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
@@ -74,6 +75,26 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'navigation',
 				label: 'Navigation',
 				component: <NavigationShowcase />
+			},
+			{
+				path: 'shell',
+				label: 'Shell',
+				component: <ShellShowcase />
+			},
+			{
+				path: 'control-panel-brand',
+				label: 'ControlPanelBrand',
+				component: <ControlPanelBrandShowcase />
+			},
+			{
+				path: 'control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: <ControlPanelDesktopShowcase />
+			},
+			{
+				path: 'control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: <ControlPanelMobileShowcase />
 			}
 		])
 	},
@@ -160,7 +181,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
-			{ path: 'shell', label: 'Shell', component: <ShellShowcase /> },
 			{ path: 'stack', label: 'Stack', component: <StackShowcase /> },
 			{ path: 'card', label: 'Card', component: <CardShowcase /> },
 			{ path: 'drawer', label: 'Drawer', component: <DrawerShowcase /> },
@@ -178,16 +198,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'popover',
 				label: 'Popover',
 				component: <PopoverShowcase />
-			},
-			{
-				path: 'control-panel-desktop',
-				label: 'ControlPanelDesktop',
-				component: <ControlPanelDesktopShowcase />
-			},
-			{
-				path: 'control-panel-mobile',
-				label: 'ControlPanelMobile',
-				component: <ControlPanelMobileShowcase />
 			}
 		])
 	},

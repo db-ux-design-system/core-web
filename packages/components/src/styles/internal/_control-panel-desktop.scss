@@ -10,6 +10,11 @@
 @use "./indicator";
 @use "./scrollbar";
 
+$control-panel-desktop-horizontal-padding-block: #{variables.$db-spacing-fixed-md};
+$control-panel-desktop-horizontal-padding-inline: #{variables.$db-spacing-fixed-sm};
+$control-panel-desktop-vertical-padding-block: #{variables.$db-spacing-fixed-xs};
+$control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md};
+
 @mixin horizontal-navigation($scroll-buttons: true) {
 	@if $scroll-buttons {
 		@include scrollbar.set-overflow-scroll-buttons;
@@ -99,7 +104,7 @@
 
 @mixin vertical-navigation($main-navigation: true) {
 	@if $main-navigation {
-		padding-block: variables.$db-spacing-fixed-md;
+		padding-block: $control-panel-desktop-vertical-padding-block;
 	}
 
 	#{string.unquote(custom-elements.$overflow-scroll-left-button)},
@@ -124,7 +129,7 @@
 
 	> menu {
 		flex-direction: column;
-		padding-inline: variables.$db-spacing-fixed-lg;
+		padding-inline: $control-panel-desktop-vertical-padding-inline;
 
 		.db-navigation-item-group,
 		.db-navigation-item {
@@ -136,28 +141,29 @@
 %control-panel-desktop-horizontal-orientation {
 	border-block-end: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	column-gap: $control-panel-desktop-horizontal-padding-inline;
 	grid-template:
 		[meta]
 		"meta meta meta meta meta meta" auto
 		[padding-top]
-		". . navigation . . ." #{variables.$db-spacing-fixed-md}
+		". . navigation . . ." #{$control-panel-desktop-horizontal-padding-block}
 		[others]
 		". brand navigation primary secondary ." auto
 		[padding-bottom]
-		". . navigation . . ." #{variables.$db-spacing-fixed-md} /
-		[padding-left] #{variables.$db-spacing-fixed-lg}
+		". . navigation . . ." #{$control-panel-desktop-horizontal-padding-block} /
+		[padding-left] 0
 		[brand] max-content
 		[navigation] 1fr
 		[primary] max-content
 		[secondary] max-content
-		[padding-right] #{variables.$db-spacing-fixed-lg};
+		[padding-right] 0;
 
 	> .db-control-panel-desktop-scroll-container {
 		display: contents;
 	}
 
 	.db-control-panel-brand {
-		padding-inline-end: variables.$db-spacing-fixed-lg;
+		padding-inline: $control-panel-desktop-horizontal-padding-inline;
 	}
 
 	.db-control-panel-primary-actions,
@@ -165,31 +171,21 @@
 		block-size: variables.$db-sizing-md;
 	}
 
-	.db-control-panel-primary-actions {
-		margin-inline-start: variables.$db-spacing-fixed-sm;
-	}
-
 	> .db-control-panel-desktop-button {
 		display: none;
 	}
 
-	&:has(.db-control-panel-primary-actions, .db-navigation) {
-		.db-control-panel-secondary-actions {
-			padding-inline-start: variables.$db-spacing-fixed-sm;
+	.db-control-panel-secondary-actions {
+		padding-inline-start: $control-panel-desktop-horizontal-padding-inline;
 
-			@include helpers.divider("left");
-		}
+		@include helpers.divider("left");
 	}
 
-	&:has(.db-navigation) {
-		.db-control-panel-brand {
-			@include helpers.divider("right", "after");
-		}
-	}
+	.db-navigation {
+		@include helpers.divider("left");
 
-	&:has(.db-control-panel-secondary-actions) {
-		.db-control-panel-primary-actions {
-			margin-inline-end: variables.$db-spacing-fixed-sm;
+		&::before {
+			inset-block: #{$control-panel-desktop-horizontal-padding-block};
 		}
 	}
 
@@ -209,9 +205,9 @@
 	}
 
 	.db-navigation {
-		--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
+		--db-overflow-scroll-button-inset-block: #{$control-panel-desktop-horizontal-padding-block};
 		--db-overflow-scroll-button-inset-inline-start: calc(
-			#{variables.$db-spacing-fixed-lg} / 2
+			#{$control-panel-desktop-horizontal-padding-inline} / 2
 		);
 
 		display: grid;
@@ -219,11 +215,15 @@
 		@include horizontal-navigation;
 
 		> menu {
-			padding-block: variables.$db-spacing-fixed-md;
+			padding-block: $control-panel-desktop-horizontal-padding-block;
 
 			/* workaround for showing correct scrolling and focus */
-			padding-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
-			margin-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
+			padding-inline-start: calc(
+				#{$control-panel-desktop-horizontal-padding-inline} / 2
+			);
+			margin-inline-start: calc(
+				#{$control-panel-desktop-horizontal-padding-inline} / 2
+			);
 
 			@include navigation-item.direct-navigation-items {
 				@extend %indicator;
@@ -249,7 +249,6 @@
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	block-size: 100%;
 	grid-template:
-		[padding-top] "." #{variables.$db-spacing-fixed-md}
 		[brand] "brand" auto
 		[scroll] "scroll" 1fr
 		[primary] "primary" auto
@@ -333,9 +332,16 @@
 		}
 
 		.db-control-panel-brand {
-			font-size: 0;
-			gap: 0;
-			place-self: center;
+			inline-size: variables.$db-sizing-md;
+			overflow: hidden;
+
+			&::before {
+				aspect-ratio: var(
+					--db-logo-aspect-ratio-short,
+					var(--db-logo-aspect-ratio)
+				);
+				background-image: var(--db-logo-url-short, var(--db-logo-url));
+			}
 		}
 
 		> .db-control-panel-desktop-button {
@@ -369,17 +375,24 @@
 		@include helpers.divider("top");
 	}
 
-	.db-control-panel-brand,
 	.db-control-panel-primary-actions,
 	.db-control-panel-secondary-actions,
 	> .db-control-panel-desktop-button {
-		padding-inline: variables.$db-spacing-fixed-lg;
+		padding: $control-panel-desktop-vertical-padding-block
+			$control-panel-desktop-vertical-padding-inline;
 	}
 
-	.db-control-panel-brand,
-	.db-control-panel-primary-actions,
-	.db-control-panel-secondary-actions {
-		margin-block-end: variables.$db-spacing-fixed-md;
+	.db-control-panel-desktop-brand-container {
+		inline-size: 100%;
+		padding: $control-panel-desktop-vertical-padding-block
+			$control-panel-desktop-vertical-padding-inline;
+
+		@include helpers.divider("bottom", "after");
+
+		&::before {
+			flex-direction: column;
+			overflow: hidden;
+		}
 	}
 
 	> .db-control-panel-desktop-scroll-container {
@@ -390,44 +403,15 @@
 
 		.db-control-panel-meta-navigation {
 			margin-block-start: auto;
+			flex-flow: column nowrap;
 
 			@include helpers.divider("top");
 		}
 	}
 
-	&:has(
-		.db-control-panel-brand,
-		.db-control-panel-primary-actions,
-		.db-navigation,
-		.db-control-panel-meta-navigation
-	) {
-		.db-control-panel-secondary-actions {
-			padding-block-start: variables.$db-spacing-fixed-sm;
-
-			@include helpers.divider("top");
-		}
-	}
-
-	&:has(.db-navigation) {
-		.db-control-panel-brand {
-			@include helpers.divider("bottom", "after");
-
-			&::after {
-				inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-md});
-			}
-		}
-	}
-
-	&:has(
-		.db-control-panel-brand,
-		.db-navigation,
-		.db-control-panel-meta-navigation
-	) {
-		.db-control-panel-primary-actions {
-			padding-block-start: variables.$db-spacing-fixed-sm;
-
-			@include helpers.divider("top");
-		}
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions {
+		@include helpers.divider("top");
 	}
 
 	.db-navigation {

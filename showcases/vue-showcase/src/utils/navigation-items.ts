@@ -4,6 +4,7 @@ import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
+import ControlPanelBrand from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase.vue';
 import ControlPanelDesktop from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase.vue';
 import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
@@ -77,6 +78,26 @@ export const navigationItems: NavItem[] = [
 				path: '/05/navigation',
 				label: 'Navigation',
 				component: markRaw(NavigationShowcase)
+			},
+			{
+				path: '/05/shell',
+				label: 'Shell',
+				component: markRaw(Shell)
+			},
+			{
+				path: '/05/control-panel-brand',
+				label: 'ControlPanelBrand',
+				component: markRaw(ControlPanelBrand)
+			},
+			{
+				path: '/05/control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: markRaw(ControlPanelDesktop)
+			},
+			{
+				path: '/05/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: markRaw(ControlPanelMobile)
 			}
 		])
 	},
@@ -224,21 +245,6 @@ export const navigationItems: NavItem[] = [
 				path: '/01/section',
 				label: 'Section',
 				component: markRaw(SectionShowcase)
-			},
-			{
-				path: '/01/control-panel-desktop',
-				label: 'ControlPanelDesktop',
-				component: markRaw(ControlPanelDesktop)
-			},
-			{
-				path: '/01/control-panel-mobile',
-				label: 'ControlPanelMobile',
-				component: markRaw(ControlPanelMobile)
-			},
-			{
-				path: '/01/shell',
-				label: 'Shell',
-				component: markRaw(Shell)
 			}
 		])
 	},

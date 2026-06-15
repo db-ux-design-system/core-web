@@ -28,9 +28,7 @@ export default function ShellPosition() {
 					controlPanelDesktop={
 						<DBControlPanelDesktop
 							brand={
-								<DBControlPanelBrand>
-									DBHeader
-								</DBControlPanelBrand>
+								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
 								<DBControlPanelMetaNavigation>
@@ -96,9 +94,7 @@ export default function ShellPosition() {
 					controlPanelDesktop={
 						<DBControlPanelDesktop
 							brand={
-								<DBControlPanelBrand>
-									DBHeader
-								</DBControlPanelBrand>
+								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
 								<DBControlPanelMetaNavigation>

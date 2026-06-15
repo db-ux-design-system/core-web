@@ -64,8 +64,7 @@
 	display: inline-flex;
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-	white-space: nowrap; // we don't want to break
-	text-align: center;
+	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
 	justify-content: space-between;
 
@@ -75,11 +74,6 @@
 
 	@include helpers.active {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-	}
-
-	&[data-wrap="true"] {
-		white-space: normal;
-		text-align: start;
 	}
 }
 

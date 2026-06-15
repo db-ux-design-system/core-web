@@ -1,5 +1,4 @@
 import {
-	AdditionalInformationSlotProps,
 	ClickEvent,
 	ClickEventProps,
 	ClickEventState,
@@ -11,8 +10,7 @@ import {
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
 	NavigationItemGroupVariant,
-	ShowIconProps,
-	type WrapProps
+	ShowIconProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DBNavigationItemDefaultProps } from '../navigation-item/model';
@@ -30,7 +28,6 @@ export type DBNavigationItemGroupDefaultProps = {
 };
 
 export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
-	WrapProps &
 	NavigationBackButtonProps &
 	ClickEventProps<HTMLButtonElement> &
 	GlobalProps &
@@ -38,8 +35,7 @@ export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
 	ShowIconProps &
 	DBNavigationItemDefaultProps &
 	DisabledProps &
-	NavigationItemGroupVariant &
-	AdditionalInformationSlotProps;
+	NavigationItemGroupVariant;
 
 export type DBNavigationItemGroupDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;

@@ -28,11 +28,7 @@ export default function ControlPanelDesktopExamples() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}>
+					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
@@ -51,21 +47,13 @@ export default function ControlPanelDesktopExamples() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 				/>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<DBControlPanelPrimaryActions>
 							<DBButton
@@ -103,11 +91,7 @@ export default function ControlPanelDesktopExamples() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<DBControlPanelPrimaryActions>
 							<DBButton
@@ -123,11 +107,7 @@ export default function ControlPanelDesktopExamples() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelDesktop
 					orientation="horizontal"
-					brand={
-						<DBControlPanelBrand>
-							DBControlPanel
-						</DBControlPanelBrand>
-					}
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					secondaryActions={
 						<DBControlPanelSecondaryActions>
 							<DBButton
