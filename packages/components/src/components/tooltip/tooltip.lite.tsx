@@ -32,6 +32,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
 		_attachedParent: undefined,
+		_activeTriggerCount: 0,
 		_boundListeners: [],
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
@@ -77,6 +78,16 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 		},
 		handleLeave(): void {
+			// Multiple triggers (hover + focus) can be active at once. Only tear
+			// down the shared scroll callback/observer once the last one leaves.
+			state._activeTriggerCount = Math.max(
+				(state._activeTriggerCount ?? 0) - 1,
+				0
+			);
+			if ((state._activeTriggerCount ?? 0) > 0) {
+				return;
+			}
+
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
@@ -87,17 +98,18 @@ export default function DBTooltip(props: DBTooltipProps) {
 			state._observer?.unobserve(state.getParent());
 		},
 		handleEnter(parent?: HTMLElement): void {
-			if (state._documentScrollListenerCallbackId) {
-				new DocumentScrollListener().removeCallback(
-					state._documentScrollListenerCallbackId!
-				);
+			// Register the shared scroll callback only for the first active
+			// trigger; a second enter (e.g. focusin after mouseenter) must not
+			// orphan the first callback.
+			state._activeTriggerCount = (state._activeTriggerCount ?? 0) + 1;
+			if (state._activeTriggerCount === 1) {
+				state._documentScrollListenerCallbackId =
+					new DocumentScrollListener().addCallback((event) =>
+						state.handleDocumentScroll(event, parent)
+					);
+				state._observer?.observe(state.getParent());
 			}
-			state._documentScrollListenerCallbackId =
-				new DocumentScrollListener().addCallback((event) =>
-					state.handleDocumentScroll(event, parent)
-				);
 			state.handleAutoPlacement(parent);
-			state._observer?.observe(state.getParent());
 		},
 		resetIds: () => {
 			state._id =
@@ -114,6 +126,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state._observer?.disconnect();
 			state._observer = undefined;
+			state._activeTriggerCount = 0;
 
 			const bound = state._boundListeners ?? [];
 			bound.forEach((entry) => {
