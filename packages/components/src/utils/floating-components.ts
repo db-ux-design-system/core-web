@@ -79,6 +79,17 @@ export const handleFixedDropdown = (
 	// We skip this if we are in mobile it's already fixed
 	if (getComputedStyle(element).zIndex === '9999') return;
 
+	const fullWidth = element.dataset['width'] === 'full';
+	const autoWidth = element.dataset['width'] === 'auto';
+
+	// Reset width-specific inline styles first so a previous mode (e.g. "auto")
+	// doesn't leave a stale minInlineSize/inlineSize behind when the dropdown
+	// width changes at runtime. This must happen before getFloatingProps
+	// measures the element, otherwise the dropdown would be measured with a
+	// width it no longer has and positioned incorrectly.
+	element.style.inlineSize = '';
+	element.style.minInlineSize = '';
+
 	const {
 		top,
 		bottom,
@@ -90,15 +101,6 @@ export const handleFixedDropdown = (
 		correctedPlacement,
 		innerWidth
 	} = getFloatingProps(element, parent, placement);
-
-	const fullWidth = element.dataset['width'] === 'full';
-	const autoWidth = element.dataset['width'] === 'auto';
-
-	// Reset width-specific inline styles first so a previous mode (e.g. "auto")
-	// doesn't leave a stale minInlineSize/inlineSize behind when the dropdown
-	// width changes at runtime.
-	element.style.inlineSize = '';
-	element.style.minInlineSize = '';
 
 	// For auto width the dropdown is forced to be at least as wide as the trigger,
 	// but clamped to its own max-inline-size: CSS lets a min-inline-size override
