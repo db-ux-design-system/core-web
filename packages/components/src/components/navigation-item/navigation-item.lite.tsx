@@ -110,17 +110,20 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={props.active}
-			data-wrap={getBooleanAsString(props.wrap)}
-			aria-disabled={getBooleanAsString(props.disabled)}>
-			<Show when={!state.hasSubNavigation}>
-				<Show when={props.text} else={props.children}>
-					{props.text}
-				</Show>
-			</Show>
-
-			<Show when={state.hasSubNavigation}>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
+			<Show
+				when={
+					!getBoolean(props.hideSubNavigation, 'hideSubNavigation') &&
+					state.hasSubNavigation
+				}
+				else={
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
+				}>
 				<button
 					id={state.subNavigationToggleId}
 					aria-haspopup={state.hasAreaPopup ? 'true' : undefined}
