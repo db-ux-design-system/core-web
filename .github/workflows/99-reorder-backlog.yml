@@ -10,6 +10,13 @@ on:
     - cron: "0 6 * * 1" # Every Monday at 06:00 UTC
   workflow_dispatch: # Allow manual trigger
 
+# Serialize runs so an overlapping manual dispatch and the scheduled run never
+# mutate the project concurrently (which could post duplicate reminders or
+# interleave position updates). Queue instead of cancelling an in-flight run.
+concurrency:
+  group: reorder-backlog
+  cancel-in-progress: false
+
 jobs:
   reorder:
     name: Reorder UX Engineering Backlog
@@ -19,13 +26,13 @@ jobs:
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 🏗 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version-file: .nvmrc
 
       - name: 🧬 Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
           app-id: ${{ vars.AUTO_MERGE_APP_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
@@ -37,6 +44,8 @@ jobs:
           # Optional overrides. When the corresponding GitHub variable is not
           # set these resolve to an empty string and the script falls back to
           # its built-in defaults (see reorder-backlog.ts header).
+          PROJECT_OWNER: ${{ vars.BACKLOG_PROJECT_OWNER }}
+          PROJECT_REPO: ${{ vars.BACKLOG_PROJECT_REPO }}
           PROJECT_ID: ${{ vars.BACKLOG_PROJECT_ID }}
           PROJECT_NUMBER: ${{ vars.BACKLOG_PROJECT_NUMBER }}
           PRIORITY_FIELD_ID: ${{ vars.BACKLOG_PRIORITY_FIELD_ID }}
@@ -46,3 +55,5 @@ jobs:
           IN_PROGRESS_OPTION_ID: ${{ vars.BACKLOG_STATUS_IN_PROGRESS_OPTION_ID }}
           COMMUNITY_FEEDBACK_LABEL: ${{ vars.BACKLOG_COMMUNITY_FEEDBACK_LABEL }}
           WAITING_FOR_FEEDBACK_STATUS: ${{ vars.BACKLOG_WAITING_FOR_FEEDBACK_STATUS }}
+          WAITING_FOR_FEEDBACK_OPTION_ID: ${{ vars.BACKLOG_WAITING_FOR_FEEDBACK_OPTION_ID }}
+          REMINDER_BOT_LOGIN: ${{ vars.BACKLOG_REMINDER_BOT_LOGIN }}

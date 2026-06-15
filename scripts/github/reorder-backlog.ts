@@ -19,7 +19,8 @@
  *   PROJECT_OWNER, PROJECT_REPO, PROJECT_ID, PROJECT_NUMBER,
  *   PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
  *   BACKLOG_OPTION_ID, IN_PROGRESS_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
- *   WAITING_FOR_FEEDBACK_STATUS, REMINDER_BOT_LOGIN
+ *   WAITING_FOR_FEEDBACK_STATUS, WAITING_FOR_FEEDBACK_OPTION_ID,
+ *   REMINDER_BOT_LOGIN
  */
 
 import { execSync } from 'node:child_process';
@@ -60,10 +61,16 @@ const communityFeedbackLabel = envString(
 	'communityFeedback'
 );
 
-// Status name for items waiting on the issue author
+// Status for items waiting on the issue author. Single-select option labels
+// are editable, so prefer matching the stable option ID when it is configured
+// and only fall back to the display name otherwise.
 const waitingForFeedbackStatus = envString(
 	'WAITING_FOR_FEEDBACK_STATUS',
 	'🎶 Waiting for feedback'
+);
+const waitingForFeedbackOptionId = envString(
+	'WAITING_FOR_FEEDBACK_OPTION_ID',
+	''
 );
 
 const priorityRank: Record<string, number> = {
@@ -100,12 +107,9 @@ type ProjectItemNode = {
 	fieldValues: {
 		nodes: Array<{
 			__typename: string;
-			field?: { name: string };
+			field?: { id?: string; name?: string };
 			name?: string;
-			pullRequests?: {
-				nodes: Array<{ number: number; state: string }>;
-				pageInfo?: { hasNextPage: boolean };
-			};
+			optionId?: string;
 		}>;
 	};
 	content:
@@ -113,6 +117,7 @@ type ProjectItemNode = {
 				__typename: string;
 				number?: number;
 				title?: string;
+				state?: string;
 				repository?: { nameWithOwner: string };
 				labels?: { nodes: Array<{ name: string }> };
 				author?: { login: string };
@@ -182,15 +187,20 @@ const ghGraphql = (query: string): string => {
 	}
 };
 
-const ghRest = (endpoint: string): string => {
+// Paginated REST helper. `gh api --paginate` follows every `Link` header and
+// concatenates array responses into a single JSON array, so endpoints whose
+// results span multiple pages (default 30 per page) are fully retrieved.
+const ghRestPaginated = (endpoint: string): string => {
+	const separator = endpoint.includes('?') ? '&' : '?';
+	const paged = `${endpoint}${separator}per_page=100`;
 	try {
-		return execSync(`gh api "${endpoint}"`, {
+		return execSync(`gh api --paginate "${paged}"`, {
 			encoding: 'utf8',
 			maxBuffer: 10 * 1024 * 1024
 		}).trim();
 	} catch (error: unknown) {
 		const message = error instanceof Error ? error.message : String(error);
-		console.error(`gh api failed: ${endpoint}`);
+		console.error(`gh api failed: ${paged}`);
 		console.error(message);
 		throw error;
 	}
@@ -205,7 +215,7 @@ const getItemStatus = (item: ProjectItemNode): string | undefined => {
 	for (const fv of item.fieldValues.nodes) {
 		if (
 			fv.__typename === 'ProjectV2ItemFieldSingleSelectValue' &&
-			fv.field?.name === 'Status'
+			fv.field?.id === statusFieldId
 		) {
 			return fv.name;
 		}
@@ -213,6 +223,45 @@ const getItemStatus = (item: ProjectItemNode): string | undefined => {
 
 	return undefined;
 };
+
+// Returns the configured Status option ID for an item. Comparing option IDs is
+// robust against field/option renames (GitHub allows both), whereas matching
+// display names would silently break and misclassify items.
+const getStatusOptionId = (item: ProjectItemNode): string | undefined => {
+	for (const fv of item.fieldValues.nodes) {
+		if (
+			fv.__typename === 'ProjectV2ItemFieldSingleSelectValue' &&
+			fv.field?.id === statusFieldId
+		) {
+			return fv.optionId;
+		}
+	}
+
+	return undefined;
+};
+
+// An item belongs to the backlog ordering when it has the Backlog status or no
+// status at all (compared by the stable option ID).
+const isBacklogItem = (item: ProjectItemNode): boolean => {
+	const optionId = getStatusOptionId(item);
+	return optionId === backlogOptionId || !optionId;
+};
+
+// Matches "Waiting for feedback" by the stable option ID when configured,
+// otherwise falls back to the (editable) display name.
+const isWaitingForFeedback = (item: ProjectItemNode): boolean => {
+	if (waitingForFeedbackOptionId) {
+		return getStatusOptionId(item) === waitingForFeedbackOptionId;
+	}
+
+	return getItemStatus(item) === waitingForFeedbackStatus;
+};
+
+// Only OPEN issues take part in the active-status automation. A closed issue
+// whose project status was not updated must not be reminded, demoted, or
+// reordered.
+const isOpenIssue = (item: ProjectItemNode): boolean =>
+	item.content?.__typename === 'Issue' && item.content.state === 'OPEN';
 
 // --- Paginated project item fetcher ---
 
@@ -229,7 +278,7 @@ const fetchProjectItems = async (
 		page++;
 		const afterClause = cursor ? `, after: "${cursor}"` : '';
 		const labelsFragment = includeLabels
-			? 'labels(first: 20) { nodes { name } }'
+			? 'labels(first: 100) { nodes { name } }'
 			: '';
 
 		const query = `{
@@ -246,15 +295,9 @@ const fetchProjectItems = async (
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
-                field { ... on ProjectV2SingleSelectField { name } }
+                field { ... on ProjectV2SingleSelectField { id name } }
+                optionId
                 name
-              }
-              ... on ProjectV2ItemFieldPullRequestValue {
-                field { ... on ProjectV2Field { name } }
-                pullRequests(first: 50) {
-                  nodes { number state }
-                  pageInfo { hasNextPage }
-                }
               }
             }
           }
@@ -263,6 +306,7 @@ const fetchProjectItems = async (
             ... on Issue {
               number
               title
+              state
               author { login }
               repository { nameWithOwner }
               ${labelsFragment}
@@ -335,7 +379,7 @@ const fetchIssueFields = async (
 		let effort = '';
 
 		try {
-			const issueJson = ghRest(
+			const issueJson = ghRestPaginated(
 				`repos/${owner}/${repo}/issues/${String(number)}/issue-field-values`
 			);
 			const fieldValues = JSON.parse(issueJson) as IssueFieldValue[];
@@ -421,14 +465,144 @@ const reorderItems = async (
 		ghGraphql(mutation);
 		previousItemId = item.itemId;
 
-		if (i % 5 === 4) {
-			// eslint-disable-next-line no-await-in-loop
-			await sleep(300);
-		}
+		// Pace writes well under GitHub's secondary rate limit (~80 content-
+		// generating requests per minute). One mutation roughly every 800ms
+		// keeps us around ~75/min even in the worst case, so a large backlog
+		// does not abort mid-run with a partial order.
+		// eslint-disable-next-line no-await-in-loop
+		await sleep(800);
 	}
 };
 
 // --- Process "Waiting for Feedback" items ---
+
+// Fetch the actual latest comment. The REST "list issue comments" endpoint is
+// ordered by ascending id and ignores sort/direction, so we use GraphQL
+// `comments(last: 1)` to reliably get the newest one.
+const fetchLatestComment = (
+	number: number
+): { author: string | undefined; createdAt: string | undefined } => {
+	const query = `{
+  repository(owner: "${owner}", name: "${repo}") {
+    issue(number: ${String(number)}) {
+      comments(last: 1) {
+        nodes {
+          author { login }
+          createdAt
+        }
+      }
+    }
+  }
+}`;
+	const raw = ghGraphql(query);
+	const parsed = JSON.parse(raw) as {
+		data?: {
+			repository?: {
+				issue?: {
+					comments?: {
+						nodes?: Array<{
+							author?: { login?: string };
+							createdAt?: string;
+						}>;
+					};
+				};
+			};
+		};
+	};
+	const latest = parsed.data?.repository?.issue?.comments?.nodes?.[0];
+	return { author: latest?.author?.login, createdAt: latest?.createdAt };
+};
+
+const moveItemToBacklog = (itemId: string, number: number): void => {
+	const mutation = `mutation {
+  updateProjectV2ItemFieldValue(input: {
+    projectId: "${projectId}"
+    itemId: "${itemId}"
+    fieldId: "${statusFieldId}"
+    value: { singleSelectOptionId: "${backlogOptionId}" }
+  }) {
+    projectV2Item { id }
+  }
+}`;
+	try {
+		ghGraphql(mutation);
+	} catch {
+		console.warn(`\n   ⚠️  Failed to move #${String(number)} to Backlog`);
+	}
+};
+
+const postStaleReminder = (issueAuthor: string, number: number): void => {
+	try {
+		const body =
+			'👋 @' +
+			issueAuthor +
+			' — This issue has been waiting for feedback for a while. Is this still an issue for you? If so, please let us know and we will prioritize accordingly. If not, feel free to close it. Thanks!';
+		execSync(
+			`gh issue comment ${String(number)} --repo ${owner}/${repo} --body "${body}"`,
+			{ encoding: 'utf8' }
+		);
+	} catch {
+		console.warn(`\n   ⚠️  Failed to post comment on #${String(number)}`);
+	}
+};
+
+const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
+	const number = item.content?.number;
+	if (!number) return;
+
+	const issueAuthor = item.content?.author?.login;
+	if (!issueAuthor) return;
+
+	let lastCommentAuthor: string | undefined;
+	let lastCommentCreatedAt: string | undefined;
+	try {
+		const latest = fetchLatestComment(number);
+		lastCommentAuthor = latest.author;
+		lastCommentCreatedAt = latest.createdAt;
+	} catch {
+		console.warn(
+			`\n   ⚠️  Could not fetch comments for #${String(number)}`
+		);
+		return;
+	}
+
+	if (!lastCommentAuthor) return;
+
+	// Skip if the last comment is from our reminder bot (already reminded).
+	if (lastCommentAuthor === botLogin) return;
+
+	if (lastCommentAuthor === issueAuthor) {
+		// Creator responded → move back to Backlog (codeowners need to act)
+		console.log(
+			`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
+		);
+		if (!dryRun) {
+			moveItemToBacklog(item.id, number);
+		}
+
+		return;
+	}
+
+	// Latest comment is from someone other than the creator and the bot —
+	// either a codeowner who asked the author a question, or another
+	// contributor. In both cases the issue is waiting on the author, so we
+	// remind them once the comment is old enough (staleness threshold).
+	const commentAge = lastCommentCreatedAt
+		? Date.now() - new Date(lastCommentCreatedAt).getTime()
+		: 0;
+
+	if (commentAge < staleThresholdMs) {
+		// Not stale yet, skip.
+		return;
+	}
+
+	console.log(
+		`   💬 #${String(number)}: still waiting → posting stale reminder`
+	);
+	if (!dryRun) {
+		postStaleReminder(issueAuthor, number);
+	}
+};
 
 const processWaitingForFeedback = async (
 	items: ProjectItemNode[],
@@ -436,7 +610,7 @@ const processWaitingForFeedback = async (
 ): Promise<void> => {
 	console.log('\n⏳ Processing "Waiting for Feedback" items...');
 	const waitingItems = items.filter(
-		(item) => getItemStatus(item) === waitingForFeedbackStatus
+		(item) => isOpenIssue(item) && isWaitingForFeedback(item)
 	);
 
 	if (waitingItems.length === 0) {
@@ -449,122 +623,9 @@ const processWaitingForFeedback = async (
 	);
 
 	for (const item of waitingItems) {
-		const number = item.content?.number;
-		if (!number) continue;
-
-		const issueAuthor = item.content?.author?.login;
-		if (!issueAuthor) continue;
-
-		// Fetch the actual latest comment. The REST "list issue comments"
-		// endpoint is ordered by ascending id and ignores sort/direction, so
-		// we use GraphQL `comments(last: 1)` to reliably get the newest one.
-		let lastCommentAuthor: string | undefined;
-		let lastCommentCreatedAt: string | undefined;
-		try {
-			const query = `{
-  repository(owner: "${owner}", name: "${repo}") {
-    issue(number: ${String(number)}) {
-      comments(last: 1) {
-        nodes {
-          author { login }
-          createdAt
-        }
-      }
-    }
-  }
-}`;
-			const raw = ghGraphql(query);
-			const parsed = JSON.parse(raw) as {
-				data?: {
-					repository?: {
-						issue?: {
-							comments?: {
-								nodes?: Array<{
-									author?: { login?: string };
-									createdAt?: string;
-								}>;
-							};
-						};
-					};
-				};
-			};
-			const latest = parsed.data?.repository?.issue?.comments?.nodes?.[0];
-			lastCommentAuthor = latest?.author?.login;
-			lastCommentCreatedAt = latest?.createdAt;
-		} catch {
-			console.warn(
-				`\n   ⚠️  Could not fetch comments for #${String(number)}`
-			);
-			continue;
-		}
-
-		if (!lastCommentAuthor) continue;
-
-		// Skip if the last comment is from our reminder bot (already reminded).
-		if (lastCommentAuthor === botLogin) {
-			continue;
-		}
-
-		if (lastCommentAuthor === issueAuthor) {
-			// Creator responded → move back to Backlog (codeowners need to act)
-			console.log(
-				`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
-			);
-			if (!dryRun) {
-				const mutation = `mutation {
-  updateProjectV2ItemFieldValue(input: {
-    projectId: "${projectId}"
-    itemId: "${item.id}"
-    fieldId: "${statusFieldId}"
-    value: { singleSelectOptionId: "${backlogOptionId}" }
-  }) {
-    projectV2Item { id }
-  }
-}`;
-				try {
-					ghGraphql(mutation);
-				} catch {
-					console.warn(
-						`\n   ⚠️  Failed to move #${String(number)} to Backlog`
-					);
-				}
-			}
-
-			continue;
-		}
-
-		// Latest comment is from someone other than the creator and the bot —
-		// either a codeowner who asked the author a question, or another
-		// contributor. In both cases the issue is waiting on the author, so we
-		// remind them once the comment is old enough (staleness threshold).
-		const commentAge = lastCommentCreatedAt
-			? Date.now() - new Date(lastCommentCreatedAt).getTime()
-			: 0;
-
-		if (commentAge < staleThresholdMs) {
-			// Not stale yet, skip.
-			continue;
-		}
-
-		console.log(
-			`   💬 #${String(number)}: still waiting → posting stale reminder`
-		);
-		if (!dryRun) {
-			try {
-				const body =
-					'👋 @' +
-					issueAuthor +
-					' — This issue has been waiting for feedback for a while. Is this still an issue for you? If so, please let us know and we will prioritize accordingly. If not, feel free to close it. Thanks!';
-				execSync(
-					`gh issue comment ${String(number)} --repo ${owner}/${repo} --body "${body}"`,
-					{ encoding: 'utf8' }
-				);
-			} catch {
-				console.warn(
-					`\n   ⚠️  Failed to post comment on #${String(number)}`
-				);
-			}
-		}
+		processWaitingItem(item, dryRun);
+		// eslint-disable-next-line no-await-in-loop
+		await sleep(200);
 	}
 };
 
@@ -597,11 +658,10 @@ const reorderBacklog = async () => {
 	console.log(`\n📦 Fetching backlog items from ${repo}...`);
 	const backlogItems = await fetchProjectItems(
 		(node) => {
-			if (node.content?.__typename !== 'Issue') return false;
-			if (node.content.repository?.nameWithOwner !== `${owner}/${repo}`)
+			if (!isOpenIssue(node)) return false;
+			if (node.content?.repository?.nameWithOwner !== `${owner}/${repo}`)
 				return false;
-			const status = getItemStatus(node);
-			return status === 'Backlog' || !status;
+			return isBacklogItem(node);
 		},
 		'Fetching',
 		true
