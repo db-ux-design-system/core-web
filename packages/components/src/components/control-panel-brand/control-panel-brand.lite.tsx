@@ -1,11 +1,5 @@
-import {
-	Show,
-	useDefaultProps,
-	useMetadata,
-	useRef
-} from '@builder.io/mitosis';
-import { DEFAULT_ICON } from '../../shared/constants';
-import { cls, getBooleanAsString } from '../../utils';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import { cls } from '../../utils';
 import { DBControlPanelBrandProps } from './model';
 
 useMetadata({});
