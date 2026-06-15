@@ -8,7 +8,6 @@ import { <%= h.changeCase.pascal(name) %>Showcase } from '@components/components
 	selector: 'app-<%= name %>',
 	template: '<<%= name %>-showcase></<%= name %>-showcase>',
 	imports: environment.webComponents ? [] : [<%= h.changeCase.pascal(name) %>Showcase],
-	standalone: true,
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	standalone: true
 })
 export class <%= h.changeCase.pascal(name) %>Component {}
