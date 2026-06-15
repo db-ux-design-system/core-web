@@ -1,6 +1,5 @@
 import {
 	Show,
-	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef
@@ -23,9 +22,8 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-control-panel-brand', props.className)}>
-			{props.children}
 			<Show when={props.text}>{props.text}</Show>
-			<Slot name="additionalInformation"></Slot>
+			{props.children}
 		</div>
 	);
 }

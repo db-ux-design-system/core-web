@@ -173,8 +173,9 @@ export default function DBNavigationItemGroup(
 				onClick={(event: ClickEvent<HTMLButtonElement>) =>
 					state.handleClick(event)
 				}>
+				<Slot name="startSlot"></Slot>
 				{props.text}
-				<Slot name="additionalInformation"></Slot>
+				<Slot name="endSlot"></Slot>
 			</button>
 
 			<menu

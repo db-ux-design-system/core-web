@@ -87,6 +87,7 @@
 					.db-control-panel-meta-navigation {
 						padding: variables.$db-spacing-fixed-md;
 						margin-block-start: auto;
+						flex-flow: column nowrap;
 
 						@include helpers.divider("top");
 					}

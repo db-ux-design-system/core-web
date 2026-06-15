@@ -251,3 +251,7 @@ app-secondary-actions,
 app-nav-item {
 	display: contents;
 }
+
+.db-control-panel-meta-navigation:first-of-type {
+	justify-content: flex-end;
+}

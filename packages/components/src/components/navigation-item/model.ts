@@ -1,10 +1,11 @@
 import type {
-	AdditionalInformationSlotProps,
 	DisabledProps,
+	EndSlotProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	ShowIconProps,
+	StartSlotProps,
 	TextProps,
 	WrapProps
 } from '../../shared/model';
@@ -30,7 +31,8 @@ export type DBNavigationItemDefaultProps = {
 	 * Force hide sub-navigation - for web component output
 	 */
 	hideSubNavigation?: boolean | string;
-};
+} & StartSlotProps &
+	EndSlotProps;
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
@@ -38,7 +40,6 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	ShowIconProps &
 	WrapProps &
 	DisabledProps &
-	AdditionalInformationSlotProps &
 	TextProps;
 
 export type DBNavigationItemDefaultState = {};

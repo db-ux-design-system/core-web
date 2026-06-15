@@ -27,9 +27,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-active={getBooleanAsString(props.active)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
+			<Slot name="startSlot"></Slot>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
-			<Slot name="additionalInformation"></Slot>
+			<Slot name="endSlot"></Slot>
 			<DBTooltip placement="right" delay="slow">
 				{props.tooltip ?? DEFAULT_LABEL}
 			</DBTooltip>

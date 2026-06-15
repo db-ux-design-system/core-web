@@ -1,5 +1,4 @@
 import {
-	AdditionalInformationSlotProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -13,8 +12,7 @@ export type DBControlPanelBrandProps = DBControlPanelBrandDefaultProps &
 	GlobalProps &
 	IconProps &
 	ShowIconProps &
-	TextProps &
-	AdditionalInformationSlotProps;
+	TextProps;
 
 export type DBControlPanelBrandDefaultState = {};
 
