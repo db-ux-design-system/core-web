@@ -14,19 +14,22 @@ const setProjectStatus = () => {
 		console.error('Missing required env var: PROJECT_NUMBER');
 		process.exit(1);
 	}
-	
+
 	if (!prUrl) {
 		console.error('Missing required env var: PR_URL');
 		process.exit(1);
 	}
-	
+
 	if (!eventAction) {
 		console.error('Missing required env var: EVENT_ACTION');
 		process.exit(1);
 	}
 
+	// `gh project list` defaults to a maximum of 30 results, so an older
+	// project can silently drop out of the response as the organization
+	// creates more projects. Raise the limit to keep the lookup stable.
 	const projectId = exec(
-		`gh project list --owner db-ux-design-system --format json | jq -r --arg num "${projectNumber}" '.projects[] | select(.number == ($num | tonumber)) | .id'`
+		`gh project list --owner db-ux-design-system --limit 100 --format json | jq -r --arg num "${projectNumber}" '.projects[] | select(.number == ($num | tonumber)) | .id'`
 	);
 
 	const itemId = exec(
@@ -92,9 +95,21 @@ const setProjectStatus = () => {
 	);
 
 	// Only remove reviewers when a PR is explicitly converted to draft,
-	// not on every event where the PR happens to be a draft
+	// not on every event where the PR happens to be a draft.
+	// `gh pr edit --remove-reviewer` does not support a wildcard such as `@*`,
+	// so we read the currently requested reviewers and remove them explicitly.
 	if (eventAction === 'converted_to_draft') {
-		exec(`gh pr edit "${prUrl}" --remove-reviewer @*`);
+		const requestedReviewers = exec(
+			`gh pr view "${prUrl}" --json reviewRequests --jq '[.reviewRequests[] | select(.login != null) | .login] | join(",")'`
+		);
+
+		if (requestedReviewers) {
+			exec(
+				`gh pr edit "${prUrl}" --remove-reviewer "${requestedReviewers}"`
+			);
+		} else {
+			console.log('No requested reviewers to remove.');
+		}
 	}
 };
 
