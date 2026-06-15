@@ -81,11 +81,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
 				);
+				state._documentScrollListenerCallbackId = undefined;
 			}
 
 			state._observer?.unobserve(state.getParent());
 		},
 		handleEnter(parent?: HTMLElement): void {
+			if (state._documentScrollListenerCallbackId) {
+				new DocumentScrollListener().removeCallback(
+					state._documentScrollListenerCallbackId
+				);
+			}
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event, parent)
