@@ -1,1 +1,1 @@
-["Label Functional pop up button","","Option 1","Option 2","Closing menu Option 2 Label Functional pop up button"]
+["Go Forward dimmed button. This item is dimmed. To navigate items on this toolbar, press Control-Option, and then Up Arrow, Down Arrow, Left Arrow, or Right Arrow","dimmed","dimmed","dimmed","dimmed"]
