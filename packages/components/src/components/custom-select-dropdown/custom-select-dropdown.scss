@@ -26,6 +26,11 @@
 
 	&[data-width="auto"] {
 		inline-size: max-content;
+
+		// Auto width grows to the longest option, so labels must not wrap.
+		.db-custom-select-list-item-label {
+			white-space: nowrap;
+		}
 	}
 
 	&[data-width="full"] {

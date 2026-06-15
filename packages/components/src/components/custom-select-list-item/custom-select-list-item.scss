@@ -58,13 +58,13 @@ db-custom-select-list-item:not(:last-of-type) {
 		inline-size: 100%;
 
 		.db-custom-select-list-item-label {
-			// The label is a flex container (set-default-check-element), so
-			// text-overflow can't apply to the anonymous text node directly.
-			// Wrap the text in a shrinkable block so the ellipsis is shown.
+			// Long labels wrap onto new lines by default (fixed/full dropdowns).
+			// The auto-width dropdown overrides this to stay single-line
+			// (see custom-select-dropdown.scss [data-width="auto"]).
+			// min-inline-size: 0 lets the label shrink inside the flex label so
+			// the text wraps instead of overflowing.
 			min-inline-size: 0;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+			overflow-wrap: anywhere;
 			color: inherit;
 		}
 

@@ -21,8 +21,9 @@ export default function CustomSelectDropdownWidthAuto() {
 				data-sb-ignore="true"
 				size="small"
 				semantic="informational">
-				Long option text with dropdownWidth=&quot;auto&quot; — text
-				wraps instead of being truncated or keeping single line
+				Long option text with dropdownWidth=&quot;auto&quot; — the
+				dropdown grows to the longest option and the text stays on a
+				single line (no wrapping, no truncation)
 			</DBInfotext>
 			<i class="line-break" data-sb-ignore="true" />
 			<div style={{ width: '300px' }}>
@@ -30,12 +31,12 @@ export default function CustomSelectDropdownWidthAuto() {
 					options={[
 						{
 							value: 'long-1',
-							label: 'Dieser extrem lange Optionstext sollte eigentlich nicht umbrechen sondern sauber abgeschnitten werden',
+							label: 'Dieser extrem lange Optionstext bleibt im Auto-Modus in einer Zeile und das Dropdown waechst mit',
 							id: 'auto-long-1'
 						},
 						{
 							value: 'long-2',
-							label: 'Ein weiterer viel zu langer Text der das Dropdown sprengt und haesslich umbricht',
+							label: 'Ein weiterer viel zu langer Text der die Dropdown-Breite im Auto-Modus bestimmt',
 							id: 'auto-long-2'
 						},
 						{
