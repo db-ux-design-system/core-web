@@ -89,7 +89,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		handleEnter(parent?: HTMLElement): void {
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
-					state._documentScrollListenerCallbackId
+					state._documentScrollListenerCallbackId!
 				);
 			}
 			state._documentScrollListenerCallbackId =
