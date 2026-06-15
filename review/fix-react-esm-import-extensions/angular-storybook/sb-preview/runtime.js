@@ -34408,6 +34408,11 @@ var { fetch: fetch2 } = scope, STORY_INDEX_PATH = "./index.json", Preview = clas
   }
 };
 
+// src/shared/utils/story-index-filters.ts
+function isMdxEntry({ tags }) {
+  return tags?.includes(Tag.UNATTACHED_MDX) || tags?.includes(Tag.ATTACHED_MDX);
+}
+
 // src/preview-api/modules/preview-web/docs-context/DocsContext.ts
 var DocsContext = class {
   constructor(channel, store, renderStoryToElement, csfFiles) {
@@ -34583,7 +34588,7 @@ var CsfDocsRender = class {
       renderStoryToElement,
       this.csfFiles
     );
-    return this.csfFiles.forEach((csfFile) => docsContext.attachCSFFile(csfFile)), docsContext;
+    return this.csfFiles.forEach((csfFile) => docsContext.attachCSFFile(csfFile)), docsContext.filterByAutodocs = !isMdxEntry(this.entry), docsContext;
   }
   async renderToElement(canvasElement, renderStoryToElement) {
     if (!this.story || !this.csfFiles)
@@ -34653,7 +34658,7 @@ var MdxDocsRender = class {
       renderStoryToElement,
       this.csfFiles
     );
-    return this.attachedCsfFile && docsContext.attachCSFFile(this.attachedCsfFile), docsContext;
+    return this.attachedCsfFile && docsContext.attachCSFFile(this.attachedCsfFile), docsContext.filterByAutodocs = !isMdxEntry(this.entry), docsContext;
   }
   async renderToElement(canvasElement, renderStoryToElement) {
     if (!this.exports || !this.csfFiles || !this.store.projectAnnotations)
@@ -34684,9 +34689,6 @@ var globalWindow = globalThis;
 function focusInInput(event) {
   let target = event.composedPath && event.composedPath()[0] || event.target;
   return /input|textarea/i.test(target.tagName) || target.getAttribute("contenteditable") !== null;
-}
-function isMdxEntry({ tags }) {
-  return tags?.includes(Tag.UNATTACHED_MDX) || tags?.includes(Tag.ATTACHED_MDX);
 }
 function isStoryRender(r) {
   return r.type === "story";
@@ -34879,7 +34881,7 @@ var PreviewWithSelection = class extends Preview {
     isStoryRender(render) ? (invariant(!!render.story), this.storyRenders.push(render), this.currentRender.renderToElement(
       this.view.prepareForStory(render.story)
     )) : this.currentRender.renderToElement(
-      this.view.prepareForDocs(),
+      this.view.prepareForDocs({ scrollReset: storyIdChanged || viewModeChanged }),
       // This argument is used for docs, which is currently only compatible with HTMLElements
       this.renderStoryToElement.bind(this)
     );
@@ -35058,8 +35060,8 @@ var { document: document5 } = scope, PREPARING_DELAY = 100, Mode = /* @__PURE__ 
   storyRoot() {
     return document5.getElementById("storybook-root");
   }
-  prepareForDocs() {
-    return this.showMain(), this.showDocs(), this.applyLayout("fullscreen"), document5.documentElement.scrollTop = 0, document5.documentElement.scrollLeft = 0, this.docsRoot();
+  prepareForDocs({ scrollReset = !0 } = {}) {
+    return this.showMain(), this.showDocs(), this.applyLayout("fullscreen"), scrollReset && (document5.documentElement.scrollTop = 0, document5.documentElement.scrollLeft = 0), this.docsRoot();
   }
   docsRoot() {
     return document5.getElementById("storybook-docs");
