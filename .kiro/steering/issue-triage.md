@@ -89,7 +89,7 @@ Based on the issue content, estimate:
 - **Medium** — Moderate code changes across a few files, some testing required
 - **Low** — Small fix, documentation update, single-file change, straightforward implementation
 
-Set these using `mcp_github_issue_write` with `issue_fields`:
+Set these using `mcp_github_issue_write` with `issue_fields` (the configured GitHub MCP server supports the `issue_fields` parameter). First call `mcp_github_list_issue_fields` (owner/repo) to confirm the exact `Priority` and `Effort` field names and their valid option names for this repository, then set them — `field_option_name` is validated against the field's options before the API call:
 
 ```json
 {
@@ -102,7 +102,7 @@ Set these using `mcp_github_issue_write` with `issue_fields`:
 
 ### Step 4b: Set Issue Type (if not already set)
 
-If the issue does **not** have a type assigned (`issue_type` is null or empty), determine the appropriate type:
+If the issue does **not** have a type assigned (the `type` field returned by `mcp_github_issue_read` (method: `get`) is null or empty), determine the appropriate type. First call `mcp_github_list_issue_types` (owner: `db-ux-design-system`) to get the valid type values configured for the organization, then choose from them:
 
 | Type    | When to assign                                                                                                         |
 | ------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -117,6 +117,8 @@ Set the type using `mcp_github_issue_write` (method: `update`) with the `type` p
 ### Step 5: Match Existing Labels
 
 Review the issue content and determine if any of these existing labels apply. Only add labels that are clearly relevant — do not over-label.
+
+> **Verify before applying.** Label names must match the repository's actual labels exactly. Before adding any label, confirm it exists with `mcp_github_get_label` — assigning a non-existent label fails the whole update. The names in the tables below reflect the repository's current labels (for example, the bug label is `🐛bug`; a plain `bug` label does not exist). Skip any label that no longer exists rather than failing the update.
 
 #### Bug / Issue Type Labels
 
@@ -187,7 +189,7 @@ Add matching labels alongside the `🤖ai-triaged` label (see next step).
 
 Add the label `🤖ai-triaged` to mark that this issue has been processed by the AI triage bot.
 
-**Label creation**: Before assigning the label, verify it exists using `mcp_github_get_label`. If the label does not exist, create it first using `mcp_github_issue_write` with the `labels` array (GitHub auto-creates labels when assigned via the API). If that fails, inform the user that the label needs to be created manually with color `7057ff` and description `Issue triaged by AI bot`.
+**Label creation**: Before assigning any label, verify it exists using `mcp_github_get_label`. The GitHub REST API does **not** auto-create labels on assignment — applying a non-existent label fails the entire update with a validation error and the issue is never marked, so the batch run keeps re-selecting it. The configured GitHub MCP toolset has no label-creation tool, so if `🤖ai-triaged` does not exist, it must be created out-of-band first: ask a maintainer to create it, or create it via `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`. Never attempt to assign a label that does not yet exist.
 
 **Preserving existing labels**: To avoid accidentally removing labels added by other users or automations, always **re-read the current labels** immediately before updating (using `mcp_github_issue_read` method `get_labels`). Then merge the new labels into the current set. Use `mcp_github_issue_write` (method: `update`) with the **complete merged label list** (all existing labels + new labels to add).
 
@@ -264,7 +266,10 @@ Use mcp_github_list_issues with:
 
 **Paginate**: Follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false. Collect all pages before filtering.
 
-Then filter out any issues that already have the `🤖ai-triaged` label in their labels array.
+Then filter out:
+
+- Issues that already have the `🤖ai-triaged` label.
+- Issues that carry the `⏳waiting-for-info` label **and** have not been updated since they were last triaged. Compare the issue's `updatedAt` with the timestamp of the bot's last triage comment (or the time the label was applied): only re-triage a waiting issue once its `updatedAt` is newer — i.e. the author has actually added the missing information. This prevents reprocessing unchanged incomplete issues and posting a duplicate missing-information comment on every batch run.
 
 ### Step 2: Generate Spec with Tasks
 

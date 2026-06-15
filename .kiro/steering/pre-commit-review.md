@@ -42,6 +42,7 @@ Verify each item:
 - [ ] Run `pnpm run build` — verify it passes
 - [ ] Run `pnpm run test` — verify tests pass
 - [ ] Run `pnpm run lint` — verify no lint errors (known issue: may fail if Nuxt showcase hasn't been run — see AGENTS.md)
+- [ ] Run `pnpm run build-outputs` — verify framework outputs build (required before every commit per AGENTS.md, especially for component changes)
 
 #### General
 

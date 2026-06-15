@@ -26,7 +26,7 @@ The conventions and anti-patterns to check are documented in a shared reference:
 When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
 1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved.
-2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). Look for a comment containing:
+2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved, so a marker on a later page isn't missed (which would otherwise re-review an unchanged PR and post duplicate feedback). Look for a comment containing:
     ```
     <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
     ```
@@ -64,9 +64,12 @@ First, get the PR details to determine the head branch:
 git fetch origin <branch-name>
 git checkout -B <branch-name> origin/<branch-name>
 
-# For PRs from forks (use PR ref):
-git fetch origin pull/<number>/head:pr-<number>
-git checkout pr-<number>
+# For PRs from forks: fetch the PR ref with a forced refspec (+) into FETCH_HEAD,
+# then reset a local branch to it. The leading + and FETCH_HEAD reset ensure a
+# force-pushed fork branch updates cleanly instead of being rejected as a
+# non-fast-forward, so repeat reviews never inspect the stale pr-<number> tip:
+git fetch origin +refs/pull/<number>/head
+git checkout -B pr-<number> FETCH_HEAD
 ```
 
 Using `checkout -B` ensures the local branch is created or reset to match the remote tip, so repeat reviews always target the PR's current head.
@@ -80,7 +83,7 @@ Use GitHub MCP tools to gather all necessary context:
 3. **Changed Files** — `mcp_github_pull_request_read` (method: `get_files`) for file list and stats. **Paginate**: continue fetching with incrementing `page` until all files are retrieved.
 4. **CI Status** — `mcp_github_pull_request_read` (method: `get_check_runs`) to check if tests pass
 5. **Existing Reviews** — `mcp_github_pull_request_read` (method: `get_review_comments`) to see prior feedback threads. **Paginate**: follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false.
-6. **Review Summaries** — `mcp_github_pull_request_read` (method: `get_reviews`) for submitted approvals, change requests, or review bodies without inline threads.
+6. **Review Summaries** — `mcp_github_pull_request_read` (method: `get_reviews`) for submitted approvals, change requests, or review bodies without inline threads. **Paginate**: continue fetching with incrementing `page` until all reviews are retrieved, so an earlier review body that already raised the same concern isn't missed.
 
 7. **PR Comments** — `mcp_github_pull_request_read` (method: `get_comments`) for top-level PR comments (non-review). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved.
 
@@ -153,6 +156,7 @@ Use `mcp_github_pull_request_review_write` to submit the review.
 
 1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create` (omit `event` to keep it pending)
 2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each specific issue, placed on the relevant line in the diff. Every actionable finding must have its own line comment — do not only summarize in the review body. Prefix each comment with 🤖.
+    - **Findings without a changed line**: Some defects have no line in the current diff to attach to (e.g. a missing test, deleted validation, or an omitted required file). For these, add a **file-level** comment by setting `subjectType: FILE` on `mcp_github_add_comment_to_pending_review` (this works for existing and deleted files), or include the finding in the review body / a top-level PR comment. Do not force such comments onto unrelated lines.
 3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` with event **COMMENT** (never APPROVE, never REQUEST_CHANGES):
     - **COMMENT** — Always use this. Describe blocking severity in the body text using the severity labels (🔴 `[blocking]`, 🟡 `[important]`, etc.) rather than using GitHub's formal review state.
     - **Never REQUEST_CHANGES** — This records a formal blocking review under the human PAT holder, which has the same identity-misrepresentation concern as auto-approving. It can prevent merging in a way the human didn't authorize. Express blocking concerns through comment severity labels instead.
