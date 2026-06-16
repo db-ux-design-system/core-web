@@ -57,7 +57,7 @@ If the issue is clearly a duplicate of an existing open issue, mention this prom
 Determine which template was used based on the issue type and labels:
 
 - **Bug Report**: Check that the body contains a "Reproduction case" section and "Expected Behaviour" section (both are required). Note any missing optional fields.
-- **Copilot Instructions feedback**: Check that "What didn't work as expected?" is filled in.
+- **Copilot Instructions feedback**: Check that the required textarea is filled in. Match the exact form label `❗ What didn’t work as expected?` (note the ❗ emoji and the curly apostrophe `’`), or — more robustly — match by its field id `issue-description` rather than by heading text, to avoid marking valid feedback as incomplete.
 - **No template used**: Flag this — the issue may lack structured information.
 
 When deciding whether a required field is still missing, evaluate the issue body **together with the comments/timeline** fetched in Step 1 — an author may have provided the missing details in a follow-up comment rather than editing the original body.
