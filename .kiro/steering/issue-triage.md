@@ -94,7 +94,11 @@ Based on the issue content, estimate:
 - **Medium** — Moderate code changes across a few files, some testing required
 - **Low** — Small fix, documentation update, single-file change, straightforward implementation
 
-Set these using `mcp_github_issue_write` with `issue_fields` (the configured GitHub MCP server supports the `issue_fields` parameter). First call `mcp_github_list_issue_fields` (owner/repo) to confirm the exact `Priority` and `Effort` field names and their valid option names for this repository, then set them — `field_option_name` is validated against the field's options before the API call:
+Set these using `mcp_github_issue_write` with `issue_fields`. **This depends on a feature flag:** GitHub MCP only exposes `list_issue_fields` and the `issue_fields` write parameter when the `remote_mcp_issue_fields` feature flag is enabled (see the [GitHub MCP feature flags docs](https://github.com/github/github-mcp-server/blob/main/docs/feature-flags.md)). Treat this step as **conditional**, not mandatory:
+
+1. First attempt `mcp_github_list_issue_fields` (owner/repo) to confirm the exact `Priority` and `Effort` field names and their valid option names for this repository.
+2. **If the field tools are unavailable** (the flag is not enabled, or the call errors with an unknown-tool/feature-disabled error): skip setting Priority/Effort, record the estimated values in the summary comment (Step 7) instead, and **continue** with labels and the rest of the workflow. Do not abort triage.
+3. **If available**: set the fields — `field_option_name` is validated against the field's options before the API call:
 
 ```json
 {
