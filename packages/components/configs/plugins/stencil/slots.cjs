@@ -10,7 +10,7 @@ const processNode = (node) => {
 
 	if (node.slots) {
 		for (const [key, binding] of Object.entries(node.slots)) {
-			binding.forEach((bind) => {
+			for (const bind of binding) {
 				const newChildren = [];
 				if (bind.name === 'Fragment') {
 					newChildren.push(...bind.children);
@@ -27,7 +27,7 @@ const processNode = (node) => {
 						}
 					}))
 				);
-			});
+			}
 
 			delete node.bindings[key];
 		}

@@ -142,6 +142,7 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+rowspan
 TSES
 trufflesecurity
 elif
@@ -198,7 +199,14 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
+unreviewed
+notext
+prebundle
+subcomponent
 # Usernames
 mfranzke
 michaelmkraus

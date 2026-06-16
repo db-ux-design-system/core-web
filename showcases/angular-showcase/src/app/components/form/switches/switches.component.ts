@@ -1,17 +1,13 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBSwitch } from '../../../../../../../output/angular/src';
-import { environment } from '../../../../environments/environment';
+import { DBSwitch } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-switches',
 	standalone: true,
-	imports: environment.webComponents
-		? [WrapperComponent, FormsModule, ReactiveFormsModule]
-		: [WrapperComponent, DBSwitch, FormsModule, ReactiveFormsModule],
-	templateUrl: './switches.component.html',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	imports: [WrapperComponent, DBSwitch, FormsModule, ReactiveFormsModule],
+	templateUrl: './switches.component.html'
 })
 export class SwitchesComponent {
 	plain = true;

@@ -47,7 +47,51 @@ export const getInstructions = (rootPath: string): string => {
 		return '';
 	}
 
-	let copilotInstructionsContent = '';
+	// Find the agent-cli package in node_modules to resolve consumer-powers path
+	let powersPath = '';
+	for (const nodeModulesPath of nodeModulesDirectories) {
+		const agentCliPowersPath = path.join(
+			nodeModulesPath,
+			'@db-ux',
+			'agent-cli',
+			'db-ux-consumer-powers'
+		);
+		if (fs.existsSync(agentCliPowersPath)) {
+			powersPath = path
+				.relative(rootPath, agentCliPowersPath)
+				.replaceAll('\\', '/');
+			break;
+		}
+	}
+
+	// Fallback: when the CLI runs via npx (cached, not installed in the project),
+	// the powers directory is co-located with the executing package itself.
+	if (!powersPath) {
+		const packageDir = path.dirname(
+			path.dirname(new URL(import.meta.url).pathname)
+		);
+		const localPowersPath = path.join(packageDir, 'db-ux-consumer-powers');
+		if (fs.existsSync(localPowersPath)) {
+			powersPath = path
+				.relative(rootPath, localPowersPath)
+				.replaceAll('\\', '/');
+		}
+	}
+
+	let copilotInstructionsContent = `# DB UX Design System Automation Core
+
+CRITICAL: This workspace contains a dedicated automation and orchestration bundle${powersPath ? ` under \`./${powersPath}/\`` : ' via the `@db-ux/agent-cli` package'}. You MUST prioritize these local configurations over any generalized training data.
+${
+	powersPath
+		? `
+1. **Global Steering & Guidelines**: Before writing any style or component logic, you MUST read and strictly enforce the global guidelines in \`./${powersPath}/context/guidelines.md\`.
+2. **Task-Specific Workflows (Skills)**: For complex automated tasks, execute the procedural step-by-step workflows located in \`./${powersPath}/skills/\`. Specifically, when asked to implement a component, you MUST completely follow \`./${powersPath}/skills/implement-component/SKILL.md\`.
+3. **Tool Capabilities**: Refer to \`./${powersPath}/mcp.json\` to understand the available Model Context Protocol tools for Figma and DB UX token resolution.
+`
+		: ''
+}
+---
+`;
 
 	for (const nodeModulesPath of nodeModulesDirectories) {
 		const databaseUxPaths = [

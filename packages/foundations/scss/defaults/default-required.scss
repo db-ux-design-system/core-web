@@ -109,19 +109,9 @@ iframe {
 	border: 0;
 }
 
-// Focus styles
-:is(
-	a,
-	button,
-	input,
-	textarea,
-	summary,
-	select,
-	[tabindex]:not([tabindex="-1"])
-) {
-	&:focus-visible {
-		@extend %focus-placeholder;
-	}
+// Override default focus visible
+:focus-visible {
+	@extend %focus-placeholder;
 }
 
 // List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
