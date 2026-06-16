@@ -164,7 +164,8 @@ Use `mcp_github_pull_request_review_write` to submit the review.
 
 **Correct sequence for reviews with findings:**
 
-1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create` (omit `event` to keep it pending)
+1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create`.
+   **Bind the review to the inspected head**: before creating it, re-fetch the PR's current `head.sha` and compare it to the SHA you checked out in Step 2. If they differ, the author pushed new commits during the review — restart from Step 2 against the new head, since your findings and line positions were derived from the older diff and may fail to attach or land on code you never inspected. If they match, pass that SHA as `commitID` so the review is pinned to the inspected commit rather than defaulting to whatever is current. (Omit `event` to keep the review pending.)
 2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each specific issue, placed on the relevant line in the diff. Every actionable finding must have its own line comment — do not only summarize in the review body. Prefix each comment with 🤖.
     - **Findings without a changed line**: Some defects have no line in the current diff to attach to (e.g. a missing test, deleted validation, or an omitted required file). For these, add a **file-level** comment by setting `subjectType: FILE` on `mcp_github_add_comment_to_pending_review` (this works for existing and deleted files), or include the finding in the review body / a top-level PR comment. Do not force such comments onto unrelated lines.
 3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` with event **COMMENT** (never APPROVE, never REQUEST_CHANGES):
