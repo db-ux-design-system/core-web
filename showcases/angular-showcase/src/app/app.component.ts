@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
@@ -18,7 +18,6 @@ import {
 	NavigationDirective,
 	SecondaryActionDirective
 } from '@components';
-import { environment } from '../environments/environment';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
@@ -29,37 +28,23 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
-	imports: environment.webComponents
-		? [
-				FormsModule,
-				RouterOutlet,
-				NavItemComponent,
-				DBPage,
-				DBHeader,
-				DBNavigation,
-				SecondaryActionDirective,
-				NavigationDirective,
-				MetaNavigationDirective
-			]
-		: [
-				FormsModule,
-				RouterOutlet,
-				NavItemComponent,
-				DBPage,
-				DBHeader,
-				DBBrand,
-				DBNavigation,
-				DBSelect,
-				DBButton,
-				SecondaryActionDirective,
-				NavigationDirective,
-				MetaNavigationDirective
-			],
+	imports: [
+		FormsModule,
+		RouterOutlet,
+		NavItemComponent,
+		DBPage,
+		DBHeader,
+		DBBrand,
+		DBNavigation,
+		DBSelect,
+		DBButton,
+		SecondaryActionDirective,
+		NavigationDirective,
+		MetaNavigationDirective
+	],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-	isWebComponents = environment.webComponents;
 	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
