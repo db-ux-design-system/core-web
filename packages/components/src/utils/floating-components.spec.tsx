@@ -104,6 +104,42 @@ describe('handleFixedPopover', () => {
 });
 
 describe('handleFixedDropdown', () => {
+	const createDropdownElement = (
+		dataWidth: 'full' | 'auto',
+		childRect: { width: number; height: number },
+		computedStyle: Record<string, string> = {}
+	): HTMLElement => {
+		const style: Record<string, string> = {};
+		return {
+			style,
+			dataset: { width: dataWidth },
+			getBoundingClientRect: () => childRect,
+			// expose for assertions
+			_style: style
+		} as unknown as HTMLElement;
+	};
+
+	const withComputedStyle = (
+		styleByElement: Map<HTMLElement, Record<string, string>>,
+		run: () => void
+	) => {
+		const original = globalThis.getComputedStyle;
+		(globalThis as unknown as { getComputedStyle: unknown }).getComputedStyle =
+			(el: HTMLElement) =>
+				({
+					zIndex: '1',
+					maxInlineSize: 'none',
+					...(styleByElement.get(el) ?? {})
+				}) as unknown as CSSStyleDeclaration;
+		try {
+			run();
+		} finally {
+			(
+				globalThis as unknown as { getComputedStyle: unknown }
+			).getComputedStyle = original;
+		}
+	};
+
 	it('does not throw when element or parent is null', () => {
 		expect(() =>
 			handleFixedDropdown(
@@ -126,5 +162,39 @@ describe('handleFixedDropdown', () => {
 				'bottom'
 			)
 		).not.toThrow();
+	});
+
+	// Regression: a reopened full-width dropdown is measured with its natural
+	// content width (the inline-size reset runs before measuring), so the
+	// end-aligned position must use the trigger width — not the smaller
+	// measured childWidth — to stay anchored to the trigger edge.
+	it('aligns a full-width dropdown to the trigger width when end-aligned', () => {
+		(window as Window).innerWidth = 320;
+		(window as Window).innerHeight = 800;
+
+		// natural content width (80) is narrower than the trigger (200)
+		const element = createDropdownElement('full', { width: 80, height: 50 });
+		const parent = {
+			getBoundingClientRect: () => ({
+				top: 10,
+				left: 100,
+				width: 200,
+				height: 100,
+				bottom: 110,
+				right: 300
+			})
+		} as HTMLElement;
+
+		withComputedStyle(new Map(), () => {
+			handleFixedDropdown(element, parent, 'bottom');
+		});
+
+		const style = (element as unknown as { _style: Record<string, string> })
+			._style;
+		// full mode forces the trigger width
+		expect(style.inlineSize).toBe('200px');
+		// trigger spans 100–300; right - triggerWidth === left, so the dropdown
+		// stays aligned to the trigger instead of right - childWidth (= 220px)
+		expect(style.insetInlineStart).toBe('100px');
 	});
 });

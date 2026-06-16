@@ -122,12 +122,32 @@ export const handleFixedDropdown = (
 		element.style.minInlineSize = `${autoMinWidth}px`;
 	}
 
-	// getFloatingProps measured childWidth before the auto minimum was applied,
-	// so use the effective (clamped) width here to keep end-aligned dropdowns
-	// from extending past the trigger's right edge.
-	const effectiveChildWidth = autoWidth
-		? Math.max(childWidth, autoMinWidth)
-		: childWidth;
+	// getFloatingProps measured childWidth before the width-specific inline
+	// styles were (re)applied, so positioning must use the width the dropdown
+	// will actually have:
+	// - auto: the effective (clamped) minimum, so end-aligned dropdowns don't
+	//   extend past the trigger's right edge.
+	// - full: the trigger width, since the inline style reset above makes the
+	//   measured childWidth fall back to the natural content width. Without
+	//   this, a reopened full-width dropdown is positioned with the wrong
+	//   width (here right - width === left, so start/end both anchor to the
+	//   trigger edge regardless of any placement flip).
+	// getFloatingProps measured childWidth before the width-specific inline
+	// styles were (re)applied, so positioning must use the width the dropdown
+	// will actually have:
+	// - auto: the effective (clamped) minimum, so end-aligned dropdowns don't
+	//   extend past the trigger's right edge.
+	// - full: the trigger width, since the inline style reset above makes the
+	//   measured childWidth fall back to the natural content width. Without
+	//   this, a reopened full-width dropdown is positioned with the wrong
+	//   width (here right - width === left, so start/end both anchor to the
+	//   trigger edge regardless of any placement flip).
+	let effectiveChildWidth = childWidth;
+	if (autoWidth) {
+		effectiveChildWidth = Math.max(childWidth, autoMinWidth);
+	} else if (fullWidth) {
+		effectiveChildWidth = width;
+	}
 
 	// getFloatingProps detects horizontal overflow assuming a centered element
 	// (it halves childWidth). The dropdown is actually start-aligned (inset =
