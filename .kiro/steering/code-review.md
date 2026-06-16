@@ -14,10 +14,9 @@ The conventions and anti-patterns to check are documented in a shared reference:
 
 ### Step 1: Identify the PR
 
-**Single PR review:** Ask the user for:
+Reviews always target **the currently checked-out repository**. Derive the `owner`/`repo` for the GitHub MCP tools from the local `origin` remote (`git remote get-url origin`) rather than asking the user — this guarantees the MCP calls and the local `git checkout` operations (Step 2) act on the same repository, so the reviewer can never inspect a same-named branch from an unrelated repo.
 
-- The PR number to review
-- The repository owner and name (default: the current repo)
+**Single PR review:** Ask the user only for the PR number to review.
 
 **Batch review mode:** If the user does not mention a specific PR (e.g. "review my open PRs", "review all PRs"), use the batch review workflow described below.
 
@@ -25,8 +24,8 @@ The conventions and anti-patterns to check are documented in a shared reference:
 
 When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
-1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved.
-2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved, so a marker on a later page isn't missed (which would otherwise re-review an unchanged PR and post duplicate feedback). Look for a comment containing:
+1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved. Use `search_pull_requests` with an author qualifier or filter the returned PRs by the current user before generating tasks.
+2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved, so a marker on a later page isn't missed (which would otherwise re-review an unchanged PR and post duplicate feedback). Look for a comment containing, that has been posted by a user with the phrase "[bot]" included:
     ```
     <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
     ```
