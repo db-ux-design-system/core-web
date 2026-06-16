@@ -740,17 +740,39 @@ type IssueComment = {
 	createdAt: string | undefined;
 };
 
-// Fetch the most recent comments (newest last). The REST "list issue comments"
-// endpoint is ordered by ascending id and ignores sort/direction, so we use
-// GraphQL `comments(last: N)` to reliably get the newest ones. We need more
-// than the single latest comment so we can tell whether the issue author
-// responded *after* feedback was requested, rather than only inspecting who
-// commented last.
-const fetchRecentComments = (number: number): IssueComment[] => {
-	const query = `{
+// Fetch issue comments newest-first by paginating backward until the feedback
+// request is found, then return them in ascending (oldest → newest) order. The
+// REST "list issue comments" endpoint is ordered by ascending id and ignores
+// sort/direction, so we use GraphQL `comments(last: N)` to reliably start from
+// the newest ones. A fixed single window is not enough: if a feedback request
+// (and any author response/bot reminder after it) is followed by more than one
+// page of later comments, the request falls outside the window, every weekly
+// run then finds no feedbackRequest and the item is left untouched forever.
+//
+// `requestFound` reports whether the collected comments already contain the
+// feedback request. Because we walk backward from the newest comment, the first
+// page that contains the (latest) request also means every comment *after* it —
+// the author's response and any bot reminder — has already been collected, so
+// we can stop. A page cap bounds the work on pathologically long threads.
+const fetchRecentComments = (
+	number: number,
+	requestFound: (comments: IssueComment[]) => boolean
+): IssueComment[] => {
+	const pageSize = 30;
+	const maxPages = 20; // Safety cap (~600 comments) for very long threads.
+	let cursor: string | undefined;
+	let comments: IssueComment[] = [];
+
+	for (let page = 0; page < maxPages; page++) {
+		const beforeClause = cursor ? `, before: "${cursor}"` : '';
+		const query = `{
   repository(owner: "${owner}", name: "${repo}") {
     issue(number: ${String(number)}) {
-      comments(last: 30) {
+      comments(last: ${String(pageSize)}${beforeClause}) {
+        pageInfo {
+          hasPreviousPage
+          startCursor
+        }
         nodes {
           author { login }
           createdAt
@@ -759,26 +781,46 @@ const fetchRecentComments = (number: number): IssueComment[] => {
     }
   }
 }`;
-	const raw = ghGraphql(query);
-	const parsed = JSON.parse(raw) as {
-		data?: {
-			repository?: {
-				issue?: {
-					comments?: {
-						nodes?: Array<{
-							author?: { login?: string };
-							createdAt?: string;
-						}>;
+		const raw = ghGraphql(query);
+		const parsed = JSON.parse(raw) as {
+			data?: {
+				repository?: {
+					issue?: {
+						comments?: {
+							pageInfo?: {
+								hasPreviousPage?: boolean;
+								startCursor?: string;
+							};
+							nodes?: Array<{
+								author?: { login?: string };
+								createdAt?: string;
+							}>;
+						};
 					};
 				};
 			};
 		};
-	};
-	const nodes = parsed.data?.repository?.issue?.comments?.nodes ?? [];
-	return nodes.map((node) => ({
-		author: node.author?.login,
-		createdAt: node.createdAt
-	}));
+		const connection = parsed.data?.repository?.issue?.comments;
+		const nodes = connection?.nodes ?? [];
+		// Older page goes before the already-collected newer comments so the
+		// final array stays in ascending (oldest → newest) order.
+		comments = [
+			...nodes.map((node) => ({
+				author: node.author?.login,
+				createdAt: node.createdAt
+			})),
+			...comments
+		];
+
+		// Stop as soon as the request is in view; everything newer is collected.
+		if (requestFound(comments)) break;
+
+		const pageInfo = connection?.pageInfo;
+		if (!pageInfo?.hasPreviousPage || !pageInfo.startCursor) break;
+		cursor = pageInfo.startCursor;
+	}
+
+	return comments;
 };
 
 const timeOf = (comment: IssueComment | undefined): number =>
@@ -841,7 +883,18 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 
 	let comments: IssueComment[];
 	try {
-		comments = fetchRecentComments(number);
+		// Paginate backward until the feedback request (latest codeowner comment
+		// that isn't the author's own) is in view. Once it is, every newer
+		// comment — the author's response and any bot reminder — has also been
+		// collected, so we have everything needed to decide the waiting state.
+		comments = fetchRecentComments(
+			number,
+			(collected) =>
+				lastCommentBy(
+					collected,
+					(author) => author !== issueAuthor && isCodeowner(author)
+				) !== undefined
+		);
 	} catch {
 		console.warn(
 			`\n   ⚠️  Could not fetch comments for #${String(number)}`
