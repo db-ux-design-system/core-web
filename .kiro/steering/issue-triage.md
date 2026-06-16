@@ -209,7 +209,12 @@ Add matching labels alongside the status label decided in Step 6 (`🤖ai-triage
 - **⚠️ Partial or ✅ Complete** → add `🤖ai-triaged` to mark that this issue has been fully processed by the AI triage bot.
 
 **Label creation**: Before assigning any label, verify it exists using `mcp_github_get_label`. The GitHub REST API does **not** auto-create labels on assignment — applying a non-existent label fails the entire update with a validation error and the issue is never marked, so the batch run keeps re-selecting it.
-The configured GitHub MCP toolset has no label-creation tool, so if `🤖ai-triaged` (or `⏳waiting-for-info`) does not exist, it must be created out-of-band first: ask a maintainer to create it, or create it via `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`. Never attempt to assign a label that does not yet exist.
+If `🤖ai-triaged` (or `⏳waiting-for-info`) does not exist, create it before assigning:
+
+- **Preferred (MCP)**: use `mcp_github_label_write` (method: `create`), which lives in the same GitHub MCP Labels toolset as `get_label`. Example: name `🤖ai-triaged`, color `7057ff`, description `Issue triaged by AI bot`.
+- **Fallback (no write tool available)**: if the labels toolset is read-only in this session (only `get_label` is exposed, no `label_write`), create it out-of-band — ask a maintainer, or run `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`.
+
+Never attempt to assign a label that does not yet exist.
 
 **Preserving existing labels**: To avoid accidentally removing labels added by other users or automations, always **re-read the current labels** immediately before updating (using `mcp_github_issue_read` method `get_labels`). Then merge the new labels into the current set. Use `mcp_github_issue_write` (method: `update`) with the **complete merged label list** (all existing labels + new labels to add).
 
