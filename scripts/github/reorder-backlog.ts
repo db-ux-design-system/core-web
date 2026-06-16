@@ -296,19 +296,32 @@ const assertStatusFieldExists = (): void => {
 	const query = `{
   node(id: "${statusFieldId}") {
     __typename
-    ... on ProjectV2SingleSelectField { id }
+    ... on ProjectV2SingleSelectField {
+      id
+      project { id }
+    }
   }
 }`;
 
 	let resolvedId: string | undefined;
+	let resolvedProjectId: string | undefined;
 	try {
 		const raw = ghGraphql(query);
 		const parsed = JSON.parse(raw) as {
-			data?: { node?: { __typename?: string; id?: string } | undefined };
+			data?: {
+				node?:
+					| {
+							__typename?: string;
+							id?: string;
+							project?: { id?: string };
+					  }
+					| undefined;
+			};
 		};
 		const node = parsed.data?.node;
 		if (node?.__typename === 'ProjectV2SingleSelectField') {
 			resolvedId = node.id;
+			resolvedProjectId = node.project?.id;
 		}
 	} catch (error: unknown) {
 		const message = error instanceof Error ? error.message : String(error);
@@ -325,6 +338,17 @@ const assertStatusFieldExists = (): void => {
 				`field in project ${projectId}. Refusing to run so active items are not ` +
 				'misclassified as "no status". Check the STATUS_FIELD_ID / ' +
 				'BACKLOG_STATUS_FIELD_ID configuration.'
+		);
+	}
+
+	if (resolvedProjectId !== projectId) {
+		throw new Error(
+			`Configured Status field (${statusFieldId}) belongs to project ` +
+				`${resolvedProjectId ?? 'unknown'}, not the configured project ${projectId}. ` +
+				'Refusing to run so active items are not misclassified as "no status" ' +
+				'(none of the fetched field values would match a field from another ' +
+				'project). Check the STATUS_FIELD_ID / BACKLOG_STATUS_FIELD_ID and ' +
+				'PROJECT_ID configuration.'
 		);
 	}
 };
