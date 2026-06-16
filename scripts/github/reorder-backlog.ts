@@ -117,15 +117,18 @@ const isCodeowner = (login: string | undefined): boolean =>
 
 // --- Types ---
 
+type FieldValueNode = {
+	__typename: string;
+	field?: { id?: string; name?: string };
+	name?: string;
+	optionId?: string;
+};
+
 type ProjectItemNode = {
 	id: string;
 	fieldValues: {
-		nodes: Array<{
-			__typename: string;
-			field?: { id?: string; name?: string };
-			name?: string;
-			optionId?: string;
-		}>;
+		nodes: FieldValueNode[];
+		pageInfo?: PageInfo;
 	};
 	content:
 		| {
@@ -355,6 +358,61 @@ const assertStatusFieldExists = (): void => {
 
 // --- Paginated project item fetcher ---
 
+// Fetch any remaining pages of an item's `fieldValues` connection and append
+// them to `node.fieldValues.nodes`. The items query requests the first page
+// (100 values); the vast majority of items fit in one page, so this issues a
+// follow-up request only for the rare item that overflows. Without it, a Status
+// value sitting on a later page would be invisible to getStatusOptionId() and
+// the active item would be wrongly treated as "no status".
+const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
+	let { pageInfo } = node.fieldValues;
+	let cursor = pageInfo?.endCursor;
+
+	while (pageInfo?.hasNextPage && cursor) {
+		const query = `{
+  node(id: "${node.id}") {
+    ... on ProjectV2Item {
+      fieldValues(first: 100, after: "${cursor}") {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          __typename
+          ... on ProjectV2ItemFieldSingleSelectValue {
+            field { ... on ProjectV2SingleSelectField { id name } }
+            optionId
+            name
+          }
+        }
+      }
+    }
+  }
+}`;
+
+		// eslint-disable-next-line no-await-in-loop
+		const raw = ghGraphql(query);
+		const parsed = JSON.parse(raw) as {
+			data?: {
+				node?: {
+					fieldValues?: {
+						nodes?: FieldValueNode[];
+						pageInfo?: PageInfo;
+					};
+				};
+			};
+		};
+		const fieldValues = parsed.data?.node?.fieldValues;
+		if (!fieldValues) break;
+
+		node.fieldValues.nodes.push(...(fieldValues.nodes ?? []));
+		pageInfo = fieldValues.pageInfo;
+		cursor = pageInfo?.endCursor;
+
+		await sleep(200);
+	}
+};
+
 const fetchProjectItems = async (
 	filter: (node: ProjectItemNode) => boolean,
 	progressLabel: string,
@@ -381,7 +439,11 @@ const fetchProjectItems = async (
         }
         nodes {
           id
-          fieldValues(first: 50) {
+          fieldValues(first: 100) {
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
             nodes {
               __typename
               ... on ProjectV2ItemFieldSingleSelectValue {
@@ -414,6 +476,15 @@ const fetchProjectItems = async (
 		const { nodes, pageInfo } = response.data.node.items;
 
 		for (const node of nodes) {
+			// The fieldValues connection is itself paginated. An item with more
+			// than one page of populated fields could carry its Status value on
+			// a later page; without fetching the rest, getStatusOptionId() would
+			// return undefined and an active item would be misclassified as "no
+			// status" and reordered into the backlog. Pull the remaining pages
+			// before filtering so classification always sees every field value.
+			// eslint-disable-next-line no-await-in-loop
+			await ensureAllFieldValues(node);
+
 			if (filter(node)) {
 				allItems.push(node);
 			}
