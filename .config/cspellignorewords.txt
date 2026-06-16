@@ -1,7 +1,12 @@
-moz
-webkit
+# (User)names
+mfranzke
+michaelmkraus
+nmerget
 merget
 franzke
+# further words
+moz
+webkit
 cicd
 Patternhub
 Textlink
@@ -199,10 +204,6 @@ categorise
 optimised
 optimise
 browserslistrc
-# Usernames
-mfranzke
-michaelmkraus
-nmerget
 subcomponent
 worktree
 unpushed
