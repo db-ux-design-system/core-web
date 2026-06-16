@@ -144,7 +144,7 @@ Review the issue content and determine if any of these existing labels apply. On
 | `🍄🆙improvement`  | Feature request or enhancement                                 |
 | `😍niceToHave`     | Nice-to-have, low-priority improvement                         |
 | `❓question`       | Issue is asking a question rather than reporting a bug/feature |
-| `💬assessment`     | Needs discussion / "we need to talk about it"                  |
+| `💬 assessment`    | Needs discussion / "we need to talk about it"                  |
 | `📗story needed`   | Needs a story in the team backlog for further discussion       |
 | `good first issue` | Simple enough for newcomers to tackle                          |
 
