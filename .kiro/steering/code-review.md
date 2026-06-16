@@ -24,7 +24,7 @@ Reviews always target **the currently checked-out repository**. Derive the `owne
 
 When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
-1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved. Use `search_pull_requests` with an author qualifier or filter the returned PRs by the current user before generating tasks.
+1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved. If the user asks for reviewing their specific PRs (e.g. "review my open PRs"), use `search_pull_requests` with an author qualifier or filter the returned PRs by the current user before generating tasks.
 2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved, so a marker on a later page isn't missed (which would otherwise re-review an unchanged PR and post duplicate feedback). Look for a comment containing, that has been posted by a user with the phrase "[bot]" included:
     ```
     <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
