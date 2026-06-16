@@ -108,7 +108,8 @@ Only comment on genuinely new or unaddressed issues.
 - Read each resolved issue using `mcp_github_issue_read`
 - Check PR description against the PR template checklist in `.github/PULL_REQUEST_TEMPLATE.md`
 - Understand the scope: is this a feature, bugfix, refactor, or chore?
-- **Read scoped AGENTS.md files**: For each changed file under `packages/*`, read the corresponding `packages/<name>/AGENTS.md` to understand package-specific conventions before reviewing.
+- **Read the repo-root `AGENTS.md` for every review**: it applies to the whole repository and contains repo-wide review rules (e.g. use `!cancelled()` instead of `always()` in GitHub Actions, PR/changeset workflow). This is required regardless of which files the PR touches — including PRs that only change files outside `packages/*` such as `.github/workflows`.
+- **Then read scoped `AGENTS.md` files**: for each changed file under `packages/*`, also read the corresponding `packages/<name>/AGENTS.md` to understand package-specific conventions before reviewing.
 
 ### Step 5: Perform the Review
 
