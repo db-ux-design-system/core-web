@@ -209,3 +209,7 @@ worktree
 unpushed
 refspec
 PRRT
+triaging
+automations
+Untriaged
+untriaged
