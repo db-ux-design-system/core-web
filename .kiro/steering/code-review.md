@@ -139,7 +139,11 @@ Apply the conventions from `docs/code-review-conventions.md` (included above via
 
 When reviewing a PR, check that the Husky pre-commit hook would pass for the changes:
 
-- **Branch name validation** — branch name follows the `-` separator convention (no `/`)
+- **Branch name validation** — the branch name must match the `validate-branch-name` pattern in `package.json`. As of this writing that pattern accepts:
+    - `copilot/...` (GitHub Copilot-created branches — slashes allowed here)
+    - `dependabot-...`
+    - a `<type>-<description>` form where `<type>` is one of `test|feat|fix|chore|docs|refactor|style|ci|perf|alert` or a numeric issue id (e.g. `feat-my-feature`, `123-some-fix`), using `-` as the separator
+      Do **not** flag a `copilot/` branch as invalid. For non-exempt branches, `/` is not allowed (it breaks preview URLs). Mirror the actual `package.json` pattern rather than this summary if they diverge.
 - **lint-staged** — changed files pass linting and Prettier formatting
 - If the PR has CI lint failures that correspond to lint-staged checks, flag them — the author likely bypassed Husky with `--no-verify`
 
