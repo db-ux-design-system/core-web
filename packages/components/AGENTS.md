@@ -157,7 +157,7 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 ## Changeset Rules
 
 Changes in `packages/components/src` require a changeset for:
-`@db-ux/core-components` (if the changes do not only concern JavaScript, or TypeScript/TSX), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
+`@db-ux/core-components` (only if the changes also affect styling (SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
 
 - `patch` — bug fix
 - `minor` — new feature or example, or any prop added in `model.ts`
