@@ -38,6 +38,8 @@ Search for related issues and PRs to avoid duplicate work:
 3. **Search open PRs**: Use `mcp_github_search_pull_requests` with relevant keywords scoped to `repo:db-ux-design-system/core-web state:open`. Check if someone is already working on a fix.
 4. **Search merged PRs**: Same search with `state:closed is:merged` — the fix may already be merged but the issue wasn't linked/closed.
 
+**Always exclude the issue currently under review** from the candidate set before evaluating or reporting duplicates. Keyword searches derived from the issue's own title/body will return that same issue — for narrow searches it may be the only result — so filter out its number first to avoid reporting the issue as its own duplicate.
+
 **If duplicates or solutions are found**, include them in the summary comment (Step 7):
 
 ```markdown
