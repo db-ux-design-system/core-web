@@ -81,7 +81,7 @@ Checking out `FETCH_HEAD` detached guarantees repeat reviews always target the P
 
 Use GitHub MCP tools to gather all necessary context:
 
-1. **PR Details** — `mcp_github_pull_request_read` (method: `get`) for title, description, author, linked issues
+1. **PR Details** — `mcp_github_pull_request_read` (method: `get`) for title, description, author
 2. **PR Diff** — `mcp_github_pull_request_read` (method: `get_diff`) to see all changes
 3. **Changed Files** — `mcp_github_pull_request_read` (method: `get_files`) for file list and stats. **Paginate**: continue fetching with incrementing `page` until all files are retrieved.
 4. **CI Status** — `mcp_github_pull_request_read` (method: `get_check_runs`) to check if tests pass
@@ -102,7 +102,10 @@ Only comment on genuinely new or unaddressed issues.
 
 ### Step 4: Understand Business Context
 
-- Read the linked issue (if any) using `mcp_github_issue_read`
+- **Resolve linked issues explicitly** — do not rely on `pull_request_read` (method `get`), which returns minimal PR fields and omits GitHub's linked/closing-issue references. A PR linked through the **Development sidebar** (rather than a `closes #123` keyword in the body) has no issue number anywhere in the PR details. Resolve linked issues in this order:
+    1. Query the PR's `closingIssuesReferences` (GraphQL) or the issue **timeline**/cross-reference events to get issues linked via the Development sidebar or closing keywords.
+    2. Fall back to parsing the PR body/title for `#<number>` and `closes/fixes/resolves` keywords only if the above yields nothing.
+- Read each resolved issue using `mcp_github_issue_read`
 - Check PR description against the PR template checklist in `.github/PULL_REQUEST_TEMPLATE.md`
 - Understand the scope: is this a feature, bugfix, refactor, or chore?
 - **Read scoped AGENTS.md files**: For each changed file under `packages/*`, read the corresponding `packages/<name>/AGENTS.md` to understand package-specific conventions before reviewing.
