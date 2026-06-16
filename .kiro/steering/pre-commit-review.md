@@ -103,11 +103,21 @@ If changes touch component or styling code:
 
 Once all checks pass:
 
-1. **Create and switch to a new branch** (if not already on one):
+1. **Ensure you are on a feature branch — never commit on `main`:**
+
+    Check the current branch first:
 
     ```bash
-    git switch -c <branch-name>
+    git branch --show-current
     ```
+
+    - If the current branch is `main` (or another protected/default branch such as `master`/`develop`), you **must** create and switch to a new feature branch before staging or committing:
+
+        ```bash
+        git switch -c <branch-name>
+        ```
+
+    - If you are already on a dedicated feature branch, continue on it.
 
 2. **Branch naming** — use `-` as separator (e.g. `feat-my-feature`, `fix-button-style`). Never use `/` — it breaks preview URLs.
 
