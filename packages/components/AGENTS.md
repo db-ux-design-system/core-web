@@ -89,7 +89,7 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually
 2. **Check `src/shared/model.ts` first** before adding any new prop — it may already exist as a shared type (see Shared Props section below)
 3. **Check other `**/model.ts`files** — if a similar prop exists in another component, consider moving it to`src/shared/model.ts` before reusing it
-4. Edit `model.ts` for prop changes (breaking change if props are added/removed/renamed/retyped → needs `major` changeset)
+4. Edit `model.ts` for prop changes (breaking change if props are removed/renamed/retyped → needs `major` changeset, if added -> `minor` changeset)
 5. Edit the `.lite.tsx` for template/logic changes
 6. **Check `src/styles/internal/` first** before writing new SCSS — the style may already exist as a shared internal mixin/placeholder (see Shared Styles section below)
 7. Edit the `.scss` for style changes
