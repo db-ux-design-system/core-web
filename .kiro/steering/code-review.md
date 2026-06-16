@@ -92,7 +92,7 @@ Use GitHub MCP tools to gather all necessary context:
 
 **Important — Avoid duplicate feedback:** Before posting any comment, check the existing review threads (from step 5), review summaries (from step 6), and PR comments (from step 7). Do not raise an issue that has already been:
 
-- Raised in a prior review thread (resolved or unresolved)
+- Raised in a prior review thread (unresolved, or resolved but without a clear explanation that it's e.g. a false positive or would get addressed in another issue)
 - Dismissed by the PR author with a valid explanation
 - Raised as a top-level PR comment
 
