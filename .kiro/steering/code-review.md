@@ -56,22 +56,22 @@ First, get the PR details to determine the head branch:
 
 1. Use `mcp_github_pull_request_read` with method `get` to get the PR details including the head branch name and head repository.
 2. Ensure your local worktree is clean (`git status --short` should be empty). If not, stash or commit local changes first.
-3. Fetch and checkout the PR branch. **Always reset to the fetched tip** to avoid reviewing stale code when the local branch already exists:
+3. Fetch the PR head into `FETCH_HEAD` and check it out in **detached HEAD**. This always inspects the PR's current tip without creating or moving any named local branch, so a reviewer's existing local branch (and any unpushed commits on it) is never reset or discarded:
 
 ```bash
-# For PRs from the same repo:
-git fetch origin <branch-name>
-git checkout -B <branch-name> origin/<branch-name>
+# For PRs from the same repo (force refspec + ensures a force-pushed
+# branch updates cleanly instead of being rejected as non-fast-forward):
+git fetch origin +<branch-name>
+git checkout --detach FETCH_HEAD
 
-# For PRs from forks: fetch the PR ref with a forced refspec (+) into FETCH_HEAD,
-# then reset a local branch to it. The leading + and FETCH_HEAD reset ensure a
-# force-pushed fork branch updates cleanly instead of being rejected as a
-# non-fast-forward, so repeat reviews never inspect the stale pr-<number> tip:
+# For PRs from forks:
 git fetch origin +refs/pull/<number>/head
-git checkout -B pr-<number> FETCH_HEAD
+git checkout --detach FETCH_HEAD
 ```
 
-Using `checkout -B` ensures the local branch is created or reset to match the remote tip, so repeat reviews always target the PR's current head.
+Checking out `FETCH_HEAD` detached guarantees repeat reviews always target the PR's current head while leaving all local branches untouched.
+
+> If you prefer a named branch (or need to push fixes), first verify the target branch has no local-only commits — e.g. `git log origin/<branch-name>..<branch-name>` should be empty — or use a dedicated `git worktree` so existing branches are never reset.
 
 ### Step 3: Gather PR Context
 
