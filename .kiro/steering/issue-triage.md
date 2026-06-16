@@ -271,7 +271,9 @@ To help us resolve this faster, please provide:
 - <list specific missing required fields>
 ```
 
-**Important**: This reaffirms the branch already decided in Step 6 — for incomplete issues, do **NOT** add the `🤖ai-triaged` label. Add the `⏳waiting-for-info` label instead, so the issue will be re-triaged in subsequent batch runs once the author provides the missing information. `🤖ai-triaged` is only applied when the issue is rated ✅ Complete or ⚠️ Partial.
+**Important**: This reaffirms the branch already decided in Step 6 — for incomplete issues, do **NOT** add the `🤖ai-triaged` label. Add the exact `⏳waiting-for-info` label instead (not an "equivalent" — the batch filter below matches this exact string), so the issue will be re-triaged in subsequent batch runs once the author provides the missing information. `🤖ai-triaged` is only applied when the issue is rated ✅ Complete or ⚠️ Partial.
+
+If `⏳waiting-for-info` does not yet exist in the repository, create it first using the same create-if-missing procedure as in Step 6 (`mcp_github_label_write` method `create`, or the `gh label create` fallback), e.g. name `⏳waiting-for-info`, color `fbca04`, description `Waiting for the author to provide missing information`. Never assign it before it exists.
 
 ---
 
