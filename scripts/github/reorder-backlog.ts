@@ -630,6 +630,51 @@ const fetchIssueFields = async (
 
 // --- Reorder items via GraphQL ---
 
+// Re-fetch a single project item's current state and Status immediately before
+// repositioning it. `sortedItems` is a snapshot taken earlier in the run, so an
+// issue may have been closed or moved to an active status (In progress, review,
+// etc.) in the meantime. Repositioning it then would violate the invariant that
+// active and closed issues are never moved, dropping a freshly active item into
+// the backlog ordering. Returns true only when the item is still an open,
+// backlog/no-status issue and is therefore safe to move.
+const isStillBacklogItem = async (itemId: string): Promise<boolean> => {
+	const query = `{
+  node(id: "${itemId}") {
+    ... on ProjectV2Item {
+      id
+      fieldValues(first: 100) {
+        pageInfo { hasNextPage endCursor }
+        nodes {
+          __typename
+          ... on ProjectV2ItemFieldSingleSelectValue {
+            field { ... on ProjectV2SingleSelectField { id name } }
+            optionId
+            name
+          }
+        }
+      }
+      content {
+        __typename
+        ... on Issue { number title state author { login } }
+      }
+    }
+  }
+}`;
+
+	const raw = ghGraphql(query);
+	const parsed = JSON.parse(raw) as {
+		data?: { node?: ProjectItemNode | undefined };
+	};
+	const node = parsed.data?.node;
+	if (!node) return false;
+
+	// The Status value could sit on a later fieldValues page; pull the rest
+	// before classifying so we don't misread an active item as "no status".
+	await ensureAllFieldValues(node);
+
+	return isOpenIssue(node) && isBacklogItem(node);
+};
+
 const reorderItems = async (
 	sortedItems: SortableItem[],
 	anchorItemId: string | undefined
@@ -646,6 +691,21 @@ const reorderItems = async (
 		process.stdout.write(
 			`   [${String(i + 1)}/${String(sortedItems.length)}] Moving #${String(item.number)}...\r`
 		);
+
+		// Revalidate against the live project state. If the item was closed or
+		// moved to an active status since the snapshot was taken, skip it (and
+		// keep the previous anchor) so we never reposition an active/closed
+		// issue into the backlog ordering.
+		// eslint-disable-next-line no-await-in-loop
+		const stillBacklog = await isStillBacklogItem(item.itemId);
+		if (!stillBacklog) {
+			console.log(
+				`\n   ⏭️  #${String(item.number)} is no longer an open backlog item — skipping`
+			);
+			// eslint-disable-next-line no-await-in-loop
+			await sleep(200);
+			continue;
+		}
 
 		const afterClause = previousItemId
 			? `afterId: "${previousItemId}"`
