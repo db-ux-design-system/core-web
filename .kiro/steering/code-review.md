@@ -84,7 +84,7 @@ Use GitHub MCP tools to gather all necessary context:
 1. **PR Details** — `mcp_github_pull_request_read` (method: `get`) for title, description, author
 2. **PR Diff** — `mcp_github_pull_request_read` (method: `get_diff`) to see all changes
 3. **Changed Files** — `mcp_github_pull_request_read` (method: `get_files`) for file list and stats. **Paginate**: continue fetching with incrementing `page` until all files are retrieved.
-4. **CI Status** — `mcp_github_pull_request_read` (method: `get_check_runs`) to check if tests pass
+4. **CI Status** — `mcp_github_pull_request_read` (method: `get_check_runs`) to check if tests pass. **Paginate**: this repository's default pipeline (`.github/workflows/default.yml`) defines dozens of jobs, so request a large `perPage` and continue fetching with incrementing `page` until all check runs are retrieved. A single unpaginated call can omit a later failed job and wrongly report the PR as green.
 5. **Existing Reviews** — `mcp_github_pull_request_read` (method: `get_review_comments`) to see prior feedback threads. **Paginate**: follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false.
 6. **Review Summaries** — `mcp_github_pull_request_read` (method: `get_reviews`) for submitted approvals, change requests, or review bodies without inline threads. **Paginate**: continue fetching with incrementing `page` until all reviews are retrieved, so an earlier review body that already raised the same concern isn't missed.
 
