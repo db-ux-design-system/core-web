@@ -24,7 +24,11 @@ Run `git status --short` to discover the complete set of changes (staged, unstag
 
 Go through the PR template checklist from `.github/PULL_REQUEST_TEMPLATE.md`:
 
+<!-- markdownlint-disable MD018 -->
+
 #[[file:.github/PULL_REQUEST_TEMPLATE.md]]
+
+<!-- markdownlint-enable MD018 -->
 
 Verify each item:
 
@@ -105,7 +109,7 @@ Once all checks pass:
 
 4. **Commit message format**:
 
-    ```
+    ```markdown
     <type>: <short description>
 
     <summary of what changed and why>
