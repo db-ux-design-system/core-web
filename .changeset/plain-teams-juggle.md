@@ -1,7 +1,7 @@
 ---
-"@db-ux/react-core-components": patch
-"@db-ux/v-core-components": patch
-"@db-ux/wc-core-components": patch
+"@db-ux/react-core-components": minor
+"@db-ux/v-core-components": minor
+"@db-ux/wc-core-components": minor
 ---
 
 fix: resolve `ERR_UNSUPPORTED_DIR_IMPORT` in strict ESM environments like Vitest
