@@ -3,6 +3,7 @@ import {
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
 	DBShell,
+	DBShellContent,
 	DBShellSubNavigation
 } from '@components';
 import { Outlet } from 'react-router-dom';
@@ -85,9 +86,9 @@ const App = () => {
 					<Navigation variant={settings.navigationDesktopVariant} />
 				</DBControlPanelDesktop>
 			}>
-			<div data-density={density} className={`db-${color}`}>
+			<DBShellContent data-density={density} className={`db-${color}`}>
 				<Outlet />
-			</div>
+			</DBShellContent>
 		</DBShell>
 	);
 };

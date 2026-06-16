@@ -65,12 +65,12 @@
 			:not([data-control-panel-desktop-position]),
 			[data-control-panel-desktop-position="top"]
 		) {
-			block-size: var(--db-container-2xs);
+			block-size: var(--db-container-sm);
 			inline-size: 100%;
 		}
 
 		&[data-control-panel-desktop-position="left"] {
-			block-size: var(--db-container-lg);
+			block-size: var(--db-container-sm);
 			inline-size: 100%;
 		}
 	}
@@ -181,11 +181,6 @@
 
 .tab-hide-article article {
 	display: none !important;
-}
-
-.db-main {
-	overflow-x: hidden;
-	overflow-inline: hidden;
 }
 
 .stack-container {

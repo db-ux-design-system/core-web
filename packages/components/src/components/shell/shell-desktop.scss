@@ -43,11 +43,11 @@
 			grid-template-areas:
 				"control-panel"
 				"sub-navigation"
-				"main";
+				"shell-content";
 			grid-template-rows:
 				[control-panel] max-content
 				[sub-navigation] max-content
-				[main] 1fr;
+				[shell-content] 1fr;
 
 			@include sub-navigation-top;
 		}
@@ -56,9 +56,9 @@
 		&[data-sub-navigation-desktop-position="left"] {
 			grid-template:
 				[control-panel] "control-panel control-panel" max-content
-				[main] "sub-navigation main" 1fr /
+				[shell-content] "sub-navigation shell-content" 1fr /
 				[control-panel] auto
-				[main] 1fr;
+				[shell-content] 1fr;
 
 			#{string.unquote(custom-elements.$shell-sub-navigation)} {
 				display: grid;
@@ -153,16 +153,16 @@
 @mixin control-panel-left {
 	&[data-control-panel-desktop-position="left"] {
 		grid-template-areas:
-			"control-panel main"
-			"control-panel main";
+			"control-panel shell-content"
+			"control-panel shell-content";
 		grid-template-columns:
 			[control-panel] min-content
-			[main] 1fr;
+			[shell-content] 1fr;
 
 		&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
 			grid-template-areas:
 				"control-panel sub-navigation"
-				"control-panel main";
+				"control-panel shell-content";
 		}
 
 		@include sub-navigation-top;

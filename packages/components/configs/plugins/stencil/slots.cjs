@@ -1,6 +1,3 @@
-// TODO: Remove this when https://github.com/BuilderIO/mitosis/pull/1789 is merged
-
-const { getSlotKey } = require('../utils.cjs');
 /**
  *
  * @param node {import('@builder.io/mitosis').MitosisNode}
@@ -23,7 +20,8 @@ const processNode = (node) => {
 						...bind,
 						properties: {
 							...bind.properties,
-							slot: getSlotKey(key)
+							// Stencil keeps slot names in camelCase (matching <Slot name="..."/> in the source)
+							slot: key
 						}
 					}))
 				);

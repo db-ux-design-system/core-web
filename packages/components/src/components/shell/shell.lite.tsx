@@ -58,11 +58,7 @@ export default function DBShell(props: DBShellProps) {
 			<Slot name="controlPanelDesktop" />
 			<Slot name="controlPanelMobile" />
 			<Slot name="subNavigation" />
-			<main
-				class={cls('db-main', props.mainClass)}
-				aria-label={props.mainLabel}>
-				{props.children}
-			</main>
+			{props.children}
 		</div>
 	);
 }

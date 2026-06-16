@@ -1,0 +1,21 @@
+.db-shell-content {
+	grid-area: shell-content;
+	overflow-x: hidden;
+	display: grid;
+	grid-template-rows:
+		[start] auto
+		[main] 1fr
+		[end] auto;
+
+	&:not([data-variant="fixed"]) {
+		overflow-y: auto;
+	}
+
+	&[data-variant="fixed"] {
+		overflow-y: hidden;
+
+		> main {
+			overflow-y: auto;
+		}
+	}
+}

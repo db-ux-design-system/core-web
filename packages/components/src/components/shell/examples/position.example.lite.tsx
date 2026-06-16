@@ -8,6 +8,7 @@ import DBControlPanelSecondaryActions from '../../control-panel-secondary-action
 import DBLink from '../../link/link.lite';
 import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 import DBNavigation from '../../navigation/navigation.lite';
+import DBShellContent from '../../shell-content/shell-content.lite';
 import DBShell from '../shell.lite';
 import { StorybookShellArgTypes } from './_shell.arg.types';
 
@@ -22,7 +23,6 @@ export default function ShellPosition() {
 		<Fragment>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					mainLabel="shell-position-top"
 					data-test-id="shell-position-top"
 					controlPanelDesktopPosition="top"
 					controlPanelDesktop={
@@ -83,12 +83,13 @@ export default function ShellPosition() {
 							</DBNavigation>
 						</DBControlPanelDesktop>
 					}>
-					Top position content
+					<DBShellContent mainLabel="shell-position-top">
+						Top position content
+					</DBShellContent>
 				</DBShell>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					mainLabel="shell-position-left"
 					data-test-id="shell-position-left"
 					controlPanelDesktopPosition="left"
 					controlPanelDesktop={
@@ -149,7 +150,9 @@ export default function ShellPosition() {
 							</DBNavigation>
 						</DBControlPanelDesktop>
 					}>
-					Left position content
+					<DBShellContent mainLabel="shell-position-left">
+						Left position content
+					</DBShellContent>
 				</DBShell>
 			</div>
 		</Fragment>

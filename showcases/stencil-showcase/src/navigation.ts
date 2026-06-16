@@ -313,6 +313,7 @@ export function renderNavigation(): void {
 				${renderSecondaryActions()}
 				${renderNavigationTree('mobileNavigation', settings.navigationMobileVariant)}
 			</db-control-panel-mobile>
+			<db-shell-content></db-shell-content>
 		</db-shell>
 	`;
 

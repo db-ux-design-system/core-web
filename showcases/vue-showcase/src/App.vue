@@ -5,6 +5,7 @@ import {
 	DBControlPanelMobile,
 	DBNavigation,
 	DBShell,
+	DBShellContent,
 	DBShellSubNavigation
 } from "@components";
 import NavItemComponent from "./NavItemComponent.vue";
@@ -91,8 +92,8 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 				</template>
 			</DBControlPanelMobile>
 		</template>
-		<div :class="classNames">
+		<DBShellContent :class="classNames">
 			<router-view></router-view>
-		</div>
+		</DBShellContent>
 	</DBShell>
 </template>

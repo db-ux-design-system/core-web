@@ -18,10 +18,10 @@
 			&[data-sub-navigation-mobile-position="none"] {
 				grid-template-areas:
 					"control-panel"
-					"main";
+					"shell-content";
 				grid-template-rows:
 					[control-panel] auto
-					[main] 1fr;
+					[shell-content] 1fr;
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
 					display: none;
@@ -32,11 +32,11 @@
 				grid-template-areas:
 					"control-panel"
 					"sub-navigation"
-					"main";
+					"shell-content";
 				grid-template-rows:
 					[control-panel] auto
 					[sub-navigation] auto
-					[main] 1fr;
+					[shell-content] 1fr;
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
 					@include helpers.divider("bottom");
@@ -46,11 +46,11 @@
 			&[data-sub-navigation-mobile-position="bottom"] {
 				grid-template-areas:
 					"control-panel"
-					"main"
+					"shell-content"
 					"sub-navigation";
 				grid-template-rows:
 					[control-panel] auto
-					[main] 1fr
+					[shell-content] 1fr
 					[sub-navigation] auto;
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
@@ -64,10 +64,10 @@
 			&[data-sub-navigation-mobile-position="bottom"],
 			&[data-sub-navigation-mobile-position="none"] {
 				grid-template-areas:
-					"main"
+					"shell-content"
 					"control-panel";
 				grid-template-rows:
-					[main] 1fr
+					[shell-content] 1fr
 					[control-panel] auto;
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
@@ -78,11 +78,11 @@
 			&[data-sub-navigation-mobile-position="top"] {
 				grid-template-areas:
 					"sub-navigation"
-					"main"
+					"shell-content"
 					"control-panel";
 				grid-template-rows:
 					[sub-navigation] auto
-					[main] 1fr
+					[shell-content] 1fr
 					[control-panel] auto;
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {

@@ -32,19 +32,9 @@ body {
 .db-shell {
 	@extend %fade-in-loading-fonts;
 
-	block-size: 100vh;
-	inline-size: 100vw;
+	block-size: 100lvh;
+	inline-size: 100lvw;
 	display: grid;
-
-	> main {
-		grid-area: main;
-		overflow-y: auto;
-	}
-
-	> main,
-	> header {
-		max-inline-size: 100vw;
-	}
 
 	#{string.unquote(custom-elements.$control-panel-desktop)},
 	#{string.unquote(custom-elements.$control-panel-mobile)} {
