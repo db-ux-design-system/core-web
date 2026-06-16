@@ -7,9 +7,9 @@ import {
 } from '@components';
 import type { AppProps } from 'next/app';
 import { useId } from 'react';
-import MetaNavigation from 'react-showcase/src/control-panel/meta-navigation';
-import PrimaryActions from 'react-showcase/src/control-panel/primary-actions';
-import SecondaryActions from 'react-showcase/src/control-panel/secondary-actions';
+import MetaNavigation from '../../react-showcase/src/control-panel/meta-navigation';
+import PrimaryActions from '../../react-showcase/src/control-panel/primary-actions';
+import SecondaryActions from '../../react-showcase/src/control-panel/secondary-actions';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
