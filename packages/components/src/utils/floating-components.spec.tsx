@@ -124,13 +124,14 @@ describe('handleFixedDropdown', () => {
 		run: () => void
 	) => {
 		const original = globalThis.getComputedStyle;
-		(globalThis as unknown as { getComputedStyle: unknown }).getComputedStyle =
-			(el: HTMLElement) =>
-				({
-					zIndex: '1',
-					maxInlineSize: 'none',
-					...(styleByElement.get(el) ?? {})
-				}) as unknown as CSSStyleDeclaration;
+		(
+			globalThis as unknown as { getComputedStyle: unknown }
+		).getComputedStyle = (el: HTMLElement) =>
+			({
+				zIndex: '1',
+				maxInlineSize: 'none',
+				...(styleByElement.get(el) ?? {})
+			}) as unknown as CSSStyleDeclaration;
 		try {
 			run();
 		} finally {
@@ -173,7 +174,10 @@ describe('handleFixedDropdown', () => {
 		(window as Window).innerHeight = 800;
 
 		// natural content width (80) is narrower than the trigger (200)
-		const element = createDropdownElement('full', { width: 80, height: 50 });
+		const element = createDropdownElement('full', {
+			width: 80,
+			height: 50
+		});
 		const parent = {
 			getBoundingClientRect: () => ({
 				top: 10,
