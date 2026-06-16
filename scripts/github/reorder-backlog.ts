@@ -390,7 +390,6 @@ const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
   }
 }`;
 
-		// eslint-disable-next-line no-await-in-loop
 		const raw = ghGraphql(query);
 		const parsed = JSON.parse(raw) as {
 			data?: {
@@ -409,6 +408,7 @@ const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
 		pageInfo = fieldValues.pageInfo;
 		cursor = pageInfo?.endCursor;
 
+		// eslint-disable-next-line no-await-in-loop
 		await sleep(200);
 	}
 };
@@ -753,11 +753,16 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 
 	if (comments.length === 0) return;
 
-	// The feedback request is the latest comment from a codeowner — that is the
-	// point in time the issue started waiting on its author. Without such a
-	// request there is nothing to chase, so we leave the item untouched.
-	const feedbackRequest = lastCommentBy(comments, (author) =>
-		isCodeowner(author)
+	// The feedback request is the latest comment from a codeowner *other than
+	// the issue author* — that is the point in time the issue started waiting on
+	// its author. Maintainers can open their own issues, so an author who is
+	// also a codeowner must be excluded here; otherwise their own reply would
+	// be picked as the "request", can never be later than itself, and the item
+	// would stay in "Waiting for feedback" and eventually get a stale reminder.
+	// Without such a request there is nothing to chase, so we leave it untouched.
+	const feedbackRequest = lastCommentBy(
+		comments,
+		(author) => author !== issueAuthor && isCodeowner(author)
 	);
 	if (!feedbackRequest) return;
 	const feedbackRequestTime = timeOf(feedbackRequest);
