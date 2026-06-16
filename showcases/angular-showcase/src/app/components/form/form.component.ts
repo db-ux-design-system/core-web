@@ -1,9 +1,4 @@
-import {
-	Component,
-	CUSTOM_ELEMENTS_SCHEMA,
-	NO_ERRORS_SCHEMA,
-	signal
-} from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
@@ -25,32 +20,29 @@ import {
 	DBTag,
 	DBTextarea
 } from '@components';
-import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
-	imports: environment.webComponents
-		? [FormsModule, ReactiveFormsModule]
-		: [
-				FormsModule,
-				ReactiveFormsModule,
-				DBInput,
-				DBTextarea,
-				DBSelect,
-				DBRadio,
-				DBTag,
-				DBCheckbox,
-				DBDivider,
-				DBButton,
-				DBTabs,
-				DBTabList,
-				DBTabItem,
-				DBTabPanel,
-				DBSwitch
-			],
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		DBInput,
+		DBTextarea,
+		DBSelect,
+		DBRadio,
+		DBTag,
+		DBCheckbox,
+		DBDivider,
+		DBButton,
+		DBTabs,
+		DBTabList,
+		DBTabItem,
+		DBTabPanel,
+		DBSwitch
+	],
 	standalone: true,
-	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {
 	// DB Switch with Angular signals

@@ -1,6 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@components';
-import { environment } from '../../../environments/environment';
 import { CheckboxesComponent } from '../form/checkboxes/checkboxes.component';
 import { CustomSelectsComponent } from '../form/custom-selects/custom-selects.component';
 import { FormComponent } from '../form/form.component';
@@ -23,10 +22,10 @@ import { TextareasComponent } from '../form/textareas/textareas.component';
 		RadiosComponent,
 		CustomSelectsComponent,
 		SwitchesComponent,
-		...(environment.webComponents
-			? []
-			: [DBTabs, DBTabItem, DBTabList, DBTabPanel])
-	],
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+		DBTabs,
+		DBTabItem,
+		DBTabList,
+		DBTabPanel
+	]
 })
 export class HomeComponent {}
