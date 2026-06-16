@@ -300,7 +300,8 @@ Then filter out:
 
 - **Pull requests.** GitHub's Issues endpoints return both issues _and_ pull requests; PR entries carry a `pull_request` key in the response. Drop any item with a `pull_request` key (or query with `is:issue`) **before** creating triage tasks — otherwise open PRs without `🤖ai-triaged` would be triaged as issues and receive issue labels/comments.
 - Issues that already have the `🤖ai-triaged` label.
-- Issues that carry the `⏳waiting-for-info` label **and** have not been updated since they were last triaged. Compare the issue's `updatedAt` with the timestamp of the bot's last triage comment (or the time the label was applied): only re-triage a waiting issue once its `updatedAt` is newer — i.e. the author has actually added the missing information. This prevents reprocessing unchanged incomplete issues and posting a duplicate missing-information comment on every batch run.
+- Issues that carry the `⏳waiting-for-info` label **and** have had no author response since they were last triaged. Do **not** rely on the issue's `updatedAt` alone — that timestamp also bumps on label changes, assignment, metadata edits, and bot/maintainer activity, none of which mean the author supplied the missing info.
+  Instead, inspect the **timeline/comments** after the prior triage marker and only re-triage when there is genuine author input — i.e. a comment authored by the issue author, or an edit to the issue body by the author — dated after the last triage. This prevents reprocessing unchanged incomplete issues and posting a duplicate missing-information comment on every batch run.
 
 ### Step 2: Generate Spec with Tasks
 
