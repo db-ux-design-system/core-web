@@ -57,7 +57,7 @@
     "eslint-config-next": "16.2.9",
     "http-server": "14.1.1",
     "iframe-resizer": "5.5.9",
-    "npm-run-all2": "9.0.1",
+    "npm-run-all2": "9.0.2",
     "open-cli": "9.0.0",
     "prettier": "3.8.4",
     "sass": "1.100.0",
