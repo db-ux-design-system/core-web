@@ -33,12 +33,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 %set-interactive-weak {
 	@include get-weak;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+		}
 
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+		}
 	}
 }
 
@@ -97,12 +99,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 %set-interactive-strong {
 	@include get-strong;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-vibrant-hovered;
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-vibrant-hovered;
+		}
 
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-vibrant-pressed;
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-vibrant-pressed;
+		}
 	}
 }
 
@@ -110,12 +114,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	input:checked {
 		background-color: transparent;
 
-		@include helpers.hover {
-			background-color: transparent;
-		}
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				background-color: transparent;
+			}
 
-		@include helpers.active {
-			background-color: transparent;
+			@include helpers.active {
+				background-color: transparent;
+			}
 		}
 	}
 }

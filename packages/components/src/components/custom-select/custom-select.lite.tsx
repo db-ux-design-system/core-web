@@ -147,7 +147,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				if (state._userInteraction) {
 					state._validity = props.validation ?? 'invalid';
@@ -161,7 +161,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -274,7 +274,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
 					// This is a workaround for Angular
-					delay(() => {
+					void delay(() => {
 						handleFixedDropdown(
 							dropdown,
 							detailsRef,
@@ -355,7 +355,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										const search =
 											getSearchInput(detailsRef);
 										if (search) {
-											delay(() => {
+											void delay(() => {
 												search.focus();
 											}, 100);
 										} else {
@@ -583,7 +583,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							: first;
 
 					if (checkbox) {
-						delay(() => {
+						void delay(() => {
 							// Takes some time until element can be focused
 							(checkbox as HTMLInputElement).focus();
 						}, 1);
@@ -596,7 +596,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				// Focus search if possible
 				const search = getSearchInput(detailsRef);
 				if (search) {
-					delay(() => {
+					void delay(() => {
 						// Takes some time until element can be focused
 						search.focus();
 					}, 1);
@@ -933,13 +933,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					? 'above'
 					: props.variant
 			}
-			data-required={getBooleanAsString(props.required)}
+			data-required={getBooleanAsString(props.required, 'required')}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
@@ -988,13 +988,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-form-field"
-						aria-disabled={getBooleanAsString(props.disabled)}
+						aria-disabled={getBooleanAsString(
+							props.disabled,
+							'disabled'
+						)}
 						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
 							<span
 								data-visually-hidden={getBooleanAsString(
-									props.selectedType === 'tag'
+									props.selectedType === 'tag',
+									'selectedType'
 								)}
 								id={state._selectedLabelsId}>
 								<Show when={props.selectedPrefix}>
@@ -1211,7 +1215,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			<span
 				class="db-custom-select-placeholder"
-				aria-hidden={getBooleanAsString(true)}
+				aria-hidden="true"
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
