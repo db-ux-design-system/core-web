@@ -27,6 +27,7 @@ When the user provides an issue number, perform the following steps:
 
 1. Use `mcp_github_issue_read` (method: `get`) to get the full issue including author, title, body, labels, and type.
 2. Use `mcp_github_issue_read` (method: `get_labels`) to see currently assigned labels.
+3. Use `mcp_github_issue_read` (method: `get_comments`) to read all comments (and/or timeline events). **Paginate** until all comments are retrieved. This is essential when re-triaging a `⏳ waiting-for-info` issue: the author often supplies the missing details in a follow-up comment rather than editing the body, so the completeness check in Step 2 must consider comments — not just the original body — to avoid asking for the same information again.
 
 ### Step 1b: Check for Duplicates and Existing Solutions
 
@@ -56,6 +57,8 @@ Determine which template was used based on the issue type and labels:
 - **Bug Report**: Check that the body contains a "Reproduction case" section and "Expected Behaviour" section (both are required). Note any missing optional fields.
 - **Copilot Instructions feedback**: Check that "What didn't work as expected?" is filled in.
 - **No template used**: Flag this — the issue may lack structured information.
+
+When deciding whether a required field is still missing, evaluate the issue body **together with the comments/timeline** fetched in Step 1 — an author may have provided the missing details in a follow-up comment rather than editing the original body.
 
 Rate completeness:
 
@@ -189,7 +192,8 @@ Add matching labels alongside the `🤖ai-triaged` label (see next step).
 
 Add the label `🤖ai-triaged` to mark that this issue has been processed by the AI triage bot.
 
-**Label creation**: Before assigning any label, verify it exists using `mcp_github_get_label`. The GitHub REST API does **not** auto-create labels on assignment — applying a non-existent label fails the entire update with a validation error and the issue is never marked, so the batch run keeps re-selecting it. The configured GitHub MCP toolset has no label-creation tool, so if `🤖ai-triaged` does not exist, it must be created out-of-band first: ask a maintainer to create it, or create it via `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`. Never attempt to assign a label that does not yet exist.
+**Label creation**: Before assigning any label, verify it exists using `mcp_github_get_label`. The GitHub REST API does **not** auto-create labels on assignment — applying a non-existent label fails the entire update with a validation error and the issue is never marked, so the batch run keeps re-selecting it.
+The configured GitHub MCP toolset has no label-creation tool, so if `🤖ai-triaged` does not exist, it must be created out-of-band first: ask a maintainer to create it, or create it via `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`. Never attempt to assign a label that does not yet exist.
 
 **Preserving existing labels**: To avoid accidentally removing labels added by other users or automations, always **re-read the current labels** immediately before updating (using `mcp_github_issue_read` method `get_labels`). Then merge the new labels into the current set. Use `mcp_github_issue_write` (method: `update`) with the **complete merged label list** (all existing labels + new labels to add).
 
@@ -256,12 +260,13 @@ When the user asks to triage all new/unprocessed issues (e.g. "check all new iss
 
 Search for open issues that do NOT have the `🤖ai-triaged` label:
 
-```
+```markdown
 Use mcp_github_list_issues with:
-  - owner: db-ux-design-system
-  - repo: core-web
-  - state: OPEN
-  - perPage: 100
+
+- owner: db-ux-design-system
+- repo: core-web
+- state: OPEN
+- perPage: 100
 ```
 
 **Paginate**: Follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false. Collect all pages before filtering.
