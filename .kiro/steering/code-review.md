@@ -8,7 +8,11 @@ Guide for performing PR code reviews in this repository using GitHub MCP tools.
 
 The conventions and anti-patterns to check are documented in a shared reference:
 
-#[[file:docs/code-review-conventions.md]]
+<!-- markdownlint-disable MD025 -->
+
+# [[file:docs/code-review-conventions.md]]
+
+<!-- markdownlint-enable MD025 -->
 
 ## Review Workflow
 
@@ -26,7 +30,7 @@ When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
 1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved. If the user asks for reviewing their specific PRs (e.g. "review my open PRs"), use `search_pull_requests` with an author qualifier or filter the returned PRs by the current user before generating tasks.
 2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved, so a marker on a later page isn't missed (which would otherwise re-review an unchanged PR and post duplicate feedback). Look for a comment containing, that has been posted by a user with the phrase "[bot]" included:
-    ```
+    ```markdown
     <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
     ```
 3. **Compare with current head SHA**: Get the PR's current `head.sha` from its details. If the stored SHA matches the current head → the PR hasn't changed since last review.
@@ -40,7 +44,7 @@ When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
 After completing a review for a PR, **always post a PR comment** (using `mcp_github_add_issue_comment`) containing the reviewed head SHA and timestamp as an HTML comment:
 
-```
+```markdown
 <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
 ```
 
