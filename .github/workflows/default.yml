@@ -351,13 +351,18 @@ jobs:
     needs: [build-showcase-patternhub, test-showcase-patternhub, init]
 
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
-  # For releases, it always runs
+  # For releases, it always runs.
+  # It also runs for any PR whose branch relates to the guidepup tooling (the screen-reader
+  # dependencies) — e.g. the Dependabot "guidepup" group produces branches like
+  # "dependabot-npm_and_yarn-guidepup-...", but human branches touching guidepup benefit too —
+  # so we get a correct picture of whether those changes break the screen-reader tests.
   test-screen-reader:
     if: |
       github.event_name == 'release' ||
       github.event_name == 'workflow_dispatch' ||
       needs.init.outputs.test-ally == 'true' ||
-      github.event.pull_request == null
+      github.event.pull_request == null ||
+      contains(github.head_ref, 'guidepup')
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
     secrets: inherit
