@@ -302,12 +302,14 @@ const assertStatusFieldExists = (): void => {
     ... on ProjectV2SingleSelectField {
       id
       project { id }
+      options { id }
     }
   }
 }`;
 
 	let resolvedId: string | undefined;
 	let resolvedProjectId: string | undefined;
+	let optionIds: string[] = [];
 	try {
 		const raw = ghGraphql(query);
 		const parsed = JSON.parse(raw) as {
@@ -317,6 +319,7 @@ const assertStatusFieldExists = (): void => {
 							__typename?: string;
 							id?: string;
 							project?: { id?: string };
+							options?: Array<{ id?: string }>;
 					  }
 					| undefined;
 			};
@@ -325,6 +328,9 @@ const assertStatusFieldExists = (): void => {
 		if (node?.__typename === 'ProjectV2SingleSelectField') {
 			resolvedId = node.id;
 			resolvedProjectId = node.project?.id;
+			optionIds = (node.options ?? [])
+				.map((option) => option.id)
+				.filter((id): id is string => typeof id === 'string');
 		}
 	} catch (error: unknown) {
 		const message = error instanceof Error ? error.message : String(error);
@@ -352,6 +358,38 @@ const assertStatusFieldExists = (): void => {
 				'(none of the fetched field values would match a field from another ' +
 				'project). Check the STATUS_FIELD_ID / BACKLOG_STATUS_FIELD_ID and ' +
 				'PROJECT_ID configuration.'
+		);
+	}
+
+	// Validate the configured single-select option IDs against the field's
+	// actual options. A mistyped/deleted Backlog option passes the field check
+	// above but then never equals any real item's optionId: every genuine
+	// Backlog item is silently dropped from reordering, and moveItemToBacklog()
+	// fails with a swallowed error. Fail closed instead.
+	const optionSet = new Set(optionIds);
+
+	if (!optionSet.has(backlogOptionId)) {
+		throw new Error(
+			`Configured Backlog option (${backlogOptionId}) was not found among the ` +
+				`Status field options [${optionIds.join(', ')}]. Refusing to run so ` +
+				'Backlog items are not silently omitted from reordering and ' +
+				'author-response transitions do not fail. Check the BACKLOG_OPTION_ID / ' +
+				'BACKLOG_STATUS_BACKLOG_OPTION_ID configuration.'
+		);
+	}
+
+	// The Waiting-for-feedback option ID is optional (the script falls back to
+	// matching the display name). Only validate it when it has been configured.
+	if (
+		waitingForFeedbackOptionId &&
+		!optionSet.has(waitingForFeedbackOptionId)
+	) {
+		throw new Error(
+			`Configured "Waiting for feedback" option (${waitingForFeedbackOptionId}) ` +
+				`was not found among the Status field options [${optionIds.join(', ')}]. ` +
+				'Refusing to run so waiting items are not misclassified. Check the ' +
+				'WAITING_FOR_FEEDBACK_OPTION_ID / BACKLOG_WAITING_FOR_FEEDBACK_OPTION_ID ' +
+				'configuration.'
 		);
 	}
 };
