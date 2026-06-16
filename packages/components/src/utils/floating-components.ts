@@ -122,16 +122,6 @@ export const handleFixedDropdown = (
 		element.style.minInlineSize = `${autoMinWidth}px`;
 	}
 
-	// getFloatingProps measured childWidth before the width-specific inline
-	// styles were (re)applied, so positioning must use the width the dropdown
-	// will actually have:
-	// - auto: the effective (clamped) minimum, so end-aligned dropdowns don't
-	//   extend past the trigger's right edge.
-	// - full: the trigger width, since the inline style reset above makes the
-	//   measured childWidth fall back to the natural content width. Without
-	//   this, a reopened full-width dropdown is positioned with the wrong
-	//   width (here right - width === left, so start/end both anchor to the
-	//   trigger edge regardless of any placement flip).
 	// getFloatingProps measured childWidth before the inline styles were
 	// (re)applied, so use the width the dropdown will actually have:
 	// - auto: the clamped minimum, so end-aligned dropdowns don't extend past
