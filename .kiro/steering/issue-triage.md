@@ -218,6 +218,8 @@ Never attempt to assign a label that does not yet exist.
 
 **Preserving existing labels**: To avoid accidentally removing labels added by other users or automations, always **re-read the current labels** immediately before updating (using `mcp_github_issue_read` method `get_labels`). Then merge the new labels into the current set. Use `mcp_github_issue_write` (method: `update`) with the **complete merged label list** (all existing labels + new labels to add).
 
+**Clear `⏳waiting-for-info` on successful re-triage**: when a previously incomplete issue is now rated ✅ Complete or ⚠️ Partial (the author supplied the requested info), **remove** any existing `⏳waiting-for-info` label as you add `🤖ai-triaged` — do not just merge. Otherwise the issue would stay flagged as waiting on the author even though it is no longer missing information. Build the merged set as: existing labels − `⏳waiting-for-info` + `🤖ai-triaged` (+ any matching content labels), then write that complete set.
+
 ### Step 7: Post Summary Comment
 
 Post a comment on the issue using `mcp_github_add_issue_comment` with this structure:
