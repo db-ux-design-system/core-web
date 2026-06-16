@@ -34,7 +34,7 @@
   "devDependencies": {
     "cpr": "3.0.1",
     "esbuild": "0.28.1",
-    "npm-run-all2": "9.0.1",
+    "npm-run-all2": "9.0.2",
     "tsx": "4.22.4",
     "vitest": "4.1.8"
   },
