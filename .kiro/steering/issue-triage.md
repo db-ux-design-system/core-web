@@ -199,14 +199,17 @@ Review the issue content and determine if any of these existing labels apply. On
 | `🚗🥇🚬alpha`      | Relates to components currently in alpha state |
 | `legacy`           | Relates to legacy code/patterns                |
 
-Add matching labels alongside the `🤖ai-triaged` label (see next step).
+Add matching labels alongside the status label decided in Step 6 (`🤖ai-triaged` or `⏳waiting-for-info`).
 
-### Step 6: Add AI Triage Label
+### Step 6: Add Triage Status Label
 
-Add the label `🤖ai-triaged` to mark that this issue has been processed by the AI triage bot.
+**First decide the completeness branch (from Step 2) before applying any status label** — this determines _which_ label to add and must be settled here, not deferred to Step 8:
+
+- **❌ Incomplete** → do **NOT** add `🤖ai-triaged`. Add `⏳waiting-for-info` instead (see Step 8), so the issue is re-triaged in future batch runs once the author responds.
+- **⚠️ Partial or ✅ Complete** → add `🤖ai-triaged` to mark that this issue has been fully processed by the AI triage bot.
 
 **Label creation**: Before assigning any label, verify it exists using `mcp_github_get_label`. The GitHub REST API does **not** auto-create labels on assignment — applying a non-existent label fails the entire update with a validation error and the issue is never marked, so the batch run keeps re-selecting it.
-The configured GitHub MCP toolset has no label-creation tool, so if `🤖ai-triaged` does not exist, it must be created out-of-band first: ask a maintainer to create it, or create it via `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`. Never attempt to assign a label that does not yet exist.
+The configured GitHub MCP toolset has no label-creation tool, so if `🤖ai-triaged` (or `⏳waiting-for-info`) does not exist, it must be created out-of-band first: ask a maintainer to create it, or create it via `gh label create "🤖ai-triaged" --color 7057ff --description "Issue triaged by AI bot"`. Never attempt to assign a label that does not yet exist.
 
 **Preserving existing labels**: To avoid accidentally removing labels added by other users or automations, always **re-read the current labels** immediately before updating (using `mcp_github_issue_read` method `get_labels`). Then merge the new labels into the current set. Use `mcp_github_issue_write` (method: `update`) with the **complete merged label list** (all existing labels + new labels to add).
 
@@ -261,7 +264,7 @@ To help us resolve this faster, please provide:
 - <list specific missing required fields>
 ```
 
-**Important**: For incomplete issues, do **NOT** add the `🤖ai-triaged` label yet. Instead, add a `⏳waiting-for-info` label (or equivalent). This ensures the issue will be re-triaged in subsequent batch runs once the author provides the missing information. Only add `🤖ai-triaged` after the issue is rated ✅ Complete or ⚠️ Partial.
+**Important**: This reaffirms the branch already decided in Step 6 — for incomplete issues, do **NOT** add the `🤖ai-triaged` label. Add the `⏳waiting-for-info` label instead, so the issue will be re-triaged in subsequent batch runs once the author provides the missing information. `🤖ai-triaged` is only applied when the issue is rated ✅ Complete or ⚠️ Partial.
 
 ---
 
