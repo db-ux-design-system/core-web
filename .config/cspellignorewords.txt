@@ -147,6 +147,7 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+rowspan
 TSES
 trufflesecurity
 elif
@@ -203,6 +204,9 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
 subcomponent
 worktree
@@ -214,3 +218,6 @@ automations
 Untriaged
 untriaged
 fbca
+unreviewed
+notext
+prebundle
