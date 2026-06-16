@@ -82,7 +82,7 @@ Checking out `FETCH_HEAD` detached guarantees repeat reviews always target the P
 Use GitHub MCP tools to gather all necessary context:
 
 1. **PR Details** — `mcp_github_pull_request_read` (method: `get`) for title, description, author
-2. **PR Diff** — `mcp_github_pull_request_read` (method: `get_diff`) to see all changes
+2. **PR Diff** — prefer the paginated **Changed Files** list (below) plus **local, file-by-file diff inspection** after checkout (e.g. `git diff <base>...HEAD -- <path>` per file). Avoid relying on `mcp_github_pull_request_read` (method: `get_diff`) for large PRs: it returns the entire raw diff in one unpaginated response, which can overflow the client context or abort the review when generated/very large changes are present. Use `get_diff` only as a convenience for small PRs.
 3. **Changed Files** — `mcp_github_pull_request_read` (method: `get_files`) for file list and stats. **Paginate**: continue fetching with incrementing `page` until all files are retrieved.
 4. **CI Status** — `mcp_github_pull_request_read` (method: `get_check_runs`) to check if tests pass. **Paginate**: this repository's default pipeline (`.github/workflows/default.yml`) defines dozens of jobs, so request a large `perPage` and continue fetching with incrementing `page` until all check runs are retrieved. A single unpaginated call can omit a later failed job and wrongly report the PR as green.
 5. **Existing Reviews** — `mcp_github_pull_request_read` (method: `get_review_comments`) to see prior feedback threads. **Paginate**: follow `pageInfo.endCursor` with `after` parameter until `hasNextPage` is false.
