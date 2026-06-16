@@ -8,11 +8,11 @@ Guide for performing PR code reviews in this repository using GitHub MCP tools.
 
 The conventions and anti-patterns to check are documented in a shared reference:
 
-<!-- markdownlint-disable MD025 -->
+<!-- markdownlint-disable MD018 -->
 
-# [[file:docs/code-review-conventions.md]]
+#[[file:docs/code-review-conventions.md]]
 
-<!-- markdownlint-enable MD025 -->
+<!-- markdownlint-enable MD018 -->
 
 ## Review Workflow
 
