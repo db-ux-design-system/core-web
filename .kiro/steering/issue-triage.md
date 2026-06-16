@@ -111,7 +111,12 @@ Set these using `mcp_github_issue_write` with `issue_fields`. **This depends on 
 
 ### Step 4b: Set Issue Type (if not already set)
 
-If the issue does **not** have a type assigned (the `type` field returned by `mcp_github_issue_read` (method: `get`) is null or empty), determine the appropriate type. First call `mcp_github_list_issue_types` (owner: `db-ux-design-system`) to get the valid type values configured for the organization, then choose from them:
+If the issue does **not** have a type assigned (the `type` field returned by `mcp_github_issue_read` (method: `get`) is null or empty), consider assigning one — but only when there is enough information to do so reliably:
+
+- **If completeness is ❌ Incomplete** (from Step 2): **do not assign a type yet.** Leave it unset so a sparse, possibly-misleading report doesn't get locked into a wrong guess. Request the missing information first (Step 6/7); the type can be assigned on a later triage run once the report is at least ⚠️ Partial.
+- **If completeness is ⚠️ Partial or ✅ Complete**: determine and assign the type as below.
+
+First call `mcp_github_list_issue_types` (owner: `db-ux-design-system`) to get the valid type values configured for the organization, then choose from them:
 
 | Type    | When to assign                                                                                                         |
 | ------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -122,6 +127,8 @@ If the issue does **not** have a type assigned (the `type` field returned by `mc
 **Heuristic**: If the estimated Effort is **Medium or High**, this is a strong indicator the issue should be a **Story** (unless it's clearly a bug). Low-effort improvements and chores are typically **Tasks**.
 
 Set the type using `mcp_github_issue_write` (method: `update`) with the `type` parameter.
+
+**Re-evaluate AI-assigned types after new information arrives.** Because future triage runs only reconsider the type when it is null, a type guessed from an initially sparse report would otherwise never be corrected. When re-triaging an issue (e.g. after the author clarifies in a comment), if the existing type was assigned by AI triage and the new information contradicts it, update the type to match — do not skip the type step just because a value is already present.
 
 ### Step 5: Match Existing Labels
 
