@@ -298,6 +298,7 @@ Use mcp_github_list_issues with:
 
 Then filter out:
 
+- **Pull requests.** GitHub's Issues endpoints return both issues _and_ pull requests; PR entries carry a `pull_request` key in the response. Drop any item with a `pull_request` key (or query with `is:issue`) **before** creating triage tasks — otherwise open PRs without `🤖ai-triaged` would be triaged as issues and receive issue labels/comments.
 - Issues that already have the `🤖ai-triaged` label.
 - Issues that carry the `⏳waiting-for-info` label **and** have not been updated since they were last triaged. Compare the issue's `updatedAt` with the timestamp of the bot's last triage comment (or the time the label was applied): only re-triage a waiting issue once its `updatedAt` is newer — i.e. the author has actually added the missing information. This prevents reprocessing unchanged incomplete issues and posting a duplicate missing-information comment on every batch run.
 
