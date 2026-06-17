@@ -268,6 +268,25 @@ export default function DBTabs(props: DBTabsProps) {
 			return [];
 		},
 
+		// Synchronously resolves the initially selected index from props/active entry. Used during render so SSR output hides inactive panels and at mount.
+		getInitialIndex(): number {
+			if (props.activeIndex !== undefined) {
+				const parsedIndex = Number(props.activeIndex);
+				return isNaN(parsedIndex) ? 0 : parsedIndex;
+			}
+			if (props.initialSelectedIndex !== undefined) {
+				const parsedIndex = Number(props.initialSelectedIndex);
+				return isNaN(parsedIndex) ? 0 : parsedIndex;
+			}
+			if (props.initialSelectedMode === 'manually') {
+				return -1;
+			}
+			const activeTabIndex = state
+				.getTabs()
+				.findIndex((tab: DBSimpleTabProps) => getBoolean(tab.active));
+			return activeTabIndex > -1 ? activeTabIndex : 0;
+		},
+
 		// Returns the live tablist DOM element by querying _ref.
 		// IMPORTANT: Do NOT store DOM elements in useStore and call native methods
 		// like scrollBy() on them. Mitosis/React wraps state values in proxies that
@@ -542,24 +561,7 @@ export default function DBTabs(props: DBTabsProps) {
 	onMount(() => {
 		state.resetIds();
 
-		let startIndex = 0;
-
-		if (props.activeIndex !== undefined) {
-			const parsedIndex = Number(props.activeIndex);
-			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
-		} else if (props.initialSelectedIndex !== undefined) {
-			const parsedIndex = Number(props.initialSelectedIndex);
-			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
-		} else if (props.initialSelectedMode === 'manually') {
-			startIndex = -1;
-		} else {
-			const activeTabIndex = state
-				.getTabs()
-				.findIndex((tab: DBSimpleTabProps) => getBoolean(tab.active));
-			if (activeTabIndex > -1) {
-				startIndex = activeTabIndex;
-			}
-		}
+		let startIndex = state.getInitialIndex();
 
 		const baseId = state.getBaseId();
 		if (typeof window !== 'undefined' && window.location.hash && baseId) {
@@ -682,6 +684,7 @@ export default function DBTabs(props: DBTabsProps) {
 						<DBTabPanel
 							key={props.label + 'tab-panel' + index}
 							id={state.getPanelId(index)}
+							hidden={state.getInitialIndex() !== index}
 							content={tab.content}>
 							{tab.children}
 						</DBTabPanel>

@@ -114,6 +114,7 @@ export type DBTabsDefaultState = {
 	_isRtl: () => boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
 	getTabs: () => DBSimpleTabProps[];
+	getInitialIndex: () => number;
 	initTabList: () => void;
 	_teardownScrollHandlers: () => void;
 	initTabs: () => void;
