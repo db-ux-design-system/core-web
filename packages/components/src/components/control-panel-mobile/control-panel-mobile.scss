@@ -16,6 +16,7 @@
 	min-block-size: component.$min-mobile-header-height;
 	gap: variables.$db-spacing-fixed-xs;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	grid-area: control-panel;
 
 	&[data-position="top"] {
 		@extend %control-panel-mobile-position-top;
@@ -62,6 +63,12 @@
 		--db-drawer-max-height: 63vh;
 		--db-drawer-min-width: #{variables.$db-container-xs};
 		--db-drawer-min-height: 63vh;
+
+		&:not(:has(.db-control-panel-secondary-actions)) {
+			.db-drawer-footer {
+				display: none;
+			}
+		}
 
 		.db-drawer-content {
 			.db-control-panel-mobile-drawer-scroll-container {

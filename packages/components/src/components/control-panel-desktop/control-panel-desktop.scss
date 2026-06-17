@@ -10,6 +10,7 @@
 	display: grid;
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
+	grid-area: control-panel;
 
 	&[data-orientation="vertical"] {
 		@extend %control-panel-desktop-vertical-orientation;

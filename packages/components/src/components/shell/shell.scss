@@ -36,11 +36,6 @@ body {
 	inline-size: 100lvw;
 	display: grid;
 
-	#{string.unquote(custom-elements.$control-panel-desktop)},
-	#{string.unquote(custom-elements.$control-panel-mobile)} {
-		grid-area: control-panel;
-	}
-
 	&[data-control-panel-desktop-position="left"] {
 		#{string.unquote(custom-elements.$control-panel-desktop)} {
 			@extend %control-panel-desktop-vertical-orientation;
