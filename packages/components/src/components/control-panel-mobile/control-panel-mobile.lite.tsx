@@ -48,9 +48,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 		<header
 			ref={_ref}
 			id={props.id}
-			data-width={props.width}
 			data-position={props.position}
-			data-variant={props.variant}
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
 			<DBDrawer

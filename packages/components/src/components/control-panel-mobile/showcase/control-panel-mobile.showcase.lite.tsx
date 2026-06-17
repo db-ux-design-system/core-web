@@ -6,7 +6,6 @@ import ControlPanelMobileDensity from '../examples/density.example.lite';
 import ControlPanelMobileExamplesBottom from '../examples/examples-bottom.example.lite';
 import ControlPanelMobileExamples from '../examples/examples.example.lite';
 import ControlPanelMobilePosition from '../examples/position.example.lite';
-import ControlPanelMobileVariant from '../examples/variant.example.lite';
 
 export default function ControlPanelMobileShowcase(props: PatternhubProps) {
 	return (
@@ -21,11 +20,6 @@ export default function ControlPanelMobileShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Position">
 				<CardWrapperShowcase>
 					<ControlPanelMobilePosition />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Variant">
-				<CardWrapperShowcase>
-					<ControlPanelMobileVariant />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">

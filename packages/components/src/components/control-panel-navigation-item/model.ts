@@ -16,8 +16,8 @@ export type DBControlPanelNavigationItemDefaultProps = {
 	active?: boolean;
 
 	/**
-	 * If you use DBShell with controlPanelDesktopPosition="left" you need
-	 * to add a tooltip for collapsed navigation
+	 * If you use DBShell with controlPanelDesktopPosition="left" or DBControlPanelFlatIcon
+	 * you need to add a tooltip for collapsed navigation
 	 */
 	tooltip?: string;
 
@@ -41,7 +41,9 @@ export type DBControlPanelNavigationItemProps =
 		DisabledProps &
 		TextProps;
 
-export type DBControlPanelNavigationItemDefaultState = {};
+export type DBControlPanelNavigationItemDefaultState = {
+	_tooltip?: string;
+};
 
 export type DBControlPanelNavigationItemState =
 	DBControlPanelNavigationItemDefaultState & GlobalState;

@@ -90,6 +90,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: ControlPanelDesktopShowcase
 			},
 			{
+				path: '05/control-panel-flat-icon',
+				label: 'ControlPanelFlatIcon',
+				component: ControlPanelFlatIconShowcase
+			},
+			{
 				path: '05/control-panel-mobile',
 				label: 'ControlPanelMobile',
 				component: ControlPanelMobileShowcase

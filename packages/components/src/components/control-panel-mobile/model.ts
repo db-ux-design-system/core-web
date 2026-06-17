@@ -1,5 +1,4 @@
 import {
-	ContainerWidthProps,
 	ControlPanelProps,
 	GlobalProps,
 	GlobalState,
@@ -8,10 +7,6 @@ import {
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
-
-export const ShellControlPanelMobileVariant = ['drawer', 'flat-icon'] as const;
-export type ShellControlPanelMobileVariantType =
-	(typeof ShellControlPanelMobileVariant)[number];
 
 export type DBControlPanelMobileDefaultProps = {
 	/**
@@ -29,11 +24,6 @@ export type DBControlPanelMobileDefaultProps = {
 	position?: ShellControlPanelMobilePositionType;
 
 	/**
-	 * Change the variant of the mobile content panel
-	 */
-	variant?: ShellControlPanelMobileVariantType;
-
-	/**
 	 * Optional flat icon navigation for a mobile app look. Only visible by using variant="flat-icon" as well.
 	 */
 	flatIconNavigation?: any;
@@ -42,7 +32,6 @@ export type DBControlPanelMobileDefaultProps = {
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 	GlobalProps &
 	ToggleEventProps &
-	ContainerWidthProps &
 	ControlPanelProps;
 
 export type DBControlPanelMobileDefaultState = {

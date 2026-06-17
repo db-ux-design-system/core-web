@@ -1,14 +1,19 @@
 import {
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
+	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_LABEL } from '../../shared/constants';
 import { cls, getBooleanAsString } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
-import { DBControlPanelNavigationItemProps } from './model';
+import {
+	DBControlPanelNavigationItemProps,
+	DBControlPanelNavigationItemState
+} from './model';
 
 useMetadata({});
 
@@ -18,6 +23,24 @@ export default function DBControlPanelNavigationItem(
 	props: DBControlPanelNavigationItemProps
 ) {
 	const _ref = useRef<HTMLLIElement | any>(null);
+
+	const state = useStore<DBControlPanelNavigationItemState>({
+		_tooltip: undefined
+	});
+
+	onUpdate(() => {
+		if (props.tooltip) {
+			state._tooltip = props.tooltip;
+		} else if (props.text) {
+			state._tooltip = props.text;
+		} else if (_ref) {
+			const listElement = _ref as HTMLLIElement;
+			const anchor = listElement.querySelector('a');
+			if (anchor) {
+				state._tooltip = anchor.textContent;
+			}
+		}
+	}, [_ref, props.tooltip, props.text]);
 
 	return (
 		<li
@@ -33,7 +56,7 @@ export default function DBControlPanelNavigationItem(
 			{props.children}
 			<Slot name="endSlot"></Slot>
 			<DBTooltip placement="right" delay="slow">
-				{props.tooltip ?? DEFAULT_LABEL}
+				{state._tooltip ?? DEFAULT_LABEL}
 			</DBTooltip>
 		</li>
 	);

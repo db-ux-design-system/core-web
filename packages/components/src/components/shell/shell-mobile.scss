@@ -14,52 +14,57 @@
 			max: "sm"
 		)
 	) {
-		&[data-control-panel-mobile-position="top"] {
-			&:not([data-sub-navigation-mobile-position]),
-			&[data-sub-navigation-mobile-position="none"] {
-				grid-template-areas:
-					"control-panel"
-					"shell-content";
-				grid-template-rows:
-					[control-panel] auto
-					[shell-content] 1fr;
+		&:not(
+			:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})
+		) {
+			&[data-control-panel-mobile-position="top"] {
+				&:not([data-sub-navigation-mobile-position]),
+				&[data-sub-navigation-mobile-position="none"] {
+					grid-template-areas:
+						"control-panel"
+						"shell-content";
+					grid-template-rows:
+						[control-panel] auto
+						[shell-content] 1fr;
 
-				#{string.unquote(custom-elements.$shell-sub-navigation)} {
-					display: none;
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						display: none;
+					}
 				}
-			}
 
-			&[data-sub-navigation-mobile-position="top"] {
-				grid-template-areas:
-					"control-panel"
-					"sub-navigation"
-					"shell-content";
-				grid-template-rows:
-					[control-panel] auto
-					[sub-navigation] auto
-					[shell-content] 1fr;
+				&[data-sub-navigation-mobile-position="top"] {
+					grid-template-areas:
+						"control-panel"
+						"sub-navigation"
+						"shell-content";
+					grid-template-rows:
+						[control-panel] auto
+						[sub-navigation] auto
+						[shell-content] 1fr;
 
-				#{string.unquote(custom-elements.$shell-sub-navigation)} {
-					@include helpers.divider("bottom");
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						@include helpers.divider("bottom");
+					}
 				}
-			}
 
-			&[data-sub-navigation-mobile-position="bottom"] {
-				grid-template-areas:
-					"control-panel"
-					"shell-content"
-					"sub-navigation";
-				grid-template-rows:
-					[control-panel] auto
-					[shell-content] 1fr
-					[sub-navigation] auto;
+				&[data-sub-navigation-mobile-position="bottom"] {
+					grid-template-areas:
+						"control-panel"
+						"shell-content"
+						"sub-navigation";
+					grid-template-rows:
+						[control-panel] auto
+						[shell-content] 1fr
+						[sub-navigation] auto;
 
-				#{string.unquote(custom-elements.$shell-sub-navigation)} {
-					@include helpers.divider("top");
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						@include helpers.divider("top");
+					}
 				}
 			}
 		}
 
+		&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
 		&[data-control-panel-mobile-position="bottom"] {
 			&:not([data-sub-navigation-mobile-position]),
 			&[data-sub-navigation-mobile-position="bottom"],

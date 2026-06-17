@@ -41,7 +41,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'control-panel-flat-icon-navigation'
+		name: 'control-panel-flat-icon'
 	},
 
 	{

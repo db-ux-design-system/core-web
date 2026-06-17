@@ -50,6 +50,8 @@ const nameComponentMap = {
 
 	'control-panel-desktop': <ControlPanelDesktopShowcase isPatternhub />,
 
+	'control-panel-flat-icon': <ControlPanelFlatIconShowcase isPatternhub />,
+
 	shell: <ShellShowcase isPatternhub />,
 
 	'accordion-item': <AccordionItemShowcase isPatternhub />,

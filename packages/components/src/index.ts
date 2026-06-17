@@ -106,8 +106,8 @@ export * from './utils/floating-components';
 export * from './utils/index';
 export * from './utils/navigation';
 
-export * from './components/control-panel-flat-icon-navigation';
-export * from './components/control-panel-flat-icon-navigation/model';
+export * from './components/control-panel-flat-icon';
+export * from './components/control-panel-flat-icon/model';
 export * from './components/drawer-header';
 export * from './components/drawer-header/model';
 export * from './components/shell-content';

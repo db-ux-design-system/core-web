@@ -7,50 +7,57 @@
 @use "../../styles/internal/custom-elements";
 
 @mixin control-panel-top {
-	&[data-control-panel-desktop-position="top"] {
-		// Sub-navigation: top
-		&[data-sub-navigation-desktop-position="top"] {
-			grid-template-areas:
-				"control-panel"
-				"shell-content";
-			grid-template-rows:
-				[control-panel] max-content
-				[shell-content] 1fr;
-
-			&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
+	&:not(:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})) {
+		&[data-control-panel-desktop-position="top"] {
+			// Sub-navigation: top
+			&[data-sub-navigation-desktop-position="top"] {
 				grid-template-areas:
 					"control-panel"
-					"sub-navigation"
 					"shell-content";
 				grid-template-rows:
 					[control-panel] max-content
-					[sub-navigation] max-content
 					[shell-content] 1fr;
+
+				&:has(
+					#{string.unquote(custom-elements.$shell-sub-navigation)}
+				) {
+					grid-template-areas:
+						"control-panel"
+						"sub-navigation"
+						"shell-content";
+					grid-template-rows:
+						[control-panel] max-content
+						[sub-navigation] max-content
+						[shell-content] 1fr;
+				}
+
+				@include shell-sub-navigation.sub-navigation-top;
 			}
 
-			@include shell-sub-navigation.sub-navigation-top;
-		}
-
-		// Sub-navigation: left
-		&[data-sub-navigation-desktop-position="left"] {
-			grid-template:
-				[control-panel] "control-panel control-panel" max-content
-				[shell-content] "shell-content shell-content" 1fr;
-
-			&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
+			// Sub-navigation: left
+			&[data-sub-navigation-desktop-position="left"] {
 				grid-template:
 					[control-panel] "control-panel control-panel" max-content
-					[shell-content] "sub-navigation shell-content" 1fr /
-					[sub-navigation] auto
-					[shell-content] 1fr;
-			}
+					[shell-content] "shell-content shell-content" 1fr;
 
-			@include shell-sub-navigation.sub-navigation-left;
+				&:has(
+					#{string.unquote(custom-elements.$shell-sub-navigation)}
+				) {
+					grid-template:
+						[control-panel] "control-panel control-panel" max-content
+						[shell-content] "sub-navigation shell-content" 1fr /
+						[sub-navigation] auto
+						[shell-content] 1fr;
+				}
+
+				@include shell-sub-navigation.sub-navigation-left;
+			}
 		}
 	}
 }
 
 @mixin control-panel-left {
+	&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
 	&[data-control-panel-desktop-position="left"] {
 		grid-template-areas:
 			"control-panel shell-content"

@@ -279,56 +279,12 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		/* stylelint-disable-next-line declaration-property-value-no-unknown */
 		inline-size: calc-size(auto, size);
 
+		.db-control-panel-navigation-item-group,
+		.db-control-panel-navigation-item,
 		.db-control-panel-primary-actions,
 		.db-control-panel-secondary-actions,
 		.db-control-panel-meta-navigation {
 			display: none;
-		}
-
-		.db-control-panel-navigation {
-			> menu {
-				// Don't show navigation items for collapsed state (only icons)
-				@include navigation-item.direct-navigation-items {
-					--db-icon-margin-end: 0;
-
-					inline-size: variables.$db-sizing-md;
-					aspect-ratio: 1;
-					justify-content: center;
-					align-items: center;
-
-					&::before {
-						position: initial;
-					}
-
-					a {
-						font-size: 0;
-						position: absolute;
-						inset: 0;
-					}
-				}
-
-				#{string.unquote(custom-elements.$control-panel-navigation-item)} {
-					.db-tooltip {
-						// We show tooltip for collapsed state
-						--db-show-popover-visibility: visible;
-					}
-				}
-			}
-		}
-
-		/* Hide navigation only if we have navigation-item-group */
-
-		.db-control-panel-navigation-item-group,
-		.db-control-panel-navigation-item:not([data-icon]) {
-			display: none;
-		}
-
-		&:not(:has(.db-control-panel-navigation-item[data-icon])) {
-			.db-control-panel-brand {
-				&::after {
-					display: none;
-				}
-			}
 		}
 
 		.db-control-panel-brand {

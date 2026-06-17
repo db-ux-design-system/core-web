@@ -8,21 +8,21 @@ import {
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
 import {
-	DBControlPanelFlatIconNavigationProps,
-	DBControlPanelFlatIconNavigationState
+	DBControlPanelFlatIconProps,
+	DBControlPanelFlatIconState
 } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBControlPanelFlatIconNavigationProps>({});
+useDefaultProps<DBControlPanelFlatIconProps>({});
 
-export default function DBControlPanelFlatIconNavigation(
-	props: DBControlPanelFlatIconNavigationProps
+export default function DBControlPanelFlatIcon(
+	props: DBControlPanelFlatIconProps
 ) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 	// jscpd:ignore-start
-	const state = useStore<DBControlPanelFlatIconNavigationState>({
+	const state = useStore<DBControlPanelFlatIconState>({
 		initialized: false
 	});
 	// jscpd:ignore-end
@@ -46,15 +46,12 @@ export default function DBControlPanelFlatIconNavigation(
 	}, [_ref, state.initialized]);
 
 	return (
-		<div
+		<header
 			ref={_ref}
 			id={props.id}
 			data-no-text={getBooleanAsString(props.noText)}
-			class={cls(
-				'db-control-panel-flat-icon-navigation',
-				props.className
-			)}>
+			class={cls('db-control-panel-flat-icon', props.className)}>
 			{props.children}
-		</div>
+		</header>
 	);
 }

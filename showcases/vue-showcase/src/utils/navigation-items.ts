@@ -95,6 +95,11 @@ export const navigationItems: NavItem[] = [
 				component: markRaw(ControlPanelDesktop)
 			},
 			{
+				path: '/05/control-panel-flat-icon',
+				label: 'ControlPanelFlatIcon',
+				component: markRaw(ControlPanelFlatIcon)
+			},
+			{
 				path: '/05/control-panel-mobile',
 				label: 'ControlPanelMobile',
 				component: markRaw(ControlPanelMobile)

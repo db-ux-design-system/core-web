@@ -22,6 +22,7 @@ $custom-elements: //hygen-insert
 }
 
 $control-panel-desktop: get-sub-component(db-control-panel-desktop);
+$control-panel-flat-icon: get-sub-component(db-control-panel-flat-icon);
 $control-panel-mobile: get-sub-component(db-control-panel-mobile);
 $control-panel-navigation: get-sub-component(db-control-panel-navigation);
 $control-panel-navigation-item: get-sub-component(
