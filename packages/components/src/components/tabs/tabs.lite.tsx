@@ -47,11 +47,11 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		getTabId(index: number | string) {
-			return `${state._id}-tab-${index}`;
+			return `${props.id ?? props.propOverrides?.id ?? state._id}-tab-${index}`;
 		},
 
 		getPanelId(index: number | string) {
-			return `${state._id}-tab-panel-${index}`;
+			return `${props.id ?? props.propOverrides?.id ?? state._id}-tab-panel-${index}`;
 		},
 
 		getBaseId() {
