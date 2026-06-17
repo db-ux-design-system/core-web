@@ -265,7 +265,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				required={getBoolean(props.required, 'required')}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
-					getBoolean(props.readonly, 'readonly')
+					getBoolean(props.readonly, 'readonly') ||
+					undefined
 				}
 				form={props.form}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
