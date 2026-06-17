@@ -1,0 +1,3 @@
+<DBTabs onTabSelect="handleSelect" data-alignment="center" data-width="full">
+  Test
+</DBTabs>
