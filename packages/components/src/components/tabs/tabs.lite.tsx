@@ -8,7 +8,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, NAVIGATION_KEYS, uuid } from '../../utils';
+import { cls, getBoolean, NAVIGATION_KEYS, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
@@ -554,6 +554,13 @@ export default function DBTabs(props: DBTabsProps) {
 			startIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
 		} else if (props.initialSelectedMode === 'manually') {
 			startIndex = -1;
+		} else {
+			const activeTabIndex = state
+				.getTabs()
+				.findIndex((tab: DBSimpleTabProps) => getBoolean(tab.active));
+			if (activeTabIndex > -1) {
+				startIndex = activeTabIndex;
+			}
 		}
 
 		const baseId = state.getBaseId();
