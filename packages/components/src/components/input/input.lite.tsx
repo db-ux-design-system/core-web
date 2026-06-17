@@ -324,7 +324,8 @@ export default function DBInput(props: DBInputProps) {
 				min={getInputValue(props.min, props.type)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
-					getBoolean(props.readonly, 'readonly')
+					getBoolean(props.readonly, 'readonly') ||
+					undefined
 				}
 				form={props.form}
 				pattern={props.pattern}
