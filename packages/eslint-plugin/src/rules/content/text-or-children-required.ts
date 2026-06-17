@@ -8,6 +8,7 @@ import {
 
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
+	'DBBadge',
 	'DBButton',
 	'DBLink',
 	'DBIcon',
@@ -57,14 +58,18 @@ export default {
 			}
 		};
 
+		const angularVisitors: any = {};
 		for (const comp of COMPONENTS_REQUIRING_CONTENT) {
-			const angularVisitors = createAngularVisitors(
+			const visitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
 		}
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;

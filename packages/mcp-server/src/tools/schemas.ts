@@ -1,0 +1,162 @@
+import { z } from 'zod/v3';
+
+export const listComponentsSchema = {
+	description:
+		'Returns all available DB UX component names by scanning packages/components/src/components.'
+};
+
+export const getComponentDetailsSchema = {
+	description:
+		'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
+	inputSchema: {
+		componentName: z.string().max(100).describe("e.g. 'button'")
+	}
+};
+
+export const getComponentPropsSchema = {
+	description:
+		"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
+	inputSchema: {
+		componentName: z.string().max(100).describe("e.g. 'button'")
+	}
+};
+
+export const listDesignTokenCategoriesSchema = {
+	description:
+		'Returns all available DB UX design token categories (e.g. colors, spacing, typography).'
+};
+
+export const getDesignTokensSchema = {
+	description:
+		'Returns CSS custom properties (--db-*) for a given design token category. For spacing, elevation, and density, returns compiled primitive values (rem, px, box-shadow). For colors, typography, animation, and transitions, returns SCSS variable declarations.',
+	inputSchema: {
+		category: z
+			.string()
+			.max(100)
+			.describe(
+				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories."
+			)
+	}
+};
+
+export const listIconsSchema = {
+	description:
+		"Returns all available DB UX icon names (e.g. 'arrow_down', 'chevron_right') from the generated all-icons.ts in packages/foundations/src."
+};
+
+export const getExampleCodeSchema = {
+	description:
+		'Returns the generated framework-specific source code for a component example. For Angular, the template is inline inside the @Component decorator within the .ts file.',
+	inputSchema: {
+		componentName: z.string().max(100).describe("e.g. 'button'"),
+		exampleName: z
+			.string()
+			.max(100)
+			.describe("Readable example name, e.g. 'Show Icon Leading'"),
+		framework: z
+			.enum(['react', 'angular', 'vue', 'web-components', 'html'])
+			.describe(
+				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'"
+			)
+	}
+};
+
+export const docsSearchSchema = {
+	description:
+		'Searches the DB UX component and foundation documentation (guidelines, Accessibility, framework-specific docs). Only docs from packages/components/ and packages/foundations/docs/ are included. For migration guides, use list_migration_guides and get_migration_guide instead.',
+	inputSchema: {
+		query: z
+			.string()
+			.max(200)
+			.describe(
+				"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."
+			),
+		category: z
+			.enum(['global', 'component'])
+			.describe(
+				"Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."
+			),
+		componentName: z
+			.string()
+			.max(100)
+			.optional()
+			.describe(
+				"Required if category is 'component' (e.g., 'button', 'navigation')."
+			),
+		docType: z
+			.enum(['React', 'Angular', 'Vue', 'HTML', 'Accessibility'])
+			.optional()
+			.describe(
+				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead."
+			)
+	}
+};
+
+export const listMigrationGuidesSchema = {
+	description:
+		'Returns all available DB UX migration guide names. Call this first to discover which guides exist before calling get_migration_guide.'
+};
+
+export const getMigrationGuideSchema = {
+	description:
+		'Returns the full markdown content of a specific DB UX migration guide. Use this to learn the exact syntax changes needed to refactor legacy "DB UI" code to "DB UX" code.',
+	inputSchema: {
+		guideName: z
+			.string()
+			.max(100)
+			.regex(
+				/^[a-zA-Z0-9._-]+$/,
+				'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.'
+			)
+			.describe(
+				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'."
+			)
+	}
+};
+
+export const verifyMigratedCodeSchema = {
+	description:
+		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
+		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
+		'If errors are found, fix the code and call the tool again (max 3 attempts).'
+};
+
+export const scanV2MigrationSchema = {
+	description:
+		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
+		'Scans a source file for DB UI v2 patterns (v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*), ' +
+		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
+		'with exact line numbers and deterministic migration suggestions resolved from ' +
+		'the official migration guides. This gives you a precise migration plan before ' +
+		'you start generating code — no guessing needed.',
+	inputSchema: {
+		filePath: z
+			.string()
+			.max(500)
+			.describe(
+				'Absolute path or path relative to the workspace root of the file to scan.'
+			)
+	}
+};
+
+export const listVisualsSchema = {
+	description:
+		'Returns all available visual reference names (e.g. dashboard, form, table). ' +
+		'Call this first to discover which visuals exist before requesting one.'
+};
+
+export const getVisualReferenceSchema = {
+	description:
+		'Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a ' +
+		'Base64-encoded image block. Use this when you need visual context for complex layouts, ' +
+		'z-index reasoning, or verifying visual hierarchies. Call list_visuals first to see ' +
+		'available names.',
+	inputSchema: {
+		name: z
+			.string()
+			.max(100)
+			.describe(
+				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names."
+			)
+	}
+};

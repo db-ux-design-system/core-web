@@ -1,0 +1,41 @@
+@layer db-ux, db-theme;
+
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+
+.resource-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--db-sizing-2xl), 1fr));
+	gap: var(--db-spacing-fixed-md);
+	align-items: start;
+
+	& .resource-card-link {
+		block-size: 100%;
+	}
+
+	& .db-card {
+		block-size: 100%;
+		inline-size: 100%;
+		box-sizing: border-box;
+		gap: var(--db-spacing-fixed-md);
+
+		& p {
+			margin: 0;
+			color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		}
+
+		& .resource-link-label {
+			margin-block-start: auto;
+		}
+	}
+}
+
+.resource-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+
+	& .resource-title {
+		margin: 0;
+	}
+}

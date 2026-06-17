@@ -4,7 +4,10 @@ type VElement = {
 	type: 'VElement';
 	startTag: {
 		attributes: Array<{
-			key: { name: string; argument?: { name: string } };
+			key: {
+				name: string | { name: string };
+				argument?: string | { name: string | { name: string } };
+			};
 			value?: { value: string };
 		}>;
 		range: [number, number];
@@ -49,9 +52,7 @@ export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
 ): string | boolean | null {
-	const kebabAttrName = attrName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
+	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
 		const attr = node.attributes.find(
@@ -71,13 +72,28 @@ export function getAttributeValue(
 
 	if (isVElement(node)) {
 		const attr = node.startTag.attributes.find((a) => {
-			if (a.key.name === 'bind' && a.key.argument?.name === attrName)
+			const keyName =
+				typeof a.key.name === 'string' ? a.key.name : a.key.name?.name;
+			const argName = a.key.argument
+				? typeof a.key.argument === 'string'
+					? a.key.argument
+					: typeof a.key.argument.name === 'string'
+						? a.key.argument.name
+						: a.key.argument.name?.name
+				: undefined;
+			if (
+				keyName === 'bind' &&
+				(argName === attrName ||
+					argName === kebabAttrName ||
+					argName === attrName.toLowerCase() ||
+					argName === kebabAttrName.toLowerCase())
+			)
 				return true;
 			return (
-				a.key.name === attrName ||
-				a.key.name === kebabAttrName ||
-				a.key.name === `:${attrName}` ||
-				a.key.name === `:${kebabAttrName}`
+				keyName === attrName ||
+				keyName === kebabAttrName ||
+				keyName === `:${attrName}` ||
+				keyName === `:${kebabAttrName}`
 			);
 		});
 		if (!attr) return null;
@@ -103,10 +119,7 @@ export function hasChildOfType(
 	node: TSESTree.JSXElement | VElement | AngularElement,
 	componentName: string
 ): boolean {
-	const kebabName = componentName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
-
+	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
 		return (node.children || []).some((child: any) => {
 			if (child.type === 'Element' || child.type === 'Element$1') {
@@ -144,10 +157,7 @@ export function isDBComponent(
 	node: ElementNode,
 	componentName: string
 ): boolean {
-	const kebabName = componentName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
-
+	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
 		return node.name === componentName || node.name === kebabName;
 	}
@@ -206,14 +216,7 @@ export function createAngularVisitors(
 		return null;
 	}
 
-	// For DB components, convert DBComponentName -> db-component-name
-	const kebabName = componentName.startsWith('DB')
-		? 'db-' +
-			componentName
-				.slice(2)
-				.replace(/([a-z])([A-Z])/g, '$1-$2')
-				.toLowerCase()
-		: componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+	const kebabName = getAngularComponentName(componentName);
 
 	const wrappedHandler = (node: any) => handler(node, parserServices);
 
@@ -221,6 +224,17 @@ export function createAngularVisitors(
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
 		[`Element[name="${componentName}"]`]: wrappedHandler
 	};
+}
+
+export function toKebabCase(str: string): string {
+	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+export function getAngularComponentName(componentName: string): string {
+	// For DB components, convert DBComponentName -> db-component-name
+	return componentName.startsWith('DB')
+		? 'db-' + toKebabCase(componentName.slice(2))
+		: toKebabCase(componentName);
 }
 
 export function createAngularFix(

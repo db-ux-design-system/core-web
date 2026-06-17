@@ -10,7 +10,7 @@ const IframeComponent = () => {
 	const density = router.query.density ?? 'regular';
 	const color = router.query.color ?? COLOR.NEUTRAL_BG_LEVEL_1;
 
-	const componentsString: string = (router.query.components as string) ?? '';
+	const componentsString = String(router.query.components ?? '');
 	const componentsBuffer = Buffer.from(componentsString, 'base64');
 	const components = componentsBuffer.toString('utf8');
 

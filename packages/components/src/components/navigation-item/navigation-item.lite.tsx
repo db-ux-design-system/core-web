@@ -10,7 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, delay, getBoolean, getBooleanAsString } from '../../utils';
+import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
@@ -30,6 +30,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		isSubNavigationExpanded: false,
 		autoClose: false,
 		navigationItemSafeTriangle: undefined,
+		subNavigationId: undefined,
+		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
 				state.autoClose = true;
@@ -73,6 +75,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onMount(() => {
 		state.initialized = true;
+
+		const subNavId = `sub-nav-${props.id ?? uuid()}`;
+		state.subNavigationId = subNavId;
+		state.subNavigationToggleId = `${subNavId}-toggle`;
 	});
 
 	onUpdate(() => {
@@ -134,20 +140,25 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={props.active}
-			data-wrap={getBooleanAsString(props.wrap)}
-			aria-disabled={getBooleanAsString(props.disabled)}>
-			<Show when={!state.hasSubNavigation}>
-				<Show when={props.text} else={props.children}>
-					{props.text}
-				</Show>
-			</Show>
-
-			<Show when={state.hasSubNavigation}>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
+			<Show
+				when={
+					!getBoolean(props.hideSubNavigation, 'hideSubNavigation') &&
+					state.hasSubNavigation
+				}
+				else={
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
+				}>
 				<button
-					aria-haspopup={state.hasAreaPopup}
+					id={state.subNavigationToggleId}
+					aria-haspopup={state.hasAreaPopup ? 'true' : undefined}
 					aria-expanded={state.isSubNavigationExpanded}
+					aria-controls={state.subNavigationId}
 					class="db-navigation-item-expand-button"
 					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
@@ -160,6 +171,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 				{/* TODO: Consider using popover here */}
 				<menu
+					id={state.subNavigationId}
+					aria-labelledby={state.subNavigationToggleId}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
 					onClick={(event) => state.handleNavigationItemClick(event)}>

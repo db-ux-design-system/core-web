@@ -27,12 +27,30 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
-			const componentName = node.name;
 			const component = Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).find(
 				(comp) => isDBComponent(node, comp)
 			);
 
 			if (!component) return;
+
+			if (component === 'DBNotification') {
+				const input = node.inputs?.find(
+					(i: any) => i.name === 'closeable'
+				);
+				// Check for [closeable]="false" - Angular AST structure
+				if (input) {
+					const val = input.value;
+					if (val?.type === 'LiteralPrimitive' && val.value === false)
+						return;
+					if (val?.source === 'false') return;
+				} else {
+					// Check for plain attribute closeable (no binding)
+					const attr = node.attributes?.find(
+						(a: any) => a.name === 'closeable'
+					);
+					if (!attr) return;
+				}
+			}
 
 			const attribute =
 				COMPONENTS_WITH_CLOSE_BUTTON[
@@ -47,19 +65,23 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
-					data: { component: componentName, attribute }
+					data: { component: node.name, attribute }
 				});
 			}
 		};
 
+		const angularVisitors: any = {};
 		for (const comp of Object.keys(COMPONENTS_WITH_CLOSE_BUTTON)) {
-			const angularVisitors = createAngularVisitors(
+			const visitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
 		}
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
@@ -68,6 +90,60 @@ export default {
 			);
 
 			if (!component) return;
+
+			if (component === 'DBNotification') {
+				// React: closeable={false}
+				const closeableAttr = openingElement.attributes?.find(
+					(a: any) =>
+						a.type === 'JSXAttribute' && a.name.name === 'closeable'
+				);
+				if (
+					closeableAttr?.value?.type === 'JSXExpressionContainer' &&
+					closeableAttr.value.expression?.type === 'Literal' &&
+					closeableAttr.value.expression.value === false
+				)
+					return;
+
+				// Vue: key.name can be a VIdentifier object (key.name.name === 'bind')
+				// or a plain string for non-directive attributes
+				const isVueCloseableBind = (a: any) => {
+					const keyName =
+						typeof a.key?.name === 'string'
+							? a.key.name
+							: a.key?.name?.name;
+					return (
+						keyName === 'bind' &&
+						a.key?.argument?.name === 'closeable'
+					);
+				};
+				const isVueCloseableStatic = (a: any) => {
+					const keyName =
+						typeof a.key?.name === 'string'
+							? a.key.name
+							: a.key?.name?.name;
+					return keyName === 'closeable';
+				};
+
+				const vueBindAttr =
+					openingElement.startTag?.attributes?.find(
+						isVueCloseableBind
+					);
+				if (
+					vueBindAttr &&
+					(vueBindAttr.value?.value === 'false' ||
+						vueBindAttr.value?.expression?.value === false)
+				)
+					return;
+
+				// Only skip if closeable attribute/binding doesn't exist
+				const hasCloseable =
+					closeableAttr ||
+					openingElement.startTag?.attributes?.some(
+						(a: any) =>
+							isVueCloseableStatic(a) || isVueCloseableBind(a)
+					);
+				if (!hasCloseable) return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;

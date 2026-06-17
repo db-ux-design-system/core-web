@@ -51,14 +51,13 @@ export default function DBBadge(props: DBBadgeProps) {
 			data-size={props.size}
 			data-emphasis={props.emphasis}
 			data-placement={props.placement}
-			data-wrap={getBooleanAsString(props.wrap)}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			data-label={
 				props.placement?.startsWith('corner') &&
 				(props.label ?? DEFAULT_LABEL)
 			}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</span>
 	);
 }

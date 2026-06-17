@@ -21,10 +21,10 @@ const MetaNavigation = ({
 }: MetaNavigationProps) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
-	const [density, setDensity] = useState<string>(
+	const [density, setDensity] = useState(
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
-	const [color, setColor] = useState<string>(
+	const [color, setColor] = useState(
 		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 

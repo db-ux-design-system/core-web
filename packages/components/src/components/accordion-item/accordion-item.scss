@@ -29,7 +29,7 @@
 			opacity: variables.$db-opacity-md;
 		}
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			> summary + div {
 				transition: block-size
 					#{variables.$db-transition-straight-emotional};
@@ -57,12 +57,14 @@
 			gap: variables.$db-spacing-fixed-md;
 			border-radius: variables.$db-border-radius-sm;
 
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
-			}
+			@include helpers.not-disabled {
+				@include helpers.hover {
+					background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+				}
 
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+				@include helpers.active {
+					background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+				}
 			}
 
 			&::-webkit-details-marker {

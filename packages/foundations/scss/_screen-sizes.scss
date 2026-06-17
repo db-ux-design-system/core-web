@@ -62,7 +62,7 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 
 	@if $width == "min" {
 		/* stylelint-disable-next-line media-query-no-invalid */
-		@media screen and (min-width: #{helpers.px-to-em($screen)}) {
+		@media (min-width: #{helpers.px-to-em($screen)}) {
 			&:not([data-force-mobile]),
 			&[data-force-mobile="false"] {
 				@content;
@@ -75,7 +75,7 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 		}
 
 		/* stylelint-disable-next-line media-query-no-invalid */
-		@media screen and (max-width: #{helpers.px-to-em($screen - 1)}) {
+		@media (max-width: #{helpers.px-to-em($screen - 1)}) {
 			@content;
 		}
 	}
@@ -96,7 +96,7 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	}
 
 	/* stylelint-disable-next-line media-query-no-invalid */
-	@media screen and (#{$min}width#{$max}) {
+	@media (#{$min}width#{$max}) {
 		@content;
 	}
 	/* stylelint-disable-next-line at-rule-empty-line-before */

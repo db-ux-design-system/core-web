@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DBButton } from '../../../../../../../output/angular/src';
+import { DBButton } from '@components';
 
 @Component({
 	selector: 'app-form-wrapper',

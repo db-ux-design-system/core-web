@@ -15,6 +15,7 @@
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"outDir": "dist",
+		"emitDeclarationOnly": true,
 		"removeComments": false,
 		"sourceMap": true,
 		"jsx": "react",
@@ -22,7 +23,15 @@
 		"skipLibCheck": true
 	},
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
-	"exclude": ["node_modules", "src/**/*.spec.tsx", "src/**/*.example.tsx", "src/**/*.showcase.tsx", "src/**/*.arg.types.ts"],
+	"exclude": [
+		"node_modules",
+		"src/**/*.spec.ts",
+		"src/**/*.spec.tsx",
+		"src/**/*.example.tsx",
+		"src/**/*.showcase.tsx",
+		"src/**/*.showcase-only.tsx",
+		"src/**/*.arg.types.ts"
+	],
 	"compileOnSave": false,
 	"buildOnSave": false
 }

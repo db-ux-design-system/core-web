@@ -110,6 +110,8 @@ export const generateSnapshot = async (
 	expect(snapshot).toMatchSnapshot();
 };
 
+export const STABILIZATION_DELAY = 1000;
+
 const SWITCH_APPLICATION = {
 	keyCode: [WindowsKeyCodes.Escape],
 	modifiers: [WindowsModifiers.Alt]
@@ -200,7 +202,7 @@ export const runTest = async ({
 
 	await page.waitForTimeout(500);
 
-	await testFn?.(voiceOver, nvda);
+	await testFn?.(voiceOver, nvda, page);
 	await postTestFn?.(voiceOver, nvda, retry);
 	recorder?.();
 };
