@@ -72,7 +72,9 @@ function renderShowcasePage(
  * Update aria-current="page" on the active navigation link.
  */
 function updateActiveNavItem(): void {
-	const navLinks = document.querySelectorAll('db-navigation-item a');
+	const navLinks = document.querySelectorAll(
+		'db-control-panel-navigation-item a'
+	);
 	const currentHash = (globalThis.location.hash || '#/').split('?')[0];
 
 	for (const link of navLinks) {

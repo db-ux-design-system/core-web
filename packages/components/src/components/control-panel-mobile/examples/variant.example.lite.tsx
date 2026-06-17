@@ -1,8 +1,8 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
 import DBControlPanelFlatIconNavigation from '../../control-panel-flat-icon-navigation/control-panel-flat-icon-navigation.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
-import DBNavigation from '../../navigation/navigation.lite';
+import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
+import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelMobile from '../control-panel-mobile.lite';
 import { StorybookControlPanelMobileArgTypes } from './_control-panel-mobile.arg.types';
 
@@ -21,19 +21,21 @@ export default function ControlPanelMobileVariant() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
 							default: {}
 						})}
 						aria-label="(Default) Drawer">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">(Default) Drawer</a>
-						</DBNavigationItem>
-						<DBNavigationItem icon="x_placeholder" disabled>
+						</DBControlPanelNavigationItem>
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							disabled>
 							<a href="#">(Default) Drawer disabled</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelMobile>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
@@ -44,19 +46,21 @@ export default function ControlPanelMobileVariant() {
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					flatIconNavigation={
 						<DBControlPanelFlatIconNavigation>
-							<DBNavigation
+							<DBControlPanelNavigation
 								{...useTarget({
 									angular: { 'data-x': 'workaround-angular' },
 									default: {}
 								})}
 								aria-label="Flat Icon">
-								<DBNavigationItem icon="x_placeholder">
+								<DBControlPanelNavigationItem icon="x_placeholder">
 									<a href="#">Flat Icon</a>
-								</DBNavigationItem>
-								<DBNavigationItem icon="x_placeholder" disabled>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem
+									icon="x_placeholder"
+									disabled>
 									<a href="#">Flat Icon disabled</a>
-								</DBNavigationItem>
-							</DBNavigation>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
 						</DBControlPanelFlatIconNavigation>
 					}></DBControlPanelMobile>
 			</div>
@@ -68,19 +72,21 @@ export default function ControlPanelMobileVariant() {
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					flatIconNavigation={
 						<DBControlPanelFlatIconNavigation noText>
-							<DBNavigation
+							<DBControlPanelNavigation
 								{...useTarget({
 									angular: { 'data-x': 'workaround-angular' },
 									default: {}
 								})}
 								aria-label="Flat Icon No Text">
-								<DBNavigationItem icon="x_placeholder">
+								<DBControlPanelNavigationItem icon="x_placeholder">
 									<a href="#">Flat Icon No Text</a>
-								</DBNavigationItem>
-								<DBNavigationItem icon="x_placeholder" disabled>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem
+									icon="x_placeholder"
+									disabled>
 									<a href="#">Flat Icon No Text disabled</a>
-								</DBNavigationItem>
-							</DBNavigation>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
 						</DBControlPanelFlatIconNavigation>
 					}></DBControlPanelMobile>
 			</div>

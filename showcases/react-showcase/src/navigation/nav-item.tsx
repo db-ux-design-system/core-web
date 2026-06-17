@@ -1,4 +1,7 @@
-import { DBNavigationItem, DBNavigationItemGroup } from '@components';
+import {
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
+} from '@components';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useId, useState } from 'react';
@@ -27,7 +30,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 
 	if (navItem.subNavigation) {
 		return (
-			<DBNavigationItemGroup
+			<DBControlPanelNavigationItemGroup
 				tooltip={navItem.label}
 				text={navItem.label}
 				backButtonText={`Back to ${navItem.label}`}
@@ -42,12 +45,12 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 							key={`router-path-${subItem.path}`}
 							navItem={subItem}></NavItem>
 					))}
-			</DBNavigationItemGroup>
+			</DBControlPanelNavigationItemGroup>
 		);
 	}
 
 	return (
-		<DBNavigationItem tooltip={navItem.label}>
+		<DBControlPanelNavigationItem tooltip={navItem.label}>
 			<>
 				{process.env.NEXT_SHOWCASE_VARIANT?.startsWith('next') ? (
 					<NextLink
@@ -65,7 +68,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 					</Link>
 				)}
 			</>
-		</DBNavigationItem>
+		</DBControlPanelNavigationItem>
 	);
 };
 

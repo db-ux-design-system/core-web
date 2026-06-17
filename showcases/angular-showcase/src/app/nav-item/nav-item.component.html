@@ -1,11 +1,11 @@
 @if (navItem.subNavigation) {
-	<db-navigation-item-group [text]="navItem.label">
+	<db-control-panel-navigation-item-group [text]="navItem.label">
 		@for (item of navItem.subNavigation; track item.label) {
 			<app-nav-item [navItem]="item" />
 		}
-	</db-navigation-item-group>
+	</db-control-panel-navigation-item-group>
 } @else {
-	<db-navigation-item>
+	<db-control-panel-navigation-item>
 		@if (navItem.component) {
 			<a
 				[routerLink]="navItem.path"
@@ -17,5 +17,5 @@
 				{{ navItem.label }}
 			</a>
 		}
-	</db-navigation-item>
+	</db-control-panel-navigation-item>
 }

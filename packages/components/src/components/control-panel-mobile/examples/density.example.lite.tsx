@@ -1,7 +1,7 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
-import DBNavigation from '../../navigation/navigation.lite';
+import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
+import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelMobile from '../control-panel-mobile.lite';
 import { StorybookControlPanelMobileArgTypes } from './_control-panel-mobile.arg.types';
 
@@ -20,7 +20,7 @@ export default function ControlPanelMobileDensity() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -28,10 +28,10 @@ export default function ControlPanelMobileDensity() {
 							default: {}
 						})}
 						aria-label="Functional">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Functional</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelMobile>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
@@ -40,7 +40,7 @@ export default function ControlPanelMobileDensity() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -48,10 +48,10 @@ export default function ControlPanelMobileDensity() {
 							default: {}
 						})}
 						aria-label="(Default) Regular">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">(Default) Regular</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelMobile>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
@@ -60,7 +60,7 @@ export default function ControlPanelMobileDensity() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -68,10 +68,10 @@ export default function ControlPanelMobileDensity() {
 							default: {}
 						})}
 						aria-label="Expressive">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Expressive</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelMobile>
 			</div>
 		</Fragment>

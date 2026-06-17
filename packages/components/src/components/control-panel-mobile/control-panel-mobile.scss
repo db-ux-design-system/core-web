@@ -79,7 +79,7 @@
 						@include helpers.divider("top");
 					}
 
-					.db-navigation {
+					.db-control-panel-navigation {
 						padding: variables.$db-spacing-fixed-md;
 
 						#{string.unquote(custom-elements.$overflow-scroll-left-button)},

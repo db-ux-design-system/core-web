@@ -1,4 +1,7 @@
-import { DBNavigationItem, DBNavigationItemGroup } from '@components';
+import {
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
+} from '@components';
 import Link from 'next/link';
 import { type NextRouter, useRouter } from 'next/router';
 import type { NavigationItem } from '../../data/routes';
@@ -27,7 +30,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 
 	if (navItem.subNavigation) {
 		return (
-			<DBNavigationItemGroup
+			<DBControlPanelNavigationItemGroup
 				text={navItem.label}
 				backButtonText={`Back to ${navItem.label}`}>
 				{navItem.subNavigation
@@ -37,19 +40,19 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 							key={`router-path-${subItem.path}`}
 							navItem={subItem}></NavItem>
 					))}
-			</DBNavigationItemGroup>
+			</DBControlPanelNavigationItemGroup>
 		);
 	}
 
 	return (
-		<DBNavigationItem>
+		<DBControlPanelNavigationItem>
 			<Link
 				key={`router-path-${navItem.path}`}
 				href={navItem.path ?? ''}
 				aria-current={isActive ? 'page' : undefined}>
 				{navItem.label}
 			</Link>
-		</DBNavigationItem>
+		</DBControlPanelNavigationItem>
 	);
 };
 

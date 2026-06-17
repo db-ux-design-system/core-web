@@ -8,6 +8,8 @@ import { CheckboxShowcase } from '@components/components/checkbox/showcase/check
 import { ControlPanelBrandShowcase } from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
 import { ControlPanelDesktopShowcase } from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
 import { ControlPanelMobileShowcase } from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
+import { ControlPanelNavigationItemShowcase } from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase';
+import { ControlPanelNavigationShowcase } from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase';
 import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
@@ -16,8 +18,6 @@ import { IconShowcase } from '@components/components/icon/showcase/icon.showcase
 import { InfotextShowcase } from '@components/components/infotext/showcase/infotext.showcase';
 import { InputShowcase } from '@components/components/input/showcase/input.showcase';
 import { LinkShowcase } from '@components/components/link/showcase/link.showcase';
-import { NavigationItemShowcase } from '@components/components/navigation-item/showcase/navigation-item.showcase';
-import { NavigationShowcase } from '@components/components/navigation/showcase/navigation.showcase';
 import { NotificationShowcase } from '@components/components/notification/showcase/notification.showcase';
 import { PopoverShowcase } from '@components/components/popover/showcase/popover.showcase';
 import { RadioShowcase } from '@components/components/radio/showcase/radio.showcase';
@@ -65,14 +65,14 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: '05/navigation-item',
-				label: 'NavigationItem',
-				component: NavigationItemShowcase
+				path: '05/control-panel-navigation-item',
+				label: 'ControlPanelNavigationItem',
+				component: ControlPanelNavigationItemShowcase
 			},
 			{
-				path: '05/navigation',
-				label: 'Navigation',
-				component: NavigationShowcase
+				path: '05/control-panel-navigation',
+				label: 'ControlPanelNavigation',
+				component: ControlPanelNavigationShowcase
 			},
 			{
 				path: '05/shell',

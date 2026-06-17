@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { DBNavigationItem, DBNavigationItemGroup } from '@components';
 import { NavItem } from '../utils/navigation-item';
 
 @Component({
@@ -9,8 +8,8 @@ import { NavItem } from '../utils/navigation-item';
 	imports: [
 		RouterLink,
 		RouterLinkActive,
-		DBNavigationItem,
-		DBNavigationItemGroup
+		DBControlPanelNavigationItem,
+		DBControlPanelNavigationItemGroup
 	],
 	schemas: [],
 	standalone: true

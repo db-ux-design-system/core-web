@@ -2,7 +2,7 @@
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
-	DBNavigation,
+	DBControlPanelNavigation,
 	DBShell
 } from "@components";
 import NavItemComponent from "../../vue-showcase/src/NavItemComponent.vue";
@@ -30,14 +30,14 @@ const {
 					<template v-slot:brand>
 						<DBControlPanelBrand data-logo="db-systel" />
 					</template>
-					<DBNavigation>
+					<DBControlPanelNavigation>
 						{{ page }}
 						<template v-for="item of sortedNavigation">
 							<NavItemComponent
 								:navItem="item"
 							></NavItemComponent>
 						</template>
-					</DBNavigation>
+					</DBControlPanelNavigation>
 				</DBControlPanelDesktop>
 			</template>
 			<div :class="classNames">

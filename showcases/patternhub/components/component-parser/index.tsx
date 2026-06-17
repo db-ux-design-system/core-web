@@ -6,6 +6,8 @@ import {
 	DBCard,
 	DBCheckbox,
 	DBControlPanelMobile,
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
 	DBCustomButton,
 	DBCustomSelect,
 	DBDivider,
@@ -13,8 +15,6 @@ import {
 	DBInfotext,
 	DBInput,
 	DBLink,
-	DBNavigation,
-	DBNavigationItem,
 	DBNotification,
 	DBPopover,
 	DBRadio,
@@ -229,9 +229,9 @@ const ComponentSwitch = ({
 
 	if (type === 'navigation-item') {
 		return (
-			<DBNavigationItem className={className} {...props}>
+			<DBControlPanelNavigationItem className={className} {...props}>
 				{resolvedContent}
-			</DBNavigationItem>
+			</DBControlPanelNavigationItem>
 		);
 	}
 
@@ -253,9 +253,9 @@ const ComponentSwitch = ({
 
 	if (type === 'navigation') {
 		return (
-			<DBNavigation className={className} {...props}>
+			<DBControlPanelNavigation className={className} {...props}>
 				{resolvedContent}
-			</DBNavigation>
+			</DBControlPanelNavigation>
 		);
 	}
 

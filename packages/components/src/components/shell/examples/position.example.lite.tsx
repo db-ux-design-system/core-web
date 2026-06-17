@@ -3,11 +3,11 @@ import DBButton from '../../button/button.lite';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
 import DBControlPanelDesktop from '../../control-panel-desktop/control-panel-desktop.lite';
 import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
+import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
+import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
 import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
 import DBLink from '../../link/link.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
-import DBNavigation from '../../navigation/navigation.lite';
 import DBShellContent from '../../shell-content/shell-content.lite';
 import DBShell from '../shell.lite';
 import { StorybookShellArgTypes } from './_shell.arg.types';
@@ -68,19 +68,19 @@ export default function ShellPosition() {
 									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBNavigation aria-label="shell-position-top">
-								<DBNavigationItem
+							<DBControlPanelNavigation aria-label="shell-position-top">
+								<DBControlPanelNavigationItem
 									icon="x_placeholder"
 									tooltip="Item">
 									<a href="#">Item</a>
-								</DBNavigationItem>
-								<DBNavigationItem
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem
 									disabled
 									icon="x_placeholder"
 									tooltip="Item disabled">
 									<a href="#">Item disabled</a>
-								</DBNavigationItem>
-							</DBNavigation>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
 						</DBControlPanelDesktop>
 					}>
 					<DBShellContent mainLabel="shell-position-top">
@@ -135,19 +135,19 @@ export default function ShellPosition() {
 									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBNavigation aria-label="shell-position-left">
-								<DBNavigationItem
+							<DBControlPanelNavigation aria-label="shell-position-left">
+								<DBControlPanelNavigationItem
 									icon="x_placeholder"
 									tooltip="Item">
 									<a href="#">Item</a>
-								</DBNavigationItem>
-								<DBNavigationItem
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem
 									disabled
 									icon="x_placeholder"
 									tooltip="Item disabled">
 									<a href="#">Item disabled</a>
-								</DBNavigationItem>
-							</DBNavigation>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
 						</DBControlPanelDesktop>
 					}>
 					<DBShellContent mainLabel="shell-position-left">

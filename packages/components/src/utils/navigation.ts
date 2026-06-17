@@ -12,7 +12,9 @@ export type TriangleData = {
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
 	return Boolean(
-		target?.parentElement?.classList.contains('db-navigation-item')
+		target?.parentElement?.classList.contains(
+			'db-control-panel-navigation-item'
+		)
 	);
 };
 
@@ -36,8 +38,9 @@ export class NavigationItemSafeTriangle {
 		}
 
 		this.parentSubNavigation =
-			this.element?.closest('.db-navigation-item-group-menu') ??
-			this.element;
+			this.element?.closest(
+				'.db-control-panel-navigation-item-group-menu'
+			) ?? this.element;
 
 		/*
 		 * only initiate if:
@@ -55,7 +58,7 @@ export class NavigationItemSafeTriangle {
 		// the triangle has the width of the sub-navigation, current nav-item can be wider.
 		// so the width of the triangle must be adapted to a possibly wider nav-item.
 		this.element?.style.setProperty(
-			'--db-navigation-item-inline-size',
+			'--db-control-panel-navigation-item-inline-size',
 			`${parentElementWidth}px`
 		);
 
@@ -202,7 +205,7 @@ export class NavigationItemSafeTriangle {
 		}
 
 		this.element.style.setProperty(
-			'--db-navigation-item-clip-path',
+			'--db-control-panel-navigation-item-clip-path',
 			`polygon(${coordinates.lb}, ${coordinates.lt}, ${coordinates.rt}, ${coordinates.rb})`
 		);
 
@@ -217,13 +220,13 @@ export const handleSubNavigationPosition = (
 	level: number = 0
 ) => {
 	for (const navItem of Array.from(
-		element.querySelectorAll('.db-navigation-item-group')
+		element.querySelectorAll('.db-control-panel-navigation-item-group')
 	)) {
 		const subNavigation: HTMLElement | null = navItem.querySelector(
-			'.db-navigation-item-group-menu'
+			'.db-control-panel-navigation-item-group-menu'
 		);
 		const button: HTMLElement | null = navItem.querySelector(
-			'.db-navigation-item-group-expand-button'
+			'.db-control-panel-navigation-item-group-expand-button'
 		);
 		if (subNavigation && button) {
 			/*
@@ -232,7 +235,7 @@ export const handleSubNavigationPosition = (
 			 * We don't need to calculate the position of the menu as a popover.
 			 */
 			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
-				'--db-navigation-item-group-menu-mobile'
+				'--db-control-panel-navigation-item-group-menu-mobile'
 			);
 			if (isMobile) return;
 

@@ -181,7 +181,7 @@ function buildPatterns(
 	];
 }
 
-/** Matches JSX/TSX component usage: <DBButton>, <DBNavigationItem> */
+/** Matches JSX/TSX component usage: <DBButton>, <DBControlPanelNavigationItem> */
 const JSX_COMPONENT_PATTERN = /<DB(\w+)[\s>/]/g;
 /** Matches Angular/HTML kebab-case usage: <db-button>, <db-navigation-item> */
 const KEBAB_COMPONENT_PATTERN = /<db-([\w-]+)[\s>/]/g;
@@ -227,7 +227,7 @@ export async function detectComponents(
 		const code = readSource(file);
 		if (!code) continue;
 
-		// Detect JSX usage: <DBButton>, <DBNavigationItem>
+		// Detect JSX usage: <DBButton>, <DBControlPanelNavigationItem>
 		for (const match of code.matchAll(JSX_COMPONENT_PATTERN)) {
 			const name = toKebabCase(match[1]);
 			if (validComponents.has(name)) {

@@ -94,8 +94,14 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		path: '05',
 		label: '05 Navigation',
 		children: sortNavItems([
-			{ path: '05/navigation-item', label: 'NavigationItem' },
-			{ path: '05/navigation', label: 'Navigation' },
+			{
+				path: '05/control-panel-navigation-item',
+				label: 'ControlPanelNavigationItem'
+			},
+			{
+				path: '05/control-panel-navigation',
+				label: 'ControlPanelNavigation'
+			},
 			{ path: '05/shell', label: 'Shell' },
 			{ path: '05/control-panel-brand', label: 'ControlPanelBrand' },
 			{
@@ -119,22 +125,22 @@ function renderNavItems(items: NavItem[]): string {
 	return items
 		.map((item) => {
 			if (item.children) {
-				return `<db-navigation-item-group text="${item.label}">${renderNavItems(
+				return `<db-control-panel-navigation-item-group text="${item.label}">${renderNavItems(
 					item.children
-				)}</db-navigation-item-group>`;
+				)}</db-control-panel-navigation-item-group>`;
 			}
 
-			return `<db-navigation-item><a href="#/${item.path}">${item.label}</a></db-navigation-item>`;
+			return `<db-control-panel-navigation-item><a href="#/${item.path}">${item.label}</a></db-control-panel-navigation-item>`;
 		})
 		.join('');
 }
 
 function renderNavigationTree(ariaLabel: string, variant: string): string {
 	return `
-		<db-navigation aria-label="${ariaLabel}" variant="${variant}">
-			<db-navigation-item><a href="#/">Home</a></db-navigation-item>
+		<db-control-panel-navigation aria-label="${ariaLabel}" variant="${variant}">
+			<db-control-panel-navigation-item><a href="#/">Home</a></db-control-panel-navigation-item>
 			${renderNavItems(NAVIGATION_ITEMS)}
-		</db-navigation>`;
+		</db-control-panel-navigation>`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -353,15 +359,15 @@ function applyShellSettings(): void {
 	shell.showSubNavigation = settings.subNavigation === 'true';
 
 	setNavigationVariant(
-		'db-control-panel-desktop > db-navigation',
+		'db-control-panel-desktop > db-control-panel-navigation',
 		settings.navigationDesktopVariant
 	);
 	setNavigationVariant(
-		'db-control-panel-mobile > db-navigation',
+		'db-control-panel-mobile > db-control-panel-navigation',
 		settings.navigationMobileVariant
 	);
 	setNavigationVariant(
-		'db-shell-sub-navigation > db-navigation',
+		'db-shell-sub-navigation > db-control-panel-navigation',
 		settings.subNavigationVariant
 	);
 }

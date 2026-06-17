@@ -5,6 +5,7 @@
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
 @use "../../styles/internal/custom-elements";
+@use "../shell-sub-navigation/shell-sub-navigation";
 
 .db-shell {
 	// MOBILE
@@ -91,45 +92,9 @@
 			}
 		}
 
-		#{string.unquote(custom-elements.$shell-sub-navigation)} {
-			> .db-shell-sub-navigation-button {
-				display: none;
-			}
+		@include shell-sub-navigation.sub-navigation-mobile;
 
-			.db-navigation-item-group {
-				// We don't allow complex sub-navigation in mobile
-				// Users should add a custom implementation for this scenario or
-				// They should use another mobile navigation
-				display: none !important;
-			}
-
-			.db-navigation {
-				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
-				--db-overflow-scroll-button-inset-inline-start: 0;
-
-				display: grid;
-
-				@include control-panel-desktop.horizontal-navigation(false);
-
-				#{string.unquote(custom-elements.$overflow-scroll-left-button)},
-				#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
-					display: none;
-				}
-
-				> menu {
-					padding-block: variables.$db-spacing-fixed-xs;
-
-					/* workaround for showing correct scrolling and focus */
-					padding-inline-start: calc(
-						#{variables.$db-spacing-fixed-sm} / 2
-					);
-					margin-inline-start: calc(
-						#{variables.$db-spacing-fixed-sm} / 2
-					);
-				}
-			}
-		}
-
+		// Hide desktop control panel
 		#{string.unquote(custom-elements.$control-panel-desktop)} {
 			display: none;
 		}

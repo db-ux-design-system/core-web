@@ -277,7 +277,7 @@ Prefer using the `icon` attribute over `<DBIcon>` child component for components
 
 ### `text-or-children-required`
 
-Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBNavigationItem, DBNotification) have either a `text` property or children content.
+Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBControlPanelNavigationItem, DBNotification) have either a `text` property or children content.
 
 **❌ Invalid:**
 
@@ -648,35 +648,35 @@ Ensures DBHeader has burgerMenuLabel attribute for accessibility.
 
 ### `navigation-item-back-button-text-required`
 
-Ensures DBNavigationItem has backButtonText attribute for accessibility.
+Ensures DBControlPanelNavigationItem has backButtonText attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBNavigationItem>Item</DBNavigationItem>
-<DBNavigationItem icon="home">Item</DBNavigationItem>
+<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
+<DBControlPanelNavigationItem icon="home">Item</DBControlPanelNavigationItem>
 
 // Angular
-<db-navigation-item>Item</db-navigation-item>
+<db-control-panel-navigation-item>Item</db-control-panel-navigation-item>
 
 // Vue
-<DBNavigationItem>Item</DBNavigationItem>
+<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBNavigationItem backButtonText="Back">Item</DBNavigationItem>
-<DBNavigationItem backButtonText="Go back">Item</DBNavigationItem>
+<DBControlPanelNavigationItem backButtonText="Back">Item</DBControlPanelNavigationItem>
+<DBControlPanelNavigationItem backButtonText="Go back">Item</DBControlPanelNavigationItem>
 
 // Angular
-<db-navigation-item backButtonText="Back">Item</db-navigation-item>
-<db-navigation-item [backButtonText]="backText">Item</db-navigation-item>
+<db-control-panel-navigation-item backButtonText="Back">Item</db-control-panel-navigation-item>
+<db-control-panel-navigation-item [backButtonText]="backText">Item</db-control-panel-navigation-item>
 
 // Vue
-<DBNavigationItem :backButtonText="text">Item</DBNavigationItem>
+<DBControlPanelNavigationItem :backButtonText="text">Item</DBControlPanelNavigationItem>
 ```
 
 ### `custom-select-tags-remove-text-required`

@@ -44,9 +44,9 @@
 		>
 
 		<!-- db-ux/navigation-item-back-button-text-required -->
-		<DBNavigationItem>
+		<DBControlPanelNavigationItem>
 			<template #subNavigation>Sub nav</template>
-		</DBNavigationItem>
+		</DBControlPanelNavigationItem>
 
 		<!-- db-ux/no-interactive-tooltip-content -->
 		<DBTooltip>
@@ -84,13 +84,13 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelNavigationItem,
 	DBCustomSelect,
 	DBDrawer,
 	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
-	DBNavigationItem,
 	DBNotification,
 	DBSelect,
 	DBTag,

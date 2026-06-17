@@ -3,7 +3,7 @@ import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
-	DBNavigation,
+	DBControlPanelNavigation,
 	DBShell,
 	DBShellContent,
 	DBShellSubNavigation
@@ -34,14 +34,14 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 	>
 		<template v-slot:sub-navigation>
 			<DBShellSubNavigation>
-				<DBNavigation
+				<DBControlPanelNavigation
 					:variant="settings.subNavigationVariant"
 					aria-label="sub navigation"
 				>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBNavigation>
+				</DBControlPanelNavigation>
 			</DBShellSubNavigation>
 		</template>
 		<template v-slot:control-panel-desktop>
@@ -49,14 +49,14 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<DBNavigation
+				<DBControlPanelNavigation
 					:variant="settings.navigationDesktopVariant"
 					aria-label="main navigation desktop"
 				>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBNavigation>
+				</DBControlPanelNavigation>
 				<template v-slot:primary-actions>
 					<PrimaryActions />
 				</template>
@@ -73,14 +73,14 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<DBNavigation
+				<DBControlPanelNavigation
 					:variant="settings.navigationMobileVariant"
 					aria-label="main navigation mobile"
 				>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBNavigation>
+				</DBControlPanelNavigation>
 				<template v-slot:primary-actions>
 					<PrimaryActions />
 				</template>

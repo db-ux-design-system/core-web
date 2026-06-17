@@ -1,7 +1,7 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
-import DBNavigation from '../../navigation/navigation.lite';
+import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
+import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelDesktop from '../control-panel-desktop.lite';
 import { StorybookControlPanelDesktopArgTypes } from './_control-panel-desktop.arg.types';
 
@@ -18,7 +18,7 @@ export default function ControlPanelDesktopWidth() {
 				<DBControlPanelDesktop
 					orientation="horizontal"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -26,10 +26,10 @@ export default function ControlPanelDesktopWidth() {
 							default: {}
 						})}
 						aria-label="Full">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Full</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelDesktop>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
@@ -37,7 +37,7 @@ export default function ControlPanelDesktopWidth() {
 					orientation="horizontal"
 					width="medium"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -45,10 +45,10 @@ export default function ControlPanelDesktopWidth() {
 							default: {}
 						})}
 						aria-label="Medium">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Medium</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelDesktop>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
@@ -56,7 +56,7 @@ export default function ControlPanelDesktopWidth() {
 					orientation="horizontal"
 					width="large"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -64,10 +64,10 @@ export default function ControlPanelDesktopWidth() {
 							default: {}
 						})}
 						aria-label="Large">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Large</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelDesktop>
 			</div>
 		</Fragment>

@@ -1,7 +1,7 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
-import DBNavigation from '../../navigation/navigation.lite';
+import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
+import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelDesktop from '../control-panel-desktop.lite';
 import { StorybookControlPanelDesktopArgTypes } from './_control-panel-desktop.arg.types';
 
@@ -18,7 +18,7 @@ export default function ControlPanelDesktopOrientation() {
 				<DBControlPanelDesktop
 					orientation="horizontal"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -26,13 +26,15 @@ export default function ControlPanelDesktopOrientation() {
 							default: {}
 						})}
 						aria-label="(Default) Horizontal">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">(Default) Horizontal</a>
-						</DBNavigationItem>
-						<DBNavigationItem icon="x_placeholder" disabled>
+						</DBControlPanelNavigationItem>
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							disabled>
 							<a href="#">(Default) Horizontal disabled</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelDesktop>
 			</div>
 			<div
@@ -45,7 +47,7 @@ export default function ControlPanelDesktopOrientation() {
 				<DBControlPanelDesktop
 					orientation="vertical"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: {
 								'data-x': 'workaround-angular'
@@ -53,13 +55,15 @@ export default function ControlPanelDesktopOrientation() {
 							default: {}
 						})}
 						aria-label="Vertical">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Vertical</a>
-						</DBNavigationItem>
-						<DBNavigationItem icon="x_placeholder" disabled>
+						</DBControlPanelNavigationItem>
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							disabled>
 							<a href="#">Vertical disabled</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelDesktop>
 			</div>
 		</Fragment>

@@ -8,7 +8,7 @@
 .db-control-panel-flat-icon-navigation {
 	display: none;
 
-	.db-navigation {
+	.db-control-panel-navigation {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -21,7 +21,7 @@
 			inline-size: 100%;
 			max-inline-size: variables.$db-container-3xl;
 
-			.db-navigation-item {
+			.db-control-panel-navigation-item {
 				justify-content: center;
 				align-items: center;
 
@@ -40,16 +40,16 @@
 			}
 		}
 
-		.db-navigation-item:not([data-icon]),
-		.db-navigation-item-group {
+		.db-control-panel-navigation-item:not([data-icon]),
+		.db-control-panel-navigation-item-group {
 			// we don't allow item groups for flat-icon variant or non icon navigation-items
 			display: none;
 		}
 	}
 
 	&[data-no-text="true"] {
-		.db-navigation {
-			.db-navigation-item {
+		.db-control-panel-navigation {
+			.db-control-panel-navigation-item {
 				--db-icon-passing-padding-inline-start: 0;
 
 				&::before {
@@ -70,8 +70,8 @@
 	}
 
 	&:not([data-no-text="true"]) {
-		.db-navigation {
-			.db-navigation-item {
+		.db-control-panel-navigation {
+			.db-control-panel-navigation-item {
 				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-3xs};
 				--nav-icon-size: #{form-components.$font-size-height};
 

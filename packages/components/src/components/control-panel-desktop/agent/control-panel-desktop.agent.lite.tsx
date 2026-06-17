@@ -1,6 +1,6 @@
 import { DBControlPanelBrand } from '../../control-panel-brand';
-import { DBNavigation } from '../../navigation';
-import { DBNavigationItem } from '../../navigation-item';
+import { DBControlPanelNavigation } from '../../control-panel-navigation';
+import { DBControlPanelNavigationItem } from '../../control-panel-navigation-item';
 import { DBControlPanelDesktop } from '../index';
 
 export default function ControlPanelDesktop() {
@@ -13,14 +13,14 @@ export default function ControlPanelDesktop() {
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
-				<DBNavigation>
-					<DBNavigationItem icon="x_placeholder">
+				<DBControlPanelNavigation>
+					<DBControlPanelNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 1</a>
-					</DBNavigationItem>
-					<DBNavigationItem icon="x_placeholder" disabled>
+					</DBControlPanelNavigationItem>
+					<DBControlPanelNavigationItem icon="x_placeholder" disabled>
 						<a href="#">Navi-Item 2</a>
-					</DBNavigationItem>
-				</DBNavigation>
+					</DBControlPanelNavigationItem>
+				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 
 			<h2>2. Vertical Orientation</h2>
@@ -29,11 +29,11 @@ export default function ControlPanelDesktop() {
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
-				<DBNavigation>
-					<DBNavigationItem icon="x_placeholder">
+				<DBControlPanelNavigation>
+					<DBControlPanelNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 1</a>
-					</DBNavigationItem>
-				</DBNavigation>
+					</DBControlPanelNavigationItem>
+				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 
 			<h2>3. Collapsed (expanded=false)</h2>
@@ -43,11 +43,11 @@ export default function ControlPanelDesktop() {
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
-				<DBNavigation>
-					<DBNavigationItem icon="x_placeholder">
+				<DBControlPanelNavigation>
+					<DBControlPanelNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 1</a>
-					</DBNavigationItem>
-				</DBNavigation>
+					</DBControlPanelNavigationItem>
+				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		</>
 	);

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { DBNavigationItem, DBNavigationItemGroup } from "@components";
+import {
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
+} from "@components";
 import { type NavItem } from "./utils/navigation-items";
 
 defineProps<{
@@ -9,17 +12,19 @@ defineProps<{
 
 <template>
 	<template v-if="navItem.subNavigation">
-		<DBNavigationItemGroup :text="navItem.label">
+		<DBControlPanelNavigationItemGroup :text="navItem.label">
 			<template v-for="item of navItem.subNavigation">
 				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>
-		</DBNavigationItemGroup>
+		</DBControlPanelNavigationItemGroup>
 	</template>
 	<template v-if="!navItem.subNavigation">
-		<DBNavigationItem :backButtonText="`Back to ${navItem.label}`">
+		<DBControlPanelNavigationItem
+			:backButtonText="`Back to ${navItem.label}`"
+		>
 			<router-link :to="navItem.path" ariaCurrentValue="page">
 				{{ navItem.label }}
 			</router-link>
-		</DBNavigationItem>
+		</DBControlPanelNavigationItem>
 	</template>
 </template>

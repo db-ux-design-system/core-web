@@ -13,13 +13,13 @@
 		[showSubNavigation]="settings.subNavigation === 'true'"
 	>
 		<db-shell-sub-navigation sub-navigation>
-			<db-navigation
+			<db-control-panel-navigation
 				aria-label="sub-navigation"
 				[variant]="settings.subNavigationVariant"
 			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
-				}</db-navigation
+				}</db-control-panel-navigation
 		></db-shell-sub-navigation>
 
 		<db-control-panel-desktop
@@ -42,14 +42,14 @@
 				secondary-actions
 				slot="secondaryActions"
 			></app-secondary-actions>
-			<db-navigation
+			<db-control-panel-navigation
 				aria-label="desktop-navigation"
 				[variant]="settings.navigationDesktopVariant"
 			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
-			</db-navigation>
+			</db-control-panel-navigation>
 		</db-control-panel-desktop>
 		<db-control-panel-mobile
 			control-panel-mobile
@@ -72,14 +72,14 @@
 				secondary-actions
 				slot="secondaryActions"
 			></app-secondary-actions>
-			<db-navigation
+			<db-control-panel-navigation
 				aria-label="mobile-navigation"
 				[variant]="settings.navigationMobileVariant"
 			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
-			</db-navigation>
+			</db-control-panel-navigation>
 		</db-control-panel-mobile>
 		<db-shell-content [class]="getChangeableClasses()">
 			<router-outlet></router-outlet>

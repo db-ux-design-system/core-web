@@ -11,7 +11,7 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description:
-				'Ensure DBNavigationItem has backButtonText for accessibility',
+				'Ensure DBControlPanelNavigationItem has backButtonText for accessibility',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
@@ -37,14 +37,19 @@ export default {
 
 		const angularVisitors = createAngularVisitors(
 			context,
-			COMPONENTS.DBNavigationItem,
+			COMPONENTS.DBControlPanelNavigationItem,
 			angularHandler
 		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkNavigationItem = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem))
+			if (
+				!isDBComponent(
+					openingElement,
+					COMPONENTS.DBControlPanelNavigationItem
+				)
+			)
 				return;
 
 			const backButtonText = getAttributeValue(

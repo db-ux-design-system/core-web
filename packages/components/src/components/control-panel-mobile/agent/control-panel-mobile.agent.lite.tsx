@@ -1,6 +1,6 @@
 import { DBControlPanelBrand } from '../../control-panel-brand';
-import { DBNavigation } from '../../navigation';
-import { DBNavigationItem } from '../../navigation-item';
+import { DBControlPanelNavigation } from '../../control-panel-navigation';
+import { DBControlPanelNavigationItem } from '../../control-panel-navigation-item';
 import { DBControlPanelMobile } from '../index';
 
 export default function ControlPanelMobile() {
@@ -14,14 +14,14 @@ export default function ControlPanelMobile() {
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
-				<DBNavigation>
-					<DBNavigationItem icon="x_placeholder">
+				<DBControlPanelNavigation>
+					<DBControlPanelNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 1</a>
-					</DBNavigationItem>
-					<DBNavigationItem icon="x_placeholder" disabled>
+					</DBControlPanelNavigationItem>
+					<DBControlPanelNavigationItem icon="x_placeholder" disabled>
 						<a href="#">Navi-Item 2</a>
-					</DBNavigationItem>
-				</DBNavigation>
+					</DBControlPanelNavigationItem>
+				</DBControlPanelNavigation>
 			</DBControlPanelMobile>
 
 			<h2>2. Bottom Position + Flat Icon Variant</h2>
@@ -32,11 +32,11 @@ export default function ControlPanelMobile() {
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
-				<DBNavigation>
-					<DBNavigationItem icon="x_placeholder">
+				<DBControlPanelNavigation>
+					<DBControlPanelNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 1</a>
-					</DBNavigationItem>
-				</DBNavigation>
+					</DBControlPanelNavigationItem>
+				</DBControlPanelNavigation>
 			</DBControlPanelMobile>
 		</>
 	);

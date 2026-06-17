@@ -64,7 +64,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		scrollbar-gutter: stable both-edges;
 		flex-direction: row;
 
-		#{string.unquote(custom-elements.$navigation-item-group)} {
+		#{string.unquote(custom-elements.$control-panel-navigation-item-group)} {
 			&:is(button),
 			> button {
 				&::after {
@@ -72,7 +72,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 				}
 			}
 
-			> .db-navigation-item-group-menu {
+			> .db-control-panel-navigation-item-group-menu {
 				inset-block-start: calc(
 					100% +
 						var(
@@ -115,8 +115,8 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 	&:not([data-variant]),
 	&[data-variant="popover"] {
 		> menu {
-			.db-navigation-item-group {
-				.db-navigation-item-group-menu {
+			.db-control-panel-navigation-item-group {
+				.db-control-panel-navigation-item-group-menu {
 					inset-inline-start: calc(
 						100% + #{variables.$db-spacing-fixed-xs}
 					);
@@ -131,8 +131,8 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		flex-direction: column;
 		padding-inline: $control-panel-desktop-vertical-padding-inline;
 
-		.db-navigation-item-group,
-		.db-navigation-item {
+		.db-control-panel-navigation-item-group,
+		.db-control-panel-navigation-item {
 			inline-size: 100%;
 		}
 	}
@@ -181,7 +181,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		@include helpers.divider("left");
 	}
 
-	.db-navigation {
+	.db-control-panel-navigation {
 		@include helpers.divider("left");
 
 		&::before {
@@ -204,7 +204,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
 
-	.db-navigation {
+	.db-control-panel-navigation {
 		--db-overflow-scroll-button-inset-block: #{$control-panel-desktop-horizontal-padding-block};
 		--db-overflow-scroll-button-inset-inline-start: calc(
 			#{$control-panel-desktop-horizontal-padding-inline} / 2
@@ -285,7 +285,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 			display: none;
 		}
 
-		.db-navigation {
+		.db-control-panel-navigation {
 			> menu {
 				// Don't show navigation items for collapsed state (only icons)
 				@include navigation-item.direct-navigation-items {
@@ -307,7 +307,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 					}
 				}
 
-				#{string.unquote(custom-elements.$navigation-item)} {
+				#{string.unquote(custom-elements.$control-panel-navigation-item)} {
 					.db-tooltip {
 						// We show tooltip for collapsed state
 						--db-show-popover-visibility: visible;
@@ -318,12 +318,12 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 
 		/* Hide navigation only if we have navigation-item-group */
 
-		.db-navigation-item-group,
-		.db-navigation-item:not([data-icon]) {
+		.db-control-panel-navigation-item-group,
+		.db-control-panel-navigation-item:not([data-icon]) {
 			display: none;
 		}
 
-		&:not(:has(.db-navigation-item[data-icon])) {
+		&:not(:has(.db-control-panel-navigation-item[data-icon])) {
 			.db-control-panel-brand {
 				&::after {
 					display: none;
@@ -414,7 +414,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		@include helpers.divider("top");
 	}
 
-	.db-navigation {
+	.db-control-panel-navigation {
 		@include vertical-navigation;
 
 		> menu {

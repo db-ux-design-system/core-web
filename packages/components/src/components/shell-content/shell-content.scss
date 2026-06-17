@@ -2,10 +2,7 @@
 	grid-area: shell-content;
 	overflow-x: hidden;
 	display: grid;
-	grid-template-rows:
-		[start] auto
-		[main] 1fr
-		[end] auto;
+	grid-template-rows: [start-slot] auto [main] 1fr [end-slot] auto;
 
 	&:not([data-variant="fixed"]) {
 		overflow-y: auto;

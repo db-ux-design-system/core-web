@@ -1,10 +1,10 @@
 import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
-const path = '05/navigation-item';
+const path = '05/control-panel-navigation-item';
 const fixedHeight = 1800;
 
-test.describe('DBNavigationItem', () => {
+test.describe('DBControlPanelNavigationItem', () => {
 	// Set fixed height, because of issues with angulars `ngAfterContentInit`
 	getDefaultScreenshotTest({
 		path,

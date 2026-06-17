@@ -10,8 +10,8 @@
 @use "../../styles/internal/component";
 
 @mixin direct-navigation-items {
-	#{string.unquote(custom-elements.$navigation-item)},
-	#{string.unquote(custom-elements.$navigation-item-group)} {
+	#{string.unquote(custom-elements.$control-panel-navigation-item)},
+	#{string.unquote(custom-elements.$control-panel-navigation-item-group)} {
 		@content;
 	}
 }
@@ -32,11 +32,11 @@
 		inset-block-start: 0;
 		inset-inline-start: 0;
 		block-size: 100%;
-		inline-size: var(--db-navigation-item-inline-size, 100%);
+		inline-size: var(--db-control-panel-navigation-item-inline-size, 100%);
 		background: transparent;
 		transform: translateX(-100%);
 		clip-path: var(
-			--db-navigation-item-clip-path,
+			--db-control-panel-navigation-item-clip-path,
 			polygon(10% 30px, 100% 0, 100% 100%)
 		);
 	}

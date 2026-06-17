@@ -2,11 +2,11 @@ import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
 import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
+import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
+import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
 import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
 import DBLink from '../../link/link.lite';
-import DBNavigationItem from '../../navigation-item/navigation-item.lite';
-import DBNavigation from '../../navigation/navigation.lite';
 import DBControlPanelMobile from '../control-panel-mobile.lite';
 import { StorybookControlPanelMobileArgTypes } from './_control-panel-mobile.arg.types';
 
@@ -33,21 +33,23 @@ export default function ControlPanelMobileExamples() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
 							default: {}
 						})}
 						aria-label="With Application Name + Navigation">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">With Application Name + Navigation</a>
-						</DBNavigationItem>
-						<DBNavigationItem icon="x_placeholder" disabled>
+						</DBControlPanelNavigationItem>
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							disabled>
 							<a href="#">
 								With Application Name + Navigation disabled
 							</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelMobile>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
@@ -160,19 +162,21 @@ export default function ControlPanelMobileExamples() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand />}>
-					<DBNavigation
+					<DBControlPanelNavigation
 						{...useTarget({
 							angular: { 'data-x': 'workaround-angular' },
 							default: {}
 						})}
 						aria-label="Without Application Name">
-						<DBNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Without Application Name</a>
-						</DBNavigationItem>
-						<DBNavigationItem icon="x_placeholder" disabled>
+						</DBControlPanelNavigationItem>
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							disabled>
 							<a href="#">Without Application Name disabled</a>
-						</DBNavigationItem>
-					</DBNavigation>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
 				</DBControlPanelMobile>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>

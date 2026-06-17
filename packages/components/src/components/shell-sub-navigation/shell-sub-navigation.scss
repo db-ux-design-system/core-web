@@ -1,5 +1,11 @@
 @use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/custom-elements";
+@use "../../styles/internal/form-components";
 
 .db-shell-sub-navigation {
 	grid-area: sub-navigation;
@@ -7,9 +13,160 @@
 
 	> .db-shell-sub-navigation-button {
 		grid-area: button;
+		display: flex;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			.db-button::before {
+				transition: transform
+					#{variables.$db-transition-straight-functional};
+			}
+		}
 	}
 
-	.db-navigation {
+	.db-control-panel-navigation {
 		grid-area: navigation;
+	}
+}
+
+@mixin sub-navigation-top {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		border-block-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+		.db-control-panel-navigation {
+			--db-overflow-scroll-button-inset-inline-start: calc(
+				#{variables.$db-spacing-fixed-sm} / 2
+			);
+			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+
+			display: grid;
+
+			@include control-panel-desktop.horizontal-navigation;
+
+			> menu {
+				/* workaround for showing correct scrolling and focus */
+				padding-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
+				margin-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
+				padding-block: variables.$db-spacing-fixed-xs;
+			}
+		}
+
+		> .db-shell-sub-navigation-button {
+			display: none;
+		}
+	}
+}
+
+@mixin sub-navigation-left {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		display: grid;
+		border-inline-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+		.db-control-panel-navigation {
+			max-inline-size: screen-sizes.$db-breakpoint-xs;
+			padding-block: variables.$db-spacing-fixed-md;
+		}
+
+		&[data-open="false"] {
+			inline-size: auto;
+			/* stylelint-disable-next-line declaration-property-value-no-unknown */
+			inline-size: calc-size(auto, size);
+			grid-template-areas: "button";
+			grid-template-rows: [button] 1fr;
+
+			.db-control-panel-navigation {
+				display: none;
+			}
+
+			> .db-shell-sub-navigation-button {
+				justify-content: center;
+
+				.db-button {
+					block-size: 100%;
+					border-radius: 0;
+
+					&::before {
+						transform: form-components.$dropdown-icon-transform;
+					}
+				}
+			}
+		}
+
+		&[data-open="true"] {
+			grid-template-areas:
+				"navigation"
+				"button";
+			grid-template-rows:
+				[navigation] 1fr
+				[button] auto;
+
+			/// Sets the inline-size (width) of the sub-navigation
+			inline-size: var(
+				--db-shell-sub-navigation-inline-size,
+				#{variables.$db-container-xs}
+			);
+
+			.db-control-panel-navigation {
+				overflow: hidden auto;
+				scrollbar-gutter: stable both-edges;
+
+				@include control-panel-desktop.vertical-navigation(false);
+
+				> menu {
+					padding-inline: 0;
+				}
+			}
+
+			> .db-shell-sub-navigation-button {
+				padding-block: variables.$db-spacing-fixed-xs;
+				padding-inline: variables.$db-spacing-fixed-lg;
+				justify-content: flex-end;
+				margin-block-start: auto;
+
+				@include helpers.divider("top");
+			}
+		}
+	}
+}
+
+@mixin sub-navigation-mobile {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		> .db-shell-sub-navigation-button {
+			display: none;
+		}
+
+		.db-control-panel-navigation-item-group {
+			// We don't allow complex sub-navigation in mobile
+			// Users should add a custom implementation for this scenario or
+			// They should use another mobile navigation
+			display: none !important;
+		}
+
+		.db-control-panel-navigation {
+			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+			--db-overflow-scroll-button-inset-inline-start: 0;
+
+			display: grid;
+
+			@include control-panel-desktop.horizontal-navigation(false);
+
+			#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+			#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
+				display: none;
+			}
+
+			> menu {
+				padding-block: variables.$db-spacing-fixed-xs;
+
+				/* workaround for showing correct scrolling and focus */
+				padding-inline-start: calc(
+					#{variables.$db-spacing-fixed-sm} / 2
+				);
+				margin-inline-start: calc(
+					#{variables.$db-spacing-fixed-sm} / 2
+				);
+			}
+		}
 	}
 }

@@ -28,13 +28,13 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
-  {
-    name: "drawer-footer"
-  },
+	{
+		name: 'drawer-footer'
+	},
 
-  {
-    name: "drawer-header"
-  },
+	{
+		name: 'drawer-header'
+	},
 
 	{
 		name: 'shell-content'
@@ -49,7 +49,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'navigation-item-group'
+		name: 'control-panel-navigation-item-group'
 	},
 
 	{
@@ -272,10 +272,10 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'navigation'
+		name: 'control-panel-navigation'
 	},
 	{
-		name: 'navigation-item',
+		name: 'control-panel-navigation-item',
 		overwrites: {}
 	},
 	{

@@ -7,6 +7,8 @@ import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.
 import ControlPanelBrand from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase.vue';
 import ControlPanelDesktop from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase.vue';
 import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
+import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase.vue';
+import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
@@ -15,8 +17,6 @@ import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
 import InputShowcase from '@components/components/input/showcase/input.showcase.vue';
 import LinkShowcase from '@components/components/link/showcase/link.showcase.vue';
-import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase.vue';
-import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase.vue';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase.vue';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase.vue';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase.vue';
@@ -70,14 +70,14 @@ export const navigationItems: NavItem[] = [
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: '/05/navigation-item',
-				label: 'NavigationItem',
-				component: markRaw(NavigationItemShowcase)
+				path: '/05/control-panel-navigation-item',
+				label: 'ControlPanelNavigationItem',
+				component: markRaw(ControlPanelNavigationItemShowcase)
 			},
 			{
-				path: '/05/navigation',
-				label: 'Navigation',
-				component: markRaw(NavigationShowcase)
+				path: '/05/control-panel-navigation',
+				label: 'ControlPanelNavigation',
+				component: markRaw(ControlPanelNavigationShowcase)
 			},
 			{
 				path: '/05/shell',

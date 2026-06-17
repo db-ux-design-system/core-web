@@ -1,7 +1,3 @@
-import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
-
-import Home from '../components/home';
-
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
@@ -11,6 +7,9 @@ import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.
 import ControlPanelBrandShowcase from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
 import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
+import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase';
+import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase';
+import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
@@ -18,8 +17,6 @@ import IconShowcase from '@components/components/icon/showcase/icon.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
-import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
-import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
@@ -34,6 +31,7 @@ import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
+import Home from '../components/home';
 
 export type NavigationItem = {
 	path: string;
@@ -67,14 +65,14 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: 'navigation-item',
-				label: 'NavigationItem',
-				component: <NavigationItemShowcase />
+				path: 'control-panel-navigation-item',
+				label: 'ControlPanelNavigationItem',
+				component: <ControlPanelNavigationItemShowcase />
 			},
 			{
-				path: 'navigation',
-				label: 'Navigation',
-				component: <NavigationShowcase />
+				path: 'control-panel-navigation',
+				label: 'ControlPanelNavigation',
+				component: <ControlPanelNavigationShowcase />
 			},
 			{
 				path: 'shell',

@@ -3,13 +3,13 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelNavigationItem,
 	DBCustomSelect,
 	DBDrawer,
 	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
-	DBNavigationItem,
 	DBNotification,
 	DBSelect,
 	DBTag,
@@ -63,8 +63,10 @@ export const TestComponent = () => {
 			</DBLink>
 
 			{/* db-ux/navigation-item-back-button-text-required */}
-			<DBNavigationItem
-				subNavigation={<div>Sub nav</div>}></DBNavigationItem>
+			<DBControlPanelNavigationItem
+				subNavigation={
+					<div>Sub nav</div>
+				}></DBControlPanelNavigationItem>
 
 			{/* db-ux/no-interactive-tooltip-content */}
 			<DBTooltip>

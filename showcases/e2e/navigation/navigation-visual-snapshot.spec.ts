@@ -1,10 +1,10 @@
 import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
-const path = '05/navigation';
+const path = '05/control-panel-navigation';
 const fixedHeight = 1200;
 
-test.describe('DBNavigation', () => {
+test.describe('DBControlPanelNavigation', () => {
 	getDefaultScreenshotTest({
 		path,
 		fixedHeight,
