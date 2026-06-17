@@ -67,7 +67,7 @@
 
 				<db-input
 					id="form"
-					formcontrolname="input"
+					formControlName="input"
 					icon="x_placeholder"
 					label="Textinput"
 					message="Description"
@@ -78,7 +78,7 @@
 
 				<db-input
 					id="datalist"
-					[datalist]="dataList"
+					[dataList]="dataList"
 					icon="x_placeholder"
 					label="Textinput with Datalist"
 					message="Description"
@@ -89,7 +89,7 @@
 
 				<db-input
 					type="date"
-					formcontrolname="dateinput"
+					formControlName="dateinput"
 					label="Date input"
 					message="Description"
 					name="form"
@@ -115,7 +115,7 @@
 
 				<db-textarea
 					id="textarea"
-					formcontrolname="textarea"
+					formControlName="textarea"
 					icon="x_placeholder"
 					label="Textarea"
 					message="Description"
@@ -140,7 +140,7 @@
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
-					formcontrolname="checkbox"
+					formControlName="checkbox"
 					label="Checkbox formControl value"
 					name="checkbox4"
 				></db-checkbox>
@@ -176,7 +176,7 @@
 				<p>Select:</p>
 				<db-select
 					(change)="handleChange4($event)"
-					formcontrolname="select"
+					formControlName="select"
 					icon="x_placeholder"
 					label="Select"
 					message="Description"
