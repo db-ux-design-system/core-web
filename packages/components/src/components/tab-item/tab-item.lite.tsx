@@ -154,12 +154,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 			<span
 				class="db-tab-label"
 				data-icon={props.iconLeading ?? props.icon}
-				data-show-icon={getBooleanAsString(
-					props.showIconLeading ?? props.showIcon
-				)}
+				data-show-icon={
+					getBooleanAsString(
+						props.showIconLeading,
+						'showIconLeading'
+					) || getBooleanAsString(props.showIcon, 'showIcon')
+				}
 				data-icon-trailing={props.iconTrailing}
 				data-show-icon-trailing={getBooleanAsString(
-					props.showIconTrailing
+					props.showIconTrailing,
+					'showIconTrailing'
 				)}>
 				{/* only the text truncates – icons stay visible */}
 				<span ref={_labelRef} class="db-tab-label-text">
