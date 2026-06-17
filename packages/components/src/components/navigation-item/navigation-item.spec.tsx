@@ -55,6 +55,32 @@ const testComponent = () => {
 		await component.locator('[data-testid="outside-target"]').hover();
 		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
 	});
+
+	test('should collapse after hovering submenu and then leaving navigation item', async ({
+		mount
+	}) => {
+		const component = await mount(compWithSubNavigation);
+		const expandButton = component.locator(
+			'.db-navigation-item-expand-button'
+		);
+
+		// Initial state: collapsed
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+
+		// Hover the expand button to open the submenu
+		await expandButton.hover();
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'true');
+
+		// Move pointer into an element inside the submenu
+		const submenuItem = component.locator('.db-sub-navigation a').first();
+		await submenuItem.hover();
+
+		// Then move pointer outside the entire navigation item
+		await component.locator('[data-testid="outside-target"]').hover();
+
+		// aria-expanded should be collapsed again
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+	});
 };
 const testA11y = () => {
 	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
