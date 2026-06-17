@@ -144,7 +144,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
 			data-variant={props.variant}
-			closedby={state.isNotModal() ? undefined : 'any'}>
+			closedBy={state.isNotModal() ? undefined : 'any'}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
