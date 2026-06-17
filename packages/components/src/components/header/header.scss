@@ -48,28 +48,28 @@
 	}
 
 	// All use-cases where we hide the divider
-	&:has(.db-header-navigation:empty),
+	&:not(:has(.db-navigation)),
 	&:has(.db-brand:empty) {
 		.db-header-navigation-container::before {
 			display: none;
 		}
 	}
 
-	// Hide the burger ONLY when the drawer would be empty.
-	// This requires: no main navigation AND no meta navigation AND no secondary action.
-	&:has(.db-header-navigation:empty):has(
-			.db-header-meta-navigation:empty
-		):has(.db-header-secondary-action:empty) {
-		.db-header-burger-menu-container {
-			@include helpers.display(none);
-		}
-	}
+	&:not(:has(.db-navigation)) {
+		&:has(.db-header-secondary-action:empty) {
+			// Hide the action-area divider only when both navigation and secondary action are missing.
+			// With no navigation but a secondary action, we keep the divider.
+			.db-header-action-container::before {
+				display: none;
+			}
 
-	// Hide the action-area divider only when both navigation and secondary action are missing.
-	// With no navigation but a secondary action, we keep the divider.
-	&:has(.db-header-navigation:empty):has(.db-header-secondary-action:empty) {
-		.db-header-action-container::before {
-			display: none;
+			// Hide the burger ONLY when the drawer would be empty.
+			// This requires: no main navigation AND no meta navigation AND no secondary action.
+			&:has(.db-header-meta-navigation:empty) {
+				.db-header-burger-menu-container {
+					@include helpers.display(none);
+				}
+			}
 		}
 	}
 }

@@ -25,12 +25,14 @@ db-custom-select-list-item:not(:last-of-type) {
 
 	&:has(> label) {
 		&:not(:has(input[type="radio"]:checked)) {
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
+			@include helpers.not-disabled {
+				@include helpers.hover {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+				}
 
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+				@include helpers.active {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+				}
 			}
 		}
 	}

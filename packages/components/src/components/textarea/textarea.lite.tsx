@@ -75,7 +75,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -86,7 +86,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -265,7 +265,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				required={getBoolean(props.required, 'required')}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
-					getBoolean(props.readonly, 'readonly')
+					getBoolean(props.readonly, 'readonly') ||
+					undefined
 				}
 				form={props.form}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
