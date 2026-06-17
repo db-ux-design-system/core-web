@@ -10,7 +10,8 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			ref={_ref}
 			class={cls('db-tab-panel', props.className)}
 			id={props.id ?? props.propOverrides?.id}
-			role="tabpanel">
+			role="tabpanel"
+			hidden={props.hidden}>
 			<Show when={props.content}>{props.content}</Show>
 			{props.children}
 		</div>
