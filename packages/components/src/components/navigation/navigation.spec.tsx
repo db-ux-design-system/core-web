@@ -174,6 +174,36 @@ const testFocus = () => {
 		await subButton.blur();
 		await expect(subButton).toHaveAttribute('aria-expanded', 'false');
 	});
+
+	test(`top-level item should stay expanded while focus is inside and collapse when focus leaves`, async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubLevels);
+		const topLevelItem = component.getByTestId('toplevel');
+		const topButton = topLevelItem.getByRole('button');
+
+		// Initial state: collapsed
+		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
+
+		// Focus the top-level button: should expand
+		await topButton.focus();
+		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
+
+		// Move focus into a submenu link within the same nav item: should stay expanded
+		const submenuLink = topLevelItem.locator('a').first();
+		await submenuLink.focus();
+		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
+
+		// Move focus outside the nav item: should collapse
+		const outsideNavItem = component.getByText('Test2');
+		await outsideNavItem.focus();
+		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
+	});
 };
 
 const testClick = () => {
