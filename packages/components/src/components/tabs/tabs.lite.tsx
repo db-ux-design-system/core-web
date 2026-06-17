@@ -114,7 +114,6 @@ export default function DBTabs(props: DBTabsProps) {
 				!(button as HTMLButtonElement).disabled &&
 				button.getAttribute('aria-disabled') !== 'true';
 
-			// Resolve to a valid, enabled tab so the tablist always has a focusable entry point; -1 (manual mode) is kept as-is.
 			let currentIndex = requestedIndex;
 			if (currentIndex !== -1 && buttons.length > 0) {
 				if (
@@ -129,7 +128,6 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 
-			// In manual mode (-1) the roving tabindex still lands on the first enabled tab, so a disabled first tab doesn't block keyboard entry.
 			const rovingIndex =
 				currentIndex === -1
 					? buttons.findIndex((button: HTMLElement) =>
