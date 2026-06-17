@@ -64,6 +64,7 @@
 	display: inline-flex;
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	block-size: variables.$db-sizing-md;
 	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
 	justify-content: space-between;

@@ -4,6 +4,7 @@ import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ShellContent from '../examples/content.example.lite';
 import ShellPosition from '../examples/position.example.lite';
+import ShellSubNavigation from '../examples/sub-navigation.example.lite';
 
 export default function ShellShowcase(props: PatternhubProps) {
 	return (
@@ -18,6 +19,11 @@ export default function ShellShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Content">
 				<CardWrapperShowcase>
 					<ShellContent />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Sub Navigation">
+				<CardWrapperShowcase>
+					<ShellSubNavigation />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

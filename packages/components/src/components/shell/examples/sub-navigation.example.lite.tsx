@@ -4,34 +4,37 @@ import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.l
 import DBControlPanelDesktop from '../../control-panel-desktop/control-panel-desktop.lite';
 import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
 import DBControlPanelMobile from '../../control-panel-mobile/control-panel-mobile.lite';
+import DBControlPanelNavigationItemGroup from '../../control-panel-navigation-item-group/control-panel-navigation-item-group.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
 import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
 import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
 import DBLink from '../../link/link.lite';
-import DBNotification from '../../notification/notification.lite';
 import DBShellContent from '../../shell-content/shell-content.lite';
+import DBShellSubNavigation from '../../shell-sub-navigation/shell-sub-navigation.lite';
 import DBShell from '../shell.lite';
 import { StorybookShellArgTypes } from './_shell.arg.types';
 
 useMetadata({
-	storybookTitle: 'Position',
+	storybookTitle: 'Sub Navigation',
 	storybookNames: [
-		'(Default) Auto - Top',
-		'Fixed - Top',
-		'Auto - Left',
-		'Fixed - Left'
+		'Top + Sub Top',
+		'Top + Sub Left Popover',
+		'Top + Sub Left Tree',
+		'Left + Sub Top'
 	],
 	storybookArgTypes: StorybookShellArgTypes
 });
 
-export default function ShellContent() {
+export default function ShellSubNavigation() {
 	return (
 		<Fragment>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					data-test-id="shell-position-auto-top"
+					data-test-id="shell-top-sub-top"
 					controlPanelDesktopPosition="top"
+					subNavigationDesktopPosition="top"
+					showSubNavigation={true}
 					controlPanelDesktop={
 						<DBControlPanelDesktop
 							brand={
@@ -61,46 +64,27 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBControlPanelNavigation aria-label="shell-position-top">
+							<DBControlPanelNavigation aria-label="shell-top-sub-top-main">
 								<DBControlPanelNavigationItem
 									icon="x_placeholder"
-									tooltip="Item">
-									<a href="#">Item</a>
+									tooltip="Item 1">
+									<a href="#">Item 1</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem
-									disabled
 									icon="x_placeholder"
-									tooltip="Item disabled">
-									<a href="#">Item disabled</a>
+									tooltip="Item 2">
+									<a href="#">Item 2</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelDesktop>
 					}
 					controlPanelMobile={
 						<DBControlPanelMobile
-							drawerHeaderText="Auto Top"
+							drawerHeaderText="Top + Sub Top"
 							brand={
 								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMetaNavigation>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -120,18 +104,6 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
 							<DBControlPanelNavigation
@@ -141,43 +113,66 @@ export default function ShellContent() {
 									},
 									default: {}
 								})}
-								aria-label="shell-position-auto-top-mobile">
-								<DBControlPanelNavigationItem icon="x_placeholder">
-									<a href="#">Item</a>
+								aria-label="shell-top-sub-top-mobile">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
 								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
-									icon="x_placeholder">
-									<a href="#">Item disabled</a>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelMobile>
+					}
+					subNavigation={
+						<DBShellSubNavigation>
+							<DBControlPanelNavigation aria-label="shell-top-sub-top-sub">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
+						</DBShellSubNavigation>
 					}>
-					<DBShellContent
-						startSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						mainLabel="shell-position-auto-top">
-						<p>Auto-Top position content</p>
-						<p>Auto-Top position content</p>
-						<p>Auto-Top position content</p>
-						<p>Auto-Top position content</p>
-						<p>Auto-Top position content</p>
-						<p>Auto-Top position content</p>
+					<DBShellContent mainLabel="shell-top-sub-top">
+						Top + Sub Top content
 					</DBShellContent>
 				</DBShell>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					data-test-id="shell-position-fixed-top"
+					data-test-id="shell-top-sub-left"
 					controlPanelDesktopPosition="top"
+					subNavigationDesktopPosition="left"
+					subNavigationMobilePosition="bottom"
+					showSubNavigation={true}
 					controlPanelDesktop={
 						<DBControlPanelDesktop
 							brand={
@@ -207,46 +202,27 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBControlPanelNavigation aria-label="shell-position-top">
+							<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
 								<DBControlPanelNavigationItem
 									icon="x_placeholder"
-									tooltip="Item">
-									<a href="#">Item</a>
+									tooltip="Item 1">
+									<a href="#">Item 1</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem
-									disabled
 									icon="x_placeholder"
-									tooltip="Item disabled">
-									<a href="#">Item disabled</a>
+									tooltip="Item 2">
+									<a href="#">Item 2</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelDesktop>
 					}
 					controlPanelMobile={
 						<DBControlPanelMobile
-							drawerHeaderText="Fixed Top"
+							drawerHeaderText="Top + Sub Left Popover"
 							brand={
 								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMetaNavigation>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -266,18 +242,6 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
 							<DBControlPanelNavigation
@@ -287,45 +251,66 @@ export default function ShellContent() {
 									},
 									default: {}
 								})}
-								aria-label="shell-position-fixed-top-mobile">
-								<DBControlPanelNavigationItem icon="x_placeholder">
-									<a href="#">Item</a>
+								aria-label="shell-top-sub-left-mobile">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
 								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
-									icon="x_placeholder">
-									<a href="#">Item disabled</a>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelMobile>
+					}
+					subNavigation={
+						<DBShellSubNavigation>
+							<DBControlPanelNavigation aria-label="shell-top-sub-left-sub">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
+						</DBShellSubNavigation>
 					}>
-					<DBShellContent
-						variant="fixed"
-						startSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						mainLabel="shell-position-fixed-top">
-						<p>Fixed-Top position content</p>
-						<p>Fixed-Top position content</p>
-						<p>Fixed-Top position content</p>
-						<p>Fixed-Top position content</p>
-						<p>Fixed-Top position content</p>
-						<p>Fixed-Top position content</p>
+					<DBShellContent mainLabel="shell-top-sub-left">
+						Top + Sub Left Popover content
 					</DBShellContent>
 				</DBShell>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					data-test-id="shell-position-auto-left"
-					controlPanelDesktopPosition="left"
+					data-test-id="shell-top-sub-left-tree"
+					controlPanelDesktopPosition="top"
+					subNavigationDesktopPosition="left"
 					controlPanelMobilePosition="bottom"
+					showSubNavigation={true}
 					controlPanelDesktop={
 						<DBControlPanelDesktop
 							brand={
@@ -355,46 +340,27 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBControlPanelNavigation aria-label="shell-position-left">
+							<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
 								<DBControlPanelNavigationItem
 									icon="x_placeholder"
-									tooltip="Item">
-									<a href="#">Item</a>
+									tooltip="Item 1">
+									<a href="#">Item 1</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem
-									disabled
 									icon="x_placeholder"
-									tooltip="Item disabled">
-									<a href="#">Item disabled</a>
+									tooltip="Item 2">
+									<a href="#">Item 2</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelDesktop>
 					}
 					controlPanelMobile={
 						<DBControlPanelMobile
-							drawerHeaderText="Auto Left"
+							drawerHeaderText="Top + Sub Left Tree"
 							brand={
 								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMetaNavigation>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -414,18 +380,6 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
 							<DBControlPanelNavigation
@@ -435,44 +389,69 @@ export default function ShellContent() {
 									},
 									default: {}
 								})}
-								aria-label="shell-position-auto-left-mobile">
-								<DBControlPanelNavigationItem icon="x_placeholder">
-									<a href="#">Item</a>
+								aria-label="shell-top-sub-left-tree-mobile">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
 								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
-									icon="x_placeholder">
-									<a href="#">Item disabled</a>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelMobile>
+					}
+					subNavigation={
+						<DBShellSubNavigation>
+							<DBControlPanelNavigation
+								variant="tree"
+								aria-label="shell-top-sub-left-sub">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
+						</DBShellSubNavigation>
 					}>
-					<DBShellContent
-						startSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						mainLabel="shell-position-auto-left">
-						<p>Auto-Left position content</p>
-						<p>Auto-Left position content</p>
-						<p>Auto-Left position content</p>
-						<p>Auto-Left position content</p>
-						<p>Auto-Left position content</p>
-						<p>Auto-Left position content</p>
+					<DBShellContent mainLabel="shell-top-sub-left">
+						Top + Sub Left Tree content
 					</DBShellContent>
 				</DBShell>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					data-test-id="shell-position-fixed-left"
+					data-test-id="shell-left-sub-top"
 					controlPanelDesktopPosition="left"
+					subNavigationDesktopPosition="top"
 					controlPanelMobilePosition="bottom"
+					subNavigationMobilePosition="bottom"
+					showSubNavigation={true}
 					controlPanelDesktop={
 						<DBControlPanelDesktop
 							brand={
@@ -502,46 +481,27 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
-							<DBControlPanelNavigation aria-label="shell-position-left">
+							<DBControlPanelNavigation aria-label="shell-left-sub-top-main">
 								<DBControlPanelNavigationItem
 									icon="x_placeholder"
-									tooltip="Item">
-									<a href="#">Item</a>
+									tooltip="Item 1">
+									<a href="#">Item 1</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem
-									disabled
 									icon="x_placeholder"
-									tooltip="Item disabled">
-									<a href="#">Item disabled</a>
+									tooltip="Item 2">
+									<a href="#">Item 2</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelDesktop>
 					}
 					controlPanelMobile={
 						<DBControlPanelMobile
-							drawerHeaderText="Fixed Left"
+							drawerHeaderText="Left + Sub Top"
 							brand={
 								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMetaNavigation>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -561,18 +521,6 @@ export default function ShellContent() {
 										noText>
 										Profile
 									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
 								</DBControlPanelSecondaryActions>
 							}>
 							<DBControlPanelNavigation
@@ -582,37 +530,56 @@ export default function ShellContent() {
 									},
 									default: {}
 								})}
-								aria-label="shell-position-fixed-left-mobile">
-								<DBControlPanelNavigationItem icon="x_placeholder">
-									<a href="#">Item</a>
+								aria-label="shell-left-sub-top-mobile">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
 								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
-									icon="x_placeholder">
-									<a href="#">Item disabled</a>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigation>
 						</DBControlPanelMobile>
+					}
+					subNavigation={
+						<DBShellSubNavigation>
+							<DBControlPanelNavigation aria-label="shell-left-sub-top-sub">
+								<DBControlPanelNavigationItemGroup text="Group 1">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Sub-Item 1
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Sub-Item 2</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 3</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 4</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Sub-Item 5</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigation>
+						</DBShellSubNavigation>
 					}>
-					<DBShellContent
-						variant="fixed"
-						startSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
-						}
-						mainLabel="shell-position-fixed-left">
-						<p>Fixed-Left position content</p>
-						<p>Fixed-Left position content</p>
-						<p>Fixed-Left position content</p>
-						<p>Fixed-Left position content</p>
-						<p>Fixed-Left position content</p>
-						<p>Fixed-Left position content</p>
+					<DBShellContent mainLabel="shell-left-sub-top">
+						Left + Sub Top content
 					</DBShellContent>
 				</DBShell>
 			</div>

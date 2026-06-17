@@ -27,7 +27,9 @@ const App = () => {
 
 	if (page ?? fullscreen) {
 		return (
-			<div data-density={density} className={`db-color-${color}`}>
+			<div
+				data-density={density}
+				className={`fullscreen-container db-color-${color}`}>
 				<Outlet />
 			</div>
 		);

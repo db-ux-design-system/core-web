@@ -90,7 +90,7 @@
 		place-self: center;
 	}
 
-	.db-drawer[data-direction="custom"] {
+	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
 		> .db-drawer-container {
 			@extend %direction-up;
 

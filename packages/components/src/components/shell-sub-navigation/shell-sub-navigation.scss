@@ -30,8 +30,7 @@
 
 @mixin sub-navigation-top {
 	#{string.unquote(custom-elements.$shell-sub-navigation)} {
-		border-block-end: variables.$db-border-width-3xs solid
-			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		@include helpers.divider("bottom", after);
 
 		.db-control-panel-navigation {
 			--db-overflow-scroll-button-inset-inline-start: calc(
@@ -60,8 +59,8 @@
 @mixin sub-navigation-left {
 	#{string.unquote(custom-elements.$shell-sub-navigation)} {
 		display: grid;
-		border-inline-end: variables.$db-border-width-3xs solid
-			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+		@include helpers.divider("right", after);
 
 		.db-control-panel-navigation {
 			max-inline-size: screen-sizes.$db-breakpoint-xs;
@@ -143,6 +142,11 @@
 			display: none !important;
 		}
 
+		.db-control-panel-navigation-item {
+			inline-size: fit-content;
+			white-space: nowrap;
+		}
+
 		.db-control-panel-navigation {
 			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
 			--db-overflow-scroll-button-inset-inline-start: 0;
@@ -166,6 +170,15 @@
 				margin-inline-start: calc(
 					#{variables.$db-spacing-fixed-sm} / 2
 				);
+			}
+
+			&[data-variant="tree"] {
+				// If a users passes tree, we hide the circle icon
+				.db-control-panel-navigation-item a {
+					&::before {
+						display: none;
+					}
+				}
 			}
 		}
 	}

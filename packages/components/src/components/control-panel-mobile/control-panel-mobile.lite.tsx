@@ -53,12 +53,10 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			data-variant={props.variant}
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
-
 			<DBDrawer
 				header={
 					<DBDrawerHeader>{props.drawerHeaderText}</DBDrawerHeader>
 				}
-				direction="custom"
 				rounded
 				open={state.open}
 				onClose={(event) => state.handleToggle(event)}

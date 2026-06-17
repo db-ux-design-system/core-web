@@ -63,6 +63,9 @@
 			grid-template-areas:
 				"control-panel sub-navigation"
 				"control-panel shell-content";
+			grid-template-rows:
+				[control-panel] min-content
+				[shell-content] 1fr;
 		}
 
 		@include shell-sub-navigation.sub-navigation-top;

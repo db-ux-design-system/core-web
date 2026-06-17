@@ -57,50 +57,47 @@
 		}
 	}
 
-	.db-drawer[data-direction="custom"] {
-		--db-drawer-content-padding-inline: 0;
+	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
 		--db-drawer-max-width: #{variables.$db-container-xs};
 		--db-drawer-max-height: 63vh;
 		--db-drawer-min-width: #{variables.$db-container-xs};
 		--db-drawer-min-height: 63vh;
 
-		> .db-drawer-container {
-			> .db-drawer-content {
-				.db-control-panel-mobile-drawer-scroll-container {
-					display: flex;
-					flex-direction: column;
-					block-size: 100%;
+		.db-drawer-content {
+			.db-control-panel-mobile-drawer-scroll-container {
+				display: flex;
+				flex-direction: column;
+				block-size: 100%;
 
-					.db-control-panel-meta-navigation {
-						padding: variables.$db-spacing-fixed-md;
-						margin-block-start: auto;
-						flex-flow: column nowrap;
+				.db-control-panel-meta-navigation {
+					padding: variables.$db-spacing-fixed-md;
+					margin-block-start: auto;
+					flex-flow: column nowrap;
 
-						@include helpers.divider("top");
+					@include helpers.divider("top");
+				}
+
+				.db-control-panel-navigation {
+					padding: variables.$db-spacing-fixed-md;
+
+					#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+					#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
+						display: none;
 					}
 
-					.db-control-panel-navigation {
-						padding: variables.$db-spacing-fixed-md;
+					> menu {
+						@include navigation-item.direct-navigation-items {
+							@extend %indicator;
+							@include indicator.set-indicator-vertical;
 
-						#{string.unquote(custom-elements.$overflow-scroll-left-button)},
-						#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
-							display: none;
-						}
+							@include navigation-item.active-navigation-item {
+								@include indicator.show-indicator-vertical;
+							}
 
-						> menu {
 							@include navigation-item.direct-navigation-items {
-								@extend %indicator;
-								@include indicator.set-indicator-vertical;
-
-								@include navigation-item.active-navigation-item {
-									@include indicator.show-indicator-vertical;
-								}
-
-								@include navigation-item.direct-navigation-items {
-									/* Workaround for custom-elements */
-									&::after {
-										content: none;
-									}
+								/* Workaround for custom-elements */
+								&::after {
+									content: none;
 								}
 							}
 						}

@@ -101,13 +101,13 @@
 			/* stylelint-disable-next-line db-ux/use-sizing */
 			min-inline-size: var(--db-drawer-min-width, auto);
 
-			&[data-direction="right"] {
-				border-inline-start: component.$component-border;
-			}
-
 			&:not([data-direction]),
 			&[data-direction="left"] {
 				border-inline-end: component.$component-border;
+			}
+
+			&[data-direction="right"] {
+				border-inline-start: component.$component-border;
 			}
 
 			&[data-direction="up"] {
