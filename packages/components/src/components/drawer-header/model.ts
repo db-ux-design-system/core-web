@@ -1,14 +1,13 @@
-import  {
-	ClickEventProps,
-	ClickEventState, EndSlotProps,
+import {
+	EndSlotProps,
 	GlobalProps,
 	GlobalState,
-	InnerCloseButtonProps, StartSlotProps,
+	InnerCloseButtonProps,
+	StartSlotProps,
 	TextProps
 } from '../../shared/model';
 
-export type DBDrawerHeaderDefaultProps = {
-}
+export type DBDrawerHeaderDefaultProps = {};
 
 export type DBDrawerHeaderProps = DBDrawerHeaderDefaultProps &
 	InnerCloseButtonProps &
@@ -17,7 +16,6 @@ export type DBDrawerHeaderProps = DBDrawerHeaderDefaultProps &
 	StartSlotProps &
 	EndSlotProps;
 
-export type DBDrawerHeaderDefaultState = {}
+export type DBDrawerHeaderDefaultState = {};
 
-export type DBDrawerHeaderState = DBDrawerHeaderDefaultState &
-	GlobalState;
+export type DBDrawerHeaderState = DBDrawerHeaderDefaultState & GlobalState;
