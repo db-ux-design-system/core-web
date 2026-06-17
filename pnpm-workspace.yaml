@@ -65,14 +65,26 @@ minimumReleaseAgeExclude:
   - ip-address@10.1.1
   - webpack-dev-server@5.2.4
   - svelte@5.55.7
+  - esbuild@0.28.1
+  - form-data@4.0.6
+  - vite@7.3.5
+  - js-yaml@4.1.2
+  - "@babel/core@7.29.1"
+  - markdown-it@14.1.2
 
 overrides:
+  "@babel/core@<=7.29.0": ^7.29.1
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   brace-expansion@>=5.0.0 <5.0.6: ^5.0.6
+  esbuild@>=0.17.0 <0.28.1: ^0.28.1
+  esbuild@>=0.27.3 <0.28.1: ^0.28.1
   file-type@>=13.0.0 <21.3.1: ^21.3.1
+  form-data@>=4.0.0 <4.0.6: ^4.0.6
   got@<11.8.5: ^11.8.5
   hono@<4.12.21: ^4.12.21
   ip-address@<=10.1.0: ^10.1.1
+  js-yaml@<=4.1.1: ^4.1.2
+  markdown-it@<=14.1.1: ^14.1.2
   marked@<4.0.10: ^4.0.10
   picomatch@>=4.0.0 <4.0.4: ^4.0.4
   postcss@<8.5.10: ^8.5.10
@@ -84,6 +96,7 @@ overrides:
   svelte@<=5.53.4: ^5.53.5
   svelte@<=5.55.6: ^5.55.7
   uuid@<11.1.1: ^11.1.1
+  vite@>=7.0.0 <=7.3.4: ^7.3.5
   webpack-dev-server@<=5.2.3: ^5.2.4
 
 saveExact: true
