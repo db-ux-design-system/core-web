@@ -608,20 +608,27 @@ export default function DBTabs(props: DBTabsProps) {
 						Array.from(mutation.removedNodes).some(isTabNode)
 				);
 
-				if (!hasTabChange) return;
+				const hasContentChange = mutations.some(
+					(mutation) => mutation.type === 'characterData'
+				);
+
+				if (!hasTabChange && !hasContentChange) return;
 
 				const rafId = state._pendingRafId;
 				if (rafId !== null) cancelAnimationFrame(rafId);
 				state._pendingRafId = requestAnimationFrame(() => {
 					state._pendingRafId = null;
 					state.initTabList();
-					state.initTabs();
+					if (hasTabChange) {
+						state.initTabs();
+					}
 				});
 			});
 
 			observer.observe(_ref, {
 				childList: true,
-				subtree: true
+				subtree: true,
+				characterData: true
 			});
 
 			state._observer = observer;
