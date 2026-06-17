@@ -109,16 +109,14 @@ export default function DBTabs(props: DBTabsProps) {
 			const requestedIndex =
 				activeIndex !== undefined ? activeIndex : state._activeIndex;
 
-			// Resolve the index to a valid, enabled tab so we never end up with a
-			// tablist that has no focusable entry point (out-of-range index, or an
-			// index pointing at a disabled tab). -1 (manual mode) is kept as-is.
+			const isEnabled = (button?: HTMLElement) =>
+				!!button &&
+				!(button as HTMLButtonElement).disabled &&
+				button.getAttribute('aria-disabled') !== 'true';
+
+			// Resolve to a valid, enabled tab so the tablist always has a focusable entry point; -1 (manual mode) is kept as-is.
 			let currentIndex = requestedIndex;
 			if (currentIndex !== -1 && buttons.length > 0) {
-				const isEnabled = (button?: HTMLElement) =>
-					!!button &&
-					!(button as HTMLButtonElement).disabled &&
-					button.getAttribute('aria-disabled') !== 'true';
-
 				if (
 					currentIndex < 0 ||
 					currentIndex >= buttons.length ||
@@ -131,13 +129,17 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 
+			// In manual mode (-1) the roving tabindex still lands on the first enabled tab, so a disabled first tab doesn't block keyboard entry.
+			const rovingIndex =
+				currentIndex === -1
+					? buttons.findIndex((button: HTMLElement) =>
+							isEnabled(button)
+						)
+					: currentIndex;
+
 			buttons.forEach((button: HTMLElement, index: number) => {
 				const isSelected = currentIndex === index;
-				const tabIndex =
-					currentIndex === index ||
-					(currentIndex === -1 && index === 0)
-						? 0
-						: -1;
+				const tabIndex = rovingIndex === index ? 0 : -1;
 				button.setAttribute('aria-selected', String(isSelected));
 				button.setAttribute('tabindex', String(tabIndex));
 			});
