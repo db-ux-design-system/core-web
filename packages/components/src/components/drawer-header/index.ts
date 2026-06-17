@@ -1,1 +1,1 @@
-export { default as DBDrawerHeader } from "./drawer-header";
+export { default as DBDrawerHeader } from './drawer-header';
