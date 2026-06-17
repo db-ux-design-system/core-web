@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-Fix navigation item so screen readers announce submenu expansion on hover and focus.
+fix: navigation item so screen readers announce submenu expansion on hover and focus.
