@@ -1,1 +1,1 @@
-export { default as DBDrawerFooter } from "./drawer-footer";
+export { default as DBDrawerFooter } from './drawer-footer';
