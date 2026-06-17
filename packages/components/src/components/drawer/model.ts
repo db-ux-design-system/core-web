@@ -6,8 +6,6 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	InnerCloseButtonProps,
-	SpacingProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -49,12 +47,12 @@ export type DBDrawerDefaultProps = {
 	/**
 	 * Slot for changing the header of the drawer.
 	 */
-	drawerHeader?: any;
+	header?: any;
 
 	/**
-	 * Text for changing the header of the drawer.
+	 * Slot for changing the footer of the drawer.
 	 */
-	drawerHeaderPlain?: string;
+	footer?: any;
 
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
@@ -84,9 +82,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 		| GeneralKeyboardEvent<HTMLDialogElement>
 	> &
-	InnerCloseButtonProps &
-	WidthProps &
-	SpacingProps;
+	WidthProps;
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;

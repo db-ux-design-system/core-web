@@ -16,7 +16,6 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 	display: flex;
 	flex-direction: column;
 	z-index: 70;
-	inset-inline-start: 0;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	visibility: hidden;
 	max-block-size: 100vh;
@@ -41,8 +40,13 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		padding: variables.$db-spacing-fixed-md;
 		border: 0;
 		inline-size: 100%;
+		max-inline-size: var(
+			--db-drawer-max-width,
+			calc(100% - #{variables.$db-spacing-fixed-xl})
+		);
 		position: fixed;
 		overflow: hidden auto;
+		inset-inline-end: 0;
 		inset-block: calc(#{component.$min-mobile-header-height})
 			calc(
 				#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} *
@@ -52,6 +56,7 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 
 	// Desktop
 	@include screen-sizes.screen("md") {
+		inset-inline-start: 0;
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;

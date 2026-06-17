@@ -9,6 +9,8 @@ import { DEFAULT_BURGER_MENU } from '../../shared/constants';
 import { cls } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
+import DBDrawerFooter from '../drawer-footer/drawer-footer.lite';
+import DBDrawerHeader from '../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer/drawer.lite';
 import { DBControlPanelMobileProps, DBControlPanelMobileState } from './model';
 
@@ -51,20 +53,26 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			data-variant={props.variant}
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
+
 			<DBDrawer
-				drawerHeaderPlain={props.drawerHeadlinePlain}
+				header={
+					<DBDrawerHeader>{props.drawerHeaderText}</DBDrawerHeader>
+				}
 				direction="custom"
 				rounded
-				spacing="small"
 				open={state.open}
-				onClose={(event) => state.handleToggle(event)}>
+				onClose={(event) => state.handleToggle(event)}
+				footer={
+					<DBDrawerFooter>
+						<Slot name="secondaryActions" />
+					</DBDrawerFooter>
+				}>
 				<div
 					onClick={(event) => state.handleNavigationItemClick(event)}
 					class="db-control-panel-mobile-drawer-scroll-container">
 					{props.children}
 					<Slot name="metaNavigation" />
 				</div>
-				<Slot name="secondaryActions" />
 			</DBDrawer>
 			<Slot name="flatIconNavigation" />
 			<Slot name="brand" />

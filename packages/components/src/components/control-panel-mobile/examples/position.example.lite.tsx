@@ -17,7 +17,7 @@ export default function ControlPanelMobilePosition() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="top"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
@@ -36,7 +36,7 @@ export default function ControlPanelMobilePosition() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({

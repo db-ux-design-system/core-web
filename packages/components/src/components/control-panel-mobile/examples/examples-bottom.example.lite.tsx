@@ -31,7 +31,7 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
@@ -53,14 +53,14 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 				/>
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<DBControlPanelPrimaryActions>
@@ -99,7 +99,7 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<DBControlPanelPrimaryActions>
@@ -116,7 +116,7 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					secondaryActions={
 						<DBControlPanelSecondaryActions>
@@ -145,7 +145,7 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					metaNavigation={
 						<DBControlPanelMetaNavigation>
@@ -158,7 +158,7 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand />}>
 					<DBNavigation
 						{...useTarget({
@@ -178,7 +178,7 @@ export default function ControlPanelMobileExamplesBottom() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBControlPanelMobile
 					position="bottom"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand />}
 				/>
 			</div>

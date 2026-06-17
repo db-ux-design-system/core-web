@@ -38,9 +38,9 @@
 		}
 	}
 
-	.db-drawer {
+	.db-control-panel-mobile-drawer {
 		> .db-drawer-container {
-			@extend %direction-right;
+			@extend %direction-left;
 
 			border-inline-start: component.$component-border;
 		}
@@ -66,11 +66,23 @@
 %control-panel-mobile-position-bottom {
 	border-block-start: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template-areas: "brand drawer-button primary";
+	grid-template-columns:
+		minmax(#{variables.$db-sizing-md}, min-content)
+		1fr minmax(#{variables.$db-sizing-md}, min-content);
+	justify-content: space-evenly;
 
 	.db-control-panel-brand {
-		font-size: 0;
-		gap: 0;
-		place-self: center;
+		inline-size: variables.$db-sizing-md;
+		overflow: hidden;
+
+		&::before {
+			aspect-ratio: var(
+				--db-logo-aspect-ratio-short,
+				var(--db-logo-aspect-ratio)
+			);
+			background-image: var(--db-logo-url-short, var(--db-logo-url));
+		}
 	}
 
 	> db-button > .db-control-panel-mobile-button,
@@ -78,7 +90,7 @@
 		place-self: center;
 	}
 
-	.db-drawer {
+	.db-drawer[data-direction="custom"] {
 		> .db-drawer-container {
 			@extend %direction-up;
 
@@ -99,32 +111,6 @@
 					}
 				}
 			}
-		}
-	}
-
-	&:not([data-variant="flat-icon"]) {
-		grid-template-areas: "brand drawer-button primary";
-		grid-template-columns: min-content 1fr minmax(
-				#{variables.$db-sizing-md},
-				min-content
-			);
-		justify-content: space-evenly;
-	}
-
-	// Flat icon variant
-	&[data-variant="flat-icon"] {
-		.db-drawer,
-		.db-control-panel-brand,
-		.db-control-panel-primary-actions,
-		.db-control-panel-secondary-actions,
-		.db-control-panel-mobile-button,
-		.overflow-scroll-right-button,
-		.overflow-scroll-left-button {
-			display: none;
-		}
-
-		.db-control-panel-flat-icon-navigation {
-			display: initial;
 		}
 	}
 }

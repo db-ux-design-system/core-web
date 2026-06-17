@@ -3,6 +3,7 @@ import {
 	DBControlPanelPrimaryActions,
 	DBDivider,
 	DBDrawer,
+	DBDrawerHeader,
 	DBSelect,
 	DBTooltip,
 	DENSITIES,
@@ -36,7 +37,7 @@ const PrimaryActions = ({
 	return (
 		<DBControlPanelPrimaryActions>
 			<DBDrawer
-				drawerHeaderPlain="Settings"
+				header={<DBDrawerHeader>Settings</DBDrawerHeader>}
 				open={open}
 				onClose={() => {
 					setOpen(false);

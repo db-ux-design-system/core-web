@@ -18,7 +18,7 @@ export default function ControlPanelMobileDensity() {
 				<DBControlPanelMobile
 					data-density="functional"
 					position="top"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
@@ -38,7 +38,7 @@ export default function ControlPanelMobileDensity() {
 				<DBControlPanelMobile
 					data-density="regular"
 					position="top"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
@@ -58,7 +58,7 @@ export default function ControlPanelMobileDensity() {
 				<DBControlPanelMobile
 					data-density="expressive"
 					position="top"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({

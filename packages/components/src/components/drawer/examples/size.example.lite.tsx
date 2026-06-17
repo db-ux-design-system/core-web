@@ -1,5 +1,6 @@
 import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
@@ -25,7 +26,8 @@ export default function DrawerSize() {
 				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={<DBDrawerHeader>(Default) Medium</DBDrawerHeader>}>
 					(Default) Medium
 				</DBDrawer>
 			</div>
@@ -38,7 +40,8 @@ export default function DrawerSize() {
 				<DBDrawer
 					width="full"
 					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={<DBDrawerHeader>Full</DBDrawerHeader>}>
 					Full
 				</DBDrawer>
 			</div>

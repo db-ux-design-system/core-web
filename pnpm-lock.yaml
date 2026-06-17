@@ -17284,7 +17284,7 @@ packages:
   workbox-google-analytics@7.4.1:
     resolution: {integrity: sha512-Mks1JwLEt++ZAkF6sS1OpSh9RtAMIsiDgRpK+codiHGIPXeaUOgi4cPc3GFadUl8V5QPeypEk8Oxgl3HlwVzHw==}
 
-  workbox-navigation-preload@7.4.1:
+  workbox-control-panel-controlpanelnavigation-preload@7.4.1:
     resolution: {integrity: sha512-C4KVsjPcYKJOhr631AxR9XoG2rLF3QiTk5aMv36MXOjtWvm8axwNFAtKUPGsWUwLXXAMgYM1En7fsvndaXeXRQ==}
 
   workbox-precaching@7.4.1:
@@ -37649,7 +37649,7 @@ snapshots:
       workbox-core: 7.4.1
       workbox-expiration: 7.4.1
       workbox-google-analytics: 7.4.1
-      workbox-navigation-preload: 7.4.1
+      workbox-control-panel-controlpanelnavigation-preload: 7.4.1
       workbox-precaching: 7.4.1
       workbox-range-requests: 7.4.1
       workbox-recipes: 7.4.1
@@ -37680,7 +37680,7 @@ snapshots:
       workbox-routing: 7.4.1
       workbox-strategies: 7.4.1
 
-  workbox-navigation-preload@7.4.1:
+  workbox-control-panel-controlpanelnavigation-preload@7.4.1:
     dependencies:
       workbox-core: 7.4.1
 

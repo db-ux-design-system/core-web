@@ -28,6 +28,14 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+  {
+    name: "drawer-footer"
+  },
+
+  {
+    name: "drawer-header"
+  },
+
 	{
 		name: 'shell-content'
 	},

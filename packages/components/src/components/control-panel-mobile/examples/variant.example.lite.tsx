@@ -19,7 +19,7 @@ export default function ControlPanelMobileVariant() {
 				<DBControlPanelMobile
 					variant="drawer"
 					position="top"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}>
 					<DBNavigation
 						{...useTarget({
@@ -40,7 +40,7 @@ export default function ControlPanelMobileVariant() {
 				<DBControlPanelMobile
 					position="bottom"
 					variant="flat-icon"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					flatIconNavigation={
 						<DBControlPanelFlatIconNavigation>
@@ -64,7 +64,7 @@ export default function ControlPanelMobileVariant() {
 				<DBControlPanelMobile
 					position="bottom"
 					variant="flat-icon"
-					drawerHeadlinePlain="DBControlPanel"
+					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					flatIconNavigation={
 						<DBControlPanelFlatIconNavigation noText>

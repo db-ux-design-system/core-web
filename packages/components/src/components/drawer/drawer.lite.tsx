@@ -1,14 +1,12 @@
 import {
 	onMount,
 	onUpdate,
-	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
@@ -17,7 +15,6 @@ import {
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
-import DBButton from '../button/button.lite';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -56,11 +53,15 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 
-				if (
+				const isBackdrop =
 					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
-					props.backdrop !== 'none'
-				) {
+					props.backdrop !== 'none';
+				const isCloseButton =
+					(event.target as any)?.nodeName === 'BUTTON' &&
+					(event.target as any)?.dataset?.action === 'close';
+
+				if (isBackdrop || isCloseButton) {
 					if (props.onClose) {
 						props.onClose(event);
 					}
@@ -140,30 +141,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
-				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
 				data-rounded={getBooleanAsString(props.rounded, 'rounded')}>
-				<header class="db-drawer-header">
-					<div class="db-drawer-header-text">
-						<Show
-							when={props.drawerHeaderPlain}
-							else={<Slot name="drawerHeader" />}>
-							{props.drawerHeaderPlain}
-						</Show>
-					</div>
-					<DBButton
-						class="button-close-drawer"
-						id={props.closeButtonId}
-						icon="cross"
-						variant="ghost"
-						type="button"
-						noText
-						onClick={(event) => state.handleClose(event, true)}>
-						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-					</DBButton>
-				</header>
+				<Slot name="header" />
 				<div class="db-drawer-content">{props.children}</div>
+				<Slot name="footer" />
 			</article>
 		</dialog>
 	);

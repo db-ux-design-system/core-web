@@ -57,7 +57,7 @@
 		}
 	}
 
-	.db-drawer {
+	.db-drawer[data-direction="custom"] {
 		--db-drawer-content-padding-inline: 0;
 		--db-drawer-max-width: #{variables.$db-container-xs};
 		--db-drawer-max-height: 63vh;
@@ -66,22 +66,9 @@
 
 		> .db-drawer-container {
 			> .db-drawer-content {
-				display: flex;
-				flex-direction: column;
-				block-size: 100%;
-
-				.db-control-panel-secondary-actions {
-					flex-shrink: 0;
-					padding-inline: variables.$db-spacing-fixed-md;
-					padding-block-start: variables.$db-spacing-fixed-xs;
-
-					@include helpers.divider("top");
-				}
-
 				.db-control-panel-mobile-drawer-scroll-container {
 					display: flex;
 					flex-direction: column;
-					overflow-y: auto;
 					block-size: 100%;
 
 					.db-control-panel-meta-navigation {

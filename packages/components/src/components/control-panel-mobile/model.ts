@@ -17,7 +17,7 @@ export type DBControlPanelMobileDefaultProps = {
 	/**
 	 * Text to pass in a headline for the drawer header.
 	 */
-	drawerHeadlinePlain?: string;
+	drawerHeaderText?: string;
 
 	/**
 	 * This attribute sets the label for the burger menu button for mobile control-panel-desktops.
