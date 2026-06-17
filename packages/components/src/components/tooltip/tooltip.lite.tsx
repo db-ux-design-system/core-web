@@ -32,6 +32,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
 		_attachedParent: undefined,
+		_attachedId: undefined,
 		_activeTriggerCount: 0,
 		_boundListeners: [],
 		handleClick: (event: ClickEvent<HTMLElement>) => {
@@ -138,6 +139,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			// they still belong to this tooltip (avoid clobbering another one).
 			const parent = state._attachedParent;
 			if (parent) {
+				const attachedId = state._attachedId ?? state._id;
 				// Only remove data-has-tooltip when no other .db-tooltip
 				// siblings remain inside the same parent.
 				const remainingTooltips =
@@ -151,13 +153,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 				) {
 					delete parent.dataset['hasTooltip'];
 				}
-				if (parent.getAttribute('aria-labelledby') === state._id) {
+				if (parent.getAttribute('aria-labelledby') === attachedId) {
 					parent.removeAttribute('aria-labelledby');
 				}
-				if (parent.getAttribute('aria-describedby') === state._id) {
+				if (parent.getAttribute('aria-describedby') === attachedId) {
 					parent.removeAttribute('aria-describedby');
 				}
 				state._attachedParent = undefined;
+				state._attachedId = undefined;
 			}
 		}
 	});
@@ -208,6 +211,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				}
 
 				state._attachedParent = parent;
+				state._attachedId = state._id;
 			}
 
 			if (
