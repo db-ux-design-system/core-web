@@ -221,8 +221,8 @@ export default function DBTabs(props: DBTabsProps) {
 			if (nextIndex !== undefined) {
 				event.preventDefault();
 
-				// Skip disabled tabs when navigating with arrow keys
-				const isForward = key === nextKey;
+				// Skip disabled tabs; nextKey/Home search forward, prevKey/End search backward.
+				const isForward = key === nextKey || key === 'Home';
 				for (let i = 0; i < length; i++) {
 					const candidate = buttons[nextIndex] as HTMLButtonElement;
 					if (
