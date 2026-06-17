@@ -10,7 +10,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
@@ -46,7 +46,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			if (props.open === undefined) {
+				state._open = newStateOpen;
+			}
 		}
 	});
 
@@ -70,6 +72,13 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		}
 	}, [props.name]);
 
+	onUpdate(() => {
+		const nextOpen = getBoolean(props.open, 'open');
+		if (nextOpen !== undefined) {
+			state._open = nextOpen;
+		}
+	}, [props.open]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -77,7 +86,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-accordion-item', props.className)}>
 			<details
-				aria-disabled={getBooleanAsString(props.disabled)}
+				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 				ref={_ref}
 				name={state._name}
 				open={state._open}>

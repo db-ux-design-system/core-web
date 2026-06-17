@@ -32,9 +32,9 @@
 
 		@media (prefers-reduced-motion: no-preference) {
 			transition:
-				height variables.$db-transition-duration-fast
+				block-size variables.$db-transition-duration-fast
 					variables.$db-transition-timing-emotional,
-				width variables.$db-transition-duration-fast
+				inline-size variables.$db-transition-duration-fast
 					variables.$db-transition-timing-emotional;
 		}
 	}

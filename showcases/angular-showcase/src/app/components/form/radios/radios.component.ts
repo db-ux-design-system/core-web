@@ -1,19 +1,13 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBRadio } from '../../../../../../../output/angular/src';
-import { environment } from '../../../../environments/environment';
+import { DBRadio } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-radios',
 	standalone: true,
-	imports: [
-		environment.webComponents
-			? [WrapperComponent, FormsModule, ReactiveFormsModule]
-			: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule]
-	],
-	templateUrl: './radios.component.html',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	imports: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule],
+	templateUrl: './radios.component.html'
 })
 export class RadiosComponent {
 	plain = '';
