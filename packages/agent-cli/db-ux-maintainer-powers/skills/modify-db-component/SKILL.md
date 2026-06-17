@@ -183,7 +183,7 @@ Showcase files in `showcases/` are generated from these and must not be edited m
     ```bash
     pnpm changeset
     ```
-    Select `@db-ux/core-components` and all framework output packages.
+    Select `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all JavaScript framework output packages.
     Bump type:
     - `patch` for bug fixes.
     - `minor` for new features (new variant, new prop).
