@@ -1,27 +1,20 @@
 import type { ReplaceInFileConfig } from 'replace-in-file';
 
 /*
- * Only unambiguous, tabs-specific replacements are included here.
- * The bare `alignment` / `width` DBTabs prop renames are intentionally NOT
- * auto-replaced because those words are far too common across a codebase and
- * would cause many false positives. Consumers should rename those props
- * (`alignment` -> `tabItemAlignment`, `width` -> `tabItemWidth`) manually as
- * described in the migration guide.
+ * Only the unambiguous, tabs-specific `onTabSelect` -> `onIndexChange` event
+ * rename is auto-replaced here.
+ *
+ * The `alignment` / `width` DBTabs prop renames are intentionally NOT
+ * auto-replaced: in JS/JSX usage they are passed as `tabItemAlignment` /
+ * `tabItemWidth`, while the bare `data-alignment` / `data-width` attributes
+ * only appear in raw HTML output. A global replace of those generic
+ * `data-*` attributes would corrupt unrelated usages in consumer code, so
+ * those renames must be done manually as described in the migration guide.
  */
 export const v400_v500: ReplaceInFileConfig[] = [
 	{
 		files: '',
 		from: /onTabSelect/g,
 		to: 'onIndexChange'
-	},
-	{
-		files: '',
-		from: /data-alignment/g,
-		to: 'data-tab-item-alignment'
-	},
-	{
-		files: '',
-		from: /data-width/g,
-		to: 'data-tab-item-width'
 	}
 ];
