@@ -138,7 +138,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 			// they still belong to this tooltip (avoid clobbering another one).
 			const parent = state._attachedParent;
 			if (parent) {
-				if (parent.dataset['hasTooltip'] === 'true') {
+				// Only remove data-has-tooltip when no other .db-tooltip
+				// siblings remain inside the same parent.
+				const remainingTooltips =
+					parent.querySelectorAll('.db-tooltip');
+				const otherTooltipsExist = Array.from(remainingTooltips).some(
+					(el) => el !== _ref
+				);
+				if (
+					parent.dataset['hasTooltip'] === 'true' &&
+					!otherTooltipsExist
+				) {
 					delete parent.dataset['hasTooltip'];
 				}
 				if (parent.getAttribute('aria-labelledby') === state._id) {
