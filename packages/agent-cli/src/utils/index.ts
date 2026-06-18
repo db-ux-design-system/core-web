@@ -50,16 +50,17 @@ export const getInstructions = (rootPath: string): string => {
 	// Find the agent-cli package in node_modules to resolve consumer-powers path
 	let powersPath = '';
 	for (const nodeModulesPath of nodeModulesDirectories) {
-		const agentCliPowersPath = path.join(
+		const agentCliPowersPath = join(
 			nodeModulesPath,
 			'@db-ux',
 			'agent-cli',
 			'db-ux-consumer-powers'
 		);
-		if (fs.existsSync(agentCliPowersPath)) {
-			powersPath = path
-				.relative(rootPath, agentCliPowersPath)
-				.replaceAll('\\', '/');
+		if (existsSync(agentCliPowersPath)) {
+			powersPath = relative(rootPath, agentCliPowersPath).replaceAll(
+				'\\',
+				'/'
+			);
 			break;
 		}
 	}
@@ -67,14 +68,13 @@ export const getInstructions = (rootPath: string): string => {
 	// Fallback: when the CLI runs via npx (cached, not installed in the project),
 	// the powers directory is co-located with the executing package itself.
 	if (!powersPath) {
-		const packageDir = path.dirname(
-			path.dirname(new URL(import.meta.url).pathname)
-		);
-		const localPowersPath = path.join(packageDir, 'db-ux-consumer-powers');
-		if (fs.existsSync(localPowersPath)) {
-			powersPath = path
-				.relative(rootPath, localPowersPath)
-				.replaceAll('\\', '/');
+		const packageDir = dirname(dirname(new URL(import.meta.url).pathname));
+		const localPowersPath = join(packageDir, 'db-ux-consumer-powers');
+		if (existsSync(localPowersPath)) {
+			powersPath = relative(rootPath, localPowersPath).replaceAll(
+				'\\',
+				'/'
+			);
 		}
 	}
 

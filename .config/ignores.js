@@ -21,6 +21,7 @@ const ignoreFolders = [
 	'figma-code-connect',
 	'playwright-report/**/*',
 	'storybooks/**/.storybook/**/*',
+	'storybooks/**/vite.config.ts',
 	'**/vitest.config.ts'
 ];
 
