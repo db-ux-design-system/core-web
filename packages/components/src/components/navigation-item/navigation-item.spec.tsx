@@ -77,6 +77,12 @@ const testComponent = () => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		await mount(nestedSubNavigationComp);
 
+		const drawerContainer = page.locator('.db-drawer-container');
+		await expect(drawerContainer).toHaveAttribute(
+			'data-transition',
+			'open'
+		);
+
 		const navigationItemButton = page.getByRole('button', {
 			name: 'Navi-Item 1'
 		});
@@ -96,11 +102,6 @@ const testComponent = () => {
 			'true'
 		);
 
-		const drawerContainer = page.locator('.db-drawer-container');
-		await expect(drawerContainer).toHaveAttribute(
-			'data-transition',
-			'open'
-		);
 		await expect(drawerContainer).toHaveScreenshot();
 	});
 };
