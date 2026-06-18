@@ -1,7 +1,12 @@
-moz
-webkit
+# (User)names
+mfranzke
+michaelmkraus
+nmerget
 merget
 franzke
+# further words
+moz
+webkit
 cicd
 Patternhub
 Textlink
@@ -142,6 +147,7 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+rowspan
 TSES
 trufflesecurity
 elif
@@ -198,8 +204,20 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
-# Usernames
-mfranzke
-michaelmkraus
-nmerget
+subcomponent
+worktree
+unpushed
+refspec
+PRRT
+triaging
+automations
+Untriaged
+untriaged
+fbca
+unreviewed
+notext
+prebundle

@@ -14,3 +14,10 @@ packages/foundations/scripts/generate-icon-fonts/styles/**
 **/__snapshots__
 showcases/nuxt-showcase/.nuxt
 showcases/patternhub/.next
+storybooks/**/src/components/**
+showcases/patternhub/pages/components/**
+showcases/patternhub/generated.js
+showcases/patternhub/testing-table.ts
+packages/mcp-server/assets/**
+package-lock.json
+*.d.ts

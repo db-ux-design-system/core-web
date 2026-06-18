@@ -10,13 +10,6 @@
 	outline-offset: variables.$db-border-width-xs;
 	box-shadow: 0 0 0 #{variables.$db-border-width-xs}
 		var(--db-focus-box-shadow-bg-color, transparent);
-
-	@media (prefers-reduced-motion: no-preference) {
-		// stylelint-disable-next-line no-invalid-position-declaration
-		transition:
-			outline #{variables.$db-transition-duration-extra-fast},
-			box-shadow #{variables.$db-transition-duration-extra-fast};
-	}
 }
 
 %focus-placeholder {

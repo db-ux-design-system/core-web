@@ -1,5 +1,45 @@
 # @db-ux/react-core-components
 
+## 4.11.1
+
+### Patch Changes
+
+- fix: remove `readonly` attribute on `DBInput` and `DBTextarea` when `readOnly`/`readonly` is `false` - [see commit 312ad4c](https://github.com/db-ux-design-system/core-web/commit/312ad4c7582b7315042b23a7cc8b485889ba6fd8):
+
+    - Passing `readOnly={false}` (e.g. via Angular's `formField` directive) previously rendered `readonly="false"` into the DOM. Since `readonly` is a boolean HTML attribute, its mere presence made the field read-only. The binding now resolves to `undefined` when not read-only, so the attribute is omitted entirely.
+
+- fix(tooltip): clean up parent listeners and observers on unmount - [see commit b050660](https://github.com/db-ux-design-system/core-web/commit/b050660b3b8cc9f0fde2a9d96dfbd6c0f02cc24f)
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+### Patch Changes
+
+- fix: Add missing `propertyName` parameter to all `getBooleanAsString` calls across components for consistent string-based boolean parsing. - [see commit 6c11be5](https://github.com/db-ux-design-system/core-web/commit/6c11be54397c425607103f44b987b752efffb6d5)
+
+- fix: Remove unwanted whitespace characters from rendered output to prevent layout shifts - [see commit a0f23a4](https://github.com/db-ux-design-system/core-web/commit/a0f23a4a3e715414de3d045b59b88dc3ac28d5e7)
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+### Minor Changes
+
+- feat(`DBAccordionItem`): add `open` prop to control the expanded state of an accordion item programmatically. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
+
+- refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
+
 ## 4.9.1
 
 ### Patch Changes
@@ -206,8 +246,7 @@ _version bump_
 - fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
-
-                          - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+    - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 
