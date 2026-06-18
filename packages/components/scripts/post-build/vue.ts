@@ -24,12 +24,6 @@ export default (tmp?: boolean) => {
 				to: `vue`
 			});
 
-			replaceInFileSync({
-				files: `../../${outputFolder}/vue/src/components/${componentName}/index.ts`,
-				from: `./${componentName}`,
-				to: `./${componentName}.vue`
-			});
-
 			const replacements: Overwrite[] = [
 				{
 					from: /immediate: true/g,
