@@ -646,6 +646,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							.includes(filterText.toLowerCase())
 				);
 			}
+
+			if (detailsRef?.open) {
+				state.handleAutoPlacement();
+			}
 		},
 		handleClearAll: (event: any) => {
 			event.stopPropagation();
