@@ -94,6 +94,14 @@ export type DBTabsEventProps = {
 	 * if the tab item has no `value` prop set.
 	 * Use this for form binding (e.g. Angular FormControl, React controlled state).
 	 */
+	valueChange?: (value?: string) => void;
+
+	/**
+	 * Fires when the active tab changes and a `value` prop is set on the tab items.
+	 * Payload is the `value` string of the newly active tab item, or undefined
+	 * if the tab item has no `value` prop set.
+	 * Use this for form binding (e.g. Angular FormControl, React controlled state).
+	 */
 	onValueChange?: (value?: string) => void;
 };
 
