@@ -1,5 +1,20 @@
 # @db-ux/react-core-components
 
+## 4.12.0
+
+### Minor Changes
+
+- feat: emit spec-compliant ESM with explicit import extensions - [see commit 73808d6](https://github.com/db-ux-design-system/core-web/commit/73808d6ec80085451d72e5ad73eb154198a60558):
+
+    - The generated React, Vue and Web Component outputs now produce standards-compliant
+    - ESM: every relative import/export carries an explicit `.js` / `/index.js` (or `.vue`)
+    - extension, added during Mitosis generation. This resolves `ERR_UNSUPPORTED_DIR_IMPORT`
+    - in strict ESM environments such as Node.js native ESM and Vitest 4.
+    - The React output additionally compiles with `module`/`moduleResolution: "node16"`
+    - (plus `jsx: "react-jsx"` and `target: "es2022"`), so missing extensions are caught at
+    - compile time. As a result the emitted React JS uses the `react/jsx-runtime` transform
+    - and es2022 syntax (React 19 compatible).
+
 ## 4.11.1
 
 ### Patch Changes
