@@ -27,6 +27,7 @@ export default defineConfig({
 		'**/results/**',
 		'./showcases/screen-reader/translations.ts',
 		'storybooks/_storybook/src/welcome.mdx',
+		'storybooks/**/*.ts',
 		'playwright-report/**',
 		'showcases/shared/*.json',
 		'**/*.example.lite.tsx',
