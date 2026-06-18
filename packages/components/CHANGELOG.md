@@ -1,5 +1,15 @@
 # @db-ux/core-components
 
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+### Patch Changes
+
+- fix: transition logical inline-size/block-size instead of physical width/height in DB Puls animation - [see commit 4445d59](https://github.com/db-ux-design-system/core-web/commit/4445d599ff3e1352f6ee1a1868ace803d3a70518)
+
 ## 4.11.0
 
 ### Minor Changes
