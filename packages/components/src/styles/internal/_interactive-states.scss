@@ -1,0 +1,17 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+/// Generates not-disabled > hover/active background-color states.
+/// @param {String} $bg-hovered - The hovered background color token.
+/// @param {String} $bg-pressed - The pressed background color token.
+@mixin interactive-bg($bg-hovered, $bg-pressed) {
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: $bg-hovered;
+		}
+
+		@include helpers.active {
+			background-color: $bg-pressed;
+		}
+	}
+}

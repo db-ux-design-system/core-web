@@ -77,13 +77,13 @@ export const resolveVars = (
 			const resolvedValue = resolveVars(resolved, varMap, childSeen);
 			result = result.slice(0, start) + resolvedValue + result.slice(end);
 			searchFrom = start + resolvedValue.length;
-		} else if (fallback) {
+		} else if (fallback === undefined) {
+			searchFrom = end;
+		} else {
 			const resolvedFallback = resolveVars(fallback, varMap, seen);
 			const replacement = `var(${name}, ${resolvedFallback})`;
 			result = result.slice(0, start) + replacement + result.slice(end);
 			searchFrom = start + replacement.length;
-		} else {
-			searchFrom = end;
 		}
 	}
 
@@ -149,14 +149,14 @@ const resolveCssFunction = (
 		}
 
 		const evaluated = evaluate(found.inner);
-		if (evaluated) {
+		if (evaluated === undefined) {
+			searchFrom = found.end;
+		} else {
 			result =
 				result.slice(0, found.start) +
 				evaluated +
 				result.slice(found.end);
 			searchFrom = found.start + evaluated.length;
-		} else {
-			searchFrom = found.end;
 		}
 	}
 
