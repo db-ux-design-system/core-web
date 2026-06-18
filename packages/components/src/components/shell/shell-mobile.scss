@@ -66,6 +66,25 @@
 
 		&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
 		&[data-control-panel-mobile-position="bottom"] {
+			// Override popover bottom mobile navigation, second level
+			.db-control-panel-navigation[data-variant="popover"] {
+				.db-control-panel-navigation-item-group-menu {
+					max-inline-size: 100%;
+
+					/*
+						We use the drawer-max-height defined in packages/components/src/components/control-panel-mobile/control-panel-mobile.scss
+						to get the inverted height plus the size of the drawer header
+						*/
+					inset-block-start: calc(
+						100lvh - var(--db-drawer-max-height) +
+							(
+								#{variables.$db-sizing-md} + 2 *
+									#{variables.$db-spacing-fixed-xs}
+							)
+					);
+				}
+			}
+
 			&:not([data-sub-navigation-mobile-position]),
 			&[data-sub-navigation-mobile-position="bottom"],
 			&[data-sub-navigation-mobile-position="none"] {

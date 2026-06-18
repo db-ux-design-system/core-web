@@ -53,6 +53,8 @@ import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
 import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
@@ -121,7 +123,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		handleDocumentScroll: (event: any) => {
 			if (
 				event?.target?.contains &&
@@ -192,7 +195,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					);
 
 				state.handleAutoPlacement();
-				state._observer?.observe(detailsRef);
+				state._resizeObserverCallbackId =
+					new ResizeObserverListener().observe(
+						document.documentElement,
+						() => state.handleAutoPlacement()
+					);
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						detailsRef,
+						(entry) => {
+							if (!entry.isIntersecting && detailsRef.open) {
+								detailsRef.open = false;
+							}
+						}
+					);
 				if (!event.target.dataset['test']) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
@@ -208,7 +224,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state._documentScrollListenerCallbackId!
 					);
 				}
-				state._observer?.unobserve(detailsRef);
+				if (state._resizeObserverCallbackId) {
+					new ResizeObserverListener().unobserve(
+						state._resizeObserverCallbackId!
+					);
+				}
+				if (state._intersectionObserverCallbackId) {
+					new IntersectionObserverListener().unobserve(
+						state._intersectionObserverCallbackId!
+					);
+				}
 			}
 		},
 		getNativeSelectValue: () => {
@@ -684,18 +709,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onMount(() => {
 		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-			state._observer = new IntersectionObserver((payload) => {
-				if (detailsRef) {
-					const entry = payload.find(
-						({ target }) => target === detailsRef
-					);
-					if (entry && !entry.isIntersecting && detailsRef.open) {
-						detailsRef.open = false;
-					}
-				}
-			});
-		}
 	});
 
 	onUpdate(() => {

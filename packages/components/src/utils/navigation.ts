@@ -237,7 +237,11 @@ export const handleSubNavigationPosition = (
 			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
 				'--db-control-panel-navigation-item-group-menu-mobile'
 			);
-			if (isMobile) return;
+			if (isMobile) {
+				subNavigation.style.insetBlock = '';
+				subNavigation.style.insetInline = '';
+				return;
+			}
 
 			if (level > 0 || subNavigation.dataset['open'] === 'horizontal') {
 				// Sub-Navigation should be opened horizontal

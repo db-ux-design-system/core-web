@@ -17,6 +17,8 @@ import {
 } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBTooltipProps, DBTooltipState } from './model';
 
 useMetadata({});
@@ -29,7 +31,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -76,7 +79,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 				);
 			}
 
-			state._observer?.unobserve(state.getParent());
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+			}
+
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+			}
 		},
 		handleEnter(parent?: HTMLElement): void {
 			state._documentScrollListenerCallbackId =
@@ -84,7 +97,20 @@ export default function DBTooltip(props: DBTooltipProps) {
 					state.handleDocumentScroll(event, parent)
 				);
 			state.handleAutoPlacement(parent);
-			state._observer?.observe(state.getParent());
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(
+					document.documentElement,
+					() => state.handleAutoPlacement(parent)
+				);
+			state._intersectionObserverCallbackId =
+				new IntersectionObserverListener().observe(
+					state.getParent(),
+					(entry) => {
+						if (!entry.isIntersecting) {
+							state.handleEscape(false);
+						}
+					}
+				);
 		},
 		resetIds: () => {
 			state._id =
@@ -126,20 +152,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 				} else {
 					parent.setAttribute('aria-describedby', state._id);
 				}
-			}
-
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
-				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(
-						({ target }) => target === state.getParent()
-					);
-					if (entry && !entry.isIntersecting) {
-						state.handleEscape(false);
-					}
-				});
 			}
 
 			state.initialized = false;

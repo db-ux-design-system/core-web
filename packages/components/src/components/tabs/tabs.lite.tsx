@@ -12,6 +12,7 @@ import {
 } from '@builder.io/mitosis';
 import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
@@ -30,7 +31,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		_resizeObserver: undefined,
+		_resizeObserverCallbackId: undefined,
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -81,13 +82,19 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
-							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
-							if (!state._resizeObserver) {
-								const observer = new ResizeObserver(() => {
-									state.evaluateScrollButtons(container);
-								});
-								observer.observe(container);
-								state._resizeObserver = observer;
+							// Re-evaluate scroll buttons on container resize because it
+							// provides more accurate, container-specific resize
+							// detection than global window resize events.
+							if (!state._resizeObserverCallbackId) {
+								state._resizeObserverCallbackId =
+									new ResizeObserverListener().observe(
+										container,
+										() => {
+											state.evaluateScrollButtons(
+												container
+											);
+										}
+									);
 							}
 						}
 					}
@@ -196,8 +203,12 @@ export default function DBTabs(props: DBTabsProps) {
 	// jscpd:ignore-end
 
 	onUnMount(() => {
-		state._resizeObserver?.disconnect();
-		state._resizeObserver = undefined;
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
 	});
 
 	onUpdate(() => {

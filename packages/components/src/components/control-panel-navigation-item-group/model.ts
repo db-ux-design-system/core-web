@@ -42,6 +42,8 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	isSubNavigationExpanded: boolean;
 	_itemGroupMenuId: string;
+	_intersectionObserverCallbackId?: string;
+	_resizeObserverCallbackId?: string;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button

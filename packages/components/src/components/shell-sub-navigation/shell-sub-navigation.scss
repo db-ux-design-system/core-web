@@ -64,7 +64,7 @@
 
 		.db-control-panel-navigation {
 			max-inline-size: screen-sizes.$db-breakpoint-xs;
-			padding-block: variables.$db-spacing-fixed-md;
+			padding: variables.$db-spacing-fixed-md;
 		}
 
 		&[data-open="false"] {
@@ -108,7 +108,6 @@
 
 			.db-control-panel-navigation {
 				overflow: hidden auto;
-				scrollbar-gutter: stable both-edges;
 
 				@include control-panel-desktop.vertical-navigation(false);
 

@@ -8,13 +8,9 @@ export const StorybookControlPanelNavigationItemArgTypes: Record<
 	disabled: { control: 'boolean' },
 	active: { control: 'boolean' },
 	...StorybookIconArgTypes,
-	width: { control: 'select', options: ['full', 'auto'] },
-	wrap: { control: 'boolean' },
 	text: { control: 'text' },
-	subNavigationExpanded: { control: 'boolean' },
-	backButtonId: { control: 'text' },
-	backButtonText: { control: 'text' },
+	tooltip: { control: 'text' },
+	hideSubNavigation: { control: 'boolean' },
 	id: { control: 'text' },
-	autofocus: { control: 'boolean' },
-	onClick: { action: 'onClick' }
+	autofocus: { control: 'boolean' }
 };

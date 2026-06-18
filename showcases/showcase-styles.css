@@ -66,6 +66,9 @@
 	}
 
 	.db-shell {
+		border: var(--db-border-width-3xs) dashed
+			var(--db-adaptive-on-bg-basic-emphasis-100-default);
+
 		&:is(
 			:not([data-control-panel-desktop-position]),
 			[data-control-panel-desktop-position="top"]

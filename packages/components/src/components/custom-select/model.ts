@@ -268,7 +268,8 @@ export type DBCustomSelectDefaultState = {
 	_documentClickListenerCallbackId?: string;
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any) => void;
-	_observer?: IntersectionObserver;
+	_intersectionObserverCallbackId?: string;
+	_resizeObserverCallbackId?: string;
 	_searchValue?: string;
 	_userInteraction?: boolean;
 	getNativeSelectValue: () => string;

@@ -60,9 +60,9 @@
 
 	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
 		--db-drawer-max-width: #{variables.$db-container-xs};
-		--db-drawer-max-height: 63vh;
 		--db-drawer-min-width: #{variables.$db-container-xs};
-		--db-drawer-min-height: 63vh;
+		--db-drawer-max-height: 63lvh;
+		--db-drawer-min-height: 63lvh;
 
 		&:not(:has(.db-control-panel-secondary-actions)) {
 			.db-drawer-footer {
@@ -75,6 +75,7 @@
 				display: flex;
 				flex-direction: column;
 				block-size: 100%;
+				overflow-x: hidden;
 
 				.db-control-panel-meta-navigation {
 					padding: variables.$db-spacing-fixed-md;

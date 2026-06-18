@@ -10,6 +10,8 @@ import {
 import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBPopoverProps, DBPopoverState } from './model';
 
 useMetadata({});
@@ -22,7 +24,8 @@ export default function DBPopover(props: DBPopoverProps) {
 		initialized: false,
 		isExpanded: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
@@ -53,9 +56,22 @@ export default function DBPopover(props: DBPopoverProps) {
 					state.handleDocumentScroll(event)
 				);
 			state.handleAutoPlacement();
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(
+					document.documentElement,
+					() => state.handleAutoPlacement()
+				);
 			const child = state.getTrigger();
 			if (child) {
-				state._observer?.observe(child);
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						child,
+						(entry) => {
+							if (!entry.isIntersecting) {
+								state.handleEscape(false);
+							}
+						}
+					);
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,9 +93,16 @@ export default function DBPopover(props: DBPopoverProps) {
 					);
 				}
 
-				const child = state.getTrigger();
-				if (child) {
-					state._observer?.unobserve(child);
+				if (state._resizeObserverCallbackId) {
+					new ResizeObserverListener().unobserve(
+						state._resizeObserverCallbackId!
+					);
+				}
+
+				if (state._intersectionObserverCallbackId) {
+					new IntersectionObserverListener().unobserve(
+						state._intersectionObserverCallbackId!
+					);
 				}
 			}
 		},
@@ -125,20 +148,6 @@ export default function DBPopover(props: DBPopoverProps) {
 			['mouseleave', 'focusout'].forEach((event) => {
 				_ref.addEventListener(event, () => state.handleLeave());
 			});
-
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
-				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(
-						({ target }) => target === state.getTrigger()
-					);
-					if (entry && !entry.isIntersecting) {
-						state.handleEscape(false);
-					}
-				});
-			}
 		}
 	}, [_ref, state.initialized]);
 

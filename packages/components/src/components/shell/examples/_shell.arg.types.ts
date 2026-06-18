@@ -19,7 +19,6 @@ export const StorybookShellArgTypes: Record<string, InputType> = {
 	},
 	showSubNavigation: { control: 'boolean' },
 	fadeIn: { control: 'boolean' },
-	mainClass: { control: 'text' },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' }
 };

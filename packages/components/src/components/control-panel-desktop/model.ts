@@ -20,6 +20,7 @@ export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 
 export type DBControlPanelDesktopDefaultState = {
 	onScroll: () => void;
+	_resizeObserverCallbackId?: string;
 };
 
 export type DBControlPanelDesktopState = DBControlPanelDesktopDefaultState &

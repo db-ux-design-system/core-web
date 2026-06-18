@@ -839,7 +839,8 @@ export type NavigationItemGroupVariant = {
 export type DocumentScrollState = {
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
-	_observer?: IntersectionObserver;
+	_intersectionObserverCallbackId?: string;
+	_resizeObserverCallbackId?: string;
 };
 
 export type PopoverState = {

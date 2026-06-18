@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -9,6 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { cls, delay, getBooleanAsString } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import {
 	DBControlPanelNavigationProps,
@@ -33,6 +35,7 @@ export default function DBControlPanelNavigation(
 		_variant: undefined,
 		initialized: false,
 		_isSubNavigation: false,
+		_resizeObserverCallbackId: undefined,
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
@@ -72,6 +75,15 @@ export default function DBControlPanelNavigation(
 
 	onMount(() => {
 		state.initialized = true;
+	});
+
+	onUnMount(() => {
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
 	});
 
 	onUpdate(() => {
@@ -147,6 +159,18 @@ export default function DBControlPanelNavigation(
 			}
 
 			state.evaluateScrollButtons(menuRef);
+
+			// Re-evaluate scroll buttons and re-position the sub-navigation on
+			// container resize (e.g. orientation change). A container-specific
+			// ResizeObserver provides more accurate detection than global
+			// window resize events.
+			if (!state._resizeObserverCallbackId) {
+				state._resizeObserverCallbackId =
+					new ResizeObserverListener().observe(menuRef, () => {
+						state.evaluateScrollButtons(menuRef);
+						state._handleSubNavigation();
+					});
+			}
 		}
 	}, [menuRef, state._variant, state._shellDesktopPosition]);
 

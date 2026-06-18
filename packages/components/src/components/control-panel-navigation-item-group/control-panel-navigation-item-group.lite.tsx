@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -17,10 +18,12 @@ import {
 	getHideProp,
 	uuid
 } from '../../utils';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
 import {
 	handleSubNavigationPosition,
 	NavigationItemSafeTriangle
 } from '../../utils/navigation';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import {
 	DBControlPanelNavigationItemGroupProps,
@@ -47,6 +50,8 @@ export default function DBControlPanelNavigationItemGroup(
 		initialized: false,
 		_itemGroupMenuId:
 			'db-control-panel-navigation-item-group-menu-' + uuid(),
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		navigationItemSafeTriangle: undefined,
 		onScroll: () => {
 			if (state.hasPopup) {
@@ -87,6 +92,22 @@ export default function DBControlPanelNavigationItemGroup(
 
 	onMount(() => {
 		state.initialized = true;
+	});
+
+	onUnMount(() => {
+		if (state._intersectionObserverCallbackId) {
+			new IntersectionObserverListener().unobserve(
+				state._intersectionObserverCallbackId
+			);
+			state._intersectionObserverCallbackId = undefined;
+		}
+
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
 	});
 
 	onUpdate(() => {
@@ -136,6 +157,25 @@ export default function DBControlPanelNavigationItemGroup(
 					handleSubNavigationPosition(_menuRef)
 				);
 			});
+
+			state._intersectionObserverCallbackId =
+				new IntersectionObserverListener().observe(
+					_buttonRef,
+					(entry) => {
+						if (!entry.isIntersecting) {
+							state.forceClose();
+						}
+					}
+				);
+
+			// Re-position the sub-navigation popover on viewport resize
+			// (e.g. orientation change), because placement depends on the
+			// viewport dimensions.
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(
+					document.documentElement,
+					() => handleSubNavigationPosition(_menuRef)
+				);
 		}
 	}, [_ref, _menuRef, _buttonRef, state.hasPopup]);
 

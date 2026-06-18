@@ -24,18 +24,12 @@
 
 		.db-control-panel-navigation {
 			inline-size: fit-content;
-			padding: variables.$db-spacing-fixed-xs;
+			padding: variables.$db-spacing-fixed-sm;
 
 			> menu {
 				flex-direction: column;
 
 				.db-control-panel-navigation-item {
-					inline-size: calc(
-						#{variables.$db-sizing-md} +
-							#{variables.$db-spacing-fixed-md}
-					);
-					aspect-ratio: 1;
-
 					a {
 						inline-size: 100%;
 						block-size: 100%;
@@ -60,11 +54,15 @@
 		&[data-no-text="true"] {
 			.db-control-panel-navigation {
 				.db-control-panel-navigation-item {
+					aspect-ratio: 1;
+					inline-size: variables.$db-sizing-md;
+
 					&::before {
 						--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
 					}
 
 					a {
+						padding: 0;
 						text-indent: -9999px; /* visually hides text but keeps it in accessibility tree */
 					}
 				}
@@ -73,11 +71,14 @@
 
 		&:not([data-no-text="true"]) {
 			.db-control-panel-navigation-item {
-				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
+				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-3xs};
+
+				block-size: 2lh;
+				inline-size: variables.$db-sizing-lg;
 
 				&::before {
 					--db-icon-passing-inset-block-start: calc(
-						#{variables.$db-spacing-fixed-md} / 2
+						2 * var(--db-icon-passing-padding-inline-start)
 					);
 				}
 
@@ -86,9 +87,11 @@
 					padding-inline-end: var(
 						--db-icon-passing-padding-inline-start
 					);
-					padding-block-start: calc(
-						50% + #{variables.$db-spacing-fixed-md} / 2
-					);
+					padding-block: calc(
+							50% - 2 *
+								var(--db-icon-passing-padding-inline-start)
+						)
+						0;
 				}
 			}
 		}
@@ -110,7 +113,7 @@
 				flex-direction: row;
 				justify-content: space-evenly;
 				inline-size: 100%;
-				max-inline-size: variables.$db-container-3xl;
+				max-inline-size: variables.$db-container-md;
 
 				.db-control-panel-navigation-item {
 					a {
@@ -164,8 +167,13 @@
 					padding-inline-end: variables.$db-spacing-fixed-3xs;
 					// stylelint-disable-next-line db-ux/use-spacings
 					padding-block: var(--nav-icon-size) 0;
-					inline-size: fit-content;
+					inline-size: variables.$db-sizing-lg;
 					justify-content: center;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					display: inline;
+					text-align: center;
 				}
 			}
 		}
@@ -214,5 +222,10 @@
 				--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
 			}
 		}
+	}
+
+	.overflow-scroll-left-button,
+	.overflow-scroll-right-button {
+		display: none;
 	}
 }

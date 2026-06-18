@@ -34,7 +34,11 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 	}
 
 	// Mobile
-	@include screen-sizes.screen("md", "max") {
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
 		--db-control-panel-navigation-item-group-menu-mobile: 1;
 
 		padding: variables.$db-spacing-fixed-md;
@@ -55,7 +59,11 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 	}
 
 	// Desktop
-	@include screen-sizes.screen("md") {
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
 		inset-inline-start: 0;
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;

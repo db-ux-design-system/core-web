@@ -1,5 +1,6 @@
 import {
 	onInit,
+	onUnMount,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -9,6 +10,7 @@ import {
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
@@ -29,6 +31,7 @@ export default function DBControlPanelDesktop(
 	const state = useStore<DBControlPanelDesktopState>({
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
+		_resizeObserverCallbackId: undefined,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		handleToggle: (event: any) => {
 			if (typeof event.detail !== 'object') {
@@ -69,6 +72,24 @@ export default function DBControlPanelDesktop(
 	onInit(() => {
 		if (props.expanded !== undefined) {
 			state._open = getBoolean(props.expanded, 'expanded') ?? true;
+		}
+
+		// Re-position sub-navigation popover on viewport resize (e.g. orientation change)
+		if (!state._resizeObserverCallbackId) {
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(
+					document.documentElement,
+					() => state.onScroll()
+				);
+		}
+	});
+
+	onUnMount(() => {
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId
+			);
+			state._resizeObserverCallbackId = undefined;
 		}
 	});
 
