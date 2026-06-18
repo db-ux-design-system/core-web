@@ -24,8 +24,7 @@
 
 		.db-control-panel-navigation {
 			inline-size: fit-content;
-			padding: variables.$db-spacing-fixed-xs
-				variables.$db-spacing-fixed-xs;
+			padding: variables.$db-spacing-fixed-xs;
 
 			> menu {
 				flex-direction: column;

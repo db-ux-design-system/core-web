@@ -1,9 +1,4 @@
-import {
-	GlobalProps,
-	GlobalState,
-	InitializedState,
-	NoTextProps
-} from '../../shared/model';
+import { GlobalProps, GlobalState, NoTextProps } from '../../shared/model';
 
 export type DBControlPanelFlatIconDefaultProps = {};
 
@@ -14,5 +9,4 @@ export type DBControlPanelFlatIconProps = DBControlPanelFlatIconDefaultProps &
 export type DBControlPanelFlatIconDefaultState = {};
 
 export type DBControlPanelFlatIconState = DBControlPanelFlatIconDefaultState &
-	GlobalState &
-	InitializedState;
+	GlobalState;
