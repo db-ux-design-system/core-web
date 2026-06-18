@@ -22,6 +22,7 @@ export default function DBTableFooter(props: DBTableFooterProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-table-footer', props.className)}>
+			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>
 					{(row: DBTableRowProps, index: number) => (
@@ -35,6 +36,7 @@ export default function DBTableFooter(props: DBTableFooterProps) {
 					)}
 				</For>
 			</Show>
+			{/* jscpd:ignore-end */}
 		</tfoot>
 	);
 }

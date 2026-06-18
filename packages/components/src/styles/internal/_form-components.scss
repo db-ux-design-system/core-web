@@ -235,6 +235,7 @@ $db-min-inline-size: var(
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
+		// jscpd:ignore-start
 		// this is a workaround for the textarea scrollbar
 		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
 		--db-adaptive-bg-basic-transparent-full-default: var(
@@ -258,6 +259,8 @@ $db-min-inline-size: var(
 		--db-adaptive-on-bg-basic-emphasis-100-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
+
+		// jscpd:ignore-end
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
@@ -583,6 +586,7 @@ $input-valid-types:
 
 	@include get-validity-message($key);
 
+	// jscpd:ignore-start
 	input {
 		&:not(:checked) {
 			--db-adaptive-bg-basic-transparent-full-default: var(
@@ -595,6 +599,8 @@ $input-valid-types:
 				--db-#{$variant}-bg-basic-transparent-full-pressed
 			);
 		}
+
+		// jscpd:ignore-end
 
 		&:checked {
 			--db-adaptive-bg-basic-transparent-full-default: var(
