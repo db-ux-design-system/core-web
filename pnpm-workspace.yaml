@@ -66,6 +66,26 @@ minimumReleaseAgeExclude:
   - webpack-dev-server@5.2.4
   - svelte@5.55.7
   - "@db-ux/db-theme@5.8.0"
+  - "@angular-devkit/architect@0.2200.2"
+  - "@angular-devkit/build-angular@22.0.2"
+  - "@angular-devkit/build-webpack@0.2200.2"
+  - "@angular-devkit/core@22.0.2"
+  - "@angular-devkit/schematics@22.0.2"
+  - "@angular/animations@22.0.2"
+  - "@angular/build@22.0.2"
+  - "@angular/cli@22.0.2"
+  - "@angular/common@22.0.2"
+  - "@angular/compiler-cli@22.0.2"
+  - "@angular/compiler@22.0.2"
+  - "@angular/core@22.0.2"
+  - "@angular/forms@22.0.2"
+  - "@angular/platform-browser-dynamic@22.0.2"
+  - "@angular/platform-browser@22.0.2"
+  - "@angular/platform-server@22.0.2"
+  - "@angular/router@22.0.2"
+  - "@angular/ssr@22.0.2"
+  - "@ngtools/webpack@22.0.2"
+  - "@schematics/angular@22.0.2"
 
 overrides:
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
