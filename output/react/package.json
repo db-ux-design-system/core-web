@@ -17,7 +17,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all --parallel tsc vite --sequential mv:*",
+    "build": "npm-run-all tsc mv:*",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
@@ -28,8 +28,7 @@
     "test:components": "playwright test --config playwright.config.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui",
     "test:windows": "playwright test --config playwright.screen-reader.win.ts",
-    "tsc": "tsc --project . --sourceMap false",
-    "vite": "vite build"
+    "tsc": "tsc --project . --sourceMap false"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
@@ -38,14 +37,12 @@
   "devDependencies": {
     "@playwright/experimental-ct-react": "1.60.0",
     "@types/react": "19.2.17",
-    "@vitejs/plugin-react": "6.0.2",
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.2",
     "playwright": "1.60.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "typescript": "5.9.3",
-    "vite": "8.0.16"
+    "typescript": "5.9.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

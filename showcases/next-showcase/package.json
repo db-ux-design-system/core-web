@@ -12,9 +12,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "pnpm run setup:browserslist && next build --turbopack",
+    "build": "pnpm run setup:browserslist && next build --webpack",
     "dev": "npm-run-all setup:browserslist --parallel next:dev open",
-    "next:dev": "next dev --turbopack --port 5050",
+    "next:dev": "next dev --webpack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
     "setup:browserslist": "cpr ../../.browserslistrc .browserslistrc -o",
     "start": "next start"
