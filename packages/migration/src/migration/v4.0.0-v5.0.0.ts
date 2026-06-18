@@ -1,8 +1,9 @@
 import type { ReplaceInFileConfig } from 'replace-in-file';
 
 /*
- * Only the unambiguous, tabs-specific `onTabSelect` -> `onIndexChange` event
- * rename is auto-replaced here.
+ * The tabs-specific event renames are auto-replaced here:
+ *   - `onTabSelect` -> `onIndexChange` (React callback prop)
+ *   - `tabSelect`   -> `indexChange`   (Angular/Vue/Web Component event name)
  *
  * The `alignment` / `width` DBTabs prop renames are intentionally NOT
  * auto-replaced: in JS/JSX usage they are passed as `tabItemAlignment` /
@@ -16,5 +17,10 @@ export const v400_v500: ReplaceInFileConfig[] = [
 		files: '',
 		from: /onTabSelect/g,
 		to: 'onIndexChange'
+	},
+	{
+		files: '',
+		from: /(?<!on)tabSelect/g,
+		to: 'indexChange'
 	}
 ];
