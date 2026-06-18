@@ -102,12 +102,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						] = 'close';
 					}
 					void delay(() => {
-						if (
-							!('closedBy' in HTMLDialogElement.prototype) ||
-							state.isNotModal()
-						) {
-							_ref?.close();
-						}
+						_ref?.close();
 					}, 401);
 				}
 			}
