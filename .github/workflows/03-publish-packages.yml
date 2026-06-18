@@ -31,7 +31,7 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download outputs
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-outputs
           path: build-outputs

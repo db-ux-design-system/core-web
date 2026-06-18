@@ -203,6 +203,11 @@
     - /placeholder: Readonly - Filled
     - text: Readonly - Filled
   - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Invalid
+  - text: Invalid Message
+  - status
   - link "Example - Types - Floating Label"
   - text: Label
   - textbox "Label":

@@ -44,7 +44,7 @@ jobs:
           record: true
 
       - name: ⏬ Download react-showcase
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
@@ -58,7 +58,7 @@ jobs:
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: react-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
           path: ./showcases/react-showcase/test-results
@@ -66,7 +66,7 @@ jobs:
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: react-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
           path: ./showcases/react-showcase/recordings

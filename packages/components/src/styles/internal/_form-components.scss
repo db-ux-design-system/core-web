@@ -138,7 +138,8 @@ $db-min-inline-size: var(
 			@extend %db-overwrite-font-size-sm;
 
 			inset-block-start: calc(
-				50% - 0.5em + #{variables.$db-spacing-fixed-3xs}
+				variables.$db-sizing-md / 2 - 0.5em +
+					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
 
