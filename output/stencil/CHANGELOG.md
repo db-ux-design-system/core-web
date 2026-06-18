@@ -1,5 +1,13 @@
 # @db-ux/wc-core-components
 
+## 4.12.1
+
+### Patch Changes
+
+- fix(custom-select): dropdown with `dropdownWidth="auto"` now correctly sizes to content width and respects the trigger minimum width. Long option labels no longer get truncated: `auto` keeps them on a single line (dropdown grows to the longest option), while `fixed` and `full` wrap long labels onto new lines. - [see commit 68dedc3](https://github.com/db-ux-design-system/core-web/commit/68dedc33c324b48339d5bb73a85fdff3045ed059)
+
+- fix(drawer): prevent backdrop drag-close when selection starts inside content - [see commit b53ff8a](https://github.com/db-ux-design-system/core-web/commit/b53ff8a4f0a5350c5be41fad072e14797676bba7)
+
 ## 4.12.0
 
 ### Minor Changes
