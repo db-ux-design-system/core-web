@@ -322,6 +322,32 @@ export default function DBTabs(props: DBTabsProps) {
 			return activeTabIndex > -1 ? activeTabIndex : 0;
 		},
 
+		// Composition-API fallback: when tabs are provided as DBTabItem children
+		// (no `tabs` prop), getInitialIndex() cannot see their `active` prop.
+		// After initTabs() has cached the buttons, a child marked `active` has
+		// already reflected aria-selected="true" onto its button, so we read it
+		// back here. Returns -1 when no child is active. Only consulted for the
+		// composition path and when no explicit index/mode prop was set.
+		getActiveChildIndex(): number {
+			return state._tabButtons.findIndex(
+				(button: HTMLElement) =>
+					button.getAttribute('aria-selected') === 'true'
+			);
+		},
+
+		// Whether the active-child fallback should be consulted: only for the
+		// composition API (no `tabs` prop), when no explicit selection prop and
+		// no URL hash determined the start index.
+		shouldUseActiveChild(hashApplied: boolean): boolean {
+			return (
+				!hashApplied &&
+				!props.tabs &&
+				props.activeIndex === undefined &&
+				props.initialSelectedIndex === undefined &&
+				props.initialSelectedMode === undefined
+			);
+		},
+
 		// Returns the live tablist DOM element by querying _ref.
 		// IMPORTANT: Do NOT store DOM elements in useStore and call native methods
 		// like scrollBy() on them. Mitosis/React wraps state values in proxies that
@@ -598,6 +624,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 		let startIndex = state.getInitialIndex();
 
+		let hashApplied = false;
 		const baseId = state.getBaseId();
 		if (typeof window !== 'undefined' && window.location.hash && baseId) {
 			const hashId = window.location.hash.substring(1);
@@ -609,6 +636,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 				if (!isNaN(index)) {
 					startIndex = index;
+					hashApplied = true;
 				}
 			}
 		}
@@ -620,7 +648,15 @@ export default function DBTabs(props: DBTabsProps) {
 			requestAnimationFrame(() => {
 				state.initTabList();
 				state.initTabs();
-				state.syncSelection(startIndex);
+				let resolvedIndex = startIndex;
+				if (state.shouldUseActiveChild(hashApplied)) {
+					const activeChildIndex = state.getActiveChildIndex();
+					if (activeChildIndex > -1) {
+						resolvedIndex = activeChildIndex;
+						state._activeIndex = activeChildIndex;
+					}
+				}
+				state.syncSelection(resolvedIndex);
 			});
 		}
 
