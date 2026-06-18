@@ -106,10 +106,10 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 **Always add a new changeset when making changes inside the following folders:**
 
-| Folder                      | Packages to include                                                                                                                             |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src`   | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                       |
+| Folder                      | Packages to include                                                                                                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src`   | `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                           |
 
 Use the following bump types for changeset entries:
 
@@ -315,6 +315,16 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 - `packages/mcp-server/AGENTS.md` — MCP server development
 
 **Keep package-level `AGENTS.md` files up to date.** When making changes inside a `packages/*` folder that affect architecture, structure, workflows, or conventions (e.g. adding a new plugin system, deprecating a pattern, introducing a new shared abstraction), update the corresponding `AGENTS.md` in that package as part of the same commit.
+
+## Kiro Steering Files
+
+Manual-inclusion steering files for specialized workflows. Activate in Kiro chat with `#<name>`:
+
+| Steering             | File                                  | Purpose                                                                                                    |
+| -------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `#code-review`       | `.kiro/steering/code-review.md`       | Perform a PR code review using GitHub MCP tools (checkout branch, gather context, review, submit feedback) |
+| `#pre-commit-review` | `.kiro/steering/pre-commit-review.md` | Self-review checklist before committing and pushing to a new branch                                        |
+| `#issue-triage`      | `.kiro/steering/issue-triage.md`      | Triage issues: validate template, label, set priority/effort, post AI summary, batch-process new issues    |
 
 ---
 

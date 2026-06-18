@@ -95,7 +95,7 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 7. Edit the `.scss` for style changes
 8. Add or update examples in `src/components/[name]/examples/`
 9. Run `pnpm run build` to verify
-10. Add a changeset for `@db-ux/core-components` and all framework output packages
+10. Add a changeset for `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all framework output packages
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
@@ -157,7 +157,7 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 ## Changeset Rules
 
 Changes in `packages/components/src` require a changeset for:
-`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
+`@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
 
 - `patch` — bug fix
 - `minor` — new feature or example, or any prop added in `model.ts`

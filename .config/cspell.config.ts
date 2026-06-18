@@ -8,6 +8,7 @@ export default defineConfig({
 		'pnpm-workspace.yaml',
 		'node_modules',
 		'.git',
+		'.gitignore',
 		'__snapshots__',
 		'dist',
 		'build',
