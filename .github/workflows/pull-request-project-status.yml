@@ -8,6 +8,7 @@ permissions:
 
 on:
   pull_request:
+    branches: ["main"]
     types:
       - assigned
       - unassigned
