@@ -49,7 +49,7 @@
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.2",
     "typescript": "5.9.3",
-    "vitest": "4.1.8",
+    "vitest": "4.1.9",
     "vue-eslint-parser": "10.4.1"
   },
   "publishConfig": {
