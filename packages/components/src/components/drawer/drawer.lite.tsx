@@ -28,12 +28,22 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
+		backdropPointerDown: false,
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
 				props.backdrop === 'none' ||
 				props.variant === 'inside'
 			);
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleBackdropPointerDown: (event: any) => {
+			// Remember whether the pointer interaction started on the backdrop
+			// (the DIALOG element itself) so we only close on a real backdrop
+			// click and not when a drag started inside the content and ended
+			// on the backdrop.
+			state.backdropPointerDown =
+				(event?.target as any)?.nodeName === 'DIALOG';
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
@@ -65,12 +75,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 				if (
 					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
-					props.backdrop !== 'none'
+					props.backdrop !== 'none' &&
+					state.backdropPointerDown
 				) {
 					if (props.onClose) {
 						props.onClose(event);
 					}
 				}
+
+				// Reset after handling the click so the next interaction
+				// starts from a clean state.
+				state.backdropPointerDown = false;
 			}
 		},
 		handleDialogOpen: () => {
@@ -134,12 +149,13 @@ export default function DBDrawer(props: DBDrawerProps) {
 			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}
+			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
 			data-variant={props.variant}
-			closedBy={state.isNotModal() ? undefined : 'any'}>
+			closedby={state.isNotModal() ? undefined : 'any'}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
