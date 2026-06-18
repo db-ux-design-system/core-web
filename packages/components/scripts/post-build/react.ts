@@ -1,6 +1,6 @@
 import components, { Overwrite } from './components';
 
-import { readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
@@ -100,18 +100,6 @@ const writeInvokerCommandsTypes = (tmp?: boolean) => {
 	const outputFolder = `../../${tmp ? 'output/tmp' : 'output'}/react`;
 	const srcFolder = `${outputFolder}/src`;
 	const typeAugmentationMarker = 'Type augmentation for Invoker Commands API';
-	const cleanupFilePaths = [
-		`${srcFolder}/invoker-commands.ts`,
-		`${srcFolder}/invoker-commands.d.ts`,
-		`${outputFolder}/dist/invoker-commands.js`,
-		`${outputFolder}/dist/invoker-commands.d.ts`,
-		...(tmp
-			? []
-			: [
-					'../../build-outputs/react/dist/invoker-commands.js',
-					'../../build-outputs/react/dist/invoker-commands.d.ts'
-				])
-	];
 	const content = `
 /**
  * ${typeAugmentationMarker}
@@ -131,16 +119,8 @@ declare module "react" {
 }
 `;
 
-	for (const filePath of cleanupFilePaths) {
-		rmSync(filePath, { force: true });
-	}
-
 	const indexFilePath = `${srcFolder}/index.ts`;
 	let indexContent = readFileSync(indexFilePath).toString('utf-8');
-	indexContent = indexContent.replace(
-		/\nimport(?: type \{\} from)? ['"]\.\/invoker-commands['"];\n?/g,
-		'\n'
-	);
 
 	if (!indexContent.includes(typeAugmentationMarker)) {
 		indexContent += content;
