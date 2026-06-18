@@ -46,12 +46,19 @@ export default function DBTabs(props: DBTabsProps) {
 			state._id = props.id ?? props.propOverrides?.id ?? `tabs-${uuid()}`;
 		},
 
+		// Avoid emitting `undefined-tab-x` ids during the first (pre-mount)
+		// render when no explicit id was provided. initTabs() assigns the
+		// generated ids after mount once state._id is set.
 		getTabId(index: number | string) {
-			return `${props.id ?? props.propOverrides?.id ?? state._id}-tab-${index}`;
+			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
+			return baseId ? `${baseId}-tab-${index}` : undefined;
 		},
 
+		// See getTabId: returns undefined until a base id is available so the
+		// pre-mount render does not emit `undefined-tab-panel-x` ids.
 		getPanelId(index: number | string) {
-			return `${props.id ?? props.propOverrides?.id ?? state._id}-tab-panel-${index}`;
+			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
+			return baseId ? `${baseId}-tab-panel-${index}` : undefined;
 		},
 
 		getBaseId() {
@@ -245,9 +252,25 @@ export default function DBTabs(props: DBTabsProps) {
 					!(nextButton as HTMLButtonElement).disabled &&
 					nextButton.getAttribute('aria-disabled') !== 'true'
 				) {
+					state.moveRovingTabindex(nextIndex);
 					nextButton.focus();
 				}
 			}
+		},
+
+		// Moves the roving tabindex to the tab at focusIndex: that tab becomes
+		// tabindex="0" and all others tabindex="-1". Selection (aria-selected) is
+		// intentionally left untouched so manual-activation keyboard users can
+		// arrow through tabs without changing the active panel, per the
+		// WAI-ARIA roving tabindex pattern.
+		moveRovingTabindex(focusIndex: number) {
+			const buttons = state._tabButtons;
+			buttons.forEach((button: HTMLElement, index: number) => {
+				button.setAttribute(
+					'tabindex',
+					focusIndex === index ? '0' : '-1'
+				);
+			});
 		},
 
 		// Parses the tabs prop into a usable array. Side-effect-free so it can be
@@ -266,6 +289,18 @@ export default function DBTabs(props: DBTabsProps) {
 				console.error(error);
 			}
 			return [];
+		},
+
+		// Resolves which panel should be visible at render time. Before mount we
+		// have no live state yet, so we fall back to the initial index for
+		// correct SSR/no-JS output. After initialization we render from the
+		// current _activeIndex so a parent re-render (e.g. arrows behavior
+		// updating scroll buttons) can never reset a panel's hidden state back
+		// to the initially selected tab.
+		getRenderIndex(): number {
+			return state.initialized
+				? state._activeIndex
+				: state.getInitialIndex();
 		},
 
 		// Synchronously resolves the initially selected index from props/active entry. Used during render so SSR output hides inactive panels and at mount.
@@ -691,7 +726,7 @@ export default function DBTabs(props: DBTabsProps) {
 						<DBTabPanel
 							key={props.label + 'tab-panel' + index}
 							id={state.getPanelId(index)}
-							hidden={state.getInitialIndex() !== index}
+							hidden={state.getRenderIndex() !== index}
 							content={tab.content}>
 							{tab.children}
 						</DBTabPanel>
