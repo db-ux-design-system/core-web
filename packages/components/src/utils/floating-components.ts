@@ -76,8 +76,6 @@ export const handleFixedDropdown = (
 	placement: string
 ) => {
 	if (!element || !parent) return;
-	// We skip this if we are in mobile it's already fixed
-	if (getComputedStyle(element).zIndex === '9999') return;
 
 	const fullWidth = element.dataset['width'] === 'full';
 	const autoWidth = element.dataset['width'] === 'auto';
@@ -86,9 +84,15 @@ export const handleFixedDropdown = (
 	// doesn't leave a stale minInlineSize/inlineSize behind when the dropdown
 	// width changes at runtime. This must happen before getFloatingProps
 	// measures the element, otherwise the dropdown would be measured with a
-	// width it no longer has and positioned incorrectly.
+	// width it no longer has and positioned incorrectly. It also has to run
+	// before the mobile bailout below: otherwise a desktop minInlineSize would
+	// survive into the mobile sheet, where CSS min-inline-size beats the
+	// mobile max-inline-size guard and overflows the viewport.
 	element.style.inlineSize = '';
 	element.style.minInlineSize = '';
+
+	// We skip the rest if we are in mobile, it's already fixed via CSS.
+	if (getComputedStyle(element).zIndex === '9999') return;
 
 	const {
 		top,
