@@ -99,10 +99,9 @@ const overwriteFragmentMap = (input: string) => {
 const writeInvokerCommandsTypes = (tmp?: boolean) => {
 	const outputFolder = `../../${tmp ? 'output/tmp' : 'output'}/react`;
 	const srcFolder = `${outputFolder}/src`;
-	const typeAugmentationMarker = 'Type augmentation for Invoker Commands API';
 	const content = `
 /**
- * ${typeAugmentationMarker}
+ * Type augmentation for Invoker Commands API
  * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
  *
  * Extends React's ButtonHTMLAttributes to include the \`command\` and \`commandfor\`
@@ -120,13 +119,9 @@ declare module "react" {
 `;
 
 	const indexFilePath = `${srcFolder}/index.ts`;
-	let indexContent = readFileSync(indexFilePath).toString('utf-8');
+	const indexContent = readFileSync(indexFilePath).toString('utf-8');
 
-	if (!indexContent.includes(typeAugmentationMarker)) {
-		indexContent += content;
-	}
-
-	writeFileSync(indexFilePath, indexContent);
+	writeFileSync(indexFilePath, indexContent + content);
 };
 
 export default (tmp?: boolean) => {
