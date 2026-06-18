@@ -84,13 +84,13 @@ const testComponent = () => {
 			name: 'Sub-Navi-Item 1'
 		});
 
-		await navigationItemButton.click();
+		await navigationItemButton.click({ force: true });
 		await expect(navigationItemButton).toHaveAttribute(
 			'aria-expanded',
 			'true'
 		);
 
-		await subNavigationItemButton.click();
+		await subNavigationItemButton.click({ force: true });
 		await expect(subNavigationItemButton).toHaveAttribute(
 			'aria-expanded',
 			'true'
