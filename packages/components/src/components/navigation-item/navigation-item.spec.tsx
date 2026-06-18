@@ -96,9 +96,12 @@ const testComponent = () => {
 			'true'
 		);
 
-		const drawer = page.locator('.db-drawer');
-		await expect(drawer).toHaveAttribute('data-transition', 'open');
-		await expect(drawer).toHaveScreenshot();
+		const drawerContainer = page.locator('.db-drawer-container');
+		await expect(drawerContainer).toHaveAttribute(
+			'data-transition',
+			'open'
+		);
+		await expect(drawerContainer).toHaveScreenshot();
 	});
 };
 const testA11y = () => {
