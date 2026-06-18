@@ -122,7 +122,7 @@ const testFocus = () => {
 			height: DESKTOP_VIEWPORT.height
 		});
 		const component = await mount(compWithSubLevels);
-		const topButton = component.getByTestId('toplevel').getByRole('button');
+		const topButton = component.getByTestId('toplevel').locator('> button');
 		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
 		await topButton.focus();
 		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
@@ -137,7 +137,7 @@ const testFocus = () => {
 			height: DESKTOP_VIEWPORT.height
 		});
 		const component = await mount(compWithSubLevels);
-		const topButton = component.getByTestId('toplevel').getByRole('button');
+		const topButton = component.getByTestId('toplevel').locator('> button');
 		await topButton.focus();
 		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
 		await topButton.blur();
@@ -153,7 +153,12 @@ const testFocus = () => {
 			height: DESKTOP_VIEWPORT.height
 		});
 		const component = await mount(compWithSubLevels);
-		const subButton = component.getByTestId('sublevel').getByRole('button');
+
+		// First expand the top-level so sub-level becomes visible
+		const topButton = component.getByTestId('toplevel').locator('> button');
+		await topButton.hover();
+
+		const subButton = component.getByTestId('sublevel').locator('> button');
 		await expect(subButton).toHaveAttribute('aria-expanded', 'false');
 		await subButton.focus();
 		await expect(subButton).toHaveAttribute('aria-expanded', 'true');
@@ -168,7 +173,12 @@ const testFocus = () => {
 			height: DESKTOP_VIEWPORT.height
 		});
 		const component = await mount(compWithSubLevels);
-		const subButton = component.getByTestId('sublevel').getByRole('button');
+
+		// First expand the top-level so sub-level becomes visible
+		const topButton = component.getByTestId('toplevel').locator('> button');
+		await topButton.hover();
+
+		const subButton = component.getByTestId('sublevel').locator('> button');
 		await subButton.focus();
 		await expect(subButton).toHaveAttribute('aria-expanded', 'true');
 		await subButton.blur();
@@ -185,7 +195,7 @@ const testFocus = () => {
 		});
 		const component = await mount(compWithSubLevels);
 		const topLevelItem = component.getByTestId('toplevel');
-		const topButton = topLevelItem.getByRole('button');
+		const topButton = topLevelItem.locator('> button');
 
 		// Initial state: collapsed
 		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
@@ -200,7 +210,7 @@ const testFocus = () => {
 		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
 
 		// Move focus outside the nav item: should collapse
-		const outsideNavItem = component.getByText('Test2');
+		const outsideNavItem = component.getByText('Other');
 		await outsideNavItem.focus();
 		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
 	});

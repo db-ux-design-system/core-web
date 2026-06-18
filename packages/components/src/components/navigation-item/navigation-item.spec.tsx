@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBNavigationItem } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
 	<menu style={{ display: 'flex' }}>
@@ -20,7 +20,7 @@ const comp: any = (
 );
 
 const compWithSubNavigation: any = (
-	<div>
+	<div style={{ display: 'flex', gap: '200px', alignItems: 'flex-start' }}>
 		<menu style={{ display: 'flex' }}>
 			<DBNavigationItem subNavigation={<a href="#">Sub Item</a>}>
 				<a href="#">Parent Item</a>
@@ -42,8 +42,13 @@ const testComponent = () => {
 	});
 
 	test('should expand on hover and collapse on pointer leave', async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
 		const component = await mount(compWithSubNavigation);
 		const expandButton = component.locator(
 			'.db-navigation-item-expand-button'
@@ -57,8 +62,13 @@ const testComponent = () => {
 	});
 
 	test('should collapse after hovering submenu and then leaving navigation item', async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
 		const component = await mount(compWithSubNavigation);
 		const expandButton = component.locator(
 			'.db-navigation-item-expand-button'

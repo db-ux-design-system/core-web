@@ -56,9 +56,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		},
 		handleFocusIn: (event: FocusEvent | any) => {
 			if (
-				state.hasAreaPopup &&
-				(!event.relatedTarget ||
-					!_ref?.contains(event.relatedTarget as Node))
+				!event.relatedTarget ||
+				!_ref?.contains(event.relatedTarget as Node)
 			) {
 				state.isSubNavigationExpanded = true;
 			}
@@ -105,23 +104,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 								subNavigationSlot
 							);
 					}
+
+					_ref.addEventListener('focusin', (event: any) =>
+						state.handleFocusIn(event)
+					);
+					_ref.addEventListener('focusout', (event: any) =>
+						state.handleFocusOut(event)
+					);
+					_ref.addEventListener('mouseenter', (event: any) =>
+						state.handleFocusIn(event)
+					);
+					_ref.addEventListener('mouseleave', (event: any) =>
+						state.handleFocusOut(event)
+					);
 				} else {
 					state.hasSubNavigation = false;
 				}
 			}
-
-			_ref.addEventListener('focusin', (event: any) =>
-				state.handleFocusIn(event)
-			);
-			_ref.addEventListener('focusout', (event: any) =>
-				state.handleFocusOut(event)
-			);
-			_ref.addEventListener('mouseenter', (event: any) =>
-				state.handleFocusIn(event)
-			);
-			_ref.addEventListener('mouseleave', (event: any) =>
-				state.handleFocusOut(event)
-			);
 		}
 	}, [state.initialized, _ref]);
 	// jscpd:ignore-end
