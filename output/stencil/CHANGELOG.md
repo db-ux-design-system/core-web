@@ -1,5 +1,32 @@
 # @db-ux/wc-core-components
 
+## 4.12.0
+
+### Minor Changes
+
+- feat: emit spec-compliant ESM with explicit import extensions - [see commit 73808d6](https://github.com/db-ux-design-system/core-web/commit/73808d6ec80085451d72e5ad73eb154198a60558):
+
+    - The generated React, Vue and Web Component outputs now produce standards-compliant
+    - ESM: every relative import/export carries an explicit `.js` / `/index.js` (or `.vue`)
+    - extension, added during Mitosis generation. This resolves `ERR_UNSUPPORTED_DIR_IMPORT`
+    - in strict ESM environments such as Node.js native ESM and Vitest 4.
+    - The React output additionally compiles with `module`/`moduleResolution: "node16"`
+    - (plus `jsx: "react-jsx"` and `target: "es2022"`), so missing extensions are caught at
+    - compile time. As a result the emitted React JS uses the `react/jsx-runtime` transform
+    - and es2022 syntax (React 19 compatible).
+
+## 4.11.1
+
+### Patch Changes
+
+- fix: resolve attribute passing issues for custom components by adding a MutationObserver to reactively forward attributes from parent to child in Angular and Stencil targets, and improve handling of style, `data-`, and `aria-` attributes - [see commit 8de7430](https://github.com/db-ux-design-system/core-web/commit/8de7430b6045bf0571d300c45717a8162fc4ae25)
+
+- fix: remove `readonly` attribute on `DBInput` and `DBTextarea` when `readOnly`/`readonly` is `false` - [see commit 312ad4c](https://github.com/db-ux-design-system/core-web/commit/312ad4c7582b7315042b23a7cc8b485889ba6fd8):
+
+    - Passing `readOnly={false}` (e.g. via Angular's `formField` directive) previously rendered `readonly="false"` into the DOM. Since `readonly` is a boolean HTML attribute, its mere presence made the field read-only. The binding now resolves to `undefined` when not read-only, so the attribute is omitted entirely.
+
+- fix(tooltip): clean up parent listeners and observers on unmount - [see commit b050660](https://github.com/db-ux-design-system/core-web/commit/b050660b3b8cc9f0fde2a9d96dfbd6c0f02cc24f)
+
 ## 4.11.0
 
 ### Minor Changes

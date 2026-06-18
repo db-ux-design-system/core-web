@@ -56,8 +56,8 @@ importers:
         specifier: '*'
         version: 4.11.0(stylelint@17.13.0(supports-color@5.5.0)(typescript@5.9.3))
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -65,8 +65,8 @@ importers:
         specifier: 3.9.0
         version: 3.9.0
       '@double-great/stylelint-a11y':
-        specifier: 3.4.14
-        version: 3.4.14(stylelint@17.13.0(supports-color@5.5.0)(typescript@5.9.3))
+        specifier: 3.4.15
+        version: 3.4.15(stylelint@17.13.0(supports-color@5.5.0)(typescript@5.9.3))
       '@figma/code-connect':
         specifier: 1.4.8
         version: 1.4.8(supports-color@5.5.0)
@@ -119,8 +119,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       jscpd:
-        specifier: 4.2.5
-        version: 4.2.5
+        specifier: 5.0.6
+        version: 5.0.6
       lint-staged:
         specifier: 17.0.7
         version: 17.0.7
@@ -258,8 +258,8 @@ importers:
         specifier: 21.2.17
         version: 21.2.17(@angular/common@21.2.17(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.17(@angular/animations@21.2.16(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.17(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@types/node':
         specifier: 25.9.3
         version: 25.9.3
@@ -296,13 +296,10 @@ importers:
     devDependencies:
       '@playwright/experimental-ct-react':
         specifier: 1.60.0
-        version: 1.60.0(@types/node@25.9.3)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(yaml@2.9.0)
+        version: 1.60.0(@types/node@25.9.3)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(yaml@2.9.0)
       '@types/react':
         specifier: 19.2.17
         version: 19.2.17
-      '@vitejs/plugin-react':
-        specifier: 6.0.2
-        version: 6.0.2(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       cpr:
         specifier: 3.0.1
         version: 3.0.1
@@ -321,9 +318,6 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
-      vite:
-        specifier: 8.0.16
-        version: 8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
 
   output/stencil:
     dependencies:
@@ -363,7 +357,7 @@ importers:
         version: 10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       workbox-build:
         specifier: 7.4.1
-        version: 7.4.1(@types/babel__core@7.20.5)
+        version: 7.4.1(@types/babel__core@7.20.5)(supports-color@5.5.0)
 
   output/vue:
     dependencies:
@@ -688,8 +682,8 @@ importers:
         version: 3.3.3
     devDependencies:
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@types/node':
         specifier: 25.9.3
         version: 25.9.3
@@ -712,8 +706,8 @@ importers:
   scripts:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -800,8 +794,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -885,8 +879,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -940,8 +934,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -986,8 +980,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1013,8 +1007,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1113,8 +1107,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1171,8 +1165,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1208,8 +1202,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1251,8 +1245,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1291,8 +1285,8 @@ importers:
         specifier: 10.5.0
         version: 10.5.0(jiti@2.7.0)(supports-color@5.5.0)
       eslint-plugin-react-refresh:
-        specifier: 0.5.2
-        version: 0.5.2(eslint@10.5.0(jiti@2.7.0))
+        specifier: 0.5.3
+        version: 0.5.3(eslint@10.5.0(jiti@2.7.0))
       eslint-plugin-storybook:
         specifier: 10.4.4
         version: 10.4.4(eslint@10.5.0(jiti@2.7.0))(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(typescript@5.9.3)
@@ -1345,8 +1339,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1409,8 +1403,8 @@ importers:
   storybooks/html-storybook:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1446,8 +1440,8 @@ importers:
         specifier: 10.5.0
         version: 10.5.0(jiti@2.7.0)(supports-color@5.5.0)
       eslint-plugin-react-refresh:
-        specifier: 0.5.2
-        version: 0.5.2(eslint@10.5.0(jiti@2.7.0))
+        specifier: 0.5.3
+        version: 0.5.3(eslint@10.5.0(jiti@2.7.0))
       eslint-plugin-storybook:
         specifier: 10.4.4
         version: 10.4.4(eslint@10.5.0(jiti@2.7.0))(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(typescript@5.9.3)
@@ -1476,8 +1470,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1525,8 +1519,8 @@ importers:
         specifier: 10.5.0
         version: 10.5.0(jiti@2.7.0)(supports-color@5.5.0)
       eslint-plugin-react-refresh:
-        specifier: 0.5.2
-        version: 0.5.2(eslint@10.5.0(jiti@2.7.0))
+        specifier: 0.5.3
+        version: 0.5.3(eslint@10.5.0(jiti@2.7.0))
       eslint-plugin-storybook:
         specifier: 10.4.4
         version: 10.4.4(eslint@10.5.0(jiti@2.7.0))(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(typescript@5.9.3)
@@ -1552,8 +1546,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 5.7.0
-        version: 5.7.0
+        specifier: 5.8.0
+        version: 5.8.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
@@ -1914,6 +1908,7 @@ packages:
   '@angular/platform-browser-dynamic@21.2.17':
     resolution: {integrity: sha512-r/BU/T8bOTghP3fIXhzYf5wcMcAmhWnAFv3p4asCCPXomaktoas70wYcMaDH+pK1LAFBxLwzBWHm36MpFlTMFg==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/platform-browser-dynamic is deprecated. Use `@angular/platform-browser` instead.'
     peerDependencies:
       '@angular/common': 21.2.17
       '@angular/compiler': 21.2.17
@@ -2731,10 +2726,6 @@ packages:
   '@colordx/core@5.4.3':
     resolution: {integrity: sha512-kIxYSfA5T8HXjav55UaaH/o/cKivF6jCCGIb8eqtcsfI46wsvlSiT8jMDyrl779qLec3c2c2oHBZo4oAhvbjrQ==}
 
-  '@colors/colors@1.5.0':
-    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
-    engines: {node: '>=0.1.90'}
-
   '@commitlint/cli@21.0.2':
     resolution: {integrity: sha512-YMmfLbqBg+ZRvvmPhc+cilSQFrh/AgzVgCT1U/OifmUZEwPbvCtA8rN//YNaF9d5eoZphxVMGYtmwA2QgQORgg==}
     engines: {node: '>=22.12.0'}
@@ -3169,8 +3160,8 @@ packages:
   '@db-ux/db-theme-illustrative-icons@3.3.0':
     resolution: {integrity: sha512-ilJByxzkS3HyU4DHH3n4eMJpA0UzYcIZO1+MAy9vMeu17+LbMP+ebTVjfViSGPqqJZQnBiG3FUNJeuIdMQvrqQ==}
 
-  '@db-ux/db-theme@5.7.0':
-    resolution: {integrity: sha512-UeVJ3F7a2ZJen8lBThHsr+/Erla2lIbtTklDmIY2cKbkBmoUmCg0xIfUttNfY9/Q/KzLp5/zDXCPTZWarwInyQ==}
+  '@db-ux/db-theme@5.8.0':
+    resolution: {integrity: sha512-aRdn1emVUxNylnp9CA67hPoX91ZyeeJD6sjfehtKXyzW/HuGK9OLAye8WmFnpjjWYiv8+E3C+tBI2WVp06c6uQ==}
 
   '@db-ux/icon-font-tools@0.3.6':
     resolution: {integrity: sha512-JvQqwJ8x6afUdw8pvsjUp64m5jcabbZXny0MNU7J20obOzPfGBFEewJfg5baNhqycTkdAyj8RhShNE4CNu14gg==}
@@ -3184,8 +3175,8 @@ packages:
     resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
     engines: {node: '>=14.17.0'}
 
-  '@double-great/stylelint-a11y@3.4.14':
-    resolution: {integrity: sha512-yytlwspk4QCm9KcdlNtO+2zfZsThiciXEI+sAZrKV4OY35SLrvJHUWUkk1pVQ9FUY+xkQxXU6BD9gdbohmESlw==}
+  '@double-great/stylelint-a11y@3.4.15':
+    resolution: {integrity: sha512-yMpE5UpdXt4ezKv7fxf69k61ycOrJ7xa+Wt6p1XuV8r1y2PKWyVGp1qxFcc4BMEpptOA0XhWPhKHrpbP3+tmuw==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: '>=16.0.0'
@@ -4994,21 +4985,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@jscpd/badge-reporter@4.2.5':
-    resolution: {integrity: sha512-ktXrjPeRaRyUDktxTroSA2/w5sshXpQplWkUuq/e6XqEpKBSbGEnwZLIaegSijOrMwIcCXPQ9k4feXIz5eVJNA==}
-
-  '@jscpd/core@4.2.5':
-    resolution: {integrity: sha512-Esf2deHxaoNEjePwf2jqP6Urzj+BAOsJVPFLbnnSsV+q7rLNMcn0UEEoKBXIOOt4qMkrkhl9DfwpMyPPOr6GkQ==}
-
-  '@jscpd/finder@4.2.5':
-    resolution: {integrity: sha512-Rw0dtwp/EeLANbujOubuQeJIuXXXkAlT+f5geZhwkB9TxEYP0hqNrdOJUK/TDBKQjRGrOizEtdNy+S4UlbdzOQ==}
-
-  '@jscpd/html-reporter@4.2.5':
-    resolution: {integrity: sha512-zMMIKbvi43dMgeNeHXlHQy1ovf+KJrzNlUubaBvCAVatqP23ksW8d3fmsevIQG9mMMTH0D1xOz+SxUn1FREOPg==}
-
-  '@jscpd/tokenizer@4.2.5':
-    resolution: {integrity: sha512-UM8Wx/jwahmflqQExlcKMQTYOAy58N/fn7Pv6NYrkD3EZm/FTk7gW97wkXy5aDE1Ts9oBUpT9tLY2rz7ogCHAQ==}
 
   '@jsonjoy.com/base64@1.1.2':
     resolution: {integrity: sha512-q6XAnWQDIMA3+FTiOYajoYqySkO+JSat0ytXGSuRdq9uXE7o92gzuQwQM14xaCRlBLGq3v5miDGC4vkVTn54xA==}
@@ -7629,9 +7605,6 @@ packages:
   '@types/retry@0.12.2':
     resolution: {integrity: sha512-XISRgDJ2Tc5q4TRqvgJtzsRkFYNJzZrhTdtMoGVBttwzzQJkPnS3WWTFc7kuDRoPtPakl+T+OfdEUjYJj7Jbow==}
 
-  '@types/sarif@2.1.7':
-    resolution: {integrity: sha512-kRz0VEkJqWLf1LLVN4pT1cg1Z9wAuvI6L97V3m2f5B76Tg8d413ddvLBPTEHAZJlnn4XSvu0FkZtViCQGVyrXQ==}
-
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
 
@@ -8611,9 +8584,6 @@ packages:
     resolution: {integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==}
     engines: {node: '>= 10.0.0'}
 
-  badgen@3.3.2:
-    resolution: {integrity: sha512-fbQwK9norfdzbdsoPwbLIAmgBXDGEme3jeIyqPAH7o6vp9lmuLHS7uXULvOiQ6XnMLkYNG4gDjILf74hgtTAug==}
-
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
 
@@ -8712,10 +8682,6 @@ packages:
 
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
-
-  blamer@1.0.7:
-    resolution: {integrity: sha512-GbBStl/EVlSWkiJQBZps3H1iARBrC7vt++Jb/TTmCNu/jZ04VW7tSN1nScbFXBUy1AN+jzeL7Zep9sbQxLhXKA==}
-    engines: {node: '>=8.9'}
 
   bmp-js@0.1.0:
     resolution: {integrity: sha512-vHdS19CnY3hwiNdkaqk93DvjVLfbEcI8mys4UjuWrlX1haDmroo8o4xCzh4wD6DGV6HxRCyauwhHRqMTfERtjw==}
@@ -9075,10 +9041,6 @@ packages:
 
   cli-table3@0.6.0:
     resolution: {integrity: sha512-gnB85c3MGC7Nm9I/FkiasNBOKjOiO1RNuXXarQms37q4QMpWdlbBgD/VnOStA2faG1dpXMv31RFApjX1/QdgWQ==}
-    engines: {node: 10.* || >= 12.*}
-
-  cli-table3@0.6.5:
-    resolution: {integrity: sha512-+W/5efTR7y5HRD7gACw9yQjqMVvEMLBHmboM/kPWam+H+Hmyrgjh6YncVKK122YZkXrLudzTuAukUw9FnMf7IQ==}
     engines: {node: 10.* || >= 12.*}
 
   cli-truncate@5.2.0:
@@ -9459,6 +9421,39 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  cpd-darwin-arm64@5.0.6:
+    resolution: {integrity: sha512-S4bSBpAAgUFPikTYOEDgPLC4+p6k09n9pWKs7BHKGaCX+n1A/fx3lenn1MsTag9LPMBei9rHmSE8PJsRmmL7Og==}
+    cpu: [arm64]
+    os: [darwin]
+
+  cpd-darwin-x64@5.0.6:
+    resolution: {integrity: sha512-4hhEfshjBCPzaH6Ne9qtdaXrntgxLko+dkj80JMCKhUUsTM+UbG5HfD9bpTxRrG4+xD+4z+/8xh0z4QjwBrdsw==}
+    cpu: [x64]
+    os: [darwin]
+
+  cpd-linux-arm64-gnu@5.0.6:
+    resolution: {integrity: sha512-6n2qUOx4p/gUHv3UugRR2hsHPrkmFlyBhrjXekdden8K5lTP1Um/+iaL+fSY20QaXFMHdYAOvuLRdMYftP9ukQ==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  cpd-linux-x64-gnu@5.0.6:
+    resolution: {integrity: sha512-5ZRb9/H6L0z2metS1zQWwgwi+nSMixe8p/11w5YYZRBDXWSWDMutWs01L/FihwyTkZKVjCovwyjim1k98fT0Mg==}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  cpd-linux-x64-musl@5.0.6:
+    resolution: {integrity: sha512-0vOZ1M8U55QJJCjqY1gborA9b8Lrcv6k/tD1vs8kTlNt+jInpgmAwXBYnBEQoqDiW/RTwwaZIASDWJ7Y20oYsg==}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  cpd-windows-x64-msvc@5.0.6:
+    resolution: {integrity: sha512-zJxu7SAuuCrV6FpyGdveOXqJ+AsxcnmOCm1RPuurYD1X+FcaKTJZFhc1XtT6k3hSx2muqymIG6+ilUWJ7rwCnA==}
+    cpu: [x64]
+    os: [win32]
 
   cpr@3.0.1:
     resolution: {integrity: sha512-Xch4PXQ/KC8lJ+KfJ9JI6eG/nmppLrPPWg5Q+vh65Qr9EjuJEubxh/H/Le1TmCZ7+Xv7iJuNRqapyOFZB+wsxA==}
@@ -10470,8 +10465,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0
 
-  eslint-plugin-react-refresh@0.5.2:
-    resolution: {integrity: sha512-hmgTH57GfzoTFjVN0yBwTggnsVUF2tcqi7RJZHqi9lIezSs4eFyAMktA68YD4r5kNw1mxyY4dmkyoFDb3FIqrA==}
+  eslint-plugin-react-refresh@0.5.3:
+    resolution: {integrity: sha512-5EMmLCV98Pi4o/f/3DP/v/tNqLHMIc9I8LKClNDWhZ9JTho89/kQcitCXQBMG7sAfVRK0Ie3T2EDOzp1YXYiVA==}
     peerDependencies:
       eslint: ^9 || ^10
 
@@ -12146,11 +12141,9 @@ packages:
     resolution: {integrity: sha512-ePWsvanv0DWuDRsW8dnt+R4jQ31SCRCQ7hhNcPXZPsoBZiemuZNYGf7adZdqX2D86j6rvKp3RpCxVTSb8WQlOw==}
     hasBin: true
 
-  jscpd-sarif-reporter@4.2.5:
-    resolution: {integrity: sha512-O8LcM9grAS5yO5x1Q0yegYaYcUX//IEBEyvzGFSYCeo1YzHbMnAI6EK7oTrwD+7Csjvfg9m8B8G7OOxzcSlr9w==}
-
-  jscpd@4.2.5:
-    resolution: {integrity: sha512-KDpApYw1ChGelfHb7MwYTEx694OnW52pv3McAasidUV4ILcGDQMiVJzB+vI8ox+ZPVfOSvdXQCk8uRa9B0LXnw==}
+  jscpd@5.0.6:
+    resolution: {integrity: sha512-EEZFZNTcALuchsM2FwQ13e9w5EAMvgLgl1U8gRXPEATUmN9Bvqs1tnfWD/y/dIba/3Lc/ILMev/amxql90ztYA==}
+    engines: {node: '>=18'}
     hasBin: true
 
   jsdoc-type-pratt-parser@7.2.0:
@@ -12700,9 +12693,6 @@ packages:
   markdown-it@14.2.0:
     resolution: {integrity: sha512-1TGiQiJVRQ3NPmZH6sx5Cfnmg6GQm9jvC1ch4TK511NjSJvjzKLzn5pPfZRNZkRPZP0HqCioSndqH8v2nRaWVQ==}
     hasBin: true
-
-  markdown-table@2.0.0:
-    resolution: {integrity: sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==}
 
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
@@ -13340,10 +13330,6 @@ packages:
   node-releases@2.0.47:
     resolution: {integrity: sha512-Uzmd6LXpouKo8EUK68IjH4+E01w/hXyV3R3g/geCJo+rXLNfh1xucB+LOzYEOQPSiUK3h/xZf0cQGcSsmyL2Og==}
     engines: {node: '>=18'}
-
-  node-sarif-builder@4.1.0:
-    resolution: {integrity: sha512-IWqZF6u0EI/07HTBm+zZ+MgXgWl09dnSJRGaDCPBSlOqilDcx6pj3Mpb3HvPN8V2Gr+ISw7ZrMsL7STWs1F++w==}
-    engines: {node: '>=20'}
 
   nodemon@3.1.14:
     resolution: {integrity: sha512-jakjZi93UtB3jHMWsXL68FXSAosbLfY0In5gtKq3niLSkrWznrVBzXFNOEMJUfc9+Ke7SHWoAZsiMkNP3vq6Jw==}
@@ -14795,10 +14781,6 @@ packages:
   renderkid@3.0.0:
     resolution: {integrity: sha512-q/7VIQA8lmM1hF+jn+sFSPWGlMkSAeNYcPLmDQx2zzuiDfaLrOmumR8iaUKlenFgh0XRPIUeSPlH3A+AW3Z5pg==}
 
-  repeat-string@1.6.1:
-    resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
-    engines: {node: '>=0.10'}
-
   replace-ext@0.0.1:
     resolution: {integrity: sha512-AFBWBy9EVRTa/LhEcG8QDP3FvpwZqmvN2QFDuJswFeaVhWnZMp8q3E6Zd90SR04PlIwfGdyVjNyLPyen/ek5CQ==}
     engines: {node: '>= 0.4'}
@@ -15345,9 +15327,6 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
-
-  spark-md5@3.0.2:
-    resolution: {integrity: sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==}
 
   spawndamnit@3.0.1:
     resolution: {integrity: sha512-MmnduQUuHCoFckZoWnXsTg7JaiLBJrKFj9UI2MbRPGaJeVpsLcVBu6P/IGZovziM/YBsellCmsprgNA+w0CzVg==}
@@ -17737,8 +17716,8 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.7
       '@babel/plugin-transform-async-generator-functions': 7.29.0(@babel/core@7.29.0)
       '@babel/plugin-transform-async-to-generator': 7.28.6(@babel/core@7.29.0)
-      '@babel/plugin-transform-runtime': 7.29.0(@babel/core@7.29.0(supports-color@5.5.0))
-      '@babel/preset-env': 7.29.2(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
+      '@babel/plugin-transform-runtime': 7.29.0(@babel/core@7.29.0)
+      '@babel/preset-env': 7.29.2(@babel/core@7.29.0)
       '@babel/runtime': 7.29.2
       '@discoveryjs/json-ext': 0.6.3
       '@ngtools/webpack': 21.2.15(@angular/compiler-cli@21.2.17(@angular/compiler@21.2.17)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.105.2(esbuild@0.27.3)(lightningcss@1.32.0)(postcss@8.5.15))
@@ -18493,17 +18472,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)':
-    dependencies:
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-compilation-targets': 7.29.7
-      '@babel/helper-plugin-utils': 7.29.7
-      debug: 4.4.3(supports-color@5.5.0)
-      lodash.debounce: 4.0.8
-      resolve: 1.22.12
-    transitivePeerDependencies:
-      - supports-color
-
   '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.0)':
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
@@ -18515,7 +18483,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.7)':
+  '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.7)(supports-color@5.5.0)':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/helper-compilation-targets': 7.29.7
@@ -19780,18 +19748,6 @@ snapshots:
       '@babel/core': 7.29.7
       '@babel/helper-plugin-utils': 7.29.7
 
-  '@babel/plugin-transform-runtime@7.29.0(@babel/core@7.29.0(supports-color@5.5.0))':
-    dependencies:
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-module-imports': 7.29.7
-      '@babel/helper-plugin-utils': 7.29.7
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
-      babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.29.0(supports-color@5.5.0))
-      babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
-      semver: 6.3.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@babel/plugin-transform-runtime@7.29.0(@babel/core@7.29.0)':
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
@@ -20055,82 +20011,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/preset-env@7.29.2(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)':
-    dependencies:
-      '@babel/compat-data': 7.29.7
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-compilation-targets': 7.29.7
-      '@babel/helper-plugin-utils': 7.29.7
-      '@babel/helper-validator-option': 7.29.7
-      '@babel/plugin-bugfix-firefox-class-in-computed-class-key': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-bugfix-safari-class-field-initializer-scope': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-proposal-private-property-in-object': 7.21.0-placeholder-for-preset-env.2(@babel/core@7.29.0)
-      '@babel/plugin-syntax-import-assertions': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-syntax-import-attributes': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-syntax-unicode-sets-regex': 7.18.6(@babel/core@7.29.0)
-      '@babel/plugin-transform-arrow-functions': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-async-generator-functions': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-async-to-generator': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-block-scoped-functions': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-block-scoping': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-class-properties': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-class-static-block': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-classes': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-computed-properties': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-destructuring': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-dotall-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-duplicate-keys': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-duplicate-named-capturing-groups-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-dynamic-import': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-explicit-resource-management': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-exponentiation-operator': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-export-namespace-from': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-for-of': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-function-name': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-json-strings': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-literals': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-logical-assignment-operators': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-member-expression-literals': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-modules-amd': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-modules-commonjs': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-modules-systemjs': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-modules-umd': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-named-capturing-groups-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-new-target': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-nullish-coalescing-operator': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-numeric-separator': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-object-rest-spread': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-object-super': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-optional-catch-binding': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-optional-chaining': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-parameters': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-private-methods': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-private-property-in-object': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-property-literals': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-regenerator': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-regexp-modifiers': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-reserved-words': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-shorthand-properties': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-spread': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-sticky-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-template-literals': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-typeof-symbol': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-unicode-escapes': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-unicode-property-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-unicode-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/plugin-transform-unicode-sets-regex': 7.29.7(@babel/core@7.29.0)
-      '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.29.0)
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
-      babel-plugin-polyfill-corejs3: 0.14.2(@babel/core@7.29.0(supports-color@5.5.0))
-      babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))
-      core-js-compat: 3.49.0
-      semver: 6.3.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@babel/preset-env@7.29.2(@babel/core@7.29.0)':
     dependencies:
       '@babel/compat-data': 7.29.7
@@ -20207,7 +20087,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/preset-env@7.29.7(@babel/core@7.29.7)':
+  '@babel/preset-env@7.29.7(@babel/core@7.29.7)(supports-color@5.5.0)':
     dependencies:
       '@babel/compat-data': 7.29.7
       '@babel/core': 7.29.7
@@ -20276,7 +20156,7 @@ snapshots:
       '@babel/plugin-transform-unicode-regex': 7.29.7(@babel/core@7.29.7)
       '@babel/plugin-transform-unicode-sets-regex': 7.29.7(@babel/core@7.29.7)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.29.7)
-      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.7)
+      babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.7)(supports-color@5.5.0)
       babel-plugin-polyfill-corejs3: 0.14.2(@babel/core@7.29.7)
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.7)
       core-js-compat: 3.49.0
@@ -20627,9 +20507,6 @@ snapshots:
   '@cloudflare/kv-asset-handler@0.4.2': {}
 
   '@colordx/core@5.4.3': {}
-
-  '@colors/colors@1.5.0':
-    optional: true
 
   '@commitlint/cli@21.0.2(@types/node@25.9.3)(conventional-commits-parser@6.4.0)(typescript@5.9.3)':
     dependencies:
@@ -21142,7 +21019,7 @@ snapshots:
 
   '@db-ux/db-theme-illustrative-icons@3.3.0': {}
 
-  '@db-ux/db-theme@5.7.0':
+  '@db-ux/db-theme@5.8.0':
     dependencies:
       '@db-ux/db-theme-fonts': 2.0.5
       '@db-ux/db-theme-icons': 3.9.0
@@ -21180,7 +21057,7 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@double-great/stylelint-a11y@3.4.14(stylelint@17.13.0(supports-color@5.5.0)(typescript@5.9.3))':
+  '@double-great/stylelint-a11y@3.4.15(stylelint@17.13.0(supports-color@5.5.0)(typescript@5.9.3))':
     dependencies:
       postcss: 8.5.15
       stylelint: 17.13.0(supports-color@5.5.0)(typescript@5.9.3)
@@ -22586,40 +22463,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@jscpd/badge-reporter@4.2.5':
-    dependencies:
-      badgen: 3.3.2
-      colors: 1.4.0
-      fs-extra: 11.3.5
-
-  '@jscpd/core@4.2.5':
-    dependencies:
-      eventemitter3: 5.0.4
-
-  '@jscpd/finder@4.2.5':
-    dependencies:
-      '@jscpd/core': 4.2.5
-      '@jscpd/tokenizer': 4.2.5
-      blamer: 1.0.7
-      bytes: 3.1.2
-      cli-table3: 0.6.5
-      colors: 1.4.0
-      fast-glob: 3.3.3
-      fs-extra: 11.3.5
-      markdown-table: 2.0.0
-      pug: 3.0.4
-
-  '@jscpd/html-reporter@4.2.5':
-    dependencies:
-      colors: 1.4.0
-      fs-extra: 11.3.5
-      pug: 3.0.4
-
-  '@jscpd/tokenizer@4.2.5':
-    dependencies:
-      '@jscpd/core': 4.2.5
-      spark-md5: 3.0.2
-
   '@jsonjoy.com/base64@1.1.2(tslib@2.8.1)':
     dependencies:
       tslib: 2.8.1
@@ -23126,7 +22969,7 @@ snapshots:
       lru-cache: 11.5.1
       npm-pick-manifest: 11.0.3
       proc-log: 6.1.0
-      semver: 7.7.4
+      semver: 7.8.4
       which: 6.0.1
 
   '@npmcli/installed-package-contents@4.0.0':
@@ -23143,7 +22986,7 @@ snapshots:
       hosted-git-info: 9.0.3
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.4
+      semver: 7.8.4
       spdx-expression-parse: 4.0.0
 
   '@npmcli/promise-spawn@9.0.1':
@@ -23957,10 +23800,10 @@ snapshots:
       - tsx
       - yaml
 
-  '@playwright/experimental-ct-react@1.60.0(@types/node@25.9.3)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(yaml@2.9.0)':
+  '@playwright/experimental-ct-react@1.60.0(@types/node@25.9.3)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(yaml@2.9.0)':
     dependencies:
       '@playwright/experimental-ct-core': 1.60.0(@types/node@25.9.3)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
-      '@vitejs/plugin-react': 4.7.0(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
+      '@vitejs/plugin-react': 4.7.0(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -25145,8 +24988,6 @@ snapshots:
 
   '@types/retry@0.12.2': {}
 
-  '@types/sarif@2.1.7': {}
-
   '@types/sax@1.2.7':
     dependencies:
       '@types/node': 25.9.3
@@ -25431,7 +25272,7 @@ snapshots:
     dependencies:
       vite: 7.3.2(@types/node@25.9.3)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
 
-  '@vitejs/plugin-react@4.7.0(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))':
+  '@vitejs/plugin-react@4.7.0(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-transform-react-jsx-self': 7.29.7(@babel/core@7.29.7)
@@ -25439,7 +25280,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.27
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 8.0.16(@types/node@25.9.3)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.100.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
+      vite: 8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -26293,15 +26134,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0):
-    dependencies:
-      '@babel/compat-data': 7.29.7
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
-      semver: 6.3.1
-    transitivePeerDependencies:
-      - supports-color
-
   babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.0):
     dependencies:
       '@babel/compat-data': 7.29.7
@@ -26311,11 +26143,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.7):
+  babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.7)(supports-color@5.5.0):
     dependencies:
       '@babel/compat-data': 7.29.7
       '@babel/core': 7.29.7
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.7)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.7)(supports-color@5.5.0)
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -26328,26 +26160,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-corejs3@0.13.0(@babel/core@7.29.0(supports-color@5.5.0)):
-    dependencies:
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
-      core-js-compat: 3.49.0
-    transitivePeerDependencies:
-      - supports-color
-
   babel-plugin-polyfill-corejs3@0.13.0(@babel/core@7.29.0):
     dependencies:
       '@babel/core': 7.29.0(supports-color@5.5.0)
       '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0)
-      core-js-compat: 3.49.0
-    transitivePeerDependencies:
-      - supports-color
-
-  babel-plugin-polyfill-corejs3@0.14.2(@babel/core@7.29.0(supports-color@5.5.0)):
-    dependencies:
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
       core-js-compat: 3.49.0
     transitivePeerDependencies:
       - supports-color
@@ -26363,7 +26179,7 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.14.2(@babel/core@7.29.7):
     dependencies:
       '@babel/core': 7.29.7
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.7)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.7)(supports-color@5.5.0)
       core-js-compat: 3.49.0
     transitivePeerDependencies:
       - supports-color
@@ -26372,13 +26188,6 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.6(supports-color@5.5.0)
       '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.28.6(supports-color@5.5.0))
-    transitivePeerDependencies:
-      - supports-color
-
-  babel-plugin-polyfill-regenerator@0.6.8(@babel/core@7.29.0(supports-color@5.5.0)):
-    dependencies:
-      '@babel/core': 7.29.0(supports-color@5.5.0)
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.0(supports-color@5.5.0))(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -26392,7 +26201,7 @@ snapshots:
   babel-plugin-polyfill-regenerator@0.6.8(@babel/core@7.29.7):
     dependencies:
       '@babel/core': 7.29.7
-      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.7)
+      '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.7)(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -26404,8 +26213,6 @@ snapshots:
   babel-walk@3.0.0-canary-5:
     dependencies:
       '@babel/types': 7.29.7
-
-  badgen@3.3.2: {}
 
   bail@2.0.2: {}
 
@@ -26495,11 +26302,6 @@ snapshots:
       buffer: 5.7.1
       inherits: 2.0.4
       readable-stream: 3.6.2
-
-  blamer@1.0.7:
-    dependencies:
-      execa: 4.1.0
-      which: 2.0.2
 
   bmp-js@0.1.0: {}
 
@@ -26972,12 +26774,6 @@ snapshots:
     optionalDependencies:
       colors: 1.4.0
 
-  cli-table3@0.6.5:
-    dependencies:
-      string-width: 4.2.3
-    optionalDependencies:
-      '@colors/colors': 1.5.0
-
   cli-truncate@5.2.0:
     dependencies:
       slice-ansi: 8.0.0
@@ -27342,6 +27138,24 @@ snapshots:
       typescript: 6.0.3
     optional: true
 
+  cpd-darwin-arm64@5.0.6:
+    optional: true
+
+  cpd-darwin-x64@5.0.6:
+    optional: true
+
+  cpd-linux-arm64-gnu@5.0.6:
+    optional: true
+
+  cpd-linux-x64-gnu@5.0.6:
+    optional: true
+
+  cpd-linux-x64-musl@5.0.6:
+    optional: true
+
+  cpd-windows-x64-msvc@5.0.6:
+    optional: true
+
   cpr@3.0.1:
     dependencies:
       graceful-fs: 4.2.11
@@ -27477,12 +27291,12 @@ snapshots:
 
   css-loader@7.1.3(webpack@5.105.2(esbuild@0.27.3)(lightningcss@1.32.0)(postcss@8.5.12)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.15)
-      postcss: 8.5.15
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.15)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.15)
-      postcss-modules-scope: 3.2.1(postcss@8.5.15)
-      postcss-modules-values: 4.0.0(postcss@8.5.15)
+      icss-utils: 5.1.0(postcss@8.5.12)
+      postcss: 8.5.12
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.12)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.12)
+      postcss-modules-scope: 3.2.1(postcss@8.5.12)
+      postcss-modules-values: 4.0.0(postcss@8.5.12)
       postcss-value-parser: 4.2.0
       semver: 7.8.4
     optionalDependencies:
@@ -27491,7 +27305,7 @@ snapshots:
   css-loader@7.1.3(webpack@5.105.2(esbuild@0.27.3)(lightningcss@1.32.0)(postcss@8.5.15)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.15)
-      postcss: 8.5.15
+      postcss: 8.5.12
       postcss-modules-extract-imports: 3.1.0(postcss@8.5.15)
       postcss-modules-local-by-default: 4.2.0(postcss@8.5.15)
       postcss-modules-scope: 3.2.1(postcss@8.5.15)
@@ -28753,7 +28567,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-react-refresh@0.5.2(eslint@10.5.0(jiti@2.7.0)):
+  eslint-plugin-react-refresh@0.5.3(eslint@10.5.0(jiti@2.7.0)):
     dependencies:
       eslint: 10.5.0(jiti@2.7.0)(supports-color@5.5.0)
 
@@ -30217,6 +30031,10 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
+  icss-utils@5.1.0(postcss@8.5.12):
+    dependencies:
+      postcss: 8.5.12
+
   icss-utils@5.1.0(postcss@8.5.15):
     dependencies:
       postcss: 8.5.15
@@ -30750,23 +30568,14 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jscpd-sarif-reporter@4.2.5:
-    dependencies:
-      colors: 1.4.0
-      fs-extra: 11.3.5
-      node-sarif-builder: 4.1.0
-
-  jscpd@4.2.5:
-    dependencies:
-      '@jscpd/badge-reporter': 4.2.5
-      '@jscpd/core': 4.2.5
-      '@jscpd/finder': 4.2.5
-      '@jscpd/html-reporter': 4.2.5
-      '@jscpd/tokenizer': 4.2.5
-      colors: 1.4.0
-      commander: 15.0.0
-      fs-extra: 11.3.5
-      jscpd-sarif-reporter: 4.2.5
+  jscpd@5.0.6:
+    optionalDependencies:
+      cpd-darwin-arm64: 5.0.6
+      cpd-darwin-x64: 5.0.6
+      cpd-linux-arm64-gnu: 5.0.6
+      cpd-linux-x64-gnu: 5.0.6
+      cpd-linux-x64-musl: 5.0.6
+      cpd-windows-x64-msvc: 5.0.6
 
   jsdoc-type-pratt-parser@7.2.0: {}
 
@@ -31412,10 +31221,6 @@ snapshots:
       mdurl: 2.0.0
       punycode.js: 2.3.1
       uc.micro: 2.1.0
-
-  markdown-table@2.0.0:
-    dependencies:
-      repeat-string: 1.6.1
 
   markdown-table@3.0.4: {}
 
@@ -32510,11 +32315,6 @@ snapshots:
 
   node-releases@2.0.47: {}
 
-  node-sarif-builder@4.1.0:
-    dependencies:
-      '@types/sarif': 2.1.7
-      fs-extra: 11.3.5
-
   nodemon@3.1.14:
     dependencies:
       chokidar: 3.6.0
@@ -32611,7 +32411,7 @@ snapshots:
       npm-install-checks: 8.0.0
       npm-normalize-package-bin: 5.0.0
       npm-package-arg: 13.0.2
-      semver: 7.7.4
+      semver: 7.8.4
 
   npm-registry-fetch@19.1.1:
     dependencies:
@@ -33649,9 +33449,20 @@ snapshots:
       postcss: 8.5.15
       postcss-selector-parser: 7.1.4
 
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.12):
+    dependencies:
+      postcss: 8.5.12
+
   postcss-modules-extract-imports@3.1.0(postcss@8.5.15):
     dependencies:
       postcss: 8.5.15
+
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.12):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.12)
+      postcss: 8.5.12
+      postcss-selector-parser: 7.1.4
+      postcss-value-parser: 4.2.0
 
   postcss-modules-local-by-default@4.2.0(postcss@8.5.15):
     dependencies:
@@ -33660,10 +33471,20 @@ snapshots:
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
 
+  postcss-modules-scope@3.2.1(postcss@8.5.12):
+    dependencies:
+      postcss: 8.5.12
+      postcss-selector-parser: 7.1.4
+
   postcss-modules-scope@3.2.1(postcss@8.5.15):
     dependencies:
       postcss: 8.5.15
       postcss-selector-parser: 7.1.4
+
+  postcss-modules-values@4.0.0(postcss@8.5.12):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.12)
+      postcss: 8.5.12
 
   postcss-modules-values@4.0.0(postcss@8.5.15):
     dependencies:
@@ -34402,8 +34223,6 @@ snapshots:
       lodash: 4.18.1
       strip-ansi: 6.0.1
 
-  repeat-string@1.6.1: {}
-
   replace-ext@0.0.1: {}
 
   replace-ext@1.0.1: {}
@@ -34439,7 +34258,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.5.15
+      postcss: 8.5.12
       source-map: 0.6.1
 
   resolve@1.22.12:
@@ -35189,8 +35008,6 @@ snapshots:
       whatwg-url: 7.1.0
 
   space-separated-tokens@2.0.2: {}
-
-  spark-md5@3.0.2: {}
 
   spawndamnit@3.0.1:
     dependencies:
@@ -37697,11 +37514,11 @@ snapshots:
     dependencies:
       workbox-core: 7.4.1
 
-  workbox-build@7.4.1(@types/babel__core@7.20.5):
+  workbox-build@7.4.1(@types/babel__core@7.20.5)(supports-color@5.5.0):
     dependencies:
       '@apideck/better-ajv-errors': 0.3.7(ajv@8.20.0)
       '@babel/core': 7.29.7
-      '@babel/preset-env': 7.29.7(@babel/core@7.29.7)
+      '@babel/preset-env': 7.29.7(@babel/core@7.29.7)(supports-color@5.5.0)
       '@babel/runtime': 7.29.7
       '@rollup/plugin-babel': 6.1.0(@babel/core@7.29.7)(@types/babel__core@7.20.5)(rollup@4.61.1)
       '@rollup/plugin-node-resolve': 16.0.3(rollup@4.61.1)

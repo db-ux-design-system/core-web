@@ -39,7 +39,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
 
       # Let changesets open/update the "Version Packages" PR, commit bumped versions and create GitHub Releases/tags

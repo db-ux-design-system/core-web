@@ -59,6 +59,7 @@ $default-spacings: (
 	"none": 0
 );
 
+// jscpd:ignore-start
 @mixin get-data-spacing($type: padding, $spacings: $default-spacings) {
 	@each $name, $spacing in $spacings {
 		@if $name == "default" {
@@ -74,3 +75,5 @@ $default-spacings: (
 		}
 	}
 }
+
+// jscpd:ignore-end

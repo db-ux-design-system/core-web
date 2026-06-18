@@ -1,7 +1,12 @@
-moz
-webkit
+# (User)names
+mfranzke
+michaelmkraus
+nmerget
 merget
 franzke
+# further words
+moz
+webkit
 cicd
 Patternhub
 Textlink
@@ -203,11 +208,16 @@ ghsas
 rrrm
 GHSA
 browserslistrc
+subcomponent
+worktree
+unpushed
+refspec
+PRRT
+triaging
+automations
+Untriaged
+untriaged
+fbca
 unreviewed
 notext
 prebundle
-subcomponent
-# Usernames
-mfranzke
-michaelmkraus
-nmerget
