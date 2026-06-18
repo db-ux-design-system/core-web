@@ -2,9 +2,9 @@
 
 // stylelint-disable-next-line scss/at-rule-no-unknown
 @theme inline {
-	--breakpoint-xs: #{screen-sizes.$db-screen-size-xs};
-	--breakpoint-sm: #{screen-sizes.$db-screen-size-sm};
-	--breakpoint-md: #{screen-sizes.$db-screen-size-md};
-	--breakpoint-lg: #{screen-sizes.$db-screen-size-lg};
-	--breakpoint-xl: #{screen-sizes.$db-screen-size-xl};
+	--breakpoint-xs: #{screen-sizes.$db-breakpoint-xs};
+	--breakpoint-sm: #{screen-sizes.$db-breakpoint-sm};
+	--breakpoint-md: #{screen-sizes.$db-breakpoint-md};
+	--breakpoint-lg: #{screen-sizes.$db-breakpoint-lg};
+	--breakpoint-xl: #{screen-sizes.$db-breakpoint-xl};
 }
