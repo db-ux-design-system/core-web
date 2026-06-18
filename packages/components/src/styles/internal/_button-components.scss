@@ -20,15 +20,10 @@
 %button-outlined-ghost-colors {
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 
-	@include helpers.not-disabled {
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-		}
-
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-		}
-	}
+	@include helpers.interactive-bg(
+		colors.$db-adaptive-bg-basic-transparent-full-hovered,
+		colors.$db-adaptive-bg-basic-transparent-full-pressed
+	);
 }
 
 %button-brand-colors {
