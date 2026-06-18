@@ -11,7 +11,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/db-ux-design-system/.github/blob/main/CODE-OF-CONDUCT.md)
 
 DB UX Design System v3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best-of-class digital experiences.
@@ -263,7 +263,7 @@ Contributions are very welcome, please refer to the [contribution guide](https:/
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone – have a look at
-our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
+our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/.github/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

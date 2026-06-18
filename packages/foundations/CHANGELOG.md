@@ -1,5 +1,37 @@
 # @db-ux/core-foundations
 
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+## 4.10.2
+
+### Patch Changes
+
+- refactor: replaced external fallback icon font as inline base64 to ensure it loads with CSS even when the font file cannot be fetched, preventing layout shifts. - [see commit 8a6b622](https://github.com/db-ux-design-system/core-web/commit/8a6b622179dfd3fc61cecd149cd3b61a40147f92)
+
+- fix: ensure that the icon fallback is displayed as a rectangle - [see commit 6ebc636](https://github.com/db-ux-design-system/core-web/commit/6ebc6361f06fbb44476435b1f011def97318d586)
+
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+_version bump_
+
 ## 4.9.1
 
 ### Patch Changes

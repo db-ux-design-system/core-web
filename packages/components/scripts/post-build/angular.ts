@@ -109,9 +109,9 @@ const setDirectiveReplacements = (
 		}
 
 		replacements.push({
-			from: `export class ${upperComponentName} implements AfterViewInit {\n`,
+			from: `export class ${upperComponentName} implements AfterViewInit, OnDestroy {\n`,
 			to:
-				`export class ${upperComponentName} implements AfterViewInit {\n` +
+				`export class ${upperComponentName} implements AfterViewInit, OnDestroy {\n` +
 				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 

@@ -1,9 +1,4 @@
-import {
-	Component,
-	CUSTOM_ELEMENTS_SCHEMA,
-	NO_ERRORS_SCHEMA,
-	signal
-} from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
@@ -14,6 +9,8 @@ import {
 	DBButton,
 	DBCheckbox,
 	DBDivider,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBRadio,
 	DBSelect,
@@ -24,35 +21,37 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea
-} from '../../../../../../output/angular/src';
-import { environment } from '../../../environments/environment';
+} from '@components';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
-	imports: environment.webComponents
-		? [FormsModule, ReactiveFormsModule]
-		: [
-				FormsModule,
-				ReactiveFormsModule,
-				DBInput,
-				DBTextarea,
-				DBSelect,
-				DBRadio,
-				DBTag,
-				DBCheckbox,
-				DBDivider,
-				DBButton,
-				DBTabs,
-				DBTabList,
-				DBTabItem,
-				DBTabPanel,
-				DBSwitch
-			],
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		DBInput,
+		DBTextarea,
+		DBSelect,
+		DBRadio,
+		DBTag,
+		DBCheckbox,
+		DBDivider,
+		DBButton,
+		DBTabs,
+		DBTabList,
+		DBTabItem,
+		DBTabPanel,
+		DBSwitch,
+		DBDrawer,
+		DBInfotext
+	],
 	standalone: true,
-	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {
+	// Drawer state
+	drawerOpen = false;
+
 	// DB Switch with Angular signals
 	checkedSignal = signal(false);
 	checkedNonSignal = false;
