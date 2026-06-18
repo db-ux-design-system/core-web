@@ -454,6 +454,19 @@ export default function DBTabs(props: DBTabsProps) {
 			state.showScrollEnd = false;
 		},
 
+		// True only for panels that belong directly to this DBTabs instance.
+		// We look at the nearest ancestor that is either a `.db-tabs` root or
+		// another `[role="tabpanel"]`: if it is this instance's root (_ref) the
+		// panel is a direct child; if an intervening tabpanel (foreign tabpanel
+		// rendered inside a panel's content) or a nested `.db-tabs` is hit
+		// first, the panel is not ours and must not shift the index mapping.
+		_isOwnedPanel(panel: HTMLElement): boolean {
+			const owner = panel.parentElement?.closest(
+				'.db-tabs, [role="tabpanel"]'
+			);
+			return owner === _ref;
+		},
+
 		// Caches button/panel references and sets up static IDs/ARIA wiring.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
@@ -468,7 +481,7 @@ export default function DBTabs(props: DBTabsProps) {
 				const tabListEl = state._getScrollContainer();
 				const panels = Array.from<HTMLElement>(
 					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
-				).filter((panel) => panel.closest('.db-tabs') === _ref);
+				).filter((panel) => state._isOwnedPanel(panel));
 
 				if (!tabListEl) return;
 
