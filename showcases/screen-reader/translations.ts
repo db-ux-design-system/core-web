@@ -30,6 +30,6 @@ export const translations: Record<string, string[]> = {
 	],
 	'out of list': ['Liste Ende'],
 	'navigation landmark': ['Navigation Sprungmarke'],
-	"multi line": ["mehrzeilig"],
-	"Please fill out this field.": ["Fülle dieses Feld aus."],
+	'multi line': ['mehrzeilig'],
+	'Please fill out this field.': ['Fülle dieses Feld aus.']
 };
