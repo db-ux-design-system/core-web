@@ -74,6 +74,7 @@
 			inline-size: calc-size(auto, size);
 			grid-template-areas: "button";
 			grid-template-rows: [button] 1fr;
+
 			/* jscpd:ignore-end */
 
 			.db-control-panel-navigation {
