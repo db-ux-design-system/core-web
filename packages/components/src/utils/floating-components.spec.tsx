@@ -130,6 +130,7 @@ describe('handleFixedDropdown', () => {
 			({
 				zIndex: '1',
 				maxInlineSize: 'none',
+				position: 'fixed',
 				...(styleByElement.get(el) ?? {})
 			}) as unknown as CSSStyleDeclaration;
 		try {

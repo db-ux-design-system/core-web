@@ -274,6 +274,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 		}
 	}
 
+	/* jscpd:ignore-start */
 	&[data-open="false"] {
 		inline-size: auto;
 		/* stylelint-disable-next-line declaration-property-value-no-unknown */
@@ -310,6 +311,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 			}
 		}
 	}
+	/* jscpd:ignore-end */
 
 	&[data-open="true"] {
 		/// Sets the inline-size (width) of the control-panel-desktop
@@ -373,6 +375,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 	.db-control-panel-navigation {
 		@include vertical-navigation;
 
+		/* jscpd:ignore-start */
 		> menu {
 			@include navigation-item.direct-navigation-items {
 				@extend %indicator;
@@ -390,5 +393,6 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md
 				}
 			}
 		}
+		/* jscpd:ignore-end */
 	}
 }

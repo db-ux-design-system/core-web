@@ -147,8 +147,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._documentScrollListenerCallbackId = undefined;
 			}
 
-			state._observer?.disconnect();
-			state._observer = undefined;
 			state._activeTriggerCount = 0;
 
 			const bound = state._boundListeners ?? [];

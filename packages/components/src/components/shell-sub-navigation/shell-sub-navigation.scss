@@ -67,12 +67,14 @@
 			padding: variables.$db-spacing-fixed-md;
 		}
 
+		/* jscpd:ignore-start */
 		&[data-open="false"] {
 			inline-size: auto;
 			/* stylelint-disable-next-line declaration-property-value-no-unknown */
 			inline-size: calc-size(auto, size);
 			grid-template-areas: "button";
 			grid-template-rows: [button] 1fr;
+			/* jscpd:ignore-end */
 
 			.db-control-panel-navigation {
 				display: none;

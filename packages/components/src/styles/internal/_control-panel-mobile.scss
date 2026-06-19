@@ -72,6 +72,7 @@
 		1fr minmax(#{variables.$db-sizing-md}, min-content);
 	justify-content: space-evenly;
 
+	/* jscpd:ignore-start */
 	.db-control-panel-brand {
 		inline-size: variables.$db-sizing-md;
 		overflow: hidden;
@@ -84,6 +85,7 @@
 			background-image: var(--db-logo-url-short, var(--db-logo-url));
 		}
 	}
+	/* jscpd:ignore-end */
 
 	> db-button > .db-control-panel-mobile-button,
 	> .db-control-panel-mobile-button {

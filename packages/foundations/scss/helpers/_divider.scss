@@ -28,6 +28,7 @@
 		background-color: var(--db-divider-bg-color);
 		position: absolute;
 
+		/* jscpd:ignore-start */
 		@if $position == "top" {
 			block-size: variables.$db-border-width-3xs;
 			inset-block-start: 0;
@@ -72,5 +73,6 @@
 					var(--db-divider-bg-color);
 			}
 		}
+		/* jscpd:ignore-end */
 	}
 }

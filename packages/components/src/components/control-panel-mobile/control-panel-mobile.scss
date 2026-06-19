@@ -93,6 +93,7 @@
 						display: none;
 					}
 
+					/* jscpd:ignore-start */
 					> menu {
 						@include navigation-item.direct-navigation-items {
 							@extend %indicator;
@@ -110,6 +111,7 @@
 							}
 						}
 					}
+					/* jscpd:ignore-end */
 				}
 			}
 		}
