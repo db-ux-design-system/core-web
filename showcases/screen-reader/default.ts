@@ -197,7 +197,6 @@ export const runTest = async ({
 			nvdaNavigateToWebContent(nvda, pageTitle)
 		: screenRecorder.navigateToWebContent());
 
-
 	await testFn?.(voiceOver, nvda, page);
 	await postTestFn?.(voiceOver, nvda, retry);
 	recorder?.();
