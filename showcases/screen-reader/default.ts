@@ -217,6 +217,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 	};
 
 	if (isWin()) {
+		test.use({ nvdaStartOptions: { capture: true } });
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({
 				...testType,
@@ -226,6 +227,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 			});
 		});
 	} else {
+		test.use({ voiceOverStartOptions: { capture: true } });
 		test?.(title, async ({ page, voiceOver }, { retry }) => {
 			await runTest({
 				...testType,
