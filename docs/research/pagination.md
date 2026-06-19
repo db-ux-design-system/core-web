@@ -8,7 +8,7 @@ The primary function of a pagination is to reduce the user's cognitive load and 
 
 ## Overview 🔍
 
-The following overview consolidates the basic data of the 15 design systems. It specifies the exact naming of the pagination component in the respective system, documents the underlying technological basis, and list the most important architectural findings.
+The following overview consolidates the basic data of the 15 design systems. It specifies the exact naming of the pagination component in the respective system, documents the underlying technological basis, and lists the most important architectural findings.
 
 | Design System               | Component Name                   | Tech Stack                                 | Link                                                                                                     | Comments / Key Infos                                                                                                                                                                                          |
 | --------------------------- | -------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -26,7 +26,7 @@ The following overview consolidates the basic data of the 15 design systems. It 
 | **SNCF WCS**                | `Pagination`                     | Web Components (StencilJS), Angular, React | ([https://wcs.dev.sncf/](https://wcs.dev.sncf/))                                                         | Relies on standardized design tokens for consistent group styling across different frameworks. Separates visual representation from data state.                                                               |
 | **Telefonica Mistica**      | `Pagination`                     | React                                      | [Mistica](https://github.com/Telefonica/mistica-web)                                                     | Deep theming support (e.g., Movistar Skin). As a purely presentational component, it relies on external state management in the parent container.                                                             |
 | **Telekom Scale**           | `scale-pagination`               | Web Components (StencilJS)                 | ([https://telekom.github.io/scale/](https://telekom.github.io/scale/))                                   | Implements specific micro-interactions (1.05x hover scale) as well as detailed, integrated event tracking (`pagination.next_click`).                                                                          |
-| **Washington Post WPDS**    | `Pagination`                     | React                                      | ([https://build.washingtonpost.com/](https://www.google.com/search?q=https://build.washingtonpost.com/)) | Limits visual slots to a maximum of 7 elements. Designed for content-heavy environments (article archives, search results) to avoid visual overload with infinite search results.                             |
+| **Washington Post WPDS**    | `Pagination`                     | React                                      | [WPDS](https://build.washingtonpost.com/) | Limits visual slots to a maximum of 7 elements. Designed for content-heavy environments (article archives, search results) to avoid visual overload with infinite search results.                             | Limits visual slots to a maximum of 7 elements. Designed for content-heavy environments (article archives, search results) to avoid visual overload with infinite search results.                             |
 
 ---
 
@@ -34,7 +34,7 @@ The following overview consolidates the basic data of the 15 design systems. It 
 
 Several abstract architectural patterns can be derived and considered as practices for developing a scalable pagination component.
 Beyond basic ARIA labels, semantic HTML plays a crucial role in pagination. It is an industry best practice to implement the `rel="next"` and `rel="prev"` HTML attributes on the respective pagination links. These attributes clarify the sequential relationship between pages for search engines, improve structural accessibility, and enable modern browsers to prefetch upcoming content, significantly improving the perceived performance of the application.
-CSS functions like `sibling-index()` and `sibling-count()` can be utilized to dynamically style pagination items. However, because cross-browser support is still limited.
+CSS functions like `sibling-index()` and `sibling-count()` can be utilized to dynamically style pagination items. However, their cross-browser support is still limited.
 
 ### State Management
 
@@ -55,7 +55,7 @@ In addition, asynchronous loading states must be communicated via `aria-live="po
 
 ## Conclusion 🏁
 
-Implementing pagination is more than visually rendering a numeric HTML list. It represents a critical interface between backend, frontend routing architecture, and cognitive ergonomics. The 15 examined design systems provide a consistent picture of standards, which can be summarized in three main point:
+Implementing pagination is more than visually rendering a numeric HTML list. It represents a critical interface between backend, frontend routing architecture, and cognitive ergonomics. The 15 examined design systems provide a consistent picture of standards, which can be summarized in three main points:
 
 **Technical architecture:** Examined systems abstract pagination from actual data storage. They act as strictly controlled, stateless components and primarily support native server-side routing and search engine optimization.
 
@@ -82,7 +82,7 @@ The first phase focuses on establishing a static, semantic, and accessible pagin
 - **Reactive Responsive Design:** Automatic reduction of `siblingCount` to 0 on mobile viewports to prevent horizontal scrolling (collapsing the layout from `< 1... 4 5 6... 9 >` to `< 1... 5... 9 >`).
 - **Truncation (Ellipsis):** Implementation of robust logic for omission marks (`...`). Introduction of flexible props `siblingCount` (pages next to the current page) and `boundaryCount` (pages at the outer edges).
 - **Full Internationalization (i18n):** Architecture for seamless translatability of all screen reader texts and text nodes (e.g., "Next Page", "Page 4 of 10").
-- **Sequential Relationship:** include the `rel="next"` and `rel="prev"` attributes on the 'Next' and 'Previous' anchor tags to clarify the sequential relationship of the pages.
+- **Sequential Relationship:** Include the `rel="next"` and `rel="prev"` attributes on the 'Next' and 'Previous' anchor tags to clarify the sequential relationship of the pages.
 
 ### 🔵 V2 - Intermediate features
 
