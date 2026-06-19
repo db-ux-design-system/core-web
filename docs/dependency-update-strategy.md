@@ -4,7 +4,7 @@ This document explains the rationale behind our Dependabot configuration and Git
 
 ## Why only patch updates are auto-merged
 
-We deliberately only auto-merge **patch** version bumps (via `.github/workflows/99-auto-merge.yml`). Minor and major updates require manual review.
+We deliberately only auto-merge **patch** version bumps (via `.github/workflows/99-auto-handle-dependabot.yml`). Minor and major updates require manual review.
 
 ### Minor updates as an RSS feed for improvements
 
