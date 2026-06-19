@@ -201,7 +201,7 @@ const App = () => (
 		}
 		controlPanelMobile={
 			<DBControlPanelMobile
-				drawerHeadlinePlain="My Awesome App"
+				drawerHeaderText="My Awesome App"
 				brand={<DBBrand>My Awesome App</DBBrand>}
 				metaNavigation={<MetaNavigation />}
 				primaryActions={<PrimaryActions />}

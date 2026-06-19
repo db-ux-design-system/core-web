@@ -58,7 +58,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 			controlPanelMobile={
 				<DBControlPanelMobile
 					id={controlPanelMobileId}
-					drawerHeadlinePlain="Showcase"
+					drawerHeaderText="Showcase"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<PrimaryActions

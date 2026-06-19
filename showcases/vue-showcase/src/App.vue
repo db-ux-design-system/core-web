@@ -69,7 +69,7 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 			</DBControlPanelDesktop>
 		</template>
 		<template v-slot:control-panel-mobile>
-			<DBControlPanelMobile drawerHeadlinePlain="Showcase">
+			<DBControlPanelMobile drawerHeaderText="Showcase">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>

@@ -10,7 +10,7 @@ export default function ControlPanelMobile() {
 
 			<h2>1. Default Control Panel Mobile (Drawer)</h2>
 			<DBControlPanelMobile
-				drawerHeadlinePlain="Application Name"
+				drawerHeaderText="Application Name"
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
@@ -28,7 +28,7 @@ export default function ControlPanelMobile() {
 			<DBControlPanelMobile
 				position="bottom"
 				variant="flat-icon"
-				drawerHeadlinePlain="Application Name"
+				drawerHeaderText="Application Name"
 				brand={
 					<DBControlPanelBrand>Application Name</DBControlPanelBrand>
 				}>
