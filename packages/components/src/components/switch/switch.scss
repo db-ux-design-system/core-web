@@ -47,6 +47,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		}
 	}
 
+	// jscpd:ignore-start
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
 			@include form-components.get-validity-color-checkbox("valid");
@@ -56,6 +57,8 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 	@include form-components.get-validity(check, "invalid") {
 		@include form-components.get-validity-color-checkbox("invalid");
 	}
+
+	// jscpd:ignore-end
 
 	input {
 		--db-icon-margin-start: 0;
@@ -131,6 +134,8 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
+
+			// jscpd:ignore-start
 			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
@@ -141,6 +146,8 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
+
+			// jscpd:ignore-end
 
 			&::after {
 				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};

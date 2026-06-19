@@ -38,7 +38,7 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: 🦮 Guidepup Setup Windows
-        uses: guidepup/setup-action@4aa2ebd687ff687a31d7c17184beac3c606d64cd # 0.19.0
+        uses: guidepup/setup-action@5ab89fbb6641406f6f6c91057225f3fb397c2eea # 0.20.0
         with:
           record: true
 

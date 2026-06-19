@@ -1,17 +1,18 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DBCustomSelect } from '@components';
-import { environment } from '../../../../environments/environment';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-custom-selects',
 	standalone: true,
-	imports: environment.webComponents
-		? [WrapperComponent, FormsModule, ReactiveFormsModule]
-		: [WrapperComponent, DBCustomSelect, FormsModule, ReactiveFormsModule],
-	templateUrl: './custom-selects.component.html',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	imports: [
+		WrapperComponent,
+		DBCustomSelect,
+		FormsModule,
+		ReactiveFormsModule
+	],
+	templateUrl: './custom-selects.component.html'
 })
 export class CustomSelectsComponent {
 	plain = ['combobox-2'];

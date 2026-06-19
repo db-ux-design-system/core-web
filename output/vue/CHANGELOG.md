@@ -1,5 +1,38 @@
 # @db-ux/v-core-components
 
+## 4.12.1
+
+### Patch Changes
+
+- fix(custom-select): dropdown with `dropdownWidth="auto"` now correctly sizes to content width and respects the trigger minimum width. Long option labels no longer get truncated: `auto` keeps them on a single line (dropdown grows to the longest option), while `fixed` and `full` wrap long labels onto new lines. - [see commit 68dedc3](https://github.com/db-ux-design-system/core-web/commit/68dedc33c324b48339d5bb73a85fdff3045ed059)
+
+- fix(drawer): prevent backdrop drag-close when selection starts inside content - [see commit b53ff8a](https://github.com/db-ux-design-system/core-web/commit/b53ff8a4f0a5350c5be41fad072e14797676bba7)
+
+## 4.12.0
+
+### Minor Changes
+
+- feat: emit spec-compliant ESM with explicit import extensions - [see commit 73808d6](https://github.com/db-ux-design-system/core-web/commit/73808d6ec80085451d72e5ad73eb154198a60558):
+
+    - The generated React, Vue and Web Component outputs now produce standards-compliant
+    - ESM: every relative import/export carries an explicit `.js` / `/index.js` (or `.vue`)
+    - extension, added during Mitosis generation. This resolves `ERR_UNSUPPORTED_DIR_IMPORT`
+    - in strict ESM environments such as Node.js native ESM and Vitest 4.
+    - The React output additionally compiles with `module`/`moduleResolution: "node16"`
+    - (plus `jsx: "react-jsx"` and `target: "es2022"`), so missing extensions are caught at
+    - compile time. As a result the emitted React JS uses the `react/jsx-runtime` transform
+    - and es2022 syntax (React 19 compatible).
+
+## 4.11.1
+
+### Patch Changes
+
+- fix: remove `readonly` attribute on `DBInput` and `DBTextarea` when `readOnly`/`readonly` is `false` - [see commit 312ad4c](https://github.com/db-ux-design-system/core-web/commit/312ad4c7582b7315042b23a7cc8b485889ba6fd8):
+
+    - Passing `readOnly={false}` (e.g. via Angular's `formField` directive) previously rendered `readonly="false"` into the DOM. Since `readonly` is a boolean HTML attribute, its mere presence made the field read-only. The binding now resolves to `undefined` when not read-only, so the attribute is omitted entirely.
+
+- fix(tooltip): clean up parent listeners and observers on unmount - [see commit b050660](https://github.com/db-ux-design-system/core-web/commit/b050660b3b8cc9f0fde2a9d96dfbd6c0f02cc24f)
+
 ## 4.11.0
 
 ### Minor Changes
