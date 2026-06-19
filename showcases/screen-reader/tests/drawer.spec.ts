@@ -13,6 +13,28 @@ test.describe('DBDrawer', () => {
 			await screenReader?.previous();
 			await screenReader?.act();
 			await screenReader?.next();
+		},
+		async postTestFn(voiceOver, nvda, retry) {
+			if (nvda) {
+				/*
+				 * There is a timing issue for windows which results in different outputs in CICD.
+				 * We avoid this by replacing the generated log files
+				 */
+				await generateSnapshot(nvda, retry, (phraseLog) =>
+					phraseLog.map((log) =>
+						log
+							.replace('Showcase, document. unknown', 'button')
+							.replace('unknown', 'button')
+							// Autofocus timing: NVDA sometimes prepends "button." to the dialog announcement
+							.replace(
+								'button. dialog. document',
+								'dialog. document'
+							)
+					)
+				);
+			} else if (voiceOver) {
+				await generateSnapshot(voiceOver, retry);
+			}
 		}
 	});
 });
