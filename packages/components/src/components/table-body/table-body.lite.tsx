@@ -22,6 +22,7 @@ export default function DBTableBody(props: DBTableBodyProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-table-body', props.className)}>
+			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>
 					{(row: DBTableRowProps, index: number) => (
@@ -35,6 +36,7 @@ export default function DBTableBody(props: DBTableBodyProps) {
 					)}
 				</For>
 			</Show>
+			{/* jscpd:ignore-end */}
 		</tbody>
 	);
 }
