@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "4.12.0",
+  "version": "4.12.1",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
@@ -67,9 +67,9 @@
     "postcss-cli": "11.0.1",
     "replace-in-file": "8.4.0",
     "sass": "1.101.0",
-    "storybook": "10.4.4",
+    "storybook": "10.4.5",
     "tsx": "4.22.4",
-    "vitest": "4.1.8"
+    "vitest": "4.1.9"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
