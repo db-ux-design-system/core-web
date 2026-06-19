@@ -53,7 +53,6 @@ const App = () => {
 			}
 			controlPanelMobile={
 				<DBControlPanelMobile
-					drawerHeadlinePlain="Showcase"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
 					primaryActions={
 						<PrimaryActions

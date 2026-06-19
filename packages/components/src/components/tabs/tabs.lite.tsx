@@ -205,7 +205,7 @@ export default function DBTabs(props: DBTabsProps) {
 	onUnMount(() => {
 		if (state._resizeObserverCallbackId) {
 			new ResizeObserverListener().unobserve(
-				state._resizeObserverCallbackId
+				state._resizeObserverCallbackId!
 			);
 			state._resizeObserverCallbackId = undefined;
 		}

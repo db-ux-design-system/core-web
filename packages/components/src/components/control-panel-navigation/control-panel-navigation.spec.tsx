@@ -9,12 +9,12 @@ import { DBControlPanelNavigationItemGroup } from '../control-panel-navigation-i
 
 const comp: any = (
 	<DBControlPanelNavigation>
-		<DBControlPanelNavigationItemGroup text="More">
+		<DBControlPanelNavigationItemGroup text="Test1" data-testid="test1">
 			<DBControlPanelNavigationItem data-testid="sub1">
 				<a href="#">Sub1</a>
 			</DBControlPanelNavigationItem>
 		</DBControlPanelNavigationItemGroup>
-		<DBControlPanelNavigationItem data-testid="test1">
+		<DBControlPanelNavigationItem>
 			<a href="#">Test2</a>
 		</DBControlPanelNavigationItem>
 		<DBControlPanelNavigationItem>

@@ -5,7 +5,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
@@ -41,15 +42,27 @@ export default function DBControlPanelDesktop(
 			}
 		},
 		getToggleButtonText: (): string => {
-			if (props.onExpandButtonTooltipFn) {
-				const open = state._open;
-				return props.onExpandButtonTooltipFn(open);
-			}
 			if (props.expandButtonTooltip) {
 				return props.expandButtonTooltip;
 			}
 
-			return state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND;
+			if (props.expandButtonTooltip) {
+				return props.expandButtonTooltip;
+			}
+			const fnOutput = useTarget({
+				angular: () => undefined,
+				stencil: () => undefined,
+				default: () => {
+					if (props.onExpandButtonTooltipFn) {
+						const open = state._open;
+						return props.onExpandButtonTooltipFn(open);
+					}
+				}
+			});
+
+			return (
+				fnOutput() ?? (state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND)
+			);
 		},
 		onScroll() {
 			if (!_scrollContainerRef) return;
@@ -79,7 +92,7 @@ export default function DBControlPanelDesktop(
 			state._resizeObserverCallbackId =
 				new ResizeObserverListener().observe(
 					document.documentElement,
-					() => state.onScroll()
+					state.onScroll
 				);
 		}
 	});
@@ -87,7 +100,7 @@ export default function DBControlPanelDesktop(
 	onUnMount(() => {
 		if (state._resizeObserverCallbackId) {
 			new ResizeObserverListener().unobserve(
-				state._resizeObserverCallbackId
+				state._resizeObserverCallbackId!
 			);
 			state._resizeObserverCallbackId = undefined;
 		}

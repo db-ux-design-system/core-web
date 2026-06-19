@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/density";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/navigation-item";
 @use "../../styles/internal/indicator";
@@ -104,6 +105,8 @@
 			max: "sm"
 		)
 	) {
+		--db-control-panel-flat-icon-mobile: 1;
+
 		@include helpers.divider("top");
 
 		.db-control-panel-navigation {

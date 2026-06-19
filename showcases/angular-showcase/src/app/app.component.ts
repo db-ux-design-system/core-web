@@ -6,6 +6,7 @@ import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
+	DBControlPanelNavigation,
 	DBShell,
 	DBShellContent,
 	DBShellSubNavigation,

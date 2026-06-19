@@ -507,8 +507,7 @@ const FormComponent = () => {
 					onClose={() => {
 						setDrawerOpen(false);
 					}}
-					open={drawerOpen}
-					spacing="none">
+					open={drawerOpen}>
 					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
 						Test infotext
 						<DBTooltip placement="bottom-start">

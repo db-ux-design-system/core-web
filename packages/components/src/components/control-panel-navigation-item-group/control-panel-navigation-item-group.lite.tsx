@@ -97,14 +97,14 @@ export default function DBControlPanelNavigationItemGroup(
 	onUnMount(() => {
 		if (state._intersectionObserverCallbackId) {
 			new IntersectionObserverListener().unobserve(
-				state._intersectionObserverCallbackId
+				state._intersectionObserverCallbackId!
 			);
 			state._intersectionObserverCallbackId = undefined;
 		}
 
 		if (state._resizeObserverCallbackId) {
 			new ResizeObserverListener().unobserve(
-				state._resizeObserverCallbackId
+				state._resizeObserverCallbackId!
 			);
 			state._resizeObserverCallbackId = undefined;
 		}

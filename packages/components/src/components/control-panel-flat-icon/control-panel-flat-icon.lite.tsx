@@ -12,6 +12,8 @@ export default function DBControlPanelFlatIcon(
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 
+	// TODO: Add JS to set density fo mobile
+
 	return (
 		<header
 			ref={_ref}

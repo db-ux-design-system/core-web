@@ -7,6 +7,7 @@ import { CardShowcase } from '@components/components/card/showcase/card.showcase
 import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
 import { ControlPanelBrandShowcase } from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
 import { ControlPanelDesktopShowcase } from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
+import { ControlPanelFlatIconShowcase } from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
 import { ControlPanelMobileShowcase } from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import { ControlPanelNavigationItemShowcase } from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase';
 import { ControlPanelNavigationShowcase } from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase';
