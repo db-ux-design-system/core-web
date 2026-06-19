@@ -32400,6 +32400,10 @@ var initialGlobals4 = {
 });
 
 // src/csf/core-annotations.ts
+var CORE_ANNOTATIONS_COMPOSED = Symbol.for("storybook.internal.composedWithCoreAnnotations");
+function hasCoreAnnotations(annotations) {
+  return annotations != null && typeof annotations == "object" && annotations[CORE_ANNOTATIONS_COMPOSED] === !0;
+}
 function getCoreAnnotations() {
   return [
     // @ts-expect-error CJS fallback
@@ -33470,9 +33474,9 @@ function extractAnnotation(annotation) {
   return annotation ? composeConfigs([annotation]) : {};
 }
 function setProjectAnnotations(projectAnnotations) {
-  let annotations = Array.isArray(projectAnnotations) ? projectAnnotations : [projectAnnotations];
+  let annotations = Array.isArray(projectAnnotations) ? projectAnnotations : [projectAnnotations], alreadyComposedWithCore = annotations.some((annotation) => hasCoreAnnotations(annotation));
   return globalThis.globalProjectAnnotations = composeConfigs([
-    ...getCoreAnnotations(),
+    ...alreadyComposedWithCore ? [] : getCoreAnnotations(),
     globalThis.defaultProjectAnnotations ?? {},
     composeConfigs(annotations.map(extractAnnotation))
   ]), globalThis.globalProjectAnnotations ?? {};
@@ -33646,12 +33650,13 @@ async function runStory(story, context) {
 }
 
 // src/preview-api/modules/store/StoryStore.ts
+function composeProjectAnnotations(projectAnnotations) {
+  return hasCoreAnnotations(projectAnnotations) ? normalizeProjectAnnotations(projectAnnotations) : normalizeProjectAnnotations(composeConfigs([...getCoreAnnotations(), projectAnnotations]));
+}
 var CSF_CACHE_SIZE = 1e3, STORY_CACHE_SIZE = 1e4, StoryStore = class {
   constructor(storyIndex, importFn, projectAnnotations) {
     this.importFn = importFn;
-    this.storyIndex = new StoryIndexStore(storyIndex), this.projectAnnotations = normalizeProjectAnnotations(
-      composeConfigs([...getCoreAnnotations(), projectAnnotations])
-    );
+    this.storyIndex = new StoryIndexStore(storyIndex), this.projectAnnotations = composeProjectAnnotations(projectAnnotations);
     let { initialGlobals: initialGlobals5, globalTypes } = this.projectAnnotations;
     this.args = new ArgsStore(), this.userGlobals = new GlobalsStore({ globals: initialGlobals5, globalTypes }), this.hooks = {}, this.cleanupCallbacks = {}, this.processCSFFileWithCache = (0, import_memoizerific2.default)(CSF_CACHE_SIZE)(processCSFFile), this.prepareMetaWithCache = (0, import_memoizerific2.default)(CSF_CACHE_SIZE)(prepareMeta), this.prepareStoryWithCache = (0, import_memoizerific2.default)(STORY_CACHE_SIZE)(prepareStory);
   }
