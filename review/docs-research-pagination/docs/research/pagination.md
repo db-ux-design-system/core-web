@@ -49,7 +49,7 @@ On mobile devices, this must be adjusted. As the Porsche Design System (reductio
 
 While the implementation of a navigation landmark (`<nav aria-label="Pagination">`) and marking the current page (`aria-current="page"`) is considered as standard, practice shows more extensive and often neglected requirements.
 If pagination is triggered and the website does _not_ perform a full reload, the screen reader's focus remains on the clicked pagination button at the bottom of the DOM structure. If the layout then changes (e.g., because the button is removed from the DOM due to a recalculation of truncation), focus is completely lost, which is disorienting for users of assistive technologies. It requires programmatically setting focus to the top of the new data table after an asynchronous page change.
-In addition, asynchronous loading states must be communicated via `aria-live="polite"` regions to signal the arrival of new data to the user.
+In addition, asynchronous loading states must be communicated via `role="status"` regions to signal the arrival of new data to the user.
 
 ---
 
