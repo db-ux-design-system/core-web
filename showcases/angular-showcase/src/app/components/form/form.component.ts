@@ -9,6 +9,8 @@ import {
 	DBButton,
 	DBCheckbox,
 	DBDivider,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBRadio,
 	DBSelect,
@@ -39,12 +41,17 @@ import {
 		DBTabList,
 		DBTabItem,
 		DBTabPanel,
-		DBSwitch
+		DBSwitch,
+		DBDrawer,
+		DBInfotext
 	],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {
+	// Drawer state
+	drawerOpen = false;
+
 	// DB Switch with Angular signals
 	checkedSignal = signal(false);
 	checkedNonSignal = false;

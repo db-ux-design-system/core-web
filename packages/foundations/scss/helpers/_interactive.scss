@@ -1,1 +1,18 @@
+@use "functions";
+
 $interactive-elements: 'button,input,textarea,summary,select,a[href],[tabindex]:not([tabindex="-1"])';
+
+/// Generates not-disabled > hover/active background-color states.
+/// @param {Color} $bg-hovered - The hovered background color token.
+/// @param {Color} $bg-pressed - The pressed background color token.
+@mixin interactive-bg($bg-hovered, $bg-pressed) {
+	@include functions.not-disabled {
+		@include functions.hover {
+			background-color: $bg-hovered;
+		}
+
+		@include functions.active {
+			background-color: $bg-pressed;
+		}
+	}
+}
