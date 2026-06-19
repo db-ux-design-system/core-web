@@ -12,13 +12,35 @@ const withMDX = generated({
 	}
 });
 
+const mdxConfig = withMDX({
+	pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
+});
+
+// Wrap (instead of replace) the webpack function that `withMDX` provides, so
+// the MDX loaders stay registered. Replacing the `webpack` key here would drop
+// them and break `.md`/`.mdx` parsing.
+const withExtensionAlias = (mdxWebpack) => (webpackConfig, options) => {
+	const updatedConfig = mdxWebpack
+		? mdxWebpack(webpackConfig, options)
+		: webpackConfig;
+
+	// The React output source uses explicit `.js` extensions in its relative
+	// imports (added by the Mitosis esm-extensions plugin), but Patternhub
+	// consumes it as raw TypeScript via transpilePackages. Map `.js` specifiers
+	// back to `.ts`/`.tsx` so Webpack can resolve them.
+	updatedConfig.resolve.extensionAlias = {
+		...updatedConfig.resolve.extensionAlias,
+		'.js': ['.ts', '.tsx', '.js']
+	};
+	return updatedConfig;
+};
+
 const config = {
 	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 	transpilePackages: ['../react-showcase/', '@db-ux'],
-	...withMDX({
-		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
-	}),
+	...mdxConfig,
+	webpack: withExtensionAlias(mdxConfig.webpack),
 	env: {
 		BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH || '',
 		NEXT_SHOWCASE_VARIANT: 'next',

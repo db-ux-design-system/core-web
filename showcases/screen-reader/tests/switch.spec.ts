@@ -1,9 +1,4 @@
-import {
-	generateSnapshot,
-	getTest,
-	STABILIZATION_DELAY,
-	testDefault
-} from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -20,7 +15,6 @@ test.describe('DBSwitch', () => {
 				await nvda?.act(); // Interact "switch 1"
 				await nvda?.next(); // Focus "switch 2"
 				await nvda?.act(); // Interact "switch 2"
-				await page.waitForTimeout(STABILIZATION_DELAY);
 				await nvda?.next(); // Focus "switch 3"
 			} else if (voiceOver) {
 				await voiceOver?.previous(); // Focus "switch 1"

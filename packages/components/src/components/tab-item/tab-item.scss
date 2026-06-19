@@ -39,15 +39,10 @@ $with-icon-padding-calc: calc(
 			--db-overwrite-cursor: initial;
 		}
 
-		@include helpers.not-disabled {
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-			}
-		}
+		@include helpers.interactive-bg(
+			colors.$db-adaptive-bg-basic-transparent-full-hovered,
+			colors.$db-adaptive-bg-basic-transparent-full-pressed
+		);
 
 		&:has(input:checked) {
 			font-weight: 700;

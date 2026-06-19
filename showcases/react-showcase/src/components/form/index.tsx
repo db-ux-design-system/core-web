@@ -497,6 +497,12 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
+				<h2>Drawer Test</h2>
+				<p>
+					Test: Click "Open Drawer", then mouse down inside the drawer
+					content, drag to the backdrop, and release. The drawer
+					should NOT close.
+				</p>
 				<DBButton
 					onClick={() => {
 						setDrawerOpen(true);
@@ -509,7 +515,8 @@ const FormComponent = () => {
 					}}
 					open={drawerOpen}>
 					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
-						Test infotext
+						Test: Mouse down here, drag to backdrop, release. Drawer
+						should stay open.
 						<DBTooltip placement="bottom-start">
 							Test tooltip
 						</DBTooltip>

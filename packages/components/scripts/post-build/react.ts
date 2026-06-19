@@ -142,7 +142,10 @@ export default DB${upperComponentName};`
 					from: 'import * as React from "react";',
 					to:
 						'import * as React from "react";\n ' +
-						'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
+						// Explicit .js extension required: this import is injected
+						// here in post-build, AFTER the Mitosis esm-extensions
+						// plugin has run, so it is not rewritten automatically.
+						'import { filterPassingProps, getRootProps } from "../../utils/react.js";\n'
 				},
 				{
 					from: 'ref={_ref}',

@@ -671,6 +671,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							.includes(filterText.toLowerCase())
 				);
 			}
+
+			if (detailsRef?.open) {
+				state.handleAutoPlacement();
+			}
 		},
 		handleClearAll: (event: any) => {
 			event.stopPropagation();
@@ -839,6 +843,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._options = props.options;
 		state.amountOptions =
 			props.options?.filter((option) => !option.isGroupTitle).length ?? 0;
+
+		// Reposition open auto-width dropdowns: replacing options can change their content width.
+		if (detailsRef?.open) {
+			state.handleAutoPlacement();
+		}
 	}, [props.options]);
 
 	onUpdate(() => {

@@ -110,8 +110,6 @@ export const generateSnapshot = async (
 	expect(snapshot).toMatchSnapshot();
 };
 
-export const STABILIZATION_DELAY = 1000;
-
 const SWITCH_APPLICATION = {
 	keyCode: [WindowsKeyCodes.Escape],
 	modifiers: [WindowsModifiers.Alt]
@@ -175,7 +173,6 @@ export const runTest = async ({
 		waitUntil: 'networkidle'
 	});
 	const pageTitle = await page.title();
-	await page.waitForTimeout(500);
 
 	let recorder: (() => void) | undefined;
 
@@ -200,8 +197,6 @@ export const runTest = async ({
 			nvdaNavigateToWebContent(nvda, pageTitle)
 		: screenRecorder.navigateToWebContent());
 
-	await page.waitForTimeout(500);
-
 	await testFn?.(voiceOver, nvda, page);
 	await postTestFn?.(voiceOver, nvda, retry);
 	recorder?.();
@@ -222,6 +217,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 	};
 
 	if (isWin()) {
+		test.use({ nvdaStartOptions: { capture: true } });
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({
 				...testType,
@@ -231,6 +227,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 			});
 		});
 	} else {
+		test.use({ voiceOverStartOptions: { capture: true } });
 		test?.(title, async ({ page, voiceOver }, { retry }) => {
 			await runTest({
 				...testType,

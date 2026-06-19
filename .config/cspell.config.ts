@@ -9,6 +9,7 @@ export default defineConfig({
 		'node_modules',
 		'.git',
 		'.vscode',
+		'.gitignore',
 		'__snapshots__',
 		'dist',
 		'build',
