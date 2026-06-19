@@ -23,7 +23,7 @@ export default function DBButton(props: DBButtonProps) {
 		getButtonType: () => {
 			if (props.type) {
 				return props.type;
-			} else if (props.onClick || props.commandfor) {
+			} else if (props.onClick || props.commandfor) {
 				return 'button';
 			}
 			return 'submit';

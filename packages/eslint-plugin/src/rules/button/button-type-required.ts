@@ -68,7 +68,11 @@ export default {
 				getAttributeValue(openingElement, '(click)') ||
 				getAttributeValue(openingElement, '@click');
 
-			const typeValue = hasClickHandler || getAttributeValue(openingElement, 'commandfor') ? 'button' : 'submit';
+			const typeValue =
+				hasClickHandler ||
+				getAttributeValue(openingElement, 'commandfor')
+					? 'button'
+					: 'submit';
 
 			context.report({
 				node: openingElement,
