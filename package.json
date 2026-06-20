@@ -107,6 +107,7 @@
     "eslint-plugin-prettier": "5.5.6",
     "husky": "9.1.7",
     "jscpd": "5.0.9",
+    "knip": "6.17.1",
     "lint-staged": "17.0.7",
     "markdownlint-cli": "0.48.0",
     "npm-package-json-lint": "10.4.1",

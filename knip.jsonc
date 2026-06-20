@@ -1,0 +1,121 @@
+{
+	"$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+	// Ignore framework outputs, showcases, storybooks, docs, and figma workspaces.
+	// These are generated or have their own ecosystems (Angular, Next, Nuxt, etc.)
+	// that would produce too many false positives.
+	"ignoreWorkspaces": [
+		"output/*",
+		"showcases/*",
+		"storybooks/*",
+		"docs",
+		"figma-code-connect/*"
+	],
+	// Global dependency ignores: design tokens & workspace packages consumed at runtime
+	"ignoreDependencies": [
+		"@db-ux/db-theme",
+		"@db-ux/db-theme-fonts",
+		"@db-ux/db-theme-icons",
+		"@db-ux/core-components",
+		"@db-ux/core-foundations",
+		"@db-ux/core-eslint-plugin",
+		"eslint-plugin-package-json",
+		"@commitlint/config-conventional",
+		"stylelint-config-standard-scss"
+	],
+	// Binaries provided by hoisted root devDependencies (vitest, vite)
+	"ignoreBinaries": ["vitest", "vite"],
+	"workspaces": {
+		// Root workspace
+		".": {
+			"entry": [".config/*.{js,ts}"],
+			"project": [".config/**/*.{js,ts}"],
+			"ignoreDependencies": [
+				"@figma/code-connect",
+				"@guidepup/guidepup",
+				"@guidepup/playwright",
+				"@guidepup/record",
+				"@guidepup/setup",
+				"@playwright/experimental-ct-core",
+				"accessibility-checker-engine",
+				"validate-branch-name"
+			]
+		},
+		// Scripts workspace (monorepo orchestration)
+		"scripts": {
+			"entry": [
+				"*.{js,ts}",
+				"documentation/*.ts",
+				"github/**/*.{js,ts}",
+				"tests/**/*.ts"
+			],
+			"project": ["**/*.{js,ts}", "**/*.ts"],
+			"ignoreDependencies": ["postcss-scss", "@actions/github"]
+		},
+		// Core foundations (SCSS/CSS tokens and assets)
+		"packages/foundations": {
+			"entry": [
+				"scripts/**/*.ts",
+				"assets/fonts/*.ts",
+				"test/**/*.{js,ts}"
+			],
+			"project": [
+				"src/**/*.ts",
+				"scripts/**/*.ts",
+				"assets/**/*.ts",
+				"test/**/*.{js,ts}"
+			],
+			"ignoreDependencies": ["@csstools/normalize.css", "glob"]
+		},
+		// Core components (Mitosis-based component library)
+		"packages/components": {
+			"entry": [
+				"src/**/index.ts",
+				"src/**/*.lite.tsx",
+				"scripts/**/*.ts",
+				"configs/**/*.{cjs,js,ts}"
+			],
+			"project": [
+				"src/**/*.{ts,tsx}",
+				"scripts/**/*.ts",
+				"configs/**/*.{cjs,js,ts}"
+			],
+			// react is used by Mitosis .lite.tsx files; @playwright/experimental-ct-react by spec files
+			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
+		},
+		// ESLint plugin
+		"packages/eslint-plugin": {
+			"project": ["src/**/*.ts"]
+		},
+		// Stylelint plugin
+		"packages/stylelint": {
+			"project": ["src/**/*.ts"]
+		},
+		// Vite plugin
+		"packages/vite-plugin": {
+			"project": ["src/**/*.ts", "test/**/*.ts"]
+		},
+		// PostCSS plugin
+		"packages/postcss-plugin": {
+			"project": ["src/**/*.ts", "test/**/*.ts"]
+		},
+		// Migration CLI
+		"packages/migration": {
+			"project": ["src/**/*.ts"]
+		},
+		// Agent CLI
+		"packages/agent-cli": {
+			"project": ["src/**/*.ts"]
+		},
+		// MCP Server
+		"packages/mcp-server": {
+			"entry": ["src/index.ts", "scripts/*.ts"],
+			"project": ["src/**/*.ts", "scripts/**/*.ts"]
+		}
+	},
+	"lint-staged": {
+		"config": [
+			".config/.lintstagedrc.js",
+			".config/.lintstagedrc-prettier.js"
+		]
+	}
+}
