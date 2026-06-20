@@ -58,6 +58,11 @@ export const checkFixMap: CheckConfig[] = [
 		]
 	},
 	{
+		name: 'lint:knip',
+		checkCommand: { command: 'pnpm', args: ['run', 'lint:knip'] },
+		fixCommands: [{ command: 'pnpm', args: ['run', 'lint:knip', '--fix'] }]
+	},
+	{
 		name: 'lint:stylelint',
 		checkCommand: {
 			command: 'pnpm',
