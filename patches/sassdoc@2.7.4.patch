@@ -1,0 +1,13 @@
+diff --git a/dist/environment.js b/dist/environment.js
+index bb47bd4e3d6ebe8e8bbce926ae2d91ffd419b26c..5586315addce66ad62aab536e1aa7e2d4c1d9cff 100644
+--- a/dist/environment.js
++++ b/dist/environment.js
+@@ -411,7 +411,7 @@ var Environment = function (_EventEmitter) {
+   }, {
+     key: 'parseFile',
+     value: function parseFile(file) {
+-      return _jsYaml2.default.safeLoad(_fs2.default.readFileSync(file, 'utf-8'));
++      return _jsYaml2.default.load(_fs2.default.readFileSync(file, 'utf-8'));
+     }
+ 
+     /**
