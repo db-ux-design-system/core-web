@@ -1,8 +1,8 @@
 /** A single text content block inside an MCP tool result. */
-export type TextContent = { type: 'text'; text: string };
+type TextContent = { type: 'text'; text: string };
 
 /** A single image content block inside an MCP tool result. */
-export type ImageContent = { type: 'image'; data: string; mimeType: string };
+type ImageContent = { type: 'image'; data: string; mimeType: string };
 
 /** Standard return type for all MCP tool handlers. */
 export type ToolResult = {
@@ -11,7 +11,7 @@ export type ToolResult = {
 };
 
 /** Maximum time in milliseconds a tool operation is allowed to run before being aborted. */
-export const TOOL_TIMEOUT_MS = 10000;
+const TOOL_TIMEOUT_MS = 10000;
 
 /**
  * Races a promise against a fixed timeout.

@@ -12,20 +12,20 @@
 // ---------------------------------------------------------------------------
 
 /** Maps a v2 CSS class (cmp-*, elm-*, rea-*) to its v3 CSS class (db-*). */
-export interface ComponentMigrationEntry {
+interface ComponentMigrationEntry {
 	readonly old: string;
 	readonly new: string;
 }
 
 /** Maps a legacy db-color-* token to its v3 background and foreground tokens. */
-export interface ColorMigrationEntry {
+interface ColorMigrationEntry {
 	readonly old: string;
 	readonly bg: string;
 	readonly fg: string;
 }
 
 /** Maps a legacy icon name to its v3 replacement. */
-export interface IconMigrationEntry {
+interface IconMigrationEntry {
 	readonly old: string;
 	readonly new: string;
 }
