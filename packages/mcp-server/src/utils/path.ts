@@ -16,13 +16,13 @@ function normalize(p: string): string {
 const ASSETS_DIR = join(import.meta.dirname, '../../assets');
 
 /** Absolute path to the migration guide assets. */
-export const MIGRATION_ASSETS_DIR = join(ASSETS_DIR, 'migration');
+const MIGRATION_ASSETS_DIR = join(ASSETS_DIR, 'migration');
 
 /**
  * Finds a migration guide by name, falling back to the legacy `db-ui-`
  * prefixed key for backwards compatibility with older manifest formats.
  */
-export function findGuide(
+function findGuide(
 	guides: Record<string, string>,
 	name: string
 ): string | undefined {

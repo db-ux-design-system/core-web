@@ -13,7 +13,7 @@ import {
  * @param value - The CSS value string potentially containing `light-dark()` calls
  * @returns The value with identical-argument `light-dark()` calls collapsed
  */
-export const collapseLightDark = (value: string): string => {
+const collapseLightDark = (value: string): string => {
 	let result = value;
 	let searchFrom = 0;
 

@@ -59,5 +59,3 @@ export const migrate = (
 
 	return undefined;
 };
-
-export default { migrate };
