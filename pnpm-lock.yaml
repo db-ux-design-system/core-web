@@ -16,7 +16,7 @@ overrides:
   http-proxy-middleware@>=0.16.0 <3.0.6: ^3.0.6
   http-proxy-middleware@>=3.0.4 <3.0.7: ^3.0.7
   ip-address@<=10.1.0: ^10.1.1
-  js-yaml@<=4.1.1: ^4.1.2
+  js-yaml@>=4.0.0 <=4.1.1: ^4.1.2
   markdown-it@<=14.1.1: ^14.1.2
   marked@<4.0.10: ^4.0.10
   picomatch@>=4.0.0 <4.0.4: ^4.0.4
@@ -35,9 +35,6 @@ overrides:
   uuid@<11.1.1: ^11.1.1
   vite@>=7.0.0 <=7.3.4: ^7.3.5
   webpack-dev-server@<=5.2.3: ^5.2.4
-
-patchedDependencies:
-  sassdoc@2.7.4: 0a8274452379b425618b3715ffc89bc7049a36adcb232b0528bf72be93af92a2
 
 importers:
 
@@ -759,7 +756,7 @@ importers:
         version: 6.1.3
       sassdoc:
         specifier: 2.7.4
-        version: 2.7.4(patch_hash=0a8274452379b425618b3715ffc89bc7049a36adcb232b0528bf72be93af92a2)(chokidar@3.6.0)
+        version: 2.7.4(chokidar@3.6.0)
       tar:
         specifier: 7.5.16
         version: 7.5.16
@@ -7973,6 +7970,9 @@ packages:
     resolution: {integrity: sha512-ixiS0nLNNG5jNQzgZJNoUpBKdo9yTYZMGJ+QgT2jmjR7G7+QHRCc4v6LQ3NgE7EBJq+o0ams3waJwkrlBom8Ig==}
     engines: {node: '>=14'}
 
+  argparse@1.0.10:
+    resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
+
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
@@ -11693,6 +11693,10 @@ packages:
   js-tokens@9.0.1:
     resolution: {integrity: sha512-mxa9E9ITFOt0ban3j6L5MpjwegGz6lBQmM1IJkWeBZGcMxto50+eWdjC/52xDbS2vy0k7vIMK0Fe2wfL9OQSpQ==}
 
+  js-yaml@3.14.2:
+    resolution: {integrity: sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==}
+    hasBin: true
+
   js-yaml@4.2.0:
     resolution: {integrity: sha512-ePWsvanv0DWuDRsW8dnt+R4jQ31SCRCQ7hhNcPXZPsoBZiemuZNYGf7adZdqX2D86j6rvKp3RpCxVTSb8WQlOw==}
     hasBin: true
@@ -14890,6 +14894,9 @@ packages:
 
   split@1.0.1:
     resolution: {integrity: sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==}
+
+  sprintf-js@1.0.3:
+    resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
   srvx@0.11.16:
     resolution: {integrity: sha512-bp07zRuycfTY43IjAvvTFnmnJi8ikW0VFiHwOhhYcVW/L4xQ1XY4PAd4Nuum1rsA17C39zL7x+CDhrn5AL32Rw==}
@@ -24554,6 +24561,10 @@ snapshots:
 
   are-docs-informative@0.0.2: {}
 
+  argparse@1.0.10:
+    dependencies:
+      sprintf-js: 1.0.3
+
   argparse@2.0.1: {}
 
   aria-query@5.3.0:
@@ -27724,7 +27735,7 @@ snapshots:
 
   front-matter@4.0.2:
     dependencies:
-      js-yaml: 4.2.0
+      js-yaml: 3.14.2
 
   fs-constants@1.0.0: {}
 
@@ -29005,6 +29016,11 @@ snapshots:
   js-tokens@4.0.0: {}
 
   js-tokens@9.0.1: {}
+
+  js-yaml@3.14.2:
+    dependencies:
+      argparse: 1.0.10
+      esprima: 4.0.1
 
   js-yaml@4.2.0:
     dependencies:
@@ -32374,7 +32390,7 @@ snapshots:
   read-yaml-file@1.1.0:
     dependencies:
       graceful-fs: 4.2.11
-      js-yaml: 4.2.0
+      js-yaml: 3.14.2
       pify: 4.0.1
       strip-bom: 3.0.0
 
@@ -33022,7 +33038,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  sassdoc@2.7.4(patch_hash=0a8274452379b425618b3715ffc89bc7049a36adcb232b0528bf72be93af92a2)(chokidar@3.6.0):
+  sassdoc@2.7.4(chokidar@3.6.0):
     dependencies:
       ansi-styles: 4.3.0
       babel-runtime: 6.26.0
@@ -33031,7 +33047,7 @@ snapshots:
       docopt: 0.6.2
       glob: 7.2.3
       glob2base: 0.0.12
-      js-yaml: 4.2.0
+      js-yaml: 3.14.2
       lodash.difference: 4.5.0
       lodash.uniq: 4.5.0
       minimatch: 3.1.5
@@ -33474,6 +33490,8 @@ snapshots:
   split@1.0.1:
     dependencies:
       through: 2.3.8
+
+  sprintf-js@1.0.3: {}
 
   srvx@0.11.16: {}
 
