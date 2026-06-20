@@ -55,3 +55,13 @@ The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_forma
 ### markdown files via markdownlint
 
 - [github.com/markdownlint/markdownlint](https://github.com/markdownlint/markdownlint/)
+
+### Unused code and dependencies via Knip
+
+[Knip](https://knip.dev/) finds unused files, dependencies, and exports across the monorepo. It runs as part of `pnpm run lint` (via the `lint:knip` script) and can also be run standalone:
+
+```shell
+pnpm run knip
+```
+
+Configuration lives in `knip.jsonc` at the repository root. See the [Knip documentation](https://knip.dev/overview/configuration) for details on workspace-level configuration.
