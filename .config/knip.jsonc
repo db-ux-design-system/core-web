@@ -1,8 +1,7 @@
 {
 	"$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
-	// Ignore framework outputs, showcases, storybooks, docs, and figma workspaces.
-	// These are generated or have their own ecosystems (Angular, Next, Nuxt, etc.)
-	// that would produce too many false positives.
+
+	// These workspaces are generated or framework-specific and produce false positives
 	"ignoreWorkspaces": [
 		"output/*",
 		"showcases/*",
@@ -10,7 +9,8 @@
 		"docs",
 		"figma-code-connect/*"
 	],
-	// Global dependency ignores: design tokens & workspace packages consumed at runtime
+
+	// Design token packages and shared configs consumed implicitly
 	"ignoreDependencies": [
 		"@db-ux/db-theme",
 		"@db-ux/db-theme-fonts",
@@ -18,12 +18,11 @@
 		"@db-ux/core-components",
 		"@db-ux/core-foundations",
 		"@db-ux/core-eslint-plugin",
-		"eslint-plugin-package-json",
 		"@commitlint/config-conventional",
+		"eslint-plugin-package-json",
 		"stylelint-config-standard-scss"
 	],
-	// Binaries provided by hoisted root devDependencies (vitest, vite)
-	"ignoreBinaries": ["vitest", "vite"],
+
 	"workspaces": {
 		// Root workspace
 		".": {
@@ -40,7 +39,8 @@
 				"validate-branch-name"
 			]
 		},
-		// Scripts workspace (monorepo orchestration)
+
+		// Scripts workspace: files are executed directly, not imported
 		"scripts": {
 			"entry": [
 				"*.{js,ts}",
@@ -48,10 +48,11 @@
 				"github/**/*.{js,ts}",
 				"tests/**/*.ts"
 			],
-			"project": ["**/*.{js,ts}", "**/*.ts"],
+			"project": ["**/*.{js,ts}"],
 			"ignoreDependencies": ["postcss-scss", "@actions/github"]
 		},
-		// Core foundations (SCSS/CSS tokens and assets)
+
+		// Foundations: SCSS files are compiled by sass CLI, not imported in TS
 		"packages/foundations": {
 			"entry": [
 				"scripts/**/*.ts",
@@ -66,56 +67,36 @@
 			],
 			"ignoreDependencies": ["@csstools/normalize.css", "glob"]
 		},
-		// Core components (Mitosis-based component library)
+
+		// Components: Mitosis .lite.tsx + configs are consumed by the mitosis CLI
 		"packages/components": {
 			"entry": [
 				"src/**/index.ts",
 				"src/**/*.lite.tsx",
+				"src/**/*.figma.ts",
 				"scripts/**/*.ts",
-				"configs/**/*.{cjs,js,ts}"
+				"configs/**/*.{cjs,js}",
+				"test/**/*.{js,ts}"
 			],
 			"project": [
 				"src/**/*.{ts,tsx}",
 				"scripts/**/*.ts",
-				"configs/**/*.{cjs,js,ts}"
+				"configs/**/*.{cjs,js}",
+				"test/**/*.{js,ts}"
 			],
-			// react is used by Mitosis .lite.tsx files; @playwright/experimental-ct-react by spec files
+			"ignoreBinaries": ["vite"],
 			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
 		},
-		// ESLint plugin
-		"packages/eslint-plugin": {
-			"project": ["src/**/*.ts"]
-		},
-		// Stylelint plugin
-		"packages/stylelint": {
-			"project": ["src/**/*.ts"]
-		},
-		// Vite plugin
+
+		// Vite plugin: test fixtures are mock apps with their own unlisted deps
 		"packages/vite-plugin": {
-			"project": ["src/**/*.ts", "test/**/*.ts"]
+			"ignore": ["test/fixtures/**"]
 		},
-		// PostCSS plugin
-		"packages/postcss-plugin": {
-			"project": ["src/**/*.ts", "test/**/*.ts"]
-		},
-		// Migration CLI
-		"packages/migration": {
-			"project": ["src/**/*.ts"]
-		},
-		// Agent CLI
-		"packages/agent-cli": {
-			"project": ["src/**/*.ts"]
-		},
-		// MCP Server
-		"packages/mcp-server": {
-			"entry": ["src/index.ts", "scripts/*.ts"],
-			"project": ["src/**/*.ts", "scripts/**/*.ts"]
+
+		// ESLint plugin: test framework file imports packages used in the real world
+		"packages/eslint-plugin": {
+			"entry": ["test/**/*.{ts,tsx,js}"],
+			"ignoreDependencies": ["@db-ux/react-core-components"]
 		}
-	},
-	"lint-staged": {
-		"config": [
-			".config/.lintstagedrc.js",
-			".config/.lintstagedrc-prettier.js"
-		]
 	}
 }
