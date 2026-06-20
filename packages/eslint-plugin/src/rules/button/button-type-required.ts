@@ -26,7 +26,9 @@ export default {
 			const type = getAttributeValue(node, 'type');
 			if (type === null) {
 				const hasClickHandler = getAttributeValue(node, '(click)');
-				const typeValue = hasClickHandler ? 'button' : 'submit';
+				const hasCommandFor = getAttributeValue(node, 'commandfor');
+				const typeValue =
+					hasClickHandler || hasCommandFor ? 'button' : 'submit';
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
