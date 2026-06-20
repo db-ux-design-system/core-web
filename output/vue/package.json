@@ -44,7 +44,7 @@
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.60.0",
+    "@playwright/experimental-ct-vue": "1.61.0",
     "@vitejs/plugin-vue": "6.0.7",
     "@vue/compiler-dom": "3.5.38",
     "cpr": "3.0.1",
