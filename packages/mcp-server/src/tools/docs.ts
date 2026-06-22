@@ -10,8 +10,8 @@ import { getManifest } from '../utils/manifest';
  * implicitly excluded because they don't match any whitelisted prefix.
  */
 const DOCS_ALLOWED_PREFIXES = [
-	'packages/components/', // component-specific docs
-	'packages/foundations/docs/' // foundation docs
+	'packages/components/', // Component-specific docs
+	'packages/foundations/docs/' // Foundation docs
 ];
 
 /** Returns true if the given manifest doc path is within the whitelist. */
@@ -34,7 +34,8 @@ function buildResults(results: string[], query: string): ToolResult {
 			]
 		};
 	}
-	const content: { type: 'text'; text: string }[] = [
+
+	const content: Array<{ type: 'text'; text: string }> = [
 		{ type: 'text', text: results.slice(0, 3).join('\n\n') }
 	];
 	if (results.length > 3) {
@@ -43,6 +44,7 @@ function buildResults(results: string[], query: string): ToolResult {
 			text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
 		});
 	}
+
 	return { content };
 }
 
@@ -82,7 +84,7 @@ export async function handleDocsSearch({
 			for (const [path, content] of Object.entries(manifest.docs)) {
 				if (results.length >= 3) break;
 				// Normalize Windows backslashes to forward slashes
-				const normalizedPath = path.replace(/\\/g, '/');
+				const normalizedPath = path.replaceAll('\\', '/');
 				// Defense-in-depth: skip docs outside whitelisted directories
 				if (!isAllowedDocPath(normalizedPath)) continue;
 
@@ -112,17 +114,18 @@ export async function handleDocsSearch({
 					'\n' +
 					content
 				).toLowerCase();
-				const isMatch =
-					searchTerms.length === 0 ||
-					searchTerms.every((term) => haystack.includes(term));
+				const isMatch = searchTerms.every((term) =>
+					haystack.includes(term)
+				);
 				if (isMatch) {
 					const snippet =
 						content.length > 3000
-							? content.substring(0, 3000) + '\n... [TRUNCATED]'
+							? content.slice(0, 3000) + '\n... [TRUNCATED]'
 							: content;
 					results.push(`--- ${normalizedPath} ---\n${snippet}`);
 				}
 			}
+
 			return buildResults(results, query);
 		})(),
 		'Error: Search took too long (exceeded 10 seconds). Please refine your query.'
