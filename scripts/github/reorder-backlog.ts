@@ -1005,8 +1005,9 @@ const reorderBacklog = async () => {
 	// every item would look like "no status" and active items would be moved.
 	assertStatusFieldExists();
 
-	// Step 0: Sync status based on linked PRs
-	console.log('\n🔄 Syncing status based on linked pull requests...');
+	// Step 0: Fetch all core-web project items (used to process the
+	// "Waiting for Feedback" items in step 0b below).
+	console.log('\n🔄 Fetching core-web project items...');
 	const allCoreWebItems = await fetchProjectItems(
 		(node) => {
 			if (node.content?.__typename !== 'Issue') return false;
