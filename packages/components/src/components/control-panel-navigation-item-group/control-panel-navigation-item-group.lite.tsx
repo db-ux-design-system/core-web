@@ -74,8 +74,6 @@ export default function DBControlPanelNavigationItemGroup(
 				event.stopPropagation();
 				props.onClick(event);
 			}
-
-			state.isSubNavigationExpanded = !state.isSubNavigationExpanded;
 		},
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
@@ -156,6 +154,28 @@ export default function DBControlPanelNavigationItemGroup(
 				_ref.addEventListener(event, () =>
 					handleSubNavigationPosition(_menuRef)
 				);
+			});
+
+			_ref.addEventListener('focusin', () => {
+				state.isSubNavigationExpanded = true;
+			});
+
+			_ref.addEventListener('focusout', (event: any) => {
+				const relatedTarget = event.relatedTarget as HTMLElement | null;
+				if (
+					!relatedTarget ||
+					!(_ref as HTMLElement).contains(relatedTarget)
+				) {
+					state.isSubNavigationExpanded = false;
+				}
+			});
+
+			_ref.addEventListener('mouseenter', () => {
+				state.isSubNavigationExpanded = true;
+			});
+
+			_ref.addEventListener('mouseleave', () => {
+				state.isSubNavigationExpanded = false;
 			});
 
 			state._intersectionObserverCallbackId =
