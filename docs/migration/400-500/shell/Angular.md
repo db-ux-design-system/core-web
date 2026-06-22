@@ -271,42 +271,47 @@ export class SecondaryActionsComponent {}
 ```ts
 import { Component } from "@angular/core";
 import {
-	DBNavigation,
-	DBNavigationItem,
-	DBNavigationItemGroup // new
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup // new
 	/*NavigationContentDirective*/
 } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-navigation",
-	imports: [DBNavigation, DBNavigationItem, DBNavigationItemGroup],
+	imports: [
+		DBControlPanelNavigation,
+		DBControlPanelNavigationItem,
+		DBControlPanelNavigationItemGroup
+	],
 	standalone: true,
 	template: `
-		<db-navigation>
-			<db-navigation-item-group text="Navi-Item 1">
-				/* replaced DBNavigationItem with subNavigation */
-				<db-navigation-item-group text="Sub-Navi-Item 1">
-					/* replaced DBNavigationItem with subNavigation */
-					<db-navigation-item>
+		<db-control-panel-navigation>
+			<db-control-panel-navigation-item-group text="Navi-Item 1">
+				/* replaced DBControlPanelNavigationItem with subNavigation */
+				<db-control-panel-navigation-item-group text="Sub-Navi-Item 1">
+					/* replaced DBControlPanelNavigationItem with subNavigation
+					*/
+					<db-control-panel-navigation-item>
 						<a href="#" aria-current="page">
 							Sub-Sub-Navi-Item 1
 						</a>
-					</db-navigation-item>
-					<db-navigation-item>
+					</db-control-panel-navigation-item>
+					<db-control-panel-navigation-item>
 						<a href="#">Sub-Sub-Navi-Item 2</a>
-					</db-navigation-item>
-				</db-navigation-item-group>
-				<db-navigation-item>
+					</db-control-panel-navigation-item>
+				</db-control-panel-navigation-item-group>
+				<db-control-panel-navigation-item>
 					<a href="#">Sub-Navi-Item 2</a>
-				</db-navigation-item>
-			</db-navigation-item-group>
-			<db-navigation-item icon="x_placeholder">
+				</db-control-panel-navigation-item>
+			</db-control-panel-navigation-item-group>
+			<db-control-panel-navigation-item icon="x_placeholder">
 				<a href="#">Navi-Item 2</a>
-			</db-navigation-item>
-			<db-navigation-item [disabled]="true">
+			</db-control-panel-navigation-item>
+			<db-control-panel-navigation-item [disabled]="true">
 				<a href="#">Navi-Item 3</a>
-			</db-navigation-item>
-		</db-navigation>
+			</db-control-panel-navigation-item>
+		</db-control-panel-navigation>
 	`
 })
 export class NavigationComponent {}

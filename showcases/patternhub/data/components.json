@@ -170,18 +170,18 @@
 		"name": "navigation",
 		"subNavigation": [
 			{
-				"label": "DBNavigation",
-				"name": "navigation",
+				"label": "DBControlPanelNavigation",
+				"name": "control-panel-navigation",
 				"subNavigation": [
 					{
-						"label": "DBNavigationItem Properties",
-						"path": "/components/navigation-item/properties"
+						"label": "DBControlPanelNavigationItem Properties",
+						"path": "/components/control-panel-navigation-item/properties"
 					}
 				]
 			},
 			{
-				"label": "DBNavigationItem",
-				"name": "navigation-item",
+				"label": "DBControlPanelNavigationItem",
+				"name": "control-panel-navigation-item",
 				"isHiddenInMenu": true
 			}
 		]

@@ -7,40 +7,43 @@ For general installation and configuration look at the [v-core-components](https
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBNavigation, DBNavigationItem } from "@db-ux/v-core-components";
+import {
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem
+} from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBNavigation>
-		<DBNavigationItem>
+	<DBControlPanelNavigation>
+		<DBControlPanelNavigationItem>
 			Navi-Item 1
 			<template v-slot:sub-navigation>
-				<DBNavigationItem>
+				<DBControlPanelNavigationItem>
 					Sub-Navi-Item 1
 
 					<template v-slot:sub-navigation>
-						<DBNavigationItem>
+						<DBControlPanelNavigationItem>
 							<a href="#" aria-current="page"
 								>Sub-Sub-Navi-Item 1</a
 							>
-						</DBNavigationItem>
-						<DBNavigationItem>
+						</DBControlPanelNavigationItem>
+						<DBControlPanelNavigationItem>
 							<a href="#">Sub-Sub-Navi-Item 2</a>
-						</DBNavigationItem>
+						</DBControlPanelNavigationItem>
 					</template>
-				</DBNavigationItem>
-				<DBNavigationItem>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
 					<a href="#">Sub-Navi-Item 2</a>
-				</DBNavigationItem>
+				</DBControlPanelNavigationItem>
 			</template>
-		</DBNavigationItem>
-		<DBNavigationItem icon="x_placeholder">
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
-		</DBNavigationItem>
-		<DBNavigationItem :disabled="true">
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem :disabled="true">
 			<a href="#">Navi-Item 3</a>
-		</DBNavigationItem>
-	</DBNavigation>
+		</DBControlPanelNavigationItem>
+	</DBControlPanelNavigation>
 </template>
 ```
 
@@ -56,29 +59,32 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBMainNavigation, DBNavigationItem } from "@db-ux/v-core-components";
+import {
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem
+} from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBMainNavigation>
-		<DBNavigationItem>
+	<DBControlPanelNavigation>
+		<DBControlPanelNavigationItem>
 			<RouterLink to="/" ariaCurrentValue="page">Home</RouterLink>
-		</DBNavigationItem>
-		<DBNavigationItem>
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem>
 			<template> Demo Pages </template>
 			<template #subnavigation>
-				<DBNavigationItem>
+				<DBControlPanelNavigationItem>
 					<RouterLink to="/demo/1" ariaCurrentValue="page">
 						Demo Page 1
 					</RouterLink>
-				</DBNavigationItem>
-				<DBNavigationItem>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
 					<RouterLink to="/demo/2" ariaCurrentValue="page">
 						Demo Page 2
 					</RouterLink>
-				</DBNavigationItem>
+				</DBControlPanelNavigationItem>
 			</template>
-		</DBNavigationItem>
-	</DBMainNavigation>
+		</DBControlPanelNavigationItem>
+	</DBControlPanelNavigation>
 </template>
 ```

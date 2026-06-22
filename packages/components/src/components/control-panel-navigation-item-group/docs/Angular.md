@@ -6,11 +6,11 @@ For general installation and configuration take a look at the [ngx-core-componen
 
 ```ts app.component.ts
 // app.component.ts
-import { DBNavigationItemGroup } from '@db-ux/ngx-core-components';
+import { DBControlPanelNavigationItemGroup } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
-  imports: [..., DBNavigationItemGroup],
+  imports: [..., DBControlPanelNavigationItemGroup],
   standalone: true
   // ...
 })
@@ -20,5 +20,7 @@ import { DBNavigationItemGroup } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-navigation-item-group>NavigationItemGroup</db-navigation-item-group>
+<db-control-panel-navigation-item-group
+	>NavigationItemGroup</db-control-panel-navigation-item-group
+>
 ```

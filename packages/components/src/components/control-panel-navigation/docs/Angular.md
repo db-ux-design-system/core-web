@@ -6,12 +6,12 @@ For general installation and configuration look at the [ngx-core-components](htt
 
 ```ts app.component.ts
 // app.component.ts
-import { DBNavigation } from '@db-ux/ngx-core-components';
+import { DBControlPanelNavigation, DBControlPanelNavigationItem, NavigationContentDirective } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBNavigation, DBNavigationItem, NavigationContentDirective],
+  imports: [..., DBControlPanelNavigation, DBControlPanelNavigationItem, NavigationContentDirective],
   // ...
 })
 ```
@@ -21,47 +21,47 @@ import { DBNavigation } from '@db-ux/ngx-core-components';
 ```html app.component.html
 <!-- app.component.html -->
 
-<db-navigation>
-	<db-navigation-item>
+<db-control-panel-navigation>
+	<db-control-panel-navigation-item>
 		<ng-container sub-navigation>
-			<db-navigation-item>
+			<db-control-panel-navigation-item>
 				<ng-container *dbNavigationContent>
 					Sub-Navi-Item 1
 				</ng-container>
 				<ng-container sub-navigation>
-					<db-navigation-item>
+					<db-control-panel-navigation-item>
 						<ng-container *dbNavigationContent>
 							<a href="#" aria-current="page"
 								>Sub-Sub-Navi-Item 1</a
 							>
 						</ng-container>
-					</db-navigation-item>
-					<db-navigation-item>
+					</db-control-panel-navigation-item>
+					<db-control-panel-navigation-item>
 						<ng-container *dbNavigationContent>
 							<a href="#">Sub-Sub-Navi-Item 2</a>
 						</ng-container>
-					</db-navigation-item>
+					</db-control-panel-navigation-item>
 				</ng-container>
-			</db-navigation-item>
-			<db-navigation-item>
+			</db-control-panel-navigation-item>
+			<db-control-panel-navigation-item>
 				<ng-container *dbNavigationContent>
 					<a href="#">Sub-Navi-Item 2</a>
 				</ng-container>
-			</db-navigation-item>
+			</db-control-panel-navigation-item>
 		</ng-container>
 		<ng-container *dbNavigationContent> Navi-Item 1 </ng-container>
-	</db-navigation-item>
-	<db-navigation-item icon="x_placeholder">
+	</db-control-panel-navigation-item>
+	<db-control-panel-navigation-item icon="x_placeholder">
 		<ng-container *dbNavigationContent>
 			<a href="#">Navi-Item 2</a>
 		</ng-container>
-	</db-navigation-item>
-	<db-navigation-item [disabled]="true">
+	</db-control-panel-navigation-item>
+	<db-control-panel-navigation-item [disabled]="true">
 		<ng-container *dbNavigationContent>
 			<a href="#">Navi-Item 3</a>
 		</ng-container>
-	</db-navigation-item>
-</db-navigation>
+	</db-control-panel-navigation-item>
+</db-control-panel-navigation>
 ```
 
 ### Angular Router and active state handling
@@ -75,7 +75,7 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```ts app.component.ts
 // app.component.ts
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { DBMainNavigation } from '@db-ux/ngx-core-components';
+import { DBControlPanelNavigation, DBControlPanelNavigationItem } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
@@ -84,7 +84,8 @@ import { DBMainNavigation } from '@db-ux/ngx-core-components';
 	// ...
 	RouterLink,
 	RouterLinkActive,
-	DBMainNavigation
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem
   ],
   // ...
 })
@@ -96,8 +97,8 @@ The active style is automatically set once an item receives the `aria-current="p
 ```html app.component.html
 <!-- app.component.html -->
 
-<db-navigation>
-	<db-navigation-item>
+<db-control-panel-navigation>
+	<db-control-panel-navigation-item>
 		<ng-container *dbNavigationContent>
 			<a
 				routerLink="/"
@@ -107,11 +108,11 @@ The active style is automatically set once an item receives the `aria-current="p
 				Home
 			</a>
 		</ng-container>
-	</db-navigation-item>
-	<db-navigation-item>
+	</db-control-panel-navigation-item>
+	<db-control-panel-navigation-item>
 		<ng-container *dbNavigationContent> Demo Pages </ng-container>
 		<ng-container sub-navigation>
-			<db-navigation-item>
+			<db-control-panel-navigation-item>
 				<ng-container *dbNavigationContent>
 					<a routerLink="/demo/1" ariaCurrentWhenActive="page">
 						Demo Page 1
@@ -122,8 +123,8 @@ The active style is automatically set once an item receives the `aria-current="p
 						Demo Page 2
 					</a>
 				</ng-container>
-			</db-navigation-item>
+			</db-control-panel-navigation-item>
 		</ng-container>
-	</db-navigation-item>
-</db-navigation>
+	</db-control-panel-navigation-item>
+</db-control-panel-navigation>
 ```

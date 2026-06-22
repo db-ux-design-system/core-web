@@ -6,44 +6,47 @@ For general installation and configuration look at the [react-core-components](h
 
 ```tsx App.tsx
 // App.tsx
-import { DBNavigation, DBNavigationItem } from "@db-ux/react-core-components";
+import {
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem
+} from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBNavigation>
-		<DBNavigationItem
+	<DBControlPanelNavigation>
+		<DBControlPanelNavigationItem
 			subNavigation={
 				<>
-					<DBNavigationItem
+					<DBControlPanelNavigationItem
 						subNavigation={
 							<>
-								<DBNavigationItem>
+								<DBControlPanelNavigationItem>
 									<a href="#" aria-current="page">
 										Sub-Sub-Navi-Item 1
 									</a>
-								</DBNavigationItem>
-								<DBNavigationItem>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
 									<a href="#">Sub-Sub-Navi-Item 2</a>
-								</DBNavigationItem>
+								</DBControlPanelNavigationItem>
 							</>
 						}
 					>
 						Sub-Navi-Item 1
-					</DBNavigationItem>
-					<DBNavigationItem>
+					</DBControlPanelNavigationItem>
+					<DBControlPanelNavigationItem>
 						<a href="#">Sub-Navi-Item 2</a>
-					</DBNavigationItem>
+					</DBControlPanelNavigationItem>
 				</>
 			}
 		>
 			Navi-Item 1
-		</DBNavigationItem>
-		<DBNavigationItem icon="x_placeholder">
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
-		</DBNavigationItem>
-		<DBNavigationItem disabled>
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem disabled>
 			<a href="#">Navi-Item 3</a>
-		</DBNavigationItem>
-	</DBNavigation>
+		</DBControlPanelNavigationItem>
+	</DBControlPanelNavigation>
 );
 
 export default App;

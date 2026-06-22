@@ -118,9 +118,9 @@ import {
 	DBControlPanelPrimaryActions, // new
 	DBControlPanelSecondaryActions, // new
 	DBLink,
-	DBNavigation,
-	DBNavigationItem,
-	DBNavigationItemGroup // new
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup // new
 } from "@db-ux/react-core-components";
 
 // No need for own drawer state
@@ -159,31 +159,31 @@ const SecondaryActions = () => (
 );
 
 const Navigation = () => (
-	<DBNavigation>
-		<DBNavigationItemGroup text="Navi-Item 1">
-			{/* replaced DBNavigationItem with `subNavigation` */}
-			<DBNavigationItemGroup text="Sub-Navi-Item 1">
-				{/* replaced DBNavigationItem with `subNavigation` */}
-				<DBNavigationItem>
+	<DBControlPanelNavigation>
+		<DBControlPanelNavigationItemGroup text="Navi-Item 1">
+			{/* replaced DBControlPanelNavigationItem with `subNavigation` */}
+			<DBControlPanelNavigationItemGroup text="Sub-Navi-Item 1">
+				{/* replaced DBControlPanelNavigationItem with `subNavigation` */}
+				<DBControlPanelNavigationItem>
 					<a href="#" aria-current="page">
 						Sub-Sub-Navi-Item 1
 					</a>
-				</DBNavigationItem>
-				<DBNavigationItem>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
 					<a href="#">Sub-Sub-Navi-Item 2</a>
-				</DBNavigationItem>
-			</DBNavigationItemGroup>
-			<DBNavigationItem>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>
 				<a href="#">Sub-Navi-Item 2</a>
-			</DBNavigationItem>
-		</DBNavigationItemGroup>
-		<DBNavigationItem icon="x_placeholder">
+			</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
+		<DBControlPanelNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
-		</DBNavigationItem>
-		<DBNavigationItem disabled>
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem disabled>
 			<a href="#">Navi-Item 3</a>
-		</DBNavigationItem>
-	</DBNavigation>
+		</DBControlPanelNavigationItem>
+	</DBControlPanelNavigation>
 );
 
 const App = () => (

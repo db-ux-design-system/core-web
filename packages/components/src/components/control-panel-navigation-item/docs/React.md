@@ -9,30 +9,30 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 ```tsx App.tsx
 // App.tsx
 import { Link } from "react-router-dom";
-import { DBNavigationItem } from "@db-ux/react-core-components";
+import { DBControlPanelNavigationItem } from "@db-ux/react-core-components";
 
 const App = () => (
 	<>
 		{/* Only link */}
-		<DBNavigationItem>
+		<DBControlPanelNavigationItem>
 			<Link to="mypath">NavigationItem</Link>
-		</DBNavigationItem>
+		</DBControlPanelNavigationItem>
 
 		{/* With Sub-Navigation */}
-		<DBNavigationItem
+		<DBControlPanelNavigationItem
 			subNavigation={
 				<>
-					<DBNavigationItem>
+					<DBControlPanelNavigationItem>
 						<Link to="mypath">Sub-Navi-Item 1</Link>
-					</DBNavigationItem>
-					<DBNavigationItem>
+					</DBControlPanelNavigationItem>
+					<DBControlPanelNavigationItem>
 						<Link to="mypath">Sub-Navi-Item 2</Link>
-					</DBNavigationItem>
+					</DBControlPanelNavigationItem>
 				</>
 			}
 		>
 			Navi-Item 1
-		</DBNavigationItem>
+		</DBControlPanelNavigationItem>
 	</>
 );
 

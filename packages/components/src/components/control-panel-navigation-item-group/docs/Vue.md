@@ -7,10 +7,12 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBNavigationItemGroup } from "@db-ux/v-core-components";
+import { DBControlPanelNavigationItemGroup } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBNavigationItemGroup>NavigationItemGroup</DBNavigationItemGroup>
+	<DBControlPanelNavigationItemGroup
+		>NavigationItemGroup</DBControlPanelNavigationItemGroup
+	>
 </template>
 ```

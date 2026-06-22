@@ -6,6 +6,8 @@ import BadgeShowcase from '@components/components/badge/showcase/badge.showcase'
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
+import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase';
+import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
@@ -13,8 +15,6 @@ import DrawerShowcase from '@components/components/drawer/showcase/drawer.showca
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
-import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
-import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
@@ -30,6 +30,7 @@ import TextareaShowcase from '@components/components/textarea/showcase/textarea.
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 
 import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
+import ControlPanelFlatIconShowcase from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 import Components from './components.json';
@@ -66,8 +67,10 @@ const nameComponentMap = {
 	infotext: <InfotextShowcase isPatternhub />,
 	input: <InputShowcase isPatternhub />,
 	link: <LinkShowcase isPatternhub />,
-	navigation: <NavigationShowcase isPatternhub />,
-	'navigation-item': <NavigationItemShowcase isPatternhub />,
+	'control-panel-navigation': <ControlPanelNavigationShowcase isPatternhub />,
+	'control-panel-navigation-item': (
+		<ControlPanelNavigationItemShowcase isPatternhub />
+	),
 	notification: <NotificationShowcase isPatternhub />,
 	popover: <PopoverShowcase isPatternhub />,
 	radio: <RadioShowcase isPatternhub />,

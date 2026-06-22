@@ -8,6 +8,8 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-navigation-item-group">NavigationItemGroup</div>
+	<div class="db-control-panel-navigation-item-group">
+		NavigationItemGroup
+	</div>
 </body>
 ```

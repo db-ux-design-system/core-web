@@ -6,6 +6,7 @@ import CardShowcase from '@components/components/card/showcase/card.showcase.vue
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
 import ControlPanelBrand from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase.vue';
 import ControlPanelDesktop from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase.vue';
+import ControlPanelFlatIcon from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase.vue';
 import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
 import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase.vue';
 import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase.vue';
