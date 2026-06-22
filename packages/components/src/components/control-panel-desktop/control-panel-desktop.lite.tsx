@@ -1,7 +1,5 @@
 import {
 	onInit,
-	onUnMount,
-	onUpdate,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -11,8 +9,6 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
-import { handleSubNavigationPosition } from '../../utils/navigation';
-import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
@@ -33,7 +29,6 @@ export default function DBControlPanelDesktop(
 	const state = useStore<DBControlPanelDesktopState>({
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
-		_resizeObserverCallbackId: undefined,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		handleToggle: (event: any) => {
 			if (typeof event.detail !== 'object') {
@@ -64,20 +59,6 @@ export default function DBControlPanelDesktop(
 			return (
 				fnOutput() ?? (state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND)
 			);
-		},
-		onScroll() {
-			if (!_scrollContainerRef) return;
-			const popoverNavigation: HTMLElement | null = (
-				_scrollContainerRef as HTMLDivElement
-			).querySelector('.db-navigation[data-variant="popover"]');
-
-			if (!popoverNavigation) return;
-
-			const navigationMenu = popoverNavigation.querySelector('menu');
-
-			if (navigationMenu) {
-				handleSubNavigationPosition(navigationMenu);
-			}
 		}
 	});
 
@@ -86,26 +67,6 @@ export default function DBControlPanelDesktop(
 	onInit(() => {
 		if (props.expanded !== undefined) {
 			state._open = getBoolean(props.expanded, 'expanded') ?? true;
-		}
-	});
-
-	// Re-position sub-navigation popover on viewport resize (e.g. orientation change)
-	onUpdate(() => {
-		if (_ref && !state._resizeObserverCallbackId) {
-			state._resizeObserverCallbackId =
-				new ResizeObserverListener().observe(
-					document.documentElement,
-					state.onScroll
-				);
-		}
-	}, [_ref]);
-
-	onUnMount(() => {
-		if (state._resizeObserverCallbackId) {
-			new ResizeObserverListener().unobserve(
-				state._resizeObserverCallbackId!
-			);
-			state._resizeObserverCallbackId = undefined;
 		}
 	});
 
@@ -122,8 +83,7 @@ export default function DBControlPanelDesktop(
 			</div>
 			<div
 				ref={_scrollContainerRef}
-				class="db-control-panel-desktop-scroll-container"
-				onScroll={() => state.onScroll()}>
+				class="db-control-panel-desktop-scroll-container">
 				{props.children}
 				<Slot name="metaNavigation" />
 			</div>

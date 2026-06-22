@@ -63,12 +63,8 @@ export default function DBControlPanelNavigation(
 		_handleSubNavigation() {
 			handleSubNavigationPosition(
 				menuRef,
-				state._shellDesktopPosition === 'left' ||
-					(state._shellDesktopPosition === 'top' &&
-						state._subNavigationDesktopPosition === 'left' &&
-						state._isSubNavigation)
-					? 1
-					: 0
+				0,
+				state._shellDesktopPosition === 'top'
 			);
 		}
 	});

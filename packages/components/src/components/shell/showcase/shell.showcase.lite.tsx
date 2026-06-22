@@ -3,6 +3,7 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ShellContent from '../examples/content.example.lite';
+import ShellDeepNavigation from '../examples/deep-navigation.example.lite';
 import ShellFlatIcon from '../examples/flat-icon.example.lite';
 import ShellPosition from '../examples/position.example.lite';
 import ShellSubNavigation from '../examples/sub-navigation.example.lite';
@@ -30,6 +31,11 @@ export default function ShellShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Sub Navigation">
 				<CardWrapperShowcase>
 					<ShellSubNavigation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Deep Navigation">
+				<CardWrapperShowcase>
+					<ShellDeepNavigation />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

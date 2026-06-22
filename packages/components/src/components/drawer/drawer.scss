@@ -85,6 +85,7 @@
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		block-size: 100%;
 		inline-size: 100%;
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
 

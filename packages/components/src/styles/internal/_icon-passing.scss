@@ -23,7 +23,7 @@ $interactive-button-selectors: "label,button,a";
 			z-index: 1;
 		}
 
-		#{$interactive-button-selectors} {
+		> :is(#{$interactive-button-selectors}) {
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding-inline-start: var(
 				--db-icon-passing-padding-inline-start,
@@ -46,7 +46,7 @@ $interactive-button-selectors: "label,button,a";
 			z-index: 1;
 		}
 
-		#{$interactive-button-selectors} {
+		> :is(#{$interactive-button-selectors}) {
 			padding-inline-end: calc(
 				#{$inline-end} + #{icons.$default-icon-margin-end} +
 					var(--db-icon-font-size)

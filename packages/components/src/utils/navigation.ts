@@ -1,12 +1,24 @@
-import { handleDataOutside, handleFixedPopover } from './floating-components';
+import { handleFixedPopover } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
 	parentElementWidth: number;
 	subNavigationHeight: number;
 	padding: number;
-	outsideVX: 'left' | 'right' | undefined;
-	outsideVY: 'top' | 'bottom' | undefined;
+	/**
+	 * The direction the sub-navigation opens relative to the element.
+	 * 'right' = sub-menu is to the right of the item
+	 * 'left' = sub-menu is to the left of the item
+	 * 'bottom' = sub-menu is below the item
+	 */
+	openDirection: 'left' | 'right' | 'bottom';
+	/**
+	 * The sub-menu's top/bottom offset relative to the element's top,
+	 * as a fraction of the parent element's full height (0..1).
+	 * Used to position the triangle base where the sub-menu actually is.
+	 */
+	subNavTopRatio: number;
+	subNavBottomRatio: number;
 };
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
@@ -66,41 +78,66 @@ export class NavigationItemSafeTriangle {
 	}
 
 	public enableFollow() {
-		if (
-			!this.initialized ||
-			this.triangleData ||
-			!this.element ||
-			!this.subNavigation
-		) {
+		if (!this.initialized || !this.element || !this.subNavigation) {
 			return;
 		}
 
-		const dataOutsidePair = handleDataOutside(this.subNavigation);
-
 		const itemRect = this.element.getBoundingClientRect();
+		const subRect = this.subNavigation.getBoundingClientRect();
 		const parentElementWidth =
 			this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
+		const parentHeight =
+			this.parentSubNavigation?.getBoundingClientRect().height ??
+			itemRect.height;
+
+		// Determine the actual direction the sub-menu opens by comparing positions
+		let openDirection: 'left' | 'right' | 'bottom';
+		if (subRect.top >= itemRect.bottom - 4) {
+			openDirection = 'bottom';
+		} else if (subRect.left >= itemRect.right - 4) {
+			openDirection = 'right';
+		} else {
+			openDirection = 'left';
+		}
+
+		// Calculate where the sub-menu sits relative to the parent's full height
+		// (used to constrain the triangle base to match the sub-menu position)
+		const parentTop =
+			this.parentSubNavigation?.getBoundingClientRect().top ??
+			itemRect.top;
+		const subNavTopRatio = Math.max(
+			0,
+			(subRect.top - parentTop) / parentHeight
+		);
+		const subNavBottomRatio = Math.min(
+			1,
+			(subRect.bottom - parentTop) / parentHeight
+		);
 
 		this.triangleData = {
 			itemRect,
 			parentElementWidth,
-			subNavigationHeight:
-				this.subNavigation.getBoundingClientRect().height,
+			subNavigationHeight: subRect.height,
 			padding: (parentElementWidth - itemRect.width) / 2,
-			outsideVX: dataOutsidePair.vx,
-			outsideVY: dataOutsidePair.vy
+			openDirection,
+			subNavTopRatio,
+			subNavBottomRatio
 		};
 	}
 
 	public disableFollow() {
 		this.triangleData = undefined;
+		// Clear the clip-path so stale triangles don't block sibling item hover
+		this.element?.style.removeProperty(
+			'--db-control-panel-navigation-item-clip-path'
+		);
 	}
 
 	private getTriangleTipX(): number {
 		if (!this.triangleData) return 0;
 
-		if (this.triangleData.outsideVX === 'right') {
-			// vertical flipped triangle needs an inverted x pos
+		if (this.triangleData.openDirection === 'left') {
+			// Sub-menu opens to the left, flip x pos
 			return this.triangleData.itemRect.width - this.mouseX;
 		}
 
@@ -112,23 +149,12 @@ export class NavigationItemSafeTriangle {
 		if (!this.triangleData) return 0;
 
 		// padding must be added to the y pos of the tip so that the y pos matches the cursor
-		const mouseYLimited =
+		return (
 			Math.max(
 				Math.min(this.mouseY, this.triangleData.itemRect.height),
 				0
-			) + this.triangleData.padding;
-
-		if (this.triangleData.outsideVY === 'bottom') {
-			// add offset to tip y pos to match corrected sub-navigation y pos
-			return (
-				mouseYLimited +
-				(this.triangleData.subNavigationHeight -
-					this.triangleData.padding * 2 -
-					this.triangleData.itemRect.height)
-			);
-		}
-
-		return mouseYLimited;
+			) + this.triangleData.padding
+		);
 	}
 
 	private hasMouseEnteredSubNavigation(): boolean {
@@ -136,25 +162,18 @@ export class NavigationItemSafeTriangle {
 			return false;
 		}
 
-		const isSubNavigationOnLeftSide =
-			this.triangleData.outsideVX === 'right';
-
-		if (
-			isSubNavigationOnLeftSide &&
-			this.mouseX < -1 * this.triangleData.padding
-		) {
-			return true;
+		switch (this.triangleData.openDirection) {
+			case 'left':
+				return this.mouseX < -1 * this.triangleData.padding;
+			case 'right':
+				return (
+					this.mouseX >
+					this.triangleData.parentElementWidth -
+						this.triangleData.padding
+				);
+			case 'bottom':
+				return this.mouseY > this.triangleData.itemRect.height;
 		}
-
-		if (
-			!isSubNavigationOnLeftSide &&
-			this.mouseX >
-				this.triangleData.parentElementWidth - this.triangleData.padding
-		) {
-			return true;
-		}
-
-		return false;
 	}
 
 	private getTriangleCoordinates():
@@ -172,15 +191,38 @@ export class NavigationItemSafeTriangle {
 		const tipX = this.getTriangleTipX();
 		const tipY = this.getTriangleTipY();
 
-		const lb = `${tipX}px ${tipY}px`;
-		const lt = `${tipX}px ${tipY}px`;
-
-		return {
-			lb,
-			lt,
-			rt: '100% 0',
-			rb: '100% 100%'
-		};
+		switch (this.triangleData.openDirection) {
+			case 'bottom':
+				// Tip at cursor, base spans the full width at the bottom
+				return {
+					lt: `${tipX}px ${tipY}px`,
+					rt: `${tipX}px ${tipY}px`,
+					rb: '100% 100%',
+					lb: '0% 100%'
+				};
+			case 'right': {
+				// Tip at cursor, base spans the sub-menu's height on the right edge
+				const topPct = `${this.triangleData.subNavTopRatio * 100}%`;
+				const bottomPct = `${this.triangleData.subNavBottomRatio * 100}%`;
+				return {
+					lt: `${tipX}px ${tipY}px`,
+					rt: `100% ${topPct}`,
+					rb: `100% ${bottomPct}`,
+					lb: `${tipX}px ${tipY}px`
+				};
+			}
+			case 'left': {
+				// Tip at cursor, base spans the sub-menu's height on the left edge
+				const topPct = `${this.triangleData.subNavTopRatio * 100}%`;
+				const bottomPct = `${this.triangleData.subNavBottomRatio * 100}%`;
+				return {
+					lt: `0% ${topPct}`,
+					rt: `${tipX}px ${tipY}px`,
+					rb: `${tipX}px ${tipY}px`,
+					lb: `0% ${bottomPct}`
+				};
+			}
+		}
 	}
 
 	public followByMouseEvent(event: any) {
@@ -198,6 +240,11 @@ export class NavigationItemSafeTriangle {
 
 		const isOverSubNavigation = this.hasMouseEnteredSubNavigation();
 
+		if (isOverSubNavigation) {
+			this.disableFollow();
+			return;
+		}
+
 		const coordinates = this.getTriangleCoordinates();
 
 		if (!coordinates) {
@@ -208,25 +255,30 @@ export class NavigationItemSafeTriangle {
 			'--db-control-panel-navigation-item-clip-path',
 			`polygon(${coordinates.lb}, ${coordinates.lt}, ${coordinates.rt}, ${coordinates.rb})`
 		);
-
-		if (isOverSubNavigation) {
-			this.triangleData = undefined;
-		}
 	}
 }
 
 export const handleSubNavigationPosition = (
 	element: HTMLElement,
-	level: number = 0
+	level?: number,
+	vertical: boolean = false
 ) => {
-	for (const navItem of Array.from(
-		element.querySelectorAll('.db-control-panel-navigation-item-group')
-	)) {
+	// If no level provided, read it from the element's data-level attribute
+	// (set by a previous call) and process children at level + 1
+	const resolvedLevel =
+		level ??
+		parseInt((element as HTMLElement).dataset['level'] ?? '-1', 10) + 1;
+
+	const navItems = element.querySelectorAll(
+		':scope > .db-control-panel-navigation-item-group, :scope > db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'
+	);
+
+	for (const navItem of Array.from(navItems)) {
 		const subNavigation: HTMLElement | null = navItem.querySelector(
-			'.db-control-panel-navigation-item-group-menu'
+			':scope > .db-control-panel-navigation-item-group-menu'
 		);
 		const button: HTMLElement | null = navItem.querySelector(
-			'.db-control-panel-navigation-item-group-expand-button'
+			':scope > .db-control-panel-navigation-item-group-expand-button'
 		);
 		if (subNavigation && button) {
 			/*
@@ -243,16 +295,20 @@ export const handleSubNavigationPosition = (
 				return;
 			}
 
-			if (level > 0 || subNavigation.dataset['open'] === 'horizontal') {
-				// Sub-Navigation should be opened horizontal
-				handleFixedPopover(subNavigation, button, 'right-start');
-				subNavigation.dataset['open'] = 'horizontal';
-			} else {
-				// Sub-Navigation should be opened vertical
-				handleFixedPopover(subNavigation, button, 'bottom-start');
-				subNavigation.dataset['open'] = 'vertical';
+			subNavigation.dataset['level'] = resolvedLevel.toString();
+
+			if (resolvedLevel === 0) {
+				if (vertical) {
+					// Sub-Navigation should be opened vertical (top position, level 0)
+					handleFixedPopover(subNavigation, button, 'bottom-start');
+					subNavigation.dataset['open'] = 'vertical';
+				} else {
+					handleFixedPopover(subNavigation, button, 'right-start');
+					subNavigation.dataset['open'] = 'horizontal';
+				}
 			}
-			handleSubNavigationPosition(subNavigation, level + 1);
+
+			handleSubNavigationPosition(subNavigation, resolvedLevel + 1);
 		}
 	}
 };

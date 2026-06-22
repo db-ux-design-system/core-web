@@ -54,8 +54,8 @@ export default function DBControlPanelNavigationItemGroup(
 		_resizeObserverCallbackId: undefined,
 		navigationItemSafeTriangle: undefined,
 		onScroll: () => {
-			if (state.hasPopup) {
-				handleSubNavigationPosition(_ref);
+			if (state.hasPopup && _menuRef) {
+				handleSubNavigationPosition(_menuRef);
 			}
 		},
 		handleNavigationItemClick: (event: any) => {
@@ -151,9 +151,11 @@ export default function DBControlPanelNavigationItemGroup(
 			}, 1);
 
 			['mouseenter', 'focusin'].forEach((event) => {
-				_ref.addEventListener(event, () =>
-					handleSubNavigationPosition(_menuRef)
-				);
+				_ref.addEventListener(event, () => {
+					if (_menuRef) {
+						handleSubNavigationPosition(_menuRef);
+					}
+				});
 			});
 
 			_ref.addEventListener('focusin', () => {

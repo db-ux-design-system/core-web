@@ -12,8 +12,8 @@
 
 $control-panel-desktop-horizontal-padding-block: #{variables.$db-spacing-fixed-md};
 $control-panel-desktop-horizontal-padding-inline: #{variables.$db-spacing-fixed-sm};
-$control-panel-desktop-vertical-padding-block: #{variables.$db-spacing-fixed-xs};
-$control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-md};
+$control-panel-desktop-vertical-padding-block: #{variables.$db-spacing-fixed-sm};
+$control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-sm};
 
 @mixin horizontal-navigation($scroll-buttons: true) {
 	@if $scroll-buttons {

@@ -16,6 +16,14 @@
 .db-control-panel-navigation-item-group {
 	@extend %navigation-item;
 
+	&:has(> .db-control-panel-navigation-item-group-menu:hover),
+	&:has(> .db-control-panel-navigation-item-group-menu:focus) {
+		> .db-control-panel-navigation-item-group-expand-button {
+			// If we hover on the triangle we should still show hover color of the item
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+		}
+	}
+
 	.db-control-panel-navigation-item-group-expand-button {
 		@extend %navigation-item-interactive-element;
 

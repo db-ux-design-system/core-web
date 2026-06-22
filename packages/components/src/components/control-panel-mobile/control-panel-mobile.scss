@@ -15,7 +15,7 @@
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
 	gap: variables.$db-spacing-fixed-xs;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	grid-area: control-panel;
 
 	&[data-position="top"] {
@@ -71,6 +71,8 @@
 		}
 
 		.db-drawer-content {
+			padding: 0;
+
 			.db-control-panel-mobile-drawer-scroll-container {
 				display: flex;
 				flex-direction: column;
