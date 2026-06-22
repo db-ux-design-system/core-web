@@ -1,11 +1,13 @@
 const ignoreFolders = [
 	'node_modules/**/*',
 	'build/**/*',
+	'**/build/**/*',
 	'.config/**/*',
 	'public/**/*',
 	'out/**/*',
 	'helpers/**/*',
 	'dist/**/*',
+	'**/dist/**/*',
 	'packages/components/**/*',
 	'packages/foundations/**/*',
 	'packages/migration/**/*',

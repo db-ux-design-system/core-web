@@ -115,7 +115,6 @@ const xoConfig = [
 			'@typescript-eslint/no-unsafe-return': 0,
 			'@typescript-eslint/consistent-type-imports': 0, // Dynamic imports
 			'@typescript-eslint/consistent-type-assertions': 0, // Type assertions needed
-			'@typescript-eslint/no-require-imports': 0, // Needed for dynamic requires
 			'@typescript-eslint/no-empty-function': 0, // Test stubs
 			'import-x/extensions': 0, // Bundled with esbuild
 			'import-x/no-extraneous-dependencies': 0, // Monorepo internal deps
@@ -129,6 +128,12 @@ const xoConfig = [
 			'new-cap': 0, // Zod schema constructors
 			'@typescript-eslint/strict-void-return': 0, // Event handlers
 			'@stylistic/curly-newline': 0 // Test formatting
+		}
+	},
+	{
+		files: ['./packages/mcp-server/**/__tests__/**'],
+		rules: {
+			'@typescript-eslint/no-require-imports': 0 // Test helpers use require for sync file ops
 		}
 	},
 	{

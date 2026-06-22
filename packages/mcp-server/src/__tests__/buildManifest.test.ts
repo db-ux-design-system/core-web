@@ -57,8 +57,8 @@ describe('processComponent', () => {
 		expect(result.hasError).toBe(true);
 	});
 
-	it('returns hasError:false with null props when model.ts is absent', async () => {
-		// ExistsSync returns false for everything → readOptional returns null
+	it('returns hasError:false with undefined props when model.ts is absent', async () => {
+		// ExistsSync returns false for everything → readOptional returns undefined
 		vi.mocked(existsSync).mockReturnValue(false);
 
 		const result = await processComponent('button', BASE, OUTPUT);
