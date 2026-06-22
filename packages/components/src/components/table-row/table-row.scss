@@ -68,6 +68,7 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 			}
 		}
 
+		// jscpd:ignore-start
 		@include table-row-interactive-state {
 			background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 		}
@@ -75,6 +76,8 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 		@include table-row-interactive-state("active") {
 			background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
 		}
+
+		// jscpd:ignore-end
 
 		&:has(#{$interactive-child}:focus-visible) {
 			&::after {

@@ -352,6 +352,21 @@
 				</db-tab-panel>
 				<db-tab-panel>Tab Panel 5</db-tab-panel>
 			</db-tabs>
+
+			<h2>Drawer Test</h2>
+			<p>
+				Test: Click "Open Drawer", then mouse down inside the drawer
+				content, drag to the backdrop, and release. The drawer should
+				NOT close.
+			</p>
+			<db-button (click)="drawerOpen = true">Open Drawer</db-button>
+			<db-drawer [open]="drawerOpen" (close)="drawerOpen = false">
+				<span drawer-header>Drawer Header</span>
+				<db-infotext style="margin: 100px; display: flex">
+					Test: Mouse down here, drag to backdrop, release. Drawer
+					should stay open.
+				</db-infotext>
+			</db-drawer>
 		</dl>
 	</div>
 </div>
