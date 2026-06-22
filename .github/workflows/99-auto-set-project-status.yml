@@ -1,0 +1,41 @@
+---
+name: 🗿 Auto set project status
+
+on:
+  workflow_call:
+
+jobs:
+  set-status:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: write
+      repository-projects: write
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v6
+
+      # Node 24 (see .nvmrc) can execute TypeScript files natively via type
+      # stripping, so no separate tsx/ts-node runtime is required.
+      - name: 🆙 Set up Node.js
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version-file: ".nvmrc"
+
+      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🗿 Set project status
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          PROJECT_NUMBER: ${{ vars.PROJECT_NUMBER }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          EVENT_ACTION: ${{ github.event.action }}
+          IS_DRAFT: ${{ github.event.pull_request.draft }}
+        run: node scripts/github/set-project-status.ts
+        continue-on-error: true
