@@ -35,9 +35,9 @@
     "zone.js": "0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.15",
-    "@angular/build": "21.2.15",
-    "@angular/cli": "21.2.15",
+    "@angular-devkit/build-angular": "21.2.16",
+    "@angular/build": "21.2.16",
+    "@angular/cli": "21.2.16",
     "@angular/compiler-cli": "21.2.17",
     "@compodoc/compodoc": "1.2.1",
     "@storybook/addon-docs": "10.4.6",
