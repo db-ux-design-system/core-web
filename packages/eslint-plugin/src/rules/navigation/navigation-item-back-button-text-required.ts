@@ -23,7 +23,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
-			if (backButtonText === null || backButtonText === '') {
+			if (backButtonText === undefined || backButtonText === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -52,7 +52,7 @@ export default {
 				'backButtonText'
 			);
 
-			if (backButtonText === null || backButtonText === '') {
+			if (backButtonText === undefined || backButtonText === '') {
 				context.report({
 					node: openingElement,
 					messageId:
