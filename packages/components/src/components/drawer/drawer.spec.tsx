@@ -9,15 +9,25 @@ const comp: any = <DBDrawer open={true}>Test</DBDrawer>;
 
 const testComponent = (viewport) => {
 	test(`should contain text for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
 	test.fixme(`should match screenshot for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		// TODO: Screenshots are not captured for top-layer
 		await expect(component).toHaveScreenshot();
@@ -58,7 +68,6 @@ const testAction = () => {
 
 test.describe('DBDrawer', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
 		testComponent(viewport);
 		if (viewport.name === 'mobile') {
 			testA11y();

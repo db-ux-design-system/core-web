@@ -25,8 +25,13 @@ const comp: any = (
 
 const testComponent = (viewport: any) => {
 	test(`should contain text for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		await expect(component).toContainText('Test1');
 	});
@@ -90,7 +95,6 @@ const testClick = () => {
 
 test.describe('DBControlPanelNavigation', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
 		testComponent(viewport);
 		if (viewport.name === 'desktop') {
 			testHover();

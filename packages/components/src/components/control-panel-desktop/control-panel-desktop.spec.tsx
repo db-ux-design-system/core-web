@@ -38,19 +38,6 @@ const comp: any = (
 						</DBButton>
 					</DBControlPanelSecondaryActions>
 				}>
-				{/*<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>*/}
-				{/*<template v-slot:primaryActions>
-					<DBControlPanelPrimaryActions>
-						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
-					</DBControlPanelPrimaryActions>
-				</template>*/}
-				{/*<template v-slot:secondaryActions>
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-					</DBControlPanelSecondaryActions>
-				</template>*/}
 				<DBControlPanelNavigation aria-label="Main Navigation">
 					<DBControlPanelNavigationItem icon="x_placeholder">
 						<a href="#">Home</a>
@@ -61,17 +48,17 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop orientation="horizontal">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:primaryActions>
+				<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>
-				<template v-slot:secondaryActions>
+				<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 					</DBControlPanelSecondaryActions>
@@ -94,6 +81,10 @@ const testComponent = (viewport: any) => {
 	test(`should contain text for device ${viewport.name}`, async ({
 		mount
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		await expect(component).toContainText('Home');
 	});
@@ -129,7 +120,6 @@ const testA11y = () => {
 
 test.describe('DBControlPanelDesktop', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
 		testComponent(viewport);
 		if (viewport.name === 'mobile') {
 			testA11y();

@@ -179,8 +179,13 @@ const comp: any = (
 
 const testComponent = (viewport: any) => {
 	test(`should contain text for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		await expect(component).toContainText('Shell content');
 	});
@@ -216,7 +221,6 @@ const testA11y = () => {
 
 test.describe('DBShell', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
 		testComponent(viewport);
 		if (viewport.name === 'mobile') {
 			testA11y();

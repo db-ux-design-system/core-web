@@ -1,6 +1,7 @@
 import {
 	onInit,
 	onUnMount,
+	onUpdate,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -86,16 +87,18 @@ export default function DBControlPanelDesktop(
 		if (props.expanded !== undefined) {
 			state._open = getBoolean(props.expanded, 'expanded') ?? true;
 		}
+	});
 
-		// Re-position sub-navigation popover on viewport resize (e.g. orientation change)
-		if (!state._resizeObserverCallbackId) {
+	// Re-position sub-navigation popover on viewport resize (e.g. orientation change)
+	onUpdate(() => {
+		if (_ref && !state._resizeObserverCallbackId) {
 			state._resizeObserverCallbackId =
 				new ResizeObserverListener().observe(
 					document.documentElement,
 					state.onScroll
 				);
 		}
-	});
+	}, [_ref]);
 
 	onUnMount(() => {
 		if (state._resizeObserverCallbackId) {
