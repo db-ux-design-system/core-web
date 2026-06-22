@@ -2,15 +2,19 @@
 
 This document explains the rationale behind our Dependabot configuration and GitHub Actions pinning strategy. The decision for Dependabot itself is documented in the [Dependency automation ADR](adr/adr-03-dependency-automation.md).
 
-## Why only patch updates are auto-merged
+## Auto-merge for all Dependabot PRs
 
-We deliberately only auto-merge **patch** version bumps (via `.github/workflows/99-auto-handle-dependabot.yml`). Minor and major updates require manual review.
+All Dependabot PRs have auto-merge enabled (via `.github/workflows/99-auto-handle-dependabot.yml`). Auto-merge only triggers once all required status checks **and** the required approval pass — so a human reviewer still gates every merge.
+
+### Only patch updates are auto-approved
+
+While auto-merge is enabled for all Dependabot PRs, only **patch** version bumps are automatically _approved_. Minor and major updates still require manual approval before they can merge.
 
 ### Minor updates as an RSS feed for improvements
 
 A minor version often introduces new features, optimizations, or deprecation notices. The moment a Dependabot PR arrives is the best time to read the changelog and evaluate whether we want to adapt our code to leverage new APIs, adopt performance improvements, or address deprecations.
 
-If we auto-merged these, we would lose this natural trigger to review and optimize — experience shows it simply won't happen later. The PR serves as a lightweight notification system: "something changed, now is the time to look."
+If we auto-approved these, we would lose this natural trigger to review and optimize — experience shows it simply won't happen later. The PR serves as a lightweight notification system: "something changed, now is the time to look."
 
 ### Conscious adoption over passive consumption
 
@@ -18,7 +22,7 @@ We want to actively decide when to adopt new capabilities rather than silently a
 
 ### Risk profile
 
-Patch versions are bug fixes and security patches with minimal behavioral changes. Minor versions can alter behavior in subtle ways — new defaults, new warnings, new peer dependency requirements — that deserve a human judgement.
+Patch versions are bug fixes and security patches with minimal behavioral changes — hence they are auto-approved. Minor versions can alter behavior in subtle ways — new defaults, new warnings, new peer dependency requirements — that deserve human judgement before approval.
 
 ## Why GitHub Actions are pinned to commit SHAs
 
