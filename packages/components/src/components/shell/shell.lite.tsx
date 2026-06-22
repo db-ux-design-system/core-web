@@ -1,5 +1,6 @@
 import {
 	onMount,
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -55,6 +56,16 @@ export default function DBShell(props: DBShellProps) {
 			)}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
+			<Show
+				when={props.skipNavigationLinkText}
+				else={<Slot name="skipNavigationLink" />}>
+				<a
+					className="db-shell-skip-navigation-link"
+					href="#main-content">
+					{props.skipNavigationLinkText}
+				</a>
+			</Show>
+
 			<Slot name="controlPanelDesktop" />
 			<Slot name="controlPanelMobile" />
 			<Slot name="subNavigation" />

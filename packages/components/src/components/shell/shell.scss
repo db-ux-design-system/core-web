@@ -65,4 +65,8 @@ body {
 			display: none;
 		}
 	}
+
+	.db-shell-skip-navigation-link {
+		@extend %a11y-visually-hidden;
+	}
 }

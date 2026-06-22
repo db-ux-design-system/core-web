@@ -6,7 +6,10 @@ export type DBControlPanelFlatIconProps = DBControlPanelFlatIconDefaultProps &
 	GlobalProps &
 	NoTextProps;
 
-export type DBControlPanelFlatIconDefaultState = {};
+export type DBControlPanelFlatIconDefaultState = {
+	_initialDensity?: string;
+	_resizeObserverCallbackId?: string;
+};
 
 export type DBControlPanelFlatIconState = DBControlPanelFlatIconDefaultState &
 	GlobalState;

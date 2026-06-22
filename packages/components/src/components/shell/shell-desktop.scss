@@ -93,5 +93,13 @@
 		#{string.unquote(custom-elements.$control-panel-mobile)} {
 			display: none;
 		}
+
+		// Hide mobile control-panel-flat-icon
+		db-control-panel-flat-icon
+			+ db-control-panel-flat-icon
+			> .db-control-panel-flat-icon,
+		.db-control-panel-flat-icon + .db-control-panel-flat-icon {
+			display: none;
+		}
 	}
 }

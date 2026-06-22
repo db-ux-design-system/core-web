@@ -1,6 +1,17 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import {
+	onUnMount,
+	onUpdate,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
-import { DBControlPanelFlatIconProps } from './model';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
+import {
+	DBControlPanelFlatIconProps,
+	DBControlPanelFlatIconState
+} from './model';
 
 useMetadata({});
 
@@ -12,7 +23,47 @@ export default function DBControlPanelFlatIcon(
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 
-	// TODO: Add JS to set density fo mobile
+	const state = useStore<DBControlPanelFlatIconState>({
+		_initialDensity: undefined,
+		_resizeObserverCallbackId: undefined
+	});
+
+	onUpdate(() => {
+		if (_ref && !state._resizeObserverCallbackId) {
+			// Save the initial density from the element or its inherited value
+			state._initialDensity =
+				_ref.getAttribute('data-density') ?? undefined;
+
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(_ref, () => {
+					if (!_ref) return;
+					const isMobile =
+						getComputedStyle(_ref).getPropertyValue(
+							'--db-control-panel-flat-icon-mobile'
+						) === '1';
+
+					if (isMobile) {
+						_ref.setAttribute('data-density', 'regular');
+					} else if (state._initialDensity) {
+						_ref.setAttribute(
+							'data-density',
+							state._initialDensity
+						);
+					} else {
+						_ref.removeAttribute('data-density');
+					}
+				});
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
+	});
 
 	return (
 		<header

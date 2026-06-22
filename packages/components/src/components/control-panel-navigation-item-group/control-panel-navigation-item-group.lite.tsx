@@ -174,7 +174,11 @@ export default function DBControlPanelNavigationItemGroup(
 			state._resizeObserverCallbackId =
 				new ResizeObserverListener().observe(
 					document.documentElement,
-					() => handleSubNavigationPosition(_menuRef)
+					() => {
+						if (_menuRef) {
+							handleSubNavigationPosition(_menuRef);
+						}
+					}
 				);
 		}
 	}, [_ref, _menuRef, _buttonRef, state.hasPopup]);
@@ -198,7 +202,7 @@ export default function DBControlPanelNavigationItemGroup(
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
-			aria-disabled={getBooleanAsString(props.disabled)}>
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button
 				ref={_buttonRef}
 				type="button"

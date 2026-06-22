@@ -16,7 +16,7 @@ body:not(:has(.db-shell)) {
 	padding-block-end: variables.$db-spacing-fixed-lg;
 }
 
-.db-main {
+.db-shell-content main {
 	scroll-behavior: smooth;
 }
 

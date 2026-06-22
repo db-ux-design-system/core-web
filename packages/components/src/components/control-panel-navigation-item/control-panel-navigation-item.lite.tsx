@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_LABEL } from '../../shared/constants';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	DBControlPanelNavigationItemProps,
@@ -41,6 +41,20 @@ export default function DBControlPanelNavigationItem(
 			}
 		}
 	}, [_ref, props.tooltip, props.text]);
+
+	// Add tabIndex=-1 for anchor element if disabled
+	onUpdate(() => {
+		if (_ref) {
+			const listElement = _ref as HTMLLIElement;
+			const anchor = listElement.querySelector('a');
+			if (anchor) {
+				anchor.setAttribute(
+					'tabindex',
+					getBoolean(props.disabled, 'disabled') ? '-1' : '0'
+				);
+			}
+		}
+	}, [_ref, props.disabled]);
 
 	return (
 		<li
