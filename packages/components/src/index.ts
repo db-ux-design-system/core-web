@@ -108,11 +108,11 @@ export * from './utils/navigation';
 
 export * from './components/control-panel-flat-icon';
 export * from './components/control-panel-flat-icon/model';
+export * from './components/drawer-footer';
+export * from './components/drawer-footer/model';
 export * from './components/drawer-header';
 export * from './components/drawer-header/model';
 export * from './components/shell-content';
 export * from './components/shell-content/model';
 export * from './components/shell-sub-navigation';
-
-export * from './components/drawer-footer';
-export * from './components/drawer-footer/model';
+export * from './components/shell-sub-navigation/model';

@@ -33,6 +33,7 @@ import ControlPanelDesktopShowcase from '@components/components/control-panel-de
 import ControlPanelFlatIconShowcase from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
+import ControlPanelBrandShowcase from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -47,6 +48,7 @@ export type NavigationItem = {
 const nameComponentMap = {
 	accordion: <AccordionShowcase isPatternhub />,
 
+	'control-panel-brand': <ControlPanelBrandShowcase isPatternhub />,
 	'control-panel-mobile': <ControlPanelMobileShowcase isPatternhub />,
 
 	'control-panel-desktop': <ControlPanelDesktopShowcase isPatternhub />,

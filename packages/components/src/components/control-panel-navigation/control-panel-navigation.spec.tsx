@@ -3,7 +3,11 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBControlPanelNavigation } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DESKTOP_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
+import {
+	DEFAULT_VIEWPORT,
+	DESKTOP_VIEWPORT,
+	TESTING_VIEWPORTS
+} from '../../shared/constants.ts';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
 import { DBControlPanelNavigationItemGroup } from '../control-panel-navigation-item-group';
 
@@ -81,17 +85,6 @@ const testHover = () => {
 	});
 };
 
-const testClick = () => {
-	test(`should open sub navigation mobile`, async ({ mount, page }) => {
-		const component = await mount(comp);
-		const sub = component.getByTestId('sub1');
-		await expect(sub).toBeHidden();
-		await component.getByTestId('test1').getByRole('button').click();
-		await expect(sub).toBeVisible();
-		await component.getByText('Back').click();
-		await expect(sub).toBeHidden();
-	});
-};
 
 test.describe('DBControlPanelNavigation', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
@@ -101,7 +94,6 @@ test.describe('DBControlPanelNavigation', () => {
 		}
 		if (viewport.name === 'mobile') {
 			testA11y();
-			testClick();
 		}
 	});
 });

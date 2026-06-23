@@ -107,7 +107,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
     "endColumn": 25,
     "endLine": 36,
     "line": 36,
-    "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
+    "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/header-burger-menu-label-required",
     "severity": 2,
@@ -230,7 +230,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	<!-- db-ux/form-validation-message-required -->
 	<db-input [label]="'Email'" required type="text"></db-input>
 
-	<!-- db-ux/header-burger-menu-label-required -->
+	<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
 	<db-header></db-header>
 
 	<!-- db-ux/input-type-required -->
@@ -362,7 +362,7 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
     "endColumn": 14,
     "endLine": 56,
     "line": 56,
-    "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
+    "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/header-burger-menu-label-required",
     "severity": 2,
@@ -515,7 +515,7 @@ export const TestComponent = () => {
 			{/* db-ux/form-validation-message-required */}
 			<DBInput label="Email" required type="text" />
 
-			{/* db-ux/header-burger-menu-label-required */}
+			{/* db-ux/control-panel-mobile-burger-menu-label-required */}
 			<DBHeader></DBHeader>
 
 			{/* db-ux/input-type-required */}
@@ -682,7 +682,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
     "endColumn": 24,
     "endLine": 36,
     "line": 36,
-    "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
+    "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/header-burger-menu-label-required",
     "severity": 2,
@@ -693,8 +693,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
     "endLine": 44,
     "fix": {
       "range": [
-        1602,
-        1602,
+        1616,
+        1616,
       ],
       "text": " referrerPolicy="no-referrer"",
     },
@@ -822,7 +822,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		<!-- db-ux/form-validation-message-required -->
 		<DBInput label="Email" required type="text" />
 
-		<!-- db-ux/header-burger-menu-label-required -->
+		<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
 		<DBHeader></DBHeader>
 
 		<!-- db-ux/input-type-required -->

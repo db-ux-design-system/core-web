@@ -217,7 +217,7 @@ export const handleSubNavigationPosition = (
 			if (isMobile) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
-				return;
+				continue;
 			}
 
 			subNavigation.dataset['level'] = resolvedLevel.toString();

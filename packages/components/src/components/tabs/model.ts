@@ -73,7 +73,6 @@ export type DBTabsProps = DBTabsDefaultProps &
 	WidthProps &
 	AlignmentProps &
 	OverflowScrollButtonProps &
-	AlignmentProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {

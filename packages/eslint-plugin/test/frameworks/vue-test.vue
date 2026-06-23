@@ -32,7 +32,7 @@
 		<!-- db-ux/form-validation-message-required -->
 		<DBInput label="Email" required />
 
-		<!-- db-ux/header-burger-menu-label-required -->
+		<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
 		<DBHeader></DBHeader>
 
 		<!-- db-ux/input-type-required -->

@@ -75,9 +75,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 					event.type === 'click' &&
 					props.backdrop !== 'none' &&
 					state.backdropPointerDown;
-				const isCloseButton =
-					(event.target as any)?.nodeName === 'BUTTON' &&
-					(event.target as any)?.dataset?.action === 'close';
+				const isCloseButton = Boolean(
+					(event.target as HTMLElement)?.closest?.(
+						'[data-action="close"]'
+					)
+				);
 
 				if (isBackdrop || isCloseButton) {
 					if (props.onClose) {

@@ -29,7 +29,6 @@ export default function DBControlPanelDesktop(
 	const state = useStore<DBControlPanelDesktopState>({
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		handleToggle: (event: any) => {
 			if (typeof event.detail !== 'object') {
 				event.stopPropagation();
@@ -42,9 +41,6 @@ export default function DBControlPanelDesktop(
 				return props.expandButtonTooltip;
 			}
 
-			if (props.expandButtonTooltip) {
-				return props.expandButtonTooltip;
-			}
 			const fnOutput = useTarget({
 				angular: () => undefined,
 				stencil: () => undefined,

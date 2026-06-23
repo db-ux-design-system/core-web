@@ -11,8 +11,8 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description:
-				'Ensure DBHeader has burgerMenuLabel for accessibility',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#header-burger-menu-label-required'
+				'Ensure DBControlPanelMobile/DBHeader has burgerMenuLabel for accessibility',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#control-panel-mobile-burger-menu-label-required'
 		},
 		messages: {
 			missingBurgerMenuLabel: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
@@ -33,16 +33,30 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(
-			context,
+		const angularVisitors: any = {};
+		for (const comp of [
 			COMPONENTS.DBHeader,
-			angularHandler
-		);
-		if (angularVisitors) return angularVisitors;
+			COMPONENTS.DBControlPanelMobile
+		]) {
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
+		}
 
-		const checkHeader = (node: any) => {
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
+
+		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBHeader)) return;
+			if (
+				!isDBComponent(openingElement, COMPONENTS.DBHeader) &&
+				!isDBComponent(openingElement, COMPONENTS.DBControlPanelMobile)
+			)
+				return;
 
 			const burgerMenuLabel = getAttributeValue(
 				openingElement,
@@ -59,8 +73,8 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkHeader, Element: checkHeader },
-			{ JSXElement: checkHeader }
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
 		);
 	}
 };

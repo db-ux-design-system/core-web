@@ -613,37 +613,38 @@ Ensures components with close buttons have appropriate text attributes for acces
 <DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />
 ```
 
-### `header-burger-menu-label-required`
+### `control-panel-mobile-burger-menu-label-required`
 
-Ensures DBHeader has burgerMenuLabel attribute for accessibility.
+Ensures DBControlPanelMobile/DBHeader has burgerMenuLabel attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 <DBHeader>Content</DBHeader>
-<DBHeader closeButtonText="Close">Content</DBHeader>
 
 // Angular
+<db-control-panel-mobile>Content</db-control-panel-mobile>
 <db-header>Content</db-header>
 
 // Vue
-<DBHeader>Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBHeader burgerMenuLabel="Menu">Content</DBHeader>
+<DBControlPanelMobile burgerMenuLabel="Menu">Content</DBControlPanelMobile>
 <DBHeader burgerMenuLabel="Open navigation">Content</DBHeader>
 
 // Angular
-<db-header burgerMenuLabel="Menu">Content</db-header>
+<db-control-panel-mobile burgerMenuLabel="Menu">Content</db-control-panel-mobile>
 <db-header [burgerMenuLabel]="menuLabel">Content</db-header>
 
 // Vue
-<DBHeader :burgerMenuLabel="label">Content</DBHeader>
+<DBControlPanelMobile :burgerMenuLabel="label">Content</DBControlPanelMobile>
 ```
 
 ### `navigation-item-back-button-text-required`

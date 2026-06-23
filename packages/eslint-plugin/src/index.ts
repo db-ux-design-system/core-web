@@ -10,7 +10,6 @@ import closeButtonTextRequired from './rules/close-button/close-button-text-requ
 import textOrChildrenRequired from './rules/content/text-or-children-required.js';
 import formLabelRequired from './rules/form/form-label-required.js';
 import formValidationMessageRequired from './rules/form/form-validation-message-required.js';
-import headerBurgerMenuLabelRequired from './rules/header/header-burger-menu-label-required.js';
 import preferIconAttribute from './rules/icon/prefer-icon-attribute.js';
 import inputFileTypeValidation from './rules/input/input-file-type-validation.js';
 import inputTypeRequired from './rules/input/input-type-required.js';
@@ -34,7 +33,7 @@ const recommended = {
 		'db-ux/custom-select-tags-remove-text-required': 'error',
 		'db-ux/form-label-required': 'error',
 		'db-ux/form-validation-message-required': 'warn',
-		'db-ux/header-burger-menu-label-required': 'error',
+		'db-ux/control-panel-mobile-burger-menu-label-required': 'error',
 		'db-ux/input-file-type-validation': 'error',
 		'db-ux/input-type-required': 'warn',
 		'db-ux/link-external-security': 'warn',
@@ -73,7 +72,8 @@ const plugin = {
 		'custom-select-tags-remove-text-required':
 			customSelectTagsRemoveTextRequired,
 		'close-button-text-required': closeButtonTextRequired,
-		'header-burger-menu-label-required': headerBurgerMenuLabelRequired,
+		'control-panel-mobile-burger-menu-label-required':
+			headerBurgerMenuLabelRequired,
 		'navigation-item-back-button-text-required':
 			navigationItemBackButtonTextRequired,
 		'tag-removable-remove-button-required':
