@@ -52,6 +52,17 @@ db-custom-select-list-item:not(:last-of-type) {
 
 		inline-size: 100%;
 
+		.db-custom-select-list-item-label {
+			// Long labels wrap onto new lines by default (fixed/full dropdowns).
+			// The auto-width dropdown overrides this to stay single-line
+			// (see custom-select-dropdown.scss [data-width="auto"]).
+			// min-inline-size: 0 lets the label shrink inside the flex label so
+			// the text wraps instead of overflowing.
+			min-inline-size: 0;
+			overflow-wrap: anywhere;
+			color: inherit;
+		}
+
 		&:has(input:checked) {
 			font-weight: 700;
 		}
