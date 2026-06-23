@@ -10,6 +10,33 @@
 	}
 }
 
+// Shared dropdown container styling, referenced by both the CustomSelect
+// dropdown (.db-custom-select-dropdown) and the native select `::picker(select)`.
+%select-dropdown-container {
+	position: absolute;
+	z-index: 32;
+	box-shadow: variables.$db-elevation-md;
+	min-inline-size: variables.$db-sizing-xl;
+	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
+}
+
+// Shared list max-block-size, referenced by both the CustomSelect list
+// (.db-custom-select-list) and the native select `::picker(select)`.
+// (option height + padding) * 5.5 items (showing partial item to indicate more content) + list padding
+%select-list-max-block-size {
+	max-block-size: calc(
+		5.5 *
+			(
+				(
+						#{form-components.$font-size-height} - 2 *
+							#{variables.$db-border-width-3xs}
+					) +
+					2 * #{variables.$db-spacing-fixed-sm}
+			) +
+			(#{variables.$db-spacing-fixed-sm} * 2)
+	);
+}
+
 $has-before-padding: calc(
 	var(--db-form-has-before) *
 		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
