@@ -17,6 +17,20 @@ export const defaultExact: string[] = [
 
 export const defaultColorsExact: string[] = ['transparent', 'currentcolor'];
 
+export const borderPropertiesExact: string[] = [
+	'border',
+	'border-top',
+	'border-right',
+	'border-bottom',
+	'border-left',
+	'border-block',
+	'border-block-start',
+	'border-block-end',
+	'border-inline',
+	'border-inline-start',
+	'border-inline-end'
+];
+
 export type IncludesAllowType = {
 	include: string;
 	and?: string[];
@@ -60,15 +74,20 @@ export const isAllowed = (
 ): boolean => {
 	const splitValue = Array.isArray(value)
 		? value
-		: value.replaceAll(/\s+/g, ' ').split(' ');
+		: value
+				.replaceAll(/\s+/g, ' ')
+				.replaceAll('( ', '(')
+				.replaceAll(', ', ',')
+				.replaceAll(' )', ')')
+				.split(' ');
 
 	const allowMap = splitValue.map(
-		(val) =>
-			Boolean(allowedValues.exact?.includes(val)) ||
+		(value_) =>
+			Boolean(allowedValues.exact?.includes(value_)) ||
 			Boolean(
-				allowedValues.startsWith?.find((sw) => val.startsWith(sw))
+				allowedValues.startsWith?.find((sw) => value_.startsWith(sw))
 			) ||
-			checkIncludes(val, allowedValues)
+			checkIncludes(value_, allowedValues)
 	);
 
 	if (allowedValues.type === 'some') {
@@ -96,7 +115,7 @@ export const isDefaultRuleOptionsHit = ({
 	value
 }: DefaultRuleOptionsHitType) => {
 	if (options?.ignore) {
-		const from = result.opts.from;
+		const { from } = result.opts;
 		if (from) {
 			const isIgnored = options.ignore.some(
 				(i) => from.includes(i) || new RegExp(i).test(from)

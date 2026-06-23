@@ -49,7 +49,7 @@ $db-min-inline-size: var(
 	&::after {
 		pointer-events: none;
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			transition: $dropdown-icon-transition;
 		}
 	}
@@ -138,7 +138,7 @@ $db-min-inline-size: var(
 			@extend %db-overwrite-font-size-sm;
 
 			inset-block-start: calc(
-				variables.$db-sizing-md / 2 - 0.5em +
+				#{variables.$db-sizing-md} / 2 - 0.5em +
 					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
@@ -160,8 +160,14 @@ $db-min-inline-size: var(
 			}
 		}
 
+		$focus-within-selector: $selector;
+
+		@if $selector == summary {
+			$focus-within-selector: "";
+		}
+
 		&:has(
-			#{$selector}:focus-within,
+			#{$focus-within-selector}:focus-within,
 			#{$selector}:is(input, textarea):not(:placeholder-shown),
 			> select option:checked:not(.placeholder),
 			input[type="checkbox"]:checked,
@@ -185,7 +191,7 @@ $db-min-inline-size: var(
 					padding-block-start: var(--db-base-body-icon-font-size-2xs);
 				}
 
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media (prefers-reduced-motion: no-preference) {
 					transition: opacity
 						#{variables.$db-transition-straight-emotional};
 				}
@@ -221,10 +227,15 @@ $db-min-inline-size: var(
 		$variant: "critical";
 	}
 
+	@if $selector == "input" {
+		--db-icon-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
 	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
+		// jscpd:ignore-start
 		// this is a workaround for the textarea scrollbar
 		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
 		--db-adaptive-bg-basic-transparent-full-default: var(
@@ -248,6 +259,8 @@ $db-min-inline-size: var(
 		--db-adaptive-on-bg-basic-emphasis-100-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
+
+		// jscpd:ignore-end
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
@@ -413,8 +426,11 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		@include helpers.not-disabled {
+			// cursor: revert — text/textarea inputs should use the text cursor, not pointer
+			@include helpers.hover(revert) {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
 		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {
@@ -443,12 +459,12 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		max-inline-size: 25ch;
+		max-inline-size: var(--db-label-max-size, 100%);
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			transition: font-size variables.$db-transition-straight-emotional;
 		}
 	}
@@ -570,6 +586,7 @@ $input-valid-types:
 
 	@include get-validity-message($key);
 
+	// jscpd:ignore-start
 	input {
 		&:not(:checked) {
 			--db-adaptive-bg-basic-transparent-full-default: var(
@@ -582,6 +599,8 @@ $input-valid-types:
 				--db-#{$variant}-bg-basic-transparent-full-pressed
 			);
 		}
+
+		// jscpd:ignore-end
 
 		&:checked {
 			--db-adaptive-bg-basic-transparent-full-default: var(
@@ -613,7 +632,6 @@ $input-valid-types:
 		@include helpers.display(flex);
 
 		align-items: flex-start;
-		position: relative;
 		color: var(
 			--db-check-element-label-color,
 			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
@@ -647,6 +665,7 @@ $input-valid-types:
 
 	&[data-hide-label="true"] {
 		font-size: 0;
+		inline-size: fit-content;
 
 		input {
 			margin-inline-end: 0;

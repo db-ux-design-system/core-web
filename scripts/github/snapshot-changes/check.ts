@@ -15,8 +15,11 @@ export const checkSnapshotChanges = (aria = true, branch = ''): boolean => {
 				file.startsWith('__snapshots__') &&
 				file.endsWith(aria ? '-aria-snapshot.yaml' : '-screenshot.png')
 		);
-	} catch (error) {
-		console.error('Error while checking for changes:', error.message);
+	} catch (error: unknown) {
+		console.error(
+			'Error while checking for changes:',
+			error instanceof Error ? error.message : String(error)
+		);
 		return false;
 	}
 };

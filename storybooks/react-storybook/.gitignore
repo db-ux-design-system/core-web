@@ -25,3 +25,6 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+src/components
+src/shared

@@ -22,7 +22,14 @@
 		"noUnusedParameters": true,
 		"erasableSyntaxOnly": true,
 		"noFallthroughCasesInSwitch": true,
-		"noUncheckedSideEffectImports": true
+		"noUncheckedSideEffectImports": true,
+		"paths": {
+			"@components": ["../../output/react/src"],
+			"@components/src/*": ["../../output/react/src/*"]
+		}
 	},
-	"include": ["src"]
+	"include": [
+		"src",
+		"../../node_modules/@db-ux/db-theme-icons/build/types/overwrite.d.ts"
+	]
 }

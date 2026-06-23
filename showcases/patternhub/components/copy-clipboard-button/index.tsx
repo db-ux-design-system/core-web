@@ -12,7 +12,7 @@ const CopyClipboardButton = ({
 	children,
 	copyText
 }: CopyClipboardButtonProps) => {
-	const [justCopied, setJustCopied] = useState<boolean>(false);
+	const [justCopied, setJustCopied] = useState(false);
 
 	const onCopyButtonClick = async (event: MouseEvent<HTMLButtonElement>) => {
 		event.stopPropagation();
@@ -42,7 +42,9 @@ const CopyClipboardButton = ({
 			variant="ghost"
 			icon="copy"
 			noText={true}
-			onClick={onCopyButtonClick}
+			onClick={(event) => {
+				void onCopyButtonClick(event);
+			}}
 			aria-describedby={name}>
 			<DBTooltip
 				id={name}

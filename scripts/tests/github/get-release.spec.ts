@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { describe, expect, test } from 'vitest';
 
-const command = 'npx --no tsx github/get-release.ts';
+const command = 'node github/get-release.ts';
 
 describe('build-gh-page', () => {
 	process.env.GITHUB_REF = 'refs/tags/v1.2.3';
@@ -26,13 +26,12 @@ describe('build-gh-page', () => {
 		let result: string;
 		try {
 			result = execSync(command).toString();
-		} catch (error) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			result = error.message;
+		} catch (error: unknown) {
+			result = error instanceof Error ? error.message : String(error);
 		}
 
 		expect(result.toString().trim()).toEqual(
-			"Command failed: npx --no tsx github/get-release.ts\nYour tag has to start with 'v'"
+			"Command failed: node github/get-release.ts\nYour tag has to start with 'v'"
 		);
 	});
 
@@ -44,13 +43,12 @@ describe('build-gh-page', () => {
 		let result: string;
 		try {
 			result = execSync(command).toString();
-		} catch (error) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			result = error.message;
+		} catch (error: unknown) {
+			result = error instanceof Error ? error.message : String(error);
 		}
 
 		expect(result.toString().trim()).toEqual(
-			'Command failed: npx --no tsx github/get-release.ts\nDependabot has no permission to publish!'
+			'Command failed: node github/get-release.ts\nDependabot has no permission to publish!'
 		);
 	});
 });

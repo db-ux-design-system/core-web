@@ -7,7 +7,7 @@
 
 ## How to include variables
 
-For **CSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
+For **CSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../README.md).
 
 For **SCSS** you need to use the import `@use "@db-ux/core-foundations/build/styles/variables"` in your `.scss` file, where you want to reference the specific variable.
 

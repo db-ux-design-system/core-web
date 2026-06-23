@@ -2,10 +2,15 @@
   "name": "vue-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "Vue showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "npm-run-all build:*",
-    "build:01_vite": "vite build",
+    "build": "vite build",
     "dev": "vite --open",
     "preview": "npx http-server ../../build-showcases",
     "start": "vite",
@@ -17,15 +22,21 @@
     "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "sa11y": "4.3.5",
-    "vue": "3.5.25",
-    "vue-router": "4.6.4"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*",
+    "@db-ux/db-theme": "5.8.0",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.9.0",
+    "vue": "3.5.38",
+    "vue-router": "5.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "6.0.3",
+    "@db-ux/core-postcss-plugin": "workspace:*",
+    "@vitejs/plugin-vue": "6.0.7",
     "cross-env": "10.1.0",
+    "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "7.3.0",
-    "vue-tsc": "3.1.8"
+    "vite": "8.0.16",
+    "vue-tsc": "3.3.5"
   }
 }

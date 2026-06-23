@@ -75,7 +75,23 @@ export const handleFixedDropdown = (
 	parent: HTMLElement,
 	placement: string
 ) => {
-	// We skip this if we are in mobile it's already fixed
+	if (!element || !parent) return;
+
+	const fullWidth = element.dataset['width'] === 'full';
+	const autoWidth = element.dataset['width'] === 'auto';
+
+	// Reset width-specific inline styles first so a previous mode (e.g. "auto")
+	// doesn't leave a stale minInlineSize/inlineSize behind when the dropdown
+	// width changes at runtime. This must happen before getFloatingProps
+	// measures the element, otherwise the dropdown would be measured with a
+	// width it no longer has and positioned incorrectly. It also has to run
+	// before the mobile bailout below: otherwise a desktop minInlineSize would
+	// survive into the mobile sheet, where CSS min-inline-size beats the
+	// mobile max-inline-size guard and overflows the viewport.
+	element.style.inlineSize = '';
+	element.style.minInlineSize = '';
+
+	// We skip the rest if we are in mobile, it's already fixed via CSS.
 	if (getComputedStyle(element).zIndex === '9999') return;
 
 	const {
@@ -86,32 +102,77 @@ export const handleFixedDropdown = (
 		width,
 		right,
 		left,
-		correctedPlacement
+		correctedPlacement,
+		innerWidth
 	} = getFloatingProps(element, parent, placement);
 
-	const fullWidth = element.dataset['width'] === 'full';
+	// For auto width the dropdown is forced to be at least as wide as the trigger,
+	// but clamped to its own max-inline-size: CSS lets a min-inline-size override
+	// the max when the minimum is larger, so a trigger wider than the viewport
+	// limit would otherwise drop the side margins or overflow horizontally.
+	let autoMinWidth = width;
+	if (autoWidth) {
+		const maxInlineSize = parseFloat(
+			getComputedStyle(element).maxInlineSize
+		);
+		if (!isNaN(maxInlineSize) && maxInlineSize > 0) {
+			autoMinWidth = Math.min(width, maxInlineSize);
+		}
+	}
 
 	if (fullWidth) {
 		element.style.inlineSize = `${width}px`;
+	} else if (autoWidth) {
+		element.style.minInlineSize = `${autoMinWidth}px`;
+	}
+
+	// getFloatingProps measured childWidth before the inline styles were
+	// (re)applied, so use the width the dropdown will actually have:
+	// - auto: the clamped minimum, so end-aligned dropdowns don't extend past
+	//   the trigger's right edge.
+	// - full: the trigger width (the reset above drops it to content width).
+	let effectiveChildWidth = childWidth;
+	if (autoWidth) {
+		effectiveChildWidth = Math.max(childWidth, autoMinWidth);
+	} else if (fullWidth) {
+		effectiveChildWidth = width;
+	}
+
+	// getFloatingProps detects horizontal overflow assuming a centered element
+	// (it halves childWidth). The dropdown is actually start-aligned (inset =
+	// left), so for the wider auto dropdown re-check overflow against its full
+	// width and flip to end-alignment when it would extend past the viewport.
+	let dropdownPlacement = correctedPlacement;
+	if (
+		autoWidth &&
+		(dropdownPlacement === 'top' ||
+			dropdownPlacement === 'bottom' ||
+			dropdownPlacement === 'top-start' ||
+			dropdownPlacement === 'bottom-start') &&
+		left + effectiveChildWidth > innerWidth
+	) {
+		dropdownPlacement = dropdownPlacement.startsWith('top')
+			? 'top-end'
+			: 'bottom-end';
 	}
 
 	if (
-		correctedPlacement === 'top' ||
-		correctedPlacement === 'bottom' ||
-		correctedPlacement === 'top-start' ||
-		correctedPlacement === 'bottom-start'
+		dropdownPlacement === 'top' ||
+		dropdownPlacement === 'bottom' ||
+		dropdownPlacement === 'top-start' ||
+		dropdownPlacement === 'bottom-start'
 	) {
 		element.style.insetInlineStart = `${left}px`;
 	} else if (
-		correctedPlacement === 'top-end' ||
-		correctedPlacement === 'bottom-end'
+		dropdownPlacement === 'top-end' ||
+		dropdownPlacement === 'bottom-end'
 	) {
-		element.style.insetInlineStart = `${right - childWidth}px`;
+		element.style.insetInlineStart = `${Math.max(right - effectiveChildWidth, 0)}px`;
 	}
 
-	if (correctedPlacement?.startsWith('top')) {
+	if (dropdownPlacement?.startsWith('top')) {
 		element.style.insetBlockStart = `${top - childHeight}px`;
-	} else if (correctedPlacement?.startsWith('bottom')) {
+	} else if (dropdownPlacement?.startsWith('bottom')) {
 		element.style.insetBlockStart = `${bottom}px`;
 	}
 
@@ -260,16 +321,50 @@ export const getFloatingProps = (
 	};
 };
 
+const MAX_ANCESTOR_DEPTH = 10;
+const ancestorCache = new WeakMap<HTMLElement, HTMLElement | null>();
+
+const getAncestorHasCorrectedPlacement = (
+	element: HTMLElement
+): HTMLElement | null => {
+	if (ancestorCache.has(element)) {
+		return ancestorCache.get(element)!;
+	}
+
+	let current = element.parentElement;
+	let anchor = 0;
+	while (current && anchor < MAX_ANCESTOR_DEPTH) {
+		if (current.dataset['correctedPlacement']) {
+			ancestorCache.set(element, current);
+			return current;
+		}
+		current = current.parentElement;
+		anchor += 1;
+	}
+
+	ancestorCache.set(element, null);
+	return null;
+};
+
 export const handleFixedPopover = (
 	element: HTMLElement,
 	parent: HTMLElement,
 	placement: string
 ) => {
-	const distance =
-		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
-		'0px';
+	if (!element || !parent) return;
+	const parentComputedStyles = getComputedStyle(parent);
+	const parentHasFloatingPosition = ['absolute', 'fixed'].includes(
+		parentComputedStyles.position
+	);
+	const ancestorWithCorrectedPlacement =
+		getAncestorHasCorrectedPlacement(element);
+	const noFloatingAncestor =
+		!ancestorWithCorrectedPlacement && !parentHasFloatingPosition;
 
-	const {
+	const distance =
+		getComputedStyle(element)?.getPropertyValue('--db-popover-distance') ??
+		'0px';
+	let {
 		top,
 		height,
 		width,
@@ -282,6 +377,31 @@ export const handleFixedPopover = (
 		innerWidth,
 		innerHeight
 	} = getFloatingProps(element, parent, placement);
+
+	if (ancestorWithCorrectedPlacement) {
+		const ancestorRect =
+			ancestorWithCorrectedPlacement.getBoundingClientRect();
+
+		left = Math.abs(left - ancestorRect.left);
+		right = (width + Math.abs(right - ancestorRect.right)) * 1.5; // We add a transform -50% later
+		top = Math.abs(top - ancestorRect.top);
+		bottom = (height + Math.abs(bottom - ancestorRect.bottom)) * 1.5; // We add a transform -50% later
+	}
+
+	if (parentHasFloatingPosition) {
+		/*
+		 * If we have a floating element inside an element with position:absolute/fixed
+		 * we need to calculate with relative values
+		 * */
+		left = 0;
+		right = width;
+		top = 0;
+		bottom = height;
+		if (['auto', 'inherit', '0'].includes(parentComputedStyles.zIndex)) {
+			// We need the default zIndex for floating elements on the parent
+			parent.style.zIndex = '1';
+		}
+	}
 
 	// Tooltip arrow position
 
@@ -301,6 +421,8 @@ export const handleFixedPopover = (
 				'--db-tooltip-arrow-inline-start',
 				`${100 - diff}%`
 			);
+		} else {
+			element.style.setProperty('--db-tooltip-arrow-inline-start', `50%`);
 		}
 	}
 	if (
@@ -319,6 +441,8 @@ export const handleFixedPopover = (
 				'--db-tooltip-arrow-block-start',
 				`${100 - diff}%`
 			);
+		} else {
+			element.style.setProperty('--db-tooltip-arrow-block-start', `50%`);
 		}
 	}
 
@@ -333,13 +457,13 @@ export const handleFixedPopover = (
 	) {
 		const end = top + childHeight;
 		element.style.insetBlockStart = `${top}px`;
-		element.style.insetBlockEnd = `${end > innerHeight ? innerHeight : end}px`;
+		element.style.insetBlockEnd = `${!parentHasFloatingPosition && end > innerHeight ? innerHeight : end}px`;
 	} else if (
 		correctedPlacement === 'right-end' ||
 		correctedPlacement === 'left-end'
 	) {
 		const start = bottom - childHeight;
-		element.style.insetBlockStart = `${start < 0 ? 0 : start}px`;
+		element.style.insetBlockStart = `${!parentHasFloatingPosition && start < 0 ? 0 : start}px`;
 		element.style.insetBlockEnd = `${bottom}px`;
 	} else if (
 		correctedPlacement === 'top' ||
@@ -353,32 +477,32 @@ export const handleFixedPopover = (
 	) {
 		const end = left + childWidth;
 		element.style.insetInlineStart = `${left}px`;
-		element.style.insetInlineEnd = `${end > innerWidth ? innerWidth : end}px`;
+		element.style.insetInlineEnd = `${!parentHasFloatingPosition && end > innerWidth ? innerWidth : end}px`;
 	} else if (
 		correctedPlacement === 'top-end' ||
 		correctedPlacement === 'bottom-end'
 	) {
-		const start = left - childWidth;
-		element.style.insetInlineStart = `${right - childWidth}px`;
-		element.style.insetInlineEnd = `${start < 0 ? 0 : start}px`;
+		const start = right - childWidth;
+		element.style.insetInlineStart = `${!parentHasFloatingPosition && start < 0 ? 0 : start}px`;
+		element.style.insetInlineEnd = `${right}px`;
 	}
 
 	if (correctedPlacement?.startsWith('right')) {
 		const end = right + childWidth;
 		element.style.insetInlineStart = `calc(${right}px + ${distance})`;
-		element.style.insetInlineEnd = `calc(${end > innerWidth ? innerWidth : end}px + ${distance})`;
+		element.style.insetInlineEnd = `calc(${noFloatingAncestor && end > innerWidth ? innerWidth : end}px + ${distance})`;
 	} else if (correctedPlacement?.startsWith('left')) {
 		const start = left - childWidth;
-		element.style.insetInlineStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
+		element.style.insetInlineStart = `calc(${noFloatingAncestor && start < 0 ? 0 : start}px - ${distance})`;
 		element.style.insetInlineEnd = `calc(${right}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('top')) {
 		const start = top - childHeight;
-		element.style.insetBlockStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
-		element.style.insetBlockEnd = `calc(${bottom}px - ${distance})`;
+		element.style.insetBlockStart = `calc(${noFloatingAncestor && start < 0 ? 0 : start}px - ${distance})`;
+		element.style.insetBlockEnd = `calc(${parentHasFloatingPosition ? start : bottom}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('bottom')) {
 		const end = bottom + childHeight;
-		element.style.insetBlockStart = `calc(${bottom}px + ${distance})`;
-		element.style.insetBlockEnd = `calc(${end > innerHeight ? innerHeight : end}px + ${distance})`;
+		element.style.insetBlockStart = `calc(${parentHasFloatingPosition ? end : bottom}px + ${distance})`;
+		element.style.insetBlockEnd = `calc(${noFloatingAncestor && end > innerHeight ? innerHeight : end}px + ${distance})`;
 	}
 
 	element.style.position = 'fixed';

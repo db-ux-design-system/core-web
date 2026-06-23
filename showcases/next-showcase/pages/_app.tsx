@@ -5,7 +5,7 @@ import useQuery from '../../react-showcase/src/hooks/use-query';
 import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
-import '../styles/global.scss';
+import '../styles/global.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =

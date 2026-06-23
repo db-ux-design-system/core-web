@@ -1,4 +1,4 @@
-import {
+import type {
 	ChangeEventProps,
 	ChangeEventState,
 	FocusEventProps,
@@ -56,6 +56,10 @@ export type DBInputDefaultProps = {
 	 * Allow selecting multiple files. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#multiple
 	 */
 	multiple?: boolean | string;
+	/**
+	 * Specifies the types of files that the server accepts (for type="file"). https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept
+	 */
+	accept?: string;
 	/**
 	 * Maximum value
 	 */

@@ -1,3 +1,9 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineNuxtConfig } from 'nuxt/config';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export default defineNuxtConfig({
 	telemetry: false,
 	devtools: { enabled: true },
@@ -17,7 +23,8 @@ export default defineNuxtConfig({
 		base: `/nuxt-showcase/`,
 		build: {
 			outDir: '../../build-showcases/nuxt-showcase',
-			emptyOutDir: true
+			emptyOutDir: true,
+			cssMinify: 'esbuild'
 		}
 	},
 	nitro: {
@@ -25,5 +32,8 @@ export default defineNuxtConfig({
 			dir: '../../build-showcases/nuxt-showcase',
 			publicDir: '../../build-showcases/nuxt-showcase'
 		}
+	},
+	alias: {
+		'@components': path.resolve(__dirname, '../../output/vue/src')
 	}
 });

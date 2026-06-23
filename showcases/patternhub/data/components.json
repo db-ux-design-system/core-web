@@ -11,6 +11,10 @@
 			{
 				"label": "DBLink",
 				"name": "link"
+			},
+			{
+				"label": "DBCustomButton",
+				"name": "custom-button"
 			}
 		]
 	},
@@ -49,6 +53,10 @@
 				"label": "DBAccordionItem",
 				"name": "accordion-item",
 				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBTable",
+				"name": "table"
 			},
 			{
 				"label": "DBTabs",

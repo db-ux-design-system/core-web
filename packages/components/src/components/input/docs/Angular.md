@@ -109,7 +109,7 @@ import { FormsModule } from '@angular/forms';
 	<DBInput
 		ngDefaultControl
 		[(ngModel)]="input"
-		label="Textinput"
+		label="Text Input"
 		placeholder="Placeholder"
 		description="Description"
 	></DBInput>

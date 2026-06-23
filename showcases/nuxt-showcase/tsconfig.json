@@ -1,4 +1,11 @@
 {
 	// https://nuxt.com/docs/guide/concepts/typescript
-	"extends": "./.nuxt/tsconfig.json"
+	"extends": "./.nuxt/tsconfig.json",
+	"compilerOptions": {
+		"paths": {
+			"@components": ["../../output/vue/src"],
+			"@components/src/*": ["../../output/vue/src/*"],
+			"@components/components/*": ["../../output/vue/src/components/*"]
+		}
+	}
 }

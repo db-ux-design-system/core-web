@@ -1,4 +1,4 @@
-import {
+import type {
 	ClickEventState,
 	DocumentScrollState,
 	EmphasisProps,
@@ -7,7 +7,10 @@ import {
 	InitializedState,
 	PlacementProps,
 	PopoverProps,
-	PopoverState
+	PopoverState,
+	ResetIdState,
+	TextProps,
+	WrapProps
 } from '../../shared/model';
 
 export const TooltipVariantList = ['description', 'label'] as const;
@@ -30,10 +33,21 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	GlobalProps &
 	EmphasisProps &
 	PlacementProps &
-	PopoverProps;
+	PopoverProps &
+	WrapProps &
+	TextProps;
 
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;
+	_attachedParent?: HTMLElement;
+	_attachedId?: string;
+	_activeTriggerCount?: number;
+	_boundListeners?: {
+		parent: HTMLElement;
+		type: string;
+		fn: (event: any) => void;
+	}[];
+	_detachListeners: () => void;
 };
 
 export type DBTooltipState = DBTooltipDefaultState &
@@ -41,4 +55,5 @@ export type DBTooltipState = DBTooltipDefaultState &
 	ClickEventState<HTMLElement> &
 	PopoverState &
 	InitializedState &
-	DocumentScrollState;
+	DocumentScrollState &
+	ResetIdState;

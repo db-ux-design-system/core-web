@@ -55,7 +55,8 @@ const rootProps = [
 	'data-headline-size',
 	'data-divider',
 	'data-focus',
-	'data-font'
+	'data-font',
+	'data-density'
 ];
 
 /**
@@ -136,7 +137,10 @@ export default DB${upperComponentName};`
 					from: 'import * as React from "react";',
 					to:
 						'import * as React from "react";\n ' +
-						'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
+						// Explicit .js extension required: this import is injected
+						// here in post-build, AFTER the Mitosis esm-extensions
+						// plugin has run, so it is not rewritten automatically.
+						'import { filterPassingProps, getRootProps } from "../../utils/react.js";\n'
 				},
 				{
 					from: 'ref={_ref}',
@@ -153,7 +157,7 @@ export default DB${upperComponentName};`
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */
 				{
-					from: 'props.value ?? _value',
+					from: 'props.value ?? _value ?? ""',
 					to: 'props.value'
 				}
 			];

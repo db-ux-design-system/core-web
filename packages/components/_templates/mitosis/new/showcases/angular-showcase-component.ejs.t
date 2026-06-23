@@ -1,20 +1,13 @@
 ---
-to: "<%= showcases ? `../../showcases/angular-showcase/src/app/components/${name}/${name}.component.ts` : null %>"
+to: "<%= showcases ? `../../showcases/angular-showcase/src/app/components/${name}.component.ts` : null %>"
 ---
 import { Component } from '@angular/core';
-
-import { DefaultComponent } from '../default.component';
-import defaultComponentVariants from '../../../../../shared/<%= name %>.json';
-import { DB<%= h.changeCase.pascal(name) %> } from '../../../../../../output/angular/src/components/<%= name %>';
+import { <%= h.changeCase.pascal(name) %>Showcase } from '@components/components/<%= name %>/showcase/<%= name %>.showcase';
 
 @Component({
 	selector: 'app-<%= name %>',
-	templateUrl: './<%= name %>.component.html',
-	imports: [DefaultComponent, DB<%= h.changeCase.pascal(name) %>],
+	template: '<<%= name %>-showcase></<%= name %>-showcase>',
+	imports: [<%= h.changeCase.pascal(name) %>Showcase],
 	standalone: true
 })
-export class <%= h.changeCase.pascal(name) %>Component {
-	variants = defaultComponentVariants;
-}
-
-
+export class <%= h.changeCase.pascal(name) %>Component {}

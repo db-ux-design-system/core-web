@@ -40,7 +40,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 			event.stopPropagation();
 			useTarget({
 				stencil: () => {
-					state._selected = getBooleanAsString(event.target === _ref);
+					state._selected = getBooleanAsString(
+						event.target === _ref,
+						'selected'
+					);
 				},
 				default: () => {
 					state._selected = event.target === _ref;
@@ -111,7 +114,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			if (props.active || _ref.checked) {
 				useTarget({
 					stencil: () => {
-						state._selected = getBooleanAsString(true);
+						state._selected = getBooleanAsString(true, 'selected');
 					},
 					default: () => {
 						state._selected = true;
@@ -141,16 +144,20 @@ export default function DBTabItem(props: DBTabItemProps) {
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
-				htmlFor={props.id}
+				htmlFor={props.id ?? props.propOverrides?.id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
-				data-show-icon={getBooleanAsString(
-					props.showIconLeading ?? props.showIcon
-				)}
+				data-show-icon={
+					getBooleanAsString(
+						props.showIconLeading,
+						'showIconLeading'
+					) || getBooleanAsString(props.showIcon, 'showIcon')
+				}
 				data-show-icon-trailing={getBooleanAsString(
-					props.showIconTrailing
+					props.showIconTrailing,
+					'showIconTrailing'
 				)}
-				data-no-text={getBooleanAsString(props.noText)}>
+				data-no-text={getBooleanAsString(props.noText, 'noText')}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}
@@ -159,7 +166,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					type="radio"
 					role="tab"
 					name={state._name}
-					id={props.id}
+					id={props.id ?? props.propOverrides?.id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>
 

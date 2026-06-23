@@ -1,0 +1,20 @@
+import { useMetadata } from '@builder.io/mitosis';
+import DBCheckbox from '../checkbox.lite';
+import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
+
+useMetadata({
+	storybookTitle: 'Size',
+	storybookNames: ['(Default) Medium', 'Small'],
+	storybookArgTypes: StorybookCheckboxArgTypes
+});
+
+export default function CheckboxSize() {
+	return (
+		<div role="group" aria-label="Size">
+			<DBCheckbox name="Size">(Default) Medium</DBCheckbox>
+			<DBCheckbox name="Size" size="small">
+				Small
+			</DBCheckbox>
+		</div>
+	);
+}

@@ -1,12 +1,16 @@
 const ignoreFolders = [
 	'node_modules/**/*',
 	'build/**/*',
+	'**/build/**/*',
 	'.config/**/*',
 	'public/**/*',
 	'out/**/*',
 	'helpers/**/*',
 	'dist/**/*',
-	'packages/**/*',
+	'**/dist/**/*',
+	'packages/components/**/*',
+	'packages/foundations/**/*',
+	'packages/migration/**/*',
 	'showcases/patternhub/pages/components/**/*',
 	'showcases/nuxt-showcase/**/*',
 	'showcases/next-showcase/**/*',
@@ -14,8 +18,13 @@ const ignoreFolders = [
 	'build-outputs/**/*',
 	'build-showcases/**/*',
 	'output/**/*',
+	'**/test/**/*',
 	'**/playwright.*.ts',
-	'playwright-report/**/*'
+	'figma-code-connect',
+	'playwright-report/**/*',
+	'storybooks/**/.storybook/**/*',
+	'storybooks/**/vite.config.ts',
+	'**/vitest.config.ts'
 ];
 
 export default ignoreFolders;

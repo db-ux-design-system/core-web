@@ -1,4 +1,4 @@
-import {
+import type {
 	ClickEvent,
 	ClickEventProps,
 	ClickEventState,
@@ -13,7 +13,7 @@ import {
 	WidthProps,
 	WrapProps
 } from '../../shared/model';
-import { NavigationItemSafeTriangle } from '../../utils/navigation';
+import type { NavigationItemSafeTriangle } from '../../utils/navigation';
 
 export type DBNavigationItemDefaultProps = {
 	/**
@@ -36,6 +36,11 @@ export type DBNavigationItemDefaultProps = {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean | string;
+
+	/**
+	 * Force hide sub-navigation - for web component output
+	 */
+	hideSubNavigation?: boolean | string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
@@ -52,7 +57,6 @@ export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
-	subNavigationId: string;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button
@@ -60,6 +64,8 @@ export type DBNavigationItemDefaultState = {
 	hasSubNavigation?: boolean;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
+	subNavigationId?: string;
+	subNavigationToggleId?: string;
 };
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
