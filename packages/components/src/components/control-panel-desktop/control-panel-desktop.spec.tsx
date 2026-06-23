@@ -79,7 +79,8 @@ const comp: any = (
 
 const testComponent = (viewport: any) => {
 	test(`should contain text for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
 		await page.setViewportSize({
 			width: viewport.width,

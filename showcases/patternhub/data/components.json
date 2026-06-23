@@ -24,10 +24,6 @@
 		"name": "data-display",
 		"subNavigation": [
 			{
-				"label": "DBControlPanelBrand",
-				"name": "control-panel-brand"
-			},
-			{
 				"label": "DBTooltip",
 				"name": "tooltip"
 			},
@@ -143,18 +139,6 @@
 				"name": "drawer"
 			},
 			{
-				"label": "DBControlPanelDesktop",
-				"name": "control-panel-desktop"
-			},
-			{
-				"label": "DBControlPanelMobile",
-				"name": "control-panel-mobile"
-			},
-			{
-				"label": "DBShell",
-				"name": "shell"
-			},
-			{
 				"label": "DBSection",
 				"name": "section"
 			},
@@ -169,6 +153,26 @@
 		"path": "/components/navigation",
 		"name": "navigation",
 		"subNavigation": [
+			{
+				"label": "DBControlPanelBrand",
+				"name": "control-panel-brand"
+			},
+			{
+				"label": "DBControlPanelFlatIcon",
+				"name": "control-panel-flat-icon"
+			},
+			{
+				"label": "DBControlPanelDesktop",
+				"name": "control-panel-desktop"
+			},
+			{
+				"label": "DBControlPanelMobile",
+				"name": "control-panel-mobile"
+			},
+			{
+				"label": "DBShell",
+				"name": "shell"
+			},
 			{
 				"label": "DBControlPanelNavigation",
 				"name": "control-panel-navigation",

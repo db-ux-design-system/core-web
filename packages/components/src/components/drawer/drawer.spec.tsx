@@ -1,11 +1,17 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+import { DBDrawerHeader } from '../drawer-header/index';
 import { DBDrawer } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
 
-const comp: any = <DBDrawer open={true}>Test</DBDrawer>;
+const comp: any = (
+	<DBDrawer open={true} header={<DBDrawerHeader>Title</DBDrawerHeader>}>
+		{/*<template v-slot:header><DBDrawerHeader>Title</DBDrawerHeader></template>*/}
+		Test
+	</DBDrawer>
+);
 
 const testComponent = (viewport) => {
 	test(`should contain text for device ${viewport.name}`, async ({
@@ -54,7 +60,10 @@ const testAction = () => {
 	test(`should open and close drawer`, async ({ mount, page }) => {
 		let test: string = '';
 		const drawer: any = (
-			<DBDrawer open={true} onClose={() => (test = 'close')}>
+			<DBDrawer
+				open={true}
+				onClose={() => (test = 'close')}
+				header={<DBDrawerHeader>Title</DBDrawerHeader>}>
 				<span data-testid="test">Test</span>
 			</DBDrawer>
 		);

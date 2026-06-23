@@ -8,6 +8,16 @@
 @use "../../styles/internal/component";
 @use "../shell-sub-navigation/shell-sub-navigation";
 
+@mixin shell-control-panel-bottom-sub-navigation-top {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		@include helpers.divider("bottom");
+
+		padding-block-start: calc(
+			#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top)
+		);
+	}
+}
+
 .db-shell {
 	// MOBILE
 	@include screen-sizes.screen-min-max(
@@ -43,14 +53,7 @@
 						[sub-navigation] auto
 						[shell-content] 1fr;
 
-					#{string.unquote(custom-elements.$shell-sub-navigation)} {
-						@include helpers.divider("bottom");
-
-						padding-block-start: calc(
-							#{variables.$db-spacing-fixed-xs} +
-								env(safe-area-inset-top)
-						);
-					}
+					@include shell-control-panel-bottom-sub-navigation-top;
 				}
 
 				&[data-sub-navigation-mobile-position="bottom"] {
@@ -119,14 +122,7 @@
 					[shell-content] 1fr
 					[control-panel] auto;
 
-				#{string.unquote(custom-elements.$shell-sub-navigation)} {
-					@include helpers.divider("bottom");
-
-					padding-block-start: calc(
-						#{variables.$db-spacing-fixed-xs} +
-							env(safe-area-inset-top)
-					);
-				}
+				@include shell-control-panel-bottom-sub-navigation-top;
 			}
 		}
 

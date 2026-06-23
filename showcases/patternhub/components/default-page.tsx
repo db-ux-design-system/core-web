@@ -5,7 +5,8 @@ import {
 	DBControlPanelMobile,
 	DBIcon,
 	DBSection,
-	DBShell
+	DBShell,
+	DBShellContent
 } from '@components';
 import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
@@ -26,7 +27,6 @@ import {
 import PrimaryActions from './control-panel/primary-actions';
 import SecondaryActions from './control-panel/secondary-actions';
 import { FrameworkProvider } from './framework-context';
-import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
 
 const preferDark = '(prefers-color-scheme: dark)';
@@ -150,12 +150,7 @@ const DefaultPage = ({
 									setColorMode={setColorMode}
 								/>
 							}
-							secondaryActions={
-								<>
-									<FrameworkSwitcher />
-									<SecondaryActions />
-								</>
-							}>
+							secondaryActions={<SecondaryActions />}>
 							<Navigation />
 						</DBControlPanelDesktop>
 					}
@@ -176,71 +171,80 @@ const DefaultPage = ({
 							<Navigation />
 						</DBControlPanelMobile>
 					}>
-					{breadcrumb && breadcrumb.length > 1 && (
-						<DBSection spacing="none" width="large">
-							<div
-								data-density="functional"
-								className="breadcrumb-container">
-								{breadcrumb?.map((navItem) => (
-									<Fragment
-										key={`breadcrumb-${navItem.path}`}>
-										{navItem.path !== '/' && (
-											<DBIcon icon="chevron_right" />
-										)}
-										<Link
-											className="db-button"
-											data-variant="ghost"
-											data-icon={
-												navItem.path === '/'
-													? 'house'
-													: 'none'
-											}
-											data-no-text={navItem.path === '/'}
-											href={navItem.path ?? '/'}>
-											{navItem.label}
-										</Link>
-									</Fragment>
-								))}
-							</div>
-						</DBSection>
-					)}
-					<DBSection spacing="none" width="large">
-						{children}
-					</DBSection>
-					{!noNavigation &&
-						(previousNavigationItem ?? nextNavigationItem) && (
-							<DBSection
-								width="large"
-								spacing="small"
-								className="link-containers">
-								{previousNavigationItem && (
-									<Link
-										className="previous-link-container"
-										href={
-											previousNavigationItem.path ?? '/'
-										}>
-										<DBCard behavior="interactive">
-											<small>Previous</small>
-											<span data-icon="arrow_left">
-												{previousNavigationItem.label}
-											</span>
-										</DBCard>
-									</Link>
-								)}
-								{nextNavigationItem && (
-									<Link
-										className="next-link-container"
-										href={nextNavigationItem.path ?? '/'}>
-										<DBCard behavior="interactive">
-											<small>Next</small>
-											<span data-icon-trailing="arrow_right">
-												{nextNavigationItem.label}
-											</span>
-										</DBCard>
-									</Link>
-								)}
+					<DBShellContent>
+						{breadcrumb && breadcrumb.length > 1 && (
+							<DBSection spacing="none" width="large">
+								<div
+									data-density="functional"
+									className="breadcrumb-container">
+									{breadcrumb?.map((navItem) => (
+										<Fragment
+											key={`breadcrumb-${navItem.path}`}>
+											{navItem.path !== '/' && (
+												<DBIcon icon="chevron_right" />
+											)}
+											<Link
+												className="db-button"
+												data-variant="ghost"
+												data-icon={
+													navItem.path === '/'
+														? 'house'
+														: 'none'
+												}
+												data-no-text={
+													navItem.path === '/'
+												}
+												href={navItem.path ?? '/'}>
+												{navItem.label}
+											</Link>
+										</Fragment>
+									))}
+								</div>
 							</DBSection>
 						)}
+						<DBSection spacing="none" width="large">
+							{children}
+						</DBSection>
+						{!noNavigation &&
+							(previousNavigationItem ?? nextNavigationItem) && (
+								<DBSection
+									width="large"
+									spacing="small"
+									className="link-containers">
+									{previousNavigationItem && (
+										<Link
+											className="previous-link-container"
+											href={
+												previousNavigationItem.path ??
+												'/'
+											}>
+											<DBCard behavior="interactive">
+												<small>Previous</small>
+												<span data-icon="arrow_left">
+													{
+														previousNavigationItem.label
+													}
+												</span>
+											</DBCard>
+										</Link>
+									)}
+									{nextNavigationItem && (
+										<Link
+											className="next-link-container"
+											href={
+												nextNavigationItem.path ?? '/'
+											}>
+											<DBCard behavior="interactive">
+												<small>Next</small>
+												<span data-icon-trailing="arrow_right">
+													{nextNavigationItem.label}
+												</span>
+											</DBCard>
+										</Link>
+									)}
+								</DBSection>
+							)}
+					</DBShellContent>
 				</DBShell>
 			)}
 		</FrameworkProvider>

@@ -37,6 +37,7 @@ export default function DBControlPanelNavigation(
 		_isSubNavigation: false,
 		_resizeObserverCallbackId: undefined,
 		evaluateScrollButtons(tList: Element) {
+			if (!tList) return;
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
 
