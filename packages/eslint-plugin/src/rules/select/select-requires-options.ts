@@ -57,11 +57,15 @@ export default {
 			COMPONENTS.DBSelect,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkSelect = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBSelect)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBSelect)) {
+				return;
+			}
 
 			const options = getAttributeValue(openingElement, 'options');
 			const hasChildren = hasOptionChildren(node);

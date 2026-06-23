@@ -2,12 +2,12 @@ import { type ToolResult, withTimeout } from '../utils';
 import { getManifest } from '../utils/manifest';
 
 /**
- * Whitelisted path prefixes for docs_search results (using forward slashes
- * as manifest keys always use POSIX-style paths from path.relative()).
- * Only docs whose manifest key starts with one of these prefixes are returned.
- *
- * Blacklisted directories (migration/, adr/, research/, .vitepress/) are
- * implicitly excluded because they don't match any whitelisted prefix.
+ Whitelisted path prefixes for docs_search results (using forward slashes
+ as manifest keys always use POSIX-style paths from path.relative()).
+ Only docs whose manifest key starts with one of these prefixes are returned.
+ 
+ Blacklisted directories (migration/, adr/, research/, .vitepress/) are
+ implicitly excluded because they don't match any whitelisted prefix.
  */
 const DOCS_ALLOWED_PREFIXES = [
 	'packages/components/', // Component-specific docs
@@ -20,8 +20,8 @@ function isAllowedDocPath(docPath: string): boolean {
 }
 
 /**
- * Builds a ToolResult from a list of matched document snippets.
- * Returns at most 3 results and appends a truncation notice when more were found.
+ Builds a ToolResult from a list of matched document snippets.
+ Returns at most 3 results and appends a truncation notice when more were found.
  */
 function buildResults(results: string[], query: string): ToolResult {
 	if (results.length === 0) {
@@ -49,18 +49,22 @@ function buildResults(results: string[], query: string): ToolResult {
 }
 
 /**
- * Searches DB UX documentation for a given query string.
- * Only docs from whitelisted directories (component docs and foundation docs)
- * are searched. Migration guides, ADRs, research, and infrastructure files
- * are explicitly excluded to reduce token consumption and prevent hallucinations.
- *
- * Falls back to the embedded manifest when running outside the monorepo.
- * Applies a 10-second timeout to prevent hanging on large directory trees.
- *
- * @param query - Space-separated search terms (tokens shorter than 3 chars are ignored).
+ Searches DB UX documentation for a given query string.
+ Only docs from whitelisted directories (component docs and foundation docs)
+ are searched. Migration guides, ADRs, research, and infrastructure files
+ are explicitly excluded to reduce token consumption and prevent hallucinations.
+ 
+ Falls back to the embedded manifest when running outside the monorepo.
+ Applies a 10-second timeout to prevent hanging on large directory trees.
+ 
+ @param query - Space-separated search terms (tokens shorter than 3 chars are ignored).
+ * @param query.query
  * @param category - Search scope: "global" or "component".
+ * @param query.category
  * @param componentName - Required when category is "component".
+ * @param query.componentName
  * @param docType - Optional filename filter (e.g. "Migration", "Accessibility").
+ * @param query.docType
  */
 export async function handleDocsSearch({
 	query,
@@ -82,11 +86,16 @@ export async function handleDocsSearch({
 				.filter((t) => t.trim().length > 2);
 			const results: string[] = [];
 			for (const [path, content] of Object.entries(manifest.docs)) {
-				if (results.length >= 3) break;
+				if (results.length >= 3) {
+					break;
+				}
+
 				// Normalize Windows backslashes to forward slashes
 				const normalizedPath = path.replaceAll('\\', '/');
 				// Defense-in-depth: skip docs outside whitelisted directories
-				if (!isAllowedDocPath(normalizedPath)) continue;
+				if (!isAllowedDocPath(normalizedPath)) {
+					continue;
+				}
 
 				// Scope filter: when category is 'component' and componentName is given,
 				// only match docs within that component's directory.

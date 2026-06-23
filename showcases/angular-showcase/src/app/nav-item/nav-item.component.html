@@ -1,20 +1,20 @@
 @if (navItem) {
-	<db-navigation-item [backButtonText]="getBackButtonText()">
+	<db-navigation-item [backbuttontext]="getBackButtonText()">
 		@if (navItem.subNavigation) {
-			<ng-container sub-navigation slot="subNavigation">
+			<ng-container slot="subNavigation" sub-navigation>
 				@for (item of navItem.subNavigation; track item.label) {
-					<app-nav-item [navItem]="item" />
+					<app-nav-item [navitem]="item" />
 				}
 			</ng-container>
 		}
-		<ng-container *dbNavigationContent>
+		<ng-container *dbnavigationcontent>
 			@if (navItem.component) {
 				<a
-					[routerLink]="navItem.path"
+					[routerlink]="navItem.path"
 					[routerLinkActiveOptions]="{ exact: true }"
-					ariaCurrentWhenActive="page"
-					routerLinkActive="active"
+					ariacurrentwhenactive="page"
 					queryParamsHandling="merge"
+					routerlinkactive="active"
 				>
 					{{ navItem.label }}
 				</a>
