@@ -24,7 +24,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
-			if (type === null) {
+			if (type === undefined) {
 				const hasClickHandler = getAttributeValue(node, '(click)');
 				const hasCommandFor = getAttributeValue(node, 'commandfor');
 				const typeValue =
@@ -63,7 +63,7 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const type = getAttributeValue(openingElement, 'type');
-			if (type !== null) return;
+			if (type !== undefined) return;
 
 			const hasClickHandler =
 				getAttributeValue(openingElement, 'onClick') ||

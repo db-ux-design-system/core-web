@@ -19,6 +19,7 @@ import {
 } from './paths.ts';
 
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
+
 const FRAMEWORKS = [
 	'react',
 	'angular',
@@ -28,9 +29,9 @@ const FRAMEWORKS = [
 ] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
-/** Reads a file and returns its content, or null if the file does not exist. */
-async function readOptional(path: string): Promise<string | null> {
-	if (!existsSync(path)) return null;
+/** Reads a file and returns its content, or `undefined` if the file does not exist. */
+async function readOptional(path: string): Promise<string | undefined> {
+	if (!existsSync(path)) return undefined;
 	return readFile(path, 'utf-8');
 }
 
@@ -53,7 +54,7 @@ export async function processComponent(
 			hasError: false;
 			name: string;
 			data: {
-				props: string | null;
+				props: string | undefined;
 				examples: string[];
 				exampleCode: Record<Framework, Record<string, string>>;
 			};
@@ -82,6 +83,7 @@ export async function processComponent(
 				if (htmlIndex) exampleCode[fw]['index.html'] = htmlIndex;
 				continue;
 			}
+
 			const fwOutputDir = fw === 'web-components' ? 'stencil' : fw;
 			const exDir = join(
 				outputDir,
@@ -107,8 +109,9 @@ export async function processComponent(
 			name,
 			data: { props, examples, exampleCode }
 		};
-	} catch (error: any) {
-		console.error(`Failed to process component ${name}: ${error.message}`);
+	} catch (error: unknown) {
+		const msg = error instanceof Error ? error.message : String(error);
+		console.error(`Failed to process component ${name}: ${msg}`);
 		return { hasError: true as const };
 	}
 }
@@ -123,6 +126,7 @@ async function collectTokens(): Promise<Record<string, string>> {
 		if (!existsSync(filePath)) continue;
 		tokens[category] = await readFile(filePath, 'utf-8');
 	}
+
 	return tokens;
 }
 
@@ -135,8 +139,8 @@ async function collectTokens(): Promise<Record<string, string>> {
  * docs/research/, docs/.vitepress/, and all other top-level docs/ files.
  */
 const DOCS_WHITELIST_DIRS: string[] = [
-	join(COMPONENTS_DIR), // packages/components/src/components/*/docs/
-	join(FOUNDATIONS_DIR, 'docs') // packages/foundations/docs/
+	join(COMPONENTS_DIR), // Packages/components/src/components/*/docs/
+	join(FOUNDATIONS_DIR, 'docs') // Packages/foundations/docs/
 ];
 
 /**
@@ -164,6 +168,7 @@ async function collectDocs(
 			);
 		}
 	}
+
 	return docs;
 }
 
@@ -177,6 +182,7 @@ async function collectWhitelistedDocs(): Promise<Record<string, string>> {
 	for (const dir of DOCS_WHITELIST_DIRS) {
 		Object.assign(docs, await collectDocs(dir));
 	}
+
 	return docs;
 }
 
@@ -190,13 +196,16 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
 			`[build-manifest] FATAL: migration guides directory not found: ${MIGRATION_DIR}`
 		);
 	}
+
 	const entries = await readdir(MIGRATION_DIR, { withFileTypes: true });
 	const guides: Record<string, string> = {};
 	for (const entry of entries) {
 		if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
 		const key = entry.name.slice(0, -3);
+
 		guides[key] = await readFile(join(MIGRATION_DIR, entry.name), 'utf-8');
 	}
+
 	return guides;
 }
 
@@ -220,19 +229,20 @@ export async function buildManifest() {
 	const components: Record<
 		string,
 		{
-			props: string | null;
+			props: string | undefined;
 			examples: string[];
 			exampleCode: Record<Framework, Record<string, string>>;
 		}
 	> = {};
 
 	const entries = await Promise.all(
-		componentNames.map((name) =>
+		componentNames.map(async (name) =>
 			processComponent(name, COMPONENTS_DIR, OUTPUT_DIR)
 		)
 	);
 
 	const hasErrors = entries.some((entry) => entry.hasError);
+
 	for (const entry of entries) {
 		if (!entry.hasError) components[entry.name] = entry.data;
 	}
@@ -244,8 +254,11 @@ export async function buildManifest() {
 	]);
 
 	const manifest = { icons, components, tokens, docs, migrationGuides };
+
 	const outPath = join(import.meta.dirname, '..', 'src', 'manifest.json');
+
 	await writeFile(outPath, JSON.stringify(manifest));
+
 	console.log(
 		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`
 	);
