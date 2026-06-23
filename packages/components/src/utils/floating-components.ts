@@ -1,74 +1,4 @@
 // TODO: We should reevaluate this as soon as CSS Anchor Positioning is supported in all relevant browsers
-const isInView = (el: HTMLElement) => {
-	const { top, bottom, left, right } = el.getBoundingClientRect();
-	const { innerHeight, innerWidth } = window;
-
-	let outTop = top < 0;
-	let outBottom = bottom > innerHeight;
-	let outLeft = left < 0;
-	let outRight = right > innerWidth;
-
-	// We need to check if it was already outside
-	const outsideY = el.dataset['outsideVy'];
-	const outsideX = el.dataset['outsideVx'];
-	const parentRect = el?.parentElement?.getBoundingClientRect();
-
-	if (parentRect) {
-		if (outsideY) {
-			const position = el.dataset['outsideVy'];
-			if (position === 'top') {
-				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
-			} else {
-				outBottom =
-					parentRect.bottom + (parentRect.top - top) > innerHeight;
-			}
-		}
-
-		if (outsideX) {
-			const position = el.dataset['outsideVx'];
-			if (position === 'left') {
-				outLeft = parentRect.left - (right - parentRect.right) < 0;
-			} else {
-				outRight =
-					parentRect.right + (parentRect.left - left) > innerWidth;
-			}
-		}
-	}
-
-	return {
-		outTop,
-		outBottom,
-		outLeft,
-		outRight
-	};
-};
-
-export interface DBDataOutsidePair {
-	vx?: 'left' | 'right';
-	vy?: 'top' | 'bottom';
-}
-export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
-	const { outTop, outBottom, outLeft, outRight } = isInView(el);
-	let dataOutsidePair: DBDataOutsidePair = {};
-
-	if (outTop || outBottom) {
-		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
-		el.dataset['outsideVy'] = dataOutsidePair.vy!;
-	} else {
-		delete el.dataset['outsideVy'];
-	}
-	if (outLeft || outRight) {
-		dataOutsidePair = {
-			...dataOutsidePair,
-			vx: outRight ? 'right' : 'left'
-		};
-		el.dataset['outsideVx'] = dataOutsidePair.vx!;
-	} else {
-		delete el.dataset['outsideVx'];
-	}
-
-	return dataOutsidePair;
-};
 
 export const handleFixedDropdown = (
 	element: HTMLElement,
@@ -275,7 +205,7 @@ export const getFloatingProps = (
 		}
 	} else if (placement.startsWith('left')) {
 		if (outsideLeft) {
-			if (outsideRight) {
+			if (!outsideRight) {
 				correctedPlacement = placement?.replace('left', 'right');
 
 				if (outsideBottom && outsideTop) {
@@ -331,8 +261,7 @@ export const getFloatingProps = (
 		correctedPlacement,
 		innerWidth,
 		innerHeight,
-		outsideYBoth: outsideTop && outsideBottom,
-		outsideXBoth: outsideRight && outsideLeft
+		outsideYBoth: outsideTop && outsideBottom
 	};
 };
 
@@ -542,6 +471,9 @@ export const handleFixedPopover = (
 		element.style.overflow = 'hidden auto';
 		element.style.insetBlock = distance;
 		element.style.maxBlockSize = `calc(${innerHeight}px - 2 * ${distance})`;
+	} else {
+		element.style.overflow = '';
+		element.style.maxBlockSize = '';
 	}
 
 	element.style.position = 'fixed';

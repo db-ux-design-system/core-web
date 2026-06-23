@@ -16,11 +16,7 @@ export type TriangleData = {
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
-	return Boolean(
-		target?.parentElement?.classList.contains(
-			'db-control-panel-navigation-item'
-		)
-	);
+	return Boolean(target?.closest('.db-control-panel-navigation-item'));
 };
 
 export class NavigationItemSafeTriangle {
@@ -80,7 +76,8 @@ export class NavigationItemSafeTriangle {
 		const parentElementWidth =
 			this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
 
-		// Determine the actual direction the sub-menu opens by comparing positions
+		// Determine the actual direction the sub-menu opens by comparing positions.
+		// The 4px tolerance accounts for sub-pixel rounding in getBoundingClientRect.
 		let openDirection: 'left' | 'right' | 'bottom';
 		if (subRect.top >= itemRect.bottom - 4) {
 			openDirection = 'bottom';
@@ -119,10 +116,15 @@ export class NavigationItemSafeTriangle {
 				);
 			case 'bottom':
 				return this.mouseY > this.triangleData.itemRect.height;
+			default: {
+				const _exhaustive: never = this.triangleData.openDirection;
+				void _exhaustive;
+				return false;
+			}
 		}
 	}
 
-	public followByMouseEvent(event: any) {
+	public followByMouseEvent(event: MouseEvent) {
 		if (
 			!this.initialized ||
 			!this.triangleData ||
@@ -172,6 +174,12 @@ export class NavigationItemSafeTriangle {
 			case 'bottom':
 				coordinates = `${tipXPx}px ${tipYPct}%, ${beforeWidth}px 100%, 0px 100%`;
 				break;
+			default: {
+				const _exhaustive: never = this.triangleData.openDirection;
+				void _exhaustive;
+				coordinates = '0% 0%, 100% 0%, 100% 100%, 0% 100%';
+				break;
+			}
 		}
 
 		this.element.style.setProperty(
@@ -211,10 +219,12 @@ export const handleSubNavigationPosition = (
 			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover.scss`.
 			 * We don't need to calculate the position of the menu as a popover.
 			 */
-			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
-				'--db-control-panel-navigation-item-group-menu-mobile'
-			);
-			if (isMobile) {
+			const isMobile = getComputedStyle(subNavigation)
+				.getPropertyValue(
+					'--db-control-panel-navigation-item-group-menu-mobile'
+				)
+				.trim();
+			if (isMobile.length > 0) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
 				continue;
