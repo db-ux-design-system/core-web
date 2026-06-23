@@ -6,8 +6,15 @@ permissions:
   pull-requests: write
   repository-projects: write
 
+# SECURITY: Uses pull_request_target so that both this workflow and any locally
+# referenced reusable workflows are always loaded from the base branch (main),
+# not from the PR merge commit. This prevents a PR author from modifying the
+# workflow definition or injecting steps that could exfiltrate the GitHub App
+# token used for organization project access.
+# IMPORTANT: Never check out or execute code from the PR head ref in this
+# workflow or its callees — doing so would re-introduce the same vulnerability.
 on:
-  pull_request:
+  pull_request_target:
     branches: ["main"]
     types:
       - assigned
