@@ -33,7 +33,7 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 		svgName = decodeURI(svgName)
 			.replace('https://img.shields.io/badge/', '')
 			.replace('.svg', '')
-			.replaceAll(/[^a-zA-Z\d\s]/g, '')
+			.replaceAll(/[^\s\da-z]/gi, '')
 			.replaceAll(' ', '_');
 		const pathname = `${docsPath}/${svgName}`;
 		const pathNameSvg = `${pathname}.svg`;

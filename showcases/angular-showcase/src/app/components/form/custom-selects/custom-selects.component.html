@@ -1,15 +1,15 @@
 <app-form-wrapper
-	[plain]="plain"
-	[model]="ngModel"
 	[control]="formControl.value"
+	[model]="ngModel"
+	[plain]="plain"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-custom-select
+			(optionselected)="handlePlainChange($event)"
 			[options]="options"
-			label="Plain"
 			[values]="plain"
-			(optionSelected)="handlePlainChange($event)"
+			label="Plain"
 		>
 		</db-custom-select>
 		<db-custom-select
@@ -19,9 +19,9 @@
 		>
 		</db-custom-select>
 		<db-custom-select
+			[formcontrol]="formControl"
 			[options]="options"
 			label="formControl"
-			[formControl]="formControl"
 		>
 		</db-custom-select>
 	</fieldset>
