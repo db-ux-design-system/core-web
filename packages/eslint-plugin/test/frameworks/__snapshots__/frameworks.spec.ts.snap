@@ -109,7 +109,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
     "line": 36,
     "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
-    "ruleId": "db-ux/header-burger-menu-label-required",
+    "ruleId": "db-ux/control-panel-mobile-burger-menu-label-required",
     "severity": 2,
   },
   {
@@ -364,7 +364,7 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
     "line": 56,
     "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
-    "ruleId": "db-ux/header-burger-menu-label-required",
+    "ruleId": "db-ux/control-panel-mobile-burger-menu-label-required",
     "severity": 2,
   },
   {
@@ -684,7 +684,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
     "line": 36,
     "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
-    "ruleId": "db-ux/header-burger-menu-label-required",
+    "ruleId": "db-ux/control-panel-mobile-burger-menu-label-required",
     "severity": 2,
   },
   {
