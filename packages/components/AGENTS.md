@@ -44,6 +44,7 @@ configs/
 ├── mitosis.agent.config.cjs        # Config for agent documentation generation
 ├── plugins/
 │   ├── esm-extensions.cjs          # Appends explicit .js/index.js extensions to relative imports (ESM)
+│   ├── react/                      # React-specific Mitosis plugins
 │   ├── storybook/                  # Storybook generation plugin
 │   ├── figma/                      # Figma Code Connect generation plugin
 │   ├── angular/                    # Angular-specific Mitosis plugins
@@ -89,6 +90,16 @@ The published outputs are ESM (`"type": "module"`), which requires relative impo
 This replaced the earlier `tsc-esm-fix` / Vite / post-tsc workaround. The React output's `tsconfig.json` uses `module`/`moduleResolution: "node16"` so any missing extension fails at compile time rather than at runtime.
 
 Consumers of the **raw** `output/react/src` (Patternhub and next-showcase via webpack) need `resolve.extensionAlias` mapping `.js → .ts/.tsx/.js`; Vite-based consumers (react-showcase) resolve this natively. Unit tests live in `configs/plugins/esm-extensions.spec.ts`.
+
+## React Invoker Commands Types (`configs/plugins/react/invoker-commands.cjs`)
+
+React's type definitions do not yet ship the [Invoker Commands API](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) `command` and `commandfor` HTML attributes, so consumers of `@db-ux/react-core-components` would get a type error when passing them to `DBButton`. The `react-invoker-commands` Mitosis plugin runs in `build.post` for the React target only and appends a type-only `declare module "react"` augmentation to the generated `index.ts` entrypoint:
+
+- The augmentation is type-only, so it adds no runtime code to the published bundle
+- The append is idempotent (guarded by a marker comment) so incremental builds do not duplicate it
+- This is a temporary workaround — remove the plugin once React's type definitions support these attributes natively
+
+Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
 ## Storybook Generation
 

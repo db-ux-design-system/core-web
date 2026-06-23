@@ -89,45 +89,9 @@ const overwriteFragmentMap = (input: string) => {
 		.join('\n');
 };
 
-/**
- * Invoker Commands API type augmentation for React.
- * Adds the `command` and `commandfor` HTML attributes to React's ButtonHTMLAttributes
- * until React's type definitions natively support them.
- * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
- * TODO: This augmentation can be removed once React's type definitions natively support these attributes (https://github.com/search?q=repo%3Afacebook%2Freact+commandfor&type=pullrequests)
- */
-const writeInvokerCommandsTypes = (tmp?: boolean) => {
-	const outputFolder = `../../${tmp ? 'output/tmp' : 'output'}/react`;
-	const srcFolder = `${outputFolder}/src`;
-	const content = `
-/**
- * Type augmentation for Invoker Commands API
- * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
- *
- * Extends React's ButtonHTMLAttributes to include the \`command\` and \`commandfor\`
- * HTML attributes for declarative dialog control via Invoker Commands.
- *
- * TODO: This augmentation can be removed once React's type definitions
- * natively support these attributes.
- */
-declare module "react" {
-	interface ButtonHTMLAttributes<T> {
-		command?: string | undefined;
-		commandfor?: string | undefined;
-	}
-}
-`;
-
-	const indexFilePath = `${srcFolder}/index.ts`;
-	const indexContent = readFileSync(indexFilePath).toString('utf-8');
-
-	writeFileSync(indexFilePath, indexContent + content);
-};
-
 export default (tmp?: boolean) => {
 	try {
 		overwriteEvents(tmp);
-		writeInvokerCommandsTypes(tmp);
 
 		for (const component of components) {
 			const upperComponentName = transformToUpperComponentName(
