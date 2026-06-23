@@ -3,11 +3,7 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBControlPanelNavigation } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import {
-	DEFAULT_VIEWPORT,
-	DESKTOP_VIEWPORT,
-	TESTING_VIEWPORTS
-} from '../../shared/constants.ts';
+import { DESKTOP_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
 import { DBControlPanelNavigationItemGroup } from '../control-panel-navigation-item-group';
 
@@ -84,7 +80,6 @@ const testHover = () => {
 		await expect(component.getByTestId('sub1')).toBeVisible();
 	});
 };
-
 
 test.describe('DBControlPanelNavigation', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
