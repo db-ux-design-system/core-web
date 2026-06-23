@@ -77,12 +77,15 @@ export const transformRoot = (
 		if (hasVar) {
 			resolved = resolveVars(resolved, staticVarMap);
 		}
+
 		if (resolved.includes('calc(')) {
 			resolved = resolveCalc(resolved);
 		}
+
 		if (resolved.includes('color-mix(')) {
 			resolved = resolveColorMix(resolved);
 		}
+
 		if (resolved.includes('light-dark(')) {
 			resolved = collapseLightDark(resolved);
 		}
@@ -126,14 +129,14 @@ const removeEmptyContainers = (root: Root) => {
 		changed = false;
 
 		root.walkRules((rule: Rule) => {
-			if (rule.nodes && rule.nodes.length === 0) {
+			if (rule.nodes?.length === 0) {
 				rule.remove();
 				changed = true;
 			}
 		});
 
 		root.walkAtRules('layer', (atRule: AtRule) => {
-			if (atRule.nodes && atRule.nodes.length === 0) {
+			if (atRule.nodes?.length === 0) {
 				atRule.remove();
 				changed = true;
 			}

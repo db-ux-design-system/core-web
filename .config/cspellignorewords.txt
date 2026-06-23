@@ -152,6 +152,7 @@ TSES
 trufflesecurity
 elif
 chromedriver
+Movistar
 Cheatsheet
 frontmatter
 businessunit
@@ -222,6 +223,12 @@ unreviewed
 notext
 prebundle
 subcomponent
+# GitHub Project IDs
+PVTSSF
+ADOC
+# Labels
+communityfeedback
+bruno-sch
 # Usernames
 mfranzke
 michaelmkraus

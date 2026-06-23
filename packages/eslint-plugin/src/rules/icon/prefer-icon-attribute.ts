@@ -72,6 +72,7 @@ export default {
 				Object.assign(angularVisitors, visitors);
 			}
 		}
+
 		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
@@ -111,10 +112,7 @@ export default {
 
 						if (node.openingElement) {
 							// JSX
-							const lastAttr =
-								openingElement.attributes[
-									openingElement.attributes.length - 1
-								];
+							const lastAttr = openingElement.attributes.at(-1);
 							const insertPos = lastAttr
 								? lastAttr.range[1]
 								: openingElement.name.range[1];
@@ -128,7 +126,7 @@ export default {
 							// Vue
 							const attrs = openingElement.startTag.attributes;
 							if (attrs.length > 0) {
-								const lastAttr = attrs[attrs.length - 1];
+								const lastAttr = attrs.at(-1);
 								const insertPos = lastAttr.range[1];
 								fixes.push(
 									fixer.insertTextAfterRange(
