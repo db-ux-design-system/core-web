@@ -17,7 +17,8 @@ showcases/patternhub/.next
 storybooks/**/src/components/**
 showcases/patternhub/pages/components/**
 showcases/patternhub/generated.js
-showcases/patternhub/testing-table.ts
+showcases/patternhub/scripts/generated
+showcases/patternhub/data/testing-table.ts
 packages/mcp-server/assets/**
 package-lock.json
 *.d.ts
