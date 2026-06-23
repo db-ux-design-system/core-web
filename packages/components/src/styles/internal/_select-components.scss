@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "./form-components";
 
 %select-icon {
@@ -35,6 +36,16 @@
 			) +
 			(#{variables.$db-spacing-fixed-sm} * 2)
 	);
+}
+
+// Shared list-item base styling, referenced by both the CustomSelect list item
+// (.db-custom-select-list-item) and the native select `option` element.
+%select-list-item {
+	position: relative;
+	padding: variables.$db-spacing-fixed-sm;
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	border-radius: variables.$db-border-radius-xs;
+	box-sizing: border-box;
 }
 
 $has-before-padding: calc(

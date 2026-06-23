@@ -84,11 +84,8 @@
 
 		option {
 			// Adapted from .db-custom-select-list-item
-			position: relative;
-			padding: variables.$db-spacing-fixed-sm;
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-			border-radius: variables.$db-border-radius-xs;
-			box-sizing: border-box;
+			@extend %select-list-item;
+
 			justify-content: space-between;
 
 			// change order of the included text and pseudo-element within this flexbox item, to make sure the icon is always on the right
