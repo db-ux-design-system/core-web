@@ -208,7 +208,7 @@ export const handleSubNavigationPosition = (
 		if (subNavigation && button) {
 			/*
 			 * This is set via css inside:
-			 * `packages/components/src/components/navigation-item-group/navigation-item-group-menu-popover.scss`.
+			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover.scss`.
 			 * We don't need to calculate the position of the menu as a popover.
 			 */
 			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
