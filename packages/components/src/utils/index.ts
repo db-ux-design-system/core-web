@@ -254,3 +254,14 @@ export const getNotificationRole = ({
 			return 'article';
 	}
 };
+
+export const NAVIGATION_KEYS = [
+	'ArrowRight',
+	'ArrowDown',
+	'ArrowLeft',
+	'ArrowUp',
+	'Home',
+	'End',
+	'Enter',
+	' '
+] as const;

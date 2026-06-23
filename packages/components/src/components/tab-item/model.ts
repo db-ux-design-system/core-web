@@ -1,26 +1,23 @@
 import type {
 	ActiveProps,
-	ChangeEventProps,
-	ChangeEventState,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
 	InitializedState,
-	NameProps,
-	NameState,
 	ShowIconLeadingProps,
 	ShowIconProps,
-	ShowIconTrailingProps
+	ShowIconTrailingProps,
+	WidthProps
 } from '../../shared/model';
 
+/**
+ * DBTabItem is designed to be used exclusively inside a DBTabs container.
+ * The parent DBTabs manages selection state (aria-selected, tabindex) via direct
+ * DOM attribute manipulation. DBTabItem itself is purely presentational.
+ */
 export type DBTabItemDefaultProps = {
-	/**
-	 * To control the component
-	 */
-	checked?: boolean | string;
-
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the tab-item.
 	 */
@@ -30,32 +27,35 @@ export type DBTabItemDefaultProps = {
 	 */
 	label?: string;
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 * Set the tabIndex manually (internal use for roving tabindex).
 	 */
-	noText?: boolean | string;
+	tabIndex?: number | string;
+	/**
+	 * Semantic value of this tab item. When set, onIndexChange will emit this value
+	 * (via the onValueChange event) instead of only the numeric index.
+	 * Useful for form binding (e.g. Angular FormControl, React useState).
+	 */
+	value?: string;
 };
 
-export type DBTabItemProps = GlobalProps &
-	DBTabItemDefaultProps &
+export type DBTabItemProps = DBTabItemDefaultProps &
+	GlobalProps &
 	IconProps &
+	ShowIconProps &
 	IconTrailingProps &
 	IconLeadingProps &
-	ShowIconLeadingProps &
 	ShowIconTrailingProps &
+	ShowIconLeadingProps &
 	ActiveProps &
-	ChangeEventProps<HTMLInputElement> &
-	ShowIconProps &
-	NameProps;
+	WidthProps;
 
 export type DBTabItemDefaultState = {
-	_selected: boolean;
-	_listenerAdded: boolean;
-	boundSetSelectedOnChange?: (event: any) => void;
-	setSelectedOnChange: (event: any) => void;
+	_resizeObserver: ResizeObserver | null | undefined;
+	isTruncated: boolean;
+	checkTruncation: () => void;
+	tooltipText: string;
 };
 
 export type DBTabItemState = DBTabItemDefaultState &
 	GlobalState &
-	ChangeEventState<HTMLInputElement> &
-	InitializedState &
-	NameState;
+	InitializedState;

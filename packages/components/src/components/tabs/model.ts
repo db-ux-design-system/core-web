@@ -1,13 +1,20 @@
 import type {
-	AlignmentProps,
+	AlignmentType,
 	GlobalProps,
 	InitializedState,
-	InputEvent,
 	OrientationProps,
-	WidthProps
+	WidthType
 } from '../../shared/model';
 import type { DBTabItemProps } from '../tab-item/model';
 import type { DBTabPanelProps } from '../tab-panel/model';
+
+export type TabItemAlignmentType = AlignmentType;
+export type TabItemAlignmentProps = {
+	/**
+	 * Define the tab-item alignment in full width
+	 */
+	tabItemAlignment?: TabItemAlignmentType | string;
+};
 
 export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
 export type TabsBehaviorType = (typeof TabsBehaviorList)[number];
@@ -33,61 +40,111 @@ export type DBTabsDefaultProps = {
 	initialSelectedIndex?: number | string;
 
 	/**
+	 * Controlled active tab index. When set, the component becomes controlled:
+	 * the consumer is responsible for updating this value in the onIndexChange handler.
+	 * Takes precedence over initialSelectedIndex after mount.
+	 */
+	activeIndex?: number | string;
+
+	/**
 	 * Default behavior is auto selecting the first tab, disable it with 'manually'
 	 */
 	initialSelectedMode?: TabsInitialSelectedModeType;
 
 	/**
-	 * The name of the tab bar, is required for grouping multiple tabs together. Will overwrite names from children.
+	 * Accessible label for the tab bar (used as aria-label on the tablist).
 	 */
-	name?: string;
+	label?: string;
 
 	/**
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
+
+	/**
+	 * Width of the tab-items. Auto width based on tab-item size, full width based on parent elements width.
+	 */
+	tabItemWidth?: WidthType | string;
+
+	/**
+	 * Accessible label for the "scroll towards start" button (i18n). Only used with behavior="arrows".
+	 */
+	scrollStartLabel?: string;
+
+	/**
+	 * Accessible label for the "scroll towards end" button (i18n). Only used with behavior="arrows".
+	 */
+	scrollEndLabel?: string;
 };
 
 export type DBTabsEventProps = {
 	/**
 	 * Informs the user if the current tab index has changed.
 	 */
-	indexChange?: (index?: number) => void;
+	indexChange?: (index: number) => void;
 
 	/**
 	 * Informs the user if the current tab index has changed.
 	 */
-	onIndexChange?: (index?: number) => void;
-	/**
-	 * Informs the user if another tab has been selected.
-	 */
-	onTabSelect?: (event?: InputEvent<HTMLElement>) => void;
+	onIndexChange?: (index: number) => void;
 
 	/**
-	 * Informs the user if another tab has been selected.
+	 * Fires when the active tab changes and a `value` prop is set on the tab items.
+	 * Payload is the `value` string of the newly active tab item, or undefined
+	 * if the tab item has no `value` prop set.
+	 * Use this for form binding (e.g. Angular FormControl, React controlled state).
 	 */
-	tabSelect?: (event?: InputEvent<HTMLElement>) => void;
+	valueChange?: (value?: string) => void;
+
+	/**
+	 * Fires when the active tab changes and a `value` prop is set on the tab items.
+	 * Payload is the `value` string of the newly active tab item, or undefined
+	 * if the tab item has no `value` prop set.
+	 * Use this for form binding (e.g. Angular FormControl, React controlled state).
+	 */
+	onValueChange?: (value?: string) => void;
 };
 
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
-	WidthProps &
-	AlignmentProps &
+	TabItemAlignmentProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
-	_name: string;
-	scrollContainer?: Element | null;
-	scroll: (left?: boolean) => void;
-	showScrollLeft?: boolean;
-	showScrollRight?: boolean;
+	_id?: string;
+	_appliedBaseId?: string;
+	resetIds: () => void;
+	_getScrollContainer: () => Element | null;
+	scroll: (toStart?: boolean) => void;
+	showScrollStart?: boolean;
+	showScrollEnd?: boolean;
+	_isRtl: () => boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: () => DBSimpleTabProps[];
+	getTabs: () => DBSimpleTabProps[];
+	getInitialIndex: () => number;
+	getRenderIndex: () => number;
+	getActiveChildIndex: () => number;
+	shouldUseActiveChild: (hashApplied: boolean) => boolean;
+	moveRovingTabindex: (focusIndex: number) => void;
+	_isOwnedPanel: (panel: HTMLElement) => boolean;
 	initTabList: () => void;
-	initTabs: (init?: boolean) => void;
-	handleChange: (event: InputEvent<HTMLElement>) => void;
-	_resizeObserver?: ResizeObserver;
+	_teardownScrollHandlers: () => void;
+	initTabs: () => void;
+	syncSelection: (activeIndex?: number) => void;
+	_tabButtons: HTMLElement[];
+	_tabPanels: HTMLElement[];
+	_resizeObserver?: ResizeObserver | null;
+	_observer?: MutationObserver | null;
+	_pendingRafId: number | null;
+	_scrollListener: { fn: () => void } | null;
+	_activeIndex: number;
+	activateTab: (index: number) => void;
+	getTabId: (index: number | string) => string | undefined;
+	getPanelId: (index: number | string) => string | undefined;
+	getBaseId: () => string | undefined;
+	handleClick: (event: any) => void;
+	handleKeyDown: (event: any) => void;
 };
 
 export type DBTabsState = DBTabsDefaultState & InitializedState;

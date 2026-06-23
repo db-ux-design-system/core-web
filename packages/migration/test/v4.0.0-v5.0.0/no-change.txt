@@ -1,0 +1,9 @@
+<DBTabs onIndexChange="handleSelect">
+  Test
+</DBTabs>
+<db-tabs (indexChange)="handleSelect($event)">
+  Test
+</db-tabs>
+<db-tabs @indexChange="handleSelect">
+  Test
+</db-tabs>

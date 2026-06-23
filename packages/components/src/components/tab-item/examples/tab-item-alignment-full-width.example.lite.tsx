@@ -4,12 +4,12 @@ import DBTabItem from '../tab-item.lite';
 import { StorybookTabItemArgTypes } from './_tab-item.arg.types';
 
 useMetadata({
-	storybookTitle: 'Content Alignment Full Width',
-	storybookNames: ['Left', 'Centered'],
+	storybookTitle: 'Tab-Item Alignment Full Width',
+	storybookNames: ['Start', 'Centered', 'End'],
 	storybookArgTypes: StorybookTabItemArgTypes
 });
 
-export default function TabItemContentAlignmentFullWidth() {
+export default function TabItemAlignmentFullWidth() {
 	return (
 		<Fragment>
 			<DBTabList style={{ blockSize: '100%' }}>

@@ -90,6 +90,7 @@ nord
 angulars
 occaecati
 ngmodel
+formgroup
 johndoe
 COMMITISH
 licence
@@ -136,6 +137,7 @@ dbheader
 subnavigation
 mypath
 subnavigation
+icontrailing
 icononly
 autodocs
 amazonq
