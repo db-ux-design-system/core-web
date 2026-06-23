@@ -5,7 +5,8 @@
 	display: flex;
 	gap: variables.$db-spacing-fixed-sm;
 	align-items: center;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	padding: calc(#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top))
+		variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-xs;
 
 	@include helpers.divider("bottom");
 

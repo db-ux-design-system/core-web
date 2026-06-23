@@ -26,6 +26,10 @@
 		[brand] 1fr [primary] min-content [drawer-button] min-content
 	);
 	justify-items: center;
+	padding-block: calc(
+			#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top)
+		)
+		variables.$db-spacing-fixed-xs;
 
 	.db-control-panel-primary-actions {
 		// fake divider margin
@@ -71,6 +75,8 @@
 		minmax(#{variables.$db-sizing-md}, min-content)
 		1fr minmax(#{variables.$db-sizing-md}, min-content);
 	justify-content: space-evenly;
+	padding-block: variables.$db-spacing-fixed-xs
+		calc(#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-bottom));
 
 	/* jscpd:ignore-start */
 	.db-control-panel-brand {
@@ -98,6 +104,8 @@
 			@extend %direction-up;
 
 			border-block-start: component.$component-border;
+			inline-size: 100lvw;
+			max-inline-size: 100lvw;
 		}
 
 		&[open] {

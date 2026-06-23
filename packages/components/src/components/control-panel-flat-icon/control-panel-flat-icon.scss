@@ -25,7 +25,11 @@
 
 		.db-control-panel-navigation {
 			inline-size: fit-content;
-			padding: variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-sm
+				calc(
+					#{variables.$db-spacing-fixed-sm} +
+						env(safe-area-inset-left)
+				);
 
 			> menu {
 				flex-direction: column;
@@ -110,7 +114,11 @@
 		@include helpers.divider("top");
 
 		.db-control-panel-navigation {
-			padding-block: variables.$db-spacing-fixed-xs;
+			padding-block: variables.$db-spacing-fixed-xs
+				calc(
+					#{variables.$db-spacing-fixed-xs} +
+						env(safe-area-inset-bottom)
+				);
 
 			> menu {
 				flex-direction: row;

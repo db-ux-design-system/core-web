@@ -6,13 +6,32 @@
 
 	&:not([data-variant="fixed"]) {
 		overflow-y: auto;
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
 	}
 
 	&[data-variant="fixed"] {
 		overflow-y: hidden;
 
-		> main {
+		.db-main {
 			overflow-y: auto;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+		}
+
+		&:not(:has(.db-main + *)) {
+			.db-main {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				margin-block-end: env(safe-area-inset-bottom);
+			}
+		}
+	}
+
+	&:has(.db-main + *) {
+		// in this case there is some footer etc.
+		*:last-child {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding-block-end: env(safe-area-inset-bottom);
 		}
 	}
 }

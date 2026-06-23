@@ -102,11 +102,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (state.isNotModal()) {
 						_ref.show();
 					} else {
-						// Set the closedby attribute imperatively: the JSX
-						// dialog type does not know this attribute yet, and it
-						// only applies to modal dialogs. "any" enables native
-						// light dismiss (backdrop click / Esc).
-						_ref.setAttribute('closedby', 'any');
 						_ref.showModal();
 					}
 					void delay(() => {
@@ -165,7 +160,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
-				data-width={props.width}
+				data-container-size={props.containerSize}
+				data-show-spacing={getBooleanAsString(
+					props.showSpacing ?? true,
+					'showSpacing'
+				)}
 				data-direction={props.direction}
 				data-rounded={getBooleanAsString(props.rounded, 'rounded')}>
 				<Slot name="header" />

@@ -10,10 +10,14 @@
 @use "./indicator";
 @use "./scrollbar";
 
-$control-panel-desktop-horizontal-padding-block: #{variables.$db-spacing-fixed-md};
+$control-panel-desktop-horizontal-padding-block: calc(
+	#{variables.$db-spacing-fixed-md} + env(safe-area-inset-top)
+);
 $control-panel-desktop-horizontal-padding-inline: #{variables.$db-spacing-fixed-sm};
 $control-panel-desktop-vertical-padding-block: #{variables.$db-spacing-fixed-sm};
-$control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-sm};
+$control-panel-desktop-vertical-padding-inline: calc(
+	#{variables.$db-spacing-fixed-sm} + env(safe-area-inset-left)
+);
 
 @mixin horizontal-navigation($scroll-buttons: true) {
 	@if $scroll-buttons {
@@ -293,6 +297,7 @@ $control-panel-desktop-vertical-padding-inline: #{variables.$db-spacing-fixed-sm
 			overflow: hidden;
 
 			&::before {
+				margin: auto;
 				aspect-ratio: var(
 					--db-logo-aspect-ratio-short,
 					var(--db-logo-aspect-ratio)

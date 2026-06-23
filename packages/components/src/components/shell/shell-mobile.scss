@@ -5,6 +5,7 @@
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
 @use "../../styles/internal/custom-elements";
+@use "../../styles/internal/component";
 @use "../shell-sub-navigation/shell-sub-navigation";
 
 .db-shell {
@@ -44,6 +45,11 @@
 
 					#{string.unquote(custom-elements.$shell-sub-navigation)} {
 						@include helpers.divider("bottom");
+
+						padding-block-start: calc(
+							#{variables.$db-spacing-fixed-xs} +
+								env(safe-area-inset-top)
+						);
 					}
 				}
 
@@ -59,6 +65,11 @@
 
 					#{string.unquote(custom-elements.$shell-sub-navigation)} {
 						@include helpers.divider("top");
+
+						padding-block-end: calc(
+							#{variables.$db-spacing-fixed-xs} +
+								env(safe-area-inset-bottom)
+						);
 					}
 				}
 			}
@@ -77,10 +88,8 @@
 						*/
 					inset-block-start: calc(
 						100lvh - var(--db-drawer-max-height) +
-							(
-								#{variables.$db-sizing-md} + 2 *
-									#{variables.$db-spacing-fixed-xs}
-							)
+							#{component.$min-mobile-header-height} +
+							env(safe-area-inset-top)
 					);
 				}
 			}
@@ -112,6 +121,11 @@
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
 					@include helpers.divider("bottom");
+
+					padding-block-start: calc(
+						#{variables.$db-spacing-fixed-xs} +
+							env(safe-area-inset-top)
+					);
 				}
 			}
 		}

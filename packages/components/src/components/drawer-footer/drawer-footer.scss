@@ -5,7 +5,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 
 	@include helpers.divider("top");
 }

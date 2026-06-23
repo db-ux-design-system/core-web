@@ -7,6 +7,9 @@
 | `header` slot now required  | Optional, no header needed    | Must pass `<db-drawer-header>` in the `header` slot |
 | `spacing` property removed  | `<db-drawer spacing="small">` | Remove `spacing` prop (no longer supported)         |
 | Default `direction` changed | `right`                       | `left`                                              |
+| `width` renamed             | `<db-drawer width="full">`    | `<db-drawer containerSize="full">`                  |
+| New `showSpacing` property  | N/A                           | `<db-drawer [showSpacing]="false">` to disable      |
+| New `containerSize` options | `width`: `full`, `auto`       | `containerSize`: `small`, `medium`, `large`, `full` |
 
 ## Required `DBDrawerHeader`
 
@@ -68,6 +71,40 @@ The default direction has changed from `right` to `left`. If you relied on the d
 ```html
 <!-- Now opens from the left by default — add direction="right" to keep old behavior -->
 <db-drawer direction="right" [open]="open()" (close)="open.set(false)">
+	Content
+</db-drawer>
+```
+
+## `width` Renamed to `containerSize`
+
+The `width` property has been replaced by `containerSize` with new size options: `small` (default on desktop), `medium`, `large`, and `full`.
+
+### Before
+
+```html
+<db-drawer width="full" [open]="open()" (close)="open.set(false)">
+	Content
+</db-drawer>
+```
+
+### After
+
+```html
+<db-drawer containerSize="full" [open]="open()" (close)="open.set(false)">
+	Content
+</db-drawer>
+```
+
+## New `showSpacing` Property
+
+The `showSpacing` property controls the spacing between the screen edge and the drawer content. It defaults to `true`. Set `[showSpacing]="false"` to remove the spacing.
+
+```html
+<!-- Default: with spacing -->
+<db-drawer [open]="open()" (close)="open.set(false)"> Content </db-drawer>
+
+<!-- Without spacing -->
+<db-drawer [showSpacing]="false" [open]="open()" (close)="open.set(false)">
 	Content
 </db-drawer>
 ```

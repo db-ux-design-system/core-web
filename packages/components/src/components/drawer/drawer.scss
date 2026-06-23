@@ -6,7 +6,64 @@
 @use "../../styles/internal/component";
 @use "../../styles/dialog-init";
 
+%container-size-horizontal {
+	inline-size: calc(
+		100lvw - var(--db-drawer-container-backdrop-spacing, 0px)
+	);
+	/* stylelint-disable-next-line db-ux/use-sizing */
+	min-inline-size: var(--db-drawer-min-width, auto);
+
+	&:not([data-container-size]),
+	&[data-container-size="small"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		max-inline-size: var(
+			--db-drawer-max-width,
+			#{variables.$db-container-xs}
+		);
+	}
+
+	&[data-container-size="medium"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		max-inline-size: var(
+			--db-drawer-max-width,
+			#{variables.$db-container-lg}
+		);
+	}
+
+	&[data-container-size="large"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		max-inline-size: var(
+			--db-drawer-max-width,
+			#{variables.$db-container-3xl}
+		);
+	}
+}
+
+%container-size-vertical {
+	block-size: calc(100lvh - var(--db-drawer-container-backdrop-spacing, 0px));
+	/* stylelint-disable-next-line db-ux/use-sizing */
+	min-block-size: var(--db-drawer-min-height, auto);
+
+	&[data-container-size="small"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		max-block-size: var(--db-drawer-max-height, 33lvh);
+	}
+
+	&[data-container-size="medium"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		max-block-size: var(--db-drawer-max-height, 50lvh);
+	}
+
+	&:not([data-container-size]),
+	&[data-container-size="large"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		max-block-size: var(--db-drawer-max-height, 67lvh);
+	}
+}
+
 %direction-left {
+	@extend %container-size-horizontal;
+
 	&:not([data-transition="open"]) {
 		transform: translateX(110%);
 	}
@@ -20,6 +77,8 @@
 }
 
 %direction-right {
+	@extend %container-size-horizontal;
+
 	&:not([data-transition="open"]) {
 		transform: translateX(-110%);
 	}
@@ -32,21 +91,8 @@
 	}
 }
 
-%full-horizontal {
-	&:not([data-width="full"]) {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-block-size: var(
-			--db-drawer-max-height,
-			calc(100% - #{variables.$db-spacing-fixed-xl})
-		);
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		min-block-size: var(--db-drawer-min-height, auto);
-		max-inline-size: none;
-	}
-}
-
 %direction-up {
-	@extend %full-horizontal;
+	@extend %container-size-vertical;
 
 	&:not([data-transition="open"]) {
 		transform: translateY(110%);
@@ -61,7 +107,7 @@
 }
 
 %direction-down {
-	@extend %full-horizontal;
+	@extend %container-size-vertical;
 
 	&:not([data-transition="open"]) {
 		transform: translateY(-110%);
@@ -75,32 +121,49 @@
 	}
 }
 
+%drawer-safe-area {
+	&:not(:has(.db-drawer-footer)) {
+		> .db-drawer-content {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			margin-block-end: env(safe-area-inset-bottom);
+		}
+	}
+
+	&:has(.db-drawer-footer) {
+		.db-drawer-footer {
+			padding-block-end: calc(
+				#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-bottom)
+			);
+		}
+	}
+}
+
 .db-drawer {
 	.db-drawer-container {
+		@extend %drawer-safe-area;
+
 		display: grid;
 		grid-template-rows:
 			[header] auto
 			[main] 1fr
 			[footer] auto;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		block-size: 100%;
-		inline-size: 100%;
-		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+		inline-size: 100lvw;
+		block-size: 100lvh;
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
 
 		> .db-drawer-content {
 			overflow-y: auto;
+
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding: variables.$db-spacing-fixed-xs
+				component.$drawer-content-padding-inline;
 		}
 
-		&:not([data-width="full"]) {
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			max-inline-size: var(
-				--db-drawer-max-width,
-				calc(100% - #{variables.$db-spacing-fixed-xl})
-			);
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			min-inline-size: var(--db-drawer-min-width, auto);
+		&[data-show-spacing="true"] {
+			// We use the size of a button for this spacing to make sure backdrop is clickable
+			--db-drawer-container-backdrop-spacing: #{variables.$db-sizing-md};
 
 			&:not([data-direction]),
 			&[data-direction="left"] {

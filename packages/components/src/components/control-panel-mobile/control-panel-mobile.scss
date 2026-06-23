@@ -15,7 +15,7 @@
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
 	gap: variables.$db-spacing-fixed-xs;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	padding-inline: variables.$db-spacing-fixed-sm;
 	grid-area: control-panel;
 
 	&[data-position="top"] {
@@ -61,8 +61,8 @@
 	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
 		--db-drawer-max-width: #{variables.$db-container-xs};
 		--db-drawer-min-width: #{variables.$db-container-xs};
-		--db-drawer-max-height: 63lvh;
-		--db-drawer-min-height: 63lvh;
+		--db-drawer-max-height: 67lvh;
+		--db-drawer-min-height: 67lvh;
 
 		&:not(:has(.db-control-panel-secondary-actions)) {
 			.db-drawer-footer {
@@ -80,7 +80,9 @@
 				overflow-x: hidden;
 
 				.db-control-panel-meta-navigation {
-					padding: variables.$db-spacing-fixed-md;
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding: variables.$db-spacing-fixed-xs
+						component.$drawer-content-padding-inline;
 					margin-block-start: auto;
 					flex-flow: column nowrap;
 
@@ -88,7 +90,9 @@
 				}
 
 				.db-control-panel-navigation {
-					padding: variables.$db-spacing-fixed-md;
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding: variables.$db-spacing-fixed-xs
+						component.$drawer-content-padding-inline;
 
 					#{string.unquote(custom-elements.$overflow-scroll-left-button)},
 					#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
