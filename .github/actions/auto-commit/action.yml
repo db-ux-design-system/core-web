@@ -1,6 +1,11 @@
 ---
-name: "Auto commit and merge changes"
-description: "Creates a new branch and commits current changes and merges it afterwards to retrigger pipeline"
+# This action only pushes changes and opens a PR with the "🔄automated" label.
+# The actual squash-merge is handled by a separate trusted workflow:
+#   .github/workflows/99-auto-merge-automated-prs.yml
+# This separation ensures the GitHub App token (needed to bypass branch
+# protection) is never exposed to PR-controlled code.
+name: "Auto commit changes and open PR"
+description: "Creates a new branch, commits current changes, and opens a PR labeled for auto-merge"
 inputs:
   branch-name:
     description: "The new branch name to commit to"
@@ -10,12 +15,6 @@ inputs:
     required: true
   commit-files:
     description: "The files which should be committed with `git add xxx`"
-    required: true
-  auto-merge-client-id:
-    description: "The client id for github app to allow auto-merge"
-    required: true
-  auto-merge-private-key:
-    description: "The private key for github app to allow auto-merge"
     required: true
   gh-token:
     description: "The default github token"
@@ -69,22 +68,5 @@ runs:
 
         Target PR (this PR will be merged into): <https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}>"
 
-        # Create the PR and capture its URL
+        # Create the PR and capture its URL; label it for the auto-merge workflow
         gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "$PR_BODY" --label "🔄automated"
-
-    # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
-    - name: 🧬 Generate a token
-      if: env.changes_detected == 'true'
-      id: generate-token
-      uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-      with:
-        client-id: ${{ inputs.auto-merge-client-id }}
-        private-key: ${{ inputs.auto-merge-private-key }}
-
-    - name: 🤖 Squash the PR
-      if: env.changes_detected == 'true'
-      shell: bash
-      run: gh pr merge --squash "$NEW_PR_BRANCH"
-      env:
-        GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-        NEW_PR_BRANCH: ${{ inputs.branch-name }}

@@ -62,8 +62,6 @@ jobs:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
           commit-message: "style: auto-fix codestyle issues"
           commit-files: "."
-          auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
-          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⚠️ Skip auto-commit (bot triggered fixes again)

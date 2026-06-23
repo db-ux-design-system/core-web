@@ -1,0 +1,37 @@
+---
+# SECURITY: This workflow uses pull_request_target so it always runs from the
+# base branch (main). This is critical because it generates a GitHub App token
+# with elevated permissions (bypass branch protection for merge). By running
+# from main, a PR author cannot modify this workflow to exfiltrate the token.
+#
+# IMPORTANT: Never check out or execute code from the PR head ref here.
+# The only operation is a squash-merge of a labeled, automated PR.
+name: 🤖 Auto-merge automated PRs
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  pull_request_target:
+    types: [labeled, opened, synchronize]
+
+jobs:
+  auto-merge:
+    name: Squash-merge automated PR
+    runs-on: ubuntu-24.04
+    # Only act on PRs created by the auto-commit action (labeled "🔄automated")
+    if: contains(github.event.pull_request.labels.*.name, '🔄automated')
+    steps:
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🤖 Squash-merge the PR
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --squash "$PR_URL"
