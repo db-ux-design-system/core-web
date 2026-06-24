@@ -55,7 +55,6 @@
     "build:vite-plugin": "pnpm --filter @db-ux/core-vite-plugin run build",
     "dev": "tsx dev.js",
     "dev:angular-components": "pnpm --filter @db-ux/core-components run dev:angular",
-    "dev:plain-html-components": "pnpm --filter @db-ux/core-components run dev:html",
     "dev:react-components": "pnpm --filter @db-ux/core-components run dev:react",
     "dev:sass": "pnpm --filter @db-ux/core-components run dev:scss",
     "dev:stencil-components": "pnpm --filter @db-ux/core-components run dev:stencil",
