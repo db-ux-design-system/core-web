@@ -768,11 +768,6 @@ export type ControlPanelProps = {
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
 	secondaryActions?: any;
-
-	/**
-	 * Adds ``aria-labelledby`` to the <nav> element.
-	 */
-	navigationLabeledBy?: string;
 };
 
 export type NoTextProps = {

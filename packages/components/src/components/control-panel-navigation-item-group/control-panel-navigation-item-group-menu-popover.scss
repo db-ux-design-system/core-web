@@ -10,8 +10,6 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 %db-control-panel-navigation-item-group-menu-popover {
 	--db-popover-distance: #{variables.$db-spacing-fixed-xs};
 
-	@extend %component-border;
-
 	margin: 0;
 	display: flex;
 	flex-direction: column;
@@ -41,12 +39,12 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 	) {
 		--db-control-panel-navigation-item-group-menu-mobile: 1;
 
-		padding: variables.$db-spacing-fixed-md;
-		border: 0;
+		padding: variables.$db-spacing-fixed-xs
+			component.$drawer-content-padding-inline;
 		inline-size: 100%;
 		max-inline-size: var(
 			--db-drawer-max-width,
-			calc(100% - #{variables.$db-spacing-fixed-xl})
+			var(--db-drawer-max-width-horizontal)
 		);
 		position: fixed;
 		overflow: hidden auto;
@@ -68,6 +66,8 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		)
 	) {
 		inset-inline-start: 0;
+		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+		border: component.$component-border;
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;

@@ -58,12 +58,7 @@
 		}
 	}
 
-	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
-		--db-drawer-max-width: #{variables.$db-container-xs};
-		--db-drawer-min-width: #{variables.$db-container-xs};
-		--db-drawer-max-height: 67lvh;
-		--db-drawer-min-height: 67lvh;
-
+	.db-control-panel-mobile-drawer {
 		&:not(:has(.db-control-panel-secondary-actions)) {
 			.db-drawer-footer {
 				display: none;

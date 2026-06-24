@@ -10,54 +10,45 @@
 	inline-size: calc(
 		100lvw - var(--db-drawer-container-backdrop-spacing, 0px)
 	);
-	/* stylelint-disable-next-line db-ux/use-sizing */
 	min-inline-size: var(--db-drawer-min-width, auto);
+	max-inline-size: var(
+		--db-drawer-max-width,
+		var(--db-drawer-max-width-horizontal)
+	);
 
 	&:not([data-container-size]),
 	&[data-container-size="small"] {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-inline-size: var(
-			--db-drawer-max-width,
-			#{variables.$db-container-xs}
-		);
+		--db-drawer-max-width-horizontal: #{variables.$db-container-xs};
 	}
 
 	&[data-container-size="medium"] {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-inline-size: var(
-			--db-drawer-max-width,
-			#{variables.$db-container-lg}
-		);
+		--db-drawer-max-width-horizontal: #{variables.$db-container-lg};
 	}
 
 	&[data-container-size="large"] {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-inline-size: var(
-			--db-drawer-max-width,
-			#{variables.$db-container-3xl}
-		);
+		--db-drawer-max-width-horizontal: #{variables.$db-container-3xl};
 	}
 }
 
 %container-size-vertical {
 	block-size: calc(100lvh - var(--db-drawer-container-backdrop-spacing, 0px));
-	/* stylelint-disable-next-line db-ux/use-sizing */
 	min-block-size: var(--db-drawer-min-height, auto);
+	max-block-size: var(
+		--db-drawer-max-height,
+		var(--db-drawer-max-height-vertical)
+	);
 
 	&[data-container-size="small"] {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-block-size: var(--db-drawer-max-height, 33lvh);
+		--db-drawer-max-height-vertical: 33lvh;
 	}
 
 	&[data-container-size="medium"] {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-block-size: var(--db-drawer-max-height, 50lvh);
+		--db-drawer-max-height-vertical: 50lvh;
 	}
 
 	&:not([data-container-size]),
 	&[data-container-size="large"] {
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-block-size: var(--db-drawer-max-height, 67lvh);
+		--db-drawer-max-height-vertical: 3367;
 	}
 }
 
@@ -124,7 +115,6 @@
 %drawer-safe-area {
 	&:not(:has(.db-drawer-footer)) {
 		> .db-drawer-content {
-			/* stylelint-disable-next-line db-ux/use-spacings */
 			margin-block-end: env(safe-area-inset-bottom);
 		}
 	}
@@ -155,8 +145,6 @@
 
 		> .db-drawer-content {
 			overflow-y: auto;
-
-			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding: variables.$db-spacing-fixed-xs
 				component.$drawer-content-padding-inline;
 		}

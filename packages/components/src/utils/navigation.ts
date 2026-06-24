@@ -124,7 +124,8 @@ export class NavigationItemSafeTriangle {
 		}
 	}
 
-	public followByMouseEvent(event: MouseEvent) {
+	// We use any here because React will have `MouseEvent<HTMLLIElement, MouseEvent>`
+	public followByMouseEvent(event: MouseEvent | any) {
 		if (
 			!this.initialized ||
 			!this.triangleData ||

@@ -41,30 +41,6 @@
 			margin-inline-start: variables.$db-spacing-fixed-xs;
 		}
 	}
-
-	.db-control-panel-mobile-drawer {
-		> .db-drawer-container {
-			@extend %direction-left;
-
-			border-inline-start: component.$component-border;
-		}
-
-		&[open] {
-			.db-drawer-container {
-				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: show-right-to-left
-						#{variables.$db-transition-straight-show};
-				}
-
-				&[hidden] {
-					@media screen and (prefers-reduced-motion: no-preference) {
-						animation: hide-right-to-left
-							#{variables.$db-transition-straight-hide};
-					}
-				}
-			}
-		}
-	}
 }
 
 %control-panel-mobile-position-bottom {
@@ -99,11 +75,15 @@
 		place-self: center;
 	}
 
+	// Override drawer to use direction-up settings
 	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
+		--db-drawer-max-height: 67lvh;
+
 		> .db-drawer-container {
 			@extend %direction-up;
 
 			border-block-start: component.$component-border;
+			border-inline-end: 0; // revert the default setting
 			inline-size: 100lvw;
 			max-inline-size: 100lvw;
 		}

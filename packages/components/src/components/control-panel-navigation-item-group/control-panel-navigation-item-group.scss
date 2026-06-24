@@ -71,8 +71,8 @@
 	display: flex;
 	font-weight: normal;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	padding-block-end: variables.$db-spacing-fixed-md;
-	margin-block-end: variables.$db-spacing-fixed-md;
+	padding-block-end: variables.$db-spacing-fixed-xs;
+	margin-block-end: variables.$db-spacing-fixed-xs;
 
 	@include helpers.divider("bottom");
 }

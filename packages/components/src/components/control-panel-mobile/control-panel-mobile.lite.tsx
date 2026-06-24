@@ -55,6 +55,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				header={
 					<DBDrawerHeader>{props.drawerHeaderText}</DBDrawerHeader>
 				}
+				className="db-control-panel-mobile-drawer"
 				rounded
 				open={state.open}
 				onClose={(event) => state.handleToggle(event)}
