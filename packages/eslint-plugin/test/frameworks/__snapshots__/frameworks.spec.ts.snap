@@ -104,10 +104,10 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
-    "endColumn": 25,
+    "endColumn": 53,
     "endLine": 36,
     "line": 36,
-    "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
+    "message": "DBControlPanelMobile must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/control-panel-mobile-burger-menu-label-required",
     "severity": 2,
@@ -231,7 +231,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	<db-input [label]="'Email'" required type="text"></db-input>
 
 	<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
-	<db-header></db-header>
+	<db-control-panel-mobile></db-control-panel-mobile>
 
 	<!-- db-ux/input-type-required -->
 	<db-input [label]="'Test'" type="text"></db-input>
@@ -359,10 +359,10 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
-    "endColumn": 14,
+    "endColumn": 26,
     "endLine": 56,
     "line": 56,
-    "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
+    "message": "DBControlPanelMobile must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/control-panel-mobile-burger-menu-label-required",
     "severity": 2,
@@ -466,10 +466,10 @@ exports[`Framework ESLint Integration > should lint React test file > react-fixe
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelMobile,
 	DBControlPanelNavigationItem,
 	DBCustomSelect,
 	DBDrawer,
-	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
@@ -516,7 +516,7 @@ export const TestComponent = () => {
 			<DBInput label="Email" required type="text" />
 
 			{/* db-ux/control-panel-mobile-burger-menu-label-required */}
-			<DBHeader></DBHeader>
+			<DBControlPanelMobile></DBControlPanelMobile>
 
 			{/* db-ux/input-type-required */}
 			<DBInput label="Test" type="text" />
@@ -679,10 +679,10 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
-    "endColumn": 24,
+    "endColumn": 48,
     "endLine": 36,
     "line": 36,
-    "message": "DBControlPanelMobile/DBHeader must have burgerMenuLabel attribute for accessibility",
+    "message": "DBControlPanelMobile must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/control-panel-mobile-burger-menu-label-required",
     "severity": 2,
@@ -693,8 +693,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
     "endLine": 44,
     "fix": {
       "range": [
-        1616,
-        1616,
+        1640,
+        1640,
       ],
       "text": " referrerPolicy="no-referrer"",
     },
@@ -823,7 +823,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		<DBInput label="Email" required type="text" />
 
 		<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
-		<DBHeader></DBHeader>
+		<DBControlPanelMobile></DBControlPanelMobile>
 
 		<!-- db-ux/input-type-required -->
 		<DBInput label="Test" type="text" />
@@ -874,10 +874,10 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelMobile,
 	DBControlPanelNavigationItem,
 	DBCustomSelect,
 	DBDrawer,
-	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,

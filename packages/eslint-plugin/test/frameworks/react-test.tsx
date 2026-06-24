@@ -3,10 +3,10 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelMobile,
 	DBControlPanelNavigationItem,
 	DBCustomSelect,
 	DBDrawer,
-	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
@@ -52,7 +52,7 @@ export const TestComponent = () => {
 			<DBInput label="Email" required />
 
 			{/* db-ux/control-panel-mobile-burger-menu-label-required */}
-			<DBHeader></DBHeader>
+			<DBControlPanelMobile></DBControlPanelMobile>
 
 			{/* db-ux/input-type-required */}
 			<DBInput label="Test" />

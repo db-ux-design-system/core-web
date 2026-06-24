@@ -8,15 +8,13 @@
 
 %db-control-panel-navigation-item-group-menu-tree {
 	margin: 0;
-	padding: 0;
 	display: flex;
 	flex-direction: column;
 	block-size: 0;
 	visibility: hidden;
 	overflow: hidden;
-	margin-inline-start: calc(#{form-components.$font-size-height});
 	gap: variables.$db-spacing-fixed-xs;
-	margin-block-start: variables.$db-spacing-fixed-xs;
+	padding: variables.$db-spacing-fixed-xs 0 0 1lh;
 
 	@media screen and (prefers-reduced-motion: no-preference) {
 		transition: block-size #{variables.$db-transition-straight-emotional};
@@ -29,6 +27,7 @@
 	.db-control-panel-navigation-item-group-back-button {
 		display: none;
 	}
+
 
 	// Mobile
 	@include screen-sizes.screen("md", "max") {

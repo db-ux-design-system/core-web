@@ -11,11 +11,12 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description:
-				'Ensure DBControlPanelMobile/DBHeader has burgerMenuLabel for accessibility',
+				'Ensure DBControlPanelMobile has burgerMenuLabel for accessibility',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#control-panel-mobile-burger-menu-label-required'
 		},
 		messages: {
-			missingBurgerMenuLabel: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
+			missingBurgerMenuLabel:
+				MESSAGES.CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL
 		},
 		schema: []
 	},
@@ -28,16 +29,14 @@ export default {
 				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
+					messageId:
+						MESSAGE_IDS.CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL
 				});
 			}
 		};
 
 		const angularVisitors: any = {};
-		for (const comp of [
-			COMPONENTS.DBHeader,
-			COMPONENTS.DBControlPanelMobile
-		]) {
+		for (const comp of [COMPONENTS.DBControlPanelMobile]) {
 			const visitors = createAngularVisitors(
 				context,
 				comp,
@@ -52,10 +51,7 @@ export default {
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (
-				!isDBComponent(openingElement, COMPONENTS.DBHeader) &&
-				!isDBComponent(openingElement, COMPONENTS.DBControlPanelMobile)
-			)
+			if (!isDBComponent(openingElement, COMPONENTS.DBControlPanelMobile))
 				return;
 
 			const burgerMenuLabel = getAttributeValue(
@@ -66,7 +62,8 @@ export default {
 			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
+					messageId:
+						MESSAGE_IDS.CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL
 				});
 			}
 		};

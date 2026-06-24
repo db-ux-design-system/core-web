@@ -10,7 +10,6 @@ export const StorybookControlPanelNavigationItemArgTypes: Record<
 	...StorybookIconArgTypes,
 	text: { control: 'text' },
 	tooltip: { control: 'text' },
-	hideSubNavigation: { control: 'boolean' },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' }
 };

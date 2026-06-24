@@ -52,7 +52,72 @@ export default function DBControlPanelNavigationItemGroup(
 			'db-control-panel-navigation-item-group-menu-' + uuid(),
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
+		_variantObserver: undefined,
+		_popoverListenersAttached: false,
 		navigationItemSafeTriangle: undefined,
+		_handleFocusIn: () => {
+			if (!state.hasPopup) return;
+			state.isSubNavigationExpanded = true;
+		},
+		_handleFocusOut: (event: any) => {
+			if (!state.hasPopup) return;
+			const relatedTarget = event.relatedTarget as HTMLElement | null;
+			if (
+				!relatedTarget ||
+				!(_ref as HTMLElement).contains(relatedTarget)
+			) {
+				state.isSubNavigationExpanded = false;
+			}
+		},
+		_handleMouseEnter: () => {
+			if (!state.hasPopup) return;
+			if (_menuRef) {
+				handleSubNavigationPosition(_menuRef);
+			}
+			state.isSubNavigationExpanded = true;
+		},
+		_handleMouseLeave: () => {
+			if (!state.hasPopup) return;
+			state.isSubNavigationExpanded = false;
+		},
+		_attachPopoverListeners: () => {
+			if (state._popoverListenersAttached || !_ref) return;
+
+			_ref.addEventListener('mouseenter', state._handleMouseEnter);
+			_ref.addEventListener('mouseleave', state._handleMouseLeave);
+			_ref.addEventListener('focusin', state._handleFocusIn);
+			_ref.addEventListener('focusout', state._handleFocusOut);
+			state._popoverListenersAttached = true;
+		},
+		_detachPopoverListeners: () => {
+			if (!state._popoverListenersAttached || !_ref) return;
+
+			_ref.removeEventListener('mouseenter', state._handleMouseEnter);
+			_ref.removeEventListener('mouseleave', state._handleMouseLeave);
+			_ref.removeEventListener('focusin', state._handleFocusIn);
+			_ref.removeEventListener('focusout', state._handleFocusOut);
+
+			state.isSubNavigationExpanded = false;
+			state._popoverListenersAttached = false;
+		},
+		_teardownPopover: () => {
+			state._detachPopoverListeners();
+			state.navigationItemSafeTriangle = undefined;
+
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
+
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+		},
 		onScroll: () => {
 			if (state.hasPopup && _menuRef) {
 				handleSubNavigationPosition(_menuRef);
@@ -70,7 +135,13 @@ export default function DBControlPanelNavigationItemGroup(
 			}, 300);
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
+			if (!state.hasPopup) {
+				state.isSubNavigationExpanded = !state.isSubNavigationExpanded;
+			}
+
 			if (props.onClick) {
+				// Prevent click from bubbling to the control-panel-mobile
+				// handleNavigationItemClick which would close the drawer.
 				event.stopPropagation();
 				props.onClick(event);
 			}
@@ -93,18 +164,11 @@ export default function DBControlPanelNavigationItemGroup(
 	});
 
 	onUnMount(() => {
-		if (state._intersectionObserverCallbackId) {
-			new IntersectionObserverListener().unobserve(
-				state._intersectionObserverCallbackId!
-			);
-			state._intersectionObserverCallbackId = undefined;
-		}
+		state._teardownPopover();
 
-		if (state._resizeObserverCallbackId) {
-			new ResizeObserverListener().unobserve(
-				state._resizeObserverCallbackId!
-			);
-			state._resizeObserverCallbackId = undefined;
+		if (state._variantObserver) {
+			state._variantObserver.disconnect();
+			state._variantObserver = undefined;
 		}
 	});
 
@@ -120,88 +184,80 @@ export default function DBControlPanelNavigationItemGroup(
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initialized = false;
-			// We delay this because the navigation variant check is delayed as well
-			void delay(() => {
-				const element = _ref as HTMLLIElement;
-				if (element) {
-					const nav = element.closest<HTMLElement>(
-						'.db-control-panel-navigation'
-					);
 
-					state.hasPopup =
-						!nav ||
-						!nav.dataset['variant'] ||
-						nav.dataset['variant'] === 'popover';
-				}
-			}, 200);
+			const element = _ref as HTMLLIElement;
+			if (!element) return;
+
+			const nav = element.closest<HTMLElement>(
+				'.db-control-panel-navigation'
+			);
+
+			if (nav) {
+				const variant = nav.dataset['variant'];
+				state.hasPopup = variant === 'popover';
+
+				const observer = new MutationObserver(() => {
+					const newVariant = nav.dataset['variant'];
+					const newHasPopup = newVariant === 'popover';
+
+					if (newHasPopup !== state.hasPopup) {
+						state.hasPopup = newHasPopup;
+
+						if (!newHasPopup) {
+							state._teardownPopover();
+						}
+					}
+				});
+
+				observer.observe(nav, {
+					attributes: true,
+					attributeFilter: ['data-variant']
+				});
+
+				state._variantObserver = observer;
+			}
 		}
 	}, [_ref, state.initialized]);
 
 	onUpdate(() => {
-		if (
-			_ref &&
-			_buttonRef &&
-			_menuRef &&
-			state.hasPopup &&
-			!state.navigationItemSafeTriangle
-		) {
-			void delay(() => {
+		if (_ref && _buttonRef && _menuRef && state.hasPopup) {
+			if (!state.navigationItemSafeTriangle) {
 				state.navigationItemSafeTriangle =
 					new NavigationItemSafeTriangle(_ref, _menuRef);
-			}, 1);
+			}
 
-			['mouseenter', 'focusin'].forEach((event) => {
-				_ref.addEventListener(event, () => {
-					if (_menuRef) {
-						handleSubNavigationPosition(_menuRef);
-					}
-				});
-			});
+			state._attachPopoverListeners();
 
-			_ref.addEventListener('focusin', () => {
-				state.isSubNavigationExpanded = true;
-			});
-
-			_ref.addEventListener('focusout', (event: any) => {
-				const relatedTarget = event.relatedTarget as HTMLElement | null;
-				if (
-					!relatedTarget ||
-					!(_ref as HTMLElement).contains(relatedTarget)
-				) {
-					state.isSubNavigationExpanded = false;
-				}
-			});
-
-			_ref.addEventListener('mouseenter', () => {
-				state.isSubNavigationExpanded = true;
-			});
-
-			_ref.addEventListener('mouseleave', () => {
-				state.isSubNavigationExpanded = false;
-			});
-
-			state._intersectionObserverCallbackId =
-				new IntersectionObserverListener().observe(
-					_buttonRef,
-					(entry) => {
-						if (!entry.isIntersecting) {
-							state.forceClose();
+			if (!state._intersectionObserverCallbackId) {
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						_buttonRef,
+						(entry) => {
+							if (!entry.isIntersecting) {
+								state.forceClose();
+							}
 						}
-					}
-				);
+					);
+			}
 
 			// Re-position the sub-navigation popover on viewport resize
 			// (e.g. orientation change), because placement depends on the
 			// viewport dimensions.
-			state._resizeObserverCallbackId =
-				new ResizeObserverListener().observe(
-					document.documentElement,
-					() => {
-						if (_menuRef) {
-							handleSubNavigationPosition(_menuRef);
+			if (!state._resizeObserverCallbackId) {
+				state._resizeObserverCallbackId =
+					new ResizeObserverListener().observe(
+						document.documentElement,
+						() => {
+							if (_menuRef) {
+								handleSubNavigationPosition(_menuRef);
+							}
 						}
-					}
-				);
+					);
+			}
+		}
+
+		if (!state.hasPopup) {
+			state._teardownPopover();
 		}
 	}, [_ref, _menuRef, _buttonRef, state.hasPopup]);
 

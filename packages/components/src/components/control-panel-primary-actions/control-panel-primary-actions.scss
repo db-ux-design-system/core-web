@@ -5,7 +5,6 @@
 	display: flex;
 	gap: variables.$db-spacing-fixed-xs;
 	align-items: center;
-	max-block-size: variables.$db-sizing-md;
 
 	&:empty {
 		display: none;

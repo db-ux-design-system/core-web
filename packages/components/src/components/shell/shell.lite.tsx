@@ -24,9 +24,13 @@ export default function DBShell(props: DBShellProps) {
 		state.fontsLoaded = !props.fadeIn;
 
 		if (document && props.fadeIn) {
-			document.fonts.ready.then(() => {
-				state.fontsLoaded = true;
-			});
+			document.fonts?.ready
+				?.then(() => {
+					state.fontsLoaded = true;
+				})
+				.catch(() => {
+					state.fontsLoaded = true;
+				});
 		} else {
 			state.fontsLoaded = true;
 		}

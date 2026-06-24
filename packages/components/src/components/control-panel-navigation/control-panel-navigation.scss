@@ -139,6 +139,10 @@
 		.db-control-panel-navigation-item-group {
 			.db-control-panel-navigation-item-group-menu {
 				@include helpers.divider("left");
+
+				&::before {
+					inset-inline-start: 1lh;
+				}
 			}
 		}
 	}

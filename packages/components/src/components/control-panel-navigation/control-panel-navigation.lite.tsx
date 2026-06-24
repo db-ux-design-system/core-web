@@ -67,6 +67,155 @@ export default function DBControlPanelNavigation(
 				0,
 				state._shellDesktopPosition === 'top'
 			);
+		},
+		_handleTreeKeyDown(event: any) {
+			if (state._variant !== 'tree' || !menuRef) return;
+
+			const menuElement = menuRef as HTMLElement;
+			const allTreeItems: HTMLElement[] = Array.from(
+				menuElement.querySelectorAll('[role="treeitem"]')
+			);
+			if (allTreeItems.length === 0) return;
+
+			// Only navigate visible treeitems: skip those inside collapsed groups
+			const visibleTreeItems = allTreeItems.filter((item) => {
+				const groupMenu = item.closest(
+					'.db-control-panel-navigation-item-group-menu'
+				);
+				if (!groupMenu) return true;
+				const group = groupMenu.closest(
+					'.db-control-panel-navigation-item-group'
+				);
+				const expandButton = group?.querySelector(
+					':scope > .db-control-panel-navigation-item-group-expand-button'
+				);
+				return expandButton?.getAttribute('aria-expanded') === 'true';
+			});
+
+			if (visibleTreeItems.length === 0) return;
+
+			const activeElement = document.activeElement as HTMLElement;
+			const currentIndex = visibleTreeItems.indexOf(activeElement);
+			const key = event.key;
+
+			let nextIndex = -1;
+
+			if (key === 'ArrowDown') {
+				event.preventDefault();
+				nextIndex =
+					currentIndex < visibleTreeItems.length - 1
+						? currentIndex + 1
+						: 0;
+			} else if (key === 'ArrowUp') {
+				event.preventDefault();
+				nextIndex =
+					currentIndex > 0
+						? currentIndex - 1
+						: visibleTreeItems.length - 1;
+			} else if (key === 'Home') {
+				event.preventDefault();
+				nextIndex = 0;
+			} else if (key === 'End') {
+				event.preventDefault();
+				nextIndex = visibleTreeItems.length - 1;
+			} else if (key === 'ArrowRight') {
+				event.preventDefault();
+				const group = activeElement?.closest(
+					'.db-control-panel-navigation-item-group'
+				);
+				if (group) {
+					const expandButton = group.querySelector(
+						':scope > .db-control-panel-navigation-item-group-expand-button'
+					) as HTMLElement | null;
+					if (
+						expandButton === activeElement &&
+						expandButton.getAttribute('aria-expanded') !== 'true'
+					) {
+						expandButton.click();
+					} else if (
+						expandButton?.getAttribute('aria-expanded') === 'true'
+					) {
+						const groupMenu = group.querySelector(
+							':scope > .db-control-panel-navigation-item-group-menu'
+						);
+						const childItem = groupMenu?.querySelector(
+							'[role="treeitem"]'
+						) as HTMLElement | null;
+						if (childItem) {
+							activeElement.setAttribute('tabindex', '-1');
+							childItem.setAttribute('tabindex', '0');
+							childItem.focus();
+							return;
+						}
+					}
+				}
+			} else if (key === 'ArrowLeft') {
+				event.preventDefault();
+				const currentGroup = activeElement?.closest(
+					'.db-control-panel-navigation-item-group'
+				);
+				if (currentGroup) {
+					const expandBtn = currentGroup.querySelector(
+						':scope > .db-control-panel-navigation-item-group-expand-button'
+					) as HTMLElement | null;
+					if (
+						expandBtn === activeElement &&
+						expandBtn.getAttribute('aria-expanded') === 'true'
+					) {
+						expandBtn.click();
+					} else {
+						// Move to parent group button
+						const parentGroupMenu = activeElement?.closest(
+							'.db-control-panel-navigation-item-group-menu'
+						);
+						const parentGroup = parentGroupMenu?.closest(
+							'.db-control-panel-navigation-item-group'
+						);
+						if (parentGroup) {
+							const parentButton = parentGroup.querySelector(
+								':scope > .db-control-panel-navigation-item-group-expand-button'
+							) as HTMLElement | null;
+							if (parentButton) {
+								activeElement.setAttribute('tabindex', '-1');
+								parentButton.setAttribute('tabindex', '0');
+								parentButton.focus();
+								return;
+							}
+						}
+					}
+				} else {
+					// Not inside a group, try moving to parent
+					const parentGroupMenu = activeElement?.closest(
+						'.db-control-panel-navigation-item-group-menu'
+					);
+					const parentGroup = parentGroupMenu?.closest(
+						'.db-control-panel-navigation-item-group'
+					);
+					if (parentGroup) {
+						const parentButton = parentGroup.querySelector(
+							':scope > .db-control-panel-navigation-item-group-expand-button'
+						) as HTMLElement | null;
+						if (parentButton) {
+							activeElement.setAttribute('tabindex', '-1');
+							parentButton.setAttribute('tabindex', '0');
+							parentButton.focus();
+							return;
+						}
+					}
+				}
+			} else if (key === 'Escape') {
+				event.preventDefault();
+				activeElement?.blur();
+				return;
+			} else {
+				return;
+			}
+
+			if (nextIndex >= 0 && nextIndex < visibleTreeItems.length) {
+				activeElement?.setAttribute('tabindex', '-1');
+				visibleTreeItems[nextIndex].setAttribute('tabindex', '0');
+				visibleTreeItems[nextIndex].focus();
+			}
 		}
 	});
 
@@ -132,6 +281,30 @@ export default function DBControlPanelNavigation(
 	onUpdate(() => {
 		if (menuRef && state._variant) {
 			if (!state._variant || state._variant === 'popover') {
+				// Clean up tree roles if switching from tree to popover
+				for (const menu of Array.from(
+					(menuRef as HTMLElement).querySelectorAll(
+						'.db-control-panel-navigation-item-group-menu[role="group"]'
+					)
+				)) {
+					(menu as HTMLElement).removeAttribute('role');
+				}
+
+				for (const navItem of Array.from(
+					(menuRef as HTMLElement).querySelectorAll(
+						'.db-control-panel-navigation-item[role="none"], .db-control-panel-navigation-item-group[role="none"]'
+					)
+				)) {
+					navItem.removeAttribute('role');
+					const interactive = navItem.querySelector(
+						'[role="treeitem"]'
+					) as HTMLElement | null;
+					if (interactive) {
+						interactive.removeAttribute('role');
+						interactive.removeAttribute('tabindex');
+					}
+				}
+
 				state._handleSubNavigation();
 			} else if (state._variant === 'tree') {
 				for (const menu of Array.from(
@@ -140,18 +313,29 @@ export default function DBControlPanelNavigation(
 					)
 				)) {
 					(menu as HTMLElement).style.position = '';
+					(menu as HTMLElement).setAttribute('role', 'group');
 				}
 
+				const allTreeItems: HTMLElement[] = [];
 				for (const navItem of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
 						'.db-control-panel-navigation-item, .db-control-panel-navigation-item-group'
 					)
 				)) {
-					// TODO: Add keyboard navigation support
 					navItem.setAttribute('role', 'none');
-					navItem
-						.querySelector('a, button')
-						?.setAttribute('role', 'treeitem');
+					const interactive = navItem.querySelector(
+						'a, button'
+					) as HTMLElement | null;
+					if (interactive) {
+						interactive.setAttribute('role', 'treeitem');
+						interactive.setAttribute('tabindex', '-1');
+						allTreeItems.push(interactive);
+					}
+				}
+
+				// First visible treeitem gets tabindex="0" for initial focus
+				if (allTreeItems.length > 0) {
+					allTreeItems[0].setAttribute('tabindex', '0');
 				}
 			}
 
@@ -195,7 +379,8 @@ export default function DBControlPanelNavigation(
 			<menu
 				role={state._variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
-				onScroll={() => state.onScroll()}>
+				onScroll={() => state.onScroll()}
+				onKeyDown={(event: any) => state._handleTreeKeyDown(event)}>
 				{props.children}
 			</menu>
 			<Show when={state.showScrollRight}>

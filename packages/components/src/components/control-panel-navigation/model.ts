@@ -24,6 +24,7 @@ export type DBControlPanelNavigationDefaultState = {
 	_shellDesktopPosition?: string | null;
 	_subNavigationDesktopPosition?: string | null;
 	_handleSubNavigation: () => void;
+	_handleTreeKeyDown: (event: any) => void;
 	_isSubNavigation?: boolean;
 	_resizeObserverCallbackId?: string;
 };

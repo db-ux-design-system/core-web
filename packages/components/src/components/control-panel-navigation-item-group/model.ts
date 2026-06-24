@@ -44,6 +44,8 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_itemGroupMenuId: string;
 	_intersectionObserverCallbackId?: string;
 	_resizeObserverCallbackId?: string;
+	_variantObserver?: MutationObserver;
+	_popoverListenersAttached: boolean;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button
@@ -55,6 +57,13 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	onScroll: () => void;
 	handleEscape: (event: any) => void;
 	forceClose: () => void;
+	_attachPopoverListeners: () => void;
+	_detachPopoverListeners: () => void;
+	_teardownPopover: () => void;
+	_handleFocusIn: () => void;
+	_handleFocusOut: (event: any) => void;
+	_handleMouseEnter: () => void;
+	_handleMouseLeave: () => void;
 };
 
 export type DBControlPanelNavigationItemGroupState =
