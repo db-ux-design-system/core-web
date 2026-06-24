@@ -1,0 +1,4 @@
+- banner:
+  - button "Search"
+  - button "BurgerMenu"
+- main "Main": Content
