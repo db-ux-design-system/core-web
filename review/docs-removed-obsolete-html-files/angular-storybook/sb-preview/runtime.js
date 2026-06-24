@@ -10,7 +10,11 @@ var __require = /* @__PURE__ */ ((x) => typeof require < "u" ? require : typeof 
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
 var __commonJS = (cb, mod) => function() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };
 var __export = (target, all) => {
   for (var name in all)
@@ -11992,12 +11996,7 @@ var CHANNEL_EVENT_PREFIX = "UNIVERSAL_STORE:", ProgressState = {
           this.state = event.payload, this.emitToListeners(setStateEvent, eventInfo);
           break;
       }
-    switch (event.type) {
-      case _UniversalStore.InternalEventType.SET_STATE:
-        this.debug("handleChannelEvents: Setting state", { event }), this.state = event.payload.state;
-        break;
-    }
-    this.emitToListeners(event, { actor: eventInfo.actor });
+    event.type === _UniversalStore.InternalEventType.SET_STATE && (this.debug("handleChannelEvents: Setting state", { event }), this.state = event.payload.state), this.emitToListeners(event, { actor: eventInfo.actor });
   }
   debug(message, data) {
     this.debugging && console.debug(
@@ -12359,7 +12358,7 @@ var require_es_object_atoms = __commonJS2({
         return !1;
       if (typeof Symbol.iterator == "symbol")
         return !0;
-      var obj = {}, sym = Symbol("test"), symObj = Object(sym);
+      var obj = {}, sym = /* @__PURE__ */ Symbol("test"), symObj = Object(sym);
       if (typeof sym == "string" || Object.prototype.toString.call(sym) !== "[object Symbol]" || Object.prototype.toString.call(symObj) !== "[object Symbol]")
         return !1;
       var symVal = 42;
@@ -12387,7 +12386,7 @@ var require_es_object_atoms = __commonJS2({
     "use strict";
     var origSymbol = typeof Symbol < "u" && Symbol, hasSymbolSham = require_shams();
     module2.exports = function() {
-      return typeof origSymbol != "function" || typeof Symbol != "function" || typeof origSymbol("foo") != "symbol" || typeof Symbol("bar") != "symbol" ? !1 : hasSymbolSham();
+      return typeof origSymbol != "function" || typeof Symbol != "function" || typeof origSymbol("foo") != "symbol" || typeof /* @__PURE__ */ Symbol("bar") != "symbol" ? !1 : hasSymbolSham();
     };
   }
 }), require_Reflect_getPrototypeOf = __commonJS2({
@@ -14751,7 +14750,7 @@ function printObjectProperties(val, config4, indentation, depth, refs, printer2)
   }
   return result;
 }
-var asymmetricMatcher = typeof Symbol == "function" && Symbol.for ? Symbol.for("jest.asymmetricMatcher") : 1267621, SPACE$2 = " ", serialize$5 = (val, config4, indentation, depth, refs, printer2) => {
+var asymmetricMatcher = typeof Symbol == "function" && Symbol.for ? /* @__PURE__ */ Symbol.for("jest.asymmetricMatcher") : 1267621, SPACE$2 = " ", serialize$5 = (val, config4, indentation, depth, refs, printer2) => {
   let stringedValue = val.toString();
   if (stringedValue === "ArrayContaining" || stringedValue === "ArrayNotContaining")
     return ++depth > config4.maxDepth ? `[${stringedValue}]` : `${stringedValue + SPACE$2}[${printListItems(val.sample, config4, indentation, depth, refs, printer2)}]`;
@@ -14888,7 +14887,7 @@ var hasRequiredReactIs_production;
 function requireReactIs_production() {
   if (hasRequiredReactIs_production) return reactIs_production;
   hasRequiredReactIs_production = 1;
-  var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference");
+  var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference");
   function typeOf(object) {
     if (typeof object == "object" && object !== null) {
       var $$typeof = object.$$typeof;
@@ -14960,8 +14959,8 @@ var hasRequiredReactIs_production_min;
 function requireReactIs_production_min() {
   if (hasRequiredReactIs_production_min) return reactIs_production_min;
   hasRequiredReactIs_production_min = 1;
-  var b = Symbol.for("react.element"), c = Symbol.for("react.portal"), d = Symbol.for("react.fragment"), e = Symbol.for("react.strict_mode"), f4 = Symbol.for("react.profiler"), g2 = Symbol.for("react.provider"), h3 = Symbol.for("react.context"), k = Symbol.for("react.server_context"), l = Symbol.for("react.forward_ref"), m3 = Symbol.for("react.suspense"), n = Symbol.for("react.suspense_list"), p3 = Symbol.for("react.memo"), q = Symbol.for("react.lazy"), t = Symbol.for("react.offscreen"), u2;
-  u2 = Symbol.for("react.module.reference");
+  var b = /* @__PURE__ */ Symbol.for("react.element"), c = /* @__PURE__ */ Symbol.for("react.portal"), d = /* @__PURE__ */ Symbol.for("react.fragment"), e = /* @__PURE__ */ Symbol.for("react.strict_mode"), f4 = /* @__PURE__ */ Symbol.for("react.profiler"), g2 = /* @__PURE__ */ Symbol.for("react.provider"), h3 = /* @__PURE__ */ Symbol.for("react.context"), k = /* @__PURE__ */ Symbol.for("react.server_context"), l = /* @__PURE__ */ Symbol.for("react.forward_ref"), m3 = /* @__PURE__ */ Symbol.for("react.suspense"), n = /* @__PURE__ */ Symbol.for("react.suspense_list"), p3 = /* @__PURE__ */ Symbol.for("react.memo"), q = /* @__PURE__ */ Symbol.for("react.lazy"), t = /* @__PURE__ */ Symbol.for("react.offscreen"), u2;
+  u2 = /* @__PURE__ */ Symbol.for("react.module.reference");
   function v(a3) {
     if (typeof a3 == "object" && a3 !== null) {
       var r = a3.$$typeof;
@@ -15090,7 +15089,7 @@ function getPropKeys$1(element) {
 var serialize$1 = (element, config4, indentation, depth, refs, printer2) => ++depth > config4.maxDepth ? printElementAsLeaf(getType(element), config4) : printElement(getType(element), printProps(getPropKeys$1(element), element.props, config4, indentation + config4.indent, depth, refs, printer2), printChildren(getChildren(element.props.children), config4, indentation + config4.indent, depth, refs, printer2), config4, indentation), test$1 = (val) => val != null && ReactIs.isElement(val), plugin$1 = {
   serialize: serialize$1,
   test: test$1
-}, testSymbol = typeof Symbol == "function" && Symbol.for ? Symbol.for("react.test.json") : 245830487;
+}, testSymbol = typeof Symbol == "function" && Symbol.for ? /* @__PURE__ */ Symbol.for("react.test.json") : 245830487;
 function getPropKeys(object) {
   let { props } = object;
   return props ? Object.keys(props).filter((key) => props[key] !== void 0).sort() : [];
@@ -15628,7 +15627,7 @@ function inspectHTML(element, options) {
 }
 
 // ../../node_modules/loupe/lib/index.js
-var symbolsSupported = typeof Symbol == "function" && typeof Symbol.for == "function", chaiInspect = symbolsSupported ? Symbol.for("chai/inspect") : "@@chai/inspect", nodeInspect = Symbol.for("nodejs.util.inspect.custom"), constructorMap = /* @__PURE__ */ new WeakMap(), stringTagMap = {}, baseTypesMap = {
+var symbolsSupported = typeof Symbol == "function" && typeof Symbol.for == "function", chaiInspect = symbolsSupported ? /* @__PURE__ */ Symbol.for("chai/inspect") : "@@chai/inspect", nodeInspect = /* @__PURE__ */ Symbol.for("nodejs.util.inspect.custom"), constructorMap = /* @__PURE__ */ new WeakMap(), stringTagMap = {}, baseTypesMap = {
   undefined: (value, options) => options.stylize("undefined", "undefined"),
   null: (value, options) => options.stylize("null", "null"),
   boolean: (value, options) => options.stylize(String(value), "boolean"),
@@ -16663,7 +16662,7 @@ function diff(a3, b, options) {
     return "";
   let aType = getType3(a3), expectedType = aType, omitDifference = !1;
   if (aType === "object" && typeof a3.asymmetricMatch == "function") {
-    if (a3.$$typeof !== Symbol.for("jest.asymmetricMatcher") || typeof a3.getExpectedType != "function")
+    if (a3.$$typeof !== /* @__PURE__ */ Symbol.for("jest.asymmetricMatcher") || typeof a3.getExpectedType != "function")
       return;
     expectedType = a3.getExpectedType(), omitDifference = expectedType === "string";
   }
@@ -17755,7 +17754,7 @@ function inspectHTML2(element, options) {
   return children && children.length > truncate22 && (children = `${truncator2}(${element.children.length})`), `${head}${propertyContents}${headClose}${children}${tail}`;
 }
 __name(inspectHTML2, "inspectHTML");
-var symbolsSupported2 = typeof Symbol == "function" && typeof Symbol.for == "function", chaiInspect2 = symbolsSupported2 ? Symbol.for("chai/inspect") : "@@chai/inspect", nodeInspect2 = Symbol.for("nodejs.util.inspect.custom"), constructorMap2 = /* @__PURE__ */ new WeakMap(), stringTagMap2 = {}, baseTypesMap2 = {
+var symbolsSupported2 = typeof Symbol == "function" && typeof Symbol.for == "function", chaiInspect2 = symbolsSupported2 ? /* @__PURE__ */ Symbol.for("chai/inspect") : "@@chai/inspect", nodeInspect2 = /* @__PURE__ */ Symbol.for("nodejs.util.inspect.custom"), constructorMap2 = /* @__PURE__ */ new WeakMap(), stringTagMap2 = {}, baseTypesMap2 = {
   undefined: __name((value, options) => options.stylize("undefined", "undefined"), "undefined"),
   null: __name((value, options) => options.stylize("null", "null"), "null"),
   boolean: __name((value, options) => options.stylize(String(value), "boolean"), "boolean"),
@@ -21150,12 +21149,9 @@ function isControl(node) {
 function hasAbstractRole(node, role) {
   if (!isElement(node))
     return !1;
-  switch (role) {
-    case "range":
-      return hasAnyConcreteRoles(node, ["meter", "progressbar", "scrollbar", "slider", "spinbutton"]);
-    default:
-      throw new TypeError("No knowledge about abstract role '".concat(role, "'. This is likely a bug :("));
-  }
+  if (role === "range")
+    return hasAnyConcreteRoles(node, ["meter", "progressbar", "scrollbar", "slider", "spinbutton"]);
+  throw new TypeError("No knowledge about abstract role '".concat(role, "'. This is likely a bug :("));
 }
 function querySelectorAllSubtree(element, selectors) {
   var elements = arrayFrom(element.querySelectorAll(selectors));
@@ -22131,12 +22127,7 @@ function getMultiElementValue(elements) {
 function getFormValue(container, name) {
   let elements = [...container.querySelectorAll(`[name="${(0, import_css.default)(name)}"]`)];
   if (elements.length !== 0)
-    switch (elements.length) {
-      case 1:
-        return getSingleElementValue(elements[0]);
-      default:
-        return getMultiElementValue(elements);
-    }
+    return elements.length === 1 ? getSingleElementValue(elements[0]) : getMultiElementValue(elements);
 }
 function getPureName(name) {
   return /\[\]$/.test(name) ? name.slice(0, -2) : name;
@@ -23047,7 +23038,6 @@ var jsTokensExports = requireJsTokens(), jsTokens = getDefaultExportFromCjs2(jsT
     "yield"
   ]
 }, keywords = new Set(reservedWords.keyword), reservedWordsStrictSet = new Set(reservedWords.strict);
-var SAFE_TIMERS_SYMBOL = Symbol("vitest:SAFE_TIMERS");
 
 // ../../node_modules/@vitest/expect/node_modules/tinyrainbow/dist/chunk-BVHSVHOK.js
 var f2 = {
@@ -23151,7 +23141,7 @@ function define2(obj, key, descriptor) {
 function defineValue(obj, key, value) {
   define2(obj, key, { value, configurable: !0, writable: !0 });
 }
-var SYMBOL_STATE = Symbol.for("tinyspy:spy"), spies = /* @__PURE__ */ new Set(), reset = (state3) => {
+var SYMBOL_STATE = /* @__PURE__ */ Symbol.for("tinyspy:spy"), spies = /* @__PURE__ */ new Set(), reset = (state3) => {
   state3.called = !1, state3.callCount = 0, state3.calls = [], state3.results = [], state3.resolves = [], state3.next = [];
 }, defineState = (spy2) => (define2(spy2, SYMBOL_STATE, {
   value: { reset: () => reset(spy2[SYMBOL_STATE]) }
@@ -23379,7 +23369,7 @@ function getDescriptor2(obj, method) {
 }
 
 // ../../node_modules/@vitest/expect/dist/index.js
-var MATCHERS_OBJECT = Symbol.for("matchers-object"), JEST_MATCHERS_OBJECT = Symbol.for("$$jest-matchers-object-storybook"), GLOBAL_EXPECT = Symbol.for("expect-global"), ASYMMETRIC_MATCHERS_OBJECT = Symbol.for("asymmetric-matchers-object"), customMatchers = {
+var MATCHERS_OBJECT = /* @__PURE__ */ Symbol.for("matchers-object"), JEST_MATCHERS_OBJECT = /* @__PURE__ */ Symbol.for("$$jest-matchers-object-storybook"), GLOBAL_EXPECT = /* @__PURE__ */ Symbol.for("expect-global"), ASYMMETRIC_MATCHERS_OBJECT = /* @__PURE__ */ Symbol.for("asymmetric-matchers-object"), customMatchers = {
   toSatisfy(actual, expected, message) {
     let { printReceived: printReceived3, printExpected: printExpected3, matcherHint: matcherHint2 } = this.utils, pass = expected(actual);
     return {
@@ -23783,7 +23773,7 @@ function setState(state3, expect4) {
 }
 var AsymmetricMatcher3 = class {
   // should have "jest" to be compatible with its ecosystem
-  $$typeof = Symbol.for("jest.asymmetricMatcher");
+  $$typeof = /* @__PURE__ */ Symbol.for("jest.asymmetricMatcher");
   constructor(sample, inverse = !1) {
     this.sample = sample, this.inverse = inverse;
   }
@@ -23803,7 +23793,7 @@ var AsymmetricMatcher3 = class {
     };
   }
 };
-AsymmetricMatcher3.prototype[Symbol.for("chai/inspect")] = function(options) {
+AsymmetricMatcher3.prototype[/* @__PURE__ */ Symbol.for("chai/inspect")] = function(options) {
   let result = stringify2(this, options.depth, { min: !0 });
   return result.length <= options.truncate ? result : `${this.toString()}{\u2026}`;
 };
@@ -24583,7 +24573,7 @@ Object.defineProperty(globalThis, GLOBAL_EXPECT, {
 function f3(e, t, n) {
   Object.defineProperty(e, t, n);
 }
-var u = Symbol.for("tinyspy:spy");
+var u = /* @__PURE__ */ Symbol.for("tinyspy:spy");
 var P = (e) => {
   e.called = !1, e.callCount = 0, e.calls = [], e.results = [], e.resolves = [], e.next = [];
 }, K = (e) => (f3(e, u, { value: { reset: () => P(e[u]) } }), e[u]), T = (e) => e[u] || K(e);
@@ -24591,7 +24581,9 @@ var P = (e) => {
 // src/test/spy.ts
 var moduleMockSpies = globalThis.__STORYBOOK_MODULE_MOCK_SPIES__ ??= /* @__PURE__ */ new Set(), listeners = /* @__PURE__ */ new Set();
 function onMockCall(callback) {
-  return listeners.add(callback), () => void listeners.delete(callback);
+  return listeners.add(callback), () => {
+    listeners.delete(callback);
+  };
 }
 var spyOn2 = (...args) => {
   let mock = spyOn(...args);
@@ -25064,12 +25056,9 @@ function isControl2(node) {
 function hasAbstractRole2(node, role) {
   if (!isElement2(node))
     return !1;
-  switch (role) {
-    case "range":
-      return hasAnyConcreteRoles2(node, ["meter", "progressbar", "scrollbar", "slider", "spinbutton"]);
-    default:
-      throw new TypeError("No knowledge about abstract role '".concat(role, "'. This is likely a bug :("));
-  }
+  if (role === "range")
+    return hasAnyConcreteRoles2(node, ["meter", "progressbar", "scrollbar", "slider", "spinbutton"]);
+  throw new TypeError("No knowledge about abstract role '".concat(role, "'. This is likely a bug :("));
 }
 function querySelectorAllSubtree2(element, selectors) {
   var elements = arrayFrom2(element.querySelectorAll(selectors));
@@ -27576,7 +27565,7 @@ function createClipboardItem(window2, ...blobs) {
     }
   }(dataMap);
 }
-var ClipboardStubControl = Symbol("Manage ClipboardSub");
+var ClipboardStubControl = /* @__PURE__ */ Symbol("Manage ClipboardSub");
 function createClipboardStub(window2, control) {
   return Object.assign(new class extends window2.EventTarget {
     async read() {
@@ -27826,7 +27815,7 @@ behavior.click = (event, target, instance) => {
 };
 
 // ../../node_modules/@testing-library/user-event/dist/esm/document/UI.js
-var UIValue = Symbol("Displayed value in UI"), UISelection = Symbol("Displayed selection in UI"), InitialValue = Symbol("Initial value to compare on blur");
+var UIValue = /* @__PURE__ */ Symbol("Displayed value in UI"), UISelection = /* @__PURE__ */ Symbol("Displayed selection in UI"), InitialValue = /* @__PURE__ */ Symbol("Initial value to compare on blur");
 function isUIValue(value) {
   return typeof value == "object" && UIValue in value;
 }
@@ -28008,7 +27997,7 @@ function getDescendant(node, direction) {
 }
 
 // ../../node_modules/@testing-library/user-event/dist/esm/document/trackValue.js
-var TrackChanges = Symbol("Track programmatic changes for React workaround");
+var TrackChanges = /* @__PURE__ */ Symbol("Track programmatic changes for React workaround");
 function isReact17Element(element) {
   return Object.getOwnPropertyNames(element).some((k) => k.startsWith("__react")) && getWindow(element).REACT_VERSION === 17;
 }
@@ -28958,7 +28947,7 @@ function dispatchDOMEvent(target, type5, init2) {
 }
 
 // ../../node_modules/@testing-library/user-event/dist/esm/document/patchFocus.js
-var patched = Symbol("patched focus/blur methods");
+var patched = /* @__PURE__ */ Symbol("patched focus/blur methods");
 function patchFocus(HTMLElement2) {
   if (HTMLElement2.prototype[patched])
     return;
@@ -28987,7 +28976,7 @@ function patchFocus(HTMLElement2) {
     let blurred = getActiveTarget(this.ownerDocument);
     if (blurred === this)
       return;
-    let thisCall = Symbol("focus call");
+    let thisCall = /* @__PURE__ */ Symbol("focus call");
     activeCall = thisCall, blurred && (blur.call(blurred), dispatchDOMEvent(blurred, "blur", {
       relatedTarget: this
     }), dispatchDOMEvent(blurred, "focusout", {
@@ -29004,7 +28993,7 @@ function patchFocus(HTMLElement2) {
     let blurred = getActiveTarget(this.ownerDocument);
     if (blurred !== this)
       return;
-    activeCall = Symbol("blur call"), blur.call(this), dispatchDOMEvent(blurred, "blur", {
+    activeCall = /* @__PURE__ */ Symbol("blur call"), blur.call(this), dispatchDOMEvent(blurred, "blur", {
       relatedTarget: null
     }), dispatchDOMEvent(blurred, "focusout", {
       relatedTarget: null
@@ -29017,7 +29006,7 @@ function getActiveTarget(document7) {
 }
 
 // ../../node_modules/@testing-library/user-event/dist/esm/document/interceptor.js
-var Interceptor = Symbol("Interceptor for programmatical calls");
+var Interceptor = /* @__PURE__ */ Symbol("Interceptor for programmatical calls");
 function prepareInterceptor(element, propName, interceptorImpl) {
   let prototypeDescriptor = Object.getOwnPropertyDescriptor(element.constructor.prototype, propName), objectDescriptor = Object.getOwnPropertyDescriptor(element, propName), target = prototypeDescriptor?.set ? "set" : "value";
   if (typeof prototypeDescriptor?.[target] != "function" || prototypeDescriptor[target][Interceptor])
@@ -29089,7 +29078,7 @@ function prepareRangeTextInterceptor(element) {
 }
 
 // ../../node_modules/@testing-library/user-event/dist/esm/document/prepareDocument.js
-var isPrepared = Symbol("Node prepared with document state workarounds");
+var isPrepared = /* @__PURE__ */ Symbol("Node prepared with document state workarounds");
 function prepareDocument(document7) {
   document7[isPrepared] || (document7.addEventListener("focus", (e) => {
     let el = e.target;
@@ -29825,7 +29814,7 @@ function closestPointerEventsDeclaration(element) {
       };
   }
 }
-var PointerEventsCheck = Symbol("Last check for pointer-events");
+var PointerEventsCheck = /* @__PURE__ */ Symbol("Last check for pointer-events");
 function checkPointerEvents(instance, element) {
   let lastCheck = element[PointerEventsCheck];
   if (!(instance.config.pointerEventsCheck !== PointerEventsCheckLevel.Never && (!lastCheck || hasBitFlag(instance.config.pointerEventsCheck, PointerEventsCheckLevel.EachApiCall) && lastCheck[ApiLevel.Call] !== getLevelRef(instance, ApiLevel.Call) || hasBitFlag(instance.config.pointerEventsCheck, PointerEventsCheckLevel.EachTrigger) && lastCheck[ApiLevel.Trigger] !== getLevelRef(instance, ApiLevel.Trigger))))
@@ -30417,7 +30406,7 @@ async function type3(element, text, { skipClick = this.config.skipClick, skipAut
 }
 
 // ../../node_modules/@testing-library/user-event/dist/esm/utils/edit/setFiles.js
-var fakeFiles = Symbol("files and value properties are mocked");
+var fakeFiles = /* @__PURE__ */ Symbol("files and value properties are mocked");
 function restoreProperty(obj, prop, descriptor) {
   descriptor ? Object.defineProperty(obj, prop, descriptor) : delete obj[prop];
 }
@@ -31043,7 +31032,7 @@ var svgElements = "svg,path,rect,circle,line,polyline,polygon,ellipse,text".spli
     menu: Array.isArray(menu) ? menu.every(Array.isArray) ? menu : [menu] : void 0
   };
 }, isFunction2 = (obj) => obj instanceof Function, state = /* @__PURE__ */ new Map(), listeners2 = /* @__PURE__ */ new Map(), teardowns = /* @__PURE__ */ new Map(), useStore = (initialValue2) => {
-  let key = Symbol();
+  let key = /* @__PURE__ */ Symbol();
   return listeners2.set(key, []), state.set(key, initialValue2), { get: () => state.get(key), set: (update) => {
     let current = state.get(key), next = isFunction2(update) ? update(current) : update;
     next !== current && (state.set(key, next), listeners2.get(key)?.forEach((listener) => {
@@ -32400,6 +32389,10 @@ var initialGlobals4 = {
 });
 
 // src/csf/core-annotations.ts
+var CORE_ANNOTATIONS_COMPOSED = /* @__PURE__ */ Symbol.for("storybook.internal.composedWithCoreAnnotations");
+function hasCoreAnnotations(annotations) {
+  return annotations != null && typeof annotations == "object" && annotations[CORE_ANNOTATIONS_COMPOSED] === !0;
+}
 function getCoreAnnotations() {
   return [
     // @ts-expect-error CJS fallback
@@ -32640,7 +32633,7 @@ function isEqual2(a3, b) {
 }
 
 // src/preview-api/modules/store/args.ts
-var INCOMPATIBLE = Symbol("incompatible"), map = (arg, argType) => {
+var INCOMPATIBLE = /* @__PURE__ */ Symbol("incompatible"), map = (arg, argType) => {
   let type5 = argType.type;
   if (arg == null || !type5 || argType.mapping)
     return arg;
@@ -32708,7 +32701,7 @@ var INCOMPATIBLE = Symbol("incompatible"), map = (arg, argType) => {
     return allowArg();
   let field = isArray3 ? `${key}[${invalidIndex}]` : key, supportedOptions = options.map((opt) => typeof opt == "string" ? `'${opt}'` : String(opt)).join(", ");
   return once.warn(`Received illegal value for '${field}'. Supported options: ${supportedOptions}`), acc;
-}, {}), DEEPLY_EQUAL = Symbol("Deeply equal"), deepDiff = (value, update) => {
+}, {}), DEEPLY_EQUAL = /* @__PURE__ */ Symbol("Deeply equal"), deepDiff = (value, update) => {
   if (typeof value != typeof update)
     return update;
   if (isEqual2(value, update))
@@ -33470,9 +33463,9 @@ function extractAnnotation(annotation) {
   return annotation ? composeConfigs([annotation]) : {};
 }
 function setProjectAnnotations(projectAnnotations) {
-  let annotations = Array.isArray(projectAnnotations) ? projectAnnotations : [projectAnnotations];
+  let annotations = Array.isArray(projectAnnotations) ? projectAnnotations : [projectAnnotations], alreadyComposedWithCore = annotations.some((annotation) => hasCoreAnnotations(annotation));
   return globalThis.globalProjectAnnotations = composeConfigs([
-    ...getCoreAnnotations(),
+    ...alreadyComposedWithCore ? [] : getCoreAnnotations(),
     globalThis.defaultProjectAnnotations ?? {},
     composeConfigs(annotations.map(extractAnnotation))
   ]), globalThis.globalProjectAnnotations ?? {};
@@ -33646,12 +33639,13 @@ async function runStory(story, context) {
 }
 
 // src/preview-api/modules/store/StoryStore.ts
+function composeProjectAnnotations(projectAnnotations) {
+  return hasCoreAnnotations(projectAnnotations) ? normalizeProjectAnnotations(projectAnnotations) : normalizeProjectAnnotations(composeConfigs([...getCoreAnnotations(), projectAnnotations]));
+}
 var CSF_CACHE_SIZE = 1e3, STORY_CACHE_SIZE = 1e4, StoryStore = class {
   constructor(storyIndex, importFn, projectAnnotations) {
     this.importFn = importFn;
-    this.storyIndex = new StoryIndexStore(storyIndex), this.projectAnnotations = normalizeProjectAnnotations(
-      composeConfigs([...getCoreAnnotations(), projectAnnotations])
-    );
+    this.storyIndex = new StoryIndexStore(storyIndex), this.projectAnnotations = composeProjectAnnotations(projectAnnotations);
     let { initialGlobals: initialGlobals5, globalTypes } = this.projectAnnotations;
     this.args = new ArgsStore(), this.userGlobals = new GlobalsStore({ globals: initialGlobals5, globalTypes }), this.hooks = {}, this.cleanupCallbacks = {}, this.processCSFFileWithCache = (0, import_memoizerific2.default)(CSF_CACHE_SIZE)(processCSFFile), this.prepareMetaWithCache = (0, import_memoizerific2.default)(CSF_CACHE_SIZE)(prepareMeta), this.prepareStoryWithCache = (0, import_memoizerific2.default)(STORY_CACHE_SIZE)(prepareStory);
   }
@@ -34408,6 +34402,11 @@ var { fetch: fetch2 } = scope, STORY_INDEX_PATH = "./index.json", Preview = clas
   }
 };
 
+// src/shared/utils/story-index-filters.ts
+function isMdxEntry({ tags }) {
+  return tags?.includes(Tag.UNATTACHED_MDX) || tags?.includes(Tag.ATTACHED_MDX);
+}
+
 // src/preview-api/modules/preview-web/docs-context/DocsContext.ts
 var DocsContext = class {
   constructor(channel, store, renderStoryToElement, csfFiles) {
@@ -34535,7 +34534,6 @@ var DocsContext = class {
           ...resolved,
           preparedMeta: this.store.preparedMetaFromCSFFile({ csfFile: resolved.csfFile })
         };
-      case "story":
       default:
         return resolved;
     }
@@ -34583,7 +34581,7 @@ var CsfDocsRender = class {
       renderStoryToElement,
       this.csfFiles
     );
-    return this.csfFiles.forEach((csfFile) => docsContext.attachCSFFile(csfFile)), docsContext;
+    return this.csfFiles.forEach((csfFile) => docsContext.attachCSFFile(csfFile)), docsContext.filterByAutodocs = !isMdxEntry(this.entry), docsContext;
   }
   async renderToElement(canvasElement, renderStoryToElement) {
     if (!this.story || !this.csfFiles)
@@ -34653,7 +34651,7 @@ var MdxDocsRender = class {
       renderStoryToElement,
       this.csfFiles
     );
-    return this.attachedCsfFile && docsContext.attachCSFFile(this.attachedCsfFile), docsContext;
+    return this.attachedCsfFile && docsContext.attachCSFFile(this.attachedCsfFile), docsContext.filterByAutodocs = !isMdxEntry(this.entry), docsContext;
   }
   async renderToElement(canvasElement, renderStoryToElement) {
     if (!this.exports || !this.csfFiles || !this.store.projectAnnotations)
@@ -34684,9 +34682,6 @@ var globalWindow = globalThis;
 function focusInInput(event) {
   let target = event.composedPath && event.composedPath()[0] || event.target;
   return /input|textarea/i.test(target.tagName) || target.getAttribute("contenteditable") !== null;
-}
-function isMdxEntry({ tags }) {
-  return tags?.includes(Tag.UNATTACHED_MDX) || tags?.includes(Tag.ATTACHED_MDX);
 }
 function isStoryRender(r) {
   return r.type === "story";
@@ -34879,7 +34874,7 @@ var PreviewWithSelection = class extends Preview {
     isStoryRender(render) ? (invariant(!!render.story), this.storyRenders.push(render), this.currentRender.renderToElement(
       this.view.prepareForStory(render.story)
     )) : this.currentRender.renderToElement(
-      this.view.prepareForDocs(),
+      this.view.prepareForDocs({ scrollReset: storyIdChanged || viewModeChanged }),
       // This argument is used for docs, which is currently only compatible with HTMLElements
       this.renderStoryToElement.bind(this)
     );
@@ -35058,8 +35053,8 @@ var { document: document5 } = scope, PREPARING_DELAY = 100, Mode = /* @__PURE__ 
   storyRoot() {
     return document5.getElementById("storybook-root");
   }
-  prepareForDocs() {
-    return this.showMain(), this.showDocs(), this.applyLayout("fullscreen"), document5.documentElement.scrollTop = 0, document5.documentElement.scrollLeft = 0, this.docsRoot();
+  prepareForDocs({ scrollReset = !0 } = {}) {
+    return this.showMain(), this.showDocs(), this.applyLayout("fullscreen"), scrollReset && (document5.documentElement.scrollTop = 0, document5.documentElement.scrollLeft = 0), this.docsRoot();
   }
   docsRoot() {
     return document5.getElementById("storybook-docs");
