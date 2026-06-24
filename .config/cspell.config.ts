@@ -8,6 +8,7 @@ export default defineConfig({
 		'pnpm-workspace.yaml',
 		'node_modules',
 		'.git',
+		'.gitignore',
 		'__snapshots__',
 		'dist',
 		'build',
@@ -49,7 +50,8 @@ export default defineConfig({
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
-		'showcases/angular-showcase/src/app/components/form/form.component.ts'
+		'showcases/angular-showcase/src/app/components/form/form.component.ts',
+		'.vscode/extensions.json'
 	],
 	dictionaries: [
 		'custom-words',

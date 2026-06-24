@@ -22,7 +22,7 @@ jobs:
       pull-requests: write
     steps:
       - name: ⏬️ Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 1
@@ -62,7 +62,7 @@ jobs:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
           commit-message: "style: auto-fix codestyle issues"
           commit-files: "."
-          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 

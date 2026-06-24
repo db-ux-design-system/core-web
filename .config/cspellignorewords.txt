@@ -1,7 +1,12 @@
-moz
-webkit
+# (User)names
+mfranzke
+michaelmkraus
+nmerget
 merget
 franzke
+# further words
+moz
+webkit
 cicd
 Patternhub
 Textlink
@@ -142,10 +147,12 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+rowspan
 TSES
 trufflesecurity
 elif
 chromedriver
+Movistar
 Cheatsheet
 frontmatter
 businessunit
@@ -198,8 +205,31 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
+subcomponent
+worktree
+unpushed
+refspec
+PRRT
+triaging
+automations
+Untriaged
+untriaged
+fbca
+unreviewed
+notext
+prebundle
+subcomponent
+# GitHub Project IDs
+PVTSSF
+ADOC
+# Labels
+communityfeedback
 # Usernames
 mfranzke
 michaelmkraus
 nmerget
+bruno-sch

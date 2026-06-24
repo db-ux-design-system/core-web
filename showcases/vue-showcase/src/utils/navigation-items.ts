@@ -24,6 +24,7 @@ import SelectShowcase from '@components/components/select/showcase/select.showca
 import StackShowcase from '@components/components/stack/showcase/stack.showcase.vue';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase.vue';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase.vue';
+import TableShowcase from '@components/components/table/showcase/table.showcase.vue';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase.vue';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase.vue';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase.vue';
@@ -118,6 +119,11 @@ export const navigationItems: NavItem[] = [
 				path: '/04/tab-item',
 				label: 'TabItem',
 				component: markRaw(TabItemShowcase)
+			},
+			{
+				path: '/04/table',
+				label: 'Table',
+				component: markRaw(TableShowcase)
 			},
 
 			{

@@ -1,5 +1,41 @@
 # @db-ux/ngx-core-components
 
+## 4.12.1
+
+### Patch Changes
+
+- fix(custom-select): dropdown with `dropdownWidth="auto"` now correctly sizes to content width and respects the trigger minimum width. Long option labels no longer get truncated: `auto` keeps them on a single line (dropdown grows to the longest option), while `fixed` and `full` wrap long labels onto new lines. - [see commit 68dedc3](https://github.com/db-ux-design-system/core-web/commit/68dedc33c324b48339d5bb73a85fdff3045ed059)
+
+- fix(drawer): prevent backdrop drag-close when selection starts inside content - [see commit b53ff8a](https://github.com/db-ux-design-system/core-web/commit/b53ff8a4f0a5350c5be41fad072e14797676bba7)
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+### Patch Changes
+
+- fix: resolve attribute passing issues for custom components by adding a MutationObserver to reactively forward attributes from parent to child in Angular and Stencil targets, and improve handling of style, `data-`, and `aria-` attributes - [see commit 8de7430](https://github.com/db-ux-design-system/core-web/commit/8de7430b6045bf0571d300c45717a8162fc4ae25)
+
+- fix: remove `readonly` attribute on `DBInput` and `DBTextarea` when `readOnly`/`readonly` is `false` - [see commit 312ad4c](https://github.com/db-ux-design-system/core-web/commit/312ad4c7582b7315042b23a7cc8b485889ba6fd8):
+
+    - Passing `readOnly={false}` (e.g. via Angular's `formField` directive) previously rendered `readonly="false"` into the DOM. Since `readonly` is a boolean HTML attribute, its mere presence made the field read-only. The binding now resolves to `undefined` when not read-only, so the attribute is omitted entirely.
+
+- fix(tooltip): clean up parent listeners and observers on unmount - [see commit b050660](https://github.com/db-ux-design-system/core-web/commit/b050660b3b8cc9f0fde2a9d96dfbd6c0f02cc24f)
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+### Patch Changes
+
+- fix: Add missing `propertyName` parameter to all `getBooleanAsString` calls across components for consistent string-based boolean parsing. - [see commit 6c11be5](https://github.com/db-ux-design-system/core-web/commit/6c11be54397c425607103f44b987b752efffb6d5)
+
+- fix: Remove unwanted whitespace characters from rendered output to prevent layout shifts - [see commit a0f23a4](https://github.com/db-ux-design-system/core-web/commit/a0f23a4a3e715414de3d045b59b88dc3ac28d5e7)
+
 ## 4.10.2
 
 _version bump_

@@ -106,37 +106,48 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 **Always add a new changeset when making changes inside the following folders:**
 
-| Folder                      | Packages to include                                                                                                                             |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src`   | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                       |
+| Folder                      | Packages to include                                                                                                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src`   | `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                           |
 
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
-- **`minor`** — for new features
-- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been added, removed, renamed, or its type has changed)
+- **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
+- **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
 ### How to Add a Changeset
 
 Run the following command and follow the interactive prompts:
 
 ```bash
-npx changeset
+pnpm exec changeset
 ```
 
 - Select the affected packages (see table above).
 - Choose `patch` (fix), `minor` (feature), or `major` (breaking change) as the bump type.
 - Write a short description of the change.
 
-Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards:
+Alternatively, you can manually create a changeset file in `.changeset/` with a unique name (e.g. `.changeset/my-change.md`) with the packages listed in the YAML frontmatter and the description afterwards.
+
+### Changeset Description Format
+
+The changeset description **must** follow the same conventional prefix style used for git commits (`<type>: <short description>`). Common prefixes (compare to our [conventions](docs/conventions.md)):
+
+- `feat:` — new feature
+- `fix:` — bug fix
+- `refactor:` — code restructuring without behavior change
+- `docs:` — documentation changes
+
+**Examples:**
 
 ```markdown
 ---
 "@db-ux/core-components": minor
 ---
 
-Short description of the feature.
+feat: add `size` property to DBButton component
 ```
 
 ```markdown
@@ -144,7 +155,7 @@ Short description of the feature.
 "@db-ux/core-components": patch
 ---
 
-Short description of the fix.
+fix: resolve incorrect focus ring color in high-contrast mode
 ```
 
 ```markdown
@@ -152,8 +163,19 @@ Short description of the fix.
 "@db-ux/core-components": major
 ---
 
-Short description of the breaking change.
+refactor: rename `colour` property to `color` across all components
 ```
+
+### Migration Guides for Major Changes
+
+Most `major` changeset entries indicate a breaking change that requires consumers to update their code. In these cases, **always create or update a migration guide** in `docs/migration/`.
+
+- Use the naming convention `vX.x.x-to-vY.0.0.md` (e.g. `v4.x.x-to-v5.0.0.md`).
+- If a migration guide for the upcoming major version (determined by the current `version` e.g. in `packages/foundations/package.json`) already exists, append your breaking change to it.
+- If none exists yet, create one following the structure of existing guides (see `docs/migration/` for examples).
+- Each breaking change entry should have a heading describing what changed and a brief explanation of how to migrate. A table of changed properties could help our users to understand the necessary changes easier than a thousand words.
+- **When creating a new migration guide file**, also add it to the migration index list in `README.md` (under "In between DB UX Design System Core versions") so consumers can discover it. Insert it at the top of the list following the existing format.
+- **PR labeling:** If the GitHub MCP is available, add the `Breaking Change` label to the pull request. If the MCP is not available, inform the developer to add the `Breaking Change` label manually.
 
 ## Common Tasks
 
@@ -261,9 +283,24 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ## General code styles and approaches
 
+### Dependency pinning and package execution
+
+All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for supply-chain security, reproducibility, and deterministic builds. See `docs/dependency-update-strategy.md` for the full rationale.
+
+**Always use `pnpm exec` to run CLI tools** — never `npx` or `pnpm dlx`:
+
+| Command           | Behavior                                                              | Allowed |
+| ----------------- | --------------------------------------------------------------------- | ------- |
+| `pnpm exec <bin>` | Runs only from locally installed, pinned packages                     | ✅ Yes  |
+| `pnpm dlx <pkg>`  | Fetches latest from registry and executes (equivalent to `npx --yes`) | ❌ No   |
+| `npx <bin>`       | May fetch latest from registry if not installed locally               | ❌ No   |
+
+`pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
+
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
+- **Pin all third-party Actions to full commit SHAs** (not tags) for supply-chain security. Dependabot manages updates. See `docs/dependency-update-strategy.md` for the full rationale.
 
 ## Additional Resources
 
@@ -278,6 +315,16 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 - `packages/mcp-server/AGENTS.md` — MCP server development
 
 **Keep package-level `AGENTS.md` files up to date.** When making changes inside a `packages/*` folder that affect architecture, structure, workflows, or conventions (e.g. adding a new plugin system, deprecating a pattern, introducing a new shared abstraction), update the corresponding `AGENTS.md` in that package as part of the same commit.
+
+## Kiro Steering Files
+
+Manual-inclusion steering files for specialized workflows. Activate in Kiro chat with `#<name>`:
+
+| Steering             | File                                  | Purpose                                                                                                    |
+| -------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `#code-review`       | `.kiro/steering/code-review.md`       | Perform a PR code review using GitHub MCP tools (checkout branch, gather context, review, submit feedback) |
+| `#pre-commit-review` | `.kiro/steering/pre-commit-review.md` | Self-review checklist before committing and pushing to a new branch                                        |
+| `#issue-triage`      | `.kiro/steering/issue-triage.md`      | Triage issues: validate template, label, set priority/effort, post AI summary, batch-process new issues    |
 
 ---
 

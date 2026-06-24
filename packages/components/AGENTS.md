@@ -42,6 +42,7 @@ configs/
 ├── mitosis.figma.config.cjs        # Config for Figma Code Connect generation
 ├── mitosis.agent.config.cjs        # Config for agent documentation generation
 ├── plugins/
+│   ├── esm-extensions.cjs          # Appends explicit .js/index.js extensions to relative imports (ESM)
 │   ├── storybook/                  # Storybook generation plugin
 │   ├── figma/                      # Figma Code Connect generation plugin
 │   ├── angular/                    # Angular-specific Mitosis plugins
@@ -75,6 +76,19 @@ Each component can have a `figma/` folder with Figma Code Connect definitions. T
 - Edit only the source files in `src/components/[name]/figma/`
 - Never edit files in `figma-code-connect/` directly — they are generated
 
+## ESM Import Extensions (`configs/plugins/esm-extensions.cjs`)
+
+The published outputs are ESM (`"type": "module"`), which requires relative imports to carry explicit file extensions. The `esm-extensions` Mitosis plugin runs in `build.post` for the React, Vue and Stencil targets and appends the correct extension to every relative import/export specifier in the generated source:
+
+- File import → `./model` becomes `./model.js`
+- Directory import (barrel) → `./components/accordion` becomes `./components/accordion/index.js`
+- Specifiers that already carry an extension (`.js`, `.vue`, `.css`, …) are left untouched
+- Showcase/example/`arg.types` files are skipped (they are consumed as raw TypeScript and never compiled to `.js`)
+
+This replaced the earlier `tsc-esm-fix` / Vite / post-tsc workaround. The React output's `tsconfig.json` uses `module`/`moduleResolution: "node16"` so any missing extension fails at compile time rather than at runtime.
+
+Consumers of the **raw** `output/react/src` (Patternhub and next-showcase via webpack) need `resolve.extensionAlias` mapping `.js → .ts/.tsx/.js`; Vite-based consumers (react-showcase) resolve this natively. Unit tests live in `configs/plugins/esm-extensions.spec.ts`.
+
 ## Storybook Generation
 
 Stories are generated from the `examples/` folder via the `configs/plugins/storybook/` plugin. The plugin reads `data-sb-*` attributes from example components to configure story metadata, controls, and args.
@@ -88,13 +102,13 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually
 2. **Check `src/shared/model.ts` first** before adding any new prop — it may already exist as a shared type (see Shared Props section below)
 3. **Check other `**/model.ts`files** — if a similar prop exists in another component, consider moving it to`src/shared/model.ts` before reusing it
-4. Edit `model.ts` for prop changes (breaking change if props are added/removed/renamed/retyped → needs `major` changeset)
+4. Edit `model.ts` for prop changes (breaking change if props are removed/renamed/retyped → needs `major` changeset; if props are added → needs `minor` changeset)
 5. Edit the `.lite.tsx` for template/logic changes
 6. **Check `src/styles/internal/` first** before writing new SCSS — the style may already exist as a shared internal mixin/placeholder (see Shared Styles section below)
 7. Edit the `.scss` for style changes
 8. Add or update examples in `src/components/[name]/examples/`
 9. Run `pnpm run build` to verify
-10. Add a changeset for `@db-ux/core-components` and all framework output packages
+10. Add a changeset for `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all framework output packages
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
@@ -151,13 +165,15 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
-- Existing post-build logic will be migrated to plugins over time
+- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`)
+
+> Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
 ## Changeset Rules
 
 Changes in `packages/components/src` require a changeset for:
-`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
+`@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
 
 - `patch` — bug fix
-- `minor` — new feature or example
-- `major` — any prop in `model.ts` added, removed, renamed, or retyped
+- `minor` — new feature or example, or any prop added in `model.ts`
+- `major` — any prop in `model.ts` removed, renamed, or retyped
