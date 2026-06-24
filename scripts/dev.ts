@@ -23,7 +23,7 @@ const currentAnswers = await checkbox({
 	message: 'Select frameworks to develop with:',
 	choices: [
 		{
-			value: 'patternhub',
+			value: 'react',
 			checked: true
 		},
 		{
@@ -36,7 +36,7 @@ const currentAnswers = await checkbox({
 			value: 'stencil'
 		},
 		{
-			value: 'react'
+			value: 'patternhub'
 		},
 		{
 			value: 'next'
