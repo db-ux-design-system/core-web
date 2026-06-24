@@ -5,7 +5,6 @@ import { createTempDir, removeTempDir, writeFileIn } from '../test-utils';
 
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
-	AUGMENTATION,
 	appendInvokerCommandsAugmentation
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./invoker-commands.cjs');
