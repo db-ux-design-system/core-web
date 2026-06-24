@@ -36,7 +36,7 @@
 			--db-overflow-scroll-button-inset-inline-start: calc(
 				#{variables.$db-spacing-fixed-sm} / 2
 			);
-			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-sm};
 
 			display: grid;
 
@@ -46,7 +46,8 @@
 				/* workaround for showing correct scrolling and focus */
 				padding-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
 				margin-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
-				padding-block: variables.$db-spacing-fixed-xs;
+				/* stylelint-disable-next-line db-ux/use-spacing */
+				padding-block: var(--db-overflow-scroll-button-inset-block);
 			}
 		}
 

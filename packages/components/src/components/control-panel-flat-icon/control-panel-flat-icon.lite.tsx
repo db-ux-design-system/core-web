@@ -24,15 +24,20 @@ export default function DBControlPanelFlatIcon(
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 
 	const state = useStore<DBControlPanelFlatIconState>({
-		_initialDensity: undefined,
 		_resizeObserverCallbackId: undefined
 	});
 
 	onUpdate(() => {
 		if (_ref && !state._resizeObserverCallbackId) {
 			// Save the initial density from the element or its inherited value
-			state._initialDensity =
-				_ref.getAttribute('data-density') ?? undefined;
+
+			const controlPanel = _ref as HTMLDivElement;
+			if (_ref.getAttribute('data-density')) {
+				controlPanel.setAttribute(
+					'data-initial-density',
+					_ref.getAttribute('data-density')
+				);
+			}
 
 			state._resizeObserverCallbackId =
 				new ResizeObserverListener().observe(_ref, () => {
@@ -44,10 +49,10 @@ export default function DBControlPanelFlatIcon(
 
 					if (isMobile) {
 						_ref.setAttribute('data-density', 'regular');
-					} else if (state._initialDensity) {
+					} else if (_ref.getAttribute('data-initial-density')) {
 						_ref.setAttribute(
 							'data-density',
-							state._initialDensity
+							_ref.getAttribute('data-initial-density')
 						);
 					} else {
 						_ref.removeAttribute('data-density');

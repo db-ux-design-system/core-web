@@ -69,8 +69,146 @@ export default function DBControlPanelNavigation(
 			);
 		},
 		_handleTreeKeyDown(event: any) {
-			if (state._variant !== 'tree' || !menuRef) return;
+			if (!menuRef) return;
 
+			if (state._variant === 'tree') {
+				state._handleTreeKeys(event);
+			} else if (state._variant === 'popover') {
+				state._handlePopoverKeys(event);
+			}
+		},
+		_handlePopoverKeys(event: any) {
+			const menuElement = menuRef as HTMLElement;
+			const activeElement = document.activeElement as HTMLElement;
+			if (!activeElement) return;
+
+			const key = event.key;
+			const ITEM_SELECTOR =
+				':scope > .db-control-panel-navigation-item > a, :scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button, :scope > db-control-panel-navigation-item > .db-control-panel-navigation-item > a, :scope > db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button';
+
+			// Determine if we are at the top level or inside a sub-menu
+			const parentGroupMenu = activeElement.closest(
+				'.db-control-panel-navigation-item-group-menu'
+			);
+			const isTopLevel = !parentGroupMenu;
+
+			// Top level is horizontal only when shell position is top
+			const isHorizontal =
+				isTopLevel && state._shellDesktopPosition === 'top';
+
+			// Get sibling items at the current level
+			const container = isTopLevel ? menuElement : parentGroupMenu;
+			const items: HTMLElement[] = Array.from(
+				container!.querySelectorAll(ITEM_SELECTOR)
+			);
+			const currentIndex = items.indexOf(activeElement);
+
+			// Determine navigation keys based on orientation
+			// Horizontal: Left/Right = prev/next, Down = open sub
+			// Vertical: Up/Down = prev/next, Right = open sub
+			const prevKey = isHorizontal ? 'ArrowLeft' : 'ArrowUp';
+			const nextKey = isHorizontal ? 'ArrowRight' : 'ArrowDown';
+			const openKey = isHorizontal ? 'ArrowDown' : 'ArrowRight';
+			const closeKey = isHorizontal ? 'ArrowUp' : 'ArrowLeft';
+
+			if (key === nextKey) {
+				event.preventDefault();
+				if (currentIndex < items.length - 1) {
+					items[currentIndex + 1]?.focus();
+				} else if (!isTopLevel) {
+					// Last item in sub-menu: close and return to parent
+					const parentGroup = parentGroupMenu!.closest(
+						'.db-control-panel-navigation-item-group'
+					);
+					if (parentGroup) {
+						const parentButton = parentGroup.querySelector(
+							':scope > .db-control-panel-navigation-item-group-expand-button'
+						) as HTMLElement | null;
+						if (parentButton) {
+							parentButton.click();
+							parentButton.focus();
+						}
+					}
+				} else {
+					// Wrap at top level
+					items[0]?.focus();
+				}
+			} else if (key === prevKey) {
+				event.preventDefault();
+				if (currentIndex > 0) {
+					items[currentIndex - 1]?.focus();
+				} else if (!isTopLevel) {
+					// First item in sub-menu: close and return to parent
+					const parentGroup = parentGroupMenu!.closest(
+						'.db-control-panel-navigation-item-group'
+					);
+					if (parentGroup) {
+						const parentButton = parentGroup.querySelector(
+							':scope > .db-control-panel-navigation-item-group-expand-button'
+						) as HTMLElement | null;
+						if (parentButton) {
+							parentButton.click();
+							parentButton.focus();
+						}
+					}
+				} else {
+					// Wrap at top level
+					items[items.length - 1]?.focus();
+				}
+			} else if (key === openKey) {
+				// Open sub-menu if on a group button
+				const group = activeElement.closest(
+					'.db-control-panel-navigation-item-group'
+				);
+				if (group) {
+					event.preventDefault();
+					const expandButton = group.querySelector(
+						':scope > .db-control-panel-navigation-item-group-expand-button'
+					) as HTMLElement | null;
+					if (
+						expandButton &&
+						expandButton.getAttribute('aria-expanded') !== 'true'
+					) {
+						expandButton.click();
+					}
+					const subMenu = group.querySelector(
+						':scope > .db-control-panel-navigation-item-group-menu'
+					);
+					if (subMenu) {
+						const firstItem = subMenu.querySelector(
+							ITEM_SELECTOR
+						) as HTMLElement | null;
+						if (firstItem) {
+							firstItem.focus();
+						}
+					}
+				}
+			} else if (key === closeKey || key === 'Escape') {
+				if (!isTopLevel) {
+					// Close sub-menu, return to parent
+					event.preventDefault();
+					const parentGroup = parentGroupMenu!.closest(
+						'.db-control-panel-navigation-item-group'
+					);
+					if (parentGroup) {
+						const parentButton = parentGroup.querySelector(
+							':scope > .db-control-panel-navigation-item-group-expand-button'
+						) as HTMLElement | null;
+						if (parentButton) {
+							parentButton.click();
+							parentButton.focus();
+						}
+					}
+				}
+			} else if (key === 'Home') {
+				event.preventDefault();
+				items[0]?.focus();
+			} else if (key === 'End') {
+				event.preventDefault();
+				items[items.length - 1]?.focus();
+			}
+		},
+		_handleTreeKeys(event: any) {
 			const menuElement = menuRef as HTMLElement;
 			const allTreeItems: HTMLElement[] = Array.from(
 				menuElement.querySelectorAll('[role="treeitem"]')
