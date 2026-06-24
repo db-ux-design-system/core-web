@@ -1,5 +1,11 @@
 # @db-ux/react-core-components
 
+## 4.13.0
+
+### Minor Changes
+
+- feat: enable Invoker Commands (`command`- and `commandfor`-HTML-attributes) for DBButton - [see commit 00f50c3](https://github.com/db-ux-design-system/core-web/commit/00f50c3fc4508e62f2e30589c00148c54e2fc852)
+
 ## 4.12.1
 
 ### Patch Changes
