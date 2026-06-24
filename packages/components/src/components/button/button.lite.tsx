@@ -25,6 +25,8 @@ export default function DBButton(props: DBButtonProps) {
 				return props.type;
 			} else if (props.onClick) {
 				return 'button';
+			} else if (props.commandfor) {
+				return 'button';
 			}
 			return 'submit';
 		}
@@ -54,7 +56,9 @@ export default function DBButton(props: DBButtonProps) {
 			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			name={props.name}
 			form={props.form}
-			value={props.value}>
+			value={props.value}
+			command={props.command}
+			commandfor={props.commandfor}>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</button>
