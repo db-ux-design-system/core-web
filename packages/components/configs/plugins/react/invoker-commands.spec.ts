@@ -5,7 +5,7 @@ import { createTempDir, removeTempDir, writeFileIn } from '../test-utils';
 
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
-	AUGMENTATION_MARKER,
+	AUGMENTATION,
 	appendInvokerCommandsAugmentation
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./invoker-commands.cjs');
@@ -29,7 +29,7 @@ afterEach(() => {
 });
 
 describe('appendInvokerCommandsAugmentation', () => {
-	it('appends the augmentation to an entrypoint without it', () => {
+	it('appends the augmentation to an entrypoint', () => {
 		const from = writeFile(
 			'index.ts',
 			"export * from './components/button';\n"
@@ -39,29 +39,11 @@ describe('appendInvokerCommandsAugmentation', () => {
 
 		const result = fs.readFileSync(from, 'utf-8');
 		expect(written).toBe(true);
-		expect(result).toContain(AUGMENTATION_MARKER);
 		expect(result).toContain('declare module "react"');
 		expect(result).toContain('command?: string | undefined;');
 		expect(result).toContain('commandfor?: string | undefined;');
 		// Original exports must be preserved.
 		expect(result).toContain("export * from './components/button';");
-	});
-
-	it('is idempotent and does not append twice', () => {
-		const from = writeFile(
-			'index.ts',
-			"export * from './components/button';\n"
-		);
-
-		appendInvokerCommandsAugmentation(from);
-		const afterFirst = fs.readFileSync(from, 'utf-8');
-		const written = appendInvokerCommandsAugmentation(from);
-		const afterSecond = fs.readFileSync(from, 'utf-8');
-
-		expect(written).toBe(false);
-		expect(afterSecond).toBe(afterFirst);
-		// Marker appears exactly once.
-		expect(afterSecond.split(AUGMENTATION_MARKER)).toHaveLength(2);
 	});
 
 	it('normalizes trailing whitespace to a single blank line before the augmentation', () => {
@@ -114,7 +96,7 @@ describe('build.post plugin', () => {
 
 		expect(
 			fs.readFileSync(path.join(tmpDir, 'src/index.ts'), 'utf-8')
-		).toContain(AUGMENTATION_MARKER);
+		).toContain('declare module "react"');
 	});
 
 	it('does nothing when files is undefined', () => {

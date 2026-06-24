@@ -2,14 +2,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 /**
- * Marker comment used to detect whether the augmentation has already been
- * appended. Keeps the plugin idempotent across incremental builds where the
- * generated `index.ts` may already contain the augmentation from a previous
- * run.
- */
-const AUGMENTATION_MARKER = 'Type augmentation for Invoker Commands API';
-
-/**
  * Type augmentation that extends React's `ButtonHTMLAttributes` with the
  * `command` and `commandfor` HTML attributes of the Invoker Commands API.
  *
@@ -22,7 +14,7 @@ const AUGMENTATION_MARKER = 'Type augmentation for Invoker Commands API';
  */
 const AUGMENTATION = `
 /**
- * ${AUGMENTATION_MARKER}
+ * Type augmentation for Invoker Commands API
  * https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
  *
  * Extends React's ButtonHTMLAttributes to include the \`command\` and \`commandfor\`
@@ -40,9 +32,10 @@ declare module "react" {
 `;
 
 /**
- * Appends the Invoker Commands type augmentation to the given file unless it is
- * already present. The append is idempotent and a no-op if the file does not
- * exist.
+ * Appends the Invoker Commands type augmentation to the given file.
+ *
+ * No idempotency guard is needed: Mitosis always regenerates output files
+ * fresh before post-build plugins run (see AGENTS.md "Build Pipeline" section).
  *
  * @param {string} filePath - Absolute path to the React entrypoint (`src/index.ts`)
  * @returns {boolean} `true` if the augmentation was written, otherwise `false`
@@ -56,9 +49,6 @@ const appendInvokerCommandsAugmentation = (filePath) => {
 	}
 
 	const source = fs.readFileSync(filePath, 'utf-8');
-	if (source.includes(AUGMENTATION_MARKER)) {
-		return false;
-	}
 
 	// Guarantee exactly one blank line between the existing exports and the
 	// appended augmentation, regardless of the source's trailing whitespace.
@@ -103,7 +93,6 @@ module.exports = () => ({
 	}
 });
 
-module.exports.AUGMENTATION_MARKER = AUGMENTATION_MARKER;
 module.exports.AUGMENTATION = AUGMENTATION;
 module.exports.appendInvokerCommandsAugmentation =
 	appendInvokerCommandsAugmentation;
