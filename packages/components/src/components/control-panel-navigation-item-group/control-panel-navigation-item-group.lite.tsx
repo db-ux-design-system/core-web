@@ -223,7 +223,7 @@ export default function DBControlPanelNavigationItemGroup(
 			)}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
-			data-active={props.active}
+			data-active={getBooleanAsString(props.active)}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button
 				ref={_buttonRef}

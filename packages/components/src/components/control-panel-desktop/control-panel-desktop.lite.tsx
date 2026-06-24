@@ -90,7 +90,7 @@ export default function DBControlPanelDesktop(
 					onClick={(event) => state.handleToggle(event)}
 					variant="ghost"
 					aria-controls={props.id ?? state._id}
-					aria-expanded={state._open}
+					aria-expanded={getBooleanAsString(state._open)}
 					noText
 					type="button"
 					icon="double_chevron_left">
