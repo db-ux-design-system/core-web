@@ -27,7 +27,7 @@ jobs:
     # Run for repository (non-fork) PRs.
     # Dependabot PRs are intentionally excluded as we currently face a secrets
     # problem on non-patch Dependabot updates.
-    # TODO: ensure that dependanbot updates even also get moved to "🎁 Ready for review".
+    # TODO: ensure that dependabot updates even also get moved to "🎁 Ready for review".
     if: >-
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.actor != 'dependabot[bot]'
