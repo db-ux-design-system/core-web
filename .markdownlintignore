@@ -16,3 +16,6 @@ packages/mcp-server/docs/**
 packages/mcp-server/assets/migration/**
 docs/migration/db-ui/color-migration.md
 docs/migration/db-ui/icon-migration.md
+**/playwright-report/**
+**/test-results/**
+scripts/public/**

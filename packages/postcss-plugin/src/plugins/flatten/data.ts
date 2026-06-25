@@ -12,7 +12,7 @@ export type FlattenOptions = {
 
 export type VarEntry = {
 	value: string;
-	layer: string | null;
+	layer: string | undefined;
 	file: string;
 };
 

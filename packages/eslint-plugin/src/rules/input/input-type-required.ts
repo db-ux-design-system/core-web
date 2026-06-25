@@ -25,7 +25,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
-			if (type === null) {
+			if (type === undefined) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -61,7 +61,7 @@ export default {
 
 			const type = getAttributeValue(openingElement, 'type');
 
-			if (type === null) {
+			if (type === undefined) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,
