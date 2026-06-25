@@ -1,0 +1,6 @@
+- banner:
+  - link "Imprint":
+    - /url: "#"
+  - link "Help":
+    - /url: "#"
+- main "Main": Content

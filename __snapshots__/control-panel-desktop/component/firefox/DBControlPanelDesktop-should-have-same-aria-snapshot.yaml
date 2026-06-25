@@ -1,0 +1,12 @@
+- banner:
+  - navigation "Main Navigation":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: "#"
+      - listitem:
+        - link "Disabled" [disabled]:
+          - /url: "#"
+  - button "Search"
+  - button "Profile"
+- main "Main": Content
