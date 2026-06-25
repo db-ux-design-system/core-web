@@ -25,6 +25,7 @@ export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_ROWS: number = 4;
 
 export const DEFAULT_CLOSE_BUTTON: string = 'Close';
+export const MAIN_CONTENT_ID: string = 'main-content';
 export const DENSITY_CONST: string = 'density';
 export const COLOR_CONST: string = 'color';
 

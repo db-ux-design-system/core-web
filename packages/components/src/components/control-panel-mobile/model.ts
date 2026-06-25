@@ -36,6 +36,7 @@ export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 
 export type DBControlPanelMobileDefaultState = {
 	open: boolean;
+	handleClose: (event: any) => void;
 };
 
 export type DBControlPanelMobileState = DBControlPanelMobileDefaultState &

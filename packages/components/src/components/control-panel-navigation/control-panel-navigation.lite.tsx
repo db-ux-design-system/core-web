@@ -470,9 +470,9 @@ export default function DBControlPanelNavigation(
 			id={props.id ?? props.propOverrides?.id}
 			data-variant={state._variant}
 			data-show-tree-line={getBooleanAsString(
-				props.showTreeLine ?? 'true'
+				props.showTreeLine ?? 'true',
+				'showTreeLine'
 			)}
-			onScroll={() => state.onScroll()}
 			class={cls('db-control-panel-navigation', props.className)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton

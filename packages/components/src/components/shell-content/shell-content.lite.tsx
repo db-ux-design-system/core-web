@@ -6,14 +6,17 @@ import {
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import { DBShellContentProps } from './model';
+import { MAIN_CONTENT_ID } from '../../shared/constants';
 
 useMetadata({});
 
-useDefaultProps<DBShellContentProps>({});
+useDefaultProps<DBShellContentProps>({
+	variant: 'auto'
+});
 
 export default function DBShellContent(props: DBShellContentProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
 		<div
@@ -23,7 +26,7 @@ export default function DBShellContent(props: DBShellContentProps) {
 			data-variant={props.variant}>
 			<Slot name="startSlot" />
 			<main
-				id="main-content"
+				id={MAIN_CONTENT_ID}
 				class={cls('db-main', props.mainClass)}
 				aria-label={props.mainLabel}>
 				{props.children}

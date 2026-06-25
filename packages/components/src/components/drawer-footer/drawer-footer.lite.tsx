@@ -8,7 +8,7 @@ useDefaultProps<DBDrawerFooterProps>({});
 
 export default function DBDrawerFooter(props: DBDrawerFooterProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
 		<footer

@@ -48,10 +48,13 @@ export default function DBControlPanelNavigationItem(
 			const listElement = _ref as HTMLLIElement;
 			const anchor = listElement.querySelector('a');
 			if (anchor) {
-				anchor.setAttribute(
-					'tabindex',
-					getBoolean(props.disabled, 'disabled') ? '-1' : '0'
-				);
+				if (getBoolean(props.disabled, 'disabled')) {
+					anchor.setAttribute('tabindex', '-1');
+					anchor.setAttribute('aria-disabled', 'true');
+				} else {
+					anchor.removeAttribute('tabindex');
+					anchor.removeAttribute('aria-disabled');
+				}
 			}
 		}
 	}, [_ref, props.disabled]);
@@ -62,9 +65,9 @@ export default function DBControlPanelNavigationItem(
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-control-panel-navigation-item', props.className)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}
-			data-active={getBooleanAsString(props.active)}
-			aria-disabled={getBooleanAsString(props.disabled)}>
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
+			data-active={getBooleanAsString(props.active, 'active')}
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<Slot name="startSlot"></Slot>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}

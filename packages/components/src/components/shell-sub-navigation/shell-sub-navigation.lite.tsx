@@ -18,7 +18,7 @@ useDefaultProps<DBShellSubNavigationProps>({});
 
 export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBShellSubNavigationState>({
 		_id: `db-shell-sub-navigation-${uuid()}`,

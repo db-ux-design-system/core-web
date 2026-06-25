@@ -10,7 +10,7 @@ export default function DBControlPanelMetaNavigation(
 	props: DBControlPanelMetaNavigationProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
 		<div

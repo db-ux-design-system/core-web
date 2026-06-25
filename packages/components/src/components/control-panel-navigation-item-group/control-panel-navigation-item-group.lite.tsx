@@ -38,9 +38,9 @@ export default function DBControlPanelNavigationItemGroup(
 	props: DBControlPanelNavigationItemGroupProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLLIElement | any>(undefined);
-	const _menuRef = useRef<HTMLElement | any>(undefined);
-	const _buttonRef = useRef<HTMLButtonElement | any>(undefined);
+	const _ref = useRef<HTMLLIElement | any>(null);
+	const _menuRef = useRef<HTMLElement | any>(null);
+	const _buttonRef = useRef<HTMLButtonElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelNavigationItemGroupState>({
 		hasSubNavigation: true,
@@ -174,7 +174,7 @@ export default function DBControlPanelNavigationItemGroup(
 		if (props.expanded !== undefined) {
 			state.isSubNavigationExpanded = !!getBoolean(
 				props.expanded,
-				'subNavigationExpanded'
+				'expanded'
 			);
 		}
 	}, [props.expanded]);
@@ -277,7 +277,7 @@ export default function DBControlPanelNavigationItemGroup(
 			)}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
-			data-active={getBooleanAsString(props.active)}
+			data-active={getBooleanAsString(props.active, 'active')}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button
 				ref={_buttonRef}
@@ -285,11 +285,7 @@ export default function DBControlPanelNavigationItemGroup(
 				aria-haspopup={getBooleanAsString(
 					state.hasPopup ? true : undefined
 				)}
-				aria-owns={
-					state.hasPopup
-						? undefined
-						: (props.menuId ?? state._itemGroupMenuId)
-				}
+				aria-controls={props.menuId ?? state._itemGroupMenuId}
 				aria-expanded={getBooleanAsString(
 					state.isSubNavigationExpanded
 				)}

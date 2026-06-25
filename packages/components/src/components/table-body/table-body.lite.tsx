@@ -16,7 +16,7 @@ useDefaultProps<DBTableBodyProps>({});
 
 export default function DBTableBody(props: DBTableBodyProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableSectionElement | any>(undefined);
+	const _ref = useRef<HTMLTableSectionElement | any>(null);
 	return (
 		<tbody
 			ref={_ref}

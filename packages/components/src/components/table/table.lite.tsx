@@ -19,7 +19,7 @@ useDefaultProps<DBTableProps>({});
 
 export default function DBTable(props: DBTableProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableElement | any>(undefined);
+	const _ref = useRef<HTMLTableElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTableState>({
 		_data: undefined,

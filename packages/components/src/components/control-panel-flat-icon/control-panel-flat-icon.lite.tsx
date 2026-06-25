@@ -21,7 +21,7 @@ export default function DBControlPanelFlatIcon(
 	props: DBControlPanelFlatIconProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBControlPanelFlatIconState>({
 		_resizeObserverCallbackId: undefined
@@ -74,7 +74,7 @@ export default function DBControlPanelFlatIcon(
 		<header
 			ref={_ref}
 			id={props.id}
-			data-no-text={getBooleanAsString(props.noText)}
+			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			class={cls('db-control-panel-flat-icon', props.className)}>
 			{props.children}
 		</header>

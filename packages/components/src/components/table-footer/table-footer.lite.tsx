@@ -16,7 +16,7 @@ useDefaultProps<DBTableFooterProps>({});
 
 export default function DBTableFooter(props: DBTableFooterProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableSectionElement | any>(undefined);
+	const _ref = useRef<HTMLTableSectionElement | any>(null);
 	return (
 		<tfoot
 			ref={_ref}

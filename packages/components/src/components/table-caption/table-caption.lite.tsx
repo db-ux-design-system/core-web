@@ -8,7 +8,7 @@ useDefaultProps<DBTableCaptionProps>({});
 
 export default function DBTableCaption(props: DBTableCaptionProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableCaptionElement | any>(undefined);
+	const _ref = useRef<HTMLTableCaptionElement | any>(null);
 	return (
 		<caption
 			ref={_ref}

@@ -9,6 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
 import { DBShellProps, DBShellState } from './model';
+import { MAIN_CONTENT_ID } from '../../shared/constants';
 
 useMetadata({});
 useDefaultProps<DBShellProps>({});
@@ -65,7 +66,7 @@ export default function DBShell(props: DBShellProps) {
 				else={<Slot name="skipNavigationLink" />}>
 				<a
 					className="db-shell-skip-navigation-link"
-					href="#main-content">
+					href={`#${MAIN_CONTENT_ID}`}>
 					{props.skipNavigationLinkText}
 				</a>
 			</Show>

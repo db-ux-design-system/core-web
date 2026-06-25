@@ -19,7 +19,7 @@ useDefaultProps<DBTableRowProps>({});
 
 export default function DBTableRow(props: DBTableRowProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableRowElement | any>(undefined);
+	const _ref = useRef<HTMLTableRowElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTableRowState>({
 		getHeaderCell: (

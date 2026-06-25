@@ -20,7 +20,7 @@ useDefaultProps<DBControlPanelMobileProps>({});
 
 export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelMobileState>({
 		open: false,
@@ -34,6 +34,17 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 
 			if (props.onToggle) {
 				props.onToggle(reverseOpen);
+			}
+		},
+		handleClose: (event: any) => {
+			if (event.stopPropagation) {
+				event.stopPropagation();
+			}
+
+			state.open = false;
+
+			if (props.onToggle) {
+				props.onToggle(false);
 			}
 		},
 		handleNavigationItemClick: (event: any) => {
@@ -58,7 +69,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				className="db-control-panel-mobile-drawer"
 				rounded
 				open={state.open}
-				onClose={(event) => state.handleToggle(event)}
+				onClose={(event) => state.handleClose(event)}
 				footer={
 					<DBDrawerFooter>
 						<Slot name="secondaryActions" />

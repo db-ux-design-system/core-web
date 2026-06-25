@@ -13,11 +13,13 @@ import { DBDrawerHeaderProps } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBDrawerHeaderProps>({});
+useDefaultProps<DBDrawerHeaderProps>({
+	closeButtonText: DEFAULT_CLOSE_BUTTON
+});
 
 export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
 		<header
@@ -37,10 +39,8 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 				variant="ghost"
 				type="button"
 				noText>
-				{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-				<DBTooltip>
-					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-				</DBTooltip>
+				{props.closeButtonText}
+				<DBTooltip>{props.closeButtonText}</DBTooltip>
 			</DBButton>
 		</header>
 	);

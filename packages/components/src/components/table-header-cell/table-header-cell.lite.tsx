@@ -8,7 +8,7 @@ useDefaultProps<DBTableHeaderCellProps>({});
 
 export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableCellElement | any>(undefined);
+	const _ref = useRef<HTMLTableCellElement | any>(null);
 	return (
 		<th
 			ref={_ref}
