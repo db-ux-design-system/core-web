@@ -127,7 +127,9 @@ export default function ShellSlots() {
 							<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge-mobile">
 								<DBControlPanelNavigationItem
 									startSlot={
-										<DBBadge semantic="warning" size="small">
+										<DBBadge
+											semantic="warning"
+											size="small">
 											3
 										</DBBadge>
 									}>
@@ -196,7 +198,9 @@ export default function ShellSlots() {
 									icon="x_placeholder"
 									text="Notifications"
 									startSlot={
-										<DBBadge semantic="critical" size="small">
+										<DBBadge
+											semantic="critical"
+											size="small">
 											5
 										</DBBadge>
 									}>
@@ -264,7 +268,9 @@ export default function ShellSlots() {
 								<DBControlPanelNavigationItemGroup
 									text="Notifications"
 									startSlot={
-										<DBBadge semantic="critical" size="small">
+										<DBBadge
+											semantic="critical"
+											size="small">
 											5
 										</DBBadge>
 									}>
