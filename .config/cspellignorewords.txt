@@ -223,7 +223,6 @@ unreviewed
 notext
 prebundle
 subcomponent
-dependanbot
 # GitHub Project IDs
 PVTSSF
 ADOC
