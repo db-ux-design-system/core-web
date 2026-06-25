@@ -1,12 +1,7 @@
-@use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/control-panel-actions";
 
 .db-control-panel-primary-actions {
-	grid-area: primary;
-	display: flex;
-	gap: variables.$db-spacing-fixed-xs;
-	align-items: center;
+	@extend %control-panel-actions;
 
-	&:empty {
-		display: none;
-	}
+	grid-area: primary;
 }

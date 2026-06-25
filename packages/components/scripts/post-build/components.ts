@@ -275,8 +275,7 @@ export const getComponents = (): Component[] => [
 		name: 'control-panel-navigation'
 	},
 	{
-		name: 'control-panel-navigation-item',
-		overwrites: {}
+		name: 'control-panel-navigation-item'
 	},
 	{
 		name: 'select',

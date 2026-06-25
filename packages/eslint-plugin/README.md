@@ -615,18 +615,16 @@ Ensures components with close buttons have appropriate text attributes for acces
 
 ### `control-panel-mobile-burger-menu-label-required`
 
-Ensures DBControlPanelMobile/DBHeader has burgerMenuLabel attribute for accessibility.
+Ensures DBControlPanelMobile has burgerMenuLabel attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
 <DBControlPanelMobile>Content</DBControlPanelMobile>
-<DBHeader>Content</DBHeader>
 
 // Angular
 <db-control-panel-mobile>Content</db-control-panel-mobile>
-<db-header>Content</db-header>
 
 // Vue
 <DBControlPanelMobile>Content</DBControlPanelMobile>
@@ -637,11 +635,10 @@ Ensures DBControlPanelMobile/DBHeader has burgerMenuLabel attribute for accessib
 ```jsx
 // React
 <DBControlPanelMobile burgerMenuLabel="Menu">Content</DBControlPanelMobile>
-<DBHeader burgerMenuLabel="Open navigation">Content</DBHeader>
 
 // Angular
 <db-control-panel-mobile burgerMenuLabel="Menu">Content</db-control-panel-mobile>
-<db-header [burgerMenuLabel]="menuLabel">Content</db-header>
+<db-control-panel-mobile [burgerMenuLabel]="menuLabel">Content</db-control-panel-mobile>
 
 // Vue
 <DBControlPanelMobile :burgerMenuLabel="label">Content</DBControlPanelMobile>

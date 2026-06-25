@@ -135,7 +135,7 @@ This guide covers:
 - **Setup and Configuration**: Getting started with the design system packages
 - **Design Principles**: Following DB UX Design System guidelines and best practices
 - **Component Patterns**: Structured approaches to building consistent components
-- **Code Examples**: Practical implementations for cards, forms, control-panel-navigation, and more
+- **Code Examples**: Practical implementations for cards, forms, navigation, and more
 - **Framework Support**: Specific guidance for React, Vue, Angular, and vanilla HTML/CSS
 - **Accessibility**: Ensuring your components are inclusive and compliant
 - **Common Pitfalls**: What to avoid and how to maintain design system consistency
