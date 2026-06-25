@@ -252,3 +252,10 @@ app-nav-item {
 		}
 	}
 }
+
+.meta-workaround {
+	.db-link {
+		/* This workaround is for reduce the amount of screenshot changes */
+		block-size: calc(var(--db-sizing-sm) + 4px);
+	}
+}

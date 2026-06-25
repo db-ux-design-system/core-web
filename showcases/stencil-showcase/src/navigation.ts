@@ -265,7 +265,7 @@ function renderPrimaryActions(): string {
 
 function renderMetaNavigation(): string {
 	return `
-		<db-control-panel-meta slot="metaNavigation">
+		<db-control-panel-meta class="meta-workaround" slot="metaNavigation">
 			<db-link size="small" href="#">Link 1</db-link>
 			<db-link size="small" href="#">Link 2</db-link>
 			<db-link size="small" href="#">Link 3</db-link>

@@ -1,7 +1,7 @@
 import { DBControlPanelMeta, DBLink } from '@components';
 
 const MetaNavigation = () => (
-	<DBControlPanelMeta>
+	<DBControlPanelMeta className="meta-workaround">
 		<DBLink size="small" href="#">
 			Link 1
 		</DBLink>

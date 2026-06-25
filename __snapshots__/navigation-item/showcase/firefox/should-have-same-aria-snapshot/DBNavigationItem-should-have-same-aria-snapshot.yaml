@@ -27,34 +27,10 @@
   - link "Expanded"
   - list:
     - listitem:
-      - button "(Default) False"
-      - list:
-        - listitem:
-          - button "Back"
-        - listitem:
-          - button "Also a navigation item with longer label"
-          - list:
-            - listitem:
-              - button "Back"
-            - listitem:
-              - link "Navigation-Item 2"
-        - listitem:
-          - link "Navigation-Item 1"
+      - link "(Default) False"
   - list:
     - listitem:
-      - button "True" [expanded]
-      - list:
-        - listitem:
-          - button "Back"
-        - listitem:
-          - button "Also a navigation item with longer label"
-          - list:
-            - listitem:
-              - button "Back"
-            - listitem:
-              - link "Navigation-Item 2"
-        - listitem:
-          - link "Navigation-Item 1"
+      - button "True"
   - link "Show Icon"
   - list:
     - listitem:
@@ -62,3 +38,17 @@
   - list:
     - listitem:
       - link "True"
+  - link "Width"
+  - list:
+    - listitem:
+      - link "(Default) Auto"
+  - list:
+    - listitem:
+      - link "Full"
+  - link "Wrap"
+  - list:
+    - listitem:
+      - link "No Wrap (Default)"
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines."
