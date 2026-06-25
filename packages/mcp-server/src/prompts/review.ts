@@ -1,5 +1,4 @@
-import type { Framework } from '../types.js';
-import { FRAMEWORK_PKG } from '../types.js';
+import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
 /**
  * Generates a structured prompt that performs a multi-layered QA, accessibility,

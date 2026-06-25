@@ -1,5 +1,5 @@
 ---
-name: Dependabot auto-merge
+name: Dependabot auto-handle
 
 permissions:
   contents: write
@@ -29,6 +29,8 @@ jobs:
       - name: 🐛 Debug update-type output
         run: echo "Update type is '${{ steps.metadata.outputs.update-type }}'"
 
+      # Auto-merge is safe for all Dependabot PRs because the required
+      # approval gate still prevents merging without a human review.
       - name: 🤖 Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --squash "$PR_URL"
         env:

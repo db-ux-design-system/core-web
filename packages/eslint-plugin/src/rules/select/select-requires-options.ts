@@ -9,14 +9,16 @@ import {
 function hasOptionChildren(node: any): boolean {
 	return node.children?.some((child: any) => {
 		if (child.type === 'JSXElement') {
-			const name = child.openingElement.name;
+			const { name } = child.openingElement;
 			if (name.type === 'JSXIdentifier') {
 				return name.name === 'option';
 			}
 		}
+
 		if (child.type === 'VElement' || child.type === 'Element') {
 			return child.rawName === 'option' || child.name === 'option';
 		}
+
 		return false;
 	});
 }
@@ -39,7 +41,7 @@ export default {
 			const options = getAttributeValue(node, 'options');
 			const hasChildren = hasOptionChildren(node);
 
-			if (options === null && !hasChildren) {
+			if (options === undefined && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -64,7 +66,7 @@ export default {
 			const options = getAttributeValue(openingElement, 'options');
 			const hasChildren = hasOptionChildren(node);
 
-			if (options === null && !hasChildren) {
+			if (options === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS

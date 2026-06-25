@@ -35,6 +35,16 @@ export type DBButtonSharedProps = {
 
 export type DBButtonDefaultProps = {
 	/**
+	 * The [command](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#command) attribute specifies the action to perform on the element controlled by a `<button>` element.
+	 */
+	command?: string;
+
+	/**
+	 * The [commandfor](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#commandfor) attribute turns a `<button>` into a command button that controls the given interactive element referenced by `id`.
+	 */
+	commandfor?: string;
+
+	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
 	disabled?: boolean | string;
