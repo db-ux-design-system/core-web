@@ -24,8 +24,12 @@ on:
 
 jobs:
   auto-set-project-status:
-    # Run for repository (non-fork) PRs. Dependabot/Bot PRs are intentionally
-    # included so non-patch Dependabot updates get moved to "🎁 Ready for review".
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    # Run for repository (non-fork) PRs.
+    # Dependabot PRs are intentionally excluded as we currently face a secrets
+    # problem on non-patch Dependabot updates.
+    # TODO: ensure that dependabot updates even also get moved to "🎁 Ready for review".
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]'
     uses: ./.github/workflows/99-auto-set-project-status.yml
     secrets: inherit
