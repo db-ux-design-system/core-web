@@ -1,5 +1,6 @@
 {
 	"extends": ["stylelint-config-standard-scss"],
+	"ignoreFiles": ["**/node_modules/**", "scripts/**"],
 	"plugins": [
 		"stylelint-use-logical",
 		"@double-great/stylelint-a11y",

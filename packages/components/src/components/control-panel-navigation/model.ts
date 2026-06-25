@@ -27,6 +27,8 @@ export type DBControlPanelNavigationDefaultState = {
 	_handleTreeKeyDown: (event: any) => void;
 	_handleTreeKeys: (event: any) => void;
 	_handlePopoverKeys: (event: any) => void;
+	_focusParentGroupButton: (activeElement: HTMLElement) => boolean;
+	_closeSubMenuAndReturnToParent: (parentGroupMenu: Element) => void;
 	_isSubNavigation?: boolean;
 	_resizeObserverCallbackId?: string;
 };

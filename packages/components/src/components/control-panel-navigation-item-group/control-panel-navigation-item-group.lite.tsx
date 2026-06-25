@@ -166,10 +166,8 @@ export default function DBControlPanelNavigationItemGroup(
 	onUnMount(() => {
 		state._teardownPopover();
 
-		if (state._variantObserver) {
-			state._variantObserver.disconnect();
-			state._variantObserver = undefined;
-		}
+		state._variantObserver?.disconnect();
+		state._variantObserver = undefined;
 	});
 
 	onUpdate(() => {

@@ -8,7 +8,9 @@ const xoConfig = [
 			'**/*.vue',
 			// We don't need to check for stories - they will be generated
 			'storybooks/*/src/**',
-			'scripts/check-docs.js'
+			'scripts/check-docs.js',
+			// Shared showcase file is covered by individual showcase tsconfigs
+			'showcases/settings.ts'
 		]
 	},
 	{
