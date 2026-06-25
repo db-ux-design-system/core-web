@@ -1,0 +1,13 @@
+- banner:
+  - navigation "Flat Icon Navigation":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: "#"
+      - listitem:
+        - link "Search":
+          - /url: "#"
+      - listitem:
+        - link "Account":
+          - /url: "#"
+- main "Main": Content
