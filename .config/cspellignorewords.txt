@@ -236,3 +236,4 @@ nmerget
 notext
 subcomponent
 prebundle
+treeitems

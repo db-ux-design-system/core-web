@@ -14,6 +14,7 @@
 	visibility: hidden;
 	overflow: hidden;
 	gap: variables.$db-spacing-fixed-xs;
+	/* stylelint-disable-next-line db-ux/use-spacings */
 	padding: variables.$db-spacing-fixed-xs 0 0 1lh;
 
 	@media screen and (prefers-reduced-motion: no-preference) {

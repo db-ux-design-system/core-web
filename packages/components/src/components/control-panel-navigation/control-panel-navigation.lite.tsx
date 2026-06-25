@@ -77,6 +77,40 @@ export default function DBControlPanelNavigation(
 				state._handlePopoverKeys(event);
 			}
 		},
+		_focusParentGroupButton(activeElement: HTMLElement): boolean {
+			const parentGroupMenu = activeElement?.closest(
+				'.db-control-panel-navigation-item-group-menu'
+			);
+			const parentGroup = parentGroupMenu?.closest(
+				'.db-control-panel-navigation-item-group'
+			);
+			if (parentGroup) {
+				const parentButton = parentGroup.querySelector(
+					':scope > .db-control-panel-navigation-item-group-expand-button'
+				) as HTMLElement | null;
+				if (parentButton) {
+					activeElement.setAttribute('tabindex', '-1');
+					parentButton.setAttribute('tabindex', '0');
+					parentButton.focus();
+					return true;
+				}
+			}
+			return false;
+		},
+		_closeSubMenuAndReturnToParent(parentGroupMenu: Element) {
+			const parentGroup = parentGroupMenu.closest(
+				'.db-control-panel-navigation-item-group'
+			);
+			if (parentGroup) {
+				const parentButton = parentGroup.querySelector(
+					':scope > .db-control-panel-navigation-item-group-expand-button'
+				) as HTMLElement | null;
+				if (parentButton) {
+					parentButton.click();
+					parentButton.focus();
+				}
+			}
+		},
 		_handlePopoverKeys(event: any) {
 			const menuElement = menuRef as HTMLElement;
 			const activeElement = document.activeElement as HTMLElement;
@@ -116,19 +150,7 @@ export default function DBControlPanelNavigation(
 				if (currentIndex < items.length - 1) {
 					items[currentIndex + 1]?.focus();
 				} else if (!isTopLevel) {
-					// Last item in sub-menu: close and return to parent
-					const parentGroup = parentGroupMenu!.closest(
-						'.db-control-panel-navigation-item-group'
-					);
-					if (parentGroup) {
-						const parentButton = parentGroup.querySelector(
-							':scope > .db-control-panel-navigation-item-group-expand-button'
-						) as HTMLElement | null;
-						if (parentButton) {
-							parentButton.click();
-							parentButton.focus();
-						}
-					}
+					state._closeSubMenuAndReturnToParent(parentGroupMenu!);
 				} else {
 					// Wrap at top level
 					items[0]?.focus();
@@ -138,19 +160,7 @@ export default function DBControlPanelNavigation(
 				if (currentIndex > 0) {
 					items[currentIndex - 1]?.focus();
 				} else if (!isTopLevel) {
-					// First item in sub-menu: close and return to parent
-					const parentGroup = parentGroupMenu!.closest(
-						'.db-control-panel-navigation-item-group'
-					);
-					if (parentGroup) {
-						const parentButton = parentGroup.querySelector(
-							':scope > .db-control-panel-navigation-item-group-expand-button'
-						) as HTMLElement | null;
-						if (parentButton) {
-							parentButton.click();
-							parentButton.focus();
-						}
-					}
+					state._closeSubMenuAndReturnToParent(parentGroupMenu!);
 				} else {
 					// Wrap at top level
 					items[items.length - 1]?.focus();
@@ -187,18 +197,7 @@ export default function DBControlPanelNavigation(
 				if (!isTopLevel) {
 					// Close sub-menu, return to parent
 					event.preventDefault();
-					const parentGroup = parentGroupMenu!.closest(
-						'.db-control-panel-navigation-item-group'
-					);
-					if (parentGroup) {
-						const parentButton = parentGroup.querySelector(
-							':scope > .db-control-panel-navigation-item-group-expand-button'
-						) as HTMLElement | null;
-						if (parentButton) {
-							parentButton.click();
-							parentButton.focus();
-						}
-					}
+					state._closeSubMenuAndReturnToParent(parentGroupMenu!);
 				}
 			} else if (key === 'Home') {
 				event.preventDefault();
@@ -303,42 +302,14 @@ export default function DBControlPanelNavigation(
 						expandBtn.click();
 					} else {
 						// Move to parent group button
-						const parentGroupMenu = activeElement?.closest(
-							'.db-control-panel-navigation-item-group-menu'
-						);
-						const parentGroup = parentGroupMenu?.closest(
-							'.db-control-panel-navigation-item-group'
-						);
-						if (parentGroup) {
-							const parentButton = parentGroup.querySelector(
-								':scope > .db-control-panel-navigation-item-group-expand-button'
-							) as HTMLElement | null;
-							if (parentButton) {
-								activeElement.setAttribute('tabindex', '-1');
-								parentButton.setAttribute('tabindex', '0');
-								parentButton.focus();
-								return;
-							}
+						if (state._focusParentGroupButton(activeElement)) {
+							return;
 						}
 					}
 				} else {
 					// Not inside a group, try moving to parent
-					const parentGroupMenu = activeElement?.closest(
-						'.db-control-panel-navigation-item-group-menu'
-					);
-					const parentGroup = parentGroupMenu?.closest(
-						'.db-control-panel-navigation-item-group'
-					);
-					if (parentGroup) {
-						const parentButton = parentGroup.querySelector(
-							':scope > .db-control-panel-navigation-item-group-expand-button'
-						) as HTMLElement | null;
-						if (parentButton) {
-							activeElement.setAttribute('tabindex', '-1');
-							parentButton.setAttribute('tabindex', '0');
-							parentButton.focus();
-							return;
-						}
+					if (state._focusParentGroupButton(activeElement)) {
+						return;
 					}
 				}
 			} else if (key === 'Escape') {
