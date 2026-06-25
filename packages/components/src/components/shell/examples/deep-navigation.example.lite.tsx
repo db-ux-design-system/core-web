@@ -26,156 +26,148 @@ export default function ShellDeepNavigation() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
 					data-test-id="shell-deep-nav-top"
-					controlPanelDesktopPosition="top"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-deep-nav-top">
-								<DBControlPanelNavigationItemGroup
+					controlPanelDesktopPosition="top">
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									text="Level 1a">
-									<DBControlPanelNavigationItemGroup text="Level 2a">
-										<DBControlPanelNavigationItemGroup text="Level 3a">
-											<DBControlPanelNavigationItem>
-												<a href="#" aria-current="page">
-													Level 4a
-												</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4b</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4c</a>
-											</DBControlPanelNavigationItem>
-										</DBControlPanelNavigationItemGroup>
-										<DBControlPanelNavigationItemGroup text="Level 3b">
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4d</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4e</a>
-											</DBControlPanelNavigationItem>
-										</DBControlPanelNavigationItemGroup>
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3c</a>
-										</DBControlPanelNavigationItem>
-									</DBControlPanelNavigationItemGroup>
-									<DBControlPanelNavigationItemGroup text="Level 2b">
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3d</a>
-										</DBControlPanelNavigationItem>
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3e</a>
-										</DBControlPanelNavigationItem>
-									</DBControlPanelNavigationItemGroup>
-									<DBControlPanelNavigationItem>
-										<a href="#">Level 2c</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItemGroup
-									icon="x_placeholder"
-									text="Level 1b">
-									<DBControlPanelNavigationItemGroup text="Level 2d">
-										<DBControlPanelNavigationItemGroup text="Level 3f">
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4f</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4g</a>
-											</DBControlPanelNavigationItem>
-										</DBControlPanelNavigationItemGroup>
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3g</a>
-										</DBControlPanelNavigationItem>
-									</DBControlPanelNavigationItemGroup>
-									<DBControlPanelNavigationItem>
-										<a href="#">Level 2e</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem
-									icon="x_placeholder"
-									tooltip="Simple Item">
-									<a href="#">Simple Item</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Deep Nav Top"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-deep-nav-top-mobile">
-								<DBControlPanelNavigationItemGroup text="Level 1a">
-									<DBControlPanelNavigationItemGroup text="Level 2a">
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-deep-nav-top">
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Level 1a">
+								<DBControlPanelNavigationItemGroup text="Level 2a">
+									<DBControlPanelNavigationItemGroup text="Level 3a">
 										<DBControlPanelNavigationItem>
 											<a href="#" aria-current="page">
-												Level 3a
+												Level 4a
 											</a>
 										</DBControlPanelNavigationItem>
 										<DBControlPanelNavigationItem>
-											<a href="#">Level 3b</a>
+											<a href="#">Level 4b</a>
+										</DBControlPanelNavigationItem>
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4c</a>
+										</DBControlPanelNavigationItem>
+									</DBControlPanelNavigationItemGroup>
+									<DBControlPanelNavigationItemGroup text="Level 3b">
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4d</a>
+										</DBControlPanelNavigationItem>
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4e</a>
 										</DBControlPanelNavigationItem>
 									</DBControlPanelNavigationItemGroup>
 									<DBControlPanelNavigationItem>
-										<a href="#">Level 2b</a>
+										<a href="#">Level 3c</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItemGroup text="Level 2b">
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3d</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3e</a>
 									</DBControlPanelNavigationItem>
 								</DBControlPanelNavigationItemGroup>
 								<DBControlPanelNavigationItem>
-									<a href="#">Level 1b</a>
+									<a href="#">Level 2c</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Level 1b">
+								<DBControlPanelNavigationItemGroup text="Level 2d">
+									<DBControlPanelNavigationItemGroup text="Level 3f">
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4f</a>
+										</DBControlPanelNavigationItem>
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4g</a>
+										</DBControlPanelNavigationItem>
+									</DBControlPanelNavigationItemGroup>
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3g</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Level 2e</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Simple Item">
+								<a href="#">Simple Item</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Deep Nav Top"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-deep-nav-top-mobile">
+							<DBControlPanelNavigationItemGroup text="Level 1a">
+								<DBControlPanelNavigationItemGroup text="Level 2a">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Level 3a
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3b</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Level 2b</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Level 1b</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-deep-nav-top">
 						Deep Navigation - Top Position
 					</DBShellContent>
@@ -184,156 +176,148 @@ export default function ShellDeepNavigation() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
 					data-test-id="shell-deep-nav-left"
-					controlPanelDesktopPosition="left"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-deep-nav-left">
-								<DBControlPanelNavigationItemGroup
+					controlPanelDesktopPosition="left">
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									text="Level 1a">
-									<DBControlPanelNavigationItemGroup text="Level 2a">
-										<DBControlPanelNavigationItemGroup text="Level 3a">
-											<DBControlPanelNavigationItem>
-												<a href="#" aria-current="page">
-													Level 4a
-												</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4b</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4c</a>
-											</DBControlPanelNavigationItem>
-										</DBControlPanelNavigationItemGroup>
-										<DBControlPanelNavigationItemGroup text="Level 3b">
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4d</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4e</a>
-											</DBControlPanelNavigationItem>
-										</DBControlPanelNavigationItemGroup>
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3c</a>
-										</DBControlPanelNavigationItem>
-									</DBControlPanelNavigationItemGroup>
-									<DBControlPanelNavigationItemGroup text="Level 2b">
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3d</a>
-										</DBControlPanelNavigationItem>
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3e</a>
-										</DBControlPanelNavigationItem>
-									</DBControlPanelNavigationItemGroup>
-									<DBControlPanelNavigationItem>
-										<a href="#">Level 2c</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItemGroup
-									icon="x_placeholder"
-									text="Level 1b">
-									<DBControlPanelNavigationItemGroup text="Level 2d">
-										<DBControlPanelNavigationItemGroup text="Level 3f">
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4f</a>
-											</DBControlPanelNavigationItem>
-											<DBControlPanelNavigationItem>
-												<a href="#">Level 4g</a>
-											</DBControlPanelNavigationItem>
-										</DBControlPanelNavigationItemGroup>
-										<DBControlPanelNavigationItem>
-											<a href="#">Level 3g</a>
-										</DBControlPanelNavigationItem>
-									</DBControlPanelNavigationItemGroup>
-									<DBControlPanelNavigationItem>
-										<a href="#">Level 2e</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem
-									icon="x_placeholder"
-									tooltip="Simple Item">
-									<a href="#">Simple Item</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Deep Nav Left"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-deep-nav-left-mobile">
-								<DBControlPanelNavigationItemGroup text="Level 1a">
-									<DBControlPanelNavigationItemGroup text="Level 2a">
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-deep-nav-left">
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Level 1a">
+								<DBControlPanelNavigationItemGroup text="Level 2a">
+									<DBControlPanelNavigationItemGroup text="Level 3a">
 										<DBControlPanelNavigationItem>
 											<a href="#" aria-current="page">
-												Level 3a
+												Level 4a
 											</a>
 										</DBControlPanelNavigationItem>
 										<DBControlPanelNavigationItem>
-											<a href="#">Level 3b</a>
+											<a href="#">Level 4b</a>
+										</DBControlPanelNavigationItem>
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4c</a>
+										</DBControlPanelNavigationItem>
+									</DBControlPanelNavigationItemGroup>
+									<DBControlPanelNavigationItemGroup text="Level 3b">
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4d</a>
+										</DBControlPanelNavigationItem>
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4e</a>
 										</DBControlPanelNavigationItem>
 									</DBControlPanelNavigationItemGroup>
 									<DBControlPanelNavigationItem>
-										<a href="#">Level 2b</a>
+										<a href="#">Level 3c</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItemGroup text="Level 2b">
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3d</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3e</a>
 									</DBControlPanelNavigationItem>
 								</DBControlPanelNavigationItemGroup>
 								<DBControlPanelNavigationItem>
-									<a href="#">Level 1b</a>
+									<a href="#">Level 2c</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Level 1b">
+								<DBControlPanelNavigationItemGroup text="Level 2d">
+									<DBControlPanelNavigationItemGroup text="Level 3f">
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4f</a>
+										</DBControlPanelNavigationItem>
+										<DBControlPanelNavigationItem>
+											<a href="#">Level 4g</a>
+										</DBControlPanelNavigationItem>
+									</DBControlPanelNavigationItemGroup>
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3g</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Level 2e</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Simple Item">
+								<a href="#">Simple Item</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Deep Nav Left"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-deep-nav-left-mobile">
+							<DBControlPanelNavigationItemGroup text="Level 1a">
+								<DBControlPanelNavigationItemGroup text="Level 2a">
+									<DBControlPanelNavigationItem>
+										<a href="#" aria-current="page">
+											Level 3a
+										</a>
+									</DBControlPanelNavigationItem>
+									<DBControlPanelNavigationItem>
+										<a href="#">Level 3b</a>
+									</DBControlPanelNavigationItem>
+								</DBControlPanelNavigationItemGroup>
+								<DBControlPanelNavigationItem>
+									<a href="#">Level 2b</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Level 1b</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-deep-nav-left">
 						Deep Navigation - Left Position
 					</DBShellContent>

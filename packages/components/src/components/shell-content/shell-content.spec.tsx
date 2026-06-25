@@ -12,34 +12,19 @@ import { DBShell } from '../shell';
 
 // template v-slot is used for vue component tests
 const comp: any = (
-	<DBShell
-		controlPanelDesktopPosition="top"
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				orientation="horizontal"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}>
-				{/*<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>*/}
-				<DBControlPanelNavigation aria-label="Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop orientation="horizontal">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<DBControlPanelNavigation aria-label="Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		</template>*/}
+	<DBShell controlPanelDesktopPosition="top">
+		<DBControlPanelDesktop
+			orientation="horizontal"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelDesktop>
 		<DBShellContent mainLabel="Main Content">
 			<p>Page content goes here</p>
 		</DBShellContent>
@@ -47,34 +32,19 @@ const comp: any = (
 );
 
 const compFixed: any = (
-	<DBShell
-		controlPanelDesktopPosition="top"
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				orientation="horizontal"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}>
-				{/*<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>*/}
-				<DBControlPanelNavigation aria-label="Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop orientation="horizontal">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<DBControlPanelNavigation aria-label="Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		</template>*/}
+	<DBShell controlPanelDesktopPosition="top">
+		<DBControlPanelDesktop
+			orientation="horizontal"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelDesktop>
 		<DBShellContent variant="fixed" mainLabel="Fixed Content">
 			<p>Fixed scrolling content</p>
 		</DBShellContent>

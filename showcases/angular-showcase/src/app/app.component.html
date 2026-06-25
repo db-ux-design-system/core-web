@@ -12,7 +12,7 @@
 		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
 		[showSubNavigation]="settings.subNavigation === 'true'"
 	>
-		<db-shell-sub-navigation sub-navigation>
+		<db-shell-sub-navigation>
 			<db-control-panel-navigation
 				aria-label="sub-navigation"
 				[variant]="settings.subNavigationVariant"
@@ -22,10 +22,7 @@
 				}</db-control-panel-navigation
 		></db-shell-sub-navigation>
 
-		<db-control-panel-desktop
-			control-panel-desktop
-			slot="controlPanelDesktop"
-		>
+		<db-control-panel-desktop>
 			<db-control-panel-brand
 				brand
 				data-logo="db-systel"
@@ -36,12 +33,8 @@
 				[density]="density"
 				[color]="color"
 				[settings]="settings"
-				slot="primaryActions"
 			></app-primary-actions>
-			<app-secondary-actions
-				secondary-actions
-				slot="secondaryActions"
-			></app-secondary-actions>
+			<app-secondary-actions secondary-actions></app-secondary-actions>
 			<db-control-panel-navigation
 				aria-label="desktop-navigation"
 				[variant]="settings.navigationDesktopVariant"
@@ -51,13 +44,9 @@
 				}
 			</db-control-panel-navigation>
 		</db-control-panel-desktop>
-		<db-control-panel-mobile
-			control-panel-mobile
-			drawerHeaderText="Showcase"
-		>
+		<db-control-panel-mobile drawerHeaderText="Showcase">
 			<db-control-panel-brand
 				brand
-				slot="brand"
 				data-logo="db-systel"
 			></db-control-panel-brand>
 			<app-meta-navigation meta-navigation />
@@ -66,12 +55,8 @@
 				[density]="density"
 				[color]="color"
 				[settings]="settings"
-				slot="primaryActions"
 			></app-primary-actions>
-			<app-secondary-actions
-				secondary-actions
-				slot="secondaryActions"
-			></app-secondary-actions>
+			<app-secondary-actions secondary-actions></app-secondary-actions>
 			<db-control-panel-navigation
 				aria-label="mobile-navigation"
 				[variant]="settings.navigationMobileVariant"

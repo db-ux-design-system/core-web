@@ -11,121 +11,59 @@ import { DBShellContent } from '../shell-content';
 
 // template v-slot is used for vue component tests
 const comp: any = (
-	<DBShell
-		controlPanelDesktop={
-			<DBControlPanelFlatIcon>
-				<DBControlPanelNavigation aria-label="Flat Icon Navigation Desktop">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="eye">
-						<a href="#">Account</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		}
-		controlPanelMobile={
-			<DBControlPanelFlatIcon>
-				<DBControlPanelNavigation aria-label="Flat Icon Navigation">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="eye">
-						<a href="#">Account</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelFlatIcon>
-				<DBControlPanelNavigation aria-label="Flat Icon Navigation Desktop">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="eye">
-						<a href="#">Account</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		</template>*/}
-		{/*<template v-slot:control-panel-mobile>
-			<DBControlPanelFlatIcon>
-				<DBControlPanelNavigation aria-label="Flat Icon Navigation">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="eye">
-						<a href="#">Account</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		</template>*/}
+	<DBShell>
+		<DBControlPanelFlatIcon>
+			<DBControlPanelNavigation aria-label="Flat Icon Navigation Desktop">
+				<DBControlPanelNavigationItem icon="house">
+					<a href="#">Home</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="magnifying_glass">
+					<a href="#">Search</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="eye">
+					<a href="#">Account</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelFlatIcon>
+		<DBControlPanelFlatIcon>
+			<DBControlPanelNavigation aria-label="Flat Icon Navigation">
+				<DBControlPanelNavigationItem icon="house">
+					<a href="#">Home</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="magnifying_glass">
+					<a href="#">Search</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="eye">
+					<a href="#">Account</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelFlatIcon>
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>
 );
 
 const compNoText: any = (
-	<DBShell
-		controlPanelDesktop={
-			<DBControlPanelFlatIcon noText>
-				<DBControlPanelNavigation aria-label="Flat Icon No Text Desktop">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		}
-		controlPanelMobile={
-			<DBControlPanelFlatIcon noText>
-				<DBControlPanelNavigation aria-label="Flat Icon No Text">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelFlatIcon noText>
-				<DBControlPanelNavigation aria-label="Flat Icon No Text Desktop">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		</template>*/}
-		{/*<template v-slot:control-panel-mobile>
-			<DBControlPanelFlatIcon noText>
-				<DBControlPanelNavigation aria-label="Flat Icon No Text">
-					<DBControlPanelNavigationItem icon="house">
-						<a href="#">Home</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="magnifying_glass">
-						<a href="#">Search</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelFlatIcon>
-		</template>*/}
+	<DBShell>
+		<DBControlPanelFlatIcon noText>
+			<DBControlPanelNavigation aria-label="Flat Icon No Text Desktop">
+				<DBControlPanelNavigationItem icon="house">
+					<a href="#">Home</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="magnifying_glass">
+					<a href="#">Search</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelFlatIcon>
+		<DBControlPanelFlatIcon noText>
+			<DBControlPanelNavigation aria-label="Flat Icon No Text">
+				<DBControlPanelNavigationItem icon="house">
+					<a href="#">Home</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="magnifying_glass">
+					<a href="#">Search</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelFlatIcon>
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>
 );

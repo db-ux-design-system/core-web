@@ -12,41 +12,25 @@ import { DBShellContent } from '../shell-content';
 
 // template v-slot is used for vue component tests
 const comp: any = (
-	<DBShell
-		controlPanelDesktopPosition="top"
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				orientation="horizontal"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
-				secondaryActions={
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Notification
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Help
-						</DBButton>
-					</DBControlPanelSecondaryActions>
-				}
-			/>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop orientation="horizontal">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<template v-slot:secondary-actions>
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Notification</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Help</DBButton>
-					</DBControlPanelSecondaryActions>
-				</template>
-			</DBControlPanelDesktop>
-		</template>*/}
+	<DBShell controlPanelDesktopPosition="top">
+		<DBControlPanelDesktop
+			orientation="horizontal"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}
+			secondaryActions={
+				<DBControlPanelSecondaryActions>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
+						Profile
+					</DBButton>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
+						Notification
+					</DBButton>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
+						Help
+					</DBButton>
+				</DBControlPanelSecondaryActions>
+			}
+		/>
+
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>
 );

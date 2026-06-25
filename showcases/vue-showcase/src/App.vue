@@ -32,66 +32,60 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 		:subNavigationMobilePosition="settings.subNavigationMobilePosition"
 		:show-sub-navigation="settings.subNavigation === 'true'"
 	>
-		<template v-slot:sub-navigation>
-			<DBShellSubNavigation>
-				<DBControlPanelNavigation
-					:variant="settings.subNavigationVariant"
-					aria-label="sub navigation"
-				>
-					<template v-for="item of sortedNavigation">
-						<NavItemComponent :navItem="item"></NavItemComponent>
-					</template>
-				</DBControlPanelNavigation>
-			</DBShellSubNavigation>
-		</template>
-		<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop>
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
+		<DBShellSubNavigation>
+			<DBControlPanelNavigation
+				:variant="settings.subNavigationVariant"
+				aria-label="sub navigation"
+			>
+				<template v-for="item of sortedNavigation">
+					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
-				<DBControlPanelNavigation
-					:variant="settings.navigationDesktopVariant"
-					aria-label="main navigation desktop"
-				>
-					<template v-for="item of sortedNavigation">
-						<NavItemComponent :navItem="item"></NavItemComponent>
-					</template>
-				</DBControlPanelNavigation>
-				<template v-slot:primary-actions>
-					<PrimaryActions />
+			</DBControlPanelNavigation>
+		</DBShellSubNavigation>
+		<DBControlPanelDesktop>
+			<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>
+			<DBControlPanelNavigation
+				:variant="settings.navigationDesktopVariant"
+				aria-label="main navigation desktop"
+			>
+				<template v-for="item of sortedNavigation">
+					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
-				<template v-slot:secondary-actions>
-					<SecondaryActions />
+			</DBControlPanelNavigation>
+			<template v-slot:primary-actions>
+				<PrimaryActions />
+			</template>
+			<template v-slot:secondary-actions>
+				<SecondaryActions />
+			</template>
+			<template v-slot:meta-navigation>
+				<MetaNavigation />
+			</template>
+		</DBControlPanelDesktop>
+		<DBControlPanelMobile drawerHeaderText="Showcase">
+			<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>
+			<DBControlPanelNavigation
+				:variant="settings.navigationMobileVariant"
+				aria-label="main navigation mobile"
+			>
+				<template v-for="item of sortedNavigation">
+					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
-				<template v-slot:meta-navigation>
-					<MetaNavigation />
-				</template>
-			</DBControlPanelDesktop>
-		</template>
-		<template v-slot:control-panel-mobile>
-			<DBControlPanelMobile drawerHeaderText="Showcase">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<DBControlPanelNavigation
-					:variant="settings.navigationMobileVariant"
-					aria-label="main navigation mobile"
-				>
-					<template v-for="item of sortedNavigation">
-						<NavItemComponent :navItem="item"></NavItemComponent>
-					</template>
-				</DBControlPanelNavigation>
-				<template v-slot:primary-actions>
-					<PrimaryActions />
-				</template>
-				<template v-slot:secondary-actions>
-					<SecondaryActions />
-				</template>
-				<template v-slot:meta-navigation>
-					<MetaNavigation />
-				</template>
-			</DBControlPanelMobile>
-		</template>
+			</DBControlPanelNavigation>
+			<template v-slot:primary-actions>
+				<PrimaryActions />
+			</template>
+			<template v-slot:secondary-actions>
+				<SecondaryActions />
+			</template>
+			<template v-slot:meta-navigation>
+				<MetaNavigation />
+			</template>
+		</DBControlPanelMobile>
 		<DBShellContent :class="classNames">
 			<router-view></router-view>
 		</DBShellContent>

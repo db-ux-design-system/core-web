@@ -1,7 +1,6 @@
 import {
 	onMount,
 	Show,
-	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -63,17 +62,13 @@ export default function DBShell(props: DBShellProps) {
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Show
 				when={props.skipNavigationLinkText}
-				else={<Slot name="skipNavigationLink" />}>
+				else={props.skipNavigationLink}>
 				<a
 					className="db-shell-skip-navigation-link"
 					href={`#${MAIN_CONTENT_ID}`}>
 					{props.skipNavigationLinkText}
 				</a>
 			</Show>
-
-			<Slot name="controlPanelDesktop" />
-			<Slot name="controlPanelMobile" />
-			<Slot name="subNavigation" />
 			{props.children}
 		</div>
 	);

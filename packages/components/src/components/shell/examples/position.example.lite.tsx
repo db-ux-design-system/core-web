@@ -25,128 +25,120 @@ export default function ShellPosition() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
 					data-test-id="shell-position-top"
-					controlPanelDesktopPosition="top"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-position-top">
-								<DBControlPanelNavigationItem
+					controlPanelDesktopPosition="top">
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item">
-									<a href="#">Item</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item disabled">
-									<a href="#">Item disabled</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Top Position"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation
-								{...useTarget({
-									angular: {
-										'data-x': 'workaround-angular'
-									},
-									default: {}
-								})}
-								aria-label="shell-position-top-mobile">
-								<DBControlPanelNavigationItem icon="x_placeholder">
-									<a href="#">Item</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
-									icon="x_placeholder">
-									<a href="#">Item disabled</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+									variant="ghost"
+									noText>
+									Notification
+								</DBButton>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Help
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-position-top">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item">
+								<a href="#">Item</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								disabled
+								icon="x_placeholder"
+								tooltip="Item disabled">
+								<a href="#">Item disabled</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Top Position"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Notification
+								</DBButton>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Help
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation
+							{...useTarget({
+								angular: {
+									'data-x': 'workaround-angular'
+								},
+								default: {}
+							})}
+							aria-label="shell-position-top-mobile">
+							<DBControlPanelNavigationItem icon="x_placeholder">
+								<a href="#">Item</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								disabled
+								icon="x_placeholder">
+								<a href="#">Item disabled</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-position-top">
 						Top position content
 					</DBShellContent>
@@ -156,128 +148,120 @@ export default function ShellPosition() {
 				<DBShell
 					data-test-id="shell-position-left"
 					controlPanelDesktopPosition="left"
-					controlPanelMobilePosition="bottom"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-position-left">
-								<DBControlPanelNavigationItem
+					controlPanelMobilePosition="bottom">
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item">
-									<a href="#">Item</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item disabled">
-									<a href="#">Item disabled</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Left Position"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Help
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation
-								{...useTarget({
-									angular: {
-										'data-x': 'workaround-angular'
-									},
-									default: {}
-								})}
-								aria-label="shell-position-left-mobile">
-								<DBControlPanelNavigationItem icon="x_placeholder">
-									<a href="#">Item</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									disabled
-									icon="x_placeholder">
-									<a href="#">Item disabled</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+									variant="ghost"
+									noText>
+									Notification
+								</DBButton>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Help
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-position-left">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item">
+								<a href="#">Item</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								disabled
+								icon="x_placeholder"
+								tooltip="Item disabled">
+								<a href="#">Item disabled</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Left Position"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Notification
+								</DBButton>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Help
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation
+							{...useTarget({
+								angular: {
+									'data-x': 'workaround-angular'
+								},
+								default: {}
+							})}
+							aria-label="shell-position-left-mobile">
+							<DBControlPanelNavigationItem icon="x_placeholder">
+								<a href="#">Item</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								disabled
+								icon="x_placeholder">
+								<a href="#">Item disabled</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-position-left">
 						Left position content
 					</DBShellContent>

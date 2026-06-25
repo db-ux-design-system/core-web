@@ -241,7 +241,7 @@ function renderSettingsControls(): string {
 
 function renderPrimaryActions(): string {
 	return `
-		<db-control-panel-primary-actions slot="primaryActions">
+		<db-control-panel-primary-actions>
 			<db-drawer
 				class="js-settings-drawer"
 				direction="custom"
@@ -265,7 +265,7 @@ function renderPrimaryActions(): string {
 
 function renderMetaNavigation(): string {
 	return `
-		<db-control-panel-meta class="meta-workaround" slot="metaNavigation">
+		<db-control-panel-meta class="meta-workaround">
 			<db-link size="small" href="#">Link 1</db-link>
 			<db-link size="small" href="#">Link 2</db-link>
 			<db-link size="small" href="#">Link 3</db-link>
@@ -274,7 +274,7 @@ function renderMetaNavigation(): string {
 
 function renderSecondaryActions(): string {
 	return `
-		<db-control-panel-secondary-actions slot="secondaryActions">
+		<db-control-panel-secondary-actions>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Profile</db-button>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Notification</db-button>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Help</db-button>
@@ -297,11 +297,11 @@ export function renderNavigation(): void {
 			sub-navigation-mobile-position="${settings.subNavigationMobilePosition}"
 			show-sub-navigation="${settings.subNavigation === 'true'}"
 		>
-			<db-shell-sub-navigation slot="subNavigation">
+			<db-shell-sub-navigation>
 				${renderNavigationTree('sub-navigation', settings.subNavigationVariant)}
 			</db-shell-sub-navigation>
 
-			<db-control-panel-desktop slot="controlPanelDesktop">
+			<db-control-panel-desktop>
 				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>
 				${renderMetaNavigation()}
 				${renderPrimaryActions()}
@@ -310,7 +310,6 @@ export function renderNavigation(): void {
 			</db-control-panel-desktop>
 
 			<db-control-panel-mobile
-				slot="controlPanelMobile"
 				drawer-headline-plain="Showcase"
 			>
 				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>

@@ -15,17 +15,9 @@ export type ShellSubNavigationMobilePositionType =
 
 export type DBShellDefaultProps = {
 	/**
-	 * The slot can be used for React to set a desktopControlPanel.
-	 */
-	controlPanelDesktop?: any;
-	/**
 	 * Change the position of the desktop content panel
 	 */
 	controlPanelDesktopPosition?: ShellControlPanelDesktopPositionType;
-	/**
-	 * The slot can be used for React to set a mobileControlPanel.
-	 */
-	controlPanelMobile?: any;
 	/**
 	 * Change the position of the mobile content panel
 	 */
@@ -35,10 +27,6 @@ export type DBShellDefaultProps = {
 	 */
 	fadeIn?: boolean | string;
 
-	/**
-	 * The slot can be used for React to set a subNavigation.
-	 */
-	subNavigation?: any;
 	/**
 	 * Change the position of the optional sub navigation for desktop
 	 */

@@ -17,162 +17,98 @@ import { DBShellContent } from '../shell-content';
 
 // template v-slot is used for vue component tests
 const comp: any = (
-	<DBShell
-		controlPanelDesktopPosition="top"
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
-				metaNavigation={
-					<DBControlPanelMeta>
-						<a href="#">Imprint</a>
-						<a href="#">Help</a>
-					</DBControlPanelMeta>
-				}
-				primaryActions={
-					<DBControlPanelPrimaryActions>
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
-							Search
-						</DBButton>
-					</DBControlPanelPrimaryActions>
-				}
-				secondaryActions={
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
-						</DBButton>
-					</DBControlPanelSecondaryActions>
-				}>
-				{/*<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>*/}
-				{/*<template v-slot:meta-navigation>
-					<DBControlPanelMeta>
-						<a href="#">Imprint</a>
-						<a href="#">Help</a>
-					</DBControlPanelMeta>
-				</template>*/}
-				{/*<template v-slot:primary-actions>
-					<DBControlPanelPrimaryActions>
-						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
-					</DBControlPanelPrimaryActions>
-				</template>*/}
-				{/*<template v-slot:secondary-actions>
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-					</DBControlPanelSecondaryActions>
-				</template>*/}
-				<DBControlPanelNavigation aria-label="Main Navigation">
-					<DBControlPanelNavigationItem
-						icon="x_placeholder"
-						tooltip="Item">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem
-						disabled
-						icon="x_placeholder"
-						tooltip="Disabled">
-						<a href="#">Disabled</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		}
-		controlPanelMobile={
-			<DBControlPanelMobile
-				drawerHeaderText="Shell Test"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
-				primaryActions={
-					<DBControlPanelPrimaryActions>
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
-							Search
-						</DBButton>
-					</DBControlPanelPrimaryActions>
-				}
-				secondaryActions={
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
-						</DBButton>
-					</DBControlPanelSecondaryActions>
-				}>
-				{/*<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>*/}
-				{/*<template v-slot:primary-actions>
-					<DBControlPanelPrimaryActions>
-						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
-					</DBControlPanelPrimaryActions>
-				</template>*/}
-				{/*<template v-slot:secondary-actions>
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-					</DBControlPanelSecondaryActions>
-				</template>*/}
-				<DBControlPanelNavigation aria-label="Mobile Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelMobile>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop>
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<template v-slot:meta-navigation>
-					<DBControlPanelMeta>
-						<a href="#">Imprint</a>
-						<a href="#">Help</a>
-					</DBControlPanelMeta>
-				</template>
-				<template v-slot:primary-actions>
-					<DBControlPanelPrimaryActions>
-						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
-					</DBControlPanelPrimaryActions>
-				</template>
-				<template v-slot:secondary-actions>
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-					</DBControlPanelSecondaryActions>
-				</template>
-				<DBControlPanelNavigation aria-label="Main Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder" tooltip="Item">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem disabled icon="x_placeholder" tooltip="Disabled">
-						<a href="#">Disabled</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		</template>*/}
-		{/*<template v-slot:control-panel-mobile>
-			<DBControlPanelMobile drawerHeaderText="Shell Test">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<template v-slot:primary-actions>
-					<DBControlPanelPrimaryActions>
-						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
-					</DBControlPanelPrimaryActions>
-				</template>
-				<template v-slot:secondary-actions>
-					<DBControlPanelSecondaryActions>
-						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-					</DBControlPanelSecondaryActions>
-				</template>
-				<DBControlPanelNavigation aria-label="Mobile Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelMobile>
-		</template>*/}
+	<DBShell controlPanelDesktopPosition="top">
+		<DBControlPanelDesktop
+			brand={<DBControlPanelBrand data-logo="db-systel" />}
+			metaNavigation={
+				<DBControlPanelMeta>
+					<a href="#">Imprint</a>
+					<a href="#">Help</a>
+				</DBControlPanelMeta>
+			}
+			primaryActions={
+				<DBControlPanelPrimaryActions>
+					<DBButton icon="magnifying_glass" variant="ghost" noText>
+						Search
+					</DBButton>
+				</DBControlPanelPrimaryActions>
+			}
+			secondaryActions={
+				<DBControlPanelSecondaryActions>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
+						Profile
+					</DBButton>
+				</DBControlPanelSecondaryActions>
+			}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			{/*<template v-slot:meta-navigation>
+				<DBControlPanelMeta>
+					<a href="#">Imprint</a>
+					<a href="#">Help</a>
+				</DBControlPanelMeta>
+			</template>*/}
+			{/*<template v-slot:primary-actions>
+				<DBControlPanelPrimaryActions>
+					<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
+				</DBControlPanelPrimaryActions>
+			</template>*/}
+			{/*<template v-slot:secondary-actions>
+				<DBControlPanelSecondaryActions>
+					<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
+				</DBControlPanelSecondaryActions>
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Main Navigation">
+				<DBControlPanelNavigationItem
+					icon="x_placeholder"
+					tooltip="Item">
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem
+					disabled
+					icon="x_placeholder"
+					tooltip="Disabled">
+					<a href="#">Disabled</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelDesktop>
+		<DBControlPanelMobile
+			drawerHeaderText="Shell Test"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}
+			primaryActions={
+				<DBControlPanelPrimaryActions>
+					<DBButton icon="magnifying_glass" variant="ghost" noText>
+						Search
+					</DBButton>
+				</DBControlPanelPrimaryActions>
+			}
+			secondaryActions={
+				<DBControlPanelSecondaryActions>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
+						Profile
+					</DBButton>
+				</DBControlPanelSecondaryActions>
+			}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			{/*<template v-slot:primary-actions>
+				<DBControlPanelPrimaryActions>
+					<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
+				</DBControlPanelPrimaryActions>
+			</template>*/}
+			{/*<template v-slot:secondary-actions>
+				<DBControlPanelSecondaryActions>
+					<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
+				</DBControlPanelSecondaryActions>
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Mobile Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelMobile>
 		<DBShellContent mainLabel="Main Content">Shell content</DBShellContent>
 	</DBShell>
 );

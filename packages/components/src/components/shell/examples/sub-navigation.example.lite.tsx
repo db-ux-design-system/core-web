@@ -34,133 +34,123 @@ export default function ShellSubNavigation() {
 					data-test-id="shell-top-sub-top"
 					controlPanelDesktopPosition="top"
 					subNavigationDesktopPosition="top"
-					showSubNavigation={true}
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-top-sub-top-main">
-								<DBControlPanelNavigationItem
+					showSubNavigation={true}>
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 1">
-									<a href="#">Item 1</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-top-sub-top-main">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 1">
+								<a href="#">Item 1</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 2">
+								<a href="#">Item 2</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Top + Sub Top"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 2">
-									<a href="#">Item 2</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Top + Sub Top"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation
-								{...useTarget({
-									angular: {
-										'data-x': 'workaround-angular'
-									},
-									default: {}
-								})}
-								aria-label="shell-top-sub-top-mobile">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation
+							{...useTarget({
+								angular: {
+									'data-x': 'workaround-angular'
+								},
+								default: {}
+							})}
+							aria-label="shell-top-sub-top-mobile">
+							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
+									<a href="#">Sub-Item 2</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
+					<DBShellSubNavigation>
+						<DBControlPanelNavigation aria-label="shell-top-sub-top-sub">
+							<DBControlPanelNavigationItemGroup text="Group 1">
+								<DBControlPanelNavigationItem>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
+									<a href="#">Sub-Item 2</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}
-					subNavigation={
-						<DBShellSubNavigation>
-							<DBControlPanelNavigation aria-label="shell-top-sub-top-sub">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBShellSubNavigation>
-					}>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBShellSubNavigation>
 					<DBShellContent mainLabel="shell-top-sub-top">
 						Top + Sub Top content
 					</DBShellContent>
@@ -172,133 +162,123 @@ export default function ShellSubNavigation() {
 					controlPanelDesktopPosition="top"
 					subNavigationDesktopPosition="left"
 					subNavigationMobilePosition="bottom"
-					showSubNavigation={true}
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
-								<DBControlPanelNavigationItem
+					showSubNavigation={true}>
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 1">
-									<a href="#">Item 1</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 1">
+								<a href="#">Item 1</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 2">
+								<a href="#">Item 2</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Top + Sub Left Popover"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 2">
-									<a href="#">Item 2</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Top + Sub Left Popover"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation
-								{...useTarget({
-									angular: {
-										'data-x': 'workaround-angular'
-									},
-									default: {}
-								})}
-								aria-label="shell-top-sub-left-mobile">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation
+							{...useTarget({
+								angular: {
+									'data-x': 'workaround-angular'
+								},
+								default: {}
+							})}
+							aria-label="shell-top-sub-left-mobile">
+							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
+									<a href="#">Sub-Item 2</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
+					<DBShellSubNavigation>
+						<DBControlPanelNavigation aria-label="shell-top-sub-left-sub">
+							<DBControlPanelNavigationItemGroup text="Group 1">
+								<DBControlPanelNavigationItem>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
+									<a href="#">Sub-Item 2</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}
-					subNavigation={
-						<DBShellSubNavigation>
-							<DBControlPanelNavigation aria-label="shell-top-sub-left-sub">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBShellSubNavigation>
-					}>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBShellSubNavigation>
 					<DBShellContent mainLabel="shell-top-sub-left">
 						Top + Sub Left Popover content
 					</DBShellContent>
@@ -310,135 +290,125 @@ export default function ShellSubNavigation() {
 					controlPanelDesktopPosition="top"
 					subNavigationDesktopPosition="left"
 					controlPanelMobilePosition="bottom"
-					showSubNavigation={true}
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
-								<DBControlPanelNavigationItem
+					showSubNavigation={true}>
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 1">
-									<a href="#">Item 1</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 1">
+								<a href="#">Item 1</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 2">
+								<a href="#">Item 2</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Top + Sub Left Tree"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 2">
-									<a href="#">Item 2</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Top + Sub Left Tree"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation
-								{...useTarget({
-									angular: {
-										'data-x': 'workaround-angular'
-									},
-									default: {}
-								})}
-								aria-label="shell-top-sub-left-tree-mobile">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation
+							{...useTarget({
+								angular: {
+									'data-x': 'workaround-angular'
+								},
+								default: {}
+							})}
+							aria-label="shell-top-sub-left-tree-mobile">
+							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
+									<a href="#">Sub-Item 2</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
+					<DBShellSubNavigation>
+						<DBControlPanelNavigation
+							variant="tree"
+							aria-label="shell-top-sub-left-sub">
+							<DBControlPanelNavigationItemGroup text="Group 1">
+								<DBControlPanelNavigationItem>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
+									<a href="#">Sub-Item 2</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}
-					subNavigation={
-						<DBShellSubNavigation>
-							<DBControlPanelNavigation
-								variant="tree"
-								aria-label="shell-top-sub-left-sub">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBShellSubNavigation>
-					}>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBShellSubNavigation>
 					<DBShellContent mainLabel="shell-top-sub-left">
 						Top + Sub Left Tree content
 					</DBShellContent>
@@ -451,133 +421,123 @@ export default function ShellSubNavigation() {
 					subNavigationDesktopPosition="top"
 					controlPanelMobilePosition="bottom"
 					subNavigationMobilePosition="bottom"
-					showSubNavigation={true}
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-left-sub-top-main">
-								<DBControlPanelNavigationItem
+					showSubNavigation={true}>
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 1">
-									<a href="#">Item 1</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-left-sub-top-main">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 1">
+								<a href="#">Item 1</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Item 2">
+								<a href="#">Item 2</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Left + Sub Top"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Item 2">
-									<a href="#">Item 2</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Left + Sub Top"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation
-								{...useTarget({
-									angular: {
-										'data-x': 'workaround-angular'
-									},
-									default: {}
-								})}
-								aria-label="shell-left-sub-top-mobile">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation
+							{...useTarget({
+								angular: {
+									'data-x': 'workaround-angular'
+								},
+								default: {}
+							})}
+							aria-label="shell-left-sub-top-mobile">
+							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
+									<a href="#">Sub-Item 2</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
+					<DBShellSubNavigation>
+						<DBControlPanelNavigation aria-label="shell-left-sub-top-sub">
+							<DBControlPanelNavigationItemGroup text="Group 1">
+								<DBControlPanelNavigationItem>
+									<a href="#" aria-current="page">
+										Sub-Item 1
+									</a>
 								</DBControlPanelNavigationItem>
 								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
+									<a href="#">Sub-Item 2</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}
-					subNavigation={
-						<DBShellSubNavigation>
-							<DBControlPanelNavigation aria-label="shell-left-sub-top-sub">
-								<DBControlPanelNavigationItemGroup text="Group 1">
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Sub-Item 1
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Sub-Item 2</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 3</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 4</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Item 5</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBShellSubNavigation>
-					}>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 3</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 4</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Sub-Item 5</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBShellSubNavigation>
 					<DBShellContent mainLabel="shell-left-sub-top">
 						Left + Sub Top content
 					</DBShellContent>

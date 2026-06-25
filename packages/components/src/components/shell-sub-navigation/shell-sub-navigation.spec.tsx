@@ -16,71 +16,38 @@ const comp: any = (
 	<DBShell
 		controlPanelDesktopPosition="top"
 		subNavigationDesktopPosition="top"
-		showSubNavigation={true}
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				orientation="horizontal"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}>
-				{/*<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>*/}
-				<DBControlPanelNavigation aria-label="Main Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item 1</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item 2</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		}
-		subNavigation={
-			<DBShellSubNavigation>
-				<DBControlPanelNavigation aria-label="Sub Navigation">
-					<DBControlPanelNavigationItem>
-						<a href="#" aria-current="page">
-							Sub-Item 1
-						</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem>
-						<a href="#">Sub-Item 2</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem>
-						<a href="#">Sub-Item 3</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBShellSubNavigation>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop orientation="horizontal">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<DBControlPanelNavigation aria-label="Main Navigation">
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item 1</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem icon="x_placeholder">
-						<a href="#">Item 2</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBControlPanelDesktop>
-		</template>*/}
-		{/*<template v-slot:sub-navigation>
-			<DBShellSubNavigation>
-				<DBControlPanelNavigation aria-label="Sub Navigation">
-					<DBControlPanelNavigationItem>
-						<a href="#" aria-current="page">Sub-Item 1</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem>
-						<a href="#">Sub-Item 2</a>
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem>
-						<a href="#">Sub-Item 3</a>
-					</DBControlPanelNavigationItem>
-				</DBControlPanelNavigation>
-			</DBShellSubNavigation>
-		</template>*/}
+		showSubNavigation={true}>
+		<DBControlPanelDesktop
+			orientation="horizontal"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Main Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item 1</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item 2</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelDesktop>
+		<DBShellSubNavigation>
+			<DBControlPanelNavigation aria-label="Sub Navigation">
+				<DBControlPanelNavigationItem>
+					<a href="#" aria-current="page">
+						Sub-Item 1
+					</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
+					<a href="#">Sub-Item 2</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
+					<a href="#">Sub-Item 3</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBShellSubNavigation>
+
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>
 );

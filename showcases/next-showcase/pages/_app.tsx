@@ -46,54 +46,48 @@ const App = ({ Component, pageProps }: AppProps) => {
 			controlPanelMobilePosition={settings.controlPanelMobilePosition}
 			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
 			subNavigationMobilePosition={settings.subNavigationMobilePosition}
-			showSubNavigation={settings.subNavigation === 'true'}
-			subNavigation={
-				<DBShellSubNavigation id={shellId}>
-					<Navigation
-						variant={settings.subNavigationVariant}
-						aria-label="sub navigation"
+			showSubNavigation={settings.subNavigation === 'true'}>
+			<DBShellSubNavigation id={shellId}>
+				<Navigation
+					variant={settings.subNavigationVariant}
+					aria-label="sub navigation"
+				/>
+			</DBShellSubNavigation>
+			<DBControlPanelMobile
+				id={controlPanelMobileId}
+				drawerHeaderText="Showcase"
+				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				primaryActions={
+					<PrimaryActions
+						color={color}
+						settings={settings}
+						density={density}
+						onSettingsChange={setSettings}
+						onColorChange={setColor}
+						onDensityChange={setDensity}
 					/>
-				</DBShellSubNavigation>
-			}
-			controlPanelMobile={
-				<DBControlPanelMobile
-					id={controlPanelMobileId}
-					drawerHeaderText="Showcase"
-					brand={<DBControlPanelBrand data-logo="db-systel" />}
-					primaryActions={
-						<PrimaryActions
-							color={color}
-							settings={settings}
-							density={density}
-							onSettingsChange={setSettings}
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
-					}
-					secondaryActions={<SecondaryActions />}
-					metaNavigation={<MetaNavigation />}>
-					<Navigation variant={settings.navigationMobileVariant} />
-				</DBControlPanelMobile>
-			}
-			controlPanelDesktop={
-				<DBControlPanelDesktop
-					id={controlPanelDesktopId}
-					brand={<DBControlPanelBrand data-logo="db-systel" />}
-					metaNavigation={<MetaNavigation />}
-					primaryActions={
-						<PrimaryActions
-							color={color}
-							settings={settings}
-							density={density}
-							onSettingsChange={setSettings}
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
-					}
-					secondaryActions={<SecondaryActions />}>
-					<Navigation variant={settings.navigationDesktopVariant} />
-				</DBControlPanelDesktop>
-			}>
+				}
+				secondaryActions={<SecondaryActions />}
+				metaNavigation={<MetaNavigation />}>
+				<Navigation variant={settings.navigationMobileVariant} />
+			</DBControlPanelMobile>
+			<DBControlPanelDesktop
+				id={controlPanelDesktopId}
+				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				metaNavigation={<MetaNavigation />}
+				primaryActions={
+					<PrimaryActions
+						color={color}
+						settings={settings}
+						density={density}
+						onSettingsChange={setSettings}
+						onColorChange={setColor}
+						onDensityChange={setDensity}
+					/>
+				}
+				secondaryActions={<SecondaryActions />}>
+				<Navigation variant={settings.navigationDesktopVariant} />
+			</DBControlPanelDesktop>
 			<div data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
 			</div>

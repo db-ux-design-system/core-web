@@ -134,43 +134,37 @@ const DefaultPage = ({
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
-				<DBShell
-					data-mode={mode ? 'dark' : 'light'}
-					fadeIn
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand>
-									{process.env.NEXT_PUBLIC_APP_NAME}
-								</DBControlPanelBrand>
-							}
-							primaryActions={
-								<PrimaryActions
-									mode={mode}
-									setColorMode={setColorMode}
-								/>
-							}
-							secondaryActions={<SecondaryActions />}>
-							<Navigation />
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							brand={
-								<DBControlPanelBrand>
-									{process.env.NEXT_PUBLIC_APP_NAME}
-								</DBControlPanelBrand>
-							}
-							primaryActions={
-								<PrimaryActions
-									mode={mode}
-									setColorMode={setColorMode}
-								/>
-							}
-							secondaryActions={<SecondaryActions />}>
-							<Navigation />
-						</DBControlPanelMobile>
-					}>
+				<DBShell data-mode={mode ? 'dark' : 'light'} fadeIn>
+					<DBControlPanelDesktop
+						brand={
+							<DBControlPanelBrand>
+								{process.env.NEXT_PUBLIC_APP_NAME}
+							</DBControlPanelBrand>
+						}
+						primaryActions={
+							<PrimaryActions
+								mode={mode}
+								setColorMode={setColorMode}
+							/>
+						}
+						secondaryActions={<SecondaryActions />}>
+						<Navigation />
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						brand={
+							<DBControlPanelBrand>
+								{process.env.NEXT_PUBLIC_APP_NAME}
+							</DBControlPanelBrand>
+						}
+						primaryActions={
+							<PrimaryActions
+								mode={mode}
+								setColorMode={setColorMode}
+							/>
+						}
+						secondaryActions={<SecondaryActions />}>
+						<Navigation />
+					</DBControlPanelMobile>
 					<DBShellContent>
 						{breadcrumb && breadcrumb.length > 1 && (
 							<DBSection spacing="none" width="large">

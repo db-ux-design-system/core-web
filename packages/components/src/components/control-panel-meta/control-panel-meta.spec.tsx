@@ -11,33 +11,18 @@ import { DBShellContent } from '../shell-content';
 
 // template v-slot is used for vue component tests
 const comp: any = (
-	<DBShell
-		controlPanelDesktopPosition="top"
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				orientation="horizontal"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
-				metaNavigation={
-					<DBControlPanelMeta>
-						<a href="#">Imprint</a>
-						<a href="#">Help</a>
-					</DBControlPanelMeta>
-				}
-			/>
-		}>
-		{/*<template v-slot:control-panel-desktop>
-			<DBControlPanelDesktop orientation="horizontal">
-				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel" />
-				</template>
-				<template v-slot:meta-navigation>
-					<DBControlPanelMeta>
-						<a href="#">Imprint</a>
-						<a href="#">Help</a>
-					</DBControlPanelMeta>
-				</template>
-			</DBControlPanelDesktop>
-		</template>*/}
+	<DBShell controlPanelDesktopPosition="top">
+		<DBControlPanelDesktop
+			orientation="horizontal"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}
+			metaNavigation={
+				<DBControlPanelMeta>
+					<a href="#">Imprint</a>
+					<a href="#">Help</a>
+				</DBControlPanelMeta>
+			}
+		/>
+
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>
 );

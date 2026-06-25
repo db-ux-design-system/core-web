@@ -31,128 +31,116 @@ export default function ShellSlots() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
 					data-test-id="shell-slots-nav-item-badge"
-					controlPanelDesktopPosition="top"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge">
-								<DBControlPanelNavigationItem
+					controlPanelDesktopPosition="top">
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Inbox"
-									startSlot={
-										<DBBadge
-											semantic="warning"
-											size="small">
-											3
-										</DBBadge>
-									}>
-									<a href="#" aria-current="page">
-										Inbox
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Inbox"
+								startSlot={
+									<DBBadge semantic="warning" size="small">
+										3
+									</DBBadge>
+								}>
+								<a href="#" aria-current="page">
+									Inbox
+								</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Messages"
+								endSlot={
+									<DBBadge
+										semantic="informational"
+										size="small">
+										12
+									</DBBadge>
+								}>
+								<a href="#">Messages</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Settings">
+								<a href="#">Settings</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Nav Item Badge"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Messages"
-									endSlot={
-										<DBBadge
-											semantic="informational"
-											size="small">
-											12
-										</DBBadge>
-									}>
-									<a href="#">Messages</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									icon="x_placeholder"
-									tooltip="Settings">
-									<a href="#">Settings</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Nav Item Badge"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge-mobile">
-								<DBControlPanelNavigationItem
-									startSlot={
-										<DBBadge
-											semantic="warning"
-											size="small">
-											3
-										</DBBadge>
-									}>
-									<a href="#" aria-current="page">
-										Inbox
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
-									endSlot={
-										<DBBadge
-											semantic="informational"
-											size="small">
-											12
-										</DBBadge>
-									}>
-									<a href="#">Messages</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Settings</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge-mobile">
+							<DBControlPanelNavigationItem
+								startSlot={
+									<DBBadge semantic="warning" size="small">
+										3
+									</DBBadge>
+								}>
+								<a href="#" aria-current="page">
+									Inbox
+								</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								endSlot={
+									<DBBadge
+										semantic="informational"
+										size="small">
+										12
+									</DBBadge>
+								}>
+								<a href="#">Messages</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">Settings</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-slots-nav-item-badge">
 						Navigation Item with Badge - StartSlot and EndSlot
 					</DBShellContent>
@@ -161,150 +149,134 @@ export default function ShellSlots() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
 					data-test-id="shell-slots-group-badge"
-					controlPanelDesktopPosition="left"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-slots-group-badge">
-								<DBControlPanelNavigationItemGroup
+					controlPanelDesktopPosition="left">
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									text="Notifications"
-									startSlot={
-										<DBBadge
-											semantic="critical"
-											size="small">
-											5
-										</DBBadge>
-									}>
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Alerts
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Updates</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItemGroup
-									icon="x_placeholder"
-									text="Tasks"
-									endSlot={
-										<DBBadge
-											semantic="successful"
-											size="small">
-											2
-										</DBBadge>
-									}>
-									<DBControlPanelNavigationItem>
-										<a href="#">Open Tasks</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Completed</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItem
-									icon="x_placeholder"
-									tooltip="Dashboard">
-									<a href="#">Dashboard</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Group Badge"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel" />
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-slots-group-badge-mobile">
-								<DBControlPanelNavigationItemGroup
-									text="Notifications"
-									startSlot={
-										<DBBadge
-											semantic="critical"
-											size="small">
-											5
-										</DBBadge>
-									}>
-									<DBControlPanelNavigationItem>
-										<a href="#" aria-current="page">
-											Alerts
-										</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Updates</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
-								<DBControlPanelNavigationItemGroup
-									text="Tasks"
-									endSlot={
-										<DBBadge
-											semantic="successful"
-											size="small">
-											2
-										</DBBadge>
-									}>
-									<DBControlPanelNavigationItem>
-										<a href="#">Open Tasks</a>
-									</DBControlPanelNavigationItem>
-									<DBControlPanelNavigationItem>
-										<a href="#">Completed</a>
-									</DBControlPanelNavigationItem>
-								</DBControlPanelNavigationItemGroup>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-slots-group-badge">
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Notifications"
+								startSlot={
+									<DBBadge semantic="critical" size="small">
+										5
+									</DBBadge>
+								}>
 								<DBControlPanelNavigationItem>
-									<a href="#">Dashboard</a>
+									<a href="#" aria-current="page">
+										Alerts
+									</a>
 								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+								<DBControlPanelNavigationItem>
+									<a href="#">Updates</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Tasks"
+								endSlot={
+									<DBBadge semantic="successful" size="small">
+										2
+									</DBBadge>
+								}>
+								<DBControlPanelNavigationItem>
+									<a href="#">Open Tasks</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Completed</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Dashboard">
+								<a href="#">Dashboard</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Group Badge"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
+									icon="x_placeholder"
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-slots-group-badge-mobile">
+							<DBControlPanelNavigationItemGroup
+								text="Notifications"
+								startSlot={
+									<DBBadge semantic="critical" size="small">
+										5
+									</DBBadge>
+								}>
+								<DBControlPanelNavigationItem>
+									<a href="#" aria-current="page">
+										Alerts
+									</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Updates</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItemGroup
+								text="Tasks"
+								endSlot={
+									<DBBadge semantic="successful" size="small">
+										2
+									</DBBadge>
+								}>
+								<DBControlPanelNavigationItem>
+									<a href="#">Open Tasks</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Completed</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem>
+								<a href="#">Dashboard</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-slots-group-badge">
 						Group with Badge - StartSlot and EndSlot
 					</DBShellContent>
@@ -313,108 +285,104 @@ export default function ShellSlots() {
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
 					data-test-id="shell-slots-brand-badge"
-					controlPanelDesktopPosition="top"
-					controlPanelDesktop={
-						<DBControlPanelDesktop
-							brand={
-								<DBControlPanelBrand data-logo="db-systel">
-									<DBBadge
-										semantic="informational"
-										size="small"
-										placement="corner-top-right"
-										label="New version available">
-										New
-									</DBBadge>
-								</DBControlPanelBrand>
-							}
-							metaNavigation={
-								<DBControlPanelMeta>
-									<DBLink href="#">Imprint</DBLink>
-									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMeta>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-slots-brand-badge">
-								<DBControlPanelNavigationItem
+					controlPanelDesktopPosition="top">
+					<DBControlPanelDesktop
+						brand={
+							<DBControlPanelBrand data-logo="db-systel">
+								<DBBadge
+									semantic="informational"
+									size="small"
+									placement="corner-top-right"
+									label="New version available">
+									New
+								</DBBadge>
+							</DBControlPanelBrand>
+						}
+						metaNavigation={
+							<DBControlPanelMeta>
+								<DBLink href="#">Imprint</DBLink>
+								<DBLink href="#">Help</DBLink>
+							</DBControlPanelMeta>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="Home">
-									<a href="#" aria-current="page">
-										Home
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-slots-brand-badge">
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Home">
+								<a href="#" aria-current="page">
+									Home
+								</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="About">
+								<a href="#">About</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						drawerHeaderText="Brand Badge"
+						brand={
+							<DBControlPanelBrand data-logo="db-systel">
+								<DBBadge
+									semantic="informational"
+									size="small"
+									placement="corner-top-right"
+									label="New version available">
+									New
+								</DBBadge>
+							</DBControlPanelBrand>
+						}
+						primaryActions={
+							<DBControlPanelPrimaryActions>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
+									Search
+								</DBButton>
+							</DBControlPanelPrimaryActions>
+						}
+						secondaryActions={
+							<DBControlPanelSecondaryActions>
+								<DBButton
 									icon="x_placeholder"
-									tooltip="About">
-									<a href="#">About</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelDesktop>
-					}
-					controlPanelMobile={
-						<DBControlPanelMobile
-							drawerHeaderText="Brand Badge"
-							brand={
-								<DBControlPanelBrand data-logo="db-systel">
-									<DBBadge
-										semantic="informational"
-										size="small"
-										placement="corner-top-right"
-										label="New version available">
-										New
-									</DBBadge>
-								</DBControlPanelBrand>
-							}
-							primaryActions={
-								<DBControlPanelPrimaryActions>
-									<DBButton
-										icon="magnifying_glass"
-										variant="ghost"
-										noText>
-										Search
-									</DBButton>
-								</DBControlPanelPrimaryActions>
-							}
-							secondaryActions={
-								<DBControlPanelSecondaryActions>
-									<DBButton
-										icon="x_placeholder"
-										variant="ghost"
-										noText>
-										Profile
-									</DBButton>
-								</DBControlPanelSecondaryActions>
-							}>
-							<DBControlPanelNavigation aria-label="shell-slots-brand-badge-mobile">
-								<DBControlPanelNavigationItem>
-									<a href="#" aria-current="page">
-										Home
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">About</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigation>
-						</DBControlPanelMobile>
-					}>
+									variant="ghost"
+									noText>
+									Profile
+								</DBButton>
+							</DBControlPanelSecondaryActions>
+						}>
+						<DBControlPanelNavigation aria-label="shell-slots-brand-badge-mobile">
+							<DBControlPanelNavigationItem>
+								<a href="#" aria-current="page">
+									Home
+								</a>
+							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItem>
+								<a href="#">About</a>
+							</DBControlPanelNavigationItem>
+						</DBControlPanelNavigation>
+					</DBControlPanelMobile>
 					<DBShellContent mainLabel="shell-slots-brand-badge">
 						Brand with Badge - Corner Placement
 					</DBShellContent>
