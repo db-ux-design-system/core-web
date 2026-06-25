@@ -6,7 +6,6 @@
 @use "../../styles/internal/navigation-item";
 
 $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
-
 $z-index-popover: 70;
 
 %db-control-panel-navigation-item-group-menu-popover {
