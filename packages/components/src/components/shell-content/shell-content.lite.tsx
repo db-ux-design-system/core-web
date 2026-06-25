@@ -4,9 +4,9 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
+import { MAIN_CONTENT_ID } from '../../shared/constants';
 import { cls } from '../../utils';
 import { DBShellContentProps } from './model';
-import { MAIN_CONTENT_ID } from '../../shared/constants';
 
 useMetadata({});
 
