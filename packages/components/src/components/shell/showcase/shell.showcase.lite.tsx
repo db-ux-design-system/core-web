@@ -6,8 +6,8 @@ import ShellContent from '../examples/content.example.lite';
 import ShellDeepNavigation from '../examples/deep-navigation.example.lite';
 import ShellFlatIcon from '../examples/flat-icon.example.lite';
 import ShellPosition from '../examples/position.example.lite';
-import ShellSubNavigation from '../examples/sub-navigation.example.lite';
 import ShellSlots from '../examples/slots.example.lite';
+import ShellSubNavigation from '../examples/sub-navigation.example.lite';
 
 export default function ShellShowcase(props: PatternhubProps) {
 	return (
