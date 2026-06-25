@@ -37,11 +37,9 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@angular-eslint/utils": "21.4.0",
     "@typescript-eslint/utils": "^8.61.1"
   },
   "devDependencies": {
-    "@angular-eslint/bundled-angular-compiler": "21.4.0",
     "@angular-eslint/template-parser": "21.4.0",
     "@angular-eslint/test-utils": "21.4.0",
     "@typescript-eslint/parser": "8.61.1",
