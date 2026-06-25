@@ -7,7 +7,10 @@ import { resolve } from 'path';
  * Handles monorepo hoisting where dependencies may live in a parent node_modules.
  * Returns the resolved absolute path or null if not found.
  */
-function resolvePackagePath(root: string, packagePath: string): string | null {
+export function resolvePackagePath(
+	root: string,
+	packagePath: string
+): string | null {
 	let currentDir = root;
 	for (let i = 0; i < 10; i++) {
 		const resolved = resolve(currentDir, 'node_modules', packagePath);

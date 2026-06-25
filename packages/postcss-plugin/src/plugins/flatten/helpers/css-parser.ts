@@ -5,7 +5,10 @@
  * @param openIndex - The index right after the opening `(`
  * @returns The index right after the matching `)`, or -1 if unbalanced
  */
-const findMatchingParenthesis = (value: string, openIndex: number): number => {
+export const findMatchingParenthesis = (
+	value: string,
+	openIndex: number
+): number => {
 	let depth = 1;
 	let i = openIndex;
 	while (i < value.length && depth > 0) {

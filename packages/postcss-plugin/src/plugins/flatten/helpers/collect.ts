@@ -6,7 +6,7 @@ import type { VarEntry } from '../data.js';
  * @param selector - The CSS selector string to check
  * @returns True if the selector only contains `:root` and/or `:host`
  */
-const isRootSelector = (selector: string): boolean => {
+export const isRootSelector = (selector: string): boolean => {
 	const trimmed = selector.trim();
 	return /^(:root|:host)(\s*,\s*(:root|:host))*$/.test(trimmed);
 };
@@ -16,7 +16,7 @@ const isRootSelector = (selector: string): boolean => {
  * @param node - The PostCSS child node to start from
  * @returns The layer name, or null if not inside any `@layer`
  */
-const getLayerName = (node: ChildNode): string | null => {
+export const getLayerName = (node: ChildNode): string | null => {
 	let current: any = node.parent;
 	while (current) {
 		if (
@@ -80,7 +80,7 @@ export const collectImportLayers = (root: Root): Map<string, string> => {
  * @param layerOrder - The layer priority map
  * @returns The numeric priority (higher = wins)
  */
-const getLayerPriority = (
+export const getLayerPriority = (
 	layer: string | null,
 	layerOrder: Map<string, number>
 ): number => {

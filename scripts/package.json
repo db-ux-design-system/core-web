@@ -91,6 +91,7 @@
     "@inquirer/prompts": "8.5.2",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
+    "inquirer": "14.0.2",
     "npm-run-all2": "9.0.2",
     "publint": "0.3.21",
     "replace-in-file": "8.4.0",

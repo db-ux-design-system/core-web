@@ -31,7 +31,7 @@ export const borderPropertiesExact: string[] = [
 	'border-inline-end'
 ];
 
-type IncludesAllowType = {
+export type IncludesAllowType = {
 	include: string;
 	and?: string[];
 	or?: string[];
@@ -68,7 +68,7 @@ const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
 	);
 };
 
-const isAllowed = (
+export const isAllowed = (
 	value: string | string[],
 	allowedValues: AllowedType
 ): boolean => {
@@ -97,7 +97,7 @@ const isAllowed = (
 	return allowMap.every(Boolean);
 };
 
-type DefaultRuleOptions = {
+export type DefaultRuleOptions = {
 	allowCalc?: boolean;
 	ignore?: string[];
 	allow?: AllowedType;
@@ -109,7 +109,7 @@ export type DefaultRuleOptionsHitType = {
 	value: string;
 };
 
-const isDefaultRuleOptionsHit = ({
+export const isDefaultRuleOptionsHit = ({
 	options,
 	result,
 	value

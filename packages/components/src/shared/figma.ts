@@ -1,5 +1,5 @@
 /** Base for all Figma prop definitions. */
-type FigmaBaseProp = {
+export type FigmaBaseProp = {
 	/** The prop type discriminator. */
 	type: string;
 	/**
@@ -12,7 +12,7 @@ type FigmaBaseProp = {
 };
 
 /** A nested Figma instance swap prop (e.g. icon components). */
-type FigmaInstanceProp = FigmaBaseProp & {
+export type FigmaInstanceProp = FigmaBaseProp & {
 	/** Use 'instance' for generic instance swaps, 'iconSwap' for icon instances that resolve to a string name. */
 	type: 'instance' | 'iconSwap';
 	/** The Figma property key of the instance swap (e.g. '🔄 Icon Small'). */
@@ -20,7 +20,7 @@ type FigmaInstanceProp = FigmaBaseProp & {
 };
 
 /** An enum prop mapping Figma variant values to code values. */
-type FigmaEnumProp = FigmaBaseProp & {
+export type FigmaEnumProp = FigmaBaseProp & {
 	type: 'enum';
 	/** The Figma property key (e.g. 'Size', '💻 Variant'). */
 	key: string;
@@ -35,7 +35,7 @@ type FigmaEnumProp = FigmaBaseProp & {
 };
 
 /** A simple scalar prop. */
-type FigmaSimpleProp = FigmaBaseProp & {
+export type FigmaSimpleProp = FigmaBaseProp & {
 	/**
 	 * - 'string': maps to instance.getString()
 	 * - 'boolean': maps to instance.getBoolean()
@@ -60,7 +60,7 @@ type FigmaSimpleProp = FigmaBaseProp & {
  *   .filter((node) => !!node.properties[key])[0]
  *   .getString(key)
  */
-type FigmaConnectedTextProp = FigmaBaseProp & {
+export type FigmaConnectedTextProp = FigmaBaseProp & {
 	type: 'connectedText';
 	/** The Figma property key to read from each connected instance (e.g. '✏️ Text'). */
 	key: string;
@@ -75,7 +75,7 @@ type FigmaConnectedTextProp = FigmaBaseProp & {
  * @example
  * validationMessage: { type: 'validationMessage', key: '✏️ Text', conditionProp: 'validation', map: { 'invalid': 'invalidMessage', 'valid': 'validMessage', default: 'message' } }
  */
-type FigmaValidationMessageProp = FigmaBaseProp & {
+export type FigmaValidationMessageProp = FigmaBaseProp & {
 	type: 'validationMessage';
 	/** The Figma property key to read from the connected instance (e.g. '✏️ Text'). */
 	key: string;
@@ -94,7 +94,7 @@ type FigmaValidationMessageProp = FigmaBaseProp & {
  * are included. Note: this differs from `nestedConnectedInstances` where filter matches
  * against nestedImports.
  */
-type FigmaConnectedInstancesProp = FigmaBaseProp & {
+export type FigmaConnectedInstancesProp = FigmaBaseProp & {
 	type: 'connectedInstances';
 	/** Instance name substring to filter by (e.g. 'Navigation'). Only instances whose node name includes this string are included. When omitted, all connected instances are included. */
 	filter?: string;
@@ -113,7 +113,7 @@ type FigmaConnectedInstancesProp = FigmaBaseProp & {
  *       .some((section) => section.nestedImports?.some((i) => i.includes('DBAccordionItem'))))
  *     .map((child) => child.executeTemplate().example)
  */
-type FigmaNestedConnectedInstancesProp = FigmaBaseProp & {
+export type FigmaNestedConnectedInstancesProp = FigmaBaseProp & {
 	type: 'nestedConnectedInstances';
 	/** Import string to filter by (e.g. 'DBAccordionItem'). Only instances whose template nestedImports contain this string are included. When omitted, all connected instances are included. */
 	filter?: string;
@@ -126,7 +126,7 @@ type FigmaNestedConnectedInstancesProp = FigmaBaseProp & {
  * @example
  * linkVariant: { type: 'booleanToEnum', map: [{ key: '(Def) Link Variant: Block', value: 'block' }, { key: '↳ OR Link Variant: Inline', value: 'inline' }] }
  */
-type FigmaBooleanToEnumProp = FigmaBaseProp & {
+export type FigmaBooleanToEnumProp = FigmaBaseProp & {
 	type: 'booleanToEnum';
 	/** Ordered list of Figma boolean keys and the code value to emit when that key is true. */
 	map: Array<{ key: string; value: string }>;
@@ -139,7 +139,7 @@ type FigmaBooleanToEnumProp = FigmaBaseProp & {
  * @example
  * options: { type: 'nestedInstancesToArray', filter: 'Custom Select List Item', props: { value: { type: 'string', key: '✏️ Value' }, label: { type: 'textContent', key: '✏️ Label' } } }
  */
-type FigmaNestedInstancesToArrayProp = FigmaBaseProp & {
+export type FigmaNestedInstancesToArrayProp = FigmaBaseProp & {
 	type: 'nestedInstancesToArray';
 	/** Instance name substring to filter by (e.g. 'Custom Select List Item'). */
 	filter: string;
@@ -151,7 +151,7 @@ type FigmaNestedInstancesToArrayProp = FigmaBaseProp & {
  * Wraps an iconSwap prop so it is only rendered when a boolean Figma property is enabled.
  * Generates: let icon = ''; if (getPropertyValue(guardKey) === true || getPropertyValue(guardKey) === 'True') { icon = `\n\t\ticon="${iconLeading}"` }
  */
-type FigmaConditionalProp = FigmaBaseProp & {
+export type FigmaConditionalProp = FigmaBaseProp & {
 	type: 'conditionalProp';
 	/** The Figma property key of the icon instance swap. */
 	key: string;
