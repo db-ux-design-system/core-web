@@ -68,7 +68,8 @@
 
 					a {
 						padding: 0;
-						text-indent: -9999px; /* visually hides text but keeps it in accessibility tree */
+
+						@extend %a11y-visually-hidden-text;
 					}
 				}
 			}
@@ -152,7 +153,8 @@
 					}
 
 					a {
-						text-indent: -9999px; /* visually hides text but keeps it in accessibility tree */
+						@extend %a11y-visually-hidden-text;
+
 						padding: 0;
 						inline-size: variables.$db-sizing-md;
 					}

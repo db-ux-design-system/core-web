@@ -39,7 +39,7 @@
 		text-decoration: none;
 		position: absolute;
 		inset: 0;
-		overflow: hidden;
-		text-indent: -9999px; /* visually hides text but keeps it in accessibility tree */
+
+		@extend %a11y-visually-hidden-text;
 	}
 }

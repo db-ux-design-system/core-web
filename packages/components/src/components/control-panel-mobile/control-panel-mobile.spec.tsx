@@ -51,18 +51,18 @@ const comp: any = (
 				{/*<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>*/}
-				{/*<template v-slot:primaryActions>
+				{/*<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>*/}
-				{/*<template v-slot:secondaryActions>
+				{/*<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Notification</DBButton>
 					</DBControlPanelSecondaryActions>
 				</template>*/}
-				{/*<template v-slot:metaNavigation>
+				{/*<template v-slot:meta-navigation>
 					<DBControlPanelMetaNavigation>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
@@ -78,23 +78,23 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelMobile>
 		}>
-		{/*<template v-slot:controlPanelMobile>
+		{/*<template v-slot:control-panel-mobile>
 			<DBControlPanelMobile position="top" drawerHeaderText="DBControlPanel">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:primaryActions>
+				<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>
-				<template v-slot:secondaryActions>
+				<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Notification</DBButton>
 					</DBControlPanelSecondaryActions>
 				</template>
-				<template v-slot:metaNavigation>
+				<template v-slot:meta-navigation>
 					<DBControlPanelMetaNavigation>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>

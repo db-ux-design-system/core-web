@@ -51,7 +51,7 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBShellSubNavigation>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop orientation="horizontal">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
@@ -66,7 +66,7 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		</template>*/}
-		{/*<template v-slot:subNavigation>
+		{/*<template v-slot:sub-navigation>
 			<DBShellSubNavigation>
 				<DBControlPanelNavigation aria-label="Sub Navigation">
 					<DBControlPanelNavigationItem>

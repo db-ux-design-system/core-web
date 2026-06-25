@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBControlPanelPrimaryActions } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 import { DBControlPanelBrand } from '../control-panel-brand';
 import { DBControlPanelDesktop } from '../control-panel-desktop';
@@ -30,12 +30,12 @@ const comp: any = (
 				}
 			/>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop orientation="horizontal">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:primaryActions>
+				<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
@@ -75,7 +75,7 @@ const testA11y = () => {
 };
 
 test.describe('DBControlPanelPrimaryActions', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
+	test.use({ viewport: DESKTOP_VIEWPORT });
 	testComponent();
 	testA11y();
 });

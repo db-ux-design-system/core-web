@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBControlPanelMetaNavigation } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 import { DBControlPanelBrand } from '../control-panel-brand';
 import { DBControlPanelDesktop } from '../control-panel-desktop';
 import { DBShell } from '../shell';
@@ -25,12 +25,12 @@ const comp: any = (
 				}
 			/>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop orientation="horizontal">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:metaNavigation>
+				<template v-slot:meta-navigation>
 					<DBControlPanelMetaNavigation>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
@@ -72,7 +72,7 @@ const testA11y = () => {
 };
 
 test.describe('DBControlPanelMetaNavigation', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
+	test.use({ viewport: DESKTOP_VIEWPORT });
 	testComponent();
 	testA11y();
 });

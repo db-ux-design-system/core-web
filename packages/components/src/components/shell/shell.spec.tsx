@@ -48,18 +48,18 @@ const comp: any = (
 				{/*<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>*/}
-				{/*<template v-slot:metaNavigation>
+				{/*<template v-slot:meta-navigation>
 					<DBControlPanelMetaNavigation>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
 					</DBControlPanelMetaNavigation>
 				</template>*/}
-				{/*<template v-slot:primaryActions>
+				{/*<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>*/}
-				{/*<template v-slot:secondaryActions>
+				{/*<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 					</DBControlPanelSecondaryActions>
@@ -103,12 +103,12 @@ const comp: any = (
 				{/*<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>*/}
-				{/*<template v-slot:primaryActions>
+				{/*<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>*/}
-				{/*<template v-slot:secondaryActions>
+				{/*<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 					</DBControlPanelSecondaryActions>
@@ -120,23 +120,23 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelMobile>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop>
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:metaNavigation>
+				<template v-slot:meta-navigation>
 					<DBControlPanelMetaNavigation>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
 					</DBControlPanelMetaNavigation>
 				</template>
-				<template v-slot:primaryActions>
+				<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>
-				<template v-slot:secondaryActions>
+				<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 					</DBControlPanelSecondaryActions>
@@ -151,17 +151,17 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		</template>*/}
-		{/*<template v-slot:controlPanelMobile>
+		{/*<template v-slot:control-panel-mobile>
 			<DBControlPanelMobile drawerHeaderText="Shell Test">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:primaryActions>
+				<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 					</DBControlPanelPrimaryActions>
 				</template>
-				<template v-slot:secondaryActions>
+				<template v-slot:secondary-actions>
 					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 					</DBControlPanelSecondaryActions>

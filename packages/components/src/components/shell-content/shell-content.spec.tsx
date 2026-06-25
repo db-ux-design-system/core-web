@@ -28,7 +28,7 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop orientation="horizontal">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
@@ -63,7 +63,7 @@ const compFixed: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop orientation="horizontal">
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />

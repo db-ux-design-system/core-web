@@ -5,7 +5,6 @@ export const StorybookControlPanelDesktopArgTypes: Record<string, InputType> = {
 	orientation: { control: 'select', options: ['horizontal', 'vertical'] },
 	expanded: { control: 'boolean' },
 	expandButtonTooltip: { control: 'text' },
-	navigationLabeledBy: { control: 'text' },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' }
 };

@@ -42,7 +42,7 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelFlatIcon>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelFlatIcon>
 				<DBControlPanelNavigation aria-label="Flat Icon Navigation Desktop">
 					<DBControlPanelNavigationItem icon="house">
@@ -57,7 +57,7 @@ const comp: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelFlatIcon>
 		</template>*/}
-		{/*<template v-slot:controlPanelMobile>
+		{/*<template v-slot:control-panel-mobile>
 			<DBControlPanelFlatIcon>
 				<DBControlPanelNavigation aria-label="Flat Icon Navigation">
 					<DBControlPanelNavigationItem icon="house">
@@ -102,7 +102,7 @@ const compNoText: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelFlatIcon>
 		}>
-		{/*<template v-slot:controlPanelDesktop>
+		{/*<template v-slot:control-panel-desktop>
 			<DBControlPanelFlatIcon noText>
 				<DBControlPanelNavigation aria-label="Flat Icon No Text Desktop">
 					<DBControlPanelNavigationItem icon="house">
@@ -114,7 +114,7 @@ const compNoText: any = (
 				</DBControlPanelNavigation>
 			</DBControlPanelFlatIcon>
 		</template>*/}
-		{/*<template v-slot:controlPanelMobile>
+		{/*<template v-slot:control-panel-mobile>
 			<DBControlPanelFlatIcon noText>
 				<DBControlPanelNavigation aria-label="Flat Icon No Text">
 					<DBControlPanelNavigationItem icon="house">
