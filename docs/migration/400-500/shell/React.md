@@ -114,7 +114,7 @@ import {
 	DBControlPanelDesktop, // previously: DBHeader
 	DBControlPanelMobile, // previously: DBHeader
 	DBControlPanelBrand, // previously: DBBrand
-	DBControlPanelMetaNavigation, // new
+	DBControlPanelMeta, // new
 	DBControlPanelPrimaryActions, // new
 	DBControlPanelSecondaryActions, // new
 	DBLink,
@@ -127,11 +127,11 @@ import {
 /*const [drawerOpen, setDrawerOpen] = useState<boolean>(false);*/
 
 const MetaNavigation = () => (
-	<DBControlPanelMetaNavigation>
-		{/* added DBControlPanelMetaNavigation */}
+	<DBControlPanelMeta>
+		{/* added DBControlPanelMeta */}
 		<DBLink href="#">Imprint</DBLink>
 		<DBLink href="#">Help</DBLink>
-	</DBControlPanelMetaNavigation>
+	</DBControlPanelMeta>
 );
 
 const PrimaryActions = () => (

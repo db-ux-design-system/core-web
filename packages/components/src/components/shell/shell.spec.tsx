@@ -7,7 +7,7 @@ import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 import { DBControlPanelBrand } from '../control-panel-brand';
 import { DBControlPanelDesktop } from '../control-panel-desktop';
-import { DBControlPanelMetaNavigation } from '../control-panel-meta-navigation';
+import { DBControlPanelMeta } from '../control-panel-meta';
 import { DBControlPanelMobile } from '../control-panel-mobile';
 import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
@@ -23,10 +23,10 @@ const comp: any = (
 			<DBControlPanelDesktop
 				brand={<DBControlPanelBrand data-logo="db-systel" />}
 				metaNavigation={
-					<DBControlPanelMetaNavigation>
+					<DBControlPanelMeta>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
-					</DBControlPanelMetaNavigation>
+					</DBControlPanelMeta>
 				}
 				primaryActions={
 					<DBControlPanelPrimaryActions>
@@ -49,10 +49,10 @@ const comp: any = (
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>*/}
 				{/*<template v-slot:meta-navigation>
-					<DBControlPanelMetaNavigation>
+					<DBControlPanelMeta>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
-					</DBControlPanelMetaNavigation>
+					</DBControlPanelMeta>
 				</template>*/}
 				{/*<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>
@@ -126,10 +126,10 @@ const comp: any = (
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
 				<template v-slot:meta-navigation>
-					<DBControlPanelMetaNavigation>
+					<DBControlPanelMeta>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
-					</DBControlPanelMetaNavigation>
+					</DBControlPanelMeta>
 				</template>
 				<template v-slot:primary-actions>
 					<DBControlPanelPrimaryActions>

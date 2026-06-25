@@ -2,7 +2,7 @@ import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
 import DBControlPanelDesktop from '../../control-panel-desktop/control-panel-desktop.lite';
-import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
+import DBControlPanelMeta from '../../control-panel-meta/control-panel-meta.lite';
 import DBControlPanelMobile from '../../control-panel-mobile/control-panel-mobile.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
@@ -38,10 +38,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -97,10 +97,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -184,10 +184,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -243,10 +243,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -332,10 +332,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -391,10 +391,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -479,10 +479,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -538,10 +538,10 @@ export default function ShellContent() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>

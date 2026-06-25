@@ -22,11 +22,6 @@ export type DBControlPanelMobileDefaultProps = {
 	 * Change the position of the mobile content panel
 	 */
 	position?: ShellControlPanelMobilePositionType;
-
-	/**
-	 * Optional flat icon navigation for a mobile app look. Only visible by using variant="flat-icon" as well.
-	 */
-	flatIconNavigation?: any;
 };
 
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &

@@ -288,7 +288,7 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		.db-control-panel-navigation-item,
 		.db-control-panel-primary-actions,
 		.db-control-panel-secondary-actions,
-		.db-control-panel-meta-navigation {
+		.db-control-panel-meta {
 			display: none;
 		}
 
@@ -365,7 +365,7 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		grid-area: scroll;
 		grid-template-areas: "navigation" "meta";
 
-		.db-control-panel-meta-navigation {
+		.db-control-panel-meta {
 			margin-block-start: auto;
 			flex-flow: column nowrap;
 

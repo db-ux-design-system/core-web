@@ -6,7 +6,7 @@ import { DBControlPanelMobile } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 import { DBControlPanelBrand } from '../control-panel-brand';
-import { DBControlPanelMetaNavigation } from '../control-panel-meta-navigation';
+import { DBControlPanelMeta } from '../control-panel-meta';
 import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
 import { DBControlPanelPrimaryActions } from '../control-panel-primary-actions';
@@ -43,10 +43,10 @@ const comp: any = (
 					</DBControlPanelSecondaryActions>
 				}
 				metaNavigation={
-					<DBControlPanelMetaNavigation>
+					<DBControlPanelMeta>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
-					</DBControlPanelMetaNavigation>
+					</DBControlPanelMeta>
 				}>
 				{/*<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
@@ -63,10 +63,10 @@ const comp: any = (
 					</DBControlPanelSecondaryActions>
 				</template>*/}
 				{/*<template v-slot:meta-navigation>
-					<DBControlPanelMetaNavigation>
+					<DBControlPanelMeta>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
-					</DBControlPanelMetaNavigation>
+					</DBControlPanelMeta>
 				</template>*/}
 				<DBControlPanelNavigation aria-label="Mobile Navigation">
 					<DBControlPanelNavigationItem icon="x_placeholder">
@@ -95,10 +95,10 @@ const comp: any = (
 					</DBControlPanelSecondaryActions>
 				</template>
 				<template v-slot:meta-navigation>
-					<DBControlPanelMetaNavigation>
+					<DBControlPanelMeta>
 						<a href="#">Imprint</a>
 						<a href="#">Help</a>
-					</DBControlPanelMetaNavigation>
+					</DBControlPanelMeta>
 				</template>
 				<DBControlPanelNavigation aria-label="Mobile Navigation">
 					<DBControlPanelNavigationItem icon="x_placeholder">

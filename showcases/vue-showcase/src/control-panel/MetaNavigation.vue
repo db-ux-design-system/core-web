@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { DBControlPanelMetaNavigation, DBLink } from "@components";
+import { DBControlPanelMeta, DBLink } from "@components";
 </script>
 
 <template>
-	<DBControlPanelMetaNavigation>
+	<DBControlPanelMeta>
 		<DBLink size="small" href="#"> Link 1 </DBLink>
 		<DBLink size="small" href="#"> Link 2 </DBLink>
 		<DBLink size="small" href="#"> Link 3 </DBLink>
-	</DBControlPanelMetaNavigation>
+	</DBControlPanelMeta>
 </template>

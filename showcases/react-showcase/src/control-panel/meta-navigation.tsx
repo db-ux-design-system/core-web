@@ -1,7 +1,7 @@
-import { DBControlPanelMetaNavigation, DBLink } from '@components';
+import { DBControlPanelMeta, DBLink } from '@components';
 
 const MetaNavigation = () => (
-	<DBControlPanelMetaNavigation>
+	<DBControlPanelMeta>
 		<DBLink size="small" href="#">
 			Link 1
 		</DBLink>
@@ -11,7 +11,7 @@ const MetaNavigation = () => (
 		<DBLink size="small" href="#">
 			Link 3
 		</DBLink>
-	</DBControlPanelMetaNavigation>
+	</DBControlPanelMeta>
 );
 
 export default MetaNavigation;

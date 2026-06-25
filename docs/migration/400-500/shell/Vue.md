@@ -133,16 +133,16 @@ const toggleDrawer = (open: boolean) => {
 <script setup lang="ts">
 import {
 	DBLink,
-	DBControlPanelMetaNavigation // new
+	DBControlPanelMeta // new
 } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<!--	added DBControlPanelMetaNavigation	-->
-	<DBControlPanelMetaNavigation>
+	<!--	added DBControlPanelMeta	-->
+	<DBControlPanelMeta>
 		<DBLink href="#">Imprint</DBLink>
 		<DBLink href="#">Help</DBLink>
-	</DBControlPanelMetaNavigation>
+	</DBControlPanelMeta>
 </template>
 ```
 

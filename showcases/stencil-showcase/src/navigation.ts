@@ -265,11 +265,11 @@ function renderPrimaryActions(): string {
 
 function renderMetaNavigation(): string {
 	return `
-		<db-control-panel-meta-navigation slot="metaNavigation">
+		<db-control-panel-meta slot="metaNavigation">
 			<db-link size="small" href="#">Link 1</db-link>
 			<db-link size="small" href="#">Link 2</db-link>
 			<db-link size="small" href="#">Link 3</db-link>
-		</db-control-panel-meta-navigation>`;
+		</db-control-panel-meta>`;
 }
 
 function renderSecondaryActions(): string {

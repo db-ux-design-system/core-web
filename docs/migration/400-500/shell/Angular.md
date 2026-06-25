@@ -192,19 +192,19 @@ export class AppComponent {
 import { Component } from "@angular/core";
 import {
 	DBLink,
-	DBControlPanelMetaNavigation // new
+	DBControlPanelMeta // new
 } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-meta-navigation",
-	imports: [DBLink, DBControlPanelMetaNavigation],
+	imports: [DBLink, DBControlPanelMeta],
 	standalone: true,
 	template: `
-		/* added db-control-panel-meta-navigation */
-		<db-control-panel-meta-navigation>
+		/* added db-control-panel-meta */
+		<db-control-panel-meta>
 			<db-link href="#">Imprint</db-link>
 			<db-link href="#">Help</db-link>
-		</db-control-panel-meta-navigation>
+		</db-control-panel-meta>
 	`
 })
 export class MetaNavigationComponent {}

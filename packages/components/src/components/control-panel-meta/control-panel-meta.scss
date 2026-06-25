@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 
-.db-control-panel-meta-navigation {
+.db-control-panel-meta {
 	display: flex;
 	flex-flow: row wrap;
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;

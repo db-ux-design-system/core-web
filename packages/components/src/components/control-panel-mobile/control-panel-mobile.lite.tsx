@@ -82,7 +82,6 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 					<Slot name="metaNavigation" />
 				</div>
 			</DBDrawer>
-			<Slot name="flatIconNavigation" />
 			<Slot name="brand" />
 			<Slot name="primaryActions" />
 			<DBButton

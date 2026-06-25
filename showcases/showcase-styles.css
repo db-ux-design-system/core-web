@@ -247,7 +247,7 @@ app-nav-item {
 
 @media screen and (width >= 768px) {
 	.db-shell[data-control-panel-desktop-position="top"] {
-		.db-control-panel-meta-navigation:first-of-type {
+		.db-control-panel-meta:first-of-type {
 			justify-content: flex-end;
 		}
 	}

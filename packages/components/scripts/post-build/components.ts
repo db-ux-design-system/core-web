@@ -61,7 +61,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'control-panel-meta-navigation'
+		name: 'control-panel-meta'
 	},
 
 	{

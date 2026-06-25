@@ -3,7 +3,7 @@ import DBBadge from '../../badge/badge.lite';
 import DBButton from '../../button/button.lite';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
 import DBControlPanelDesktop from '../../control-panel-desktop/control-panel-desktop.lite';
-import DBControlPanelMetaNavigation from '../../control-panel-meta-navigation/control-panel-meta-navigation.lite';
+import DBControlPanelMeta from '../../control-panel-meta/control-panel-meta.lite';
 import DBControlPanelMobile from '../../control-panel-mobile/control-panel-mobile.lite';
 import DBControlPanelNavigationItemGroup from '../../control-panel-navigation-item-group/control-panel-navigation-item-group.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
@@ -38,10 +38,10 @@ export default function ShellSlots() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -68,7 +68,9 @@ export default function ShellSlots() {
 									icon="x_placeholder"
 									tooltip="Inbox"
 									startSlot={
-										<DBBadge semantic="warning" size="xs">
+										<DBBadge
+											semantic="warning"
+											size="small">
 											3
 										</DBBadge>
 									}>
@@ -82,7 +84,7 @@ export default function ShellSlots() {
 									endSlot={
 										<DBBadge
 											semantic="informational"
-											size="xs">
+											size="small">
 											12
 										</DBBadge>
 									}>
@@ -125,7 +127,7 @@ export default function ShellSlots() {
 							<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge-mobile">
 								<DBControlPanelNavigationItem
 									startSlot={
-										<DBBadge semantic="warning" size="xs">
+										<DBBadge semantic="warning" size="small">
 											3
 										</DBBadge>
 									}>
@@ -137,7 +139,7 @@ export default function ShellSlots() {
 									endSlot={
 										<DBBadge
 											semantic="informational"
-											size="xs">
+											size="small">
 											12
 										</DBBadge>
 									}>
@@ -164,10 +166,10 @@ export default function ShellSlots() {
 								<DBControlPanelBrand data-logo="db-systel" />
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -194,7 +196,7 @@ export default function ShellSlots() {
 									icon="x_placeholder"
 									text="Notifications"
 									startSlot={
-										<DBBadge semantic="critical" size="xs">
+										<DBBadge semantic="critical" size="small">
 											5
 										</DBBadge>
 									}>
@@ -213,7 +215,7 @@ export default function ShellSlots() {
 									endSlot={
 										<DBBadge
 											semantic="successful"
-											size="xs">
+											size="small">
 											2
 										</DBBadge>
 									}>
@@ -262,7 +264,7 @@ export default function ShellSlots() {
 								<DBControlPanelNavigationItemGroup
 									text="Notifications"
 									startSlot={
-										<DBBadge semantic="critical" size="xs">
+										<DBBadge semantic="critical" size="small">
 											5
 										</DBBadge>
 									}>
@@ -280,7 +282,7 @@ export default function ShellSlots() {
 									endSlot={
 										<DBBadge
 											semantic="successful"
-											size="xs">
+											size="small">
 											2
 										</DBBadge>
 									}>
@@ -312,7 +314,7 @@ export default function ShellSlots() {
 								<DBControlPanelBrand data-logo="db-systel">
 									<DBBadge
 										semantic="informational"
-										size="xs"
+										size="small"
 										placement="corner-top-right"
 										label="New version available">
 										New
@@ -320,10 +322,10 @@ export default function ShellSlots() {
 								</DBControlPanelBrand>
 							}
 							metaNavigation={
-								<DBControlPanelMetaNavigation>
+								<DBControlPanelMeta>
 									<DBLink href="#">Imprint</DBLink>
 									<DBLink href="#">Help</DBLink>
-								</DBControlPanelMetaNavigation>
+								</DBControlPanelMeta>
 							}
 							primaryActions={
 								<DBControlPanelPrimaryActions>
@@ -368,7 +370,7 @@ export default function ShellSlots() {
 								<DBControlPanelBrand data-logo="db-systel">
 									<DBBadge
 										semantic="informational"
-										size="xs"
+										size="small"
 										placement="corner-top-right"
 										label="New version available">
 										New

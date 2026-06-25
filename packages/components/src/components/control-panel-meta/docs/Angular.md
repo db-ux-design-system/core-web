@@ -6,11 +6,11 @@ For general installation and configuration take a look at the [ngx-core-componen
 
 ```ts app.component.ts
 // app.component.ts
-import { DBControlPanelMetaNavigation } from '@db-ux/ngx-core-components';
+import { DBControlPanelMeta } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
-  imports: [..., DBControlPanelMetaNavigation],
+  imports: [..., DBControlPanelMeta],
   standalone: true
   // ...
 })
@@ -20,7 +20,5 @@ import { DBControlPanelMetaNavigation } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-control-panel-meta-navigation
-	>ControlPanelMetaNavigation</db-control-panel-meta-navigation
->
+<db-control-panel-meta>ControlPanelMeta</db-control-panel-meta>
 ```

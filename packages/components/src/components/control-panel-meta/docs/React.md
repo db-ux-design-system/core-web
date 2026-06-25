@@ -6,13 +6,9 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { DBControlPanelMetaNavigation } from "@db-ux/react-core-components";
+import { DBControlPanelMeta } from "@db-ux/react-core-components";
 
-const App = () => (
-	<DBControlPanelMetaNavigation>
-		ControlPanelMetaNavigation
-	</DBControlPanelMetaNavigation>
-);
+const App = () => <DBControlPanelMeta>ControlPanelMeta</DBControlPanelMeta>;
 
 export default App;
 ```

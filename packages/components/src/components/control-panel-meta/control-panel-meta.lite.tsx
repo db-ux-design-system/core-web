@@ -1,14 +1,12 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import { DBControlPanelMetaNavigationProps } from './model';
+import { DBControlPanelMetaProps } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBControlPanelMetaNavigationProps>({});
+useDefaultProps<DBControlPanelMetaProps>({});
 
-export default function DBControlPanelMetaNavigation(
-	props: DBControlPanelMetaNavigationProps
-) {
+export default function DBControlPanelMeta(props: DBControlPanelMetaProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
 
@@ -16,7 +14,7 @@ export default function DBControlPanelMetaNavigation(
 		<div
 			ref={_ref}
 			id={props.id}
-			class={cls('db-control-panel-meta-navigation', props.className)}>
+			class={cls('db-control-panel-meta', props.className)}>
 			{props.children}
 		</div>
 	);

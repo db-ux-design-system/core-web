@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DBControlPanelMetaNavigation, DBLink } from '@components';
+import { DBControlPanelMeta, DBLink } from '@components';
 
 @Component({
 	selector: 'app-meta-navigation',
 	schemas: [],
-	imports: [DBControlPanelMetaNavigation, DBLink, FormsModule],
+	imports: [DBControlPanelMeta, DBLink, FormsModule],
 	templateUrl: './meta-navigation.component.html'
 })
 export class MetaNavigationComponent {}
