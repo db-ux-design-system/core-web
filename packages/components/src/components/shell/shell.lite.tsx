@@ -65,7 +65,7 @@ export default function DBShell(props: DBShellProps) {
 				else={props.skipNavigationLink}>
 				<a
 					className="db-shell-skip-navigation-link"
-					href={`#${MAIN_CONTENT_ID}`}>
+					href={`#${props.skipNavigationTarget ?? MAIN_CONTENT_ID}`}>
 					{props.skipNavigationLinkText}
 				</a>
 			</Show>

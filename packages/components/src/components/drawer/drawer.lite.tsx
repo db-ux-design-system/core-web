@@ -43,6 +43,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			state.backdropPointerDown =
 				(event?.target as any)?.nodeName === 'DIALOG';
 		},
+		/**
+		 * Handles close events from multiple sources:
+		 * - Escape key
+		 * - Backdrop click (when backdrop is enabled)
+		 * - Any element inside the drawer with `[data-action="close"]` attribute
+		 *   (e.g. the close button rendered by `DBDrawerHeader`)
+		 * - Direct forceClose calls
+		 *
+		 * CONTRACT: The `DBDrawerHeader` component must render its close button
+		 * with `data-action="close"` for this detection to work.
+		 */
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -104,6 +115,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (state.isNotModal()) {
 						_ref.show();
 					} else {
+						// Enable native light dismiss (backdrop click / Esc)
+						// for modal dialogs via the closedby attribute.
+						_ref.setAttribute('closedby', 'any');
 						_ref.showModal();
 					}
 					void delay(() => {

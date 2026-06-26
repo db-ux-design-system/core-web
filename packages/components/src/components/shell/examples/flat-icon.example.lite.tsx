@@ -43,7 +43,9 @@ export default function ShellFlatIcon() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelFlatIcon>
-					<DBShellContent mainLabel="shell-flat-icon-with-text">
+					<DBShellContent
+						mainId="main-content-flat-icon-with-text"
+						mainLabel="shell-flat-icon-with-text">
 						Flat icon with text content
 					</DBShellContent>
 				</DBShell>
@@ -58,7 +60,7 @@ export default function ShellFlatIcon() {
 								},
 								default: {}
 							})}
-							aria-label="Flat Icon With Text">
+							aria-label="Flat Icon No Text">
 							<DBControlPanelNavigationItem icon="house" active>
 								<a href="#">Home</a>
 							</DBControlPanelNavigationItem>
@@ -70,7 +72,9 @@ export default function ShellFlatIcon() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelFlatIcon>
-					<DBShellContent mainLabel="shell-flat-icon-no-text">
+					<DBShellContent
+						mainId="main-content-flat-icon-no-text"
+						mainLabel="shell-flat-icon-no-text">
 						Flat icon no text content
 					</DBShellContent>
 				</DBShell>
@@ -87,7 +91,7 @@ export default function ShellFlatIcon() {
 								},
 								default: {}
 							})}
-							aria-label="Flat Icon With Text">
+							aria-label="Flat Icon With Text Sub Nav">
 							<DBControlPanelNavigationItem icon="house" active>
 								<a href="#">Home</a>
 							</DBControlPanelNavigationItem>
@@ -112,7 +116,9 @@ export default function ShellFlatIcon() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBShellSubNavigation>
-					<DBShellContent mainLabel="shell-flat-icon-with-text">
+					<DBShellContent
+						mainId="main-content-flat-icon-with-text-sub"
+						mainLabel="shell-flat-icon-with-text-sub">
 						Flat icon with text content + Sub-Navigation
 					</DBShellContent>
 				</DBShell>
@@ -129,7 +135,7 @@ export default function ShellFlatIcon() {
 								},
 								default: {}
 							})}
-							aria-label="Flat Icon With Text">
+							aria-label="Flat Icon No Text Sub Nav">
 							<DBControlPanelNavigationItem icon="house" active>
 								<a href="#">Home</a>
 							</DBControlPanelNavigationItem>
@@ -154,7 +160,9 @@ export default function ShellFlatIcon() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBShellSubNavigation>
-					<DBShellContent mainLabel="shell-flat-icon-no-text">
+					<DBShellContent
+						mainId="main-content-flat-icon-no-text-sub"
+						mainLabel="shell-flat-icon-no-text-sub">
 						Flat icon no text content + Sub-Navigation
 					</DBShellContent>
 				</DBShell>

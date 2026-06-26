@@ -15,6 +15,14 @@ export type DBShellContentDefaultProps = {
 	mainClass?: string;
 
 	/**
+	 * Overrides the default `id` on the `<main>` element.
+	 * This id is used as the target for the shell skip-navigation link.
+	 * Only one `DBShellContent` should exist per page to avoid duplicate IDs.
+	 * @default 'main-content'
+	 */
+	mainId?: string;
+
+	/**
 	 * Adds `aria-label` to `<main>` element
 	 */
 	mainLabel?: string;

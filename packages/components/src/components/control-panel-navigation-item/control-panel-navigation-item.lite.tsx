@@ -25,7 +25,8 @@ export default function DBControlPanelNavigationItem(
 	const _ref = useRef<HTMLLIElement | any>(null);
 
 	const state = useStore<DBControlPanelNavigationItemState>({
-		_tooltip: undefined
+		_tooltip: undefined,
+		_savedHref: undefined
 	});
 
 	onUpdate(() => {
@@ -42,16 +43,28 @@ export default function DBControlPanelNavigationItem(
 		}
 	}, [_ref, props.tooltip, props.text]);
 
-	// Add tabIndex=-1 for anchor element if disabled
+	// When disabled, remove href from anchor to avoid invalid aria-disabled on
+	// an element with implicit role "link". Without href the <a> becomes generic
+	// and we can safely use aria-disabled. Restore href when re-enabled.
 	onUpdate(() => {
 		if (_ref) {
 			const listElement = _ref as HTMLLIElement;
 			const anchor = listElement.querySelector('a');
 			if (anchor) {
 				if (getBoolean(props.disabled, 'disabled')) {
+					// Save href before removing so we can restore it later
+					if (anchor.hasAttribute('href')) {
+						state._savedHref = anchor.getAttribute('href');
+					}
+					anchor.removeAttribute('href');
 					anchor.setAttribute('tabindex', '-1');
 					anchor.setAttribute('aria-disabled', 'true');
 				} else {
+					// Restore saved href when no longer disabled
+					if (state._savedHref !== undefined) {
+						anchor.setAttribute('href', state._savedHref);
+						state._savedHref = undefined;
+					}
 					anchor.removeAttribute('tabindex');
 					anchor.removeAttribute('aria-disabled');
 				}
@@ -66,8 +79,7 @@ export default function DBControlPanelNavigationItem(
 			class={cls('db-control-panel-navigation-item', props.className)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
-			data-active={getBooleanAsString(props.active, 'active')}
-			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
+			data-active={getBooleanAsString(props.active, 'active')}>
 			<Slot name="startSlot"></Slot>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}

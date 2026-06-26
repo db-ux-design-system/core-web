@@ -22,8 +22,18 @@ const comp: any = (
 						Search
 					</DBButton>
 				</DBControlPanelPrimaryActions>
-			}
-		/>
+			}>
+			{/*
+				<template v-slot:brand>
+					<DBControlPanelBrand data-logo="db-systel" />
+				</template>
+				<template v-slot:primary-actions>
+					<DBControlPanelPrimaryActions>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
+					</DBControlPanelPrimaryActions>
+				</template>
+				*/}
+		</DBControlPanelDesktop>
 
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>

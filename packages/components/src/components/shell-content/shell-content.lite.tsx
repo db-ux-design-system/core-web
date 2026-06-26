@@ -26,7 +26,7 @@ export default function DBShellContent(props: DBShellContentProps) {
 			data-variant={props.variant}>
 			<Slot name="startSlot" />
 			<main
-				id={MAIN_CONTENT_ID}
+				id={props.mainId ?? MAIN_CONTENT_ID}
 				class={cls('db-main', props.mainClass)}
 				aria-label={props.mainLabel}>
 				{props.children}

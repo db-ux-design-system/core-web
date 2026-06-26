@@ -72,7 +72,7 @@ export default function ShellContent() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-position-top">
+						<DBControlPanelNavigation aria-label="content-position-auto-top">
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
 								tooltip="Item">
@@ -134,7 +134,7 @@ export default function ShellContent() {
 								},
 								default: {}
 							})}
-							aria-label="shell-position-auto-top-mobile">
+							aria-label="content-position-auto-top-mobile">
 							<DBControlPanelNavigationItem icon="x_placeholder">
 								<a href="#">Item</a>
 							</DBControlPanelNavigationItem>
@@ -156,6 +156,7 @@ export default function ShellContent() {
 								Test
 							</DBNotification>
 						}
+						mainId="main-content-auto-top"
 						mainLabel="shell-position-auto-top">
 						<p>Auto-Top position content</p>
 						<p>Auto-Top position content</p>
@@ -210,7 +211,7 @@ export default function ShellContent() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-position-top">
+						<DBControlPanelNavigation aria-label="content-position-fixed-top">
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
 								tooltip="Item">
@@ -272,7 +273,7 @@ export default function ShellContent() {
 								},
 								default: {}
 							})}
-							aria-label="shell-position-fixed-top-mobile">
+							aria-label="content-position-fixed-top-mobile">
 							<DBControlPanelNavigationItem icon="x_placeholder">
 								<a href="#">Item</a>
 							</DBControlPanelNavigationItem>
@@ -295,6 +296,7 @@ export default function ShellContent() {
 								Test
 							</DBNotification>
 						}
+						mainId="main-content-fixed-top"
 						mainLabel="shell-position-fixed-top">
 						<p>Fixed-Top position content</p>
 						<p>Fixed-Top position content</p>
@@ -350,7 +352,7 @@ export default function ShellContent() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-position-left">
+						<DBControlPanelNavigation aria-label="content-position-auto-left">
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
 								tooltip="Item">
@@ -412,7 +414,7 @@ export default function ShellContent() {
 								},
 								default: {}
 							})}
-							aria-label="shell-position-auto-left-mobile">
+							aria-label="content-position-auto-left-mobile">
 							<DBControlPanelNavigationItem icon="x_placeholder">
 								<a href="#">Item</a>
 							</DBControlPanelNavigationItem>
@@ -434,6 +436,7 @@ export default function ShellContent() {
 								Test
 							</DBNotification>
 						}
+						mainId="main-content-auto-left"
 						mainLabel="shell-position-auto-left">
 						<p>Auto-Left position content</p>
 						<p>Auto-Left position content</p>
@@ -489,7 +492,7 @@ export default function ShellContent() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-position-left">
+						<DBControlPanelNavigation aria-label="content-position-fixed-left">
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
 								tooltip="Item">
@@ -551,7 +554,7 @@ export default function ShellContent() {
 								},
 								default: {}
 							})}
-							aria-label="shell-position-fixed-left-mobile">
+							aria-label="content-position-fixed-left-mobile">
 							<DBControlPanelNavigationItem icon="x_placeholder">
 								<a href="#">Item</a>
 							</DBControlPanelNavigationItem>
@@ -574,6 +577,7 @@ export default function ShellContent() {
 								Test
 							</DBNotification>
 						}
+						mainId="main-content-fixed-left"
 						mainLabel="shell-position-fixed-left">
 						<p>Fixed-Left position content</p>
 						<p>Fixed-Left position content</p>

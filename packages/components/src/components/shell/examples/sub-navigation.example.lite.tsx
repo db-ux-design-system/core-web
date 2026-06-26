@@ -151,7 +151,9 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBShellSubNavigation>
-					<DBShellContent mainLabel="shell-top-sub-top">
+					<DBShellContent
+						mainId="main-content-top-sub-top"
+						mainLabel="shell-top-sub-top">
 						Top + Sub Top content
 					</DBShellContent>
 				</DBShell>
@@ -279,7 +281,9 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBShellSubNavigation>
-					<DBShellContent mainLabel="shell-top-sub-left">
+					<DBShellContent
+						mainId="main-content-top-sub-left"
+						mainLabel="shell-top-sub-left">
 						Top + Sub Left Popover content
 					</DBShellContent>
 				</DBShell>
@@ -319,7 +323,7 @@ export default function ShellSubNavigation() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-top-sub-left-main">
+						<DBControlPanelNavigation aria-label="shell-top-sub-left-tree-main">
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
 								tooltip="Item 1">
@@ -387,7 +391,7 @@ export default function ShellSubNavigation() {
 					<DBShellSubNavigation>
 						<DBControlPanelNavigation
 							variant="tree"
-							aria-label="shell-top-sub-left-sub">
+							aria-label="shell-top-sub-left-tree-sub">
 							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
 									<a href="#" aria-current="page">
@@ -409,7 +413,9 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBShellSubNavigation>
-					<DBShellContent mainLabel="shell-top-sub-left">
+					<DBShellContent
+						mainId="main-content-top-sub-left-tree"
+						mainLabel="shell-top-sub-left-tree">
 						Top + Sub Left Tree content
 					</DBShellContent>
 				</DBShell>
@@ -538,7 +544,9 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBShellSubNavigation>
-					<DBShellContent mainLabel="shell-left-sub-top">
+					<DBShellContent
+						mainId="main-content-left-sub-top"
+						mainLabel="shell-left-sub-top">
 						Left + Sub Top content
 					</DBShellContent>
 				</DBShell>

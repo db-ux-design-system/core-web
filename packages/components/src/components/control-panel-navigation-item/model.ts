@@ -38,6 +38,7 @@ export type DBControlPanelNavigationItemProps =
 
 export type DBControlPanelNavigationItemDefaultState = {
 	_tooltip?: string;
+	_savedHref?: string | null;
 };
 
 export type DBControlPanelNavigationItemState =

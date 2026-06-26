@@ -28,8 +28,20 @@ const comp: any = (
 						Help
 					</DBButton>
 				</DBControlPanelSecondaryActions>
-			}
-		/>
+			}>
+			{/*
+				<template v-slot:brand>
+					<DBControlPanelBrand data-logo="db-systel" />
+				</template>
+				<template v-slot:secondary-actions>
+					<DBControlPanelSecondaryActions>
+						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
+						<DBButton icon="x_placeholder" variant="ghost" noText>Notification</DBButton>
+						<DBButton icon="x_placeholder" variant="ghost" noText>Help</DBButton>
+					</DBControlPanelSecondaryActions>
+				</template>
+				*/}
+		</DBControlPanelDesktop>
 
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>

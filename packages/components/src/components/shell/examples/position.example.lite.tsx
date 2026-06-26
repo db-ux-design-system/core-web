@@ -139,7 +139,9 @@ export default function ShellPosition() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-position-top">
+					<DBShellContent
+						mainId="main-content-position-top"
+						mainLabel="shell-position-top">
 						Top position content
 					</DBShellContent>
 				</DBShell>
@@ -262,7 +264,9 @@ export default function ShellPosition() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-position-left">
+					<DBShellContent
+						mainId="main-content-position-left"
+						mainLabel="shell-position-left">
 						Left position content
 					</DBShellContent>
 				</DBShell>

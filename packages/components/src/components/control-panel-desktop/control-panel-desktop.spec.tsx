@@ -33,6 +33,21 @@ const comp: any = (
 					</DBButton>
 				</DBControlPanelSecondaryActions>
 			}>
+			{/*
+				<template v-slot:brand>
+					<DBControlPanelBrand data-logo="db-systel" />
+				</template>
+				<template v-slot:primary-actions>
+					<DBControlPanelPrimaryActions>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
+					</DBControlPanelPrimaryActions>
+				</template>
+				<template v-slot:secondary-actions>
+					<DBControlPanelSecondaryActions>
+						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
+					</DBControlPanelSecondaryActions>
+				</template>
+		*/}
 			<DBControlPanelNavigation aria-label="Main Navigation">
 				<DBControlPanelNavigationItem icon="x_placeholder">
 					<a href="#">Home</a>

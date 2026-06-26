@@ -10,12 +10,12 @@ const axeDisableRules = [
 
 test.describe('DBShell', () => {
 	runAxeCoreTest({
-		path: '01/shell',
+		path: '05/shell',
 		axeDisableRules
 	});
-	runAxeCoreTest({ path: '01/shell', color: lvl3, axeDisableRules });
+	runAxeCoreTest({ path: '05/shell', color: lvl3, axeDisableRules });
 	runAxeCoreTest({
-		path: '01/shell',
+		path: '05/shell',
 		density: 'functional',
 		axeDisableRules
 	});

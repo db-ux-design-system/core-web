@@ -141,7 +141,9 @@ export default function ShellSlots() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-slots-nav-item-badge">
+					<DBShellContent
+						mainId="main-content-slots-nav-item-badge"
+						mainLabel="shell-slots-nav-item-badge">
 						Navigation Item with Badge - StartSlot and EndSlot
 					</DBShellContent>
 				</DBShell>
@@ -277,7 +279,9 @@ export default function ShellSlots() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-slots-group-badge">
+					<DBShellContent
+						mainId="main-content-slots-group-badge"
+						mainLabel="shell-slots-group-badge">
 						Group with Badge - StartSlot and EndSlot
 					</DBShellContent>
 				</DBShell>
@@ -383,7 +387,9 @@ export default function ShellSlots() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-slots-brand-badge">
+					<DBShellContent
+						mainId="main-content-slots-brand-badge"
+						mainLabel="shell-slots-brand-badge">
 						Brand with Badge - Corner Placement
 					</DBShellContent>
 				</DBShell>

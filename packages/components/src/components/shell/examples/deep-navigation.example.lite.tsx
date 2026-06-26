@@ -168,7 +168,9 @@ export default function ShellDeepNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-deep-nav-top">
+					<DBShellContent
+						mainId="main-content-deep-nav-top"
+						mainLabel="shell-deep-nav-top">
 						Deep Navigation - Top Position
 					</DBShellContent>
 				</DBShell>
@@ -318,7 +320,9 @@ export default function ShellDeepNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellContent mainLabel="shell-deep-nav-left">
+					<DBShellContent
+						mainId="main-content-deep-nav-left"
+						mainLabel="shell-deep-nav-left">
 						Deep Navigation - Left Position
 					</DBShellContent>
 				</DBShell>

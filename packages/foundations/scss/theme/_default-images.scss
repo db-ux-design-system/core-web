@@ -6,6 +6,9 @@
 	--db-textarea-scrollbar-button-increment: url("#{assets-paths.$images-path}chevron_down.svg");
 	--db-logo-aspect-ratio: 1;
 	--db-logo-url: url("#{assets-paths.$images-path}logo.svg");
+
+	// NOTE: --db-logo-url-short uses the same logo.svg as a placeholder.
+	// Override this token in your theme to provide a distinct short variant.
 	--db-logo-aspect-ratio-short: 1;
 	--db-logo-url-short: url("#{assets-paths.$images-path}logo.svg");
 }

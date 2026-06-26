@@ -48,6 +48,13 @@ export type DBShellDefaultProps = {
 	skipNavigationLinkText?: string;
 
 	/**
+	 * Target id for the skip-navigation link. Must match the `mainId` prop
+	 * on `DBShellContent` if you override it. Only one shell should exist per page.
+	 * @default 'main-content'
+	 */
+	skipNavigationTarget?: string;
+
+	/**
 	 * Add a custom link to skip navigation to use `#main-content`. Only usable if skipNavigationLinkText is not set.
 	 */
 	skipNavigationLink?: any;

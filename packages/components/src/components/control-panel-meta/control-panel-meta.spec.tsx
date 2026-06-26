@@ -20,8 +20,19 @@ const comp: any = (
 					<a href="#">Imprint</a>
 					<a href="#">Help</a>
 				</DBControlPanelMeta>
-			}
-		/>
+			}>
+			{/*
+				<template v-slot:brand>
+					<DBControlPanelBrand data-logo="db-systel" />
+				</template>
+				<template v-slot:meta-navigation>
+					<DBControlPanelMeta>
+						<a href="#">Imprint</a>
+						<a href="#">Help</a>
+					</DBControlPanelMeta>
+				</template>
+			*/}
+		</DBControlPanelDesktop>
 
 		<DBShellContent mainLabel="Main">Content</DBShellContent>
 	</DBShell>
