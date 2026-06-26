@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: add Angular Signal Forms support via Duck-Typing compatibility
+feat: support Angular Signal Forms starting with Angular 21
