@@ -53,8 +53,9 @@ export default function DBControlPanelNavigationItem(
 			if (anchor) {
 				if (getBoolean(props.disabled, 'disabled')) {
 					// Save href before removing so we can restore it later
-					if (anchor.hasAttribute('href')) {
-						state._savedHref = anchor.getAttribute('href');
+					const currentHref = anchor.getAttribute('href');
+					if (currentHref !== null) {
+						state._savedHref = currentHref;
 					}
 					anchor.removeAttribute('href');
 					anchor.setAttribute('tabindex', '-1');
