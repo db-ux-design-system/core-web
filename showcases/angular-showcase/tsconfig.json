@@ -23,6 +23,9 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2023", "dom"],
 		"paths": {
+			"@angular/forms/signals": [
+				"node_modules/@angular/forms/types/signals"
+			],
 			"@angular/*": ["node_modules/@angular/*"],
 			"@components": ["../../output/angular/src"],
 			"@components/src/*": ["../../output/angular/src/*"],

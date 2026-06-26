@@ -1,6 +1,6 @@
 import { replaceInFileSync } from 'replace-in-file';
 
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 import components, { Overwrite } from './components.js';
 
@@ -21,11 +21,11 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: '} from "@angular/core";',
 		to:
-			`Renderer2 } from "@angular/core";\n` +
+			`HostBinding, Renderer2 } from "@angular/core";\n` +
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
-	// inserting provider
+	// inserting provider (CVA always registered for backward compat with Reactive/Template-Driven Forms)
 	replacements.push({
 		from: '@Component({',
 		to: `@Component({
@@ -45,21 +45,19 @@ const setControlValueAccessorReplacements = (
 		from: `constructor(`,
 		to: `constructor(private renderer: Renderer2,`
 	});
-	// We need `model` to be able to read/write to a signal
-	replacements.push({
-		from: `${valueAccessor} = input`,
-		to: `${valueAccessor} = model`
-	});
-	replacements.push({
-		from: `disabled = input`,
-		to: `disabled = model`
-	});
+	// NOTE: Mitosis already generates form-related fields (value/checked/disabled) as model() signals.
+	// No input → model conversion needed. For checked components (valueAccessor === 'checked'),
+	// the 'value' field intentionally remains as InputSignal to prevent Signal Forms
+	// from misidentifying the component as FormValueControl.
+	// Signal Forms uses Duck-Typing: a 'value' ModelSignal → FormValueControl,
+	// a 'checked' ModelSignal → FormCheckboxControl.
 
 	// insert custom interface functions before ngOnInit
 	// TODO update attribute by config if necessary (e.g. for checked attribute?)
 	replacements.push({
 		from: 'ngAfterViewInit()',
 		to: `
+		/** @legacy CVA - will be removed in a future major version */
 		writeValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
@@ -70,18 +68,29 @@ const setControlValueAccessorReplacements = (
 			${valueAccessorRequired ? '}' : ''}
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		propagateChange(_: any) {}
 
+		/** @legacy CVA - will be removed in a future major version */
 		registerOnChange(onChange: any) {
 		  this.propagateChange = onChange;
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		registerOnTouched(onTouched: any) {
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		setDisabledState(disabled: boolean) {
 		  this.disabled.set(disabled);
 		}
+
+		/** Signal Forms optional fields (Duck-Typing compatibility) */
+		hidden = input<boolean>(false);
+		errors = input<any>(undefined);
+
+		/** Reflect Signal Forms hidden state to the host element */
+		@HostBinding('hidden') get isHidden() { return this.hidden(); }
 
 		ngAfterViewInit()`
 	});
@@ -156,6 +165,7 @@ export class ${directive.name}Directive {}
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
@@ -177,6 +187,33 @@ export default (tmp?: boolean) => {
 				component.config.angular.controlValueAccessor, // value / checked / ...
 				component.config.angular.controlValueAccessorRequired // Radio needs a value
 			);
+
+			// Signal Forms value alias for components using 'values' (e.g. DBCustomSelect)
+			if (component.config.angular.signalFormsValueAlias) {
+				// Inject value alias and bidirectional sync effects after duck-typing fields
+				replacements.push({
+					from: 'errors = input<any>(undefined);',
+					to:
+						`errors = input<any>(undefined);\n\n` +
+						`\t\t/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */\n` +
+						`\t\tvalue = model<any>();\n\n` +
+						`\t\t/** @internal Sync value → values (Signal Forms writes to value) */\n` +
+						`\t\tprivate _syncValueToValues = effect(() => {\n` +
+						`\t\t\tconst v = this.value();\n` +
+						`\t\t\tif (v !== undefined) {\n` +
+						`\t\t\t\tthis.values.set(Array.isArray(v) ? v : v ? [v] : []);\n` +
+						`\t\t\t}\n` +
+						`\t\t});\n\n` +
+						`\t\t/** @internal Sync values → value (CVA/user interaction writes to values) */\n` +
+						`\t\tprivate _syncValuesToValue = effect(() => {\n` +
+						`\t\t\tconst vals = this.values();\n` +
+						`\t\t\tconst current = vals && vals.length > 0 ? vals[0] : undefined;\n` +
+						`\t\t\tif (current !== this.value()) {\n` +
+						`\t\t\t\tthis.value.set(current);\n` +
+						`\t\t\t}\n` +
+						`\t\t});`
+				});
+			}
 		}
 
 		if (
@@ -196,6 +233,82 @@ export default (tmp?: boolean) => {
 			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);
+		}
+
+		// Ensure 'effect' is imported for signalFormsValueAlias components (avoid duplicate if Mitosis already imported it)
+		if (component.config?.angular?.signalFormsValueAlias) {
+			const fileContent = readFileSync(file, 'utf-8');
+			if (
+				!fileContent.includes('effect,') &&
+				!fileContent.includes('effect }') &&
+				!fileContent.includes(', effect')
+			) {
+				replaceInFileSync({
+					files: file,
+					from: `Renderer2 } from "@angular/core";`,
+					to: `Renderer2, effect } from "@angular/core";`
+				});
+			}
+		}
+
+		// Signal Forms validation bridge: inject at beginning of handleValidation()
+		// Only applies to CVA components that have handleValidation (not tab-item, custom-select-list-item, radio)
+		if (component.config?.angular?.controlValueAccessor) {
+			const fileContent2 = readFileSync(file, 'utf-8');
+			if (fileContent2.includes('handleValidation()')) {
+				// Declare _validMessage and _valid signals needed by the validation bridge
+				replaceInFileSync({
+					files: file,
+					from: `errors = input<any>(undefined);`,
+					to:
+						`errors = input<any>(undefined);\n\n` +
+						`\t\t/** @internal Signal Forms validation state */\n` +
+						`\t\t_validMessage = signal<string | undefined>('');\n` +
+						`\t\t/** @internal Signal Forms validation state */\n` +
+						`\t\t_valid = signal<string | undefined>(undefined);`
+				});
+
+				replaceInFileSync({
+					files: file,
+					from: /handleValidation\(\)\s*\{\s*\n/,
+					to:
+						`handleValidation() {\n` +
+						`    // Signal Forms validation bridge: errors InputSignal has priority\n` +
+						`    const signalFormErrors = this.errors();\n` +
+						`    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {\n` +
+						`      this._descByIds.set(this._invalidMessageId());\n` +
+						`      this._invalidMessage.set(\n` +
+						`        signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE\n` +
+						`      );\n` +
+						`      this._validMessage.set('');\n` +
+						`      this._valid.set('invalid');\n` +
+						`      if (hasVoiceOver()) {\n` +
+						`        this._voiceOverFallback.set(this._invalidMessage());\n` +
+						`        void delay(() => this._voiceOverFallback.set(""), 1000);\n` +
+						`      }\n` +
+						`      return; // Signal Forms errors take priority\n` +
+						`    } else if (this.errors() !== undefined) {\n` +
+						`      // Signal Forms provided errors=[] (valid state)\n` +
+						`      this._valid.set('valid');\n` +
+						`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
+						`      this._invalidMessage.set('');\n` +
+						`    }\n`
+				});
+			}
+
+			// Signal Forms type compatibility: widen 'pattern' input to accept RegExp[] from FieldState
+			// Angular Signal Forms binds FieldState.pattern (readonly RegExp[]) to the host's pattern input
+			if (
+				fileContent2.includes(
+					`input<${upperComponentName}Props["pattern"]>`
+				)
+			) {
+				replaceInFileSync({
+					files: file,
+					from: `pattern: InputSignal<${upperComponentName}Props["pattern"]> =\n    input<${upperComponentName}Props["pattern"]>()`,
+					to: `pattern: InputSignal<${upperComponentName}Props["pattern"] | readonly RegExp[]> =\n    input<${upperComponentName}Props["pattern"] | readonly RegExp[]>()`
+				});
+			}
 		}
 	}
 };
