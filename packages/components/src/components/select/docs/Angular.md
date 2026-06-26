@@ -115,7 +115,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 <dl>
 	<dt>select's value</dt>
 	<dd>
-		{{ form.get("select")?.value ? form.get("select")?.value : "No selection" }}
+		{{ form.get("select")?.value ? form.get("select")?.value : "No
+		selection" }}
 	</dd>
 </dl>
 ```
