@@ -1,10 +1,5 @@
 import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import {
-	FormControl,
-	FormGroup,
-	FormsModule,
-	ReactiveFormsModule
-} from '@angular/forms';
+import { form, FormField, required } from '@angular/forms/signals';
 import {
 	DBButton,
 	DBCheckbox,
@@ -23,12 +18,18 @@ import {
 	DBTextarea
 } from '@components';
 
+type FormData = {
+	input: string;
+	dateinput: string;
+	textarea: string;
+	checkbox: boolean;
+	select: string;
+};
+
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: [
-		FormsModule,
-		ReactiveFormsModule,
 		DBInput,
 		DBTextarea,
 		DBSelect,
@@ -43,7 +44,8 @@ import {
 		DBTabPanel,
 		DBSwitch,
 		DBDrawer,
-		DBInfotext
+		DBInfotext,
+		FormField
 	],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA]
@@ -52,45 +54,34 @@ export class FormComponent {
 	// Drawer state
 	drawerOpen = false;
 
-	// DB Switch with Angular signals
+	// Switch with signals
 	checkedSignal = signal(false);
-	checkedNonSignal = false;
 
 	array = ['X', 'Y', 'Z'];
-	radio = '';
-	input = '';
-	textarea = 'default value';
-	textareaDefaultValue = '';
-	dateinput = '';
 	tags: string[] = [];
+	radio = signal('X');
+
 	// Fieldset checkbox state
 	checked = [true, false];
 
-	model = {
-		input: 'Anna',
-		dateinput: '2024-05-04',
-		textarea: 'default value',
-		radio: 'X',
-		checkbox: true,
-		checkbox2: true,
-		select: 'test2'
-	};
-
 	dataList = [{ value: 'test', label: 'Test' }, { value: 'test2' }];
 
-	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
-	form = new FormGroup({
-		input: new FormControl('Filled with formControl'),
-		dateinput: new FormControl('2024-05-04'),
-		textarea: new FormControl('Filled with formControl as well'),
-		checkbox: new FormControl(true),
-		select: new FormControl('test2')
+	// Signal Forms: model signal + form()
+	formModel = signal<FormData>({
+		input: 'Filled with Signal Forms',
+		dateinput: '2024-05-04',
+		textarea: 'Filled with Signal Forms as well',
+		checkbox: true,
+		select: 'test2'
+	});
+
+	myForm = form(this.formModel, (fields) => {
+		required(fields.input);
+		required(fields.textarea);
 	});
 
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
-
 	getTagName = (tag: string): string => `Tag ${tag}`;
-
 	getTags = (): string => JSON.stringify(this.tags);
 
 	changeTags = (tag: string) => {
@@ -99,41 +90,27 @@ export class FormComponent {
 			: [...this.tags, tag];
 	};
 
-	changeTextarea(
-		key: 'textarea' | 'textareaDefaultValue',
-		event: Event | void
-	) {
-		if (!event) return;
-		this[key] = (event.target as HTMLTextAreaElement).value;
-	}
-
 	resetValues(): void {
-		this.textarea = '';
-		this.model.input = 'reset';
-		this.model.textarea = 'resetted as well';
-		this.model.checkbox = false;
-		this.model.checkbox2 = false;
-		this.form.get('input')?.setValue('reset');
-		this.form.get('textarea')?.setValue('reset');
-		this.form.get('dateinput')?.setValue('');
-		this.form.get('checkbox')?.setValue(false);
+		this.formModel.set({
+			input: '',
+			dateinput: '',
+			textarea: '',
+			checkbox: false,
+			select: ''
+		});
+		this.radio.set('');
 	}
 
 	onFormSubmit(): void {
 		// eslint-disable-next-line no-alert
-		alert(
-			'Formvalue: ' +
-				JSON.stringify(this.form.value) +
-				' / Model data: ' +
-				JSON.stringify(this.model)
-		);
+		alert('Signal Forms value: ' + JSON.stringify(this.formModel()));
 	}
 
-	// Checkbox changes
+	// Checkbox changes (indeterminate demo)
 	handleChange1 = (event?: Event | void) => {
 		if (!event) return;
-		const checked = (event.target as HTMLInputElement)?.checked;
-		this.checked = [checked, checked];
+		const c = (event.target as HTMLInputElement)?.checked;
+		this.checked = [c, c];
 	};
 
 	handleChange2 = (event: Event | void) => {
@@ -152,33 +129,8 @@ export class FormComponent {
 		];
 	};
 
-	handleChange4 = (event: Event | void) => {
+	handleSwitchChange(event: Event | void) {
 		if (!event) return;
-		this.form
-			.get('select')
-			?.setValue((event.target as HTMLSelectElement).value, {
-				onlySelf: true
-			});
-	};
-
-	showValues(): void {
-		// eslint-disable-next-line no-alert
-		alert(
-			JSON.stringify({
-				input: this.input,
-				textarea: this.textarea,
-				radio: this.radio,
-				checkbox: this.model.checkbox,
-				checkbox2: this.model.checkbox2,
-				tags: this.tags
-			})
-		);
-	}
-
-	handleChange(event: Event | void) {
-		if (!event) return;
-		console.log(event.currentTarget);
 		this.checkedSignal.set((event.target as HTMLInputElement).checked);
-		this.checkedNonSignal = (event.target as HTMLInputElement).checked;
 	}
 }

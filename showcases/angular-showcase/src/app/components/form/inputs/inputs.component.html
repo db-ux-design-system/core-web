@@ -2,6 +2,7 @@
 	[plain]="plain"
 	[model]="ngModel"
 	[control]="formControl.value"
+	[signalForms]="signalForm.value().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -29,6 +30,13 @@
 			icon="x_placeholder"
 			name="input-name"
 			[formControl]="formControl"
+		/>
+		<db-input
+			label="signalForms"
+			placeholder="Placeholder"
+			message="Description"
+			icon="x_placeholder"
+			[formField]="signalForm.value"
 		/>
 	</fieldset>
 </app-form-wrapper>

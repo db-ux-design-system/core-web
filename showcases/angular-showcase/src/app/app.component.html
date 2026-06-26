@@ -20,7 +20,7 @@
 				<db-select
 					variant="floating"
 					label="Density"
-					[(ngModel)]="density"
+					[formField]="settingsForm.density"
 					(change)="onChange($event)"
 				>
 					@for (t of densities; track t) {
@@ -32,7 +32,7 @@
 				<db-select
 					variant="floating"
 					label="Color"
-					[(ngModel)]="color"
+					[formField]="settingsForm.color"
 					(change)="onChange($event)"
 				>
 					@for (c of colors; track c) {

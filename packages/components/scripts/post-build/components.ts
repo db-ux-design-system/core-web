@@ -19,6 +19,7 @@ export type Component = {
 		angular?: {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
+			signalFormsValueAlias?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
@@ -95,7 +96,8 @@ export const getComponents = (): Component[] => [
 				vModel: [{ modelValue: 'values', binding: ':values' }]
 			},
 			angular: {
-				controlValueAccessor: 'values'
+				controlValueAccessor: 'values',
+				signalFormsValueAlias: true
 			},
 			react: {
 				propsPassingFilter: [
