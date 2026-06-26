@@ -116,7 +116,7 @@ Detect at runtime whether `[formField]` is bound, and only then skip CVA registr
 - **CVA methods annotated with `@legacy`**: All CVA methods receive `@legacy` JSDoc comments signaling future deprecation.
 - **Phase-out timeline**: CVA code will be fully removed in a future major version when Angular deprecates Reactive Forms in favor of Signal Forms. This is NOT tied to dropping Angular 20 support — it depends on Angular's own deprecation timeline for `formControlName`/`ngModel`.
 - **Deprecation communication**: Migration documentation, JSDoc annotations, and changelog entries communicate the availability of Signal Forms as the recommended new path.
-- **Checkbox breaking change**: `DBCheckbox.value` changes from `ModelSignal` to `InputSignal` to enable correct Signal Forms Duck-Typing as `FormCheckboxControl`.
+- **Checkbox `value` remains InputSignal**: `DBCheckbox.value` is intentionally kept as `InputSignal` (not converted to `ModelSignal`) to ensure Signal Forms Duck-Typing correctly identifies the component as `FormCheckboxControl` (which requires a `checked` ModelSignal, not a `value` ModelSignal). This is not a breaking change — the public API is unchanged.
 
 ## Links
 
