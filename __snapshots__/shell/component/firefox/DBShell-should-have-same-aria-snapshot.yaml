@@ -4,9 +4,7 @@
       - listitem:
         - link "Item":
           - /url: "#"
-      - listitem:
-        - link "Disabled" [disabled]:
-          - /url: "#"
+      - listitem: Disabled
   - link "Imprint":
     - /url: "#"
   - link "Help":
