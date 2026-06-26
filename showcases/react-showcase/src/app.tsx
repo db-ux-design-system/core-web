@@ -42,7 +42,8 @@ const App = () => {
 			controlPanelMobilePosition={settings.controlPanelMobilePosition}
 			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
 			subNavigationMobilePosition={settings.subNavigationMobilePosition}
-			showSubNavigation={settings.subNavigation === 'true'}>
+			showSubNavigation={settings.subNavigation === 'true'}
+			skipNavigationLink={<a href="#">Skip navigation</a>}>
 			<DBShellSubNavigation>
 				<Navigation
 					variant={settings.subNavigationVariant}

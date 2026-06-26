@@ -127,6 +127,10 @@
 					/* stylelint-disable-next-line declaration-property-value-no-unknown,db-ux/use-sizing */
 					block-size: calc-size(auto, size);
 				}
+
+				+ .db-control-panel-navigation-item-group-menu {
+					padding-block: variables.$db-spacing-fixed-xs;
+				}
 			}
 		}
 
@@ -142,6 +146,7 @@
 
 				&::before {
 					inset-inline-start: 1lh;
+					inset-block: variables.$db-spacing-fixed-xs;
 				}
 			}
 		}
@@ -161,7 +166,7 @@
 		flex-direction: column;
 		padding: 0;
 		margin: 0;
-		gap: variables.$db-spacing-fixed-sm;
+		gap: variables.$db-spacing-fixed-xs;
 	}
 
 	&:not([data-variant]),

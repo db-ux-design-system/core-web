@@ -21,15 +21,15 @@ export type DBControlPanelNavigationItemDefaultProps = {
 	 */
 	tooltip?: string;
 } & StartSlotProps &
-	EndSlotProps;
+	EndSlotProps &
+	TextProps;
 
 export type DBControlPanelNavigationItemProps =
 	DBControlPanelNavigationItemDefaultProps &
 		GlobalProps &
 		IconProps &
 		ShowIconProps &
-		DisabledProps &
-		TextProps;
+		DisabledProps;
 
 export type DBControlPanelNavigationItemDefaultState = {
 	_tooltip?: string;
