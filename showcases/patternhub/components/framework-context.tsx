@@ -44,34 +44,31 @@ export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 			const urlParameters = new URLSearchParams(
 				globalThis.location.search
 			);
-			const frameworkParameter = urlParameters.get(
-				'framework'
-			) as Framework;
+			const frameworkParameter = urlParameters.get('framework');
 
 			if (
 				frameworkParameter &&
 				['angular', 'html', 'react', 'vue'].includes(frameworkParameter)
 			) {
-				setFrameworkState(frameworkParameter);
-				localStorage.setItem(frameworkKey, frameworkParameter);
+				const validFramework = frameworkParameter as Framework;
+				setFrameworkState(validFramework);
+				localStorage.setItem(frameworkKey, validFramework);
 				// The card wrapper reads this event to refresh the "Show Code" target.
 				globalThis.dispatchEvent(
 					new CustomEvent('db-ux-framework-change', {
-						detail: frameworkParameter
+						detail: validFramework
 					})
 				);
 				return;
 			}
 
 			// Fallback for direct visits without a framework query parameter.
-			const savedFramework = localStorage.getItem(
-				frameworkKey
-			) as Framework;
+			const savedFramework = localStorage.getItem(frameworkKey);
 			if (
 				savedFramework &&
 				['angular', 'html', 'react', 'vue'].includes(savedFramework)
 			) {
-				setFrameworkState(savedFramework);
+				setFrameworkState(savedFramework as Framework);
 			}
 		}
 	}, []);

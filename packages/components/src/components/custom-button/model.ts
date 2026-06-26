@@ -1,4 +1,4 @@
-import {
+import type {
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -12,7 +12,7 @@ import {
 	WidthProps,
 	WrapProps
 } from '../../shared/model';
-import { DBButtonSharedProps } from '../button/model';
+import type { DBButtonSharedProps } from '../button/model';
 
 export type DBCustomButtonDefaultProps = {};
 

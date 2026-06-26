@@ -8,6 +8,7 @@ import {
 
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
+	'DBBadge',
 	'DBButton',
 	'DBLink',
 	'DBIcon',
@@ -45,7 +46,7 @@ export default {
 					child.type === 'Element$1'
 			);
 
-			if (text === null && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -57,14 +58,19 @@ export default {
 			}
 		};
 
+		const angularVisitors: any = {};
 		for (const comp of COMPONENTS_REQUIRING_CONTENT) {
-			const angularVisitors = createAngularVisitors(
+			const visitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
 		}
+
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
@@ -88,7 +94,7 @@ export default {
 					child.type === 'VExpressionContainer'
 			);
 
-			if (text === null && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,

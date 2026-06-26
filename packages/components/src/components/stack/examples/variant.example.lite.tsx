@@ -18,6 +18,7 @@ export default function StackVariant() {
 					alignItems: 'flex-start',
 					alignSelf: 'flex-start',
 					display: 'flex',
+					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '200px'
@@ -40,6 +41,7 @@ export default function StackVariant() {
 					alignItems: 'flex-start',
 					alignSelf: 'flex-start',
 					display: 'flex',
+					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '200px'

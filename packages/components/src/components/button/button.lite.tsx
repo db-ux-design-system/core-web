@@ -25,6 +25,8 @@ export default function DBButton(props: DBButtonProps) {
 				return props.type;
 			} else if (props.onClick) {
 				return 'button';
+			} else if (props.commandfor) {
+				return 'button';
 			}
 			return 'submit';
 		}
@@ -38,22 +40,27 @@ export default function DBButton(props: DBButtonProps) {
 			type={state.getButtonType()}
 			disabled={getBoolean(props.disabled, 'disabled')}
 			data-icon={props.iconLeading ?? props.icon}
-			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon
-			)}
+			data-show-icon={
+				getBooleanAsString(props.showIconLeading, 'showIconLeading') ||
+				getBooleanAsString(props.showIcon, 'showIcon')
+			}
 			data-icon-trailing={props.iconTrailing}
-			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing,
+				'showIconTrailing'
+			)}
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
-			data-wrap={getBooleanAsString(props.wrap)}
-			data-no-text={getBooleanAsString(props.noText)}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			name={props.name}
 			form={props.form}
-			value={props.value}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			value={props.value}
+			command={props.command}
+			commandfor={props.commandfor}>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</button>
 	);
 }

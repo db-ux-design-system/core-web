@@ -15,6 +15,7 @@ $switch-active-thumb-size: calc(#{form-components.$font-size-height});
 $checked-active-transition-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
+$switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 %active-transition {
 	&::before {
@@ -46,6 +47,7 @@ $checked-active-transition-size: calc(
 		}
 	}
 
+	// jscpd:ignore-start
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
 			@include form-components.get-validity-color-checkbox("valid");
@@ -56,6 +58,8 @@ $checked-active-transition-size: calc(
 		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
+	// jscpd:ignore-end
+
 	input {
 		--db-icon-margin-start: 0;
 		--thumb-offset-x: #{$switch-fixed-padding};
@@ -64,9 +68,8 @@ $checked-active-transition-size: calc(
 
 		appearance: none;
 		margin-inline-end: 0;
-		inline-size: calc(
-			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
-		);
+		inline-size: $switch-inline-size;
+		min-inline-size: $switch-inline-size;
 		block-size: form-components.$font-size-height;
 		box-sizing: content-box;
 
@@ -131,6 +134,8 @@ $checked-active-transition-size: calc(
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
+
+			// jscpd:ignore-start
 			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
@@ -141,6 +146,8 @@ $checked-active-transition-size: calc(
 			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
+
+			// jscpd:ignore-end
 
 			&::after {
 				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
@@ -184,10 +191,6 @@ $checked-active-transition-size: calc(
 	}
 
 	&[data-size="small"] {
-		> label {
-			gap: variables.$db-spacing-fixed-2xs;
-		}
-
 		input {
 			@extend %db-overwrite-font-size-xs;
 		}

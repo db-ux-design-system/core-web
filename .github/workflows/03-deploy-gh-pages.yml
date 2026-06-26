@@ -36,40 +36,49 @@ jobs:
       contents: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: ⏬ Download composition-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-composition-storybook
           path: build-storybooks/composition-storybook
 
       - name: ⏬ Download angular-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-angular-storybook
           path: build-storybooks/angular-storybook
 
       - name: ⏬ Download react-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-react-storybook
           path: build-storybooks/react-storybook
 
       - name: ⏬ Download vue-storybook
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: db-ux-vue-storybook
           path: build-storybooks/vue-storybook
+
+      - name: ⏬ Download html-storybook
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: db-ux-html-storybook
+          path: build-storybooks/html-storybook
 
       - name: 🦵🦿 I like to move it move it
         shell: bash
@@ -77,6 +86,7 @@ jobs:
           mv build-showcases/patternhub out
           mv build-storybooks/composition-storybook out/composition-storybook
           mv build-storybooks/angular-storybook out/angular-storybook
+          mv build-storybooks/html-storybook out/html-storybook
           mv build-storybooks/react-storybook out/react-storybook
           mv build-storybooks/vue-storybook out/vue-storybook
 
@@ -88,10 +98,10 @@ jobs:
           REPO_NAME: ${{ inputs.repoName }}
           OWNER_NAME: ${{ inputs.repoOwner }}
         run: |
-          npx --no tsx scripts/github/build-gh-page.ts
+          pnpm --silent tsx scripts/github/build-gh-page.ts
 
       - name: 🥅 Deploy to GH-Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public

@@ -4,7 +4,10 @@ type VElement = {
 	type: 'VElement';
 	startTag: {
 		attributes: Array<{
-			key: { name: string; argument?: { name: string } };
+			key: {
+				name: string | { name: string };
+				argument?: string | { name: string | { name: string } };
+			};
 			value?: { value: string };
 		}>;
 		range: [number, number];
@@ -48,10 +51,8 @@ function isAngularElement(node: any): node is AngularElement {
 export function getAttributeValue(
 	node: ElementNode,
 	attrName: string
-): string | boolean | null {
-	const kebabAttrName = attrName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
+): string | boolean | undefined {
+	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
 		const attr = node.attributes.find(
@@ -62,56 +63,68 @@ export function getAttributeValue(
 				? true
 				: attr.value;
 		}
+
 		const input = node.inputs.find(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
 		if (input) return true;
-		return null;
+		return undefined;
 	}
 
 	if (isVElement(node)) {
 		const attr = node.startTag.attributes.find((a) => {
-			if (a.key.name === 'bind' && a.key.argument?.name === attrName)
+			const keyName =
+				typeof a.key.name === 'string' ? a.key.name : a.key.name?.name;
+			const argName = a.key.argument
+				? typeof a.key.argument === 'string'
+					? a.key.argument
+					: typeof a.key.argument.name === 'string'
+						? a.key.argument.name
+						: a.key.argument.name?.name
+				: undefined;
+			if (
+				keyName === 'bind' &&
+				(argName === attrName ||
+					argName === kebabAttrName ||
+					argName === attrName.toLowerCase() ||
+					argName === kebabAttrName.toLowerCase())
+			)
 				return true;
 			return (
-				a.key.name === attrName ||
-				a.key.name === kebabAttrName ||
-				a.key.name === `:${attrName}` ||
-				a.key.name === `:${kebabAttrName}`
+				keyName === attrName ||
+				keyName === kebabAttrName ||
+				keyName === `:${attrName}` ||
+				keyName === `:${kebabAttrName}`
 			);
 		});
-		if (!attr) return null;
+		if (!attr) return undefined;
 		if (!attr.value) return true;
-		return attr.value.value;
+		return attr.value.value ?? true;
 	}
 
-	const variants = [attrName, `[${attrName}]`, `:${attrName}`];
+	const variants = new Set([attrName, `[${attrName}]`, `:${attrName}`]);
 	const attr = node.attributes.find(
-		(a) =>
-			a.type === 'JSXAttribute' &&
-			variants.includes(a.name.name as string)
+		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
 	) as TSESTree.JSXAttribute | undefined;
 
-	if (!attr) return null;
+	if (!attr) return undefined;
 	if (!attr.value) return true;
 	if (attr.value.type === 'Literal') return attr.value.value as string;
 	if (attr.value.type === 'JSXExpressionContainer') return true;
-	return null;
+	return undefined;
 }
 
 export function hasChildOfType(
 	node: TSESTree.JSXElement | VElement | AngularElement,
 	componentName: string
 ): boolean {
-	const kebabName = componentName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
-
+	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
 		return (node.children || []).some((child: any) => {
 			if (child.type === 'Element' || child.type === 'Element$1') {
 				return child.name === componentName || child.name === kebabName;
 			}
+
 			return false;
 		});
 	}
@@ -124,18 +137,20 @@ export function hasChildOfType(
 					child.rawName === kebabName
 				);
 			}
+
 			return false;
 		});
 	}
 
 	return node.children.some((child) => {
 		if (child.type === 'JSXElement') {
-			const openingElement = child.openingElement;
+			const { openingElement } = child;
 			if (openingElement.name.type === 'JSXIdentifier') {
-				const name = openingElement.name.name;
+				const { name } = openingElement.name;
 				return name === componentName || name === kebabName;
 			}
 		}
+
 		return false;
 	});
 }
@@ -144,10 +159,7 @@ export function isDBComponent(
 	node: ElementNode,
 	componentName: string
 ): boolean {
-	const kebabName = componentName
-		.replace(/([a-z])([A-Z])/g, '$1-$2')
-		.toLowerCase();
-
+	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
 		return node.name === componentName || node.name === kebabName;
 	}
@@ -157,7 +169,7 @@ export function isDBComponent(
 	}
 
 	if (node.name.type !== 'JSXIdentifier') return false;
-	const name = node.name.name;
+	const { name } = node.name;
 	return name === componentName || name === kebabName;
 }
 
@@ -181,11 +193,12 @@ export function defineTemplateBodyVisitor(
 		const angularVisitors: any = {};
 		for (const [key, handler] of Object.entries(templateVisitor)) {
 			if (key === 'VElement' || key === 'Element') {
-				angularVisitors['Element'] = handler;
+				angularVisitors.Element = handler;
 			} else {
 				angularVisitors[key] = handler;
 			}
 		}
+
 		return angularVisitors;
 	}
 
@@ -206,21 +219,27 @@ export function createAngularVisitors(
 		return null;
 	}
 
-	// For DB components, convert DBComponentName -> db-component-name
-	const kebabName = componentName.startsWith('DB')
-		? 'db-' +
-			componentName
-				.slice(2)
-				.replace(/([a-z])([A-Z])/g, '$1-$2')
-				.toLowerCase()
-		: componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+	const kebabName = getAngularComponentName(componentName);
 
-	const wrappedHandler = (node: any) => handler(node, parserServices);
+	const wrappedHandler = (node: any) => {
+		handler(node, parserServices);
+	};
 
 	return {
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
 		[`Element[name="${componentName}"]`]: wrappedHandler
 	};
+}
+
+export function toKebabCase(string_: string): string {
+	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+export function getAngularComponentName(componentName: string): string {
+	// For DB components, convert DBComponentName -> db-component-name
+	return componentName.startsWith('DB')
+		? 'db-' + toKebabCase(componentName.slice(2))
+		: toKebabCase(componentName);
 }
 
 export function createAngularFix(
@@ -246,24 +265,21 @@ export function createJsxVueFix(
 ) {
 	if (node.openingElement) {
 		// JSX
-		const lastAttr =
-			openingElement.attributes[openingElement.attributes.length - 1];
+		const lastAttr = openingElement.attributes.at(-1);
 		const insertPos = lastAttr
 			? lastAttr.range[1]
 			: openingElement.name.range[1];
 		return { insertPos, attributeText };
-	} else {
-		// Vue
-		const attrs = openingElement.startTag.attributes;
-		if (attrs.length > 0) {
-			const lastAttr = attrs[attrs.length - 1];
-			return { insertPos: lastAttr.range[1], attributeText };
-		} else {
-			const insertPos =
-				openingElement.startTag.range[0] +
-				1 +
-				openingElement.rawName.length;
-			return { insertPos, attributeText };
-		}
 	}
+
+	// Vue
+	const attrs = openingElement.startTag.attributes;
+	if (attrs.length > 0) {
+		const lastAttr = attrs.at(-1);
+		return { insertPos: lastAttr.range[1], attributeText };
+	}
+
+	const insertPos =
+		openingElement.startTag.range[0] + 1 + openingElement.rawName.length;
+	return { insertPos, attributeText };
 }

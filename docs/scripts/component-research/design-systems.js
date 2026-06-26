@@ -82,7 +82,7 @@ export const designSystems = [
 		url: 'https://github.com/twbs/bootstrap',
 		componentUrl: 'https://getbootstrap.com/docs/4.3/components/alerts/'
 	}
-].sort((a, b) => {
+].toSorted((a, b) => {
 	const nameA = a.name.toUpperCase(); // ignore upper and lowercase
 	const nameB = b.name.toUpperCase(); // ignore upper and lowercase
 	if (nameA < nameB) {

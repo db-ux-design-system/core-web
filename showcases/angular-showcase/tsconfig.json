@@ -15,13 +15,15 @@
 		"declaration": false,
 		"experimentalDecorators": true,
 		"moduleResolution": "node",
+		"baseUrl": "./",
 		"importHelpers": true,
 		"resolveJsonModule": true,
 		"target": "ES2022",
 		"module": "ES2022",
 		"useDefineForClassFields": false,
-		"lib": ["ES2022", "dom"],
+		"lib": ["ES2023", "dom"],
 		"paths": {
+			"@angular/*": ["node_modules/@angular/*"],
 			"@components": ["../../output/angular/src"],
 			"@components/src/*": ["../../output/angular/src/*"],
 			"@components/components/*": [

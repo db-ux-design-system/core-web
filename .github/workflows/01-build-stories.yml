@@ -13,29 +13,32 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: 🔨 Build Packages
         run: |
-          npm run generate:stories --workspace=@db-ux/core-components
+          pnpm --filter @db-ux/core-components run generate:stories
 
       - name: ⏫ Upload angular stories
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: angular-storybook-stories
-          path: storybooks/angular-storybook/src/components
+          path: storybooks/angular-storybook/src
 
       - name: ⏫ Upload react stories
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: react-storybook-stories
-          path: storybooks/react-storybook/src/components
+          path: storybooks/react-storybook/src
 
       - name: ⏫ Upload vue stories
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: vue-storybook-stories
-          path: storybooks/vue-storybook/src/components
+          path: storybooks/vue-storybook/src

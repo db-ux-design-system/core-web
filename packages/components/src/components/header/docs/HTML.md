@@ -4,12 +4,16 @@ For general installation and configuration take a look at the [components](https
 
 ### Use component
 
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor` HTML attributes) to declaratively connect the burger menu button with the drawer `<dialog>` element, and the close button inside the drawer. Supported built-in commands for `<dialog>` are `show-modal` and `close`.
+
+If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
+
 ```html index.html
 <!-- index.html -->
 ...
 <body>
 	<header class="db-header">
-		<dialog class="db-drawer">
+		<dialog id="header-drawer" class="db-drawer">
 			<article
 				class="db-drawer-container db-header-drawer"
 				data-spacing="small"
@@ -21,6 +25,8 @@ For general installation and configuration take a look at the [components](https
 						class="db-button button-close-drawer is-icon-text-replace"
 						data-icon="cross"
 						data-variant="text"
+						command="close"
+						commandfor="header-drawer"
 					>
 						Close Button
 					</button>
@@ -139,6 +145,8 @@ For general installation and configuration take a look at the [components](https
 						class="db-button is-icon-text-replace"
 						data-icon="menu"
 						data-variant="text"
+						command="show-modal"
+						commandfor="header-drawer"
 					>
 						BurgerMenu
 					</button>
@@ -167,5 +175,32 @@ For general installation and configuration take a look at the [components](https
 			</div>
 		</div>
 	</header>
+
+	<script>
+		/*
+		 * Feature detection for Invoker Commands:
+		 * If the browser does not support the `command` and `commandfor`
+		 * HTML attributes, we fall back to JavaScript event handlers.
+		 */
+		if (
+			!("command" in HTMLButtonElement.prototype) ||
+			!("commandFor" in HTMLButtonElement.prototype)
+		) {
+			const burgerMenuButton = document.querySelector(
+				'[commandfor="header-drawer"][command="show-modal"]'
+			);
+			const closeButton = document.querySelector(
+				'[commandfor="header-drawer"][command="close"]'
+			);
+			const drawer = document.getElementById("header-drawer");
+
+			burgerMenuButton?.addEventListener("click", () => {
+				drawer?.showModal?.();
+			});
+			closeButton?.addEventListener("click", () => {
+				drawer?.close?.();
+			});
+		}
+	</script>
 </body>
 ```

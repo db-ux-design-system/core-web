@@ -1,4 +1,4 @@
-import {
+import type {
 	ClickEventState,
 	DocumentScrollState,
 	EmphasisProps,
@@ -9,6 +9,7 @@ import {
 	PopoverProps,
 	PopoverState,
 	ResetIdState,
+	TextProps,
 	WrapProps
 } from '../../shared/model';
 
@@ -33,10 +34,20 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	EmphasisProps &
 	PlacementProps &
 	PopoverProps &
-	WrapProps;
+	WrapProps &
+	TextProps;
 
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;
+	_attachedParent?: HTMLElement;
+	_attachedId?: string;
+	_activeTriggerCount?: number;
+	_boundListeners?: {
+		parent: HTMLElement;
+		type: string;
+		fn: (event: any) => void;
+	}[];
+	_detachListeners: () => void;
 };
 
 export type DBTooltipState = DBTooltipDefaultState &

@@ -1,0 +1,71 @@
+# @db-ux/core-vite-plugin
+
+## 4.13.0
+
+_version bump_
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+_version bump_
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
+## 4.9.1
+
+_version bump_
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+### Minor Changes
+
+- feat: add vite-plugin to resolve CSS automatically based on detected components and styles - [see commit 5b1b2d8](https://github.com/db-ux-design-system/core-web/commit/5b1b2d811245fe132685171cb497bd5b16f5ff56)

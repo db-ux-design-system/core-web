@@ -27,6 +27,7 @@ import SelectShowcase from '@components/components/select/showcase/select.showca
 import StackShowcase from '@components/components/stack/showcase/stack.showcase';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase';
+import TableShowcase from '@components/components/table/showcase/table.showcase';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
@@ -42,7 +43,7 @@ export type NavigationItem = {
 export const getSortedNavigationItems = (
 	navigationItems: NavigationItem[]
 ): any[] =>
-	navigationItems.sort((a: NavigationItem, b: NavigationItem) =>
+	navigationItems.toSorted((a: NavigationItem, b: NavigationItem) =>
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
@@ -116,6 +117,8 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'TabItem',
 				component: <TabItemShowcase />
 			},
+			{ path: 'table', label: 'Table', component: <TableShowcase /> },
+
 			{ path: 'tabs', label: 'Tabs', component: <TabsShowcase /> }
 		])
 	},

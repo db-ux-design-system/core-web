@@ -27,7 +27,7 @@ export default {
 
 			const removeTagsTexts = getAttributeValue(node, 'removeTagsTexts');
 
-			if (removeTagsTexts === null || removeTagsTexts === '') {
+			if (removeTagsTexts === undefined || removeTagsTexts === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -62,7 +62,7 @@ export default {
 				'removeTagsTexts'
 			);
 
-			if (removeTagsTexts === null || removeTagsTexts === '') {
+			if (removeTagsTexts === undefined || removeTagsTexts === '') {
 				context.report({
 					node: openingElement,
 					messageId:

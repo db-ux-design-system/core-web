@@ -15,5 +15,12 @@
 		"skipLibCheck": true
 	},
 	"include": ["src"],
-	"exclude": ["node_modules", "src/**/*.spec.tsx", "src/**/*.example.tsx", "src/**/*.showcase.tsx", "src/**/*.arg.types.ts"]
+	"exclude": [
+		"node_modules",
+		"src/**/*.spec.tsx",
+		"src/**/*.spec.ts",
+		"src/**/*.example.tsx",
+		"src/**/*.showcase.tsx",
+		"src/**/*.arg.types.ts"
+	]
 }

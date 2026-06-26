@@ -36,25 +36,14 @@ $with-icon-padding-calc: calc(
 		overflow: hidden;
 		text-overflow: ellipsis;
 
-		@include helpers.hover {
-			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
-
-			&:has(input:disabled) {
-				cursor: initial;
-			}
+		&:has(input:disabled) {
+			--db-overwrite-cursor: initial;
 		}
 
-		@include helpers.hover {
-			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
-
-			&:has(input:disabled) {
-				cursor: initial;
-			}
-		}
+		@include helpers.interactive-bg(
+			colors.$db-adaptive-bg-basic-transparent-full-hovered,
+			colors.$db-adaptive-bg-basic-transparent-full-pressed
+		);
 
 		&:has(input:checked) {
 			font-weight: 700;

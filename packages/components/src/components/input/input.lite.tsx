@@ -88,7 +88,7 @@ export default function DBInput(props: DBInputProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -102,7 +102,7 @@ export default function DBInput(props: DBInputProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -135,7 +135,13 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -161,7 +167,13 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -235,9 +247,7 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		if (props.value !== undefined) {
-			state._value = props.value;
-		}
+		state._value = props.value;
 	}, [props.value]);
 
 	onUpdate(() => {
@@ -281,14 +291,16 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-show-icon={getBooleanAsString(
-				props.showIconLeading ?? props.showIcon
-			)}
+			data-show-icon={
+				getBooleanAsString(props.showIconLeading, 'showIconLeading') ||
+				getBooleanAsString(props.showIcon, 'showIcon')
+			}
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-show-icon-trailing={getBooleanAsString(
-				props.showIconTrailing
+				props.showIconTrailing,
+				'showIconTrailing'
 			)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
@@ -305,14 +317,15 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={props.value ?? state._value}
+				value={props.value ?? state._value ?? ''}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}
 				min={getInputValue(props.min, props.type)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
-					getBoolean(props.readonly, 'readonly')
+					getBoolean(props.readonly, 'readonly') ||
+					undefined
 				}
 				form={props.form}
 				pattern={props.pattern}
