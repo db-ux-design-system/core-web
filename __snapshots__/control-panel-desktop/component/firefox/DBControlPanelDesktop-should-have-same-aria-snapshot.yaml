@@ -4,9 +4,7 @@
       - listitem:
         - link "Home":
           - /url: "#"
-      - listitem:
-        - link "Disabled" [disabled]:
-          - /url: "#"
+      - listitem: Disabled
   - button "Search"
   - button "Profile"
 - main "Main": Content
