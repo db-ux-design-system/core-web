@@ -62,8 +62,8 @@ export default function DBControlPanelNavigationItem(
 					anchor.setAttribute('aria-disabled', 'true');
 				} else {
 					// Restore saved href when no longer disabled
-					if (state._savedHref !== undefined) {
-						anchor.setAttribute('href', state._savedHref);
+					if (state._savedHref) {
+						anchor.setAttribute('href', state._savedHref!);
 						state._savedHref = undefined;
 					}
 					anchor.removeAttribute('tabindex');

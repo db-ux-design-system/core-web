@@ -9,6 +9,10 @@ import {
 } from '../../shared/model';
 
 export type DBControlPanelNavigationDefaultProps = {
+	/**
+	 * Show or hide the tree line connecting nested navigation items in tree variant.
+	 * @default true
+	 */
 	showTreeLine?: boolean | string;
 };
 

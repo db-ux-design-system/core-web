@@ -478,4 +478,88 @@ export const handleFixedPopover = (
 
 	element.style.position = 'fixed';
 	element.dataset['correctedPlacement'] = correctedPlacement;
+
+	// Set data-outside-vy / data-outside-vx for CSS-based flipping
+	handleDataOutside(element);
+};
+
+/**
+ * Detects whether a floating element overflows the viewport edges
+ * and sets `data-outside-vy` / `data-outside-vx` attributes accordingly.
+ * CSS rules can use these attributes to flip/reposition the element.
+ *
+ * If the element was already flipped (has existing data-outside-* attributes),
+ * it checks whether the flipped position would overflow on the opposite side
+ * using the parent's rect as reference, preventing infinite flip-flop.
+ */
+export interface DBDataOutsidePair {
+	vx?: 'left' | 'right';
+	vy?: 'top' | 'bottom';
+}
+
+export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
+	const { outTop, outBottom, outLeft, outRight } = isInView(el);
+	let dataOutsidePair: DBDataOutsidePair = {};
+
+	if (outTop || outBottom) {
+		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
+		el.dataset['outsideVy'] = dataOutsidePair.vy!;
+	} else {
+		delete el.dataset['outsideVy'];
+	}
+	if (outLeft || outRight) {
+		dataOutsidePair = {
+			...dataOutsidePair,
+			vx: outRight ? 'right' : 'left'
+		};
+		el.dataset['outsideVx'] = dataOutsidePair.vx!;
+	} else {
+		delete el.dataset['outsideVx'];
+	}
+
+	return dataOutsidePair;
+};
+
+const isInView = (el: HTMLElement) => {
+	const { top, bottom, left, right } = el.getBoundingClientRect();
+	const { innerHeight, innerWidth } = window;
+
+	let outTop = top < 0;
+	let outBottom = bottom > innerHeight;
+	let outLeft = left < 0;
+	let outRight = right > innerWidth;
+
+	// We need to check if it was already outside
+	const outsideY = el.dataset['outsideVy'];
+	const outsideX = el.dataset['outsideVx'];
+	const parentRect = el?.parentElement?.getBoundingClientRect();
+
+	if (parentRect) {
+		if (outsideY) {
+			const position = el.dataset['outsideVy'];
+			if (position === 'top') {
+				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
+			} else {
+				outBottom =
+					parentRect.bottom + (parentRect.top - top) > innerHeight;
+			}
+		}
+
+		if (outsideX) {
+			const position = el.dataset['outsideVx'];
+			if (position === 'left') {
+				outLeft = parentRect.left - (right - parentRect.right) < 0;
+			} else {
+				outRight =
+					parentRect.right + (parentRect.left - left) > innerWidth;
+			}
+		}
+	}
+
+	return {
+		outTop,
+		outBottom,
+		outLeft,
+		outRight
+	};
 };

@@ -99,12 +99,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 				new ResizeObserverListener().unobserve(
 					state._resizeObserverCallbackId!
 				);
+				state._resizeObserverCallbackId = undefined;
 			}
 
 			if (state._intersectionObserverCallbackId) {
 				new IntersectionObserverListener().unobserve(
 					state._intersectionObserverCallbackId!
 				);
+				state._intersectionObserverCallbackId = undefined;
 			}
 		},
 		handleEnter(parent?: HTMLElement): void {

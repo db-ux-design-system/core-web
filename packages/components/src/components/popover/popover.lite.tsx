@@ -91,18 +91,21 @@ export default function DBPopover(props: DBPopoverProps) {
 					new DocumentScrollListener().removeCallback(
 						state._documentScrollListenerCallbackId!
 					);
+					state._documentScrollListenerCallbackId = undefined;
 				}
 
 				if (state._resizeObserverCallbackId) {
 					new ResizeObserverListener().unobserve(
 						state._resizeObserverCallbackId!
 					);
+					state._resizeObserverCallbackId = undefined;
 				}
 
 				if (state._intersectionObserverCallbackId) {
 					new IntersectionObserverListener().unobserve(
 						state._intersectionObserverCallbackId!
 					);
+					state._intersectionObserverCallbackId = undefined;
 				}
 			}
 		},
@@ -128,6 +131,27 @@ export default function DBPopover(props: DBPopoverProps) {
 
 	onMount(() => {
 		state.initialized = true;
+	});
+
+	onUnMount(() => {
+		if (state._documentScrollListenerCallbackId) {
+			new DocumentScrollListener().removeCallback(
+				state._documentScrollListenerCallbackId!
+			);
+			state._documentScrollListenerCallbackId = undefined;
+		}
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
+		if (state._intersectionObserverCallbackId) {
+			new IntersectionObserverListener().unobserve(
+				state._intersectionObserverCallbackId!
+			);
+			state._intersectionObserverCallbackId = undefined;
+		}
 	});
 
 	onUpdate(() => {

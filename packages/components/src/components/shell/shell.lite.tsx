@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { MAIN_CONTENT_ID } from '../../shared/constants';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DBShellProps, DBShellState } from './model';
 
 useMetadata({});
@@ -21,9 +21,10 @@ export default function DBShell(props: DBShellProps) {
 	});
 
 	onMount(() => {
-		state.fontsLoaded = !props.fadeIn;
+		const fadeIn = getBoolean(props.fadeIn, 'fadeIn');
+		state.fontsLoaded = !fadeIn;
 
-		if (document && props.fadeIn) {
+		if (document && fadeIn) {
 			document.fonts?.ready
 				?.then(() => {
 					state.fontsLoaded = true;
@@ -56,19 +57,21 @@ export default function DBShell(props: DBShellProps) {
 				props.subNavigationMobilePosition ?? 'top'
 			}
 			data-show-sub-navigation={getBooleanAsString(
-				props.showSubNavigation
+				props.showSubNavigation,
+				'showSubNavigation'
 			)}
-			data-fade-in={getBooleanAsString(props.fadeIn)}
+			data-fade-in={getBooleanAsString(props.fadeIn, 'fadeIn')}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
-			<Show
-				when={props.skipNavigationLinkText}
-				else={props.skipNavigationLink}>
-				<a
-					className="db-shell-skip-navigation-link"
-					href={`#${props.skipNavigationTarget ?? MAIN_CONTENT_ID}`}>
-					{props.skipNavigationLinkText}
-				</a>
-			</Show>
+			<div class="db-shell-skip-navigation-link-container">
+				<Show
+					when={props.skipNavigationLinkText}
+					else={props.skipNavigationLink}>
+					<a
+						href={`#${props.skipNavigationTarget ?? MAIN_CONTENT_ID}`}>
+						{props.skipNavigationLinkText}
+					</a>
+				</Show>
+			</div>
 			{props.children}
 		</div>
 	);

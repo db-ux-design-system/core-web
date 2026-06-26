@@ -784,7 +784,7 @@ export type ValueLabelType = {
 
 export type OverflowScrollButtonProps = {
 	/**
-	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
+	 * Change amount of scroll distance when clicking on an overflow scroll arrow button.
 	 */
 	arrowScrollDistance?: number | string;
 };

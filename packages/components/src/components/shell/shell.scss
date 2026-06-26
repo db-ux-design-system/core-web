@@ -62,7 +62,27 @@
 		}
 	}
 
-	.db-shell-skip-navigation-link {
-		@extend %a11y-visually-hidden;
+	.db-shell-skip-navigation-link-container {
+		position: absolute;
+		inset-block-start: variables.$db-spacing-fixed-sm;
+		inset-inline-start: variables.$db-spacing-fixed-sm;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		border-radius: variables.$db-border-radius-sm;
+		z-index: 9999;
+		transform: translateX(-110%);
+
+		&:not(:empty) {
+			padding: variables.$db-spacing-fixed-3xs;
+		}
+
+		&:focus-within {
+			transform: none;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
+				#{variables.$db-transition-timing-emotional};
+		}
 	}
 }

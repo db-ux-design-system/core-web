@@ -20,11 +20,6 @@ export type DBControlPanelNavigationItemDefaultProps = {
 	 * you need to add a tooltip for collapsed navigation
 	 */
 	tooltip?: string;
-
-	/**
-	 * Set the text for the navigation-item
-	 */
-	text?: string;
 } & StartSlotProps &
 	EndSlotProps;
 
