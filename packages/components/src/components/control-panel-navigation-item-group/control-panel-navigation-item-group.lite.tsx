@@ -300,9 +300,11 @@ export default function DBControlPanelNavigationItemGroup(
 				onClick={(event: ClickEvent<HTMLButtonElement>) =>
 					state.handleClick(event)
 				}>
-				<Slot name="startSlot"></Slot>
 				{props.text}
-				<Slot name="endSlot"></Slot>
+
+				<div class="db-control-panel-navigation-item-group-expand-button-end-slot-container">
+					<Slot name="endSlot"></Slot>
+				</div>
 			</button>
 
 			<menu

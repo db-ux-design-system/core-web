@@ -66,7 +66,6 @@
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
-	justify-content: space-between;
 
 	// Mobile
 	@include screen-sizes.screen-min-max(

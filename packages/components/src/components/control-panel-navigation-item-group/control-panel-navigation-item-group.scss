@@ -27,6 +27,12 @@
 	.db-control-panel-navigation-item-group-expand-button {
 		@extend %navigation-item-interactive-element;
 
+		.db-control-panel-navigation-item-group-expand-button-end-slot-container {
+			display: inline-flex;
+			align-items: center;
+			margin-inline-start: auto;
+		}
+
 		// Mobile
 		@include screen-sizes.screen-min-max(
 			(

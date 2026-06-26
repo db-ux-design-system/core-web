@@ -81,7 +81,6 @@ export default function DBControlPanelNavigationItem(
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={getBooleanAsString(props.active, 'active')}>
-			<Slot name="startSlot"></Slot>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 			<Slot name="endSlot"></Slot>

@@ -5,7 +5,6 @@ import type {
 	GlobalState,
 	IconProps,
 	ShowIconProps,
-	StartSlotProps,
 	TextProps
 } from '../../shared/model';
 
@@ -20,8 +19,7 @@ export type DBControlPanelNavigationItemDefaultProps = {
 	 * you need to add a tooltip for collapsed navigation
 	 */
 	tooltip?: string;
-} & StartSlotProps &
-	EndSlotProps &
+} & EndSlotProps &
 	TextProps;
 
 export type DBControlPanelNavigationItemProps =

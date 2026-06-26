@@ -67,7 +67,7 @@
 			}
 		}
 
-		.db-control-panel-navigation-item-group-expand-button {
+		.db-control-panel-navigation-item-group-expand-button-end-slot-container {
 			// default icon for navigation
 			@include icons.set-icon("chevron_right", "after");
 		}

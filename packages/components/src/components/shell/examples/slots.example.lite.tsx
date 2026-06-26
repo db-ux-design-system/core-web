@@ -18,9 +18,9 @@ import { StorybookShellArgTypes } from './_shell.arg.types';
 useMetadata({
 	storybookTitle: 'Slots',
 	storybookNames: [
-		'Navigation Item with Badge',
-		'Group with Badge',
-		'Brand with Badge'
+		'ControlPanel Top',
+		'ControlPanel Left Popover',
+		'ControlPanel Left Tree'
 	],
 	storybookArgTypes: StorybookShellArgTypes
 });
@@ -33,7 +33,16 @@ export default function ShellSlots() {
 					data-test-id="shell-slots-nav-item-badge"
 					controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
-						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						brand={
+							<DBControlPanelBrand data-logo="db-systel">
+								<DBBadge
+									semantic="informational"
+									size="small"
+									label="New version available">
+									New
+								</DBBadge>
+							</DBControlPanelBrand>
+						}
 						metaNavigation={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
@@ -60,12 +69,15 @@ export default function ShellSlots() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge">
+						<DBControlPanelNavigation aria-label="shell-slots-top">
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
 								tooltip="Inbox"
-								startSlot={
-									<DBBadge semantic="warning" size="small">
+								endSlot={
+									<DBBadge
+										semantic="warning"
+										placement="corner-top-right"
+										size="small">
 										3
 									</DBBadge>
 								}>
@@ -73,22 +85,28 @@ export default function ShellSlots() {
 									Inbox
 								</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem
+							<DBControlPanelNavigationItemGroup
 								icon="x_placeholder"
-								tooltip="Messages"
+								text="Tasks"
 								endSlot={
 									<DBBadge
-										semantic="informational"
-										size="small">
-										12
+										semantic="successful"
+										size="small"
+										placement="corner-top-right">
+										2
 									</DBBadge>
 								}>
-								<a href="#">Messages</a>
-							</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Open Tasks</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Completed</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
-								tooltip="Settings">
-								<a href="#">Settings</a>
+								tooltip="Dashboard">
+								<a href="#">Dashboard</a>
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelDesktop>
@@ -115,10 +133,15 @@ export default function ShellSlots() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-slots-nav-item-badge-mobile">
+						<DBControlPanelNavigation aria-label="shell-slots-top">
 							<DBControlPanelNavigationItem
-								startSlot={
-									<DBBadge semantic="warning" size="small">
+								icon="x_placeholder"
+								tooltip="Inbox"
+								endSlot={
+									<DBBadge
+										semantic="warning"
+										placement="corner-top-right"
+										size="small">
 										3
 									</DBBadge>
 								}>
@@ -126,18 +149,28 @@ export default function ShellSlots() {
 									Inbox
 								</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Tasks"
 								endSlot={
 									<DBBadge
-										semantic="informational"
-										size="small">
-										12
+										semantic="successful"
+										size="small"
+										placement="corner-top-right">
+										2
 									</DBBadge>
 								}>
-								<a href="#">Messages</a>
-							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem>
-								<a href="#">Settings</a>
+								<DBControlPanelNavigationItem>
+									<a href="#">Open Tasks</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Completed</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
+							<DBControlPanelNavigationItem
+								icon="x_placeholder"
+								tooltip="Dashboard">
+								<a href="#">Dashboard</a>
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
@@ -153,7 +186,16 @@ export default function ShellSlots() {
 					data-test-id="shell-slots-group-badge"
 					controlPanelDesktopPosition="left">
 					<DBControlPanelDesktop
-						brand={<DBControlPanelBrand data-logo="db-systel" />}
+						brand={
+							<DBControlPanelBrand data-logo="db-systel">
+								<DBBadge
+									semantic="informational"
+									size="small"
+									label="New version available">
+									New
+								</DBBadge>
+							</DBControlPanelBrand>
+						}
 						metaNavigation={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
@@ -181,23 +223,17 @@ export default function ShellSlots() {
 							</DBControlPanelSecondaryActions>
 						}>
 						<DBControlPanelNavigation aria-label="shell-slots-group-badge">
-							<DBControlPanelNavigationItemGroup
-								icon="x_placeholder"
-								text="Notifications"
-								startSlot={
-									<DBBadge semantic="critical" size="small">
-										5
+							<DBControlPanelNavigationItem
+								endSlot={
+									<DBBadge
+										semantic="successful"
+										size="small"
+										placement="corner-top-right">
+										2
 									</DBBadge>
 								}>
-								<DBControlPanelNavigationItem>
-									<a href="#" aria-current="page">
-										Alerts
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Updates</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigationItemGroup>
+								<a href="#">Inbox</a>
+							</DBControlPanelNavigationItem>
 							<DBControlPanelNavigationItemGroup
 								icon="x_placeholder"
 								text="Tasks"
@@ -244,22 +280,17 @@ export default function ShellSlots() {
 							</DBControlPanelSecondaryActions>
 						}>
 						<DBControlPanelNavigation aria-label="shell-slots-group-badge-mobile">
-							<DBControlPanelNavigationItemGroup
-								text="Notifications"
-								startSlot={
-									<DBBadge semantic="critical" size="small">
-										5
+							<DBControlPanelNavigationItem
+								endSlot={
+									<DBBadge
+										semantic="successful"
+										size="small"
+										placement="corner-top-right">
+										2
 									</DBBadge>
 								}>
-								<DBControlPanelNavigationItem>
-									<a href="#" aria-current="page">
-										Alerts
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Updates</a>
-								</DBControlPanelNavigationItem>
-							</DBControlPanelNavigationItemGroup>
+								<a href="#">Inbox</a>
+							</DBControlPanelNavigationItem>
 							<DBControlPanelNavigationItemGroup
 								text="Tasks"
 								endSlot={
@@ -288,15 +319,14 @@ export default function ShellSlots() {
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBShell
-					data-test-id="shell-slots-brand-badge"
-					controlPanelDesktopPosition="top">
+					data-test-id="shell-slots-left-tree"
+					controlPanelDesktopPosition="left">
 					<DBControlPanelDesktop
 						brand={
 							<DBControlPanelBrand data-logo="db-systel">
 								<DBBadge
 									semantic="informational"
 									size="small"
-									placement="corner-top-right"
 									label="New version available">
 									New
 								</DBBadge>
@@ -328,34 +358,45 @@ export default function ShellSlots() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-slots-brand-badge">
+						<DBControlPanelNavigation
+							aria-label="shell-slots-left-tree"
+							variant="tree">
 							<DBControlPanelNavigationItem
-								icon="x_placeholder"
-								tooltip="Home">
-								<a href="#" aria-current="page">
-									Home
-								</a>
+								endSlot={
+									<DBBadge
+										semantic="successful"
+										size="small"
+										placement="corner-top-right">
+										2
+									</DBBadge>
+								}>
+								<a href="#">Inbox</a>
 							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItemGroup
+								icon="x_placeholder"
+								text="Tasks"
+								endSlot={
+									<DBBadge semantic="successful" size="small">
+										2
+									</DBBadge>
+								}>
+								<DBControlPanelNavigationItem>
+									<a href="#">Open Tasks</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Completed</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
 							<DBControlPanelNavigationItem
 								icon="x_placeholder"
-								tooltip="About">
-								<a href="#">About</a>
+								tooltip="Dashboard">
+								<a href="#">Dashboard</a>
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelDesktop>
 					<DBControlPanelMobile
-						drawerHeaderText="Brand Badge"
-						brand={
-							<DBControlPanelBrand data-logo="db-systel">
-								<DBBadge
-									semantic="informational"
-									size="small"
-									placement="corner-top-right"
-									label="New version available">
-									New
-								</DBBadge>
-							</DBControlPanelBrand>
-						}
+						drawerHeaderText="Group Badge"
+						brand={<DBControlPanelBrand data-logo="db-systel" />}
 						primaryActions={
 							<DBControlPanelPrimaryActions>
 								<DBButton
@@ -376,21 +417,43 @@ export default function ShellSlots() {
 								</DBButton>
 							</DBControlPanelSecondaryActions>
 						}>
-						<DBControlPanelNavigation aria-label="shell-slots-brand-badge-mobile">
-							<DBControlPanelNavigationItem>
-								<a href="#" aria-current="page">
-									Home
-								</a>
+						<DBControlPanelNavigation
+							aria-label="shell-slots-left-tree-mobile"
+							variant="tree">
+							<DBControlPanelNavigationItem
+								endSlot={
+									<DBBadge
+										semantic="successful"
+										size="small"
+										placement="corner-top-right">
+										2
+									</DBBadge>
+								}>
+								<a href="#">Inbox</a>
 							</DBControlPanelNavigationItem>
+							<DBControlPanelNavigationItemGroup
+								text="Tasks"
+								endSlot={
+									<DBBadge semantic="successful" size="small">
+										2
+									</DBBadge>
+								}>
+								<DBControlPanelNavigationItem>
+									<a href="#">Open Tasks</a>
+								</DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem>
+									<a href="#">Completed</a>
+								</DBControlPanelNavigationItem>
+							</DBControlPanelNavigationItemGroup>
 							<DBControlPanelNavigationItem>
-								<a href="#">About</a>
+								<a href="#">Dashboard</a>
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
 					<DBShellContent
-						mainId="main-content-slots-brand-badge"
-						mainLabel="shell-slots-brand-badge">
-						Brand with Badge - Corner Placement
+						mainId="main-content-slots-group-badge"
+						mainLabel="shell-slots-group-badge">
+						Group with Badge - StartSlot and EndSlot
 					</DBShellContent>
 				</DBShell>
 			</div>
