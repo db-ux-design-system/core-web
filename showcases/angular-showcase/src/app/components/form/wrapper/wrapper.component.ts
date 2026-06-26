@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { DBButton } from '@components';
 
 @Component({
@@ -8,8 +8,8 @@ import { DBButton } from '@components';
 	standalone: true
 })
 export class WrapperComponent {
-	@Input('plain') plain!: string | boolean | string[];
-	@Input('model') model!: string | boolean | string[];
-	@Input('control') control!: string | boolean | string[];
-	@Input('signalForms') signalForms!: string | boolean | string[];
+	plain = input<string | boolean | string[]>('');
+	model = input<string | boolean | string[]>('');
+	control = input<string | boolean | string[]>('');
+	signalForms = input<string | boolean | string[]>('');
 }

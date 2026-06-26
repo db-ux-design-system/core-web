@@ -11,15 +11,14 @@ vi.mock('replace-in-file', () => ({
 const outputDir = resolve(__dirname, '../../output/angular/src/components');
 
 describe('Angular Post-Build Transformations', () => {
-	describe('Conditional CVA Provider (Requirement 6.1)', () => {
-		test('output contains shouldRegisterCVA() conditional provider', () => {
+	describe('CVA Provider Always Registered (Requirement 6.1)', () => {
+		test('output contains NG_VALUE_ACCESSOR provider', () => {
 			const inputFile = readFileSync(
 				resolve(outputDir, 'input/input.ts'),
 				'utf8'
 			);
-			expect(inputFile).toContain('shouldRegisterCVA()');
-			expect(inputFile).toContain('shouldRegisterCVA() ?');
 			expect(inputFile).toContain('NG_VALUE_ACCESSOR');
+			expect(inputFile).toContain('provide: NG_VALUE_ACCESSOR');
 		});
 	});
 

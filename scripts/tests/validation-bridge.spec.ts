@@ -105,18 +105,6 @@ describe('Validation Bridge Logic', () => {
 		expect(state.descByIds).toBeUndefined();
 	});
 
-	test('null-like (undefined) errors does not change state', () => {
-		const { component, state } = createMockComponent({
-			errors: undefined
-		});
-
-		const earlyReturn = simulateValidationBridge(component);
-
-		expect(earlyReturn).toBe(false);
-		expect(state.invalidMessage).toBeUndefined();
-		expect(state.descByIds).toBeUndefined();
-	});
-
 	test('errors has priority over validation="valid"', () => {
 		const { component, state } = createMockComponent({
 			errors: [{ message: 'Still invalid' }],

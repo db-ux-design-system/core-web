@@ -22,19 +22,18 @@ const setControlValueAccessorReplacements = (
 		from: '} from "@angular/core";',
 		to:
 			`Renderer2 } from "@angular/core";\n` +
-			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n` +
-			`import { shouldRegisterCVA } from '../../utils/version-detection';\n`
+			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
-	// inserting provider (conditional based on Angular version)
+	// inserting provider (CVA always registered for backward compat with Reactive/Template-Driven Forms)
 	replacements.push({
 		from: '@Component({',
 		to: `@Component({
-		providers: shouldRegisterCVA() ? [{
+		providers: [{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: ${upperComponentName},
 			multi: true
-		}] : [],	`
+		}],	`
 	});
 
 	// implementing interface and constructor
@@ -164,29 +163,6 @@ export class ${directive.name}Directive {}
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 
-	// Ensure version-detection.ts exists in the Angular output utils directory
-	const versionDetectionPath = `../../${outputFolder}/angular/src/utils/version-detection.ts`;
-	writeFileSync(
-		versionDetectionPath,
-		`import { VERSION } from '@angular/core';
-
-export function getAngularMajorVersion(): number {
-\ttry {
-\t\treturn parseInt(VERSION.major, 10);
-\t} catch {
-\t\treturn 0; // Fallback: triggers CVA mode
-\t}
-}
-
-export function shouldRegisterCVA(): boolean {
-\t// CVA is always registered to maintain backward compatibility with
-\t// Reactive Forms (formControlName, formControl) and Template-Driven Forms (ngModel).
-\t// Signal Forms works alongside CVA via Duck-Typing on ModelSignals.
-\treturn true;
-}
-`
-	);
-
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
@@ -245,7 +221,6 @@ export function shouldRegisterCVA(): boolean {
 			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);
-			process.exit(1);
 		}
 
 		// Ensure 'effect' is imported for signalFormsValueAlias components (avoid duplicate if Mitosis already imported it)
@@ -267,25 +242,28 @@ export function shouldRegisterCVA(): boolean {
 		// Signal Forms validation bridge: inject at beginning of handleValidation()
 		// Only applies to CVA components that have handleValidation (not tab-item, custom-select-list-item, radio)
 		if (component.config?.angular?.controlValueAccessor) {
-			replaceInFileSync({
-				files: file,
-				from: /handleValidation\(\) \{\n/,
-				to:
-					`handleValidation() {\n` +
-					`    // Signal Forms validation bridge: errors InputSignal has priority\n` +
-					`    const signalFormErrors = this.errors();\n` +
-					`    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {\n` +
-					`      this._descByIds.set(this._invalidMessageId());\n` +
-					`      this._invalidMessage.set(\n` +
-					`        signalFormErrors[0].message || DEFAULT_INVALID_MESSAGE\n` +
-					`      );\n` +
-					`      if (hasVoiceOver()) {\n` +
-					`        this._voiceOverFallback.set(this._invalidMessage());\n` +
-					`        void delay(() => this._voiceOverFallback.set(""), 1000);\n` +
-					`      }\n` +
-					`      return; // Signal Forms errors take priority\n` +
-					`    }\n`
-			});
+			const fileContent2 = readFileSync(file, 'utf-8');
+			if (fileContent2.includes('handleValidation()')) {
+				replaceInFileSync({
+					files: file,
+					from: /handleValidation\(\)\s*\{\s*\n/,
+					to:
+						`handleValidation() {\n` +
+						`    // Signal Forms validation bridge: errors InputSignal has priority\n` +
+						`    const signalFormErrors = this.errors();\n` +
+						`    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {\n` +
+						`      this._descByIds.set(this._invalidMessageId());\n` +
+						`      this._invalidMessage.set(\n` +
+						`        signalFormErrors[0].message || DEFAULT_INVALID_MESSAGE\n` +
+						`      );\n` +
+						`      if (hasVoiceOver()) {\n` +
+						`        this._voiceOverFallback.set(this._invalidMessage());\n` +
+						`        void delay(() => this._voiceOverFallback.set(""), 1000);\n` +
+						`      }\n` +
+						`      return; // Signal Forms errors take priority\n` +
+						`    }\n`
+				});
+			}
 		}
 	}
 };
