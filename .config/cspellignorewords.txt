@@ -4,6 +4,14 @@ michaelmkraus
 nmerget
 merget
 franzke
+bruno-sch
+# GitHub Project IDs
+PVTSSF
+ADOC
+# Labels
+communityfeedback
+# Angular Signal Forms
+unprovide
 # further words
 moz
 webkit
@@ -223,15 +231,3 @@ unreviewed
 notext
 prebundle
 subcomponent
-# GitHub Project IDs
-PVTSSF
-ADOC
-# Labels
-communityfeedback
-# Usernames
-mfranzke
-michaelmkraus
-nmerget
-bruno-sch
-# Angular Signal Forms
-unprovide
