@@ -184,5 +184,6 @@ export default DB${upperComponentName};`
 		}
 	} catch (error) {
 		console.error('Error occurred:', error);
+		process.exit(1);
 	}
 };

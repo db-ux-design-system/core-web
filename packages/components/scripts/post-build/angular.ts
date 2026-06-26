@@ -1,6 +1,6 @@
 import { replaceInFileSync } from 'replace-in-file';
 
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 import components, { Overwrite } from './components.js';
 
@@ -22,18 +22,19 @@ const setControlValueAccessorReplacements = (
 		from: '} from "@angular/core";',
 		to:
 			`Renderer2 } from "@angular/core";\n` +
-			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
+			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n` +
+			`import { shouldRegisterCVA } from '../../utils/version-detection';\n`
 	});
 
-	// inserting provider
+	// inserting provider (conditional based on Angular version)
 	replacements.push({
 		from: '@Component({',
 		to: `@Component({
-		providers: [{
+		providers: shouldRegisterCVA() ? [{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: ${upperComponentName},
 			multi: true
-		}],	`
+		}] : [],	`
 	});
 
 	// implementing interface and constructor
@@ -45,21 +46,19 @@ const setControlValueAccessorReplacements = (
 		from: `constructor(`,
 		to: `constructor(private renderer: Renderer2,`
 	});
-	// We need `model` to be able to read/write to a signal
-	replacements.push({
-		from: `${valueAccessor} = input`,
-		to: `${valueAccessor} = model`
-	});
-	replacements.push({
-		from: `disabled = input`,
-		to: `disabled = model`
-	});
+	// NOTE: Mitosis already generates form-related fields (value/checked/disabled) as model() signals.
+	// No input → model conversion needed. For checked components (valueAccessor === 'checked'),
+	// the 'value' field intentionally remains as InputSignal to prevent Signal Forms
+	// from misidentifying the component as FormValueControl.
+	// Signal Forms uses Duck-Typing: a 'value' ModelSignal → FormValueControl,
+	// a 'checked' ModelSignal → FormCheckboxControl.
 
 	// insert custom interface functions before ngOnInit
 	// TODO update attribute by config if necessary (e.g. for checked attribute?)
 	replacements.push({
 		from: 'ngAfterViewInit()',
 		to: `
+		/** @legacy CVA - will be removed in a future major version */
 		writeValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
@@ -70,18 +69,26 @@ const setControlValueAccessorReplacements = (
 			${valueAccessorRequired ? '}' : ''}
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		propagateChange(_: any) {}
 
+		/** @legacy CVA - will be removed in a future major version */
 		registerOnChange(onChange: any) {
 		  this.propagateChange = onChange;
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		registerOnTouched(onTouched: any) {
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		setDisabledState(disabled: boolean) {
 		  this.disabled.set(disabled);
 		}
+
+		/** Signal Forms optional fields (Duck-Typing compatibility) */
+		hidden = input<boolean>(false);
+		errors = input<any>(undefined);
 
 		ngAfterViewInit()`
 	});
@@ -156,6 +163,30 @@ export class ${directive.name}Directive {}
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+
+	// Ensure version-detection.ts exists in the Angular output utils directory
+	const versionDetectionPath = `../../${outputFolder}/angular/src/utils/version-detection.ts`;
+	writeFileSync(
+		versionDetectionPath,
+		`import { VERSION } from '@angular/core';
+
+export function getAngularMajorVersion(): number {
+\ttry {
+\t\treturn parseInt(VERSION.major, 10);
+\t} catch {
+\t\treturn 0; // Fallback: triggers CVA mode
+\t}
+}
+
+export function shouldRegisterCVA(): boolean {
+\t// CVA is always registered to maintain backward compatibility with
+\t// Reactive Forms (formControlName, formControl) and Template-Driven Forms (ngModel).
+\t// Signal Forms works alongside CVA via Duck-Typing on ModelSignals.
+\treturn true;
+}
+`
+	);
+
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
@@ -177,6 +208,24 @@ export default (tmp?: boolean) => {
 				component.config.angular.controlValueAccessor, // value / checked / ...
 				component.config.angular.controlValueAccessorRequired // Radio needs a value
 			);
+
+			// Signal Forms value alias for components using 'values' (e.g. DBCustomSelect)
+			if (component.config.angular.signalFormsValueAlias) {
+				// Inject value alias and sync effect after duck-typing fields
+				replacements.push({
+					from: 'errors = input<any>(undefined);',
+					to:
+						`errors = input<any>(undefined);\n\n` +
+						`\t\t/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */\n` +
+						`\t\tvalue = model<string | undefined>();\n\n` +
+						`\t\tprivate _syncValueToValues = effect(() => {\n` +
+						`\t\t\tconst v = this.value();\n` +
+						`\t\t\tif (v !== undefined) {\n` +
+						`\t\t\t\tthis.values.set(v ? [v] : []);\n` +
+						`\t\t\t}\n` +
+						`\t\t});`
+				});
+			}
 		}
 
 		if (
@@ -196,6 +245,47 @@ export default (tmp?: boolean) => {
 			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);
+			process.exit(1);
+		}
+
+		// Ensure 'effect' is imported for signalFormsValueAlias components (avoid duplicate if Mitosis already imported it)
+		if (component.config?.angular?.signalFormsValueAlias) {
+			const fileContent = readFileSync(file, 'utf-8');
+			if (
+				!fileContent.includes('effect,') &&
+				!fileContent.includes('effect }') &&
+				!fileContent.includes(', effect')
+			) {
+				replaceInFileSync({
+					files: file,
+					from: `Renderer2 } from "@angular/core";`,
+					to: `Renderer2, effect } from "@angular/core";`
+				});
+			}
+		}
+
+		// Signal Forms validation bridge: inject at beginning of handleValidation()
+		// Only applies to CVA components that have handleValidation (not tab-item, custom-select-list-item, radio)
+		if (component.config?.angular?.controlValueAccessor) {
+			replaceInFileSync({
+				files: file,
+				from: /handleValidation\(\) \{\n/,
+				to:
+					`handleValidation() {\n` +
+					`    // Signal Forms validation bridge: errors InputSignal has priority\n` +
+					`    const signalFormErrors = this.errors();\n` +
+					`    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {\n` +
+					`      this._descByIds.set(this._invalidMessageId());\n` +
+					`      this._invalidMessage.set(\n` +
+					`        signalFormErrors[0].message || DEFAULT_INVALID_MESSAGE\n` +
+					`      );\n` +
+					`      if (hasVoiceOver()) {\n` +
+					`        this._voiceOverFallback.set(this._invalidMessage());\n` +
+					`        void delay(() => this._voiceOverFallback.set(""), 1000);\n` +
+					`      }\n` +
+					`      return; // Signal Forms errors take priority\n` +
+					`    }\n`
+			});
 		}
 	}
 };

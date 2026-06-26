@@ -66,6 +66,7 @@ export default (tmp?: boolean) => {
 			runReplacements(replacements, component, 'vue', vueFile);
 		} catch (error) {
 			console.error('Error occurred:', error);
+			process.exit(1);
 		}
 	}
 };

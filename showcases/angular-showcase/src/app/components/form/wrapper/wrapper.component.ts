@@ -11,4 +11,5 @@ export class WrapperComponent {
 	@Input('plain') plain!: string | boolean | string[];
 	@Input('model') model!: string | boolean | string[];
 	@Input('control') control!: string | boolean | string[];
+	@Input('signalForms') signalForms!: string | boolean | string[];
 }
