@@ -71,7 +71,10 @@ export class FormComponent {
 <h2>Output</h2>
 <dl>
 	<dt>switch's value</dt>
-	<dd>notifications {{ myForm.enableNotifications().value() ? "enabled" : "disabled" }}</dd>
+	<dd>
+		notifications {{ myForm.enableNotifications().value() ? "enabled" :
+		"disabled" }}
+	</dd>
 </dl>
 ```
 

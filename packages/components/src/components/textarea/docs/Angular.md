@@ -119,7 +119,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 ```html form.component.html
 <!-- form.component.html -->
 <form [formGroup]="form" (submit)="onFormSubmit()">
-	<db-textarea label="Textarea" placeholder="Placeholder" formControlName="textarea">
+	<db-textarea
+		label="Textarea"
+		placeholder="Placeholder"
+		formControlName="textarea"
+	>
 	</db-textarea>
 </form>
 
@@ -127,7 +131,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 <dl>
 	<dt>textarea's value</dt>
 	<dd>
-		{{ form.get("textarea")?.value ? form.get("textarea")?.value : "No value set" }}
+		{{ form.get("textarea")?.value ? form.get("textarea")?.value : "No value
+		set" }}
 	</dd>
 </dl>
 ```
