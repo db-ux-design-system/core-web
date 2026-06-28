@@ -25,8 +25,8 @@ Run `git status --short` to discover the complete set of changes (staged, unstag
 Go through the PR template checklist from `.github/PULL_REQUEST_TEMPLATE.md`:
 
 <!-- markdownlint-disable MD018 -->
-
-# [[file:.github/PULL_REQUEST_TEMPLATE.md]]
+<!-- prettier-ignore -->
+#[[file:.github/PULL_REQUEST_TEMPLATE.md]]
 
 <!-- markdownlint-enable MD018 -->
 
