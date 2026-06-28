@@ -32,6 +32,13 @@ const xoConfig = [
 		}
 	},
 	{
+		files: ['./**/angular-**/**/*.html'],
+		rules: {
+			// Angular templates use case-sensitive bindings (e.g. [(ngModel)], [formControl], (optionSelected))
+			'@html-eslint/lowercase': 0
+		}
+	},
+	{
 		files: ['./**/angular-**/**'],
 		rules: {
 			'unicorn/prefer-top-level-await': 0, // We don't need it for angular, some files are generated this way
