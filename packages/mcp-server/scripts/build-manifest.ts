@@ -1,7 +1,7 @@
 /**
  Generates src/manifest.json at build time.
  Run via: npx tsx scripts/build-manifest.ts
- 
+
  The manifest embeds all component metadata and example source code so the
  MCP server can operate without access to the monorepo source tree (e.g.
  when invoked via `npx @db-ux/mcp-server`).
@@ -20,13 +20,7 @@ import {
 
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
 
-const FRAMEWORKS = [
-	'react',
-	'angular',
-	'vue',
-	'web-components',
-	'html'
-] as const;
+const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components'] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
 /** Reads a file and returns its content, or `undefined` if the file does not exist. */
@@ -41,7 +35,7 @@ async function readOptional(path: string): Promise<string | undefined> {
 /**
  Collects all metadata for a single component: props, example names, and
  per-framework example source code.
- 
+
  @param name - The component directory name (e.g. "button").
  @param componentsSrc - Absolute path to the components source directory.
  @param outputDir - Absolute path to the framework output root directory.
@@ -79,17 +73,6 @@ export async function processComponent(
 		const exampleCode = {} as Record<Framework, Record<string, string>>;
 		for (const fw of FRAMEWORKS) {
 			exampleCode[fw] = {};
-			if (fw === 'html') {
-				const htmlIndex = await readOptional(
-					join(componentsSrc, name, 'index.html')
-				);
-				if (htmlIndex) {
-					exampleCode[fw]['index.html'] = htmlIndex;
-				}
-
-				continue;
-			}
-
 			const fwOutputDir = fw === 'web-components' ? 'stencil' : fw;
 			const exDir = join(
 				outputDir,
@@ -146,7 +129,7 @@ async function collectTokens(): Promise<Record<string, string>> {
  Whitelisted directories for docs collection.
  Only Markdown files from these directories are included in the manifest
  to reduce token consumption and prevent context collisions (hallucinations).
- 
+
  Explicitly excluded: docs/migration/ (has its own tool), docs/adr/,
  docs/research/, docs/.vitepress/, and all other top-level docs/ files.
  */
@@ -158,7 +141,7 @@ const DOCS_WHITELIST_DIRS: string[] = [
 /**
  Recursively scans a directory for Markdown files and returns their content
  keyed by path relative to the repo root.
- 
+
  @param dir - The directory to scan.
  @param depth - Maximum recursion depth (default 5).
  */

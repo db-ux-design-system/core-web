@@ -26,7 +26,9 @@ export default {
 			const type = getAttributeValue(node, 'type');
 			if (type === undefined) {
 				const hasClickHandler = getAttributeValue(node, '(click)');
-				const typeValue = hasClickHandler ? 'button' : 'submit';
+				const hasCommandFor = getAttributeValue(node, 'commandfor');
+				const typeValue =
+					hasClickHandler || hasCommandFor ? 'button' : 'submit';
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -77,7 +79,11 @@ export default {
 				getAttributeValue(openingElement, '(click)') ||
 				getAttributeValue(openingElement, '@click');
 
-			const typeValue = hasClickHandler ? 'button' : 'submit';
+			const typeValue =
+				hasClickHandler ||
+				getAttributeValue(openingElement, 'commandfor')
+					? 'button'
+					: 'submit';
 
 			context.report({
 				node: openingElement,
