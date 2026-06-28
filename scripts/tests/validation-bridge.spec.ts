@@ -129,7 +129,7 @@ describe('Validation Bridge Logic', () => {
 		expect(state.invalidMessage).toBe(defaultInvalidMessage);
 	});
 
-	test('error with empty string message uses defaultInvalidMessage', () => {
+	test('error with empty string message preserves empty string', () => {
 		const { component, state } = createMockComponent({
 			errors: [{ message: '' }]
 		});
@@ -137,7 +137,7 @@ describe('Validation Bridge Logic', () => {
 		const earlyReturn = simulateValidationBridge(component);
 
 		expect(earlyReturn).toBe(true);
-		expect(state.invalidMessage).toBe(defaultInvalidMessage);
+		expect(state.invalidMessage).toBe('');
 	});
 });
 
@@ -176,7 +176,7 @@ describe.skipIf(
 
 	test('validation bridge sets _invalidMessage from first error', () => {
 		expect(outputContent).toContain(
-			'signalFormErrors[0].message || DEFAULT_INVALID_MESSAGE'
+			'signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE'
 		);
 	});
 

@@ -266,7 +266,7 @@ export default (tmp?: boolean) => {
 						`    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {\n` +
 						`      this._descByIds.set(this._invalidMessageId());\n` +
 						`      this._invalidMessage.set(\n` +
-						`        signalFormErrors[0].message || DEFAULT_INVALID_MESSAGE\n` +
+						`        signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE\n` +
 						`      );\n` +
 						`      this._validMessage.set('');\n` +
 						`      this._valid.set('invalid');\n` +
