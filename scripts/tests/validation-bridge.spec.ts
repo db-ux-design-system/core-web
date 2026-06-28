@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, test } from 'vitest';
 
@@ -141,19 +141,20 @@ describe('Validation Bridge Logic', () => {
 	});
 });
 
-describe('Validation Bridge Pattern in Output', () => {
+describe.skipIf(
+	!existsSync(
+		resolve(
+			import.meta.dirname,
+			'../../output/angular/src/components/input/input.ts'
+		)
+	)
+)('Validation Bridge Pattern in Output', () => {
 	const outputPath = resolve(
 		import.meta.dirname,
 		'../../output/angular/src/components/input/input.ts'
 	);
 
-	let outputContent: string;
-
-	try {
-		outputContent = readFileSync(outputPath, 'utf8');
-	} catch {
-		outputContent = '';
-	}
+	const outputContent = readFileSync(outputPath, 'utf8');
 
 	test('validation bridge code is injected at beginning of handleValidation()', () => {
 		expect(outputContent).toContain(

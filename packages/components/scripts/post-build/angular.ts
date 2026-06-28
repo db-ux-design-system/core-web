@@ -21,7 +21,7 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: '} from "@angular/core";',
 		to:
-			`Renderer2 } from "@angular/core";\n` +
+			`HostBinding, Renderer2 } from "@angular/core";\n` +
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
@@ -88,6 +88,9 @@ const setControlValueAccessorReplacements = (
 		/** Signal Forms optional fields (Duck-Typing compatibility) */
 		hidden = input<boolean>(false);
 		errors = input<any>(undefined);
+
+		/** Reflect Signal Forms hidden state to the host element */
+		@HostBinding('hidden') get isHidden() { return this.hidden(); }
 
 		ngAfterViewInit()`
 	});
@@ -187,17 +190,26 @@ export default (tmp?: boolean) => {
 
 			// Signal Forms value alias for components using 'values' (e.g. DBCustomSelect)
 			if (component.config.angular.signalFormsValueAlias) {
-				// Inject value alias and sync effect after duck-typing fields
+				// Inject value alias and bidirectional sync effects after duck-typing fields
 				replacements.push({
 					from: 'errors = input<any>(undefined);',
 					to:
 						`errors = input<any>(undefined);\n\n` +
 						`\t\t/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */\n` +
 						`\t\tvalue = model<string | undefined>();\n\n` +
+						`\t\t/** @internal Sync value → values (Signal Forms writes to value) */\n` +
 						`\t\tprivate _syncValueToValues = effect(() => {\n` +
 						`\t\t\tconst v = this.value();\n` +
 						`\t\t\tif (v !== undefined) {\n` +
 						`\t\t\t\tthis.values.set(v ? [v] : []);\n` +
+						`\t\t\t}\n` +
+						`\t\t});\n\n` +
+						`\t\t/** @internal Sync values → value (CVA/user interaction writes to values) */\n` +
+						`\t\tprivate _syncValuesToValue = effect(() => {\n` +
+						`\t\t\tconst vals = this.values();\n` +
+						`\t\t\tconst current = vals.length > 0 ? vals[0] : undefined;\n` +
+						`\t\t\tif (current !== this.value()) {\n` +
+						`\t\t\t\tthis.value.set(current);\n` +
 						`\t\t\t}\n` +
 						`\t\t});`
 				});
@@ -256,11 +268,18 @@ export default (tmp?: boolean) => {
 						`      this._invalidMessage.set(\n` +
 						`        signalFormErrors[0].message || DEFAULT_INVALID_MESSAGE\n` +
 						`      );\n` +
+						`      this._validMessage.set('');\n` +
+						`      this._valid.set('invalid');\n` +
 						`      if (hasVoiceOver()) {\n` +
 						`        this._voiceOverFallback.set(this._invalidMessage());\n` +
 						`        void delay(() => this._voiceOverFallback.set(""), 1000);\n` +
 						`      }\n` +
 						`      return; // Signal Forms errors take priority\n` +
+						`    } else if (this.errors() !== undefined) {\n` +
+						`      // Signal Forms provided errors=[] (valid state)\n` +
+						`      this._valid.set('valid');\n` +
+						`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
+						`      this._invalidMessage.set('');\n` +
 						`    }\n`
 				});
 			}

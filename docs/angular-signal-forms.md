@@ -153,7 +153,7 @@ No imports from `@angular/forms/signals` are needed in the library itself — al
 - Signal Forms is marked as `@experimental` in Angular 21
 - The `FormField` directive's template type-checking may conflict with components that have a `pattern` input (e.g. `DBInput`). Workaround: add `schemas: [NO_ERRORS_SCHEMA]` to the component using `[formField]`, or wait for Angular 22 where this is resolved.
 - Radio button groups don't integrate well with `[formField]` yet — use signal-based `[checked]` + `(change)` bindings for radios.
-- **DBCustomSelect `value` alias**: `DBCustomSelect` internally uses `values` (array) as its primary model. A `value` ModelSignal alias is provided for Signal Forms compatibility, with a one-way sync (`value` → `values`). Writing to `values` directly (e.g. via Reactive Forms / CVA) will NOT reflect back into the `value` signal. When using Signal Forms with `DBCustomSelect`, always bind via `[formField]` and avoid mixing with CVA-based bindings on the same instance.
+- **DBCustomSelect `value` alias**: `DBCustomSelect` internally uses `values` (array) as its primary model. A `value` ModelSignal alias is provided for Signal Forms compatibility with bidirectional sync. Changes to `value` (via `[formField]`) update `values`, and user selections that update `values` are reflected back to `value`. When using Signal Forms with `DBCustomSelect`, bind via `[formField]` for the best experience.
 
 ## Further Reading
 

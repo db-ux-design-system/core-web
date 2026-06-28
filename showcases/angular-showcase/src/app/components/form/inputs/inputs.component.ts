@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { form, FormField } from '@angular/forms/signals';
 import { DBInput } from '@components';
@@ -14,6 +14,7 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 		ReactiveFormsModule,
 		FormField
 	],
+	schemas: [NO_ERRORS_SCHEMA],
 	templateUrl: './inputs.component.html'
 })
 export class InputsComponent {

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, test, vi } from 'vitest';
 
@@ -9,8 +9,9 @@ vi.mock('replace-in-file', () => ({
 }));
 
 const outputDir = resolve(__dirname, '../../output/angular/src/components');
+const outputExists = existsSync(resolve(outputDir, 'input/input.ts'));
 
-describe('Angular Post-Build Transformations', () => {
+describe.skipIf(!outputExists)('Angular Post-Build Transformations', () => {
 	describe('CVA Provider Always Registered (Requirement 6.1)', () => {
 		test('output contains NG_VALUE_ACCESSOR provider', () => {
 			const inputFile = readFileSync(
@@ -77,25 +78,23 @@ describe('Angular Post-Build Transformations', () => {
 			expect(legacyCount).toBeGreaterThanOrEqual(5);
 		});
 	});
+});
 
-	describe('Error Handling: missing pattern (Requirement 6.7)', () => {
-		test('runReplacements throws when replaceInFileSync fails on missing file', async () => {
-			const { runReplacements } =
-				await import('../../packages/components/scripts/utils/index.ts');
+describe('Error Handling: missing pattern (Requirement 6.7)', () => {
+	test('runReplacements throws when replaceInFileSync fails on missing file', async () => {
+		const { runReplacements } =
+			await import('../../packages/components/scripts/utils/index.ts');
 
-			const component = { name: 'non-existent-component' };
-			const replacements = [
-				{ from: 'pattern-not-found', to: 'replacement' }
-			];
+		const component = { name: 'non-existent-component' };
+		const replacements = [{ from: 'pattern-not-found', to: 'replacement' }];
 
-			expect(() => {
-				runReplacements(
-					replacements,
-					component,
-					'angular',
-					'/non/existent/file.ts'
-				);
-			}).toThrow();
-		});
+		expect(() => {
+			runReplacements(
+				replacements,
+				component,
+				'angular',
+				'/non/existent/file.ts'
+			);
+		}).toThrow();
 	});
 });
