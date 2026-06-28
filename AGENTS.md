@@ -228,6 +228,22 @@ pnpm run clean              # Clean build artifacts
 pnpm run generate:component # Generate new component scaffolding
 ```
 
+### Knip: `@public` / `@internal` export tagging
+
+Knip reports unused exports unless they carry a `@public` JSDoc tag. When adding new exports to published packages (`packages/components`, `packages/foundations`, `packages/vite-plugin`, etc.), tag them:
+
+- **`@public`** — intentional public API for consumers. Knip ignores these.
+- **`@internal`** or untagged — internal helpers. Knip reports these if unused.
+
+```ts
+/** @public */
+export function myPublicUtility() {
+	/* ... */
+}
+```
+
+See `docs/conventions.md` for the full convention.
+
 ## Known Issues and Workarounds
 
 ### Installation Issues

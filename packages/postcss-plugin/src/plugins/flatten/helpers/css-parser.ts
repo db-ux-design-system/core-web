@@ -1,4 +1,5 @@
 /**
+ * @public
  * Find the matching closing paren for a CSS function call starting at a given position.
  * Assumes the opening `(` has already been consumed (depth starts at 1).
  * @param value - The full CSS value string

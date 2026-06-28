@@ -1,9 +1,9 @@
 {
 	"$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
 
-	// Don't report unused exports/types — this is a public library and consumers
-	// may rely on exports we don't use internally. See: https://github.com/db-ux-design-system/core-web/issues/7124
-	"exclude": ["exports", "types", "enumMembers", "namespaceMembers"],
+	// Exports tagged @public are part of the published API and should never be
+	// reported as unused — consumers may rely on them outside this monorepo.
+	"tags": ["-public"],
 
 	// These workspaces are generated or framework-specific and produce false positives
 	"ignoreWorkspaces": [
@@ -88,7 +88,6 @@
 				"configs/**/*.{cjs,js}",
 				"test/**/*.{js,ts}"
 			],
-			"ignoreBinaries": ["vite"],
 			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
 		},
 

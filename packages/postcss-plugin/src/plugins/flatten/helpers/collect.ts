@@ -2,6 +2,7 @@ import type { AtRule, ChildNode, Declaration, Root } from 'postcss';
 import type { VarEntry } from '../data.js';
 
 /**
+ * @public
  * Check whether a CSS selector targets only `:root` and/or `:host`.
  * @param selector - The CSS selector string to check
  * @returns True if the selector only contains `:root` and/or `:host`
@@ -12,6 +13,7 @@ export const isRootSelector = (selector: string): boolean => {
 };
 
 /**
+ * @public
  * Walk up the PostCSS AST from a node to find the enclosing `@layer` name.
  * @param node - The PostCSS child node to start from
  * @returns The layer name, or null if not inside any `@layer`
@@ -76,6 +78,7 @@ export const collectImportLayers = (root: Root): Map<string, string> => {
 };
 
 /**
+ * @public
  * Get the numeric priority for a layer. Unlayered CSS (null) gets the highest
  * priority (`MAX_SAFE_INTEGER`), matching the CSS spec.
  * @param layer - The layer name, or null for unlayered CSS

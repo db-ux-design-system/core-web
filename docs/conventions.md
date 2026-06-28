@@ -64,4 +64,25 @@ The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_forma
 pnpm run knip
 ```
 
-Configuration lives in `knip.jsonc` at the repository root. See the [Knip documentation](https://knip.dev/overview/configuration) for details on workspace-level configuration.
+Configuration lives in `.config/knip.jsonc`. See the [Knip documentation](https://knip.dev/overview/configuration) for details on workspace-level configuration.
+
+#### `@public` / `@internal` export tagging
+
+Since this is a published library, we use JSDoc tags to distinguish intentional public API from internal helpers:
+
+- **`@public`** — part of the published API surface, safe for consumers to rely on. Knip will never report these as unused.
+- **`@internal`** (or untagged) — exported for internal use (testing, cross-package). Knip will report these if unused, signaling candidates for cleanup.
+
+When adding new exports to published packages, tag them accordingly:
+
+```ts
+/** @public */
+export function myPublicUtility() {
+	/* ... */
+}
+
+/** @internal */
+export function helperForTests() {
+	/* ... */
+}
+```
