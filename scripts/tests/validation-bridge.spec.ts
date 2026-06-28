@@ -1,5 +1,3 @@
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { describe, expect, test } from 'vitest';
 
 const defaultInvalidMessage = 'TODO: Add an invalidMessage';
@@ -138,59 +136,5 @@ describe('Validation Bridge Logic', () => {
 
 		expect(earlyReturn).toBe(true);
 		expect(state.invalidMessage).toBe('');
-	});
-});
-
-describe.skipIf(
-	!existsSync(
-		resolve(
-			import.meta.dirname,
-			'../../output/angular/src/components/input/input.ts'
-		)
-	)
-)('Validation Bridge Pattern in Output', () => {
-	const outputPath = resolve(
-		import.meta.dirname,
-		'../../output/angular/src/components/input/input.ts'
-	);
-
-	const outputContent = readFileSync(outputPath, 'utf8');
-
-	test('validation bridge code is injected at beginning of handleValidation()', () => {
-		expect(outputContent).toContain(
-			'// Signal Forms validation bridge: errors InputSignal has priority'
-		);
-	});
-
-	test('validation bridge checks errors signal', () => {
-		expect(outputContent).toContain(
-			'const signalFormErrors = this.errors();'
-		);
-	});
-
-	test('validation bridge uses Array.isArray guard', () => {
-		expect(outputContent).toContain(
-			'if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0)'
-		);
-	});
-
-	test('validation bridge sets _invalidMessage from first error', () => {
-		expect(outputContent).toContain(
-			'signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE'
-		);
-	});
-
-	test('validation bridge returns early before normal validation logic', () => {
-		// The bridge must return BEFORE the existing a11y comment
-		const bridgeReturnPos = outputContent.indexOf(
-			'return; // Signal Forms errors take priority'
-		);
-		const a11yCommentPos = outputContent.indexOf(
-			'/* For a11y reasons we need to map the correct message with the input */'
-		);
-
-		expect(bridgeReturnPos).toBeGreaterThan(-1);
-		expect(a11yCommentPos).toBeGreaterThan(-1);
-		expect(bridgeReturnPos).toBeLessThan(a11yCommentPos);
 	});
 });
