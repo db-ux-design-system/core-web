@@ -1,11 +1,11 @@
-import {ALL_ICONS} from '@db-ux/db-theme-icons';
-import React, {useState} from 'react';
+import { ALL_ICONS } from '@db-ux/db-theme-icons';
+import React, { useState } from 'react';
 import {
 	DBCard,
 	DBIcon,
 	DBInfotext,
 	DBInput,
-	DBSelect,
+	DBSelect
 } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
@@ -37,16 +37,15 @@ const IconOverview = () => {
 				<a
 					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/${themeIconsVersion === 'unknown' ? '' : `v/${themeIconsVersion}`}`}
 					target="_blank"
-					rel="noopener noreferrer"
-				>
+					rel="noopener noreferrer">
 					<code>@db-ux/db-theme-icons</code> node package of version{' '}
 					{themeIconsVersion}
 				</a>
 				, which is part of the{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme/${themeVersion === 'unknown' ? '' : `v/${themeVersion}`}`}
-				>
-					<code>@db-ux/db-theme</code> package , version {themeVersion}
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/${themeVersion === 'unknown' ? '' : `v/${themeVersion}`}`}>
+					<code>@db-ux/db-theme</code> package , version{' '}
+					{themeVersion}
 				</a>
 				.
 			</p>
@@ -64,8 +63,7 @@ const IconOverview = () => {
 						value={weight}
 						onChange={(event) => {
 							setWeight(event.target.value);
-						}}
-					>
+						}}>
 						{[16, 20, 24, 32].map((fw) => (
 							<option value={fw}>{fw}</option>
 						))}
@@ -75,8 +73,7 @@ const IconOverview = () => {
 						value={family}
 						onChange={(event) => {
 							setFamily(event.target.value);
-						}}
-					>
+						}}>
 						{['default', 'filled'].map((fam) => (
 							<option value={fam}>{fam}</option>
 						))}
@@ -89,19 +86,20 @@ const IconOverview = () => {
 					{
 						'--db-icon-font-family': `db-${family}`,
 						'--db-icon-font-weight': weight,
-						'--db-icon-font-size': `${weight}px`,
+						'--db-icon-font-size': `${weight}px`
 					} as React.CSSProperties
-				}
-			>
-				{ALL_ICONS.filter((icon) => icon.includes(search)).map((icon) => (
-					<DBCard key={icon} spacing="small">
-						{/* TODO: Make this interactive to copy the icon name */}
-						<DBIcon icon={icon}>{icon}</DBIcon>
-						<DBInfotext semantic="informational" icon="none">
-							{icon}
-						</DBInfotext>
-					</DBCard>
-				))}
+				}>
+				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
+					(icon) => (
+						<DBCard key={icon} spacing="small">
+							{/* TODO: Make this interactive to copy the icon name */}
+							<DBIcon icon={icon}>{icon}</DBIcon>
+							<DBInfotext semantic="informational" icon="none">
+								{icon}
+							</DBInfotext>
+						</DBCard>
+					)
+				)}
 			</div>
 		</DefaultPage>
 	);

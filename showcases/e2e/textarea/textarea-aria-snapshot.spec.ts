@@ -1,4 +1,4 @@
-import {test} from '@playwright/test';
+import { test } from '@playwright/test';
 
 const path = '03/textarea';
 test.describe('DBTextarea', () => {

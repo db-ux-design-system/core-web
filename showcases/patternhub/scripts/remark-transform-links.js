@@ -1,10 +1,13 @@
-import {visit} from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 
 export default function transformLinks() {
 	return (tree) => {
 		visit(tree, 'link', (node) => {
 			// Skip external links (https:// and http://)
-			if (node.url.startsWith('https://') || node.url.startsWith('http://')) {
+			if (
+				node.url.startsWith('https://') ||
+				node.url.startsWith('http://')
+			) {
 				return;
 			}
 
@@ -25,10 +28,13 @@ export default function transformLinks() {
 				}
 
 				// Extract query if present (and not after fragment)
-				if (queryIndex !== -1 && (hashIndex === -1 || queryIndex < hashIndex)) {
+				if (
+					queryIndex !== -1 &&
+					(hashIndex === -1 || queryIndex < hashIndex)
+				) {
 					query = node.url.slice(
 						queryIndex,
-						Math.max(hashIndex === -1 ? undefined : hashIndex),
+						Math.max(hashIndex === -1 ? undefined : hashIndex)
 					);
 					basePath = node.url.slice(0, Math.max(0, queryIndex));
 				}

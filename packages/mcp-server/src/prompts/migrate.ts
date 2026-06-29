@@ -1,4 +1,4 @@
-import {type Framework, FRAMEWORK_PKG} from '../types.js';
+import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
 /**
  Generates a structured prompt that guides an AI agent through the full DB UX
@@ -15,7 +15,7 @@ import {type Framework, FRAMEWORK_PKG} from '../types.js';
 export function handleMigrateComponentPrompt({
 	legacy_code,
 	source_context,
-	target_framework,
+	target_framework
 }: {
 	legacy_code: string;
 	source_context: string;
@@ -153,9 +153,9 @@ Structure your response EXACTLY as follows:
 
 3. "Accessibility Statement":
    - Confirmation of how WCAG 2.2 AA compliance is achieved through the selected DB UX components.
-   - Any additional accessibility measures applied during migration.`,
-				},
-			},
-		],
+   - Any additional accessibility measures applied during migration.`
+				}
+			}
+		]
 	};
 }

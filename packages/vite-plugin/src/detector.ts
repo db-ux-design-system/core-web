@@ -1,6 +1,6 @@
 import fg from 'fast-glob';
-import {readFileSync, readdirSync} from 'node:fs';
-import {resolve} from 'node:path';
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 /**
  Walk up the directory tree from `root` to locate a package path inside node_modules.
@@ -9,7 +9,7 @@ import {resolve} from 'node:path';
  */
 export function resolvePackagePath(
 	root: string,
-	packagePath: string,
+	packagePath: string
 ): string | undefined {
 	let currentDir = root;
 	for (let i = 0; i < 10; i++) {
@@ -35,7 +35,7 @@ export function resolvePackagePath(
 /** Return subdirectory names (folders only) from the given path. */
 function readDirNames(dirPath: string): string[] {
 	try {
-		return readdirSync(dirPath, {withFileTypes: true})
+		return readdirSync(dirPath, { withFileTypes: true })
 			.filter((e) => e.isDirectory())
 			.map((e) => e.name);
 	} catch {
@@ -78,28 +78,28 @@ function discover(root: string) {
 	// Components
 	const compDir = resolvePackagePath(
 		root,
-		'@db-ux/core-components/build/components',
+		'@db-ux/core-components/build/components'
 	);
 	const components = new Set<string>(compDir ? readDirNames(compDir) : []);
 
 	// Colors
 	const colorDir = resolvePackagePath(
 		root,
-		'@db-ux/core-foundations/build/styles/colors/classes',
+		'@db-ux/core-foundations/build/styles/colors/classes'
 	);
 	const colors = colorDir ? readCssNames(colorDir) : [];
 
 	// Densities
 	const densityDir = resolvePackagePath(
 		root,
-		'@db-ux/core-foundations/build/styles/density/classes',
+		'@db-ux/core-foundations/build/styles/density/classes'
 	);
 	const densities = densityDir ? readCssNames(densityDir) : [];
 
 	// Font sizes: body/<size>.css + headline/<size>.css → "body-sm", "headline-lg"
 	const fontDir = resolvePackagePath(
 		root,
-		'@db-ux/core-foundations/build/styles/fonts/classes',
+		'@db-ux/core-foundations/build/styles/fonts/classes'
 	);
 	const fontSizes: string[] = [];
 	if (fontDir) {
@@ -110,7 +110,7 @@ function discover(root: string) {
 		}
 	}
 
-	const result = {components, colors, densities, fontSizes};
+	const result = { components, colors, densities, fontSizes };
 	cache.set(root, result);
 	return result;
 }
@@ -129,11 +129,11 @@ export function scanComponentDependencies(
 	components: Set<string>,
 	colors: Set<string>,
 	densities: Set<string>,
-	fontSizes: Set<string>,
+	fontSizes: Set<string>
 ): void {
 	const compDir = resolvePackagePath(
 		root,
-		'@db-ux/core-components/build/components',
+		'@db-ux/core-components/build/components'
 	);
 	if (!compDir) {
 		return;
@@ -142,7 +142,7 @@ export function scanComponentDependencies(
 	const {
 		colors: validColors,
 		densities: validDensities,
-		fontSizes: validFontSizes,
+		fontSizes: validFontSizes
 	} = discover(root);
 	const validFontSizeSet = new Set(validFontSizes);
 
@@ -186,13 +186,13 @@ function toKebabCase(string_: string): string {
 function buildPatterns(
 	classPrefix: string,
 	dataAttr: string,
-	values: string,
+	values: string
 ): RegExp[] {
 	return [
 		new RegExp(`${classPrefix}(${values})`, 'g'),
 		new RegExp(String.raw`\[${dataAttr}=["']?(${values})["']?\]`, 'g'),
 		new RegExp(`${dataAttr}=["'](${values})["']`, 'g'),
-		new RegExp(String.raw`["']${dataAttr}["']:\s*["'](${values})["']`, 'g'),
+		new RegExp(String.raw`["']${dataAttr}["']:\s*["'](${values})["']`, 'g')
 	];
 }
 
@@ -212,7 +212,7 @@ async function scanFiles(root: string): Promise<string[]> {
 	return fg(['**/*.{vue,jsx,tsx,ts,html}'], {
 		cwd: root,
 		absolute: true,
-		ignore: ['**/node_modules/**', '**/dist/**', '**/build/**'],
+		ignore: ['**/node_modules/**', '**/dist/**', '**/build/**']
 	});
 }
 
@@ -232,10 +232,10 @@ function readSource(filePath: string): string | undefined {
  */
 export async function detectComponents(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
 	const components = new Set<string>(forceInclude);
-	const {components: validComponents} = discover(root);
+	const { components: validComponents } = discover(root);
 	const files = await scanFiles(root);
 
 	for (const file of files) {
@@ -296,14 +296,18 @@ async function detectByPatterns(
 	classPrefix: string,
 	dataAttr: string,
 	validValues: string[],
-	mapMatch?: (match: RegExpMatchArray) => string | undefined,
+	mapMatch?: (match: RegExpMatchArray) => string | undefined
 ): Promise<Set<string>> {
 	const result = new Set<string>(forceInclude);
 	if (validValues.length === 0) {
 		return result;
 	}
 
-	const patterns = buildPatterns(classPrefix, dataAttr, validValues.join('|'));
+	const patterns = buildPatterns(
+		classPrefix,
+		dataAttr,
+		validValues.join('|')
+	);
 	const files = await scanFiles(root);
 
 	for (const file of files) {
@@ -328,45 +332,45 @@ async function detectByPatterns(
 /** Detect which color schemes are used in the project (e.g. "cyan", "brand"). */
 export async function detectColors(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
-	const {colors} = discover(root);
+	const { colors } = discover(root);
 	return detectByPatterns(
 		root,
 		forceInclude,
 		'db-color-',
 		'data-color',
-		colors,
+		colors
 	);
 }
 
 /** Detect which density variants are used in the project (e.g. "functional", "expressive"). */
 export async function detectDensities(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
-	const {densities} = discover(root);
+	const { densities } = discover(root);
 	return detectByPatterns(
 		root,
 		forceInclude,
 		'db-density-',
 		'data-density',
-		densities,
+		densities
 	);
 }
 
 /** Detect which font size combinations are used in the project (e.g. "body-md", "headline-lg"). */
 export async function detectFontSizes(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
-	const {fontSizes: validFontSizes} = discover(root);
+	const { fontSizes: validFontSizes } = discover(root);
 	if (validFontSizes.length === 0) {
 		return new Set<string>(forceInclude);
 	}
 
 	const categories = [
-		...new Set(validFontSizes.map((f) => f.split('-', 1)[0])),
+		...new Set(validFontSizes.map((f) => f.split('-', 1)[0]))
 	];
 	const sizes = [...new Set(validFontSizes.map((f) => f.split('-', 2)[1]))];
 	const validSet = new Set(validFontSizes);
@@ -380,6 +384,6 @@ export async function detectFontSizes(
 		(match) => {
 			const value = `${match[1]}-${match[2]}`;
 			return validSet.has(value) ? value : undefined;
-		},
+		}
 	);
 }

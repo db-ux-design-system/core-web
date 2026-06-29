@@ -1,5 +1,5 @@
-import {existsSync} from 'node:fs';
-import type {Framework} from '../types.js';
+import { existsSync } from 'node:fs';
+import type { Framework } from '../types.js';
 import {
 	type ToolResult,
 	COMPONENT_NOT_FOUND_MSG,
@@ -8,9 +8,9 @@ import {
 	err,
 	resolveSafePath,
 	truncate,
-	withTimeout,
+	withTimeout
 } from '../utils';
-import {getManifest} from '../utils/manifest';
+import { getManifest } from '../utils/manifest';
 
 /**
  Resolves and verifies a component path within a given base directory.
@@ -19,7 +19,7 @@ import {getManifest} from '../utils/manifest';
  */
 function resolveComponentPath(
 	baseDir: string,
-	componentName: string,
+	componentName: string
 ): string | ToolResult {
 	let safePath: string;
 	try {
@@ -44,10 +44,10 @@ export async function handleListComponents(): Promise<ToolResult> {
 				type: 'text',
 				text: truncate(
 					JSON.stringify(Object.keys(manifest.components), null, 2),
-					MAX_JSON_OUTPUT,
-				),
-			},
-		],
+					MAX_JSON_OUTPUT
+				)
+			}
+		]
 	};
 }
 
@@ -57,7 +57,7 @@ export async function handleListComponents(): Promise<ToolResult> {
  @param componentName.componentName
  */
 export async function handleGetComponentDetails({
-	componentName,
+	componentName
 }: {
 	componentName: string;
 }): Promise<ToolResult> {
@@ -74,9 +74,9 @@ export async function handleGetComponentDetails({
 				text:
 					comp.examples.length > 0
 						? JSON.stringify(comp.examples, null, 2)
-						: 'No examples found.',
-			},
-		],
+						: 'No examples found.'
+			}
+		]
 	};
 }
 
@@ -86,7 +86,7 @@ export async function handleGetComponentDetails({
  @param componentName.componentName
  */
 export async function handleGetComponentProps({
-	componentName,
+	componentName
 }: {
 	componentName: string;
 }): Promise<ToolResult> {
@@ -98,12 +98,14 @@ export async function handleGetComponentProps({
 
 	if (!comp.props) {
 		return err(
-			`Error: Props file (model.ts) for component '${componentName}' not found.`,
+			`Error: Props file (model.ts) for component '${componentName}' not found.`
 		);
 	}
 
 	return {
-		content: [{type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT)}],
+		content: [
+			{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
+		]
 	};
 }
 
@@ -120,11 +122,11 @@ const FRAMEWORK_EXT: Partial<Record<Framework, string>> = {
 	react: 'tsx',
 	angular: 'ts',
 	vue: 'vue',
-	'web-components': 'tsx',
+	'web-components': 'tsx'
 };
 
 const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
-	'web-components': 'stencil',
+	'web-components': 'stencil'
 };
 
 /**
@@ -135,7 +137,7 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 function fuzzyMatchExample(
 	entries: string[],
 	kebab: string,
-	ext: string,
+	ext: string
 ): string | undefined {
 	return entries.slice(0, 10).find((f) => {
 		if (!f.endsWith(`.example.${ext}`)) {
@@ -160,7 +162,7 @@ function fuzzyMatchExample(
 export async function handleGetExampleCode({
 	componentName,
 	exampleName,
-	framework,
+	framework
 }: {
 	componentName: string;
 	exampleName: string;
@@ -179,7 +181,7 @@ export async function handleGetExampleCode({
 
 				if (framework === 'html' || framework === 'vanilla') {
 					return err(
-						"Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage.",
+						"Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage."
 					);
 				}
 
@@ -190,7 +192,7 @@ export async function handleGetExampleCode({
 					: fuzzyMatchExample(Object.keys(fwExamples), kebab, ext);
 				if (!matchKey) {
 					return err(
-						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`,
+						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					);
 				}
 
@@ -198,14 +200,17 @@ export async function handleGetExampleCode({
 					content: [
 						{
 							type: 'text',
-							text: truncate(fwExamples[matchKey], MAX_FILE_CONTENT),
-						},
-					],
+							text: truncate(
+								fwExamples[matchKey],
+								MAX_FILE_CONTENT
+							)
+						}
+					]
 				};
 			} catch (error: any) {
 				return err(`Error: ${error.message}`);
 			}
 		})(),
-		'Error: Reading example files took too long (exceeded 10 seconds).',
+		'Error: Reading example files took too long (exceeded 10 seconds).'
 	);
 }

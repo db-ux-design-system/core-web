@@ -16,7 +16,7 @@ const getAttributes = (props, framework, noEvents) => {
 					key !== 'identifier' &&
 					key !== 'img' &&
 					key !== 'link' &&
-					key !== 'noContent',
+					key !== 'noContent'
 			)
 		: [];
 
@@ -85,9 +85,9 @@ export const getCodeByFramework = (
 	framework,
 	example,
 	noEvents,
-	children,
+	children
 ) => {
-	const {props, name, content, native} = example;
+	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
 	// Self-contained or composition components
@@ -95,7 +95,7 @@ export const getCodeByFramework = (
 		'input',
 		'select',
 		'textarea',
-		'custom-select',
+		'custom-select'
 	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
@@ -116,7 +116,7 @@ export const getCodeByFramework = (
 	const nonSlots = (children ?? example.children)?.filter(
 		(child) =>
 			!child.slot ||
-			(child.slot.includes('Navigation') && framework !== 'angular'),
+			(child.slot.includes('Navigation') && framework !== 'angular')
 	);
 	const innerContent =
 		nonSlots?.length > 0
@@ -127,17 +127,19 @@ export const getCodeByFramework = (
 							framework,
 							child,
 							noEvents,
-							child.children,
-						),
+							child.children
+						)
 					)
 					.join('\n') + (content ?? '')
 			: (content ??
-				(nonInnerContentComponents.includes(componentName) ? '' : name));
+				(nonInnerContentComponents.includes(componentName)
+					? ''
+					: name));
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
 			? !(child.slot.includes('Navigation') && framework !== 'angular')
-			: false,
+			: false
 	);
 	let reactSlots = '';
 	let otherSlots = '';
@@ -148,7 +150,9 @@ export const getCodeByFramework = (
 				slots
 					.map((child) => {
 						let slotName = getTag(child.slot);
-						slotName = slotName.charAt(0).toLowerCase() + slotName.slice(1);
+						slotName =
+							slotName.charAt(0).toLowerCase() +
+							slotName.slice(1);
 						return `${slotName}={${getCodeByFramework(child.name, framework, child, noEvents, child.children)}}`;
 					})
 					.join('\n');
@@ -162,7 +166,7 @@ export const getCodeByFramework = (
 							framework,
 							child,
 							noEvents,
-							child.children,
+							child.children
 						);
 						if (framework === 'angular') {
 							return `<ng-container ${child.angularDirective ? `*db${getTag(child.slot)}` : child.slot}>${resolvedSlot}</ng-container>`;
@@ -184,7 +188,7 @@ export const getCodeByFramework = (
 			'</',
 			`<${tag}${className} ${attributes.filter((attr) => attr.startsWith('"content')).join(' ')}>${
 				props.content ?? ''
-			}</${tag}></`,
+			}</${tag}></`
 		);
 
 		console.log(tooltipCode);
@@ -216,7 +220,7 @@ export const getColorVariants = () => [
 	'warning-transparent-semi',
 	'informational',
 	'informational-transparent-full',
-	'informational-transparent-semi',
+	'informational-transparent-semi'
 ];
 
 /**
@@ -260,6 +264,6 @@ export const getComponentGroup = (components, componentName) =>
 		comp.subNavigation.find(
 			(sub) =>
 				componentName.includes(sub.name) ||
-				componentName.replace('tab-item', 'tabs').includes(sub.name),
-		),
+				componentName.replace('tab-item', 'tabs').includes(sub.name)
+		)
 	);
