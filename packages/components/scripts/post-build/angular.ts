@@ -308,6 +308,29 @@ export default (tmp?: boolean) => {
 					from: `pattern: InputSignal<${upperComponentName}Props["pattern"]> =\n    input<${upperComponentName}Props["pattern"]>()`,
 					to: `pattern: InputSignal<${upperComponentName}Props["pattern"] | readonly RegExp[]> =\n    input<${upperComponentName}Props["pattern"] | readonly RegExp[]>()`
 				});
+
+				// Prevent Signal Forms empty RegExp[] from being rendered as native pattern attribute
+				// Only pass string values or non-empty RegExp[] (joined as source) to [attr.pattern]
+				// Uses a helper method since Angular templates don't support typeof/Array.isArray
+				replaceInFileSync({
+					files: file,
+					from: `[attr.pattern]="pattern()"`,
+					to: `[attr.pattern]="getPatternAttr()"`
+				});
+
+				// Inject helper method for pattern attribute resolution
+				replaceInFileSync({
+					files: file,
+					from: /handleValidation\(\)\s*\{/,
+					to:
+						`getPatternAttr(): string | undefined {\n` +
+						`    const p = this.pattern();\n` +
+						`    if (typeof p === 'string') return p || undefined;\n` +
+						`    if (Array.isArray(p) && p.length > 0) return p.map((r: RegExp) => r.source).join('|');\n` +
+						`    return undefined;\n` +
+						`  }\n` +
+						`  handleValidation() {`
+				});
 			}
 		}
 	}
