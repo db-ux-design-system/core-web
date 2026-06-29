@@ -1,5 +1,5 @@
-import type {AtRule, ChildNode, Declaration, Root} from 'postcss';
-import type {VarEntry} from '../data.js';
+import type { AtRule, ChildNode, Declaration, Root } from 'postcss';
+import type { VarEntry } from '../data.js';
 
 /**
  Check whether a CSS selector targets only `:root` and/or `:host`.
@@ -65,14 +65,16 @@ export const collectLayerOrder = (root: Root): Map<string, number> => {
 export const collectImportLayers = (root: Root): Map<string, string> => {
 	const importLayers = new Map<string, string>();
 	root.walkAtRules('import', (atRule: AtRule) => {
-		const {params} = atRule;
+		const { params } = atRule;
 		const layerMatch = /layer\(([^)]+)\)/.exec(params);
 		if (!layerMatch) {
 			return;
 		}
 
 		const layerName = layerMatch[1].trim();
-		const fileMatch = /(?:url\(\s*)?["']([^"']+)["'](?:\s*\))?/.exec(params);
+		const fileMatch = /(?:url\(\s*)?["']([^"']+)["'](?:\s*\))?/.exec(
+			params
+		);
 		if (!fileMatch) {
 			return;
 		}
@@ -91,7 +93,7 @@ export const collectImportLayers = (root: Root): Map<string, string> => {
  */
 export const getLayerPriority = (
 	layer: string | undefined,
-	layerOrder: Map<string, number>,
+	layerOrder: Map<string, number>
 ): number => {
 	if (!layer) {
 		return Number.MAX_SAFE_INTEGER;
@@ -109,7 +111,7 @@ export const getLayerPriority = (
  */
 export const pickBestVar = (
 	entries: VarEntry[],
-	layerOrder: Map<string, number>,
+	layerOrder: Map<string, number>
 ): string => {
 	let best = entries[0];
 	for (let i = 1; i < entries.length; i++) {
@@ -133,11 +135,13 @@ export const pickBestVar = (
  */
 export const getFileLayer = (
 	filePath: string,
-	importLayerMap: Map<string, string>,
+	importLayerMap: Map<string, string>
 ): string | undefined => {
 	for (const [specifier, layer] of importLayerMap) {
 		if (
-			filePath.replaceAll('\\', '/').endsWith(specifier.replaceAll('\\', '/'))
+			filePath
+				.replaceAll('\\', '/')
+				.endsWith(specifier.replaceAll('\\', '/'))
 		) {
 			return layer;
 		}
@@ -172,21 +176,21 @@ export const collectVarsWithLayer = (
 	dynamicVars: Set<string>,
 	prefixes: string[],
 	forceLayer: string | undefined,
-	file: string,
+	file: string
 ) => {
 	const addVar = (prop: string, value: string, layer: string | undefined) => {
 		const entries = varMap.get(prop);
 		if (entries) {
 			const existing = entries.find(
-				(e) => e.file === file && e.layer === layer,
+				(e) => e.file === file && e.layer === layer
 			);
 			if (existing) {
 				existing.value = value;
 			} else {
-				entries.push({value, layer, file});
+				entries.push({ value, layer, file });
 			}
 		} else {
-			varMap.set(prop, [{value, layer, file}]);
+			varMap.set(prop, [{ value, layer, file }]);
 		}
 	};
 
@@ -200,7 +204,7 @@ export const collectVarsWithLayer = (
 	});
 
 	root.walkDecls(/^--/, (decl: Declaration) => {
-		const {parent} = decl;
+		const { parent } = decl;
 
 		if (prefixes.some((p) => decl.prop.startsWith(p))) {
 			dynamicVars.add(decl.prop);
@@ -215,7 +219,10 @@ export const collectVarsWithLayer = (
 
 		if (parent?.type === 'rule') {
 			const rule = parent;
-			if (isRootSelector(rule.selector) && rule.parent?.type === 'atrule') {
+			if (
+				isRootSelector(rule.selector) &&
+				rule.parent?.type === 'atrule'
+			) {
 				const atRule = rule.parent as AtRule;
 				if (atRule.name === 'media') {
 					dynamicVars.add(decl.prop);
