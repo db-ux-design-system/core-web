@@ -70,7 +70,7 @@ export default function DBControlPanelDesktop(
 		<header
 			ref={_ref}
 			class={cls('db-control-panel-desktop', props.className)}
-			id={props.id ?? state._id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			data-width={props.width}
 			data-orientation={props.orientation}
 			data-open={getBooleanAsString(state._open)}>

@@ -115,9 +115,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (state.isNotModal()) {
 						_ref.show();
 					} else {
-						// Enable native light dismiss (backdrop click / Esc)
-						// for modal dialogs via the closedby attribute.
-						_ref.setAttribute('closedby', 'any');
 						_ref.showModal();
 					}
 					void delay(() => {

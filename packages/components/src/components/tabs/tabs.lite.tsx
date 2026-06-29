@@ -10,6 +10,10 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
+import {
+	DEFAULT_SCROLL_LEFT,
+	DEFAULT_SCROLL_RIGHT
+} from '../../shared/constants';
 import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
@@ -259,7 +263,7 @@ export default function DBTabs(props: DBTabsProps) {
 					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
-					Scroll left
+					{props.scrollLeftText ?? DEFAULT_SCROLL_LEFT}
 				</DBButton>
 			</Show>
 			<Show when={props.tabs}>
@@ -295,7 +299,7 @@ export default function DBTabs(props: DBTabsProps) {
 					type="button"
 					noText
 					onClick={() => state.scroll()}>
-					Scroll right
+					{props.scrollRightText ?? DEFAULT_SCROLL_RIGHT}
 				</DBButton>
 			</Show>
 

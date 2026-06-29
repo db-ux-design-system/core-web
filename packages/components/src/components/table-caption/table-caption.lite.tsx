@@ -12,7 +12,7 @@ export default function DBTableCaption(props: DBTableCaptionProps) {
 	return (
 		<caption
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-caption', props.className)}>
 			{props.children}
 		</caption>

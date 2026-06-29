@@ -16,6 +16,10 @@ export type DBDrawerHeaderProps = DBDrawerHeaderDefaultProps &
 	StartSlotProps &
 	EndSlotProps;
 
-export type DBDrawerHeaderDefaultState = {};
+export type DBDrawerHeaderDefaultState = {
+	_headingId: string;
+	setAriaLabelledBy: () => void;
+	removeAriaLabelledBy: () => void;
+};
 
 export type DBDrawerHeaderState = DBDrawerHeaderDefaultState & GlobalState;

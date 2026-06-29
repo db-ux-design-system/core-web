@@ -8,6 +8,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import {
+	DEFAULT_SCROLL_LEFT,
+	DEFAULT_SCROLL_RIGHT
+} from '../../shared/constants';
 import { cls, delay, getBooleanAsString } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
@@ -19,7 +23,9 @@ import {
 
 useMetadata({});
 
-useDefaultProps<DBControlPanelNavigationProps>({});
+useDefaultProps<DBControlPanelNavigationProps>({
+	behavior: 'multiple'
+});
 
 export default function DBControlPanelNavigation(
 	props: DBControlPanelNavigationProps
@@ -36,6 +42,65 @@ export default function DBControlPanelNavigation(
 		initialized: false,
 		_isSubNavigation: false,
 		_resizeObserverCallbackId: undefined,
+		_singleBehaviorObserver: undefined,
+		_attachSingleBehaviorObserver() {
+			// Disconnect any previous observer
+			if (state._singleBehaviorObserver) {
+				state._singleBehaviorObserver.disconnect();
+				state._singleBehaviorObserver = undefined;
+			}
+
+			if (!menuRef) return;
+
+			const observer = new MutationObserver((mutations) => {
+				for (const mutation of mutations) {
+					if (
+						mutation.type === 'attributes' &&
+						mutation.attributeName === 'aria-expanded'
+					) {
+						const target = mutation.target as HTMLElement;
+						if (target.getAttribute('aria-expanded') === 'true') {
+							// Collapse sibling groups at the same level
+							const parentGroup = target.closest(
+								'.db-control-panel-navigation-item-group'
+							);
+							const parentContainer = parentGroup?.parentElement;
+							if (parentContainer) {
+								const siblingButtons =
+									parentContainer.querySelectorAll(
+										':scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
+									);
+								for (const sibling of Array.from(
+									siblingButtons
+								)) {
+									if (
+										sibling !== target &&
+										sibling.getAttribute(
+											'aria-expanded'
+										) === 'true'
+									) {
+										(sibling as HTMLElement).click();
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+
+			// Observe all expand buttons within this navigation
+			const expandButtons = (menuRef as HTMLElement).querySelectorAll(
+				'.db-control-panel-navigation-item-group-expand-button'
+			);
+			for (const button of Array.from(expandButtons)) {
+				observer.observe(button, {
+					attributes: true,
+					attributeFilter: ['aria-expanded']
+				});
+			}
+
+			state._singleBehaviorObserver = observer;
+		},
 		evaluateScrollButtons(tList: Element) {
 			if (!tList) return;
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
@@ -339,6 +404,11 @@ export default function DBControlPanelNavigation(
 			);
 			state._resizeObserverCallbackId = undefined;
 		}
+
+		if (state._singleBehaviorObserver) {
+			state._singleBehaviorObserver.disconnect();
+			state._singleBehaviorObserver = undefined;
+		}
 	});
 
 	onUpdate(() => {
@@ -446,6 +516,12 @@ export default function DBControlPanelNavigation(
 				if (allTreeItems.length > 0) {
 					allTreeItems[0].setAttribute('tabindex', '0');
 				}
+
+				// For behavior="single", attach a mutation observer to collapse
+				// sibling groups when one is expanded
+				if (props.behavior === 'single') {
+					state._attachSingleBehaviorObserver();
+				}
 			}
 
 			state.evaluateScrollButtons(menuRef);
@@ -462,13 +538,14 @@ export default function DBControlPanelNavigation(
 					});
 			}
 		}
-	}, [menuRef, state._variant, state._shellDesktopPosition]);
+	}, [menuRef, state._variant, state._shellDesktopPosition, props.behavior]);
 
 	return (
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-variant={state._variant}
+			data-behavior={props.behavior}
 			data-show-tree-line={getBooleanAsString(
 				props.showTreeLine ?? 'true',
 				'showTreeLine'
@@ -482,7 +559,7 @@ export default function DBControlPanelNavigation(
 					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
-					Scroll left
+					{props.scrollLeftText ?? DEFAULT_SCROLL_LEFT}
 				</DBButton>
 			</Show>
 			<menu
@@ -500,7 +577,7 @@ export default function DBControlPanelNavigation(
 					type="button"
 					noText
 					onClick={() => state.scroll()}>
-					Scroll right
+					{props.scrollRightText ?? DEFAULT_SCROLL_RIGHT}
 				</DBButton>
 			</Show>
 		</nav>

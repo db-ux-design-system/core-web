@@ -1,15 +1,18 @@
 import {
+	onMount,
+	onUnMount,
 	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
+	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
-import { DBDrawerHeaderProps } from './model';
+import { DBDrawerHeaderProps, DBDrawerHeaderState } from './model';
 
 useMetadata({});
 
@@ -21,14 +24,47 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
 
+	const state = useStore<DBDrawerHeaderState>({
+		_headingId: 'db-drawer-header-heading-' + uuid(),
+		setAriaLabelledBy() {
+			if (_ref && props.text) {
+				const dialog = (_ref as HTMLElement).closest('dialog');
+				if (dialog) {
+					dialog.setAttribute('aria-labelledby', state._headingId);
+				}
+			}
+		},
+		removeAriaLabelledBy() {
+			if (_ref) {
+				const dialog = (_ref as HTMLElement).closest('dialog');
+				if (
+					dialog &&
+					dialog.getAttribute('aria-labelledby') === state._headingId
+				) {
+					dialog.removeAttribute('aria-labelledby');
+				}
+			}
+		}
+	});
+
+	onMount(() => {
+		state.setAriaLabelledBy();
+	});
+
+	onUnMount(() => {
+		state.removeAriaLabelledBy();
+	});
+
 	return (
 		<header
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-drawer-header', props.className)}>
 			<div class="db-drawer-header-container">
 				<Slot name="startSlot" />
-				<Show when={props.text}>{props.text}</Show>
+				<Show when={props.text}>
+					<header id={state._headingId}>{props.text}</header>
+				</Show>
 				{props.children}
 			</div>
 			<Slot name="endSlot" />

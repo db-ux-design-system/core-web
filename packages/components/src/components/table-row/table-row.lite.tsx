@@ -38,7 +38,7 @@ export default function DBTableRow(props: DBTableRowProps) {
 	return (
 		<tr
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-row', props.className)}
 			data-interactive={getBooleanAsString(props.interactive)}
 			data-sub-header-emphasis={props.subHeaderEmphasis}>

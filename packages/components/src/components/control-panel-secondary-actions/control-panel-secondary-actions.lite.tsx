@@ -15,7 +15,7 @@ export default function DBControlPanelSecondaryActions(
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-control-panel-secondary-actions', props.className)}>
 			{props.children}
 		</div>

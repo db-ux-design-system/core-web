@@ -13,7 +13,7 @@ export default function DBDrawerFooter(props: DBDrawerFooterProps) {
 	return (
 		<footer
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-drawer-footer', props.className)}>
 			{props.children}
 		</footer>

@@ -20,7 +20,7 @@ export default function DBTableFooter(props: DBTableFooterProps) {
 	return (
 		<tfoot
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-footer', props.className)}>
 			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>

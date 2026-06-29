@@ -787,6 +787,16 @@ export type OverflowScrollButtonProps = {
 	 * Change amount of scroll distance when clicking on an overflow scroll arrow button.
 	 */
 	arrowScrollDistance?: number | string;
+
+	/**
+	 * Set the text for the scroll left button
+	 */
+	scrollLeftText?: string;
+
+	/**
+	 * Set the text for the scroll right button
+	 */
+	scrollRightText?: string;
 };
 
 export type OverflowScrollButtonState = {
@@ -829,6 +839,17 @@ export type NavigationItemGroupVariantType =
 
 export type NavigationItemGroupVariant = {
 	variant?: NavigationItemGroupVariantType;
+};
+
+export const CollapsableBehaviorList = ['single', 'multiple'] as const;
+export type CollapsableBehaviorType = (typeof CollapsableBehaviorList)[number];
+
+export type CollapsableBehaviorPops = {
+	/**
+	 * To allow multiple items open at the same time or only 1 item
+	 * @default 'multiple'
+	 */
+	behavior?: CollapsableBehaviorType;
 };
 
 export type DocumentScrollState = {

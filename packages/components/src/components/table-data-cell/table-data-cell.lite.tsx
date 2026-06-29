@@ -12,7 +12,7 @@ export default function DBTableDataCell(props: DBTableDataCellProps) {
 	return (
 		<td
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-data-cell', props.className)}
 			data-horizontal-alignment={props.horizontalAlignment}
 			data-vertical-alignment={props.verticalAlignment}

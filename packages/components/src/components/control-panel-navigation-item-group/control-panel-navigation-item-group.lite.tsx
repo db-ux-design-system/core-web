@@ -268,7 +268,7 @@ export default function DBControlPanelNavigationItemGroup(
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()

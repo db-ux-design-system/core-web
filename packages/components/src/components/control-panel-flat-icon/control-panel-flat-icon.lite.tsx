@@ -29,31 +29,29 @@ export default function DBControlPanelFlatIcon(
 
 	onUpdate(() => {
 		if (_ref && !state._resizeObserverCallbackId) {
-			// Save the initial density from the element or its inherited value
-
-			const controlPanel = _ref as HTMLDivElement;
-			if (_ref.getAttribute('data-density')) {
-				controlPanel.setAttribute(
-					'data-initial-density',
-					_ref.getAttribute('data-density')
-				);
+			// Capture the initial density and persist it as a data attribute
+			const initialDensity = _ref.getAttribute('data-density');
+			if (initialDensity) {
+				_ref.setAttribute('data-initial-density', initialDensity);
 			}
 
 			state._resizeObserverCallbackId =
 				new ResizeObserverListener().observe(_ref, () => {
 					if (!_ref) return;
+
 					const isMobile =
 						getComputedStyle(_ref).getPropertyValue(
 							'--db-control-panel-flat-icon-mobile'
 						) === '1';
 
+					const savedDensity = _ref.getAttribute(
+						'data-initial-density'
+					);
+
 					if (isMobile) {
 						_ref.setAttribute('data-density', 'regular');
-					} else if (_ref.getAttribute('data-initial-density')) {
-						_ref.setAttribute(
-							'data-density',
-							_ref.getAttribute('data-initial-density')
-						);
+					} else if (savedDensity) {
+						_ref.setAttribute('data-density', savedDensity);
 					} else {
 						_ref.removeAttribute('data-density');
 					}
@@ -73,7 +71,7 @@ export default function DBControlPanelFlatIcon(
 	return (
 		<header
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			class={cls('db-control-panel-flat-icon', props.className)}>
 			{props.children}

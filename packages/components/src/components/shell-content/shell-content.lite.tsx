@@ -21,7 +21,7 @@ export default function DBShellContent(props: DBShellContentProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-shell-content', props.className)}
 			data-variant={props.variant}>
 			<Slot name="startSlot" />

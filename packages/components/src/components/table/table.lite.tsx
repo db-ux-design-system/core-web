@@ -113,7 +113,7 @@ export default function DBTable(props: DBTableProps) {
 			data-mobile-variant={props.mobileVariant}
 			data-show-caption={getBooleanAsString(props.showCaption)}
 			data-sticky-header={props.stickyHeader}>
-			<table ref={_ref} id={props.id}>
+			<table ref={_ref} id={props.id ?? props.propOverrides?.id}>
 				<Show when={props.captionPlain} else={<Slot name="caption" />}>
 					<caption>{props.captionPlain}</caption>
 				</Show>

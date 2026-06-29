@@ -58,14 +58,12 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 	return (
 		<header
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			data-position={props.position}
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
 			<DBDrawer
-				header={
-					<DBDrawerHeader>{props.drawerHeaderText}</DBDrawerHeader>
-				}
+				header={<DBDrawerHeader text={props.drawerHeaderText} />}
 				className="db-control-panel-mobile-drawer"
 				rounded
 				open={state.open}

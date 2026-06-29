@@ -1,4 +1,5 @@
 import {
+	CollapsableBehaviorPops,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -20,7 +21,8 @@ export type DBControlPanelNavigationProps =
 	DBControlPanelNavigationDefaultProps &
 		GlobalProps &
 		OverflowScrollButtonProps &
-		NavigationItemGroupVariant;
+		NavigationItemGroupVariant &
+		CollapsableBehaviorPops;
 
 export type DBControlPanelNavigationDefaultState = {
 	onScroll: () => void;
@@ -35,6 +37,8 @@ export type DBControlPanelNavigationDefaultState = {
 	_closeSubMenuAndReturnToParent: (parentGroupMenu: Element) => void;
 	_isSubNavigation?: boolean;
 	_resizeObserverCallbackId?: string;
+	_singleBehaviorObserver?: MutationObserver;
+	_attachSingleBehaviorObserver: () => void;
 };
 
 export type DBControlPanelNavigationState =

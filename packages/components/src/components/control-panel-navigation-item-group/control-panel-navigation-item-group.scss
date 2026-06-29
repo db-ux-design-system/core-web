@@ -28,6 +28,8 @@
 		@extend %navigation-item-interactive-element;
 
 		.db-control-panel-navigation-item-group-expand-button-end-slot-container {
+			--db-has-badge-position: static;
+
 			display: inline-flex;
 			align-items: center;
 			margin-inline-start: auto;

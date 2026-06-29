@@ -20,7 +20,7 @@ export default function DBTableBody(props: DBTableBodyProps) {
 	return (
 		<tbody
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-body', props.className)}>
 			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>
