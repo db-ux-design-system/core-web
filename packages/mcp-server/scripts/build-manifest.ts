@@ -6,19 +6,19 @@
  MCP server can operate without access to the monorepo source tree (e.g.
  when invoked via `npx @db-ux/mcp-server`).
  */
-import {existsSync} from 'node:fs';
-import {readdir, readFile, writeFile} from 'node:fs/promises';
-import {join, relative} from 'node:path';
+import { existsSync } from 'node:fs';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { join, relative } from 'node:path';
 import {
 	COMPONENTS_DIR,
 	FOUNDATIONS_DIR,
 	MIGRATION_DIR,
 	OUTPUT_DIR,
 	REPO_ROOT,
-	TOKEN_FILES,
+	TOKEN_FILES
 } from './paths.ts';
 
-import {ALL_ICONS} from '@db-ux/db-theme-icons';
+import { ALL_ICONS } from '@db-ux/db-theme-icons';
 
 const FRAMEWORKS = ['react', 'angular', 'vue', 'web-components'] as const;
 type Framework = (typeof FRAMEWORKS)[number];
@@ -45,7 +45,7 @@ async function readOptional(path: string): Promise<string | undefined> {
 export async function processComponent(
 	name: string,
 	componentsSrc: string,
-	outputDir: string,
+	outputDir: string
 ): Promise<
 	| {
 			hasError: false;
@@ -56,16 +56,18 @@ export async function processComponent(
 				exampleCode: Record<Framework, Record<string, string>>;
 			};
 	  }
-	| {hasError: true}
+	| { hasError: true }
 > {
 	try {
 		const props = await readOptional(join(componentsSrc, name, 'model.ts'));
 
 		const showcaseSrc = await readOptional(
-			join(componentsSrc, name, 'showcase', `${name}.showcase.lite.tsx`),
+			join(componentsSrc, name, 'showcase', `${name}.showcase.lite.tsx`)
 		);
 		const examples = showcaseSrc
-			? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map((m) => m[1])
+			? [...showcaseSrc.matchAll(/exampleName="([^"]+)"/g)].map(
+					(m) => m[1]
+				)
 			: [];
 
 		const exampleCode = {} as Record<Framework, Record<string, string>>;
@@ -77,7 +79,7 @@ export async function processComponent(
 				fwOutputDir,
 				'src/components',
 				name,
-				'examples',
+				'examples'
 			);
 			if (!existsSync(exDir)) {
 				continue;
@@ -85,21 +87,24 @@ export async function processComponent(
 
 			const files = await readdir(exDir);
 			for (const file of files.filter(
-				(f) => !f.startsWith('_') && f.includes('.example.'),
+				(f) => !f.startsWith('_') && f.includes('.example.')
 			)) {
-				exampleCode[fw][file] = await readFile(join(exDir, file), 'utf-8');
+				exampleCode[fw][file] = await readFile(
+					join(exDir, file),
+					'utf-8'
+				);
 			}
 		}
 
 		return {
 			hasError: false as const,
 			name,
-			data: {props, examples, exampleCode},
+			data: { props, examples, exampleCode }
 		};
 	} catch (error: unknown) {
 		const msg = error instanceof Error ? error.message : String(error);
 		console.error(`Failed to process component ${name}: ${msg}`);
-		return {hasError: true as const};
+		return { hasError: true as const };
 	}
 }
 
@@ -130,7 +135,7 @@ async function collectTokens(): Promise<Record<string, string>> {
  */
 const DOCS_WHITELIST_DIRS: string[] = [
 	join(COMPONENTS_DIR), // Packages/components/src/components/*/docs/
-	join(FOUNDATIONS_DIR, 'docs'), // Packages/foundations/docs/
+	join(FOUNDATIONS_DIR, 'docs') // Packages/foundations/docs/
 ];
 
 /**
@@ -142,20 +147,23 @@ const DOCS_WHITELIST_DIRS: string[] = [
  */
 async function collectDocs(
 	dir: string,
-	depth = 5,
+	depth = 5
 ): Promise<Record<string, string>> {
 	const docs: Record<string, string> = {};
 	if (!existsSync(dir) || depth === 0) {
 		return docs;
 	}
 
-	const entries = await readdir(dir, {withFileTypes: true});
+	const entries = await readdir(dir, { withFileTypes: true });
 	for (const entry of entries) {
 		const fullPath = join(dir, entry.name);
 		if (entry.isDirectory()) {
 			Object.assign(docs, await collectDocs(fullPath, depth - 1));
 		} else if (entry.name.endsWith('.md')) {
-			docs[relative(REPO_ROOT, fullPath)] = await readFile(fullPath, 'utf-8');
+			docs[relative(REPO_ROOT, fullPath)] = await readFile(
+				fullPath,
+				'utf-8'
+			);
 		}
 	}
 
@@ -183,11 +191,11 @@ async function collectWhitelistedDocs(): Promise<Record<string, string>> {
 async function collectMigrationGuides(): Promise<Record<string, string>> {
 	if (!existsSync(MIGRATION_DIR)) {
 		throw new Error(
-			`[build-manifest] FATAL: migration guides directory not found: ${MIGRATION_DIR}`,
+			`[build-manifest] FATAL: migration guides directory not found: ${MIGRATION_DIR}`
 		);
 	}
 
-	const entries = await readdir(MIGRATION_DIR, {withFileTypes: true});
+	const entries = await readdir(MIGRATION_DIR, { withFileTypes: true });
 	const guides: Record<string, string> = {};
 	for (const entry of entries) {
 		if (!entry.isFile() || !entry.name.endsWith('.md')) {
@@ -209,7 +217,7 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
  */
 export async function buildManifest() {
 	const componentEntries = await readdir(COMPONENTS_DIR, {
-		withFileTypes: true,
+		withFileTypes: true
 	});
 	const componentNames = componentEntries
 		.filter((e) => e.isDirectory())
@@ -230,8 +238,8 @@ export async function buildManifest() {
 
 	const entries = await Promise.all(
 		componentNames.map(async (name) =>
-			processComponent(name, COMPONENTS_DIR, OUTPUT_DIR),
-		),
+			processComponent(name, COMPONENTS_DIR, OUTPUT_DIR)
+		)
 	);
 
 	const hasErrors = entries.some((entry) => entry.hasError);
@@ -245,17 +253,17 @@ export async function buildManifest() {
 	const [tokens, docs, migrationGuides] = await Promise.all([
 		collectTokens(),
 		collectWhitelistedDocs(),
-		collectMigrationGuides(),
+		collectMigrationGuides()
 	]);
 
-	const manifest = {icons, components, tokens, docs, migrationGuides};
+	const manifest = { icons, components, tokens, docs, migrationGuides };
 
 	const outPath = join(import.meta.dirname, '..', 'src', 'manifest.json');
 
 	await writeFile(outPath, JSON.stringify(manifest));
 
 	console.log(
-		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`,
+		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`
 	);
 
 	if (hasErrors) {

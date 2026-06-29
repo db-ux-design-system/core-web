@@ -1,14 +1,14 @@
-import type {TSESTree} from '@typescript-eslint/utils';
+import type { TSESTree } from '@typescript-eslint/utils';
 
 type VElement = {
 	type: 'VElement';
 	startTag: {
 		attributes: Array<{
 			key: {
-				name: string | {name: string};
-				argument?: string | {name: string | {name: string}};
+				name: string | { name: string };
+				argument?: string | { name: string | { name: string } };
 			};
-			value?: {value: string};
+			value?: { value: string };
 		}>;
 		range: [number, number];
 	};
@@ -42,26 +42,30 @@ function isVElement(node: any): node is VElement {
 
 function isAngularElement(node: any): node is AngularElement {
 	return (
-		node && typeof node.name === 'string' && (node.attributes || node.inputs)
+		node &&
+		typeof node.name === 'string' &&
+		(node.attributes || node.inputs)
 	);
 }
 
 export function getAttributeValue(
 	node: ElementNode,
-	attrName: string,
+	attrName: string
 ): string | boolean | undefined {
 	const kebabAttrName = toKebabCase(attrName);
 
 	if (isAngularElement(node)) {
 		const attr = node.attributes.find(
-			(a) => a.name === attrName || a.name === kebabAttrName,
+			(a) => a.name === attrName || a.name === kebabAttrName
 		);
 		if (attr) {
-			return attr.value === undefined || attr.value === '' ? true : attr.value;
+			return attr.value === undefined || attr.value === ''
+				? true
+				: attr.value;
 		}
 
 		const input = node.inputs.find(
-			(i) => i.name === attrName || i.name === kebabAttrName,
+			(i) => i.name === attrName || i.name === kebabAttrName
 		);
 		if (input) {
 			return true;
@@ -111,7 +115,7 @@ export function getAttributeValue(
 
 	const variants = new Set([attrName, `[${attrName}]`, `:${attrName}`]);
 	const attr = node.attributes.find(
-		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string),
+		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
 	) as TSESTree.JSXAttribute | undefined;
 
 	if (!attr) {
@@ -135,7 +139,7 @@ export function getAttributeValue(
 
 export function hasChildOfType(
 	node: TSESTree.JSXElement | VElement | AngularElement,
-	componentName: string,
+	componentName: string
 ): boolean {
 	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
@@ -151,7 +155,10 @@ export function hasChildOfType(
 	if (isVElement(node)) {
 		return (node.children || []).some((child: any) => {
 			if (child.type === 'VElement' || child.type === 'Element') {
-				return child.rawName === componentName || child.rawName === kebabName;
+				return (
+					child.rawName === componentName ||
+					child.rawName === kebabName
+				);
 			}
 
 			return false;
@@ -160,9 +167,9 @@ export function hasChildOfType(
 
 	return node.children.some((child) => {
 		if (child.type === 'JSXElement') {
-			const {openingElement} = child;
+			const { openingElement } = child;
 			if (openingElement.name.type === 'JSXIdentifier') {
-				const {name} = openingElement.name;
+				const { name } = openingElement.name;
 				return name === componentName || name === kebabName;
 			}
 		}
@@ -173,7 +180,7 @@ export function hasChildOfType(
 
 export function isDBComponent(
 	node: ElementNode,
-	componentName: string,
+	componentName: string
 ): boolean {
 	const kebabName = getAngularComponentName(componentName);
 	if (isAngularElement(node)) {
@@ -188,14 +195,14 @@ export function isDBComponent(
 		return false;
 	}
 
-	const {name} = node.name;
+	const { name } = node.name;
 	return name === componentName || name === kebabName;
 }
 
 export function defineTemplateBodyVisitor(
 	context: any,
 	templateVisitor: any,
-	scriptVisitor?: any,
+	scriptVisitor?: any
 ) {
 	const sourceCode = context.sourceCode || context.getSourceCode();
 
@@ -203,7 +210,7 @@ export function defineTemplateBodyVisitor(
 	if (sourceCode.parserServices?.defineTemplateBodyVisitor) {
 		return sourceCode.parserServices.defineTemplateBodyVisitor(
 			templateVisitor,
-			scriptVisitor || {},
+			scriptVisitor || {}
 		);
 	}
 
@@ -228,7 +235,7 @@ export function defineTemplateBodyVisitor(
 export function createAngularVisitors(
 	context: any,
 	componentName: string,
-	handler: (node: any, parserServices: any) => void,
+	handler: (node: any, parserServices: any) => void
 ) {
 	const sourceCode = context.sourceCode || context.getSourceCode();
 	const parserServices = sourceCode?.parserServices;
@@ -246,7 +253,7 @@ export function createAngularVisitors(
 
 	return {
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
-		[`Element[name="${componentName}"]`]: wrappedHandler,
+		[`Element[name="${componentName}"]`]: wrappedHandler
 	};
 }
 
@@ -264,7 +271,7 @@ export function getAngularComponentName(componentName: string): string {
 export function createAngularFix(
 	context: any,
 	node: any,
-	attributeText: string,
+	attributeText: string
 ) {
 	const sourceCode = context.sourceCode || context.getSourceCode();
 	const text = sourceCode.getText();
@@ -277,13 +284,13 @@ export function createAngularFix(
 	}
 
 	const insertPos = startOffset + closeTagIndex;
-	return {insertPos, attributeText};
+	return { insertPos, attributeText };
 }
 
 export function createJsxVueFix(
 	node: any,
 	openingElement: any,
-	attributeText: string,
+	attributeText: string
 ) {
 	if (node.openingElement) {
 		// JSX
@@ -291,17 +298,17 @@ export function createJsxVueFix(
 		const insertPos = lastAttr
 			? lastAttr.range[1]
 			: openingElement.name.range[1];
-		return {insertPos, attributeText};
+		return { insertPos, attributeText };
 	}
 
 	// Vue
 	const attrs = openingElement.startTag.attributes;
 	if (attrs.length > 0) {
 		const lastAttr = attrs.at(-1);
-		return {insertPos: lastAttr.range[1], attributeText};
+		return { insertPos: lastAttr.range[1], attributeText };
 	}
 
 	const insertPos =
 		openingElement.startTag.range[0] + 1 + openingElement.rawName.length;
-	return {insertPos, attributeText};
+	return { insertPos, attributeText };
 }

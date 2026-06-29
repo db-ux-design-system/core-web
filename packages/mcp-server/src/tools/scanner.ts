@@ -1,8 +1,8 @@
-import {existsSync} from 'node:fs';
-import {readFile, stat} from 'node:fs/promises';
-import {resolve} from 'node:path';
-import {migrationData} from '../data/db-ui-migration-map';
-import {type ToolResult, err, MAX_JSON_OUTPUT, truncate} from '../utils';
+import { existsSync } from 'node:fs';
+import { readFile, stat } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { migrationData } from '../data/db-ui-migration-map';
+import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
 const MAX_SCAN_SIZE = 5 * 1024 * 1024;
@@ -51,7 +51,7 @@ const V2_PACKAGE_MAP: Record<string, string> = {
 	'@db-ui/react-components': '@db-ux/react-core-components',
 	'@db-ui/ngx-components': '@db-ux/ngx-core-components',
 	'@db-ui/v-components': '@db-ux/v-core-components',
-	'@db-ui/elements': '@db-ux/core-components',
+	'@db-ui/elements': '@db-ux/core-components'
 };
 
 // ---------------------------------------------------------------------------
@@ -73,7 +73,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			line: lineNumber,
 			type: 'component',
 			found: old,
-			context: ctx.trim(),
+			context: ctx.trim()
 		};
 		const replacement = migrationData.components[old];
 		if (replacement) {
@@ -92,7 +92,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			found: `<${old}>`,
 			context: ctx.trim(),
 			// V2 <db-*> maps to v3 <db-*> — flag for API review
-			suggestion: `${old} (v3) — review changed props/API`,
+			suggestion: `${old} (v3) — review changed props/API`
 		};
 
 		findings.push(finding);
@@ -105,7 +105,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			line: lineNumber,
 			type: 'color',
 			found: old,
-			context: ctx.trim(),
+			context: ctx.trim()
 		};
 		const replacement = migrationData.colors[old];
 		if (replacement) {
@@ -126,7 +126,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 				type: 'icon',
 				found: old,
 				context: ctx.trim(),
-				suggestion: replacement,
+				suggestion: replacement
 			});
 		}
 	}
@@ -139,7 +139,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			type: 'import',
 			found: old,
 			context: ctx.trim(),
-			suggestion: `Replace with ${V2_PACKAGE_MAP[old] ?? '@db-ux/core-components'}. Update all named imports to v3 component names.`,
+			suggestion: `Replace with ${V2_PACKAGE_MAP[old] ?? '@db-ux/core-components'}. Update all named imports to v3 component names.`
 		});
 	}
 
@@ -162,7 +162,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
  */
 export async function handleScanV2Migration({
-	filePath,
+	filePath
 }: {
 	filePath: string;
 }): Promise<ToolResult> {
@@ -173,25 +173,27 @@ export async function handleScanV2Migration({
 	// 🔒 Path traversal protection: file must be within cwd()
 	if (!absolutePath.startsWith(cwd + '/')) {
 		return err(
-			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`,
+			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
 		);
 	}
 
 	if (!existsSync(absolutePath)) {
 		return err(
-			`Error: File not found: '${absolutePath}'. Provide an absolute path or a path relative to your workspace root.`,
+			`Error: File not found: '${absolutePath}'. Provide an absolute path or a path relative to your workspace root.`
 		);
 	}
 
 	// 🔒 File size guard: reject files larger than 5 MB
 	const stats = await stat(absolutePath);
 	if (!stats.isFile()) {
-		return err(`Error: Expected a file, but '${absolutePath}' is a directory.`);
+		return err(
+			`Error: Expected a file, but '${absolutePath}' is a directory.`
+		);
 	}
 
 	if (stats.size > MAX_SCAN_SIZE) {
 		return err(
-			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`,
+			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
 		);
 	}
 
@@ -201,7 +203,7 @@ export async function handleScanV2Migration({
 	// 🔒 Binary file guard: reject files containing NUL bytes
 	if (content.slice(0, 8192).includes('\0')) {
 		return err(
-			'Error: File appears to be binary. Only text files can be scanned.',
+			'Error: File appears to be binary. Only text files can be scanned.'
 		);
 	}
 
@@ -217,22 +219,24 @@ export async function handleScanV2Migration({
 			content: [
 				{
 					type: 'text',
-					text: `No DB UI v2 patterns found in ${absolutePath}. The file may already be migrated or does not contain any legacy code.`,
-				},
-			],
+					text: `No DB UI v2 patterns found in ${absolutePath}. The file may already be migrated or does not contain any legacy code.`
+				}
+			]
 		};
 	}
 
 	// Build summary header
-	const componentCount = findings.filter((f) => f.type === 'component').length;
+	const componentCount = findings.filter(
+		(f) => f.type === 'component'
+	).length;
 
 	const colorCount = findings.filter((f) => f.type === 'color').length;
 	const iconCount = findings.filter((f) => f.type === 'icon').length;
 	const importCount = findings.filter((f) => f.type === 'import').length;
 	const uniqueComponents = [
 		...new Set(
-			findings.filter((f) => f.type === 'component').map((f) => f.found),
-		),
+			findings.filter((f) => f.type === 'component').map((f) => f.found)
+		)
 	];
 
 	const summary = [
@@ -246,15 +250,15 @@ export async function handleScanV2Migration({
 		'## Findings',
 		'```json',
 		JSON.stringify(findings, null, 2),
-		'```',
+		'```'
 	].join('\n');
 
 	return {
 		content: [
 			{
 				type: 'text',
-				text: truncate(summary, MAX_JSON_OUTPUT),
-			},
-		],
+				text: truncate(summary, MAX_JSON_OUTPUT)
+			}
+		]
 	};
 }

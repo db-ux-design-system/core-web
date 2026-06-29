@@ -1,7 +1,7 @@
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
-import {Buffer} from 'buffer';
-import {useRouter} from 'next/router';
-import {COLOR} from '../../../../packages/components/src/shared/constants';
+import { Buffer } from 'buffer';
+import { useRouter } from 'next/router';
+import { COLOR } from '../../../../packages/components/src/shared/constants';
 import ComponentParser from '../../components/component-parser';
 
 const IframeComponent = () => {
@@ -17,8 +17,7 @@ const IframeComponent = () => {
 	return (
 		<div
 			data-density={density}
-			className={`iframe-component-container db-${color}`}
-		>
+			className={`iframe-component-container db-${color}`}>
 			<ComponentParser componentsString={components} />
 		</div>
 	);

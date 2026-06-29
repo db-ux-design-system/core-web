@@ -1,9 +1,9 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
@@ -12,14 +12,14 @@ export default {
 		docs: {
 			description:
 				'Ensure DBInput file type has accept and validate file-only attributes',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-file-type-validation',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-file-type-validation'
 		},
 		messages: {
 			missingAccept: MESSAGES.INPUT_FILE_MISSING_ACCEPT,
 			invalidMultiple: MESSAGES.INPUT_INVALID_MULTIPLE,
-			invalidAccept: MESSAGES.INPUT_INVALID_ACCEPT,
+			invalidAccept: MESSAGES.INPUT_INVALID_ACCEPT
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -30,31 +30,31 @@ export default {
 			if (type === 'file') {
 				if (accept === undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
-						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT,
+						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
 					});
 				}
 			} else {
 				if (multiple !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
-						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE,
+						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
 
 				if (accept !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
-						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT,
+						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT
 					});
 				}
 			}
@@ -63,7 +63,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBInput,
-			angularHandler,
+			angularHandler
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -83,21 +83,21 @@ export default {
 				if (accept === undefined) {
 					context.report({
 						node: openingElement,
-						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT,
+						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
 					});
 				}
 			} else {
 				if (multiple !== undefined) {
 					context.report({
 						node: openingElement,
-						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE,
+						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
 
 				if (accept !== undefined) {
 					context.report({
 						node: openingElement,
-						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT,
+						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT
 					});
 				}
 			}
@@ -105,8 +105,8 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkInput, Element: checkInput},
-			{JSXElement: checkInput},
+			{ VElement: checkInput, Element: checkInput },
+			{ JSXElement: checkInput }
 		);
-	},
+	}
 };

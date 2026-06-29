@@ -1,52 +1,52 @@
-import {checkbox} from '@inquirer/prompts';
+import { checkbox } from '@inquirer/prompts';
 import childProcess from 'node:child_process';
 
 const answersFrameworkPairs = [
 	{
 		answers: ['stencil'],
-		framework: 'stencil',
+		framework: 'stencil'
 	},
 	{
 		answers: ['vue', 'nuxt'],
-		framework: 'vue',
+		framework: 'vue'
 	},
 	{
 		answers: ['react', 'next', 'patternhub'],
-		framework: 'react',
+		framework: 'react'
 	},
 	{
 		answers: ['angular', 'angular-ssr'],
-		framework: 'angular',
-	},
+		framework: 'angular'
+	}
 ];
 const currentAnswers = await checkbox({
 	message: 'Select frameworks to develop with:',
 	choices: [
 		{
 			value: 'react',
-			checked: true,
+			checked: true
 		},
 		{
-			value: 'angular',
+			value: 'angular'
 		},
 		{
-			value: 'angular-ssr',
+			value: 'angular-ssr'
 		},
 		{
-			value: 'stencil',
+			value: 'stencil'
 		},
 		{
-			value: 'patternhub',
+			value: 'patternhub'
 		},
 		{
-			value: 'next',
+			value: 'next'
 		},
 		{
-			value: 'vue',
+			value: 'vue'
 		},
 		{
-			value: 'nuxt',
-		},
+			value: 'nuxt'
+		}
 	],
 	validate(answer) {
 		if (answer.length === 0) {
@@ -54,7 +54,7 @@ const currentAnswers = await checkbox({
 		}
 
 		return true;
-	},
+	}
 });
 
 const startDev = () => {
@@ -65,9 +65,9 @@ const startDev = () => {
 	let startCommand =
 		'npm-run-all build:postcss-plugin --parallel start:foundations dev:sass';
 
-	for (const {framework, answers} of answersFrameworkPairs) {
+	for (const { framework, answers } of answersFrameworkPairs) {
 		const isAnswerSelected = currentAnswers.some((currentAnswer) =>
-			answers.includes(currentAnswer),
+			answers.includes(currentAnswer)
 		);
 
 		if (isAnswerSelected) {
@@ -80,7 +80,7 @@ const startDev = () => {
 	}
 
 	// TODO: Handle child process better
-	childProcess.execSync(startCommand, {stdio: 'inherit'});
+	childProcess.execSync(startCommand, { stdio: 'inherit' });
 };
 
 startDev();
