@@ -1,4 +1,4 @@
-import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
+import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
 
 export type FigmaBadgeProps = {
 	text?: string;
@@ -15,8 +15,8 @@ const sizeProp: FigmaProp = {
 	key: 'Size',
 	value: {
 		'(Def) Small': 'small',
-		Medium: 'medium'
-	}
+		Medium: 'medium',
+	},
 };
 
 const semanticProp: FigmaProp = {
@@ -28,8 +28,8 @@ const semanticProp: FigmaProp = {
 		Informational: 'informational',
 		Neutral: 'neutral',
 		Successful: 'successful',
-		Warning: 'warning'
-	}
+		Warning: 'warning',
+	},
 };
 
 const emphasisProp: FigmaProp = {
@@ -37,11 +37,11 @@ const emphasisProp: FigmaProp = {
 	key: 'Emphasis',
 	value: {
 		'(Def) Weak': 'weak',
-		Strong: 'strong'
-	}
+		Strong: 'strong',
+	},
 };
 
-const textProp: FigmaProp = { type: 'textContent', key: 'Text' };
+const textProp: FigmaProp = {type: 'textContent', key: 'Text'};
 
 const placementProp: FigmaProp = {
 	type: 'enum',
@@ -53,8 +53,8 @@ const placementProp: FigmaProp = {
 		'corner-center-left': 'corner-center-left',
 		'corner-center-right': 'corner-center-right',
 		'corner-bottom-left': 'corner-bottom-left',
-		'corner-bottom-right': 'corner-bottom-right'
-	}
+		'corner-bottom-right': 'corner-bottom-right',
+	},
 };
 
 const baseBadgeProps: Record<string, FigmaProp> = {
@@ -67,18 +67,18 @@ const baseBadgeProps: Record<string, FigmaProp> = {
 		type: 'enum',
 		key: 'Size',
 		value: {
-			'(Def) Small': { type: 'iconSwap', key: 'Icon Small' },
-			Medium: { type: 'iconSwap', key: 'Icon Medium' }
-		}
-	}
+			'(Def) Small': {type: 'iconSwap', key: 'Icon Small'},
+			Medium: {type: 'iconSwap', key: 'Icon Medium'},
+		},
+	},
 };
 
 export const badges: FigmaCodeConnect = {
 	urls: [
 		'https://www.figma.com/design/FIGMA_FILE?node-id=1:29568',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=4184:18686'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=4184:18686',
 	],
-	props: baseBadgeProps
+	props: baseBadgeProps,
 };
 
 const dotBadgeProps: Record<string, FigmaProp> = {
@@ -86,10 +86,10 @@ const dotBadgeProps: Record<string, FigmaProp> = {
 	semantic: semanticProp,
 	emphasis: emphasisProp,
 	placement: placementProp,
-	label: { type: 'string', key: 'Text' }
+	label: {type: 'string', key: 'Text'},
 };
 
 export const dotBadges: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=1:31013'],
-	props: dotBadgeProps
+	props: dotBadgeProps,
 };

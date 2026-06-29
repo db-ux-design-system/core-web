@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import { StorybookInputArgTypes } from './_input.arg.types';
+import {StorybookInputArgTypes} from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Variant',
 	storybookNames: ['(Default) Above', 'Floating'],
-	storybookArgTypes: StorybookInputArgTypes
+	storybookArgTypes: StorybookInputArgTypes,
 });
 
 export default function InputVariant() {
@@ -16,7 +16,8 @@ export default function InputVariant() {
 				label="Label"
 				variant="floating"
 				placeholder="Floating"
-				value="Floating"></DBInput>
+				value="Floating"
+			></DBInput>
 		</Fragment>
 	);
 }

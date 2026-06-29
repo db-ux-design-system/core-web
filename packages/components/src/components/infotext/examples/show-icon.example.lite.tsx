@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../infotext.lite';
-import { StorybookInfotextArgTypes } from './_infotext.arg.types';
+import {StorybookInfotextArgTypes} from './_infotext.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Icon',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookInfotextArgTypes
+	storybookArgTypes: StorybookInfotextArgTypes,
 });
 
 export default function InfotextShowIcon() {

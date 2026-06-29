@@ -1,10 +1,10 @@
-import { DBInput } from '@components';
+import {DBInput} from '@components';
 import {
 	type ChangeEvent,
 	type FC,
 	type InputHTMLAttributes,
 	useEffect,
-	useState
+	useState,
 } from 'react';
 
 type Props = {
@@ -20,7 +20,7 @@ export const DebouncedInput: FC<Props> = ({
 	onChange,
 	debounce = 500,
 	label,
-	placeholder
+	placeholder,
 }) => {
 	const [value, setValue] = useState<number | string>(initialValue);
 

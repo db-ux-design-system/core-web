@@ -1,5 +1,5 @@
-import { DBNavigation } from '../../../../output/react/src';
-import { ROUTES, type NavigationItem } from '../../data/routes';
+import {DBNavigation} from '../../../../output/react/src';
+import {ROUTES, type NavigationItem} from '../../data/routes';
 import NavItem from './nav-item';
 
 const Navigation = () => (

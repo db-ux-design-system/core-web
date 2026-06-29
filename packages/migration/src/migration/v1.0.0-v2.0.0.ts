@@ -1,91 +1,91 @@
-import type { ReplaceInFileConfig } from 'replace-in-file';
+import type {ReplaceInFileConfig} from 'replace-in-file';
 
 export const v100_v200: ReplaceInFileConfig[] = [
 	{
 		files: '',
 		from: /emphasis="origin"/g,
-		to: 'emphasis="strong"'
+		to: 'emphasis="strong"',
 	},
 	{
 		files: '',
 		from: /border-height/g,
-		to: 'border-width'
+		to: 'border-width',
 	},
 	/* Font changes */
 	{
 		files: '',
 		from: /db-type-body-line-height-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
-		to: '/* TODO: Use `font: db-type-body-xx` for font-size and line-height instead */'
+		to: '/* TODO: Use `font: db-type-body-xx` for font-size and line-height instead */',
 	},
 	{
 		files: '',
 		from: /db-type-body-font-size-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
-		to: '/* TODO: Use `font: db-type-body-xx` for font-size and line-height instead */'
+		to: '/* TODO: Use `font: db-type-body-xx` for font-size and line-height instead */',
 	},
 	{
 		files: '',
 		from: /db-type-headline-line-height-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
-		to: '/* TODO: Use `font: db-type-headline-xx` for font-size and line-height instead */'
+		to: '/* TODO: Use `font: db-type-headline-xx` for font-size and line-height instead */',
 	},
 	{
 		files: '',
 		from: /db-type-headline-font-size-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
-		to: '/* TODO: Use `font: db-type-headline-xx` for font-size and line-height instead */'
+		to: '/* TODO: Use `font: db-type-headline-xx` for font-size and line-height instead */',
 	},
 	/* Angular changes */
 	{
 		files: '',
 		from: /\(onClick\)/g,
-		to: '(click)'
+		to: '(click)',
 	},
 	{
 		files: '',
 		from: /\(onChange\)/g,
-		to: '(change)'
+		to: '(change)',
 	},
 	{
 		files: '',
 		from: /\(onFocus\)/g,
-		to: '(focus)'
+		to: '(focus)',
 	},
 	{
 		files: '',
 		from: /\(onBlur\)/g,
-		to: '(blur)'
+		to: '(blur)',
 	},
 	{
 		files: '',
 		from: /\(onInput\)/g,
-		to: '(input)'
+		to: '(input)',
 	},
 	{
 		files: '',
 		from: /\(onRemove\)/g,
-		to: '(remove)'
+		to: '(remove)',
 	},
 	{
 		files: '',
 		from: /\(onSelect\)/g,
-		to: '(select)'
+		to: '(select)',
 	},
 	{
 		files: '',
 		from: /\(onToggle\)/g,
-		to: '(toggle)'
+		to: '(toggle)',
 	},
 	{
 		files: '',
 		from: /\(onClose\)/g,
-		to: '(close)'
+		to: '(close)',
 	},
 	{
 		files: '',
 		from: /\(onTabSelect\)/g,
-		to: '(tabSelect)'
+		to: '(tabSelect)',
 	},
 	{
 		files: '',
 		from: /\(onIndexChange\)/g,
-		to: '(indexChange)'
-	}
+		to: '(indexChange)',
+	},
 ];

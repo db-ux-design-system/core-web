@@ -5,9 +5,9 @@
  *   npx tsx figma-code-connect/generate-icons.ts
  */
 
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import {dirname, join} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 
@@ -15,7 +15,7 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
 
 for (const envPath of [
 	join(currentDir, '..', '.env'),
-	join(currentDir, 'react-figma', '.env')
+	join(currentDir, 'react-figma', '.env'),
 ]) {
 	try {
 		process.loadEnvFile(envPath);
@@ -43,13 +43,11 @@ if (!iconsFileKey) {
 console.log(`Fetching components from Figma file ${iconsFileKey}...`);
 
 const response = await fetch(`${figmaApi}/files/${iconsFileKey}/components`, {
-	headers: { 'X-Figma-Token': token }
+	headers: {'X-Figma-Token': token},
 });
 
 if (!response.ok) {
-	throw new Error(
-		`Figma API error: ${response.status} ${response.statusText}`
-	);
+	throw new Error(`Figma API error: ${response.status} ${response.statusText}`);
 }
 
 // The Figma API returns containing_frame with camelCase nodeId
@@ -58,7 +56,7 @@ type ContainingFrame = {
 	nodeId: string;
 	pageId?: string;
 	pageName?: string;
-	containingComponentSet?: { name: string; nodeId: string };
+	containingComponentSet?: {name: string; nodeId: string};
 };
 
 type FigmaComponent = {
@@ -69,14 +67,14 @@ type FigmaComponent = {
 };
 
 type FigmaApiResponse = {
-	meta: { components: FigmaComponent[] };
+	meta: {components: FigmaComponent[]};
 };
 
 const data = (await response.json()) as FigmaApiResponse;
 
 // ── Build icon → nodeId map ───────────────────────────────────────────────────
 
-type IconEntry = { nodeId: string; name: string };
+type IconEntry = {nodeId: string; name: string};
 const iconMap = new Map<string, IconEntry>();
 
 for (const component of data.meta.components) {
@@ -90,7 +88,7 @@ for (const component of data.meta.components) {
 		.replaceAll('-', '_');
 
 	if (!iconMap.has(iconName)) {
-		iconMap.set(iconName, { nodeId: frame.nodeId, name: frame.name });
+		iconMap.set(iconName, {nodeId: frame.nodeId, name: frame.name});
 	}
 }
 
@@ -106,7 +104,7 @@ const allIconsPath = join(
 	'db-theme-icons',
 	'build',
 	'ts',
-	'all-icons.ts'
+	'all-icons.ts',
 );
 
 const allIconsContent = readFileSync(allIconsPath, 'utf8');
@@ -119,7 +117,7 @@ console.log(`Found ${allIcons.length} icons in all-icons.ts.`);
 
 // ── Match icons to Figma nodes ────────────────────────────────────────────────
 
-type Component = { url: string; id: string; iconName: string };
+type Component = {url: string; id: string; iconName: string};
 const components: Component[] = [];
 const missing: string[] = [];
 
@@ -134,13 +132,13 @@ for (const iconName of allIcons) {
 	components.push({
 		url: `https://www.figma.com/design/${iconsFileKey}?node-id=${nodeId}`,
 		id: `icon-${iconName}`,
-		iconName
+		iconName,
 	});
 }
 
 if (missing.length > 0) {
 	console.warn(
-		`⚠ ${missing.length} icons not found in Figma: ${missing.join(', ')}`
+		`⚠ ${missing.length} icons not found in Figma: ${missing.join(', ')}`,
 	);
 }
 
@@ -158,14 +156,14 @@ export default {
 `;
 
 const frameworks = [
-	{ dir: 'react-figma', label: 'React' },
-	{ dir: 'vue-figma', label: 'Vue' },
-	{ dir: 'angular-figma', label: 'Angular' }
+	{dir: 'react-figma', label: 'React'},
+	{dir: 'vue-figma', label: 'Vue'},
+	{dir: 'angular-figma', label: 'Angular'},
 ];
 
 for (const fw of frameworks) {
 	const outDir = join(currentDir, fw.dir, 'src', 'icons');
-	mkdirSync(outDir, { recursive: true });
+	mkdirSync(outDir, {recursive: true});
 
 	writeFileSync(join(outDir, 'icon.figma.batch.ts'), iconTemplate);
 
@@ -177,12 +175,12 @@ for (const fw of frameworks) {
 				components: components.map((c) => ({
 					url: c.url,
 					id: c.id,
-					iconName: c.iconName
-				}))
+					iconName: c.iconName,
+				})),
 			},
 			null,
-			2
-		)
+			2,
+		),
 	);
 
 	console.log(`✓ ${fw.label}: wrote ${components.length} icons → ${outDir}`);

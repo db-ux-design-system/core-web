@@ -1,10 +1,10 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/experimental-ct-react';
+import {expect, test} from '@playwright/experimental-ct-react';
 
-import { DBNavigation } from './index';
+import {DBNavigation} from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DESKTOP_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
-import { DBNavigationItem } from '../navigation-item';
+import {DESKTOP_VIEWPORT, TESTING_VIEWPORTS} from '../../shared/constants.ts';
+import {DBNavigationItem} from '../navigation-item';
 
 const comp: any = (
 	<DBNavigation>
@@ -14,7 +14,8 @@ const comp: any = (
 				<DBNavigationItem data-testid="sub1">
 					<a href="#">Sub1</a>
 				</DBNavigationItem>
-			}>
+			}
+		>
 			{/*<template v-slot:sub-navigation>
 					<DBNavigationItem data-testid="sub1">
 					<a href="#">Sub1</a>
@@ -32,20 +33,18 @@ const comp: any = (
 );
 
 const testComponent = (viewport: any) => {
-	test(`should contain text for device ${viewport.name}`, async ({
-		mount
-	}) => {
+	test(`should contain text for device ${viewport.name}`, async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test1');
 	});
 
 	test(`should match screenshot for device ${viewport.name}`, async ({
 		mount,
-		page
+		page,
 	}) => {
 		await page.setViewportSize({
 			width: viewport.width,
-			height: viewport.height
+			height: viewport.height,
 		});
 		const component = await mount(comp);
 		await expect(component.getByTestId('test1')).toBeVisible();
@@ -53,17 +52,17 @@ const testComponent = (viewport: any) => {
 	});
 };
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+	test('should have same aria-snapshot', async ({mount}, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
 	test('should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount
+		mount,
 	}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		const accessibilityScanResults = await new AxeBuilder({page})
 			.include('.db-navigation')
 			.analyze();
 
@@ -72,10 +71,10 @@ const testA11y = () => {
 };
 
 const testHover = () => {
-	test(`should open sub navigation desktop`, async ({ mount, page }) => {
+	test(`should open sub navigation desktop`, async ({mount, page}) => {
 		await page.setViewportSize({
 			width: DESKTOP_VIEWPORT.width,
-			height: DESKTOP_VIEWPORT.height
+			height: DESKTOP_VIEWPORT.height,
 		});
 		const component = await mount(comp);
 		await expect(component.getByTestId('sub1')).toBeHidden();
@@ -85,7 +84,7 @@ const testHover = () => {
 };
 
 const testClick = () => {
-	test(`should open sub navigation mobile`, async ({ mount, page }) => {
+	test(`should open sub navigation mobile`, async ({mount, page}) => {
 		const component = await mount(comp);
 		const sub = component.getByTestId('sub1');
 		await expect(sub).toBeHidden();
@@ -98,7 +97,7 @@ const testClick = () => {
 
 test.describe('DBNavigation', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
+		test.use({viewport});
 		testComponent(viewport);
 		if (viewport.name === 'desktop') {
 			testHover();

@@ -1,52 +1,52 @@
 ## CSS
 
 - If you use CSS, follow these rules:
-    - Always reference the file `**agent-path**/agent/css/Variables.md` for variables like sizing, spacing, elevation, border, or container-size. This file contains the authoritative list of available variables.
-    - Use the examples provided in `Variables.md` to ensure correct usage like:
-        - `padding: var(--db-spacing-fixed-md);`
-        - `height: var(--db-sizing-md);`
-        - `width: var(--db-container-xs);`
-        - `color: var(--db-adaptive-on-bg-basic-emphasis-90-default);`
-        - `background-color: var(--db-adaptive-bg-basic-level-2-default);`
-        - `font: var(--db-type-body-sm);`
+  - Always reference the file `**agent-path**/agent/css/Variables.md` for variables like sizing, spacing, elevation, border, or container-size. This file contains the authoritative list of available variables.
+  - Use the examples provided in `Variables.md` to ensure correct usage like:
+    - `padding: var(--db-spacing-fixed-md);`
+    - `height: var(--db-sizing-md);`
+    - `width: var(--db-container-xs);`
+    - `color: var(--db-adaptive-on-bg-basic-emphasis-90-default);`
+    - `background-color: var(--db-adaptive-bg-basic-level-2-default);`
+    - `font: var(--db-type-body-sm);`
 
 ## SCSS
 
 - If you use SCSS, follow these rules:
-    - Always reference the file `**agent-path**/agent/scss/Variables.md` for variables like sizing, spacing, elevation, border, or container-size. This file contains the authoritative list of available variables.
-    - Use the examples provided in `Variables.md` to ensure correct usage.
-    - Always use `@use` for imports:
-        - Variables: `@use "@db-ux/core-foundations/build/styles/variables";`
-        - Colors: `@use "@db-ux/core-foundations/build/styles/colors";`
-        - Fonts: `@use "@db-ux/core-foundations/build/styles/fonts";`
-        - Never use `as *` for the `@use`, use it like this:
-            - `padding: variables.$db-spacing-fixed-md;`
-            - `height: variables.$db-sizing-md;`
-            - `width: variables.$db-container-xs;`
-            - `color: colors.$db-adaptive-on-bg-basic-emphasis-90-default;`
-            - `background-color: colors.$db-adaptive-bg-basic-level-2-default;`
-            - `font: fonts.$db-type-body-sm;`
+  - Always reference the file `**agent-path**/agent/scss/Variables.md` for variables like sizing, spacing, elevation, border, or container-size. This file contains the authoritative list of available variables.
+  - Use the examples provided in `Variables.md` to ensure correct usage.
+  - Always use `@use` for imports:
+    - Variables: `@use "@db-ux/core-foundations/build/styles/variables";`
+    - Colors: `@use "@db-ux/core-foundations/build/styles/colors";`
+    - Fonts: `@use "@db-ux/core-foundations/build/styles/fonts";`
+    - Never use `as *` for the `@use`, use it like this:
+      - `padding: variables.$db-spacing-fixed-md;`
+      - `height: variables.$db-sizing-md;`
+      - `width: variables.$db-container-xs;`
+      - `color: colors.$db-adaptive-on-bg-basic-emphasis-90-default;`
+      - `background-color: colors.$db-adaptive-bg-basic-level-2-default;`
+      - `font: fonts.$db-type-body-sm;`
 
 ## Tailwind
 
 - If you use Tailwind, follow these rules:
-    - Always reference the file `**agent-path**/agent/tailwind/Variables.md` for variables like sizing, spacing, elevation, border, or container-size. This file contains the authoritative list of available variables.
-    - Use the examples provided in `Variables.md` to ensure correct usage like:
-        - padding: `p-fix-md`
-        - height: `h-siz-md`
-        - width: `w-container-xs`
-        - color: `text-adaptive-on-bg-basic-emphasis-90-default`
-        - background-color: `bg-adaptive-bg-basic-level-2-default`
-        - font: `text-body-sm`
-    - Always stick to the variables. Don't use values like `p-4` or `m-[16px]`; use `p-fix-xs` or `m-fix-md` instead.
+  - Always reference the file `**agent-path**/agent/tailwind/Variables.md` for variables like sizing, spacing, elevation, border, or container-size. This file contains the authoritative list of available variables.
+  - Use the examples provided in `Variables.md` to ensure correct usage like:
+    - padding: `p-fix-md`
+    - height: `h-siz-md`
+    - width: `w-container-xs`
+    - color: `text-adaptive-on-bg-basic-emphasis-90-default`
+    - background-color: `bg-adaptive-bg-basic-level-2-default`
+    - font: `text-body-sm`
+  - Always stick to the variables. Don't use values like `p-4` or `m-[16px]`; use `p-fix-xs` or `m-fix-md` instead.
 
 ### Import
 
 #### Tailwind v4
 
 ```css
-@import "tailwindcss";
-@import "@db-ux/core-foundations/build/tailwind/theme/index.css";
+@import 'tailwindcss';
+@import '@db-ux/core-foundations/build/tailwind/theme/index.css';
 ```
 
 #### Tailwind v3
@@ -58,20 +58,20 @@ After this you can extend your tailwind config like this:
 ```javascript
 //tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-import tokens from "@db-ux/core-foundations/build/tailwind/tailwind-tokens.json";
+import tokens from '@db-ux/core-foundations/build/tailwind/tailwind-tokens.json';
 
 export default {
-	content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+	content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
 	plugins: [],
 	theme: {
 		...tokens,
-		gap: ({ theme }) => ({
-			...theme("spacing")
+		gap: ({theme}) => ({
+			...theme('spacing'),
 		}),
-		space: ({ theme }) => ({
-			...theme("spacing")
-		})
-	}
+		space: ({theme}) => ({
+			...theme('spacing'),
+		}),
+	},
 };
 ```
 

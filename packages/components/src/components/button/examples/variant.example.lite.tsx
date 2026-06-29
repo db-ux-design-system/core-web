@@ -1,12 +1,12 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
-import { fn } from '../../../shared/examples';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
+import {fn} from '../../../shared/examples';
 import DBButton from '../button.lite';
-import { StorybookButtonArgTypes } from './_button.arg.types';
+import {StorybookButtonArgTypes} from './_button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Variant',
 	storybookNames: ['Outlined', 'Filled', 'Ghost', 'Brand'],
-	storybookArgTypes: StorybookButtonArgTypes
+	storybookArgTypes: StorybookButtonArgTypes,
 });
 
 export default function ButtonVariant() {

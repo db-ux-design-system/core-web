@@ -8,17 +8,17 @@ module.exports = {
 	dest: '../../output',
 	options: {
 		angular: {
-			api: 'signals'
+			api: 'signals',
 		},
 		vue: {
-			api: 'composition'
-		}
+			api: 'composition',
+		},
 	},
 	commonOptions: {
 		typescript: true,
 		explicitBuildFileExtensions: {
-			'.md': /.*(agent\.lite\.tsx)$/g
+			'.md': /.*(agent\.lite\.tsx)$/g,
 		},
-		plugins: [agentPlugin]
-	}
+		plugins: [agentPlugin],
+	},
 };

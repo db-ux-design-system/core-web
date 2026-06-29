@@ -1,5 +1,5 @@
-import { type Page, test } from '@playwright/test';
-import { getDefaultScreenshotTest } from '../default.ts';
+import {type Page, test} from '@playwright/test';
+import {getDefaultScreenshotTest} from '../default.ts';
 
 const path = '03/custom-select';
 
@@ -18,5 +18,5 @@ const preScreenShot = async (page: Page) => {
 };
 
 test.describe('DBCustomSelect', () => {
-	getDefaultScreenshotTest({ path, preScreenShot });
+	getDefaultScreenshotTest({path, preScreenShot});
 });

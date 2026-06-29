@@ -1,13 +1,13 @@
-import type { AppProps } from 'next/app';
-import { useState } from 'react';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import type {AppProps} from 'next/app';
+import {useState} from 'react';
+import {DBBrand, DBButton, DBHeader, DBPage} from '../../../output/react/src';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
 import '../styles/global.css';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({Component, pageProps}: AppProps) => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
 
@@ -38,38 +38,28 @@ const App = ({ Component, pageProps }: AppProps) => {
 						/>
 					}
 					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Profile
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Notification
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Help
 							</DBButton>
 						</>
-					}>
+					}
+				>
 					<Navigation />
 				</DBHeader>
-			}>
+			}
+		>
 			<div data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
 			</div>

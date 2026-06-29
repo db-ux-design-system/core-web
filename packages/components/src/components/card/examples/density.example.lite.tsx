@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBCard from '../card.lite';
-import { StorybookCardArgTypes } from './_card.arg.types';
+import {StorybookCardArgTypes} from './_card.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookCardArgTypes
+	storybookArgTypes: StorybookCardArgTypes,
 });
 
 export default function CardDensity() {

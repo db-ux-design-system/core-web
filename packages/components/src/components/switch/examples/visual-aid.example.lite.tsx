@@ -1,11 +1,6 @@
-import {
-	Fragment,
-	useMetadata,
-	useState,
-	useTarget
-} from '@builder.io/mitosis';
+import {Fragment, useMetadata, useState, useTarget} from '@builder.io/mitosis';
 import DBSwitch from '../switch.lite';
-import { StorybookSwitchArgTypes } from './_switch.arg.types';
+import {StorybookSwitchArgTypes} from './_switch.arg.types';
 
 useMetadata({
 	storybookTitle: 'Visual Aid',
@@ -13,9 +8,9 @@ useMetadata({
 		'(Default) False (Unchecked)',
 		'(Default) False (Checked)',
 		'True (Unchecked)',
-		'True (Checked)'
+		'True (Checked)',
 	],
-	storybookArgTypes: StorybookSwitchArgTypes
+	storybookArgTypes: StorybookSwitchArgTypes,
 });
 
 export default function SwitchVisualAid() {
@@ -30,12 +25,11 @@ export default function SwitchVisualAid() {
 				{...useTarget({
 					react: {
 						onChange: (event: any) =>
-							setChecked(
-								(event.target as HTMLInputElement).checked
-							)
+							setChecked((event.target as HTMLInputElement).checked),
 					},
-					default: {}
-				})}>
+					default: {},
+				})}
+			>
 				(Default) False (Checked)
 			</DBSwitch>
 			<DBSwitch visualAid={true} iconLeading="moon" iconTrailing="sun">
@@ -49,12 +43,11 @@ export default function SwitchVisualAid() {
 				{...useTarget({
 					react: {
 						onChange: (event: any) =>
-							setChecked(
-								(event.target as HTMLInputElement).checked
-							)
+							setChecked((event.target as HTMLInputElement).checked),
 					},
-					default: {}
-				})}>
+					default: {},
+				})}
+			>
 				True (Checked)
 			</DBSwitch>
 		</Fragment>

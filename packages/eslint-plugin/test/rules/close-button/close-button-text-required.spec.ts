@@ -1,6 +1,6 @@
 import * as angularTemplateParser from '@angular-eslint/template-parser';
-import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
-import { RuleTester } from '@typescript-eslint/rule-tester';
+import {RuleTester as AngularRuleTester} from '@angular-eslint/test-utils';
+import {RuleTester} from '@typescript-eslint/rule-tester';
 import * as vueParser from 'vue-eslint-parser';
 
 import rule from '../../../src/rules/close-button/close-button-text-required.js';
@@ -8,44 +8,44 @@ import rule from '../../../src/rules/close-button/close-button-text-required.js'
 const ruleTester = new RuleTester({
 	languageOptions: {
 		parserOptions: {
-			ecmaFeatures: { jsx: true }
-		}
-	}
+			ecmaFeatures: {jsx: true},
+		},
+	},
 });
 
 const angularRuleTester = new AngularRuleTester({
 	languageOptions: {
-		parser: angularTemplateParser
-	}
+		parser: angularTemplateParser,
+	},
 });
 
 const vueRuleTester = new RuleTester({
 	languageOptions: {
 		parser: vueParser,
 		parserOptions: {
-			ecmaFeatures: { jsx: true }
-		}
-	}
+			ecmaFeatures: {jsx: true},
+		},
+	},
 });
 
 describe('close-button-text-required', () => {
 	ruleTester.run('close-button-text-required', rule, {
 		valid: [
 			{
-				code: '<DBNotification closeable closeButtonText="Close">Message</DBNotification>'
+				code: '<DBNotification closeable closeButtonText="Close">Message</DBNotification>',
 			},
 			{
-				code: '<DBNotification>Message</DBNotification>'
+				code: '<DBNotification>Message</DBNotification>',
 			},
 			{
-				code: '<DBNotification closeable={false}>Message</DBNotification>'
+				code: '<DBNotification closeable={false}>Message</DBNotification>',
 			},
 			{
-				code: '<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>'
+				code: '<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>',
 			},
 			{
-				code: '<DBCustomSelect mobileCloseButtonText="Close" label="Select" />'
-			}
+				code: '<DBCustomSelect mobileCloseButtonText="Close" label="Select" />',
+			},
 		],
 		invalid: [
 			{
@@ -55,10 +55,10 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'DBNotification',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
+							attribute: 'closeButtonText',
+						},
+					},
+				],
 			},
 			{
 				code: '<DBDrawer>Content</DBDrawer>',
@@ -67,10 +67,10 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'DBDrawer',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
+							attribute: 'closeButtonText',
+						},
+					},
+				],
 			},
 			{
 				code: '<DBCustomSelect label="Select" />',
@@ -79,22 +79,22 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'DBCustomSelect',
-							attribute: 'mobileCloseButtonText'
-						}
-					}
-				]
-			}
-		]
+							attribute: 'mobileCloseButtonText',
+						},
+					},
+				],
+			},
+		],
 	});
 
 	vueRuleTester.run('close-button-text-required (Vue)', rule, {
 		valid: [
 			{
-				code: '<template><DBCustomSelect :mobileCloseButtonText="closeText" label="Select" /></template>'
+				code: '<template><DBCustomSelect :mobileCloseButtonText="closeText" label="Select" /></template>',
 			},
 			{
-				code: '<template><DBNotification :closeable="false">Message</DBNotification></template>'
-			}
+				code: '<template><DBNotification :closeable="false">Message</DBNotification></template>',
+			},
 		],
 		invalid: [
 			{
@@ -104,28 +104,28 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'DBNotification',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
-			}
-		]
+							attribute: 'closeButtonText',
+						},
+					},
+				],
+			},
+		],
 	});
 
 	angularRuleTester.run('close-button-text-required (Angular)', rule, {
 		valid: [
 			{
-				code: '<db-notification closeable closeButtonText="Close">Message</db-notification>'
+				code: '<db-notification closeable closeButtonText="Close">Message</db-notification>',
 			},
 			{
-				code: '<db-notification>Message</db-notification>'
+				code: '<db-notification>Message</db-notification>',
 			},
 			{
-				code: '<db-notification [closeable]="false">Message</db-notification>'
+				code: '<db-notification [closeable]="false">Message</db-notification>',
 			},
 			{
-				code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
-			}
+				code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>',
+			},
 		],
 		invalid: [
 			{
@@ -135,10 +135,10 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'db-notification',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
+							attribute: 'closeButtonText',
+						},
+					},
+				],
 			},
 			{
 				code: '<db-drawer>Content</db-drawer>',
@@ -147,11 +147,11 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'db-drawer',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
-			}
-		]
+							attribute: 'closeButtonText',
+						},
+					},
+				],
+			},
+		],
 	});
 });

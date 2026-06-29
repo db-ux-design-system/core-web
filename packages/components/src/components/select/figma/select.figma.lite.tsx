@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBSelect } from '../index';
-import { FigmaSelectProps, selects } from './select.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBSelect} from '../index';
+import {FigmaSelectProps, selects} from './select.figma';
 
 useMetadata({
-	figma: selects
+	figma: selects,
 });
 
 export default function SelectFigmaLite(props: FigmaSelectProps) {

@@ -1,7 +1,7 @@
-@use "sass:string";
-@use "variables";
-@use "../helpers/functions";
-@use "variables.additional" as additional-colors;
+@use 'sass:string';
+@use 'variables';
+@use '../helpers/functions';
+@use 'variables.additional' as additional-colors;
 
 @mixin set-current-colors($bg, $on, $hovered: false, $pressed: false) {
 	background-color: #{$bg};
@@ -168,20 +168,12 @@
 		--db-adaptive-origin-pressed: var(--db-#{$variant}-origin-pressed);
 
 		// on-origin
-		--db-adaptive-on-origin-default: var(
-			--db-#{$variant}-on-origin-default
-		);
+		--db-adaptive-on-origin-default: var(--db-#{$variant}-on-origin-default);
 
 		// vibrant
-		--db-adaptive-bg-vibrant-default: var(
-			--db-#{$variant}-bg-vibrant-default
-		);
-		--db-adaptive-bg-vibrant-hovered: var(
-			--db-#{$variant}-bg-vibrant-hovered
-		);
-		--db-adaptive-bg-vibrant-pressed: var(
-			--db-#{$variant}-bg-vibrant-pressed
-		);
+		--db-adaptive-bg-vibrant-default: var(--db-#{$variant}-bg-vibrant-default);
+		--db-adaptive-bg-vibrant-hovered: var(--db-#{$variant}-bg-vibrant-hovered);
+		--db-adaptive-bg-vibrant-pressed: var(--db-#{$variant}-bg-vibrant-pressed);
 
 		// on-vibrant
 		--db-adaptive-on-bg-vibrant-default: var(

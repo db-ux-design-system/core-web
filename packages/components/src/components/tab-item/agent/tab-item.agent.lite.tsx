@@ -1,4 +1,4 @@
-import { DBTabItem } from '../index';
+import {DBTabItem} from '../index';
 
 export default function TabItem() {
 	return (
@@ -16,9 +16,7 @@ export default function TabItem() {
 
 			<h2>4. Icon Variants</h2>
 			<DBTabItem icon="user">Tab Item with Icon</DBTabItem>
-			<DBTabItem iconLeading="arrow-left">
-				Tab Item with Leading Icon
-			</DBTabItem>
+			<DBTabItem iconLeading="arrow-left">Tab Item with Leading Icon</DBTabItem>
 			<DBTabItem iconTrailing="arrow-right">
 				Tab Item with Trailing Icon
 			</DBTabItem>

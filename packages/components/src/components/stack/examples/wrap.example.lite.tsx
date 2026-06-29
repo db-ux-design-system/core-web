@@ -1,7 +1,7 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBStack from '../stack.lite';
-import { StorybookStackArgTypes } from './_stack.arg.types';
+import {StorybookStackArgTypes} from './_stack.arg.types';
 
 useMetadata({
 	storybookTitle: 'Wrap',
@@ -9,9 +9,9 @@ useMetadata({
 		'(Default) No Wrap: Column',
 		'No Wrap: Row',
 		'Wrap: Column',
-		'Wrap: Row'
+		'Wrap: Row',
 	],
-	storybookArgTypes: StorybookStackArgTypes
+	storybookArgTypes: StorybookStackArgTypes,
 });
 
 export default function StackWrap() {
@@ -26,12 +26,13 @@ export default function StackWrap() {
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '160px',
-					height: '88px'
-				}}>
+					height: '88px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) No Wrap: Column
 				</DBInfotext>
-				<DBStack style={{ padding: 'var(--db-spacing-fixed-xs)' }}>
+				<DBStack style={{padding: 'var(--db-spacing-fixed-xs)'}}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -50,14 +51,16 @@ export default function StackWrap() {
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '160px',
-					height: '88px'
-				}}>
+					height: '88px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					No Wrap: Row
 				</DBInfotext>
 				<DBStack
-					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
-					direction="row">
+					style={{padding: 'var(--db-spacing-fixed-xs)'}}
+					direction="row"
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -76,14 +79,13 @@ export default function StackWrap() {
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '160px',
-					height: '120px'
-				}}>
+					height: '120px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Column
 				</DBInfotext>
-				<DBStack
-					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
-					wrap={true}>
+				<DBStack style={{padding: 'var(--db-spacing-fixed-xs)'}} wrap={true}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -102,15 +104,17 @@ export default function StackWrap() {
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '180px',
-					height: '100px'
-				}}>
+					height: '100px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Row
 				</DBInfotext>
 				<DBStack
-					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					style={{padding: 'var(--db-spacing-fixed-xs)'}}
 					direction="row"
-					wrap={true}>
+					wrap={true}
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

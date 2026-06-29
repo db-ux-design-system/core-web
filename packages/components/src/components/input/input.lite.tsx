@@ -8,7 +8,7 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
 
 import {
@@ -19,13 +19,13 @@ import {
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER,
 	DEFAULT_VALID_MESSAGE,
-	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 } from '../../shared/constants';
 import {
 	ChangeEvent,
 	InputEvent,
 	InteractionEvent,
-	ValueLabelType
+	ValueLabelType,
 } from '../../shared/model';
 import {
 	cls,
@@ -40,23 +40,23 @@ import {
 	isArrayOfStrings,
 	isIOSSafari,
 	stringPropVisible,
-	uuid
+	uuid,
 } from '../../utils';
 import {
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import { DBInputProps, DBInputState } from './model';
+import {DBInputProps, DBInputState} from './model';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required', 'value'],
 		signals: {
-			writeable: ['disabled', 'value']
-		}
-	}
+			writeable: ['disabled', 'value'],
+		},
+	},
 });
 
 useDefaultProps<DBInputProps>({});
@@ -93,10 +93,7 @@ export default function DBInput(props: DBInputProps) {
 			} else if (
 				state.hasValidState() &&
 				_ref?.validity.valid &&
-				(props.required ||
-					props.minLength ||
-					props.maxLength ||
-					props.pattern)
+				(props.required || props.minLength || props.maxLength || props.pattern)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -131,25 +128,17 @@ export default function DBInput(props: DBInputProps) {
 					if (props.onInput) {
 						props.onInput(event);
 					}
-				}
+				},
 			});
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(
-						state,
-						event,
-						'value',
-						state._value
-					),
-				vue: () => handleFrameworkEventVue(() => {}, event)
+					handleFrameworkEventAngular(state, event, 'value', state._value),
+				vue: () => handleFrameworkEventVue(() => {}, event),
 			});
 			state.handleValidation();
 		},
-		handleChange: (
-			event: ChangeEvent<HTMLInputElement>,
-			reset?: boolean
-		) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
@@ -163,18 +152,13 @@ export default function DBInput(props: DBInputProps) {
 					if (props.onChange) {
 						props.onChange(event);
 					}
-				}
+				},
 			});
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(
-						state,
-						event,
-						'value',
-						state._value
-					),
-				vue: () => handleFrameworkEventVue(() => {}, event)
+					handleFrameworkEventAngular(state, event, 'value', state._value),
+				vue: () => handleFrameworkEventVue(() => {}, event),
 			});
 			state.handleValidation();
 		},
@@ -194,20 +178,19 @@ export default function DBInput(props: DBInputProps) {
 				(isArrayOfStrings(_list)
 					? _list?.map((val: string) => ({
 							value: val,
-							label: undefined
+							label: undefined,
 						}))
-					: _list) || []
+					: _list) || [],
 			);
 		},
 		resetIds: () => {
-			const mId =
-				props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
+			const mId = props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
 			state._id = mId;
 			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
-		}
+		},
 	});
 
 	onMount(() => {
@@ -233,8 +216,7 @@ export default function DBInput(props: DBInputProps) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._dataListId =
 				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
 
@@ -255,13 +237,13 @@ export default function DBInput(props: DBInputProps) {
 		// then the value will be set afterward and the _ref will be refreshed
 		const addResetListener = useTarget({
 			angular: !(props.value === null && state._value === null),
-			default: true
+			default: true,
 		});
 
 		if (_ref && addResetListener) {
 			const defaultValue = useTarget({
 				react: (props as any).defaultValue,
-				default: undefined
+				default: undefined,
 			});
 
 			let controller = state.abortController;
@@ -272,12 +254,12 @@ export default function DBInput(props: DBInputProps) {
 
 			addValueResetEventListener(
 				_ref,
-				{ value: props.value, defaultValue },
+				{value: props.value, defaultValue},
 				(event) => {
 					state.handleChange(event, true);
 					state.handleInput(event, true);
 				},
-				controller.signal
+				controller.signal,
 			);
 		}
 	}, [_ref]);
@@ -300,8 +282,9 @@ export default function DBInput(props: DBInputProps) {
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-show-icon-trailing={getBooleanAsString(
 				props.showIconTrailing,
-				'showIconTrailing'
-			)}>
+				'showIconTrailing',
+			)}
+		>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
@@ -352,14 +335,9 @@ export default function DBInput(props: DBInputProps) {
 				// iOS Safari VoiceOver input:is([type="date"], [type="datetime-local"], [type="time"], [type="week"], [type="month"], [type="color"]) hack
 				// TODO: We could remove this one again, after https://bugs.webkit.org/show_bug.cgi?id=294649 (mentioned in https://github.com/facebook/react/issues/33541) has been resolved.
 				role={
-					[
-						'datetime-local',
-						'date',
-						'time',
-						'week',
-						'month',
-						'color'
-					].includes(props.type ?? '') && isIOSSafari()
+					['datetime-local', 'date', 'time', 'week', 'month', 'color'].includes(
+						props.type ?? '',
+					) && isIOSSafari()
 						? 'textbox'
 						: undefined
 				}
@@ -369,12 +347,9 @@ export default function DBInput(props: DBInputProps) {
 					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
 							<option
-								key={
-									state._dataListId +
-									'-option-' +
-									option.value
-								}
-								value={option.value}>
+								key={state._dataListId + '-option-' + option.value}
+								value={option.value}
+							>
 								{option.label}
 							</option>
 						)}
@@ -386,7 +361,8 @@ export default function DBInput(props: DBInputProps) {
 				<DBInfotext
 					size={props.messageSize || 'small'}
 					icon={props.messageIcon}
-					id={state._messageId}>
+					id={state._messageId}
+				>
 					{props.message}
 				</DBInfotext>
 			</Show>
@@ -395,7 +371,8 @@ export default function DBInput(props: DBInputProps) {
 				<DBInfotext
 					id={state._validMessageId}
 					size={props.validMessageSize || 'small'}
-					semantic="successful">
+					semantic="successful"
+				>
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
@@ -403,7 +380,8 @@ export default function DBInput(props: DBInputProps) {
 			<DBInfotext
 				id={state._invalidMessageId}
 				size={props.invalidMessageSize || 'small'}
-				semantic="critical">
+				semantic="critical"
+			>
 				{state._invalidMessage}
 			</DBInfotext>
 

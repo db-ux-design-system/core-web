@@ -2,7 +2,7 @@ const LOCALHOST_STORYBOOK_PORT_MAP: Record<string, string> = {
 	react: '6005',
 	angular: '6006',
 	vue: '6007',
-	html: '6001'
+	html: '6001',
 };
 
 const DEFAULT_FRAMEWORK = 'react';
@@ -48,7 +48,7 @@ function buildStorybookDocsPathname(pathname: string): string | undefined {
  */
 export function getShowCodeHref(
 	currentUrl: string,
-	frameworkRaw: string | null | undefined
+	frameworkRaw: string | null | undefined,
 ): string | undefined {
 	const framework = (frameworkRaw || DEFAULT_FRAMEWORK).toLowerCase();
 	const url = new URL(currentUrl);

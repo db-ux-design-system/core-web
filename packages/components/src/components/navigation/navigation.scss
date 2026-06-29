@@ -1,15 +1,15 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "../../styles/internal/component";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/internal/form-components";
-@use "../../styles/internal/db-puls";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/screen-sizes';
+@use '../../styles/internal/component';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '../../styles/internal/form-components';
+@use '../../styles/internal/db-puls';
 
 .db-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
 
-	@include screen-sizes.screen("md") {
+	@include screen-sizes.screen('md') {
 		-webkit-tap-highlight-color: inherit;
 		inline-size: auto;
 	}
@@ -21,7 +21,7 @@
 		margin: 0;
 		gap: variables.$db-spacing-fixed-sm;
 
-		@include screen-sizes.screen("md") {
+		@include screen-sizes.screen('md') {
 			flex-direction: row;
 		}
 
@@ -31,10 +31,10 @@
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
 				// overwrite for navigation items
-				@include screen-sizes.screen("md") {
+				@include screen-sizes.screen('md') {
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
-						--db-icon-trailing: "chevron_down";
+						--db-icon-trailing: 'chevron_down';
 
 						@media (prefers-reduced-motion: no-preference) {
 							transition: form-components.$dropdown-icon-transition;
@@ -43,11 +43,7 @@
 
 					&:is(:hover, :focus-visible),
 					&:has(
-						~ .db-sub-navigation:is(
-								:hover,
-								:focus-visible,
-								:focus-within
-							)
+						~ .db-sub-navigation:is(:hover, :focus-visible, :focus-within)
 					) {
 						&::after {
 							transform: form-components.$dropdown-icon-transform;
@@ -60,19 +56,15 @@
 			> menu {
 				.db-navigation-item-expand-button:is(button),
 				.db-navigation-item-expand-button > button {
-					@include screen-sizes.screen("md") {
+					@include screen-sizes.screen('md') {
 						&::after {
-							--db-icon-trailing: "chevron_right";
+							--db-icon-trailing: 'chevron_right';
 							--db-icon-margin-start: auto;
 						}
 
 						&:is(:hover, :focus-visible),
 						:has(
-							~ .db-sub-navigation:is(
-									:hover,
-									:focus-visible,
-									:focus-within
-								)
+							~ .db-sub-navigation:is(:hover, :focus-visible, :focus-within)
 						) {
 							&::after {
 								transform: none;
@@ -82,10 +74,10 @@
 				}
 			}
 
-			&:has([aria-current="page"]),
-			&:has([data-active="true"]),
-			&[aria-current="page"],
-			&[data-active="true"] {
+			&:has([aria-current='page']),
+			&:has([data-active='true']),
+			&[aria-current='page'],
+			&[data-active='true'] {
 				@extend %show-db-puls-auto;
 			}
 
@@ -98,9 +90,9 @@
 		}
 	}
 
-	&[data-force-close="true"] {
+	&[data-force-close='true'] {
 		> menu menu {
-			@include screen-sizes.screen("md") {
+			@include screen-sizes.screen('md') {
 				@include helpers.display(none);
 			}
 		}

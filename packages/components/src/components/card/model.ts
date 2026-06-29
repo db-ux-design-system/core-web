@@ -3,7 +3,7 @@ import type {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	SpacingProps
+	SpacingProps,
 } from '../../shared/model';
 
 export const CardBehaviorList = ['static', 'interactive'] as const;

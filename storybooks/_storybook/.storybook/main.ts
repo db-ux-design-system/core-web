@@ -1,7 +1,7 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
-import type { StorybookConfig } from '@storybook/react-vite';
-import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
+import type {StorybookConfig} from '@storybook/react-vite';
+import {createRequire} from 'node:module';
+import {dirname, join} from 'node:path';
 
 const require = createRequire(import.meta.url);
 
@@ -21,82 +21,78 @@ const config: StorybookConfig = {
 	staticDirs: ['../public'],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
-		options: {}
+		options: {},
 	},
-	async viteFinal(config, { configType }) {
-		const { mergeConfig } = await import('vite');
+	async viteFinal(config, {configType}) {
+		const {mergeConfig} = await import('vite');
 
 		const isDev = configType === 'DEVELOPMENT';
 		const frameworkUrls = {
-			angular: isDev
-				? 'http://localhost:6006'
-				: `${baseUrl}/angular-storybook`,
+			angular: isDev ? 'http://localhost:6006' : `${baseUrl}/angular-storybook`,
 			html: isDev ? 'http://localhost:6008' : `${baseUrl}/html-storybook`,
-			react: isDev
-				? 'http://localhost:6005'
-				: `${baseUrl}/react-storybook`,
-			vue: isDev ? 'http://localhost:6007' : `${baseUrl}/vue-storybook`
+			react: isDev ? 'http://localhost:6005' : `${baseUrl}/react-storybook`,
+			vue: isDev ? 'http://localhost:6007' : `${baseUrl}/vue-storybook`,
 		};
 
 		return mergeConfig(config, {
 			// TODO: Remove `/storybook` after removing patternhub
 			base: `${baseUrl}/composition-storybook`,
 			build: {
-				cssMinify: 'esbuild'
+				cssMinify: 'esbuild',
 			},
 			define: {
 				// eslint-disable-next-line @typescript-eslint/naming-convention
-				__FRAMEWORK_URLS__: JSON.stringify(frameworkUrls)
-			}
+				__FRAMEWORK_URLS__: JSON.stringify(frameworkUrls),
+			},
 		});
 	},
-	refs: (_, { configType }) => {
+	refs: (_, {configType}) => {
 		if (configType === 'DEVELOPMENT') {
 			return {
 				angular: {
 					title: 'Angular',
 					url: 'http://localhost:6006',
-					expanded: false
+					expanded: false,
 				},
 				html: {
 					title: 'HTML',
 					url: 'http://localhost:6008',
-					expanded: false
+					expanded: false,
 				},
 				react: {
 					title: 'React',
 					url: 'http://localhost:6005',
-					expanded: false
+					expanded: false,
 				},
 				vue: {
 					title: 'Vue',
 					url: 'http://localhost:6007',
-					expanded: false
-				}
+					expanded: false,
+				},
 			};
 		}
 		return {
 			angular: {
 				title: 'Angular',
 				url: `${baseUrl}/angular-storybook`,
-				expanded: false
+				expanded: false,
 			},
 			html: {
 				title: 'HTML',
 				url: `${baseUrl}/html-storybook`,
-				expanded: false
+				expanded: false,
 			},
 			react: {
 				title: 'React',
 				url: `${baseUrl}/react-storybook`,
-				expanded: false
+				expanded: false,
 			},
 			vue: {
 				title: 'Vue',
 				url: `${baseUrl}/vue-storybook`,
-				expanded: false
-			}
+				expanded: false,
+			},
 		};
-	}
+	},
 };
 export default config;

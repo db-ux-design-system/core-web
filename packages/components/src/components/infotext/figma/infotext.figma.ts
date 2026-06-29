@@ -1,4 +1,4 @@
-import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
+import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
 
 export type FigmaInfotextProps = {
 	text?: string;
@@ -8,7 +8,7 @@ export type FigmaInfotextProps = {
 };
 
 const infotextProps: Record<string, FigmaProp> = {
-	text: { type: 'textContent', key: 'Text' },
+	text: {type: 'textContent', key: 'Text'},
 	semantic: {
 		type: 'enum',
 		key: 'Semantic',
@@ -18,15 +18,15 @@ const infotextProps: Record<string, FigmaProp> = {
 			Informational: 'informational',
 			Neutral: 'neutral',
 			Successful: 'successful',
-			Warning: 'warning'
-		}
+			Warning: 'warning',
+		},
 	},
-	showIcon: { type: 'boolean', key: 'Show Icon' },
+	showIcon: {type: 'boolean', key: 'Show Icon'},
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: { '(Def) Medium': 'medium', Small: 'small' }
-	}
+		value: {'(Def) Medium': 'medium', Small: 'small'},
+	},
 };
 
 export const infotexts: FigmaCodeConnect = {
@@ -34,7 +34,7 @@ export const infotexts: FigmaCodeConnect = {
 		// Auto Width
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:4357',
 		// Full Width
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:4430'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:4430',
 	],
-	props: infotextProps
+	props: infotextProps,
 };

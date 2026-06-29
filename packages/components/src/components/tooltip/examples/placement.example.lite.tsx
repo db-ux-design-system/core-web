@@ -1,7 +1,7 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBTooltip from '../tooltip.lite';
-import { StorybookTooltipArgTypes } from './_tooltip.arg.types';
+import {StorybookTooltipArgTypes} from './_tooltip.arg.types';
 
 useMetadata({
 	storybookTitle: 'Placement',
@@ -17,9 +17,9 @@ useMetadata({
 		'right-end',
 		'top-start',
 		'top',
-		'top-end'
+		'top-end',
 	],
-	storybookArgTypes: StorybookTooltipArgTypes
+	storybookArgTypes: StorybookTooltipArgTypes,
 });
 
 export default function TooltipPlacement() {

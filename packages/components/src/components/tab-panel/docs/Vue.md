@@ -11,8 +11,8 @@ import {
 	DBTabPanel,
 	DBTabs,
 	DBTabList,
-	DBTabItem
-} from "@db-ux/v-core-components";
+	DBTabItem,
+} from '@db-ux/v-core-components';
 </script>
 
 <template>

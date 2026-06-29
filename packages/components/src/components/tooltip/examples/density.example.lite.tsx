@@ -1,12 +1,12 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBTooltip from '../tooltip.lite';
-import { StorybookTooltipArgTypes } from './_tooltip.arg.types';
+import {StorybookTooltipArgTypes} from './_tooltip.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookTooltipArgTypes
+	storybookArgTypes: StorybookTooltipArgTypes,
 });
 
 export default function TooltipDensity() {

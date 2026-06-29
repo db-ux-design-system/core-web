@@ -16,7 +16,7 @@ export const INTERACTIVE_ELEMENTS = [
 	'DBSwitch',
 	'DBNavigationItem',
 	'DBTabItem',
-	'DBTag'
+	'DBTag',
 ];
 
 export const COMPONENTS: Record<string, string> = {
@@ -39,7 +39,7 @@ export const COMPONENTS: Record<string, string> = {
 	DBHeader: 'DBHeader',
 	DBNavigationItem: 'DBNavigationItem',
 	DBTag: 'DBTag',
-	DBTabItem: 'DBTabItem'
+	DBTabItem: 'DBTabItem',
 };
 
 export const MESSAGES = {
@@ -97,7 +97,7 @@ export const MESSAGES = {
 	TOOLTIP_NO_INTERACTIVE:
 		'DBTooltip must not contain interactive elements. Use DBPopover for interactive content',
 	TOOLTIP_REQUIRES_INTERACTIVE:
-		'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility'
+		'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility',
 };
 
 export const MESSAGE_IDS = {
@@ -128,5 +128,5 @@ export const MESSAGE_IDS = {
 	HEADER_MISSING_BURGER_MENU_LABEL: 'missingBurgerMenuLabel',
 	ICON_PREFER_ATTRIBUTE: 'preferAttribute',
 	TOOLTIP_NO_INTERACTIVE: 'noInteractive',
-	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive'
+	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive',
 };

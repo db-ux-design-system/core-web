@@ -102,38 +102,38 @@ Create `figma/[component].figma.ts` to map Figma properties to code props.
 **Example** from `button.figma.ts`:
 
 ```typescript
-import { FigmaCodeConnect, FigmaProp } from "../../../shared/figma";
+import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
 
 const defaultButtonProps: Record<string, FigmaProp> = {
 	disabled: {
-		type: "enum",
-		key: "Disabled",
-		value: { False: false, True: true }
+		type: 'enum',
+		key: 'Disabled',
+		value: {False: false, True: true},
 	},
 	size: {
-		type: "enum",
-		key: "Size",
-		value: { Small: "small", "(Def) Medium": "medium" }
+		type: 'enum',
+		key: 'Size',
+		value: {Small: 'small', '(Def) Medium': 'medium'},
 	},
-	text: { type: "textContent", key: "✏️ Text" },
+	text: {type: 'textContent', key: '✏️ Text'},
 	variant: {
-		type: "enum",
-		key: "💻 Variant",
+		type: 'enum',
+		key: '💻 Variant',
 		value: {
-			Brand: "brand",
-			Ghost: "ghost",
-			Filled: "filled",
-			Outlined: "outlined"
-		}
-	}
+			Brand: 'brand',
+			Ghost: 'ghost',
+			Filled: 'filled',
+			Outlined: 'outlined',
+		},
+	},
 };
 
 export const textButtons: FigmaCodeConnect = {
 	urls: [
-		"https://www.figma.com/design/FIGMA_FILE?node-id=14436-13065",
-		"https://www.figma.com/design/FIGMA_FILE?node-id=14436-13355"
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13065',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14436-13355',
 	],
-	props: defaultButtonProps
+	props: defaultButtonProps,
 };
 ```
 
@@ -176,11 +176,11 @@ Also note that Mitosis **cannot resolve template literals** in URLs:
 
 ```typescript
 // ❌ Fails
-const FILE = "mlJ6R0GkfR15a93KSlqXtB";
+const FILE = 'mlJ6R0GkfR15a93KSlqXtB';
 urls: [`https://www.figma.com/design/${FILE}?node-id=14442:18427`];
 
 // ✅ Correct — plain string
-urls: ["https://www.figma.com/design/FIGMA_FILE?node-id=14442:18427"];
+urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=14442:18427'];
 ```
 
 ### 5. Create the Mitosis Component
@@ -336,9 +336,9 @@ Generates:
 ```js
 instance
 	.findConnectedInstances((node) => node.hasCodeConnect())
-	.filter((node) => node.type === "INSTANCE")
-	.filter((node) => !!node.properties["✏️ Text"])[0]
-	?.getString("✏️ Text");
+	.filter((node) => node.type === 'INSTANCE')
+	.filter((node) => !!node.properties['✏️ Text'])[0]
+	?.getString('✏️ Text');
 ```
 
 ### `connectedInstances` — dynamic children from Figma
@@ -347,7 +347,7 @@ Use when a container component should render its child instances dynamically:
 
 ```typescript
 _children: {
-	type: "connectedInstances";
+	type: 'connectedInstances';
 }
 ```
 
@@ -372,19 +372,17 @@ Generates:
 ```js
 instance
 	.findConnectedInstances((node) => node.hasCodeConnect(), {
-		traverseInstances: true
+		traverseInstances: true,
 	})
-	.filter((node) => node.type === "INSTANCE")
+	.filter((node) => node.type === 'INSTANCE')
 	.filter((node) =>
 		node
 			.executeTemplate()
 			.example.some(
 				(section) =>
-					section.type === "CODE" &&
-					section.nestedImports?.some((i) =>
-						i.includes("DBAccordionItem")
-					)
-			)
+					section.type === 'CODE' &&
+					section.nestedImports?.some((i) => i.includes('DBAccordionItem')),
+			),
 	)
 	.reverse()
 	.flatMap((child) => child.executeTemplate().example);
@@ -414,14 +412,14 @@ Generates:
 ```js
 const _messageMessage = instance
 	.findConnectedInstances((node) => node.hasCodeConnect())
-	.filter((node) => node.type === "INSTANCE")
-	.filter((node) => !!node.properties["✏️ Text"])[0]
-	?.getString("✏️ Text");
-let message = "";
+	.filter((node) => node.type === 'INSTANCE')
+	.filter((node) => !!node.properties['✏️ Text'])[0]
+	?.getString('✏️ Text');
+let message = '';
 if (_messageMessage) {
-	let messageAttr = "message";
-	if (validation === "invalid") messageAttr = "invalidMessage";
-	if (validation === "valid") messageAttr = "validMessage";
+	let messageAttr = 'message';
+	if (validation === 'invalid') messageAttr = 'invalidMessage';
+	if (validation === 'valid') messageAttr = 'validMessage';
 	message = `\n\t\t${messageAttr}="${_messageMessage}"`;
 }
 ```
@@ -447,14 +445,14 @@ Generates:
 
 ```js
 const _iconLeadingValue = ((r) =>
-	r && r[0]?.type === "CODE" ? r[0].code : undefined)(
-	instance.getInstanceSwap(_findKey("🔄 Icon Leading"))?.executeTemplate()
-		?.example
+	r && r[0]?.type === 'CODE' ? r[0].code : undefined)(
+	instance.getInstanceSwap(_findKey('🔄 Icon Leading'))?.executeTemplate()
+		?.example,
 );
-let iconLeading = "";
+let iconLeading = '';
 if (
-	(instance.getPropertyValue(_findKey("Show Icon Leading")) === true ||
-		instance.getPropertyValue(_findKey("Show Icon Leading")) === "True") &&
+	(instance.getPropertyValue(_findKey('Show Icon Leading')) === true ||
+		instance.getPropertyValue(_findKey('Show Icon Leading')) === 'True') &&
 	_iconLeadingValue !== undefined &&
 	_iconLeadingValue !== null
 ) {
@@ -473,21 +471,21 @@ If multiple Figma component sets produce identical JSX (only differing in a prop
 ```typescript
 const checkboxProps: Record<string, FigmaProp> = {
 	size: {
-		type: "enum",
-		key: "💻 Size",
-		value: { "(Def) Medium": "medium", Small: "small" }
-	}
+		type: 'enum',
+		key: '💻 Size',
+		value: {'(Def) Medium': 'medium', Small: 'small'},
+	},
 	// ...
 };
 
 export const checkboxes: FigmaCodeConnect = {
 	urls: [
-		"https://www.figma.com/design/FIGMA_FILE?node-id=2068:3423", // Medium Auto
-		"https://www.figma.com/design/FIGMA_FILE?node-id=10707:19709", // Medium Full
-		"https://www.figma.com/design/FIGMA_FILE?node-id=2068:3548", // Small Auto
-		"https://www.figma.com/design/FIGMA_FILE?node-id=10707:19958" // Small Full
+		'https://www.figma.com/design/FIGMA_FILE?node-id=2068:3423', // Medium Auto
+		'https://www.figma.com/design/FIGMA_FILE?node-id=10707:19709', // Medium Full
+		'https://www.figma.com/design/FIGMA_FILE?node-id=2068:3548', // Small Auto
+		'https://www.figma.com/design/FIGMA_FILE?node-id=10707:19958', // Small Full
 	],
-	props: checkboxProps
+	props: checkboxProps,
 };
 ```
 
@@ -495,17 +493,17 @@ export const checkboxes: FigmaCodeConnect = {
 
 1. Generate all Figma files via Mitosis:
 
-    ```shell
-    pnpm run generate:figma --workspace=@db-ux/core-components
-    ```
+   ```shell
+   pnpm run generate:figma --workspace=@db-ux/core-components
+   ```
 
 2. Check the generated output in `figma-code-connect/react-figma/src/`.
 
 3. Run the tests:
 
-    ```shell
-    pnpm run test --workspace=react-figma
-    ```
+   ```shell
+   pnpm run test --workspace=react-figma
+   ```
 
 ### Update snapshots
 
@@ -542,14 +540,14 @@ These files **must be committed** — they are the baseline for CI.
 
 1. Create `figma-code-connect/react-figma/.env` with your token:
 
-    ```env
-    FIGMA_ACCESS_TOKEN="figd_XXX"
-    ```
+   ```env
+   FIGMA_ACCESS_TOKEN="figd_XXX"
+   ```
 
-    > **⚠️ Security:** Keep this token local and do not commit it.
+   > **⚠️ Security:** Keep this token local and do not commit it.
 
 2. Publish:
 
-    ```shell
-    pnpm run connect --workspace=react-figma
-    ```
+   ```shell
+   pnpm run connect --workspace=react-figma
+   ```

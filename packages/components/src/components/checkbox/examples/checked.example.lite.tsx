@@ -1,11 +1,11 @@
-import { useMetadata, useState, useTarget } from '@builder.io/mitosis';
+import {useMetadata, useState, useTarget} from '@builder.io/mitosis';
 import DBCheckbox from '../checkbox.lite';
-import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
+import {StorybookCheckboxArgTypes} from './_checkbox.arg.types';
 
 useMetadata({
 	storybookTitle: 'Checked',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookCheckboxArgTypes
+	storybookArgTypes: StorybookCheckboxArgTypes,
 });
 
 export default function CheckboxChecked() {
@@ -21,12 +21,11 @@ export default function CheckboxChecked() {
 				{...useTarget({
 					react: {
 						onChange: (event: any) =>
-							setChecked(
-								(event.target as HTMLInputElement).checked
-							)
+							setChecked((event.target as HTMLInputElement).checked),
 					},
-					default: {}
-				})}>
+					default: {},
+				})}
+			>
 				True
 			</DBCheckbox>
 		</div>

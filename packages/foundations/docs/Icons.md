@@ -93,12 +93,12 @@ To get TypeScript autocomplete you need to include a `*.d.ts` file, where you ad
 
 ```ts
 //
-import "@db-ux/core-foundations";
-import { BaseIconTypes } from "@db-ux/core-foundations";
+import '@db-ux/core-foundations';
+import {BaseIconTypes} from '@db-ux/core-foundations';
 
-declare module "@db-ux/core-foundations" {
+declare module '@db-ux/core-foundations' {
 	interface OverwriteIcons {
-		types: BaseIconTypes | "my-custom-icon1" | "my-custom-icon2";
+		types: BaseIconTypes | 'my-custom-icon1' | 'my-custom-icon2';
 	}
 }
 ```
@@ -107,11 +107,11 @@ _**OR:**_ If you use another library which provides some overwrite you can do it
 
 ```ts
 //
-import "@db-ux/core-foundations";
-import "@db-ux/db-theme-icons";
-import { IconTypes } from "@db-ux/db-theme-icons";
+import '@db-ux/core-foundations';
+import '@db-ux/db-theme-icons';
+import {IconTypes} from '@db-ux/db-theme-icons';
 
-declare module "@db-ux/core-foundations" {
+declare module '@db-ux/core-foundations' {
 	interface OverwriteIcons {
 		types: IconTypes;
 	}
@@ -122,13 +122,13 @@ You can combine it as well like this:
 
 ```ts
 //
-import "@db-ux/core-foundations";
-import "@db-ux/db-theme-icons";
-import { IconTypes } from "@db-ux/db-theme-icons";
+import '@db-ux/core-foundations';
+import '@db-ux/db-theme-icons';
+import {IconTypes} from '@db-ux/db-theme-icons';
 
-declare module "@db-ux/core-foundations" {
+declare module '@db-ux/core-foundations' {
 	interface OverwriteIcons {
-		types: IconTypes | "my-custom-icon1" | "my-custom-icon2";
+		types: IconTypes | 'my-custom-icon1' | 'my-custom-icon2';
 	}
 }
 ```
@@ -139,9 +139,9 @@ If you want to use only the icons from this library without including the comple
 
 ```css
 /* bundler.css */
-@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
-@import "@db-ux/db-theme-icons/build/styles/default-font.css";
-@import "@db-ux/db-theme-icons/build/styles/[rollup|webpack|relative].css";
+@import '@db-ux/core-foundations/build/styles/defaults/default-icons.css';
+@import '@db-ux/db-theme-icons/build/styles/default-font.css';
+@import '@db-ux/db-theme-icons/build/styles/[rollup|webpack|relative].css';
 ```
 
 or

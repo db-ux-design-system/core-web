@@ -1,4 +1,4 @@
-@use "notification-grid-shared" as shared;
+@use 'notification-grid-shared' as shared;
 
 // Wrapper mixins for overlay variants that use shared grid logic
 @mixin overlay-base-grid($areas, $columns) {
@@ -35,106 +35,103 @@
 
 @mixin overlay-timestamp-area-layouts() {
 	// 1. Base layout: content + timestamp
-	@include overlay-base-grid("content timestamp", 1fr min-content);
+	@include overlay-base-grid('content timestamp', 1fr min-content);
 	@include overlay-with-close(
-		"content timestamp close",
+		'content timestamp close',
 		1fr min-content min-content
 	);
 
 	// 2. Progressive enhancement: adds headline
 	@include overlay-with-header(
-		"head timestamp" "content content",
+		'head timestamp' 'content content',
 		1fr min-content
 	);
 	@include overlay-with-header-close(
-		"head timestamp close" "content content content",
+		'head timestamp close' 'content content content',
 		1fr min-content min-content
 	);
 
 	// 3. Progressive enhancement: adds icon or image
 	@include overlay-with-icon(
-		"icon content timestamp",
+		'icon content timestamp',
 		min-content 1fr min-content
 	);
 	@include overlay-with-icon-close(
-		"icon content timestamp close",
+		'icon content timestamp close',
 		min-content 1fr min-content min-content
 	);
 	@include overlay-with-icon-header(
-		"icon head timestamp" "icon content content",
+		'icon head timestamp' 'icon content content',
 		min-content 1fr min-content
 	);
 	@include overlay-with-icon-header-close(
-		"icon head timestamp close" "icon content content content",
+		'icon head timestamp close' 'icon content content content',
 		min-content 1fr min-content min-content
 	);
 }
 
 @mixin overlay-block-layouts-without-timestamp() {
 	// 1. Base layout: content + block link (overridden by subsequent mixins when additional elements detected)
-	@include overlay-base-grid("content" "link", 1fr);
-	@include overlay-with-close("content close" "link link", 1fr min-content);
+	@include overlay-base-grid('content' 'link', 1fr);
+	@include overlay-with-close('content close' 'link link', 1fr min-content);
 
 	// 2. Progressive enhancement: adds headline
-	@include overlay-with-header("head" "content" "link", 1fr);
+	@include overlay-with-header('head' 'content' 'link', 1fr);
 	@include overlay-with-header-close(
-		"head close" "content content" "link link",
+		'head close' 'content content' 'link link',
 		1fr min-content
 	);
 
 	// 3. Progressive enhancement: adds icon or image
-	@include overlay-with-icon("icon content" "icon link", min-content 1fr);
+	@include overlay-with-icon('icon content' 'icon link', min-content 1fr);
 	@include overlay-with-icon-close(
-		"icon content close" "icon link link",
+		'icon content close' 'icon link link',
 		min-content 1fr min-content
 	);
 	@include overlay-with-icon-header(
-		"icon head" "icon content" "icon link",
+		'icon head' 'icon content' 'icon link',
 		min-content 1fr
 	);
 	@include overlay-with-icon-header-close(
-		"icon head close" "icon content content" "icon link link",
+		'icon head close' 'icon content content' 'icon link link',
 		min-content 1fr min-content
 	);
 }
 
 @mixin overlay-block-layouts() {
 	// 1. Base layout when content, timestamp, and block link are present (more specific rules apply when additional elements are detected)
-	@include overlay-base-grid(
-		"content timestamp" "link link",
-		1fr min-content
-	);
+	@include overlay-base-grid('content timestamp' 'link link', 1fr min-content);
 	@include overlay-with-close(
-		"content timestamp close" "link link link",
+		'content timestamp close' 'link link link',
 		1fr min-content min-content
 	);
 
 	// 2. Progressive enhancement: adds headline
 	@include overlay-with-header(
-		"head timestamp" "content content" "link link",
+		'head timestamp' 'content content' 'link link',
 		1fr min-content
 	);
 	@include overlay-with-header-close(
-		"head timestamp close" "content content content" "link link link",
+		'head timestamp close' 'content content content' 'link link link',
 		1fr min-content min-content
 	);
 
 	// 3. Progressive enhancement: adds icon or image
 	@include overlay-with-icon(
-		"icon content timestamp" "icon link link",
+		'icon content timestamp' 'icon link link',
 		min-content 1fr min-content
 	);
 	@include overlay-with-icon-close(
-		"icon content timestamp close" "icon link link link",
+		'icon content timestamp close' 'icon link link link',
 		min-content 1fr min-content min-content
 	);
 	@include overlay-with-icon-header(
-		"icon head timestamp" "icon content content" "icon link link",
+		'icon head timestamp' 'icon content content' 'icon link link',
 		min-content 1fr min-content
 	);
 	@include overlay-with-icon-header-close(
-		"icon head timestamp close" "icon content content content"
-			"icon link link link",
+		'icon head timestamp close' 'icon content content content'
+			'icon link link link',
 		min-content 1fr min-content min-content
 	);
 }
@@ -145,12 +142,12 @@
 	@include overlay-timestamp-area-layouts;
 
 	// 2. Override: When explicitly "block" link variant with timestamp
-	&:has([data-area="timestamp"])[data-link-variant="block"] {
+	&:has([data-area='timestamp'])[data-link-variant='block'] {
 		@include overlay-block-layouts;
 	}
 
 	// 3. Override: When "block" link variant WITHOUT timestamp
-	&:not(:has([data-area="timestamp"]))[data-link-variant="block"] {
+	&:not(:has([data-area='timestamp']))[data-link-variant='block'] {
 		@include overlay-block-layouts-without-timestamp;
 	}
 }

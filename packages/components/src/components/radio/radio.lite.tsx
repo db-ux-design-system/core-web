@@ -7,16 +7,16 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { cls, delay, getBoolean, getHideProp, uuid } from '../../utils';
+import {ChangeEvent, InteractionEvent} from '../../shared/model';
+import {cls, delay, getBoolean, getHideProp, uuid} from '../../utils';
 import {
 	addResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
 } from '../../utils/form-components';
-import { DBRadioProps, DBRadioState } from './model';
+import {DBRadioProps, DBRadioState} from './model';
 
 useMetadata({
 	angular: {
@@ -25,12 +25,12 @@ useMetadata({
 			'required',
 			'checked',
 			'indeterminate',
-			'value'
+			'value',
 		],
 		signals: {
-			writeable: ['disabled', 'value']
-		}
-	}
+			writeable: ['disabled', 'value'],
+		},
+	},
 });
 useDefaultProps<DBRadioProps>({});
 
@@ -43,7 +43,7 @@ export default function DBRadio(props: DBRadioProps) {
 		abortController: undefined,
 		handleInput: (
 			event: ChangeEvent<HTMLInputElement> | any,
-			reset?: boolean
+			reset?: boolean,
 		) => {
 			useTarget({
 				angular: () => {
@@ -65,17 +65,17 @@ export default function DBRadio(props: DBRadioProps) {
 					if (props.onInput) {
 						props.onInput(event);
 					}
-				}
+				},
 			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
+				vue: () => handleFrameworkEventVue(() => {}, event),
 			});
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLInputElement> | any,
-			reset?: boolean
+			reset?: boolean,
 		) => {
 			useTarget({
 				angular: () => {
@@ -90,12 +90,12 @@ export default function DBRadio(props: DBRadioProps) {
 					if (props.onChange) {
 						props.onChange(event);
 					}
-				}
+				},
 			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
+				vue: () => handleFrameworkEventVue(() => {}, event),
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
@@ -109,9 +109,8 @@ export default function DBRadio(props: DBRadioProps) {
 			}
 		},
 		resetIds: () => {
-			state._id =
-				props.id ?? props.propOverrides?.id ?? `radio-${uuid()}`;
-		}
+			state._id = props.id ?? props.propOverrides?.id ?? `radio-${uuid()}`;
+		},
 	});
 
 	onMount(() => {
@@ -135,7 +134,7 @@ export default function DBRadio(props: DBRadioProps) {
 		if (_ref) {
 			const defaultChecked = useTarget({
 				react: (props as any).defaultChecked,
-				default: undefined
+				default: undefined,
 			});
 
 			let controller = state.abortController;
@@ -158,14 +157,14 @@ export default function DBRadio(props: DBRadioProps) {
 							target: {
 								...event.target,
 								value: '',
-								checked: resetChecked
-							}
+								checked: resetChecked,
+							},
 						};
 						state.handleChange(valueEvent, true);
 						state.handleInput(valueEvent, true);
 					}, 1);
 				},
-				controller.signal
+				controller.signal,
 			);
 		}
 	}, [_ref]);
@@ -181,7 +180,8 @@ export default function DBRadio(props: DBRadioProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			class={cls('db-radio', props.className)}
-			htmlFor={state._id}>
+			htmlFor={state._id}
+		>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}

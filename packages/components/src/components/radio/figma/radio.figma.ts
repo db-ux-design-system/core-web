@@ -1,4 +1,4 @@
-import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
+import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
 
 export type FigmaRadioProps = {
 	label?: string;
@@ -12,26 +12,26 @@ export type FigmaRadioProps = {
 };
 
 const radioProps: Record<string, FigmaProp> = {
-	label: { type: 'textContent', key: 'Label' },
-	showLabel: { type: 'boolean', key: 'Show Label' },
+	label: {type: 'textContent', key: 'Label'},
+	showLabel: {type: 'boolean', key: 'Show Label'},
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: { Medium: 'medium', Small: 'small' }
+		value: {Medium: 'medium', Small: 'small'},
 	},
-	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
-	disabled: { type: 'boolean', key: 'Disabled' },
-	checked: { type: 'boolean', key: 'Checked' },
+	required: {type: 'boolean', key: 'Required'},
+	showRequiredAsterisk: {type: 'boolean', key: 'Show Required Asterisk'},
+	disabled: {type: 'boolean', key: 'Disabled'},
+	checked: {type: 'boolean', key: 'Checked'},
 	validation: {
 		type: 'enum',
 		key: 'Validation',
 		value: {
 			'(Def) No Validation': 'no-validation',
 			Valid: 'valid',
-			Invalid: 'invalid'
-		}
-	}
+			Invalid: 'invalid',
+		},
+	},
 };
 
 export const radios: FigmaCodeConnect = {
@@ -43,7 +43,7 @@ export const radios: FigmaCodeConnect = {
 		// Small Auto Width
 		'https://www.figma.com/design/FIGMA_FILE?node-id=2277:4584',
 		// Small Full Width
-		'https://www.figma.com/design/FIGMA_FILE?node-id=10707:21698'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=10707:21698',
 	],
-	props: radioProps
+	props: radioProps,
 };

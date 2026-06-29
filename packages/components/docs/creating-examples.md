@@ -14,14 +14,14 @@ Each component should have:
 ### Basic Example
 
 ```tsx
-import { Fragment, useMetadata } from "@builder.io/mitosis";
-import DBButton from "../button.lite";
-import { StorybookButtonArgTypes } from "./_button.arg.types";
+import {Fragment, useMetadata} from '@builder.io/mitosis';
+import DBButton from '../button.lite';
+import {StorybookButtonArgTypes} from './_button.arg.types';
 
 useMetadata({
-	storybookTitle: "Width",
-	storybookNames: ["Auto", "Full"],
-	storybookArgTypes: StorybookButtonArgTypes
+	storybookTitle: 'Width',
+	storybookNames: ['Auto', 'Full'],
+	storybookArgTypes: StorybookButtonArgTypes,
 });
 
 export default function ButtonWidth() {
@@ -48,12 +48,12 @@ Example with overwrite:
 
 ```tsx
 useMetadata({
-	storybookTitle: "Backdrop",
-	storybookNames: ["Strong", "Weak"],
+	storybookTitle: 'Backdrop',
+	storybookNames: ['Strong', 'Weak'],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
-		open: false
-	}
+		open: false,
+	},
 });
 ```
 
@@ -87,20 +87,20 @@ Hide specific components/elements from Storybook while keeping them in the actua
 Create `_<component>.arg.types.ts` to define Storybook controls:
 
 ```tsx
-import type { InputType } from "storybook/internal/csf";
-import { StorybookIconArgTypes } from "../../../shared/examples/_icons.arg.types";
+import type {InputType} from 'storybook/internal/csf';
+import {StorybookIconArgTypes} from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookButtonArgTypes: Record<string, InputType> = {
 	variant: {
-		control: "select",
-		options: ["outlined", "brand", "ghost", "filled"]
+		control: 'select',
+		options: ['outlined', 'brand', 'ghost', 'filled'],
 	},
-	disabled: { control: "boolean" },
-	width: { control: "select", options: ["full", "auto"] },
-	size: { control: "select", options: ["small", "medium"] },
-	text: { control: "text" },
+	disabled: {control: 'boolean'},
+	width: {control: 'select', options: ['full', 'auto']},
+	size: {control: 'select', options: ['small', 'medium']},
+	text: {control: 'text'},
 	...StorybookIconArgTypes,
-	onClick: { action: "onClick" }
+	onClick: {action: 'onClick'},
 };
 ```
 
@@ -121,14 +121,14 @@ For components with icon support, import and spread the shared icon arg types:
 import {
 	StorybookIconArgTypes,
 	StorybookIconLeadingArgTypes,
-	StorybookIconTrailingArgTypes
-} from "../../../shared/examples/_icons.arg.types";
+	StorybookIconTrailingArgTypes,
+} from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookInputArgTypes: Record<string, InputType> = {
 	// ... other properties
 	...StorybookIconArgTypes,
 	...StorybookIconLeadingArgTypes,
-	...StorybookIconTrailingArgTypes
+	...StorybookIconTrailingArgTypes,
 };
 ```
 
@@ -140,18 +140,18 @@ When using `<img src={...}>` in examples, follow this pattern from `packages/com
 const state = useStore({
 	getImage() {
 		const basePath: string | undefined = useTarget({
-			react: process?.env?.["NEXT_PUBLIC_BASE_PATH"],
-			default: undefined
+			react: process?.env?.['NEXT_PUBLIC_BASE_PATH'],
+			default: undefined,
 		});
 		const showcase = useTarget({
-			angular: "angular",
-			react: "react",
-			vue: "vue",
-			stencil: "stencil"
+			angular: 'angular',
+			react: 'react',
+			vue: 'vue',
+			stencil: 'stencil',
 		});
 		const path = basePath ? basePath : `/${showcase}-showcase`;
 		return `${path}/assets/images/placeholder.jpg`;
-	}
+	},
 });
 
 // Usage:

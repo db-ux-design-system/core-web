@@ -1,4 +1,4 @@
-import { Config } from '@stencil/core';
+import {Config} from '@stencil/core';
 
 export const config: Config = {
 	namespace: 'DB-UX',
@@ -9,10 +9,10 @@ export const config: Config = {
 			type: 'dist-custom-elements',
 			dir: 'bundle',
 			externalRuntime: false,
-			customElementsExportBehavior: 'bundle'
+			customElementsExportBehavior: 'bundle',
 		},
 		{
-			type: 'dist'
-		}
-	]
+			type: 'dist',
+		},
+	],
 };

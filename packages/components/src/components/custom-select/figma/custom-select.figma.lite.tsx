@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBCustomSelect } from '../index';
-import { FigmaCustomSelectProps, customSelects } from './custom-select.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBCustomSelect} from '../index';
+import {FigmaCustomSelectProps, customSelects} from './custom-select.figma';
 
 useMetadata({
-	figma: customSelects
+	figma: customSelects,
 });
 
 export default function CustomSelectFigmaLite(props: FigmaCustomSelectProps) {

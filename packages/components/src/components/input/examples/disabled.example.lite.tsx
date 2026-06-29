@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import { StorybookInputArgTypes } from './_input.arg.types';
+import {StorybookInputArgTypes} from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Disabled',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookInputArgTypes
+	storybookArgTypes: StorybookInputArgTypes,
 });
 
 export default function InputDisabled() {
@@ -14,7 +14,8 @@ export default function InputDisabled() {
 			<DBInput
 				label="Label"
 				disabled={false}
-				placeholder="(Default) False"></DBInput>
+				placeholder="(Default) False"
+			></DBInput>
 			<DBInput label="Label" disabled={true} placeholder="True"></DBInput>
 		</Fragment>
 	);

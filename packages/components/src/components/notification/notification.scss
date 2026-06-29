@@ -1,20 +1,20 @@
-@use "sass:map";
-@use "@db-ux/core-foundations/build/styles/density";
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "../../styles/internal/component";
-@use "../../styles/internal/link-components";
-@use "./notification-grid-default";
-@use "./notification-grid-overlay";
-@use "./notification-grid-non-overlay";
+@use 'sass:map';
+@use '@db-ux/core-foundations/build/styles/density';
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/icons';
+@use '@db-ux/core-foundations/build/styles/screen-sizes';
+@use '../../styles/internal/component';
+@use '../../styles/internal/link-components';
+@use './notification-grid-default';
+@use './notification-grid-overlay';
+@use './notification-grid-non-overlay';
 
 %timestamp-line-height-adjustments {
 	// Adjusts line-height for elements when timestamp is present
-	&:has([data-area="timestamp"]) {
-		[data-area="head"],
+	&:has([data-area='timestamp']) {
+		[data-area='head'],
 		p,
 		&::before,
 		.db-button {
@@ -49,17 +49,17 @@
 			margin: 0 !important;
 		}
 
-		&[data-variant="brand"] {
+		&[data-variant='brand'] {
 			@extend %db-link-default-color;
 		}
 
-		&[data-size="small"] {
+		&[data-size='small'] {
 			@extend %db-overwrite-font-size-md;
 		}
 	}
 
 	// headline
-	[data-area="head"] {
+	[data-area='head'] {
 		grid-area: head;
 
 		&,
@@ -82,7 +82,7 @@
 	}
 
 	// content
-	& > [data-area="content"] {
+	& > [data-area='content'] {
 		@extend %db-overwrite-font-size-md;
 
 		grid-area: content;
@@ -101,7 +101,7 @@
 	}
 
 	// timestamp
-	[data-area="timestamp"] {
+	[data-area='timestamp'] {
 		@extend %db-overwrite-font-size-sm;
 
 		grid-area: timestamp;
@@ -114,7 +114,7 @@
 	}
 
 	// Inline links stay within content flow
-	&[data-link-variant="inline"] > :is(a, db-link) {
+	&[data-link-variant='inline'] > :is(a, db-link) {
 		// 1. Assign the link to the "timestamp" area.
 		//    All layouts (overlay and default) must recognize this area.
 		grid-area: timestamp;
@@ -131,15 +131,15 @@
 	// If an inline link is present, it takes precedence over the timestamp
 	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
 	// Progressive enhancement - timestamps gracefully shown in older browsers
-	&[data-link-variant="inline"]:has(> a, > db-link) {
-		> [data-area="timestamp"] {
+	&[data-link-variant='inline']:has(> a, > db-link) {
+		> [data-area='timestamp'] {
 			display: none;
 		}
 	}
 
 	// Block links get placed in grid area (default behavior)
 	// This applies when linkVariant is "block" or not specified
-	&:not([data-link-variant="inline"]) > :is(a, db-link) {
+	&:not([data-link-variant='inline']) > :is(a, db-link) {
 		grid-area: link;
 		white-space: nowrap;
 	}
@@ -156,7 +156,7 @@
 
 	// If showIcon is explicitly set to false, hide the generated icon
 	// pseudo-element.
-	&[data-show-icon="false"]::before {
+	&[data-show-icon='false']::before {
 		/* Hidden when showIcon is explicitly false. Using `display:none`
 		   is sufficient; avoid extra properties that don't affect layout. */
 		display: none;
@@ -169,7 +169,7 @@
 		}
 	}
 
-	&[data-variant="overlay"] {
+	&[data-variant='overlay'] {
 		@extend %grid-layout-variant-overlay;
 
 		box-shadow: variables.$db-elevation-md;
@@ -177,20 +177,20 @@
 
 	// Apply non-overlay grid layout for notifications with block links
 	// This applies when linkVariant is "block" (explicit or default when links are present)
-	&:not([data-variant="overlay"]) {
-		&[data-link-variant="block"],
+	&:not([data-variant='overlay']) {
+		&[data-link-variant='block'],
 		&:not([data-link-variant]):has(> a, > db-link) {
 			@extend %grid-layout-variant-not-overlay;
 		}
 	}
 
-	&[data-variant="overlay"],
-	&[data-variant="standalone"] {
+	&[data-variant='overlay'],
+	&[data-variant='standalone'] {
 		@extend %default-card;
 	}
 
 	@each $name in colors.$variant-colors {
-		&[data-semantic="#{$name}"] {
+		&[data-semantic='#{$name}'] {
 			@extend %db-#{$name}-variables;
 			@include icons.variant-icons($name);
 

@@ -7,7 +7,7 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
 
 import {
@@ -15,12 +15,12 @@ import {
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_VALID_MESSAGE,
-	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 } from '../../shared/constants';
 import {
 	ChangeEvent,
 	GeneralKeyboardEvent,
-	InteractionEvent
+	InteractionEvent,
 } from '../../shared/model';
 import {
 	cls,
@@ -30,15 +30,15 @@ import {
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
-	uuid
+	uuid,
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import { DBSwitchProps, DBSwitchState } from './model';
+import {DBSwitchProps, DBSwitchState} from './model';
 
 useMetadata({
 	angular: {
@@ -47,12 +47,12 @@ useMetadata({
 			'required',
 			'checked',
 			'indeterminate',
-			'value'
+			'value',
 		],
 		signals: {
-			writeable: ['disabled', 'checked']
-		}
-	}
+			writeable: ['disabled', 'checked'],
+		},
+	},
 });
 useDefaultProps<DBSwitchProps>({});
 
@@ -88,11 +88,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				}
 				return;
 			}
-			if (
-				state.hasValidState() &&
-				_ref?.validity?.valid &&
-				props.required
-			) {
+			if (state.hasValidState() && _ref?.validity?.valid && props.required) {
 				state._descByIds = state._validMessageId!;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -111,10 +107,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			state._descByIds = undefined;
 		},
-		handleChange: (
-			event: ChangeEvent<HTMLInputElement>,
-			reset?: boolean
-		) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
@@ -128,7 +121,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					if (props.onChange) {
 						props.onChange(event);
 					}
-				}
+				},
 			});
 			state.handleValidation();
 
@@ -136,7 +129,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				angular: () => {
 					handleFrameworkEventAngular(state, event, 'checked');
 				},
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
@@ -160,13 +153,12 @@ export default function DBSwitch(props: DBSwitchProps) {
 			}
 		},
 		resetIds: () => {
-			const mId =
-				props.id ?? props.propOverrides?.id ?? `switch-${uuid()}`;
+			const mId = props.id ?? props.propOverrides?.id ?? `switch-${uuid()}`;
 			state._id = mId;
 			state._messageId = `${mId}${DEFAULT_MESSAGE_ID_SUFFIX}`;
 			state._validMessageId = `${mId}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
 			state._invalidMessageId = `${mId}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
-		}
+		},
 	});
 
 	onMount(() => {
@@ -190,7 +182,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.showMessage,
 		props.validMessage,
 		props.invalidMessage,
-		props.checked
+		props.checked,
 	]);
 
 	onUpdate(() => {
@@ -204,7 +196,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		if (_ref) {
 			const defaultChecked = useTarget({
 				react: (props as any).defaultChecked,
-				default: undefined
+				default: undefined,
 			});
 
 			let controller = state.abortController;
@@ -215,11 +207,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			addCheckedResetEventListener(
 				_ref,
-				{ checked: props.checked, defaultChecked },
+				{checked: props.checked, defaultChecked},
 				(event) => {
 					state.handleChange(event, true);
 				},
-				controller.signal
+				controller.signal,
 			);
 		}
 	}, [_ref]);
@@ -237,7 +229,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-variant={props.variant}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
-			class={cls('db-switch', props.className)}>
+			class={cls('db-switch', props.className)}
+		>
 			<label htmlFor={state._id}>
 				<input
 					id={state._id}
@@ -247,9 +240,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					checked={getBoolean(props.checked, 'checked')}
 					value={props.value}
 					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-invalid={
-						props.validation === 'invalid' ? 'true' : undefined
-					}
+					aria-invalid={props.validation === 'invalid' ? 'true' : undefined}
 					aria-describedby={state._descByIds}
 					name={props.name}
 					required={getBoolean(props.required, 'required')}
@@ -264,9 +255,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
-					onKeyDown={(
-						event: GeneralKeyboardEvent<HTMLInputElement>
-					) => state.handleKeyDown(event)}
+					onKeyDown={(event: GeneralKeyboardEvent<HTMLInputElement>) =>
+						state.handleKeyDown(event)
+					}
 				/>
 				<Show when={props.label}>{props.label}</Show>
 				{props.children}
@@ -277,7 +268,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 					id={state._messageId}
 					size="small"
 					icon={props.messageIcon}
-					semantic="adaptive">
+					semantic="adaptive"
+				>
 					{props.message}
 				</DBInfotext>
 			</Show>
@@ -285,14 +277,12 @@ export default function DBSwitch(props: DBSwitchProps) {
 				<DBInfotext
 					id={state._validMessageId}
 					size="small"
-					semantic="successful">
+					semantic="successful"
+				>
 					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
+			<DBInfotext id={state._invalidMessageId} size="small" semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
 			<span data-visually-hidden="true" role="status">

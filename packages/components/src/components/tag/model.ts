@@ -8,7 +8,7 @@ import type {
 	NoTextProps,
 	OverflowProps,
 	SemanticProps,
-	ShowIconProps
+	ShowIconProps,
 } from '../../shared/model';
 
 export const TagBehaviorList = ['static', 'removable'] as const;

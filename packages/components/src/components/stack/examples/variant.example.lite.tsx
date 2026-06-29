@@ -1,13 +1,13 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBDivider from '../../divider/divider.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBStack from '../stack.lite';
-import { StorybookStackArgTypes } from './_stack.arg.types';
+import {StorybookStackArgTypes} from './_stack.arg.types';
 
 useMetadata({
 	storybookTitle: 'Variant',
 	storybookNames: ['(Default) Simple', 'Divider'],
-	storybookArgTypes: StorybookStackArgTypes
+	storybookArgTypes: StorybookStackArgTypes,
 });
 
 export default function StackVariant() {
@@ -21,12 +21,13 @@ export default function StackVariant() {
 					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
-				}}>
+					width: '200px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Simple
 				</DBInfotext>
-				<DBStack style={{ padding: 'var(--db-spacing-fixed-xs)' }}>
+				<DBStack style={{padding: 'var(--db-spacing-fixed-xs)'}}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -44,14 +45,16 @@ export default function StackVariant() {
 					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
-				}}>
+					width: '200px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Divider
 				</DBInfotext>
 				<DBStack
-					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
-					variant="divider">
+					style={{padding: 'var(--db-spacing-fixed-xs)'}}
+					variant="divider"
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

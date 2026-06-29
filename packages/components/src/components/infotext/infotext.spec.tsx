@@ -1,19 +1,19 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/experimental-ct-react';
+import {expect, test} from '@playwright/experimental-ct-react';
 
-import { DBInfotext } from './index';
+import {DBInfotext} from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT, SEMANTICS } from '../../shared/constants.ts';
+import {DEFAULT_VIEWPORT, SEMANTICS} from '../../shared/constants.ts';
 
 const comp: any = <DBInfotext>Test</DBInfotext>;
 
 const testComponent = () => {
-	test('should contain text', async ({ mount }) => {
+	test('should contain text', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
@@ -22,7 +22,7 @@ const testComponent = () => {
 const testVariants = () => {
 	for (const semantic of SEMANTICS) {
 		test(`should match screenshot for semantic ${semantic}`, async ({
-			mount
+			mount,
 		}) => {
 			const variantComp: any = (
 				<DBInfotext semantic={semantic}>Test</DBInfotext>
@@ -33,14 +33,14 @@ const testVariants = () => {
 	}
 };
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+	test('should have same aria-snapshot', async ({mount}, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have A11y issues', async ({ page, mount }) => {
+	test('should not have A11y issues', async ({page, mount}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		const accessibilityScanResults = await new AxeBuilder({page})
 			.include('.db-infotext')
 			.analyze();
 
@@ -49,7 +49,7 @@ const testA11y = () => {
 };
 
 test.describe('DBInfotext', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
+	test.use({viewport: DEFAULT_VIEWPORT});
 	testComponent();
 	testVariants();
 	testA11y();

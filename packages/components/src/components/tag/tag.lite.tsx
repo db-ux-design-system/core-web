@@ -4,13 +4,13 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { DEFAULT_REMOVE } from '../../shared/constants';
-import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString } from '../../utils';
+import {DEFAULT_REMOVE} from '../../shared/constants';
+import {ClickEvent} from '../../shared/model';
+import {cls, getBooleanAsString} from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
-import { DBTagProps, DBTagState } from './model';
+import {DBTagProps, DBTagState} from './model';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
@@ -33,7 +33,7 @@ export default function DBTag(props: DBTagProps) {
 
 			// TODO: We should think this through again, if we would really like to have default and especially english, instead of german labels in here
 			return DEFAULT_REMOVE;
-		}
+		},
 	});
 
 	return (
@@ -46,11 +46,12 @@ export default function DBTag(props: DBTagProps) {
 			data-icon={props.icon}
 			data-show-check-state={getBooleanAsString(
 				props.showCheckState ?? true,
-				'showCheckState'
+				'showCheckState',
 			)}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-no-text={getBooleanAsString(props.noText, 'noText')}
-			data-overflow={getBooleanAsString(props.overflow, 'overflow')}>
+			data-overflow={getBooleanAsString(props.overflow, 'overflow')}
+		>
 			<Slot name="content" />
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
@@ -64,10 +65,9 @@ export default function DBTag(props: DBTagProps) {
 					data-size="small"
 					data-no-text="true"
 					data-variant="ghost"
-					type="button">
-					<DBTooltip variant="label">
-						{state.getRemoveButtonText()}
-					</DBTooltip>
+					type="button"
+				>
+					<DBTooltip variant="label">{state.getRemoveButtonText()}</DBTooltip>
 				</button>
 			</Show>
 		</div>

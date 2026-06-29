@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBLink, DBStack } from "@components";
+import {DBLink, DBStack} from '@components';
 import {
 	type ColumnFiltersState,
 	getCoreRowModel,
@@ -11,20 +11,15 @@ import {
 	getPaginationRowModel,
 	getSortedRowModel,
 	type GroupingState,
-	useVueTable
-} from "@tanstack/vue-table";
-import { ref, watch } from "vue";
-import ActionButtons from "./components/ActionButtons.vue";
-import CustomTable from "./components/CustomTable.vue";
-import TableControls from "./components/TableControls.vue";
-import { useSkipper } from "./hooks";
-import { makeData } from "./makeData";
-import {
-	columns,
-	defaultColumn,
-	fuzzyFilter,
-	getTableMeta
-} from "./tableModels";
+	useVueTable,
+} from '@tanstack/vue-table';
+import {ref, watch} from 'vue';
+import ActionButtons from './components/ActionButtons.vue';
+import CustomTable from './components/CustomTable.vue';
+import TableControls from './components/TableControls.vue';
+import {useSkipper} from './hooks';
+import {makeData} from './makeData';
+import {columns, defaultColumn, fuzzyFilter, getTableMeta} from './tableModels';
 
 const data = ref(makeData(1000));
 const columnVisibility = ref({});
@@ -32,7 +27,7 @@ const grouping = ref<GroupingState>([]);
 const rowSelection = ref({});
 const columnPinning = ref({});
 const columnFilters = ref<ColumnFiltersState>([]);
-const globalFilter = ref("");
+const globalFilter = ref('');
 
 const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper().value;
 
@@ -52,41 +47,31 @@ const table = useVueTable({
 	getFacetedMinMaxValues: getFacetedMinMaxValues(),
 	onColumnFiltersChange: (updater) => {
 		columnFilters.value =
-			typeof updater === "function"
-				? updater(columnFilters.value)
-				: updater;
+			typeof updater === 'function' ? updater(columnFilters.value) : updater;
 	},
 	onGlobalFilterChange: (updater) => {
 		globalFilter.value =
-			typeof updater === "function"
-				? updater(globalFilter.value)
-				: updater;
+			typeof updater === 'function' ? updater(globalFilter.value) : updater;
 	},
 	globalFilterFn: fuzzyFilter,
 	autoResetPageIndex,
 	enableColumnResizing: true,
-	columnResizeMode: "onChange",
+	columnResizeMode: 'onChange',
 	onColumnVisibilityChange: (updater) => {
 		columnVisibility.value =
-			typeof updater === "function"
-				? updater(columnVisibility.value)
-				: updater;
+			typeof updater === 'function' ? updater(columnVisibility.value) : updater;
 	},
 	onGroupingChange: (updater) => {
 		grouping.value =
-			typeof updater === "function" ? updater(grouping.value) : updater;
+			typeof updater === 'function' ? updater(grouping.value) : updater;
 	},
 	onColumnPinningChange: (updater) => {
 		columnPinning.value =
-			typeof updater === "function"
-				? updater(columnPinning.value)
-				: updater;
+			typeof updater === 'function' ? updater(columnPinning.value) : updater;
 	},
 	onRowSelectionChange: (updater) => {
 		rowSelection.value =
-			typeof updater === "function"
-				? updater(rowSelection.value)
-				: updater;
+			typeof updater === 'function' ? updater(rowSelection.value) : updater;
 	},
 	meta: getTableMeta((updater) => {
 		data.value = updater(data.value);
@@ -109,35 +94,35 @@ const table = useVueTable({
 		},
 		get rowSelection() {
 			return rowSelection.value;
-		}
+		},
 	},
 	initialState: {
 		pagination: {
-			pageSize: 5
-		}
+			pageSize: 5,
+		},
 	},
 	debugTable: true,
 	debugHeaders: true,
-	debugColumns: true
+	debugColumns: true,
 });
 
 watch(
 	() => table.getState().columnFilters[0]?.id,
 	(newId) => {
-		if (newId === "fullName") {
-			if (table.getState().sorting[0]?.id !== "fullName") {
-				table.setSorting([{ id: "fullName", desc: false }]);
+		if (newId === 'fullName') {
+			if (table.getState().sorting[0]?.id !== 'fullName') {
+				table.setSorting([{id: 'fullName', desc: false}]);
 			}
 		}
-	}
+	},
 );
 </script>
 
 <template>
 	<DBStack>
 		<p>
-			This example demonstrates a complex table with lots of different
-			features and functionality by using
+			This example demonstrates a complex table with lots of different features
+			and functionality by using
 			<DBLink
 				content="external"
 				target="_blank"

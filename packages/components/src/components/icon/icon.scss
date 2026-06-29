@@ -1,5 +1,5 @@
-@use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/helpers";
+@use '@db-ux/core-foundations/build/styles/icons';
+@use '@db-ux/core-foundations/build/styles/helpers';
 
 .db-icon {
 	@include icons.is-icon-text-replace;

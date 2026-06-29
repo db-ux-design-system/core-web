@@ -8,8 +8,8 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 
 ```tsx App.tsx
 // App.tsx
-import { Link } from "react-router-dom";
-import { DBNavigationItem } from "@db-ux/react-core-components";
+import {Link} from 'react-router-dom';
+import {DBNavigationItem} from '@db-ux/react-core-components';
 
 const App = () => (
 	<>

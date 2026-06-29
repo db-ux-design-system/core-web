@@ -1,1 +1,1 @@
-export { default as DBCustomSelectList } from './custom-select-list';
+export {default as DBCustomSelectList} from './custom-select-list';

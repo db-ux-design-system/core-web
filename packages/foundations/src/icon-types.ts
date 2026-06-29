@@ -1,4 +1,4 @@
-import { BaseIconTypes } from './base-icon-types.js';
+import {BaseIconTypes} from './base-icon-types.js';
 
 /** Provide default values for a string literal type but allow any other string as well.
  * @example* type Keys = "DEFAULT" | LooseAutocomplete

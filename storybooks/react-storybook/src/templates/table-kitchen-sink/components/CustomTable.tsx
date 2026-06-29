@@ -7,19 +7,19 @@ import {
 	DBTableHead,
 	DBTableHeaderCell,
 	DBTableRow,
-	DBTooltip
+	DBTooltip,
 } from '@components';
 import {
 	flexRender,
 	type HeaderGroup,
 	type Row,
 	type RowData,
-	type Table
+	type Table,
 } from '@tanstack/react-table';
 import Filter from './Filter';
 
 function getTableHeaderGroups<T extends RowData>(
-	table: Table<T>
+	table: Table<T>,
 ): [HeaderGroup<T>[], HeaderGroup<T>[]] {
 	return [table.getHeaderGroups(), table.getFooterGroups()];
 }
@@ -32,7 +32,7 @@ type Props<T extends RowData> = {
 	table: Table<T>;
 };
 
-export function CustomTable<T extends RowData>({ table }: Props<T>) {
+export function CustomTable<T extends RowData>({table}: Props<T>) {
 	const [headerGroups, footerGroup] = getTableHeaderGroups(table);
 
 	return (
@@ -40,8 +40,9 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 			columnSizes={{
 				0: 'min-content',
 				4: 'min-content',
-				5: 'min-content'
-			}}>
+				5: 'min-content',
+			}}
+		>
 			<DBTableHead>
 				{headerGroups.map((headerGroup) => (
 					<DBTableRow interactive key={headerGroup.id}>
@@ -49,7 +50,8 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 							<DBTableHeaderCell
 								className="relative"
 								key={header.id}
-								colSpan={header.colSpan}>
+								colSpan={header.colSpan}
+							>
 								{header.isPlaceholder ? null : (
 									<div
 										style={{
@@ -57,12 +59,13 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 											gap: 'var(--db-spacing-fixed-3xs)',
 											overflow: 'hidden',
 											inlineSize: 'fit-content',
-											blockSize: 'fit-content'
-										}}>
-										<span style={{ whiteSpace: 'nowrap' }}>
+											blockSize: 'fit-content',
+										}}
+									>
+										<span style={{whiteSpace: 'nowrap'}}>
 											{flexRender(
 												header.column.columnDef.header,
-												header.getContext()
+												header.getContext(),
 											)}
 										</span>
 										{header.column.getCanSort() && (
@@ -73,16 +76,15 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 												noText
 												icon={
 													header.column.getIsSorted()
-														? header.column.getIsSorted() ===
-															'asc'
+														? header.column.getIsSorted() === 'asc'
 															? 'sort_down'
 															: 'sort_up'
 														: 'arrows_vertical'
-												}>
+												}
+											>
 												<DBTooltip placement="top">
 													{header.column.getIsSorted()
-														? header.column.getIsSorted() ===
-															'asc'
+														? header.column.getIsSorted() === 'asc'
 															? 'Sort descending'
 															: 'Sort ascending'
 														: 'Sort ascending'}
@@ -91,10 +93,7 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 										)}
 
 										{header.column.getCanFilter() ? (
-											<Filter
-												column={header.column}
-												table={table}
-											/>
+											<Filter column={header.column} table={table} />
 										) : null}
 									</div>
 								)}
@@ -108,10 +107,7 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 					<DBTableRow interactive key={row.id}>
 						{getRowGroup(row).map((cell) => (
 							<DBTableDataCell key={cell.id}>
-								{flexRender(
-									cell.column.columnDef.cell,
-									cell.getContext()
-								)}
+								{flexRender(cell.column.columnDef.cell, cell.getContext())}
 							</DBTableDataCell>
 						))}
 					</DBTableRow>
@@ -121,14 +117,12 @@ export function CustomTable<T extends RowData>({ table }: Props<T>) {
 				{footerGroup.map((footerGroup) => (
 					<DBTableRow key={footerGroup.id}>
 						{footerGroup.headers.map((header) => (
-							<DBTableHeaderCell
-								key={header.id}
-								colSpan={header.colSpan}>
+							<DBTableHeaderCell key={header.id} colSpan={header.colSpan}>
 								{header.isPlaceholder
 									? null
 									: flexRender(
 											header.column.columnDef.footer,
-											header.getContext()
+											header.getContext(),
 										)}
 							</DBTableHeaderCell>
 						))}

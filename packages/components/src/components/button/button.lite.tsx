@@ -3,15 +3,15 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
-import type { DBButtonProps, DBButtonState } from './model';
+import {cls, getBoolean, getBooleanAsString} from '../../utils';
+import type {DBButtonProps, DBButtonState} from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled']
-	}
+		nativeAttributes: ['disabled'],
+	},
 });
 
 useDefaultProps<DBButtonProps>({});
@@ -29,7 +29,7 @@ export default function DBButton(props: DBButtonProps) {
 				return 'button';
 			}
 			return 'submit';
-		}
+		},
 	});
 
 	return (
@@ -47,7 +47,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-icon-trailing={props.iconTrailing}
 			data-show-icon-trailing={getBooleanAsString(
 				props.showIconTrailing,
-				'showIconTrailing'
+				'showIconTrailing',
 			)}
 			data-size={props.size}
 			data-width={props.width}
@@ -58,7 +58,8 @@ export default function DBButton(props: DBButtonProps) {
 			form={props.form}
 			value={props.value}
 			command={props.command}
-			commandfor={props.commandfor}>
+			commandfor={props.commandfor}
+		>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</button>

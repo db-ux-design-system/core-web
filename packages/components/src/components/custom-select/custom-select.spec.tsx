@@ -1,15 +1,15 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/experimental-ct-react';
+import {expect, test} from '@playwright/experimental-ct-react';
 
-import { DBCustomSelect } from './index';
+import {DBCustomSelect} from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import {DEFAULT_VIEWPORT} from '../../shared/constants.ts';
 
 // Helper function to wait for focus changes instead of using hard-coded timeouts
 const waitForFocusChange = async (
 	page: any,
 	expectedValue: string,
-	timeout = 5000
+	timeout = 5000,
 ) => {
 	await page.waitForFunction(
 		(expected: any) => {
@@ -17,77 +17,81 @@ const waitForFocusChange = async (
 			return activeElement && activeElement.value === expected;
 		},
 		expectedValue,
-		{ timeout }
+		{timeout},
 	);
 };
 
 const comp: any = (
 	<DBCustomSelect
 		options={[
-			{ value: 'Option 1' },
-			{ value: 'Option 2' },
-			{ value: 'Option 3' },
-			{ value: 'Option 4' },
-			{ value: 'Option 5' }
+			{value: 'Option 1'},
+			{value: 'Option 2'},
+			{value: 'Option 3'},
+			{value: 'Option 4'},
+			{value: 'Option 5'},
 		]}
 		label="Test"
-		placeholder="Placeholder"></DBCustomSelect>
+		placeholder="Placeholder"
+	></DBCustomSelect>
 );
 
 const multiple: any = (
 	<DBCustomSelect
 		options={[
-			{ value: 'Option 1' },
-			{ value: 'Option 2' },
-			{ value: 'Option 3' },
-			{ value: 'Option 4' },
-			{ value: 'Option 5' }
+			{value: 'Option 1'},
+			{value: 'Option 2'},
+			{value: 'Option 3'},
+			{value: 'Option 4'},
+			{value: 'Option 5'},
 		]}
 		label="Test"
 		multiple={true}
-		placeholder="Placeholder"></DBCustomSelect>
+		placeholder="Placeholder"
+	></DBCustomSelect>
 );
 
 const multipleSearchSelect: any = (
 	<DBCustomSelect
 		options={[
-			{ value: 'Option 1' },
-			{ value: 'Option 2' },
-			{ value: 'Option 3' },
-			{ value: 'Option 4' },
-			{ value: 'Option 5' }
+			{value: 'Option 1'},
+			{value: 'Option 2'},
+			{value: 'Option 3'},
+			{value: 'Option 4'},
+			{value: 'Option 5'},
 		]}
 		label="Test"
 		multiple={true}
 		showSearch={true}
 		showSelectAll={true}
-		placeholder="Placeholder"></DBCustomSelect>
+		placeholder="Placeholder"
+	></DBCustomSelect>
 );
 
 const selectAllSelect: any = (
 	<DBCustomSelect
 		options={[
-			{ value: 'Option 1' },
-			{ value: 'Option 2' },
-			{ value: 'Option 3' },
-			{ value: 'Option 4' },
-			{ value: 'Option 5' }
+			{value: 'Option 1'},
+			{value: 'Option 2'},
+			{value: 'Option 3'},
+			{value: 'Option 4'},
+			{value: 'Option 5'},
 		]}
 		label="Test"
 		multiple={true}
 		showSelectAll={true}
-		placeholder="Placeholder"></DBCustomSelect>
+		placeholder="Placeholder"
+	></DBCustomSelect>
 );
 
 const optionGroupsComp: any = (
 	<DBCustomSelect
 		options={[
-			{ label: 'Option group 1', isGroupTitle: true },
-			{ value: 'G1:Option 1' },
-			{ value: 'G1:Option 2' },
-			{ label: 'Option group 2', isGroupTitle: true },
-			{ value: 'G2:Option 1' },
-			{ value: 'G2:Option 2' }
+			{label: 'Option group 1', isGroupTitle: true},
+			{value: 'G1:Option 1'},
+			{value: 'G1:Option 2'},
+			{label: 'Option group 2', isGroupTitle: true},
+			{value: 'G2:Option 1'},
+			{value: 'G2:Option 2'},
 		]}
 		label="Test Option Groups"
 		placeholder="Placeholder"
@@ -97,9 +101,9 @@ const optionGroupsComp: any = (
 const tagSelectWithCustomRemoveTexts: any = (
 	<DBCustomSelect
 		options={[
-			{ value: 'Red', label: 'Red Color' },
-			{ value: 'Blue', label: 'Blue Color' },
-			{ value: 'Green', label: 'Green Color' }
+			{value: 'Red', label: 'Red Color'},
+			{value: 'Blue', label: 'Blue Color'},
+			{value: 'Green', label: 'Green Color'},
 		]}
 		label="Colors"
 		multiple={true}
@@ -107,41 +111,42 @@ const tagSelectWithCustomRemoveTexts: any = (
 		removeTagsTexts={[
 			'Remove Red Color',
 			'Remove Blue Color',
-			'Remove Green Color'
+			'Remove Green Color',
 		]}
 		values={['Blue', 'Green']}
-		placeholder="Select colors"></DBCustomSelect>
+		placeholder="Select colors"
+	></DBCustomSelect>
 );
 
 const testComponent = () => {
-	test('should contain text', async ({ mount }) => {
+	test('should contain text', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+	test('should have same aria-snapshot', async ({mount}, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have any A11y issues', async ({ page, mount }) => {
+	test('should not have any A11y issues', async ({page, mount}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		const accessibilityScanResults = await new AxeBuilder({page})
 			.include('.db-custom-select')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
-	test('option groups should be accessible', async ({ page, mount }) => {
+	test('option groups should be accessible', async ({page, mount}) => {
 		await mount(optionGroupsComp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		const accessibilityScanResults = await new AxeBuilder({page})
 			.include('.db-custom-select')
 			.analyze();
 
@@ -150,7 +155,7 @@ const testA11y = () => {
 };
 
 const testAction = () => {
-	test('click on single item', async ({ page, mount }) => {
+	test('click on single item', async ({page, mount}) => {
 		const component = await mount(comp);
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
@@ -161,7 +166,7 @@ const testAction = () => {
 		await expect(summary).toContainText('Option 1');
 	});
 
-	test('click on multiple item', async ({ page, mount }) => {
+	test('click on multiple item', async ({page, mount}) => {
 		const component = await mount(multiple);
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
@@ -173,10 +178,10 @@ const testAction = () => {
 		await expect(summary).toContainText('Option 1');
 	});
 
-	test('test search', async ({ mount }) => {
+	test('test search', async ({mount}) => {
 		const component = await mount(multipleSearchSelect);
 		const summary = component.locator('summary');
-		await summary.click({ force: true });
+		await summary.click({force: true});
 		const inputs = await component.locator('input').all();
 		expect(inputs.length).toBe(7);
 		await inputs[0].fill('test');
@@ -188,7 +193,7 @@ const testAction = () => {
 		await expect(inputs[6]).not.toBeVisible();
 	});
 
-	test('test select all', async ({ page, mount }) => {
+	test('test select all', async ({page, mount}) => {
 		const component = await mount(selectAllSelect);
 		const summary = component.locator('summary');
 		await page.keyboard.press('Tab');
@@ -198,11 +203,11 @@ const testAction = () => {
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText(
-			'Option 1, Option 2, Option 3, Option 4, Option 5'
+			'Option 1, Option 2, Option 3, Option 4, Option 5',
 		);
 	});
 
-	test('select single item with Enter key', async ({ page, mount }) => {
+	test('select single item with Enter key', async ({page, mount}) => {
 		const component = await mount(comp);
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
@@ -215,7 +220,7 @@ const testAction = () => {
 		await expect(component.locator('details')).not.toHaveAttribute('open');
 	});
 
-	test('select multiple item with Enter key', async ({ page, mount }) => {
+	test('select multiple item with Enter key', async ({page, mount}) => {
 		const component = await mount(multiple);
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
@@ -231,7 +236,7 @@ const testAction = () => {
 
 	test('select first filtered item with Enter key from search field', async ({
 		page,
-		mount
+		mount,
 	}) => {
 		const component = await mount(multipleSearchSelect);
 		const summary = component.locator('summary');
@@ -264,7 +269,7 @@ const testAction = () => {
 
 	test('select first available option with Enter when only one option remains after filtering', async ({
 		page,
-		mount
+		mount,
 	}) => {
 		const component = await mount(multipleSearchSelect);
 		const summary = component.locator('summary');
@@ -297,7 +302,7 @@ const testAction = () => {
 
 	test('option groups keyboard navigation: should navigate between option groups correctly', async ({
 		page,
-		mount
+		mount,
 	}) => {
 		const component = await mount(optionGroupsComp);
 
@@ -309,7 +314,7 @@ const testAction = () => {
 
 		// Should be focused on G1:Option 1
 		const focused1 = await page.evaluate(
-			() => (document.activeElement as HTMLInputElement)?.value
+			() => (document.activeElement as HTMLInputElement)?.value,
 		);
 		expect(focused1).toBe('G1:Option 1');
 
@@ -317,7 +322,7 @@ const testAction = () => {
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'G1:Option 2');
 		const focused2 = await page.evaluate(
-			() => (document.activeElement as HTMLInputElement)?.value
+			() => (document.activeElement as HTMLInputElement)?.value,
 		);
 		expect(focused2).toBe('G1:Option 2');
 
@@ -327,7 +332,7 @@ const testAction = () => {
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'G2:Option 1');
 		const focused3 = await page.evaluate(
-			() => (document.activeElement as HTMLInputElement)?.value
+			() => (document.activeElement as HTMLInputElement)?.value,
 		);
 		expect(focused3).toBe('G2:Option 1'); // This was previously broken
 
@@ -335,7 +340,7 @@ const testAction = () => {
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'G2:Option 2');
 		const focused4 = await page.evaluate(
-			() => (document.activeElement as HTMLInputElement)?.value
+			() => (document.activeElement as HTMLInputElement)?.value,
 		);
 		expect(focused4).toBe('G2:Option 2');
 
@@ -343,20 +348,20 @@ const testAction = () => {
 		await page.keyboard.press('ArrowUp');
 		await waitForFocusChange(page, 'G2:Option 1');
 		const focused5 = await page.evaluate(
-			() => (document.activeElement as HTMLInputElement)?.value
+			() => (document.activeElement as HTMLInputElement)?.value,
 		);
 		expect(focused5).toBe('G2:Option 1');
 
 		await page.keyboard.press('ArrowUp');
 		await waitForFocusChange(page, 'G1:Option 2');
 		const focused6 = await page.evaluate(
-			() => (document.activeElement as HTMLInputElement)?.value
+			() => (document.activeElement as HTMLInputElement)?.value,
 		);
 		expect(focused6).toBe('G1:Option 2');
 	});
 
 	test('custom removeTagsTexts should correspond to correct options', async ({
-		mount
+		mount,
 	}) => {
 		const component = await mount(tagSelectWithCustomRemoveTexts);
 
@@ -365,9 +370,7 @@ const testAction = () => {
 		await expect(tags).toHaveCount(2);
 
 		// Get the remove buttons and their tooltip text
-		const removeButtons = component.locator(
-			'.db-tag .db-tab-remove-button'
-		);
+		const removeButtons = component.locator('.db-tag .db-tab-remove-button');
 		await expect(removeButtons).toHaveCount(2);
 
 		// The first selected option is 'Blue' (index 1 in options array)
@@ -385,17 +388,16 @@ const testAction = () => {
 };
 
 const testValuesReset = () => {
-	test('should clear tags when values prop is set to null', async ({
-		mount
-	}) => {
+	test('should clear tags when values prop is set to null', async ({mount}) => {
 		// Start with selected values
 		const componentWithValues: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={true}
 				values={['Option 1', 'Option 2']}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		const component = await mount(componentWithValues);
@@ -407,11 +409,12 @@ const testValuesReset = () => {
 		// Reset values to null
 		const componentWithNullValues: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={true}
 				values={null}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		await component.unmount();
@@ -425,16 +428,17 @@ const testValuesReset = () => {
 	});
 
 	test('should clear tags when values prop is set to undefined', async ({
-		mount
+		mount,
 	}) => {
 		// Start with selected values
 		const componentWithValues: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={true}
 				values={['Option 1']}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		const component = await mount(componentWithValues);
@@ -446,11 +450,12 @@ const testValuesReset = () => {
 		// Reset values to undefined
 		const componentWithUndefinedValues: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={true}
 				values={undefined}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		await component.unmount();
@@ -463,16 +468,17 @@ const testValuesReset = () => {
 	});
 
 	test('should clear tags when values prop is set to empty array', async ({
-		mount
+		mount,
 	}) => {
 		// Start with selected values
 		const componentWithValues: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={true}
 				values={['Option 1', 'Option 2']}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		const component = await mount(componentWithValues);
@@ -484,11 +490,12 @@ const testValuesReset = () => {
 		// Reset values to empty array
 		const componentWithEmptyArray: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={true}
 				values={[]}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		await component.unmount();
@@ -501,17 +508,16 @@ const testValuesReset = () => {
 		await expect(resetSummary).toContainText('');
 	});
 
-	test('should handle single select values reset to null', async ({
-		mount
-	}) => {
+	test('should handle single select values reset to null', async ({mount}) => {
 		// Start with selected value
 		const componentWithValue: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={false}
 				values={['Option 1']}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		const component = await mount(componentWithValue);
@@ -523,11 +529,12 @@ const testValuesReset = () => {
 		// Reset values to null
 		const componentWithNullValue: any = (
 			<DBCustomSelect
-				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				options={[{value: 'Option 1'}, {value: 'Option 2'}]}
 				label="Test"
 				multiple={false}
 				values={null}
-				placeholder="Placeholder"></DBCustomSelect>
+				placeholder="Placeholder"
+			></DBCustomSelect>
 		);
 
 		await component.unmount();
@@ -541,7 +548,7 @@ const testValuesReset = () => {
 };
 
 test.describe('DBCustomSelect', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
+	test.use({viewport: DEFAULT_VIEWPORT});
 	testComponent();
 	testAction();
 	testValuesReset();

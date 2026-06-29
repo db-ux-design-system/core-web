@@ -1,5 +1,5 @@
-import type { InputType } from 'storybook/internal/csf';
-import { StorybookIconArgTypes } from '../../../shared/examples/_icons.arg.types';
+import type {InputType} from 'storybook/internal/csf';
+import {StorybookIconArgTypes} from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookInfotextArgTypes: Record<string, InputType> = {
 	semantic: {
@@ -10,12 +10,12 @@ export const StorybookInfotextArgTypes: Record<string, InputType> = {
 			'critical',
 			'informational',
 			'warning',
-			'successful'
-		]
+			'successful',
+		],
 	},
-	size: { control: 'select', options: ['small', 'medium'] },
+	size: {control: 'select', options: ['small', 'medium']},
 	...StorybookIconArgTypes,
-	text: { control: 'text' },
-	id: { control: 'text' },
-	autofocus: { control: 'boolean' }
+	text: {control: 'text'},
+	id: {control: 'text'},
+	autofocus: {control: 'boolean'},
 };

@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBSwitch from '../switch.lite';
-import { StorybookSwitchArgTypes } from './_switch.arg.types';
+import {StorybookSwitchArgTypes} from './_switch.arg.types';
 
 useMetadata({
 	storybookTitle: 'Validation',
 	storybookNames: ['(Default) No validation', 'Invalid', 'Valid'],
-	storybookArgTypes: StorybookSwitchArgTypes
+	storybookArgTypes: StorybookSwitchArgTypes,
 });
 
 export default function SwitchValidation() {
@@ -15,10 +15,7 @@ export default function SwitchValidation() {
 			<DBSwitch validation="invalid" invalidMessage="Invalid Message">
 				Invalid
 			</DBSwitch>
-			<DBSwitch
-				validation="valid"
-				validMessage="Valid message"
-				checked={true}>
+			<DBSwitch validation="valid" validMessage="Valid message" checked={true}>
 				Valid
 			</DBSwitch>
 		</Fragment>

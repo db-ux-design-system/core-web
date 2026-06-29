@@ -2,7 +2,7 @@ import {
 	DBButton,
 	DBCard,
 	DBInfotext,
-	DBInput
+	DBInput,
 } from '../../../../output/react/src';
 
 const ValidationExample = () => (
@@ -13,9 +13,7 @@ const ValidationExample = () => (
 			<DBCard>
 				<h4>No custom validation</h4>
 				<DBInfotext semantic="informational">
-					<span>
-						default browser behavior with auto changing colors
-					</span>
+					<span>default browser behavior with auto changing colors</span>
 				</DBInfotext>
 				<form>
 					<DBInput
@@ -32,9 +30,7 @@ const ValidationExample = () => (
 			<DBCard>
 				<h4>With custom validation (valid)</h4>
 				<DBInfotext semantic="informational">
-					<span>
-						fixed validation, no auto changing of colors and bad UX
-					</span>
+					<span>fixed validation, no auto changing of colors and bad UX</span>
 				</DBInfotext>
 				<form>
 					<DBInput

@@ -27,10 +27,7 @@ For general installation and configuration take a look at the [components](https
 			<summary class="db-custom-select-form-field">
 				<!-- Add selected options here with JS-->
 			</summary>
-			<article
-				data-spacing="none"
-				class="db-custom-select-dropdown db-card"
-			>
+			<article data-spacing="none" class="db-custom-select-dropdown db-card">
 				<section class="db-custom-select-list">
 					<ul>
 						<li class="db-custom-select-list-item db-radio">

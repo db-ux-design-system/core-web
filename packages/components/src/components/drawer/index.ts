@@ -1,1 +1,1 @@
-export { default as DBDrawer } from './drawer';
+export {default as DBDrawer} from './drawer';

@@ -1,10 +1,10 @@
-import { replaceInFileSync } from 'replace-in-file';
+import {replaceInFileSync} from 'replace-in-file';
 
-import { writeFileSync } from 'node:fs';
+import {writeFileSync} from 'node:fs';
 
-import components, { Overwrite } from './components.js';
+import components, {Overwrite} from './components.js';
 
-import { runReplacements, transformToUpperComponentName } from '../utils';
+import {runReplacements, transformToUpperComponentName} from '../utils';
 
 /**
  * This replacement inserts everything used for form elements to work with reactive forms and ngModel in angular
@@ -13,7 +13,7 @@ const setControlValueAccessorReplacements = (
 	replacements: Overwrite[],
 	upperComponentName: string,
 	valueAccessor: 'checked' | 'value' | string,
-	valueAccessorRequired?: boolean
+	valueAccessorRequired?: boolean,
 ) => {
 	// for native angular support (e.g. reactive forms) we have to implement
 	// the ControlValueAccessor interface with all impacts :/
@@ -22,7 +22,7 @@ const setControlValueAccessorReplacements = (
 		from: '} from "@angular/core";',
 		to:
 			`Renderer2 } from "@angular/core";\n` +
-			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
+			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`,
 	});
 
 	// inserting provider
@@ -33,26 +33,26 @@ const setControlValueAccessorReplacements = (
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: ${upperComponentName},
 			multi: true
-		}],	`
+		}],	`,
 	});
 
 	// implementing interface and constructor
 	replacements.push({
 		from: `implements AfterViewInit`,
-		to: `implements AfterViewInit, ControlValueAccessor`
+		to: `implements AfterViewInit, ControlValueAccessor`,
 	});
 	replacements.push({
 		from: `constructor(`,
-		to: `constructor(private renderer: Renderer2,`
+		to: `constructor(private renderer: Renderer2,`,
 	});
 	// We need `model` to be able to read/write to a signal
 	replacements.push({
 		from: `${valueAccessor} = input`,
-		to: `${valueAccessor} = model`
+		to: `${valueAccessor} = model`,
 	});
 	replacements.push({
 		from: `disabled = input`,
-		to: `disabled = model`
+		to: `disabled = model`,
 	});
 
 	// insert custom interface functions before ngOnInit
@@ -83,7 +83,7 @@ const setControlValueAccessorReplacements = (
 		  this.disabled.set(disabled);
 		}
 
-		ngAfterViewInit()`
+		ngAfterViewInit()`,
 	});
 };
 
@@ -97,14 +97,14 @@ const setDirectiveReplacements = (
 	outputFolder: string,
 	componentName: string,
 	upperComponentName: string,
-	directives: { name: string; ngContentName?: string }[]
+	directives: {name: string; ngContentName?: string}[],
 ) => {
 	for (const directive of directives) {
 		// Add ng-content multiple times to overwrite all
 		for (let i = 0; i < 4; i++) {
 			replacements.push({
 				from: `<ng-content${directive.ngContentName ? ` select="[${directive.ngContentName}]"` : ''}>`,
-				to: `<ng-content *ngTemplateOutlet="db${directive.name}">`
+				to: `<ng-content *ngTemplateOutlet="db${directive.name}">`,
 			});
 		}
 
@@ -112,14 +112,14 @@ const setDirectiveReplacements = (
 			from: `export class ${upperComponentName} implements AfterViewInit, OnDestroy {\n`,
 			to:
 				`export class ${upperComponentName} implements AfterViewInit, OnDestroy {\n` +
-				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
+				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`,
 		});
 
 		replacements.push({
 			from: '@Component({',
 			to:
 				`import { ${directive.name}Directive } from './${directive.name}.directive';\n\n` +
-				'@Component({'
+				'@Component({',
 		});
 
 		writeFileSync(
@@ -132,25 +132,25 @@ const setDirectiveReplacements = (
 \tstandalone: true
 })
 export class ${directive.name}Directive {}
-`
+`,
 		);
 	}
 
 	replacements.push({
 		from: '} from "@angular/core";',
-		to: 'ContentChild, TemplateRef } from  "@angular/core";'
+		to: 'ContentChild, TemplateRef } from  "@angular/core";',
 	});
 
 	const directiveExports = directives
 		.map(
 			(directive) =>
-				`export * from './components/${componentName}/${directive.name}.directive';`
+				`export * from './components/${componentName}/${directive.name}.directive';`,
 		)
 		.join('\n');
 	replaceInFileSync({
 		files: `../../${outputFolder}/angular/src/index.ts`,
 		from: `export * from './components/${componentName}';`,
-		to: `export * from './components/${componentName}';\n${directiveExports}`
+		to: `export * from './components/${componentName}';\n${directiveExports}`,
 	});
 };
 
@@ -165,7 +165,7 @@ export default (tmp?: boolean) => {
 		replaceInFileSync({
 			files: indexFile,
 			from: 'default as ',
-			to: ''
+			to: '',
 		});
 
 		const replacements: Overwrite[] = [];
@@ -175,7 +175,7 @@ export default (tmp?: boolean) => {
 				replacements,
 				upperComponentName,
 				component.config.angular.controlValueAccessor, // value / checked / ...
-				component.config.angular.controlValueAccessorRequired // Radio needs a value
+				component.config.angular.controlValueAccessorRequired, // Radio needs a value
 			);
 		}
 
@@ -188,7 +188,7 @@ export default (tmp?: boolean) => {
 				outputFolder,
 				componentName,
 				upperComponentName,
-				component.config.angular.directives
+				component.config.angular.directives,
 			);
 		}
 

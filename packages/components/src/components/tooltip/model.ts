@@ -10,7 +10,7 @@ import type {
 	PopoverState,
 	ResetIdState,
 	TextProps,
-	WrapProps
+	WrapProps,
 } from '../../shared/model';
 
 export const TooltipVariantList = ['description', 'label'] as const;

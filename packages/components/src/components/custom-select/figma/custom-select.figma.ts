@@ -1,4 +1,4 @@
-import { FigmaCodeConnect } from '../../../shared/figma';
+import {FigmaCodeConnect} from '../../../shared/figma';
 
 export type FigmaCustomSelectProps = {
 	placement?: string;
@@ -33,7 +33,7 @@ export const customSelects: FigmaCodeConnect = {
 		'https://www.figma.com/design/FIGMA_FILE?node-id=19383:17804',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=19383-17828',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=19383-17852',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=19383-17876'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=19383-17876',
 	],
 	ccLayerNames: ['Custom Select Form Field', 'Custom Select Dropdown'],
 	props: {
@@ -43,50 +43,50 @@ export const customSelects: FigmaCodeConnect = {
 			value: {
 				'(Def) Bottom': 'bottom',
 				'Bottom-Start': 'bottom-start',
-				'Bottom-End': 'bottom-end'
-			}
+				'Bottom-End': 'bottom-end',
+			},
 		},
 		formFieldWidth: {
 			type: 'enum',
 			key: 'Form Field Width',
 			value: {
 				'(Def) Full': 'full',
-				Auto: 'auto'
-			}
+				Auto: 'auto',
+			},
 		},
 		variant: {
 			type: 'enum',
 			key: 'Variant',
-			value: { Above: 'above', Floating: 'floating' }
+			value: {Above: 'above', Floating: 'floating'},
 		},
 		required: {
 			type: 'boolean',
-			key: 'Required'
+			key: 'Required',
 		},
-		showClearSelection: { type: 'boolean', key: 'Show Clear Selection' },
+		showClearSelection: {type: 'boolean', key: 'Show Clear Selection'},
 		clearSelectionText: {
 			type: 'string',
 			key: 'Clear Selection Text',
-			guardKeys: ['Show Clear Selection']
+			guardKeys: ['Show Clear Selection'],
 		},
 		dropdownWidth: {
 			type: 'enum',
 			key: 'Dropdown Width',
 			value: {
 				Full: 'full',
-				Auto: 'auto'
-			}
+				Auto: 'auto',
+			},
 		},
 		// Custom Select Form Field
 		showRequiredAsterisk: {
 			type: 'boolean',
 			key: 'Show Required Asterisk',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		disabled: {
 			type: 'boolean',
 			key: 'Disabled',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		validation: {
 			type: 'enum',
@@ -94,36 +94,36 @@ export const customSelects: FigmaCodeConnect = {
 			value: {
 				'(Def) No Validation': 'no-validation',
 				Valid: 'valid',
-				Invalid: 'invalid'
+				Invalid: 'invalid',
 			},
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		showIcon: {
 			type: 'boolean',
 			key: 'Show Icon',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		showMessage: {
 			type: 'boolean',
 			key: 'Show Message',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		icon: {
 			type: 'conditionalProp',
 			key: 'Icon',
 			guardKey: 'Show Icon',
 			attrName: 'icon',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		placeholder: {
 			type: 'string',
 			key: 'Placeholder',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		value: {
 			type: 'string',
 			key: 'Text',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		message: {
 			type: 'validationMessage',
@@ -133,45 +133,45 @@ export const customSelects: FigmaCodeConnect = {
 			map: {
 				invalid: 'invalidMessage',
 				valid: 'validMessage',
-				default: 'message'
-			}
+				default: 'message',
+			},
 		},
 		label: {
 			type: 'string',
 			key: 'Label',
 			layer: 'Custom Select Form Field',
-			guardKeys: ['Show Label']
+			guardKeys: ['Show Label'],
 		},
 		showLabel: {
 			type: 'boolean',
 			key: 'Show Label',
-			layer: 'Custom Select Form Field'
+			layer: 'Custom Select Form Field',
 		},
 		// Custom Select Dropdown
 		multiple: {
 			type: 'boolean',
 			key: 'Multiple',
-			layer: 'Custom Select Dropdown'
+			layer: 'Custom Select Dropdown',
 		},
 		showLoading: {
 			type: 'boolean',
 			key: 'Show Loading',
-			layer: 'Custom Select Dropdown'
+			layer: 'Custom Select Dropdown',
 		},
 		showSearch: {
 			type: 'boolean',
 			key: 'Show Search',
-			layer: 'Custom Select Dropdown'
+			layer: 'Custom Select Dropdown',
 		},
 		showSelectAll: {
 			type: 'boolean',
 			key: 'Show Select All',
-			layer: 'Custom Select Dropdown'
+			layer: 'Custom Select Dropdown',
 		},
 		showNoResults: {
 			type: 'boolean',
 			key: 'Show No Results',
-			layer: 'Custom Select Dropdown'
+			layer: 'Custom Select Dropdown',
 		},
 		options: {
 			type: 'nestedInstancesToArray',
@@ -179,18 +179,18 @@ export const customSelects: FigmaCodeConnect = {
 			props: {
 				disabled: {
 					type: 'boolean',
-					key: 'Disabled'
+					key: 'Disabled',
 				},
 				showDivider: {
 					type: 'boolean',
-					key: 'Show Divider'
+					key: 'Show Divider',
 				},
 				isGroupTitle: {
 					type: 'boolean',
-					key: 'Is Group Title'
+					key: 'Is Group Title',
 				},
-				value: { type: 'textContent', key: '✏️ Label' }
-			}
-		}
-	}
+				value: {type: 'textContent', key: '✏️ Label'},
+			},
+		},
+	},
 };

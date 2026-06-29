@@ -24,7 +24,7 @@ const ignoreFolders = [
 	'playwright-report/**/*',
 	'storybooks/**/.storybook/**/*',
 	'storybooks/**/vite.config.ts',
-	'**/vitest.config.ts'
+	'**/vitest.config.ts',
 ];
 
 export default ignoreFolders;

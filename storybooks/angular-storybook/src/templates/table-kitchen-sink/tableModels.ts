@@ -2,20 +2,20 @@ import {
 	sortingFns,
 	type ColumnDef,
 	type FilterFn,
-	type SortingFn
+	type SortingFn,
 } from '@tanstack/angular-table';
 import {
 	compareItems,
 	rankItem,
-	type RankingInfo
+	type RankingInfo,
 } from '@tanstack/match-sorter-utils';
-import type { Person } from './makeData';
+import type {Person} from './makeData';
 
 export const fuzzyFilter: FilterFn<Person> = (
 	row,
 	columnId,
 	value,
-	addMeta
+	addMeta,
 ) => {
 	const itemRank = rankItem(row.getValue(columnId), value);
 	addMeta(itemRank);
@@ -27,7 +27,7 @@ export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
 	if (rowA.columnFiltersMeta[columnId]) {
 		dir = compareItems(
 			rowA.columnFiltersMeta[columnId]! as RankingInfo,
-			rowB.columnFiltersMeta[columnId]! as RankingInfo
+			rowB.columnFiltersMeta[columnId]! as RankingInfo,
 		);
 	}
 	return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
@@ -42,7 +42,7 @@ export const columns: ColumnDef<Person>[] = [
 		id: 'select',
 		header: 'select-header',
 		cell: 'select-cell',
-		footer: 'select-footer'
+		footer: 'select-footer',
 	},
 	{
 		header: 'Name',
@@ -51,14 +51,14 @@ export const columns: ColumnDef<Person>[] = [
 			{
 				accessorKey: 'firstName',
 				cell: (info) => info.getValue(),
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorFn: (row) => row.lastName,
 				id: 'lastName',
 				cell: (info) => info.getValue(),
 				header: 'Last Name',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -67,9 +67,9 @@ export const columns: ColumnDef<Person>[] = [
 				cell: (info) => info.getValue(),
 				footer: (props) => props.column.id,
 				filterFn: fuzzyFilter,
-				sortingFn: fuzzySort
-			}
-		]
+				sortingFn: fuzzySort,
+			},
+		],
 	},
 	{
 		header: 'Info',
@@ -78,23 +78,23 @@ export const columns: ColumnDef<Person>[] = [
 			{
 				accessorKey: 'age',
 				header: 'Age',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorKey: 'visits',
 				header: 'Visits',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorKey: 'status',
 				header: 'Status',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorKey: 'progress',
 				header: 'Profile Progress',
-				footer: (props) => props.column.id
-			}
-		]
-	}
+				footer: (props) => props.column.id,
+			},
+		],
+	},
 ];

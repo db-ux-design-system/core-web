@@ -1,15 +1,15 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/animation";
-@use "../../styles/internal/form-components";
-@use "../../styles/internal/component";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/animation';
+@use '../../styles/internal/form-components';
+@use '../../styles/internal/component';
 
 .db-accordion-item {
 	position: relative;
 	inline-size: 100%;
 	border-radius: variables.$db-border-radius-sm;
-	list-style-type: "";
+	list-style-type: '';
 
 	> details {
 		&[open] {
@@ -24,15 +24,14 @@
 			}
 		}
 
-		&[aria-disabled="true"] {
+		&[aria-disabled='true'] {
 			pointer-events: none;
 			opacity: variables.$db-opacity-md;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
 			> summary + div {
-				transition: block-size
-					#{variables.$db-transition-straight-emotional};
+				transition: block-size #{variables.$db-transition-straight-emotional};
 			}
 		}
 

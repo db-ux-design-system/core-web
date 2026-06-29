@@ -1,4 +1,4 @@
-import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
+import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
 
 export type FigmaPopoverProps = {
 	placement?: string;
@@ -15,8 +15,8 @@ const popoverProps: Record<string, FigmaProp> = {
 			Top: 'top',
 			Right: 'right',
 			Bottom: 'bottom',
-			Left: 'left'
-		}
+			Left: 'left',
+		},
 	},
 	spacing: {
 		type: 'enum',
@@ -25,23 +25,23 @@ const popoverProps: Record<string, FigmaProp> = {
 			'(Def) Small': 'small',
 			Medium: 'medium',
 			Large: 'large',
-			None: 'none'
-		}
+			None: 'none',
+		},
 	},
 	_children: {
 		type: 'children',
-		key: 'Children'
+		key: 'Children',
 	},
-	animation: { type: 'boolean', key: 'Animation' },
+	animation: {type: 'boolean', key: 'Animation'},
 	delay: {
 		type: 'enum',
 		key: 'Delay',
-		value: { None: 'none', Slow: 'slow', Fast: 'fast' }
+		value: {None: 'none', Slow: 'slow', Fast: 'fast'},
 	},
-	gap: { type: 'boolean', key: 'Gap' }
+	gap: {type: 'boolean', key: 'Gap'},
 };
 
 export const popovers: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=32604:5594'],
-	props: popoverProps
+	props: popoverProps,
 };

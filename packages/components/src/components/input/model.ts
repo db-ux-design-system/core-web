@@ -20,7 +20,7 @@ import type {
 	ShowIconProps,
 	ShowIconTrailingProps,
 	SizeType,
-	ValueLabelType
+	ValueLabelType,
 } from '../../shared/model';
 
 export const InputTypeList = [
@@ -39,7 +39,7 @@ export const InputTypeList = [
 	'text',
 	'time',
 	'url',
-	'week'
+	'week',
 ] as const;
 export type InputTypeType = (typeof InputTypeList)[number];
 

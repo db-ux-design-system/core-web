@@ -1,11 +1,11 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "../../styles/internal/button-components";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '../../styles/internal/button-components';
 
 // generic styles can be found in _button-components.scss
 .db-button {
 	@include button-components.set-basic-button;
 
-	&:is(:disabled, [aria-disabled="true"]) {
+	&:is(:disabled, [aria-disabled='true']) {
 		opacity: variables.$db-opacity-md;
 	}
 

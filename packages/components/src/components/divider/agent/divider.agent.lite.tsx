@@ -1,4 +1,4 @@
-import { DBDivider } from '../index';
+import {DBDivider} from '../index';
 
 export default function Divider() {
 	return (

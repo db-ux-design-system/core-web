@@ -1,37 +1,37 @@
-import { globSync } from 'glob';
-import type { ReplaceInFileConfig, ReplaceResult } from 'replace-in-file';
-import { replaceInFileSync } from 'replace-in-file';
-import { migrationTypes } from '../data';
-import type { OptionsType } from '../types';
-import { AdditionalInformation } from './additional-information';
+import {globSync} from 'glob';
+import type {ReplaceInFileConfig, ReplaceResult} from 'replace-in-file';
+import {replaceInFileSync} from 'replace-in-file';
+import {migrationTypes} from '../data';
+import type {OptionsType} from '../types';
+import {AdditionalInformation} from './additional-information';
 
 export const migrate = (
 	options?: OptionsType,
-	cli?: boolean
+	cli?: boolean,
 ): ReplaceResult[] | undefined => {
 	if (options) {
-		const { src, type, dryRun } = options;
+		const {src, type, dryRun} = options;
 		const dry = Boolean(dryRun);
 		const paths = `${src}/**`;
 
 		const globPaths: string[] = globSync(paths, {
 			nodir: true,
-			ignore: ['node_modules', '**/*.zip']
+			ignore: ['node_modules', '**/*.zip'],
 		})
 			.map((path) => path.replaceAll('\\', '/'))
 			.filter((path) => path.includes('.'));
 
 		const replacements: ReplaceInFileConfig[] = Object.entries(
-			migrationTypes
+			migrationTypes,
 		).reduce(
 			(
 				previousReplacements: ReplaceInFileConfig[],
-				[currentKey, currentReplacements]
+				[currentKey, currentReplacements],
 			) =>
 				type.includes(currentKey)
 					? [...previousReplacements, ...currentReplacements]
 					: previousReplacements,
-			[]
+			[],
 		);
 
 		for (const t of type) {
@@ -45,7 +45,7 @@ export const migrate = (
 			const option = {
 				...update,
 				files: globPaths,
-				dry
+				dry,
 			};
 			const result: ReplaceResult[] = replaceInFileSync(option);
 			if (dry) {
@@ -60,4 +60,4 @@ export const migrate = (
 	return undefined;
 };
 
-export default { migrate };
+export default {migrate};

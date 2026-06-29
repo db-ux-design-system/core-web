@@ -1,4 +1,4 @@
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import {devices, type PlaywrightTestConfig} from '@playwright/test';
 import config from '../playwright.config';
 
 const patternHubConfig: PlaywrightTestConfig = {
@@ -12,14 +12,14 @@ const patternHubConfig: PlaywrightTestConfig = {
 		{
 			name: 'chromium',
 			use: {
-				...devices['Desktop Chrome']
-			}
-		}
+				...devices['Desktop Chrome'],
+			},
+		},
 	],
 	webServer: {
 		command: `npx http-server --port 8080 ../../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
 		port: 8080,
-		reuseExistingServer: !process.env.CI
+		reuseExistingServer: !process.env.CI,
 	},
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -28,9 +28,9 @@ const patternHubConfig: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'on-first-retry' : 'on'
+		trace: process.env.CI ? 'on-first-retry' : 'on',
 	},
-	outputDir: `./test-results/`
+	outputDir: `./test-results/`,
 };
 
 export default patternHubConfig;

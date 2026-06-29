@@ -1,32 +1,32 @@
-@use "sass:map";
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/icons";
-@use "../../styles/internal/component";
-@use "../../styles/internal/form-components";
-@use "../../styles/internal/scrollbar";
+@use 'sass:map';
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/fonts';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/icons';
+@use '../../styles/internal/component';
+@use '../../styles/internal/form-components';
+@use '../../styles/internal/scrollbar';
 
 %resize-textarea {
-	&[data-hide-resizer="true"] {
+	&[data-hide-resizer='true'] {
 		resize: none;
 	}
 
 	// TODO: Consolidate data-hide-resizer and data-resize attributes in the future
-	&:not([data-hide-resizer="true"]) {
-		&[data-resize="none"] {
+	&:not([data-hide-resizer='true']) {
+		&[data-resize='none'] {
 			resize: none;
 		}
 
-		&[data-resize="both"] {
+		&[data-resize='both'] {
 			resize: both;
 		}
 
-		&[data-resize="horizontal"] {
+		&[data-resize='horizontal'] {
 			resize: horizontal;
 		}
 
-		&[data-resize="vertical"] {
+		&[data-resize='vertical'] {
 			resize: vertical;
 		}
 	}
@@ -35,7 +35,7 @@
 @mixin get-scrolling-workaround() {
 	border-radius: variables.$db-border-radius-xs 0 0 0;
 	position: absolute;
-	content: "";
+	content: '';
 	inset-block-start: 0;
 	block-size: form-components.$floating-label-size-calc;
 	margin-inline: 0;
@@ -55,11 +55,10 @@
 		overflow-block: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
-		padding-block: variables.$db-spacing-fixed-xs
-			variables.$db-spacing-fixed-xs;
+		padding-block: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-xs;
 	}
 
-	&[data-variant="floating"] {
+	&[data-variant='floating'] {
 		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {
 				@extend %default-transition;

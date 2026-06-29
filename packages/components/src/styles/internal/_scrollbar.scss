@@ -1,14 +1,14 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/animation";
-@use "./form-components";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '@db-ux/core-foundations/build/styles/animation';
+@use './form-components';
 
 $scrollbar-width: helpers.px-to-rem(8);
 
 %scrollbar {
-	&[data-field-sizing="content"] {
-		&:is([data-hide-resizer="true"], [data-resize="none"]) {
+	&[data-field-sizing='content'] {
+		&:is([data-hide-resizer='true'], [data-resize='none']) {
 			@supports (field-sizing: content) {
 				/* We don't show a scrollbar if we use field-sizing: content and no resizer is available */
 				scrollbar-width: none;
@@ -86,7 +86,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 		background-image: var(--db-scrollbar-button-horizontal-increment);
 	}
 
-	&[data-variant="floating"] {
+	&[data-variant='floating'] {
 		&::-webkit-resizer {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		}

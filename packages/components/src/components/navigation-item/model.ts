@@ -11,9 +11,9 @@ import type {
 	ShowIconProps,
 	TextProps,
 	WidthProps,
-	WrapProps
+	WrapProps,
 } from '../../shared/model';
-import type { NavigationItemSafeTriangle } from '../../utils/navigation';
+import type {NavigationItemSafeTriangle} from '../../utils/navigation';
 
 export type DBNavigationItemDefaultProps = {
 	/**

@@ -1,4 +1,4 @@
-import { PatternhubProps } from '../../../shared/model';
+import {PatternhubProps} from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -10,9 +10,7 @@ import TabsWidth from '../examples/width.example.lite';
 
 export default function TabsShowcase(props: PatternhubProps) {
 	return (
-		<ContainerWrapperShowcase
-			title="DBTabs"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBTabs" isPatternhub={props.isPatternhub}>
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<TabsDensity />

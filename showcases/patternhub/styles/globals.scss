@@ -1,12 +1,12 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "@db-ux/core-foundations/build/styles/density";
-@use "@db-ux/core-components/build/components/section/section";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/screen-sizes';
+@use '@db-ux/core-foundations/build/styles/density';
+@use '@db-ux/core-components/build/components/section/section';
+@use '@db-ux/core-foundations/build/styles/helpers/display';
 
-@forward "@db-ux/core-components/build/styles/bundle";
-@forward "@db-ux/db-theme/build/styles/webpack";
+@forward '@db-ux/core-components/build/styles/bundle';
+@forward '@db-ux/db-theme/build/styles/webpack';
 
 :root:not(:has(.db-page)) {
 	color-scheme: light;
@@ -60,7 +60,7 @@ iframe {
 		@include display.display(flex);
 		gap: variables.$db-spacing-fixed-sm;
 
-		&[data-variant="column"] {
+		&[data-variant='column'] {
 			flex-direction: column;
 		}
 	}
@@ -121,7 +121,7 @@ iframe {
 }
 
 /* Workaround for current db-page from db-ux-elements */
-div[class^="ch-"] {
+div[class^='ch-'] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
@@ -135,7 +135,7 @@ div[class^="ch-"] {
 	display: none !important;
 }
 
-.db-section[data-size="none"] {
+.db-section[data-size='none'] {
 	padding-block-end: variables.$db-spacing-fixed-xl;
 }
 
@@ -189,7 +189,7 @@ div[class^="ch-"] {
 		--columns: 2;
 	}
 
-	@include screen-sizes.screen("md") {
+	@include screen-sizes.screen('md') {
 		--columns: 3;
 	}
 
@@ -199,7 +199,7 @@ div[class^="ch-"] {
 		inline-size: 100%;
 	}
 
-	&[data-mode="dark"] > span {
+	&[data-mode='dark'] > span {
 		filter: invert(1) brightness(1.2);
 	}
 
@@ -288,8 +288,7 @@ div[class^="ch-"] {
 
 			> div {
 				@include display.display(flex);
-				border: 1px solid
-					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+				border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 				position: relative;
 			}
 		}
@@ -330,15 +329,11 @@ div[class^="ch-"] {
 			}
 
 			.margin1 {
-				inset-inline-start: calc(
-					-1 * #{variables.$db-spacing-responsive-sm}
-				);
+				inset-inline-start: calc(-1 * #{variables.$db-spacing-responsive-sm});
 			}
 
 			.margin2 {
-				inset-inline-end: calc(
-					-1 * #{variables.$db-spacing-responsive-sm}
-				);
+				inset-inline-end: calc(-1 * #{variables.$db-spacing-responsive-sm});
 			}
 		}
 
@@ -442,11 +437,7 @@ h6 {
 		.code-button {
 			position: absolute;
 			inset-block-end: calc(
-				-1 *
-					(
-						#{variables.$db-spacing-fixed-sm} +
-							#{variables.$db-sizing-sm}
-					)
+				-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm})
 			);
 			inset-inline-end: variables.$db-spacing-fixed-sm;
 			z-index: 1;
@@ -493,7 +484,7 @@ h6 {
 					inset-inline-end: variables.$db-spacing-fixed-sm;
 					inset-block-end: variables.$db-spacing-fixed-sm;
 
-					@include screen-sizes.screen("md") {
+					@include screen-sizes.screen('md') {
 						inset-block: variables.$db-spacing-fixed-sm auto;
 					}
 				}
@@ -517,13 +508,13 @@ h6 {
 .link-containers {
 	@include display.display(grid);
 	grid-template-areas:
-		"previous previous"
-		"next next";
+		'previous previous'
+		'next next';
 	gap: variables.$db-spacing-fixed-md;
 	justify-content: space-between;
 
-	@include screen-sizes.screen("md") {
-		grid-template-areas: "previous next";
+	@include screen-sizes.screen('md') {
+		grid-template-areas: 'previous next';
 	}
 
 	a {
@@ -581,7 +572,7 @@ h6 {
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
 
-	@include screen-sizes.screen("md") {
+	@include screen-sizes.screen('md') {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
@@ -591,7 +582,7 @@ h6 {
 
 	.db-card {
 		@include display.display(grid);
-		grid-template-areas: "index icon" "label icon";
+		grid-template-areas: 'index icon' 'label icon';
 
 		small {
 			grid-area: index;
@@ -617,24 +608,23 @@ h6 {
 	*/
 
 	.db-section {
-		&[data-width="small"] {
+		&[data-width='small'] {
 			padding-inline: calc(
 				#{section.$small-section-padding-inline} -
 					#{section.$large-section-padding-inline}
 			);
 		}
 
-		&[data-width="medium"] {
+		&[data-width='medium'] {
 			padding-inline: calc(
 				#{section.$medium-section-padding-inline} -
 					#{section.$large-section-padding-inline}
 			);
 		}
 
-		&[data-width="large"] {
+		&[data-width='large'] {
 			padding-inline: calc(
-				#{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-spacing-fixed-md}
+				#{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-md}
 			);
 		}
 	}

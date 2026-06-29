@@ -1,7 +1,7 @@
-import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import {Fragment, onMount, Show, Slot, useState} from '@builder.io/mitosis';
 import DBDivider from '../../components/divider/divider.lite';
 import DBLink from '../../components/link/link.lite';
-import { delay } from '../../utils';
+import {delay} from '../../utils';
 
 interface Props {
 	exampleName?: string;
@@ -29,11 +29,9 @@ export default function LinkWrapperShowcase(props: Props) {
 		if (typeof window !== 'undefined') {
 			void delay(() => {
 				const hash = window.location.hash;
-				const queryString = hash.includes('?')
-					? hash.split('?')[1]
-					: '';
+				const queryString = hash.includes('?') ? hash.split('?')[1] : '';
 				const params = new URLSearchParams(
-					window.location.search || queryString
+					window.location.search || queryString,
 				);
 
 				const rawPage = params.get('page');
@@ -57,7 +55,8 @@ export default function LinkWrapperShowcase(props: Props) {
 							content="external"
 							class="link-headline"
 							target="_blank"
-							href={getHref()}>
+							href={getHref()}
+						>
 							{props.exampleName}
 						</DBLink>
 					</Show>

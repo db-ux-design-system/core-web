@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBNotification } from '../index';
-import { FigmaNotificationProps, notifications } from './notification.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBNotification} from '../index';
+import {FigmaNotificationProps, notifications} from './notification.figma';
 
 useMetadata({
-	figma: notifications
+	figma: notifications,
 });
 
 export default function NotificationFigmaLite(props: FigmaNotificationProps) {

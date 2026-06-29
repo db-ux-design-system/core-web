@@ -6,12 +6,12 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import {cls, uuid} from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
-import { DBAccordionItemDefaultProps } from '../accordion-item/model';
-import { DBAccordionProps, DBAccordionState } from './model';
+import {DBAccordionItemDefaultProps} from '../accordion-item/model';
+import {DBAccordionProps, DBAccordionState} from './model';
 
 useMetadata({});
 
@@ -36,7 +36,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 
 			return [];
-		}
+		},
 	});
 
 	onMount(() => {
@@ -67,9 +67,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 		if (_ref) {
 			const childDetails = _ref.getElementsByTagName('details');
 			if (childDetails) {
-				for (const details of Array.from<HTMLDetailsElement>(
-					childDetails
-				)) {
+				for (const details of Array.from<HTMLDetailsElement>(childDetails)) {
 					if (state._name === '') {
 						details.removeAttribute('name');
 					} else {
@@ -86,8 +84,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 				const childDetails = _ref.getElementsByTagName('details');
 				if (childDetails) {
 					const initOpenIndex =
-						props.behavior === 'single' &&
-						props.initOpenIndex!.length > 1
+						props.behavior === 'single' && props.initOpenIndex!.length > 1
 							? [props.initOpenIndex![0]] // use only one index for behavior=single
 							: props.initOpenIndex;
 					Array.from<HTMLDetailsElement>(childDetails).forEach(
@@ -95,7 +92,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 							if (initOpenIndex?.includes(index)) {
 								details.open = true;
 							}
-						}
+						},
 					);
 				}
 			}
@@ -108,7 +105,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-accordion', props.className)}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+		>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems()}>

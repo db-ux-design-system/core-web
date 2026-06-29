@@ -1,47 +1,47 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/helpers';
 
 .db-divider {
-	&:is(:not([data-margin]), [data-margin="small"]) {
+	&:is(:not([data-margin]), [data-margin='small']) {
 		margin: variables.$db-spacing-fixed-sm 0;
 	}
 
-	&[data-margin="medium"] {
+	&[data-margin='medium'] {
 		margin: variables.$db-spacing-fixed-md 0;
 	}
 
-	&[data-margin="large"] {
+	&[data-margin='large'] {
 		margin: variables.$db-spacing-fixed-lg 0;
 	}
 
-	&:not([data-variant="vertical"]) {
+	&:not([data-variant='vertical']) {
 		block-size: variables.$db-border-width-3xs;
 
 		@include helpers.divider;
 
-		&[data-width="full"] {
+		&[data-width='full'] {
 			inline-size: 100%;
 		}
 	}
 
-	&[data-variant="vertical"] {
+	&[data-variant='vertical'] {
 		inline-size: variables.$db-border-width-3xs;
 
-		@include helpers.divider("left");
+		@include helpers.divider('left');
 
-		&:is(:not([data-margin]), [data-margin="small"]) {
+		&:is(:not([data-margin]), [data-margin='small']) {
 			margin: 0 variables.$db-spacing-fixed-sm;
 		}
 
-		&[data-margin="medium"] {
+		&[data-margin='medium'] {
 			margin: 0 variables.$db-spacing-fixed-md;
 		}
 
-		&[data-margin="large"] {
+		&[data-margin='large'] {
 			margin: 0 variables.$db-spacing-fixed-lg;
 		}
 
-		&[data-width="full"] {
+		&[data-width='full'] {
 			block-size: 100%;
 		}
 	}

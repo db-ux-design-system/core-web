@@ -7,7 +7,7 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
 import {
 	DEFAULT_INVALID_MESSAGE,
@@ -17,9 +17,9 @@ import {
 	DEFAULT_PLACEHOLDER,
 	DEFAULT_ROWS,
 	DEFAULT_VALID_MESSAGE,
-	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 } from '../../shared/constants';
-import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import {ChangeEvent, InputEvent, InteractionEvent} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -28,23 +28,23 @@ import {
 	getNumber,
 	hasVoiceOver,
 	stringPropVisible,
-	uuid
+	uuid,
 } from '../../utils';
 import {
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import { DBTextareaProps, DBTextareaState } from './model';
+import {DBTextareaProps, DBTextareaState} from './model';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required', 'value'],
 		signals: {
-			writeable: ['disabled', 'value']
-		}
-	}
+			writeable: ['disabled', 'value'],
+		},
+	},
 });
 useDefaultProps<DBTextareaProps>({});
 
@@ -94,10 +94,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (
-			event: InputEvent<HTMLTextAreaElement>,
-			reset?: boolean
-		) => {
+		handleInput: (event: InputEvent<HTMLTextAreaElement>, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -118,17 +115,17 @@ export default function DBTextarea(props: DBTextareaProps) {
 					if (props.onInput) {
 						props.onInput(event);
 					}
-				}
+				},
 			});
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
+				vue: () => handleFrameworkEventVue(() => {}, event),
 			});
 			state.handleValidation();
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLTextAreaElement>,
-			reset?: boolean
+			reset?: boolean,
 		) => {
 			useTarget({
 				angular: () => {
@@ -143,12 +140,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 					if (props.onChange) {
 						props.onChange(event);
 					}
-				}
+				},
 			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
+				vue: () => handleFrameworkEventVue(() => {}, event),
 			});
 			state.handleValidation();
 		},
@@ -163,13 +160,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 		},
 		resetIds: () => {
-			const mId =
-				props.id ?? props.propOverrides?.id ?? `textarea-${uuid()}`;
+			const mId = props.id ?? props.propOverrides?.id ?? `textarea-${uuid()}`;
 			state._id = mId;
 			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		}
+		},
 	});
 
 	onMount(() => {
@@ -195,8 +191,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
@@ -214,13 +209,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 		// then the value will be set afterward and the _ref will be refreshed
 		const addResetListener = useTarget({
 			angular: !(props.value === null && state._value === null),
-			default: true
+			default: true,
 		});
 
 		if (_ref && addResetListener) {
 			const defaultValue = useTarget({
 				react: (props as any).defaultValue,
-				default: undefined
+				default: undefined,
 			});
 
 			let controller = state.abortController;
@@ -231,12 +226,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			addValueResetEventListener(
 				_ref,
-				{ value: props.value, defaultValue },
+				{value: props.value, defaultValue},
 				(event) => {
 					state.handleChange(event, true);
 					state.handleInput(event, true);
 				},
-				controller.signal
+				controller.signal,
 			);
 		}
 	}, [_ref]);
@@ -250,7 +245,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-			data-hide-label={getHideProp(props.showLabel)}>
+			data-hide-label={getHideProp(props.showLabel)}
+		>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea
@@ -295,10 +291,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			/>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
-				<DBInfotext
-					size="small"
-					icon={props.messageIcon}
-					id={state._messageId}>
+				<DBInfotext size="small" icon={props.messageIcon} id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
@@ -306,15 +299,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 				<DBInfotext
 					id={state._validMessageId}
 					size="small"
-					semantic="successful">
+					semantic="successful"
+				>
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
+			<DBInfotext id={state._invalidMessageId} size="small" semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
 

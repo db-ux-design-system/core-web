@@ -1,4 +1,4 @@
-import { DBCard } from '../index';
+import {DBCard} from '../index';
 
 export default function Card() {
 	return (

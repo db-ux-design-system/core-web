@@ -1,8 +1,8 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { useState } from 'react';
-import { DBNavigation } from '../../navigation';
-import { DBNavigationItem } from '../../navigation-item';
-import { DBHeader } from '../index';
+import {useMetadata} from '@builder.io/mitosis';
+import {useState} from 'react';
+import {DBNavigation} from '../../navigation';
+import {DBNavigationItem} from '../../navigation-item';
+import {DBHeader} from '../index';
 
 useMetadata({
 	slots: {
@@ -10,7 +10,7 @@ useMetadata({
 			angular: '<db-brand brand>My Awesome App</db-header>',
 			vue: '<DBBrand>My Awesome App</DBBrand>',
 			stencil: '<db-brand slot="brand">My Awesome App</db-brand>',
-			react: '<DBBrand>My Awesome App</DBBrand>'
+			react: '<DBBrand>My Awesome App</DBBrand>',
 		},
 		metaNavigation: {
 			angular:
@@ -18,7 +18,8 @@ useMetadata({
 			vue: '<DBLink href="#">Imprint</DBLink><DBLink href="#">Help</DBLink>',
 			stencil:
 				'<div slot="metaNavigation"><db-link href="#">Imprint</db-link><db-link href="#">Help</db-link></div>',
-			react: '<><DBLink href="#">Imprint</DBLink><DBLink href="#">Help</DBLink></>'
+			react:
+				'<><DBLink href="#">Imprint</DBLink><DBLink href="#">Help</DBLink></>',
 		},
 		primaryAction: {
 			angular:
@@ -26,7 +27,8 @@ useMetadata({
 			vue: '<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>',
 			stencil:
 				'<db-button slot="primaryAction" icon="magnifying_glass" variant="ghost" noText>Search</db-button>',
-			react: '<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>'
+			react:
+				'<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>',
 		},
 		secondaryAction: {
 			angular:
@@ -34,9 +36,10 @@ useMetadata({
 			vue: '<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton><DBButton icon="alert" variant="ghost" noText>Notification</DBButton><DBButton icon="help" variant="ghost" noText>Help</DBButton>',
 			stencil:
 				'<div slot="secondaryAction"><db-button icon="x_placeholder" variant="ghost" noText>Profile</db-button><db-button icon="alert" variant="ghost" noText>Notification</db-button><db-button icon="help" variant="ghost" noText>Help</db-button></div>',
-			react: '<><DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton><DBButton icon="alert" variant="ghost" noText>Notification</DBButton><DBButton icon="help" variant="ghost" noText>Help</DBButton></>'
-		}
-	}
+			react:
+				'<><DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton><DBButton icon="alert" variant="ghost" noText>Notification</DBButton><DBButton icon="help" variant="ghost" noText>Help</DBButton></>',
+		},
+	},
 });
 
 export default function Header() {
@@ -49,7 +52,8 @@ export default function Header() {
 			<h2>1. Default Header</h2>
 			<DBHeader
 				drawerOpen={drawerOpen}
-				onToggle={(open: boolean) => setDrawerOpen(open)}>
+				onToggle={(open: boolean) => setDrawerOpen(open)}
+			>
 				__slots__
 				<DBNavigation>
 					<DBNavigationItem>

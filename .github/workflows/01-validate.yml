@@ -59,9 +59,9 @@ jobs:
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'github-actions[bot]@users.noreply.github.com') }}
         uses: ./.github/actions/auto-commit
         with:
-          branch-name: "${{ github.head_ref }}-codestyle-fixes"
-          commit-message: "style: auto-fix codestyle issues"
-          commit-files: "."
+          branch-name: '${{ github.head_ref }}-codestyle-fixes'
+          commit-message: 'style: auto-fix codestyle issues'
+          commit-files: '.'
           auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}

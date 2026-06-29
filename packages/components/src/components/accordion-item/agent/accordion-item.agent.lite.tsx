@@ -1,4 +1,4 @@
-import { DBAccordionItem } from '../index';
+import {DBAccordionItem} from '../index';
 
 export default function AccordionItem() {
 	return (
@@ -10,14 +10,10 @@ export default function AccordionItem() {
 
 			<h2>2. Initial State</h2>
 			<DBAccordionItem defaultOpen={true}>Initially Open</DBAccordionItem>
-			<DBAccordionItem defaultOpen={false}>
-				Initially Closed
-			</DBAccordionItem>
+			<DBAccordionItem defaultOpen={false}>Initially Closed</DBAccordionItem>
 
 			<h2>3. Disabled State</h2>
-			<DBAccordionItem disabled={true}>
-				Disabled Accordion Item
-			</DBAccordionItem>
+			<DBAccordionItem disabled={true}>Disabled Accordion Item</DBAccordionItem>
 
 			<h2>4. Headline Variants</h2>
 			<DBAccordionItem headline={<strong>Custom Headline</strong>}>
@@ -28,8 +24,7 @@ export default function AccordionItem() {
 			</DBAccordionItem>
 
 			<h2>5. Toggle Event</h2>
-			<DBAccordionItem
-				onToggle={(open: any) => console.log('Toggled:', open)}>
+			<DBAccordionItem onToggle={(open: any) => console.log('Toggled:', open)}>
 				With Toggle Event
 			</DBAccordionItem>
 		</>

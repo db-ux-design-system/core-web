@@ -5,14 +5,14 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { DEFAULT_BURGER_MENU } from '../../shared/constants';
-import { addAttributeToChildren, cls, getBoolean } from '../../utils';
-import { isEventTargetNavigationItem } from '../../utils/navigation';
+import {DEFAULT_BURGER_MENU} from '../../shared/constants';
+import {addAttributeToChildren, cls, getBoolean} from '../../utils';
+import {isEventTargetNavigationItem} from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
-import { DBHeaderProps, DBHeaderState } from './model';
+import {DBHeaderProps, DBHeaderState} from './model';
 
 useMetadata({});
 
@@ -39,7 +39,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			if (isEventTargetNavigationItem(event)) {
 				state.handleToggle();
 			}
-		}
+		},
 	});
 
 	onMount(() => {
@@ -52,7 +52,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
 			addAttributeToChildren(_ref, {
 				key: 'data-force-mobile',
-				value: 'true'
+				value: 'true',
 			});
 			state.forcedToMobile = true;
 		}
@@ -66,7 +66,8 @@ export default function DBHeader(props: DBHeaderProps) {
 			class={cls('db-header', props.className)}
 			id={props.id ?? props.propOverrides?.id}
 			data-width={props.width}
-			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
+			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}
+		>
 			<div class="db-header-meta-navigation">
 				<Slot name="metaNavigation" />
 			</div>
@@ -86,7 +87,8 @@ export default function DBHeader(props: DBHeaderProps) {
 							icon="menu"
 							noText
 							variant="ghost"
-							onClick={() => state.handleToggle()}>
+							onClick={() => state.handleToggle()}
+						>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>
@@ -103,13 +105,13 @@ export default function DBHeader(props: DBHeaderProps) {
 				closeButtonId={props.closeButtonId}
 				closeButtonText={props.closeButtonText}
 				open={getBoolean(props.drawerOpen)}
-				onClose={() => state.handleToggle()}>
+				onClose={() => state.handleToggle()}
+			>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
-						onClick={(event) =>
-							state.handleNavigationItemClick(event)
-						}>
+						onClick={(event) => state.handleNavigationItemClick(event)}
+					>
 						{props.children}
 					</div>
 					<div class="db-header-meta-navigation">

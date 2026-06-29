@@ -3,9 +3,9 @@ import {
 	useContext,
 	useEffect,
 	useState,
-	type ReactNode
+	type ReactNode,
 } from 'react';
-import { DEFAULT_FRAMEWORK, type Framework } from './framework-switcher/data';
+import {DEFAULT_FRAMEWORK, type Framework} from './framework-switcher/data';
 
 type FrameworkContextType = {
 	framework: Framework;
@@ -14,7 +14,7 @@ type FrameworkContextType = {
 };
 
 const FrameworkContext = createContext<FrameworkContextType | undefined>(
-	undefined
+	undefined,
 );
 
 const frameworkKey = 'db-ux-framework';
@@ -34,16 +34,13 @@ export const useFramework = () => {
 /**
  Stores the selected framework in URL/localStorage and keeps consumers in sync.
  */
-export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
-	const [framework, setFrameworkState] =
-		useState<Framework>(DEFAULT_FRAMEWORK);
+export const FrameworkProvider = ({children}: {children: ReactNode}) => {
+	const [framework, setFrameworkState] = useState<Framework>(DEFAULT_FRAMEWORK);
 
 	// URL has priority over localStorage so shared links open with the expected framework.
 	useEffect(() => {
 		if (globalThis.window !== undefined) {
-			const urlParameters = new URLSearchParams(
-				globalThis.location.search
-			);
+			const urlParameters = new URLSearchParams(globalThis.location.search);
 			const frameworkParameter = urlParameters.get('framework');
 
 			if (
@@ -56,8 +53,8 @@ export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 				// The card wrapper reads this event to refresh the "Show Code" target.
 				globalThis.dispatchEvent(
 					new CustomEvent('db-ux-framework-change', {
-						detail: validFramework
-					})
+						detail: validFramework,
+					}),
 				);
 				return;
 			}
@@ -81,8 +78,8 @@ export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 			// Dispatch before replaceState so listeners can use the selected value immediately.
 			globalThis.dispatchEvent(
 				new CustomEvent('db-ux-framework-change', {
-					detail: newFramework
-				})
+					detail: newFramework,
+				}),
 			);
 
 			// Persist in the URL so links can be shared.
@@ -99,7 +96,8 @@ export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 
 	return (
 		<FrameworkContext.Provider
-			value={{ framework, setFramework, getFrameworkIndex }}>
+			value={{framework, setFramework, getFrameworkIndex}}
+		>
 			{children}
 		</FrameworkContext.Provider>
 	);

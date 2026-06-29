@@ -3,10 +3,10 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import type { DBIconProps, DBIconState } from './model';
+import {cls} from '../../utils';
+import type {DBIconProps, DBIconState} from './model';
 
 useMetadata({});
 
@@ -27,7 +27,8 @@ export default function DBIcon(props: DBIconProps) {
 			data-icon={props.icon}
 			data-icon-weight={props.weight}
 			data-icon-variant={props.variant}
-			aria-hidden="true">
+			aria-hidden="true"
+		>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</span>

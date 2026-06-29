@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from 'vitest';
+import {describe, expect, test, vi} from 'vitest';
 import {
 	exitAllPassed,
 	exitFixedWithChanges,
@@ -7,24 +7,24 @@ import {
 	orchestrate,
 	type CheckConfig,
 	type Command,
-	type CommandExecResult
+	type CommandExecResult,
 } from '../self-healing-orchestrator.js';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const pass = async (): Promise<CommandExecResult> => ({
 	exitCode: 0,
-	timedOut: false
+	timedOut: false,
 });
 
 const fail = async (): Promise<CommandExecResult> => ({
 	exitCode: 1,
-	timedOut: false
+	timedOut: false,
 });
 
 const timeout = async (): Promise<CommandExecResult> => ({
 	exitCode: undefined,
-	timedOut: true
+	timedOut: true,
 });
 
 const noChanges = async () => false;
@@ -32,8 +32,8 @@ const hasChanges = async () => true;
 
 const check = (name: string, fixCommands: Command[] = []): CheckConfig => ({
 	name,
-	checkCommand: { command: 'pnpm', args: ['run', name] },
-	fixCommands
+	checkCommand: {command: 'pnpm', args: ['run', name]},
+	fixCommands,
 });
 
 // ─── Exit code 0: all checks pass ────────────────────────────────────────────
@@ -44,7 +44,7 @@ describe('exit code 0 – all checks pass', () => {
 
 		const result = await orchestrate([check('lint'), check('test')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: noChanges,
 		});
 
 		expect(result.exitCode).toBe(exitAllPassed);
@@ -58,7 +58,7 @@ describe('exit code 0 – all checks pass', () => {
 
 		await orchestrate([check('lint')], {
 			spawnFn: vi.fn().mockImplementation(pass),
-			detectChangesFn: detectFn
+			detectChangesFn: detectFn,
 		});
 
 		expect(detectFn).not.toHaveBeenCalled();
@@ -76,8 +76,8 @@ describe('exit code 1 – unfixable', () => {
 			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
-			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
-			{ spawnFn, detectChangesFn: noChanges }
+			[check('lint', [{command: 'pnpm', args: ['run', 'lint:fix']}])],
+			{spawnFn, detectChangesFn: noChanges},
 		);
 
 		expect(result.exitCode).toBe(exitUnfixable);
@@ -92,7 +92,7 @@ describe('exit code 1 – unfixable', () => {
 
 		const result = await orchestrate([check('test')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: noChanges,
 		});
 
 		expect(result.exitCode).toBe(exitUnfixable);
@@ -111,15 +111,15 @@ describe('exit code 2 – fixed with changes', () => {
 			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
-			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
-			{ spawnFn, detectChangesFn: hasChanges }
+			[check('lint', [{command: 'pnpm', args: ['run', 'lint:fix']}])],
+			{spawnFn, detectChangesFn: hasChanges},
 		);
 
 		expect(result.exitCode).toBe(exitFixedWithChanges);
 		expect(result.filesChanged).toBe(true);
 		expect(result.fixesApplied).toEqual([
 			'pnpm run lint:fix',
-			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`,
 		]);
 	});
 
@@ -133,16 +133,16 @@ describe('exit code 2 – fixed with changes', () => {
 
 		const result = await orchestrate(
 			[
-				check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }]),
-				check('check:format')
+				check('lint', [{command: 'pnpm', args: ['run', 'lint:fix']}]),
+				check('check:format'),
 			],
-			{ spawnFn, detectChangesFn: hasChanges }
+			{spawnFn, detectChangesFn: hasChanges},
 		);
 
 		expect(result.exitCode).toBe(exitFixedWithChanges);
 		expect(result.fixesApplied).toEqual([
 			'pnpm run lint:fix',
-			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`,
 		]);
 	});
 });
@@ -155,7 +155,7 @@ describe('timeout handling', () => {
 
 		const result = await orchestrate([check('lint')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: noChanges,
 		});
 
 		expect(result.checkResults[0].timedOut).toBe(true);
@@ -170,8 +170,8 @@ describe('timeout handling', () => {
 			.mockImplementationOnce(pass); // FinalFixCommand
 
 		const result = await orchestrate(
-			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
-			{ spawnFn, detectChangesFn: hasChanges }
+			[check('lint', [{command: 'pnpm', args: ['run', 'lint:fix']}])],
+			{spawnFn, detectChangesFn: hasChanges},
 		);
 
 		expect(result.exitCode).toBe(exitFixedWithChanges);
@@ -188,17 +188,17 @@ describe('timeout handling', () => {
 		const result = await orchestrate(
 			[
 				check('lint', [
-					{ command: 'pnpm', args: ['run', 'lint:fix1'] },
-					{ command: 'pnpm', args: ['run', 'lint:fix2'] }
-				])
+					{command: 'pnpm', args: ['run', 'lint:fix1']},
+					{command: 'pnpm', args: ['run', 'lint:fix2']},
+				]),
 			],
-			{ spawnFn, detectChangesFn: hasChanges }
+			{spawnFn, detectChangesFn: hasChanges},
 		);
 
 		// Only the second fix and finalFixCommand should be in fixesApplied
 		expect(result.fixesApplied).toEqual([
 			'pnpm run lint:fix2',
-			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+			`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`,
 		]);
 	});
 });
@@ -212,22 +212,22 @@ describe('abort signal propagation', () => {
 			async (
 				_cmd: string,
 				_args: string[],
-				options: { abortSignal?: AbortSignal }
+				options: {abortSignal?: AbortSignal},
 			) =>
 				new Promise<CommandExecResult>((resolve) => {
 					if (options.abortSignal?.aborted) {
-						resolve({ exitCode: 1, timedOut: false });
+						resolve({exitCode: 1, timedOut: false});
 						return;
 					}
 
 					options.abortSignal?.addEventListener(
 						'abort',
 						() => {
-							resolve({ exitCode: 1, timedOut: false });
+							resolve({exitCode: 1, timedOut: false});
 						},
-						{ once: true }
+						{once: true},
 					);
-				})
+				}),
 		);
 
 		const controller = new AbortController();
@@ -240,7 +240,7 @@ describe('abort signal propagation', () => {
 		const result = await orchestrate([check('lint')], {
 			spawnFn,
 			detectChangesFn: noChanges,
-			totalTimeoutMs: 50
+			totalTimeoutMs: 50,
 		});
 
 		expect(result.exitCode).not.toBe(exitAllPassed);
@@ -259,7 +259,7 @@ describe('change detection', () => {
 
 		await orchestrate([check('lint')], {
 			spawnFn,
-			detectChangesFn: detectFn
+			detectChangesFn: detectFn,
 		});
 
 		expect(detectFn).toHaveBeenCalledOnce();
@@ -271,7 +271,7 @@ describe('change detection', () => {
 				.fn()
 				.mockImplementationOnce(fail)
 				.mockImplementationOnce(pass),
-			detectChangesFn: hasChanges
+			detectChangesFn: hasChanges,
 		});
 		expect(withChanges.filesChanged).toBe(true);
 
@@ -280,7 +280,7 @@ describe('change detection', () => {
 				.fn()
 				.mockImplementationOnce(fail)
 				.mockImplementationOnce(pass),
-			detectChangesFn: noChanges
+			detectChangesFn: noChanges,
 		});
 		expect(withoutChanges.filesChanged).toBe(false);
 	});
@@ -295,14 +295,14 @@ describe('checkResults shape', () => {
 
 		const result = await orchestrate(checks, {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: noChanges,
 		});
 
 		expect(result.checkResults).toHaveLength(3);
 		expect(result.checkResults.map((r) => r.name)).toEqual([
 			'lint',
 			'test',
-			'check:format'
+			'check:format',
 		]);
 	});
 
@@ -310,7 +310,7 @@ describe('checkResults shape', () => {
 		const spawnFn = vi.fn().mockImplementation(pass);
 		const result = await orchestrate([check('lint')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: noChanges,
 		});
 
 		const r = result.checkResults[0];

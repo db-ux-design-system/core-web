@@ -1,15 +1,15 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import { DBCustomSelectDropdownProps } from './model';
+import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
+import {cls} from '../../utils';
+import {DBCustomSelectDropdownProps} from './model';
 
 useMetadata({});
 
 useDefaultProps<DBCustomSelectDropdownProps>({
-	width: 'fixed'
+	width: 'fixed',
 });
 
 export default function DBCustomSelectDropdown(
-	props: DBCustomSelectDropdownProps
+	props: DBCustomSelectDropdownProps,
 ) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
@@ -20,7 +20,8 @@ export default function DBCustomSelectDropdown(
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-select-dropdown db-card', props.className)}
 			data-spacing="none"
-			data-width={props.width}>
+			data-width={props.width}
+		>
 			{props.children}
 		</article>
 	);

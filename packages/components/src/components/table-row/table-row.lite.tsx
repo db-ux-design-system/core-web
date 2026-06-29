@@ -4,14 +4,14 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import {cls, getBooleanAsString, uuid} from '../../utils';
 import DBLink from '../link/link.lite';
 import DBTableDataCell from '../table-data-cell/table-data-cell.lite';
-import { DBTableHeaderCellProps } from '../table-header-cell/model';
+import {DBTableHeaderCellProps} from '../table-header-cell/model';
 import DBTableHeaderCell from '../table-header-cell/table-header-cell.lite';
-import { DBTableRowCell, DBTableRowProps, DBTableRowState } from './model';
+import {DBTableRowCell, DBTableRowProps, DBTableRowState} from './model';
 
 useMetadata({});
 
@@ -23,14 +23,14 @@ export default function DBTableRow(props: DBTableRowProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBTableRowState>({
 		getHeaderCell: (
-			cell: DBTableRowCell
+			cell: DBTableRowCell,
 		): DBTableHeaderCellProps | undefined => {
 			if (cell.headerCell) {
 				return cell as DBTableHeaderCellProps;
 			}
 
 			return undefined;
-		}
+		},
 	});
 
 	// jscpd:ignore-end
@@ -41,7 +41,8 @@ export default function DBTableRow(props: DBTableRowProps) {
 			id={props.id}
 			class={cls('db-table-row', props.className)}
 			data-interactive={getBooleanAsString(props.interactive)}
-			data-sub-header-emphasis={props.subHeaderEmphasis}>
+			data-sub-header-emphasis={props.subHeaderEmphasis}
+		>
 			<Show when={props.cells} else={props.children}>
 				<For each={props.cells}>
 					{(cell: DBTableRowCell, index: number) => (
@@ -52,24 +53,20 @@ export default function DBTableRow(props: DBTableRowProps) {
 									key={`${cell.id ?? props.id ?? uuid()}-table-row-data-cell-${index}`}
 									id={cell.id}
 									className={cell.className ?? cell.class}
-									horizontalAlignment={
-										cell.horizontalAlignment
-									}
+									horizontalAlignment={cell.horizontalAlignment}
 									verticalAlignment={cell.verticalAlignment}
 									headers={cell.headers}
 									colSpan={cell.colSpan}
 									colspan={cell.colspan}
 									rowSpan={cell.rowSpan}
-									rowspan={cell.rowspan}>
+									rowspan={cell.rowspan}
+								>
 									<Show when={cell.link} else={cell.content}>
 										<DBLink
 											content={cell.link?.content}
 											size={cell.link?.size}
 											variant={cell.link?.variant}
-											className={
-												cell.link?.className ??
-												cell.link?.class
-											}
+											className={cell.link?.className ?? cell.link?.class}
 											id={cell.link?.id}
 											autofocus={cell.link?.autofocus}
 											disabled={cell.link?.disabled}
@@ -77,18 +74,18 @@ export default function DBTableRow(props: DBTableRowProps) {
 											hreflang={cell.link?.hreflang}
 											target={cell.link?.target}
 											rel={cell.link?.rel}
-											referrerPolicy={
-												cell.link?.referrerPolicy
-											}
+											referrerPolicy={cell.link?.referrerPolicy}
 											role={cell.link?.role}
 											showIcon={cell.link?.showIcon}
 											text={cell.link?.text}
-											wrap={cell.link?.wrap}>
+											wrap={cell.link?.wrap}
+										>
 											{cell.link?.children}
 										</DBLink>
 									</Show>
 								</DBTableDataCell>
-							}>
+							}
+						>
 							<DBTableHeaderCell
 								key={`${cell.id ?? props.id ?? uuid()}-table-row-header-cell-${index}`}
 								id={cell.id}
@@ -102,16 +99,14 @@ export default function DBTableRow(props: DBTableRowProps) {
 								colSpan={cell.colSpan}
 								colspan={cell.colspan}
 								rowSpan={cell.rowSpan}
-								rowspan={cell.rowspan}>
+								rowspan={cell.rowspan}
+							>
 								<Show when={cell.link} else={cell.content}>
 									<DBLink
 										content={cell.link?.content}
 										size={cell.link?.size}
 										variant={cell.link?.variant}
-										className={
-											cell.link?.className ??
-											cell.link?.class
-										}
+										className={cell.link?.className ?? cell.link?.class}
 										id={cell.link?.id}
 										autofocus={cell.link?.autofocus}
 										disabled={cell.link?.disabled}
@@ -119,13 +114,12 @@ export default function DBTableRow(props: DBTableRowProps) {
 										hreflang={cell.link?.hreflang}
 										target={cell.link?.target}
 										rel={cell.link?.rel}
-										referrerPolicy={
-											cell.link?.referrerPolicy
-										}
+										referrerPolicy={cell.link?.referrerPolicy}
 										role={cell.link?.role}
 										showIcon={cell.link?.showIcon}
 										text={cell.link?.text}
-										wrap={cell.link?.wrap}>
+										wrap={cell.link?.wrap}
+									>
 										{cell.link?.children}
 									</DBLink>
 								</Show>

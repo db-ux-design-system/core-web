@@ -3,12 +3,12 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
-import { DBTableRowProps } from '../table-row/model';
+import {cls, uuid} from '../../utils';
+import {DBTableRowProps} from '../table-row/model';
 import DBTableRow from '../table-row/table-row.lite';
-import { DBTableBodyProps } from './model';
+import {DBTableBodyProps} from './model';
 
 useMetadata({});
 
@@ -21,7 +21,8 @@ export default function DBTableBody(props: DBTableBodyProps) {
 		<tbody
 			ref={_ref}
 			id={props.id}
-			class={cls('db-table-body', props.className)}>
+			class={cls('db-table-body', props.className)}
+		>
 			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>

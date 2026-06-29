@@ -1,1 +1,1 @@
-export { default as DBTableCaption } from './table-caption';
+export {default as DBTableCaption} from './table-caption';

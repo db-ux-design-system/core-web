@@ -1,16 +1,11 @@
-import {
-	Fragment,
-	useMetadata,
-	useState,
-	useTarget
-} from '@builder.io/mitosis';
+import {Fragment, useMetadata, useState, useTarget} from '@builder.io/mitosis';
 import DBSwitch from '../switch.lite';
-import { StorybookSwitchArgTypes } from './_switch.arg.types';
+import {StorybookSwitchArgTypes} from './_switch.arg.types';
 
 useMetadata({
 	storybookTitle: 'Checked',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookSwitchArgTypes
+	storybookArgTypes: StorybookSwitchArgTypes,
 });
 
 export default function SwitchChecked() {
@@ -23,12 +18,11 @@ export default function SwitchChecked() {
 				{...useTarget({
 					react: {
 						onChange: (event: any) =>
-							setChecked(
-								(event.target as HTMLInputElement).checked
-							)
+							setChecked((event.target as HTMLInputElement).checked),
 					},
-					default: {}
-				})}>
+					default: {},
+				})}
+			>
 				True
 			</DBSwitch>
 		</Fragment>

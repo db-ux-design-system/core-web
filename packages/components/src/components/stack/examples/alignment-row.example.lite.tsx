@@ -1,12 +1,12 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBStack from '../stack.lite';
-import { StorybookStackArgTypes } from './_stack.arg.types';
+import {StorybookStackArgTypes} from './_stack.arg.types';
 
 useMetadata({
 	storybookTitle: 'Alignment Row',
 	storybookNames: ['(Default) Stretch', 'Start', 'Center', 'End'],
-	storybookArgTypes: StorybookStackArgTypes
+	storybookArgTypes: StorybookStackArgTypes,
 });
 
 export default function StackAlignmentRow() {
@@ -20,18 +20,21 @@ export default function StackAlignmentRow() {
 					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					height: '100px'
-				}}>
+					height: '100px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Stretch
 				</DBInfotext>
 				<DBStack
 					style={{
 						padding: 'var(--db-spacing-fixed-xs)',
-						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+						border:
+							'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)',
 					}}
 					alignment="stretch"
-					direction="row">
+					direction="row"
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -49,18 +52,21 @@ export default function StackAlignmentRow() {
 					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					height: '100px'
-				}}>
+					height: '100px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Start
 				</DBInfotext>
 				<DBStack
 					style={{
 						padding: 'var(--db-spacing-fixed-xs)',
-						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+						border:
+							'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)',
 					}}
 					alignment="start"
-					direction="row">
+					direction="row"
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -78,18 +84,21 @@ export default function StackAlignmentRow() {
 					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					height: '100px'
-				}}>
+					height: '100px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Center
 				</DBInfotext>
 				<DBStack
 					style={{
 						padding: 'var(--db-spacing-fixed-xs)',
-						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+						border:
+							'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)',
 					}}
 					alignment="center"
-					direction="row">
+					direction="row"
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -107,18 +116,21 @@ export default function StackAlignmentRow() {
 					flexWrap: 'nowrap',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					height: '100px'
-				}}>
+					height: '100px',
+				}}
+			>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					End
 				</DBInfotext>
 				<DBStack
 					style={{
 						padding: 'var(--db-spacing-fixed-xs)',
-						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+						border:
+							'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)',
 					}}
 					alignment="end"
-					direction="row">
+					direction="row"
+				>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

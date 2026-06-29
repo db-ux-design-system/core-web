@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBTag from '../tag.lite';
-import { StorybookTagArgTypes } from './_tag.arg.types';
+import {StorybookTagArgTypes} from './_tag.arg.types';
 
 useMetadata({
 	storybookTitle: 'No Text',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookTagArgTypes
+	storybookArgTypes: StorybookTagArgTypes,
 });
 
 export default function TagNoText() {

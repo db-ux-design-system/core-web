@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from '@db-ux/core-foundations';
+import {IconTypes} from '@db-ux/core-foundations';
 
 export interface GlobalProps {
 	/**
@@ -48,7 +48,7 @@ export const SemanticList = [
 	'critical',
 	'informational',
 	'warning',
-	'successful'
+	'successful',
 ] as const;
 export type SemanticType = (typeof SemanticList)[number];
 export type SemanticProps = {
@@ -128,7 +128,7 @@ export const PlacementHorizontalList = [
 	'left-start',
 	'left-end',
 	'right-start',
-	'right-end'
+	'right-end',
 ] as const;
 export type PlacementHorizontalType = (typeof PlacementHorizontalList)[number];
 
@@ -138,13 +138,13 @@ export const PlacementVerticalList = [
 	'top-start',
 	'top-end',
 	'bottom-start',
-	'bottom-end'
+	'bottom-end',
 ] as const;
 export type PlacementVerticalType = (typeof PlacementVerticalList)[number];
 
 export const PlacementList = [
 	...PlacementHorizontalList,
-	...PlacementVerticalList
+	...PlacementVerticalList,
 ] as const;
 export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {
@@ -175,7 +175,7 @@ export const GapSpacingList = [
 	'small',
 	'x-small',
 	'2x-small',
-	'3x-small'
+	'3x-small',
 ] as const;
 export type GapSpacingType = (typeof GapSpacingList)[number];
 export type GapSpacingProps = {
@@ -468,7 +468,7 @@ export const AutoCompleteList = [
 	'impp',
 	'url',
 	'photo',
-	'webauthn'
+	'webauthn',
 ] as const;
 export type AutoCompleteType = (typeof AutoCompleteList)[number];
 export type FormMessageProps = {
@@ -555,7 +555,7 @@ export const LinkReferrerPolicyList = [
 	'same-origin',
 	'strict-origin',
 	'strict-origin-when-cross-origin',
-	'unsafe-url'
+	'unsafe-url',
 ] as const;
 export type LinkReferrerPolicyType = (typeof LinkReferrerPolicyList)[number];
 export type LinkProps = {

@@ -1,6 +1,6 @@
-@use "sass:math";
-@use "a11y";
-@use "clearfix";
+@use 'sass:math';
+@use 'a11y';
+@use 'clearfix';
 
 @function px-to-rem($pxValue) {
 	@return ($pxValue * 0.0625) * 1rem;

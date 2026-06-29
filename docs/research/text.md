@@ -24,12 +24,12 @@
 
 - We should use `as` property with a default `span` or `p`
 - We need to check which HTML tags makes sense to control with the `<Text>` component:
-    - [del](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/del)??
-    - [dt](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dt)??
-    - [dd](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dd)??
-    - [ins](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ins)??
-    - [legend](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/legend)??
-    - etc.
+  - [del](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/del)??
+  - [dt](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dt)??
+  - [dd](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dd)??
+  - [ins](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ins)??
+  - [legend](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/legend)??
+  - etc.
 - `visuallyHidden` as dev property might be a good idea
 - shall we use [`code`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/code) as well??
 - [`text-wrap`](https://developer.chrome.com/docs/css-ui/css-text-wrap-balance)-CSS-property (especially with the value `"pretty"`) would be a relevant aspect to think about

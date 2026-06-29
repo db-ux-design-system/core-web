@@ -1,5 +1,5 @@
-import { DBNavigationItem } from '../../navigation-item/index';
-import { DBNavigation } from '../index';
+import {DBNavigationItem} from '../../navigation-item/index';
+import {DBNavigation} from '../index';
 
 export default function Navigation() {
 	return (

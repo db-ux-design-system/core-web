@@ -1,1 +1,1 @@
-export { default as DBTableDataCell } from './table-data-cell';
+export {default as DBTableDataCell} from './table-data-cell';

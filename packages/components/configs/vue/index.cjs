@@ -15,6 +15,6 @@ module.exports = {
 		onClickPlugin,
 		defineOptionsPlugin,
 		slotsPlugin,
-		esmExtensionsPlugin
-	]
+		esmExtensionsPlugin,
+	],
 };

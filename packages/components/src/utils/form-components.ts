@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { delay } from './index';
+import {delay} from './index';
 
 const specialNumberCharacters = ['.', ',', 'e', 'E', '+', '-'];
 
@@ -7,7 +7,7 @@ export const handleFrameworkEventAngular = (
 	component: any,
 	event: any,
 	modelValue: string = 'value',
-	lastValue?: any
+	lastValue?: any,
 ): void => {
 	const value = event.target[modelValue];
 	const type = event.target?.type;
@@ -26,7 +26,7 @@ export const handleFrameworkEventAngular = (
 			if (
 				specialNumberCharacters.includes(event.data) ||
 				(specialNumberCharacters.some((specialCharacter) =>
-					lastValue?.toString().includes(specialCharacter)
+					lastValue?.toString().includes(specialCharacter),
 				) &&
 					event.inputType === 'deleteContentBackward')
 			) {
@@ -47,7 +47,7 @@ export const handleFrameworkEventAngular = (
 export const handleFrameworkEventVue = (
 	emit: (event: string, ...args: any[]) => void,
 	event: any,
-	modelValue: string = 'value'
+	modelValue: string = 'value',
 ): void => {
 	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 	emit(`update:${modelValue}`, event.target[modelValue]);
@@ -56,7 +56,7 @@ export const handleFrameworkEventVue = (
 export const addResetEventListener = (
 	element: any, // we need any here for the _dbFormResetListenerAdded property
 	resetFunction: (event: Event) => void,
-	signal: AbortSignal
+	signal: AbortSignal,
 ): void => {
 	if (element.form && !element._dbFormResetListenerAdded) {
 		(element.form as HTMLFormElement).addEventListener(
@@ -64,7 +64,7 @@ export const addResetEventListener = (
 			(event: Event) => {
 				resetFunction(event);
 			},
-			{ signal }
+			{signal},
 		);
 		// Mark as added to avoid duplicate listeners
 		element._dbFormResetListenerAdded = true;
@@ -73,9 +73,9 @@ export const addResetEventListener = (
 
 export const addCheckedResetEventListener = (
 	element: any,
-	props: { checked?: boolean | string; defaultChecked?: boolean },
+	props: {checked?: boolean | string; defaultChecked?: boolean},
 	resetFunction: (event: any) => void,
-	signal: AbortSignal
+	signal: AbortSignal,
 ): void => {
 	addResetEventListener(
 		element,
@@ -88,20 +88,20 @@ export const addCheckedResetEventListener = (
 						: element.checked;
 				const valueEvent: any = {
 					...event,
-					target: { ...event.target, checked: resetValue }
+					target: {...event.target, checked: resetValue},
 				};
 				resetFunction(valueEvent);
 			}, 1);
 		},
-		signal
+		signal,
 	);
 };
 
 export const addValueResetEventListener = (
 	element: any,
-	props: { value?: string; defaultValue?: string },
+	props: {value?: string; defaultValue?: string},
 	resetFunction: (event: any) => void,
-	signal: AbortSignal
+	signal: AbortSignal,
 ): void => {
 	addResetEventListener(
 		element,
@@ -114,11 +114,11 @@ export const addValueResetEventListener = (
 						: element.value;
 				const valueEvent: any = {
 					...event,
-					target: { ...event.target, value: resetValue }
+					target: {...event.target, value: resetValue},
 				};
 				resetFunction(valueEvent);
 			}, 1);
 		},
-		signal
+		signal,
 	);
 };

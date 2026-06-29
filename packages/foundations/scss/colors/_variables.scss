@@ -1,16 +1,16 @@
 /* stylelint-disable-next-line scss/dollar-variable-colon-space-after */
 $variants:
-	"neutral", "brand", "critical", "successful", "warning", "informational";
+	'neutral', 'brand', 'critical', 'successful', 'warning', 'informational';
 /* stylelint-disable-next-line scss/dollar-variable-colon-space-after */
 $variant-colors:
-	"neutral", "critical", "successful", "warning", "informational";
+	'neutral', 'critical', 'successful', 'warning', 'informational';
 $on-background-colors:
-	"emphasis-100", "emphasis-90", "emphasis-80", "emphasis-70", "emphasis-60",
-	"emphasis-50";
+	'emphasis-100', 'emphasis-90', 'emphasis-80', 'emphasis-70', 'emphasis-60',
+	'emphasis-50';
 $background-colors:
-	"basic-level-1", "basic-level-2", "basic-level-3", "basic-transparent-semi",
-	"basic-transparent-full";
-$inverted-colors: "contrast-max", "contrast-high", "contrast-low";
+	'basic-level-1', 'basic-level-2', 'basic-level-3', 'basic-transparent-semi',
+	'basic-transparent-full';
+$inverted-colors: 'contrast-max', 'contrast-high', 'contrast-low';
 
 // adaptive colors
 

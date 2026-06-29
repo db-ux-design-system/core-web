@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { DBCheckbox } from "../../../../../output/vue/src";
-import FormWrapper from "./FormWrapper.vue";
+import {ref} from 'vue';
+import {DBCheckbox} from '../../../../../output/vue/src';
+import FormWrapper from './FormWrapper.vue';
 
 const plain = ref(true);
 const vModel = ref(true);
@@ -16,8 +16,6 @@ const vModel = ref(true);
 		>
 			Plain
 		</DBCheckbox>
-		<DBCheckbox name="checkbox-1" v-model:checked="vModel">
-			VModel
-		</DBCheckbox>
+		<DBCheckbox name="checkbox-1" v-model:checked="vModel"> VModel </DBCheckbox>
 	</FormWrapper>
 </template>

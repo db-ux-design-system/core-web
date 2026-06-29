@@ -1,9 +1,9 @@
-@use "@db-ux/core-foundations/build/styles/helpers/functions";
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/fonts";
-@use "../../styles/internal/popover-component";
-@use "../../styles/internal/component";
+@use '@db-ux/core-foundations/build/styles/helpers/functions';
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/fonts';
+@use '../../styles/internal/popover-component';
+@use '../../styles/internal/component';
 
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
@@ -28,16 +28,16 @@
 	}
 
 	// Only for testing
-	&[data-e2e-hover="true"] {
+	&[data-e2e-hover='true'] {
 		@extend %show-popover;
 	}
 
 	// Arrow
-	&[data-show-arrow="true"] {
+	&[data-show-arrow='true'] {
 		&::after {
 			@extend %component-border;
 
-			content: "";
+			content: '';
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -58,8 +58,8 @@
 	}
 
 	&:not([data-placement], [data-corrected-placement]),
-	&[data-placement^="bottom"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="bottom"] {
+	&[data-placement^='bottom']:not([data-corrected-placement]),
+	&[data-corrected-placement^='bottom'] {
 		&::after {
 			inset-inline-start: var(--db-tooltip-arrow-inline-start, 50%);
 			inset-block-start: 0;
@@ -68,8 +68,8 @@
 		}
 	}
 
-	&[data-placement^="top"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="top"] {
+	&[data-placement^='top']:not([data-corrected-placement]),
+	&[data-corrected-placement^='top'] {
 		&::after {
 			inset-inline-start: var(--db-tooltip-arrow-inline-start, 50%);
 			inset-block-end: 0;
@@ -78,8 +78,8 @@
 		}
 	}
 
-	&[data-placement^="right"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="right"] {
+	&[data-placement^='right']:not([data-corrected-placement]),
+	&[data-corrected-placement^='right'] {
 		&::after {
 			inset-block-start: var(--db-tooltip-arrow-block-start, 50%);
 			inset-inline-start: 0;
@@ -88,8 +88,8 @@
 		}
 	}
 
-	&[data-placement^="left"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="left"] {
+	&[data-placement^='left']:not([data-corrected-placement]),
+	&[data-corrected-placement^='left'] {
 		&::after {
 			inset-block-start: var(--db-tooltip-arrow-block-start, 50%);
 			inset-inline-end: 0;
@@ -98,7 +98,7 @@
 		}
 	}
 
-	&[data-emphasis="strong"] {
+	&[data-emphasis='strong'] {
 		background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 		color: colors.$db-adaptive-on-bg-inverted-default;
 
@@ -111,7 +111,7 @@
 		}
 	}
 
-	&[data-wrap="false"] {
+	&[data-wrap='false'] {
 		white-space: nowrap;
 	}
 }
@@ -119,7 +119,7 @@
 // Global styles
 
 @mixin show-popover($state) {
-	[data-has-tooltip="true"] {
+	[data-has-tooltip='true'] {
 		&:#{$state} {
 			.db-tooltip:first-of-type {
 				@extend %show-popover;
@@ -128,11 +128,11 @@
 	}
 }
 
-[data-has-tooltip="true"] {
+[data-has-tooltip='true'] {
 	position: var(--db-tooltip-parent-position, relative);
 }
 
-$popover-states: "hover", "focus-visible";
+$popover-states: 'hover', 'focus-visible';
 
 @each $state in $popover-states {
 	@include show-popover($state);

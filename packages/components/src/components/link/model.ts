@@ -7,7 +7,7 @@ import type {
 	RoleProps,
 	ShowIconProps,
 	TextProps,
-	WrapProps
+	WrapProps,
 } from '../../shared/model';
 
 export const LinkVariantList = ['adaptive', 'brand', 'inline'] as const;

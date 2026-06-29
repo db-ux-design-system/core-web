@@ -1,11 +1,11 @@
-import { useMetadata } from '@builder.io/mitosis';
+import {useMetadata} from '@builder.io/mitosis';
 import DBCheckbox from '../checkbox.lite';
-import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
+import {StorybookCheckboxArgTypes} from './_checkbox.arg.types';
 
 useMetadata({
 	storybookTitle: 'Validation',
 	storybookNames: ['(Default) No validation', 'Invalid', 'Valid'],
-	storybookArgTypes: StorybookCheckboxArgTypes
+	storybookArgTypes: StorybookCheckboxArgTypes,
 });
 
 export default function CheckboxValidation() {
@@ -17,13 +17,15 @@ export default function CheckboxValidation() {
 			<DBCheckbox
 				name="Validation"
 				validation="invalid"
-				invalidMessage="Invalid Message">
+				invalidMessage="Invalid Message"
+			>
 				Invalid
 			</DBCheckbox>
 			<DBCheckbox
 				name="Validation"
 				validation="valid"
-				validMessage="Valid message">
+				validMessage="Valid message"
+			>
 				Valid
 			</DBCheckbox>
 		</div>

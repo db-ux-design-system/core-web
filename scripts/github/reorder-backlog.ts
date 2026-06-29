@@ -23,11 +23,11 @@
  	REMINDER_BOT_LOGIN, FEEDBACK_CODEOWNERS
  */
 
-import { execSync } from 'node:child_process';
-import { randomUUID } from 'node:crypto';
-import { unlinkSync, writeFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import {execSync} from 'node:child_process';
+import {randomUUID} from 'node:crypto';
+import {unlinkSync, writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 
 // Small helpers to read configuration from the environment while keeping a
 // sensible default. Empty strings (e.g. an unset GitHub variable) fall back too.
@@ -51,14 +51,14 @@ const effortFieldId = envNumber('EFFORT_FIELD_ID', 32_123_225);
 // Project field IDs
 const statusFieldId = envString(
 	'STATUS_FIELD_ID',
-	'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0'
+	'PVTSSF_lADOC6qtR84Ay9u1zgo1SA0',
 );
 const backlogOptionId = envString('BACKLOG_OPTION_ID', 'eddf8fe8');
 
 // Label used to flag community feedback issues
 const communityFeedbackLabel = envString(
 	'COMMUNITY_FEEDBACK_LABEL',
-	'communityFeedback'
+	'communityFeedback',
 );
 
 // Status for items waiting on the issue author. Single-select option labels
@@ -66,25 +66,25 @@ const communityFeedbackLabel = envString(
 // and only fall back to the display name otherwise.
 const waitingForFeedbackStatus = envString(
 	'WAITING_FOR_FEEDBACK_STATUS',
-	'🎶 Waiting for feedback'
+	'🎶 Waiting for feedback',
 );
 const waitingForFeedbackOptionId = envString(
 	'WAITING_FOR_FEEDBACK_OPTION_ID',
-	''
+	'',
 );
 
 const priorityRank: Record<string, number> = {
 	Urgent: 1,
 	High: 2,
 	Medium: 3,
-	Low: 4
+	Low: 4,
 };
 const defaultPriorityRank = 5;
 
 const effortRank: Record<string, number> = {
 	Low: 1,
 	Medium: 2,
-	High: 3
+	High: 3,
 };
 const defaultEffortRank = 4;
 
@@ -105,7 +105,7 @@ const codeowners = new Set(
 	envString('FEEDBACK_CODEOWNERS', 'mfranzke,nmerget,michaelmkraus,bruno-sch')
 		.split(',')
 		.map((login) => login.trim().replace(/^@/, '').toLowerCase())
-		.filter((login) => login.length > 0)
+		.filter((login) => login.length > 0),
 );
 
 const isCodeowner = (login: string | undefined): boolean =>
@@ -115,7 +115,7 @@ const isCodeowner = (login: string | undefined): boolean =>
 
 type FieldValueNode = {
 	__typename: string;
-	field?: { id?: string; name?: string };
+	field?: {id?: string; name?: string};
 	name?: string;
 	optionId?: string;
 };
@@ -132,9 +132,9 @@ type ProjectItemNode = {
 				number?: number;
 				title?: string;
 				state?: string;
-				repository?: { nameWithOwner: string };
-				labels?: { nodes: Array<{ name: string }> };
-				author?: { login: string };
+				repository?: {nameWithOwner: string};
+				labels?: {nodes: Array<{name: string}>};
+				author?: {login: string};
 		  }
 		| undefined;
 };
@@ -181,7 +181,7 @@ const ghGraphql = (query: string): string => {
 	try {
 		const result = execSync(`gh api graphql -F query=@${temporaryFile}`, {
 			encoding: 'utf8',
-			maxBuffer: 50 * 1024 * 1024
+			maxBuffer: 50 * 1024 * 1024,
 		}).trim();
 		return result;
 	} catch (error: unknown) {
@@ -213,11 +213,11 @@ const ghRestPaginated = (endpoint: string): string => {
 	try {
 		const raw = execSync(`gh api --paginate --slurp "${paged}"`, {
 			encoding: 'utf8',
-			maxBuffer: 10 * 1024 * 1024
+			maxBuffer: 10 * 1024 * 1024,
 		}).trim();
 		const pages = JSON.parse(raw) as unknown[];
 		const flattened = pages.flatMap((page) =>
-			Array.isArray(page) ? (page as unknown[]) : [page]
+			Array.isArray(page) ? (page as unknown[]) : [page],
 		);
 		return JSON.stringify(flattened);
 	} catch (error: unknown) {
@@ -314,8 +314,8 @@ const assertStatusFieldExists = (): void => {
 					| {
 							__typename?: string;
 							id?: string;
-							project?: { id?: string };
-							options?: Array<{ id?: string }>;
+							project?: {id?: string};
+							options?: Array<{id?: string}>;
 					  }
 					| undefined;
 			};
@@ -333,7 +333,7 @@ const assertStatusFieldExists = (): void => {
 		throw new Error(
 			`Could not resolve the configured Status field (${statusFieldId}): ${message}. ` +
 				'Refusing to run so active items are not misclassified as "no status".',
-			{ cause: error }
+			{cause: error},
 		);
 	}
 
@@ -342,7 +342,7 @@ const assertStatusFieldExists = (): void => {
 			`Configured Status field (${statusFieldId}) was not found as a single-select ` +
 				`field in project ${projectId}. Refusing to run so active items are not ` +
 				'misclassified as "no status". Check the STATUS_FIELD_ID / ' +
-				'BACKLOG_STATUS_FIELD_ID configuration.'
+				'BACKLOG_STATUS_FIELD_ID configuration.',
 		);
 	}
 
@@ -353,7 +353,7 @@ const assertStatusFieldExists = (): void => {
 				'Refusing to run so active items are not misclassified as "no status" ' +
 				'(none of the fetched field values would match a field from another ' +
 				'project). Check the STATUS_FIELD_ID / BACKLOG_STATUS_FIELD_ID and ' +
-				'PROJECT_ID configuration.'
+				'PROJECT_ID configuration.',
 		);
 	}
 
@@ -370,7 +370,7 @@ const assertStatusFieldExists = (): void => {
 				`Status field options [${optionIds.join(', ')}]. Refusing to run so ` +
 				'Backlog items are not silently omitted from reordering and ' +
 				'author-response transitions do not fail. Check the BACKLOG_OPTION_ID / ' +
-				'BACKLOG_STATUS_BACKLOG_OPTION_ID configuration.'
+				'BACKLOG_STATUS_BACKLOG_OPTION_ID configuration.',
 		);
 	}
 
@@ -385,7 +385,7 @@ const assertStatusFieldExists = (): void => {
 				`was not found among the Status field options [${optionIds.join(', ')}]. ` +
 				'Refusing to run so waiting items are not misclassified. Check the ' +
 				'WAITING_FOR_FEEDBACK_OPTION_ID / BACKLOG_WAITING_FOR_FEEDBACK_OPTION_ID ' +
-				'configuration.'
+				'configuration.',
 		);
 	}
 };
@@ -399,7 +399,7 @@ const assertStatusFieldExists = (): void => {
 // value sitting on a later page would be invisible to getStatusOptionId() and
 // the active item would be wrongly treated as "no status".
 const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
-	let { pageInfo } = node.fieldValues;
+	let {pageInfo} = node.fieldValues;
 	let cursor = pageInfo?.endCursor;
 
 	while (pageInfo?.hasNextPage && cursor) {
@@ -452,7 +452,7 @@ const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
 const fetchProjectItems = async (
 	filter: (node: ProjectItemNode) => boolean,
 	progressLabel: string,
-	includeLabels = false
+	includeLabels = false,
 ): Promise<ProjectItemNode[]> => {
 	const allItems: ProjectItemNode[] = [];
 	let cursor: string | undefined;
@@ -509,7 +509,7 @@ const fetchProjectItems = async (
 		process.stdout.write(`   ${progressLabel}, page ${String(page)}...\r`);
 		const raw = ghGraphql(query);
 		const response = JSON.parse(raw) as ProjectItemsResponse;
-		const { nodes, pageInfo } = response.data.node.items;
+		const {nodes, pageInfo} = response.data.node.items;
 
 		for (const node of nodes) {
 			// The fieldValues connection is itself paginated. An item with more
@@ -543,8 +543,8 @@ const fetchProjectItems = async (
 // --- Fetch issue fields and build sortable list ---
 
 const extractFieldValues = (
-	fieldValues: IssueFieldValue[]
-): { priority: string; effort: string } => {
+	fieldValues: IssueFieldValue[],
+): {priority: string; effort: string} => {
 	let priority = '';
 	let effort = '';
 
@@ -558,11 +558,11 @@ const extractFieldValues = (
 		}
 	}
 
-	return { priority, effort };
+	return {priority, effort};
 };
 
 const fetchIssueFields = async (
-	items: ProjectItemNode[]
+	items: ProjectItemNode[],
 ): Promise<SortableItem[]> => {
 	const sortableItems: SortableItem[] = [];
 
@@ -574,7 +574,7 @@ const fetchIssueFields = async (
 		}
 
 		process.stdout.write(
-			`   [${String(i + 1)}/${String(items.length)}] #${String(number)}...\r`
+			`   [${String(i + 1)}/${String(items.length)}] #${String(number)}...\r`,
 		);
 
 		let priority = '';
@@ -582,7 +582,7 @@ const fetchIssueFields = async (
 
 		try {
 			const issueJson = ghRestPaginated(
-				`repos/${owner}/${repo}/issues/${String(number)}/issue-field-values`
+				`repos/${owner}/${repo}/issues/${String(number)}/issue-field-values`,
 			);
 			const fieldValues = JSON.parse(issueJson) as IssueFieldValue[];
 			const fields = extractFieldValues(fieldValues);
@@ -594,19 +594,16 @@ const fetchIssueFields = async (
 			// the whole backlog would be reordered based on incomplete data.
 			// Abort the run instead. Genuinely absent values returned by a
 			// successful request are fine and handled via the default ranks.
-			const message =
-				error instanceof Error ? error.message : String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			throw new Error(
 				`Failed to fetch issue fields for #${String(number)}: ${message}`,
-				{ cause: error }
+				{cause: error},
 			);
 		}
 
 		const labels = item.content?.labels?.nodes ?? [];
 		const isCommunity = labels.some((label) =>
-			label.name
-				.toLowerCase()
-				.includes(communityFeedbackLabel.toLowerCase())
+			label.name.toLowerCase().includes(communityFeedbackLabel.toLowerCase()),
 		);
 
 		sortableItems.push({
@@ -617,7 +614,7 @@ const fetchIssueFields = async (
 			priority: priority || '(none)',
 			priorityRank: priorityRank[priority] ?? defaultPriorityRank,
 			effort: effort || '(none)',
-			effortRank: effortRank[effort] ?? defaultEffortRank
+			effortRank: effortRank[effort] ?? defaultEffortRank,
 		});
 
 		// Small delay every 10 items to avoid rate limiting
@@ -666,7 +663,7 @@ const isStillBacklogItem = async (itemId: string): Promise<boolean> => {
 
 	const raw = ghGraphql(query);
 	const parsed = JSON.parse(raw) as {
-		data?: { node?: ProjectItemNode | undefined };
+		data?: {node?: ProjectItemNode | undefined};
 	};
 	const node = parsed.data?.node;
 	if (!node) {
@@ -682,7 +679,7 @@ const isStillBacklogItem = async (itemId: string): Promise<boolean> => {
 
 const reorderItems = async (
 	sortedItems: SortableItem[],
-	anchorItemId: string | undefined
+	anchorItemId: string | undefined,
 ): Promise<void> => {
 	// Seed the chain with the last project item that is NOT part of the
 	// backlog. Omitting afterId would move the first backlog item to the very
@@ -694,7 +691,7 @@ const reorderItems = async (
 	for (let i = 0; i < sortedItems.length; i++) {
 		const item = sortedItems[i];
 		process.stdout.write(
-			`   [${String(i + 1)}/${String(sortedItems.length)}] Moving #${String(item.number)}...\r`
+			`   [${String(i + 1)}/${String(sortedItems.length)}] Moving #${String(item.number)}...\r`,
 		);
 
 		// Revalidate against the live project state. If the item was closed or
@@ -705,16 +702,14 @@ const reorderItems = async (
 		const stillBacklog = await isStillBacklogItem(item.itemId);
 		if (!stillBacklog) {
 			console.log(
-				`\n   ⏭️  #${String(item.number)} is no longer an open backlog item — skipping`
+				`\n   ⏭️  #${String(item.number)} is no longer an open backlog item — skipping`,
 			);
 			// eslint-disable-next-line no-await-in-loop
 			await sleep(200);
 			continue;
 		}
 
-		const afterClause = previousItemId
-			? `afterId: "${previousItemId}"`
-			: '';
+		const afterClause = previousItemId ? `afterId: "${previousItemId}"` : '';
 
 		const mutation = `mutation {
   updateProjectV2ItemPosition(input: {
@@ -761,7 +756,7 @@ type IssueComment = {
 // we can stop. A page cap bounds the work on pathologically long threads.
 const fetchRecentComments = (
 	number: number,
-	requestFound: (comments: IssueComment[]) => boolean
+	requestFound: (comments: IssueComment[]) => boolean,
 ): IssueComment[] => {
 	const pageSize = 30;
 	const maxPages = 20; // Safety cap (~600 comments) for very long threads.
@@ -797,7 +792,7 @@ const fetchRecentComments = (
 								startCursor?: string;
 							};
 							nodes?: Array<{
-								author?: { login?: string };
+								author?: {login?: string};
 								createdAt?: string;
 							}>;
 						};
@@ -812,9 +807,9 @@ const fetchRecentComments = (
 		comments = [
 			...nodes.map((node) => ({
 				author: node.author?.login,
-				createdAt: node.createdAt
+				createdAt: node.createdAt,
 			})),
-			...comments
+			...comments,
 		];
 
 		// Stop as soon as the request is in view; everything newer is collected.
@@ -839,10 +834,10 @@ const timeOf = (comment: IssueComment | undefined): number =>
 // Returns the most recent comment whose author satisfies `predicate`.
 const lastCommentBy = (
 	comments: IssueComment[],
-	predicate: (author: string) => boolean
+	predicate: (author: string) => boolean,
 ): IssueComment | undefined => {
 	for (let i = comments.length - 1; i >= 0; i--) {
-		const { author } = comments[i];
+		const {author} = comments[i];
 		if (author && predicate(author)) {
 			return comments[i];
 		}
@@ -877,7 +872,7 @@ const postStaleReminder = (issueAuthor: string, number: number): void => {
 			' — This issue has been waiting for feedback for a while. Is this still an issue for you? If so, please let us know and we will prioritize accordingly. If not, feel free to close it. Thanks!';
 		execSync(
 			`gh issue comment ${String(number)} --repo ${owner}/${repo} --body "${body}"`,
-			{ encoding: 'utf8' }
+			{encoding: 'utf8'},
 		);
 	} catch {
 		console.warn(`\n   ⚠️  Failed to post comment on #${String(number)}`);
@@ -906,13 +901,11 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 			(collected) =>
 				lastCommentBy(
 					collected,
-					(author) => author !== issueAuthor && isCodeowner(author)
-				) !== undefined
+					(author) => author !== issueAuthor && isCodeowner(author),
+				) !== undefined,
 		);
 	} catch {
-		console.warn(
-			`\n   ⚠️  Could not fetch comments for #${String(number)}`
-		);
+		console.warn(`\n   ⚠️  Could not fetch comments for #${String(number)}`);
 		return;
 	}
 
@@ -929,7 +922,7 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	// Without such a request there is nothing to chase, so we leave it untouched.
 	const feedbackRequest = lastCommentBy(
 		comments,
-		(author) => author !== issueAuthor && isCodeowner(author)
+		(author) => author !== issueAuthor && isCodeowner(author),
 	);
 	if (!feedbackRequest) {
 		return;
@@ -943,7 +936,7 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	// as a fresh response.
 	const lastAuthorComment = lastCommentBy(
 		comments,
-		(author) => author === issueAuthor
+		(author) => author === issueAuthor,
 	);
 	const authorResponded =
 		lastAuthorComment !== undefined &&
@@ -952,7 +945,7 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	if (authorResponded) {
 		// Creator responded → move back to Backlog (codeowners need to act).
 		console.log(
-			`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
+			`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`,
 		);
 		if (!dryRun) {
 			moveItemToBacklog(item.id, number);
@@ -967,7 +960,7 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	// look at codeowner requests, author responses and bot reminders.
 	const lastBotReminder = lastCommentBy(
 		comments,
-		(author) => author === botLogin
+		(author) => author === botLogin,
 	);
 	if (lastBotReminder && timeOf(lastBotReminder) > feedbackRequestTime) {
 		return;
@@ -979,7 +972,7 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	}
 
 	console.log(
-		`   💬 #${String(number)}: still waiting → posting stale reminder`
+		`   💬 #${String(number)}: still waiting → posting stale reminder`,
 	);
 	if (!dryRun) {
 		postStaleReminder(issueAuthor, number);
@@ -988,11 +981,11 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 
 const processWaitingForFeedback = async (
 	items: ProjectItemNode[],
-	dryRun: boolean
+	dryRun: boolean,
 ): Promise<void> => {
 	console.log('\n⏳ Processing "Waiting for Feedback" items...');
 	const waitingItems = items.filter(
-		(item) => isOpenIssue(item) && isWaitingForFeedback(item)
+		(item) => isOpenIssue(item) && isWaitingForFeedback(item),
 	);
 
 	if (waitingItems.length === 0) {
@@ -1001,7 +994,7 @@ const processWaitingForFeedback = async (
 	}
 
 	console.log(
-		`   Found ${String(waitingItems.length)} items waiting for feedback`
+		`   Found ${String(waitingItems.length)} items waiting for feedback`,
 	);
 
 	for (const item of waitingItems) {
@@ -1033,12 +1026,10 @@ const reorderBacklog = async () => {
 				return false;
 			}
 
-			return (
-				node.content.repository?.nameWithOwner === `${owner}/${repo}`
-			);
+			return node.content.repository?.nameWithOwner === `${owner}/${repo}`;
 		},
 		'Scanning',
-		true
+		true,
 	);
 
 	// Step 0b: Process "Waiting for Feedback" items
@@ -1052,20 +1043,18 @@ const reorderBacklog = async () => {
 				return false;
 			}
 
-			if (
-				node.content?.repository?.nameWithOwner !== `${owner}/${repo}`
-			) {
+			if (node.content?.repository?.nameWithOwner !== `${owner}/${repo}`) {
 				return false;
 			}
 
 			return isBacklogItem(node);
 		},
 		'Fetching',
-		true
+		true,
 	);
 
 	console.log(
-		`   Found ${String(backlogItems.length)} backlog/no-status issues`
+		`   Found ${String(backlogItems.length)} backlog/no-status issues`,
 	);
 
 	if (backlogItems.length === 0) {
@@ -1081,15 +1070,13 @@ const reorderBacklog = async () => {
 	const communityItems = sortableItems
 		.filter((item) => item.isCommunity)
 		.toSorted(
-			(a, b) =>
-				a.priorityRank - b.priorityRank || a.effortRank - b.effortRank
+			(a, b) => a.priorityRank - b.priorityRank || a.effortRank - b.effortRank,
 		);
 
 	const nonCommunityItems = sortableItems
 		.filter((item) => !item.isCommunity)
 		.toSorted(
-			(a, b) =>
-				a.priorityRank - b.priorityRank || a.effortRank - b.effortRank
+			(a, b) => a.priorityRank - b.priorityRank || a.effortRank - b.effortRank,
 		);
 
 	const sortedItems = [...communityItems, ...nonCommunityItems];
@@ -1098,11 +1085,11 @@ const reorderBacklog = async () => {
 	console.log('\n📋 Sorted order:');
 	if (communityItems.length > 0) {
 		console.log(
-			`\n   👩‍👧‍👦 Community Feedback (${String(communityItems.length)}):`
+			`\n   👩‍👧‍👦 Community Feedback (${String(communityItems.length)}):`,
 		);
 		for (const item of communityItems) {
 			console.log(
-				`      #${String(item.number)} | ${item.priority} | ${item.effort} | ${item.title.slice(0, 55)}`
+				`      #${String(item.number)} | ${item.priority} | ${item.effort} | ${item.title.slice(0, 55)}`,
 			);
 		}
 	}
@@ -1110,20 +1097,18 @@ const reorderBacklog = async () => {
 	console.log(`\n   📝 Non-Community (${String(nonCommunityItems.length)}):`);
 	for (const item of nonCommunityItems) {
 		console.log(
-			`      #${String(item.number)} | ${item.priority} | ${item.effort} | ${item.title.slice(0, 55)}`
+			`      #${String(item.number)} | ${item.priority} | ${item.effort} | ${item.title.slice(0, 55)}`,
 		);
 	}
 
 	// Step 5: Reorder via GraphQL mutations
 	if (dryRun) {
-		console.log(
-			'\n🏜️  DRY RUN complete. No changes were made to the project.'
-		);
+		console.log('\n🏜️  DRY RUN complete. No changes were made to the project.');
 		return;
 	}
 
 	console.log(
-		`\n🔀 Reordering ${String(sortedItems.length)} items in project...`
+		`\n🔀 Reordering ${String(sortedItems.length)} items in project...`,
 	);
 
 	// Determine the anchor: the last project item (any repo / status) that is
@@ -1134,7 +1119,7 @@ const reorderBacklog = async () => {
 	const allProjectItems = await fetchProjectItems(
 		() => true,
 		'Locating backlog anchor',
-		false
+		false,
 	);
 	let anchorItemId: string | undefined;
 	for (const projectItem of allProjectItems) {
@@ -1146,10 +1131,10 @@ const reorderBacklog = async () => {
 	await reorderItems(sortedItems, anchorItemId);
 
 	console.log(
-		`\n\n✅ Done! Reordered ${String(sortedItems.length)} items in the backlog.`
+		`\n\n✅ Done! Reordered ${String(sortedItems.length)} items in the backlog.`,
 	);
 	console.log(
-		`   ${String(communityItems.length)} community items at the top, ${String(nonCommunityItems.length)} non-community items below.`
+		`   ${String(communityItems.length)} community items at the top, ${String(nonCommunityItems.length)} non-community items below.`,
 	);
 };
 

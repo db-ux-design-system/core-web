@@ -1,4 +1,4 @@
-import { computed, ref, watchEffect } from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
 export function useSkipper() {
 	const shouldSkipRef = ref<boolean | null>(true);

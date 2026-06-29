@@ -17,39 +17,18 @@ For general installation and configuration take a look at the [components](https
 		>
 			<ul>
 				<li role="tab" class="db-tab-item">
-					<label
-						for="my-tabs-tab-0"
-						aria-controls="my-tabs-tab-panel-0"
-					>
-						<input
-							type="radio"
-							id="my-tabs-tab-0"
-							name="my-tabs"
-						/>Test 1
+					<label for="my-tabs-tab-0" aria-controls="my-tabs-tab-panel-0">
+						<input type="radio" id="my-tabs-tab-0" name="my-tabs" />Test 1
 					</label>
 				</li>
 				<li role="tab" class="db-tab-item">
-					<label
-						for="my-tabs-tab-1"
-						aria-controls="my-tabs-tab-panel-1"
-					>
-						<input
-							type="radio"
-							id="my-tabs-tab-1"
-							name="my-tabs"
-						/>Test 2
+					<label for="my-tabs-tab-1" aria-controls="my-tabs-tab-panel-1">
+						<input type="radio" id="my-tabs-tab-1" name="my-tabs" />Test 2
 					</label>
 				</li>
 				<li role="tab" class="db-tab-item">
-					<label
-						for="my-tabs-tab-2"
-						aria-controls="my-tabs-tab-panel-2"
-					>
-						<input
-							type="radio"
-							id="my-tabs-tab-2"
-							name="my-tabs"
-						/>Test 3
+					<label for="my-tabs-tab-2" aria-controls="my-tabs-tab-panel-2">
+						<input type="radio" id="my-tabs-tab-2" name="my-tabs" />Test 3
 					</label>
 				</li>
 			</ul>

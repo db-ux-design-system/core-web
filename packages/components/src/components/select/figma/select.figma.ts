@@ -1,4 +1,4 @@
-import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
+import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
 
 export type FigmaSelectProps = {
 	label?: string;
@@ -18,36 +18,36 @@ export type FigmaSelectProps = {
 };
 
 const selectProps: Record<string, FigmaProp> = {
-	label: { type: 'string', key: 'Label' },
-	showLabel: { type: 'boolean', key: 'Show Label' },
+	label: {type: 'string', key: 'Label'},
+	showLabel: {type: 'boolean', key: 'Show Label'},
 	variant: {
 		type: 'enum',
 		key: 'Variant',
-		value: { Above: 'above', Floating: 'floating' }
+		value: {Above: 'above', Floating: 'floating'},
 	},
-	required: { type: 'boolean', key: 'Required' },
-	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
-	disabled: { type: 'boolean', key: 'Disabled' },
-	readonly: { type: 'boolean', key: 'Readonly' },
+	required: {type: 'boolean', key: 'Required'},
+	showRequiredAsterisk: {type: 'boolean', key: 'Show Required Asterisk'},
+	disabled: {type: 'boolean', key: 'Disabled'},
+	readonly: {type: 'boolean', key: 'Readonly'},
 	validation: {
 		type: 'enum',
 		key: 'Validation',
 		value: {
 			'(Def) No Validation': 'no-validation',
 			Valid: 'valid',
-			Invalid: 'invalid'
-		}
+			Invalid: 'invalid',
+		},
 	},
-	showIcon: { type: 'boolean', key: 'Show Icon' },
-	showMessage: { type: 'boolean', key: 'Show Message' },
+	showIcon: {type: 'boolean', key: 'Show Icon'},
+	showMessage: {type: 'boolean', key: 'Show Message'},
 	icon: {
 		type: 'conditionalProp',
 		key: 'Icon',
 		guardKey: 'Show Icon',
-		attrName: 'icon'
+		attrName: 'icon',
 	},
-	placeholder: { type: 'string', key: 'Placeholder' },
-	value: { type: 'string', key: 'Text' },
+	placeholder: {type: 'string', key: 'Placeholder'},
+	value: {type: 'string', key: 'Text'},
 	message: {
 		type: 'validationMessage',
 		key: 'Text',
@@ -55,9 +55,9 @@ const selectProps: Record<string, FigmaProp> = {
 		map: {
 			invalid: 'invalidMessage',
 			valid: 'validMessage',
-			default: 'message'
-		}
-	}
+			default: 'message',
+		},
+	},
 };
 
 export const selects: FigmaCodeConnect = {
@@ -69,9 +69,9 @@ export const selects: FigmaCodeConnect = {
 		// Floating Empty
 		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:4692',
 		// Floating Selected
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:5527'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3914:5527',
 	],
-	props: selectProps
+	props: selectProps,
 };
 
 export const aboveSelects = selects;

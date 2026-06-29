@@ -1,32 +1,32 @@
-import type { InputType } from 'storybook/internal/csf';
+import type {InputType} from 'storybook/internal/csf';
 import {
 	StorybookIconArgTypes,
 	StorybookIconLeadingArgTypes,
-	StorybookIconTrailingArgTypes
+	StorybookIconTrailingArgTypes,
 } from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookInputArgTypes: Record<string, InputType> = {
-	label: { control: 'text' },
-	variant: { control: 'select', options: ['above', 'floating'] },
-	value: { control: 'text' },
-	showLabel: { control: 'boolean' },
-	message: { control: 'text' },
-	showMessage: { control: 'boolean' },
-	disabled: { control: 'boolean' },
-	readOnly: { control: 'boolean' },
+	label: {control: 'text'},
+	variant: {control: 'select', options: ['above', 'floating']},
+	value: {control: 'text'},
+	showLabel: {control: 'boolean'},
+	message: {control: 'text'},
+	showMessage: {control: 'boolean'},
+	disabled: {control: 'boolean'},
+	readOnly: {control: 'boolean'},
 	validation: {
 		control: 'select',
-		options: ['invalid', 'valid', 'no-validation']
+		options: ['invalid', 'valid', 'no-validation'],
 	},
-	invalidMessage: { control: 'text' },
-	validMessage: { control: 'text' },
-	required: { control: 'boolean' },
-	showRequiredAsterisk: { control: 'boolean' },
+	invalidMessage: {control: 'text'},
+	validMessage: {control: 'text'},
+	required: {control: 'boolean'},
+	showRequiredAsterisk: {control: 'boolean'},
 	...StorybookIconArgTypes,
 	...StorybookIconLeadingArgTypes,
 	...StorybookIconTrailingArgTypes,
-	minLength: { control: 'number' },
-	maxLength: { control: 'number' },
+	minLength: {control: 'number'},
+	maxLength: {control: 'number'},
 	type: {
 		control: 'select',
 		options: [
@@ -45,25 +45,25 @@ export const StorybookInputArgTypes: Record<string, InputType> = {
 			'text',
 			'time',
 			'url',
-			'week'
-		]
+			'week',
+		],
 	},
-	min: { control: 'text' },
-	max: { control: 'text' },
-	step: { control: 'text' },
-	dataList: { control: 'object' },
-	dataListId: { control: 'text' },
-	placeholder: { control: 'text' },
-	name: { control: 'text' },
-	form: { control: 'text' },
-	ariaDescribedBy: { control: 'text' },
-	size: { control: 'number' },
-	pattern: { control: 'text' },
-	accept: { control: 'text' },
-	multiple: { control: 'boolean' },
+	min: {control: 'text'},
+	max: {control: 'text'},
+	step: {control: 'text'},
+	dataList: {control: 'object'},
+	dataListId: {control: 'text'},
+	placeholder: {control: 'text'},
+	name: {control: 'text'},
+	form: {control: 'text'},
+	ariaDescribedBy: {control: 'text'},
+	size: {control: 'number'},
+	pattern: {control: 'text'},
+	accept: {control: 'text'},
+	multiple: {control: 'boolean'},
 	enterkeyhint: {
 		control: 'select',
-		options: ['enter', 'done', 'go', 'next', 'previous', 'search', 'send']
+		options: ['enter', 'done', 'go', 'next', 'previous', 'search', 'send'],
 	},
 	inputmode: {
 		control: 'select',
@@ -75,15 +75,15 @@ export const StorybookInputArgTypes: Record<string, InputType> = {
 			'tel',
 			'search',
 			'email',
-			'url'
-		]
+			'url',
+		],
 	},
-	autocomplete: { control: 'text' },
-	messageIcon: { control: 'text' },
-	messageSize: { control: 'select', options: ['small', 'medium'] },
-	validMessageSize: { control: 'select', options: ['small', 'medium'] },
-	invalidMessageSize: { control: 'select', options: ['small', 'medium'] },
-	fieldSizing: { control: 'select', options: ['fixed', 'content'] },
-	id: { control: 'text' },
-	autofocus: { control: 'boolean' }
+	autocomplete: {control: 'text'},
+	messageIcon: {control: 'text'},
+	messageSize: {control: 'select', options: ['small', 'medium']},
+	validMessageSize: {control: 'select', options: ['small', 'medium']},
+	invalidMessageSize: {control: 'select', options: ['small', 'medium']},
+	fieldSizing: {control: 'select', options: ['fixed', 'content']},
+	id: {control: 'text'},
+	autofocus: {control: 'boolean'},
 };

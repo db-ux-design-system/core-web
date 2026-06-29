@@ -3,10 +3,10 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString } from '../../utils';
-import { DBInfotextProps, DBInfotextState } from './model';
+import {cls, getBooleanAsString} from '../../utils';
+import {DBInfotextProps, DBInfotextState} from './model';
 
 useMetadata({});
 
@@ -29,8 +29,9 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			data-show-icon-leading={getBooleanAsString(
 				props.showIcon ?? true,
-				'showIcon'
-			)}>
+				'showIcon',
+			)}
+		>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</span>

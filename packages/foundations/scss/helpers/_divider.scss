@@ -1,40 +1,40 @@
-@use "../colors";
-@use "../variables";
+@use '../colors';
+@use '../variables';
 
 // Workaround until we get Relative Color Syntax
 // https://codepen.io/bramus/pen/VwMZOQK
 // https://bugs.chromium.org/p/chromium/issues/detail?id=1274133
 // https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8
-@mixin divider($position: "top", $slot: "before") {
+@mixin divider($position: 'top', $slot: 'before') {
 	--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-60-default};
 
 	position: var(--db-tooltip-parent-position, relative);
 
-	&[data-emphasis="strong"] {
+	&[data-emphasis='strong'] {
 		--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
 	}
 
 	&::#{$slot} {
-		content: "";
+		content: '';
 		background-color: var(--db-divider-bg-color);
 		position: absolute;
 
-		@if $position == "top" {
+		@if $position == 'top' {
 			block-size: variables.$db-border-width-3xs;
 			inset-block-start: 0;
 			inset-inline: 0;
 			/* stylelint-disable-next-line at-rule-empty-line-before */
-		} @else if $position == "bottom" {
+		} @else if $position == 'bottom' {
 			block-size: variables.$db-border-width-3xs;
 			inset-block-end: 0;
 			inset-inline: 0;
 			/* stylelint-disable-next-line at-rule-empty-line-before */
-		} @else if $position == "left" {
+		} @else if $position == 'left' {
 			inline-size: variables.$db-border-width-3xs;
 			inset-inline-start: 0;
 			inset-block: 0;
 			/* stylelint-disable-next-line at-rule-empty-line-before */
-		} @else if $position == "right" {
+		} @else if $position == 'right' {
 			inline-size: variables.$db-border-width-3xs;
 			inset-inline-end: 0;
 			inset-block: 0;

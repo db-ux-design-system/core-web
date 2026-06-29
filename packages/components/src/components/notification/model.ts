@@ -9,13 +9,13 @@ import type {
 	RoleProps,
 	SemanticProps,
 	ShowIconProps,
-	TextProps
+	TextProps,
 } from '../../shared/model';
 
 export const NotificationVariantList = [
 	'docked',
 	'standalone',
-	'overlay'
+	'overlay',
 ] as const;
 export type NotificationVariantType = (typeof NotificationVariantList)[number];
 

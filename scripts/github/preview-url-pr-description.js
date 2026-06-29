@@ -7,8 +7,8 @@
  @param {import('@actions/github').GitHub} github - Octokit client from actions/github-script
  @param {object} context - GitHub Actions context
  */
-async function previewUrlPrDescription({ github, context }) {
-	const { owner, repo } = context.repo;
+async function previewUrlPrDescription({github, context}) {
+	const {owner, repo} = context.repo;
 	const pullNumber = context.payload.pull_request.number;
 	const headRef = context.payload.pull_request.head.ref;
 
@@ -17,13 +17,12 @@ async function previewUrlPrDescription({ github, context }) {
 	try {
 		const pagesResponse = await github.rest.repos.getPages({
 			owner,
-			repo
+			repo,
 		});
 
 		// Use custom domain if available, otherwise fall back to github.io
 		baseUrl =
-			pagesResponse.data.html_url ??
-			`https://${owner}.github.io/${repo}/`;
+			pagesResponse.data.html_url ?? `https://${owner}.github.io/${repo}/`;
 		// Ensure baseUrl ends with a single trailing slash
 		if (!baseUrl.endsWith('/')) {
 			baseUrl += '/';
@@ -31,7 +30,7 @@ async function previewUrlPrDescription({ github, context }) {
 	} catch (error) {
 		console.warn(
 			'Could not fetch GitHub Pages configuration, using default domain:',
-			error.message
+			error.message,
 		);
 		baseUrl = `https://${owner}.github.io/${repo}/`;
 		// Ensure baseUrl ends with a single trailing slash
@@ -44,7 +43,7 @@ async function previewUrlPrDescription({ github, context }) {
 	const pr = await github.rest.pulls.get({
 		owner,
 		repo,
-		pull_number: pullNumber
+		pull_number: pullNumber,
 	});
 	const urlSectionStart = '\n<!-- DBUX-TEST-URL-START -->';
 	const urlSectionEnd = '\n<!-- DBUX-TEST-URL-END -->';
@@ -54,8 +53,7 @@ async function previewUrlPrDescription({ github, context }) {
 	const startIdx = body.indexOf(urlSectionStart);
 	const endIdx = body.lastIndexOf(urlSectionEnd);
 	if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
-		body =
-			body.slice(0, startIdx) + body.slice(endIdx + urlSectionEnd.length);
+		body = body.slice(0, startIdx) + body.slice(endIdx + urlSectionEnd.length);
 	}
 
 	// Add the new test URL section at the end
@@ -64,7 +62,7 @@ async function previewUrlPrDescription({ github, context }) {
 		owner,
 		repo,
 		pull_number: pullNumber,
-		body
+		body,
 	});
 }
 

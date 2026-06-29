@@ -5,11 +5,11 @@ module.exports = {
 	plugins: [],
 	theme: {
 		...tokens,
-		gap: ({ theme }) => ({
-			...theme('spacing')
+		gap: ({theme}) => ({
+			...theme('spacing'),
 		}),
-		space: ({ theme }) => ({
-			...theme('spacing')
-		})
-	}
+		space: ({theme}) => ({
+			...theme('spacing'),
+		}),
+	},
 };

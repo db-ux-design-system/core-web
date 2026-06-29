@@ -1,7 +1,7 @@
-import type { InputType } from 'storybook/internal/csf';
+import type {InputType} from 'storybook/internal/csf';
 
 export const StorybookBadgeArgTypes: Record<string, InputType> = {
-	emphasis: { control: 'select', options: ['weak', 'strong'] },
+	emphasis: {control: 'select', options: ['weak', 'strong']},
 	semantic: {
 		control: 'select',
 		options: [
@@ -10,10 +10,10 @@ export const StorybookBadgeArgTypes: Record<string, InputType> = {
 			'critical',
 			'informational',
 			'warning',
-			'successful'
-		]
+			'successful',
+		],
 	},
-	size: { control: 'select', options: ['small', 'medium'] },
+	size: {control: 'select', options: ['small', 'medium']},
 	placement: {
 		control: 'select',
 		options: [
@@ -23,11 +23,11 @@ export const StorybookBadgeArgTypes: Record<string, InputType> = {
 			'corner-center-left',
 			'corner-center-right',
 			'corner-bottom-left',
-			'corner-bottom-right'
-		]
+			'corner-bottom-right',
+		],
 	},
-	label: { control: 'text' },
-	text: { control: 'text' },
-	id: { control: 'text' },
-	autofocus: { control: 'boolean' }
+	label: {control: 'text'},
+	text: {control: 'text'},
+	id: {control: 'text'},
+	autofocus: {control: 'boolean'},
 };

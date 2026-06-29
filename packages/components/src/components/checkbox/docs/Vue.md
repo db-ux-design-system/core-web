@@ -7,9 +7,9 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
-import { DBCheckbox } from "@db-ux/v-core-components";
-import { _ref } from "vue";
-const checkbox = _ref("");
+import {DBCheckbox} from '@db-ux/v-core-components';
+import {_ref} from 'vue';
+const checkbox = _ref('');
 </script>
 
 <template>
@@ -25,7 +25,7 @@ The message prop of the DBCheckbox does not accept HTML content for security rea
 
 ```vue App.vue
 <script setup lang="ts">
-import { DBCheckbox, DBInfotext } from "@db-ux/v-core-components";
+import {DBCheckbox, DBInfotext} from '@db-ux/v-core-components';
 </script>
 
 <template>
@@ -33,8 +33,6 @@ import { DBCheckbox, DBInfotext } from "@db-ux/v-core-components";
 		Example Checkbox
 	</DBCheckbox>
 
-	<DBInfotext id="checkbox-message">
-		Example <strong>Text</strong>
-	</DBInfotext>
+	<DBInfotext id="checkbox-message"> Example <strong>Text</strong> </DBInfotext>
 </template>
 ```

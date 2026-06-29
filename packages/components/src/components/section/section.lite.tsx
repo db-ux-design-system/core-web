@@ -1,6 +1,6 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import { DBSectionProps } from './model';
+import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
+import {cls} from '../../utils';
+import {DBSectionProps} from './model';
 
 useMetadata({});
 useDefaultProps<DBSectionProps>({});
@@ -14,7 +14,8 @@ export default function DBSection(props: DBSectionProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-section', props.className)}
 			data-spacing={props.spacing || 'medium'}
-			data-width={props.width}>
+			data-width={props.width}
+		>
 			{props.children}
 		</section>
 	);

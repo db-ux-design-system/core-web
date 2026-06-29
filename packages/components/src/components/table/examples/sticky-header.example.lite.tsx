@@ -1,13 +1,13 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
-import { StorybookTableArgTypes } from './_table.arg.types';
-import { overflowTable } from './data';
+import {StorybookTableArgTypes} from './_table.arg.types';
+import {overflowTable} from './data';
 
 useMetadata({
 	storybookTitle: 'Sticky Header',
 	storybookNames: ['(Default) None', 'Both', 'Horizontal', 'Vertical'],
-	storybookArgTypes: StorybookTableArgTypes
+	storybookArgTypes: StorybookTableArgTypes,
 });
 
 export default function TableStickyHeader() {
@@ -20,8 +20,9 @@ export default function TableStickyHeader() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: 'var(--db-spacing-fixed-md)',
-					blockSize: '300px'
-				}}>
+					blockSize: '300px',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					(Default) None
 				</DBInfotext>
@@ -35,16 +36,13 @@ export default function TableStickyHeader() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: 'var(--db-spacing-fixed-md)',
-					blockSize: '300px'
-				}}>
+					blockSize: '300px',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Both
 				</DBInfotext>
-				<DBTable
-					data={overflowTable}
-					captionPlain="Both"
-					stickyHeader="both"
-				/>
+				<DBTable data={overflowTable} captionPlain="Both" stickyHeader="both" />
 			</div>
 			<i class="line-break" data-sb-ignore="true" />
 			<div
@@ -54,8 +52,9 @@ export default function TableStickyHeader() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: 'var(--db-spacing-fixed-md)',
-					blockSize: '300px'
-				}}>
+					blockSize: '300px',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Horizontal
 				</DBInfotext>
@@ -73,8 +72,9 @@ export default function TableStickyHeader() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: 'var(--db-spacing-fixed-md)',
-					blockSize: '300px'
-				}}>
+					blockSize: '300px',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Vertical
 				</DBInfotext>

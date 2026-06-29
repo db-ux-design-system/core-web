@@ -8,6 +8,6 @@ module.exports = {
 	targets: ['react'],
 	dest: '../../output/tmp',
 	options: {
-		react
-	}
+		react,
+	},
 };

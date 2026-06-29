@@ -1,8 +1,8 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/animation";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "component";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/animation';
+@use '@db-ux/core-foundations/build/styles/screen-sizes';
+@use 'component';
 
 $popover-gap-size: var(--db-popover-distance);
 $popover-inset: calc(100% + #{$popover-gap-size} * var(--db-popover-gap, 0));
@@ -10,20 +10,20 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 %popover-center {
 	&:not([data-placement], [data-corrected-placement]),
-	&[data-placement="bottom"]:not([data-corrected-placement]),
-	&[data-placement="top"]:not([data-corrected-placement]),
-	&[data-corrected-placement="bottom"],
-	&[data-corrected-placement="top"] {
+	&[data-placement='bottom']:not([data-corrected-placement]),
+	&[data-placement='top']:not([data-corrected-placement]),
+	&[data-corrected-placement='bottom'],
+	&[data-corrected-placement='top'] {
 		--db-popover-center-x: -50%;
 
 		inset-inline-start: 50%;
 		transform: translateX(var(--db-popover-center-x, 0));
 	}
 
-	&[data-corrected-placement="left"],
-	&[data-corrected-placement="right"],
-	&[data-placement="left"]:not([data-corrected-placement]),
-	&[data-placement="right"]:not([data-corrected-placement]) {
+	&[data-corrected-placement='left'],
+	&[data-corrected-placement='right'],
+	&[data-placement='left']:not([data-corrected-placement]),
+	&[data-placement='right']:not([data-corrected-placement]) {
 		--db-popover-center-y: -50%;
 
 		inset-block-start: 50%;
@@ -36,13 +36,13 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 	// This pseudo-content is used to bridge the visible vertical offset in between the element that it triggering the tooltip and the tooltip itself
 	&::before {
-		content: "";
+		content: '';
 		position: absolute;
 	}
 
 	&:not([data-placement], [data-corrected-placement]),
-	&[data-placement^="bottom"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="bottom"] {
+	&[data-placement^='bottom']:not([data-corrected-placement]),
+	&[data-corrected-placement^='bottom'] {
 		&::before {
 			inset-block-end: 100%;
 			inset-inline: 0;
@@ -50,8 +50,8 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
-	&[data-placement^="top"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="top"] {
+	&[data-placement^='top']:not([data-corrected-placement]),
+	&[data-corrected-placement^='top'] {
 		&::before {
 			inset-block-start: 100%;
 			inset-inline: 0;
@@ -59,8 +59,8 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
-	&[data-placement^="right"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="right"] {
+	&[data-placement^='right']:not([data-corrected-placement]),
+	&[data-corrected-placement^='right'] {
 		&::before {
 			inset-inline-end: 100%;
 			inset-block: 0;
@@ -68,8 +68,8 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
-	&[data-placement^="left"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="left"] {
+	&[data-placement^='left']:not([data-corrected-placement]),
+	&[data-corrected-placement^='left'] {
 		&::before {
 			inset-inline-start: 100%;
 			inset-block: 0;
@@ -77,7 +77,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
-	&[data-gap="true"] {
+	&[data-gap='true'] {
 		--db-popover-gap: 1;
 		--db-popover-distance: #{variables.$db-spacing-fixed-md};
 	}
@@ -88,30 +88,30 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 	/* This is for pure html css without using JS */
 	&:not([data-corrected-placement]) {
-		&[data-placement^="bottom"],
-		&[data-placement^="top"] {
-			&[data-placement$="end"] {
+		&[data-placement^='bottom'],
+		&[data-placement^='top'] {
+			&[data-placement$='end'] {
 				inset-inline-end: 0;
 			}
 
-			&[data-placement$="start"] {
+			&[data-placement$='start'] {
 				inset-inline-start: 0;
 			}
 		}
 
-		&[data-placement^="left"],
-		&[data-placement^="right"] {
-			&[data-placement$="end"] {
+		&[data-placement^='left'],
+		&[data-placement^='right'] {
+			&[data-placement$='end'] {
 				inset-block-end: 0;
 			}
 
-			&[data-placement$="start"] {
+			&[data-placement$='start'] {
 				inset-block-start: 0;
 			}
 		}
 
 		&:not([data-placement]),
-		&[data-placement^="bottom"] {
+		&[data-placement^='bottom'] {
 			inset-block-start: $popover-inset;
 
 			&::before {
@@ -122,7 +122,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 			}
 		}
 
-		&[data-placement^="top"] {
+		&[data-placement^='top'] {
 			inset-block-end: $popover-inset;
 
 			&::before {
@@ -133,7 +133,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 			}
 		}
 
-		&[data-placement^="left"] {
+		&[data-placement^='left'] {
 			inset-inline-end: $popover-inset;
 
 			&::before {
@@ -144,7 +144,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 			}
 		}
 
-		&[data-placement^="right"] {
+		&[data-placement^='right'] {
 			inset-inline-start: $popover-inset;
 
 			&::before {
@@ -167,7 +167,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 @mixin get-popover-show() {
 	&:not([data-animation]),
-	&[data-animation="false"] {
+	&[data-animation='false'] {
 		@include set-no-animation;
 	}
 
@@ -176,21 +176,21 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		&[data-animation="true"] {
+		&[data-animation='true'] {
 			animation: popover-animation
 				#{variables.$db-transition-straight-emotional} normal both;
 
-			&[data-delay="slow"] {
+			&[data-delay='slow'] {
 				animation-delay: variables.$db-transition-duration-extra-slow;
 			}
 
-			&[data-delay="fast"] {
+			&[data-delay='fast'] {
 				animation-delay: variables.$db-transition-duration-medium;
 			}
 
 			@include screen-sizes.screen-min-max(
 				(
-					max: "md"
+					max: 'md',
 				)
 			) {
 				// If we are in mobile and have no delay set we force some delay to avoid layout shift
@@ -206,29 +206,29 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	visibility: var(--db-show-popover-visibility, visible);
 
 	&:not([data-placement], [data-corrected-placement]),
-	&[data-placement^="bottom"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="bottom"] {
+	&[data-placement^='bottom']:not([data-corrected-placement]),
+	&[data-corrected-placement^='bottom'] {
 		--db-popover-translate-y: -25%;
 
 		@include get-popover-show;
 	}
 
-	&[data-placement^="top"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="top"] {
+	&[data-placement^='top']:not([data-corrected-placement]),
+	&[data-corrected-placement^='top'] {
 		--db-popover-translate-y: 25%;
 
 		@include get-popover-show;
 	}
 
-	&[data-placement^="right"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="right"] {
+	&[data-placement^='right']:not([data-corrected-placement]),
+	&[data-corrected-placement^='right'] {
 		--db-popover-translate-x: -25%;
 
 		@include get-popover-show;
 	}
 
-	&[data-placement^="left"]:not([data-corrected-placement]),
-	&[data-corrected-placement^="left"] {
+	&[data-placement^='left']:not([data-corrected-placement]),
+	&[data-corrected-placement^='left'] {
 		--db-popover-translate-x: 25%;
 
 		@include get-popover-show;
@@ -254,7 +254,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	block-size: fit-content;
 	inline-size: fit-content;
 
-	&[data-width="fixed"] {
+	&[data-width='fixed'] {
 		inline-size: max-content;
 		text-align: initial;
 	}

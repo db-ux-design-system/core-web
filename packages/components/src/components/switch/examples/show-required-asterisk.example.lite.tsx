@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBSwitch from '../switch.lite';
-import { StorybookSwitchArgTypes } from './_switch.arg.types';
+import {StorybookSwitchArgTypes} from './_switch.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Required Asterisk',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookSwitchArgTypes
+	storybookArgTypes: StorybookSwitchArgTypes,
 });
 
 export default function SwitchShowRequiredAsterisk() {

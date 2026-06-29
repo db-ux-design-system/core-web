@@ -1,4 +1,4 @@
-import { PatternhubProps } from '../../../shared/model';
+import {PatternhubProps} from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -10,9 +10,7 @@ import CardSpacing from '../examples/spacing.example.lite';
 
 export default function CardShowcase(props: PatternhubProps) {
 	return (
-		<ContainerWrapperShowcase
-			title="DBCard"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBCard" isPatternhub={props.isPatternhub}>
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<CardDensity />

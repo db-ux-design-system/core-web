@@ -1,8 +1,8 @@
-import type { InputType } from 'storybook/internal/csf';
-import { StorybookIconArgTypes } from '../../../shared/examples/_icons.arg.types';
+import type {InputType} from 'storybook/internal/csf';
+import {StorybookIconArgTypes} from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookTagArgTypes: Record<string, InputType> = {
-	emphasis: { control: 'select', options: ['weak', 'strong'] },
+	emphasis: {control: 'select', options: ['weak', 'strong']},
 	semantic: {
 		control: 'select',
 		options: [
@@ -11,19 +11,19 @@ export const StorybookTagArgTypes: Record<string, InputType> = {
 			'critical',
 			'informational',
 			'warning',
-			'successful'
-		]
+			'successful',
+		],
 	},
-	behavior: { control: 'select', options: ['static', 'removable'] },
+	behavior: {control: 'select', options: ['static', 'removable']},
 	...StorybookIconArgTypes,
-	noText: { control: 'boolean' },
-	content: { control: 'text' },
-	showCheckState: { control: 'boolean' },
-	overflow: { control: 'boolean' },
-	removeButton: { control: 'text' },
-	text: { control: 'text' },
-	value: { control: 'text' },
-	id: { control: 'text' },
-	autofocus: { control: 'boolean' },
-	onRemove: { action: 'onRemove' }
+	noText: {control: 'boolean'},
+	content: {control: 'text'},
+	showCheckState: {control: 'boolean'},
+	overflow: {control: 'boolean'},
+	removeButton: {control: 'text'},
+	text: {control: 'text'},
+	value: {control: 'text'},
+	id: {control: 'text'},
+	autofocus: {control: 'boolean'},
+	onRemove: {action: 'onRemove'},
 };

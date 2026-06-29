@@ -1,58 +1,56 @@
-@use "sass:string";
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "../table-row/table-row";
-@use "./../../styles/internal/component";
-@use "./../../styles/internal/table-components";
+@use 'sass:string';
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/fonts';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '@db-ux/core-foundations/build/styles/screen-sizes';
+@use '../table-row/table-row';
+@use './../../styles/internal/component';
+@use './../../styles/internal/table-components';
 
 %sizes {
 	&:not([data-size]),
-	&[data-size="medium"] {
+	&[data-size='medium'] {
 		:is(th, td) {
 			padding: variables.$db-spacing-fixed-xs;
 		}
 	}
 
-	&[data-size="large"] {
+	&[data-size='large'] {
 		:is(th, td) {
 			padding: variables.$db-spacing-fixed-sm;
 		}
 	}
 
-	&[data-size="small"],
-	&[data-size="x-small"] {
+	&[data-size='small'],
+	&[data-size='x-small'] {
 		:is(th, td) {
 			padding: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-size="x-small"] {
+	&[data-size='x-small'] {
 		@extend %db-overwrite-font-size-sm;
 	}
 }
 
 %divider {
-	&:is([data-divider="none"], [data-divider="vertical"]) {
+	&:is([data-divider='none'], [data-divider='vertical']) {
 		table {
 			border-block-end: component.$component-border;
 		}
 	}
 
-	&:not([data-divider="none"]) {
-		&:not([data-variant="spaced"]) {
-			&[data-divider="both"],
-			&[data-divider="vertical"] {
+	&:not([data-divider='none']) {
+		&:not([data-variant='spaced']) {
+			&[data-divider='both'],
+			&[data-divider='vertical'] {
 				tr {
 					> :is(td, th):not(:last-child) {
 						border-inline-end: component.$component-border;
 					}
 
-					> :is(db-table-header-cell, db-table-data-cell):not(
-							:last-child
-						) {
+					> :is(db-table-header-cell, db-table-data-cell):not(:last-child) {
 						td,
 						th {
 							border-inline-end: component.$component-border;
@@ -63,8 +61,8 @@
 		}
 
 		&:not([data-divider]),
-		&[data-divider="both"],
-		&[data-divider="horizontal"] {
+		&[data-divider='both'],
+		&[data-divider='horizontal'] {
 			tr {
 				border-block-end: component.$component-border;
 			}
@@ -80,30 +78,24 @@
 	@for $num from 1 through 20 {
 		&:has(
 				tr
-					> :is(
-						td,
-						th,
-						db-table-data-cell,
-						db-table-header-cell
-					):nth-child(#{$num})
+					> :is(td, th, db-table-data-cell, db-table-header-cell):nth-child(
+						#{$num}
+					)
 			):not(
 				:has(
 					tr
-						> :is(
-							td,
-							th,
-							db-table-data-cell,
-							db-table-header-cell
-						):nth-child(#{$num + 1})
+						> :is(td, th, db-table-data-cell, db-table-header-cell):nth-child(
+							#{$num + 1}
+						)
 				)
 			) {
 			--db-table-grid-cells: #{$num};
 
-			$track-size: "";
+			$track-size: '';
 
 			@for $index from 0 through $num - 1 {
 				$track-size: $track-size +
-					" var(--db-table-column-size-#{$index},var(--db-table-columns-size, 1fr))";
+					' var(--db-table-column-size-#{$index},var(--db-table-columns-size, 1fr))';
 			}
 
 			grid-template-columns: var(
@@ -144,8 +136,8 @@
 
 %variant {
 	&:not([data-variant]),
-	&[data-variant="flat"],
-	&[data-variant="zebra"] {
+	&[data-variant='flat'],
+	&[data-variant='zebra'] {
 		table {
 			border-inline: component.$component-border;
 		}
@@ -155,7 +147,7 @@
 		}
 	}
 
-	&[data-variant="zebra"] {
+	&[data-variant='zebra'] {
 		tbody {
 			> db-table-row:nth-child(odd) > tr,
 			> tr:nth-child(odd) {
@@ -164,18 +156,18 @@
 		}
 
 		thead {
-			tr[data-sub-header-emphasis="weak"] {
+			tr[data-sub-header-emphasis='weak'] {
 				@extend %sub-header-strong;
 			}
 		}
 	}
 
-	&[data-variant="spaced"] {
+	&[data-variant='spaced'] {
 		@extend %spaced-table-variant;
 	}
 
 	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
-		&[data-mobile-variant="list"] {
+		&[data-mobile-variant='list'] {
 			@extend %spaced-table-variant;
 
 			table {
@@ -191,12 +183,12 @@
 
 				&::before {
 					// Screen reader would announce it twice
-					content: attr(data-header) ":" / "";
+					content: attr(data-header) ':' / '';
 					font-weight: bold;
 				}
 			}
 
-			td[data-horizontal-alignment="end"] {
+			td[data-horizontal-alignment='end'] {
 				justify-content: space-between;
 			}
 
@@ -215,8 +207,8 @@
 }
 
 %sticky-header {
-	&[data-sticky-header="both"],
-	&[data-sticky-header="horizontal"] {
+	&[data-sticky-header='both'],
+	&[data-sticky-header='horizontal'] {
 		thead {
 			position: sticky;
 			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
@@ -225,8 +217,8 @@
 		}
 	}
 
-	&[data-sticky-header="both"],
-	&[data-sticky-header="vertical"] {
+	&[data-sticky-header='both'],
+	&[data-sticky-header='vertical'] {
 		tfoot,
 		tbody {
 			th {
@@ -253,7 +245,7 @@
 	padding: variables.$db-border-width-xs; // offset for focus
 
 	&:not([data-width]),
-	&[data-width="full"] {
+	&[data-width='full'] {
 		overflow: auto;
 
 		table {
@@ -261,7 +253,7 @@
 		}
 	}
 
-	&[data-width="auto"] {
+	&[data-width='auto'] {
 		display: flex;
 		justify-content: center;
 
@@ -285,7 +277,7 @@
 		}
 	}
 
-	&:not([data-show-caption="true"]) {
+	&:not([data-show-caption='true']) {
 		caption {
 			@extend %a11y-visually-hidden;
 		}

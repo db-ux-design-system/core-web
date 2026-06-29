@@ -6,7 +6,7 @@ import type {
 	GlobalProps,
 	IconProps,
 	ShowIconProps,
-	ValueProps
+	ValueProps,
 } from '../../shared/model';
 
 export const CustomSelectListItemTypeList = ['checkbox', 'radio'] as const;

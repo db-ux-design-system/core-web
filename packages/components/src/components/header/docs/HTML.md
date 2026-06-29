@@ -36,35 +36,19 @@ If you do need to provide support for [browser versions that haven't implemented
 						<div class="db-header-navigation">
 							<nav class="db-main-navigation">
 								<menu>
-									<li
-										class="db-navigation-item"
-										data-icon="x_placeholder"
-									>
+									<li class="db-navigation-item" data-icon="x_placeholder">
 										<a href="#">Regular (Default)</a>
 									</li>
-									<li
-										class="db-navigation-item"
-										aria-disabled="true"
-									>
-										<a href="#"
-											>Regular (Default) disabled</a
-										>
+									<li class="db-navigation-item" aria-disabled="true">
+										<a href="#">Regular (Default) disabled</a>
 									</li>
 								</menu>
 							</nav>
 						</div>
 						<div class="db-header-meta-navigation">
-							<a
-								class="db-link"
-								href="#"
-								tabindex="0"
-								data-content="internal"
+							<a class="db-link" href="#" tabindex="0" data-content="internal"
 								>Imprint</a
-							><a
-								class="db-link"
-								href="#"
-								tabindex="0"
-								data-content="internal"
+							><a class="db-link" href="#" tabindex="0" data-content="internal"
 								>Help</a
 							>
 						</div>
@@ -96,9 +80,7 @@ If you do need to provide support for [browser versions that haven't implemented
 		<div class="db-header-meta-navigation">
 			<a class="db-link" href="#" tabindex="0" data-content="internal"
 				>Imprint</a
-			><a class="db-link" href="#" tabindex="0" data-content="internal"
-				>Help</a
-			>
+			><a class="db-link" href="#" tabindex="0" data-content="internal">Help</a>
 		</div>
 		<div class="db-header-navigation-bar">
 			<div class="db-header-brand-container">
@@ -117,10 +99,7 @@ If you do need to provide support for [browser versions that haven't implemented
 				<div class="db-header-navigation">
 					<nav class="db-navigation">
 						<menu>
-							<li
-								class="db-navigation-item"
-								data-icon="x_placeholder"
-							>
+							<li class="db-navigation-item" data-icon="x_placeholder">
 								<a href="#">Regular (Default)</a>
 							</li>
 							<li class="db-navigation-item" aria-disabled="true">
@@ -183,21 +162,21 @@ If you do need to provide support for [browser versions that haven't implemented
 		 * HTML attributes, we fall back to JavaScript event handlers.
 		 */
 		if (
-			!("command" in HTMLButtonElement.prototype) ||
-			!("commandFor" in HTMLButtonElement.prototype)
+			!('command' in HTMLButtonElement.prototype) ||
+			!('commandFor' in HTMLButtonElement.prototype)
 		) {
 			const burgerMenuButton = document.querySelector(
-				'[commandfor="header-drawer"][command="show-modal"]'
+				'[commandfor="header-drawer"][command="show-modal"]',
 			);
 			const closeButton = document.querySelector(
-				'[commandfor="header-drawer"][command="close"]'
+				'[commandfor="header-drawer"][command="close"]',
 			);
-			const drawer = document.getElementById("header-drawer");
+			const drawer = document.getElementById('header-drawer');
 
-			burgerMenuButton?.addEventListener("click", () => {
+			burgerMenuButton?.addEventListener('click', () => {
 				drawer?.showModal?.();
 			});
-			closeButton?.addEventListener("click", () => {
+			closeButton?.addEventListener('click', () => {
 				drawer?.close?.();
 			});
 		}

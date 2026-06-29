@@ -1,19 +1,19 @@
 packages:
-  - "packages/*"
-  - "output/*"
-  - "showcases/*"
-  - "storybooks/*"
-  - "docs"
-  - "scripts"
-  - "figma-code-connect/*"
+  - 'packages/*'
+  - 'output/*'
+  - 'showcases/*'
+  - 'storybooks/*'
+  - 'docs'
+  - 'scripts'
+  - 'figma-code-connect/*'
 
 allowBuilds:
-  "@compodoc/compodoc": false
-  "@db-ux/db-theme": true
-  "@db-ux/db-theme-fonts": true
-  "@db-ux/db-theme-icons": true
-  "@db-ux/db-theme-illustrative-icons": true
-  "@parcel/watcher": false
+  '@compodoc/compodoc': false
+  '@db-ux/db-theme': true
+  '@db-ux/db-theme-fonts': true
+  '@db-ux/db-theme-icons': true
+  '@db-ux/db-theme-illustrative-icons': true
+  '@parcel/watcher': false
   accessibility-checker: false
   chromedriver: false
   core-js: false
@@ -65,12 +65,12 @@ minimumReleaseAgeExclude:
   - ip-address@10.1.1
   - webpack-dev-server@5.2.4
   - svelte@5.55.7
-  - "@db-ux/db-theme@5.8.0"
+  - '@db-ux/db-theme@5.8.0'
   - esbuild@0.28.1
   - form-data@4.0.6
   - vite@7.3.5
   - js-yaml@4.1.2
-  - "@babel/core@7.29.1"
+  - '@babel/core@7.29.1'
   - markdown-it@14.1.2
   - http-proxy-middleware@3.0.7
   - http-proxy-middleware@3.0.6
@@ -79,7 +79,7 @@ minimumReleaseAgeExclude:
   - undici@6.27.0
 
 overrides:
-  "@babel/core@<=7.29.0": ^7.29.1
+  '@babel/core@<=7.29.0': ^7.29.1
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   brace-expansion@>=5.0.0 <5.0.6: ^5.0.6
   esbuild@>=0.27.3 <0.28.1: ^0.28.1

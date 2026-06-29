@@ -1,8 +1,8 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "../../styles/internal/form-components";
-@use "../../styles/internal/db-puls";
-@use "@db-ux/core-foundations/build/styles/helpers";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '../../styles/internal/form-components';
+@use '../../styles/internal/db-puls';
+@use '@db-ux/core-foundations/build/styles/helpers';
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -10,9 +10,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	db-tab-list,
 	dbtablist {
 		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked) {
-				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
-				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
+			&:has([id$='-tab-#{$index}']:checked) {
+				~ dbtabpanel > [id$='-tab-panel-#{$index}'],
+				~ db-tab-panel > [id$='-tab-panel-#{$index}'] {
 					@include helpers.display(block);
 				}
 			}
@@ -57,7 +57,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 %pulse-track {
 	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-	content: "";
+	content: '';
 	border-radius: variables.$db-border-radius-xs;
 	position: absolute;
 }
@@ -89,8 +89,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		z-index: $db-tabs-z-index-tab-list;
 
 		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked)
-				~ [id$="-tab-panel-#{$index}"] {
+			&:has([id$='-tab-#{$index}']:checked) ~ [id$='-tab-panel-#{$index}'] {
 				@include helpers.display(block);
 			}
 		}
@@ -103,7 +102,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	/*
 	Variant Orientation HORIZONTAL
  	*/
-	&:not([data-orientation="vertical"]) {
+	&:not([data-orientation='vertical']) {
 		flex-flow: column wrap;
 
 		.db-tab-panel {
@@ -173,7 +172,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	/*
 	Variant Orientation VERTICAL
 	 */
-	&[data-orientation="vertical"] {
+	&[data-orientation='vertical'] {
 		flex-direction: row;
 
 		.db-tab-panel {
@@ -181,10 +180,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-list {
-			$width: var(
-				--db-tab-list-vertical-width,
-				#{variables.$db-sizing-3xl}
-			);
+			$width: var(--db-tab-list-vertical-width, #{variables.$db-sizing-3xl});
 
 			/*
 			min and nominal size must both be set to ensure
@@ -248,8 +244,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		.db-tab-item {
 			$padding-start-calc: calc(
-				#{variables.$db-border-width-xs} +
-					#{variables.$db-spacing-fixed-2xs}
+				#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
 			);
 
 			padding-inline-start: $padding-start-calc;
@@ -275,7 +270,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 	}
 
-	&[data-width="full"] {
+	&[data-width='full'] {
 		.db-tab-list {
 			inline-size: 100%;
 		}
@@ -285,7 +280,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			inline-size: 100%;
 		}
 
-		&[data-alignment="center"] {
+		&[data-alignment='center'] {
 			.db-tab-item label {
 				text-align: center;
 				justify-content: center;
@@ -293,7 +288,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 	}
 
-	&[data-scroll-behavior="arrows"] {
+	&[data-scroll-behavior='arrows'] {
 		.db-tab-list {
 			> ul {
 				&::-webkit-scrollbar {
@@ -304,13 +299,13 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		&:has(.tabs-scroll-left) {
 			&::before {
-				content: "";
+				content: '';
 			}
 		}
 
 		&:has(.tabs-scroll-right) {
 			&::after {
-				content: "";
+				content: '';
 			}
 		}
 
@@ -322,8 +317,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 				inline-size: variables.$db-sizing-md;
 				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-sizing-md}
+					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
 				);
 				flex: 0 0 auto;
 			}

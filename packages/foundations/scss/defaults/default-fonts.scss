@@ -1,7 +1,7 @@
 /* Use this file if you want the default fonts for paragraph and headlines in your project */
-@use "sass:string";
-@use "../variables";
-@use "../fonts";
+@use 'sass:string';
+@use '../variables';
+@use '../fonts';
 
 small,
 code {
@@ -9,12 +9,12 @@ code {
 }
 
 $headlines: (
-	"h1": "xl",
-	"h2": "lg",
-	"h3": "md",
-	"h4": "sm",
-	"h5": "xs",
-	"h6": "2xs"
+	'h1': 'xl',
+	'h2': 'lg',
+	'h3': 'md',
+	'h4': 'sm',
+	'h5': 'xs',
+	'h6': '2xs',
 );
 
 @each $headline, $size in $headlines {
@@ -41,11 +41,11 @@ $headlines: (
 	font-weight: bolder;
 	text-wrap: balance;
 
-	&[data-variant="light"] {
+	&[data-variant='light'] {
 		font-weight: 300;
 	}
 
-	&[data-variant="regular"] {
+	&[data-variant='regular'] {
 		font-weight: 400;
 	}
 }
@@ -54,23 +54,23 @@ p {
 	margin-block: variables.$db-spacing-fixed-md;
 }
 
-[data-font="digital"] {
+[data-font='digital'] {
 	font-weight: 300;
 }
 
-[data-font="regular"] {
+[data-font='regular'] {
 	font-weight: 400;
 }
 
-[data-font="medium"] {
+[data-font='medium'] {
 	font-weight: 500;
 }
 
-[data-font="semibold"] {
+[data-font='semibold'] {
 	font-weight: 600;
 }
 
-[data-font="bold"],
+[data-font='bold'],
 strong {
 	font-weight: 700;
 }

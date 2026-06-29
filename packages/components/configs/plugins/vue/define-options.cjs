@@ -4,14 +4,14 @@
 module.exports = () => ({
 	code: {
 		pre: (code, json) => {
-			const { name } = json;
+			const {name} = json;
 			return code.replace(
 				'const props =',
 				`defineOptions({
 name: "${name}"
 });
-const props =`
+const props =`,
 			);
-		}
-	}
+		},
+	},
 });

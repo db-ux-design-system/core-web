@@ -13,8 +13,8 @@ import {
 	DBTableBody,
 	DBTableRow,
 	DBTableHeaderCell,
-	DBTableDataCell
-} from "@db-ux/v-core-components";
+	DBTableDataCell,
+} from '@db-ux/v-core-components';
 </script>
 
 <template>

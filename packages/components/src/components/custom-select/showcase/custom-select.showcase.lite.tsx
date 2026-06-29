@@ -1,4 +1,4 @@
-import { PatternhubProps } from '../../../shared/model';
+import {PatternhubProps} from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -32,7 +32,8 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 	return (
 		<ContainerWrapperShowcase
 			title="DBCustomSelect"
-			isPatternhub={props.isPatternhub}>
+			isPatternhub={props.isPatternhub}
+		>
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<CustomSelectDensity />

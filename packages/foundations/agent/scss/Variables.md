@@ -1,5 +1,5 @@
 ```scss
-@use "@db-ux/core-foundations/build/styles/variables";
+@use '@db-ux/core-foundations/build/styles/variables';
 
 .my-component {
 	inline-size: variables.$db-container-sm; // Use container for larger fixed widths

@@ -1,59 +1,59 @@
 ---
 name: create-db-component
-description: "Creates a new DB UX Design System component with Mitosis source, SCSS, typed model, and Playwright tests."
+description: 'Creates a new DB UX Design System component with Mitosis source, SCSS, typed model, and Playwright tests.'
 
 triggers:
-    - "create a new component"
-    - "add component"
-    - "generate component"
-    - "new db component"
+  - 'create a new component'
+  - 'add component'
+  - 'generate component'
+  - 'new db component'
 
 inputs:
-    - name: component_slug
-      type: string
-      required: true
-      description: "Component directory name in kebab-case (e.g. 'navigation-item', 'tooltip')"
-    - name: component_name
-      type: string
-      required: false
-      description: "Optional PascalCase symbol name (e.g. 'NavigationItem'). If omitted, derive it from component_slug."
-    - name: figma_file_key
-      type: string
-      required: true
-      description: "Figma file key (e.g. from https://www.figma.com/file/<fileKey>/...)."
-    - name: figma_node_id
-      type: string
-      required: true
-      description: "Figma node ID of the target component/frame (e.g. 1234-5678)."
-    - name: figma_url
-      type: string
-      required: false
-      description: "Optional full Figma URL. Use only as fallback when file key and node ID are not provided separately."
+  - name: component_slug
+    type: string
+    required: true
+    description: "Component directory name in kebab-case (e.g. 'navigation-item', 'tooltip')"
+  - name: component_name
+    type: string
+    required: false
+    description: "Optional PascalCase symbol name (e.g. 'NavigationItem'). If omitted, derive it from component_slug."
+  - name: figma_file_key
+    type: string
+    required: true
+    description: 'Figma file key (e.g. from https://www.figma.com/file/<fileKey>/...).'
+  - name: figma_node_id
+    type: string
+    required: true
+    description: 'Figma node ID of the target component/frame (e.g. 1234-5678).'
+  - name: figma_url
+    type: string
+    required: false
+    description: 'Optional full Figma URL. Use only as fallback when file key and node ID are not provided separately.'
 
 requires:
-    - context: context/architecture.md
-      autoLoad: true
+  - context: context/architecture.md
+    autoLoad: true
 
 tools:
-    - db-ux/list_components
-    - db-ux/get_component_props
-    - db-ux/get_component_details
-    - db-ux/get_example_code
-    - db-ux/get_design_tokens
-    - db-ux/list_design_token_categories
-    - db-ux/list_icons
-    - db-ux/docs_search
-    - figma/get_figma_data
-    - figma/download_figma_images
+  - db-ux/list_components
+  - db-ux/get_component_props
+  - db-ux/get_component_details
+  - db-ux/get_example_code
+  - db-ux/get_design_tokens
+  - db-ux/list_design_token_categories
+  - db-ux/list_icons
+  - db-ux/docs_search
+  - figma/get_figma_data
+  - figma/download_figma_images
 
 outputs:
-    - "packages/components/src/components/{component_slug}/"
+  - 'packages/components/src/components/{component_slug}/'
 
 on_error:
-    max_retries: 3
-    actions:
-        - log: "Review the shell output (lint/test/build) and fix reported errors before retrying."
-        - fallback: "If errors persist after 3 retries, report to user with full error output."
+  max_retries: 3
+  actions:
+    - log: 'Review the shell output (lint/test/build) and fix reported errors before retrying.'
+    - fallback: 'If errors persist after 3 retries, report to user with full error output.'
 ---
 
 # Skill: Create Deutsche Bahn (DB) Component
@@ -85,15 +85,15 @@ Throughout this skill:
 
 1. Use `figma_file_key` and `figma_node_id` provided by the user as the primary source of truth.
 2. If one of them is missing, extract the missing value from `figma_url` as fallback.
-    - URL format: `https://www.figma.com/file/<fileKey>/...?node-id=<nodeId>`
+   - URL format: `https://www.figma.com/file/<fileKey>/...?node-id=<nodeId>`
 3. Call `get_figma_data` with `fileKey` and `nodeId` to retrieve the component frame and its design data.
 4. Extract from the Figma response:
-    - **Spacing**: padding, gap, margin values from Auto Layout properties.
-    - **Sizing**: width, height constraints.
-    - **Colors**: fill colors, stroke colors, text colors (as Figma variable references or hex values).
-    - **Typography**: font family, size, weight, line-height.
-    - **Border radius**: corner radius values.
-    - **Variants**: all variant properties defined in the Figma component set.
+   - **Spacing**: padding, gap, margin values from Auto Layout properties.
+   - **Sizing**: width, height constraints.
+   - **Colors**: fill colors, stroke colors, text colors (as Figma variable references or hex values).
+   - **Typography**: font family, size, weight, line-height.
+   - **Border radius**: corner radius values.
+   - **Variants**: all variant properties defined in the Figma component set.
 5. Variable references and styles are included in the `get_figma_data` response — extract them from the returned data structure.
 6. Document ALL extracted values. These are the ground truth for implementation.
 
@@ -102,12 +102,12 @@ Throughout this skill:
 1. Call `list_components`. ABORT if component already exists.
 2. Call `list_design_token_categories` to discover available categories. Then call `get_design_tokens` with the categories identified in Phase 0.1 (spacing, sizing, colors, radius).
 3. Map EVERY Figma value to its corresponding SCSS variable (`variables.$db-*`) or CSS custom property (`var(--db-*)`) as fallback:
-    - Figma padding 8px: find matching `--db-spacing-fixed-*` token.
-    - Figma color #EC0016 (background): find matching `--db-*-bg-*` token.
-    - Figma color #000000 (text): find matching `--db-*-on-bg-*` token.
-    - Figma color #ccc (border): find matching `--db-*-border-*` token.
-    - Figma height 48px: find matching `--db-sizing-*` token.
-    - Figma border-radius 4px: find matching `--db-border-radius-*` token.
+   - Figma padding 8px: find matching `--db-spacing-fixed-*` token.
+   - Figma color #EC0016 (background): find matching `--db-*-bg-*` token.
+   - Figma color #000000 (text): find matching `--db-*-on-bg-*` token.
+   - Figma color #ccc (border): find matching `--db-*-border-*` token.
+   - Figma height 48px: find matching `--db-sizing-*` token.
+   - Figma border-radius 4px: find matching `--db-border-radius-*` token.
 4. If a Figma value has NO matching token: FLAG it. Do NOT hardcode. Ask user for guidance.
 5. Call `list_icons` if the component uses icons in Figma.
 6. Call `get_component_details` on a structurally similar existing component (same interaction family: form-control, container, navigation or feedback). If no similar component exists, state that explicitly and skip.
@@ -321,11 +321,11 @@ Create `agent/{component_slug}.agent.lite.tsx` with usage examples.
 
 1. **Build framework outputs:**
 
-    ```bash
-    pnpm run build-outputs
-    ```
+   ```bash
+   pnpm run build-outputs
+   ```
 
-    This MUST succeed.
+   This MUST succeed.
 
 2. **Create changeset:**
    `bash

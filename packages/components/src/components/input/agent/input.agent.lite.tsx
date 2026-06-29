@@ -1,4 +1,4 @@
-import { DBInput } from '../index';
+import {DBInput} from '../index';
 
 export default function Input() {
 	return (
@@ -37,10 +37,7 @@ export default function Input() {
 				}
 			/>
 			<h2>10. Message Property Example</h2>
-			<DBInput
-				label="Input with Message"
-				message="This is a helper message."
-			/>
+			<DBInput label="Input with Message" message="This is a helper message." />
 		</>
 	);
 }

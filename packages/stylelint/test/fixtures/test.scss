@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 
 .border-color-special {
 	border: variables.$db-border-width-sm solid
@@ -34,13 +34,12 @@
 	padding: $default-icon-margin-end;
 	border-top-left-radius: $custom-radius;
 	border-top-right-radius: var(--custom-radius);
-	border: var(--custom-border) solid
-		var(--db-adaptive-on-bg-basic-emphasis-70);
+	border: var(--custom-border) solid var(--db-adaptive-on-bg-basic-emphasis-70);
 	width: $custom-width;
 }
 
 .map {
-	padding-block: map.get($spacing, "block");
+	padding-block: map.get($spacing, 'block');
 }
 
 .allow-calc {

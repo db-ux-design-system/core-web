@@ -1,13 +1,13 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/internal/component";
-@use "../../styles/internal/form-components";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/icons';
+@use '@db-ux/core-foundations/build/styles/fonts';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '../../styles/internal/component';
+@use '../../styles/internal/form-components';
 
 %center-icon {
-	&:not([data-show-icon-leading="false"]) {
+	&:not([data-show-icon-leading='false']) {
 		&::before {
 			--db-icon-margin-end: 0;
 
@@ -32,18 +32,18 @@
 
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
-		@include form-components.get-state("active");
+		@include form-components.get-state('active');
 	}
 
 	// jscpd:ignore-start
 	@include form-components.get-validity(check) {
-		&:has(.db-infotext[data-semantic="successful"]) {
-			@include form-components.get-validity-color-checkbox("valid");
+		&:has(.db-infotext[data-semantic='successful']) {
+			@include form-components.get-validity-color-checkbox('valid');
 		}
 	}
 
-	@include form-components.get-validity(check, "invalid") {
-		@include form-components.get-validity-color-checkbox("invalid");
+	@include form-components.get-validity(check, 'invalid') {
+		@include form-components.get-validity-color-checkbox('invalid');
 	}
 
 	// jscpd:ignore-end
@@ -75,7 +75,7 @@
 			@extend %center-icon;
 
 			// Check icon
-			@include icons.set-icon("check");
+			@include icons.set-icon('check');
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;
@@ -83,7 +83,7 @@
 
 		&:indeterminate {
 			@extend %center-icon;
-			@include icons.set-icon("minus");
+			@include icons.set-icon('minus');
 		}
 
 		@media (forced-colors: active) {
@@ -93,11 +93,10 @@
 
 				border-width: form-components.$check-border-size;
 
-				&:not([data-show-icon-leading="false"])::before {
+				&:not([data-show-icon-leading='false'])::before {
 					align-content: center;
 					font-size: calc(
-						var(--db-icon-font-size) - 2 *
-							#{form-components.$check-border-size}
+						var(--db-icon-font-size) - 2 * #{form-components.$check-border-size}
 					);
 					padding: #{form-components.$check-border-size};
 				}

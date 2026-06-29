@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import {useCallback, useEffect, useMemo, useRef} from 'react';
 
 export function useSkipper() {
 	const shouldSkipRef = useRef<boolean | null>(true);
@@ -15,7 +15,7 @@ export function useSkipper() {
 
 	const result = useMemo(
 		() => [Boolean(shouldSkip), skip] as const,
-		[shouldSkip, skip]
+		[shouldSkip, skip],
 	);
 
 	return result;

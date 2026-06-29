@@ -1,46 +1,46 @@
-import { DBInfotext } from '../../../../../output/react/src';
+import {DBInfotext} from '../../../../../output/react/src';
 import AccessibilityReviewInfo from '../../../components/accessibility-review-info/accessibility-review-info'; // This file will be generated at runtime
 import DefaultPage from '../../../components/default-page';
-import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime by /showcases/patternhub/scripts/generate-test-table.js
+import {testTableData} from '../../../data/testing-table'; // This file will be generated at runtime by /showcases/patternhub/scripts/generate-test-table.js
 
 const tableHeaders = [
 	{
-		label: 'Component'
+		label: 'Component',
 	},
 	{
 		label: 'Single Component: Visuals',
-		href: 'https://playwright.dev/docs/screenshots'
+		href: 'https://playwright.dev/docs/screenshots',
 	},
 	{
 		label: 'Single Component: A11y (Axe)',
-		href: 'https://github.com/dequelabs/axe-core'
+		href: 'https://github.com/dequelabs/axe-core',
 	},
 	{
 		label: 'Showcase: Visuals',
-		href: 'https://playwright.dev/docs/screenshots'
+		href: 'https://playwright.dev/docs/screenshots',
 	},
 	{
 		label: 'Showcase: A11y (Axe)',
-		href: 'https://github.com/dequelabs/axe-core'
+		href: 'https://github.com/dequelabs/axe-core',
 	},
 	{
 		label: 'Showcase: A11y (Aria snapshots)',
-		href: 'https://playwright.dev/docs/aria-snapshots#aria-snapshots'
+		href: 'https://playwright.dev/docs/aria-snapshots#aria-snapshots',
 	},
 	{
 		label: 'Showcase: A11y (Accessibility-Checker)',
-		href: 'https://github.com/IBMa/equal-access'
+		href: 'https://github.com/IBMa/equal-access',
 	},
 	{
 		label: 'Showcase: A11y (Screen-Reader)',
-		href: 'https://github.com/guidepup/guidepup'
+		href: 'https://github.com/guidepup/guidepup',
 	},
 	{
-		label: 'Manual audit conducted by accessibility experts'
+		label: 'Manual audit conducted by accessibility experts',
 	},
 	{
-		label: 'Testing stable'
-	}
+		label: 'Testing stable',
+	},
 ];
 
 const TestTable = () => (
@@ -54,7 +54,8 @@ const TestTable = () => (
 								<a
 									href={header.href}
 									target="_blank"
-									referrerPolicy="no-referrer">
+									referrerPolicy="no-referrer"
+								>
 									{header.label}
 								</a>
 							) : (
@@ -75,7 +76,7 @@ const TestTable = () => (
 						showcaseAria,
 						showcaseAC,
 						showcaseGP,
-						accessibilityReview
+						accessibilityReview,
 					}) => {
 						const stable =
 							singleComponentVisuals &&
@@ -96,35 +97,25 @@ const TestTable = () => (
 									showcaseAxe,
 									showcaseAria,
 									showcaseAC,
-									showcaseGP
+									showcaseGP,
 								].map((status, index) => (
 									<td key={`${name}-${index}`}>
-										<DBInfotext
-											semantic={
-												status
-													? 'successful'
-													: 'critical'
-											}>
+										<DBInfotext semantic={status ? 'successful' : 'critical'}>
 											{status ? 'Done' : 'Missing'}
 										</DBInfotext>
 									</td>
 								))}
 								<td>
-									<AccessibilityReviewInfo
-										{...accessibilityReview}
-									/>
+									<AccessibilityReviewInfo {...accessibilityReview} />
 								</td>
 								<td>
-									<DBInfotext
-										semantic={
-											stable ? 'successful' : 'critical'
-										}>
+									<DBInfotext semantic={stable ? 'successful' : 'critical'}>
 										{stable ? 'Done 🎉' : 'Missing'}
 									</DBInfotext>
 								</td>
 							</tr>
 						);
-					}
+					},
 				)}
 			</tbody>
 		</table>

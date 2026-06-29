@@ -1,13 +1,13 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
-import { StorybookTableArgTypes } from './_table.arg.types';
-import { defaultTable } from './data';
+import {StorybookTableArgTypes} from './_table.arg.types';
+import {defaultTable} from './data';
 
 useMetadata({
 	storybookTitle: 'Width',
 	storybookNames: ['(Default) Full', 'Auto'],
-	storybookArgTypes: StorybookTableArgTypes
+	storybookArgTypes: StorybookTableArgTypes,
 });
 
 export default function TableWidth() {
@@ -17,8 +17,9 @@ export default function TableWidth() {
 				style={{
 					inlineSize: '300px',
 					display: 'flex',
-					flexDirection: 'column'
-				}}>
+					flexDirection: 'column',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					(Default) Full
 				</DBInfotext>
@@ -32,8 +33,9 @@ export default function TableWidth() {
 				style={{
 					inlineSize: '300px',
 					display: 'flex',
-					flexDirection: 'column'
-				}}>
+					flexDirection: 'column',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Auto
 				</DBInfotext>

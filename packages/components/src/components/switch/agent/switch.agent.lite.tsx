@@ -1,4 +1,4 @@
-import { DBSwitch } from '../index';
+import {DBSwitch} from '../index';
 
 export default function Switch() {
 	return (

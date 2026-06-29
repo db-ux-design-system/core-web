@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBNavigationItem from '../navigation-item.lite';
-import { StorybookNavigationItemArgTypes } from './_navigation-item.arg.types';
+import {StorybookNavigationItemArgTypes} from './_navigation-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Wrap',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookNavigationItemArgTypes
+	storybookArgTypes: StorybookNavigationItemArgTypes,
 });
 
 export default function NavigationItemWrap() {
@@ -18,8 +18,9 @@ export default function NavigationItemWrap() {
 			</ul>
 			<ul
 				style={{
-					width: '200px'
-				}}>
+					width: '200px',
+				}}
+			>
 				<DBNavigationItem
 					subNavigation={
 						<>
@@ -33,7 +34,8 @@ export default function NavigationItemWrap() {
 											<a href="#">Sub-Sub-Navi-Item 2</a>
 										</DBNavigationItem>
 									</>
-								}>
+								}
+							>
 								Sub-Navi-Item 1
 							</DBNavigationItem>
 							<DBNavigationItem>
@@ -43,7 +45,8 @@ export default function NavigationItemWrap() {
 					}
 					icon="x_placeholder"
 					showIcon={true}
-					wrap={true}>
+					wrap={true}
+				>
 					This is a very long text that is broken into multiple lines.
 				</DBNavigationItem>
 			</ul>

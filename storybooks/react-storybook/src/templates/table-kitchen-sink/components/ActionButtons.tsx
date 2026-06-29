@@ -1,5 +1,5 @@
-import { DBButton, DBSelect, DBStack, DBTooltip } from '@components';
-import { Fragment } from 'react';
+import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
+import {Fragment} from 'react';
 
 type Props = {
 	hasNextPage: boolean;
@@ -22,7 +22,7 @@ export function ActionButtons({
 	pageSize,
 	previousPage,
 	setPageIndex,
-	setPageSize
+	setPageSize,
 }: Props) {
 	return (
 		<Fragment>
@@ -32,7 +32,8 @@ export function ActionButtons({
 					disabled={!hasPreviousPage}
 					variant="ghost"
 					noText
-					icon="double_chevron_left">
+					icon="double_chevron_left"
+				>
 					First Page
 					<DBTooltip placement="top">First Page</DBTooltip>
 				</DBButton>
@@ -41,7 +42,8 @@ export function ActionButtons({
 					disabled={!hasPreviousPage}
 					variant="ghost"
 					noText
-					icon="chevron_left">
+					icon="chevron_left"
+				>
 					Previous Page
 					<DBTooltip placement="top">Previous Page</DBTooltip>
 				</DBButton>
@@ -50,7 +52,8 @@ export function ActionButtons({
 					disabled={!hasNextPage}
 					variant="ghost"
 					noText
-					icon="chevron_right">
+					icon="chevron_right"
+				>
 					Next Page
 					<DBTooltip placement="top">Next Page</DBTooltip>
 				</DBButton>
@@ -59,11 +62,12 @@ export function ActionButtons({
 					disabled={!hasNextPage}
 					variant="ghost"
 					noText
-					icon="double_chevron_right">
+					icon="double_chevron_right"
+				>
 					Last Page
 					<DBTooltip placement="top">Last Page</DBTooltip>
 				</DBButton>
-				<DBStack style={{ width: 'fit-content' }} gap="3x-small">
+				<DBStack style={{width: 'fit-content'}} gap="3x-small">
 					<div>Page</div>
 					<strong>
 						{pageIndex + 1} of {pageCount}
@@ -75,7 +79,8 @@ export function ActionButtons({
 					value={pageSize}
 					onChange={(e) => {
 						setPageSize(Number(e.target.value));
-					}}>
+					}}
+				>
 					{[5, 10, 20, 30, 40, 50].map((pageSize) => (
 						<option key={pageSize} value={pageSize}>
 							Show {pageSize}

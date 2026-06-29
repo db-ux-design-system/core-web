@@ -1,13 +1,11 @@
-import { uuid } from './index';
+import {uuid} from './index';
 
 export class DocumentScrollListener {
 	private static callbacks: Record<string, (event: any) => void> = {};
 	private static _instance: DocumentScrollListener | null = null;
 
 	private static runCallbacks(event: any) {
-		for (const callback of Object.values(
-			DocumentScrollListener.callbacks
-		)) {
+		for (const callback of Object.values(DocumentScrollListener.callbacks)) {
 			if (typeof callback === 'function') {
 				callback(event);
 			}
@@ -34,7 +32,7 @@ export class DocumentScrollListener {
 						this.ticking = true;
 					}
 				},
-				true
+				true,
 			);
 		}
 	}

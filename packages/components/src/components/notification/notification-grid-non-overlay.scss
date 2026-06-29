@@ -1,4 +1,4 @@
-@use "notification-grid-shared" as shared;
+@use 'notification-grid-shared' as shared;
 
 // Wrapper mixins for non-overlay variants that use shared grid logic
 @mixin non-overlay-base-grid($areas, $columns) {
@@ -35,44 +35,41 @@
 
 @mixin non-overlay-block-link-layouts() {
 	// 1. Base: content + block link (no additional elements)
-	@include non-overlay-base-grid("content" "link", 1fr);
-	@include non-overlay-with-close(
-		"content close" "link link",
-		1fr min-content
-	);
+	@include non-overlay-base-grid('content' 'link', 1fr);
+	@include non-overlay-with-close('content close' 'link link', 1fr min-content);
 
 	// 2. Adds: headline
-	@include non-overlay-with-header("head" "content" "link", 1fr);
+	@include non-overlay-with-header('head' 'content' 'link', 1fr);
 	@include non-overlay-with-header-close(
-		"head close" "content content" "link link",
+		'head close' 'content content' 'link link',
 		1fr min-content
 	);
 
 	// 3. Adds: icon or image
-	@include non-overlay-with-icon("icon content" "icon link", min-content 1fr);
+	@include non-overlay-with-icon('icon content' 'icon link', min-content 1fr);
 	@include non-overlay-with-icon-close(
-		"icon content close" "icon link link",
+		'icon content close' 'icon link link',
 		min-content 1fr min-content
 	);
 	@include non-overlay-with-icon-header(
-		"icon head" "icon content" "icon link",
+		'icon head' 'icon content' 'icon link',
 		min-content 1fr
 	);
 	@include non-overlay-with-icon-header-close(
-		"icon head close" "icon content content" "icon link link",
+		'icon head close' 'icon content content' 'icon link link',
 		min-content 1fr min-content
 	);
 }
 
 %grid-layout-variant-not-overlay {
 	// Hide timestamp for non-overlay variants only
-	[data-area="timestamp"] {
+	[data-area='timestamp'] {
 		display: none;
 	}
 
 	// Apply block link layout when linkVariant is "block" (explicit or default)
 	// Only applies to non-overlay variants with block links
-	&[data-link-variant="block"],
+	&[data-link-variant='block'],
 	&:not([data-link-variant]):has(a) {
 		@include non-overlay-block-link-layouts;
 	}

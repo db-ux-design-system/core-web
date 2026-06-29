@@ -1,12 +1,12 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/experimental-ct-react';
+import {expect, test} from '@playwright/experimental-ct-react';
 
-import { DBTabs } from './index';
+import {DBTabs} from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
-import { DBTabItem } from '../tab-item';
-import { DBTabList } from '../tab-list';
-import { DBTabPanel } from '../tab-panel';
+import {DEFAULT_VIEWPORT} from '../../shared/constants.ts';
+import {DBTabItem} from '../tab-item';
+import {DBTabList} from '../tab-list';
+import {DBTabPanel} from '../tab-panel';
 
 let activeTabIndex: number | undefined;
 let comp: any = null;
@@ -31,19 +31,19 @@ test.beforeEach(() => {
 });
 
 const testComponent = () => {
-	test('should contain text', async ({ mount }) => {
+	test('should contain text', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
 const testActions = () => {
-	test('should be clickable', async ({ mount }) => {
+	test('should be clickable', async ({mount}) => {
 		expect(activeTabIndex).toBe(undefined);
 
 		// Beware: the comments below actually change the selector for vue
@@ -53,7 +53,7 @@ const testActions = () => {
 		await component
 			.getByTestId('test2')
 			// VUE: .getByRole('tab')
-			.check({ force: true });
+			.check({force: true});
 		const tabChecked = await component
 			.getByTestId('test')
 			// VUE: .getByRole('tab')
@@ -65,14 +65,14 @@ const testActions = () => {
 };
 
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+	test('should have same aria-snapshot', async ({mount}, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have A11y issues', async ({ page, mount }) => {
+	test('should not have A11y issues', async ({page, mount}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		const accessibilityScanResults = await new AxeBuilder({page})
 			// TODO: There might be an issue in our implementation of which elements get which roles
 			// So we disabled "aria-allowed-role" for now
 			.include('.db-tabs')
@@ -84,7 +84,7 @@ const testA11y = () => {
 };
 
 test.describe('DBTabs', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
+	test.use({viewport: DEFAULT_VIEWPORT});
 	testComponent();
 	testA11y();
 	testActions();

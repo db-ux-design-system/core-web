@@ -1,14 +1,14 @@
-import { computed, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import {computed, ref, watch} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
 import {
 	COLOR,
 	COLOR_CONST,
 	DENSITY,
-	DENSITY_CONST
+	DENSITY_CONST,
 } from '../../../../packages/components/src/shared/constants';
 import {
 	getSortedNavigationItems,
-	navigationItems
+	navigationItems,
 } from '../utils/navigation-items';
 
 export const useLayout = () => {
@@ -25,11 +25,11 @@ export const useLayout = () => {
 	};
 
 	const classNames = computed(
-		() => `db-density-${density.value} db-${color.value}`
+		() => `db-density-${density.value} db-${color.value}`,
 	);
 
 	const onChange = async (event: Event, target?: string) => {
-		const inputEvent = event as Event & { target: HTMLInputElement };
+		const inputEvent = event as Event & {target: HTMLInputElement};
 		if (target === 'density') {
 			density.value = inputEvent.target.value;
 		} else if (target === 'color') {
@@ -41,8 +41,8 @@ export const useLayout = () => {
 			query: {
 				...route.query,
 				[DENSITY_CONST]: density.value,
-				[COLOR_CONST]: color.value
-			}
+				[COLOR_CONST]: color.value,
+			},
 		});
 	};
 
@@ -53,10 +53,7 @@ export const useLayout = () => {
 				color.value = query[COLOR_CONST];
 			}
 
-			if (
-				query[DENSITY_CONST] &&
-				query[DENSITY_CONST] !== density.value
-			) {
+			if (query[DENSITY_CONST] && query[DENSITY_CONST] !== density.value) {
 				density.value = query[DENSITY_CONST];
 			}
 
@@ -68,7 +65,7 @@ export const useLayout = () => {
 				page.value = query.fullscreen;
 			}
 		},
-		{ immediate: true }
+		{immediate: true},
 	);
 
 	const sortedNavigation = getSortedNavigationItems(navigationItems);
@@ -82,6 +79,6 @@ export const useLayout = () => {
 		classNames,
 		onChange,
 		toggleDrawer,
-		sortedNavigation
+		sortedNavigation,
 	};
 };

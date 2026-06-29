@@ -8,14 +8,14 @@ import type {
 	InitializedState,
 	InnerCloseButtonProps,
 	SpacingProps,
-	WidthProps
+	WidthProps,
 } from '../../shared/model';
 
 export const DrawerBackdropList = [
 	'none',
 	'strong',
 	'weak',
-	'invisible'
+	'invisible',
 ] as const;
 export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 

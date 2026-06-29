@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import { StorybookInputArgTypes } from './_input.arg.types';
+import {StorybookInputArgTypes} from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Required Asterisk',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookInputArgTypes
+	storybookArgTypes: StorybookInputArgTypes,
 });
 
 export default function InputShowRequiredAsterisk() {
@@ -15,12 +15,14 @@ export default function InputShowRequiredAsterisk() {
 				label="Label"
 				required={true}
 				showRequiredAsterisk={true}
-				placeholder="(Default) True"></DBInput>
+				placeholder="(Default) True"
+			></DBInput>
 			<DBInput
 				label="Label"
 				required={true}
 				showRequiredAsterisk={false}
-				placeholder="False"></DBInput>
+				placeholder="False"
+			></DBInput>
 		</Fragment>
 	);
 }

@@ -1,7 +1,7 @@
-import { execSync } from 'child_process';
-import { readFileSync, readdirSync } from 'fs';
-import { resolve } from 'path';
-import { beforeAll, describe, expect, it } from 'vitest';
+import {execSync} from 'child_process';
+import {readFileSync, readdirSync} from 'fs';
+import {resolve} from 'path';
+import {beforeAll, describe, expect, it} from 'vitest';
 
 describe('Integration Tests', () => {
 	const apps = ['react', 'vue'];
@@ -13,11 +13,11 @@ describe('Integration Tests', () => {
 			beforeAll(() => {
 				execSync('npm install', {
 					cwd: appPath,
-					stdio: 'inherit'
+					stdio: 'inherit',
 				});
 				execSync('npm run build', {
 					cwd: appPath,
-					stdio: 'inherit'
+					stdio: 'inherit',
 				});
 			}, 60000);
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { DBSwitch } from "../../../../../output/vue/src";
-import FormWrapper from "./FormWrapper.vue";
+import {ref} from 'vue';
+import {DBSwitch} from '../../../../../output/vue/src';
+import FormWrapper from './FormWrapper.vue';
 
 const plain = ref(true);
 const vModel = ref(true);

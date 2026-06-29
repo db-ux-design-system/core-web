@@ -5,11 +5,11 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { DEFAULT_LABEL } from '../../shared/constants';
-import { cls, getBooleanAsString } from '../../utils';
-import { DBBadgeProps, DBBadgeState } from './model';
+import {DEFAULT_LABEL} from '../../shared/constants';
+import {cls, getBooleanAsString} from '../../utils';
+import {DBBadgeProps, DBBadgeState} from './model';
 
 useMetadata({});
 
@@ -18,7 +18,7 @@ useDefaultProps<DBBadgeProps>({});
 export default function DBBadge(props: DBBadgeProps) {
 	const _ref = useRef<HTMLSpanElement | any>(null);
 	const state = useStore<DBBadgeState>({
-		initialized: false
+		initialized: false,
 	});
 
 	onMount(() => {
@@ -53,9 +53,9 @@ export default function DBBadge(props: DBBadgeProps) {
 			data-placement={props.placement}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			data-label={
-				props.placement?.startsWith('corner') &&
-				(props.label ?? DEFAULT_LABEL)
-			}>
+				props.placement?.startsWith('corner') && (props.label ?? DEFAULT_LABEL)
+			}
+		>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</span>

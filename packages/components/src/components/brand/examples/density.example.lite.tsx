@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBBrand from '../brand.lite';
-import { StorybookBrandArgTypes } from './_brand.arg.types';
+import {StorybookBrandArgTypes} from './_brand.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookBrandArgTypes
+	storybookArgTypes: StorybookBrandArgTypes,
 });
 
 export default function BrandDensity() {

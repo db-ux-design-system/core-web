@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBCard } from '../index';
-import { FigmaCardProps, cards } from './card.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBCard} from '../index';
+import {FigmaCardProps, cards} from './card.figma';
 
 useMetadata({
-	figma: cards
+	figma: cards,
 });
 
 export default function CardFigmaLite(props: FigmaCardProps) {

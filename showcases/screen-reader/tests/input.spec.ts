@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import {generateSnapshot, getTest, testDefault} from '../default';
 
 const test = getTest();
 test.describe('DBInput', () => {
@@ -19,7 +19,7 @@ test.describe('DBInput', () => {
 			await voiceOver?.next();
 			await voiceOver?.next();
 			await voiceOver?.next();
-		}
+		},
 	});
 	testDefault({
 		test,
@@ -36,7 +36,7 @@ test.describe('DBInput', () => {
 			await nvda?.clearSpokenPhraseLog();
 			await nvda?.press('Shift+Tab');
 			await nvda?.press('Tab');
-		}
+		},
 	});
 	testDefault({
 		test,
@@ -70,11 +70,9 @@ test.describe('DBInput', () => {
 				 * There is a timing issue for macOS for typing in input we clean the result
 				 */
 				await generateSnapshot(voiceOver, retry, (phraseLog) =>
-					phraseLog.map((log) =>
-						log.replace('Test. ', '').replace('t. ', '')
-					)
+					phraseLog.map((log) => log.replace('Test. ', '').replace('t. ', '')),
 				);
 			}
-		}
+		},
 	});
 });

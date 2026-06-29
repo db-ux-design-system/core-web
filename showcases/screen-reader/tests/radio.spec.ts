@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import {getTest, testDefault} from '../default';
 
 const test = getTest();
 test.describe('DBRadio', () => {
@@ -24,7 +24,7 @@ test.describe('DBRadio', () => {
 				await voiceOver?.next();
 				await voiceOver?.next();
 			}
-		}
+		},
 	});
 	testDefault({
 		test,
@@ -42,6 +42,6 @@ test.describe('DBRadio', () => {
 			await nvda?.press('Left');
 			await nvda?.press('Right');
 			await nvda?.press('Right');
-		}
+		},
 	});
 });

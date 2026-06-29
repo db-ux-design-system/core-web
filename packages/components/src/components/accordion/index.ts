@@ -1,1 +1,1 @@
-export { default as DBAccordion } from './accordion';
+export {default as DBAccordion} from './accordion';

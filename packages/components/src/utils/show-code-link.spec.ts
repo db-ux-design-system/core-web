@@ -1,14 +1,14 @@
-import { describe, expect, it } from 'vitest';
+import {describe, expect, it} from 'vitest';
 
-import { getShowCodeHref } from '../shared/showcase/show-code-link';
+import {getShowCodeHref} from '../shared/showcase/show-code-link';
 
 describe('getShowCodeHref', () => {
 	it('returns localhost react storybook url on localhost', () => {
 		expect(
 			getShowCodeHref(
 				'http://localhost:3000/core-web/sub/components/action/button/overview',
-				'react'
-			)
+				'react',
+			),
 		).toBe('http://localhost:6005/?path=/docs/components-dbbutton');
 	});
 
@@ -16,8 +16,8 @@ describe('getShowCodeHref', () => {
 		expect(
 			getShowCodeHref(
 				'http://localhost:3000/core-web/sub/components/action/button/overview',
-				'angular'
-			)
+				'angular',
+			),
 		).toBe('http://localhost:6006/?path=/docs/components-dbbutton');
 	});
 
@@ -25,8 +25,8 @@ describe('getShowCodeHref', () => {
 		expect(
 			getShowCodeHref(
 				'http://127.0.0.1:3000/core-web/sub/components/action/button/overview',
-				'vue'
-			)
+				'vue',
+			),
 		).toBe('http://127.0.0.1:6007/?path=/docs/components-dbbutton');
 	});
 
@@ -34,8 +34,8 @@ describe('getShowCodeHref', () => {
 		expect(
 			getShowCodeHref(
 				'http://localhost:3000/core-web/sub/components/action/button/overview',
-				'html'
-			)
+				'html',
+			),
 		).toBe('http://localhost:6001/?path=/docs/components-dbbutton');
 	});
 
@@ -43,8 +43,8 @@ describe('getShowCodeHref', () => {
 		expect(
 			getShowCodeHref(
 				'http://localhost:3000/core-web/components/button/docs',
-				'react'
-			)
+				'react',
+			),
 		).toBe('http://localhost:6005/?path=/docs/components-dbbutton');
 	});
 
@@ -52,22 +52,22 @@ describe('getShowCodeHref', () => {
 		expect(
 			getShowCodeHref(
 				'https://db-ui.com/core-web/sub/components/action/button/overview',
-				'react'
-			)
+				'react',
+			),
 		).toBe(
-			'https://db-ui.com/core-web/sub/react-storybook?path=/docs/components-dbbutton'
+			'https://db-ui.com/core-web/sub/react-storybook?path=/docs/components-dbbutton',
 		);
 	});
 
 	it('returns undefined if url has no components segment', () => {
-		expect(
-			getShowCodeHref('https://db-ui.com/core-web/sub/', 'react')
-		).toBe(undefined);
+		expect(getShowCodeHref('https://db-ui.com/core-web/sub/', 'react')).toBe(
+			undefined,
+		);
 	});
 
 	it('returns undefined for components root route', () => {
 		expect(
-			getShowCodeHref('https://db-ui.com/core-web/components', 'react')
+			getShowCodeHref('https://db-ui.com/core-web/components', 'react'),
 		).toBe(undefined);
 	});
 });

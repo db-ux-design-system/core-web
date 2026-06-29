@@ -1,16 +1,16 @@
 ---
-name: "db-ux-maintainer"
-description: "Architecture-supervised workspace for DB UX Design System development. Enforces Mitosis, design tokens, Figma-driven specs, and TDD via dual MCP integration."
+name: 'db-ux-maintainer'
+description: 'Architecture-supervised workspace for DB UX Design System development. Enforces Mitosis, design tokens, Figma-driven specs, and TDD via dual MCP integration.'
 keywords:
-    - db-ux
-    - design system
-    - deutsche bahn
-    - mitosis
-    - component
-    - figma
-    - tokens
-    - tdd
-    - maintainer
+  - db-ux
+  - design system
+  - deutsche bahn
+  - mitosis
+  - component
+  - figma
+  - tokens
+  - tdd
+  - maintainer
 ---
 
 # DB UX Powers

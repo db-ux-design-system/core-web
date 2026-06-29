@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBSelect } from '@components';
-import { WrapperComponent } from '../wrapper/wrapper.component';
+import {Component} from '@angular/core';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DBSelect} from '@components';
+import {WrapperComponent} from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-selects',
 	standalone: true,
 	imports: [WrapperComponent, DBSelect, FormsModule, ReactiveFormsModule],
-	templateUrl: './selects.component.html'
+	templateUrl: './selects.component.html',
 })
 export class SelectsComponent {
 	plain = 'combobox-2';

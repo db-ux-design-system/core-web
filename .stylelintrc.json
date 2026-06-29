@@ -27,11 +27,7 @@
 				"allowCalc": true,
 				"allow": {
 					"includes": ["$db-", "$font-size-height"],
-					"startsWith": [
-						"icons.$",
-						"component.$",
-						"form-components.$"
-					],
+					"startsWith": ["icons.$", "component.$", "form-components.$"],
 					"exact": ["$popover-gap-size", "$scrollbar-width"]
 				}
 			}
@@ -40,21 +36,21 @@
 			true,
 			{
 				"allowCalc": true,
-				"allow": { "startsWith": ["component.$", "form-components.$"] }
+				"allow": {"startsWith": ["component.$", "form-components.$"]}
 			}
 		],
 		"db-ux/use-border-radius": [true],
 		"db-ux/use-border-color": [
 			true,
 			{
-				"allow": { "startsWith": ["component.$", "form-components.$"] }
+				"allow": {"startsWith": ["component.$", "form-components.$"]}
 			}
 		],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,
-		"csstools/use-logical": ["always", { "except": ["float"] }],
-		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
+		"csstools/use-logical": ["always", {"except": ["float"]}],
+		"selector-type-no-unknown": [true, {"ignoreTypes": ["/^db/"]}],
 		"no-descending-specificity": null,
 		"number-max-precision": null,
 		"scss/operator-no-newline-after": null

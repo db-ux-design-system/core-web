@@ -1,7 +1,7 @@
 import type {
 	ContainerWidthProps,
 	GlobalProps,
-	SpacingProps
+	SpacingProps,
 } from '../../shared/model';
 
 export type DBSectionDefaultProps = {};

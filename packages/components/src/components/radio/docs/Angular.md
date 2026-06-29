@@ -36,15 +36,15 @@ import { DBRadio } from '@db-ux/ngx-core-components';
 
 ```ts app.component.ts
 // app.component.ts
-import { Component } from "@angular/core";
+import {Component} from '@angular/core';
 
 @Component({
-	selector: "app-app",
-	templateUrl: "./app.component.html"
+	selector: 'app-app',
+	templateUrl: './app.component.html',
 })
 export class AppComponent {
-	radioNames = ["X", "Y", "Z"];
-	radio = "";
+	radioNames = ['X', 'Y', 'Z'];
+	radio = '';
 }
 ```
 
@@ -86,9 +86,9 @@ import { FormsModule } from '@angular/forms';
 ```ts form.component.ts
 // form.component.ts
 export class FormComponent {
-	radio = "";
+	radio = '';
 	showValues(): void {
-		alert(JSON.stringify({ radio: this.radio }));
+		alert(JSON.stringify({radio: this.radio}));
 	}
 }
 ```

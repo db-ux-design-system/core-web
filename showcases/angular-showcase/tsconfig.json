@@ -26,9 +26,7 @@
 			"@angular/*": ["node_modules/@angular/*"],
 			"@components": ["../../output/angular/src"],
 			"@components/src/*": ["../../output/angular/src/*"],
-			"@components/components/*": [
-				"../../output/angular/src/components/*"
-			]
+			"@components/components/*": ["../../output/angular/src/components/*"]
 		}
 	},
 	"angularCompilerOptions": {

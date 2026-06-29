@@ -19,14 +19,14 @@ import { DBTextarea } from '@db-ux/ngx-core-components';
 ### Use component
 
 ```ts app.component.ts
-import { Component } from "@angular/core";
+import {Component} from '@angular/core';
 
 @Component({
-	selector: "app-root",
-	templateUrl: "./app.component.html"
+	selector: 'app-root',
+	templateUrl: './app.component.html',
 })
 export class AppComponent {
-	textarea = "default value";
+	textarea = 'default value';
 }
 ```
 

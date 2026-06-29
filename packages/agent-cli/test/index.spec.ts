@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { afterAll, describe, expect, test } from 'vitest';
-import { action } from '../src';
+import {afterAll, describe, expect, test} from 'vitest';
+import {action} from '../src';
 
 const TEST_DIRS = ['test/frontend', 'test/pnpm-test'];
 const GENERATED_ARTIFACTS = ['.github', '.amazonq', '.cursorrules'];
@@ -11,7 +11,7 @@ const cleanup = () => {
 		for (const artifact of GENERATED_ARTIFACTS) {
 			const target = path.resolve(dir, artifact);
 			if (fs.existsSync(target)) {
-				fs.rmSync(target, { recursive: true, force: true });
+				fs.rmSync(target, {recursive: true, force: true});
 			}
 		}
 	}
@@ -33,11 +33,9 @@ describe('default', () => {
 
 	test('check if docs are created', async () => {
 		const copilotFile = path.resolve(
-			'test/frontend/.github/copilot-instructions.md'
+			'test/frontend/.github/copilot-instructions.md',
 		);
-		const amazonqFile = path.resolve(
-			'test/frontend/.amazonq/rules/db-ux.md'
-		);
+		const amazonqFile = path.resolve('test/frontend/.amazonq/rules/db-ux.md');
 
 		await action('test/frontend');
 
@@ -46,11 +44,9 @@ describe('default', () => {
 
 	test('check if docs are created from pnpm symlinked packages', async () => {
 		const copilotFile = path.resolve(
-			'test/pnpm-test/.github/copilot-instructions.md'
+			'test/pnpm-test/.github/copilot-instructions.md',
 		);
-		const amazonqFile = path.resolve(
-			'test/pnpm-test/.amazonq/rules/db-ux.md'
-		);
+		const amazonqFile = path.resolve('test/pnpm-test/.amazonq/rules/db-ux.md');
 		await action('test/pnpm-test');
 
 		checkExpectations(copilotFile, amazonqFile);

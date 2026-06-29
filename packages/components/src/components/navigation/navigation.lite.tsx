@@ -2,10 +2,10 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import { DBNavigationProps, DBNavigationState } from './model';
+import {cls} from '../../utils';
+import {DBNavigationProps, DBNavigationState} from './model';
 
 useMetadata({});
 
@@ -22,7 +22,8 @@ export default function DBNavigation(props: DBNavigationProps) {
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-navigation', props.className)}>
+			class={cls('db-navigation', props.className)}
+		>
 			<menu>{props.children}</menu>
 		</nav>
 	);

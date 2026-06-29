@@ -3,7 +3,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	MarginProps,
-	WidthProps
+	WidthProps,
 } from '../../shared/model';
 
 export const DividerMarginList = ['none', '_'] as const;

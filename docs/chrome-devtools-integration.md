@@ -35,21 +35,21 @@ The plugin automatically generates a `com.chrome.devtools.json` file that provid
 
 1. Start any Vite development server:
 
-    ```bash
-    # React showcase
-    cd showcases/react-showcase && npm run dev
+   ```bash
+   # React showcase
+   cd showcases/react-showcase && npm run dev
 
-    # Vue showcase
-    cd showcases/vue-showcase && npm run dev
-    ```
+   # Vue showcase
+   cd showcases/vue-showcase && npm run dev
+   ```
 
 2. Open Chrome DevTools (F12)
 
 3. The enhanced debugging features will be automatically available in:
-    - **Sources** tab - Better source mapping
-    - **Elements** tab - Enhanced component inspection
-    - **Performance** tab - More detailed profiling
-    - **Console** tab - Improved error reporting
+   - **Sources** tab - Better source mapping
+   - **Elements** tab - Enhanced component inspection
+   - **Performance** tab - More detailed profiling
+   - **Console** tab - Improved error reporting
 
 ### Verifying the Integration
 
@@ -80,12 +80,12 @@ When the development server starts, you should see the Vite server output withou
 The plugin is configured with default settings in all Vite configurations:
 
 ```typescript
-import devtoolsJson from "vite-plugin-devtools-json";
+import devtoolsJson from 'vite-plugin-devtools-json';
 
 // In vite.config.ts
 plugins: [
 	// ... other plugins
-	devtoolsJson() // Enable Chrome DevTools JSON generation
+	devtoolsJson(), // Enable Chrome DevTools JSON generation
 ];
 ```
 

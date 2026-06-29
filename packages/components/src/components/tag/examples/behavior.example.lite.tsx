@@ -1,6 +1,6 @@
-import { useMetadata } from '@builder.io/mitosis';
+import {useMetadata} from '@builder.io/mitosis';
 import DBTag from '../tag.lite';
-import { StorybookTagArgTypes } from './_tag.arg.types';
+import {StorybookTagArgTypes} from './_tag.arg.types';
 
 useMetadata({
 	storybookTitle: 'Behavior',
@@ -11,9 +11,9 @@ useMetadata({
 		'Interactive (Link)',
 		'Interactive (Checkbox)',
 		'Interactive (Radio)',
-		'Interactive Radio 2'
+		'Interactive Radio 2',
 	],
-	storybookArgTypes: StorybookTagArgTypes
+	storybookArgTypes: StorybookTagArgTypes,
 });
 
 export default function TagBehavior() {

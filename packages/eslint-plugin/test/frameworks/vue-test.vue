@@ -39,9 +39,7 @@
 		<DBInput label="Test" />
 
 		<!-- db-ux/link-external-security -->
-		<DBLink href="https://example.com" target="_blank"
-			>External link</DBLink
-		>
+		<DBLink href="https://example.com" target="_blank">External link</DBLink>
 
 		<!-- db-ux/navigation-item-back-button-text-required -->
 		<DBNavigationItem>
@@ -94,6 +92,6 @@ import {
 	DBNotification,
 	DBSelect,
 	DBTag,
-	DBTooltip
-} from "@db-ux/v-core-components";
+	DBTooltip,
+} from '@db-ux/v-core-components';
 </script>

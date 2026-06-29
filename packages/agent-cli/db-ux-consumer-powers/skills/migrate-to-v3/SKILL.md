@@ -1,48 +1,48 @@
 ---
-name: "migrate-to-v3"
-description: "Migrates legacy DB UI v2 code (cmp-*, elm-*, rea-* classes, <db-*> Web Components, db-color-* tokens) to DB UX Design System v3."
+name: 'migrate-to-v3'
+description: 'Migrates legacy DB UI v2 code (cmp-*, elm-*, rea-* classes, <db-*> Web Components, db-color-* tokens) to DB UX Design System v3.'
 
 triggers:
-    - "migrate to v3"
-    - "upgrade from v2"
-    - "convert legacy DB UI code"
-    - "replace cmp-* classes"
-    - "migrate db-color tokens"
+  - 'migrate to v3'
+  - 'upgrade from v2'
+  - 'convert legacy DB UI code'
+  - 'replace cmp-* classes'
+  - 'migrate db-color tokens'
 
 inputs:
-    - name: file_path
-      type: string
-      required: true
-      description: "Path to the file or directory to migrate"
-    - name: framework
-      type: string
-      required: true
-      description: "Target JS framework: react, angular, vue, or web-components"
+  - name: file_path
+    type: string
+    required: true
+    description: 'Path to the file or directory to migrate'
+  - name: framework
+    type: string
+    required: true
+    description: 'Target JS framework: react, angular, vue, or web-components'
 
 requires:
-    - context: context/guidelines.md
-      autoLoad: true
+  - context: context/guidelines.md
+    autoLoad: true
 
 tools:
-    - db-ux/scan_v2_migration
-    - db-ux/list_migration_guides
-    - db-ux/get_migration_guide
-    - db-ux/list_components
-    - db-ux/get_component_props
-    - db-ux/get_component_details
-    - db-ux/get_example_code
-    - db-ux/list_icons
-    - db-ux/get_design_tokens
-    - db-ux/docs_search
+  - db-ux/scan_v2_migration
+  - db-ux/list_migration_guides
+  - db-ux/get_migration_guide
+  - db-ux/list_components
+  - db-ux/get_component_props
+  - db-ux/get_component_details
+  - db-ux/get_example_code
+  - db-ux/list_icons
+  - db-ux/get_design_tokens
+  - db-ux/docs_search
 
 outputs:
-    - "{file_path}"
+  - '{file_path}'
 
 on_error:
-    max_retries: 3
-    actions:
-        - log: "Call verify_migrated_code and fix reported errors before retrying."
-        - fallback: "If errors persist after 3 retries, report to user with full error output."
+  max_retries: 3
+  actions:
+    - log: 'Call verify_migrated_code and fix reported errors before retrying.'
+    - fallback: 'If errors persist after 3 retries, report to user with full error output.'
 ---
 
 # Migrate to v3
@@ -66,9 +66,9 @@ on_error:
 
 1. Call `list_migration_guides()`.
 2. For each pattern category found in the scan, call `get_migration_guide(guideName)`:
-    - `cmp-*` / `elm-*` / `rea-*` classes → component-specific migration guide
-    - `db-color-*` tokens → `color-migration` migration guide
-    - Icon name changes → `icon-migration` migration guide
+   - `cmp-*` / `elm-*` / `rea-*` classes → component-specific migration guide
+   - `db-color-*` tokens → `color-migration` migration guide
+   - Icon name changes → `icon-migration` migration guide
 3. Record replacement mappings from each migration guide.
 
 ### Phase 3: Verify Target Components
@@ -76,9 +76,9 @@ on_error:
 1. Call `list_components()`.
 2. For each v2 component being replaced, confirm the v3 equivalent exists.
 3. For each confirmed component:
-    - Call `get_component_props(componentName)`.
-    - Call `get_component_details(componentName)`.
-    - Call `get_example_code(componentName, exampleName, {framework})`.
+   - Call `get_component_props(componentName)`.
+   - Call `get_component_details(componentName)`.
+   - Call `get_example_code(componentName, exampleName, {framework})`.
 
 ### Phase 4: Resolve Icons and Tokens
 

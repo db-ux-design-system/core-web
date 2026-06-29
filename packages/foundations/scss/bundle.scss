@@ -1,10 +1,10 @@
-@forward "defaults/default-root";
-@forward "defaults/default-elevation";
-@forward "defaults/default-fonts";
-@forward "defaults/default-code";
-@forward "defaults/default-icons";
-@forward "defaults/default-required";
-@forward "defaults/default-container-properties";
+@forward 'defaults/default-root';
+@forward 'defaults/default-elevation';
+@forward 'defaults/default-fonts';
+@forward 'defaults/default-code';
+@forward 'defaults/default-icons';
+@forward 'defaults/default-required';
+@forward 'defaults/default-container-properties';
 
 [data-mode] {
 	@extend %db-neutral-bg-basic-level-1;

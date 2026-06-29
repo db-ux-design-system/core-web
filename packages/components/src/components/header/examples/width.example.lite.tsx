@@ -1,22 +1,22 @@
-import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
+import {Fragment, useMetadata, useTarget} from '@builder.io/mitosis';
 import DBBrand from '../../brand/brand.lite';
 import DBButton from '../../button/button.lite';
 import DBLink from '../../link/link.lite';
 import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 import DBNavigation from '../../navigation/navigation.lite';
 import DBHeader from '../header.lite';
-import { StorybookHeaderArgTypes } from './_header.arg.types';
+import {StorybookHeaderArgTypes} from './_header.arg.types';
 
 useMetadata({
 	storybookTitle: 'Width',
 	storybookNames: ['Full', 'Medium', 'Large'],
-	storybookArgTypes: StorybookHeaderArgTypes
+	storybookArgTypes: StorybookHeaderArgTypes,
 });
 
 export default function HeaderWidth() {
 	return (
 		<Fragment>
-			<div style={{ width: '100%', display: 'block' }}>
+			<div style={{width: '100%', display: 'block'}}>
 				<DBHeader
 					brand={<DBBrand>DBHeader</DBBrand>}
 					metaNavigation={
@@ -26,43 +26,33 @@ export default function HeaderWidth() {
 						</>
 					}
 					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Profile
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Notification
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Help
 							</DBButton>
 						</>
-					}>
+					}
+				>
 					<DBNavigation
 						{...useTarget({
 							angular: {
-								'data-x': 'workaround-angular'
+								'data-x': 'workaround-angular',
 							},
-							default: {}
+							default: {},
 						})}
-						aria-label="Full">
+						aria-label="Full"
+					>
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Full</a>
 						</DBNavigationItem>
@@ -72,7 +62,7 @@ export default function HeaderWidth() {
 					</DBNavigation>
 				</DBHeader>
 			</div>
-			<div style={{ width: '100%', display: 'block' }}>
+			<div style={{width: '100%', display: 'block'}}>
 				<DBHeader
 					width="medium"
 					brand={<DBBrand>DBHeader</DBBrand>}
@@ -83,43 +73,33 @@ export default function HeaderWidth() {
 						</>
 					}
 					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Profile
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Notification
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Help
 							</DBButton>
 						</>
-					}>
+					}
+				>
 					<DBNavigation
 						{...useTarget({
 							angular: {
-								'data-x': 'workaround-angular'
+								'data-x': 'workaround-angular',
 							},
-							default: {}
+							default: {},
 						})}
-						aria-label="Medium">
+						aria-label="Medium"
+					>
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Medium</a>
 						</DBNavigationItem>
@@ -129,7 +109,7 @@ export default function HeaderWidth() {
 					</DBNavigation>
 				</DBHeader>
 			</div>
-			<div style={{ width: '100%', display: 'block' }}>
+			<div style={{width: '100%', display: 'block'}}>
 				<DBHeader
 					width="large"
 					brand={<DBBrand>DBHeader</DBBrand>}
@@ -140,43 +120,33 @@ export default function HeaderWidth() {
 						</>
 					}
 					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Profile
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Notification
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Help
 							</DBButton>
 						</>
-					}>
+					}
+				>
 					<DBNavigation
 						{...useTarget({
 							angular: {
-								'data-x': 'workaround-angular'
+								'data-x': 'workaround-angular',
 							},
-							default: {}
+							default: {},
 						})}
-						aria-label="Large">
+						aria-label="Large"
+					>
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Large</a>
 						</DBNavigationItem>

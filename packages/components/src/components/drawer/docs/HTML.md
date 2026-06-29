@@ -43,21 +43,21 @@ If you do need to provide support for [browser versions that haven't implemented
 		 * HTML attributes, we fall back to JavaScript event handlers.
 		 */
 		if (
-			!("command" in HTMLButtonElement.prototype) ||
-			!("commandFor" in HTMLButtonElement.prototype)
+			!('command' in HTMLButtonElement.prototype) ||
+			!('commandFor' in HTMLButtonElement.prototype)
 		) {
 			const openButton = document.querySelector(
-				'[commandfor="my-drawer"][command="show-modal"]'
+				'[commandfor="my-drawer"][command="show-modal"]',
 			);
 			const closeButton = document.querySelector(
-				'[commandfor="my-drawer"][command="close"]'
+				'[commandfor="my-drawer"][command="close"]',
 			);
-			const drawer = document.getElementById("my-drawer");
+			const drawer = document.getElementById('my-drawer');
 
-			openButton?.addEventListener("click", () => {
+			openButton?.addEventListener('click', () => {
 				drawer?.showModal?.();
 			});
-			closeButton?.addEventListener("click", () => {
+			closeButton?.addEventListener('click', () => {
 				drawer?.close?.();
 			});
 		}

@@ -1,4 +1,4 @@
-import type { ToolResult } from './async.js';
+import type {ToolResult} from './async.js';
 
 /** Maximum number of characters returned from a single file read. */
 export const MAX_FILE_CONTENT = 20_000;
@@ -12,7 +12,7 @@ export const MAX_JSON_OUTPUT = 20_000;
 export function truncate(
 	text: string,
 	limit: number,
-	label = 'TRUNCATED DUE TO SIZE'
+	label = 'TRUNCATED DUE TO SIZE',
 ): string {
 	return text.length > limit
 		? text.slice(0, Math.max(0, limit)) + `\n... [${label}]`
@@ -25,5 +25,5 @@ export const COMPONENT_NOT_FOUND_MSG = (name: string) =>
 
 /** Creates a standard MCP error ToolResult with the given message. */
 export function err(text: string): ToolResult {
-	return { content: [{ type: 'text', text }], isError: true };
+	return {content: [{type: 'text', text}], isError: true};
 }

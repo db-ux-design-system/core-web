@@ -29,14 +29,14 @@ export const COLOR_CONST: string = 'color';
 export enum DENSITY {
 	'FUNCTIONAL' = 'functional',
 	'REGULAR' = 'regular',
-	'EXPRESSIVE' = 'expressive'
+	'EXPRESSIVE' = 'expressive',
 }
 export const DENSITIES: DENSITY[] = Object.entries(DENSITY).map(
-	([, value]) => value
+	([, value]) => value,
 );
 
 export enum COLOR_SIMPLE {
-	'PRIMARY' = 'primary'
+	'PRIMARY' = 'primary',
 }
 
 export enum COLOR {
@@ -69,35 +69,35 @@ export enum COLOR {
 	'INFORMATIONAL_BG_LEVEL_2' = 'informational-bg-basic-level-2',
 	'INFORMATIONAL_BG_LEVEL_3' = 'informational-bg-basic-level-3',
 	'INFORMATIONAL_BG_TRANSPARENT_SEMI' = 'informational-bg-basic-transparent-semi',
-	'INFORMATIONAL_BG_TRANSPARENT_FULL' = 'informational-bg-basic-transparent-full'
+	'INFORMATIONAL_BG_TRANSPARENT_FULL' = 'informational-bg-basic-transparent-full',
 }
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
 export const COLORS_SIMPLE: COLOR_SIMPLE[] = Object.entries(COLOR_SIMPLE).map(
-	([, value]) => value
+	([, value]) => value,
 );
 
 export enum SEMANTIC {
 	'CRITICAL' = 'critical',
 	'INFORMATIONAL' = 'informational',
 	'WARNING' = 'warning',
-	'SUCCESSFUL' = 'successful'
+	'SUCCESSFUL' = 'successful',
 }
 
 export const SEMANTICS: SEMANTIC[] = Object.entries(SEMANTIC).map(
-	([, value]) => value
+	([, value]) => value,
 );
 
-export const DEFAULT_VIEWPORT = { width: 390, height: 884 };
-export const DESKTOP_VIEWPORT = { width: 1920, height: 1280 };
+export const DEFAULT_VIEWPORT = {width: 390, height: 884};
+export const DESKTOP_VIEWPORT = {width: 1920, height: 1280};
 
 /**
  * Use those viewports if your component has a css media-query otherwise use the DEFAULT_VIEWPORT
  */
 export const TESTING_VIEWPORTS = [
-	{ name: 'desktop', ...DESKTOP_VIEWPORT },
-	{ name: 'tablet', width: 768, height: 1024 },
-	{ name: 'mobile', ...DEFAULT_VIEWPORT }
+	{name: 'desktop', ...DESKTOP_VIEWPORT},
+	{name: 'tablet', width: 768, height: 1024},
+	{name: 'mobile', ...DEFAULT_VIEWPORT},
 ];
 
 export const DB_UX_LOCAL_STORAGE_FRAMEWORK = 'db-ux-framework';

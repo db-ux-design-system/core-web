@@ -5,32 +5,32 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
-import { ChangeEvent } from '../../shared/model';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
+import {ChangeEvent} from '../../shared/model';
+import {cls, getBoolean, getBooleanAsString} from '../../utils';
 import {
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
 } from '../../utils/form-components';
 import {
 	DBCustomSelectListItemProps,
-	DBCustomSelectListItemState
+	DBCustomSelectListItemState,
 } from './model';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'checked', 'value', 'name'],
 		signals: {
-			writeable: ['disabled', 'checked']
-		}
-	}
+			writeable: ['disabled', 'checked'],
+		},
+	},
 });
 
 useDefaultProps<DBCustomSelectListItemProps>({});
 
 export default function DBCustomSelectListItem(
-	props: DBCustomSelectListItemProps
+	props: DBCustomSelectListItemProps,
 ) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLLIElement | any>(null);
@@ -45,10 +45,8 @@ export default function DBCustomSelectListItem(
 				}
 
 				useTarget({
-					angular: () =>
-						handleFrameworkEventAngular(state, event, 'checked'),
-					vue: () =>
-						handleFrameworkEventVue(() => {}, event, 'checked')
+					angular: () => handleFrameworkEventAngular(state, event, 'checked'),
+					vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
 				});
 			},
 			getIconTrailing: () => {
@@ -56,10 +54,8 @@ export default function DBCustomSelectListItem(
 					return;
 				}
 
-				return getBoolean(props.checked, 'checked')
-					? 'check'
-					: 'x_placeholder';
-			}
+				return getBoolean(props.checked, 'checked') ? 'check' : 'x_placeholder';
+			},
 		});
 
 	// jscpd:ignore-end
@@ -74,23 +70,18 @@ export default function DBCustomSelectListItem(
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
-				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle
+				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle,
 			})}
-			data-divider={getBooleanAsString(state.hasDivider, 'hasDivider')}>
-			<Show
-				when={!props.isGroupTitle}
-				else={<span>{props.groupTitle}</span>}>
+			data-divider={getBooleanAsString(state.hasDivider, 'hasDivider')}
+		>
+			<Show when={!props.isGroupTitle} else={<span>{props.groupTitle}</span>}>
 				<label
 					data-icon={
-						props.type !== 'checkbox' && props.icon
-							? props.icon
-							: undefined
+						props.type !== 'checkbox' && props.icon ? props.icon : undefined
 					}
-					data-show-icon={getBooleanAsString(
-						props.showIcon,
-						'showIcon'
-					)}
-					data-icon-trailing={state.getIconTrailing()}>
+					data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
+					data-icon-trailing={state.getIconTrailing()}
+				>
 					<input
 						class="db-custom-select-list-item-checkbox"
 						type={props.type}

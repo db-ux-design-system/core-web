@@ -1,7 +1,7 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBCustomButton from '../custom-button.lite';
-import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
+import {StorybookCustomButtonArgTypes} from './_custom-button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Multi Line Text',
@@ -14,28 +14,25 @@ useMetadata({
 		'With Icon: Link',
 		'Small: Button',
 		'Small: Checkbox',
-		'Small: Link'
+		'Small: Link',
 	],
-	storybookArgTypes: StorybookCustomButtonArgTypes
+	storybookArgTypes: StorybookCustomButtonArgTypes,
 });
 
 export default function CustomButtonMultiLineText() {
 	return (
 		<Fragment>
-			<DBInfotext
-				data-sb-ignore="true"
-				size="small"
-				semantic="informational">
+			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
 				Automatic Line Breaks
 			</DBInfotext>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton width="full">
 					<button type="button">
 						Multi-line Text With Automatic Line Breaks
 					</button>
 				</DBCustomButton>
 			</div>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton width="full">
 					<label for="checkbox08">
 						<input type="checkbox" id="checkbox08" />
@@ -43,26 +40,23 @@ export default function CustomButtonMultiLineText() {
 					</label>
 				</DBCustomButton>
 			</div>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton width="full">
 					<a href="#">Multi-line Text With Automatic Line Breaks</a>
 				</DBCustomButton>
 			</div>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext
-				data-sb-ignore="true"
-				size="small"
-				semantic="informational">
+			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
 				With Icon
 			</DBInfotext>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton width="full" icon="x_placeholder">
 					<button type="button">
 						Multi-line Text With Automatic Line Breaks and Icon
 					</button>
 				</DBCustomButton>
 			</div>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton width="full" icon="x_placeholder">
 					<label for="checkbox09">
 						<input type="checkbox" id="checkbox09" />
@@ -70,28 +64,23 @@ export default function CustomButtonMultiLineText() {
 					</label>
 				</DBCustomButton>
 			</div>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton width="full" icon="x_placeholder">
-					<a href="#">
-						Multi-line Text With Automatic Line Breaks and Icon
-					</a>
+					<a href="#">Multi-line Text With Automatic Line Breaks and Icon</a>
 				</DBCustomButton>
 			</div>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext
-				data-sb-ignore="true"
-				size="small"
-				semantic="informational">
+			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
 				Small
 			</DBInfotext>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton size="small">
 					<button type="button">
 						Button Small Multi-line Text With Automatic Line Breaks
 					</button>
 				</DBCustomButton>
 			</div>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton size="small">
 					<label for="checkbox10">
 						<input type="checkbox" id="checkbox10" />
@@ -99,7 +88,7 @@ export default function CustomButtonMultiLineText() {
 					</label>
 				</DBCustomButton>
 			</div>
-			<div style={{ width: '300px' }}>
+			<div style={{width: '300px'}}>
 				<DBCustomButton size="small">
 					<a href="#">
 						Button Small Multi-line Text With Automatic Line Breaks

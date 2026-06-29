@@ -1,6 +1,6 @@
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "../../styles/internal/component";
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '../../styles/internal/component';
 
 @mixin accordion-subsequent-item-selector() {
 	// angular workaround
@@ -17,15 +17,15 @@ The spacings are not part of the styling of the accordion items themselves.
 .db-accordion {
 	padding: 0;
 	margin: 0;
-	list-style-type: "";
+	list-style-type: '';
 
-	&[data-variant="divider"],
+	&[data-variant='divider'],
 	&:not([data-variant]) {
 		@include accordion-subsequent-item-selector {
 			// One space each before and after the divider results in a double spacing
 			margin-block-start: calc(2 * #{variables.$db-spacing-fixed-sm});
 
-			@include helpers.divider($position: "top");
+			@include helpers.divider($position: 'top');
 
 			// Moves the divider to the vertical center of the double spacing
 			&::before {
@@ -34,7 +34,7 @@ The spacings are not part of the styling of the accordion items themselves.
 		}
 	}
 
-	&[data-variant="card"] {
+	&[data-variant='card'] {
 		@include accordion-subsequent-item-selector {
 			margin-block-start: variables.$db-spacing-fixed-sm;
 		}
@@ -48,7 +48,7 @@ The spacings are not part of the styling of the accordion items themselves.
 			&::after {
 				@extend %component-border;
 
-				content: "";
+				content: '';
 				position: absolute;
 				inset-inline-start: 0;
 				inset-block-start: 0;

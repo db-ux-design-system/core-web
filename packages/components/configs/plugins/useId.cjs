@@ -3,7 +3,7 @@
  * @param {import('@builder.io/mitosis').MitosisComponent} json
  */
 const jsonPreProcessor = (json) => {
-	const { pluginData } = json;
+	const {pluginData} = json;
 	if (pluginData.target === 'vue' || pluginData.target === 'react') {
 		let addUseId = false;
 		json.imports.forEach((imp) => {
@@ -16,9 +16,9 @@ const jsonPreProcessor = (json) => {
 			json.imports.push({
 				path: pluginData.target,
 				imports: {
-					useId: 'useId'
+					useId: 'useId',
 				},
-				importKind: 'value'
+				importKind: 'value',
 			});
 		}
 	}
@@ -31,7 +31,7 @@ const jsonPreProcessor = (json) => {
  * @returns {string}
  */
 const codePreProcessor = (code, json) => {
-	const { pluginData } = json;
+	const {pluginData} = json;
 	if (
 		(pluginData.target === 'vue' || pluginData.target === 'react') &&
 		code.includes('uuid()')
@@ -40,7 +40,7 @@ const codePreProcessor = (code, json) => {
 		code = code
 			.replace(
 				`const ${replacement}`,
-				`const uuid = useId();\nconst ${replacement}`
+				`const uuid = useId();\nconst ${replacement}`,
 			)
 			.replaceAll('uuid()', 'uuid');
 	}
@@ -53,9 +53,9 @@ const codePreProcessor = (code, json) => {
  */
 module.exports = () => ({
 	json: {
-		pre: jsonPreProcessor
+		pre: jsonPreProcessor,
 	},
 	code: {
-		pre: codePreProcessor
-	}
+		pre: codePreProcessor,
+	},
 });

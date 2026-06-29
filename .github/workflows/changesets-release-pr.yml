@@ -6,7 +6,7 @@ name: Changesets – Create/Update Release PR and Cut Tags
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   delete:
 
 permissions:
@@ -48,8 +48,8 @@ jobs:
         if: github.event_name == 'push'
         uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
-          commit: "chore(release): version packages"
-          title: "chore(release): version packages"
+          commit: 'chore(release): version packages'
+          title: 'chore(release): version packages'
           version: pnpm run ci:version
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

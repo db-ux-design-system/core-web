@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 export type Person = {
 	firstName: string;
@@ -28,8 +28,8 @@ const newPerson = (): Person => {
 		status: faker.helpers.shuffle<Person['status']>([
 			'relationship',
 			'complicated',
-			'single'
-		])[0]!
+			'single',
+		])[0]!,
 	};
 };
 
@@ -39,7 +39,7 @@ export function makeData(...lens: number[]) {
 		return range(len).map((): Person => {
 			return {
 				...newPerson(),
-				subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
+				subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
 			};
 		});
 	};

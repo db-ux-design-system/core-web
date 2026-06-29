@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { DBButton } from '../../button';
-import { DBDrawer } from '../index';
+import {useState} from 'react';
+import {DBButton} from '../../button';
+import {DBDrawer} from '../index';
 
 export default function Drawer() {
 	const [open, setOpen] = useState<boolean>(false);
@@ -14,7 +14,8 @@ export default function Drawer() {
 				<DBButton
 					onClick={() => {
 						setOpen(true);
-					}}>
+					}}
+				>
 					Open Me
 				</DBButton>
 				<DBDrawer
@@ -22,7 +23,8 @@ export default function Drawer() {
 					onClose={() => {
 						setOpen(false);
 					}}
-					drawerHeader={<header>Optional drawer header</header>}>
+					drawerHeader={<header>Optional drawer header</header>}
+				>
 					My Drawer content
 				</DBDrawer>
 			</div>
@@ -32,7 +34,8 @@ export default function Drawer() {
 				<DBButton
 					onClick={() => {
 						setOpen(true);
-					}}>
+					}}
+				>
 					Open Modal Drawer
 				</DBButton>
 				<DBDrawer
@@ -40,7 +43,8 @@ export default function Drawer() {
 					onClose={() => {
 						setOpen(false);
 					}}
-					variant="modal">
+					variant="modal"
+				>
 					Modal Drawer content
 				</DBDrawer>
 			</div>
@@ -48,7 +52,8 @@ export default function Drawer() {
 				<DBButton
 					onClick={() => {
 						setOpen(true);
-					}}>
+					}}
+				>
 					Open Inside Drawer
 				</DBButton>
 				<DBDrawer
@@ -56,7 +61,8 @@ export default function Drawer() {
 					onClose={() => {
 						setOpen(false);
 					}}
-					variant="inside">
+					variant="inside"
+				>
 					Inside Drawer content
 				</DBDrawer>
 			</div>

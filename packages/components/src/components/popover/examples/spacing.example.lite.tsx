@@ -1,12 +1,12 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBPopover from '../popover.lite';
-import { StorybookPopoverArgTypes } from './_popover.arg.types';
+import {StorybookPopoverArgTypes} from './_popover.arg.types';
 
 useMetadata({
 	storybookTitle: 'Spacing',
 	storybookNames: ['(Default) Small', 'Medium', 'Large', 'None'],
-	storybookArgTypes: StorybookPopoverArgTypes
+	storybookArgTypes: StorybookPopoverArgTypes,
 });
 
 export default function PopoverSpacing() {
@@ -15,7 +15,8 @@ export default function PopoverSpacing() {
 			<DBPopover
 				spacing="small"
 				id="popover-04"
-				trigger={<DBButton>(Default) Small</DBButton>}>
+				trigger={<DBButton>(Default) Small</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -27,7 +28,8 @@ export default function PopoverSpacing() {
 			<DBPopover
 				spacing="medium"
 				id="popover-05"
-				trigger={<DBButton>Medium</DBButton>}>
+				trigger={<DBButton>Medium</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -39,7 +41,8 @@ export default function PopoverSpacing() {
 			<DBPopover
 				spacing="large"
 				id="popover-055"
-				trigger={<DBButton>Large</DBButton>}>
+				trigger={<DBButton>Large</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -51,7 +54,8 @@ export default function PopoverSpacing() {
 			<DBPopover
 				spacing="none"
 				id="popover-06"
-				trigger={<DBButton>None</DBButton>}>
+				trigger={<DBButton>None</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>

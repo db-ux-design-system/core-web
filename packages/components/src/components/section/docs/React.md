@@ -6,7 +6,7 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { DBSection } from "@db-ux/react-core-components";
+import {DBSection} from '@db-ux/react-core-components';
 
 const App = () => <DBSection variant="full">Section</DBSection>;
 

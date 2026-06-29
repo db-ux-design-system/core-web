@@ -1,4 +1,4 @@
-import { ClickEvent, GeneralKeyboardEvent } from '../shared/model';
+import {ClickEvent, GeneralKeyboardEvent} from '../shared/model';
 
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
@@ -14,7 +14,7 @@ export const uuid = () => {
 
 export const addAttributeToChildren = (
 	element: Element,
-	attribute: { key: string; value: string }
+	attribute: {key: string; value: string},
 ) => {
 	const children = element.children;
 	Object.values(children).forEach((child: Element) => {
@@ -27,7 +27,7 @@ export const addAttributeToChildren = (
 
 export type ClassNameArg =
 	| string
-	| { [key: string]: boolean | undefined }
+	| {[key: string]: boolean | undefined}
 	| undefined;
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
@@ -94,7 +94,7 @@ export const delay = (fn: () => void, ms: number) =>
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getBooleanAsString = (
 	originBool?: boolean | string,
-	propertyName?: string
+	propertyName?: string,
 ): any => {
 	if (originBool === undefined || originBool === null) return;
 
@@ -102,7 +102,7 @@ export const getBooleanAsString = (
 		return String(
 			originBool === '' ||
 				originBool === 'true' ||
-				propertyName?.toLowerCase() === originBool.toLowerCase()
+				propertyName?.toLowerCase() === originBool.toLowerCase(),
 		);
 	}
 
@@ -111,7 +111,7 @@ export const getBooleanAsString = (
 
 export const getBoolean = (
 	originBool?: boolean | string,
-	propertyName?: string
+	propertyName?: string,
 ): boolean | undefined => {
 	if (originBool === undefined || originBool === null) return;
 
@@ -119,7 +119,7 @@ export const getBoolean = (
 		return Boolean(
 			originBool === '' ||
 			originBool === 'true' ||
-			propertyName?.toLowerCase() === originBool.toLowerCase()
+			propertyName?.toLowerCase() === originBool.toLowerCase(),
 		);
 	}
 
@@ -128,7 +128,7 @@ export const getBoolean = (
 
 export const getNumber = (
 	originNumber?: number | string,
-	alternativeNumber?: number | string
+	alternativeNumber?: number | string,
 ): number | undefined => {
 	if (
 		(originNumber === undefined || originNumber === null) &&
@@ -173,7 +173,7 @@ export const getStep = (step?: number | string): number | 'any' | undefined => {
  */
 export const getInputValue = (
 	value?: number | string,
-	inputType?: string
+	inputType?: string,
 ): string | number | undefined => {
 	return inputType && ['number', 'range'].includes(inputType)
 		? getNumber(value)
@@ -194,7 +194,7 @@ export const getHideProp = (show?: boolean | string): any => {
 
 export const stringPropVisible = (
 	givenString?: string,
-	showString?: boolean | string
+	showString?: boolean | string,
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
@@ -207,15 +207,15 @@ export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
 
 export const getOptionKey = (
-	option: { id?: string; value?: string | number | string[] | undefined },
-	prefix: string
+	option: {id?: string; value?: string | number | string[] | undefined},
+	prefix: string,
 ) => {
 	const key = option.id ?? option.value ?? uuid();
 	return `${prefix}${key}`;
 };
 
 export const isKeyboardEvent = <T>(
-	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
+	event?: ClickEvent<T> | GeneralKeyboardEvent<T>,
 ): event is GeneralKeyboardEvent<T> =>
 	(event as GeneralKeyboardEvent<T>).key !== undefined;
 
@@ -229,7 +229,7 @@ export const isKeyboardEvent = <T>(
 export const getNotificationRole = ({
 	semantic,
 	role,
-	ariaLive
+	ariaLive,
 }: {
 	semantic?: string;
 	role?: string;

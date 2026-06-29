@@ -27,7 +27,7 @@ MD013:
   line_length: 600 # Line length 80 is far too short
 MD024: false #/no-duplicate-heading/no-duplicate-header
 MD026:
-  punctuation: ".,;:!。，；:" # List of not allowed
+  punctuation: '.,;:!。，；:' # List of not allowed
 MD029: false # Ordered list item prefix
 MD030: false
 MD033:

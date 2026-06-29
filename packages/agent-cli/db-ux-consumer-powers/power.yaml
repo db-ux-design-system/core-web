@@ -1,6 +1,6 @@
-name: "db-ux-consumer"
+name: 'db-ux-consumer'
 version: 1.0.0
-description: "Official AI integration for consuming the DB UX Design System v3 in applications."
+description: 'Official AI integration for consuming the DB UX Design System v3 in applications.'
 author: DB UX Core Team
 skills:
   - skills/migrate-to-v3/SKILL.md

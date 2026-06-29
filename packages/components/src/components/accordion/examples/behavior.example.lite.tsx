@@ -1,13 +1,13 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBAccordionItem from '../../accordion-item/accordion-item.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBAccordion from '../accordion.lite';
-import { StorybookAccordionArgTypes } from './_accordion.arg.types';
+import {StorybookAccordionArgTypes} from './_accordion.arg.types';
 
 useMetadata({
 	storybookTitle: 'Behavior',
 	storybookNames: ['Multiple', 'Single'],
-	storybookArgTypes: StorybookAccordionArgTypes
+	storybookArgTypes: StorybookAccordionArgTypes,
 });
 
 export default function AccordionBehavior() {
@@ -18,15 +18,9 @@ export default function AccordionBehavior() {
 					(Default) Multiple
 				</DBInfotext>
 				<DBAccordion behavior="multiple">
-					<DBAccordionItem headlinePlain="Item 1">
-						Content 1
-					</DBAccordionItem>
-					<DBAccordionItem headlinePlain="Item 2">
-						Content 2
-					</DBAccordionItem>
-					<DBAccordionItem headlinePlain="Item 3">
-						Content 3
-					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 1">Content 1</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">Content 2</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">Content 3</DBAccordionItem>
 				</DBAccordion>
 			</div>
 			<div>
@@ -34,15 +28,9 @@ export default function AccordionBehavior() {
 					Single
 				</DBInfotext>
 				<DBAccordion behavior="single">
-					<DBAccordionItem headlinePlain="Item 1">
-						Content 1
-					</DBAccordionItem>
-					<DBAccordionItem headlinePlain="Item 2">
-						Content 2
-					</DBAccordionItem>
-					<DBAccordionItem headlinePlain="Item 3">
-						Content 3
-					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 1">Content 1</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">Content 2</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">Content 3</DBAccordionItem>
 				</DBAccordion>
 			</div>
 		</Fragment>

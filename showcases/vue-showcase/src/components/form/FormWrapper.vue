@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const props = defineProps(["plain", "vmodel"]);
-import { DBButton } from "../../../../../output/vue/src";
+const props = defineProps(['plain', 'vmodel']);
+import {DBButton} from '../../../../../output/vue/src';
 </script>
 
 <template>

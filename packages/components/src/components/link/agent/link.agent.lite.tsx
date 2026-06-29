@@ -1,4 +1,4 @@
-import { DBLink } from '../index';
+import {DBLink} from '../index';
 
 export default function Link() {
 	return (

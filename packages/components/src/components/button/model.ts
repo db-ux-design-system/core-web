@@ -12,14 +12,14 @@ import type {
 	SizeProps,
 	TextProps,
 	WidthProps,
-	WrapProps
+	WrapProps,
 } from '../../shared/model';
 
 export const ButtonVariantList = [
 	'outlined',
 	'brand',
 	'filled',
-	'ghost'
+	'ghost',
 ] as const;
 export type ButtonVariantType = (typeof ButtonVariantList)[number];
 

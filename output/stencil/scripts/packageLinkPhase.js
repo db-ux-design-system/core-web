@@ -19,11 +19,11 @@ const getFilteredContextData = (data) => {
 		if (!key.endsWith('State')) {
 			let currentType = obj.type;
 			if (currentType === 'props') {
-				resolvedProps[key] = { ...obj };
+				resolvedProps[key] = {...obj};
 				continue;
 			}
 			if (currentType === 'union') {
-				resolvedUnions[key] = { ...obj };
+				resolvedUnions[key] = {...obj};
 				continue;
 			}
 
@@ -41,12 +41,12 @@ const getFilteredContextData = (data) => {
 
 			resolvedData[key] = {
 				...obj,
-				resolvedType
+				resolvedType,
 			};
 		}
 	}
 
-	return { resolvedData, resolvedProps, resolvedUnions };
+	return {resolvedData, resolvedProps, resolvedUnions};
 };
 
 /**
@@ -67,9 +67,9 @@ const resolveProp = (resolvedData, value) => {
 			warn('resolveProp', `Cannot find ${type}`);
 		}
 
-		return { ...value, resolvedType };
+		return {...value, resolvedType};
 	} else {
-		return { ...value, resolvedType: type };
+		return {...value, resolvedType: type};
 	}
 };
 
@@ -83,7 +83,7 @@ const resolveAllProps = (resolvedData, resolvedProps) => {
 		resolvedProps[key] = {
 			...obj,
 			values: obj.values.map((value) => {
-				const { name, type } = value;
+				const {name, type} = value;
 				if (type instanceof Object) {
 					// In this case we have a literal or union
 					const resolvedType = type.values
@@ -93,12 +93,12 @@ const resolveAllProps = (resolvedData, resolvedProps) => {
 						.join(unionSeparator);
 					return {
 						...value,
-						resolvedType
+						resolvedType,
 					};
 				} else {
 					return resolveProp(resolvedData, value);
 				}
-			})
+			}),
 		};
 	}
 };
@@ -125,7 +125,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 			} else {
 				const foundData = resolvedData[type];
 				if (foundData) {
-					resolvedValues.push({ ...foundData, name: type });
+					resolvedValues.push({...foundData, name: type});
 				} else if (type !== 'Omit') {
 					unresolvedUnions.push(type);
 				}
@@ -135,7 +135,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 		resolvedUnions[key] = {
 			...obj,
 			resolvedValues,
-			unresolvedUnions
+			unresolvedUnions,
 		};
 	}
 
@@ -146,12 +146,8 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 		obj.unresolvedUnions.forEach((type) => {
 			const foundUnion = resolvedUnions[type];
 			if (foundUnion) {
-				unresolvedUnions = unresolvedUnions.filter(
-					(union) => union !== type
-				);
-				resolvedValues = resolvedValues.concat(
-					foundUnion.resolvedValues
-				);
+				unresolvedUnions = unresolvedUnions.filter((union) => union !== type);
+				resolvedValues = resolvedValues.concat(foundUnion.resolvedValues);
 			} else {
 				warn('resolveAllUnions', `Cannot find type ${type}`);
 			}
@@ -160,7 +156,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 		resolvedUnions[key] = {
 			...obj,
 			unresolvedUnions,
-			resolvedValues
+			resolvedValues,
 		};
 	}
 };
@@ -175,16 +171,14 @@ const resolveManifestTypes = (resolvedUnions, manifestValues) =>
 		let text = manifestValue.type.text;
 		let resolvedValue;
 		if (text.includes('[')) {
-			const splitText = text.includes("'")
-				? text.split("'")
-				: text.split('"');
+			const splitText = text.includes("'") ? text.split("'") : text.split('"');
 			if (splitText.length === 3) {
 				const type = splitText[0].replace('[', '');
 				const prop = splitText[1];
 				const foundUnion = resolvedUnions[type];
 				if (foundUnion) {
 					const foundResolvedValue = foundUnion.resolvedValues.find(
-						(rValue) => rValue.name === prop
+						(rValue) => rValue.name === prop,
 					);
 					if (foundResolvedValue) {
 						text = foundResolvedValue.resolvedType;
@@ -192,7 +186,7 @@ const resolveManifestTypes = (resolvedUnions, manifestValues) =>
 					} else {
 						warn(
 							'resolveManifestTypes',
-							`Cannot find prop ${prop} for type ${type}`
+							`Cannot find prop ${prop} for type ${type}`,
 						);
 					}
 				} else {
@@ -202,18 +196,16 @@ const resolveManifestTypes = (resolvedUnions, manifestValues) =>
 		}
 		return {
 			...manifestValue,
-			type: { text },
+			type: {text},
 			description: resolvedValue?.comment,
-			resolvedValue
+			resolvedValue,
 		};
 	});
 
-export const packageLinkPhase = (
-	{ customElementsManifest, context },
-	postFn
-) => {
-	const { resolvedProps, resolvedUnions, resolvedData } =
-		getFilteredContextData(context.data);
+export const packageLinkPhase = ({customElementsManifest, context}, postFn) => {
+	const {resolvedProps, resolvedUnions, resolvedData} = getFilteredContextData(
+		context.data,
+	);
 
 	resolveAllProps(resolvedData, resolvedProps);
 	resolveAllUnions(resolvedData, resolvedProps, resolvedUnions);
@@ -221,37 +213,35 @@ export const packageLinkPhase = (
 	customElementsManifest.modules = customElementsManifest.modules
 		?.filter(
 			// We just need the .tsx files for elements
-			(module) => module.path.endsWith('.tsx')
+			(module) => module.path.endsWith('.tsx'),
 		)
 		.map((module) => {
 			const declarations = module.declarations?.map((declaration) => {
 				const members = resolveManifestTypes(
 					resolvedUnions,
-					declaration.members
+					declaration.members,
 				);
 				const attributes = resolveManifestTypes(
 					resolvedUnions,
-					declaration.attributes
+					declaration.attributes,
 				);
 
 				const slots = declaration.slots?.map((slot) => ({
 					name: slot.name,
 					description:
-						resolvedUnions[
-							`${declaration.name}Props`
-						]?.resolvedValues.find(
-							(value) => value.name === slot.name
-						)?.comment || slot.description
+						resolvedUnions[`${declaration.name}Props`]?.resolvedValues.find(
+							(value) => value.name === slot.name,
+						)?.comment || slot.description,
 				}));
 
-				return { ...declaration, members, attributes, slots };
+				return {...declaration, members, attributes, slots};
 			});
 			const path = module.path.split('/').at(-1);
 
-			return { ...module, path, declarations };
+			return {...module, path, declarations};
 		});
 
 	if (postFn) {
-		postFn({ customElementsManifest, context });
+		postFn({customElementsManifest, context});
 	}
 };

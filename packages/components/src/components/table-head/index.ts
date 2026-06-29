@@ -1,1 +1,1 @@
-export { default as DBTableHead } from './table-head';
+export {default as DBTableHead} from './table-head';

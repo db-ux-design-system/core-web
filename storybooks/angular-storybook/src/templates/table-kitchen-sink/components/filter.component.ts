@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { DBButton, DBPopover, DBStack, DBTooltip } from '@components';
-import type { Column, RowData, Table } from '@tanstack/angular-table';
-import { DebouncedInputComponent } from './debounced-input.component';
+import {Component, Input} from '@angular/core';
+import {DBButton, DBPopover, DBStack, DBTooltip} from '@components';
+import type {Column, RowData, Table} from '@tanstack/angular-table';
+import {DebouncedInputComponent} from './debounced-input.component';
 
 @Component({
 	selector: 'app-filter',
@@ -14,7 +14,8 @@ import { DebouncedInputComponent } from './debounced-input.component';
 				[size]="'small'"
 				[variant]="'ghost'"
 				[noText]="true"
-				[icon]="'funnel'">
+				[icon]="'funnel'"
+			>
 				Filter
 				<db-tooltip [placement]="'right'">Filter</db-tooltip>
 			</db-button>
@@ -24,19 +25,18 @@ import { DebouncedInputComponent } from './debounced-input.component';
 						[label]="'Minimum'"
 						[placeholder]="minPlaceholder"
 						[value]="minValue"
-						(valueChange)="updateMinFilter($event)" />
+						(valueChange)="updateMinFilter($event)"
+					/>
 					<app-debounced-input
 						[label]="'Maximum'"
 						[placeholder]="maxPlaceholder"
 						[value]="maxValue"
-						(valueChange)="updateMaxFilter($event)" />
+						(valueChange)="updateMaxFilter($event)"
+					/>
 				</db-stack>
 			} @else {
 				<datalist [id]="column.id + 'list'">
-					@for (
-						value of sortedUniqueValues.slice(0, 5000);
-						track value
-					) {
+					@for (value of sortedUniqueValues.slice(0, 5000); track value) {
 						<option [value]="value"></option>
 					}
 				</datalist>
@@ -44,10 +44,11 @@ import { DebouncedInputComponent } from './debounced-input.component';
 					[label]="'Search'"
 					[placeholder]="searchPlaceholder"
 					[value]="stringValue"
-					(valueChange)="column.setFilterValue($event)" />
+					(valueChange)="column.setFilterValue($event)"
+				/>
 			}
 		</db-popover>
-	`
+	`,
 })
 export class FilterComponent<T extends RowData> {
 	@Input() column!: Column<T, unknown>;
@@ -112,16 +113,10 @@ export class FilterComponent<T extends RowData> {
 	}
 
 	updateMinFilter(value: string | number) {
-		this.column.setFilterValue((old: [number, number]) => [
-			value,
-			old?.[1]
-		]);
+		this.column.setFilterValue((old: [number, number]) => [value, old?.[1]]);
 	}
 
 	updateMaxFilter(value: string | number) {
-		this.column.setFilterValue((old: [number, number]) => [
-			old?.[0],
-			value
-		]);
+		this.column.setFilterValue((old: [number, number]) => [old?.[0], value]);
 	}
 }

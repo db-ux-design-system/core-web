@@ -1,4 +1,4 @@
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import {devices, type PlaywrightTestConfig} from '@playwright/test';
 import defaultScreenReaderConfig from './playwright.screen-reader';
 
 const config: PlaywrightTestConfig = {
@@ -8,9 +8,9 @@ const config: PlaywrightTestConfig = {
 	projects: [
 		{
 			name: 'chromium',
-			use: { ...devices['Desktop Chrome'], headless: false }
-		}
-	]
+			use: {...devices['Desktop Chrome'], headless: false},
+		},
+	],
 };
 
 export default config;

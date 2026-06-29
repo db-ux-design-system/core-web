@@ -1,13 +1,13 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBButton from '../button.lite';
-import { StorybookButtonArgTypes } from './_button.arg.types';
+import {StorybookButtonArgTypes} from './_button.arg.types';
 
-import { fn } from '../../../shared/examples';
+import {fn} from '../../../shared/examples';
 
 useMetadata({
 	storybookTitle: 'No Text',
 	storybookNames: ['False', 'True'],
-	storybookArgTypes: StorybookButtonArgTypes
+	storybookArgTypes: StorybookButtonArgTypes,
 });
 
 export default function ButtonNoText() {

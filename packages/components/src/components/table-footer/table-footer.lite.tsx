@@ -3,12 +3,12 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
-import { DBTableRowProps } from '../table-row/model';
+import {cls, uuid} from '../../utils';
+import {DBTableRowProps} from '../table-row/model';
 import DBTableRow from '../table-row/table-row.lite';
-import { DBTableFooterProps } from './model';
+import {DBTableFooterProps} from './model';
 
 useMetadata({});
 
@@ -21,7 +21,8 @@ export default function DBTableFooter(props: DBTableFooterProps) {
 		<tfoot
 			ref={_ref}
 			id={props.id}
-			class={cls('db-table-footer', props.className)}>
+			class={cls('db-table-footer', props.className)}
+		>
 			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>

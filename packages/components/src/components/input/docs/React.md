@@ -5,7 +5,7 @@ Warning: Date input is not working with iOS Voiceover currently, compare to [Rea
 Load SCSS globally in a `index.scss` file inside `main.tsx`/`main.jsx` within your app:
 
 ```scss
-@forward "@db-ux/core-components/build/styles/rollup";
+@forward '@db-ux/core-components/build/styles/rollup';
 ```
 
 Import component:

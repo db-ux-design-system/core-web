@@ -1,25 +1,25 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTabItem from '../../tab-item/tab-item.lite';
 import DBTabList from '../../tab-list/tab-list.lite';
 import DBTabPanel from '../../tab-panel/tab-panel.lite';
 import DBTabs from '../tabs.lite';
-import { StorybookTabsArgTypes } from './_tabs.arg.types';
+import {StorybookTabsArgTypes} from './_tabs.arg.types';
 
 useMetadata({
 	storybookTitle: 'Overflow',
 	storybookNames: [
 		'no overflow',
 		'with overflow - behavior: arrows',
-		'with overflow - behavior: scrollbar'
+		'with overflow - behavior: scrollbar',
 	],
-	storybookArgTypes: StorybookTabsArgTypes
+	storybookArgTypes: StorybookTabsArgTypes,
 });
 
 export default function TabsOverflow() {
 	return (
 		<Fragment>
-			<div style={{ width: '300px' }} class="fit-content-container">
+			<div style={{width: '300px'}} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					no overflow:
 				</DBInfotext>
@@ -34,7 +34,7 @@ export default function TabsOverflow() {
 					<DBTabPanel>Tab Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div style={{ width: '300px' }} class="fit-content-container">
+			<div style={{width: '300px'}} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					with overflow - behavior: arrows:
 				</DBInfotext>
@@ -53,7 +53,7 @@ export default function TabsOverflow() {
 					<DBTabPanel>Tab Panel 5</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div style={{ width: '300px' }} class="fit-content-container">
+			<div style={{width: '300px'}} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					with overflow - behavior: scrollbar:
 				</DBInfotext>

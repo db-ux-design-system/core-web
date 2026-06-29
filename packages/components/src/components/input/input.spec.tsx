@@ -1,32 +1,32 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/experimental-ct-react';
+import {expect, test} from '@playwright/experimental-ct-react';
 
-import { DBInput } from './index';
+import {DBInput} from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import {DEFAULT_VIEWPORT} from '../../shared/constants.ts';
 
 const comp: any = <DBInput value="Test" label="Label"></DBInput>;
 
 const testComponent = () => {
-	test('Label should have Text', async ({ mount }) => {
+	test('Label should have Text', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Label');
 	});
 
-	test('should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({mount}) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+	test('should have same aria-snapshot', async ({mount}, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have any A11y issues', async ({ page, mount }) => {
+	test('should not have any A11y issues', async ({page, mount}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		const accessibilityScanResults = await new AxeBuilder({page})
 			.include('.db-input')
 			.analyze();
 
@@ -35,7 +35,7 @@ const testA11y = () => {
 };
 
 const testAction = () => {
-	test('should change on input', async ({ page, mount }) => {
+	test('should change on input', async ({page, mount}) => {
 		let test: string = '';
 		const comp: any = (
 			<DBInput
@@ -50,26 +50,24 @@ const testAction = () => {
 		expect(test).toEqual('test');
 	});
 
-	test('should have enterkeyhint attribute when provided', async ({
-		mount
-	}) => {
+	test('should have enterkeyhint attribute when provided', async ({mount}) => {
 		const component = await mount(
-			<DBInput label="Label" enterkeyhint="done" />
+			<DBInput label="Label" enterkeyhint="done" />,
 		);
 		const input = component.getByRole('textbox');
 		await expect(input).toHaveAttribute('enterkeyhint', 'done');
 	});
 
-	test('should have inputmode attribute when provided', async ({ mount }) => {
+	test('should have inputmode attribute when provided', async ({mount}) => {
 		const component = await mount(
-			<DBInput label="Label" inputmode="numeric" />
+			<DBInput label="Label" inputmode="numeric" />,
 		);
 		const input = component.getByRole('textbox');
 		await expect(input).toHaveAttribute('inputmode', 'numeric');
 	});
 
 	test('should not have enterkeyhint or inputmode when not provided', async ({
-		mount
+		mount,
 	}) => {
 		const component = await mount(<DBInput label="Label" type="text" />);
 		const input = component.getByRole('textbox');
@@ -77,52 +75,45 @@ const testAction = () => {
 		await expect(input).not.toHaveAttribute('inputmode');
 	});
 
-	test('should support step="any" for number input', async ({ mount }) => {
+	test('should support step="any" for number input', async ({mount}) => {
 		const component = await mount(
-			<DBInput label="Label" type="number" step="any" />
+			<DBInput label="Label" type="number" step="any" />,
 		);
 		const input = component.getByRole('spinbutton');
 		await expect(input).toHaveAttribute('step', 'any');
 	});
 
-	test('should support numeric step for number input', async ({ mount }) => {
+	test('should support numeric step for number input', async ({mount}) => {
 		const component = await mount(
-			<DBInput label="Label" type="number" step={0.01} />
+			<DBInput label="Label" type="number" step={0.01} />,
 		);
 		const input = component.getByRole('spinbutton');
 		await expect(input).toHaveAttribute('step', '0.01');
 	});
 
 	test('should have accept attribute when provided for file input', async ({
-		mount
+		mount,
 	}) => {
 		const component = await mount(
-			<DBInput label="Label" type="file" accept=".pdf" />
+			<DBInput label="Label" type="file" accept=".pdf" />,
 		);
 		const input = component.locator('input[type="file"]');
 		await expect(input).toHaveAttribute('accept', '.pdf');
 	});
 
 	test('should support multiple file types in accept attribute', async ({
-		mount
+		mount,
 	}) => {
 		const component = await mount(
-			<DBInput
-				label="Label"
-				type="file"
-				accept=".pdf,.doc,.docx,image/*"
-			/>
+			<DBInput label="Label" type="file" accept=".pdf,.doc,.docx,image/*" />,
 		);
 		const input = component.locator('input[type="file"]');
-		await expect(input).toHaveAttribute(
-			'accept',
-			'.pdf,.doc,.docx,image/*'
-		);
+		await expect(input).toHaveAttribute('accept', '.pdf,.doc,.docx,image/*');
 	});
 
 	test('should support time input with dataList', async ({
 		mount,
-		browserName
+		browserName,
 	}) => {
 		if (browserName === 'firefox') {
 			// Firefox doesn't support [type=time] in combination with <datalist>
@@ -130,7 +121,7 @@ const testAction = () => {
 		}
 
 		const component = await mount(
-			<DBInput label="Label" type="time" dataList={['00:00', '00:15']} />
+			<DBInput label="Label" type="time" dataList={['00:00', '00:15']} />,
 		);
 
 		const input = component.locator('input[type="time"]');
@@ -144,7 +135,7 @@ const testAction = () => {
 };
 
 test.describe('DBInput', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
+	test.use({viewport: DEFAULT_VIEWPORT});
 	testComponent();
 	testA11y();
 	testAction();

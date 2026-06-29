@@ -11,7 +11,7 @@ on:
   pull_request:
   push:
     branches:
-      - "main"
+      - 'main'
   release:
     types: [published]
   workflow_dispatch:
@@ -388,7 +388,7 @@ jobs:
         test-showcase-react,
         test-showcase-vue,
         test-showcase-stencil,
-        init
+        init,
       ]
 
   commit-regenerated-snapshots:
@@ -406,7 +406,7 @@ jobs:
         regenerate-snapshots-components,
         regenerate-snapshots-foundations,
         regenerate-snapshots-patternhub,
-        regenerate-snapshots
+        regenerate-snapshots,
       ]
     with:
       showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
@@ -531,7 +531,7 @@ jobs:
         test-showcase-patternhub,
         test-foundations,
         test-screen-reader,
-        init
+        init,
       ]
 
   deploy:

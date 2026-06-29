@@ -1,4 +1,4 @@
-import { DBTextarea } from '../index';
+import {DBTextarea} from '../index';
 
 export default function Textarea() {
 	return (
@@ -26,10 +26,7 @@ export default function Textarea() {
 			<DBTextarea disabled label="Disabled Textarea" />
 
 			<h2>6. Placeholder Examples</h2>
-			<DBTextarea
-				placeholder="Enter text here"
-				label="With Placeholder"
-			/>
+			<DBTextarea placeholder="Enter text here" label="With Placeholder" />
 
 			<h2>7. Message Property Example</h2>
 			<DBTextarea

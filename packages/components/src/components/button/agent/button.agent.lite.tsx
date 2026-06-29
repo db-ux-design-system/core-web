@@ -1,4 +1,4 @@
-import { DBButton } from '../index';
+import {DBButton} from '../index';
 
 export default function Button() {
 	return (
@@ -55,9 +55,7 @@ export default function Button() {
 			<DBButton className="my-custom-class">Custom Class</DBButton>
 
 			<h2>12. Click Event</h2>
-			<DBButton onClick={() => alert('Button clicked!')}>
-				Click Me
-			</DBButton>
+			<DBButton onClick={() => alert('Button clicked!')}>Click Me</DBButton>
 		</>
 	);
 }

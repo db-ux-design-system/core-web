@@ -1,8 +1,8 @@
-import { replaceInFileSync } from 'replace-in-file';
+import {replaceInFileSync} from 'replace-in-file';
 
-import components, { Overwrite } from './components.js';
+import components, {Overwrite} from './components.js';
 
-import { runReplacements } from '../utils';
+import {runReplacements} from '../utils';
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
@@ -10,7 +10,7 @@ export default (tmp?: boolean) => {
 	replaceInFileSync({
 		files: `../../${outputFolder}/vue/playwright.config.ts`,
 		from: /react/g,
-		to: `vue`
+		to: `vue`,
 	});
 	for (const component of components) {
 		const componentName = component.name;
@@ -21,22 +21,22 @@ export default (tmp?: boolean) => {
 			replaceInFileSync({
 				files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: `react`,
-				to: `vue`
+				to: `vue`,
 			});
 
 			const replacements: Overwrite[] = [
 				{
 					from: /immediate: true/g,
-					to: 'immediate: true,\nflush: "post"'
+					to: 'immediate: true,\nflush: "post"',
 				},
 				{
 					from: /:key="undefined"/g,
-					to: ''
+					to: '',
 				},
 				{
 					from: 'className',
-					to: 'props.class'
-				}
+					to: 'props.class',
+				},
 			];
 
 			/* This is a workaround for valid/invalid Messages.
@@ -48,18 +48,18 @@ export default (tmp?: boolean) => {
 					from: 'if (props.onInput) {',
 					to:
 						'_value.value = (event.target as any).value;\n' +
-						'if (props.onInput) {'
+						'if (props.onInput) {',
 				});
 			}
 
 			if (component?.config?.vue?.vModel) {
 				replacements.push({
 					from: 'const props =',
-					to: `const emit = defineEmits(${JSON.stringify(component?.config?.vue?.vModel.map((bin) => `update:${bin.modelValue}`))})\n\nconst props =`
+					to: `const emit = defineEmits(${JSON.stringify(component?.config?.vue?.vModel.map((bin) => `update:${bin.modelValue}`))})\n\nconst props =`,
 				});
 				replacements.push({
 					from: /handleFrameworkEventVue\(\s*\(\)\s*=>\s*\{}\s*?/g,
-					to: 'handleFrameworkEventVue(emit'
+					to: 'handleFrameworkEventVue(emit',
 				});
 			}
 

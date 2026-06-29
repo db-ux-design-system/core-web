@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBAccordion } from '../index';
-import { FigmaAccordionProps, accordions } from './accordion.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBAccordion} from '../index';
+import {FigmaAccordionProps, accordions} from './accordion.figma';
 
 useMetadata({
-	figma: accordions
+	figma: accordions,
 });
 
 export default function AccordionFigmaLite(props: FigmaAccordionProps) {

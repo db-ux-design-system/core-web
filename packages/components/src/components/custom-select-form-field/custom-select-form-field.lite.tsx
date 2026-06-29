@@ -1,13 +1,13 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import { DBCustomSelectFormFieldProps } from './model';
+import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
+import {cls} from '../../utils';
+import {DBCustomSelectFormFieldProps} from './model';
 
 useMetadata({});
 
 useDefaultProps<DBCustomSelectFormFieldProps>({});
 
 export default function DBCustomSelectFormField(
-	props: DBCustomSelectFormFieldProps
+	props: DBCustomSelectFormFieldProps,
 ) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
@@ -16,7 +16,8 @@ export default function DBCustomSelectFormField(
 		<summary
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-custom-select-form-field', props.className)}>
+			class={cls('db-custom-select-form-field', props.className)}
+		>
 			{props.children}
 		</summary>
 	);

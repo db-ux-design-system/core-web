@@ -15,7 +15,7 @@ import type {
 	IconProps,
 	IconTrailingProps,
 	LabelVariantHorizontalType,
-	SizeProps
+	SizeProps,
 } from '../../shared/model';
 
 export type DBSwitchDefaultProps = {

@@ -1,12 +1,12 @@
-import { useMetadata } from '@builder.io/mitosis';
+import {useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBRadio from '../radio.lite';
-import { StorybookRadioArgTypes } from './_radio.arg.types';
+import {StorybookRadioArgTypes} from './_radio.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Label',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookRadioArgTypes
+	storybookArgTypes: StorybookRadioArgTypes,
 });
 
 export default function RadioShowLabel() {

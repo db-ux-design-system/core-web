@@ -1,4 +1,4 @@
-import { DBInfotext } from '../index';
+import {DBInfotext} from '../index';
 
 export default function Infotext() {
 	return (

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBButton, DBSelect, DBStack, DBTooltip } from "@components";
+import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
 
 interface Props {
 	hasNextPage: boolean;
@@ -68,11 +68,7 @@ defineProps<Props>();
 			:modelValue="pageSize"
 			@update:modelValue="setPageSize(Number($event))"
 		>
-			<option
-				v-for="size in [5, 10, 20, 30, 40, 50]"
-				:key="size"
-				:value="size"
-			>
+			<option v-for="size in [5, 10, 20, 30, 40, 50]" :key="size" :value="size">
 				Show {{ size }}
 			</option>
 		</DBSelect>

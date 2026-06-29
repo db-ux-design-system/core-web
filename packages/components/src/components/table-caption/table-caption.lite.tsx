@@ -1,6 +1,6 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import { DBTableCaptionProps } from './model';
+import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
+import {cls} from '../../utils';
+import {DBTableCaptionProps} from './model';
 
 useMetadata({});
 
@@ -13,7 +13,8 @@ export default function DBTableCaption(props: DBTableCaptionProps) {
 		<caption
 			ref={_ref}
 			id={props.id}
-			class={cls('db-table-caption', props.className)}>
+			class={cls('db-table-caption', props.className)}
+		>
 			{props.children}
 		</caption>
 	);

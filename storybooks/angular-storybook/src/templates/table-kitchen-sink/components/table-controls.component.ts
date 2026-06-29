@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DBCard, DBCustomSelect, DBStack } from '@components';
-import type { Table } from '@tanstack/angular-table';
-import { DebouncedInputComponent } from './debounced-input.component';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {DBCard, DBCustomSelect, DBStack} from '@components';
+import type {Table} from '@tanstack/angular-table';
+import {DebouncedInputComponent} from './debounced-input.component';
 
 @Component({
 	selector: 'app-table-controls',
@@ -14,7 +14,8 @@ import { DebouncedInputComponent } from './debounced-input.component';
 					[value]="globalFilter ?? ''"
 					[placeholder]="'Search all columns...'"
 					[label]="'Search'"
-					(valueChange)="handleGlobalFilterChange($event)" />
+					(valueChange)="handleGlobalFilterChange($event)"
+				/>
 				<db-custom-select
 					[label]="'Show Columns'"
 					[placeholder]="'Show Columns'"
@@ -22,10 +23,11 @@ import { DebouncedInputComponent } from './debounced-input.component';
 					[values]="visibleColumns"
 					[options]="columnOptions"
 					[selectAllLabel]="'Toggle All'"
-					(optionSelected)="handleColumnSelection($event)" />
+					(optionSelected)="handleColumnSelection($event)"
+				/>
 			</db-stack>
 		</db-card>
-	`
+	`,
 })
 export class TableControlsComponent {
 	@Input() table!: Table<any>;
@@ -35,14 +37,12 @@ export class TableControlsComponent {
 	get visibleColumns() {
 		return this.table
 			.getAllLeafColumns()
-			.filter(({ getIsVisible }) => getIsVisible())
-			.map(({ id }) => id);
+			.filter(({getIsVisible}) => getIsVisible())
+			.map(({id}) => id);
 	}
 
 	get columnOptions() {
-		return this.table
-			.getAllLeafColumns()
-			.map(({ id }) => ({ id, value: id }));
+		return this.table.getAllLeafColumns().map(({id}) => ({id, value: id}));
 	}
 
 	handleGlobalFilterChange(value: string | number) {
@@ -51,7 +51,7 @@ export class TableControlsComponent {
 
 	handleColumnSelection(values: string[] | void) {
 		if (!values) return;
-		this.table.getAllLeafColumns().forEach(({ id, toggleVisibility }) => {
+		this.table.getAllLeafColumns().forEach(({id, toggleVisibility}) => {
 			toggleVisibility(values.includes(id));
 		});
 	}

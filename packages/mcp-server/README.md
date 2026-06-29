@@ -260,9 +260,9 @@ This MCP server operates under a strict, zero-trust security model to prevent ma
 - **Strict Read-Only Sandbox:** The server has zero write-permissions for design system files. All imports from `node:fs` for component data are strictly read-only (`readFile`, `readdir`). The `verify_migrated_code` tool does not execute shell commands — it returns instructions for the LLM to run the project's own verification scripts.
 - **Path Traversal Protection (Jailbreak Prevention):** All file and directory accesses (e.g., resolving component names) pass through a path resolver with traversal protection (`resolveSafePath`). The server guarantees that no file reads can escape the allowed base directories (blocking `../../etc/passwd` attacks).
 - **DoS & Context Window Protection:** To prevent LLMs from crashing or generating massive API billing spikes due to context window overflows, strict token limiters are enforced:
-    - File reads are truncated at **20,000 characters**.
-    - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
-    - Directory scans are hard-limited to a maximum of **10 files**.
+  - File reads are truncated at **20,000 characters**.
+  - JSON arrays (like component or icon lists) are truncated at **20,000 characters**.
+  - Directory scans are hard-limited to a maximum of **10 files**.
 
 ---
 

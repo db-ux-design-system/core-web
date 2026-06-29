@@ -1,23 +1,23 @@
-import { DBBadge, DBCheckbox, DBInput, DBTooltip } from '@components';
+import {DBBadge, DBCheckbox, DBInput, DBTooltip} from '@components';
 import {
 	compareItems,
 	rankItem,
-	type RankingInfo
+	type RankingInfo,
 } from '@tanstack/match-sorter-utils';
 import {
 	sortingFns,
 	type ColumnDef,
 	type FilterFn,
-	type SortingFn
+	type SortingFn,
 } from '@tanstack/react-table';
-import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
-import type { Person } from './makeData';
+import {useEffect, useState, type Dispatch, type SetStateAction} from 'react';
+import type {Person} from './makeData';
 
 export const fuzzyFilter: FilterFn<Person> = (
 	row,
 	columnId,
 	value,
-	addMeta
+	addMeta,
 ) => {
 	// Rank the item
 	const itemRank = rankItem(row.getValue(columnId), value);
@@ -36,7 +36,7 @@ export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
 	if (rowA.columnFiltersMeta[columnId]) {
 		dir = compareItems(
 			rowA.columnFiltersMeta[columnId]! as RankingInfo,
-			rowB.columnFiltersMeta[columnId]! as RankingInfo
+			rowB.columnFiltersMeta[columnId]! as RankingInfo,
 		);
 	}
 
@@ -50,7 +50,7 @@ export type TableMeta = {
 
 // Give our default column cell renderer editing superpowers!
 export const defaultColumn: Partial<ColumnDef<Person>> = {
-	cell: ({ getValue, row: { index }, column: { id, columnDef }, table }) => {
+	cell: ({getValue, row: {index}, column: {id, columnDef}, table}) => {
 		const initialValue = getValue();
 		// We need to keep and update the state of the cell normally
 		const [value, setValue] = useState(initialValue);
@@ -74,46 +74,49 @@ export const defaultColumn: Partial<ColumnDef<Person>> = {
 				onBlur={onBlur}
 			/>
 		);
-	}
+	},
 };
 
 export const columns: ColumnDef<Person>[] = [
 	{
 		id: 'select',
-		header: ({ table }) => (
+		header: ({table}) => (
 			<DBCheckbox
 				data-table-row-trigger="true"
 				label="Select All"
 				showLabel={false}
 				checked={table.getIsAllRowsSelected()}
 				indeterminate={table.getIsSomeRowsSelected()}
-				onChange={table.getToggleAllRowsSelectedHandler()}>
+				onChange={table.getToggleAllRowsSelectedHandler()}
+			>
 				<DBTooltip placement="top">Select All</DBTooltip>
 			</DBCheckbox>
 		),
-		cell: ({ row }) => (
+		cell: ({row}) => (
 			<DBCheckbox
 				data-table-row-trigger="true"
 				label="Select Row"
 				showLabel={false}
 				checked={row.getIsSelected()}
 				indeterminate={row.getIsSomeSelected()}
-				onChange={row.getToggleSelectedHandler()}>
+				onChange={row.getToggleSelectedHandler()}
+			>
 				<DBTooltip placement="top">Select Row</DBTooltip>
 			</DBCheckbox>
 		),
-		footer: ({ table }) => {
+		footer: ({table}) => {
 			const length = table.getSelectedRowModel().rows.length;
 			const amount = length >= 100 ? '9+' : length.toString();
 
 			return (
 				<DBBadge
 					label={`${length} Selected`}
-					semantic={length > 0 ? 'informational' : 'neutral'}>
+					semantic={length > 0 ? 'informational' : 'neutral'}
+				>
 					{amount}
 				</DBBadge>
 			);
-		}
+		},
 	},
 	{
 		header: 'Name',
@@ -122,14 +125,14 @@ export const columns: ColumnDef<Person>[] = [
 			{
 				accessorKey: 'firstName',
 				cell: (info) => info.getValue(),
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorFn: (row) => row.lastName,
 				id: 'lastName',
 				cell: (info) => info.getValue(),
 				header: 'Last Name',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -138,9 +141,9 @@ export const columns: ColumnDef<Person>[] = [
 				cell: (info) => info.getValue(),
 				footer: (props) => props.column.id,
 				filterFn: fuzzyFilter,
-				sortingFn: fuzzySort
-			}
-		]
+				sortingFn: fuzzySort,
+			},
+		],
 	},
 	{
 		header: 'Info',
@@ -149,30 +152,30 @@ export const columns: ColumnDef<Person>[] = [
 			{
 				accessorKey: 'age',
 				header: 'Age',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorKey: 'visits',
 				header: 'Visits',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorKey: 'status',
 				header: 'Status',
-				footer: (props) => props.column.id
+				footer: (props) => props.column.id,
 			},
 			{
 				accessorKey: 'progress',
 				header: 'Profile Progress',
-				footer: (props) => props.column.id
-			}
-		]
-	}
+				footer: (props) => props.column.id,
+			},
+		],
+	},
 ];
 
 export const getTableMeta = (
 	setData: Dispatch<SetStateAction<Person[]>>,
-	skipAutoResetPageIndex: () => void
+	skipAutoResetPageIndex: () => void,
 ) =>
 	({
 		updateData: (rowIndex, columnId, value) => {
@@ -184,9 +187,9 @@ export const getTableMeta = (
 
 					return {
 						...old[rowIndex]!,
-						[columnId]: value
+						[columnId]: value,
 					};
-				})
+				}),
 			);
-		}
+		},
 	}) as TableMeta;

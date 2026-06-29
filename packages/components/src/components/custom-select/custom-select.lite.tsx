@@ -9,7 +9,7 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
 
 import {
@@ -25,13 +25,13 @@ import {
 	DEFAULT_SELECT_ID_SUFFIX,
 	DEFAULT_SELECTED,
 	DEFAULT_VALID_MESSAGE,
-	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 } from '../../shared/constants';
 import {
 	ClickEvent,
 	GeneralEvent,
 	InputEvent,
-	InteractionEvent
+	InteractionEvent,
 } from '../../shared/model';
 import {
 	cls,
@@ -43,15 +43,15 @@ import {
 	getSearchInput,
 	hasVoiceOver,
 	stringPropVisible,
-	uuid
+	uuid,
 } from '../../utils';
-import { DocumentClickListener } from '../../utils/document-click-listener';
-import { DocumentScrollListener } from '../../utils/document-scroll-listener';
-import { handleFixedDropdown } from '../../utils/floating-components';
+import {DocumentClickListener} from '../../utils/document-click-listener';
+import {DocumentScrollListener} from '../../utils/document-scroll-listener';
+import {handleFixedDropdown} from '../../utils/floating-components';
 import {
 	addResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
 } from '../../utils/form-components';
 import DBButton from '../button/button.lite';
 import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
@@ -64,21 +64,21 @@ import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	CustomSelectOptionType,
 	DBCustomSelectProps,
-	DBCustomSelectState
+	DBCustomSelectState,
 } from './model';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required', 'multiple'],
 		signals: {
-			writeable: ['disabled', 'values']
-		}
-	}
+			writeable: ['disabled', 'values'],
+		},
+	},
 });
 
 useDefaultProps<DBCustomSelectProps>({
 	clearSelectionText: 'Clear selection',
-	showClearSelection: true
+	showClearSelection: true,
 });
 
 // TODO: Test composition instead of config
@@ -123,10 +123,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
 		handleDocumentScroll: (event: any) => {
-			if (
-				event?.target?.contains &&
-				event?.target?.contains(detailsRef)
-			) {
+			if (event?.target?.contains && event?.target?.contains(detailsRef)) {
 				state.handleAutoPlacement();
 			}
 		},
@@ -177,18 +174,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				event.stopPropagation();
 				props.onDropdownToggle(event);
 			}
-			if (
-				event.target instanceof HTMLDetailsElement &&
-				event.target.open
-			) {
+			if (event.target instanceof HTMLDetailsElement && event.target.open) {
 				state._documentClickListenerCallbackId =
 					new DocumentClickListener().addCallback((event) =>
-						state.handleDocumentClose(event)
+						state.handleDocumentClose(event),
 					);
 
 				state._documentScrollListenerCallbackId =
 					new DocumentScrollListener().addCallback((event) =>
-						state.handleDocumentScroll(event)
+						state.handleDocumentScroll(event),
 					);
 
 				state.handleAutoPlacement();
@@ -200,12 +194,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			} else {
 				if (state._documentClickListenerCallbackId) {
 					new DocumentClickListener().removeCallback(
-						state._documentClickListenerCallbackId!
+						state._documentClickListenerCallbackId!,
 					);
 				}
 				if (state._documentScrollListenerCallbackId) {
 					new DocumentScrollListener().removeCallback(
-						state._documentScrollListenerCallbackId!
+						state._documentScrollListenerCallbackId!,
 					);
 				}
 				state._observer?.unobserve(detailsRef);
@@ -249,7 +243,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (removeTexts && options) {
 				// Find the index of the option in the original options array
 				const optionIndex = options.findIndex(
-					(opt) => opt.value === option.value
+					(opt) => opt.value === option.value,
 				);
 				if (optionIndex >= 0 && optionIndex < removeTexts.length) {
 					return removeTexts[optionIndex];
@@ -260,7 +254,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void | any
+			event?: ClickEvent<HTMLButtonElement> | void | any,
 		) => {
 			if (event) {
 				event.stopPropagation();
@@ -278,7 +272,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						handleFixedDropdown(
 							dropdown,
 							detailsRef,
-							(props.placement as unknown as string) ?? 'bottom'
+							(props.placement as unknown as string) ?? 'bottom',
 						);
 					}, 1);
 				}
@@ -296,75 +290,59 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 						if (isCheckbox) {
 							const listElement = activeElement?.closest('li');
-							if (
-								event.key === 'ArrowDown' ||
-								event.key === 'ArrowRight'
-							) {
+							if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
 								// Find next element with input, skipping group titles
-								let nextElement =
-									listElement?.nextElementSibling;
+								let nextElement = listElement?.nextElementSibling;
 								while (nextElement) {
-									const nextInput =
-										nextElement.querySelector('input');
+									const nextInput = nextElement.querySelector('input');
 									if (nextInput) {
 										nextInput.focus();
 										break;
 									}
-									nextElement =
-										nextElement.nextElementSibling;
+									nextElement = nextElement.nextElementSibling;
 								}
 
 								if (!nextElement) {
 									// We are on the last checkbox we move to the top checkbox
-									state.handleFocusFirstDropdownCheckbox(
-										activeElement
-									);
+									state.handleFocusFirstDropdownCheckbox(activeElement);
 								}
 							} else {
 								// Find previous element with input, skipping group titles
-								let prevElement =
-									listElement?.previousElementSibling;
+								let prevElement = listElement?.previousElementSibling;
 								while (prevElement) {
-									const prevInput =
-										prevElement.querySelector('input');
+									const prevInput = prevElement.querySelector('input');
 									if (prevInput) {
 										prevInput.focus();
 										break;
 									}
-									prevElement =
-										prevElement.previousElementSibling;
+									prevElement = prevElement.previousElementSibling;
 								}
 
 								if (!prevElement) {
 									// Check if we have a "select all" checkbox (only relevant for multi-select)
-									const selectAllCheckbox =
-										detailsRef.querySelector(
-											`input[type="checkbox"]`
-										);
+									const selectAllCheckbox = detailsRef.querySelector(
+										`input[type="checkbox"]`,
+									);
 									if (
 										selectAllCheckbox &&
 										selectAllCheckbox !== activeElement
 									) {
 										// We are on the top list checkbox but there is a select all checkbox as well
-										state.handleFocusFirstDropdownCheckbox(
-											activeElement
-										);
+										state.handleFocusFirstDropdownCheckbox(activeElement);
 									} else {
 										// We are on the top checkbox, we need to move to the search
 										// or to the last checkbox
-										const search =
-											getSearchInput(detailsRef);
+										const search = getSearchInput(detailsRef);
 										if (search) {
 											void delay(() => {
 												search.focus();
 											}, 100);
 										} else {
-											const checkboxList: HTMLInputElement[] =
-												Array.from(
-													detailsRef?.querySelectorAll(
-														`input[type="checkbox"],input[type="radio"]`
-													)
-												);
+											const checkboxList: HTMLInputElement[] = Array.from(
+												detailsRef?.querySelectorAll(
+													`input[type="checkbox"],input[type="radio"]`,
+												),
+											);
 											if (checkboxList.length) {
 												checkboxList.at(-1)?.focus();
 											}
@@ -375,26 +353,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						} else {
 							// 2. If we are on the search, and press up we go back to summary and close
 							if (
-								activeElement.getAttribute('type') ===
-									'search' &&
-								(event.key === 'ArrowUp' ||
-									event.key === 'ArrowLeft')
+								activeElement.getAttribute('type') === 'search' &&
+								(event.key === 'ArrowUp' || event.key === 'ArrowLeft')
 							) {
 								state.handleClose(undefined, true);
 								state.handleSummaryFocus();
 							} else {
 								// 3. Otherwise, we need to move to the first checkbox
-								state.handleFocusFirstDropdownCheckbox(
-									activeElement
-								);
+								state.handleFocusFirstDropdownCheckbox(activeElement);
 							}
 						}
 					}
 				}
-			} else if (
-				event.key === 'ArrowDown' ||
-				event.key === 'ArrowRight'
-			) {
+			} else if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
 				// Open dropdown with arrows see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboardinteraction
 				state.handleAutoPlacement();
 				if (detailsRef) {
@@ -414,23 +385,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			} else if (event.key === 'Enter' && detailsRef?.open) {
 				// Handle Enter key to select option like Space key
 				if (self.document) {
-					const activeElement = self.document
-						.activeElement as HTMLInputElement;
+					const activeElement = self.document.activeElement as HTMLInputElement;
 					if (
 						['checkbox', 'radio'].includes(
-							activeElement.getAttribute('type') || ''
+							activeElement.getAttribute('type') || '',
 						)
 					) {
 						// Trigger click to simulate Space key behavior
 						activeElement.click();
 
 						event.preventDefault();
-					} else if (
-						activeElement.getAttribute('type') === 'search'
-					) {
+					} else if (activeElement.getAttribute('type') === 'search') {
 						// When Enter is pressed in search field, select the first available option
 						const firstOption = state._options?.find(
-							(opt) => !opt.isGroupTitle && !opt.disabled
+							(opt) => !opt.isGroupTitle && !opt.disabled,
 						);
 						if (firstOption?.value) {
 							state.handleSelect(firstOption.value);
@@ -449,7 +417,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleClose: (
 			event?: InteractionEvent<HTMLDetailsElement> | void,
-			forceClose?: boolean
+			forceClose?: boolean,
 		) => {
 			if (detailsRef) {
 				if (forceClose) {
@@ -457,8 +425,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					state.handleSummaryFocus();
 				} else if (detailsRef.open && event) {
 					if (event.relatedTarget) {
-						const relatedTarget =
-							event.relatedTarget as HTMLElement;
+						const relatedTarget = event.relatedTarget as HTMLElement;
 						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
 						// Inside a <dialog> there is some focus problem because of the top-layer
 						// We do not want to focus <dialog> itself
@@ -482,7 +449,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						typeof event.detail === 'number'
 							? event.target
 							: event.detail?.target,
-					default: event.target
+					default: event.target,
 				});
 
 				if (detailsRef?.open && !detailsRef.contains(target)) {
@@ -491,8 +458,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleOptionSelected: (values: string[]) => {
-			const skip =
-				new Date().getTime() - state._internalChangeTimestamp < 200;
+			const skip = new Date().getTime() - state._internalChangeTimestamp < 200;
 			if (skip) return;
 
 			state._values = values;
@@ -506,18 +472,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					handleFrameworkEventAngular(
 						state,
 						{
-							target: { values }
+							target: {values},
 						},
-						'values'
+						'values',
 					),
 				vue: () =>
 					handleFrameworkEventVue(
 						() => {},
 						{
-							target: { values }
+							target: {values},
 						},
-						'values'
-					)
+						'values',
+					),
 			});
 			state._internalChangeTimestamp = new Date().getTime();
 		},
@@ -526,13 +492,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (props.multiple) {
 					if (state._values?.includes(value)) {
 						state.handleOptionSelected(
-							state._values!.filter((v: string) => v !== value)
+							state._values!.filter((v: string) => v !== value),
 						);
 					} else {
-						state.handleOptionSelected([
-							...(state._values || []),
-							value
-						]);
+						state.handleOptionSelected([...(state._values || []), value]);
 					}
 				} else {
 					state.handleOptionSelected([value]);
@@ -559,12 +522,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										(!searchValue ||
 											option.value
 												?.toLowerCase()
-												.includes(
-													searchValue.toLowerCase()
-												))
+												.includes(searchValue.toLowerCase())),
 								)
 								.map((option) => option.value ?? '')
-						: []
+						: [],
 				);
 			}
 		},
@@ -572,8 +533,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (detailsRef) {
 				const checkboxes: HTMLInputElement[] = Array.from(
 					detailsRef.querySelectorAll(
-						`input[type="checkbox"],input[type="radio"]`
-					)
+						`input[type="checkbox"],input[type="radio"]`,
+					),
 				);
 				if (checkboxes.length) {
 					const first = checkboxes.at(0);
@@ -608,7 +569,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		// Don't trigger onOptionSelected event
 		handleSearch: (
-			valueOrEvent?: InputEvent<HTMLInputElement> | string | void
+			valueOrEvent?: InputEvent<HTMLInputElement> | string | void,
 		) => {
 			if (valueOrEvent === undefined) {
 				return;
@@ -634,7 +595,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state._options = props.options;
 			} else if (props.searchFilter) {
 				state._options = props.options!.filter((option) =>
-					props.searchFilter!(option, filterText)
+					props.searchFilter!(option, filterText),
 				);
 			} else {
 				state._options = props.options!.filter(
@@ -643,7 +604,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state
 							.getOptionLabel(option)
 							.toLowerCase()
-							.includes(filterText.toLowerCase())
+							.includes(filterText.toLowerCase()),
 				);
 			}
 
@@ -659,18 +620,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleSummaryFocus: () => {
 			if (detailsRef) {
-				(detailsRef as HTMLDetailsElement)
-					.querySelector('summary')
-					?.focus();
+				(detailsRef as HTMLDetailsElement).querySelector('summary')?.focus();
 			}
 		},
 		selectAllChecked: false,
 		selectAllIndeterminate: false,
 		resetIds: () => {
 			const mId =
-				props.id ??
-				props.propOverrides?.id ??
-				`custom-select-${uuid()}`;
+				props.id ?? props.propOverrides?.id ?? `custom-select-${uuid()}`;
 			state._id = mId;
 			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
@@ -681,7 +638,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 			state._selectedLabelsId = mId + '-selected-labels';
 			state._infoTextId = mId + '-info';
-		}
+		},
 	});
 	// jscpd:ignore-end
 
@@ -691,9 +648,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 			state._observer = new IntersectionObserver((payload) => {
 				if (detailsRef) {
-					const entry = payload.find(
-						({ target }) => target === detailsRef
-					);
+					const entry = payload.find(({target}) => target === detailsRef);
 					if (entry && !entry.isIntersecting && detailsRef.open) {
 						detailsRef.open = false;
 					}
@@ -713,7 +668,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			detailsRef.addEventListener(
 				'focusout',
 				(event: InteractionEvent<HTMLDetailsElement>) =>
-					state.handleClose(event)
+					state.handleClose(event),
 			);
 		}
 	}, [detailsRef]);
@@ -724,8 +679,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state._labelId = state._id + DEFAULT_LABEL_ID_SUFFIX;
 			state._selectId = state._id + DEFAULT_SELECT_ID_SUFFIX;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
@@ -742,7 +696,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (summary) {
 				summary.setAttribute(
 					'aria-describedby',
-					props.ariaDescribedBy ?? (state._descByIds || '')
+					props.ariaDescribedBy ?? (state._descByIds || ''),
 				);
 			}
 		}
@@ -758,7 +712,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
-			props.multiple && (props.showSelectAll ?? state.amountOptions > 5)
+			props.multiple && (props.showSelectAll ?? state.amountOptions > 5),
 		);
 	}, [props.showSelectAll, state.amountOptions, props.multiple]);
 
@@ -805,7 +759,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					state.handleOptionSelected(resetValue);
 					state.handleValidation();
 				},
-				controller.signal
+				controller.signal,
 			);
 		}
 	}, [selectRef]);
@@ -853,11 +807,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						return false;
 					}
 
-					return (
-						!option.isGroupTitle &&
-						state._values?.includes(option.value)
-					);
-				}
+					return !option.isGroupTitle && state._values?.includes(option.value);
+				},
 			);
 		}
 	}, [props.options, state._values]);
@@ -884,7 +835,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			} else {
 				state._selectedLabels = state._selectedOptions
 					?.map((option: CustomSelectOptionType) =>
-						state.getOptionLabel(option)
+						state.getOptionLabel(option),
 					)
 					.join(', ');
 			}
@@ -896,7 +847,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		props.selectedType,
 		props.amountText,
 		props.selectedLabels,
-		props.transformSelectedLabels
+		props.transformSelectedLabels,
 	]);
 
 	onUpdate(() => {
@@ -948,7 +899,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
+		>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
@@ -963,7 +915,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					onChange={(event) => satisfyReact(event)}>
+					onChange={(event) => satisfyReact(event)}
+				>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (
@@ -971,13 +924,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									key={useTarget({
 										vue: undefined,
 										stencil: undefined,
-										default: getOptionKey(
-											option,
-											'native-select-option-'
-										)
+										default: getOptionKey(option, 'native-select-option-'),
 									})}
 									disabled={option.disabled}
-									value={option.value}>
+									value={option.value}
+								>
 									{state.getOptionLabel(option)}
 								</option>
 							)}
@@ -990,26 +941,26 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				open={props.open}
 				/* @ts-expect-error details as an event named onToggle */
 				onToggle={(event) => state.handleDropdownToggle(event)}
-				onKeyDown={(event) => state.handleKeyboardPress(event)}>
+				onKeyDown={(event) => state.handleKeyboardPress(event)}
+			>
 				{props.children}
 				<Show when={props.options}>
 					{/* We use this because we cannot wrap summary for Angular... */}
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-form-field"
-						aria-disabled={getBooleanAsString(
-							props.disabled,
-							'disabled'
-						)}
+						aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 						tabIndex={props.disabled ? -1 : undefined}
-						aria-labelledby={state._labelId}>
+						aria-labelledby={state._labelId}
+					>
 						<Show when={state._selectedLabels?.length}>
 							<span
 								data-visually-hidden={getBooleanAsString(
 									props.selectedType === 'tag',
-									'selectedType'
+									'selectedType',
 								)}
-								id={state._selectedLabelsId}>
+								id={state._selectedLabelsId}
+							>
 								<Show when={props.selectedPrefix}>
 									<span data-visually-hidden="true">
 										{props.selectedPrefix}
@@ -1026,24 +977,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											key={useTarget({
 												vue: undefined,
 												stencil: undefined,
-												default: getOptionKey(
-													option,
-													'tag-'
-												)
+												default: getOptionKey(option, 'tag-'),
 											})}
-											removeButton={state.getTagRemoveLabel(
-												option
-											)}
+											removeButton={state.getTagRemoveLabel(option)}
 											onRemove={(
-												event?: ClickEvent<HTMLButtonElement> | void
-											) =>
-												state.handleTagRemove(
-													option,
-													event
-												)
-											}
+												event?: ClickEvent<HTMLButtonElement> | void,
+											) => state.handleTagRemove(option, event)}
 											emphasis="strong"
-											behavior="removable">
+											behavior="removable"
+										>
 											{state.getOptionLabel(option)}
 										</DBTag>
 									)}
@@ -1062,18 +1004,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									showLabel={false}
 									value={state._searchValue}
 									label={props.searchLabel ?? DEFAULT_LABEL}
-									placeholder={
-										props.searchPlaceholder ??
-										props.searchLabel
-									}
+									placeholder={props.searchPlaceholder ?? props.searchLabel}
 									ariaDescribedBy={
 										state._hasNoOptions || props.showLoading
 											? state._infoTextId
 											: undefined
 									}
-									onInput={(
-										event: InputEvent<HTMLInputElement>
-									) => state.handleSearch(event)}
+									onInput={(event: InputEvent<HTMLInputElement>) =>
+										state.handleSearch(event)
+									}
 								/>
 							</div>
 						</Show>
@@ -1092,14 +1031,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 														form={state._id}
 														type="checkbox"
 														value="select-all"
-														checked={
-															state.selectAllChecked
-														}
-														onChange={(event) =>
-															state.handleSelectAll(
-																event
-															)
-														}
+														checked={state.selectAllChecked}
+														onChange={(event) => state.handleSelectAll(event)}
 													/>
 													{state.getSelectAllLabel()}
 												</label>
@@ -1107,76 +1040,44 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										</div>
 									</Show>
 									<DBCustomSelectList
-										multiple={getBoolean(
-											props.multiple,
-											'multiple'
-										)}
-										label={
-											props.listLabel ??
-											props.label ??
-											DEFAULT_LABEL
-										}>
+										multiple={getBoolean(props.multiple, 'multiple')}
+										label={props.listLabel ?? props.label ?? DEFAULT_LABEL}
+									>
 										<For each={state._options}>
-											{(
-												option: CustomSelectOptionType
-											) => (
+											{(option: CustomSelectOptionType) => (
 												<DBCustomSelectListItem
 													key={useTarget({
 														vue: undefined,
 														stencil: undefined,
 														default: getOptionKey(
 															option,
-															'custom-select-list-item-'
-														)
+															'custom-select-list-item-',
+														),
 													})}
-													type={
-														props.multiple
-															? 'checkbox'
-															: 'radio'
-													}
-													showDivider={
-														option.showDivider
-													}
+													type={props.multiple ? 'checkbox' : 'radio'}
+													showDivider={option.showDivider}
 													icon={option.icon}
-													isGroupTitle={
-														option.isGroupTitle
-													}
-													groupTitle={state.getOptionLabel(
-														option
-													)}
+													isGroupTitle={option.isGroupTitle}
+													groupTitle={state.getOptionLabel(option)}
 													name={state._id}
-													checked={state.getOptionChecked(
-														option.value
-													)}
+													checked={state.getOptionChecked(option.value)}
 													disabled={option.disabled}
 													value={option.value}
-													onChange={() =>
-														state.handleSelect(
-															option.value
-														)
-													}>
-													{!option.isGroupTitle &&
-														state.getOptionLabel(
-															option
-														)}
+													onChange={() => state.handleSelect(option.value)}
+												>
+													{!option.isGroupTitle && state.getOptionLabel(option)}
 												</DBCustomSelectListItem>
 											)}
 										</For>
 									</DBCustomSelectList>
 								</>
-							}>
+							}
+						>
 							<DBInfotext
 								id={state._infoTextId}
-								icon={
-									props.showLoading
-										? 'circular_arrows'
-										: undefined
-								}
-								semantic={
-									props.showLoading
-										? 'informational'
-										: 'warning'
-								}>
+								icon={props.showLoading ? 'circular_arrows' : undefined}
+								semantic={props.showLoading ? 'informational' : 'warning'}
+							>
 								{(props.showLoading
 									? props.loadingText
 									: props.noResultsText) ?? DEFAULT_MESSAGE}
@@ -1191,21 +1092,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								size="small"
 								name={state._id}
 								form={state._id}
-								onClick={() =>
-									state.handleClose(undefined, true)
-								}>
-								{props.mobileCloseButtonText ??
-									DEFAULT_CLOSE_BUTTON}
+								onClick={() => state.handleClose(undefined, true)}
+							>
+								{props.mobileCloseButtonText ?? DEFAULT_CLOSE_BUTTON}
 							</DBButton>
 						</div>
 					</DBCustomSelectDropdown>
 				</Show>
 			</details>
 
-			<Show
-				when={
-					(props.showClearSelection ?? true) && state._values?.length
-				}>
+			<Show when={(props.showClearSelection ?? true) && state._values?.length}>
 				<DBButton
 					icon="cross"
 					variant="ghost"
@@ -1214,25 +1110,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					name={state._id}
 					form={state._id}
 					disabled={getBoolean(props.disabled, 'disabled')}
-					onClick={(event) => state.handleClearAll(event)}>
+					onClick={(event) => state.handleClearAll(event)}
+				>
 					{props.clearSelectionText}
-					<DBTooltip placement="top">
-						{props.clearSelectionText}
-					</DBTooltip>
+					<DBTooltip placement="top">{props.clearSelectionText}</DBTooltip>
 				</DBButton>
 			</Show>
 
 			<span
 				class="db-custom-select-placeholder"
 				aria-hidden="true"
-				id={state._placeholderId}>
+				id={state._placeholderId}
+			>
 				{props.placeholder ?? props.label}
 			</span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
-				<DBInfotext
-					size="small"
-					icon={props.messageIcon}
-					id={state._messageId}>
+				<DBInfotext size="small" icon={props.messageIcon} id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
@@ -1241,15 +1134,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				<DBInfotext
 					id={state._validMessageId}
 					size="small"
-					semantic="successful">
+					semantic="successful"
+				>
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
+			<DBInfotext id={state._invalidMessageId} size="small" semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
 

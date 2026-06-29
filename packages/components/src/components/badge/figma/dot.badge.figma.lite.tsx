@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBBadge } from '../index';
-import { FigmaBadgeProps, dotBadges } from './badge.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBBadge} from '../index';
+import {FigmaBadgeProps, dotBadges} from './badge.figma';
 
 useMetadata({
-	figma: dotBadges
+	figma: dotBadges,
 });
 
 export default function DotBadgeFigmaLite(props: FigmaBadgeProps) {

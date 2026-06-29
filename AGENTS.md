@@ -15,58 +15,58 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 
 1. **CRITICAL**: Copy `.env.template` to `.env` and add your email:
 
-    ```bash
-    cp .env.template .env
-    # Edit .env file: Set COMMIT_MAIL=your.email@example.com
-    ```
+   ```bash
+   cp .env.template .env
+   # Edit .env file: Set COMMIT_MAIL=your.email@example.com
+   ```
 
 2. **Install dependencies**:
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   pnpm install
+   ```
 
 ### Build and Test
 
 - **Build core packages**:
 
-    ```bash
-    pnpm run build
-    ```
+  ```bash
+  pnpm run build
+  ```
 
-    **TIMING**: Takes ~30 seconds. NEVER CANCEL. Set timeout to 120+ seconds.
+  **TIMING**: Takes ~30 seconds. NEVER CANCEL. Set timeout to 120+ seconds.
 
 - **Build all framework outputs**:
 
-    ```bash
-    pnpm run build-outputs
-    ```
+  ```bash
+  pnpm run build-outputs
+  ```
 
-    **TIMING**: Takes ~2 minutes. NEVER CANCEL. Set timeout to 300+ seconds.
+  **TIMING**: Takes ~2 minutes. NEVER CANCEL. Set timeout to 300+ seconds.
 
 - **Run tests**:
-    ```bash
-    pnpm run test
-    ```
-    **TIMING**: Takes ~10 seconds. NEVER CANCEL. Set timeout to 60+ seconds.
+  ```bash
+  pnpm run test
+  ```
+  **TIMING**: Takes ~10 seconds. NEVER CANCEL. Set timeout to 60+ seconds.
 
 ### Development
 
 - **Start interactive development server**:
 
-    ```bash
-    pnpm run dev
-    ```
+  ```bash
+  pnpm run dev
+  ```
 
-    **Interactive**: Will prompt to select frameworks (angular, react, vue, stencil, etc.). Default selection is react.
-    **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
+  **Interactive**: Will prompt to select frameworks (angular, react, vue, stencil, etc.). Default selection is react.
+  **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
 
 - **Start documentation site (Patternhub)**:
-    ```bash
-    pnpm run start
-    ```
-    **TIMING**: Takes ~2 minutes to start. NEVER CANCEL. Set timeout to 300+ seconds.
-    **ACCESS**: Runs on <http://localhost:3000> - full design system documentation and examples.
+  ```bash
+  pnpm run start
+  ```
+  **TIMING**: Takes ~2 minutes to start. NEVER CANCEL. Set timeout to 300+ seconds.
+  **ACCESS**: Runs on <http://localhost:3000> - full design system documentation and examples.
 
 ## Validation
 
@@ -144,7 +144,7 @@ The changeset description **must** follow the same conventional prefix style use
 
 ```markdown
 ---
-"@db-ux/core-components": minor
+'@db-ux/core-components': minor
 ---
 
 feat: add `size` property to DBButton component
@@ -152,7 +152,7 @@ feat: add `size` property to DBButton component
 
 ```markdown
 ---
-"@db-ux/core-components": patch
+'@db-ux/core-components': patch
 ---
 
 fix: resolve incorrect focus ring color in high-contrast mode
@@ -160,7 +160,7 @@ fix: resolve incorrect focus ring color in high-contrast mode
 
 ```markdown
 ---
-"@db-ux/core-components": major
+'@db-ux/core-components': major
 ---
 
 refactor: rename `colour` property to `color` across all components

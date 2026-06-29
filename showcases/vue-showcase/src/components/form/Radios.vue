@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { DBRadio } from "../../../../../output/vue/src";
-import FormWrapper from "./FormWrapper.vue";
+import {ref} from 'vue';
+import {DBRadio} from '../../../../../output/vue/src';
+import FormWrapper from './FormWrapper.vue';
 
-const plain = ref("");
-const vModel = ref("");
+const plain = ref('');
+const vModel = ref('');
 </script>
 
 <template>

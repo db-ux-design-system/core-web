@@ -4,12 +4,12 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
-import { DBTableRowCell, DBTableRowProps } from '../table-row/model';
+import {cls, uuid} from '../../utils';
+import {DBTableRowCell, DBTableRowProps} from '../table-row/model';
 import DBTableRow from '../table-row/table-row.lite';
-import { DBTableHeadProps, DBTableHeadState } from './model';
+import {DBTableHeadProps, DBTableHeadState} from './model';
 
 useMetadata({});
 
@@ -23,9 +23,9 @@ export default function DBTableHead(props: DBTableHeadProps) {
 		getCells: (cells?: DBTableRowCell[]) => {
 			return cells?.map((cell) => ({
 				...cell,
-				headerCell: true
+				headerCell: true,
 			}));
-		}
+		},
 	});
 	// jscpd:ignore-end
 
@@ -33,7 +33,8 @@ export default function DBTableHead(props: DBTableHeadProps) {
 		<thead
 			ref={_ref}
 			id={props.id}
-			class={cls('db-table-head', props.className)}>
+			class={cls('db-table-head', props.className)}
+		>
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>
 					{(row: DBTableRowProps, index: number) => (

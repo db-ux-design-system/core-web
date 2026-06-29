@@ -2,10 +2,10 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
-import { DBTabListProps, DBTabListState } from './model';
+import {cls} from '../../utils';
+import {DBTabListProps, DBTabListState} from './model';
 
 useMetadata({});
 useDefaultProps<DBTabListProps>({});
@@ -22,7 +22,8 @@ export default function DBTabList(props: DBTabListProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-tab-list', props.className)}>
+			class={cls('db-tab-list', props.className)}
+		>
 			<ul role="tablist">{props.children}</ul>
 		</div>
 	);

@@ -6,16 +6,16 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { useState } from "react";
-import { DBRadio } from "@db-ux/react-core-components";
+import {useState} from 'react';
+import {DBRadio} from '@db-ux/react-core-components';
 
 const App = () => {
-	const [radio, setRadio] = useState("");
+	const [radio, setRadio] = useState('');
 
 	return (
 		<fieldset>
 			<legend>Radio group example</legend>
-			{["X", "Y", "Z"].map((radioName) => (
+			{['X', 'Y', 'Z'].map((radioName) => (
 				<DBRadio
 					key={radioName}
 					name="radio-group"

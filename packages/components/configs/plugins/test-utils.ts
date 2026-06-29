@@ -26,7 +26,7 @@ export const createTempDir = (prefix: string): string =>
  * @param dir - The absolute path to the directory to remove
  */
 export const removeTempDir = (dir: string): void => {
-	fs.rmSync(dir, { recursive: true, force: true });
+	fs.rmSync(dir, {recursive: true, force: true});
 };
 
 /**
@@ -41,10 +41,10 @@ export const removeTempDir = (dir: string): void => {
 export const writeFileIn = (
 	baseDir: string,
 	relativePath: string,
-	content = ''
+	content = '',
 ): string => {
 	const absolute = path.join(baseDir, relativePath);
-	fs.mkdirSync(path.dirname(absolute), { recursive: true });
+	fs.mkdirSync(path.dirname(absolute), {recursive: true});
 	fs.writeFileSync(absolute, content, 'utf-8');
 	return absolute;
 };

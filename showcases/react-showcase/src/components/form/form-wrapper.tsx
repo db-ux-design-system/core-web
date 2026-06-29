@@ -1,10 +1,10 @@
-import { DBButton } from '@components';
-import { type PropsWithChildren } from 'react';
+import {DBButton} from '@components';
+import {type PropsWithChildren} from 'react';
 
 const FormWrapper = ({
 	children,
 	uncontrolled,
-	controlled
+	controlled,
 }: PropsWithChildren<{
 	controlled: string | boolean | string[];
 	uncontrolled: string | boolean | string[];

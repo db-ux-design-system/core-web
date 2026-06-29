@@ -11,13 +11,13 @@ module.exports = {
 	typescript: true,
 	attributePassing: {
 		enabled: true,
-		customRef: '_ref'
+		customRef: '_ref',
 	},
 	plugins: [
 		stencilPlugin,
 		attributePassingPlugin,
 		slotsPlugin,
 		onClickPlugin,
-		esmExtensionsPlugin
-	]
+		esmExtensionsPlugin,
+	],
 };

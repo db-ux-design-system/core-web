@@ -1,8 +1,8 @@
-import { DBButton } from '../../button';
-import { DBCheckbox } from '../../checkbox';
-import { DBLink } from '../../link';
-import { DBRadio } from '../../radio';
-import { DBTag } from '../index';
+import {DBButton} from '../../button';
+import {DBCheckbox} from '../../checkbox';
+import {DBLink} from '../../link';
+import {DBRadio} from '../../radio';
+import {DBTag} from '../index';
 
 export default function Tag() {
 	return (
@@ -30,9 +30,7 @@ export default function Tag() {
 			</DBTag>
 
 			<h2>3. Removable Tag</h2>
-			<DBTag
-				behavior="removable"
-				onRemove={() => console.log('Tag removed')}>
+			<DBTag behavior="removable" onRemove={() => console.log('Tag removed')}>
 				Removable Tag
 			</DBTag>
 

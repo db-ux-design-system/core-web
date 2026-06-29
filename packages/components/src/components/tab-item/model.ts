@@ -12,7 +12,7 @@ import type {
 	NameState,
 	ShowIconLeadingProps,
 	ShowIconProps,
-	ShowIconTrailingProps
+	ShowIconTrailingProps,
 } from '../../shared/model';
 
 export type DBTabItemDefaultProps = {

@@ -11,14 +11,14 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InputEventProps,
-	InputEventState
+	InputEventState,
 } from '../../shared/model';
 
 export const TextareaResizeList = [
 	'none',
 	'both',
 	'horizontal',
-	'vertical'
+	'vertical',
 ] as const;
 export type TextareaResizeType = (typeof TextareaResizeList)[number];
 

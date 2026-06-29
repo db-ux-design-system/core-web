@@ -1,12 +1,12 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBPopover from '../popover.lite';
-import { StorybookPopoverArgTypes } from './_popover.arg.types';
+import {StorybookPopoverArgTypes} from './_popover.arg.types';
 
 useMetadata({
 	storybookTitle: 'Animation',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookPopoverArgTypes
+	storybookArgTypes: StorybookPopoverArgTypes,
 });
 
 export default function PopoverAnimation() {
@@ -15,7 +15,8 @@ export default function PopoverAnimation() {
 			<DBPopover
 				id="popover-13"
 				animation={true}
-				trigger={<DBButton>(Default) True</DBButton>}>
+				trigger={<DBButton>(Default) True</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -27,7 +28,8 @@ export default function PopoverAnimation() {
 			<DBPopover
 				animation={false}
 				id="popover-16"
-				trigger={<DBButton>False</DBButton>}>
+				trigger={<DBButton>False</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>

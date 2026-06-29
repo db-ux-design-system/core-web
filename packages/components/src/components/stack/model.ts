@@ -1,7 +1,7 @@
 import type {
 	GapSpacingProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
 } from '../../shared/model';
 
 export const StackVariantList = ['simple', 'divider'] as const;
@@ -14,7 +14,7 @@ export const StackAlignmentList = [
 	'stretch',
 	'start',
 	'end',
-	'center'
+	'center',
 ] as const;
 export type StackAlignmentType = (typeof StackAlignmentList)[number];
 
@@ -22,7 +22,7 @@ export const StackJustifyContentList = [
 	'space-between',
 	'start',
 	'end',
-	'center'
+	'center',
 ] as const;
 export type StackJustifyContentType = (typeof StackJustifyContentList)[number];
 

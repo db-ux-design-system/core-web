@@ -1,22 +1,22 @@
 %grid-layout-default {
 	// 1. only content (min. requirement)
-	grid-template-areas: "content";
+	grid-template-areas: 'content';
 	grid-template-columns: 1fr;
 
 	// Add a layout for inline links
-	&[data-link-variant="inline"] {
+	&[data-link-variant='inline'] {
 		grid-template-columns: 1fr min-content;
-		grid-template-areas: "content timestamp";
+		grid-template-areas: 'content timestamp';
 	}
 
 	&:has(.db-button) {
 		grid-template-columns: 1fr min-content;
-		grid-template-areas: "content close";
+		grid-template-areas: 'content close';
 
 		// Inline link + close button
-		&[data-link-variant="inline"] {
+		&[data-link-variant='inline'] {
 			grid-template-columns: 1fr min-content min-content;
-			grid-template-areas: "content timestamp close";
+			grid-template-areas: 'content timestamp close';
 		}
 	}
 
@@ -24,77 +24,77 @@
 	&:has(header) {
 		grid-template-columns: 1fr;
 		grid-template-areas:
-			"head"
-			"content";
+			'head'
+			'content';
 
-		&[data-link-variant="inline"] {
+		&[data-link-variant='inline'] {
 			grid-template-columns: 1fr min-content;
 			grid-template-areas:
-				"head timestamp"
-				"content content";
+				'head timestamp'
+				'content content';
 		}
 
 		&:has(.db-button) {
 			grid-template-columns: 1fr min-content;
 			grid-template-areas:
-				"head close"
-				"content content";
+				'head close'
+				'content content';
 
-			&[data-link-variant="inline"] {
+			&[data-link-variant='inline'] {
 				grid-template-columns: 1fr min-content min-content;
 				grid-template-areas:
-					"head timestamp close"
-					"content content ."; // Empty cell aligns content column with head row
+					'head timestamp close'
+					'content content .'; // Empty cell aligns content column with head row
 			}
 		}
 	}
 
 	// 3. icon or img
-	&[data-icon]:not([data-show-icon="false"]),
-	&[data-semantic]:not([data-semantic="adaptive"], [data-show-icon="false"]),
+	&[data-icon]:not([data-show-icon='false']),
+	&[data-semantic]:not([data-semantic='adaptive'], [data-show-icon='false']),
 	&:has(img) {
-		grid-template-areas: "icon content";
+		grid-template-areas: 'icon content';
 		grid-template-columns: min-content 1fr;
 
-		&[data-link-variant="inline"] {
+		&[data-link-variant='inline'] {
 			grid-template-columns: min-content 1fr min-content;
-			grid-template-areas: "icon content timestamp";
+			grid-template-areas: 'icon content timestamp';
 		}
 
 		&:has(.db-button) {
 			grid-template-columns: min-content 1fr min-content;
-			grid-template-areas: "icon content close";
+			grid-template-areas: 'icon content close';
 
-			&[data-link-variant="inline"] {
+			&[data-link-variant='inline'] {
 				grid-template-columns: min-content 1fr min-content min-content;
-				grid-template-areas: "icon content timestamp close";
+				grid-template-areas: 'icon content timestamp close';
 			}
 		}
 
 		&:has(header) {
 			grid-template-columns: min-content 1fr;
 			grid-template-areas:
-				"icon head"
-				"icon content";
+				'icon head'
+				'icon content';
 
-			&[data-link-variant="inline"] {
+			&[data-link-variant='inline'] {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
-					"icon head timestamp"
-					"icon content content";
+					'icon head timestamp'
+					'icon content content';
 			}
 
 			&:has(.db-button) {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
-					"icon head close"
-					"icon content content";
+					'icon head close'
+					'icon content content';
 
-				&[data-link-variant="inline"] {
+				&[data-link-variant='inline'] {
 					grid-template-columns: min-content 1fr min-content min-content;
 					grid-template-areas:
-						"icon head timestamp close"
-						"icon content content ."; // Empty cell aligns content column with head row
+						'icon head timestamp close'
+						'icon content content .'; // Empty cell aligns content column with head row
 				}
 			}
 		}

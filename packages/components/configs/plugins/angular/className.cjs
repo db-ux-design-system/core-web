@@ -29,6 +29,6 @@ module.exports = () => ({
 		post: (json) => {
 			json.children?.forEach(processNode);
 			return json;
-		}
-	}
+		},
+	},
 });

@@ -9,7 +9,7 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBNavigationItem } from "@db-ux/v-core-components";
+import {DBNavigationItem} from '@db-ux/v-core-components';
 </script>
 
 <template>

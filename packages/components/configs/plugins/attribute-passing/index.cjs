@@ -9,8 +9,8 @@ const dashCase = (str) =>
 module.exports = () => ({
 	json: {
 		pre: (json) => {
-			const { pluginData, name } = json;
-			const { target, path, outputFilePath } = pluginData;
+			const {pluginData, name} = json;
+			const {target, path, outputFilePath} = pluginData;
 			const filePath = path || outputFilePath || '';
 			const skipObserver =
 				filePath.includes('.example.lite') ||
@@ -32,14 +32,14 @@ module.exports = () => ({
 				}
 				json.hooks.onMount.push({
 					code: `this.setupObserver(${target === 'angular' ? 'element' : '_ref'});`,
-					onSSR: false
+					onSSR: false,
 				});
 
 				if (!json.hooks.onUnMount) {
-					json.hooks.onUnMount = { code: '' };
+					json.hooks.onUnMount = {code: ''};
 				}
 				json.hooks.onUnMount = {
-					code: `${json.hooks.onUnMount.code};\nthis.observer${target === 'angular' ? '()' : ''}?.disconnect();`
+					code: `${json.hooks.onUnMount.code};\nthis.observer${target === 'angular' ? '()' : ''}?.disconnect();`,
 				};
 
 				if (!json.state) {
@@ -49,7 +49,7 @@ module.exports = () => ({
 					code: 'undefined',
 					type: 'property',
 					propertyType: 'normal',
-					typeParameter: 'MutationObserver|undefined'
+					typeParameter: 'MutationObserver|undefined',
 				};
 				json.state.setupObserver = {
 					code: `setupObserver(element: HTMLElement|null) {
@@ -77,17 +77,17 @@ module.exports = () => ({
     });
   }`,
 					type: 'method',
-					typeParameter: 'any'
+					typeParameter: 'any',
 				};
 			}
 
 			return json;
-		}
+		},
 	},
 	code: {
 		post: (code, json) => {
-			const { pluginData } = json;
-			const { target } = pluginData;
+			const {pluginData} = json;
+			const {target} = pluginData;
 
 			let changedCode = code;
 
@@ -100,12 +100,12 @@ module.exports = () => ({
 				element.setAttribute(attr.name, attr.value);
 			parent.removeAttribute(attr.name);
 		}
-					else if (attr && attr.name === "class") {`
+					else if (attr && attr.name === "class") {`,
 					)
 					.replace(
 						'attr &&',
 						// Pass all `data-` and `aria-` attributes, except `data-density`
-						"attr && attr.name !== 'data-density' &&"
+						"attr && attr.name !== 'data-density' &&",
 					)
 					.replace(
 						'element.setAttribute(attr.name, attr.value);\n' +
@@ -116,15 +116,15 @@ module.exports = () => ({
 							'          } else {\n' +
 							'            element.removeAttribute(attr.name);\n' +
 							'          }\n' +
-							'          parent.removeAttribute(attr.name);'
+							'          parent.removeAttribute(attr.name);',
 					)
 					.replace(
 						'`${currentClass ? `${currentClass} ` : ""}${value}`',
-						'`${currentClass ? currentClass : ""}${value ? ` ${value}`: ""}`'
+						'`${currentClass ? currentClass : ""}${value ? ` ${value}`: ""}`',
 					);
 			}
 
 			return changedCode;
-		}
-	}
+		},
+	},
 });

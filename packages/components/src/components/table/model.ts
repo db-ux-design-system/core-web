@@ -1,11 +1,11 @@
-import type { GlobalProps, GlobalState, WidthProps } from '../../shared/model';
-import type { DBTableRowDefaultProps } from '../table-row/model';
+import type {GlobalProps, GlobalState, WidthProps} from '../../shared/model';
+import type {DBTableRowDefaultProps} from '../table-row/model';
 
 export const DBTableRowSizeList = [
 	'x-small',
 	'small',
 	'medium',
-	'large'
+	'large',
 ] as const;
 export type DBTableRowSizeType = (typeof DBTableRowSizeList)[number];
 
@@ -16,7 +16,7 @@ export const DBTableDividerList = [
 	'none',
 	'both',
 	'horizontal',
-	'vertical'
+	'vertical',
 ] as const;
 export type DBTableDividerType = (typeof DBTableDividerList)[number];
 
@@ -28,7 +28,7 @@ export const DBTableStickyHeaderList = [
 	'none',
 	'both',
 	'horizontal',
-	'vertical'
+	'vertical',
 ] as const;
 export type DBTableStickyHeaderType = (typeof DBTableStickyHeaderList)[number];
 
@@ -42,7 +42,7 @@ export const DBTableColumnsSizeList = [
 	'auto',
 	'1fr',
 	'min-content',
-	'max-content'
+	'max-content',
 ] as const;
 export type DBTableColumnsSizeType = (typeof DBTableColumnsSizeList)[number];
 

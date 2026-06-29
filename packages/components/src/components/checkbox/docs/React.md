@@ -6,11 +6,11 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { useState } from "react";
-import { DBCheckbox } from "@db-ux/react-core-components";
+import {useState} from 'react';
+import {DBCheckbox} from '@db-ux/react-core-components';
 
 const App = () => {
-	const [checkbox, setCheckbox] = useState("");
+	const [checkbox, setCheckbox] = useState('');
 
 	return (
 		<DBCheckbox
@@ -33,7 +33,7 @@ export default App;
 The message prop of the DBCheckbox does not accept React Nodes or HTML for security reasons (to prevent Cross-Site Scripting (XSS)). To add a richly formatted description, use the DBInfotext component as a sibling element. It is crucial to link both components using the [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby)-HTML-attribute to ensure accessibility.
 
 ```tsx App.tsx
-import { DBCheckbox, DBInfotext } from "@db-ux/react-core-components";
+import {DBCheckbox, DBInfotext} from '@db-ux/react-core-components';
 
 const App = () => {
 	return (

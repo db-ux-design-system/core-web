@@ -6,19 +6,14 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
-import { ClickEvent } from '../../shared/model';
-import {
-	cls,
-	getBooleanAsString,
-	delay as utilsDelay,
-	uuid
-} from '../../utils';
-import { DocumentScrollListener } from '../../utils/document-scroll-listener';
-import { handleFixedPopover } from '../../utils/floating-components';
-import { DBTooltipProps, DBTooltipState } from './model';
+import {DEFAULT_ID} from '../../shared/constants';
+import {ClickEvent} from '../../shared/model';
+import {cls, getBooleanAsString, delay as utilsDelay, uuid} from '../../utils';
+import {DocumentScrollListener} from '../../utils/document-scroll-listener';
+import {handleFixedPopover} from '../../utils/floating-components';
+import {DBTooltipProps, DBTooltipState} from './model';
 
 useMetadata({});
 useDefaultProps<DBTooltipProps>({});
@@ -67,7 +62,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 						handleFixedPopover(
 							_ref,
 							parent,
-							(props.placement as unknown as string) ?? 'bottom'
+							(props.placement as unknown as string) ?? 'bottom',
 						);
 					}
 				}, 1);
@@ -83,7 +78,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			// down the shared scroll callback/observer once the last one leaves.
 			state._activeTriggerCount = Math.max(
 				(state._activeTriggerCount ?? 0) - 1,
-				0
+				0,
 			);
 			if ((state._activeTriggerCount ?? 0) > 0) {
 				return;
@@ -91,7 +86,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
-					state._documentScrollListenerCallbackId!
+					state._documentScrollListenerCallbackId!,
 				);
 				state._documentScrollListenerCallbackId = undefined;
 			}
@@ -106,15 +101,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (state._activeTriggerCount === 1) {
 				state._documentScrollListenerCallbackId =
 					new DocumentScrollListener().addCallback((event) =>
-						state.handleDocumentScroll(event, parent)
+						state.handleDocumentScroll(event, parent),
 					);
 				state._observer?.observe(state.getParent());
 			}
 			state.handleAutoPlacement(parent);
 		},
 		resetIds: () => {
-			state._id =
-				props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid();
+			state._id = props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid();
 		},
 
 		// Detaches all listeners/observers added by this tooltip. Used by onUnMount to avoid stale closures firing after the tooltip is gone.
@@ -142,15 +136,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 				const attachedId = state._attachedId ?? state._id;
 				// Only remove data-has-tooltip when no other .db-tooltip
 				// siblings remain inside the same parent.
-				const remainingTooltips =
-					parent.querySelectorAll('.db-tooltip');
+				const remainingTooltips = parent.querySelectorAll('.db-tooltip');
 				const otherTooltipsExist = Array.from(remainingTooltips).some(
-					(el) => el !== _ref
+					(el) => el !== _ref,
 				);
-				if (
-					parent.dataset['hasTooltip'] === 'true' &&
-					!otherTooltipsExist
-				) {
+				if (parent.dataset['hasTooltip'] === 'true' && !otherTooltipsExist) {
 					delete parent.dataset['hasTooltip'];
 				}
 				if (parent.getAttribute('aria-labelledby') === attachedId) {
@@ -162,7 +152,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._attachedParent = undefined;
 				state._attachedId = undefined;
 			}
-		}
+		},
 	});
 
 	onMount(() => {
@@ -184,8 +174,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 				const enterListener = () => state.handleEnter(parent);
 				const leaveListener = () => state.handleLeave();
-				const keyDownListener = (event: any) =>
-					state.handleEscape(event);
+				const keyDownListener = (event: any) => state.handleEscape(event);
 
 				parent.addEventListener('mouseenter', enterListener);
 				parent.addEventListener('focusin', enterListener);
@@ -195,11 +184,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 				state._boundListeners = [
 					...(state._boundListeners ?? []),
-					{ parent, type: 'mouseenter', fn: enterListener },
-					{ parent, type: 'focusin', fn: enterListener },
-					{ parent, type: 'keydown', fn: keyDownListener },
-					{ parent, type: 'mouseleave', fn: leaveListener },
-					{ parent, type: 'focusout', fn: leaveListener }
+					{parent, type: 'mouseenter', fn: enterListener},
+					{parent, type: 'focusin', fn: enterListener},
+					{parent, type: 'keydown', fn: keyDownListener},
+					{parent, type: 'mouseleave', fn: leaveListener},
+					{parent, type: 'focusout', fn: leaveListener},
 				];
 
 				parent.dataset['hasTooltip'] = 'true';
@@ -214,13 +203,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._attachedId = state._id;
 			}
 
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
+			if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
 				state._observer = new IntersectionObserver((payload) => {
 					const entry = payload.find(
-						({ target }) => target === state.getParent()
+						({target}) => target === state.getParent(),
 					);
 					if (entry && !entry.isIntersecting) {
 						state.handleEscape(false);
@@ -249,22 +235,15 @@ export default function DBTooltip(props: DBTooltipProps) {
 			id={state._id}
 			data-emphasis={props.emphasis}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
-			data-animation={getBooleanAsString(
-				props.animation ?? true,
-				'animation'
-			)}
+			data-animation={getBooleanAsString(props.animation ?? true, 'animation')}
 			data-delay={props.delay}
 			data-width={props.width}
-			data-show-arrow={getBooleanAsString(
-				props.showArrow ?? true,
-				'showArrow'
-			)}
+			data-show-arrow={getBooleanAsString(props.showArrow ?? true, 'showArrow')}
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"
-			onClick={(event: ClickEvent<HTMLElement>) =>
-				state.handleClick(event)
-			}>
+			onClick={(event: ClickEvent<HTMLElement>) => state.handleClick(event)}
+		>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</i>

@@ -1,5 +1,5 @@
 @mixin init($variant) {
-	[data-color="#{$variant}"],
+	[data-color='#{$variant}'],
 	.db-color-#{$variant} {
 		@extend %db-#{$variant}-variables;
 
@@ -9,14 +9,14 @@
 }
 
 @mixin init-on-background-colors($color) {
-	[data-on-bg-color="#{$color}"],
+	[data-on-bg-color='#{$color}'],
 	.db-on-bg-color-#{$color} {
 		color: var(--db-adaptive-on-bg-basic-#{$color}-default);
 	}
 }
 
 @mixin init-background-colors($background-color) {
-	[data-bg-color="#{$background-color}"],
+	[data-bg-color='#{$background-color}'],
 	.db-bg-color-#{$background-color} {
 		background-color: var(--db-adaptive-bg-#{$background-color}-default);
 	}

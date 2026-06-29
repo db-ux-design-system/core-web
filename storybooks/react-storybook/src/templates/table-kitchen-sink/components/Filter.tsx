@@ -1,6 +1,6 @@
-import { DBButton, DBPopover, DBStack, DBTooltip } from '@components';
-import type { Column, RowData, Table } from '@tanstack/react-table';
-import { type FC, Fragment, useMemo } from 'react';
+import {DBButton, DBPopover, DBStack, DBTooltip} from '@components';
+import type {Column, RowData, Table} from '@tanstack/react-table';
+import {type FC, Fragment, useMemo} from 'react';
 import DebouncedInput from './DebouncedInput';
 
 type NumberInputProps = {
@@ -12,7 +12,7 @@ type NumberInputProps = {
 const NumberInput: FC<NumberInputProps> = ({
 	columnFilterValue,
 	getFacetedMinMaxValues,
-	setFilterValue
+	setFilterValue,
 }) => {
 	const minOpt = getFacetedMinMaxValues()?.[0];
 	const min = Number(minOpt ?? '');
@@ -61,7 +61,7 @@ const TextInput: FC<TextInputProps> = ({
 	columnFilterValue,
 	columnSize,
 	setFilterValue,
-	sortedUniqueValues
+	sortedUniqueValues,
 }) => {
 	const dataListId = columnId + 'list';
 
@@ -89,7 +89,7 @@ type Props<T extends RowData> = {
 	table: Table<T>;
 };
 
-export function Filter<T extends RowData>({ column, table }: Props<T>) {
+export function Filter<T extends RowData>({column, table}: Props<T>) {
 	const firstValue = table
 		.getPreFilteredRowModel()
 		.flatRows[0]?.getValue(column.id);
@@ -102,7 +102,7 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
 			typeof firstValue === 'number'
 				? []
 				: Array.from(uniqueValues.keys()).sort(),
-		[uniqueValues]
+		[uniqueValues],
 	);
 
 	return (
@@ -112,7 +112,8 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
 				<DBButton size="small" variant="ghost" noText icon="funnel">
 					Filter<DBTooltip placement="right">Filter</DBTooltip>
 				</DBButton>
-			}>
+			}
+		>
 			{typeof firstValue === 'number' ? (
 				<NumberInput
 					columnFilterValue={columnFilterValue as [number, number]}

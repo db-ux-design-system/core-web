@@ -1,4 +1,4 @@
-import type { InputType } from 'storybook/internal/csf';
+import type {InputType} from 'storybook/internal/csf';
 
 export const StorybookIconOnlyArgTypes: Record<string, InputType> = {
 	icon: {
@@ -31,9 +31,9 @@ export const StorybookIconOnlyArgTypes: Record<string, InputType> = {
 			'minus',
 			'plus',
 			'resize_handle_corner',
-			'x_placeholder'
-		]
-	}
+			'x_placeholder',
+		],
+	},
 };
 export const StorybookIconLeadingOnlyArgTypes: Record<string, InputType> = {
 	iconLeading: {
@@ -66,9 +66,9 @@ export const StorybookIconLeadingOnlyArgTypes: Record<string, InputType> = {
 			'minus',
 			'plus',
 			'resize_handle_corner',
-			'x_placeholder'
-		]
-	}
+			'x_placeholder',
+		],
+	},
 };
 export const StorybookIconTrailingOnlyArgTypes: Record<string, InputType> = {
 	iconTrailing: {
@@ -101,19 +101,19 @@ export const StorybookIconTrailingOnlyArgTypes: Record<string, InputType> = {
 			'minus',
 			'plus',
 			'resize_handle_corner',
-			'x_placeholder'
-		]
-	}
+			'x_placeholder',
+		],
+	},
 };
 export const StorybookIconArgTypes: Record<string, InputType> = {
 	...StorybookIconOnlyArgTypes,
-	showIcon: { control: 'boolean' }
+	showIcon: {control: 'boolean'},
 };
 export const StorybookIconLeadingArgTypes: Record<string, InputType> = {
 	...StorybookIconLeadingOnlyArgTypes,
-	showIconLeading: { control: 'boolean' }
+	showIconLeading: {control: 'boolean'},
 };
 export const StorybookIconTrailingArgTypes: Record<string, InputType> = {
 	...StorybookIconTrailingOnlyArgTypes,
-	showIconTrailing: { control: 'boolean' }
+	showIconTrailing: {control: 'boolean'},
 };

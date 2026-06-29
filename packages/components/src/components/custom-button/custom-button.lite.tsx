@@ -1,6 +1,6 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { cls, getBooleanAsString } from '../../utils';
-import { DBCustomButtonProps } from './model';
+import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
+import {cls, getBooleanAsString} from '../../utils';
+import {DBCustomButtonProps} from './model';
 
 useMetadata({});
 
@@ -23,12 +23,13 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 			data-icon-trailing={props.iconTrailing}
 			data-show-icon-trailing={getBooleanAsString(
 				props.showIconTrailing,
-				'showIconTrailing'
+				'showIconTrailing',
 			)}
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
-			data-no-text={getBooleanAsString(props.noText, 'noText')}>
+			data-no-text={getBooleanAsString(props.noText, 'noText')}
+		>
 			{props.children}
 		</div>
 	);

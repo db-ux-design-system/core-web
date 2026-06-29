@@ -1,10 +1,10 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBIcon from '../../icon/icon.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBBadge from '../badge.lite';
 
 useMetadata({
-	storybookIgnore: true
+	storybookIgnore: true,
 });
 
 export default function BadgeExamples() {
@@ -26,7 +26,8 @@ export default function BadgeExamples() {
 				data-sb-ignore="true"
 				semantic="informational"
 				size="small"
-				icon="none">
+				icon="none"
+			>
 				Numbers
 			</DBInfotext>
 			<i class="line-break" data-sb-ignore="true" />
@@ -36,7 +37,8 @@ export default function BadgeExamples() {
 				data-sb-ignore="true"
 				semantic="informational"
 				size="small"
-				icon="none">
+				icon="none"
+			>
 				Dot - Medium
 			</DBInfotext>
 			<DBBadge semantic="critical" emphasis="strong" size="medium">
@@ -46,7 +48,8 @@ export default function BadgeExamples() {
 				data-sb-ignore="true"
 				semantic="informational"
 				size="small"
-				icon="none">
+				icon="none"
+			>
 				Icon - Medium
 			</DBInfotext>
 		</Fragment>

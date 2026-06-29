@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBBadge from '../badge.lite';
-import { StorybookBadgeArgTypes } from './_badge.arg.types';
+import {StorybookBadgeArgTypes} from './_badge.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookBadgeArgTypes
+	storybookArgTypes: StorybookBadgeArgTypes,
 });
 
 export default function BadgeDensity() {

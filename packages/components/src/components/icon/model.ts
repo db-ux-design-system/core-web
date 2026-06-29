@@ -2,7 +2,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	TextProps
+	TextProps,
 } from '../../shared/model';
 
 export const IconWeightList = ['16', '20', '24', '32', '48', '64'] as const;

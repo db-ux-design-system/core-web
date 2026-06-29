@@ -1,10 +1,10 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/internal/component";
-@use "../../styles/internal/db-puls";
-@use "../../styles/internal/form-components";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/colors';
+@use '@db-ux/core-foundations/build/styles/icons';
+@use '@db-ux/core-foundations/build/styles/helpers';
+@use '../../styles/internal/component';
+@use '../../styles/internal/db-puls';
+@use '../../styles/internal/form-components';
 
 $with-icon-padding-calc: calc(
 	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
@@ -16,7 +16,7 @@ $with-icon-padding-calc: calc(
 
 	@include helpers.display(inline-flex);
 
-	list-style-type: "";
+	list-style-type: '';
 	border-radius: variables.$db-border-radius-sm;
 
 	&:has(input:disabled) {
@@ -56,9 +56,7 @@ $with-icon-padding-calc: calc(
 				position: absolute;
 				transform: translateY(-50%);
 				inset-block-start: 50%;
-				inset-inline-start: calc(
-					0% + #{variables.$db-spacing-fixed-xs}
-				);
+				inset-inline-start: calc(0% + #{variables.$db-spacing-fixed-xs});
 			}
 		}
 
@@ -73,7 +71,7 @@ $with-icon-padding-calc: calc(
 			}
 		}
 
-		&:is([data-no-text], [data-no-text="true"]) {
+		&:is([data-no-text], [data-no-text='true']) {
 			@include icons.is-icon-text-replace;
 
 			padding: 0;
@@ -81,8 +79,7 @@ $with-icon-padding-calc: calc(
 				#{$with-icon-padding-calc} - #{variables.$db-spacing-fixed-2xs}
 			);
 			block-size: calc(
-				#{form-components.$font-size-height} +
-					#{variables.$db-spacing-fixed-xs}
+				#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs}
 			);
 
 			&::before {
@@ -107,7 +104,7 @@ $with-icon-padding-calc: calc(
 		- placed on li.db-tab-item focus would get cut off partially by by overflow hidden (orientation vertical)
 		 */
 		&:focus-visible {
-			&:is(input[type="radio"]) {
+			&:is(input[type='radio']) {
 				outline: none;
 				box-shadow: none;
 			}
@@ -115,7 +112,7 @@ $with-icon-padding-calc: calc(
 			&::before {
 				@extend %focus-placeholder;
 
-				content: "";
+				content: '';
 				position: absolute;
 				inset: 0;
 				border-radius: variables.$db-border-radius-sm;

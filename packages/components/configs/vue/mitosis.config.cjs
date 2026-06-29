@@ -8,6 +8,6 @@ module.exports = {
 	targets: ['vue'],
 	dest: '../../output/tmp',
 	options: {
-		vue
-	}
+		vue,
+	},
 };

@@ -1,30 +1,30 @@
-import type { InputType } from 'storybook/internal/csf';
+import type {InputType} from 'storybook/internal/csf';
 
 export const StorybookTableArgTypes: Record<string, InputType> = {
-	id: { control: 'text' },
-	caption: { control: 'text' },
-	captionPlain: { control: 'text' },
-	data: { control: 'object' },
+	id: {control: 'text'},
+	caption: {control: 'text'},
+	captionPlain: {control: 'text'},
+	data: {control: 'object'},
 	divider: {
 		control: 'select',
-		options: ['none', 'both', 'horizontal', 'vertical']
+		options: ['none', 'both', 'horizontal', 'vertical'],
 	},
-	showCaption: { control: 'boolean' },
+	showCaption: {control: 'boolean'},
 	size: {
 		control: 'select',
-		options: ['x-small', 'small', 'medium', 'large']
+		options: ['x-small', 'small', 'medium', 'large'],
 	},
 	variant: {
 		control: 'select',
-		options: ['flat', 'zebra', 'spaced']
+		options: ['flat', 'zebra', 'spaced'],
 	},
 	mobileVariant: {
 		control: 'select',
-		options: ['table', 'list']
+		options: ['table', 'list'],
 	},
 	stickyHeader: {
 		control: 'select',
-		options: ['none', 'both', 'horizontal', 'vertical']
+		options: ['none', 'both', 'horizontal', 'vertical'],
 	},
-	columnSizes: { control: 'object' }
+	columnSizes: {control: 'object'},
 };

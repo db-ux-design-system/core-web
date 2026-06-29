@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBInfotext } from '../index';
-import { FigmaInfotextProps, infotexts } from './infotext.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBInfotext} from '../index';
+import {FigmaInfotextProps, infotexts} from './infotext.figma';
 
 useMetadata({
-	figma: infotexts
+	figma: infotexts,
 });
 
 export default function InfotextFigmaLite(props: FigmaInfotextProps) {

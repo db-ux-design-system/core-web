@@ -18,11 +18,7 @@ For general installation and configuration take a look at the [components](https
 					data-width="auto"
 					data-alignment="start"
 					aria-controls="my-tabs-tab-panel-0"
-					><input
-						type="radio"
-						id="my-tabs-tab-0"
-						name="my-tabs"
-					/>Test 1</label
+					><input type="radio" id="my-tabs-tab-0" name="my-tabs" />Test 1</label
 				><label
 					role="tab"
 					for="my-tabs-tab-1"
@@ -30,11 +26,7 @@ For general installation and configuration take a look at the [components](https
 					data-width="auto"
 					data-alignment="start"
 					aria-controls="my-tabs-tab-panel-1"
-					><input
-						type="radio"
-						id="my-tabs-tab-1"
-						name="my-tabs"
-					/>Test 2</label
+					><input type="radio" id="my-tabs-tab-1" name="my-tabs" />Test 2</label
 				><label
 					role="tab"
 					for="my-tabs-tab-2"
@@ -42,11 +34,7 @@ For general installation and configuration take a look at the [components](https
 					data-width="auto"
 					data-alignment="start"
 					aria-controls="my-tabs-tab-panel-2"
-					><input
-						type="radio"
-						id="my-tabs-tab-2"
-						name="my-tabs"
-					/>Test 3</label
+					><input type="radio" id="my-tabs-tab-2" name="my-tabs" />Test 3</label
 				>
 			</div>
 		</div>

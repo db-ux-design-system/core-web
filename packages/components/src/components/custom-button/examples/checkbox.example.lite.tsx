@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBCustomButton from '../custom-button.lite';
-import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
+import {StorybookCustomButtonArgTypes} from './_custom-button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Checkbox',
 	storybookNames: ['Unchecked', 'Checked'],
-	storybookArgTypes: StorybookCustomButtonArgTypes
+	storybookArgTypes: StorybookCustomButtonArgTypes,
 });
 
 export default function CustomButtonCheckbox() {

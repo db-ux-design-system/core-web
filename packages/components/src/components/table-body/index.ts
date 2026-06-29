@@ -1,1 +1,1 @@
-export { default as DBTableBody } from './table-body';
+export {default as DBTableBody} from './table-body';

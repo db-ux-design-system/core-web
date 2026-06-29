@@ -1,7 +1,7 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBCustomButton from '../custom-button.lite';
-import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
+import {StorybookCustomButtonArgTypes} from './_custom-button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Size',
@@ -11,18 +11,15 @@ useMetadata({
 		'(Default) Medium: Link',
 		'Small: Button',
 		'Small: Checkbox',
-		'Small: Link'
+		'Small: Link',
 	],
-	storybookArgTypes: StorybookCustomButtonArgTypes
+	storybookArgTypes: StorybookCustomButtonArgTypes,
 });
 
 export default function CustomButtonSize() {
 	return (
 		<Fragment>
-			<DBInfotext
-				data-sb-ignore="true"
-				size="small"
-				semantic="informational">
+			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
 				(Default) Medium
 			</DBInfotext>
 			<DBCustomButton size="medium">
@@ -38,10 +35,7 @@ export default function CustomButtonSize() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext
-				data-sb-ignore="true"
-				size="small"
-				semantic="informational">
+			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
 				Small
 			</DBInfotext>
 			<DBCustomButton size="small">

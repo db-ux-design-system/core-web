@@ -7,16 +7,16 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget
+	useTarget,
 } from '@builder.io/mitosis';
-import { ClickEvent } from '../../shared/model';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
-import { DBAccordionItemProps, DBAccordionItemState } from './model';
+import {ClickEvent} from '../../shared/model';
+import {cls, getBoolean, getBooleanAsString} from '../../utils';
+import {DBAccordionItemProps, DBAccordionItemState} from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['open']
-	}
+		nativeAttributes: ['open'],
+	},
 });
 
 useDefaultProps<DBAccordionItemProps>({});
@@ -49,7 +49,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.open === undefined) {
 				state._open = newStateOpen;
 			}
-		}
+		},
 	});
 
 	onMount(() => {
@@ -62,7 +62,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
-			useTarget({ react: () => state.handleNameAttribute() });
+			useTarget({react: () => state.handleNameAttribute()});
 		}
 	}, [_ref, state.initialized]);
 
@@ -84,16 +84,16 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	return (
 		<li
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-accordion-item', props.className)}>
+			class={cls('db-accordion-item', props.className)}
+		>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 				ref={_ref}
 				name={state._name}
-				open={state._open}>
+				open={state._open}
+			>
 				<summary onClick={(event) => state.handleToggle(event)}>
-					<Show when={props.headlinePlain}>
-						{props.headlinePlain}
-					</Show>
+					<Show when={props.headlinePlain}>{props.headlinePlain}</Show>
 					<Show when={!props.headlinePlain}>
 						<Slot name="headline" />
 					</Show>

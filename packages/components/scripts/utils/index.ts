@@ -1,5 +1,5 @@
-import { replaceInFileSync } from 'replace-in-file';
-import { Component, Overwrite } from '../post-build/components';
+import {replaceInFileSync} from 'replace-in-file';
+import {Component, Overwrite} from '../post-build/components';
 
 export const transformToUpperComponentName = (componentName: string) =>
 	componentName
@@ -11,7 +11,7 @@ export const runReplacements = (
 	replacements: Overwrite[],
 	component: Component,
 	framework: string,
-	file: string
+	file: string,
 ) => {
 	if (component?.overwrites?.[framework]) {
 		replacements = [...replacements, ...component.overwrites[framework]];
@@ -23,17 +23,17 @@ export const runReplacements = (
 
 	replacements.push({
 		from: ',\n' + ',',
-		to: ','
+		to: ',',
 	});
 
 	for (const replacement of replacements) {
 		const option = {
 			files: file,
 			from: replacement.from,
-			to: replacement.to
+			to: replacement.to,
 		};
 		replaceInFileSync(option);
 	}
 };
 
-export default { transformToUpperComponentName, runReplacements };
+export default {transformToUpperComponentName, runReplacements};

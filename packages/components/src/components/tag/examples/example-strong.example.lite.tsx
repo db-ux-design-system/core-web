@@ -1,6 +1,6 @@
-import { useMetadata } from '@builder.io/mitosis';
+import {useMetadata} from '@builder.io/mitosis';
 import DBTag from '../tag.lite';
-import { StorybookTagArgTypes } from './_tag.arg.types';
+import {StorybookTagArgTypes} from './_tag.arg.types';
 
 useMetadata({
 	storybookTitle: 'Example Strong',
@@ -9,9 +9,9 @@ useMetadata({
 		'Interactive Strong Link with Icon',
 		'Interactive Strong Checkbox with Icon',
 		'Interactive Strong Radio 1 with Icon',
-		'Interactive Strong Radio 2 with Icon'
+		'Interactive Strong Radio 2 with Icon',
 	],
-	storybookArgTypes: StorybookTagArgTypes
+	storybookArgTypes: StorybookTagArgTypes,
 });
 
 export default function TagExampleStrong() {

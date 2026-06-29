@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,7 +7,7 @@ export default defineConfig({
 		lib: {
 			entry: 'src/index.ts',
 			name: 'DB-UX',
-			fileName: (format) => `db-ux.${format}.js`
+			fileName: (format) => `db-ux.${format}.js`,
 		},
 		rollupOptions: {
 			external: ['vue'],
@@ -15,10 +15,10 @@ export default defineConfig({
 				// Provide global variables to use in the UMD build
 				// Add external deps here
 				globals: {
-					vue: 'Vue'
-				}
-			}
-		}
+					vue: 'Vue',
+				},
+			},
+		},
 	},
-	plugins: [vue()]
+	plugins: [vue()],
 });

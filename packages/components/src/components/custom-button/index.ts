@@ -1,1 +1,1 @@
-export { default as DBCustomButton } from './custom-button';
+export {default as DBCustomButton} from './custom-button';

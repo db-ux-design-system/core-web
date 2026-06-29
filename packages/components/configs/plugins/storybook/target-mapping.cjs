@@ -3,14 +3,14 @@
  */
 const targetMapping = {
 	react: {
-		storyBookLib: 'react-vite'
+		storyBookLib: 'react-vite',
 	},
 	angular: {
-		storyBookLib: 'angular'
+		storyBookLib: 'angular',
 	},
 	vue: {
-		storyBookLib: 'vue3-vite'
-	}
+		storyBookLib: 'vue3-vite',
+	},
 };
 
-module.exports = { targetMapping };
+module.exports = {targetMapping};

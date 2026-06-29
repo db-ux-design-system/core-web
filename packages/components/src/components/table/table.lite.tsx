@@ -5,13 +5,13 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
 } from '@builder.io/mitosis';
-import { cls, delay, getBooleanAsString } from '../../utils';
+import {cls, delay, getBooleanAsString} from '../../utils';
 import DBTableBody from '../table-body/table-body.lite';
 import DBTableFooter from '../table-footer/table-footer.lite';
 import DBTableHead from '../table-head/table-head.lite';
-import { DBTableData, DBTableProps, DBTableState } from './model';
+import {DBTableData, DBTableProps, DBTableState} from './model';
 
 useMetadata({});
 
@@ -36,7 +36,7 @@ export default function DBTable(props: DBTableProps) {
 			}
 
 			return {};
-		}
+		},
 	});
 
 	// jscpd:ignore-end
@@ -59,22 +59,16 @@ export default function DBTable(props: DBTableProps) {
 				const headerCells = table.querySelectorAll('thead tr th');
 				if (headerCells.length) {
 					const otherRows = table.querySelectorAll<HTMLElement>(
-						':is(tbody,tfoot) tr'
+						':is(tbody,tfoot) tr',
 					);
 					otherRows.forEach((row) => {
-						const cells =
-							row.querySelectorAll<HTMLElement>(':is(td,th)');
+						const cells = row.querySelectorAll<HTMLElement>(':is(td,th)');
 						cells.forEach((cell, index) => {
 							const headerCell = headerCells[index];
 							if (headerCell) {
 								// Use only direct text nodes to avoid including text from nested elements (e.g. sort buttons)
-								const directText = Array.from(
-									headerCell.childNodes
-								)
-									.filter(
-										(node) =>
-											node.nodeType === Node.TEXT_NODE
-									)
+								const directText = Array.from(headerCell.childNodes)
+									.filter((node) => node.nodeType === Node.TEXT_NODE)
 									.map((node) => node.textContent?.trim())
 									.filter(Boolean)
 									.join(' ');
@@ -112,7 +106,8 @@ export default function DBTable(props: DBTableProps) {
 			data-variant={props.variant}
 			data-mobile-variant={props.mobileVariant}
 			data-show-caption={getBooleanAsString(props.showCaption)}
-			data-sticky-header={props.stickyHeader}>
+			data-sticky-header={props.stickyHeader}
+		>
 			<table ref={_ref} id={props.id}>
 				<Show when={props.captionPlain} else={<Slot name="caption" />}>
 					<caption>{props.captionPlain}</caption>

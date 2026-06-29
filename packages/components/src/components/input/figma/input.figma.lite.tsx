@@ -1,9 +1,9 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBInput } from '../index';
-import { FigmaInputProps, inputs } from './input.figma';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBInput} from '../index';
+import {FigmaInputProps, inputs} from './input.figma';
 
 useMetadata({
-	figma: inputs
+	figma: inputs,
 });
 
 export default function InputFigmaLite(props: FigmaInputProps) {

@@ -1,17 +1,17 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
-import { StorybookTableArgTypes } from './_table.arg.types';
+import {StorybookTableArgTypes} from './_table.arg.types';
 import {
 	horizontalAlignmentCenterTable,
 	horizontalAlignmentEndTable,
-	horizontalAlignmentStartTable
+	horizontalAlignmentStartTable,
 } from './data';
 
 useMetadata({
 	storybookTitle: 'Horizontal Alignment',
 	storybookNames: ['(Default) Start', 'Center', 'End'],
-	storybookArgTypes: StorybookTableArgTypes
+	storybookArgTypes: StorybookTableArgTypes,
 });
 
 export default function TableHorizontalAlignment() {
@@ -23,8 +23,9 @@ export default function TableHorizontalAlignment() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					(Default) Start
 				</DBInfotext>
@@ -40,8 +41,9 @@ export default function TableHorizontalAlignment() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Center
 				</DBInfotext>
@@ -57,8 +59,9 @@ export default function TableHorizontalAlignment() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					End
 				</DBInfotext>

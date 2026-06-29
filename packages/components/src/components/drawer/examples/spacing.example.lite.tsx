@@ -1,15 +1,15 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import {Fragment, useMetadata, useState} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawer from '../drawer.lite';
-import { StorybookDrawerArgTypes } from './_drawer.arg.types';
+import {StorybookDrawerArgTypes} from './_drawer.arg.types';
 
 useMetadata({
 	storybookTitle: 'Spacing',
 	storybookNames: ['(Default) Medium', 'Small', 'Large', 'None'],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
-		open: false
-	}
+		open: false,
+	},
 });
 
 export default function DrawerSpacing() {
@@ -20,51 +20,56 @@ export default function DrawerSpacing() {
 			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					onClick={() => setOpenIndex(0)}
+				>
 					Open: (Default) Medium
 				</DBButton>
-				<DBDrawer
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+				<DBDrawer open={openIndex === 0} onClose={() => setOpenIndex(-1)}>
 					(Default) Medium
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					onClick={() => setOpenIndex(1)}
+				>
 					Open: Small
 				</DBButton>
 				<DBDrawer
 					spacing="small"
 					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+				>
 					Small
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					onClick={() => setOpenIndex(2)}
+				>
 					Open: Large
 				</DBButton>
 				<DBDrawer
 					spacing="large"
 					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+				>
 					Large
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+					onClick={() => setOpenIndex(3)}
+				>
 					Open: None
 				</DBButton>
 				<DBDrawer
 					spacing="none"
 					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+				>
 					None
 				</DBDrawer>
 			</div>

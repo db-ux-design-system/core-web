@@ -1,5 +1,5 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
+@use '@db-ux/core-foundations/build/styles/variables';
+@use '@db-ux/core-foundations/build/styles/helpers';
 
 .db-page-document {
 	@media screen {
@@ -23,17 +23,17 @@
 		opacity: 0;
 
 		@media (prefers-reduced-motion: no-preference) {
-			&[data-fade-in="true"] {
+			&[data-fade-in='true'] {
 				transition: opacity variables.$db-transition-straight-emotional;
 			}
 		}
 
 		&:not([data-fonts-loaded]),
-		&[data-fonts-loaded="true"] {
+		&[data-fonts-loaded='true'] {
 			opacity: 1;
 		}
 
-		&[data-variant="fixed"] {
+		&[data-variant='fixed'] {
 			@include header-footer-style;
 
 			block-size: 100%;

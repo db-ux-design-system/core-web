@@ -1,8 +1,8 @@
 /** A single text content block inside an MCP tool result. */
-export type TextContent = { type: 'text'; text: string };
+export type TextContent = {type: 'text'; text: string};
 
 /** A single image content block inside an MCP tool result. */
-export type ImageContent = { type: 'image'; data: string; mimeType: string };
+export type ImageContent = {type: 'image'; data: string; mimeType: string};
 
 /** Standard return type for all MCP tool handlers. */
 export type ToolResult = {
@@ -30,15 +30,15 @@ export const TOOL_TIMEOUT_MS = 10_000;
  */
 export async function withTimeout(
 	operation: Promise<ToolResult>,
-	timeoutMessage: string
+	timeoutMessage: string,
 ): Promise<ToolResult> {
 	let timer: ReturnType<typeof setTimeout> | undefined;
 	try {
 		const timeoutPromise = new Promise<ToolResult>((resolve) => {
 			timer = setTimeout(() => {
 				resolve({
-					content: [{ type: 'text', text: timeoutMessage }],
-					isError: true
+					content: [{type: 'text', text: timeoutMessage}],
+					isError: true,
 				});
 			}, TOOL_TIMEOUT_MS);
 		});

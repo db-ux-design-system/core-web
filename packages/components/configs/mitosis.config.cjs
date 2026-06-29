@@ -12,12 +12,12 @@ module.exports = {
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',
 	commonOptions: {
-		typescript: true
+		typescript: true,
 	},
 	options: {
 		react,
 		angular,
 		vue,
-		stencil
-	}
+		stencil,
+	},
 };

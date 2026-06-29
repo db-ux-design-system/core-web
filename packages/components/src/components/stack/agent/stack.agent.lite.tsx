@@ -1,4 +1,4 @@
-import { DBStack } from '../index';
+import {DBStack} from '../index';
 
 export default function Stack() {
 	return (

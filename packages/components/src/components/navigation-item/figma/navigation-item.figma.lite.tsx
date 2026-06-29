@@ -1,16 +1,16 @@
-import { useMetadata } from '@builder.io/mitosis';
-import { DBNavigationItem } from '../index';
+import {useMetadata} from '@builder.io/mitosis';
+import {DBNavigationItem} from '../index';
 import {
 	FigmaNavigationItemProps,
-	navigationItems
+	navigationItems,
 } from './navigation-item.figma';
 
 useMetadata({
-	figma: navigationItems
+	figma: navigationItems,
 });
 
 export default function NavigationItemFigmaLite(
-	props: FigmaNavigationItemProps
+	props: FigmaNavigationItemProps,
 ) {
 	return (
 		<DBNavigationItem>

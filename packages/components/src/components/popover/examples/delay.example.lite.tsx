@@ -1,12 +1,12 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBPopover from '../popover.lite';
-import { StorybookPopoverArgTypes } from './_popover.arg.types';
+import {StorybookPopoverArgTypes} from './_popover.arg.types';
 
 useMetadata({
 	storybookTitle: 'Delay',
 	storybookNames: ['(Default) None', 'Slow', 'Fast'],
-	storybookArgTypes: StorybookPopoverArgTypes
+	storybookArgTypes: StorybookPopoverArgTypes,
 });
 
 export default function PopoverDelay() {
@@ -15,7 +15,8 @@ export default function PopoverDelay() {
 			<DBPopover
 				id="popover-133"
 				delay="none"
-				trigger={<DBButton>(Default) None</DBButton>}>
+				trigger={<DBButton>(Default) None</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -27,7 +28,8 @@ export default function PopoverDelay() {
 			<DBPopover
 				delay="slow"
 				id="popover-14"
-				trigger={<DBButton>Slow</DBButton>}>
+				trigger={<DBButton>Slow</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -39,7 +41,8 @@ export default function PopoverDelay() {
 			<DBPopover
 				delay="fast"
 				id="popover-15"
-				trigger={<DBButton>Fast</DBButton>}>
+				trigger={<DBButton>Fast</DBButton>}
+			>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>

@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
+import {Fragment, useMetadata, useStore} from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBCheckbox from '../../checkbox/checkbox.lite';
 import DBInfotext from '../../infotext/infotext.lite';
@@ -12,17 +12,17 @@ import DBTableRow from '../../table-row/table-row.lite';
 import DBTag from '../../tag/tag.lite';
 import DBTooltip from '../../tooltip/tooltip.lite';
 import DBTable from '../table.lite';
-import { StorybookTableArgTypes } from './_table.arg.types';
+import {StorybookTableArgTypes} from './_table.arg.types';
 
 useMetadata({
 	storybookTitle: 'Complex',
 	storybookNames: ['Flat', 'Zebra', 'Spaced', 'Mobile variant: List'],
-	storybookArgTypes: StorybookTableArgTypes
+	storybookArgTypes: StorybookTableArgTypes,
 });
 
 export default function TableComplex() {
 	const state = useStore({
-		columnSizes: { 0: 'min-content', 6: 'min-content' }
+		columnSizes: {0: 'min-content', 6: 'min-content'},
 	});
 
 	return (
@@ -34,59 +34,48 @@ export default function TableComplex() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Flat
 				</DBInfotext>
 				<DBTable
 					columnSizes={state.columnSizes}
-					captionPlain="Flat, sortable columns are Link.">
+					captionPlain="Flat, sortable columns are Link."
+				>
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="flat">
 									Check All
-									<DBTooltip placement="top">
-										Check All
-									</DBTooltip>
+									<DBTooltip placement="top">Check All</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
-										gap: 'var(--db-spacing-fixed-xs)'
-									}}>
+										gap: 'var(--db-spacing-fixed-xs)',
+									}}
+								>
 									Link
 									<DBButton
 										size="small"
 										variant="ghost"
 										icon="arrows_vertical"
-										noText>
+										noText
+									>
 										Sort button
-										<DBTooltip placement="top">
-											Sort button
-										</DBTooltip>
+										<DBTooltip placement="top">Sort button</DBTooltip>
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Tag
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Infotext
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Text
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Input
-							</DBTableHeaderCell>
-							<DBTableHeaderCell
-								scope="col"
-								horizontalAlignment="end"
-								noText>
+							<DBTableHeaderCell scope="col">Tag</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Infotext</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Text</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Input</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" horizontalAlignment="end" noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
@@ -97,7 +86,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="flat">
+									name="flat"
+								>
 									Check Red
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -120,17 +110,10 @@ export default function TableComplex() {
 							</DBTableDataCell>
 							<DBTableDataCell>Red</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Red"
-									showLabel={false}
-									placeholder="Red"
-								/>
+								<DBInput label="Red" showLabel={false} placeholder="Red" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -141,7 +124,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="flat">
+									name="flat"
+								>
 									Check Yellow
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -171,10 +155,7 @@ export default function TableComplex() {
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -185,7 +166,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="flat">
+									name="flat"
+								>
 									Check Green
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -206,17 +188,10 @@ export default function TableComplex() {
 							<DBTableDataCell></DBTableDataCell>
 							<DBTableDataCell>Green</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Green"
-									showLabel={false}
-									placeholder="Green"
-								/>
+								<DBInput label="Green" showLabel={false} placeholder="Green" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -233,60 +208,49 @@ export default function TableComplex() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Zebra
 				</DBInfotext>
 				<DBTable
 					columnSizes={state.columnSizes}
 					variant="zebra"
-					captionPlain="Zebra, sortable columns are Link.">
+					captionPlain="Zebra, sortable columns are Link."
+				>
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="zebra">
 									Check All
-									<DBTooltip placement="top">
-										Check All
-									</DBTooltip>
+									<DBTooltip placement="top">Check All</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
-										gap: 'var(--db-spacing-fixed-xs)'
-									}}>
+										gap: 'var(--db-spacing-fixed-xs)',
+									}}
+								>
 									Link
 									<DBButton
 										size="small"
 										variant="ghost"
 										icon="arrows_vertical"
-										noText>
+										noText
+									>
 										Sort button
-										<DBTooltip placement="top">
-											Sort button
-										</DBTooltip>
+										<DBTooltip placement="top">Sort button</DBTooltip>
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Tag
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Infotext
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Text
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Input
-							</DBTableHeaderCell>
-							<DBTableHeaderCell
-								scope="col"
-								horizontalAlignment="end"
-								noText>
+							<DBTableHeaderCell scope="col">Tag</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Infotext</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Text</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Input</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" horizontalAlignment="end" noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
@@ -297,7 +261,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="zebra">
+									name="zebra"
+								>
 									Check Red
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -320,17 +285,10 @@ export default function TableComplex() {
 							</DBTableDataCell>
 							<DBTableDataCell>Red</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Red"
-									showLabel={false}
-									placeholder="Red"
-								/>
+								<DBInput label="Red" showLabel={false} placeholder="Red" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -341,7 +299,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="zebra">
+									name="zebra"
+								>
 									Check Yellow
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -371,10 +330,7 @@ export default function TableComplex() {
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -385,7 +341,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="zebra">
+									name="zebra"
+								>
 									Check Green
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -406,17 +363,10 @@ export default function TableComplex() {
 							<DBTableDataCell></DBTableDataCell>
 							<DBTableDataCell>Green</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Green"
-									showLabel={false}
-									placeholder="Green"
-								/>
+								<DBInput label="Green" showLabel={false} placeholder="Green" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -433,60 +383,49 @@ export default function TableComplex() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Spaced
 				</DBInfotext>
 				<DBTable
 					columnSizes={state.columnSizes}
 					variant="spaced"
-					captionPlain="Spaced, sortable columns are Link.">
+					captionPlain="Spaced, sortable columns are Link."
+				>
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="spaced">
 									Check All
-									<DBTooltip placement="top">
-										Check All
-									</DBTooltip>
+									<DBTooltip placement="top">Check All</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
-										gap: 'var(--db-spacing-fixed-xs)'
-									}}>
+										gap: 'var(--db-spacing-fixed-xs)',
+									}}
+								>
 									Link
 									<DBButton
 										size="small"
 										variant="ghost"
 										icon="arrows_vertical"
-										noText>
+										noText
+									>
 										Sort button
-										<DBTooltip placement="top">
-											Sort button
-										</DBTooltip>
+										<DBTooltip placement="top">Sort button</DBTooltip>
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Tag
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Infotext
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Text
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Input
-							</DBTableHeaderCell>
-							<DBTableHeaderCell
-								scope="col"
-								horizontalAlignment="end"
-								noText>
+							<DBTableHeaderCell scope="col">Tag</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Infotext</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Text</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Input</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" horizontalAlignment="end" noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
@@ -497,7 +436,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="spaced">
+									name="spaced"
+								>
 									Check Red
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -520,17 +460,10 @@ export default function TableComplex() {
 							</DBTableDataCell>
 							<DBTableDataCell>Red</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Red"
-									showLabel={false}
-									placeholder="Red"
-								/>
+								<DBInput label="Red" showLabel={false} placeholder="Red" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -541,7 +474,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="spaced">
+									name="spaced"
+								>
 									Check Yellow
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -571,10 +505,7 @@ export default function TableComplex() {
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -585,7 +516,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="spaced">
+									name="spaced"
+								>
 									Check Green
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -606,17 +538,10 @@ export default function TableComplex() {
 							<DBTableDataCell></DBTableDataCell>
 							<DBTableDataCell>Green</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Green"
-									showLabel={false}
-									placeholder="Green"
-								/>
+								<DBInput label="Green" showLabel={false} placeholder="Green" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -632,8 +557,9 @@ export default function TableComplex() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
-				}}>
+					gap: 'var(--db-spacing-fixed-md)',
+				}}
+			>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Mobile variant: List
 				</DBInfotext>
@@ -641,52 +567,40 @@ export default function TableComplex() {
 					columnSizes={state.columnSizes}
 					variant="spaced"
 					mobileVariant="list"
-					captionPlain="Mobile variant: List, sortable columns are Link.">
+					captionPlain="Mobile variant: List, sortable columns are Link."
+				>
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="list">
 									Check All
-									<DBTooltip placement="top">
-										Check All
-									</DBTooltip>
+									<DBTooltip placement="top">Check All</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
-										gap: 'var(--db-spacing-fixed-xs)'
-									}}>
+										gap: 'var(--db-spacing-fixed-xs)',
+									}}
+								>
 									Link
 									<DBButton
 										size="small"
 										variant="ghost"
 										icon="arrows_vertical"
-										noText>
+										noText
+									>
 										Sort button
-										<DBTooltip placement="top">
-											Sort button
-										</DBTooltip>
+										<DBTooltip placement="top">Sort button</DBTooltip>
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Tag
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Infotext
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Text
-							</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">
-								Input
-							</DBTableHeaderCell>
-							<DBTableHeaderCell
-								scope="col"
-								horizontalAlignment="end"
-								noText>
+							<DBTableHeaderCell scope="col">Tag</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Infotext</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Text</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">Input</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" horizontalAlignment="end" noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
@@ -697,7 +611,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="list">
+									name="list"
+								>
 									Check Red
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -720,17 +635,10 @@ export default function TableComplex() {
 							</DBTableDataCell>
 							<DBTableDataCell>Red</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Red"
-									showLabel={false}
-									placeholder="Red"
-								/>
+								<DBInput label="Red" showLabel={false} placeholder="Red" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -741,7 +649,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="list">
+									name="list"
+								>
 									Check Yellow
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -771,10 +680,7 @@ export default function TableComplex() {
 								/>
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>
@@ -785,7 +691,8 @@ export default function TableComplex() {
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-trigger="true"
-									name="list">
+									name="list"
+								>
 									Check Green
 								</DBCheckbox>
 							</DBTableHeaderCell>
@@ -806,17 +713,10 @@ export default function TableComplex() {
 							<DBTableDataCell></DBTableDataCell>
 							<DBTableDataCell>Green</DBTableDataCell>
 							<DBTableDataCell>
-								<DBInput
-									label="Green"
-									showLabel={false}
-									placeholder="Green"
-								/>
+								<DBInput label="Green" showLabel={false} placeholder="Green" />
 							</DBTableDataCell>
 							<DBTableDataCell horizontalAlignment="end">
-								<DBButton
-									variant="ghost"
-									noText
-									icon="more_vertical">
+								<DBButton variant="ghost" noText icon="more_vertical">
 									More
 									<DBTooltip placement="left">More</DBTooltip>
 								</DBButton>

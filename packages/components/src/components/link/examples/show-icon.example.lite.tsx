@@ -1,11 +1,11 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import {Fragment, useMetadata} from '@builder.io/mitosis';
 import DBLink from '../link.lite';
-import { StorybookLinkArgTypes } from './_link.arg.types';
+import {StorybookLinkArgTypes} from './_link.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Icon',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookLinkArgTypes
+	storybookArgTypes: StorybookLinkArgTypes,
 });
 
 export default function LinkShowIcon() {
