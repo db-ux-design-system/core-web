@@ -39,6 +39,15 @@ const xoConfig = [
 		}
 	},
 	{
+		// Kiro steering files use #[[file:...]] include syntax that conflicts with Prettier/markdown heading rules
+		files: ['./.kiro/steering/*.md'],
+		rules: {
+			'markdown/no-multiple-h1': 0,
+			'markdown/no-missing-atx-heading-space': 0,
+			'markdown/no-missing-label-refs': 0
+		}
+	},
+	{
 		files: ['./**/angular-**/**'],
 		rules: {
 			'unicorn/prefer-top-level-await': 0, // We don't need it for angular, some files are generated this way
