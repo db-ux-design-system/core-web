@@ -28,6 +28,7 @@
 		inset-block: 0;
 		inset-inline-end: 0;
 		align-items: center;
+
 		// We avoid clicking on <span> etc. so the Link can be clicked anyways
 		pointer-events: none;
 
