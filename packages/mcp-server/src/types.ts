@@ -14,5 +14,5 @@ export const FRAMEWORK_PKG: Record<Framework, string> = {
 	vue: '@db-ux/v-core-components',
 	'web-components': '@db-ux/wc-core-components',
 	html: '@db-ux/core-components',
-	vanilla: '@db-ux/core-components',
+	vanilla: '@db-ux/core-components'
 };

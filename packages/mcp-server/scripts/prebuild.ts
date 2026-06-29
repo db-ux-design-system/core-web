@@ -5,11 +5,11 @@
  local assets/ directories so they are available for standalone npx usage.
  */
 
-import {cpSync, existsSync, mkdirSync} from 'node:fs';
-import {dirname, resolve} from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {buildManifest} from './build-manifest.ts';
-import {buildTokens} from './build-tokens.ts';
+import { cpSync, existsSync, mkdirSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { buildManifest } from './build-manifest.ts';
+import { buildTokens } from './build-tokens.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 
@@ -21,19 +21,23 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 function copyAsset(
 	src: string,
 	dest: string,
-	opts: {recursive?: boolean} = {},
+	opts: { recursive?: boolean } = {}
 ): void {
 	const srcAbs = resolve(ROOT, src);
-	const destAbs = resolve(dirname(fileURLToPath(import.meta.url)), '..', dest);
+	const destAbs = resolve(
+		dirname(fileURLToPath(import.meta.url)),
+		'..',
+		dest
+	);
 
 	if (!existsSync(srcAbs)) {
 		throw new Error(`[prebuild] FATAL: required source not found: ${src}`);
 	}
 
-	mkdirSync(dirname(destAbs), {recursive: true});
+	mkdirSync(dirname(destAbs), { recursive: true });
 	cpSync(srcAbs, destAbs, {
 		recursive: opts.recursive ?? false,
-		force: true,
+		force: true
 	});
 	console.log(`[prebuild] copied: ${src} → ${dest}`);
 }
@@ -41,7 +45,7 @@ function copyAsset(
 // ---------------------------------------------------------------------------
 // Migration guides (Single Source of Truth: docs/migration/db-ui/)
 // ---------------------------------------------------------------------------
-copyAsset('docs/migration/db-ui', 'assets/migration', {recursive: true});
+copyAsset('docs/migration/db-ui', 'assets/migration', { recursive: true });
 
 // ---------------------------------------------------------------------------
 // Structured tokens JSON (assets/tokens/tokens.json)

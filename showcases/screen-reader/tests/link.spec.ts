@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -13,6 +13,6 @@ test.describe('DBLink', () => {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.previous(); // Link "Enabled (Default)/Hover/Pressed"
 			await screenReader?.next(); // Link dimmed "Disabled"
-		},
+		}
 	});
 });

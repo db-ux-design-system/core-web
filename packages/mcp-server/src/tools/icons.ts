@@ -1,5 +1,5 @@
-import {MAX_JSON_OUTPUT, type ToolResult, truncate} from '../utils';
-import {getManifest} from '../utils/manifest';
+import { MAX_JSON_OUTPUT, type ToolResult, truncate } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /**
  Returns all available DB UX icon names by parsing the generated all-icons.ts file.
@@ -13,9 +13,9 @@ export async function handleListIcons(): Promise<ToolResult> {
 				type: 'text',
 				text: truncate(
 					JSON.stringify(manifest.icons, null, 2),
-					MAX_JSON_OUTPUT,
-				),
-			},
-		],
+					MAX_JSON_OUTPUT
+				)
+			}
+		]
 	};
 }

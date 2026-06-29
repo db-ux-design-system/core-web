@@ -18,10 +18,10 @@ npm install @db-ux/core-postcss-plugin --save-dev
 
 ```ts
 // Named import (recommended)
-import {dbUxFlatten} from '@db-ux/core-postcss-plugin';
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
 
 // Default import (backward compatible — exports dbUxFlatten)
-import dbUxFlatten from '@db-ux/core-postcss-plugin';
+import dbUxFlatten from "@db-ux/core-postcss-plugin";
 ```
 
 ## CSS Setup
@@ -31,8 +31,8 @@ Use `@layer` to ensure the theme overrides base component styles. The plugin det
 ```css
 /* styles.css */
 @layer db-ux, db-theme;
-@import '@db-ux/db-theme/build/styles/rollup.css' layer(db-theme);
-@import '@db-ux/core-components/build/styles/rollup.css' layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
 ```
 
 ## Framework Integration
@@ -43,16 +43,16 @@ Configure the plugin directly in `vite.config.ts`:
 
 ```ts
 // vite.config.ts
-import {defineConfig} from 'vite';
-import {dbUxFlatten} from '@db-ux/core-postcss-plugin';
+import { defineConfig } from "vite";
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
 
 export default defineConfig({
 	css: {
-		transformer: 'postcss', // required for Vite 8+ (default: 'lightningcss')
+		transformer: "postcss", // required for Vite 8+ (default: 'lightningcss')
 		postcss: {
-			plugins: [dbUxFlatten()],
-		},
-	},
+			plugins: [dbUxFlatten()]
+		}
+	}
 });
 ```
 
@@ -80,10 +80,10 @@ Create a `postcss.config.mjs` in your project root:
 
 ```js
 // postcss.config.mjs
-import {dbUxFlatten} from '@db-ux/core-postcss-plugin';
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
 
 export default {
-	plugins: [dbUxFlatten()],
+	plugins: [dbUxFlatten()]
 };
 ```
 
@@ -92,15 +92,15 @@ Works with both webpack and turbopack.
 > **Note**: For CommonJS (`postcss.config.js`):
 >
 > ```js
-> const {dbUxFlatten} = require('@db-ux/core-postcss-plugin');
-> module.exports = {plugins: [dbUxFlatten()]};
+> const { dbUxFlatten } = require("@db-ux/core-postcss-plugin");
+> module.exports = { plugins: [dbUxFlatten()] };
 > ```
 
 ### Webpack (standalone)
 
 ```js
 // webpack.config.js
-const {dbUxFlatten} = require('@db-ux/core-postcss-plugin');
+const { dbUxFlatten } = require("@db-ux/core-postcss-plugin");
 
 module.exports = {
 	module: {
@@ -108,20 +108,20 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					'style-loader',
-					'css-loader',
+					"style-loader",
+					"css-loader",
 					{
-						loader: 'postcss-loader',
+						loader: "postcss-loader",
 						options: {
 							postcssOptions: {
-								plugins: [dbUxFlatten()],
-							},
-						},
-					},
-				],
-			},
-		],
-	},
+								plugins: [dbUxFlatten()]
+							}
+						}
+					}
+				]
+			}
+		]
+	}
 };
 ```
 
@@ -136,9 +136,9 @@ Flattens DB UX Design System CSS custom properties by resolving `var()`, `@prope
 1. **Collects** all `@property` declarations and their `initial-value` as a resolution cache
 2. **Detects `@layer` priority** from `@layer` order declarations and `@import ... layer()` rules — theme values override base values regardless of processing order
 3. **Detects dynamic variables** that must stay as `var()` references:
-   - Variables re-declared in non-`:root`/`:host` selectors (e.g. `[data-density=functional]`)
-   - Variables re-declared inside `@media` queries
-   - Variables matching `dynamicPrefixes` (default: `--db-adaptive-*`)
+    - Variables re-declared in non-`:root`/`:host` selectors (e.g. `[data-density=functional]`)
+    - Variables re-declared inside `@media` queries
+    - Variables matching `dynamicPrefixes` (default: `--db-adaptive-*`)
 4. **Resolves** all static `var()` references recursively — including nested `var()` with fallbacks like `var(--a, var(--b))`
 5. **Evaluates** `calc()` expressions when all values are static
 6. **Evaluates** `color-mix(in srgb, ...)` when all colors are resolved
@@ -157,7 +157,7 @@ Flattens DB UX Design System CSS custom properties by resolving `var()`, `@prope
 dbUxFlatten({
 	removeAtProperty: true,
 	removeResolved: true,
-	dynamicPrefixes: ['--db-adaptive-', '--my-custom-dynamic-'],
+	dynamicPrefixes: ["--db-adaptive-", "--my-custom-dynamic-"]
 });
 ```
 
@@ -171,7 +171,7 @@ dbUxFlatten({
 ```css
 /* Static — will be resolved */
 @property --db-neutral-0 {
-	syntax: '<color>';
+	syntax: "<color>";
 	initial-value: #0d0e10;
 	inherits: true;
 }
@@ -180,7 +180,7 @@ dbUxFlatten({
 :root {
 	--db-spacing-fixed-sm: 0.75rem;
 }
-[data-density='functional'] {
+[data-density="functional"] {
 	--db-spacing-fixed-sm: 0.5rem; /* re-declared → dynamic */
 }
 ```
@@ -196,8 +196,8 @@ This works even when the bundler processes each imported file independently (e.g
 
 ```css
 @layer db-ux, db-theme;
-@import '@db-ux/db-theme/build/styles/rollup.css' layer(db-theme);
-@import '@db-ux/core-components/build/styles/rollup.css' layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
 ```
 
 Unlayered CSS always wins over all layers, matching the CSS spec.
@@ -209,7 +209,7 @@ Unlayered CSS always wins over all layers, matching the CSS spec.
 font-family: var(--db-icon-font-family, var(--db-icon-default-font-family));
 
 /* Output (--db-icon-font-family unknown, --db-icon-default-font-family resolved) */
-font-family: var(--db-icon-font-family, 'db-default', icon-font-fallback);
+font-family: var(--db-icon-font-family, "db-default", icon-font-fallback);
 ```
 
 #### `light-dark()` collapsing
@@ -239,12 +239,12 @@ When both arguments resolve to the same value, the function is collapsed:
 
 @layer db-theme {
 	@property --db-brand-origin-light-default {
-		syntax: '<color>';
+		syntax: "<color>";
 		initial-value: #ec0016;
 		inherits: true;
 	}
 	@property --db-brand-origin-dark-default {
-		syntax: '<color>';
+		syntax: "<color>";
 		initial-value: #ec0016;
 		inherits: true;
 	}

@@ -1,5 +1,5 @@
-import {DBCustomSelect} from '@components';
-import {useState} from 'react';
+import { DBCustomSelect } from '@components';
+import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormCustomSelects = () => {
@@ -7,9 +7,9 @@ const FormCustomSelects = () => {
 	const [uncontrolled, setUncontrolled] = useState(['combobox-2']);
 
 	const options = [
-		{value: 'combobox-0', id: 'combobox-0'},
-		{value: 'combobox-1', id: 'combobox-1'},
-		{value: 'combobox-2', id: 'combobox-2'},
+		{ value: 'combobox-0', id: 'combobox-0' },
+		{ value: 'combobox-1', id: 'combobox-1' },
+		{ value: 'combobox-2', id: 'combobox-2' }
 	];
 
 	return (

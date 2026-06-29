@@ -1,15 +1,18 @@
-import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
-import {join, resolve} from 'node:path';
-import {getInstructions} from '../utils';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { getInstructions } from '../utils';
 
 export const generateCopilot = (rootPath: string) => {
 	const outputFolder = resolve(rootPath, '.github');
 
 	if (!existsSync(outputFolder)) {
-		mkdirSync(outputFolder, {recursive: true});
+		mkdirSync(outputFolder, { recursive: true });
 	}
 
-	const copilotInstructionsPath = join(outputFolder, 'copilot-instructions.md');
+	const copilotInstructionsPath = join(
+		outputFolder,
+		'copilot-instructions.md'
+	);
 	if (!existsSync(copilotInstructionsPath)) {
 		writeFileSync(copilotInstructionsPath, '');
 	}

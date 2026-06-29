@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {HashRouter, Navigate, Route, Routes} from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import '../../showcase-styles.css';
 import App from './app';
 import './db-ux.css';
-import {NAVIGATION_ITEMS} from './utils/navigation-item';
+import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
 // Makes env-variable available in the components without using import.meta.
 // as a result, the components are also compatible with next.
 // eslint-disable-next-line @typescript-eslint/dot-notation
 window['env'] = {
-	BASE_URL: import.meta.env.BASE_URL,
+	BASE_URL: import.meta.env.BASE_URL
 };
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
@@ -22,8 +22,7 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 						<Route
 							key={`router-${navItem.path}`}
 							path={navItem.path}
-							element={navItem.component}
-						>
+							element={navItem.component}>
 							{navItem.subNavigation
 								? navItem.subNavigation.map((subItem) => (
 										<Route
@@ -39,5 +38,5 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
 		</HashRouter>
-	</React.StrictMode>,
+	</React.StrictMode>
 );

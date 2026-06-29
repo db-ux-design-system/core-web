@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -13,7 +13,7 @@ test.describe('DBTabs', () => {
 			if (nvda) {
 				// We want to lose focus for radio buttons otherwise we can't jump to tab panel
 				await nvda.perform(
-					nvda.keyboardCommands.toggleBetweenBrowseAndFocusMode,
+					nvda.keyboardCommands.toggleBetweenBrowseAndFocusMode
 				);
 				await nvda?.clearSpokenPhraseLog();
 				await nvda?.next(); // Focus "tab 2"
@@ -33,6 +33,6 @@ test.describe('DBTabs', () => {
 				await voiceOver?.next(); // Focus "tab panel 3"
 				await voiceOver?.next(); // Focus "tab panel 3 inline-text"
 			}
-		},
+		}
 	});
 });

@@ -30,13 +30,13 @@ When no specific PR is given, create a Kiro spec with tasks for each open PR:
 
 1. **List open PRs**: Use `mcp_github_list_pull_requests` (state: `open`) to get all open PRs in the repository. **Paginate**: continue fetching with incrementing `page` until all PRs are retrieved. If the user asks for reviewing their specific PRs (e.g. "review my open PRs"), use `search_pull_requests` with an author qualifier or filter the returned PRs by the current user before generating tasks.
 2. **Check for prior AI review marker**: For each PR, read its comments using `mcp_github_pull_request_read` (method: `get_comments`). **Paginate**: continue fetching with incrementing `page` until all comments are retrieved, so a marker on a later page isn't missed (which would otherwise re-review an unchanged PR and post duplicate feedback). Look for a comment containing, that has been posted by a user with the phrase "[bot]" included:
-   ```markdown
-   <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
-   ```
+    ```markdown
+    <!-- AI-REVIEW: sha=<head.sha> timestamp=<ISO-8601-UTC> -->
+    ```
 3. **Compare with current head SHA**: Get the PR's current `head.sha` from its details. If the stored SHA matches the current head → the PR hasn't changed since last review.
 4. **Generate a spec with tasks**: Create a `.kiro/specs/code-review-batch/tasks.md` with one task per PR:
-   - If a marker exists AND the stored SHA matches the current `head.sha` → mark the task as `optional` (skip review)
-   - If no marker exists or the SHA differs → mark the task as `pending` (needs review)
+    - If a marker exists AND the stored SHA matches the current `head.sha` → mark the task as `optional` (skip review)
+    - If no marker exists or the SHA differs → mark the task as `pending` (needs review)
 5. **Execute tasks**: Process each pending task using the normal review workflow (Steps 2–6).
 6. **Cleanup**: After all tasks are processed, delete the `.kiro/specs/code-review-batch/` directory to avoid accumulating stale spec files.
 
@@ -103,8 +103,8 @@ Only comment on genuinely new or unaddressed issues.
 ### Step 4: Understand Business Context
 
 - **Resolve linked issues explicitly** — do not rely on `pull_request_read` (method `get`), which returns minimal PR fields and omits GitHub's linked/closing-issue references. A PR linked through the **Development sidebar** (rather than a `closes #123` keyword in the body) has no issue number anywhere in the PR details. Resolve linked issues in this order:
-  1. Query the PR's `closingIssuesReferences` (GraphQL) or the issue **timeline**/cross-reference events to get issues linked via the Development sidebar or closing keywords.
-  2. Fall back to parsing the PR body/title for `#<number>` and `closes/fixes/resolves` keywords only if the above yields nothing.
+    1. Query the PR's `closingIssuesReferences` (GraphQL) or the issue **timeline**/cross-reference events to get issues linked via the Development sidebar or closing keywords.
+    2. Fall back to parsing the PR body/title for `#<number>` and `closes/fixes/resolves` keywords only if the above yields nothing.
 - Read each resolved issue using `mcp_github_issue_read`
 - Check PR description against the PR template checklist in `.github/PULL_REQUEST_TEMPLATE.md`
 - Understand the scope: is this a feature, bugfix, refactor, or chore?
@@ -141,10 +141,10 @@ Apply the conventions from `docs/code-review-conventions.md` (included above via
 When reviewing a PR, check that the Husky pre-commit hook would pass for the changes:
 
 - **Branch name validation** — the branch name must match the `validate-branch-name` pattern in `package.json`. As of this writing that pattern accepts:
-  - `copilot/...` (GitHub Copilot-created branches — slashes allowed here)
-  - `dependabot-...`
-  - a `<type>-<description>` form where `<type>` is one of `test|feat|fix|chore|docs|refactor|style|ci|perf|alert` or a numeric issue id (e.g. `feat-my-feature`, `123-some-fix`), using `-` as the separator
-    Do **not** flag a `copilot/` branch as invalid. For non-exempt branches, `/` is not allowed (it breaks preview URLs). Mirror the actual `package.json` pattern rather than this summary if they diverge.
+    - `copilot/...` (GitHub Copilot-created branches — slashes allowed here)
+    - `dependabot-...`
+    - a `<type>-<description>` form where `<type>` is one of `test|feat|fix|chore|docs|refactor|style|ci|perf|alert` or a numeric issue id (e.g. `feat-my-feature`, `123-some-fix`), using `-` as the separator
+      Do **not** flag a `copilot/` branch as invalid. For non-exempt branches, `/` is not allowed (it breaks preview URLs). Mirror the actual `package.json` pattern rather than this summary if they diverge.
 - **lint-staged** — changed files pass linting and Prettier formatting
 - If the PR has CI lint failures that correspond to lint-staged checks, flag them — the author likely bypassed Husky with `--no-verify`
 
@@ -160,19 +160,19 @@ Use `mcp_github_pull_request_review_write` to submit the review.
 
 1. Submit the review as **COMMENT** (not APPROVE).
 2. If the PR looks good and has no blocking issues, add a separate PR comment (using `mcp_github_add_issue_comment`) that:
-   - Tags the user like `@nmerget` to inform them the PR can be approved
-   - Includes a short message like "🤖 Hey @nmerget — this PR looks good to go! You can approve and merge. 🎉🚀"
+    - Tags the user like `@nmerget` to inform them the PR can be approved
+    - Includes a short message like "🤖 Hey @nmerget — this PR looks good to go! You can approve and merge. 🎉🚀"
 
 **Correct sequence for reviews with findings:**
 
 1. **Create a pending review**: Call `mcp_github_pull_request_review_write` with method `create`.
    **Bind the review to the inspected head**: before creating it, re-fetch the PR's current `head.sha` and compare it to the SHA you checked out in Step 2. If they differ, the author pushed new commits during the review — restart from Step 2 against the new head, since your findings and line positions were derived from the older diff and may fail to attach or land on code you never inspected. If they match, pass that SHA as `commitID` so the review is pinned to the inspected commit rather than defaulting to whatever is current. (Omit `event` to keep the review pending.)
 2. **Add line comments**: Call `mcp_github_add_comment_to_pending_review` for each specific issue, placed on the relevant line in the diff with `subjectType: LINE` (this is a required parameter — omitting it makes the call fail). Every actionable finding must have its own line comment — do not only summarize in the review body. Prefix each comment with 🤖.
-   - **Findings without a changed line**: Some defects have no line in the current diff to attach to (e.g. a missing test, deleted validation, or an omitted required file). For these, add a **file-level** comment by setting `subjectType: FILE` on `mcp_github_add_comment_to_pending_review` (this works for existing and deleted files), or include the finding in the review body / a top-level PR comment. Do not force such comments onto unrelated lines.
+    - **Findings without a changed line**: Some defects have no line in the current diff to attach to (e.g. a missing test, deleted validation, or an omitted required file). For these, add a **file-level** comment by setting `subjectType: FILE` on `mcp_github_add_comment_to_pending_review` (this works for existing and deleted files), or include the finding in the review body / a top-level PR comment. Do not force such comments onto unrelated lines.
 3. **Submit the review**: Call `mcp_github_pull_request_review_write` with method `submit_pending` with event **COMMENT** (never APPROVE, never REQUEST_CHANGES):
-   - **COMMENT** — Always use this. Describe blocking severity in the body text using the severity labels (🔴 `[blocking]`, 🟡 `[important]`, etc.) rather than using GitHub's formal review state.
-   - **Never REQUEST_CHANGES** — This records a formal blocking review under the human PAT holder, which has the same identity-misrepresentation concern as auto-approving. It can prevent merging in a way the human didn't authorize. Express blocking concerns through comment severity labels instead.
-   - Prefix the summary body with "🤖 **AI Review**"
+    - **COMMENT** — Always use this. Describe blocking severity in the body text using the severity labels (🔴 `[blocking]`, 🟡 `[important]`, etc.) rather than using GitHub's formal review state.
+    - **Never REQUEST_CHANGES** — This records a formal blocking review under the human PAT holder, which has the same identity-misrepresentation concern as auto-approving. It can prevent merging in a way the human didn't authorize. Express blocking concerns through comment severity labels instead.
+    - Prefix the summary body with "🤖 **AI Review**"
 
 **For reviews without issues** (PR looks good), submit as **COMMENT** with a body like "🤖 **AI Review** — No issues found. LGTM!" and then post a separate issue comment tagging the user with a celebratory message (🎉🚀).
 

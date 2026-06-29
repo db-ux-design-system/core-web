@@ -1,4 +1,4 @@
-import {z} from 'zod/v3';
+import { z } from 'zod/v3';
 
 const frameworkSchema = z
 	.enum(['react', 'angular', 'vue', 'web-components', 'html'])
@@ -12,7 +12,7 @@ export const scaffoldPageSchema = {
 			.string()
 			.max(200)
 			.describe(
-				"The functional domain or structural type of the page (e.g. 'Login Portal', 'Dashboard', 'Settings Form').",
+				"The functional domain or structural type of the page (e.g. 'Login Portal', 'Dashboard', 'Settings Form')."
 			),
 		framework: frameworkSchema,
 		additional_requirements: z
@@ -20,9 +20,9 @@ export const scaffoldPageSchema = {
 			.max(1000)
 			.optional()
 			.describe(
-				"Optional functional or architectural requirements (e.g. 'must include a data table with pagination').",
-			),
-	},
+				"Optional functional or architectural requirements (e.g. 'must include a data table with pagination')."
+			)
+	}
 };
 
 export const reviewUiCodeSchema = {
@@ -33,10 +33,10 @@ export const reviewUiCodeSchema = {
 			.string()
 			.max(10_000)
 			.describe(
-				'The source code to be evaluated (including markup, styling, logic).',
+				'The source code to be evaluated (including markup, styling, logic).'
 			),
-		framework: frameworkSchema,
-	},
+		framework: frameworkSchema
+	}
 };
 
 export const migrateComponentSchema = {
@@ -47,16 +47,16 @@ export const migrateComponentSchema = {
 			.string()
 			.max(10_000)
 			.describe(
-				'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).',
+				'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
 			),
 		source_context: z
 			.string()
 			.max(100)
 			.describe(
-				"The origin/context of the legacy code. Use one of: 'db-ui-v1', 'db-ui-v2', 'db-ux-v1', 'db-ux-v2', 'db-ux-v3', 'bootstrap-4', 'native-html'.",
+				"The origin/context of the legacy code. Use one of: 'db-ui-v1', 'db-ui-v2', 'db-ux-v1', 'db-ux-v2', 'db-ux-v3', 'bootstrap-4', 'native-html'."
 			),
-		target_framework: frameworkSchema,
-	},
+		target_framework: frameworkSchema
+	}
 };
 
 export const auditAccessibilitySchema = {
@@ -67,8 +67,8 @@ export const auditAccessibilitySchema = {
 			.string()
 			.max(10_000)
 			.describe(
-				'The UI source code to be audited for accessibility compliance.',
+				'The UI source code to be audited for accessibility compliance.'
 			),
-		framework: frameworkSchema,
-	},
+		framework: frameworkSchema
+	}
 };

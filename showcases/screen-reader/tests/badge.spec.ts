@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -21,6 +21,6 @@ test.describe('DBBadge', () => {
 			await screenReader?.next(); // Button with badge with data-label 1
 			await screenReader?.next(); // Info-text
 			await screenReader?.next(); // Button with badge with data-label 2
-		},
+		}
 	});
 });

@@ -1,4 +1,4 @@
-import {DBTabItem, DBTabList, DBTabPanel, DBTabs} from '@components';
+import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@components';
 import FormComponent from '../form';
 import FormCheckboxes from '../form/checkbox';
 import FormCustomSelects from '../form/custom-select';
@@ -17,7 +17,9 @@ const Home = () => (
 			<DBTabItem data-testid="tab-selects">Select</DBTabItem>
 			<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
 			<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
-			<DBTabItem data-testid="tab-custom-selects">Custom Selects</DBTabItem>
+			<DBTabItem data-testid="tab-custom-selects">
+				Custom Selects
+			</DBTabItem>
 			<DBTabItem data-testid="tab-switches">Switches</DBTabItem>
 		</DBTabList>
 		<DBTabPanel>

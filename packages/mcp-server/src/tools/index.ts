@@ -2,18 +2,18 @@ export {
 	handleGetComponentDetails,
 	handleGetComponentProps,
 	handleGetExampleCode,
-	handleListComponents,
+	handleListComponents
 } from './components.js';
-export {handleDocsSearch} from './docs.js';
-export {handleListIcons} from './icons.js';
+export { handleDocsSearch } from './docs.js';
+export { handleListIcons } from './icons.js';
 export {
 	handleGetMigrationGuide,
-	handleListMigrationGuides,
+	handleListMigrationGuides
 } from './migration.js';
-export {handleScanV2Migration} from './scanner.js';
+export { handleScanV2Migration } from './scanner.js';
 export {
 	handleGetDesignTokens,
-	handleListDesignTokenCategories,
+	handleListDesignTokenCategories
 } from './tokens.js';
-export {handleVerifyMigratedCode} from './verify.js';
-export {handleGetVisualReference, handleListVisuals} from './visuals.js';
+export { handleVerifyMigratedCode } from './verify.js';
+export { handleGetVisualReference, handleListVisuals } from './visuals.js';

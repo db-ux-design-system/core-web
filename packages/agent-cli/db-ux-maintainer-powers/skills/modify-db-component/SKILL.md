@@ -1,65 +1,65 @@
 ---
 name: modify-db-component
-description: 'Modifies an existing DB UX Design System Mitosis component (add variants, update props, change styles).'
+description: "Modifies an existing DB UX Design System Mitosis component (add variants, update props, change styles)."
 
 triggers:
-  - 'modify component'
-  - 'change component'
-  - 'update component'
-  - 'add variant to component'
-  - 'add prop to component'
-  - 'edit component'
-  - 'refactor component'
+    - "modify component"
+    - "change component"
+    - "update component"
+    - "add variant to component"
+    - "add prop to component"
+    - "edit component"
+    - "refactor component"
 
 inputs:
-  - name: component_slug
-    type: string
-    required: true
-    description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
-  - name: component_name
-    type: string
-    required: false
-    description: "Optional PascalCase symbol name (e.g. 'Button'). If omitted, derive it from component_slug."
-  - name: instruction
-    type: string
-    required: true
-    description: "What to change (e.g. 'add a new variant called outline')"
-  - name: figma_file_key
-    type: string
-    required: false
-    description: 'Figma file key. Required for visually-driven changes (new variant, layout, spacing). Not needed for purely technical refactorings.'
-  - name: figma_node_id
-    type: string
-    required: false
-    description: 'Figma node ID of the target component/frame. Required together with figma_file_key for visual changes.'
+    - name: component_slug
+      type: string
+      required: true
+      description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
+    - name: component_name
+      type: string
+      required: false
+      description: "Optional PascalCase symbol name (e.g. 'Button'). If omitted, derive it from component_slug."
+    - name: instruction
+      type: string
+      required: true
+      description: "What to change (e.g. 'add a new variant called outline')"
+    - name: figma_file_key
+      type: string
+      required: false
+      description: "Figma file key. Required for visually-driven changes (new variant, layout, spacing). Not needed for purely technical refactorings."
+    - name: figma_node_id
+      type: string
+      required: false
+      description: "Figma node ID of the target component/frame. Required together with figma_file_key for visual changes."
 
 requires:
-  - context: context/architecture.md
-    autoLoad: true
+    - context: context/architecture.md
+      autoLoad: true
 
 tools:
-  - db-ux/list_components
-  - db-ux/get_component_props
-  - db-ux/get_component_details
-  - db-ux/get_example_code
-  - db-ux/get_design_tokens
-  - db-ux/list_design_token_categories
-  - db-ux/list_icons
-  - db-ux/docs_search
-  - figma/get_figma_data
-  - figma/download_figma_images
+    - db-ux/list_components
+    - db-ux/get_component_props
+    - db-ux/get_component_details
+    - db-ux/get_example_code
+    - db-ux/get_design_tokens
+    - db-ux/list_design_token_categories
+    - db-ux/list_icons
+    - db-ux/docs_search
+    - figma/get_figma_data
+    - figma/download_figma_images
 
 outputs:
-  - 'packages/components/src/components/{component_slug}/model.ts'
-  - 'packages/components/src/components/{component_slug}/{component_slug}.lite.tsx'
-  - 'packages/components/src/components/{component_slug}/{component_slug}.scss'
-  - 'packages/components/src/components/{component_slug}/{component_slug}.spec.tsx'
+    - "packages/components/src/components/{component_slug}/model.ts"
+    - "packages/components/src/components/{component_slug}/{component_slug}.lite.tsx"
+    - "packages/components/src/components/{component_slug}/{component_slug}.scss"
+    - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"
 
 on_error:
-  max_retries: 3
-  actions:
-    - log: 'Review the shell output (lint/test/build) and fix reported errors before retrying.'
-    - fallback: 'If errors persist after 3 retries, report to user with full error output.'
+    max_retries: 3
+    actions:
+        - log: "Review the shell output (lint/test/build) and fix reported errors before retrying."
+        - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
 # Skill: Modify Deutsche Bahn (DB) Component
@@ -91,10 +91,10 @@ Throughout this skill:
 2. Call `get_component_props` with the component name to load the current `model.ts`.
 3. Call `get_component_details` to understand the current examples and showcase structure.
 4. Read the existing files:
-   - `packages/components/src/components/{component_slug}/model.ts`
-   - `packages/components/src/components/{component_slug}/{component_slug}.lite.tsx`
-   - `packages/components/src/components/{component_slug}/{component_slug}.scss`
-   - `packages/components/src/components/{component_slug}/{component_slug}.spec.tsx`
+    - `packages/components/src/components/{component_slug}/model.ts`
+    - `packages/components/src/components/{component_slug}/{component_slug}.lite.tsx`
+    - `packages/components/src/components/{component_slug}/{component_slug}.scss`
+    - `packages/components/src/components/{component_slug}/{component_slug}.spec.tsx`
 5. Read and capture the FULL current state before making ANY changes.
 
 ### Step 1: RED - Update Tests First
@@ -173,21 +173,21 @@ Showcase files in `showcases/` are generated from these and must not be edited m
 
 1. **Build framework outputs:**
 
-   ```bash
-   pnpm run build-outputs
-   ```
+    ```bash
+    pnpm run build-outputs
+    ```
 
-   This MUST succeed.
+    This MUST succeed.
 
 2. **Create changeset:**
-   ```bash
-   pnpm changeset
-   ```
-   Select `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all JavaScript framework output packages.
-   Bump type:
-   - `patch` for bug fixes.
-   - `minor` for new features (new variant, new prop).
-   - `major` if a prop was renamed, removed, or had its type changed.
+    ```bash
+    pnpm changeset
+    ```
+    Select `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all JavaScript framework output packages.
+    Bump type:
+    - `patch` for bug fixes.
+    - `minor` for new features (new variant, new prop).
+    - `major` if a prop was renamed, removed, or had its type changed.
 
 ## Output Checklist
 

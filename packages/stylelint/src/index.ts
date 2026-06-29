@@ -9,7 +9,7 @@ const allRules = [
 	useBorderRadius,
 	useBorderWidth,
 	useBorderColor,
-	useSizing,
+	useSizing
 ];
 
 export default allRules;

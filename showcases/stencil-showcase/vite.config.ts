@@ -1,5 +1,5 @@
-import {defineConfig} from 'vite';
-import {viteStaticCopy} from 'vite-plugin-static-copy';
+import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
 	base: '/stencil-showcase/',
@@ -8,18 +8,18 @@ export default defineConfig({
 			targets: [
 				{
 					src: '../../output/stencil/bundle/*',
-					dest: './stencil',
+					dest: './stencil'
 				},
 				{
 					src: './images/*',
-					dest: './assets',
-				},
-			],
-		}),
+					dest: './assets'
+				}
+			]
+		})
 	],
 	build: {
 		outDir: '../../build-showcases/stencil-showcase',
 		emptyOutDir: true,
-		cssMinify: 'esbuild',
-	},
+		cssMinify: 'esbuild'
+	}
 });

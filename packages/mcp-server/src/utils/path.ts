@@ -1,4 +1,4 @@
-import {join, resolve} from 'node:path';
+import { join, resolve } from 'node:path';
 
 /**
  Normalizes a path to use forward slashes on all platforms.
@@ -24,7 +24,7 @@ export const MIGRATION_ASSETS_DIR = join(ASSETS_DIR, 'migration');
  */
 export function findGuide(
 	guides: Record<string, string>,
-	name: string,
+	name: string
 ): string | undefined {
 	return guides[name] ?? guides[`db-ui-${name}`];
 }

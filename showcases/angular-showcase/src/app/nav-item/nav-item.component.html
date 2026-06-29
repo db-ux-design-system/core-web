@@ -11,7 +11,7 @@
 			@if (navItem.component) {
 				<a
 					[routerLink]="navItem.path"
-					[routerLinkActiveOptions]="{exact: true}"
+					[routerLinkActiveOptions]="{ exact: true }"
 					ariaCurrentWhenActive="page"
 					queryParamsHandling="merge"
 					routerLinkActive="active"

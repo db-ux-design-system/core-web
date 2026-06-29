@@ -1,8 +1,8 @@
 /* eslint-disable no-await-in-loop */
 import FS from 'node:fs';
 import prettier from 'prettier';
-import {allExamples} from './generated/index.jsx';
-import {generateExampleKey, getCodeByFramework} from './utils.js';
+import { allExamples } from './generated/index.jsx';
+import { generateExampleKey, getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
@@ -25,7 +25,7 @@ const getCustomCodeCommentByFramework = (componentName, framework) =>
 	`<DBLink content="external" target="_blank" href="how-to-use?current=${framework}">How to use this in ${framework}</DBLink>`;
 
 const getExamplesAsMDX = async (componentName, variant) => {
-	const {examples, children} = variant;
+	const { examples, children } = variant;
 
 	let result =
 		"import { useEffect, useState } from 'react';\n" +
@@ -70,7 +70,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				const exampleKey = generateExampleKey(
 					componentName,
 					variant.name,
-					example.name,
+					example.name
 				);
 				exampleCode = allExamples[exampleKey];
 			} else {
@@ -79,13 +79,13 @@ const getExamplesAsMDX = async (componentName, variant) => {
 					framework,
 					example,
 					false,
-					children,
+					children
 				);
 			}
 
 			try {
 				exampleCode = await prettier.format(exampleCode, {
-					parser: framework === 'react' ? 'babel' : framework,
+					parser: framework === 'react' ? 'babel' : framework
 				});
 			} catch {
 				// We do not care about errors here
@@ -142,7 +142,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 	if (FS.existsSync(path)) {
 		variants = JSON.parse(FS.readFileSync(path, 'utf8')).map((variant) => ({
 			...variant,
-			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, ''),
+			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, '')
 		}));
 
 		let indexFile = '';
@@ -156,7 +156,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 
 			FS.writeFileSync(
 				`${codePath}/${variant.name}.tsx`,
-				await getExamplesAsMDX(componentName, variant),
+				await getExamplesAsMDX(componentName, variant)
 			);
 		}
 
@@ -170,7 +170,8 @@ const writeCodeFiles = async (componentPath, componentName) => {
 		if (variants) {
 			pre = variants
 				.map(
-					(variant) => `import ${variant.name} from './code/${variant.name}'`,
+					(variant) =>
+						`import ${variant.name} from './code/${variant.name}'`
 				)
 				.join('\n');
 			tags = variants.map((variant) => `<${variant.name}/>`).join(',');
@@ -179,7 +180,10 @@ const writeCodeFiles = async (componentPath, componentName) => {
 		const readFile = FS.readFileSync(reactComponentPath, 'utf8')
 			.replace('../index', './../../../components')
 			.replace('../data', '../../../components/data')
-			.replace(')}></DefaultComponent>', `,[${tags}])}></DefaultComponent>`)
+			.replace(
+				')}></DefaultComponent>',
+				`,[${tags}])}></DefaultComponent>`
+			)
 			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;

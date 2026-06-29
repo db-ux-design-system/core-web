@@ -1,9 +1,9 @@
-import {MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 const COMPONENTS_REQUIRING_CONTENT = [
@@ -14,26 +14,27 @@ const COMPONENTS_REQUIRING_CONTENT = [
 	'DBIcon',
 	'DBInfotext',
 	'DBNavigationItem',
-	'DBNotification',
+	'DBNotification'
 ];
 
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
-			description: 'Ensure components have text property or children content',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#text-or-children-required',
+			description:
+				'Ensure components have text property or children content',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#text-or-children-required'
 		},
 		messages: {
-			missingContent: MESSAGES.TEXT_OR_CHILDREN_REQUIRED,
+			missingContent: MESSAGES.TEXT_OR_CHILDREN_REQUIRED
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const componentName = node.name;
 			const component = COMPONENTS_REQUIRING_CONTENT.find((comp) =>
-				isDBComponent(node, comp),
+				isDBComponent(node, comp)
 			);
 			if (!component) {
 				return;
@@ -44,22 +45,28 @@ export default {
 				(child: any) =>
 					(child.type === 'Text' && child.value.trim() !== '') ||
 					child.type === 'Element' ||
-					child.type === 'Element$1',
+					child.type === 'Element$1'
 			);
 
 			if (text === undefined && !hasChildren) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
-					data: {component: componentName},
+					data: { component: componentName }
 				});
 			}
 		};
 
 		const angularVisitors: any = {};
 		for (const comp of COMPONENTS_REQUIRING_CONTENT) {
-			const visitors = createAngularVisitors(context, comp, angularHandler);
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
 			if (visitors) {
 				Object.assign(angularVisitors, visitors);
 			}
@@ -73,13 +80,14 @@ export default {
 			const openingElement = node.openingElement || node;
 
 			const component = COMPONENTS_REQUIRING_CONTENT.find((comp) =>
-				isDBComponent(openingElement, comp),
+				isDBComponent(openingElement, comp)
 			);
 			if (!component) {
 				return;
 			}
 
-			const componentName = openingElement.name?.name || openingElement.rawName;
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
 
 			const text = getAttributeValue(openingElement, 'text');
 			const hasChildren = node.children?.some(
@@ -89,22 +97,22 @@ export default {
 					child.type === 'JSXElement' ||
 					child.type === 'VElement' ||
 					child.type === 'JSXExpressionContainer' ||
-					child.type === 'VExpressionContainer',
+					child.type === 'VExpressionContainer'
 			);
 
 			if (text === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
-					data: {component: componentName},
+					data: { component: componentName }
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkComponent, Element: checkComponent},
-			{JSXElement: checkComponent},
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
 		);
-	},
+	}
 };

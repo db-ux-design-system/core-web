@@ -1,14 +1,14 @@
 import stylelint from 'stylelint';
-import {createRule} from '../shared/create-rule.js';
+import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
 	borderPropertiesExact,
 	defaultExact,
-	getDeclarationRuleFunction,
+	getDeclarationRuleFunction
 } from '../shared/index.js';
 
 const {
-	utils: {ruleMessages},
+	utils: { ruleMessages }
 } = stylelint;
 
 const ruleName = 'db-ux/use-border-width';
@@ -16,21 +16,21 @@ const ruleName = 'db-ux/use-border-width';
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-border-width-xx' instead of px or rem.",
+		"Please use 'db-border-width-xx' instead of px or rem."
 });
 
 const meta = {
-	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md',
+	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md'
 };
 
 const allowedDeclarations: AllowedType = {
-	includes: [{include: 'border', and: ['width']}],
-	exact: borderPropertiesExact,
+	includes: [{ include: 'border', and: ['width'] }],
+	exact: borderPropertiesExact
 };
 const allowedValues: AllowedType = {
 	includes: ['db-border-width'],
 	exact: [...defaultExact],
-	type: 'some',
+	type: 'some'
 };
 
 const useBorderWidth = createRule({
@@ -41,8 +41,8 @@ const useBorderWidth = createRule({
 		allowedDeclarations,
 		allowedValues,
 		messages,
-		ruleName,
-	}),
+		ruleName
+	})
 });
 
 export default useBorderWidth;

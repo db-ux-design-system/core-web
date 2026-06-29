@@ -1,4 +1,4 @@
-import {generateSnapshot, getTest, testDefault} from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -26,12 +26,15 @@ test.describe('DBDrawer', () => {
 							.replace('Showcase, document. unknown', 'button')
 							.replace('unknown', 'button')
 							// Autofocus timing: NVDA sometimes prepends "button." to the dialog announcement
-							.replace('button. dialog. document', 'dialog. document'),
-					),
+							.replace(
+								'button. dialog. document',
+								'dialog. document'
+							)
+					)
 				);
 			} else if (voiceOver) {
 				await generateSnapshot(voiceOver, retry);
 			}
-		},
+		}
 	});
 });

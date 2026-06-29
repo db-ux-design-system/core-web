@@ -1,5 +1,5 @@
-import {type ToolResult, withTimeout} from '../utils';
-import {getManifest} from '../utils/manifest';
+import { type ToolResult, withTimeout } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /**
  Whitelisted path prefixes for docs_search results (using forward slashes
@@ -11,7 +11,7 @@ import {getManifest} from '../utils/manifest';
  */
 const DOCS_ALLOWED_PREFIXES = [
 	'packages/components/', // Component-specific docs
-	'packages/foundations/docs/', // Foundation docs
+	'packages/foundations/docs/' // Foundation docs
 ];
 
 /** Returns true if the given manifest doc path is within the whitelist. */
@@ -29,23 +29,23 @@ function buildResults(results: string[], query: string): ToolResult {
 			content: [
 				{
 					type: 'text',
-					text: `No documentation found matching query: '${query}'`,
-				},
-			],
+					text: `No documentation found matching query: '${query}'`
+				}
+			]
 		};
 	}
 
-	const content: Array<{type: 'text'; text: string}> = [
-		{type: 'text', text: results.slice(0, 3).join('\n\n')},
+	const content: Array<{ type: 'text'; text: string }> = [
+		{ type: 'text', text: results.slice(0, 3).join('\n\n') }
 	];
 	if (results.length > 3) {
 		content.push({
 			type: 'text',
-			text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.',
+			text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
 		});
 	}
 
-	return {content};
+	return { content };
 }
 
 /**
@@ -70,7 +70,7 @@ export async function handleDocsSearch({
 	query,
 	category,
 	componentName,
-	docType,
+	docType
 }: {
 	query: string;
 	category: 'global' | 'component';
@@ -111,13 +111,21 @@ export async function handleDocsSearch({
 				// filename contains the type (e.g. 'Accessibility', 'React').
 				if (
 					docType &&
-					!normalizedPath.toLowerCase().includes(docType.toLowerCase())
+					!normalizedPath
+						.toLowerCase()
+						.includes(docType.toLowerCase())
 				) {
 					continue;
 				}
 
-				const haystack = (normalizedPath + '\n' + content).toLowerCase();
-				const isMatch = searchTerms.every((term) => haystack.includes(term));
+				const haystack = (
+					normalizedPath +
+					'\n' +
+					content
+				).toLowerCase();
+				const isMatch = searchTerms.every((term) =>
+					haystack.includes(term)
+				);
 				if (isMatch) {
 					const snippet =
 						content.length > 3000
@@ -129,6 +137,6 @@ export async function handleDocsSearch({
 
 			return buildResults(results, query);
 		})(),
-		'Error: Search took too long (exceeded 10 seconds). Please refine your query.',
+		'Error: Search took too long (exceeded 10 seconds). Please refine your query.'
 	);
 }

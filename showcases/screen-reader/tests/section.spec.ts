@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -17,6 +17,6 @@ test.describe('DBSection', () => {
 			} else if (voiceOver) {
 				await voiceOver?.previous(); // Section 1
 			}
-		},
+		}
 	});
 });

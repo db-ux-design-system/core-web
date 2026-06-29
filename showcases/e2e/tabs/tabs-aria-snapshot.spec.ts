@@ -1,5 +1,5 @@
-import {expect, test, type FullProject, type Page} from '@playwright/test';
-import {isStencil, runAriaSnapshotTest} from '../default.ts';
+import { expect, test, type FullProject, type Page } from '@playwright/test';
+import { isStencil, runAriaSnapshotTest } from '../default.ts';
 
 const path = '04/tabs';
 
@@ -22,6 +22,6 @@ const preScreenShot = async (page: Page, project: FullProject) => {
 test.describe('DBTabs', () => {
 	runAriaSnapshotTest({
 		path,
-		preScreenShot,
+		preScreenShot
 	});
 });

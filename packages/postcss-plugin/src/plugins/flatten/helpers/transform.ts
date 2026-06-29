@@ -1,10 +1,10 @@
-import type {AtRule, Declaration, Root, Rule} from 'postcss';
-import {findCssFunction, findTopLevelComma} from './css-parser.js';
+import type { AtRule, Declaration, Root, Rule } from 'postcss';
+import { findCssFunction, findTopLevelComma } from './css-parser.js';
 import {
 	collectVarReferences,
 	resolveCalc,
 	resolveColorMix,
-	resolveVars,
+	resolveVars
 } from './resolve.js';
 
 /**
@@ -33,7 +33,8 @@ export const collapseLightDark = (value: string): string => {
 		const dark = found.inner.slice(commaIdx + 1).trim();
 
 		if (light === dark) {
-			result = result.slice(0, found.start) + light + result.slice(found.end);
+			result =
+				result.slice(0, found.start) + light + result.slice(found.end);
 			searchFrom = found.start + light.length;
 		} else {
 			searchFrom = found.end;
@@ -63,7 +64,7 @@ export const transformRoot = (
 	propertyNames: Set<string>,
 	dynamicVars: Set<string>,
 	removeAtProperty: boolean,
-	removeResolved: boolean,
+	removeResolved: boolean
 ) => {
 	root.walkDecls((decl: Declaration) => {
 		const hasVar = decl.value.includes('var(');
