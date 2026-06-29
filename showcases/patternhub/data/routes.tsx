@@ -6,8 +6,6 @@ import BadgeShowcase from '@components/components/badge/showcase/badge.showcase'
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
-import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase';
-import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
@@ -69,10 +67,6 @@ const nameComponentMap = {
 	infotext: <InfotextShowcase isPatternhub />,
 	input: <InputShowcase isPatternhub />,
 	link: <LinkShowcase isPatternhub />,
-	'control-panel-navigation': <ControlPanelNavigationShowcase isPatternhub />,
-	'control-panel-navigation-item': (
-		<ControlPanelNavigationItemShowcase isPatternhub />
-	),
 	notification: <NotificationShowcase isPatternhub />,
 	popover: <PopoverShowcase isPatternhub />,
 	radio: <RadioShowcase isPatternhub />,

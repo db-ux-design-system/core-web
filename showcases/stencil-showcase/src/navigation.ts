@@ -94,14 +94,6 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		path: '05',
 		label: '05 Navigation',
 		children: sortNavItems([
-			{
-				path: '05/control-panel-navigation-item',
-				label: 'ControlPanelNavigationItem'
-			},
-			{
-				path: '05/control-panel-navigation',
-				label: 'ControlPanelNavigation'
-			},
 			{ path: '05/shell', label: 'Shell' },
 			{ path: '05/control-panel-brand', label: 'ControlPanelBrand' },
 			{

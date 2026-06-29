@@ -8,8 +8,6 @@ import ControlPanelBrand from '@components/components/control-panel-brand/showca
 import ControlPanelDesktop from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase.vue';
 import ControlPanelFlatIcon from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase.vue';
 import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
-import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase.vue';
-import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
@@ -70,16 +68,6 @@ export const navigationItems: NavItem[] = [
 		path: '/05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
-			{
-				path: '/05/control-panel-navigation-item',
-				label: 'ControlPanelNavigationItem',
-				component: markRaw(ControlPanelNavigationItemShowcase)
-			},
-			{
-				path: '/05/control-panel-navigation',
-				label: 'ControlPanelNavigation',
-				component: markRaw(ControlPanelNavigationShowcase)
-			},
 			{
 				path: '/05/shell',
 				label: 'Shell',

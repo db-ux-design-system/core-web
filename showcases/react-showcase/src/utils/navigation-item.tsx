@@ -8,8 +8,6 @@ import ControlPanelBrandShowcase from '@components/components/control-panel-bran
 import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
 import ControlPanelFlatIconShowcase from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
-import ControlPanelNavigationItemShowcase from '@components/components/control-panel-navigation-item/showcase/control-panel-navigation-item.showcase';
-import ControlPanelNavigationShowcase from '@components/components/control-panel-navigation/showcase/control-panel-navigation.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
@@ -65,16 +63,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
-			{
-				path: 'control-panel-navigation-item',
-				label: 'ControlPanelNavigationItem',
-				component: <ControlPanelNavigationItemShowcase />
-			},
-			{
-				path: 'control-panel-navigation',
-				label: 'ControlPanelNavigation',
-				component: <ControlPanelNavigationShowcase />
-			},
 			{
 				path: 'shell',
 				label: 'Shell',

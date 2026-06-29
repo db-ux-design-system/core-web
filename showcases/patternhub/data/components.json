@@ -172,21 +172,6 @@
 			{
 				"label": "DBShell",
 				"name": "shell"
-			},
-			{
-				"label": "DBControlPanelNavigation",
-				"name": "control-panel-navigation",
-				"subNavigation": [
-					{
-						"label": "DBControlPanelNavigationItem Properties",
-						"path": "/components/control-panel-navigation-item/properties"
-					}
-				]
-			},
-			{
-				"label": "DBControlPanelNavigationItem",
-				"name": "control-panel-navigation-item",
-				"isHiddenInMenu": true
 			}
 		]
 	},

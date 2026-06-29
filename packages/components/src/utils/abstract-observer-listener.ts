@@ -5,19 +5,15 @@ import { uuid } from './index';
  * Manages a shared observer instance, a registry of element–callback pairs,
  * and refcounted observe/unobserve lifecycle.
  *
+ * Subclasses own their static state (callbacks, observer, instance) and
+ * expose it via the abstract accessor methods below.
+ *
  * @template TObserver - The observer type (ResizeObserver, IntersectionObserver, etc.)
  * @template TEntry - The entry type passed to the callback (ResizeObserverEntry, IntersectionObserverEntry, etc.)
  */
 export abstract class AbstractObserverListener<TObserver, TEntry> {
-	protected static _callbacks: Record<
-		string,
-		{ element: Element; callback: (entry: any) => void }
-	> = {};
-	protected static _observer: any | null = null;
-	protected static _instance: any | null = null;
-
 	/**
-	 * Subclasses must return a Map-like reference to their own static callbacks store.
+	 * Subclasses must return a reference to their own static callbacks store.
 	 */
 	protected abstract getCallbacks(): Record<
 		string,
