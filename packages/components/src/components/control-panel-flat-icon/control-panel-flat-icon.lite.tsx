@@ -6,7 +6,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString, hasCssFlag } from '../../utils';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import {
 	DBControlPanelFlatIconProps,
@@ -39,10 +39,10 @@ export default function DBControlPanelFlatIcon(
 				new ResizeObserverListener().observe(_ref, () => {
 					if (!_ref) return;
 
-					const isMobile =
-						getComputedStyle(_ref).getPropertyValue(
-							'--db-control-panel-flat-icon-mobile'
-						) === '1';
+					const isMobile = hasCssFlag(
+						_ref,
+						'--db-control-panel-flat-icon-mobile'
+					);
 
 					const savedDensity = _ref.getAttribute(
 						'data-initial-density'

@@ -10,7 +10,14 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	hasCssFlag,
+	uuid
+} from '../../utils';
 import { handleDataOutside } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
 import {
@@ -48,7 +55,6 @@ export default function DBControlPanelNavigationItemGroup(
 			'db-control-panel-navigation-item-group-menu-' + uuid(),
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
-		_variantObserver: undefined,
 		_popoverListenersAttached: false,
 		navigationItemSafeTriangle: undefined,
 		_handleFocusIn: () => {
@@ -189,9 +195,6 @@ export default function DBControlPanelNavigationItemGroup(
 	onUnMount(() => {
 		state._teardownPopover();
 
-		state._variantObserver?.disconnect();
-		state._variantObserver = undefined;
-
 		state._attributeObserver?.disconnect();
 		state._attributeObserver = undefined;
 	});
@@ -209,37 +212,10 @@ export default function DBControlPanelNavigationItemGroup(
 		if (_ref && state.initialized) {
 			state.initialized = false;
 
-			const element = _ref as HTMLLIElement;
-			if (!element) return;
-
-			const nav = element.closest<HTMLElement>(
-				'.db-control-panel-navigation'
+			state.hasPopup = hasCssFlag(
+				_ref,
+				'--db-control-panel-navigation-item-group-menu-popover'
 			);
-
-			if (nav) {
-				const variant = nav.dataset['variant'];
-				state.hasPopup = variant === 'popover';
-
-				const observer = new MutationObserver(() => {
-					const newVariant = nav.dataset['variant'];
-					const newHasPopup = newVariant === 'popover';
-
-					if (newHasPopup !== state.hasPopup) {
-						state.hasPopup = newHasPopup;
-
-						if (!newHasPopup) {
-							state._teardownPopover();
-						}
-					}
-				});
-
-				observer.observe(nav, {
-					attributes: true,
-					attributeFilter: ['data-variant']
-				});
-
-				state._variantObserver = observer;
-			}
 		}
 	}, [_ref, state.initialized]);
 

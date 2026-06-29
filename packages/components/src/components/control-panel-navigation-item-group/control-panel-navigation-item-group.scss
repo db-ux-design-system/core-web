@@ -7,12 +7,6 @@
 @use "control-panel-navigation-item-group-menu-popover";
 @use "../../styles/internal/icon-passing";
 
-.db-control-panel-navigation-item-group-menu {
-	&[data-variant="popover"] {
-		@extend %db-control-panel-navigation-item-group-menu-popover;
-	}
-}
-
 .db-control-panel-navigation-item-group {
 	@extend %navigation-item;
 

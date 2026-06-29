@@ -12,7 +12,7 @@ import {
 	DEFAULT_SCROLL_LEFT,
 	DEFAULT_SCROLL_RIGHT
 } from '../../shared/constants';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString, hasCssFlag } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
@@ -412,12 +412,12 @@ export default function DBControlPanelNavigation(
 
 	onUpdate(() => {
 		if (_ref) {
-			state._shellDesktopPosition =
-				getComputedStyle(_ref).getPropertyValue(
-					'--db-control-panel-navigation-horizontal'
-				) === '1'
-					? 'top'
-					: 'left';
+			state._shellDesktopPosition = hasCssFlag(
+				_ref,
+				'--db-control-panel-navigation-horizontal'
+			)
+				? 'top'
+				: 'left';
 		}
 	}, [_ref]);
 

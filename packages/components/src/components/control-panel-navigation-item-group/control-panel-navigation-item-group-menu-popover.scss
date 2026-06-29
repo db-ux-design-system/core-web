@@ -10,6 +10,7 @@ $z-index-popover: 70;
 
 %db-control-panel-navigation-item-group-menu-popover {
 	--db-popover-distance: #{variables.$db-spacing-fixed-xs};
+	--db-control-panel-navigation-item-group-menu-popover: 1;
 
 	margin: 0;
 	display: flex;

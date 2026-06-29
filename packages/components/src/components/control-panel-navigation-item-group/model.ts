@@ -9,7 +9,6 @@ import {
 	InitializedState,
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
-	NavigationItemGroupVariant,
 	ShowIconProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
@@ -35,8 +34,7 @@ export type DBControlPanelNavigationItemGroupProps =
 		IconProps &
 		ShowIconProps &
 		DBControlPanelNavigationItemDefaultProps &
-		DisabledProps &
-		NavigationItemGroupVariant;
+		DisabledProps;
 
 export type DBControlPanelNavigationItemGroupDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
@@ -44,7 +42,6 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_itemGroupMenuId: string;
 	_intersectionObserverCallbackId?: string;
 	_resizeObserverCallbackId?: string;
-	_variantObserver?: MutationObserver;
 	_attributeObserver?: MutationObserver;
 	_role?: string;
 	_popoverListenersAttached: boolean;

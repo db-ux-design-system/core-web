@@ -1,3 +1,4 @@
+import { hasCssFlag } from '.';
 import { handleFixedPopover } from './floating-components';
 
 export type TriangleData = {
@@ -220,12 +221,11 @@ export const handleSubNavigationPosition = (
 			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover.scss`.
 			 * We don't need to calculate the position of the menu as a popover.
 			 */
-			const isMobile = getComputedStyle(subNavigation)
-				.getPropertyValue(
-					'--db-control-panel-navigation-item-group-menu-mobile'
-				)
-				.trim();
-			if (isMobile.length > 0) {
+			const isMobile = hasCssFlag(
+				subNavigation,
+				'--db-control-panel-navigation-item-group-menu-mobile'
+			);
+			if (isMobile) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
 				continue;
