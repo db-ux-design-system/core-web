@@ -411,7 +411,18 @@ export default function DBControlPanelNavigation(
 	});
 
 	onUpdate(() => {
-		if (menuRef && props.variant) {
+		if (_ref) {
+			state._shellDesktopPosition =
+				getComputedStyle(_ref).getPropertyValue(
+					'--db-control-panel-navigation-horizontal'
+				) === '1'
+					? 'top'
+					: 'left';
+		}
+	}, [_ref]);
+
+	onUpdate(() => {
+		if (menuRef && state._shellDesktopPosition) {
 			if (!props.variant || props.variant === 'popover') {
 				// Clean up tree roles if switching from tree to popover
 				for (const menu of Array.from(

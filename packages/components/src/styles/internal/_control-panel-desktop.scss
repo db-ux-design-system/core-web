@@ -20,6 +20,8 @@ $control-panel-desktop-vertical-padding-inline: calc(
 );
 
 @mixin horizontal-navigation($scroll-buttons: true) {
+	--db-control-panel-navigation-horizontal: 1;
+
 	@if $scroll-buttons {
 		@include scrollbar.set-overflow-scroll-buttons;
 
@@ -69,9 +71,11 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		flex-direction: row;
 
 		#{string.unquote(custom-elements.$control-panel-navigation-item-group)} {
-			.db-control-panel-navigation-item-group-expand-button-end-slot-container {
-				&::after {
-					--db-icon-trailing: "chevron_down";
+			> .db-control-panel-navigation-item-group-expand-button {
+				> .db-control-panel-navigation-item-group-expand-button-end-slot-container {
+					&::after {
+						--db-icon-trailing: "chevron_down";
+					}
 				}
 			}
 

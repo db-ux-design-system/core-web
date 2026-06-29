@@ -7,10 +7,11 @@ export class ResizeObserverListener extends AbstractObserverListener<
 	ResizeObserverEntry
 > {
 	private static _instance: ResizeObserverListener | null = null;
-	private static callbacks: Record<
-		string,
-		{ element: Element; callback: ResizeCallback }
-	> = {};
+	private static callbacksByElement: Map<
+		Element,
+		Map<string, ResizeCallback>
+	> = new Map();
+	private static idToElement: Map<string, Element> = new Map();
 	private static observer: ResizeObserver | null = null;
 
 	constructor() {
@@ -25,23 +26,21 @@ export class ResizeObserverListener extends AbstractObserverListener<
 		if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
 			ResizeObserverListener.observer = new ResizeObserver((entries) => {
 				for (const entry of entries) {
-					for (const { element, callback } of Object.values(
-						ResizeObserverListener.callbacks
-					)) {
-						if (entry.target === element) {
-							callback(entry);
-						}
-					}
+					this.dispatchEntry(entry.target, entry);
 				}
 			});
 		}
 	}
 
-	protected getCallbacks(): Record<
-		string,
-		{ element: Element; callback: ResizeCallback }
+	protected getCallbacksByElement(): Map<
+		Element,
+		Map<string, ResizeCallback>
 	> {
-		return ResizeObserverListener.callbacks;
+		return ResizeObserverListener.callbacksByElement;
+	}
+
+	protected getIdToElement(): Map<string, Element> {
+		return ResizeObserverListener.idToElement;
 	}
 
 	protected getObserver(): ResizeObserver | null {

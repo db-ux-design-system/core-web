@@ -7,10 +7,11 @@ export class IntersectionObserverListener extends AbstractObserverListener<
 	IntersectionObserverEntry
 > {
 	private static _instance: IntersectionObserverListener | null = null;
-	private static callbacks: Record<
-		string,
-		{ element: Element; callback: IntersectionCallback }
-	> = {};
+	private static callbacksByElement: Map<
+		Element,
+		Map<string, IntersectionCallback>
+	> = new Map();
+	private static idToElement: Map<string, Element> = new Map();
 	private static observer: IntersectionObserver | null = null;
 
 	constructor() {
@@ -26,24 +27,22 @@ export class IntersectionObserverListener extends AbstractObserverListener<
 			IntersectionObserverListener.observer = new IntersectionObserver(
 				(entries) => {
 					for (const entry of entries) {
-						for (const { element, callback } of Object.values(
-							IntersectionObserverListener.callbacks
-						)) {
-							if (entry.target === element) {
-								callback(entry);
-							}
-						}
+						this.dispatchEntry(entry.target, entry);
 					}
 				}
 			);
 		}
 	}
 
-	protected getCallbacks(): Record<
-		string,
-		{ element: Element; callback: IntersectionCallback }
+	protected getCallbacksByElement(): Map<
+		Element,
+		Map<string, IntersectionCallback>
 	> {
-		return IntersectionObserverListener.callbacks;
+		return IntersectionObserverListener.callbacksByElement;
+	}
+
+	protected getIdToElement(): Map<string, Element> {
+		return IntersectionObserverListener.idToElement;
 	}
 
 	protected getObserver(): IntersectionObserver | null {
