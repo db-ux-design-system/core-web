@@ -83,8 +83,9 @@ const xoConfig = [
 	},
 	{
 		files: ['./**/angular-**/**/*.html'],
-		prettier: false,
 		rules: {
+			// Use Prettier's Angular parser for correct template formatting
+			'prettier/prettier': ['error', { parser: 'angular' }],
 			// Angular templates use case-sensitive bindings (e.g. [(ngModel)], [formControl], (optionSelected))
 			'@html-eslint/lowercase': 0,
 			// @html-eslint cannot parse Angular @if/@for control flow blocks, causing false indent errors
