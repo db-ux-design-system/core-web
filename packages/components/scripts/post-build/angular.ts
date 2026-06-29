@@ -298,7 +298,11 @@ export default (tmp?: boolean) => {
 
 			// Signal Forms type compatibility: widen 'pattern' input to accept RegExp[] from FieldState
 			// Angular Signal Forms binds FieldState.pattern (readonly RegExp[]) to the host's pattern input
-			if (fileContent2.includes(`input<${upperComponentName}Props["pattern"]>`)) {
+			if (
+				fileContent2.includes(
+					`input<${upperComponentName}Props["pattern"]>`
+				)
+			) {
 				replaceInFileSync({
 					files: file,
 					from: `pattern: InputSignal<${upperComponentName}Props["pattern"]> =\n    input<${upperComponentName}Props["pattern"]>()`,
