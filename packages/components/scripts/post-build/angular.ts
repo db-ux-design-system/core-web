@@ -213,7 +213,7 @@ export default (tmp?: boolean) => {
 						`\t\t/** @internal Sync values → value (CVA/user interaction writes to values) */\n` +
 						`\t\tprivate _syncValuesToValue = effect(() => {\n` +
 						`\t\t\tconst vals = this.values();\n` +
-						`\t\t\tconst current = vals && vals.length > 0 ? vals[0] : undefined;\n` +
+						`\t\t\tconst current = vals && vals.length > 0 ? vals : undefined;\n` +
 						`\t\t\tif (current !== this.value()) {\n` +
 						`\t\t\t\tthis.value.set(current);\n` +
 						`\t\t\t}\n` +
@@ -274,6 +274,33 @@ export default (tmp?: boolean) => {
 						`\t\t_valid = signal<string | undefined>(undefined);`
 				});
 
+				// Connect _valid to aria-invalid and data-custom-validity in the template
+				// For regular form components (input, textarea, select, checkbox, switch)
+				replaceInFileSync({
+					files: file,
+					from: `[attr.aria-invalid]="validation() === 'invalid'"`,
+					to: `[attr.aria-invalid]="(_valid() ?? validation()) === 'invalid'"`
+				});
+				replaceInFileSync({
+					files: file,
+					from: `[attr.data-custom-validity]="validation()"`,
+					to: `[attr.data-custom-validity]="_valid() ?? validation()"`
+				});
+
+				// Override hasValidState to also consider Signal Forms _valid state
+				replaceInFileSync({
+					files: file,
+					from: /hasValidState\(\)\s*\{\s*\n\s*return !!\(this\.validMessage\(\) \?\? this\.validation\(\) === "valid"\);\s*\n\s*\}/,
+					to:
+						`hasValidState() {\n` +
+						`    return !!(this.validMessage() || this._valid() === 'valid' || this.validation() === "valid");\n` +
+						`  }`
+				});
+
+				// For custom-select which uses _validity signal: bridge _valid into _validity
+				// (must run after the main handleValidation bridge injection below)
+				const hasValidity = fileContent2.includes('_validity');
+
 				replaceInFileSync({
 					files: file,
 					from: /handleValidation\(\)\s*\{\s*\n/,
@@ -300,6 +327,31 @@ export default (tmp?: boolean) => {
 						`      this._invalidMessage.set('');\n` +
 						`    }\n`
 				});
+
+				// For custom-select: also set _validity in the injected bridge code
+				if (hasValidity) {
+					replaceInFileSync({
+						files: file,
+						from: `return; // Signal Forms errors take priority`,
+						to:
+							`this._validity.set('invalid');\n` +
+							`      return; // Signal Forms errors take priority`
+					});
+					replaceInFileSync({
+						files: file,
+						from:
+							`// Signal Forms provided errors=[] (valid state)\n` +
+							`      this._valid.set('valid');\n` +
+							`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
+							`      this._invalidMessage.set('');`,
+						to:
+							`// Signal Forms provided errors=[] (valid state)\n` +
+							`      this._valid.set('valid');\n` +
+							`      this._validity.set('valid');\n` +
+							`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
+							`      this._invalidMessage.set('');`
+					});
+				}
 			}
 
 			// Signal Forms type compatibility: widen 'pattern' input to accept RegExp[] from FieldState
