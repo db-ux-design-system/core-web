@@ -8,6 +8,6 @@ module.exports = {
 	targets: ['stencil'],
 	dest: '../../output/tmp',
 	options: {
-		stencil,
-	},
+		stencil
+	}
 };

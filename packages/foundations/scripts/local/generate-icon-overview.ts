@@ -2,8 +2,8 @@
  * This script can be used to update the icon overview for foundation testing.
  */
 
-import {writeFileSync} from 'node:fs';
-import {ALL_ICONS} from '../../src';
+import { writeFileSync } from 'node:fs';
+import { ALL_ICONS } from '../../src';
 
 const generateIconOverview = async () => {
 	try {
@@ -42,7 +42,7 @@ data-icon="none"
 data-semantic="informational"
 >${icon}</span
 >
-</div>`,
+</div>`
 			).join('\n')
 		}
 </div>

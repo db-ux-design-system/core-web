@@ -1,13 +1,13 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
-import {StorybookButtonArgTypes} from './_button.arg.types';
+import { StorybookButtonArgTypes } from './_button.arg.types';
 
-import {fn} from '../../../shared/examples';
+import { fn } from '../../../shared/examples';
 
 useMetadata({
 	storybookTitle: 'Show Icon Trailing',
 	storybookNames: ['False', 'True'],
-	storybookArgTypes: StorybookButtonArgTypes,
+	storybookArgTypes: StorybookButtonArgTypes
 });
 
 export default function ButtonShowIconTrailing() {
@@ -16,15 +16,13 @@ export default function ButtonShowIconTrailing() {
 			<DBButton
 				onClick={fn}
 				iconTrailing="x_placeholder"
-				showIconTrailing={false}
-			>
+				showIconTrailing={false}>
 				(Default) False
 			</DBButton>
 			<DBButton
 				onClick={fn}
 				iconTrailing="x_placeholder"
-				showIconTrailing={true}
-			>
+				showIconTrailing={true}>
 				True
 			</DBButton>
 		</Fragment>

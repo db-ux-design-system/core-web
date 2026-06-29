@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment */
 
-import {execSync} from 'node:child_process';
+import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {extractChangelogForVersion, findChangelogFiles} from './utils.js';
+import { fileURLToPath } from 'node:url';
+import { extractChangelogForVersion, findChangelogFiles } from './utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,7 +15,7 @@ function run(cmd: string, options = {}): any {
 		return execSync(cmd, {
 			stdio: 'pipe',
 			encoding: 'utf8',
-			...options,
+			...options
 		}).trim();
 	} catch (error: any) {
 		if (error.stdout) {
@@ -27,12 +27,12 @@ function run(cmd: string, options = {}): any {
 }
 
 /**
- Get the current version from package.json - we can use foundations here as it's always in sync with the other packages
+ * Get the current version from package.json - we can use foundations here as it's always in sync with the other packages
  */
 function getVersion(): string {
 	const pkgPath = path.resolve(
 		__dirname,
-		'../../../packages/foundations/package.json',
+		'../../../packages/foundations/package.json'
 	);
 	const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 	return pkg.version;
@@ -56,9 +56,8 @@ function getReleaseNotes(): string {
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
 			const entry = `# ${headline}\n${section}`;
 			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
-			// eslint-disable-next-line no-useless-escape
-			const isVersionBump = /^\s*(?:[*+\-]\s*)?_version bump_\s*$/m.test(
-				section,
+			const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/m.test(
+				section
 			);
 			if (isVersionBump) {
 				notes.push(entry);
@@ -90,12 +89,14 @@ function main() {
 	const notes = getReleaseNotes();
 
 	if (releaseExists(tag)) {
-		console.log(`Release ${tag} already exists. Skipping release creation.`);
+		console.log(
+			`Release ${tag} already exists. Skipping release creation.`
+		);
 		return;
 	}
 
 	// Write notes to a temporary file for safe shell usage
-	const temporaryFile = path.join(os.tmpdir(), 'dbux-release-notes.md');
+	const temporaryFile = path.join(os.tmpdir(), `dbux-release-notes.md`);
 	fs.writeFileSync(temporaryFile, notes, 'utf8');
 	try {
 		const releaseCommand = `gh release create "${tag}" --target main --title "${tag}" --notes-file "${temporaryFile}"`;
@@ -108,7 +109,7 @@ function main() {
 				'process.env.CI not set would run command:\n',
 				releaseCommand,
 				'\n\nContent for changelog:\n',
-				notes,
+				notes
 			);
 		}
 	} finally {

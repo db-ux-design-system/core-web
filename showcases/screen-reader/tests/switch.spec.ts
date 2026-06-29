@@ -1,4 +1,4 @@
-import {generateSnapshot, getTest, testDefault} from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -6,7 +6,8 @@ test.describe('DBSwitch', () => {
 	testDefault({
 		test,
 		title: 'default',
-		description: 'should toggle switches, should not toggle disabled switch',
+		description:
+			'should toggle switches, should not toggle disabled switch',
 		url: './#/03/switch?page=checked',
 		async testFn(voiceOver, nvda, page) {
 			if (nvda) {
@@ -37,13 +38,13 @@ test.describe('DBSwitch', () => {
 					phraseLog.map((log) =>
 						log
 							// NVDA sometimes shows "blank"
-							.replace('blank', 'check box, not checked, True'),
-					),
+							.replace('blank', 'check box, not checked, True')
+					)
 				);
 			} else if (voiceOver) {
 				await generateSnapshot(voiceOver, retry);
 			}
-		},
+		}
 	});
 	testDefault({
 		test,
@@ -62,6 +63,6 @@ test.describe('DBSwitch', () => {
 				await voiceOver?.act(); // Interact "switch 2"
 				await voiceOver?.next(); // Focus "switch 2"
 			}
-		},
+		}
 	});
 });

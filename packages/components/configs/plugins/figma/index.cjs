@@ -1,7 +1,7 @@
 // eslint-disable-next-line unicorn/import-style
-const {join, dirname} = require('node:path');
-const {env, loadEnvFile} = require('node:process');
-const {writeFileSync, mkdirSync} = require('node:fs');
+const { join, dirname } = require('node:path');
+const { env, loadEnvFile } = require('node:process');
+const { writeFileSync, mkdirSync } = require('node:fs');
 
 const envPath = join(__dirname, '..', '..', '..', '..', '..', '.env');
 
@@ -23,12 +23,12 @@ const UNSAFE_JS_CHAR_MAP = {
 	'\t': '\\t',
 	'\0': '\\0',
 	'\u2028': '\\u2028',
-	'\u2029': '\\u2029',
+	'\u2029': '\\u2029'
 };
 const escapeUnsafeChars = (str) =>
 	str.replace(
 		/[<>/\\\b\f\n\r\t\0\u2028\u2029]/g,
-		(ch) => UNSAFE_JS_CHAR_MAP[ch],
+		(ch) => UNSAFE_JS_CHAR_MAP[ch]
 	);
 
 // Prop types that are slot/children content - kept in bindings, used directly in template
@@ -40,21 +40,21 @@ const SLOT_TYPES = new Set([
 	'connectedText',
 	'validationMessage',
 	'conditionalProp',
-	'nestedInstancesToArray',
+	'nestedInstancesToArray'
 ]);
 
 const getInstanceCall = (figmaProperty, propName) => {
-	const {type, key, value} = figmaProperty;
+	const { type, key, value } = figmaProperty;
 
 	if (type === 'connectedInstances') {
-		const {filter} = figmaProperty;
+		const { filter } = figmaProperty;
 		// Filter by instance node name (not nestedImports like nestedConnectedInstances)
 		const filterStep = filter ? ` && node.name.includes('${filter}')` : '';
 		// flatMap because executeTemplate().example returns an array of code sections
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect()${filterStep}).flatMap((child) => child.executeTemplate().example)`;
 	}
 	if (type === 'nestedConnectedInstances') {
-		const {filter} = figmaProperty;
+		const { filter } = figmaProperty;
 		const filterStep = filter
 			? `.filter((node) => node.executeTemplate().example.some((section) => section.type === 'CODE' && section.nestedImports?.some((i) => i.includes('${filter}'))))`
 			: '';
@@ -63,7 +63,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect(), { traverseInstances: true }).filter((node) => node.type === 'INSTANCE')${filterStep}${reverseStep}.flatMap((child) => child.executeTemplate().example)`;
 	}
 	if (type === 'children') {
-		const {guardKeys} = figmaProperty;
+		const { guardKeys } = figmaProperty;
 		const childrenReturn = `instance.getSlot(_findKey('${key}'))`;
 
 		if (guardKeys?.length) {
@@ -74,25 +74,28 @@ const getInstanceCall = (figmaProperty, propName) => {
 	}
 	if (type === 'textContent') return `instance.getString(_findKey('${key}'))`;
 	if (type === 'connectedText') {
-		const {key: textKey, index = 0} = figmaProperty;
+		const { key: textKey, index = 0 } = figmaProperty;
 		return `instance.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').filter((node) => !!node.properties[_findKey('${textKey}')])[${index}]?.getString(_findKey('${textKey}'))`;
 	}
 	if (type === 'validationMessage') {
-		const {key: textKey, layer} = figmaProperty;
+		const { key: textKey, layer } = figmaProperty;
 		const source = layer
 			? `(_ccLayers.find((l) => l.name.includes('${layer}')) ?? instance)`
 			: 'instance';
 		return `((n) => n?.getString(Object.keys(n.properties).find((k) => k === '${textKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${textKey}') ?? '${textKey}'))(${source}.findConnectedInstances((node) => node.hasCodeConnect()).filter((node) => node.type === 'INSTANCE').find((node) => !!Object.keys(node.properties).find((k) => k === '${textKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${textKey}')))`;
 	}
 	if (type === 'nestedInstancesToArray') {
-		const {filter, props: subProps} = figmaProperty;
+		const { filter, props: subProps } = figmaProperty;
 		const propMapEntries = Object.entries(subProps)
 			.map(([subPropName, subFProp]) => {
 				const subKey = subFProp.key;
 				if (subFProp.type === 'boolean') {
 					return `'${subPropName}': (item.getEnum(Object.keys(item.properties).find((k) => k === '${subKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${subKey}') ?? '${subKey}', { 'False': false, 'True': true }) ?? item.getBoolean(Object.keys(item.properties).find((k) => k === '${subKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${subKey}') ?? '${subKey}'))`;
 				}
-				if (subFProp.type === 'instance' || subFProp.type === 'iconSwap') {
+				if (
+					subFProp.type === 'instance' ||
+					subFProp.type === 'iconSwap'
+				) {
 					return `'${subPropName}': ((r) => r && r[0]?.type === 'CODE' ? r[0].code : r)(item.getInstanceSwap(Object.keys(item.properties).find((k) => k === '${subKey}' || k.replace(/^[^a-zA-Z]+/, '') === '${subKey}') ?? '${subKey}')?.executeTemplate()?.example)`;
 				}
 				// Default: string/textContent
@@ -107,11 +110,11 @@ const getInstanceCall = (figmaProperty, propName) => {
 	if (type === 'iconSwap')
 		return `((r) => r && r[0]?.type === 'CODE' ? r[0].code : r)(instance.getInstanceSwap(_findKey('${key}'))?.executeTemplate()?.example)`;
 	if (type === 'booleanToEnum') {
-		const {map} = figmaProperty;
+		const { map } = figmaProperty;
 		const conditions = map
 			.map(
-				({key: bKey, value: bVal}) =>
-					`(instance.getPropertyValue(_findKey('${bKey}')) === true || instance.getPropertyValue(_findKey('${bKey}')) === 'True') ? '${bVal}'`,
+				({ key: bKey, value: bVal }) =>
+					`(instance.getPropertyValue(_findKey('${bKey}')) === true || instance.getPropertyValue(_findKey('${bKey}')) === 'True') ? '${bVal}'`
 			)
 			.join(' : ');
 		return `(${conditions} : undefined)`;
@@ -122,7 +125,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 	}
 	if (type === 'string') {
 		const inst = figmaProperty.layer ? `_${propName}Inst` : 'instance';
-		const {guardKeys} = figmaProperty;
+		const { guardKeys } = figmaProperty;
 		const stringReturn = `${inst}.getString(_findKey('${key}', ${inst}))`;
 
 		if (guardKeys?.length) {
@@ -135,23 +138,23 @@ const getInstanceCall = (figmaProperty, propName) => {
 	if (type === 'enum' && value) {
 		const entries = Object.entries(value);
 		const allIconSwaps = entries.every(
-			([, v]) => v instanceof Object && v.key && v.type === 'iconSwap',
+			([, v]) => v instanceof Object && v.key && v.type === 'iconSwap'
 		);
 		if (allIconSwaps) {
-			const {guardKey} = figmaProperty;
+			const { guardKey } = figmaProperty;
 			// Build per-entry swap lines
 			const swapLines = entries.map(
 				([figmaVal, inst]) =>
-					`if (instance.getPropertyValue(_findKey('${key}')) === '${figmaVal}' && typeof instance.getPropertyValue(_findKey('${inst.key}')) === 'string') { _swap = instance.getInstanceSwap(_findKey('${inst.key}')); }`,
+					`if (instance.getPropertyValue(_findKey('${key}')) === '${figmaVal}' && typeof instance.getPropertyValue(_findKey('${inst.key}')) === 'string') { _swap = instance.getInstanceSwap(_findKey('${inst.key}')); }`
 			);
 			const guardOpen = guardKey
 				? `if (instance.getPropertyValue(_findKey('${guardKey}')) === true || instance.getPropertyValue(_findKey('${guardKey}')) === 'True') {`
 				: null;
 			// Return a multi-line block marker — handled in attrDeclarations
-			return {__iconSwapBlock__: true, swapLines, guardOpen};
+			return { __iconSwapBlock__: true, swapLines, guardOpen };
 		}
 		const allInstances = entries.every(
-			([, v]) => v instanceof Object && v.key && v.type === 'instance',
+			([, v]) => v instanceof Object && v.key && v.type === 'instance'
 		);
 		if (allInstances) {
 			const [[, firstInst], ...rest] = entries;
@@ -160,7 +163,7 @@ const getInstanceCall = (figmaProperty, propName) => {
 			const conditions = rest
 				.map(
 					([figmaVal, inst]) =>
-						`instance.getPropertyValue('${key}') === '${figmaVal}' ? instance.getInstanceSwap('${inst.key}')?.executeTemplate()?.example`,
+						`instance.getPropertyValue('${key}') === '${figmaVal}' ? instance.getInstanceSwap('${inst.key}')?.executeTemplate()?.example`
 				)
 				.join(' : ');
 			return `(${conditions} : instance.getInstanceSwap('${firstInst.key}')?.executeTemplate()?.example)`;
@@ -185,7 +188,7 @@ const isStringType = (fProp) => {
 			'textContent',
 			'connectedText',
 			'iconSwap',
-			'booleanToEnum',
+			'booleanToEnum'
 		].includes(fProp.type)
 	)
 		return true;
@@ -222,23 +225,23 @@ const buildTemplate = (json, target) => {
 
 	const propEntries = Object.entries(props);
 	const validationMessageEntries = propEntries.filter(
-		([, p]) => p.type === 'validationMessage',
+		([, p]) => p.type === 'validationMessage'
 	);
 	const conditionalPropEntries = propEntries.filter(
-		([, p]) => p.type === 'conditionalProp',
+		([, p]) => p.type === 'conditionalProp'
 	);
 	const nestedInstancesToArrayEntries = propEntries.filter(
-		([, p]) => p.type === 'nestedInstancesToArray',
+		([, p]) => p.type === 'nestedInstancesToArray'
 	);
 	const slotPropEntries = propEntries.filter(
 		([, p]) =>
 			SLOT_TYPES.has(p.type) &&
 			p.type !== 'validationMessage' &&
 			p.type !== 'conditionalProp' &&
-			p.type !== 'nestedInstancesToArray',
+			p.type !== 'nestedInstancesToArray'
 	);
 	const attrPropEntries = propEntries.filter(
-		([, p]) => !SLOT_TYPES.has(p.type),
+		([, p]) => !SLOT_TYPES.has(p.type)
 	);
 
 	const slotDeclarations =
@@ -257,23 +260,25 @@ const buildTemplate = (json, target) => {
 				typeof valueExpr === 'object' &&
 				valueExpr.__iconSwapBlock__
 			) {
-				const {swapLines, guardOpen} = valueExpr;
+				const { swapLines, guardOpen } = valueExpr;
 				const isStr = true; // icon names are strings
 				const attrStr = isStr
 					? `\`\\n\\t\\t${propName}="\${_${propName}}"\``
 					: `\`\\n\\t\\t${propName}={\${_${propName}}}\``;
 				const innerLines = [
 					`let _swap_${propName}: figma.InstanceHandle | undefined`,
-					...swapLines.map((l) => l.replace(/_swap/g, `_swap_${propName}`)),
+					...swapLines.map((l) =>
+						l.replace(/_swap/g, `_swap_${propName}`)
+					),
 					`const _${propName}Example = _swap_${propName}?.executeTemplate()?.example`,
-					`const _${propName} = ((r) => r && r[0]?.type === 'CODE' ? r[0].code : r)(_${propName}Example)`,
+					`const _${propName} = ((r) => r && r[0]?.type === 'CODE' ? r[0].code : r)(_${propName}Example)`
 				];
 				const lines = [`let ${propName} = ''`];
 				if (guardOpen) {
 					lines.push(guardOpen);
 					for (const l of innerLines) lines.push(`\t${l}`);
 					lines.push(
-						`\tif (_${propName} !== undefined && _${propName} !== null) {`,
+						`\tif (_${propName} !== undefined && _${propName} !== null) {`
 					);
 					lines.push(`\t\t${propName} = ${attrStr}`);
 					lines.push(`\t}`);
@@ -281,7 +286,7 @@ const buildTemplate = (json, target) => {
 				} else {
 					for (const l of innerLines) lines.push(l);
 					lines.push(
-						`if (_${propName} !== undefined && _${propName} !== null) {`,
+						`if (_${propName} !== undefined && _${propName} !== null) {`
 					);
 					lines.push(`\t${propName} = ${attrStr}`);
 					lines.push(`}`);
@@ -309,20 +314,27 @@ const buildTemplate = (json, target) => {
 				fProp.type === 'enum' ? Object.values(fProp.value ?? {}) : [];
 			const isIconSwapEnum =
 				enumVals.length > 0 &&
-				enumVals.every((v) => v instanceof Object && v.type === 'iconSwap');
+				enumVals.every(
+					(v) => v instanceof Object && v.type === 'iconSwap'
+				);
 			const isInstanceEnum =
 				enumVals.length > 0 &&
-				enumVals.every((v) => v instanceof Object && v.type === 'instance');
+				enumVals.every(
+					(v) => v instanceof Object && v.type === 'instance'
+				);
 			const isBooleanToEnum = fProp.type === 'booleanToEnum';
 			const skipCcFallback =
-				isBooleanToEnum || isIconSwapEnum || isInstanceEnum || !!fProp.layer;
+				isBooleanToEnum ||
+				isIconSwapEnum ||
+				isInstanceEnum ||
+				!!fProp.layer;
 			const skipRootGuard = isBooleanToEnum || !!fProp.layer;
 			const ccValueMap =
 				fProp.type === 'boolean'
-					? {False: false, True: true}
+					? { False: false, True: true }
 					: (fProp.value ?? {});
 			const ccValueMapSerialized = escapeUnsafeChars(
-				JSON.stringify(ccValueMap),
+				JSON.stringify(ccValueMap)
 			);
 			const ccMappedValue =
 				fProp.type === 'enum' || fProp.type === 'boolean'
@@ -331,15 +343,17 @@ const buildTemplate = (json, target) => {
 			return [
 				...(fProp.layer
 					? [
-							`const _${propName}Inst = (_ccLayers.find((l) => l.name.includes('${fProp.layer}')) ?? instance) as figma.InstanceHandle`,
+							`const _${propName}Inst = (_ccLayers.find((l) => l.name.includes('${fProp.layer}')) ?? instance) as figma.InstanceHandle`
 						]
 					: []),
-				...(!skipCcFallback ? [`const _cc_${propName} = ${ccChild}`] : []),
+				...(!skipCcFallback
+					? [`const _cc_${propName} = ${ccChild}`]
+					: []),
 				`const _${propName} = ${skipRootGuard ? valueExpr : `['string', 'boolean'].includes(typeof instance.getPropertyValue(_findKey('${figmaKey}'))) ? ${valueExpr}${skipCcFallback ? '' : ` : _cc_${propName} ? ${ccMappedValue}`} : undefined`}`,
 				`let ${propName} = ''`,
 				`if (_${propName} !== undefined && _${propName} !== null && String(_${propName}) !== 'undefined' && !_isErr(_${propName})) {`,
 				`\t${propName} = ${attrStr}`,
-				`}`,
+				`}`
 			].join('\n');
 		})
 		.join('\n');
@@ -347,13 +361,13 @@ const buildTemplate = (json, target) => {
 	// FIX: use _${conditionProp} (raw value) not ${conditionProp} (fragment string)
 	const validationMessageDeclarations = validationMessageEntries
 		.map(([propName, fProp]) => {
-			const {conditionProp, map} = fProp;
+			const { conditionProp, map } = fProp;
 			const defaultAttr = map.default || propName;
 			const conditions = Object.entries(map)
 				.filter(([k]) => k !== 'default')
 				.map(
 					([val, attr]) =>
-						`\tif (_${conditionProp} === '${val}') ${propName}Attr = '${attr}'`,
+						`\tif (_${conditionProp} === '${val}') ${propName}Attr = '${attr}'`
 				)
 				.join('\n');
 			const attrAssign =
@@ -369,7 +383,7 @@ const buildTemplate = (json, target) => {
 				`\tlet ${propName}Attr = '${defaultAttr}'`,
 				conditions,
 				attrAssign,
-				`}`,
+				`}`
 			].join('\n');
 		})
 		.join('\n');
@@ -377,7 +391,7 @@ const buildTemplate = (json, target) => {
 	// conditionalProp: single icon swap guarded by a Figma boolean property key
 	const conditionalPropDeclarations = conditionalPropEntries
 		.map(([propName, fProp]) => {
-			const {key, guardKey, attrName} = fProp;
+			const { key, guardKey, attrName } = fProp;
 			const attrAssign =
 				target === 'angular'
 					? `\t${propName} = \`\\n\\t\\t[${attrName}]="\${_${propName}Value}"\``
@@ -399,7 +413,7 @@ const buildTemplate = (json, target) => {
 				`let ${propName} = ''`,
 				`if ((${guardCheck}) && _${propName}Value !== undefined && _${propName}Value !== null) {`,
 				attrAssign,
-				`}`,
+				`}`
 			].join('\n');
 		})
 		.join('\n');
@@ -419,7 +433,7 @@ const buildTemplate = (json, target) => {
 				`let ${propName} = ''`,
 				`if (_${propName}Array && _${propName}Array.length > 0) {`,
 				attrAssign,
-				`}`,
+				`}`
 			].join('\n');
 		})
 		.join('\n');
@@ -430,7 +444,7 @@ const buildTemplate = (json, target) => {
 			attrDeclarations,
 			validationMessageDeclarations,
 			conditionalPropDeclarations,
-			nestedInstancesToArrayDeclarations,
+			nestedInstancesToArrayDeclarations
 		]
 			.filter(Boolean)
 			.join('\n') + '\n\n';
@@ -444,21 +458,24 @@ const buildTemplate = (json, target) => {
 		nestedInstancesToArrayEntries,
 		slotPropEntries,
 		props,
-		urls,
+		urls
 	};
 };
 
-const getBatchJson = ({urls, componentId, templateFileName}) => {
+const getBatchJson = ({ urls, componentId, templateFileName }) => {
 	const components = urls
 		.filter((url) => url != null)
 		.map((url, index) => ({
-			url: String(url).replace('FIGMA_FILE', env.FIGMA_FILE || 'FIGMA_FILE'),
-			id: urls.length > 1 ? `${componentId}-${index}` : componentId,
+			url: String(url).replace(
+				'FIGMA_FILE',
+				env.FIGMA_FILE || 'FIGMA_FILE'
+			),
+			id: urls.length > 1 ? `${componentId}-${index}` : componentId
 		}));
 	return JSON.stringify(
-		{templateFile: `./${templateFileName}`, components},
+		{ templateFile: `./${templateFileName}`, components },
 		null,
-		2,
+		2
 	);
 };
 
@@ -472,7 +489,7 @@ module.exports = () => ({
 
 			if (!env.FIGMA_FILE) {
 				throw Error(
-					'FIGMA_FILE not set (check .env file or environment variables)',
+					'FIGMA_FILE not set (check .env file or environment variables)'
 				);
 			}
 
@@ -487,20 +504,27 @@ module.exports = () => ({
 			// FIX: always recurse into children even when node has no bindings
 			const walkNode = (node) => {
 				if (node.bindings) {
-					for (const [bindingKey, binding] of Object.entries(node.bindings)) {
-						const match = binding.code && binding.code.match(/^props\.(.+)$/);
+					for (const [bindingKey, binding] of Object.entries(
+						node.bindings
+					)) {
+						const match =
+							binding.code && binding.code.match(/^props\.(.+)$/);
 
 						if (!match) {
 							// Complex JSX binding — simplify textContent props to bare variable
 							if (binding.code) {
-								for (const [propName, fProp] of Object.entries(figmaProps)) {
+								for (const [propName, fProp] of Object.entries(
+									figmaProps
+								)) {
 									if (
 										fProp.type === 'textContent' &&
-										binding.code.includes('props.' + propName)
+										binding.code.includes(
+											'props.' + propName
+										)
 									) {
 										node.bindings[bindingKey] = {
 											...binding,
-											code: propName,
+											code: propName
 										};
 										break;
 									}
@@ -521,7 +545,8 @@ module.exports = () => ({
 						const textBinding = child.bindings?._text;
 						if (textBinding) {
 							const match =
-								textBinding.code && textBinding.code.match(/^props\.(.+)$/);
+								textBinding.code &&
+								textBinding.code.match(/^props\.(.+)$/);
 							if (match) {
 								const propName = match[1];
 								const fProp = figmaProps[propName];
@@ -536,10 +561,10 @@ module.exports = () => ({
 											_text: {
 												code: propName,
 												bindingType: 'expression',
-												type: 'single',
-											},
+												type: 'single'
+											}
 										},
-										children: [],
+										children: []
 									};
 								}
 							}
@@ -555,13 +580,13 @@ module.exports = () => ({
 			if (target) buildTemplate(json, target);
 
 			return json;
-		},
+		}
 	},
 	code: {
 		post: (code, json) => {
 			// FIX: guard pluginData before destructuring
 			if (!json.pluginData) return code;
-			const {target, outputFilePath, outputDir} = json.pluginData;
+			const { target, outputFilePath, outputDir } = json.pluginData;
 
 			if (!json.meta?.useMetadata?.figma) return code;
 
@@ -576,7 +601,7 @@ module.exports = () => ({
 				conditionalPropEntries,
 				nestedInstancesToArrayEntries,
 				props,
-				urls,
+				urls
 			} = figmaMeta._precomputed;
 
 			let codeStart = '';
@@ -595,7 +620,7 @@ module.exports = () => ({
 			let example;
 			if (target === 'react' && !code.includes('return (')) {
 				const match = code.match(
-					/return\s+(<[\s\S]*?>(?:[\s\S]*?<\/[^>]+>)?)\s*;/,
+					/return\s+(<[\s\S]*?>(?:[\s\S]*?<\/[^>]+>)?)\s*;/
 				);
 				example = match
 					? match[1].trim()
@@ -617,12 +642,21 @@ module.exports = () => ({
 				const token = '${' + propName + '}';
 				const fn = () => token;
 				exampleWithProps = exampleWithProps
-					.replace(new RegExp('\\{\\{\\s*' + propName + '\\s*\\}\\}', 'g'), fn)
 					.replace(
-						new RegExp('\\{\\{\\s*' + propName + '\\(\\)\\s*\\}\\}', 'g'),
-						fn,
+						new RegExp('\\{\\{\\s*' + propName + '\\s*\\}\\}', 'g'),
+						fn
 					)
-					.replace(new RegExp('(?<!\\$)\\{' + propName + '\\}', 'g'), fn)
+					.replace(
+						new RegExp(
+							'\\{\\{\\s*' + propName + '\\(\\)\\s*\\}\\}',
+							'g'
+						),
+						fn
+					)
+					.replace(
+						new RegExp('(?<!\\$)\\{' + propName + '\\}', 'g'),
+						fn
+					)
 					.split('props.' + propName)
 					.join(token)
 					.split('{' + token + '}')
@@ -634,7 +668,7 @@ module.exports = () => ({
 				...attrPropEntries,
 				...validationMessageEntries,
 				...conditionalPropEntries,
-				...nestedInstancesToArrayEntries,
+				...nestedInstancesToArrayEntries
 			];
 			if (allInjectedEntries.length > 0) {
 				const combined = allInjectedEntries
@@ -659,14 +693,14 @@ module.exports = () => ({
 					.split('\\')
 					.pop();
 				try {
-					mkdirSync(dirname(jsonPath), {recursive: true});
+					mkdirSync(dirname(jsonPath), { recursive: true });
 					writeFileSync(
 						jsonPath,
-						getBatchJson({urls, componentId, templateFileName}),
+						getBatchJson({ urls, componentId, templateFileName })
 					);
 				} catch (err) {
 					console.error(
-						`[figma plugin] Failed to write batch JSON: ${err.message}`,
+						`[figma plugin] Failed to write batch JSON: ${err.message}`
 					);
 				}
 			}
@@ -681,7 +715,9 @@ module.exports = () => ({
 					const ccLayerNames = figmaMeta.ccLayerNames || [];
 					const nameClauses = [
 						`n.name.includes('\u2699\ufe0f Code Connect')`,
-						...ccLayerNames.map((name) => `n.name.includes('${name}')`),
+						...ccLayerNames.map(
+							(name) => `n.name.includes('${name}')`
+						)
 					].join(' || ');
 					return `const _ccLayers = instance.findLayers((n) => n.type === 'INSTANCE' && (${nameClauses}), { traverseInstances: true }).filter((n) => n.type === 'INSTANCE') as figma.InstanceHandle[]\n`;
 				})() +
@@ -693,6 +729,6 @@ module.exports = () => ({
 				importsArray +
 				',\n  id: figma.batch.id,\n}'
 			).replace(/^import\s+(?!figma)[^\n]+\n/gm, '');
-		},
-	},
+		}
+	}
 });

@@ -1,9 +1,9 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBNavigation} from '../index';
-import {FigmaNavigationProps, navigations} from './navigation.figma';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBNavigation } from '../index';
+import { FigmaNavigationProps, navigations } from './navigation.figma';
 
 useMetadata({
-	figma: navigations,
+	figma: navigations
 });
 
 export default function NavigationFigmaLite(props: FigmaNavigationProps) {

@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import {StorybookInputArgTypes} from './_input.arg.types';
+import { StorybookInputArgTypes } from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Message',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookInputArgTypes,
+	storybookArgTypes: StorybookInputArgTypes
 });
 
 export default function InputShowMessage() {
@@ -15,14 +15,12 @@ export default function InputShowMessage() {
 				label="Label"
 				message="Message"
 				showMessage={false}
-				placeholder="(Default) False"
-			></DBInput>
+				placeholder="(Default) False"></DBInput>
 			<DBInput
 				label="Label"
 				message="Message"
 				showMessage={true}
-				placeholder="True"
-			></DBInput>
+				placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

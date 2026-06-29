@@ -1,5 +1,5 @@
-import {DBButton} from '../../button/index';
-import {DBPopover} from '../index';
+import { DBButton } from '../../button/index';
+import { DBPopover } from '../index';
 
 export default function Popover() {
 	return (
@@ -7,19 +7,21 @@ export default function Popover() {
 			<h1>DBPopover Documentation Examples</h1>
 
 			<h2>1. Default Popover</h2>
-			<DBPopover trigger={<DBButton>Hover on me to open Popover</DBButton>}>
+			<DBPopover
+				trigger={<DBButton>Hover on me to open Popover</DBButton>}>
 				Use any HTML code here like e.g. a <code>button</code>:
 				<button type="button">Test</button>
 			</DBPopover>
 
 			<h2>2. Placement Variants</h2>
-			<DBPopover trigger={<DBButton>Top Placement</DBButton>} placement="top">
+			<DBPopover
+				trigger={<DBButton>Top Placement</DBButton>}
+				placement="top">
 				Popover with top placement
 			</DBPopover>
 			<DBPopover
 				trigger={<DBButton>Bottom Placement</DBButton>}
-				placement="bottom"
-			>
+				placement="bottom">
 				Popover with bottom placement
 			</DBPopover>
 
@@ -32,10 +34,14 @@ export default function Popover() {
 			</DBPopover>
 
 			<h2>4. Animation</h2>
-			<DBPopover trigger={<DBButton>With Animation</DBButton>} animation={true}>
+			<DBPopover
+				trigger={<DBButton>With Animation</DBButton>}
+				animation={true}>
 				Popover with animation
 			</DBPopover>
-			<DBPopover trigger={<DBButton>No Animation</DBButton>} animation={false}>
+			<DBPopover
+				trigger={<DBButton>No Animation</DBButton>}
+				animation={false}>
 				Popover without animation
 			</DBPopover>
 

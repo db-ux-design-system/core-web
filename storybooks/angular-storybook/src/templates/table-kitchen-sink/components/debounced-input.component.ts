@@ -4,9 +4,9 @@ import {
 	Input,
 	OnDestroy,
 	OnInit,
-	Output,
+	Output
 } from '@angular/core';
-import {DBInput} from '@components';
+import { DBInput } from '@components';
 
 @Component({
 	selector: 'app-debounced-input',
@@ -18,9 +18,8 @@ import {DBInput} from '@components';
 			[label]="label"
 			[placeholder]="placeholder"
 			[value]="value"
-			(valueChange)="onValueChange($event)"
-		/>
-	`,
+			(valueChange)="onValueChange($event)" />
+	`
 })
 export class DebouncedInputComponent implements OnInit, OnDestroy {
 	@Input() label = '';

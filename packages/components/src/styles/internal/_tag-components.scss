@@ -1,12 +1,12 @@
-@use 'sass:map';
-@use 'component';
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
+@use "sass:map";
+@use "component";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
-$interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
+$interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
-@mixin get-weak($name: 'adaptive', $border-color: 60, $background-color: 1) {
+@mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
 	--db-tag-border-color: var(
 		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
 	);
@@ -19,7 +19,7 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 	);
 }
 
-@mixin get-strong($name: 'adaptive') {
+@mixin get-strong($name: "adaptive") {
 	--db-tag-border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
 	// stylelint-disable-next-line db-ux/use-border-color
 	border-color: var(--db-tag-border-color);
@@ -38,26 +38,26 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 	);
 }
 
-@mixin get-tag-colors($htmlTag: 'tag') {
+@mixin get-tag-colors($htmlTag: "tag") {
 	$border-color: 60;
 	$background-color: 1;
 
 	&:not([data-semantic]),
-	&[data-semantic='adaptive'] {
+	&[data-semantic="adaptive"] {
 		&:not([data-emphasis]),
-		&[data-emphasis='weak'] {
-			@if $htmlTag == 'badge' {
+		&[data-emphasis="weak"] {
+			@if $htmlTag == "badge" {
 				$border-color: 70;
 				$background-color: 3;
 
-				@include get-weak('adaptive', $border-color, $background-color);
+				@include get-weak("adaptive", $border-color, $background-color);
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				@include get-weak;
 			}
 		}
 
-		&[data-emphasis='strong'] {
+		&[data-emphasis="strong"] {
 			@include get-strong;
 
 			.db-tab-remove-button {
@@ -67,13 +67,13 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 	}
 
 	@each $name in colors.$variant-colors {
-		&[data-semantic='#{$name}'] {
+		&[data-semantic="#{$name}"] {
 			&:not([data-emphasis]),
-			&[data-emphasis='weak'] {
+			&[data-emphasis="weak"] {
 				@include get-weak($name, $border-color, $background-color);
 			}
 
-			&[data-emphasis='strong'] {
+			&[data-emphasis="strong"] {
 				@include get-strong($name);
 			}
 		}
@@ -126,13 +126,13 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 
 	// overwrite current variables for semantic color
 	@each $name in colors.$variant-colors {
-		&[data-semantic='#{$name}'] {
+		&[data-semantic="#{$name}"] {
 			@extend %db-#{$name}-variables;
 		}
 	}
 
 	&:not([data-emphasis]),
-	&[data-emphasis='weak'] {
+	&[data-emphasis="weak"] {
 		// buttons and links
 		@include get-interactive-selectors {
 			@extend %set-interactive-weak;
@@ -142,12 +142,12 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 			@extend %set-interactive-weak;
 		}
 
-		label:has(input[type='checkbox']:checked) {
+		label:has(input[type="checkbox"]:checked) {
 			@extend %set-interactive-strong;
 		}
 
 		// radio (checked) without hover/pressed
-		label:has(input[type='radio']:checked) {
+		label:has(input[type="radio"]:checked) {
 			&,
 			&:is(:hover, :focus, :active) {
 				@include get-strong;
@@ -155,7 +155,7 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 		}
 	}
 
-	&[data-emphasis='strong'] {
+	&[data-emphasis="strong"] {
 		@extend %set-interactive-strong;
 
 		// buttons and links
@@ -163,11 +163,11 @@ $interactive-selectors: 'label, button:not(.db-tab-remove-button), a';
 			@extend %set-interactive-strong;
 		}
 
-		label:has(input[type='checkbox']:checked) {
+		label:has(input[type="checkbox"]:checked) {
 			@extend %set-interactive-strong;
 		}
 
-		label:has(input[type='radio']:checked) {
+		label:has(input[type="radio"]:checked) {
 			@include get-strong;
 		}
 

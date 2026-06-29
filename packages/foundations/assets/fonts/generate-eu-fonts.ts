@@ -1,9 +1,9 @@
-import {glob} from 'glob';
-import {execFile} from 'node:child_process';
-import {promisify} from 'node:util';
+import { glob } from 'glob';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 
-import {dirname} from 'node:path';
-import {fileURLToPath} from 'node:url';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename).replaceAll('\\', '/');
@@ -20,7 +20,7 @@ const generateFonts = async () => {
 		await execFileAsync('pyftsubset', ['--help']);
 	} catch (e) {
 		console.warn(
-			'You need to install pyftsubset. Check packages/foundations/assets/fonts/README.md for more information.',
+			'You need to install pyftsubset. Check packages/foundations/assets/fonts/README.md for more information.'
 		);
 	}
 
@@ -42,12 +42,12 @@ const generateFonts = async () => {
 				'--layout-features=*',
 				'--flavor=woff2',
 				`--unicodes-file=${__dirname}/unicode-eu.txt`,
-				`--output-file=${file.replace('.ttf', '-EU.woff2')}`,
+				`--output-file=${file.replace('.ttf', '-EU.woff2')}`
 			];
 
 			// Security: execFile provides better performance and type safety
 			// as it doesn't spawn a shell process
-			const {stdout, stderr} = await execFileAsync('pyftsubset', args);
+			const { stdout, stderr } = await execFileAsync('pyftsubset', args);
 			if (stdout) console.log(`stdout: ${stdout}`);
 			if (stderr) console.error(`stderr: ${stderr}`);
 		}

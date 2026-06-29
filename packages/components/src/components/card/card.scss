@@ -1,7 +1,7 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '../../styles/internal/component';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/component";
 
 :is(a[href], button) {
 	// Resetting button and link specific declarations
@@ -43,7 +43,7 @@
 	flex-direction: column;
 	background-color: var(--db-card-background-color-default);
 
-	&[data-behavior='interactive'] {
+	&[data-behavior="interactive"] {
 		@include helpers.not-disabled {
 			@include helpers.hover {
 				background-color: var(--db-card-background-color-hovered);
@@ -55,13 +55,13 @@
 		}
 	}
 
-	&[data-elevation-level='2'] {
+	&[data-elevation-level="2"] {
 		--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-2-default};
 		--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-2-hovered};
 		--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-2-pressed};
 	}
 
-	&[data-elevation-level='3'] {
+	&[data-elevation-level="3"] {
 		--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-3-default};
 		--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-3-hovered};
 		--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-3-pressed};

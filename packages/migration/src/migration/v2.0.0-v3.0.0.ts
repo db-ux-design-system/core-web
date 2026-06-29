@@ -1,64 +1,64 @@
-import type {ReplaceInFileConfig} from 'replace-in-file';
+import type { ReplaceInFileConfig } from 'replace-in-file';
 
 export const v200_v300: ReplaceInFileConfig[] = [
 	{
 		files: '',
 		from: /icon-before/g,
-		to: 'icon-leading',
+		to: 'icon-leading'
 	},
 	{
 		files: '',
 		from: /icon-after/g,
-		to: 'icon-trailing',
+		to: 'icon-trailing'
 	},
 	{
 		files: '',
 		from: /iconBefore/g,
-		to: 'iconLeading',
+		to: 'iconLeading'
 	},
 	{
 		files: '',
 		from: /iconAfter/g,
-		to: 'iconTrailing',
+		to: 'iconTrailing'
 	},
 	{
 		files: '',
 		from: /IconBefore/g,
-		to: 'IconLeading',
+		to: 'IconLeading'
 	},
 	{
 		files: '',
 		from: /IconAfter/g,
-		to: 'IconTrailing',
+		to: 'IconTrailing'
 	},
 	{
 		files: '',
 		from: /labelledBy/g,
-		to: 'aria-labelledby',
+		to: 'aria-labelledby'
 	},
 	{
 		files: '',
 		from: /describedbyid/g,
-		to: 'aria-describedby',
+		to: 'aria-describedby'
 	},
 	{
 		files: '',
 		from: /ariaexpanded/g,
-		to: 'aria-expanded',
+		to: 'aria-expanded'
 	},
 	{
 		files: '',
 		from: /ariapressed/g,
-		to: 'aria-pressed',
+		to: 'aria-pressed'
 	},
 	{
 		files: '',
 		from: /transparent-hovered/g,
-		to: 'transparent-full-hovered',
+		to: 'transparent-full-hovered'
 	},
 	{
 		files: '',
 		from: /transparent-pressed/g,
-		to: 'transparent-full-pressed',
-	},
+		to: 'transparent-full-pressed'
+	}
 ];

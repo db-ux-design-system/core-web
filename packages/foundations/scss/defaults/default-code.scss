@@ -1,8 +1,8 @@
 /* Use this file if you want to use the defaults for the <code> tag in your project */
 
-@use '../colors';
-@use '../variables';
-@use '../helpers';
+@use "../colors";
+@use "../variables";
+@use "../helpers";
 
 pre:not([class]):has(code) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;

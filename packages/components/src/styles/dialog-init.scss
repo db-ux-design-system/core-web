@@ -1,5 +1,5 @@
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 $backdrop-color-strong: color(
 	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
@@ -17,7 +17,7 @@ dialog {
 	z-index: 9996;
 	color: inherit;
 
-	&:not([data-position='absolute']) {
+	&:not([data-position="absolute"]) {
 		&[data-variant],
 		&[data-backdrop] {
 			position: fixed;
@@ -25,10 +25,10 @@ dialog {
 			z-index: 9995;
 		}
 
-		&[data-variant='inside'] {
-			&:not([data-backdrop='none']) {
+		&[data-variant="inside"] {
+			&:not([data-backdrop="none"]) {
 				&::before {
-					content: '';
+					content: "";
 					position: fixed;
 					inset: 0;
 				}
@@ -36,20 +36,20 @@ dialog {
 		}
 	}
 
-	&:not([data-backdrop='none']) {
+	&:not([data-backdrop="none"]) {
 		&::backdrop,
 		&::before {
 			background-color: $backdrop-color-strong;
 		}
 
-		&[data-backdrop='invisible'] {
+		&[data-backdrop="invisible"] {
 			&::backdrop,
 			&::before {
 				background-color: transparent;
 			}
 		}
 
-		&[data-backdrop='weak'] {
+		&[data-backdrop="weak"] {
 			&::backdrop,
 			&::before {
 				background-color: $backdrop-color-weak;

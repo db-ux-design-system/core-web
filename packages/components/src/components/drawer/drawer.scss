@@ -1,16 +1,16 @@
-@use 'sass:map';
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/animation';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '../../styles/internal/component';
-@use '../../styles/dialog-init';
+@use "sass:map";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/dialog-init";
 
 %direction-right {
 	transform: translateX(110%);
 	inset-inline: auto 0;
 
-	&[data-rounded='true'] {
+	&[data-rounded="true"] {
 		border-start-start-radius: variables.$db-border-radius-sm;
 		border-end-start-radius: variables.$db-border-radius-sm;
 	}
@@ -20,14 +20,14 @@
 	transform: translateX(-110%);
 	inset-inline: 0 auto;
 
-	&[data-rounded='true'] {
+	&[data-rounded="true"] {
 		border-start-end-radius: variables.$db-border-radius-sm;
 		border-end-end-radius: variables.$db-border-radius-sm;
 	}
 }
 
 %full-horizontal {
-	&:not([data-width='full']) {
+	&:not([data-width="full"]) {
 		/// Sets the maximum height of the drawer
 		/// @propertyname max-block-size
 		/// @cssprop --db-drawer-max-height
@@ -49,7 +49,7 @@
 	transform: translateY(110%);
 	inset: auto 0 0;
 
-	&[data-rounded='true'] {
+	&[data-rounded="true"] {
 		border-start-end-radius: variables.$db-border-radius-sm;
 		border-start-start-radius: variables.$db-border-radius-sm;
 	}
@@ -61,35 +61,35 @@
 	transform: translateY(-110%);
 	inset: 0 0 auto;
 
-	&[data-rounded='true'] {
+	&[data-rounded="true"] {
 		border-end-end-radius: variables.$db-border-radius-sm;
 		border-end-start-radius: variables.$db-border-radius-sm;
 	}
 }
 
 $spacings: (
-	'small': (
-		'block': variables.$db-spacing-fixed-xs,
-		'inline': variables.$db-spacing-fixed-md,
+	"small": (
+		"block": variables.$db-spacing-fixed-xs,
+		"inline": variables.$db-spacing-fixed-md
 	),
-	'medium': (
-		'block': variables.$db-spacing-fixed-sm,
-		'inline': variables.$db-spacing-fixed-lg,
+	"medium": (
+		"block": variables.$db-spacing-fixed-sm,
+		"inline": variables.$db-spacing-fixed-lg
 	),
-	'large': (
-		'block': variables.$db-spacing-fixed-md,
-		'inline': variables.$db-spacing-fixed-xl,
+	"large": (
+		"block": variables.$db-spacing-fixed-md,
+		"inline": variables.$db-spacing-fixed-xl
 	),
-	'none': (
-		'block': 0,
-		'inline': 0,
-	),
+	"none": (
+		"block": 0,
+		"inline": 0
+	)
 );
 
 @mixin get-spacing($spacing) {
 	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
-		padding-block: map.get($spacing, 'block');
+		padding-block: map.get($spacing, "block");
 	}
 
 	.db-drawer-header {
@@ -101,9 +101,9 @@ $spacings: (
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-block-end: var(
 			--db-drawer-header-padding-block-end,
-			#{map.get($spacing, 'block')}
+			#{map.get($spacing, "block")}
 		);
-		padding-inline: map.get($spacing, 'inline');
+		padding-inline: map.get($spacing, "inline");
 	}
 
 	.db-drawer-content {
@@ -115,7 +115,7 @@ $spacings: (
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
 			--db-drawer-content-padding-inline,
-			#{map.get($spacing, 'inline')}
+			#{map.get($spacing, "inline")}
 		);
 
 		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
@@ -126,11 +126,11 @@ $spacings: (
 
 %spacing-drawer {
 	@each $name, $spacing in $spacings {
-		@if $name == 'medium' {
+		@if $name == "medium" {
 			@include get-spacing($spacing);
 		}
 
-		&[data-spacing='#{$name}'] {
+		&[data-spacing="#{$name}"] {
 			@include get-spacing($spacing);
 		}
 	}
@@ -148,7 +148,7 @@ $spacings: (
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
 
-		&:not([data-width='full']) {
+		&:not([data-width="full"]) {
 			/// Sets the maximum width of the drawer
 			/// and some default values for the drawer
 			/// @propertyname max-inline-size
@@ -171,53 +171,54 @@ $spacings: (
 			min-inline-size: var(--db-drawer-min-width, auto);
 
 			&:not([data-direction]),
-			&[data-direction='right'] {
+			&[data-direction="right"] {
 				border-inline-start: component.$component-border;
 			}
 
-			&[data-direction='left'] {
+			&[data-direction="left"] {
 				border-inline-end: component.$component-border;
 			}
 
-			&[data-direction='up'] {
+			&[data-direction="up"] {
 				border-block-start: component.$component-border;
 			}
 
-			&[data-direction='down'] {
+			&[data-direction="down"] {
 				border-block-end: component.$component-border;
 			}
 		}
 
-		&[data-rounded='true'] {
+		&[data-rounded="true"] {
 			box-shadow: variables.$db-elevation-md;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
-			transition: transform #{variables.$db-transition-duration-extra-slow}
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
 				#{variables.$db-transition-timing-emotional};
 		}
 
 		&:not([data-direction]),
-		&[data-direction='right'] {
+		&[data-direction="right"] {
 			@extend %direction-right;
 		}
 
-		&[data-direction='left'] {
+		&[data-direction="left"] {
 			@extend %direction-left;
 		}
 
-		&[data-direction='up'] {
+		&[data-direction="up"] {
 			@extend %direction-up;
 		}
 
-		&[data-direction='down'] {
+		&[data-direction="down"] {
 			@extend %direction-down;
 		}
 
 		.db-drawer-header {
 			display: none;
 
-			@include helpers.divider('bottom');
+			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
 				margin-block: auto;
@@ -240,7 +241,7 @@ $spacings: (
 		}
 	}
 
-	&[data-position='absolute'] {
+	&[data-position="absolute"] {
 		position: absolute;
 		z-index: 3;
 		inset: 0;
@@ -253,19 +254,19 @@ $spacings: (
 		}
 
 		&:not([data-direction]),
-		&[data-direction='right'],
-		&[data-direction='left'] {
+		&[data-direction="right"],
+		&[data-direction="left"] {
 			flex-direction: column;
 		}
 
-		&[data-direction='left'],
-		&[data-direction='down'] {
+		&[data-direction="left"],
+		&[data-direction="down"] {
 			align-items: start;
 		}
 
 		&:not([data-direction]),
-		&[data-direction='right'],
-		&[data-direction='up'] {
+		&[data-direction="right"],
+		&[data-direction="up"] {
 			align-items: end;
 		}
 
@@ -276,22 +277,23 @@ $spacings: (
 
 	&[open] {
 		.db-drawer-container {
-			&[data-transition='open'] {
+			&[data-transition="open"] {
 				&:not([data-direction]),
-				&[data-direction='right'],
-				&[data-direction='left'] {
+				&[data-direction="right"],
+				&[data-direction="left"] {
 					transform: none;
 				}
 
-				&[data-direction='up'],
-				&[data-direction='down'] {
+				&[data-direction="up"],
+				&[data-direction="down"] {
 					transform: none;
 				}
 			}
 
-			&[data-transition='close'] {
+			&[data-transition="close"] {
 				@media (prefers-reduced-motion: no-preference) {
-					transition: transform #{variables.$db-transition-duration-slow}
+					transition: transform
+						#{variables.$db-transition-duration-slow}
 						#{variables.$db-transition-timing-emotional};
 				}
 			}

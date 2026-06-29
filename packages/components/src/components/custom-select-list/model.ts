@@ -1,4 +1,4 @@
-import type {GlobalProps, GlobalState} from '../../shared/model';
+import type { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBCustomSelectListDefaultProps = {
 	label?: string;

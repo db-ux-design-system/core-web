@@ -6,7 +6,7 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import {DBCard} from '@db-ux/react-core-components';
+import { DBCard } from "@db-ux/react-core-components";
 
 const App = () => <DBCard>Card content</DBCard>;
 export default App;

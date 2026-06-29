@@ -1,4 +1,4 @@
-import {DBIcon} from '../index';
+import { DBIcon } from '../index';
 
 export default function Icon() {
 	return (

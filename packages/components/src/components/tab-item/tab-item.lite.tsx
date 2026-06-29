@@ -7,22 +7,22 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget,
+	useTarget
 } from '@builder.io/mitosis';
-import {cls, getBoolean, getBooleanAsString} from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import {
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue,
+	handleFrameworkEventVue
 } from '../../utils/form-components';
-import type {DBTabItemProps, DBTabItemState} from './model';
+import type { DBTabItemProps, DBTabItemState } from './model';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled'],
 		signals: {
-			writeable: ['disabled', 'checked'],
-		},
-	},
+			writeable: ['disabled', 'checked']
+		}
+	}
 });
 useDefaultProps<DBTabItemProps>({});
 
@@ -42,12 +42,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 				stencil: () => {
 					state._selected = getBooleanAsString(
 						event.target === _ref,
-						'selected',
+						'selected'
 					);
 				},
 				default: () => {
 					state._selected = event.target === _ref;
-				},
+				}
 			});
 		},
 		handleNameAttribute: () => {
@@ -67,10 +67,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
-		},
+		}
 	});
 
 	// Set up event listener to react on any change (select & deselect) in tab list
@@ -80,14 +81,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 	onMount(() => {
 		useTarget({
 			stencil: () => {
-				state.boundSetSelectedOnChange = state.setSelectedOnChange.bind(state);
+				state.boundSetSelectedOnChange =
+					state.setSelectedOnChange.bind(state);
 			},
 			react: () => {
-				state.boundSetSelectedOnChange = () => state.setSelectedOnChange;
+				state.boundSetSelectedOnChange = () =>
+					state.setSelectedOnChange;
 			},
 			default: () => {
 				state.boundSetSelectedOnChange = state.setSelectedOnChange;
-			},
+			}
 		});
 		state.initialized = true;
 	});
@@ -95,14 +98,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized && state.boundSetSelectedOnChange) {
-			useTarget({react: () => state.handleNameAttribute()});
+			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 
 			// deselect this tab when another tab in tablist is selected
 			if (!state._listenerAdded) {
-				_ref
-					.closest('[role=tablist]')
-					?.addEventListener('change', state.boundSetSelectedOnChange);
+				_ref.closest('[role=tablist]')?.addEventListener(
+					'change',
+					state.boundSetSelectedOnChange
+				);
 				state._listenerAdded = true;
 			}
 
@@ -114,7 +118,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					},
 					default: () => {
 						state._selected = true;
-					},
+					}
 				});
 				_ref.click();
 			}
@@ -129,9 +133,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onUnMount(() => {
 		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
-			_ref
-				.closest('[role=tablist]')
-				?.removeEventListener('change', state.boundSetSelectedOnChange);
+			_ref.closest('[role=tablist]')?.removeEventListener(
+				'change',
+				state.boundSetSelectedOnChange
+			);
 			state._listenerAdded = false;
 		}
 	});
@@ -143,15 +148,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
 				data-show-icon={
-					getBooleanAsString(props.showIconLeading, 'showIconLeading') ||
-					getBooleanAsString(props.showIcon, 'showIcon')
+					getBooleanAsString(
+						props.showIconLeading,
+						'showIconLeading'
+					) || getBooleanAsString(props.showIcon, 'showIcon')
 				}
 				data-show-icon-trailing={getBooleanAsString(
 					props.showIconTrailing,
-					'showIconTrailing',
+					'showIconTrailing'
 				)}
-				data-no-text={getBooleanAsString(props.noText, 'noText')}
-			>
+				data-no-text={getBooleanAsString(props.noText, 'noText')}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}

@@ -1,4 +1,4 @@
-import {DBBrand} from '../index';
+import { DBBrand } from '../index';
 
 export default function Brand() {
 	return (

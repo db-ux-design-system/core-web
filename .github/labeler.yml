@@ -2,29 +2,29 @@
 # Add 'cicd' label to any file changes inside .github dir
 🚢📀cicd:
   - changed-files:
-      - any-glob-to-any-file: ['.github/*', '.github/**/*']
+      - any-glob-to-any-file: [".github/*", ".github/**/*"]
 
 # Add 'documentation' label to any file changes for the documentation files
 📕documentation:
   - changed-files:
-      - any-glob-to-any-file: '**/*.md'
+      - any-glob-to-any-file: "**/*.md"
 
 # Add 'foundations' label to any file changes for the foundations files
 🏗foundations:
   - changed-files:
-      - any-glob-to-any-file: 'packages/foundations/**'
+      - any-glob-to-any-file: "packages/foundations/**"
 
 # Add 'components' label to any file changes for the components files
 🏘components:
   - changed-files:
-      - any-glob-to-any-file: 'packages/components/**'
+      - any-glob-to-any-file: "packages/components/**"
 
 # Add 'showcases' label to any file changes for the showcases files
 📺showcases:
   - changed-files:
-      - any-glob-to-any-file: 'showcases/**'
+      - any-glob-to-any-file: "showcases/**"
 
 # Add 'configuration' label to any file changes for configuration files
 🛠️configuration:
   - changed-files:
-      - any-glob-to-any-file: '.config/**'
+      - any-glob-to-any-file: ".config/**"

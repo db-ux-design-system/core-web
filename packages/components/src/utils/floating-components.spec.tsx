@@ -1,22 +1,22 @@
 Object.defineProperty(globalThis, 'window', {
 	value: {
 		innerHeight: 0,
-		innerWidth: 0,
+		innerWidth: 0
 	} as Partial<Window>,
-	writable: true,
+	writable: true
 });
 
-import {describe, expect, it} from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
 	getFloatingProps,
 	handleFixedDropdown,
-	handleFixedPopover,
+	handleFixedPopover
 } from './floating-components';
 
 describe('getFloatingProps', () => {
 	it('calculates the dimensions correctly', () => {
 		const element = {
-			getBoundingClientRect: () => ({height: 50, width: 80}),
+			getBoundingClientRect: () => ({ height: 50, width: 80 })
 		} as HTMLElement;
 		const parent = {
 			getBoundingClientRect: () => ({
@@ -25,8 +25,8 @@ describe('getFloatingProps', () => {
 				width: 200,
 				height: 100,
 				bottom: 110,
-				right: 220,
-			}),
+				right: 220
+			})
 		} as HTMLElement;
 
 		const props = getFloatingProps(element, parent, 'center');
@@ -45,22 +45,22 @@ describe('getFloatingProps', () => {
 			getFloatingProps(
 				null as unknown as HTMLElement,
 				{} as HTMLElement,
-				'top',
-			),
+				'top'
+			)
 		).not.toThrow();
 		expect(() =>
 			getFloatingProps(
 				{} as HTMLElement,
 				null as unknown as HTMLElement,
-				'left',
-			),
+				'left'
+			)
 		).not.toThrow();
 		expect(
 			getFloatingProps(
 				null as unknown as HTMLElement,
 				null as unknown as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).toEqual({
 			bottom: 0,
 			childHeight: 0,
@@ -72,7 +72,7 @@ describe('getFloatingProps', () => {
 			left: 0,
 			right: 0,
 			top: 0,
-			width: 0,
+			width: 0
 		});
 	});
 });
@@ -83,22 +83,22 @@ describe('handleFixedPopover', () => {
 			handleFixedPopover(
 				null as unknown as HTMLElement,
 				{} as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).not.toThrow();
 		expect(() =>
 			handleFixedPopover(
 				{} as HTMLElement,
 				null as unknown as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).not.toThrow();
 		expect(() =>
 			handleFixedPopover(
 				null as unknown as HTMLElement,
 				null as unknown as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).not.toThrow();
 	});
 });
@@ -106,37 +106,38 @@ describe('handleFixedPopover', () => {
 describe('handleFixedDropdown', () => {
 	const createDropdownElement = (
 		dataWidth: 'full' | 'auto',
-		childRect: {width: number; height: number},
-		computedStyle: Record<string, string> = {},
+		childRect: { width: number; height: number },
+		computedStyle: Record<string, string> = {}
 	): HTMLElement => {
 		const style: Record<string, string> = {};
 		return {
 			style,
-			dataset: {width: dataWidth},
+			dataset: { width: dataWidth },
 			getBoundingClientRect: () => childRect,
 			// expose for assertions
-			_style: style,
+			_style: style
 		} as unknown as HTMLElement;
 	};
 
 	const withComputedStyle = (
 		styleByElement: Map<HTMLElement, Record<string, string>>,
-		run: () => void,
+		run: () => void
 	) => {
 		const original = globalThis.getComputedStyle;
-		(globalThis as unknown as {getComputedStyle: unknown}).getComputedStyle = (
-			el: HTMLElement,
-		) =>
+		(
+			globalThis as unknown as { getComputedStyle: unknown }
+		).getComputedStyle = (el: HTMLElement) =>
 			({
 				zIndex: '1',
 				maxInlineSize: 'none',
-				...(styleByElement.get(el) ?? {}),
+				...(styleByElement.get(el) ?? {})
 			}) as unknown as CSSStyleDeclaration;
 		try {
 			run();
 		} finally {
-			(globalThis as unknown as {getComputedStyle: unknown}).getComputedStyle =
-				original;
+			(
+				globalThis as unknown as { getComputedStyle: unknown }
+			).getComputedStyle = original;
 		}
 	};
 
@@ -145,22 +146,22 @@ describe('handleFixedDropdown', () => {
 			handleFixedDropdown(
 				null as unknown as HTMLElement,
 				{} as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).not.toThrow();
 		expect(() =>
 			handleFixedDropdown(
 				{} as HTMLElement,
 				null as unknown as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).not.toThrow();
 		expect(() =>
 			handleFixedDropdown(
 				null as unknown as HTMLElement,
 				null as unknown as HTMLElement,
-				'bottom',
-			),
+				'bottom'
+			)
 		).not.toThrow();
 	});
 
@@ -175,7 +176,7 @@ describe('handleFixedDropdown', () => {
 		// natural content width (80) is narrower than the trigger (200)
 		const element = createDropdownElement('full', {
 			width: 80,
-			height: 50,
+			height: 50
 		});
 		const parent = {
 			getBoundingClientRect: () => ({
@@ -184,15 +185,15 @@ describe('handleFixedDropdown', () => {
 				width: 200,
 				height: 100,
 				bottom: 110,
-				right: 300,
-			}),
+				right: 300
+			})
 		} as HTMLElement;
 
 		withComputedStyle(new Map(), () => {
 			handleFixedDropdown(element, parent, 'bottom');
 		});
 
-		const style = (element as unknown as {_style: Record<string, string>})
+		const style = (element as unknown as { _style: Record<string, string> })
 			._style;
 		// full mode forces the trigger width
 		expect(style.inlineSize).toBe('200px');

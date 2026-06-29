@@ -1,6 +1,6 @@
-import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
-import {cls, getBooleanAsString, getNumber} from '../../utils';
-import {DBTableHeaderCellProps} from './model';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import { cls, getBooleanAsString, getNumber } from '../../utils';
+import { DBTableHeaderCellProps } from './model';
 
 useMetadata({});
 
@@ -21,8 +21,7 @@ export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 			colSpan={getNumber(props.colSpan, props.colspan)}
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
 			headers={props.headers}
-			abbr={props.abbr}
-		>
+			abbr={props.abbr}>
 			{props.children}
 		</th>
 	);

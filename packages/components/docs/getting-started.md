@@ -61,7 +61,7 @@ The integration depends on your tech stack and varies from copying the files fro
 #### Via SCSS import
 
 ```scss
-@use '@db-ux/core-components/build/styles/relative';
+@use "@db-ux/core-components/build/styles/relative";
 ```
 
 ### SCSS: node_modules include path / load path

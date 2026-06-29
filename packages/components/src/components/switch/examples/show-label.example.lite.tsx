@@ -1,12 +1,12 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBSwitch from '../switch.lite';
-import {StorybookSwitchArgTypes} from './_switch.arg.types';
+import { StorybookSwitchArgTypes } from './_switch.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Label',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookSwitchArgTypes,
+	storybookArgTypes: StorybookSwitchArgTypes
 });
 
 export default function SwitchShowLabel() {

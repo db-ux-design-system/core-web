@@ -2,11 +2,11 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
-import {ClickEvent} from '../../shared/model';
-import {cls} from '../../utils';
-import type {DBCardProps, DBCardState} from './model';
+import { ClickEvent } from '../../shared/model';
+import { cls } from '../../utils';
+import type { DBCardProps, DBCardState } from './model';
 
 useMetadata({});
 
@@ -20,7 +20,7 @@ export default function DBCard(props: DBCardProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		},
+		}
 	});
 
 	// jscpd:ignore-end
@@ -33,8 +33,9 @@ export default function DBCard(props: DBCardProps) {
 			data-behavior={props.behavior}
 			data-elevation-level={props.elevationLevel}
 			data-spacing={props.spacing}
-			onClick={(event: ClickEvent<HTMLElement>) => state.handleClick(event)}
-		>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			{props.children}
 		</div>
 	);

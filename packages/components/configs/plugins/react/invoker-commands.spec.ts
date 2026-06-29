@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
-import {createTempDir, removeTempDir, writeFileIn} from '../test-utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createTempDir, removeTempDir, writeFileIn } from '../test-utils';
 
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
-	appendInvokerCommandsAugmentation,
+	appendInvokerCommandsAugmentation
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./invoker-commands.cjs');
 
@@ -31,7 +31,7 @@ describe('appendInvokerCommandsAugmentation', () => {
 	it('appends the augmentation to an entrypoint', () => {
 		const from = writeFile(
 			'index.ts',
-			"export * from './components/button';\n",
+			"export * from './components/button';\n"
 		);
 
 		const written = appendInvokerCommandsAugmentation(from);
@@ -46,7 +46,10 @@ describe('appendInvokerCommandsAugmentation', () => {
 	});
 
 	it('normalizes trailing whitespace to a single blank line before the augmentation', () => {
-		const from = writeFile('index.ts', "export * from './components/button'");
+		const from = writeFile(
+			'index.ts',
+			"export * from './components/button'"
+		);
 
 		appendInvokerCommandsAugmentation(from);
 
@@ -58,7 +61,7 @@ describe('appendInvokerCommandsAugmentation', () => {
 		const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
 		const written = appendInvokerCommandsAugmentation(
-			path.join(tmpDir, 'missing.ts'),
+			path.join(tmpDir, 'missing.ts')
 		);
 
 		expect(written).toBe(false);
@@ -68,11 +71,11 @@ describe('appendInvokerCommandsAugmentation', () => {
 
 describe('build.post plugin', () => {
 	const runBuildPost = (files?: {
-		componentFiles: {outputDir: string; outputFilePath: string}[];
-		nonComponentFiles: {outputDir: string; outputFilePath: string}[];
+		componentFiles: { outputDir: string; outputFilePath: string }[];
+		nonComponentFiles: { outputDir: string; outputFilePath: string }[];
 	}) => {
 		const plugin = invokerCommandsPlugin();
-		return plugin.build.post({target: 'react'}, files);
+		return plugin.build.post({ target: 'react' }, files);
 	};
 
 	it('augments the index.ts found among the non-component files', () => {
@@ -82,14 +85,16 @@ describe('build.post plugin', () => {
 			componentFiles: [
 				{
 					outputDir: tmpDir,
-					outputFilePath: 'src/components/button/button.tsx',
-				},
+					outputFilePath: 'src/components/button/button.tsx'
+				}
 			],
-			nonComponentFiles: [{outputDir: tmpDir, outputFilePath: 'src/index.ts'}],
+			nonComponentFiles: [
+				{ outputDir: tmpDir, outputFilePath: 'src/index.ts' }
+			]
 		});
 
 		expect(
-			fs.readFileSync(path.join(tmpDir, 'src/index.ts'), 'utf-8'),
+			fs.readFileSync(path.join(tmpDir, 'src/index.ts'), 'utf-8')
 		).toContain('declare module "react"');
 	});
 
@@ -104,9 +109,9 @@ describe('build.post plugin', () => {
 			runBuildPost({
 				componentFiles: [],
 				nonComponentFiles: [
-					{outputDir: tmpDir, outputFilePath: 'src/shared/model.ts'},
-				],
-			}),
+					{ outputDir: tmpDir, outputFilePath: 'src/shared/model.ts' }
+				]
+			})
 		).not.toThrow();
 
 		// Storybook/Figma builds legitimately have no entrypoint, so no warning.

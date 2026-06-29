@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaCheckboxProps = {
 	label?: string;
@@ -15,26 +15,26 @@ export type FigmaCheckboxProps = {
 };
 
 const checkboxProps: Record<string, FigmaProp> = {
-	label: {type: 'textContent', key: 'Label'},
-	showLabel: {type: 'boolean', key: 'Show Label'},
+	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: {Medium: 'medium', Small: 'small'},
+		value: { Medium: 'medium', Small: 'small' }
 	},
-	required: {type: 'boolean', key: 'Required'},
-	showRequiredAsterisk: {type: 'boolean', key: 'Show Required Asterisk'},
-	disabled: {type: 'boolean', key: 'Disabled'},
-	checked: {type: 'boolean', key: 'Checked'},
-	indeterminate: {type: 'boolean', key: 'Indeterminate'},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
+	disabled: { type: 'boolean', key: 'Disabled' },
+	checked: { type: 'boolean', key: 'Checked' },
+	indeterminate: { type: 'boolean', key: 'Indeterminate' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',
 		value: {
 			'(Def) No Validation': 'no-validation',
 			Valid: 'valid',
-			Invalid: 'invalid',
-		},
+			Invalid: 'invalid'
+		}
 	},
 	message: {
 		type: 'validationMessage',
@@ -43,10 +43,10 @@ const checkboxProps: Record<string, FigmaProp> = {
 		map: {
 			invalid: 'invalidMessage',
 			valid: 'validMessage',
-			default: 'message',
-		},
+			default: 'message'
+		}
 	},
-	showMessage: {type: 'boolean', key: 'Show Message'},
+	showMessage: { type: 'boolean', key: 'Show Message' }
 };
 
 export const checkboxes: FigmaCodeConnect = {
@@ -58,7 +58,7 @@ export const checkboxes: FigmaCodeConnect = {
 		// Small Auto Width
 		'https://www.figma.com/design/FIGMA_FILE?node-id=2068:3548',
 		// Small Full Width
-		'https://www.figma.com/design/FIGMA_FILE?node-id=10707:19958',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=10707:19958'
 	],
-	props: checkboxProps,
+	props: checkboxProps
 };

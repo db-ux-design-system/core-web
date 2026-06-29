@@ -1,4 +1,4 @@
-import {handleDataOutside} from './floating-components';
+import { handleDataOutside } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -10,10 +10,10 @@ export type TriangleData = {
 };
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
-	const {target} = event as {target: HTMLElement};
+	const { target } = event as { target: HTMLElement };
 	return Boolean(
 		!target?.classList?.contains('db-navigation-item-expand-button') &&
-		target?.parentElement?.classList.contains('db-navigation-item'),
+		target?.parentElement?.classList.contains('db-navigation-item')
 	);
 };
 
@@ -25,7 +25,10 @@ export class NavigationItemSafeTriangle {
 	private initialized: boolean = false;
 	private mouseX: number = 0;
 	private mouseY: number = 0;
-	constructor(element: HTMLElement | null, subNavigation: HTMLElement | null) {
+	constructor(
+		element: HTMLElement | null,
+		subNavigation: HTMLElement | null
+	) {
 		this.element = element;
 		this.subNavigation = subNavigation;
 
@@ -53,7 +56,7 @@ export class NavigationItemSafeTriangle {
 		// so the width of the triangle must be adapted to a possibly wider nav-item.
 		this.element?.style.setProperty(
 			'--db-navigation-item-inline-size',
-			`${parentElementWidth}px`,
+			`${parentElementWidth}px`
 		);
 
 		this.initialized = true;
@@ -78,10 +81,11 @@ export class NavigationItemSafeTriangle {
 		this.triangleData = {
 			itemRect,
 			parentElementWidth,
-			subNavigationHeight: this.subNavigation.getBoundingClientRect().height,
+			subNavigationHeight:
+				this.subNavigation.getBoundingClientRect().height,
 			padding: (parentElementWidth - itemRect.width) / 2,
 			outsideVX: dataOutsidePair.vx,
-			outsideVY: dataOutsidePair.vy,
+			outsideVY: dataOutsidePair.vy
 		};
 	}
 
@@ -106,8 +110,10 @@ export class NavigationItemSafeTriangle {
 
 		// padding must be added to the y pos of the tip so that the y pos matches the cursor
 		const mouseYLimited =
-			Math.max(Math.min(this.mouseY, this.triangleData.itemRect.height), 0) +
-			this.triangleData.padding;
+			Math.max(
+				Math.min(this.mouseY, this.triangleData.itemRect.height),
+				0
+			) + this.triangleData.padding;
 
 		if (this.triangleData.outsideVY === 'bottom') {
 			// add offset to tip y pos to match corrected sub-navigation y pos
@@ -127,7 +133,8 @@ export class NavigationItemSafeTriangle {
 			return false;
 		}
 
-		const isSubNavigationOnLeftSide = this.triangleData.outsideVX === 'right';
+		const isSubNavigationOnLeftSide =
+			this.triangleData.outsideVX === 'right';
 
 		if (
 			isSubNavigationOnLeftSide &&
@@ -167,7 +174,7 @@ export class NavigationItemSafeTriangle {
 				lb: `${xStart} ${itemHeight}`,
 				lt: `${xStart} 0`,
 				rt: '100% 0',
-				rb: `100% ${itemHeight}`,
+				rb: `100% ${itemHeight}`
 			};
 		}
 
@@ -181,7 +188,7 @@ export class NavigationItemSafeTriangle {
 			lb,
 			lt,
 			rt: '100% 0',
-			rb: '100% 100%',
+			rb: '100% 100%'
 		};
 	}
 
@@ -201,7 +208,7 @@ export class NavigationItemSafeTriangle {
 		const isOverSubNavigation = this.hasMouseEnteredSubNavigation();
 
 		const coordinates = this.getTriangleCoordinates(
-			isOverSubNavigation ? 'fill-gap' : 'safe-triangle',
+			isOverSubNavigation ? 'fill-gap' : 'safe-triangle'
 		);
 
 		if (!coordinates) {
@@ -210,7 +217,7 @@ export class NavigationItemSafeTriangle {
 
 		this.element.style.setProperty(
 			'--db-navigation-item-clip-path',
-			`polygon(${coordinates.lb}, ${coordinates.lt}, ${coordinates.rt}, ${coordinates.rb})`,
+			`polygon(${coordinates.lb}, ${coordinates.lt}, ${coordinates.rt}, ${coordinates.rb})`
 		);
 
 		if (isOverSubNavigation) {
@@ -221,5 +228,5 @@ export class NavigationItemSafeTriangle {
 
 export default {
 	isEventTargetNavigationItem,
-	NavigationItemSafeTriangle,
+	NavigationItemSafeTriangle
 };

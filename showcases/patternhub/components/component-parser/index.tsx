@@ -30,11 +30,11 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea,
-	DBTooltip,
+	DBTooltip
 } from '../../../../output/react/src/index';
 
-import {useEffect, useState} from 'react';
-import type {ComponentParserType, ComponentType} from './data';
+import { useEffect, useState } from 'react';
+import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
 
@@ -43,7 +43,7 @@ const ComponentSwitch = ({
 	content,
 	index,
 	props,
-	className,
+	className
 }: ComponentType) => {
 	const resolvedContent = Array.isArray(content)
 		? content.map((innerComponent: ComponentType, innerIndex: number) => (
@@ -87,9 +87,10 @@ const ComponentSwitch = ({
 			<div
 				className={`flex ${className ?? ''}`}
 				data-variant={
-					(props as Record<string, unknown>)?.column ? 'column' : 'row'
-				}
-			>
+					(props as Record<string, unknown>)?.column
+						? 'column'
+						: 'row'
+				}>
 				{resolvedContent}
 			</div>
 		);
@@ -99,10 +100,13 @@ const ComponentSwitch = ({
 		try {
 			const aProps = props as Record<string, string>;
 			const url = new URL('', aProps.href);
-			const {host} = url;
+			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
-					<a className={className} href={aProps.href} target={aProps.target}>
+					<a
+						className={className}
+						href={aProps.href}
+						target={aProps.target}>
 						{resolvedContent}
 					</a>
 				);
@@ -112,7 +116,6 @@ const ComponentSwitch = ({
 		}
 	}
 
-	// eslint-disable-next-line unicorn/prefer-else-if
 	if (type === 'notification') {
 		return (
 			<DBNotification className={className} {...props}>
@@ -374,7 +377,7 @@ const ComponentSwitch = ({
 	return <span className={className}>{resolvedContent}</span>;
 };
 
-const ComponentParser = ({componentsString}: ComponentParserType) => {
+const ComponentParser = ({ componentsString }: ComponentParserType) => {
 	const [components, setComponents] = useState<ComponentType[] | unknown>();
 
 	useEffect(() => {
@@ -388,15 +391,17 @@ const ComponentParser = ({componentsString}: ComponentParserType) => {
 	if (components && Array.isArray(components)) {
 		return (
 			<>
-				{components.map((component: ComponentType, index: number) => (
-					<ComponentSwitch
-						key={`component-${index}`}
-						index={index}
-						type={component.type}
-						content={component.content}
-						props={component.props}
-					/>
-				))}
+				{components.map((component: ComponentType, index: number) => {
+					return (
+						<ComponentSwitch
+							key={`component-${index}`}
+							index={index}
+							type={component.type}
+							content={component.content}
+							props={component.props}
+						/>
+					);
+				})}
 			</>
 		);
 	}

@@ -10,24 +10,24 @@ module.exports = {
 	files: ['**/*.example.lite.tsx', '**/examples/data.ts', '**/model.ts'],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
-	getTargetPath: ({target}) => {
+	getTargetPath: ({ target }) => {
 		return `${target}-storybook`;
 	},
 	options: {
 		react: {
 			...react,
 			explicitBuildFileExtensions: {
-				'.stories.tsx': /.*(example\.lite\.tsx)$/g,
-			},
+				'.stories.tsx': /.*(example\.lite\.tsx)$/g
+			}
 		},
 		angular,
-		vue,
+		vue
 	},
 	commonOptions: {
 		typescript: true,
 		plugins: [storyBookPlugin],
 		explicitBuildFileExtensions: {
-			'.stories.ts': /.*(example\.lite\.tsx)$/g,
-		},
-	},
+			'.stories.ts': /.*(example\.lite\.tsx)$/g
+		}
+	}
 };

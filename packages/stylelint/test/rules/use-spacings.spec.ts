@@ -1,11 +1,11 @@
-import {type Config} from 'stylelint';
-import {describe, test} from 'vitest';
+import { type Config } from 'stylelint';
+import { describe, test } from 'vitest';
 import useSpacings from '../../src/rules/use-spacings.js';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
-	getVueTest,
+	getVueTest
 } from '../defaults.js';
 
 const ruleName = 'db-ux/use-spacings';
@@ -14,8 +14,8 @@ const config: Config = {
 	...defaultConfig,
 	plugins: [useSpacings],
 	rules: {
-		[ruleName]: true,
-	},
+		[ruleName]: true
+	}
 };
 
 describe(`${ruleName}`, () => {

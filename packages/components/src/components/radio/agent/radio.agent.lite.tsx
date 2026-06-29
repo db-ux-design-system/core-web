@@ -1,4 +1,4 @@
-import {DBRadio} from '../index';
+import { DBRadio } from '../index';
 
 export default function Radio() {
 	return (

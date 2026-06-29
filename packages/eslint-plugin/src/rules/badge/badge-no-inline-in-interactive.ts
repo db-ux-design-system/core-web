@@ -1,10 +1,10 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularFix,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 const INTERACTIVE_PARENTS = ['DBButton', 'DBLink', 'button', 'a'];
@@ -15,54 +15,50 @@ export default {
 		docs: {
 			description:
 				'Prevent inline placement for DBBadge inside interactive elements',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#badge-no-inline-in-interactive',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#badge-no-inline-in-interactive'
 		},
 		fixable: 'code' as const,
 		messages: {
-			noInline: MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE,
+			noInline: MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const placement = getAttributeValue(node, 'placement');
-			if (placement && placement !== 'inline') {
-				return;
-			}
+			if (placement && placement !== 'inline') return;
 
-			let {parent} = node;
+			let { parent } = node;
 			while (parent) {
 				if (parent.type === 'Element' || parent.type === 'Element$1') {
 					const parentName = parent.name;
 					const matchedParent = INTERACTIVE_PARENTS.find(
 						(p) =>
 							parentName === p ||
-							parentName === p.toLowerCase().replace('db', 'db-'),
+							parentName === p.toLowerCase().replace('db', 'db-')
 					);
 
 					if (matchedParent) {
 						const loc = parserServices.convertNodeSourceSpanToLoc(
-							node.sourceSpan,
+							node.sourceSpan
 						);
 						context.report({
 							loc,
-							messageId: MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
-							data: {parent: parentName},
+							messageId:
+								MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
+							data: { parent: parentName },
 							fix(fixer: any) {
 								const fixData = createAngularFix(
 									context,
 									node,
-									' placement="corner-top-right"',
+									' placement="corner-top-right"'
 								);
-								if (!fixData) {
-									return null;
-								}
-
+								if (!fixData) return null;
 								return fixer.insertTextBeforeRange(
 									[fixData.insertPos, fixData.insertPos],
-									fixData.attributeText,
+									fixData.attributeText
 								);
-							},
+							}
 						});
 						return;
 					}
@@ -75,24 +71,18 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBBadge,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkBadge = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) return;
 
 			const placement = getAttributeValue(openingElement, 'placement');
-			if (placement && placement !== 'inline') {
-				return;
-			}
+			if (placement && placement !== 'inline') return;
 
-			let {parent} = node;
+			let { parent } = node;
 			while (parent) {
 				if (
 					parent.type === 'JSXElement' ||
@@ -101,7 +91,8 @@ export default {
 					parent.type === 'Element$1'
 				) {
 					const parentOpening = parent.openingElement || parent;
-					const parentName = parentOpening.name || parentOpening.rawName;
+					const parentName =
+						parentOpening.name || parentOpening.rawName;
 					const name =
 						typeof parentName === 'string'
 							? parentName
@@ -111,56 +102,66 @@ export default {
 					if (name) {
 						const matchedParent = INTERACTIVE_PARENTS.find(
 							(p) =>
-								name === p || name === p.toLowerCase().replace('db', 'db-'),
+								name === p ||
+								name === p.toLowerCase().replace('db', 'db-')
 						);
 
 						if (matchedParent) {
 							context.report({
 								node: openingElement,
-								messageId: MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
-								data: {parent: name},
+								messageId:
+									MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
+								data: { parent: name },
 								fix(fixer: any) {
 									if (node.openingElement) {
 										// JSX
-										const placementAttr = openingElement.attributes.find(
-											(a: any) =>
-												a.type === 'JSXAttribute' &&
-												a.name.name === 'placement',
-										);
+										const placementAttr =
+											openingElement.attributes.find(
+												(a: any) =>
+													a.type === 'JSXAttribute' &&
+													a.name.name === 'placement'
+											);
 										if (placementAttr) {
 											return fixer.replaceText(
 												placementAttr,
-												'placement="corner-top-right"',
+												'placement="corner-top-right"'
 											);
 										}
 
-										const lastAttr = openingElement.attributes.at(-1);
+										const lastAttr =
+											openingElement.attributes.at(-1);
 										const insertPos = lastAttr
 											? lastAttr.range[1]
 											: openingElement.name.range[1];
 										return fixer.insertTextAfterRange(
 											[insertPos, insertPos],
-											' placement="corner-top-right"',
+											' placement="corner-top-right"'
 										);
 									}
 
 									// Vue
-									const placementAttr = openingElement.startTag.attributes.find(
-										(a: any) => a.key.name === 'placement',
-									);
+									const placementAttr =
+										openingElement.startTag.attributes.find(
+											(a: any) =>
+												a.key.name === 'placement'
+										);
 									if (placementAttr) {
 										return fixer.replaceText(
 											placementAttr,
-											'placement="corner-top-right"',
+											'placement="corner-top-right"'
 										);
 									}
 
-									const attrs = openingElement.startTag.attributes;
+									const attrs =
+										openingElement.startTag.attributes;
 									if (attrs.length > 0) {
 										const lastAttr = attrs.at(-1);
 										return fixer.insertTextAfterRange(
-											[lastAttr.range[1], lastAttr.range[1]],
-											' placement="corner-top-right"',
+											[
+												lastAttr.range[1],
+												lastAttr.range[1]
+											],
+											' placement="corner-top-right"'
 										);
 									}
 
@@ -170,9 +171,9 @@ export default {
 										openingElement.rawName.length;
 									return fixer.insertTextAfterRange(
 										[insertPos, insertPos],
-										' placement="corner-top-right"',
+										' placement="corner-top-right"'
 									);
-								},
+								}
 							});
 							return;
 						}
@@ -185,8 +186,8 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkBadge, Element: checkBadge},
-			{JSXElement: checkBadge},
+			{ VElement: checkBadge, Element: checkBadge },
+			{ JSXElement: checkBadge }
 		);
-	},
+	}
 };

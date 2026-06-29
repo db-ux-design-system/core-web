@@ -1,11 +1,11 @@
-import {DBCustomSelect} from '../index';
+import { DBCustomSelect } from '../index';
 
 export default function CustomSelect() {
 	function getOptions() {
 		return [
-			{value: '1', label: 'Option 1', selected: false},
-			{value: '2', label: 'Option 2', disabled: true},
-			{value: '3', label: 'Option 3'},
+			{ value: '1', label: 'Option 1', selected: false },
+			{ value: '2', label: 'Option 2', disabled: true },
+			{ value: '3', label: 'Option 3' }
 		];
 	}
 
@@ -14,7 +14,10 @@ export default function CustomSelect() {
 			<h1>DBCustomSelect Documentation Examples</h1>
 
 			<h2>1. Default Custom Select</h2>
-			<DBCustomSelect label="Default Custom Select" options={getOptions()} />
+			<DBCustomSelect
+				label="Default Custom Select"
+				options={getOptions()}
+			/>
 
 			<h2>3. Multiple Select</h2>
 			<DBCustomSelect

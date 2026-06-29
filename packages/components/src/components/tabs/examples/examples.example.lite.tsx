@@ -1,15 +1,15 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTabItem from '../../tab-item/tab-item.lite';
 import DBTabList from '../../tab-list/tab-list.lite';
 import DBTabPanel from '../../tab-panel/tab-panel.lite';
 import DBTabs from '../tabs.lite';
-import {StorybookTabsArgTypes} from './_tabs.arg.types';
+import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
 	storybookTitle: 'Examples',
 	storybookNames: ['Second Test selected', 'nothing selected'],
-	storybookArgTypes: StorybookTabsArgTypes,
+	storybookArgTypes: StorybookTabsArgTypes
 });
 
 export default function TabsExamples() {

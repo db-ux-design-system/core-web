@@ -1,15 +1,15 @@
 ---
-name: 'Playwright Cache Action'
-description: 'Initialize Playwright Cache'
+name: "Playwright Cache Action"
+description: "Initialize Playwright Cache"
 inputs:
   version:
-    description: 'Playwright version'
+    description: "Playwright version"
     required: true
   os:
-    description: 'OS version'
+    description: "OS version"
     required: true
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: 🆙 Set env for os
       shell: bash
@@ -31,7 +31,7 @@ runs:
       id: playwright-cache
       with:
         path: ${{ env.CACHE_PATH }}
-        key: '${{ inputs.os }}-playwright-${{ inputs.version }}'
+        key: "${{ inputs.os }}-playwright-${{ inputs.version }}"
         restore-keys: |
           ${{ inputs.os }}-playwright-
 

@@ -1,6 +1,6 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '../../styles/internal/component';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/component";
 
 $small-section-padding-inline: max(
 	calc(
@@ -26,24 +26,24 @@ $large-section-padding-inline: max(
 
 .db-section {
 	&:not([data-width]),
-	&[data-width='full'] {
+	&[data-width="full"] {
 		padding-inline: variables.$db-spacing-fixed-md;
 	}
 
-	&[data-width='small'] {
+	&[data-width="small"] {
 		padding-inline: $small-section-padding-inline;
 	}
 
-	&[data-width='medium'] {
+	&[data-width="medium"] {
 		padding-inline: $medium-section-padding-inline;
 	}
 
-	&[data-width='large'] {
+	&[data-width="large"] {
 		padding-inline: $large-section-padding-inline;
 	}
 
 	@include component.get-data-spacing(
-		'padding-block',
+		"padding-block",
 		component.$responsive-spacings
 	);
 }

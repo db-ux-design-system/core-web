@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBCard from '../card.lite';
-import {StorybookCardArgTypes} from './_card.arg.types';
+import { StorybookCardArgTypes } from './_card.arg.types';
 
 useMetadata({
 	storybookTitle: 'Elevation Level',
 	storybookNames: ['(Default) Level  1', 'Level 2', 'Level 3'],
-	storybookArgTypes: StorybookCardArgTypes,
+	storybookArgTypes: StorybookCardArgTypes
 });
 
 export default function CardElevationLevel() {

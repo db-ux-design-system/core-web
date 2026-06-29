@@ -1,13 +1,13 @@
-import {getTsProgram} from 'cem-plugin-expanded-types';
-import {generateJetBrainsWebTypes} from 'custom-element-jet-brains-integration';
-import {generateVsCodeCustomElementData} from 'custom-element-vs-code-integration';
-import {resolveTypesPlugin} from './scripts/resolveTypes.js';
+import { getTsProgram } from 'cem-plugin-expanded-types';
+import { generateJetBrainsWebTypes } from 'custom-element-jet-brains-integration';
+import { generateVsCodeCustomElementData } from 'custom-element-vs-code-integration';
+import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 
 const outdir = './dist';
 
 const vsCodeOptions = {
 	outdir,
-	cssFileName: null,
+	cssFileName: null
 };
 
 const intellijOptions = {
@@ -15,15 +15,15 @@ const intellijOptions = {
 	excludeCss: true,
 	referenceTemplate: (name, tag) => ({
 		name: 'Documentation',
-		url: `https://design-system.deutschebahn.com/core-web/review/main/components/${tag.replace('db-', '')}/properties`,
-	}),
+		url: `https://design-system.deutschebahn.com/core-web/review/main/components/${tag.replace('db-', '')}/properties`
+	})
 };
 
 export default {
 	globs: ['src'],
 	outdir,
 	stencil: true,
-	overrideModuleCreation: ({ts, globs}) => {
+	overrideModuleCreation: ({ ts, globs }) => {
 		const program = getTsProgram(ts, globs);
 		const sourceFiles = program.getSourceFiles();
 		const filteredFiles = [];
@@ -41,9 +41,12 @@ export default {
 		return filteredFiles;
 	},
 	plugins: [
-		resolveTypesPlugin(({customElementsManifest}) => {
-			generateVsCodeCustomElementData(customElementsManifest, vsCodeOptions);
+		resolveTypesPlugin(({ customElementsManifest }) => {
+			generateVsCodeCustomElementData(
+				customElementsManifest,
+				vsCodeOptions
+			);
 			generateJetBrainsWebTypes(customElementsManifest, intellijOptions);
-		}),
-	],
+		})
+	]
 };

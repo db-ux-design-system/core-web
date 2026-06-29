@@ -43,7 +43,7 @@ declare module "react" {
 const appendInvokerCommandsAugmentation = (filePath) => {
 	if (!fs.existsSync(filePath)) {
 		console.warn(
-			`[react-invoker-commands] Entrypoint "${filePath}" not found — skipping augmentation`,
+			`[react-invoker-commands] Entrypoint "${filePath}" not found — skipping augmentation`
 		);
 		return false;
 	}
@@ -80,17 +80,17 @@ module.exports = () => ({
 			// silently skip rather than warn (mirroring how esm-extensions stays
 			// quiet when there is nothing to do).
 			const indexFile = (files.nonComponentFiles || []).find(
-				(file) => file.outputFilePath === 'src/index.ts',
+				(file) => file.outputFilePath === 'src/index.ts'
 			);
 			if (!indexFile) return;
 
 			const filePath = path.resolve(
 				indexFile.outputDir,
-				indexFile.outputFilePath,
+				indexFile.outputFilePath
 			);
 			appendInvokerCommandsAugmentation(filePath);
-		},
-	},
+		}
+	}
 });
 
 module.exports.AUGMENTATION = AUGMENTATION;

@@ -1,7 +1,7 @@
 // TODO: We should reevaluate this as soon as CSS Anchor Positioning is supported in all relevant browsers
 const isInView = (el: HTMLElement) => {
-	const {top, bottom, left, right} = el.getBoundingClientRect();
-	const {innerHeight, innerWidth} = window;
+	const { top, bottom, left, right } = el.getBoundingClientRect();
+	const { innerHeight, innerWidth } = window;
 
 	let outTop = top < 0;
 	let outBottom = bottom > innerHeight;
@@ -19,7 +19,8 @@ const isInView = (el: HTMLElement) => {
 			if (position === 'top') {
 				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
 			} else {
-				outBottom = parentRect.bottom + (parentRect.top - top) > innerHeight;
+				outBottom =
+					parentRect.bottom + (parentRect.top - top) > innerHeight;
 			}
 		}
 
@@ -28,7 +29,8 @@ const isInView = (el: HTMLElement) => {
 			if (position === 'left') {
 				outLeft = parentRect.left - (right - parentRect.right) < 0;
 			} else {
-				outRight = parentRect.right + (parentRect.left - left) > innerWidth;
+				outRight =
+					parentRect.right + (parentRect.left - left) > innerWidth;
 			}
 		}
 	}
@@ -37,7 +39,7 @@ const isInView = (el: HTMLElement) => {
 		outTop,
 		outBottom,
 		outLeft,
-		outRight,
+		outRight
 	};
 };
 
@@ -46,11 +48,11 @@ export interface DBDataOutsidePair {
 	vy?: 'top' | 'bottom';
 }
 export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
-	const {outTop, outBottom, outLeft, outRight} = isInView(el);
+	const { outTop, outBottom, outLeft, outRight } = isInView(el);
 	let dataOutsidePair: DBDataOutsidePair = {};
 
 	if (outTop || outBottom) {
-		dataOutsidePair = {vy: outTop ? 'top' : 'bottom'};
+		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
 		el.dataset['outsideVy'] = dataOutsidePair.vy!;
 	} else {
 		delete el.dataset['outsideVy'];
@@ -58,7 +60,7 @@ export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
 	if (outLeft || outRight) {
 		dataOutsidePair = {
 			...dataOutsidePair,
-			vx: outRight ? 'right' : 'left',
+			vx: outRight ? 'right' : 'left'
 		};
 		el.dataset['outsideVx'] = dataOutsidePair.vx!;
 	} else {
@@ -71,7 +73,7 @@ export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
 export const handleFixedDropdown = (
 	element: HTMLElement,
 	parent: HTMLElement,
-	placement: string,
+	placement: string
 ) => {
 	if (!element || !parent) return;
 
@@ -101,7 +103,7 @@ export const handleFixedDropdown = (
 		right,
 		left,
 		correctedPlacement,
-		innerWidth,
+		innerWidth
 	} = getFloatingProps(element, parent, placement);
 
 	// For auto width the dropdown is forced to be at least as wide as the trigger,
@@ -110,7 +112,9 @@ export const handleFixedDropdown = (
 	// limit would otherwise drop the side margins or overflow horizontally.
 	let autoMinWidth = width;
 	if (autoWidth) {
-		const maxInlineSize = parseFloat(getComputedStyle(element).maxInlineSize);
+		const maxInlineSize = parseFloat(
+			getComputedStyle(element).maxInlineSize
+		);
 		if (!isNaN(maxInlineSize) && maxInlineSize > 0) {
 			autoMinWidth = Math.min(width, maxInlineSize);
 		}
@@ -178,7 +182,7 @@ export const handleFixedDropdown = (
 export const getFloatingProps = (
 	element: HTMLElement,
 	parent: HTMLElement,
-	placement: string,
+	placement: string
 ) => {
 	if (!element || !parent) {
 		return {
@@ -192,15 +196,15 @@ export const getFloatingProps = (
 			childWidth: 0,
 			correctedPlacement: placement,
 			innerWidth: window.innerWidth,
-			innerHeight: window.innerHeight,
+			innerHeight: window.innerHeight
 		};
 	}
 
 	const childRect = element.getBoundingClientRect();
-	const {top, height, bottom, right, left, width} =
+	const { top, height, bottom, right, left, width } =
 		parent.getBoundingClientRect();
 
-	const {innerHeight, innerWidth} = window;
+	const { innerHeight, innerWidth } = window;
 
 	let childHeight = childRect.height;
 	let childWidth = childRect.width;
@@ -313,7 +317,7 @@ export const getFloatingProps = (
 		childWidth: childRect.width,
 		correctedPlacement,
 		innerWidth,
-		innerHeight,
+		innerHeight
 	};
 };
 
@@ -321,7 +325,7 @@ const MAX_ANCESTOR_DEPTH = 10;
 const ancestorCache = new WeakMap<HTMLElement, HTMLElement | null>();
 
 const getAncestorHasCorrectedPlacement = (
-	element: HTMLElement,
+	element: HTMLElement
 ): HTMLElement | null => {
 	if (ancestorCache.has(element)) {
 		return ancestorCache.get(element)!;
@@ -345,12 +349,12 @@ const getAncestorHasCorrectedPlacement = (
 export const handleFixedPopover = (
 	element: HTMLElement,
 	parent: HTMLElement,
-	placement: string,
+	placement: string
 ) => {
 	if (!element || !parent) return;
 	const parentComputedStyles = getComputedStyle(parent);
 	const parentHasFloatingPosition = ['absolute', 'fixed'].includes(
-		parentComputedStyles.position,
+		parentComputedStyles.position
 	);
 	const ancestorWithCorrectedPlacement =
 		getAncestorHasCorrectedPlacement(element);
@@ -371,11 +375,12 @@ export const handleFixedPopover = (
 		bottom,
 		correctedPlacement,
 		innerWidth,
-		innerHeight,
+		innerHeight
 	} = getFloatingProps(element, parent, placement);
 
 	if (ancestorWithCorrectedPlacement) {
-		const ancestorRect = ancestorWithCorrectedPlacement.getBoundingClientRect();
+		const ancestorRect =
+			ancestorWithCorrectedPlacement.getBoundingClientRect();
 
 		left = Math.abs(left - ancestorRect.left);
 		right = (width + Math.abs(right - ancestorRect.right)) * 1.5; // We add a transform -50% later
@@ -407,11 +412,14 @@ export const handleFixedPopover = (
 	) {
 		const diff = (width / 2 / childWidth) * 100;
 		if (correctedPlacement.endsWith('start')) {
-			element.style.setProperty('--db-tooltip-arrow-inline-start', `${diff}%`);
+			element.style.setProperty(
+				'--db-tooltip-arrow-inline-start',
+				`${diff}%`
+			);
 		} else if (correctedPlacement.endsWith('end')) {
 			element.style.setProperty(
 				'--db-tooltip-arrow-inline-start',
-				`${100 - diff}%`,
+				`${100 - diff}%`
 			);
 		} else {
 			element.style.setProperty('--db-tooltip-arrow-inline-start', `50%`);
@@ -424,11 +432,14 @@ export const handleFixedPopover = (
 	) {
 		const diff = (height / 2 / childHeight) * 100;
 		if (correctedPlacement.endsWith('start')) {
-			element.style.setProperty('--db-tooltip-arrow-block-start', `${diff}%`);
+			element.style.setProperty(
+				'--db-tooltip-arrow-block-start',
+				`${diff}%`
+			);
 		} else if (correctedPlacement.endsWith('end')) {
 			element.style.setProperty(
 				'--db-tooltip-arrow-block-start',
-				`${100 - diff}%`,
+				`${100 - diff}%`
 			);
 		} else {
 			element.style.setProperty('--db-tooltip-arrow-block-start', `50%`);
@@ -454,7 +465,10 @@ export const handleFixedPopover = (
 		const start = bottom - childHeight;
 		element.style.insetBlockStart = `${!parentHasFloatingPosition && start < 0 ? 0 : start}px`;
 		element.style.insetBlockEnd = `${bottom}px`;
-	} else if (correctedPlacement === 'top' || correctedPlacement === 'bottom') {
+	} else if (
+		correctedPlacement === 'top' ||
+		correctedPlacement === 'bottom'
+	) {
 		// center vertically
 		element.style.insetInlineStart = `${left + width / 2}px`;
 	} else if (

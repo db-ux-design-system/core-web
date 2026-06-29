@@ -6,7 +6,7 @@ import type {
 	PlacementProps,
 	PopoverProps,
 	PopoverState,
-	SpacingProps,
+	SpacingProps
 } from '../../shared/model';
 
 export type DBPopoverDefaultProps = {

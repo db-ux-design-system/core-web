@@ -9,17 +9,22 @@ import {
 	getPaginationRowModel,
 	getSortedRowModel,
 	type GroupingState,
-	useReactTable,
+	useReactTable
 } from '@tanstack/react-table';
-import {makeData} from './makeData';
+import { makeData } from './makeData';
 
-import {DBLink, DBStack} from '@components';
-import {useEffect, useState} from 'react';
+import { DBLink, DBStack } from '@components';
+import { useEffect, useState } from 'react';
 import ActionButtons from './components/ActionButtons';
 import CustomTable from './components/CustomTable';
 import TableControls from './components/TableControls';
-import {useSkipper} from './hooks';
-import {columns, defaultColumn, fuzzyFilter, getTableMeta} from './tableModels';
+import { useSkipper } from './hooks';
+import {
+	columns,
+	defaultColumn,
+	fuzzyFilter,
+	getTableMeta
+} from './tableModels';
 
 export const TableKitchenSink = () => {
 	const [data, setData] = useState(makeData(1000));
@@ -63,22 +68,22 @@ export const TableKitchenSink = () => {
 			globalFilter,
 			columnVisibility,
 			columnPinning,
-			rowSelection,
+			rowSelection
 		},
 		initialState: {
 			pagination: {
-				pageSize: 5,
-			},
+				pageSize: 5
+			}
 		},
 		debugTable: true,
 		debugHeaders: true,
-		debugColumns: true,
+		debugColumns: true
 	});
 
 	useEffect(() => {
 		if (table.getState().columnFilters[0]?.id === 'fullName') {
 			if (table.getState().sorting[0]?.id !== 'fullName') {
-				table.setSorting([{id: 'fullName', desc: false}]);
+				table.setSorting([{ id: 'fullName', desc: false }]);
 			}
 		}
 	}, [table.getState().columnFilters[0]?.id]);
@@ -92,8 +97,7 @@ export const TableKitchenSink = () => {
 					content="external"
 					target="_blank"
 					referrerPolicy="no-referrer"
-					href="https://tanstack.com/table/latest/docs/installation#react"
-				>
+					href="https://tanstack.com/table/latest/docs/installation#react">
 					TanStack Table
 				</DBLink>
 			</p>
@@ -103,8 +107,7 @@ export const TableKitchenSink = () => {
 					content="external"
 					target="_blank"
 					referrerPolicy="no-referrer"
-					href="https://github.com/db-ux-design-system/core-web/tree/main/storybooks/react-storybook/src/templates/table-kitchen-sink"
-				>
+					href="https://github.com/db-ux-design-system/core-web/tree/main/storybooks/react-storybook/src/templates/table-kitchen-sink">
 					here
 				</DBLink>
 			</p>

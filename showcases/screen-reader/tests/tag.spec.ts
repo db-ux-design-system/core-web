@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -19,7 +19,7 @@ test.describe('DBTag', () => {
 			await screenReader?.previous(); // Focus "tag 1"
 			await screenReader?.next(); // Focus "tag 2"
 			await screenReader?.next(); // Focus "tag 3"
-		},
+		}
 	});
 	testDefault({
 		test,
@@ -48,6 +48,6 @@ test.describe('DBTag', () => {
 			if (voiceOver) {
 				await screenReader?.next(); // Focus "radio 1 inline-text"
 			}
-		},
+		}
 	});
 });

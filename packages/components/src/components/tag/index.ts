@@ -1,1 +1,1 @@
-export {default as DBTag} from './tag';
+export { default as DBTag } from './tag';

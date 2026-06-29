@@ -1,1 +1,1 @@
-export {default as DBNavigation} from './navigation';
+export { default as DBNavigation } from './navigation';

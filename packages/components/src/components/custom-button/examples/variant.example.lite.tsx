@@ -1,7 +1,7 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBCustomButton from '../custom-button.lite';
-import {StorybookCustomButtonArgTypes} from './_custom-button.arg.types';
+import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Variant',
@@ -16,15 +16,18 @@ useMetadata({
 		'Ghost: Checkbox',
 		'Ghost: Link',
 		'Brand: Button',
-		'Brand: Link',
+		'Brand: Link'
 	],
-	storybookArgTypes: StorybookCustomButtonArgTypes,
+	storybookArgTypes: StorybookCustomButtonArgTypes
 });
 
 export default function CustomButtonVariant() {
 	return (
 		<Fragment>
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				(Default) Outlined
 			</DBInfotext>
 			<DBCustomButton variant="outlined">
@@ -40,7 +43,10 @@ export default function CustomButtonVariant() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Filled
 			</DBInfotext>
 			<DBCustomButton variant="filled">
@@ -56,7 +62,10 @@ export default function CustomButtonVariant() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Ghost
 			</DBInfotext>
 			<DBCustomButton variant="ghost">
@@ -72,7 +81,10 @@ export default function CustomButtonVariant() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Brand
 			</DBInfotext>
 			<DBCustomButton variant="brand">

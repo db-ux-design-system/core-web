@@ -12,10 +12,10 @@ Use `v-model:value` or `:value` instead with a `_ref("My default value")`.
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
-import {_ref} from 'vue';
-import {DBTextarea} from '@db-ux/v-core-components';
+import { _ref } from "vue";
+import { DBTextarea } from "@db-ux/v-core-components";
 
-const textarea = _ref('default value');
+const textarea = _ref("default value");
 </script>
 
 <template>

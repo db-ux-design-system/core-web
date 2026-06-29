@@ -1,5 +1,5 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBPage} from '../index';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBPage } from '../index';
 
 useMetadata({
 	slots: {
@@ -7,9 +7,9 @@ useMetadata({
 			angular: '<db-header header>Header Content</db-header>',
 			vue: '<DBHeader>Header Content</DBHeader>',
 			stencil: '<db-header slot="header">Header Content</db-header>',
-			react: '<DBHeader>Header Content</DBHeader>',
-		},
-	},
+			react: '<DBHeader>Header Content</DBHeader>'
+		}
+	}
 });
 
 export default function Page() {

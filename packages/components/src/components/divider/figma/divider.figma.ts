@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaDividerProps = {
 	variant?: string;
@@ -11,20 +11,20 @@ const dividerProps: Record<string, FigmaProp> = {
 		key: 'Variant',
 		value: {
 			'(Def) Horizontal': 'horizontal',
-			Vertical: 'vertical',
-		},
+			Vertical: 'vertical'
+		}
 	},
 	emphasis: {
 		type: 'enum',
 		key: 'Emphasis',
 		value: {
 			'(Def) Weak': 'weak',
-			Strong: 'strong',
-		},
-	},
+			Strong: 'strong'
+		}
+	}
 };
 
 export const dividers: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=1:21536'],
-	props: dividerProps,
+	props: dividerProps
 };

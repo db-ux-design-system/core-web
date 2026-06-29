@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import {StorybookInputArgTypes} from './_input.arg.types';
+import { StorybookInputArgTypes } from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Required',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookInputArgTypes,
+	storybookArgTypes: StorybookInputArgTypes
 });
 
 export default function InputRequired() {
@@ -14,8 +14,7 @@ export default function InputRequired() {
 			<DBInput
 				label="Label"
 				required={false}
-				placeholder="(Default) False"
-			></DBInput>
+				placeholder="(Default) False"></DBInput>
 			<DBInput label="Label" required={true} placeholder="True"></DBInput>
 		</Fragment>
 	);

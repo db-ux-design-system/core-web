@@ -2,7 +2,7 @@
  * This script can be used to update the icon type for all components using icons.
  */
 
-import {readFileSync, writeFileSync} from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 export type GenerateIconTypesProps = {
 	fontJsonPath: string;
@@ -11,12 +11,12 @@ export type GenerateIconTypesProps = {
 
 export const generateIconTypes = ({
 	fontJsonPath,
-	outDir,
+	outDir
 }: GenerateIconTypesProps) => {
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const allIcons: Record<string, string[]> = JSON.parse(
-			readFileSync(fontJsonPath, 'utf8'),
+			readFileSync(fontJsonPath, 'utf8')
 		);
 
 		const icons = Object.keys(allIcons);
@@ -28,19 +28,22 @@ export const generateIconTypes = ({
 		const filesToWrite = [
 			{
 				name: 'base-icon-types',
-				content: iconTypes,
+				content: iconTypes
 			},
 			{
 				name: 'all-icons',
-				content: allIconsFile,
-			},
+				content: allIconsFile
+			}
 		];
 
-		for (const {name, content} of filesToWrite) {
+		for (const { name, content } of filesToWrite) {
 			writeFileSync(`${outDir}/${name}.ts`, content);
 		}
 
-		const indexContent = [...filesToWrite.map(({name}) => name), 'icon-types']
+		const indexContent = [
+			...filesToWrite.map(({ name }) => name),
+			'icon-types'
+		]
 			.map((name) => `export * from "./${name}.js";`)
 			.join('\n');
 

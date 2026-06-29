@@ -1,13 +1,13 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
-import {StorybookTableArgTypes} from './_table.arg.types';
-import {subHeaderEmphasisWeakTable} from './data';
+import { StorybookTableArgTypes } from './_table.arg.types';
+import { subHeaderEmphasisWeakTable } from './data';
 
 useMetadata({
 	storybookTitle: 'Variant',
 	storybookNames: ['(Default) Flat', 'Spaced'],
-	storybookArgTypes: StorybookTableArgTypes,
+	storybookArgTypes: StorybookTableArgTypes
 });
 
 export default function TableVariant() {
@@ -19,9 +19,8 @@ export default function TableVariant() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					(Default) Flat
 				</DBInfotext>
@@ -38,9 +37,8 @@ export default function TableVariant() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Zebra
 				</DBInfotext>
@@ -58,9 +56,8 @@ export default function TableVariant() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Spaced
 				</DBInfotext>

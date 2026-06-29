@@ -1,9 +1,9 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
@@ -12,21 +12,25 @@ export default {
 		docs: {
 			description:
 				'Ensure DBNavigationItem has backButtonText for accessibility',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
-			missingBackButtonText: MESSAGES.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT,
+			missingBackButtonText:
+				MESSAGES.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
 			if (backButtonText === undefined || backButtonText === '') {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT,
+					messageId:
+						MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
 				});
 			}
 		};
@@ -34,35 +38,33 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBNavigationItem,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkNavigationItem = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem)) {
+			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem))
 				return;
-			}
 
 			const backButtonText = getAttributeValue(
 				openingElement,
-				'backButtonText',
+				'backButtonText'
 			);
 
 			if (backButtonText === undefined || backButtonText === '') {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT,
+					messageId:
+						MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkNavigationItem, Element: checkNavigationItem},
-			{JSXElement: checkNavigationItem},
+			{ VElement: checkNavigationItem, Element: checkNavigationItem },
+			{ JSXElement: checkNavigationItem }
 		);
-	},
+	}
 };

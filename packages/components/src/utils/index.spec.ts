@@ -1,5 +1,5 @@
-import {describe, expect, it} from 'vitest';
-import {getBoolean, getBooleanAsString, getStep} from './index';
+import { describe, expect, it } from 'vitest';
+import { getBoolean, getBooleanAsString, getStep } from './index';
 
 describe('getBooleanAsString', () => {
 	it('returns undefined for undefined input', () => {
@@ -8,7 +8,9 @@ describe('getBooleanAsString', () => {
 
 	it('returns undefined for null input', () => {
 		// eslint-disable-next-line unicorn/no-null
-		expect(getBooleanAsString(null as unknown as undefined)).toBeUndefined();
+		expect(
+			getBooleanAsString(null as unknown as undefined)
+		).toBeUndefined();
 	});
 
 	it('returns "true" for boolean true', () => {
@@ -51,7 +53,7 @@ describe('getBooleanAsString', () => {
 
 	it('returns "true" when showIconLeading value matches its own propertyName', () => {
 		expect(getBooleanAsString('showIconLeading', 'showIconLeading')).toBe(
-			'true',
+			'true'
 		);
 	});
 

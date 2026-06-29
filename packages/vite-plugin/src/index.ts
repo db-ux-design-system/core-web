@@ -1,17 +1,17 @@
-import {writeFile} from 'node:fs/promises';
-import {resolve} from 'node:path';
-import type {Plugin} from 'vite';
+import { writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import type { Plugin } from 'vite';
 import {
 	detectColors,
 	detectComponents,
 	detectDensities,
 	detectFontSizes,
 	discoverAll,
-	scanComponentDependencies,
+	scanComponentDependencies
 } from './detector.js';
-import {generateCSS} from './generator.js';
-import {removeUnusedStyles, type OptimizerContext} from './optimizer.js';
-import type {ColorScheme, Density, FontSize, PluginConfig} from './types.js';
+import { generateCSS } from './generator.js';
+import { removeUnusedStyles, type OptimizerContext } from './optimizer.js';
+import type { ColorScheme, Density, FontSize, PluginConfig } from './types.js';
 
 /** Default foundation features included unless overridden by user config. */
 const DEFAULT_FOUNDATIONS = [
@@ -19,19 +19,19 @@ const DEFAULT_FOUNDATIONS = [
 	'icons',
 	'animations',
 	'code',
-	'elevation',
+	'elevation'
 ] as const;
 
 /**
- Create the DB UX Vite plugin.
- Returns two plugins: a pre-transform plugin for CSS generation and
- a post-build plugin for optimizing the final CSS bundle.
- 
- During dev, all available styles are included for instant HMR.
- During build, only detected styles are included and unused ones are stripped.
+ * Create the DB UX Vite plugin.
+ * Returns two plugins: a pre-transform plugin for CSS generation and
+ * a post-build plugin for optimizing the final CSS bundle.
+ *
+ * During dev, all available styles are included for instant HMR.
+ * During build, only detected styles are included and unused ones are stripped.
  */
 export default function dbUxPlugin(config: PluginConfig = {}): any[] {
-	const {optimize = true, debug = false} = config;
+	const { optimize = true, debug = false } = config;
 
 	// Deep-merge include/exclude so partial user config doesn't lose defaults
 	const include = {
@@ -39,7 +39,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 		components: config.include?.components,
 		colors: config.include?.colors,
 		densities: config.include?.densities,
-		fontSizes: config.include?.fontSizes,
+		fontSizes: config.include?.fontSizes
 	};
 	const exclude = config.exclude ?? {};
 
@@ -75,17 +75,17 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 			root = resolvedConfig.root;
 			isBuild = resolvedConfig.command === 'build';
 			hasTailwind = resolvedConfig.plugins.some((plugin) =>
-				plugin.name.startsWith('@tailwindcss/vite'),
+				plugin.name.startsWith('@tailwindcss/vite')
 			);
 
 			if (debug) {
 				console.log(
-					`[db-ux-vite-plugin] Initialized (mode: ${resolvedConfig.command}, tailwind: ${hasTailwind})`,
+					`[db-ux-vite-plugin] Initialized (mode: ${resolvedConfig.command}, tailwind: ${hasTailwind})`
 				);
 			}
 		},
 
-		handleHotUpdate({file, server, modules}) {
+		handleHotUpdate({ file, server, modules }) {
 			if (/\.(vue|jsx|tsx|ts|html)$/.test(file) && cssModuleId) {
 				const mod = server.moduleGraph.getModuleById(cssModuleId);
 				if (mod) {
@@ -96,9 +96,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 		},
 
 		async transform(code, id) {
-			if (!id.endsWith('.css')) {
-				return;
-			}
+			if (!id.endsWith('.css')) return;
 
 			const hasImport =
 				code.includes('@import "@db-ux/core-vite-plugin/index.css"') ||
@@ -112,23 +110,26 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 						hasDetected = true;
 						detectedComponents = await detectComponents(
 							root,
-							include.components || [],
+							include.components || []
 						);
-						detectedColors = await detectColors(root, include.colors || []);
+						detectedColors = await detectColors(
+							root,
+							include.colors || []
+						);
 						detectedDensities = await detectDensities(
 							root,
-							include.densities || [],
+							include.densities || []
 						);
 						detectedFontSizes = await detectFontSizes(
 							root,
-							include.fontSizes || [],
+							include.fontSizes || []
 						);
 						scanComponentDependencies(
 							root,
 							detectedComponents,
 							detectedColors,
 							detectedDensities,
-							detectedFontSizes,
+							detectedFontSizes
 						);
 					})();
 				}
@@ -155,13 +156,13 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 							: (discovered.densities as Density[]),
 						fontSizes: isBuild
 							? ([...detectedFontSizes] as FontSize[])
-							: (discovered.fontSizes as FontSize[]),
+							: (discovered.fontSizes as FontSize[])
 					},
 					exclude,
 					theme: config.theme,
 					additionalLayers: config.additionalLayers,
 					overrideLayers: config.overrideLayers,
-					hasTailwind,
+					hasTailwind
 				});
 
 				generatedImports = css.split('\n');
@@ -169,14 +170,16 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 				if (debug) {
 					console.log(
 						'\n[db-ux-vite-plugin] Generated imports:\n' +
-							generatedImports.map((line) => `  ${line}`).join('\n') +
-							'\n',
+							generatedImports
+								.map((line) => `  ${line}`)
+								.join('\n') +
+							'\n'
 					);
 				}
 
 				code = code.replaceAll(
 					/@import ["']@db-ux\/core-vite-plugin\/index\.css["'];?/g,
-					css,
+					css
 				);
 			}
 
@@ -194,15 +197,15 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 							colors: [...detectedColors].sort(),
 							densities: [...detectedDensities].sort(),
 							fontSizes: [...detectedFontSizes].sort(),
-							generatedImports,
+							generatedImports
 						},
 						null,
-						2,
+						2
 					),
-					'utf-8',
+					'utf-8'
 				);
 			}
-		},
+		}
 	};
 
 	const optimizerPlugin: Plugin = {
@@ -210,18 +213,16 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 		enforce: 'post',
 
 		generateBundle(_options, bundle) {
-			if (!optimize || !hasDetected) {
-				return;
-			}
+			if (!optimize || !hasDetected) return;
 
-			const {colors, densities, fontSizes} = discoverAll(root);
+			const { colors, densities, fontSizes } = discoverAll(root);
 			const optimizerContext: OptimizerContext = {
 				allColors: colors,
 				allDensities: densities,
-				allFontSizes: fontSizes,
+				allFontSizes: fontSizes
 			};
 
-			for (const asset of Object.values(bundle)) {
+			for (const [, asset] of Object.entries(bundle)) {
 				if (
 					asset.type === 'asset' &&
 					typeof asset.fileName === 'string' &&
@@ -233,14 +234,14 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 						detectedColors,
 						detectedDensities,
 						detectedFontSizes,
-						optimizerContext,
+						optimizerContext
 					);
 				}
 			}
-		},
+		}
 	};
 
 	return [mainPlugin, optimizerPlugin];
 }
 
-export {type PluginConfig} from './types.js';
+export { type PluginConfig } from './types.js';

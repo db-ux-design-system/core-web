@@ -1,29 +1,28 @@
-import type {PluginCreator, Root} from 'postcss';
+import type { PluginCreator, Root } from 'postcss';
 import {
 	type FlattenOptions,
 	type VarEntry,
-	DEFAULT_DYNAMIC_PREFIXES,
+	DEFAULT_DYNAMIC_PREFIXES
 } from './data.js';
 import {
 	collectImportLayers,
 	collectLayerOrder,
 	collectVarsWithLayer,
 	getFileLayer,
-	pickBestVar,
+	pickBestVar
 } from './helpers/collect.js';
-import {transformRoot} from './helpers/transform.js';
+import { transformRoot } from './helpers/transform.js';
 
 /**
- PostCSS plugin that flattens DB UX Design System CSS custom properties
- by resolving `var()`, `@property`, `calc()`, `color-mix()`, and `light-dark()`.
- 
- Detects dynamic variables (re-declared in non-`:root` selectors, `@media`,
- or matching `dynamicPrefixes`) and leaves them as `var()` references.
- Respects `@layer` priority via `@layer` order declarations and `@import ... layer()` rules.
- 
- @param opts - Plugin options
- @param options
- @returns A PostCSS plugin instance
+ * PostCSS plugin that flattens DB UX Design System CSS custom properties
+ * by resolving `var()`, `@property`, `calc()`, `color-mix()`, and `light-dark()`.
+ *
+ * Detects dynamic variables (re-declared in non-`:root` selectors, `@media`,
+ * or matching `dynamicPrefixes`) and leaves them as `var()` references.
+ * Respects `@layer` priority via `@layer` order declarations and `@import ... layer()` rules.
+ *
+ * @param opts - Plugin options
+ * @returns A PostCSS plugin instance
  */
 const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 	const removeAtProperty = options.removeAtProperty ?? true;
@@ -60,7 +59,7 @@ const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 				dynamicVars,
 				dynamicPrefixes,
 				fileLayer,
-				filePath,
+				filePath
 			);
 		},
 		OnceExit(root: Root) {
@@ -78,14 +77,14 @@ const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 				propertyNames,
 				dynamicVars,
 				removeAtProperty,
-				removeResolved,
+				removeResolved
 			);
-		},
+		}
 	};
 };
 
 dbUxFlatten.postcss = true;
 
-export {dbUxFlatten};
+export { dbUxFlatten };
 
-export {type FlattenOptions} from './data.js';
+export { type FlattenOptions } from './data.js';

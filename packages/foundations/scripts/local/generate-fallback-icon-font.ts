@@ -1,7 +1,7 @@
-import {generateIconFonts} from '@db-ux/icon-font-tools';
-import {promises as fs} from 'node:fs';
+import { generateIconFonts } from '@db-ux/icon-font-tools';
+import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 const fontName = 'icon-font-fallback';
 
@@ -9,17 +9,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const fallbackIconPath = path.resolve(
 	__dirname,
-	'../../assets/fallback-icon.svg',
+	'../../assets/fallback-icon.svg'
 );
 const fallbackIconsDir = path.resolve(__dirname, '../../assets/fallback-icons');
 const fallbackFontSource = path.resolve(
 	__dirname,
-	'../../assets/fallback-icons/fonts/all/icon-font-fallback.woff2',
+	'../../assets/fallback-icons/fonts/all/icon-font-fallback.woff2'
 );
 
 const run = async () => {
 	// Ensure fallback-icons directory exists
-	await fs.mkdir(fallbackIconsDir, {recursive: true});
+	await fs.mkdir(fallbackIconsDir, { recursive: true });
 
 	// Read the content of fallback-icon.svg
 	const fallbackIconContent = await fs.readFile(fallbackIconPath, 'utf-8');
@@ -30,7 +30,7 @@ const run = async () => {
 		characters.map(async (char) => {
 			const filePath = path.join(fallbackIconsDir, `${char}.svg`);
 			await fs.writeFile(filePath, fallbackIconContent, 'utf-8');
-		}),
+		})
 	);
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -39,7 +39,7 @@ const run = async () => {
 		src: fallbackIconsDir,
 		variants: [],
 		withSizes: false,
-		debug: true,
+		debug: true
 	});
 };
 

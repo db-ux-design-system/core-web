@@ -11,7 +11,7 @@ import type {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
-	SizeProps,
+	SizeProps
 } from '../../shared/model';
 
 export type DBRadioDefaultProps = {};

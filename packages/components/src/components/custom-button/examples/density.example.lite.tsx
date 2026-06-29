@@ -1,7 +1,7 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBCustomButton from '../custom-button.lite';
-import {StorybookCustomButtonArgTypes} from './_custom-button.arg.types';
+import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
@@ -14,15 +14,18 @@ useMetadata({
 		'(Default) Regular: Link',
 		'Expressive: Button',
 		'Expressive: Checkbox',
-		'Expressive: Link',
+		'Expressive: Link'
 	],
-	storybookArgTypes: StorybookCustomButtonArgTypes,
+	storybookArgTypes: StorybookCustomButtonArgTypes
 });
 
 export default function CustomButtonDensity() {
 	return (
 		<Fragment>
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Functional
 			</DBInfotext>
 			<DBCustomButton data-density="functional">
@@ -38,7 +41,10 @@ export default function CustomButtonDensity() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				(Default) Regular
 			</DBInfotext>
 			<DBCustomButton data-density="regular">
@@ -54,7 +60,10 @@ export default function CustomButtonDensity() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Expressive
 			</DBInfotext>
 			<DBCustomButton data-density="expressive">

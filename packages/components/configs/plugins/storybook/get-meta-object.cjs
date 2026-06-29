@@ -20,18 +20,20 @@ const extractMetadata = (target, name, meta) => {
 			// are not valid properties on the typed Props interface, causing
 			// TypeScript compilation errors.
 			if (target === 'angular') {
-				Object.entries(metadata.storybookArgTypes).forEach(([key, value]) => {
-					if (!(key.startsWith('on') && value?.action)) {
-						argTypes[key] = value;
+				Object.entries(metadata.storybookArgTypes).forEach(
+					([key, value]) => {
+						if (!(key.startsWith('on') && value?.action)) {
+							argTypes[key] = value;
+						}
 					}
-				});
+				);
 			} else {
 				argTypes = metadata.storybookArgTypes;
 			}
 		}
 	}
 
-	return {title, argTypes};
+	return { title, argTypes };
 };
 
 /**
@@ -62,12 +64,14 @@ const getFnArgs = (argTypes) => {
  * @param {Array<string>} params.allImports - All imports
  * @returns {string} Generated meta object code
  */
-const getMetaObject = ({target, componentName, name, meta, allImports}) => {
-	const {title, argTypes} = extractMetadata(target, name, meta);
+const getMetaObject = ({ target, componentName, name, meta, allImports }) => {
+	const { title, argTypes } = extractMetadata(target, name, meta);
 	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 
 	const metaType =
-		target === 'angular' ? `${componentName}Props` : `typeof ${componentName}`;
+		target === 'angular'
+			? `${componentName}Props`
+			: `typeof ${componentName}`;
 
 	let decorators = '';
 
@@ -102,4 +106,4 @@ export default meta;
 type Story = StoryObj;`;
 };
 
-module.exports = {getMetaObject};
+module.exports = { getMetaObject };

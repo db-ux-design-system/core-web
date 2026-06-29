@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaInputProps = {
 	variant?: string;
@@ -22,39 +22,39 @@ const inputProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
 		key: 'Variant',
-		value: {Above: 'above', Floating: 'floating'},
+		value: { Above: 'above', Floating: 'floating' }
 	},
-	label: {type: 'string', key: 'Label'},
-	showLabel: {type: 'boolean', key: 'Show Label'},
-	placeholder: {type: 'string', key: 'Placeholder'},
-	required: {type: 'boolean', key: 'Required'},
-	showRequiredAsterisk: {type: 'boolean', key: 'Show Required Asterisk'},
-	readonly: {type: 'boolean', key: 'Readonly'},
-	disabled: {type: 'boolean', key: 'Disabled'},
+	label: { type: 'string', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
+	placeholder: { type: 'string', key: 'Placeholder' },
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
+	readonly: { type: 'boolean', key: 'Readonly' },
+	disabled: { type: 'boolean', key: 'Disabled' },
 	validation: {
 		type: 'enum',
 		key: 'Validation',
 		value: {
 			'(Def) No Validation': 'no-validation',
 			Invalid: 'invalid',
-			Valid: 'valid',
-		},
+			Valid: 'valid'
+		}
 	},
-	showIconLeading: {type: 'boolean', key: 'Show Icon Leading'},
-	showIconTrailing: {type: 'boolean', key: 'Show Icon Trailing'},
+	showIconLeading: { type: 'boolean', key: 'Show Icon Leading' },
+	showIconTrailing: { type: 'boolean', key: 'Show Icon Trailing' },
 	iconLeading: {
 		type: 'conditionalProp',
 		key: 'Icon Leading',
 		guardKey: 'Show Icon Leading',
-		attrName: 'icon',
+		attrName: 'icon'
 	},
 	iconTrailing: {
 		type: 'conditionalProp',
 		key: 'Icon Trailing',
 		guardKey: 'Show Icon Trailing',
-		attrName: 'iconTrailing',
+		attrName: 'iconTrailing'
 	},
-	showMessage: {type: 'boolean', key: 'Show Message'},
+	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
 		key: 'Text',
@@ -62,9 +62,9 @@ const inputProps: Record<string, FigmaProp> = {
 		map: {
 			invalid: 'invalidMessage',
 			valid: 'validMessage',
-			default: 'message',
-		},
-	},
+			default: 'message'
+		}
+	}
 };
 
 export const inputs: FigmaCodeConnect = {
@@ -80,7 +80,7 @@ export const inputs: FigmaCodeConnect = {
 		// Floating Label Active
 		'https://www.figma.com/design/FIGMA_FILE?node-id=3:22117',
 		// Floating Label Filled
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3:20411',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3:20411'
 	],
-	props: inputProps,
+	props: inputProps
 };

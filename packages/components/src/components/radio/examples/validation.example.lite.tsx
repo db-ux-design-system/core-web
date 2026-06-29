@@ -1,11 +1,11 @@
-import {useMetadata} from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBRadio from '../radio.lite';
-import {StorybookRadioArgTypes} from './_radio.arg.types';
+import { StorybookRadioArgTypes } from './_radio.arg.types';
 
 useMetadata({
 	storybookTitle: 'Validation',
 	storybookNames: ['(Default) No validation', 'Invalid', 'Valid'],
-	storybookArgTypes: StorybookRadioArgTypes,
+	storybookArgTypes: StorybookRadioArgTypes
 });
 
 export default function RadioValidation() {

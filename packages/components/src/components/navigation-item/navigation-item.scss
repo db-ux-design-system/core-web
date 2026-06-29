@@ -1,16 +1,16 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/animation';
-@use '@db-ux/core-foundations/build/styles/icons';
-@use '../../styles/internal/icon-passing';
-@use '../../styles/internal/component';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		&:is(:hover, :focus-visible) {
 			~ .db-sub-navigation {
 				visibility: visible;
@@ -21,7 +21,7 @@
 
 @mixin sub-navi-handler-mobile() {
 	// show/hide sub-navigation by click
-	&[aria-expanded='true'] {
+	&[aria-expanded="true"] {
 		~ .db-sub-navigation {
 			visibility: visible;
 			transform: translateX(0%);
@@ -41,7 +41,7 @@
 		}
 	}
 
-	&:not(&[aria-expanded='true']) {
+	&:not(&[aria-expanded="true"]) {
 		~ .db-sub-navigation {
 			transform: translateX(110%);
 		}
@@ -93,15 +93,15 @@
 	position: relative;
 	inline-size: auto;
 
-	&[data-wrap='true'] {
+	&[data-wrap="true"] {
 		:is(a, .db-navigation-item-expand-button):first-of-type {
 			white-space: normal;
 			text-align: start;
 		}
 	}
 
-	@include screen-sizes.screen('md', 'max') {
-		&:not([data-width='full']) {
+	@include screen-sizes.screen("md", "max") {
+		&:not([data-width="full"]) {
 			inline-size: 100%;
 
 			.db-navigation-item-expand-button {
@@ -124,7 +124,7 @@
 	}
 
 	.db-navigation-item-expand-button {
-		@include screen-sizes.screen('md', 'max') {
+		@include screen-sizes.screen("md", "max") {
 			@include sub-navi-handler-mobile;
 		}
 
@@ -136,20 +136,20 @@
 			font-weight: inherit;
 
 			// default icon for navigation
-			@include icons.set-icon('chevron_right', 'after');
+			@include icons.set-icon("chevron_right", "after");
 		}
 	}
 
-	&:has([aria-current='page']),
-	&:has([data-active='true']),
-	&[aria-current='page'],
-	&[data-active='true'] {
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
 		> :is(a, button) {
 			font-weight: 700;
 		}
 	}
 
-	&:not([data-width='full']) {
+	&:not([data-width="full"]) {
 		.db-navigation-item-expand-button {
 			&::after {
 				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
@@ -157,7 +157,7 @@
 		}
 	}
 
-	&[data-width='full'] {
+	&[data-width="full"] {
 		inline-size: 100%;
 
 		.db-navigation-item-expand-button {
@@ -167,7 +167,7 @@
 		}
 	}
 
-	&[aria-disabled='true'] {
+	&[aria-disabled="true"] {
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
@@ -180,7 +180,7 @@
 	overflow: hidden auto;
 	inset-inline-start: variables.$db-spacing-fixed-xl;
 
-	.db-drawer-container[data-direction='left'] & {
+	.db-drawer-container[data-direction="left"] & {
 		inset-inline: auto variables.$db-spacing-fixed-xl;
 	}
 
@@ -201,17 +201,17 @@
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	visibility: hidden;
 
-	@include screen-sizes.screen('md', 'max') {
+	@include screen-sizes.screen("md", "max") {
 		@include sub-navigation-mobile;
 	}
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
 			@include helpers.display(none);
 		}
 	}
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
@@ -220,28 +220,29 @@
 		inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
-		&[data-outside-vx='true'] {
+		&[data-outside-vx="true"] {
 			transform: translateX(-100%);
 			inset-inline-start: 100%;
 		}
 
-		&:is(:hover, :focus-within):not([data-force-close='true']) {
+		&:is(:hover, :focus-within):not([data-force-close="true"]) {
 			visibility: visible;
 		}
 
-		&[data-force-close='true'] {
+		&[data-force-close="true"] {
 			pointer-events: none;
 		}
 
 		&::before {
-			content: '';
+			content: "";
 			position: absolute;
 			inset-inline-start: 0;
 			inline-size: 100%;
 
 			// #{$db-spacing-fixed--3xs} for shadows
 			block-size: calc(
-				#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-md}
+				#{variables.$db-spacing-fixed-3xs} +
+					#{variables.$db-spacing-fixed-md}
 			);
 			inset-block-start: calc(
 				-1 * #{variables.$db-spacing-fixed-md} -
@@ -251,19 +252,25 @@
 
 		.db-sub-navigation {
 			// 1px for box shadow
-			inset-block-start: calc(-50% + #{variables.$db-spacing-fixed-xs} + 1px);
+			inset-block-start: calc(
+				-50% + #{variables.$db-spacing-fixed-xs} + 1px
+			);
 			inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
 
-			&[data-outside-vy='bottom'] {
-				inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
+			&[data-outside-vy="bottom"] {
+				inset-block-start: calc(
+					100% + #{variables.$db-spacing-fixed-md}
+				);
 				transform: translateY(-100%);
 			}
 
-			&[data-outside-vx='right'] {
+			&[data-outside-vx="right"] {
 				transform: translateX(-100%);
-				inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
+				inset-inline-start: calc(
+					-1 * #{variables.$db-spacing-fixed-xs}
+				);
 
-				&[data-outside-vy='bottom'] {
+				&[data-outside-vy="bottom"] {
 					transform: translate(-100%, -100%);
 				}
 
@@ -276,7 +283,7 @@
 			}
 
 			&::before {
-				content: '';
+				content: "";
 				position: absolute;
 				inset-block-start: 0;
 				inset-inline-start: 0;
@@ -292,7 +299,7 @@
 			}
 
 			&::after {
-				content: '';
+				content: "";
 				position: absolute;
 				padding: variables.$db-spacing-fixed-xs;
 
@@ -326,5 +333,5 @@
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 
-	@include helpers.divider('bottom');
+	@include helpers.divider("bottom");
 }

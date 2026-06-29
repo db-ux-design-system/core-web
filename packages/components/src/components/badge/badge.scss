@@ -1,39 +1,39 @@
-@use 'sass:map';
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '../../styles/internal/button-components';
-@use '../../styles/internal/tag-components';
-@use '../../styles/internal/component';
+@use "sass:map";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/component";
 
 %absolute-badge {
 	position: absolute;
 	transform: translate(var(--badge-transform-x), var(--badge-transform-y));
 
-	&[data-placement$='right'] {
+	&[data-placement$="right"] {
 		--badge-transform-x: 50%;
 
 		inset-inline-end: 0;
 	}
 
-	&[data-placement$='left'] {
+	&[data-placement$="left"] {
 		--badge-transform-x: -50%;
 
 		inset-inline-start: 0;
 	}
 
-	&[data-placement*='top'] {
+	&[data-placement*="top"] {
 		--badge-transform-y: -50%;
 
 		inset-block-start: 0;
 	}
 
-	&[data-placement*='center'] {
+	&[data-placement*="center"] {
 		--badge-transform-y: -50%;
 
 		inset-block-start: 50%;
 	}
 
-	&[data-placement*='bottom'] {
+	&[data-placement*="bottom"] {
 		--badge-transform-y: 50%;
 
 		inset-block-end: 0;
@@ -46,7 +46,7 @@
 	@extend %component-border;
 	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
-	@include tag-components.get-tag-colors('badge');
+	@include tag-components.get-tag-colors("badge");
 
 	border-radius: variables.$db-border-radius-full;
 	padding-inline: variables.$db-spacing-fixed-2xs;
@@ -70,11 +70,11 @@
 		@extend %db-overwrite-font-size-2xs;
 	}
 
-	&[data-wrap='false'] {
+	&[data-wrap="false"] {
 		white-space: nowrap;
 	}
 
-	&[data-size='medium'] {
+	&[data-size="medium"] {
 		--badge-size: #{variables.$db-spacing-fixed-sm};
 
 		@extend %db-overwrite-font-size-sm;
@@ -100,7 +100,7 @@
 		padding: 0;
 	}
 
-	&[data-placement^='corner'] {
+	&[data-placement^="corner"] {
 		@extend %absolute-badge;
 
 		&[data-label] {
@@ -115,6 +115,6 @@
 
 // Global styles
 
-[data-has-badge='true'] {
+[data-has-badge="true"] {
 	position: relative;
 }

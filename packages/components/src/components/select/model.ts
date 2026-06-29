@@ -16,7 +16,7 @@ import type {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
-	ShowIconProps,
+	ShowIconProps
 } from '../../shared/model';
 
 export type DBSelectDefaultProps = {

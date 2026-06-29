@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="T extends RowData">
-import {DBButton, DBPopover, DBStack, DBTooltip} from '@components';
-import type {Column, RowData, Table} from '@tanstack/vue-table';
-import {computed} from 'vue';
-import DebouncedInput from './DebouncedInput.vue';
+import { DBButton, DBPopover, DBStack, DBTooltip } from "@components";
+import type { Column, RowData, Table } from "@tanstack/vue-table";
+import { computed } from "vue";
+import DebouncedInput from "./DebouncedInput.vue";
 
 interface Props {
 	column: Column<T, unknown>;
@@ -12,20 +12,20 @@ interface Props {
 const props = defineProps<Props>();
 
 const firstValue = computed(() =>
-	props.table.getPreFilteredRowModel().flatRows[0]?.getValue(props.column.id),
+	props.table.getPreFilteredRowModel().flatRows[0]?.getValue(props.column.id)
 );
 
 const columnFilterValue = computed(() => props.column.getFilterValue());
 const uniqueValues = computed(() => props.column.getFacetedUniqueValues());
 
 const sortedUniqueValues = computed(() =>
-	typeof firstValue.value === 'number'
+	typeof firstValue.value === "number"
 		? []
-		: Array.from(uniqueValues.value.keys()).sort(),
+		: Array.from(uniqueValues.value.keys()).sort()
 );
 
 const minMax = computed(() => props.column.getFacetedMinMaxValues());
-const min = computed(() => Number(minMax.value?.[0] ?? ''));
+const min = computed(() => Number(minMax.value?.[0] ?? ""));
 const max = computed(() => Number(minMax.value?.[1]));
 
 const updateMinFilter = (value: string | number) => {

@@ -1,1 +1,1 @@
-export {default as DBRadio} from './radio';
+export { default as DBRadio } from './radio';

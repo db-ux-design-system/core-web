@@ -6,7 +6,7 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import {DBPopover, DBButton} from '@db-ux/react-core-components';
+import { DBPopover, DBButton } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBPopover trigger={<DBButton>Hover on me to open Popover</DBButton>}>

@@ -1,12 +1,12 @@
-import {AxeBuilder} from '@axe-core/playwright';
-import {expect, type FullProject, type Page, test} from '@playwright/test';
-import {createRequire} from 'node:module';
+import { AxeBuilder } from '@axe-core/playwright';
+import { expect, type FullProject, type Page, test } from '@playwright/test';
+import { createRequire } from 'node:module';
 
-import {lvl1} from './fixtures/variants';
-import {setScrollViewport} from './fixtures/viewport';
+import { lvl1 } from './fixtures/variants';
+import { setScrollViewport } from './fixtures/viewport';
 
-import type {Checker} from 'accessibility-checker-engine';
-import {type Issue} from 'accessibility-checker-engine/v4/api/IRule';
+import type { Checker } from 'accessibility-checker-engine';
+import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
 
 const density = 'regular';
 
@@ -46,8 +46,9 @@ export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
-export const hasWebComponentSyntax = (showcase?: string): boolean =>
-	isAngular(showcase) || isStencil(showcase);
+export const hasWebComponentSyntax = (showcase?: string): boolean => {
+	return isAngular(showcase) || isStencil(showcase);
+};
 
 export const waitForDBPage = async (page: Page) => {
 	const dbPage = page.locator('.db-page');
@@ -65,13 +66,13 @@ const gotoPage = async (
 	path: string,
 	color: string,
 	fixedHeight?: number,
-	otherDensity?: 'functional' | 'regular' | 'expressive',
+	otherDensity?: 'functional' | 'regular' | 'expressive'
 ) => {
 	await page.goto(
 		`./#/${path}?density=${otherDensity ?? density}&color=${color}`,
 		{
-			waitUntil: 'domcontentloaded',
-		},
+			waitUntil: 'domcontentloaded'
+		}
 	);
 	await page.evaluate(async () => document.fonts.ready);
 
@@ -82,7 +83,7 @@ const gotoPage = async (
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
-		const {showcase} = process.env;
+		const { showcase } = process.env;
 		if (skip.angular && isAngular('angular')) {
 			return true;
 		}
@@ -100,9 +101,9 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot,
 	skip,
-	ratio,
+	ratio
 }: DefaultSnapshotTestType) => {
-	test('should match screenshot', async ({page}, {project}) => {
+	test(`should match screenshot`, async ({ page }, { project }) => {
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const isWebkit =
@@ -157,11 +158,11 @@ export const runAxeCoreTest = ({
 	preAxe,
 	color = lvl1,
 	density = 'regular',
-	skip,
+	skip
 }: AxeCoreTestType) => {
 	test(`should not have any A11y issues for density ${density} and color ${color}`, async ({
-		page,
-	}, {project}) => {
+		page
+	}, { project }) => {
 		const isLevelOne = color.endsWith('-1');
 		// We don't need to check color contrast for every project (just for chrome)
 		if (
@@ -184,7 +185,8 @@ export const runAxeCoreTest = ({
 			if ($project.use.contextOptions?.forcedColors === 'active') {
 				const style = document.createElement('style');
 				document.head.append(style);
-				const textColor = $project.use.colorScheme === 'dark' ? '#fff' : '#000';
+				const textColor =
+					$project.use.colorScheme === 'dark' ? '#fff' : '#000';
 				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
 			}
 		}, project);
@@ -194,7 +196,7 @@ export const runAxeCoreTest = ({
 		}
 
 		const accessibilityScanResults = await new AxeBuilder({
-			page,
+			page
 		})
 			.include('main')
 			.disableRules(axeDisableRules ?? [])
@@ -210,9 +212,9 @@ export const runA11yCheckerTest = ({
 	aCheckerDisableRules,
 	preChecker,
 	skipChecker,
-	skip,
+	skip
 }: A11yCheckerTestType) => {
-	test('test with accessibility checker', async ({page}, {project}) => {
+	test('test with accessibility checker', async ({ page }, { project }) => {
 		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
@@ -236,16 +238,15 @@ export const runA11yCheckerTest = ({
 			// Inject the accessibility-checker engine from local node_modules
 			const require = createRequire(import.meta.url);
 			const enginePath = require.resolve('accessibility-checker-engine');
-			await page.addScriptTag({path: enginePath});
+			await page.addScriptTag({ path: enginePath });
 
 			const results: Issue[] = await page.evaluate(async () => {
-				const {ace} = globalThis as any;
-				if (!ace?.Checker) {
-					return [];
-				}
-
+				const { ace } = globalThis as any;
+				if (!ace?.Checker) return [];
 				const checker: Checker = new ace.Checker();
-				const report = await checker.check(document, ['IBM_Accessibility']);
+				const report = await checker.check(document, [
+					'IBM_Accessibility'
+				]);
 				return report.results ?? [];
 			});
 
@@ -253,7 +254,7 @@ export const runA11yCheckerTest = ({
 				(result: Issue) =>
 					result.value.includes('VIOLATION') &&
 					result.value.includes('FAIL') &&
-					!aCheckerDisableRules?.includes(result.ruleId),
+					!aCheckerDisableRules?.includes(result.ruleId)
 			);
 		} catch (error) {
 			console.error(error);
@@ -268,9 +269,12 @@ export const runAriaSnapshotTest = ({
 	path,
 	fixedHeight,
 	preScreenShot,
-	skip,
+	skip
 }: DefaultSnapshotTestType) => {
-	test('should have same aria-snapshot', async ({page}, {project, title}) => {
+	test(`should have same aria-snapshot`, async ({ page }, {
+		project,
+		title
+	}) => {
 		if (shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();

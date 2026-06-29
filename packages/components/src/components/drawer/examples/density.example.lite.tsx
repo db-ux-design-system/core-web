@@ -1,15 +1,15 @@
-import {Fragment, useMetadata, useState} from '@builder.io/mitosis';
+import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawer from '../drawer.lite';
-import {StorybookDrawerArgTypes} from './_drawer.arg.types';
+import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
-		open: false,
-	},
+		open: false
+	}
 });
 
 export default function DrawerDensity() {
@@ -20,33 +20,36 @@ export default function DrawerDensity() {
 			<div data-density="functional">
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}
-				>
+					onClick={() => setOpenIndex(0)}>
 					Open: Functional
 				</DBButton>
-				<DBDrawer open={openIndex === 0} onClose={() => setOpenIndex(-1)}>
+				<DBDrawer
+					open={openIndex === 0}
+					onClose={() => setOpenIndex(-1)}>
 					Functional
 				</DBDrawer>
 			</div>
 			<div data-density="regular">
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}
-				>
+					onClick={() => setOpenIndex(1)}>
 					Open: (Default) Regular
 				</DBButton>
-				<DBDrawer open={openIndex === 1} onClose={() => setOpenIndex(-1)}>
+				<DBDrawer
+					open={openIndex === 1}
+					onClose={() => setOpenIndex(-1)}>
 					(Default) Regular
 				</DBDrawer>
 			</div>
 			<div data-density="expressive">
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}
-				>
+					onClick={() => setOpenIndex(2)}>
 					Open: Expressive
 				</DBButton>
-				<DBDrawer open={openIndex === 2} onClose={() => setOpenIndex(-1)}>
+				<DBDrawer
+					open={openIndex === 2}
+					onClose={() => setOpenIndex(-1)}>
 					Expressive
 				</DBDrawer>
 			</div>

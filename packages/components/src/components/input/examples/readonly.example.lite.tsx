@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import {StorybookInputArgTypes} from './_input.arg.types';
+import { StorybookInputArgTypes } from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Readonly',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookInputArgTypes,
+	storybookArgTypes: StorybookInputArgTypes
 });
 
 export default function InputReadonly() {
@@ -14,8 +14,7 @@ export default function InputReadonly() {
 			<DBInput
 				label="Label"
 				readOnly={false}
-				placeholder="(Default) False"
-			></DBInput>
+				placeholder="(Default) False"></DBInput>
 			<DBInput label="Label" readOnly={true} placeholder="True"></DBInput>
 		</Fragment>
 	);

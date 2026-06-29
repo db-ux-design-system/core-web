@@ -1,1 +1,1 @@
-export {default as DBSwitch} from './switch';
+export { default as DBSwitch } from './switch';

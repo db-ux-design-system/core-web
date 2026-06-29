@@ -1,13 +1,13 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/animation';
-@use './component';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "./component";
 
 %db-link-height {
 	@include helpers.display(inline-block);
 
-	&:not([data-wrap='true']) {
+	&:not([data-wrap="true"]) {
 		block-size: variables.$db-sizing-sm;
 	}
 }
@@ -47,11 +47,11 @@
 	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
 	text-decoration-line: underline;
 
-	&:not([data-wrap='true'], [data-variant='inline']) {
+	&:not([data-wrap="true"], [data-variant="inline"]) {
 		white-space: nowrap;
 	}
 
-	&[data-variant='inline'] {
+	&[data-variant="inline"] {
 		@include helpers.display(inline);
 	}
 
@@ -60,7 +60,7 @@
 	}
 
 	// "disabled" links
-	&[aria-disabled='true'] {
+	&[aria-disabled="true"] {
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}

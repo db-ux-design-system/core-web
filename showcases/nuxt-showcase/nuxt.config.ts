@@ -1,39 +1,39 @@
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {defineNuxtConfig} from 'nuxt/config';
+import { fileURLToPath } from 'node:url';
+import { defineNuxtConfig } from 'nuxt/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineNuxtConfig({
 	telemetry: false,
-	devtools: {enabled: true},
+	devtools: { enabled: true },
 	generate: {
-		routes: ['/'],
+		routes: ['/']
 	},
 	app: {
-		baseURL: '/nuxt-showcase/',
+		baseURL: '/nuxt-showcase/'
 	},
 	imports: {
-		autoImport: false,
+		autoImport: false
 	},
 	devServer: {
-		port: 4000,
+		port: 4000
 	},
 	vite: {
 		base: `/nuxt-showcase/`,
 		build: {
 			outDir: '../../build-showcases/nuxt-showcase',
 			emptyOutDir: true,
-			cssMinify: 'esbuild',
-		},
+			cssMinify: 'esbuild'
+		}
 	},
 	nitro: {
 		output: {
 			dir: '../../build-showcases/nuxt-showcase',
-			publicDir: '../../build-showcases/nuxt-showcase',
-		},
+			publicDir: '../../build-showcases/nuxt-showcase'
+		}
 	},
 	alias: {
-		'@components': path.resolve(__dirname, '../../output/vue/src'),
-	},
+		'@components': path.resolve(__dirname, '../../output/vue/src')
+	}
 });

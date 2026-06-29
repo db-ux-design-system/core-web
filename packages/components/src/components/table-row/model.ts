@@ -1,12 +1,12 @@
-import type {GlobalProps, GlobalState} from '../../shared/model';
-import type {DBLinkProps} from '../link/model';
-import type {DBTableDataCellProps} from '../table-data-cell/model';
-import type {DBTableHeaderCellProps} from '../table-header-cell/model';
+import type { GlobalProps, GlobalState } from '../../shared/model';
+import type { DBLinkProps } from '../link/model';
+import type { DBTableDataCellProps } from '../table-data-cell/model';
+import type { DBTableHeaderCellProps } from '../table-header-cell/model';
 
 export const DBTableRowSubHeaderEmphasisList = [
 	'none',
 	'weak',
-	'strong',
+	'strong'
 ] as const;
 export type DBTableRowSubHeaderEmphasisType =
 	(typeof DBTableRowSubHeaderEmphasisList)[number];

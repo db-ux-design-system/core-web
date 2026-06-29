@@ -1,12 +1,12 @@
-import {useMetadata} from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBCheckbox from '../checkbox.lite';
-import {StorybookCheckboxArgTypes} from './_checkbox.arg.types';
+import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Label',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookCheckboxArgTypes,
+	storybookArgTypes: StorybookCheckboxArgTypes
 });
 
 export default function CheckboxShowLabel() {

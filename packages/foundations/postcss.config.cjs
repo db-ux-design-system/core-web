@@ -4,9 +4,9 @@ module.exports = {
 			preset: [
 				'default',
 				{
-					svgo: false,
-				},
-			],
-		}),
-	],
+					svgo: false
+				}
+			]
+		})
+	]
 };

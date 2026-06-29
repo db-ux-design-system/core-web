@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaSwitchProps = {
 	label?: string;
@@ -18,34 +18,34 @@ export type FigmaSwitchProps = {
 };
 
 const switchProps: Record<string, FigmaProp> = {
-	label: {type: 'textContent', key: 'Label'},
-	showLabel: {type: 'boolean', key: 'Show Label'},
+	label: { type: 'textContent', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: {Medium: 'medium', Small: 'small'},
+		value: { Medium: 'medium', Small: 'small' }
 	},
 	variant: {
 		type: 'enum',
 		key: 'Variant',
-		value: {Trailing: 'trailing', Leading: 'leading'},
+		value: { Trailing: 'trailing', Leading: 'leading' }
 	},
-	required: {type: 'boolean', key: 'Required'},
-	showRequiredAsterisk: {type: 'boolean', key: 'Show Required Asterisk'},
-	disabled: {type: 'boolean', key: 'Disabled'},
-	checked: {type: 'boolean', key: 'Checked'},
-	visualAid: {type: 'boolean', key: 'Visual Aid'},
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
+	disabled: { type: 'boolean', key: 'Disabled' },
+	checked: { type: 'boolean', key: 'Checked' },
+	visualAid: { type: 'boolean', key: 'Visual Aid' },
 	iconLeading: {
 		type: 'conditionalProp',
 		key: 'Icon Leading',
 		guardKey: 'Visual Aid',
-		attrName: 'iconLeading',
+		attrName: 'iconLeading'
 	},
 	iconTrailing: {
 		type: 'conditionalProp',
 		key: 'Icon Trailing',
 		guardKey: 'Visual Aid',
-		attrName: 'iconTrailing',
+		attrName: 'iconTrailing'
 	},
 	validation: {
 		type: 'enum',
@@ -53,10 +53,10 @@ const switchProps: Record<string, FigmaProp> = {
 		value: {
 			'(Def) No Validation': 'no-validation',
 			Valid: 'valid',
-			Invalid: 'invalid',
-		},
+			Invalid: 'invalid'
+		}
 	},
-	showMessage: {type: 'boolean', key: 'Show Message'},
+	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
 		key: 'Text',
@@ -64,9 +64,9 @@ const switchProps: Record<string, FigmaProp> = {
 		map: {
 			invalid: 'invalidMessage',
 			valid: 'validMessage',
-			default: 'message',
-		},
-	},
+			default: 'message'
+		}
+	}
 };
 
 export const switches: FigmaCodeConnect = {
@@ -86,7 +86,7 @@ export const switches: FigmaCodeConnect = {
 		// Small Leading Auto Width
 		'https://www.figma.com/design/FIGMA_FILE?node-id=25204:19990',
 		// Small Leading Full Width
-		'https://www.figma.com/design/FIGMA_FILE?node-id=25204:20475',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=25204:20475'
 	],
-	props: switchProps,
+	props: switchProps
 };

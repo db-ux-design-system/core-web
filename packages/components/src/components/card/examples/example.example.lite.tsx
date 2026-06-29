@@ -1,15 +1,15 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBCard from '../card.lite';
-import {StorybookCardArgTypes} from './_card.arg.types';
+import { StorybookCardArgTypes } from './_card.arg.types';
 
 useMetadata({
 	storybookTitle: 'Example',
 	storybookNames: [
 		'Level 1 - Interactive',
 		'Level 2 - Interactive',
-		'Level 3 - Interactive',
+		'Level 3 - Interactive'
 	],
-	storybookArgTypes: StorybookCardArgTypes,
+	storybookArgTypes: StorybookCardArgTypes
 });
 
 export default function CardExample() {

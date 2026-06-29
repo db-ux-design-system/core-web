@@ -8,15 +8,15 @@ import {
 	useMetadata,
 	useRef,
 	useStore,
-	useTarget,
+	useTarget
 } from '@builder.io/mitosis';
-import {InputEvent} from '../../shared/model';
-import {cls, uuid} from '../../utils';
+import { InputEvent } from '../../shared/model';
+import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
-import {DBSimpleTabProps, DBTabsProps, DBTabsState} from './model';
+import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
@@ -49,7 +49,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
 			state.showScrollRight =
-				needsScroll && tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
+				needsScroll &&
+				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
 		scroll(left?: boolean) {
 			let step = Number(props.arrowScrollDistance) || 100;
@@ -59,7 +60,7 @@ export default function DBTabs(props: DBTabsProps) {
 			state.scrollContainer?.scrollBy({
 				top: 0,
 				left: step,
-				behavior: 'smooth',
+				behavior: 'smooth'
 			});
 		},
 		initTabList() {
@@ -71,7 +72,7 @@ export default function DBTabs(props: DBTabsProps) {
 					if (container) {
 						container.setAttribute(
 							'aria-orientation',
-							props.orientation || 'horizontal',
+							props.orientation || 'horizontal'
 						);
 
 						if (props.behavior === 'arrows') {
@@ -96,12 +97,12 @@ export default function DBTabs(props: DBTabsProps) {
 		initTabs(init?: boolean) {
 			if (_ref) {
 				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item'),
+					_ref.getElementsByClassName('db-tab-item')
 				);
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
-						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)',
-					),
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
+					)
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
@@ -117,7 +118,7 @@ export default function DBTabs(props: DBTabsProps) {
 							if (tabPanels.length > index) {
 								input.setAttribute(
 									'aria-controls',
-									`${state._name}-tab-panel-${index}`,
+									`${state._name}-tab-panel-${index}`
 								);
 							}
 						}
@@ -128,7 +129,8 @@ export default function DBTabs(props: DBTabsProps) {
 								!props.initialSelectedMode ||
 								props.initialSelectedMode === 'auto';
 							const shouldAutoSelect =
-								(props.initialSelectedIndex == null && index === 0) ||
+								(props.initialSelectedIndex == null &&
+									index === 0) ||
 								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
 								input.click();
@@ -141,7 +143,10 @@ export default function DBTabs(props: DBTabsProps) {
 					if (panel.id) continue;
 					const index: number = tabPanels.indexOf(panel);
 					panel.id = `${state._name}-tab-panel-${index}`;
-					panel.setAttribute('aria-labelledby', `${state._name}-tab-${index}`);
+					panel.setAttribute(
+						'aria-labelledby',
+						`${state._name}-tab-${index}`
+					);
 				}
 			}
 		},
@@ -159,12 +164,14 @@ export default function DBTabs(props: DBTabsProps) {
 					const tabItem = useTarget({
 						angular: parent.parentElement.parentElement,
 						stencil: parent.parentElement.parentElement,
-						default: parent.parentElement,
+						default: parent.parentElement
 					});
 					if (tabItem) {
 						const list = tabItem.parentElement;
 						if (list) {
-							const tabIndex = Array.from(list.children).indexOf(tabItem);
+							const tabIndex = Array.from(list.children).indexOf(
+								tabItem
+							);
 							if (props.onIndexChange) {
 								props.onIndexChange(tabIndex);
 							}
@@ -176,7 +183,7 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 				}
 			}
-		},
+		}
 	});
 
 	onMount(() => {
@@ -200,7 +207,10 @@ export default function DBTabs(props: DBTabsProps) {
 			if (tabList) {
 				const observer = new MutationObserver((mutations) => {
 					mutations.forEach((mutation) => {
-						if (mutation.removedNodes.length || mutation.addedNodes.length) {
+						if (
+							mutation.removedNodes.length ||
+							mutation.addedNodes.length
+						) {
 							state.initTabList();
 							state.initTabs();
 						}
@@ -209,7 +219,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 				observer.observe(tabList, {
 					childList: true,
-					subtree: true,
+					subtree: true
 				});
 			}
 
@@ -227,8 +237,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
 			onInput={(event) => state.handleChange(event)}
-			onChange={(event) => state.handleChange(event)}
-		>
+			onChange={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
@@ -236,8 +245,7 @@ export default function DBTabs(props: DBTabsProps) {
 					icon="chevron_left"
 					type="button"
 					noText
-					onClick={() => state.scroll(true)}
-				>
+					onClick={() => state.scroll(true)}>
 					Scroll left
 				</DBButton>
 			</Show>
@@ -260,8 +268,7 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							content={tab.content}
-						>
+							content={tab.content}>
 							{tab.children}
 						</DBTabPanel>
 					)}
@@ -274,8 +281,7 @@ export default function DBTabs(props: DBTabsProps) {
 					icon="chevron_right"
 					type="button"
 					noText
-					onClick={() => state.scroll()}
-				>
+					onClick={() => state.scroll()}>
 					Scroll right
 				</DBButton>
 			</Show>

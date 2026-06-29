@@ -28,19 +28,19 @@ import { DBCustomSelect } from '@db-ux/ngx-core-components';
 
 ```ts app.component.ts
 // app.component.ts
-import {Component} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-	selector: 'app-app',
-	templateUrl: './app.component.html',
+	selector: "app-app",
+	templateUrl: "./app.component.html"
 })
 export class AppComponent {
 	options = [
-		{value: 'Option 1'},
-		{value: 'Option 2'},
-		{value: 'Option 3'},
-		{value: 'Option 4'},
-		{value: 'Option 5'},
+		{ value: "Option 1" },
+		{ value: "Option 2" },
+		{ value: "Option 3" },
+		{ value: "Option 4" },
+		{ value: "Option 5" }
 	];
 }
 ```

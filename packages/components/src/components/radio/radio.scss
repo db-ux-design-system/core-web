@@ -1,10 +1,10 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '../../styles/internal/form-components';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/form-components";
 
 // jscpd:ignore-start
-@mixin get-radio-validity-colors($variant: 'successful') {
+@mixin get-radio-validity-colors($variant: "successful") {
 	--db-check-element-border-color: var(
 		--db-#{$variant}-on-bg-basic-emphasis-70-default
 	);
@@ -35,15 +35,15 @@
 
 	&:not(:has(input:checked, input:disabled)) {
 		@include form-components.get-state;
-		@include form-components.get-state('active');
+		@include form-components.get-state("active");
 	}
 
 	@include form-components.get-validity(radio) {
 		@include get-radio-validity-colors;
 	}
 
-	@include form-components.get-validity(radio, 'invalid') {
-		@include get-radio-validity-colors('critical');
+	@include form-components.get-validity(radio, "invalid") {
+		@include get-radio-validity-colors("critical");
 	}
 
 	input {
@@ -55,16 +55,22 @@
 		}
 
 		&:checked {
-			&:not([data-size='small']) {
+			&:not([data-size="small"]) {
 				border-width: calc(
-					(#{form-components.$font-size-height} - #{variables.$db-sizing-2xs}) /
+					(
+							#{form-components.$font-size-height} -
+								#{variables.$db-sizing-2xs}
+						) /
 						2
 				);
 			}
 
-			&[data-size='small'] {
+			&[data-size="small"] {
 				border-width: calc(
-					(#{form-components.$font-size-height} - #{variables.$db-sizing-3xs}) /
+					(
+							#{form-components.$font-size-height} -
+								#{variables.$db-sizing-3xs}
+						) /
 						2
 				);
 			}

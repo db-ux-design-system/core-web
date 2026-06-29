@@ -1,9 +1,9 @@
-import components, {Overwrite} from './components';
+import components, { Overwrite } from './components';
 
-import {readFileSync, writeFileSync} from 'node:fs';
-import {replaceInFileSync} from 'replace-in-file';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { replaceInFileSync } from 'replace-in-file';
 
-import {runReplacements, transformToUpperComponentName} from '../utils';
+import { runReplacements, transformToUpperComponentName } from '../utils';
 
 const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/shared/model.ts`;
@@ -11,27 +11,27 @@ const overwriteEvents = (tmp?: boolean) => {
 	modelFileContent = 'import * as React from "react";\n' + modelFileContent;
 	modelFileContent = modelFileContent.replace(
 		'export type ClickEvent<T> = MouseEvent;',
-		'export type ClickEvent<T> = React.MouseEvent<T, MouseEvent>;',
+		'export type ClickEvent<T> = React.MouseEvent<T, MouseEvent>;'
 	);
 	modelFileContent = modelFileContent.replace(
 		'export type ChangeEvent<T> = Event;',
-		'export type ChangeEvent<T> = React.ChangeEvent<T>;',
+		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
 		'export type InputEvent<T> = Event;',
-		'export type InputEvent<T> = React.FormEvent<T>;',
+		'export type InputEvent<T> = React.FormEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
 		'export type InteractionEvent<T> = FocusEvent;',
-		'export type InteractionEvent<T> = React.FocusEvent<T>;',
+		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
 		'export type GeneralEvent<T> = Event;',
-		'export type GeneralEvent<T> = React.SyntheticEvent<T>;',
+		'export type GeneralEvent<T> = React.SyntheticEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
 		'export type GeneralKeyboardEvent<T> = KeyboardEvent;',
-		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;',
+		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;'
 	);
 	writeFileSync(modelFilePath, modelFileContent);
 };
@@ -56,7 +56,7 @@ const rootProps = [
 	'data-divider',
 	'data-focus',
 	'data-font',
-	'data-density',
+	'data-density'
 ];
 
 /**
@@ -94,7 +94,9 @@ export default (tmp?: boolean) => {
 		overwriteEvents(tmp);
 
 		for (const component of components) {
-			const upperComponentName = transformToUpperComponentName(component.name);
+			const upperComponentName = transformToUpperComponentName(
+				component.name
+			);
 
 			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${component.name}/${component.name}.tsx`;
 
@@ -108,11 +110,11 @@ export default (tmp?: boolean) => {
 			const replacements: Overwrite[] = [
 				{
 					from: ` } from "react"`,
-					to: `, forwardRef, HTMLAttributes } from "react"`,
+					to: `, forwardRef, HTMLAttributes } from "react"`
 				},
 				{
 					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
-					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`,
+					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
 					from: `export default DB${upperComponentName};`,
@@ -120,16 +122,16 @@ export default (tmp?: boolean) => {
 ${htmlElement}, Omit<HTMLAttributes<${htmlElement}>,
 keyof DB${upperComponentName}Props> & DB${upperComponentName}Props
 >(DB${upperComponentName}Fn);
-export default DB${upperComponentName};`,
+export default DB${upperComponentName};`
 				},
 				{
 					from: '>(null);',
-					to: '>(component);',
+					to: '>(component);'
 				},
-				{from: 'useRef<', to: 'component || useRef<'},
+				{ from: 'useRef<', to: 'component || useRef<' },
 				{
 					from: '={true}',
-					to: '',
+					to: ''
 				},
 				{
 					from: 'import * as React from "react";',
@@ -138,26 +140,26 @@ export default DB${upperComponentName};`,
 						// Explicit .js extension required: this import is injected
 						// here in post-build, AFTER the Mitosis esm-extensions
 						// plugin has run, so it is not rewritten automatically.
-						'import { filterPassingProps, getRootProps } from "../../utils/react.js";\n',
+						'import { filterPassingProps, getRootProps } from "../../utils/react.js";\n'
 				},
 				{
 					from: 'ref={_ref}',
 					to:
 						'ref={_ref}\n' +
-						`{...filterPassingProps(props,${JSON.stringify([...rootProps, ...(component?.config?.react?.propsPassingFilter ?? [])])})}`,
+						`{...filterPassingProps(props,${JSON.stringify([...rootProps, ...(component?.config?.react?.propsPassingFilter ?? [])])})}`
 				},
 				{
 					from: 'className={',
 					to:
 						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
-						'\nclassName={',
+						'\nclassName={'
 				},
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */
 				{
 					from: 'props.value ?? _value ?? ""',
-					to: 'props.value',
-				},
+					to: 'props.value'
+				}
 			];
 
 			/**
@@ -168,13 +170,13 @@ export default DB${upperComponentName};`,
 				if (!tsxFileContent.includes('uuid')) {
 					replacements.push({
 						from: '{ cls',
-						to: '{ cls, uuid',
+						to: '{ cls, uuid'
 					});
 				}
 
 				replaceInFileSync({
 					files: tsxFile,
-					processor: (input: string) => overwriteFragmentMap(input),
+					processor: (input: string) => overwriteFragmentMap(input)
 				});
 			}
 

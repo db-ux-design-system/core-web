@@ -1,13 +1,16 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBNotification} from '../index';
-import {FigmaNotificationProps, imageNotifications} from './notification.figma';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBNotification } from '../index';
+import {
+	FigmaNotificationProps,
+	imageNotifications
+} from './notification.figma';
 
 useMetadata({
-	figma: imageNotifications,
+	figma: imageNotifications
 });
 
 export default function ImageNotificationFigmaLite(
-	props: FigmaNotificationProps,
+	props: FigmaNotificationProps
 ) {
 	return (
 		<DBNotification
@@ -16,8 +19,7 @@ export default function ImageNotificationFigmaLite(
 					src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Under-Construction-Bulldozer.gif"
 					alt="TODO: Add an alternative text"
 				/>
-			}
-		>
+			}>
 			{props.text}
 			{props._children}
 		</DBNotification>

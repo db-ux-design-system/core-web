@@ -1,11 +1,11 @@
-import {DBSelect} from '../index';
+import { DBSelect } from '../index';
 
 export default function Select() {
 	function getOptions() {
 		return [
-			{id: '1', label: 'Option 1', selected: false},
-			{id: '2', label: 'Option 2', selected: true},
-			{id: '3', label: 'Option 3', disabled: true},
+			{ id: '1', label: 'Option 1', selected: false },
+			{ id: '2', label: 'Option 2', selected: true },
+			{ id: '3', label: 'Option 3', disabled: true }
 		];
 	}
 
@@ -65,8 +65,7 @@ export default function Select() {
 				label="Change Event"
 				onChange={(event: any) =>
 					console.log('Change event:', event.target.value)
-				}
-			>
+				}>
 				<option value="1">Option 1</option>
 				<option value="2" disabled>
 					Option 2

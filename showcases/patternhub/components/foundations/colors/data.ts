@@ -4,7 +4,7 @@ export const semanticColors = [
 	'critical',
 	'successful',
 	'warning',
-	'informational',
+	'informational'
 ];
 
 export const additionalColors = [
@@ -18,7 +18,7 @@ export const additionalColors = [
 	'turquoise',
 	'green',
 	'light-green',
-	'burgundy',
+	'burgundy'
 ];
 
 export const backgroundColors = [
@@ -26,16 +26,16 @@ export const backgroundColors = [
 	'basic-level-2',
 	'basic-level-3',
 	'basic-transparent-full',
-	'basic-transparent-semi',
+	'basic-transparent-semi'
 ];
 
 export const onBackgroundColors = [
-	{value: 'emphasis-100'},
-	{value: 'emphasis-90'},
-	{value: 'emphasis-80'},
-	{value: 'emphasis-70', appendix: ' *'},
-	{value: 'emphasis-60', appendix: ' *'},
-	{value: 'emphasis-50', appendix: ' *'},
+	{ value: 'emphasis-100' },
+	{ value: 'emphasis-90' },
+	{ value: 'emphasis-80' },
+	{ value: 'emphasis-70', appendix: ' *' },
+	{ value: 'emphasis-60', appendix: ' *' },
+	{ value: 'emphasis-50', appendix: ' *' }
 ];
 
-export type ColorValue = string | {value: string; appendix?: string};
+export type ColorValue = string | { value: string; appendix?: string };

@@ -15,12 +15,12 @@ npm i purgecss csso --save-dev
 Next you should create a file, e.g. `purgecss.js` in your project root with the following content:
 
 ```javascript
-import {writeFileSync} from 'node:fs';
+import { writeFileSync } from "node:fs";
 
-import {PurgeCSS} from 'purgecss';
-import {minify} from 'csso';
+import { PurgeCSS } from "purgecss";
+import { minify } from "csso";
 
-const distFolder = 'dist'; // TODO: Change me if you need another folder
+const distFolder = "dist"; // TODO: Change me if you need another folder
 
 new PurgeCSS()
 	.purge({
@@ -38,13 +38,13 @@ new PurgeCSS()
 				/* Keep density & all color properties/variables */
 				/-default$/,
 				/-hovered$/,
-				/-pressed$/,
+				/-pressed$/
 			],
 			/* Some components require a safelist */
 			greedy: [
-				/db-tabs/, // TODO: Add more components if necessary
-			],
-		},
+				/db-tabs/ // TODO: Add more components if necessary
+			]
+		}
 	})
 	.then((purgeCSSResult) => {
 		for (const result of purgeCSSResult) {

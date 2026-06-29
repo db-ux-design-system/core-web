@@ -1,12 +1,12 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBTooltip from '../tooltip.lite';
-import {StorybookTooltipArgTypes} from './_tooltip.arg.types';
+import { StorybookTooltipArgTypes } from './_tooltip.arg.types';
 
 useMetadata({
 	storybookTitle: 'Width',
 	storybookNames: ['(Default) Auto', 'Fixed'],
-	storybookArgTypes: StorybookTooltipArgTypes,
+	storybookArgTypes: StorybookTooltipArgTypes
 });
 
 export default function TooltipWidth() {

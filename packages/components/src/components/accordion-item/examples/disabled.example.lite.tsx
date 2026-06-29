@@ -1,18 +1,20 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBAccordionItem from '../accordion-item.lite';
-import {StorybookAccordionItemArgTypes} from './_accordion-item.arg.types';
+import { StorybookAccordionItemArgTypes } from './_accordion-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Disabled',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookAccordionItemArgTypes,
+	storybookArgTypes: StorybookAccordionItemArgTypes
 });
 
 export default function AccordionItemDisabled() {
 	return (
 		<Fragment>
 			<div>
-				<DBAccordionItem headlinePlain="(Default) False" disabled={false}>
+				<DBAccordionItem
+					headlinePlain="(Default) False"
+					disabled={false}>
 					(Default) False
 				</DBAccordionItem>
 			</div>

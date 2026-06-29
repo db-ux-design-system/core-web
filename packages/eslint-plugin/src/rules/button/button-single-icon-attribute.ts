@@ -1,9 +1,9 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
@@ -11,12 +11,12 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description: 'Ensure DBButton uses only one icon attribute',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-single-icon-attribute',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-single-icon-attribute'
 		},
 		messages: {
-			multipleIcons: MESSAGES.BUTTON_MULTIPLE_ICONS,
+			multipleIcons: MESSAGES.BUTTON_MULTIPLE_ICONS
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -25,14 +25,16 @@ export default {
 			const iconTrailing = getAttributeValue(node, 'iconTrailing');
 
 			const iconCount = [icon, iconLeading, iconTrailing].filter(
-				Boolean,
+				Boolean
 			).length;
 
 			if (iconCount > 1) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.BUTTON_MULTIPLE_ICONS,
+					messageId: MESSAGE_IDS.BUTTON_MULTIPLE_ICONS
 				});
 			}
 		};
@@ -40,38 +42,40 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBButton,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkButton = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const icon = getAttributeValue(openingElement, 'icon');
-			const iconLeading = getAttributeValue(openingElement, 'iconLeading');
-			const iconTrailing = getAttributeValue(openingElement, 'iconTrailing');
+			const iconLeading = getAttributeValue(
+				openingElement,
+				'iconLeading'
+			);
+			const iconTrailing = getAttributeValue(
+				openingElement,
+				'iconTrailing'
+			);
 
 			const iconCount = [icon, iconLeading, iconTrailing].filter(
-				Boolean,
+				Boolean
 			).length;
 
 			if (iconCount > 1) {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.BUTTON_MULTIPLE_ICONS,
+					messageId: MESSAGE_IDS.BUTTON_MULTIPLE_ICONS
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkButton, Element: checkButton},
-			{JSXElement: checkButton},
+			{ VElement: checkButton, Element: checkButton },
+			{ JSXElement: checkButton }
 		);
-	},
+	}
 };

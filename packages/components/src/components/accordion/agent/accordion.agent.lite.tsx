@@ -1,4 +1,4 @@
-import {DBAccordion} from '../index';
+import { DBAccordion } from '../index';
 
 export default function Accordion() {
 	function getItems() {
@@ -6,13 +6,13 @@ export default function Accordion() {
 			{
 				text: 'Item 1 Content',
 				headlinePlain: 'Item 1',
-				disabled: false,
+				disabled: false
 			},
 			{
 				text: 'Item 2 Content',
 				headlinePlain: 'Item 2',
-				disabled: true,
-			},
+				disabled: true
+			}
 		];
 	}
 

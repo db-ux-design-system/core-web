@@ -1,15 +1,17 @@
-@use 'sass:string';
-@use 'variables';
-@use '../screen-sizes';
-@use '../helpers';
+@use "sass:string";
+@use "variables";
+@use "../screen-sizes";
+@use "../helpers";
 
 @function get-typography($density, $device, $size, $type) {
 	@return var(
-		string.unquote('--db-typography-#{$density}-#{$device}-#{$type}-#{$size}')
+		string.unquote(
+			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}"
+		)
 	);
 }
 
-@mixin get-font($density, $device, $size, $type: 'body') {
+@mixin get-font($density, $device, $size, $type: "body") {
 	--db-type-#{$type}-#{$size}: #{get-typography(
 			$density,
 			$device,
@@ -18,12 +20,12 @@
 		)};
 }
 
-@mixin get-icons($density, $device, $size, $type: 'body') {
+@mixin get-icons($density, $device, $size, $type: "body") {
 	--db-base-#{$type}-icon-weight-#{$size}: #{string.unquote(
-			'var(--db-base-icon-weight-#{$density}-#{$device}-#{$type}-#{$size})'
+			"var(--db-base-icon-weight-#{$density}-#{$device}-#{$type}-#{$size})"
 		)};
 	--db-base-#{$type}-icon-font-size-#{$size}: #{string.unquote(
-			'var(--db-base-icon-font-size-#{$density}-#{$device}-#{$type}-#{$size})'
+			"var(--db-base-icon-font-size-#{$density}-#{$device}-#{$type}-#{$size})"
 		)};
 }
 
@@ -31,35 +33,35 @@
 	%db-typography-headline-#{$density} {
 		@include screen-sizes.screen-min-max(
 			(
-				max: 'sm',
+				max: "sm"
 			)
 		) {
 			@each $size in variables.$sizings {
-				@include get-font($density, 'mobile', $size, 'headline');
-				@include get-icons($density, 'mobile', $size, 'headline');
+				@include get-font($density, "mobile", $size, "headline");
+				@include get-icons($density, "mobile", $size, "headline");
 			}
 		}
 
 		@include screen-sizes.screen-min-max(
 			(
-				min: 'sm',
-				max: 'md',
+				min: "sm",
+				max: "md"
 			)
 		) {
 			@each $size in variables.$sizings {
-				@include get-font($density, 'tablet', $size, 'headline');
-				@include get-icons($density, 'tablet', $size, 'headline');
+				@include get-font($density, "tablet", $size, "headline");
+				@include get-icons($density, "tablet", $size, "headline");
 			}
 		}
 
 		@include screen-sizes.screen-min-max(
 			(
-				min: 'md',
+				min: "md"
 			)
 		) {
 			@each $size in variables.$sizings {
-				@include get-font($density, 'desktop', $size, 'headline');
-				@include get-icons($density, 'desktop', $size, 'headline');
+				@include get-font($density, "desktop", $size, "headline");
+				@include get-icons($density, "desktop", $size, "headline");
 			}
 		}
 	}
@@ -67,35 +69,35 @@
 	%db-typography-body-#{$density} {
 		@include screen-sizes.screen-min-max(
 			(
-				max: 'sm',
+				max: "sm"
 			)
 		) {
 			@each $size in variables.$sizings {
-				@include get-font($density, 'mobile', $size);
-				@include get-icons($density, 'mobile', $size);
+				@include get-font($density, "mobile", $size);
+				@include get-icons($density, "mobile", $size);
 			}
 		}
 
 		@include screen-sizes.screen-min-max(
 			(
-				min: 'sm',
-				max: 'md',
+				min: "sm",
+				max: "md"
 			)
 		) {
 			@each $size in variables.$sizings {
-				@include get-font($density, 'tablet', $size);
-				@include get-icons($density, 'tablet', $size);
+				@include get-font($density, "tablet", $size);
+				@include get-icons($density, "tablet", $size);
 			}
 		}
 
 		@include screen-sizes.screen-min-max(
 			(
-				min: 'md',
+				min: "md"
 			)
 		) {
 			@each $size in variables.$sizings {
-				@include get-font($density, 'desktop', $size);
-				@include get-icons($density, 'desktop', $size);
+				@include get-font($density, "desktop", $size);
+				@include get-icons($density, "desktop", $size);
 			}
 		}
 	}

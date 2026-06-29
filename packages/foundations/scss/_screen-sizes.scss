@@ -1,5 +1,5 @@
-@use 'helpers';
-@use 'sass:map';
+@use "helpers";
+@use "sass:map";
 
 $db-screen-size-xs: 320; // mobile
 $db-screen-size-sm: 768; // tablet
@@ -15,31 +15,31 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 
 @mixin get-breakpoint-properties() {
 	@property --db-screen-xs {
-		syntax: '*';
+		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-xs};
 	}
 
 	@property --db-screen-sm {
-		syntax: '*';
+		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-sm};
 	}
 
 	@property --db-screen-md {
-		syntax: '*';
+		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-md};
 	}
 
 	@property --db-screen-lg {
-		syntax: '*';
+		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-lg};
 	}
 
 	@property --db-screen-xl {
-		syntax: '*';
+		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-xl};
 	}
@@ -49,13 +49,13 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	$screen: $db-screen-size-sm;
 
 	/* stylelint-disable at-rule-empty-line-before */
-	@if $size == 'xs' {
+	@if $size == "xs" {
 		$screen: $db-screen-size-xs;
-	} @else if $size == 'md' {
+	} @else if $size == "md" {
 		$screen: $db-screen-size-md;
-	} @else if $size == 'lg' {
+	} @else if $size == "lg" {
 		$screen: $db-screen-size-lg;
-	} @else if $size == 'xl' {
+	} @else if $size == "xl" {
 		$screen: $db-screen-size-xl;
 	}
 	/* stylelint-enable at-rule-empty-line-before */
@@ -63,20 +63,20 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	@return $screen;
 }
 
-@mixin screen($size: 'sm', $width: 'min') {
+@mixin screen($size: "sm", $width: "min") {
 	$screen: get-screen-size($size);
 
-	@if $width == 'min' {
+	@if $width == "min" {
 		/* stylelint-disable-next-line media-query-no-invalid */
 		@media (min-width: #{helpers.px-to-em($screen)}) {
 			&:not([data-force-mobile]),
-			&[data-force-mobile='false'] {
+			&[data-force-mobile="false"] {
 				@content;
 			}
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
-		&[data-force-mobile='true'] {
+		&[data-force-mobile="true"] {
 			@content;
 		}
 
@@ -90,15 +90,15 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 // @mixin screen-min-max
 // @param $data an object like (min:"sm", max:"lg") or (min: "sm")
 @mixin screen-min-max($data) {
-	$min: '';
-	$max: '';
+	$min: "";
+	$max: "";
 
-	@if map.get($data, 'min') {
-		$min: '#{helpers.px-to-em(get-screen-size(map.get($data, 'min')))} < ';
+	@if map.get($data, "min") {
+		$min: "#{helpers.px-to-em(get-screen-size(map.get($data, "min")))} < ";
 	}
 
-	@if map.get($data, 'max') {
-		$max: ' <= #{helpers.px-to-em(get-screen-size(map.get($data, 'max')))}';
+	@if map.get($data, "max") {
+		$max: " <= #{helpers.px-to-em(get-screen-size(map.get($data, "max")))}";
 	}
 
 	/* stylelint-disable-next-line media-query-no-invalid */

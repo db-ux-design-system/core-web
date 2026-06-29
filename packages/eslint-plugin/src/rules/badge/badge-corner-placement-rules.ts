@@ -1,10 +1,10 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularFix,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 function getTextContent(node: any): string | undefined {
@@ -33,33 +33,33 @@ export default {
 		docs: {
 			description:
 				'Ensure DBBadge with corner placement has max 3 characters and label',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#badge-corner-placement-rules',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#badge-corner-placement-rules'
 		},
 		fixable: 'code' as const,
 		messages: {
 			textTooLong: MESSAGES.BADGE_CORNER_TEXT_TOO_LONG,
-			missingLabel: MESSAGES.BADGE_CORNER_MISSING_LABEL,
+			missingLabel: MESSAGES.BADGE_CORNER_MISSING_LABEL
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const placement = getAttributeValue(node, 'placement');
-			if (!placement || placement === 'inline') {
-				return;
-			}
+			if (!placement || placement === 'inline') return;
 
 			const text = getAttributeValue(node, 'text');
 			const children = getTextContent(node);
 			const content = (typeof text === 'string' ? text : children) || '';
 			const label = getAttributeValue(node, 'label');
 
-			const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+			const loc = parserServices.convertNodeSourceSpanToLoc(
+				node.sourceSpan
+			);
 
 			if (content.length > 3) {
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.BADGE_CORNER_TEXT_TOO_LONG,
+					messageId: MESSAGE_IDS.BADGE_CORNER_TEXT_TOO_LONG
 				});
 			}
 
@@ -71,17 +71,14 @@ export default {
 						const fixData = createAngularFix(
 							context,
 							node,
-							` label="${content || 'Badge'}"`,
+							` label="${content || 'Badge'}"`
 						);
-						if (!fixData) {
-							return null;
-						}
-
+						if (!fixData) return null;
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText,
+							fixData.attributeText
 						);
-					},
+					}
 				});
 			}
 		};
@@ -89,22 +86,16 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBBadge,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkBadge = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) return;
 
 			const placement = getAttributeValue(openingElement, 'placement');
-			if (!placement || placement === 'inline') {
-				return;
-			}
+			if (!placement || placement === 'inline') return;
 
 			const text = getAttributeValue(openingElement, 'text');
 			const children = getTextContent(node);
@@ -125,55 +116,59 @@ export default {
 								openingElement.attributes;
 							const textAttr = attrs.find(
 								(a: any) =>
-									(a.type === 'JSXAttribute' && a.name.name === 'text') ||
-									a.key?.name === 'text',
+									(a.type === 'JSXAttribute' &&
+										a.name.name === 'text') ||
+									a.key?.name === 'text'
 							);
 							if (textAttr) {
 								fixes.push(
 									fixer.replaceText(
 										textAttr,
-										`text="${shortText}" label="${content}"`,
-									),
+										`text="${shortText}" label="${content}"`
+									)
 								);
 							}
 						} else if (children) {
 							const textChild = node.children.find(
-								(c: any) => c.type === 'JSXText',
+								(c: any) => c.type === 'JSXText'
 							);
 							if (textChild) {
-								fixes.push(fixer.replaceText(textChild, shortText));
+								fixes.push(
+									fixer.replaceText(textChild, shortText)
+								);
 								if (!label) {
-									const lastAttr = openingElement.attributes.at(-1);
+									const lastAttr =
+										openingElement.attributes.at(-1);
 									const insertPos = lastAttr
 										? lastAttr.range[1]
 										: openingElement.name.range[1];
 									fixes.push(
 										fixer.insertTextAfterRange(
 											[insertPos, insertPos],
-											` label="${content}"`,
-										),
+											` label="${content}"`
+										)
 									);
 								}
 							}
 						}
 
 						return fixes;
-					},
+					}
 				});
 			}
 
 			if (!label) {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL,
+					messageId: MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkBadge, Element: checkBadge},
-			{JSXElement: checkBadge},
+			{ VElement: checkBadge, Element: checkBadge },
+			{ JSXElement: checkBadge }
 		);
-	},
+	}
 };

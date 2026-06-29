@@ -1,4 +1,4 @@
-import {DBBadge} from '../index';
+import { DBBadge } from '../index';
 
 export default function Badge() {
 	return (
@@ -29,9 +29,13 @@ export default function Badge() {
 			<DBBadge placement="corner-top-left">Corner Top Left</DBBadge>
 			<DBBadge placement="corner-top-right">Corner Top Right</DBBadge>
 			<DBBadge placement="corner-center-left">Corner Center Left</DBBadge>
-			<DBBadge placement="corner-center-right">Corner Center Right</DBBadge>
+			<DBBadge placement="corner-center-right">
+				Corner Center Right
+			</DBBadge>
 			<DBBadge placement="corner-bottom-left">Corner Bottom Left</DBBadge>
-			<DBBadge placement="corner-bottom-right">Corner Bottom Right</DBBadge>
+			<DBBadge placement="corner-bottom-right">
+				Corner Bottom Right
+			</DBBadge>
 
 			<h2>6. Custom Label</h2>
 			<DBBadge label="Custom Label">With Custom Label</DBBadge>

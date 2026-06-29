@@ -40,5 +40,5 @@ export const ALL_ICONS: string[] = [
 	'plus',
 	'resize_handle_corner',
 	'sun',
-	'x_placeholder',
+	'x_placeholder'
 ];

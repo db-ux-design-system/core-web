@@ -1,31 +1,31 @@
 <app-form-wrapper
-	[control]="formControl.value"
-	[model]="ngModel"
 	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-textarea
-			(change)="handlePlainChange($event)"
-			[value]="plain"
 			label="Plain"
+			placeholder="Placeholder"
 			message="Description"
 			name="textarea-name"
-			placeholder="Placeholder"
+			[value]="plain"
+			(change)="handlePlainChange($event)"
 		/>
 		<db-textarea
-			[(ngModel)]="ngModel"
 			label="ngModel"
+			placeholder="Placeholder"
 			message="Description"
 			name="textarea-name"
-			placeholder="Placeholder"
+			[(ngModel)]="ngModel"
 		/>
 		<db-textarea
-			[formControl]="formControl"
 			label="formControl"
+			placeholder="Placeholder"
 			message="Description"
 			name="textarea-name"
-			placeholder="Placeholder"
+			[formControl]="formControl"
 		/>
 	</fieldset>
 </app-form-wrapper>

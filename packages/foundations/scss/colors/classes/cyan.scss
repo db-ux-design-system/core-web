@@ -1,6 +1,6 @@
-@use '../index';
-@use 'get-class';
+@use "../index";
+@use "get-class";
 
-$variant: 'cyan';
+$variant: "cyan";
 
 @include get-class.init($variant);

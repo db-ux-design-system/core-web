@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const getRelease = () => {
-	const {GITHUB_REF} = process.env;
-	const {GITHUB_ACTOR} = process.env;
-	const {GITHUB_COMMITISH} = process.env;
+	const { GITHUB_REF } = process.env;
+	const { GITHUB_ACTOR } = process.env;
+	const { GITHUB_COMMITISH } = process.env;
 	const GITHUB_PRE_RELEASE = process.env.GITHUB_PRE_RELEASE === 'true';
 
 	if (GITHUB_REF?.startsWith('refs/tags/v')) {

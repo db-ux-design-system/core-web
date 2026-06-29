@@ -1,17 +1,17 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
-import {StorybookTableArgTypes} from './_table.arg.types';
+import { StorybookTableArgTypes } from './_table.arg.types';
 import {
 	subHeaderEmphasisNoneTable,
 	subHeaderEmphasisStrongTable,
-	subHeaderEmphasisWeakTable,
+	subHeaderEmphasisWeakTable
 } from './data';
 
 useMetadata({
 	storybookTitle: 'SubHeaderEmphasis',
 	storybookNames: ['(Default) None', 'Weak', 'Strong'],
-	storybookArgTypes: StorybookTableArgTypes,
+	storybookArgTypes: StorybookTableArgTypes
 });
 
 export default function TableSubHeaderEmphasis() {
@@ -23,9 +23,8 @@ export default function TableSubHeaderEmphasis() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					(Default) None
 				</DBInfotext>
@@ -40,13 +39,15 @@ export default function TableSubHeaderEmphasis() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Weak
 				</DBInfotext>
-				<DBTable data={subHeaderEmphasisWeakTable} captionPlain="Weak" />
+				<DBTable
+					data={subHeaderEmphasisWeakTable}
+					captionPlain="Weak"
+				/>
 			</div>
 			<div
 				style={{
@@ -54,13 +55,15 @@ export default function TableSubHeaderEmphasis() {
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Strong
 				</DBInfotext>
-				<DBTable data={subHeaderEmphasisStrongTable} captionPlain="Strong" />
+				<DBTable
+					data={subHeaderEmphasisStrongTable}
+					captionPlain="Strong"
+				/>
 			</div>
 		</Fragment>
 	);

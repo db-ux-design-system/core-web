@@ -11,8 +11,8 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
-import {_ref} from 'vue';
-import {DBDrawer} from '@db-ux/v-core-components';
+import { _ref } from "vue";
+import { DBDrawer } from "@db-ux/v-core-components";
 
 const openDrawer = _ref<boolean>(false);
 

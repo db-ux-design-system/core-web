@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaSectionProps = {
 	spacing?: string;
@@ -14,8 +14,8 @@ const sectionProps: Record<string, FigmaProp> = {
 			'(Def) Medium': 'medium',
 			Large: 'large',
 			Small: 'small',
-			None: 'none',
-		},
+			None: 'none'
+		}
 	},
 	width: {
 		type: 'enum',
@@ -24,16 +24,16 @@ const sectionProps: Record<string, FigmaProp> = {
 			'(Def) Full': 'full',
 			'Medium (1024)': 'medium',
 			'Large (1440)': 'large',
-			'Small (768)': 'small',
-		},
+			'Small (768)': 'small'
+		}
 	},
 	_children: {
 		type: 'children',
-		key: 'Children',
-	},
+		key: 'Children'
+	}
 };
 
 export const sections: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=32604:20623'],
-	props: sectionProps,
+	props: sectionProps
 };

@@ -1,4 +1,4 @@
-import {uuid} from './index';
+import { uuid } from './index';
 
 export class DocumentClickListener {
 	private static callbacks: Record<string, (event: any) => void> = {};
@@ -19,7 +19,7 @@ export class DocumentClickListener {
 		DocumentClickListener._instance = this;
 		if (self.document) {
 			self.document.addEventListener('click', (event) =>
-				DocumentClickListener.runCallbacks(event),
+				DocumentClickListener.runCallbacks(event)
 			);
 		}
 	}

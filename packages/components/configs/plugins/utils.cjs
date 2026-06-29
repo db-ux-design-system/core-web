@@ -18,5 +18,5 @@ const toPascalCase = (str) =>
 
 module.exports = {
 	getSlotKey,
-	toPascalCase,
+	toPascalCase
 };

@@ -1,9 +1,9 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBTag} from '../index';
-import {FigmaTagProps, interactiveToggleTag} from './tag.figma';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBTag } from '../index';
+import { FigmaTagProps, interactiveToggleTag } from './tag.figma';
 
 useMetadata({
-	figma: interactiveToggleTag,
+	figma: interactiveToggleTag
 });
 
 export default function InteractiveToggleTagFigmaLite(props: FigmaTagProps) {

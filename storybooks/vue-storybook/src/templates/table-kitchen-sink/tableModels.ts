@@ -1,23 +1,23 @@
-import {DBBadge, DBCheckbox, DBInput, DBTooltip} from '@components';
+import { DBBadge, DBCheckbox, DBInput, DBTooltip } from '@components';
 import {
 	compareItems,
 	rankItem,
-	type RankingInfo,
+	type RankingInfo
 } from '@tanstack/match-sorter-utils';
 import {
 	sortingFns,
 	type ColumnDef,
 	type FilterFn,
-	type SortingFn,
+	type SortingFn
 } from '@tanstack/vue-table';
-import {h, ref, watch, type Ref} from 'vue';
-import type {Person} from './makeData';
+import { h, ref, watch, type Ref } from 'vue';
+import type { Person } from './makeData';
 
 export const fuzzyFilter: FilterFn<Person> = (
 	row,
 	columnId,
 	value,
-	addMeta,
+	addMeta
 ) => {
 	const itemRank = rankItem(row.getValue(columnId), value);
 	addMeta(itemRank);
@@ -29,7 +29,7 @@ export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
 	if (rowA.columnFiltersMeta[columnId]) {
 		dir = compareItems(
 			rowA.columnFiltersMeta[columnId]! as RankingInfo,
-			rowB.columnFiltersMeta[columnId]! as RankingInfo,
+			rowB.columnFiltersMeta[columnId]! as RankingInfo
 		);
 	}
 	return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
@@ -40,7 +40,7 @@ export type TableMeta = {
 };
 
 export const defaultColumn: Partial<ColumnDef<Person>> = {
-	cell: ({getValue, row: {index}, column: {id, columnDef}, table}) => {
+	cell: ({ getValue, row: { index }, column: { id, columnDef }, table }) => {
 		const initialValue = getValue();
 		const value: Ref<any> = ref(initialValue);
 
@@ -48,11 +48,15 @@ export const defaultColumn: Partial<ColumnDef<Person>> = {
 			() => getValue(),
 			(newVal) => {
 				value.value = newVal;
-			},
+			}
 		);
 
 		const onBlur = () => {
-			(table.options.meta as TableMeta).updateData(index, id, value.value);
+			(table.options.meta as TableMeta).updateData(
+				index,
+				id,
+				value.value
+			);
 		};
 
 		return h(DBInput, {
@@ -62,15 +66,15 @@ export const defaultColumn: Partial<ColumnDef<Person>> = {
 			'onUpdate:value': (val: string) => {
 				value.value = val;
 			},
-			onBlur,
+			onBlur
 		});
-	},
+	}
 };
 
 export const columns: ColumnDef<Person>[] = [
 	{
 		id: 'select',
-		header: ({table}) =>
+		header: ({ table }) =>
 			h(
 				DBCheckbox,
 				{
@@ -80,11 +84,11 @@ export const columns: ColumnDef<Person>[] = [
 					checked: table.getIsAllRowsSelected(),
 					indeterminate: table.getIsSomeRowsSelected(),
 					'onUpdate:checked': (val: boolean) =>
-						table.toggleAllRowsSelected(val),
+						table.toggleAllRowsSelected(val)
 				},
-				() => [h(DBTooltip, {placement: 'top'}, () => 'Select All')],
+				() => [h(DBTooltip, { placement: 'top' }, () => 'Select All')]
 			),
-		cell: ({row}) =>
+		cell: ({ row }) =>
 			h(
 				DBCheckbox,
 				{
@@ -93,22 +97,23 @@ export const columns: ColumnDef<Person>[] = [
 					showLabel: false,
 					checked: row.getIsSelected(),
 					indeterminate: row.getIsSomeSelected(),
-					'onUpdate:checked': (val: boolean) => row.toggleSelected(val),
+					'onUpdate:checked': (val: boolean) =>
+						row.toggleSelected(val)
 				},
-				() => [h(DBTooltip, {placement: 'top'}, () => 'Select Row')],
+				() => [h(DBTooltip, { placement: 'top' }, () => 'Select Row')]
 			),
-		footer: ({table}) => {
+		footer: ({ table }) => {
 			const length = table.getSelectedRowModel().rows.length;
 			const amount = length >= 100 ? '9+' : length.toString();
 			return h(
 				DBBadge,
 				{
 					label: `${length} Selected`,
-					semantic: length > 0 ? 'informational' : 'neutral',
+					semantic: length > 0 ? 'informational' : 'neutral'
 				},
-				() => amount,
+				() => amount
 			);
-		},
+		}
 	},
 	{
 		header: 'Name',
@@ -117,14 +122,14 @@ export const columns: ColumnDef<Person>[] = [
 			{
 				accessorKey: 'firstName',
 				cell: (info) => info.getValue(),
-				footer: (props) => props.column.id,
+				footer: (props) => props.column.id
 			},
 			{
 				accessorFn: (row) => row.lastName,
 				id: 'lastName',
 				cell: (info) => info.getValue(),
 				header: 'Last Name',
-				footer: (props) => props.column.id,
+				footer: (props) => props.column.id
 			},
 			{
 				accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -133,9 +138,9 @@ export const columns: ColumnDef<Person>[] = [
 				cell: (info) => info.getValue(),
 				footer: (props) => props.column.id,
 				filterFn: fuzzyFilter,
-				sortingFn: fuzzySort,
-			},
-		],
+				sortingFn: fuzzySort
+			}
+		]
 	},
 	{
 		header: 'Info',
@@ -144,30 +149,30 @@ export const columns: ColumnDef<Person>[] = [
 			{
 				accessorKey: 'age',
 				header: 'Age',
-				footer: (props) => props.column.id,
+				footer: (props) => props.column.id
 			},
 			{
 				accessorKey: 'visits',
 				header: 'Visits',
-				footer: (props) => props.column.id,
+				footer: (props) => props.column.id
 			},
 			{
 				accessorKey: 'status',
 				header: 'Status',
-				footer: (props) => props.column.id,
+				footer: (props) => props.column.id
 			},
 			{
 				accessorKey: 'progress',
 				header: 'Profile Progress',
-				footer: (props) => props.column.id,
-			},
-		],
-	},
+				footer: (props) => props.column.id
+			}
+		]
+	}
 ];
 
 export const getTableMeta = (
 	setData: (updater: (old: Person[]) => Person[]) => void,
-	skipAutoResetPageIndex: () => void,
+	skipAutoResetPageIndex: () => void
 ): TableMeta => ({
 	updateData: (rowIndex, columnId, value) => {
 		skipAutoResetPageIndex();
@@ -176,9 +181,9 @@ export const getTableMeta = (
 				if (index !== rowIndex) return row;
 				return {
 					...old[rowIndex]!,
-					[columnId]: value,
+					[columnId]: value
 				};
-			}),
+			})
 		);
-	},
+	}
 });

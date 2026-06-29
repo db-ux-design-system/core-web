@@ -1,1 +1,1 @@
-export {default as DBNotification} from './notification';
+export { default as DBNotification } from './notification';

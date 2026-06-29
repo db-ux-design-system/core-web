@@ -1,14 +1,14 @@
-import stylelint, {type Config} from 'stylelint';
-import {describe, expect, test} from 'vitest';
+import stylelint, { type Config } from 'stylelint';
+import { describe, expect, test } from 'vitest';
 import useBorderColor from '../../src/rules/use-border-color.js';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
-	getVueTest,
+	getVueTest
 } from '../defaults.js';
 
-const {lint} = stylelint;
+const { lint } = stylelint;
 
 const ruleName = 'db-ux/use-border-color';
 
@@ -16,8 +16,8 @@ const config: Config = {
 	...defaultConfig,
 	plugins: [useBorderColor],
 	rules: {
-		[ruleName]: true,
-	},
+		[ruleName]: true
+	}
 };
 
 describe(`${ruleName}`, () => {
@@ -35,7 +35,7 @@ describe(`${ruleName}`, () => {
 
 	test('allows all border properties with valid colors', async () => {
 		const {
-			results: [{warnings, parseErrors}],
+			results: [{ warnings, parseErrors }]
 		} = await lint({
 			code: `
 .physical-borders {
@@ -55,7 +55,7 @@ describe(`${ruleName}`, () => {
 	border-inline-end: 1px solid var(--db-adaptive-on-bg-inverted);
 }
 			`,
-			config,
+			config
 		});
 
 		expect(parseErrors).toHaveLength(0);
@@ -64,7 +64,7 @@ describe(`${ruleName}`, () => {
 
 	test('rejects invalid colors in all border properties', async () => {
 		const {
-			results: [{warnings, parseErrors}],
+			results: [{ warnings, parseErrors }]
 		} = await lint({
 			code: `
 .physical-borders {
@@ -84,7 +84,7 @@ describe(`${ruleName}`, () => {
 	border-inline-end: 1px solid blue;
 }
 			`,
-			config,
+			config
 		});
 
 		expect(parseErrors).toHaveLength(0);

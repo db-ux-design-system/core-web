@@ -51,10 +51,10 @@ Add the design system styles to your application:
 /* Quick start */
 @layer db-ux, theme;
 
-@import '@db-ux/core-components/build/styles/rollup.css' layer(db-ux);
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
 
 /* Optional: You'll might need a theme as well */
-@import '@db-ux/db-theme/build/styles/rollup.css' layer(theme);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(theme);
 ```
 
 ## Design Principles
@@ -97,7 +97,7 @@ When creating custom components, adhere to these core principles:
 ### 1. Using Variables and Spacing
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .db-custom-component {
 	padding-inline: variables.$db-spacing-responsive-md;
@@ -110,9 +110,9 @@ When creating custom components, adhere to these core principles:
 ### 2. Implementing Colors
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .db-custom-component {
 	/* Use `emphasis`-colors on `basic-level`-color background */
@@ -138,8 +138,8 @@ When creating custom components, adhere to these core principles:
 - **bg-basic**: Standard background colors in levels 1–3, used for page, section, or component backgrounds.
 - **bg-basic-transparent**: Two transparent variants, only for component backgrounds.
 - **bg-inverted & bg-vibrant (Alpha)**: Solid backgrounds mainly for components.
-  - **bg-inverted**: Only for component backgrounds.
-  - **bg-vibrant (Alpha)**: For component backgrounds and small accent areas. Ensure accessibility (e.g., add a border with on-bg-basic-emphasis-70) as contrast may be insufficient on bg-basic backgrounds.
+    - **bg-inverted**: Only for component backgrounds.
+    - **bg-vibrant (Alpha)**: For component backgrounds and small accent areas. Ensure accessibility (e.g., add a border with on-bg-basic-emphasis-70) as contrast may be insufficient on bg-basic backgrounds.
 
 #### Foreground Colors (On-Colors)
 
@@ -165,8 +165,8 @@ When creating custom components, adhere to these core principles:
 ### 3. Typography and Icons
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/icons';
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
 
 .db-custom-component {
 	@extend %db-overwrite-font-size-md;
@@ -177,7 +177,7 @@ When creating custom components, adhere to these core principles:
 	}
 
 	&__icon {
-		@include icons.set-icon('information', 'before');
+		@include icons.set-icon("information", "before");
 	}
 }
 ```
@@ -185,20 +185,20 @@ When creating custom components, adhere to these core principles:
 ### 4. Responsive Design
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .db-custom-component {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: variables.$db-spacing-responsive-sm;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		grid-template-columns: 1fr 2fr;
 		gap: variables.$db-spacing-responsive-md;
 	}
 
-	@include screen-sizes.screen('lg') {
+	@include screen-sizes.screen("lg") {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
@@ -248,8 +248,8 @@ When creating custom components, adhere to these core principles:
 - **bg-basic**: Standard background colors in levels 1–3, used for page, section, or component backgrounds.
 - **bg-basic-transparent**: Two transparent variants, only for component backgrounds.
 - **bg-inverted & bg-vibrant (Alpha)**: Solid backgrounds mainly for components.
-  - **bg-inverted**: Only for component backgrounds.
-  - **bg-vibrant (Alpha)**: For component backgrounds and small accent areas. Ensure accessibility (e.g., add a border with on-bg-basic-emphasis-70) as contrast may be insufficient on bg-basic backgrounds.
+    - **bg-inverted**: Only for component backgrounds.
+    - **bg-vibrant (Alpha)**: For component backgrounds and small accent areas. Ensure accessibility (e.g., add a border with on-bg-basic-emphasis-70) as contrast may be insufficient on bg-basic backgrounds.
 
 #### Foreground Colors (On-Colors)
 
@@ -326,8 +326,8 @@ When creating custom components, adhere to these core principles:
 ### ✅ Do: Use Design Tokens
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
 
 .good-component {
 	padding: variables.$db-spacing-fixed-md; // ✅ Design token
@@ -370,11 +370,11 @@ When creating custom components, adhere to these core principles:
 ### ✅ Do: Extend Components Properly
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/colors';
+@use "@db-ux/core-foundations/build/styles/colors";
 
 .good-extension {
 	.db-button {
-		&[data-variant='custom'] {
+		&[data-variant="custom"] {
 			// ✅ Using data attributes for variants
 			background-color: colors.$db-warning-bg-basic-level-1-default;
 			color: colors.$db-warning-on-bg-basic-emphasis-100-default;
@@ -402,7 +402,7 @@ When creating custom components, adhere to these core principles:
 ### ✅ Do: Use Consistent Patterns
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .consistent-spacing {
 	.item {
@@ -422,9 +422,9 @@ When creating custom components, adhere to these core principles:
 ```scss
 // CustomCard.scss
 
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/fonts';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
 
 .db-custom-card {
 	padding-inline: variables.$db-spacing-responsive-md;
@@ -437,15 +437,15 @@ When creating custom components, adhere to these core principles:
 	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-	&[data-variant='elevated'] {
+	&[data-variant="elevated"] {
 		box-shadow: variables.$db-elevation-md;
 	}
 
-	&[data-spacing='small'] {
+	&[data-spacing="small"] {
 		padding-inline: variables.$db-spacing-responsive-sm;
 	}
 
-	&[data-spacing='large'] {
+	&[data-spacing="large"] {
 		padding-inline: variables.$db-spacing-responsive-lg;
 	}
 
@@ -459,24 +459,24 @@ When creating custom components, adhere to these core principles:
 ### React Components
 
 ```tsx
-import React from 'react';
-import './CustomCard.scss';
-import {DBButton} from '@db-ux/react-core-components';
+import React from "react";
+import "./CustomCard.scss";
+import { DBButton } from "@db-ux/react-core-components";
 
 interface CustomCardProps {
 	title: string;
 	children: React.ReactNode;
-	variant?: 'default' | 'elevated';
-	spacing?: 'small' | 'medium' | 'large';
+	variant?: "default" | "elevated";
+	spacing?: "small" | "medium" | "large";
 	href?: string;
 }
 
 export const CustomCard: React.FC<CustomCardProps> = ({
 	title,
 	children,
-	variant = 'default',
-	spacing = 'medium',
-	href,
+	variant = "default",
+	spacing = "medium",
+	href
 }) => {
 	return (
 		<div
@@ -500,7 +500,12 @@ export const CustomCard: React.FC<CustomCardProps> = ({
 						⋯
 					</a>
 				)}
-				<DBButton icon="cross" variant="brand" size="small" onClick={() => {}}>
+				<DBButton
+					icon="cross"
+					variant="brand"
+					size="small"
+					onClick={() => {}}
+				>
 					Cancel
 				</DBButton>
 			</div>
@@ -530,40 +535,42 @@ export const CustomCard: React.FC<CustomCardProps> = ({
 			>
 				⋯
 			</a>
-			<DBButton icon="cross" variant="brand" size="small"> Cancel </DBButton>
+			<DBButton icon="cross" variant="brand" size="small">
+				Cancel
+			</DBButton>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import {DBButton} from '@db-ux/v-core-components';
+import { DBButton } from "@db-ux/v-core-components";
 
 interface Props {
 	title: string;
-	variant?: 'default' | 'elevated';
-	spacing?: 'small' | 'medium' | 'large';
+	variant?: "default" | "elevated";
+	spacing?: "small" | "medium" | "large";
 	href?: string;
 }
 
 withDefaults(defineProps<Props>(), {
-	variant: 'default',
-	spacing: 'medium',
+	variant: "default",
+	spacing: "medium"
 });
 </script>
 
 <style scoped lang="scss">
-@import './CustomCard.scss';
+@import "./CustomCard.scss";
 </style>
 ```
 
 ### Angular Components
 
 ```typescript
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {DBButton} from '@db-ux/ngx-core-components';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { DBButton } from "@db-ux/ngx-core-components";
 
 @Component({
-	selector: 'app-custom-card',
+	selector: "app-custom-card",
 	imports: [DBButton],
 	template: `
 		<div
@@ -593,12 +600,12 @@ import {DBButton} from '@db-ux/ngx-core-components';
 			</div>
 		</div>
 	`,
-	styleUrls: ['./custom-card.component.scss'],
+	styleUrls: ["./custom-card.component.scss"]
 })
 export class CustomCardComponent {
 	@Input() title!: string;
-	@Input() variant: 'default' | 'elevated' = 'default';
-	@Input() spacing: 'small' | 'medium' | 'large' = 'medium';
+	@Input() variant: "default" | "elevated" = "default";
+	@Input() spacing: "small" | "medium" | "large" = "medium";
 	@Input() href: string;
 }
 ```
@@ -621,22 +628,22 @@ export class CustomCardComponent {
 3. **Set up the examples repo**: Create a new branch in the [examples repository](https://github.com/db-ux-design-system/examples) named after the component (e.g., `test-table`). Update the npm dependency for the framework you want to test with the pre-release version:
    "Use the package matching your framework: @db-ux/react-core-components (React), @db-ux/ngx-core-components (Angular), @db-ux/v-core-components (Vue), @db-ux/wc-core-components (Web Components)."
 
-   ```json
-   {
-   	"dependencies": {
-   		"@db-ux/react-core-components": "0.0.0-table-abc1234"
-   	}
-   }
-   ```
+    ```json
+    {
+    	"dependencies": {
+    		"@db-ux/react-core-components": "0.0.0-table-abc1234"
+    	}
+    }
+    ```
 
 4. **Run user tests**: Users can either clone the examples repo and check out the branch, or open it directly in StackBlitz:
 
-   ```text
-   https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/<branch-name>/<framework>-example?file=index.html
-   ```
+    ```text
+    https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/<branch-name>/<framework>-example?file=index.html
+    ```
 
-   For example:
-   `https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/test-table/react-example?file=index.html`
+    For example:
+    `https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/test-table/react-example?file=index.html`
 
 ## Conclusion
 

@@ -5,19 +5,19 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
-import {DEFAULT_CLOSE_BUTTON} from '../../shared/constants';
-import {ClickEvent, GeneralKeyboardEvent} from '../../shared/model';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
 	getBoolean,
 	getBooleanAsString,
-	isKeyboardEvent,
+	isKeyboardEvent
 } from '../../utils';
 import DBButton from '../button/button.lite';
-import {DBDrawerProps, DBDrawerState} from './model';
+import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
 
@@ -42,7 +42,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			// (the DIALOG element itself) so we only close on a real backdrop
 			// click and not when a drag started inside the content and ended
 			// on the backdrop.
-			state.backdropPointerDown = (event?.target as any)?.nodeName === 'DIALOG';
+			state.backdropPointerDown =
+				(event?.target as any)?.nodeName === 'DIALOG';
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
@@ -50,7 +51,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 				| GeneralKeyboardEvent<HTMLDialogElement>
 				| void,
-			forceClose?: boolean,
+			forceClose?: boolean
 		) => {
 			if (!event) return;
 
@@ -93,7 +94,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(
-							'data-transition',
+							'data-transition'
 						);
 					}
 					if (state.isNotModal()) {
@@ -108,22 +109,24 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 					void delay(() => {
 						if (dialogContainerRef) {
-							(dialogContainerRef as HTMLDivElement).dataset['transition'] =
-								'open';
+							(dialogContainerRef as HTMLDivElement).dataset[
+								'transition'
+							] = 'open';
 						}
 					}, 1);
 				}
 				if (!dialogOpen && _ref.open) {
 					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset['transition'] =
-							'close';
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'close';
 					}
 					void delay(() => {
 						_ref?.close();
 					}, 401);
 				}
 			}
-		},
+		}
 	});
 
 	onMount(() => {
@@ -156,16 +159,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}
-		>
+			data-variant={props.variant}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
 				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
-				data-rounded={getBooleanAsString(props.rounded, 'rounded')}
-			>
+				data-rounded={getBooleanAsString(props.rounded, 'rounded')}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
 						<Slot name="drawerHeader" />
@@ -176,8 +177,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						icon="cross"
 						variant="ghost"
 						noText
-						onClick={(event) => state.handleClose(event, true)}
-					>
+						onClick={(event) => state.handleClose(event, true)}>
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 					</DBButton>
 				</header>

@@ -1,7 +1,7 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBPopover from '../popover.lite';
-import {StorybookPopoverArgTypes} from './_popover.arg.types';
+import { StorybookPopoverArgTypes } from './_popover.arg.types';
 
 useMetadata({
 	storybookTitle: 'Placement',
@@ -17,9 +17,9 @@ useMetadata({
 		'right-end',
 		'top-start',
 		'top',
-		'top-end',
+		'top-end'
 	],
-	storybookArgTypes: StorybookPopoverArgTypes,
+	storybookArgTypes: StorybookPopoverArgTypes
 });
 
 export default function PopoverPlacement() {
@@ -28,8 +28,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="bottom-start"
 				id="popover-07-start"
-				trigger={<DBButton>bottom-start</DBButton>}
-			>
+				trigger={<DBButton>bottom-start</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -41,8 +40,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="bottom"
 				id="popover-07"
-				trigger={<DBButton>(Default) bottom</DBButton>}
-			>
+				trigger={<DBButton>(Default) bottom</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -54,8 +52,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="bottom-end"
 				id="popover-07-end"
-				trigger={<DBButton>bottom-end</DBButton>}
-			>
+				trigger={<DBButton>bottom-end</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -67,8 +64,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="left-start"
 				id="popover-09-start"
-				trigger={<DBButton>left-start</DBButton>}
-			>
+				trigger={<DBButton>left-start</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -80,8 +76,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="left"
 				id="popover-09"
-				trigger={<DBButton>left</DBButton>}
-			>
+				trigger={<DBButton>left</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -93,8 +88,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="left-end"
 				id="popover-09-end"
-				trigger={<DBButton>left-end</DBButton>}
-			>
+				trigger={<DBButton>left-end</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -106,8 +100,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="right-start"
 				id="popover-10-start"
-				trigger={<DBButton>right-start</DBButton>}
-			>
+				trigger={<DBButton>right-start</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -119,8 +112,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="right"
 				id="popover-10"
-				trigger={<DBButton>right</DBButton>}
-			>
+				trigger={<DBButton>right</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -132,8 +124,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="right-end"
 				id="popover-10-end"
-				trigger={<DBButton>right-end</DBButton>}
-			>
+				trigger={<DBButton>right-end</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -145,8 +136,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="top-start"
 				id="popover-08-start"
-				trigger={<DBButton>top-start</DBButton>}
-			>
+				trigger={<DBButton>top-start</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -158,8 +148,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="top"
 				id="popover-08"
-				trigger={<DBButton>top</DBButton>}
-			>
+				trigger={<DBButton>top</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -171,8 +160,7 @@ export default function PopoverPlacement() {
 			<DBPopover
 				placement="top-end"
 				id="popover-08-end"
-				trigger={<DBButton>top-end</DBButton>}
-			>
+				trigger={<DBButton>top-end</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>

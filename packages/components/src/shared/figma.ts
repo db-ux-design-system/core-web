@@ -129,7 +129,7 @@ export type FigmaNestedConnectedInstancesProp = FigmaBaseProp & {
 export type FigmaBooleanToEnumProp = FigmaBaseProp & {
 	type: 'booleanToEnum';
 	/** Ordered list of Figma boolean keys and the code value to emit when that key is true. */
-	map: Array<{key: string; value: string}>;
+	map: Array<{ key: string; value: string }>;
 };
 
 /**

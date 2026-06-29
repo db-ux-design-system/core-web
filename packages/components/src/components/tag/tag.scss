@@ -1,17 +1,17 @@
-@use 'sass:map';
-@use '@db-ux/core-foundations/build/styles/animation';
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/icons';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '../../styles/internal/button-components';
-@use '../../styles/internal/tag-components';
-@use '../../styles/internal/icon-passing';
-@use '../../styles/internal/component';
+@use "sass:map";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
 
 %no-text {
-	&[data-no-text='true'] {
+	&[data-no-text="true"] {
 		--icon-margin-after: 0;
 
 		@include icons.is-icon-text-replace;
@@ -24,7 +24,7 @@
 		}
 	}
 
-	&:not([data-no-text='true']) {
+	&:not([data-no-text="true"]) {
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
@@ -81,15 +81,15 @@
 	}
 
 	> :is(
-		[class='db-checkbox'],
-		[class='db-radio'],
-		[class='db-link'],
-		[class='db-button']
+		[class="db-checkbox"],
+		[class="db-radio"],
+		[class="db-link"],
+		[class="db-button"]
 	) {
 		block-size: 100%;
 	}
 
-	&:has(input[type='radio']:checked) {
+	&:has(input[type="radio"]:checked) {
 		--db-overwrite-cursor: default;
 	}
 }
@@ -97,15 +97,15 @@
 .db-tag {
 	@extend %db-tag;
 
-	&[data-show-check-state='true'] {
+	&[data-show-check-state="true"] {
 		label {
 			--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
-			@include icons.set-icon('circle', 'after');
+			@include icons.set-icon("circle", "after");
 
 			/* TODO: maybe we could get rid of an expensive :has selector by defining this icon on the input itself */
 			&:has(input:checked) {
-				@include icons.set-icon('check_circle', 'after');
+				@include icons.set-icon("check_circle", "after");
 			}
 		}
 	}
@@ -127,7 +127,7 @@
 		}
 
 		&::after {
-			@include fonts.set-component-variables('xs');
+			@include fonts.set-component-variables("xs");
 		}
 
 		&:has(input:checked) {
@@ -152,7 +152,7 @@
 			aspect-ratio: unset;
 
 			&:checked {
-				&:not([data-show-icon-leading='false']) {
+				&:not([data-show-icon-leading="false"]) {
 					&::before {
 						content: none;
 					}
@@ -213,12 +213,12 @@
 	}
 
 	&:has(:disabled),
-	&[data-disabled='true'] {
+	&[data-disabled="true"] {
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
-	&[data-overflow='true'] {
+	&[data-overflow="true"] {
 		max-inline-size: variables.$db-sizing-2xl;
 
 		> * {

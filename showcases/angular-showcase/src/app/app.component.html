@@ -4,8 +4,12 @@
 	</div>
 }
 @if (!page) {
-	<db-page [fadeIn]="true" documentOverflow="auto" variant="fixed">
-		<db-header (toggle)="toggleDrawer($event)" [drawerOpen]="drawerOpen" header>
+	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
+		<db-header
+			header
+			[drawerOpen]="drawerOpen"
+			(toggle)="toggleDrawer($event)"
+		>
 			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation aria-label="main-navigation">
 				@for (item of navigationItems; track item.label) {
@@ -14,10 +18,10 @@
 			</db-navigation>
 			<ng-container *dbMetaNavigation>
 				<db-select
-					(change)="onChange($event)"
-					[(ngModel)]="density"
-					label="Density"
 					variant="floating"
+					label="Density"
+					[(ngModel)]="density"
+					(change)="onChange($event)"
 				>
 					@for (t of densities; track t) {
 						<option>
@@ -26,10 +30,10 @@
 					}
 				</db-select>
 				<db-select
-					(change)="onChange($event)"
-					[(ngModel)]="color"
-					label="Color"
 					variant="floating"
+					label="Color"
+					[(ngModel)]="color"
+					(change)="onChange($event)"
 				>
 					@for (c of colors; track c) {
 						<option>
@@ -39,18 +43,21 @@
 				</db-select>
 			</ng-container>
 			<ng-container primary-action>
-				<db-button [noText]="true" icon="magnifying_glass" variant="ghost"
+				<db-button
+					icon="magnifying_glass"
+					variant="ghost"
+					[noText]="true"
 					>Search</db-button
 				>
 			</ng-container>
 			<ng-container *dbSecondaryAction>
-				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 					Profile
 				</db-button>
-				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 					Notification
 				</db-button>
-				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 					Help
 				</db-button>
 			</ng-container>

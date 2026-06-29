@@ -1,9 +1,9 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBButton} from '../index';
-import {FigmaButtonProps, buttons} from './button.figma';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBButton } from '../index';
+import { FigmaButtonProps, buttons } from './button.figma';
 
 useMetadata({
-	figma: buttons,
+	figma: buttons
 });
 
 export default function ButtonFigmaLite(props: FigmaButtonProps) {

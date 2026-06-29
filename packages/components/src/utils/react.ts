@@ -42,12 +42,12 @@ const reactHtmlAttributes = [
 	'capture',
 	'dirName',
 	'download',
-	'ping',
+	'ping'
 ];
 
 export const filterPassingProps = (
 	props: any,
-	propsPassingFilter: string[],
+	propsPassingFilter: string[]
 ): Record<string, unknown> =>
 	Object.keys(props)
 		.filter(
@@ -59,24 +59,24 @@ export const filterPassingProps = (
 					key.startsWith('item') ||
 					key.startsWith('on') ||
 					reactHtmlAttributes.includes(key)) &&
-				!propsPassingFilter.includes(key),
+				!propsPassingFilter.includes(key)
 		)
 		.reduce((obj: Record<string, unknown>, key: string) => {
-			return {...obj, [key]: props[key]};
+			return { ...obj, [key]: props[key] };
 		}, {});
 
 export const getRootProps = (
 	props: any,
-	rooProps: string[],
+	rooProps: string[]
 ): Record<string, unknown> => {
 	return Object.keys(props)
 		.filter((key) => rooProps.includes(key))
 		.reduce((obj: Record<string, unknown>, key: string) => {
-			return {...obj, [key]: props[key]};
+			return { ...obj, [key]: props[key] };
 		}, {});
 };
 
 export default {
 	getRootProps,
-	filterPassingProps,
+	filterPassingProps
 };

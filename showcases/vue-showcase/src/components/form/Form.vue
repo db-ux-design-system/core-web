@@ -8,27 +8,27 @@ import {
 	DBRadio,
 	DBSelect,
 	DBTag,
-	DBTextarea,
-} from '../../../../../output/vue/src';
+	DBTextarea
+} from "../../../../../output/vue/src";
 
-import {ref} from 'vue';
+import { ref } from "vue";
 const drawerOpen = ref(false);
-const input = ref('');
-const select = ref('');
-const firstInput = ref('');
-const textareavModel = ref('default value');
-const textarea = ref('default value');
-const textareaDefaultValue = ref('');
-const dateInput = ref('');
+const input = ref("");
+const select = ref("");
+const firstInput = ref("");
+const textareavModel = ref("default value");
+const textarea = ref("default value");
+const textareaDefaultValue = ref("");
+const dateInput = ref("");
 const radio = ref<string>();
 const checkbox = ref<boolean[]>([true, false]);
 const tags = ref<string[]>([]);
 
-const array = ['X', 'Y', 'Z'];
+const array = ["X", "Y", "Z"];
 
 const isActive = ref(true);
 
-const dataList = [{key: 'test', value: 'Test'}, {key: 'test2'}];
+const dataList = [{ key: "test", value: "Test" }, { key: "test2" }];
 
 const changeTags = (tag: string) => {
 	if (tags.value.includes(tag)) {
@@ -50,17 +50,17 @@ const logAll = () => {
 			radio: radio.value,
 			select: select.value,
 			checkbox: checkbox.value,
-			tags: tags.value,
-		}),
+			tags: tags.value
+		})
 	);
 };
 
 const reset = () => {
-	firstInput.value = 'reset';
-	textarea.value = 'reset';
-	textareavModel.value = 'reset';
+	firstInput.value = "reset";
+	textarea.value = "reset";
+	textareavModel.value = "reset";
 	checkbox.value = [true, false];
-	dateInput.value = '';
+	dateInput.value = "";
 };
 </script>
 
@@ -119,7 +119,9 @@ const reset = () => {
 					<ul>
 						<li v-for="(tag, index) in array">
 							<DBTag
-								:semantic="index === 0 ? undefined : 'successful'"
+								:semantic="
+									index === 0 ? undefined : 'successful'
+								"
 								:emphasis="index === 2 ? 'strong' : 'weak'"
 								><DBCheckbox @Change="changeTags(tag)"
 									>Tag {{ tag }}</DBCheckbox
@@ -129,7 +131,12 @@ const reset = () => {
 					</ul>
 					<p>Checkbox:</p>
 					<DBCheckbox
-						@change="checkbox = [$event.target.checked, $event.target.checked]"
+						@change="
+							checkbox = [
+								$event.target.checked,
+								$event.target.checked
+							]
+						"
 						:checked="checkbox[0] && checkbox[1]"
 						:indeterminate="checkbox[0] !== checkbox[1]"
 						name="checkbox"
@@ -139,7 +146,9 @@ const reset = () => {
 						<DBCheckbox
 							name="checkbox-1"
 							value="Checkbox checked"
-							@change="checkbox = [$event.target.checked, checkbox[1]]"
+							@change="
+								checkbox = [$event.target.checked, checkbox[1]]
+							"
 							:checked="checkbox[0]"
 						>
 							Checkbox
@@ -147,7 +156,9 @@ const reset = () => {
 						<DBCheckbox
 							name="checkbox-2"
 							value="Checkbox checked"
-							@change="checkbox = [checkbox[0], $event.target.checked]"
+							@change="
+								checkbox = [checkbox[0], $event.target.checked]
+							"
 							:checked="checkbox[1]"
 						>
 							Checkbox
@@ -166,7 +177,9 @@ const reset = () => {
 						<option value="test5">Test5</option>
 					</DBSelect>
 					<p>Button:</p>
-					<DBButton type="button" @click="reset()"> Reset Form </DBButton>
+					<DBButton type="button" @click="reset()">
+						Reset Form
+					</DBButton>
 					<DBButton type="button" variant="brand" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>
@@ -182,36 +195,37 @@ const reset = () => {
 			<h1>Output</h1>
 			<dl>
 				<dt>inputs value</dt>
-				<dd>{{ firstInput ? firstInput : 'No Input set' }}</dd>
+				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
 				<dt>date inputs value</dt>
-				<dd>{{ dateInput ? dateInput : 'No Date Input set' }}</dd>
+				<dd>{{ dateInput ? dateInput : "No Date Input set" }}</dd>
 				<dt>textarea v-model</dt>
-				<dd>{{ textareavModel || 'No Input set' }}</dd>
+				<dd>{{ textareavModel || "No Input set" }}</dd>
 				<dt>textarea value</dt>
-				<dd>{{ textarea || 'No Textarea set' }}</dd>
+				<dd>{{ textarea || "No Textarea set" }}</dd>
 				<dt>textarea defaultValue</dt>
-				<dd>{{ textareaDefaultValue || 'No Input set' }}</dd>
+				<dd>{{ textareaDefaultValue || "No Input set" }}</dd>
 				<dt>radio value</dt>
-				<dd>{{ radio ? radio : 'No radio set' }}</dd>
+				<dd>{{ radio ? radio : "No radio set" }}</dd>
 				<dt>checkbox value</dt>
-				<dd>{{ `checkbox ${checkbox ? '' : 'un'}checked` }}</dd>
+				<dd>{{ `checkbox ${checkbox ? "" : "un"}checked` }}</dd>
 				<dt>select value</dt>
-				<dd>{{ select ? select : 'No select set' }}</dd>
+				<dd>{{ select ? select : "No select set" }}</dd>
 				<dt>tags value</dt>
 				<dd>{{ JSON.stringify(tags) }}</dd>
 			</dl>
 
 			<h2>Drawer Test</h2>
 			<p>
-				Test: Click "Open Drawer", then mouse down inside the drawer content,
-				drag to the backdrop, and release. The drawer should NOT close.
+				Test: Click "Open Drawer", then mouse down inside the drawer
+				content, drag to the backdrop, and release. The drawer should
+				NOT close.
 			</p>
 			<DBButton @click="drawerOpen = true">Open Drawer</DBButton>
 			<DBDrawer :open="drawerOpen" @close="drawerOpen = false">
 				<template #drawer-header>Drawer Header</template>
 				<DBInfotext style="margin: 100px; display: flex">
-					Test: Mouse down here, drag to backdrop, release. Drawer should stay
-					open.
+					Test: Mouse down here, drag to backdrop, release. Drawer
+					should stay open.
 				</DBInfotext>
 			</DBDrawer>
 		</div>

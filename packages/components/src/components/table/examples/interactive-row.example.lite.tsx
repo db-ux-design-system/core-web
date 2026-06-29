@@ -1,4 +1,4 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTableBody from '../../table-body/table-body.lite';
@@ -8,12 +8,12 @@ import DBTableHeaderCell from '../../table-header-cell/table-header-cell.lite';
 import DBTableRow from '../../table-row/table-row.lite';
 import DBTooltip from '../../tooltip/tooltip.lite';
 import DBTable from '../table.lite';
-import {StorybookTableArgTypes} from './_table.arg.types';
+import { StorybookTableArgTypes } from './_table.arg.types';
 
 useMetadata({
 	storybookTitle: 'Interactive Row',
 	storybookNames: ['Flat', 'Spaced'],
-	storybookArgTypes: StorybookTableArgTypes,
+	storybookArgTypes: StorybookTableArgTypes
 });
 
 export default function TableInteractiveRow() {
@@ -26,17 +26,20 @@ export default function TableInteractiveRow() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: 'var(--db-spacing-fixed-md)',
-					padding: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					padding: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Flat
 				</DBInfotext>
 				<DBTable captionPlain="Flat">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell scope="col">Comp A</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">Comp B</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp A
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp B
+							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col" noText>
 								Action
 							</DBTableHeaderCell>
@@ -44,7 +47,9 @@ export default function TableInteractiveRow() {
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableHeaderCell scope="row">Comp 1</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 1
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -55,15 +60,16 @@ export default function TableInteractiveRow() {
 									data-variant="ghost"
 									data-table-row-trigger="true"
 									data-no-text="true"
-									data-icon="arrow_up_right"
-								>
+									data-icon="arrow_up_right">
 									Open Link
 									<DBTooltip>Open Link</DBTooltip>
 								</a>
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell scope="row">Comp 4</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 4
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -74,15 +80,16 @@ export default function TableInteractiveRow() {
 									data-variant="ghost"
 									data-table-row-trigger="true"
 									data-no-text="true"
-									data-icon="arrow_up_right"
-								>
+									data-icon="arrow_up_right">
 									Open Link
 									<DBTooltip>Open Link</DBTooltip>
 								</a>
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell scope="row">Comp 7</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 7
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -93,8 +100,7 @@ export default function TableInteractiveRow() {
 									data-variant="ghost"
 									data-table-row-trigger="true"
 									data-no-text="true"
-									data-icon="arrow_up_right"
-								>
+									data-icon="arrow_up_right">
 									Open Link
 									<DBTooltip>Open Link</DBTooltip>
 								</a>
@@ -110,17 +116,20 @@ export default function TableInteractiveRow() {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: 'var(--db-spacing-fixed-md)',
-					padding: 'var(--db-spacing-fixed-md)',
-				}}
-			>
+					padding: 'var(--db-spacing-fixed-md)'
+				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Spaced
 				</DBInfotext>
 				<DBTable variant="spaced" captionPlain="Spaced">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell scope="col">Comp A</DBTableHeaderCell>
-							<DBTableHeaderCell scope="col">Comp B</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp A
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp B
+							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col" noText>
 								Action
 							</DBTableHeaderCell>
@@ -128,7 +137,9 @@ export default function TableInteractiveRow() {
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableHeaderCell scope="row">Comp 1</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 1
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -139,15 +150,16 @@ export default function TableInteractiveRow() {
 									data-variant="ghost"
 									data-table-row-trigger="true"
 									data-no-text="true"
-									data-icon="arrow_up_right"
-								>
+									data-icon="arrow_up_right">
 									Open Link
 									<DBTooltip>Open Link</DBTooltip>
 								</a>
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell scope="row">Comp 4</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 4
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -158,15 +170,16 @@ export default function TableInteractiveRow() {
 									data-variant="ghost"
 									data-table-row-trigger="true"
 									data-no-text="true"
-									data-icon="arrow_up_right"
-								>
+									data-icon="arrow_up_right">
 									Open Link
 									<DBTooltip>Open Link</DBTooltip>
 								</a>
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell scope="row">Comp 7</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 7
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -177,8 +190,7 @@ export default function TableInteractiveRow() {
 									data-variant="ghost"
 									data-table-row-trigger="true"
 									data-no-text="true"
-									data-icon="arrow_up_right"
-								>
+									data-icon="arrow_up_right">
 									Open Link
 									<DBTooltip>Open Link</DBTooltip>
 								</a>

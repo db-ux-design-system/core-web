@@ -70,21 +70,21 @@ Import the styles in your main `.css` file.
 /* index.css */
 @layer whitelabel-theme, db-ux;
 
-@import '@db-ux/core-foundations/build/styles/theme/relative.css' layer(theme);
+@import "@db-ux/core-foundations/build/styles/theme/relative.css" layer(theme);
 
-@import '@db-ux/core-foundations/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/core-foundations/build/styles/bundle.css" layer(db-ux);
 
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-@import '@db-ux/core-foundations/build/styles/helpers/classes/all.css'
+@import "@db-ux/core-foundations/build/styles/helpers/classes/all.css"
 	layer(db-ux);
 /* Optional: Use [data-density] everywhere */
-@import '@db-ux/core-foundations/build/styles/density/classes/all.css'
+@import "@db-ux/core-foundations/build/styles/density/classes/all.css"
 	layer(db-ux);
 /* Optional: Use [data-font-size] everywhere */
-@import '@db-ux/core-foundations/build/styles/fonts/classes/all.css'
+@import "@db-ux/core-foundations/build/styles/fonts/classes/all.css"
 	layer(db-ux);
 /* Optional: Use [data-color] everywhere */
-@import '@db-ux/core-foundations/build/styles/colors/classes/all.css'
+@import "@db-ux/core-foundations/build/styles/colors/classes/all.css"
 	layer(db-ux);
 ```
 
@@ -124,7 +124,7 @@ In HTML:
 In SCSS:
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .my-container {
 	padding: variables.$db-spacing-fixed-md;
@@ -134,8 +134,8 @@ In SCSS:
 In SCSS with placeholder:
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/colors';
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
 
 .placeholder-container {
 	@extend %db-overwrite-font-size-sm;
@@ -167,8 +167,8 @@ Check the required imports for [CSS](https://design-system.deutschebahn.com/core
 #### Tailwind v4
 
 ```css
-@import 'tailwindcss';
-@import '@db-ux/core-foundations/build/tailwind/theme/index.css';
+@import "tailwindcss";
+@import "@db-ux/core-foundations/build/tailwind/theme/index.css";
 ```
 
 #### Tailwind v3
@@ -182,20 +182,20 @@ After this you can extend your tailwind config like this:
 ```javascript
 //tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-import tokens from '@db-ux/core-foundations/build/tailwind/tailwind-tokens.json';
+import tokens from "@db-ux/core-foundations/build/tailwind/tailwind-tokens.json";
 
 export default {
-	content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+	content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
 	plugins: [],
 	theme: {
 		...tokens,
-		gap: ({theme}) => ({
-			...theme('spacing'),
+		gap: ({ theme }) => ({
+			...theme("spacing")
 		}),
-		space: ({theme}) => ({
-			...theme('spacing'),
-		}),
-	},
+		space: ({ theme }) => ({
+			...theme("spacing")
+		})
+	}
 };
 ```
 
@@ -203,23 +203,23 @@ export default {
 
 ```typescript
 //tailwind.config.ts
-import type {Config} from 'tailwindcss';
-import {CustomThemeConfig} from 'tailwindcss/types/config';
-import tokens from '@db-ux/core-foundations/build/tailwind/tailwind-tokens.json';
+import type { Config } from "tailwindcss";
+import { CustomThemeConfig } from "tailwindcss/types/config";
+import tokens from "@db-ux/core-foundations/build/tailwind/tailwind-tokens.json";
 const customThemeConfig: CustomThemeConfig = tokens as any;
 
 export default {
 	content: [],
 	theme: {
 		...customThemeConfig,
-		gap: ({theme}) => ({
-			...theme('spacing'),
+		gap: ({ theme }) => ({
+			...theme("spacing")
 		}),
-		space: ({theme}) => ({
-			...theme('spacing'),
-		}),
+		space: ({ theme }) => ({
+			...theme("spacing")
+		})
 	},
-	plugins: [],
+	plugins: []
 } satisfies Config;
 ```
 
@@ -262,11 +262,11 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
-@import '@db-ux/core-foundations/build/styles/theme/relative.css';
+@import "@db-ux/core-foundations/build/styles/theme/relative.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
-@import '@db-ux/core-foundations/build/styles/fonts/relative.css';
+@import "@db-ux/core-foundations/build/styles/fonts/relative.css";
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
-@import '@db-ux/core-foundations/build/styles/icons/relative.css';
+@import "@db-ux/core-foundations/build/styles/icons/relative.css";
 ```
 
 #### Optimize index
@@ -275,17 +275,17 @@ You are able to optimize the initial settings as well:
 
 ```css
 /* The required styles will normalize css and add focus and default font to body */
-@import '@db-ux/core-foundations/build/styles/defaults/default-required.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
 /* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
-@import '@db-ux/core-foundations/build/styles/defaults/default-root.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
 /* Adds font-sizes & line-heights to headlines and paragraph tags. You probably need this, but you might strip some styles if you don't need the range of h1-h6. */
-@import '@db-ux/core-foundations/build/styles/defaults/default-fonts.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-fonts.css";
 /* Adds "[data-icon]" and other icon related styles. If you don't need icons in your application you could skip this. */
-@import '@db-ux/core-foundations/build/styles/defaults/default-icons.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
 /* Adds "[data-elevation]" and other icon related styles. If you don't need elevation in your application you could skip this. */
-@import '@db-ux/core-foundations/build/styles/defaults/default-elevation.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-elevation.css";
 /* Adds defaults for `blockquote`, `code` and `pre`. If you don't need them in your application you could skip this. */
-@import '@db-ux/core-foundations/build/styles/defaults/default-code.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
 ```
 
 ## Font Preloading

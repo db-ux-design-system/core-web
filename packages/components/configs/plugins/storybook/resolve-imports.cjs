@@ -8,14 +8,16 @@ const resolveImports = (imports) => {
 
 	if (imports.length > 0) {
 		const componentImports = imports.filter((imp) =>
-			imp.path.endsWith(`.lite`),
+			imp.path.endsWith(`.lite`)
 		);
 		if (componentImports.length > 0) {
-			allImports = componentImports.flatMap((imp) => Object.keys(imp.imports));
+			allImports = componentImports.flatMap((imp) =>
+				Object.keys(imp.imports)
+			);
 		}
 	}
 
-	return {allImports};
+	return { allImports };
 };
 
 /**
@@ -35,4 +37,4 @@ const resolveDataImports = (imports) => {
 		.join('\n');
 };
 
-module.exports = {resolveImports, resolveDataImports};
+module.exports = { resolveImports, resolveDataImports };

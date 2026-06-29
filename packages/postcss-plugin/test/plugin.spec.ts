@@ -1,10 +1,10 @@
 import postcss from 'postcss';
-import {describe, expect, it} from 'vitest';
-import {dbUxFlatten} from '../src';
+import { describe, expect, it } from 'vitest';
+import { dbUxFlatten } from '../src';
 
 const run = async (input: string, opts = {}) => {
 	const result = await postcss([dbUxFlatten(opts)]).process(input, {
-		from: undefined,
+		from: undefined
 	});
 	return result.css;
 };
@@ -90,8 +90,12 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).toContain('light-dark(');
 			expect(output).toContain('#232529');
 			expect(output).toContain('#f0f0f0');
-			expect(output).not.toContain('var(--db-neutral-origin-light-default)');
-			expect(output).not.toContain('var(--db-neutral-origin-dark-default)');
+			expect(output).not.toContain(
+				'var(--db-neutral-origin-light-default)'
+			);
+			expect(output).not.toContain(
+				'var(--db-neutral-origin-dark-default)'
+			);
 		});
 
 		it('should resolve var() inside color-mix() inside light-dark()', async () => {
@@ -212,7 +216,7 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).not.toContain('var(--db-brand-9)');
 			expect(output).not.toContain('color-mix(');
 			expect(output).toContain(
-				'--db-brand-bg-basic-transparent-full-default: transparent',
+				'--db-brand-bg-basic-transparent-full-default: transparent'
 			);
 		});
 	});
@@ -374,7 +378,7 @@ describe('postcss-flatten-db-variables', () => {
 :root {
 	--db-neutral-0: #0d0e10;
 }`;
-			const output = await run(input, {removeAtProperty: false});
+			const output = await run(input, { removeAtProperty: false });
 			expect(output).toContain('@property');
 		});
 
@@ -492,7 +496,7 @@ describe('postcss-flatten-db-variables', () => {
 :root {
 	--db-neutral-0: #0d0e10;
 }`;
-			const output = await run(input, {removeResolved: false});
+			const output = await run(input, { removeResolved: false });
 			expect(output).toContain('--db-neutral-0: #0d0e10');
 		});
 	});
@@ -522,7 +526,7 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).toContain('bolder 0.875rem');
 			expect(output).toContain('OpenSans Head');
 			expect(output).not.toContain(
-				'var(--db-typography-functional-mobile-headline-xs)',
+				'var(--db-typography-functional-mobile-headline-xs)'
 			);
 		});
 
@@ -675,7 +679,7 @@ describe('postcss-flatten-db-variables', () => {
 }`;
 			const output = await run(input);
 			expect(output).toContain(
-				'transition: all 0.3s cubic-bezier(0.15, 0, 0.45, 1)',
+				'transition: all 0.3s cubic-bezier(0.15, 0, 0.45, 1)'
 			);
 			expect(output).not.toContain('var(');
 		});
@@ -695,7 +699,7 @@ describe('postcss-flatten-db-variables', () => {
 }`;
 			const output = await run(input);
 			expect(output).toContain(
-				'transition: opacity 0.3s cubic-bezier(0.15, 0, 0.45, 1)',
+				'transition: opacity 0.3s cubic-bezier(0.15, 0, 0.45, 1)'
 			);
 			expect(output).not.toContain('var(');
 		});
@@ -757,7 +761,7 @@ describe('postcss-flatten-db-variables', () => {
 }`;
 			const output = await run(input);
 			expect(output).toContain(
-				'font-family: "OpenSans", helvetica, arial, sans-serif',
+				'font-family: "OpenSans", helvetica, arial, sans-serif'
 			);
 			expect(output).not.toContain('var(');
 		});
@@ -843,7 +847,9 @@ describe('postcss-flatten-db-variables', () => {
 			// Static color vars resolved, and both sides are identical → collapsed
 			expect(output).not.toContain('light-dark(');
 			expect(output).toContain('--db-neutral-origin-default: #232529');
-			expect(output).not.toContain('var(--db-neutral-origin-light-default)');
+			expect(output).not.toContain(
+				'var(--db-neutral-origin-light-default)'
+			);
 			// Dynamic spacing var stays
 			expect(output).toContain('var(--db-spacing-fixed-sm)');
 		});
@@ -876,7 +882,7 @@ describe('postcss-flatten-db-variables', () => {
 }`;
 			const output = await run(input);
 			expect(output).toContain(
-				'var(--db-adaptive-on-bg-basic-emphasis-60-default)',
+				'var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 			);
 		});
 
@@ -897,11 +903,11 @@ describe('postcss-flatten-db-variables', () => {
 			const output = await run(input);
 			// adaptive var stays as var() in usage
 			expect(output).toContain(
-				'color: var(--db-adaptive-on-bg-basic-emphasis-60-default)',
+				'color: var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 			);
 			// but the adaptive declaration itself gets its inner var resolved
 			expect(output).toContain(
-				'--db-adaptive-on-bg-basic-emphasis-60-default: #c3c7cd',
+				'--db-adaptive-on-bg-basic-emphasis-60-default: #c3c7cd'
 			);
 		});
 
@@ -914,7 +920,7 @@ describe('postcss-flatten-db-variables', () => {
 	color: var(--my-custom-dynamic);
 }`;
 			const output = await run(input, {
-				dynamicPrefixes: ['--my-custom-'],
+				dynamicPrefixes: ['--my-custom-']
 			});
 			expect(output).toContain('var(--my-custom-dynamic)');
 		});
@@ -1022,7 +1028,7 @@ describe('postcss-flatten-db-variables', () => {
 			const output = await run(input);
 			// Inner var resolved, outer var kept (unknown) with resolved fallback
 			expect(output).toContain(
-				'var(--db-icon-font-family, "db-default", icon-font-fallback)',
+				'var(--db-icon-font-family, "db-default", icon-font-fallback)'
 			);
 		});
 
@@ -1039,7 +1045,7 @@ describe('postcss-flatten-db-variables', () => {
 			const output = await run(input);
 			// --db-icon-font-family is unknown, so keep outer var with resolved fallback
 			expect(output).toContain(
-				'var(--db-icon-font-family, "db-default", icon-font-fallback)',
+				'var(--db-icon-font-family, "db-default", icon-font-fallback)'
 			);
 		});
 

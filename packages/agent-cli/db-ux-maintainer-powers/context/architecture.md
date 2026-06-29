@@ -34,8 +34,8 @@ import {
 	onMount,
 	onUnMount,
 	onUpdate,
-	useTarget,
-} from '@builder.io/mitosis';
+	useTarget
+} from "@builder.io/mitosis";
 ```
 
 ### Mitosis API & Lifecycle Rules

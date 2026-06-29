@@ -6,11 +6,11 @@ For general installation and configuration look at the [react-core-components](h
 
 ```tsx App.tsx
 // App.tsx
-import {useState} from 'react';
-import {DBTextarea} from '@db-ux/react-core-components';
+import { useState } from "react";
+import { DBTextarea } from "@db-ux/react-core-components";
 
 const App = () => {
-	const [textarea, setTextarea] = useState('default textarea');
+	const [textarea, setTextarea] = useState("default textarea");
 	return (
 		<DBTextarea
 			label="Textarea Controlled"

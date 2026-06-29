@@ -5,15 +5,15 @@ import {
 	DBHeader,
 	DBNavigation,
 	DBPage,
-	DBSelect,
-} from '../../../output/vue/src';
+	DBSelect
+} from "../../../output/vue/src";
 import {
 	COLORS,
-	DENSITIES,
-} from '../../../packages/components/src/shared/constants';
-import NavItemComponent from './NavItemComponent.vue';
+	DENSITIES
+} from "../../../packages/components/src/shared/constants";
+import NavItemComponent from "./NavItemComponent.vue";
 
-import {useLayout} from './composables/use-layout';
+import { useLayout } from "./composables/use-layout";
 
 const {
 	page,
@@ -24,7 +24,7 @@ const {
 	classNames,
 	onChange,
 	toggleDrawer,
-	sortedNavigation,
+	sortedNavigation
 } = useLayout();
 </script>
 
@@ -49,18 +49,34 @@ const {
 					</template>
 				</DBNavigation>
 				<template v-slot:call-to-action>
-					<DBButton icon="magnifying_glass" variant="ghost" :no-text="true">
+					<DBButton
+						icon="magnifying_glass"
+						variant="ghost"
+						:no-text="true"
+					>
 						Search
 					</DBButton>
 				</template>
 				<template v-slot:action-bar>
-					<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
+					<DBButton
+						icon="x_placeholder"
+						variant="ghost"
+						:no-text="true"
+					>
 						Profile
 					</DBButton>
-					<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
+					<DBButton
+						icon="x_placeholder"
+						variant="ghost"
+						:no-text="true"
+					>
 						Notification
 					</DBButton>
-					<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
+					<DBButton
+						icon="x_placeholder"
+						variant="ghost"
+						:no-text="true"
+					>
 						Help
 					</DBButton>
 				</template>

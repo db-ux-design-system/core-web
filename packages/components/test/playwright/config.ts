@@ -1,4 +1,4 @@
-import {defineConfig, devices} from '@playwright/experimental-ct-react';
+import { defineConfig, devices } from '@playwright/experimental-ct-react';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -19,7 +19,7 @@ const config = defineConfig({
 	/* Opt out of parallel tests on CI. */
 	workers: process.env.CI ? 1 : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
-	reporter: process.env.CI ? 'blob' : [['list'], ['html', {open: 'never'}]],
+	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Port to use for Playwright component endpoint. */
@@ -29,21 +29,21 @@ const config = defineConfig({
 		trace: process.env.CI ? 'on-first-retry' : 'on',
 
 		/* Collect video when retrying the failed test. */
-		video: process.env.CI ? 'on-first-retry' : 'on',
+		video: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	/* Configure projects for major browsers */
 	projects: [
 		{
 			name: 'chromium',
 			use: {
-				...devices['Desktop Chrome'],
-			},
+				...devices['Desktop Chrome']
+			}
 		},
 		{
 			name: 'firefox',
 			use: {
-				...devices['Desktop Firefox'],
-			},
+				...devices['Desktop Firefox']
+			}
 		},
 		// TODO: There are issues with webkit and out icon-fonts we disable webkit for now
 		/*		{
@@ -56,16 +56,16 @@ const config = defineConfig({
 		{
 			name: 'mobile_chrome',
 			use: {
-				...devices['Pixel 5'],
-			},
-		},
+				...devices['Pixel 5']
+			}
+		}
 		/*		{
 			name: 'mobile_safari',
 			use: {
 				...devices['iPhone 12']
 			}
 		}*/
-	],
+	]
 });
 
 export default config;

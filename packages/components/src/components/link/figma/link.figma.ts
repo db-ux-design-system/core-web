@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaLinkProps = {
 	text?: string;
@@ -9,24 +9,24 @@ export type FigmaLinkProps = {
 };
 
 const linkProps: Record<string, FigmaProp> = {
-	text: {type: 'textContent', key: 'Text'},
+	text: { type: 'textContent', key: 'Text' },
 	content: {
 		type: 'enum',
 		key: 'Content',
-		value: {Internal: 'internal', External: 'external'},
+		value: { Internal: 'internal', External: 'external' }
 	},
 	variant: {
 		type: 'enum',
 		key: 'Variant',
-		value: {Adaptive: 'adaptive', Brand: 'brand'},
+		value: { Adaptive: 'adaptive', Brand: 'brand' }
 	},
 	size: {
 		type: 'enum',
 		key: 'Size',
-		value: {'(Def) Medium': 'medium', Small: 'small'},
+		value: { '(Def) Medium': 'medium', Small: 'small' }
 	},
-	disabled: {type: 'boolean', key: 'Disabled'},
-	showIcon: {type: 'boolean', key: 'Show Icon'},
+	disabled: { type: 'boolean', key: 'Disabled' },
+	showIcon: { type: 'boolean', key: 'Show Icon' }
 };
 
 export const links: FigmaCodeConnect = {
@@ -34,7 +34,7 @@ export const links: FigmaCodeConnect = {
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436:12312',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436:12458',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14436:12385',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14436:12531',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14436:12531'
 	],
-	props: linkProps,
+	props: linkProps
 };

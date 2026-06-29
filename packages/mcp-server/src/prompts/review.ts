@@ -1,16 +1,14 @@
-import {type Framework, FRAMEWORK_PKG} from '../types.js';
+import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
 /**
- Generates a structured prompt that performs a multi-layered QA, accessibility,
- and DB UX compliance audit on a provided code snippet.
- @param code_snippet - The source code to be evaluated.
- @param code_snippet.code_snippet
- @param framework - The framework the snippet is written in.
- @param code_snippet.framework
+ * Generates a structured prompt that performs a multi-layered QA, accessibility,
+ * and DB UX compliance audit on a provided code snippet.
+ * @param code_snippet - The source code to be evaluated.
+ * @param framework - The framework the snippet is written in.
  */
 export function handleReviewUiCodePrompt({
 	code_snippet,
-	framework,
+	framework
 }: {
 	code_snippet: string;
 	framework: string;
@@ -50,9 +48,9 @@ Analyze the code against these strict domains:
 Deliver your analysis in the following strict format:
 1. "Review Summary": A high-level assessment of the snippet's quality.
 2. "Critical Violations": A prioritized list of issues. For each violation, you MUST provide EVIDENCE from the DB UX tools (e.g., "The component 'DBButton' requires the prop 'variant' according to the manifest, but it is missing").
-3. "The Refactored Solution": The fully corrected, clean, and DB UX-compliant code block.`,
-				},
-			},
-		],
+3. "The Refactored Solution": The fully corrected, clean, and DB UX-compliant code block.`
+				}
+			}
+		]
 	};
 }

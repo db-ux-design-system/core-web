@@ -1,1 +1,1 @@
-export {default as DBTextarea} from './textarea';
+export { default as DBTextarea } from './textarea';

@@ -11,14 +11,14 @@ const nextConfig = {
 		// Map `.js` specifiers back to `.ts`/`.tsx` so Webpack can resolve them.
 		config.resolve.extensionAlias = {
 			...config.resolve.extensionAlias,
-			'.js': ['.ts', '.tsx', '.js'],
+			'.js': ['.ts', '.tsx', '.js']
 		};
 		return config;
 	},
 	env: {
 		NEXT_SHOWCASE_VARIANT: 'next',
-		BASE_PATH: '/next-showcase',
-	},
+		BASE_PATH: '/next-showcase'
+	}
 };
 
 module.exports = nextConfig;

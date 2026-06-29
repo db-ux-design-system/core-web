@@ -1,11 +1,11 @@
-@use 'variables';
-@use 'typography-placeholder';
-@use 'scaling-placeholder';
-@use '../fonts';
+@use "variables";
+@use "typography-placeholder";
+@use "scaling-placeholder";
+@use "../fonts";
 
 @each $density in variables.$densities {
 	%db-density-#{$density} {
-		@if $density == 'functional' {
+		@if $density == "functional" {
 			--db-density-functional: 1;
 		}
 

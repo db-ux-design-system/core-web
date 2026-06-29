@@ -1,15 +1,15 @@
 import fg from 'fast-glob';
-import {readFileSync, readdirSync} from 'node:fs';
-import {resolve} from 'node:path';
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 /**
- Walk up the directory tree from `root` to locate a package path inside node_modules.
- Handles monorepo hoisting where dependencies may live in a parent node_modules.
- Returns the resolved absolute path or `undefined` if not found.
+ * Walk up the directory tree from `root` to locate a package path inside node_modules.
+ * Handles monorepo hoisting where dependencies may live in a parent node_modules.
+ * Returns the resolved absolute path or `undefined` if not found.
  */
 export function resolvePackagePath(
 	root: string,
-	packagePath: string,
+	packagePath: string
 ): string | undefined {
 	let currentDir = root;
 	for (let i = 0; i < 10; i++) {
@@ -22,10 +22,7 @@ export function resolvePackagePath(
 		}
 
 		const parentDir = resolve(currentDir, '..');
-		if (parentDir === currentDir) {
-			break;
-		}
-
+		if (parentDir === currentDir) break;
 		currentDir = parentDir;
 	}
 
@@ -35,7 +32,7 @@ export function resolvePackagePath(
 /** Return subdirectory names (folders only) from the given path. */
 function readDirNames(dirPath: string): string[] {
 	try {
-		return readdirSync(dirPath, {withFileTypes: true})
+		return readdirSync(dirPath, { withFileTypes: true })
 			.filter((e) => e.isDirectory())
 			.map((e) => e.name);
 	} catch {
@@ -66,40 +63,38 @@ const cache = new Map<
 >();
 
 /**
- Discover all available components, colors, densities, and font sizes
- by reading the installed @db-ux packages from the filesystem.
- Results are cached per project root.
+ * Discover all available components, colors, densities, and font sizes
+ * by reading the installed @db-ux packages from the filesystem.
+ * Results are cached per project root.
  */
 function discover(root: string) {
-	if (cache.has(root)) {
-		return cache.get(root)!;
-	}
+	if (cache.has(root)) return cache.get(root)!;
 
 	// Components
 	const compDir = resolvePackagePath(
 		root,
-		'@db-ux/core-components/build/components',
+		'@db-ux/core-components/build/components'
 	);
 	const components = new Set<string>(compDir ? readDirNames(compDir) : []);
 
 	// Colors
 	const colorDir = resolvePackagePath(
 		root,
-		'@db-ux/core-foundations/build/styles/colors/classes',
+		'@db-ux/core-foundations/build/styles/colors/classes'
 	);
 	const colors = colorDir ? readCssNames(colorDir) : [];
 
 	// Densities
 	const densityDir = resolvePackagePath(
 		root,
-		'@db-ux/core-foundations/build/styles/density/classes',
+		'@db-ux/core-foundations/build/styles/density/classes'
 	);
 	const densities = densityDir ? readCssNames(densityDir) : [];
 
 	// Font sizes: body/<size>.css + headline/<size>.css → "body-sm", "headline-lg"
 	const fontDir = resolvePackagePath(
 		root,
-		'@db-ux/core-foundations/build/styles/fonts/classes',
+		'@db-ux/core-foundations/build/styles/fonts/classes'
 	);
 	const fontSizes: string[] = [];
 	if (fontDir) {
@@ -110,7 +105,7 @@ function discover(root: string) {
 		}
 	}
 
-	const result = {components, colors, densities, fontSizes};
+	const result = { components, colors, densities, fontSizes };
 	cache.set(root, result);
 	return result;
 }
@@ -121,54 +116,44 @@ export function discoverAll(root: string) {
 }
 
 /**
- Scan detected component CSS files for referenced colors, densities, and font sizes
- so the optimizer doesn't strip variables that components depend on.
+ * Scan detected component CSS files for referenced colors, densities, and font sizes
+ * so the optimizer doesn't strip variables that components depend on.
  */
 export function scanComponentDependencies(
 	root: string,
 	components: Set<string>,
 	colors: Set<string>,
 	densities: Set<string>,
-	fontSizes: Set<string>,
+	fontSizes: Set<string>
 ): void {
 	const compDir = resolvePackagePath(
 		root,
-		'@db-ux/core-components/build/components',
+		'@db-ux/core-components/build/components'
 	);
-	if (!compDir) {
-		return;
-	}
+	if (!compDir) return;
 
 	const {
 		colors: validColors,
 		densities: validDensities,
-		fontSizes: validFontSizes,
+		fontSizes: validFontSizes
 	} = discover(root);
 	const validFontSizeSet = new Set(validFontSizes);
 
 	for (const component of components) {
 		const css = readSource(resolve(compDir, component, `${component}.css`));
-		if (!css) {
-			continue;
-		}
+		if (!css) continue;
 
 		for (const color of validColors) {
-			if (css.includes(`--db-${color}-`)) {
-				colors.add(color);
-			}
+			if (css.includes(`--db-${color}-`)) colors.add(color);
 		}
 
 		for (const density of validDensities) {
-			if (css.includes(`-${density}-`)) {
-				densities.add(density);
-			}
+			if (css.includes(`-${density}-`)) densities.add(density);
 		}
 
 		for (const m of css.matchAll(/--db-type-(body|headline)-(\w+)/g)) {
 			const fs = `${m[1]}-${m[2]}`;
-			if (validFontSizeSet.has(fs)) {
-				fontSizes.add(fs);
-			}
+			if (validFontSizeSet.has(fs)) fontSizes.add(fs);
 		}
 	}
 }
@@ -179,40 +164,40 @@ function toKebabCase(string_: string): string {
 }
 
 /**
- Build an array of regex patterns to detect usage of design system values.
- Covers CSS classes (e.g. db-color-cyan), data attributes (e.g. data-color="cyan"),
- HTML attributes, and JS object notation.
+ * Build an array of regex patterns to detect usage of design system values.
+ * Covers CSS classes (e.g. db-color-cyan), data attributes (e.g. data-color="cyan"),
+ * HTML attributes, and JS object notation.
  */
 function buildPatterns(
 	classPrefix: string,
 	dataAttr: string,
-	values: string,
+	values: string
 ): RegExp[] {
 	return [
 		new RegExp(`${classPrefix}(${values})`, 'g'),
 		new RegExp(String.raw`\[${dataAttr}=["']?(${values})["']?\]`, 'g'),
 		new RegExp(`${dataAttr}=["'](${values})["']`, 'g'),
-		new RegExp(String.raw`["']${dataAttr}["']:\s*["'](${values})["']`, 'g'),
+		new RegExp(String.raw`["']${dataAttr}["']:\s*["'](${values})["']`, 'g')
 	];
 }
 
 /** Matches JSX/TSX component usage: <DBButton>, <DBNavigationItem> */
-const JSX_COMPONENT_PATTERN = /<DB(\w+)[\s/>]/g;
+const JSX_COMPONENT_PATTERN = /<DB(\w+)[\s>/]/g;
 /** Matches Angular/HTML kebab-case usage: <db-button>, <db-navigation-item> */
-const KEBAB_COMPONENT_PATTERN = /<db-([\w-]+)[\s/>]/g;
+const KEBAB_COMPONENT_PATTERN = /<db-([\w-]+)[\s>/]/g;
 /** Matches CSS class-based usage: class="db-button ...", className="db-card" */
 const CLASS_COMPONENT_PATTERN =
-	/(?:class|className)=(?:"[^"]*|'[^']*|\{[^}]*)db-([\w-]+)/g;
+	/(?:class|className)=(?:"[^"]*|'[^']*|{[^}]*)db-([\w-]+)/g;
 /** Matches named imports from @db-ux framework packages: import { DBButton, DBCard } from '...' */
 const IMPORT_PATTERN =
-	/import\s+\{([^}]+)\}\s+from\s+["']@db-ux\/(?:react|ngx|v|wc)-core-components["']/g;
+	/import\s+{([^}]+)}\s+from\s+['"]@db-ux\/(?:react|ngx|v|wc)-core-components['"]/g;
 
 /** Glob all source files from the project root, excluding node_modules/dist/build. */
 async function scanFiles(root: string): Promise<string[]> {
 	return fg(['**/*.{vue,jsx,tsx,ts,html}'], {
 		cwd: root,
 		absolute: true,
-		ignore: ['**/node_modules/**', '**/dist/**', '**/build/**'],
+		ignore: ['**/node_modules/**', '**/dist/**', '**/build/**']
 	});
 }
 
@@ -226,23 +211,21 @@ function readSource(filePath: string): string | undefined {
 }
 
 /**
- Scan all project source files to detect which DB UX components are used.
- Supports JSX (<DBButton>), kebab-case (<db-button>), CSS classes (class="db-button"),
- and named imports (import { DBButton } from '...').
+ * Scan all project source files to detect which DB UX components are used.
+ * Supports JSX (<DBButton>), kebab-case (<db-button>), CSS classes (class="db-button"),
+ * and named imports (import { DBButton } from '...').
  */
 export async function detectComponents(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
 	const components = new Set<string>(forceInclude);
-	const {components: validComponents} = discover(root);
+	const { components: validComponents } = discover(root);
 	const files = await scanFiles(root);
 
 	for (const file of files) {
 		const code = readSource(file);
-		if (!code) {
-			continue;
-		}
+		if (!code) continue;
 
 		// Detect JSX usage: <DBButton>, <DBNavigationItem>
 		for (const match of code.matchAll(JSX_COMPONENT_PATTERN)) {
@@ -286,9 +269,9 @@ export async function detectComponents(
 }
 
 /**
- Shared detection logic for colors, densities, and font sizes.
- Scans all project source files for class names and data attributes
- matching the given patterns, returning the set of detected values.
+ * Shared detection logic for colors, densities, and font sizes.
+ * Scans all project source files for class names and data attributes
+ * matching the given patterns, returning the set of detected values.
  */
 async function detectByPatterns(
 	root: string,
@@ -296,28 +279,26 @@ async function detectByPatterns(
 	classPrefix: string,
 	dataAttr: string,
 	validValues: string[],
-	mapMatch?: (match: RegExpMatchArray) => string | undefined,
+	mapMatch?: (match: RegExpMatchArray) => string | undefined
 ): Promise<Set<string>> {
 	const result = new Set<string>(forceInclude);
-	if (validValues.length === 0) {
-		return result;
-	}
+	if (validValues.length === 0) return result;
 
-	const patterns = buildPatterns(classPrefix, dataAttr, validValues.join('|'));
+	const patterns = buildPatterns(
+		classPrefix,
+		dataAttr,
+		validValues.join('|')
+	);
 	const files = await scanFiles(root);
 
 	for (const file of files) {
 		const code = readSource(file);
-		if (!code) {
-			continue;
-		}
+		if (!code) continue;
 
 		for (const pattern of patterns) {
 			for (const match of code.matchAll(pattern)) {
 				const value = mapMatch ? mapMatch(match) : match[1];
-				if (value) {
-					result.add(value);
-				}
+				if (value) result.add(value);
 			}
 		}
 	}
@@ -328,47 +309,43 @@ async function detectByPatterns(
 /** Detect which color schemes are used in the project (e.g. "cyan", "brand"). */
 export async function detectColors(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
-	const {colors} = discover(root);
+	const { colors } = discover(root);
 	return detectByPatterns(
 		root,
 		forceInclude,
 		'db-color-',
 		'data-color',
-		colors,
+		colors
 	);
 }
 
 /** Detect which density variants are used in the project (e.g. "functional", "expressive"). */
 export async function detectDensities(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
-	const {densities} = discover(root);
+	const { densities } = discover(root);
 	return detectByPatterns(
 		root,
 		forceInclude,
 		'db-density-',
 		'data-density',
-		densities,
+		densities
 	);
 }
 
 /** Detect which font size combinations are used in the project (e.g. "body-md", "headline-lg"). */
 export async function detectFontSizes(
 	root: string,
-	forceInclude: string[],
+	forceInclude: string[]
 ): Promise<Set<string>> {
-	const {fontSizes: validFontSizes} = discover(root);
-	if (validFontSizes.length === 0) {
-		return new Set<string>(forceInclude);
-	}
+	const { fontSizes: validFontSizes } = discover(root);
+	if (validFontSizes.length === 0) return new Set<string>(forceInclude);
 
-	const categories = [
-		...new Set(validFontSizes.map((f) => f.split('-', 1)[0])),
-	];
-	const sizes = [...new Set(validFontSizes.map((f) => f.split('-', 2)[1]))];
+	const categories = [...new Set(validFontSizes.map((f) => f.split('-')[0]))];
+	const sizes = [...new Set(validFontSizes.map((f) => f.split('-')[1]))];
 	const validSet = new Set(validFontSizes);
 
 	return detectByPatterns(
@@ -380,6 +357,6 @@ export async function detectFontSizes(
 		(match) => {
 			const value = `${match[1]}-${match[2]}`;
 			return validSet.has(value) ? value : undefined;
-		},
+		}
 	);
 }

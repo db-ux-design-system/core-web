@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {DBInput} from '@components';
-import {ref, watch} from 'vue';
+import { DBInput } from "@components";
+import { ref, watch } from "vue";
 
 interface Props {
 	label: string;
@@ -10,11 +10,11 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-	debounce: 500,
+	debounce: 500
 });
 
 const emit = defineEmits<{
-	'update:modelValue': [value: string | number];
+	"update:modelValue": [value: string | number];
 }>();
 
 const value = ref<string | number>(props.modelValue);
@@ -23,14 +23,14 @@ watch(
 	() => props.modelValue,
 	(newVal) => {
 		value.value = newVal;
-	},
+	}
 );
 
 let timeout: ReturnType<typeof setTimeout>;
 watch(value, (newVal) => {
 	clearTimeout(timeout);
 	timeout = setTimeout(() => {
-		emit('update:modelValue', newVal);
+		emit("update:modelValue", newVal);
 	}, props.debounce);
 });
 </script>

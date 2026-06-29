@@ -1,6 +1,6 @@
-import {resolve} from 'path';
-import {describe, expect, it} from 'vitest';
-import {generateCSS} from '../src/generator.js';
+import { resolve } from 'path';
+import { describe, expect, it } from 'vitest';
+import { generateCSS } from '../src/generator.js';
 
 const root = resolve(__dirname, '../../..');
 
@@ -13,23 +13,23 @@ describe('generateCSS', () => {
 				foundations: [],
 				colors: [],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		// Should include either default theme or detected theme
 		const hasDefaultTheme = css.includes(
-			'@db-ux/core-foundations/build/styles/defaults/default-theme.css',
+			'@db-ux/core-foundations/build/styles/defaults/default-theme.css'
 		);
 		const hasThemeRollup = css.includes('build/styles/rollup.css');
 		expect(hasDefaultTheme || hasThemeRollup).toBe(true);
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/defaults/default-required.css',
+			'@db-ux/core-foundations/build/styles/defaults/default-required.css'
 		);
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/defaults/default-root.css',
+			'@db-ux/core-foundations/build/styles/defaults/default-root.css'
 		);
 	});
 
@@ -41,14 +41,14 @@ describe('generateCSS', () => {
 				foundations: ['icons'],
 				colors: [],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/defaults/default-icons.css',
+			'@db-ux/core-foundations/build/styles/defaults/default-icons.css'
 		);
 	});
 
@@ -60,14 +60,14 @@ describe('generateCSS', () => {
 				foundations: ['animations'],
 				colors: [],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-components/build/styles/component-animations.css',
+			'@db-ux/core-components/build/styles/component-animations.css'
 		);
 	});
 
@@ -79,17 +79,17 @@ describe('generateCSS', () => {
 				foundations: [],
 				colors: [],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-components/build/components/button/button.css',
+			'@db-ux/core-components/build/components/button/button.css'
 		);
 		expect(css).toContain(
-			'@db-ux/core-components/build/components/input/input.css',
+			'@db-ux/core-components/build/components/input/input.css'
 		);
 	});
 
@@ -101,19 +101,19 @@ describe('generateCSS', () => {
 				foundations: [],
 				colors: [],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {
-				components: ['input'],
+				components: ['input']
 			},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-components/build/components/button/button.css',
+			'@db-ux/core-components/build/components/button/button.css'
 		);
 		expect(css).not.toContain(
-			'@db-ux/core-components/build/components/input/input.css',
+			'@db-ux/core-components/build/components/input/input.css'
 		);
 	});
 
@@ -125,17 +125,17 @@ describe('generateCSS', () => {
 				foundations: [],
 				colors: ['neutral', 'brand'],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/colors/classes/neutral.css',
+			'@db-ux/core-foundations/build/styles/colors/classes/neutral.css'
 		);
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/colors/classes/brand.css',
+			'@db-ux/core-foundations/build/styles/colors/classes/brand.css'
 		);
 	});
 
@@ -147,17 +147,17 @@ describe('generateCSS', () => {
 				foundations: [],
 				colors: [],
 				densities: ['regular', 'functional'],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/density/classes/regular.css',
+			'@db-ux/core-foundations/build/styles/density/classes/regular.css'
 		);
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/density/classes/functional.css',
+			'@db-ux/core-foundations/build/styles/density/classes/functional.css'
 		);
 	});
 
@@ -169,17 +169,17 @@ describe('generateCSS', () => {
 				foundations: [],
 				colors: [],
 				densities: [],
-				fontSizes: ['body-md', 'headline-lg'],
+				fontSizes: ['body-md', 'headline-lg']
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/fonts/classes/body/md.css',
+			'@db-ux/core-foundations/build/styles/fonts/classes/body/md.css'
 		);
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/fonts/classes/headline/lg.css',
+			'@db-ux/core-foundations/build/styles/fonts/classes/headline/lg.css'
 		);
 	});
 
@@ -191,17 +191,17 @@ describe('generateCSS', () => {
 				foundations: ['helpers', 'elevation'],
 				colors: [],
 				densities: [],
-				fontSizes: [],
+				fontSizes: []
 			},
 			exclude: {},
-			hasTailwind: false,
+			hasTailwind: false
 		});
 
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/helpers/classes/all.css',
+			'@db-ux/core-foundations/build/styles/helpers/classes/all.css'
 		);
 		expect(css).toContain(
-			'@db-ux/core-foundations/build/styles/defaults/default-elevation.css',
+			'@db-ux/core-foundations/build/styles/defaults/default-elevation.css'
 		);
 	});
 });

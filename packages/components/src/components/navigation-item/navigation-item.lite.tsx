@@ -6,14 +6,14 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
-import {DEFAULT_BACK} from '../../shared/constants';
-import {ClickEvent} from '../../shared/model';
-import {cls, delay, getBoolean, getBooleanAsString, uuid} from '../../utils';
-import {NavigationItemSafeTriangle} from '../../utils/navigation';
+import { DEFAULT_BACK } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
+import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
-import {DBNavigationItemProps, DBNavigationItemState} from './model';
+import { DBNavigationItemProps, DBNavigationItemState } from './model';
 
 useMetadata({});
 
@@ -53,7 +53,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
-		},
+		}
 	});
 
 	onMount(() => {
@@ -68,7 +68,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		if (props.subNavigationExpanded !== undefined) {
 			state.isSubNavigationExpanded = !!getBoolean(
 				props.subNavigationExpanded,
-				'subNavigationExpanded',
+				'subNavigationExpanded'
 			);
 		}
 	}, [props.subNavigationExpanded]);
@@ -82,10 +82,11 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					state.hasAreaPopup = true;
 
 					if (!state.navigationItemSafeTriangle) {
-						state.navigationItemSafeTriangle = new NavigationItemSafeTriangle(
-							_ref,
-							subNavigationSlot,
-						);
+						state.navigationItemSafeTriangle =
+							new NavigationItemSafeTriangle(
+								_ref,
+								subNavigationSlot
+							);
 					}
 				} else {
 					state.hasSubNavigation = false;
@@ -100,7 +101,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
-			onMouseLeave={() => state.navigationItemSafeTriangle?.disableFollow()}
+			onMouseLeave={() =>
+				state.navigationItemSafeTriangle?.disableFollow()
+			}
 			onMouseMove={(event: MouseEvent) =>
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
@@ -110,8 +113,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
-			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
-		>
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<Show
 				when={
 					!getBoolean(props.hideSubNavigation, 'hideSubNavigation') &&
@@ -121,8 +123,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					<Show when={props.text} else={props.children}>
 						{props.text}
 					</Show>
-				}
-			>
+				}>
 				<button
 					id={state.subNavigationToggleId}
 					aria-haspopup={state.hasAreaPopup ? 'true' : undefined}
@@ -132,8 +133,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
-					}
-				>
+					}>
 					<Show when={props.text} else={props.children}>
 						{props.text}
 					</Show>
@@ -145,18 +145,16 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-labelledby={state.subNavigationToggleId}
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
-					onClick={(event) => state.handleNavigationItemClick(event)}
-				>
+					onClick={(event) => state.handleNavigationItemClick(event)}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton
 								id={props.backButtonId}
 								icon="arrow_left"
 								variant="ghost"
-								onClick={(event: ClickEvent<HTMLButtonElement>) =>
-									state.handleBackClick(event)
-								}
-							>
+								onClick={(
+									event: ClickEvent<HTMLButtonElement>
+								) => state.handleBackClick(event)}>
 								{props.backButtonText ?? DEFAULT_BACK}
 							</DBButton>
 						</div>

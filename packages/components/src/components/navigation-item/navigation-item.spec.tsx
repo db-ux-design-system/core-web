@@ -1,12 +1,12 @@
 import AxeBuilder from '@axe-core/playwright';
-import {expect, test} from '@playwright/experimental-ct-react';
+import { expect, test } from '@playwright/experimental-ct-react';
 
-import {DBNavigationItem} from './index';
+import { DBNavigationItem } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import {DEFAULT_VIEWPORT} from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
-	<menu style={{display: 'flex'}}>
+	<menu style={{ display: 'flex' }}>
 		<DBNavigationItem>
 			<a href="#">Test1</a>
 		</DBNavigationItem>
@@ -20,28 +20,28 @@ const comp: any = (
 );
 
 const testComponent = () => {
-	test('should contain text', async ({mount}) => {
+	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('should match screenshot', async ({mount}) => {
+	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({mount}, testInfo) => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
 	test('DBNavigationItem should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({page})
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-navigation-item')
 			.analyze();
 
@@ -50,7 +50,7 @@ const testA11y = () => {
 };
 
 test.describe('DBNavigationItem', () => {
-	test.use({viewport: DEFAULT_VIEWPORT});
+	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
 });

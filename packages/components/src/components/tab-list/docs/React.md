@@ -10,8 +10,8 @@ import {
 	DBTabItem,
 	DBTabList,
 	DBTabs,
-	DBTabPanel,
-} from '@db-ux/react-core-components';
+	DBTabPanel
+} from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBTabs>

@@ -1,4 +1,4 @@
-import {PatternhubProps} from '../../../shared/model';
+import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -12,7 +12,9 @@ import BadgeSize from '../examples/size.example.lite';
 
 export default function BadgeShowcase(props: PatternhubProps) {
 	return (
-		<ContainerWrapperShowcase title="DBBadge" isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase
+			title="DBBadge"
+			isPatternhub={props.isPatternhub}>
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<BadgeDensity />

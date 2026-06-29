@@ -13,7 +13,7 @@ import {
 	DBNotification,
 	DBSelect,
 	DBTag,
-	DBTooltip,
+	DBTooltip
 } from '@db-ux/react-core-components';
 
 export const TestComponent = () => {
@@ -63,7 +63,8 @@ export const TestComponent = () => {
 			</DBLink>
 
 			{/* db-ux/navigation-item-back-button-text-required */}
-			<DBNavigationItem subNavigation={<div>Sub nav</div>}></DBNavigationItem>
+			<DBNavigationItem
+				subNavigation={<div>Sub nav</div>}></DBNavigationItem>
 
 			{/* db-ux/no-interactive-tooltip-content */}
 			<DBTooltip>

@@ -2,12 +2,12 @@ import {
 	COMPONENTS,
 	INTERACTIVE_ELEMENTS,
 	MESSAGE_IDS,
-	MESSAGES,
+	MESSAGES
 } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 function hasInteractiveChild(node: any): boolean {
@@ -31,7 +31,7 @@ function hasInteractiveChild(node: any): boolean {
 				INTERACTIVE_ELEMENTS.some(
 					(element) =>
 						tagName === element ||
-						tagName === element.toLowerCase().replace('db', 'db-'),
+						tagName === element.toLowerCase().replace('db', 'db-')
 				)
 			) {
 				return true;
@@ -49,20 +49,22 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description: 'Prevent interactive elements inside DBTooltip',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-interactive-tooltip-content',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-interactive-tooltip-content'
 		},
 		messages: {
-			noInteractive: MESSAGES.TOOLTIP_NO_INTERACTIVE,
+			noInteractive: MESSAGES.TOOLTIP_NO_INTERACTIVE
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			if (hasInteractiveChild(node)) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE,
+					messageId: MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE
 				});
 			}
 		};
@@ -70,30 +72,26 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBTooltip,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkTooltip = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, 'DBTooltip')) {
-				return;
-			}
+			if (!isDBComponent(openingElement, 'DBTooltip')) return;
 
 			if (hasInteractiveChild(node)) {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE,
+					messageId: MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkTooltip, Element: checkTooltip},
-			{JSXElement: checkTooltip},
+			{ VElement: checkTooltip, Element: checkTooltip },
+			{ JSXElement: checkTooltip }
 		);
-	},
+	}
 };

@@ -1,18 +1,20 @@
-import type {HTMLDbCustomSelectElement} from '@db-ux/wc-core-components/bundle';
+import type { HTMLDbCustomSelectElement } from '@db-ux/wc-core-components/bundle';
 
 const CUSTOM_SELECT_OPTIONS = [
-	{value: 'combobox-0', id: 'combobox-0'},
-	{value: 'combobox-1', id: 'combobox-1'},
-	{value: 'combobox-2', id: 'combobox-2'},
+	{ value: 'combobox-0', id: 'combobox-0' },
+	{ value: 'combobox-1', id: 'combobox-1' },
+	{ value: 'combobox-2', id: 'combobox-2' }
 ];
 
 /**
- Initialize custom-select elements by setting options programmatically.
- The db-custom-select component requires options to be set via JS properties.
+ * Initialize custom-select elements by setting options programmatically.
+ * The db-custom-select component requires options to be set via JS properties.
  */
 function initCustomSelects(container: HTMLElement): void {
 	const customSelects =
-		container.querySelectorAll<HTMLDbCustomSelectElement>('db-custom-select');
+		container.querySelectorAll<HTMLDbCustomSelectElement>(
+			'db-custom-select'
+		);
 
 	for (const customSelect of customSelects) {
 		const element = customSelect;
@@ -22,8 +24,8 @@ function initCustomSelects(container: HTMLElement): void {
 }
 
 /**
- Render the home page content into the main content area.
- Mirrors the form test tabs from other showcases (react, vue, angular).
+ * Render the home page content into the main content area.
+ * Mirrors the form test tabs from other showcases (react, vue, angular).
  */
 export function renderHomePage(container: HTMLElement): void {
 	container.innerHTML = `

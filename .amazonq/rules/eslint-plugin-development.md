@@ -47,7 +47,7 @@ if (!attribute) {
 
 // ✅ CORRECT - handles Angular boolean attributes (empty strings)
 if (value === null) return;
-if (attribute === null || attribute === '') {
+if (attribute === null || attribute === "") {
 	/* report error */
 }
 ```
@@ -60,7 +60,7 @@ For required text attributes, check both `null` and empty string:
 
 ```typescript
 // ✅ CORRECT
-if (textAttribute === null || textAttribute === '') {
+if (textAttribute === null || textAttribute === "") {
 	context.report({
 		/* error */
 	});
@@ -117,11 +117,11 @@ if ((parent.type === 'Element' || parent.type === 'Element$1') && isDBComponent(
 // ✅ CORRECT - includes all child types
 const iconChild = node.children?.find(
 	(child: any) =>
-		(child.type === 'JSXElement' ||
-			child.type === 'VElement' ||
-			child.type === 'Element' ||
-			child.type === 'Element$1') &&
-		isDBComponent(child.openingElement || child, 'DBIcon'),
+		(child.type === "JSXElement" ||
+			child.type === "VElement" ||
+			child.type === "Element" ||
+			child.type === "Element$1") &&
+		isDBComponent(child.openingElement || child, "DBIcon")
 );
 ```
 
@@ -134,34 +134,36 @@ import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
-} from '../../shared/utils.js';
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+	isDBComponent
+} from "../../shared/utils.js";
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from "../../shared/constants.js";
 
 export default {
 	meta: {
-		type: 'problem' as const,
+		type: "problem" as const,
 		docs: {
-			description: 'Rule description',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#rule-name',
+			description: "Rule description",
+			url: "https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#rule-name"
 		},
-		fixable: 'code' as const, // optional
+		fixable: "code" as const, // optional
 		messages: {
-			[MESSAGE_IDS.YOUR_MESSAGE_ID]: MESSAGES.YOUR_MESSAGE,
+			[MESSAGE_IDS.YOUR_MESSAGE_ID]: MESSAGES.YOUR_MESSAGE
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		// Angular handler with parser services
 		const angularHandler = (node: any, parserServices: any) => {
-			const value = getAttributeValue(node, 'prop');
+			const value = getAttributeValue(node, "prop");
 			// CRITICAL: Use === null for boolean checks
-			if (value === null || value === '') {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+			if (value === null || value === "") {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID,
-					data: {component: node.name}, // Use node.name for kebab-case
+					data: { component: node.name } // Use node.name for kebab-case
 				});
 			}
 		};
@@ -169,7 +171,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBButton,
-			angularHandler,
+			angularHandler
 		);
 		if (angularVisitors) return angularVisitors;
 
@@ -178,25 +180,26 @@ export default {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
-			const value = getAttributeValue(openingElement, 'prop');
+			const value = getAttributeValue(openingElement, "prop");
 			// CRITICAL: Use === null for boolean checks
-			if (value === null || value === '') {
+			if (value === null || value === "") {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID,
 					data: {
-						component: openingElement.name?.name || openingElement.rawName,
-					},
+						component:
+							openingElement.name?.name || openingElement.rawName
+					}
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkComponent, Element: checkComponent},
-			{JSXElement: checkComponent},
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
 		);
-	},
+	}
 };
 ```
 
@@ -205,7 +208,7 @@ export default {
 **CRITICAL**: When checking multiple components, collect ALL Angular visitors before returning:
 
 ```typescript
-const COMPONENTS_TO_CHECK = ['DBButton', 'DBLink', 'DBInput'];
+const COMPONENTS_TO_CHECK = ["DBButton", "DBLink", "DBInput"];
 
 export default {
 	meta: {
@@ -214,7 +217,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const component = COMPONENTS_TO_CHECK.find((comp) =>
-				isDBComponent(node, comp),
+				isDBComponent(node, comp)
 			);
 			if (!component) return;
 
@@ -226,7 +229,7 @@ export default {
 			const angularVisitors = createAngularVisitors(
 				context,
 				comp,
-				angularHandler,
+				angularHandler
 			);
 			if (angularVisitors) return angularVisitors; // ❌ Early return!
 		}
@@ -234,7 +237,11 @@ export default {
 		// ✅ CORRECT - Collects all visitors before returning
 		const angularVisitors: any = {};
 		for (const comp of COMPONENTS_TO_CHECK) {
-			const visitors = createAngularVisitors(context, comp, angularHandler);
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
 			if (visitors) {
 				Object.assign(angularVisitors, visitors);
 			}
@@ -247,10 +254,10 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkComponent, Element: checkComponent},
-			{JSXElement: checkComponent},
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
 		);
-	},
+	}
 };
 ```
 
@@ -267,21 +274,21 @@ export default {
 Every rule MUST have tests covering:
 
 1. **Valid cases** for all three frameworks:
-   - React example with PascalCase
-   - Angular example with kebab-case and `[prop]="value"`
-   - Vue example with PascalCase and `:prop="value"`
+    - React example with PascalCase
+    - Angular example with kebab-case and `[prop]="value"`
+    - Vue example with PascalCase and `:prop="value"`
 
 2. **Invalid cases** for all three frameworks:
-   - React example
-   - Angular example
-   - Vue example
+    - React example
+    - Angular example
+    - Vue example
 
 3. **Framework integration tests** in `test/frameworks/`:
-   - Add example to `react-test.tsx`
-   - Add example to `angular-test.html`
-   - Add example to `vue-test.vue`
-   - Include comment with rule name (e.g., `{/* db-ux/rule-name */}`)
-   - Examples should demonstrate rule violations for snapshot testing
+    - Add example to `react-test.tsx`
+    - Add example to `angular-test.html`
+    - Add example to `vue-test.vue`
+    - Include comment with rule name (e.g., `{/* db-ux/rule-name */}`)
+    - Examples should demonstrate rule violations for snapshot testing
 
 ## Documentation Requirements
 
@@ -291,9 +298,9 @@ When adding a new rule:
 2. Add rule to `plugin.rules` object in `src/index.ts`
 3. Add rule to `recommended.rules` config in `src/index.ts`
 4. Update `README.md` with:
-   - Rule name and description
-   - Invalid examples for React, Angular, and Vue
-   - Valid examples for React, Angular, and Vue
+    - Rule name and description
+    - Invalid examples for React, Angular, and Vue
+    - Valid examples for React, Angular, and Vue
 
 ## Example Test Pattern
 
@@ -333,10 +340,10 @@ All rule metadata must use `as const` assertions for TypeScript compatibility:
 ```typescript
 export default {
 	meta: {
-		type: 'problem' as const, // REQUIRED: Use 'as const'
-		fixable: 'code' as const, // REQUIRED if fixable is present
+		type: "problem" as const, // REQUIRED: Use 'as const'
+		fixable: "code" as const // REQUIRED if fixable is present
 		// ...
-	},
+	}
 };
 ```
 
@@ -345,39 +352,39 @@ export default {
 Test files should separate Angular tests from React/Vue tests:
 
 ```typescript
-import {RuleTester} from '@typescript-eslint/rule-tester';
-import {RuleTester as AngularRuleTester} from '@angular-eslint/test-utils';
+import { RuleTester } from "@typescript-eslint/rule-tester";
+import { RuleTester as AngularRuleTester } from "@angular-eslint/test-utils";
 
 const ruleTester = new RuleTester({
 	languageOptions: {
 		parserOptions: {
-			ecmaFeatures: {jsx: true},
-		},
-	},
+			ecmaFeatures: { jsx: true }
+		}
+	}
 });
 
 const angularRuleTester = new AngularRuleTester();
 
-describe('rule-name', () => {
-	it('should validate rule', () => {
-		ruleTester.run('rule-name', rule, {
+describe("rule-name", () => {
+	it("should validate rule", () => {
+		ruleTester.run("rule-name", rule, {
 			valid: [
 				/* React/Vue cases */
 			],
 			invalid: [
 				/* React/Vue cases */
-			],
+			]
 		});
 	});
 
-	it('should validate rule (Angular)', () => {
-		angularRuleTester.run('rule-name', rule, {
+	it("should validate rule (Angular)", () => {
+		angularRuleTester.run("rule-name", rule, {
 			valid: [
 				/* Angular cases with <db- */
 			],
 			invalid: [
 				/* Angular cases with <db- */
-			],
+			]
 		});
 	});
 });

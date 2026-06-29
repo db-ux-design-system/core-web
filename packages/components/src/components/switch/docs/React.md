@@ -6,7 +6,7 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import {DBSwitch} from '@db-ux/react-core-components';
+import { DBSwitch } from "@db-ux/react-core-components";
 
 const App = () => <DBSwitch>Switch</DBSwitch>;
 

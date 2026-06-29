@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import {StorybookInputArgTypes} from './_input.arg.types';
+import { StorybookInputArgTypes } from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Icon Trailing',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookInputArgTypes,
+	storybookArgTypes: StorybookInputArgTypes
 });
 
 export default function InputShowIconTrailing() {
@@ -15,14 +15,12 @@ export default function InputShowIconTrailing() {
 				label="False"
 				iconTrailing="x_placeholder"
 				showIconTrailing={false}
-				placeholder="(Default) False"
-			></DBInput>
+				placeholder="(Default) False"></DBInput>
 			<DBInput
 				label="True"
 				iconTrailing="x_placeholder"
 				showIconTrailing={true}
-				placeholder="True"
-			></DBInput>
+				placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

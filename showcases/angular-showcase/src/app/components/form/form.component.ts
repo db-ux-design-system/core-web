@@ -1,9 +1,9 @@
-import {Component, NO_ERRORS_SCHEMA, signal} from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
 	FormsModule,
-	ReactiveFormsModule,
+	ReactiveFormsModule
 } from '@angular/forms';
 import {
 	DBButton,
@@ -20,7 +20,7 @@ import {
 	DBTabPanel,
 	DBTabs,
 	DBTag,
-	DBTextarea,
+	DBTextarea
 } from '@components';
 
 @Component({
@@ -43,10 +43,10 @@ import {
 		DBTabPanel,
 		DBSwitch,
 		DBDrawer,
-		DBInfotext,
+		DBInfotext
 	],
 	standalone: true,
-	schemas: [NO_ERRORS_SCHEMA],
+	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {
 	// Drawer state
@@ -73,10 +73,10 @@ export class FormComponent {
 		radio: 'X',
 		checkbox: true,
 		checkbox2: true,
-		select: 'test2',
+		select: 'test2'
 	};
 
-	dataList = [{value: 'test', label: 'Test'}, {value: 'test2'}];
+	dataList = [{ value: 'test', label: 'Test' }, { value: 'test2' }];
 
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({
@@ -84,7 +84,7 @@ export class FormComponent {
 		dateinput: new FormControl('2024-05-04'),
 		textarea: new FormControl('Filled with formControl as well'),
 		checkbox: new FormControl(true),
-		select: new FormControl('test2'),
+		select: new FormControl('test2')
 	});
 
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
@@ -101,12 +101,9 @@ export class FormComponent {
 
 	changeTextarea(
 		key: 'textarea' | 'textareaDefaultValue',
-		event: Event | void,
+		event: Event | void
 	) {
-		if (!event) {
-			return;
-		}
-
+		if (!event) return;
 		this[key] = (event.target as HTMLTextAreaElement).value;
 	}
 
@@ -128,51 +125,39 @@ export class FormComponent {
 			'Formvalue: ' +
 				JSON.stringify(this.form.value) +
 				' / Model data: ' +
-				JSON.stringify(this.model),
+				JSON.stringify(this.model)
 		);
 	}
 
 	// Checkbox changes
 	handleChange1 = (event?: Event | void) => {
-		if (!event) {
-			return;
-		}
-
+		if (!event) return;
 		const checked = (event.target as HTMLInputElement)?.checked;
 		this.checked = [checked, checked];
 	};
 
 	handleChange2 = (event: Event | void) => {
-		if (!event) {
-			return;
-		}
-
+		if (!event) return;
 		this.checked = [
 			(event.target as HTMLInputElement).checked,
-			this.checked[1],
+			this.checked[1]
 		];
 	};
 
 	handleChange3 = (event: Event | void) => {
-		if (!event) {
-			return;
-		}
-
+		if (!event) return;
 		this.checked = [
 			this.checked[0],
-			(event.target as HTMLInputElement).checked,
+			(event.target as HTMLInputElement).checked
 		];
 	};
 
 	handleChange4 = (event: Event | void) => {
-		if (!event) {
-			return;
-		}
-
+		if (!event) return;
 		this.form
 			.get('select')
 			?.setValue((event.target as HTMLSelectElement).value, {
-				onlySelf: true,
+				onlySelf: true
 			});
 	};
 
@@ -185,16 +170,13 @@ export class FormComponent {
 				radio: this.radio,
 				checkbox: this.model.checkbox,
 				checkbox2: this.model.checkbox2,
-				tags: this.tags,
-			}),
+				tags: this.tags
+			})
 		);
 	}
 
 	handleChange(event: Event | void) {
-		if (!event) {
-			return;
-		}
-
+		if (!event) return;
 		console.log(event.currentTarget);
 		this.checkedSignal.set((event.target as HTMLInputElement).checked);
 		this.checkedNonSignal = (event.target as HTMLInputElement).checked;

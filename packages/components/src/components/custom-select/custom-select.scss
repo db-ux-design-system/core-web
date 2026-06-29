@@ -1,11 +1,11 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '../../styles/internal/form-components';
-@use '../../styles/internal/component';
-@use '../../styles/internal/select-components';
-@use '../../styles/dialog-init';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/component";
+@use "../../styles/internal/select-components";
+@use "../../styles/dialog-init";
 
 .db-custom-select-placeholder {
 	@extend %select-absolute-placeholder;
@@ -17,7 +17,8 @@
 			#{variables.$db-spacing-fixed-sm}
 	);
 	--db-form-component-padding-inline-start: calc(
-		#{select-components.$has-before-padding} + #{variables.$db-spacing-fixed-xs}
+		#{select-components.$has-before-padding} +
+			#{variables.$db-spacing-fixed-xs}
 	);
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 
@@ -26,42 +27,43 @@
 
 	position: relative;
 
-	&[data-icon]:not([data-show-icon='false']) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
 	&:not([data-width]),
-	&[data-width='full'] {
+	&[data-width="full"] {
 		&,
 		.db-custom-select-form-field {
 			inline-size: 100%;
 		}
 	}
 
-	&[data-hide-label='true'] {
+	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;
 	}
 
 	@include form-components.set-default-form-component(summary);
 
-	[id$='-placeholder'] {
+	[id$="-placeholder"] {
 		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 
 		margin-inline-end: calc(
-			#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm}
+			#{form-components.$font-size-height} +
+				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 
 	&:has(summary span) {
-		[id$='-placeholder'] {
+		[id$="-placeholder"] {
 			@include helpers.display(none);
 		}
 	}
 
 	/* custom elements workaround */
-	> db-button > .db-button[data-icon='cross'][data-variant='ghost'],
-	> .db-button[data-icon='cross'][data-variant='ghost'] {
+	> db-button > .db-button[data-icon="cross"][data-variant="ghost"],
+	> .db-button[data-icon="cross"][data-variant="ghost"] {
 		--db-tooltip-parent-position: absolute;
 
 		inset-block-start: form-components.$icon-inline-block-start;
@@ -73,7 +75,7 @@
 				#{variables.$db-spacing-fixed-xs}
 		);
 
-		@include helpers.divider('right', 'after');
+		@include helpers.divider("right", "after");
 
 		&::after {
 			position: absolute;
@@ -88,7 +90,7 @@
 		@extend %db-neutral-variables;
 	}
 
-	&[data-selected-type='tag'] {
+	&[data-selected-type="tag"] {
 		.db-custom-select-form-field {
 			&:has(:not(div:empty)) {
 				padding-block: variables.$db-spacing-fixed-xs;
@@ -107,12 +109,12 @@
 
 	> details[open] {
 		> summary {
-			@include screen-sizes.screen('sm', 'max') {
+			@include screen-sizes.screen("sm", "max") {
 				&::before {
 					position: fixed;
 					z-index: 9998;
 					inset: 0;
-					content: '';
+					content: "";
 					cursor: default;
 					background-color: dialog-init.$backdrop-color-strong;
 					opacity: variables.$db-opacity-lg;
@@ -120,12 +122,12 @@
 			}
 
 			> span > span::after {
-				content: ': ';
+				content: ": ";
 			}
 		}
 	}
 
-	&[data-variant='floating'] {
+	&[data-variant="floating"] {
 		.db-custom-select-form-field {
 			> span {
 				/* stylelint-disable-next-line db-ux/use-spacings */

@@ -1,5 +1,5 @@
-import type {Decorator} from '@storybook/react-vite';
-import {useEffect, useRef} from 'react';
+import type { Decorator } from '@storybook/react-vite';
+import { useEffect, useRef } from 'react';
 
 /**
  * Global map storing captured innerHTML for each story.
@@ -18,7 +18,7 @@ export const htmlCaptureDecorator: Decorator = (Story, context) => {
 	}, [context.id]);
 
 	return (
-		<div ref={containerRef} style={{display: 'contents'}}>
+		<div ref={containerRef} style={{ display: 'contents' }}>
 			<Story />
 		</div>
 	);

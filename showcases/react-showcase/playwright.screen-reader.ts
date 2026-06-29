@@ -1,5 +1,5 @@
-import {screenReaderConfig} from '@guidepup/playwright';
-import {type PlaywrightTestConfig} from '@playwright/test';
+import { screenReaderConfig } from '@guidepup/playwright';
+import { type PlaywrightTestConfig } from '@playwright/test';
 import showcaseConfig from '../playwright.showcase';
 
 const defaultScreenReaderConfig: PlaywrightTestConfig = {
@@ -13,8 +13,8 @@ const defaultScreenReaderConfig: PlaywrightTestConfig = {
 	webServer: {
 		command: `npm run preview`,
 		port: 8080,
-		reuseExistingServer: !process.env.CI,
-	},
+		reuseExistingServer: !process.env.CI
+	}
 };
 
 export default defaultScreenReaderConfig;

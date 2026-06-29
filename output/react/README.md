@@ -27,11 +27,11 @@ pnpm add @db-ux/core-vite-plugin --save-dev
 Add the plugin to your `vite.config.ts`:
 
 ```ts
-import {defineConfig} from 'vite';
-import dbUxPlugin from '@db-ux/core-vite-plugin';
+import { defineConfig } from "vite";
+import dbUxPlugin from "@db-ux/core-vite-plugin";
 
 export default defineConfig({
-	plugins: [dbUxPlugin()],
+	plugins: [dbUxPlugin()]
 });
 ```
 
@@ -39,7 +39,7 @@ Then import the plugin in your CSS file:
 
 ```css
 /* index.css */
-@import '@db-ux/core-vite-plugin/index.css';
+@import "@db-ux/core-vite-plugin/index.css";
 ```
 
 📖 **[Learn more about `@db-ux/core-vite-plugin` node package](https://www.npmjs.com/package/@db-ux/core-vite-plugin)**
@@ -55,16 +55,16 @@ pnpm add @db-ux/core-postcss-plugin --save-dev
 Configure it in `vite.config.ts`:
 
 ```ts
-import {defineConfig} from 'vite';
-import {dbUxFlatten} from '@db-ux/core-postcss-plugin';
+import { defineConfig } from "vite";
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
 
 export default defineConfig({
 	css: {
-		transformer: 'postcss', // required for Vite 8+ (default: 'lightningcss')
+		transformer: "postcss", // required for Vite 8+ (default: 'lightningcss')
 		postcss: {
-			plugins: [dbUxFlatten()],
-		},
-	},
+			plugins: [dbUxFlatten()]
+		}
+	}
 });
 ```
 
@@ -78,10 +78,10 @@ If you're not using Vite or prefer manual setup, import the styles in your main 
 /* index.css */
 @layer whitelabel-theme, db-ux;
 /* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
-@import '@db-ux/core-foundations/build/styles/theme/rollup.css'
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
 	layer(whitelabel-theme);
 
-@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 ### Vite 8
@@ -92,8 +92,8 @@ Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](htt
 // vite.config.ts
 export default defineConfig({
 	build: {
-		cssMinify: 'esbuild',
-	},
+		cssMinify: "esbuild"
+	}
 });
 ```
 
@@ -104,17 +104,19 @@ export default defineConfig({
 // npm install -D lightningcss browserslist
 
 // vite.config.ts
-import {browserslistToTargets} from 'lightningcss';
-import browserslist from 'browserslist';
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
 export default defineConfig({
 	css: {
 		lightningcss: {
 			targets: browserslistToTargets(
-				browserslist('>= 0.5%, last 2 major versions, Firefox ESR, not dead'),
-			),
-		},
-	},
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
+		}
+	}
 });
 ```
 
@@ -125,15 +127,15 @@ Starting with Next 16, the default CSS minifier was changed to [LightningCSS](ht
 ```ts
 // next.config.ts
 
-import type {NextConfig} from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	experimental: {
 		useLightningcss: true,
 		lightningCssFeatures: {
-			exclude: ['light-dark'],
-		},
-	},
+			exclude: ["light-dark"]
+		}
+	}
 };
 
 export default nextConfig;
@@ -146,9 +148,9 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 ## Usage
 
 ```tsx
-import {DBButton} from '@db-ux/react-core-components';
+import { DBButton } from "@db-ux/react-core-components";
 
-<DBButton variant="brand" onClick={() => console.log('clicked')}>
+<DBButton variant="brand" onClick={() => console.log("clicked")}>
 	Add item to cart
 </DBButton>;
 ```
@@ -183,25 +185,25 @@ pnpm add eslint @db-ux/core-eslint-plugin @typescript-eslint/parser --save-dev
 
 ```js
 // eslint.config.js
-import dbUx from '@db-ux/core-eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import dbUx from "@db-ux/core-eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 
 export default [
 	{
-		files: ['**/*.ts', '**/*.tsx'],
+		files: ["**/*.ts", "**/*.tsx"],
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
-				ecmaVersion: 'latest',
-				sourceType: 'module',
-				ecmaFeatures: {jsx: true},
-			},
+				ecmaVersion: "latest",
+				sourceType: "module",
+				ecmaFeatures: { jsx: true }
+			}
 		},
 		plugins: {
-			'db-ux': dbUx,
+			"db-ux": dbUx
 		},
-		rules: dbUx.configs.recommended.rules,
-	},
+		rules: dbUx.configs.recommended.rules
+	}
 ];
 ```
 

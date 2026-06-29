@@ -35,15 +35,15 @@ import { DBCheckbox } from '@db-ux/ngx-core-components';
 
 ```ts app.component.ts
 // app.component.ts
-import {Component} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-	selector: 'app-app',
-	templateUrl: './app.component.html',
+	selector: "app-app",
+	templateUrl: "./app.component.html"
 })
 export class AppComponent {
-	checkboxNames = ['X', 'Y', 'Z'];
-	checkbox = '';
+	checkboxNames = ["X", "Y", "Z"];
+	checkbox = "";
 }
 ```
 
@@ -59,14 +59,14 @@ The message property of the db-checkbox does not accept HTML content for securit
 ```
 
 ```ts app.component.ts
-import {Component} from '@angular/core';
-import {DBCheckbox, DBInfotext} from '@db-ux/ngx-core-components';
+import { Component } from "@angular/core";
+import { DBCheckbox, DBInfotext } from "@db-ux/ngx-core-components";
 
 @Component({
-	selector: 'app-root',
+	selector: "app-root",
 	standalone: true,
 	imports: [DBCheckbox, DBInfotext],
-	templateUrl: './app.component.html',
+	templateUrl: "./app.component.html"
 })
 export class AppComponent {}
 ```
@@ -113,9 +113,9 @@ import { FormsModule } from '@angular/forms';
 ```ts form.component.ts
 // form.component.ts
 export class FormComponent {
-	checkbox = '';
+	checkbox = "";
 	showValues(): void {
-		alert(JSON.stringify({checkbox: this.checkbox}));
+		alert(JSON.stringify({ checkbox: this.checkbox }));
 	}
 }
 ```

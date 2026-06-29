@@ -11,7 +11,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	SizeProps,
+	SizeProps
 } from '../../shared/model';
 
 export type DBCheckboxDefaultProps = {

@@ -5,7 +5,7 @@ import type {
 	NameState,
 	TextProps,
 	ToggleEventProps,
-	ToggleEventState,
+	ToggleEventState
 } from '../../shared/model';
 
 export type DBAccordionItemDefaultProps = {

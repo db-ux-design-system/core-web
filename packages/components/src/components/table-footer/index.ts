@@ -1,1 +1,1 @@
-export {default as DBTableFooter} from './table-footer';
+export { default as DBTableFooter } from './table-footer';

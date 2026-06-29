@@ -1,10 +1,10 @@
-import {execSync} from 'node:child_process';
+import { execSync } from 'node:child_process';
 
 export const checkSnapshotChanges = (aria = true, branch = ''): boolean => {
 	try {
 		// Run the Git command to check for changes compared to the main branch
 		const changedFiles = execSync(`git diff ${branch} --name-only`, {
-			encoding: 'utf8',
+			encoding: 'utf8'
 		})
 			.split('\n')
 			.filter(Boolean);
@@ -13,12 +13,12 @@ export const checkSnapshotChanges = (aria = true, branch = ''): boolean => {
 		return changedFiles.some(
 			(file) =>
 				file.startsWith('__snapshots__') &&
-				file.endsWith(aria ? '-aria-snapshot.yaml' : '-screenshot.png'),
+				file.endsWith(aria ? '-aria-snapshot.yaml' : '-screenshot.png')
 		);
 	} catch (error: unknown) {
 		console.error(
 			'Error while checking for changes:',
-			error instanceof Error ? error.message : String(error),
+			error instanceof Error ? error.message : String(error)
 		);
 		return false;
 	}

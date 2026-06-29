@@ -1,4 +1,4 @@
-import {type PlaywrightTestConfig} from '@playwright/test';
+import { type PlaywrightTestConfig } from '@playwright/test';
 
 const showcaseConfig: PlaywrightTestConfig = {
 	/* Retry on CI only */
@@ -10,16 +10,16 @@ const showcaseConfig: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080/${process.env.showcase}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'on-first-retry' : 'on',
+		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	webServer: {
 		command: `cd ${process.env.showcase} && npm run preview`,
 		port: 8080,
-		reuseExistingServer: !process.env.CI,
+		reuseExistingServer: !process.env.CI
 	},
 
 	/* Folder for test artifacts such as screenshots, videos, traces, etc. */
-	outputDir: `./${process.env.showcase}/test-results/`,
+	outputDir: `./${process.env.showcase}/test-results/`
 };
 
 export default showcaseConfig;

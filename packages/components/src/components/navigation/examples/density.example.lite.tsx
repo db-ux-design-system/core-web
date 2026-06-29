@@ -1,13 +1,13 @@
-import {Fragment, useMetadata, useTarget} from '@builder.io/mitosis';
+import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 import DBNavigation from '../navigation.lite';
-import {StorybookNavigationArgTypes} from './_navigation.arg.types';
+import { StorybookNavigationArgTypes } from './_navigation.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookNavigationArgTypes,
+	storybookArgTypes: StorybookNavigationArgTypes
 });
 
 export default function NavigationDensity() {
@@ -18,19 +18,17 @@ export default function NavigationDensity() {
 					id="functional"
 					size="small"
 					semantic="informational"
-					icon="none"
-				>
+					icon="none">
 					Functional
 				</DBInfotext>
 				<DBNavigation
 					{...useTarget({
 						angular: {
-							'data-x': 'workaround-angular',
+							'data-x': 'workaround-angular'
 						},
-						default: {},
+						default: {}
 					})}
-					aria-labelledby="functional"
-				>
+					aria-labelledby="functional">
 					<DBNavigationItem
 						subNavigation={
 							<>
@@ -43,19 +41,19 @@ export default function NavigationDensity() {
 												</a>
 											</DBNavigationItem>
 											<DBNavigationItem>
-												<a href="#">Sub-Sub-Navi-Item 2</a>
+												<a href="#">
+													Sub-Sub-Navi-Item 2
+												</a>
 											</DBNavigationItem>
 										</>
-									}
-								>
+									}>
 									Sub-Navi-Item 1
 								</DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Navi-Item 2</a>
 								</DBNavigationItem>
 							</>
-						}
-					>
+						}>
 						Navi-Item 1
 					</DBNavigationItem>
 					<DBNavigationItem icon="x_placeholder">
@@ -71,19 +69,17 @@ export default function NavigationDensity() {
 					id="_default__regular"
 					size="small"
 					semantic="informational"
-					icon="none"
-				>
+					icon="none">
 					(Default) Regular
 				</DBInfotext>
 				<DBNavigation
 					{...useTarget({
 						angular: {
-							'data-x': 'workaround-angular',
+							'data-x': 'workaround-angular'
 						},
-						default: {},
+						default: {}
 					})}
-					aria-labelledby="_default__regular"
-				>
+					aria-labelledby="_default__regular">
 					<DBNavigationItem
 						subNavigation={
 							<>
@@ -96,19 +92,19 @@ export default function NavigationDensity() {
 												</a>
 											</DBNavigationItem>
 											<DBNavigationItem>
-												<a href="#">Sub-Sub-Navi-Item 2</a>
+												<a href="#">
+													Sub-Sub-Navi-Item 2
+												</a>
 											</DBNavigationItem>
 										</>
-									}
-								>
+									}>
 									Sub-Navi-Item 1
 								</DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Navi-Item 2</a>
 								</DBNavigationItem>
 							</>
-						}
-					>
+						}>
 						Navi-Item 1
 					</DBNavigationItem>
 					<DBNavigationItem icon="x_placeholder">
@@ -124,19 +120,17 @@ export default function NavigationDensity() {
 					id="expressive"
 					size="small"
 					semantic="informational"
-					icon="none"
-				>
+					icon="none">
 					Expressive
 				</DBInfotext>
 				<DBNavigation
 					{...useTarget({
 						angular: {
-							'data-x': 'workaround-angular',
+							'data-x': 'workaround-angular'
 						},
-						default: {},
+						default: {}
 					})}
-					aria-labelledby="expressive"
-				>
+					aria-labelledby="expressive">
 					<DBNavigationItem
 						subNavigation={
 							<>
@@ -149,19 +143,19 @@ export default function NavigationDensity() {
 												</a>
 											</DBNavigationItem>
 											<DBNavigationItem>
-												<a href="#">Sub-Sub-Navi-Item 2</a>
+												<a href="#">
+													Sub-Sub-Navi-Item 2
+												</a>
 											</DBNavigationItem>
 										</>
-									}
-								>
+									}>
 									Sub-Navi-Item 1
 								</DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Navi-Item 2</a>
 								</DBNavigationItem>
 							</>
-						}
-					>
+						}>
 						Navi-Item 1
 					</DBNavigationItem>
 					<DBNavigationItem icon="x_placeholder">

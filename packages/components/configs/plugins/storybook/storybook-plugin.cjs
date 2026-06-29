@@ -1,8 +1,8 @@
-const {targetMapping} = require('./target-mapping.cjs');
-const {resolveImports, resolveDataImports} = require('./resolve-imports.cjs');
-const {getMetaObject} = require('./get-meta-object.cjs');
-const {getStories} = require('./get-stories.cjs');
-const {toPascalCase} = require('../utils.cjs');
+const { targetMapping } = require('./target-mapping.cjs');
+const { resolveImports, resolveDataImports } = require('./resolve-imports.cjs');
+const { getMetaObject } = require('./get-meta-object.cjs');
+const { getStories } = require('./get-stories.cjs');
+const { toPascalCase } = require('../utils.cjs');
 
 /**
  * Mitosis plugin for generating Storybook stories
@@ -13,8 +13,8 @@ module.exports = () => ({
 	name: 'storybook-plugin',
 	code: {
 		post: (code, json) => {
-			const {imports, pluginData, name, children, meta} = json;
-			const {target, path} = pluginData;
+			const { imports, pluginData, name, children, meta } = json;
+			const { target, path } = pluginData;
 			const targetMapItem = targetMapping[target].storyBookLib;
 
 			const componentNameLowercase = path.split('/')[2];
@@ -22,7 +22,7 @@ module.exports = () => ({
 				meta?.useMetadata?.storybookComponentName ??
 				`DB${toPascalCase(componentNameLowercase)}`;
 
-			const {allImports} = resolveImports(imports);
+			const { allImports } = resolveImports(imports);
 			const dataImports = resolveDataImports(imports);
 
 			if (target === 'angular') {
@@ -32,14 +32,14 @@ module.exports = () => ({
 					'MetaNavigationDirective',
 					'NavigationDirective',
 					'NavigationContentDirective',
-					'SecondaryActionDirective',
+					'SecondaryActionDirective'
 				);
 			}
 
 			// Validate component import
 			if (!componentName)
 				throw new Error(
-					`Miss component with ../${componentNameLowercase}.lite inside example`,
+					`Miss component with ../${componentNameLowercase}.lite inside example`
 				);
 
 			// Validate Fragment wrapper
@@ -48,13 +48,13 @@ module.exports = () => ({
 				(children[0].name === 'Fragment' || children[0].name === 'div')
 			) {
 				throw Error(
-					`You need to wrap your example with a mitosis <Fragment> or a wrapping <div>`,
+					`You need to wrap your example with a mitosis <Fragment> or a wrapping <div>`
 				);
 			}
 
 			const examples = children[0].children.filter(
 				(example) =>
-					!example.properties || !example.properties['data-sb-ignore'],
+					!example.properties || !example.properties['data-sb-ignore']
 			);
 
 			// Generate Storybook file content
@@ -71,7 +71,7 @@ module.exports = () => ({
 					componentName,
 					name,
 					meta,
-					allImports,
+					allImports
 				}),
 				getStories({
 					json,
@@ -82,9 +82,9 @@ module.exports = () => ({
 					componentNameLowercase,
 					componentName,
 					code,
-					allImports,
-				}),
+					allImports
+				})
 			].join('\n');
-		},
-	},
+		}
+	}
 });

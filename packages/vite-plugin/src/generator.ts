@@ -1,6 +1,6 @@
-import {readdirSync} from 'node:fs';
-import {resolve} from 'node:path';
-import type {FoundationFeature, GenerateOptions} from './types.js';
+import { readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import type { FoundationFeature, GenerateOptions } from './types.js';
 
 /** Maps foundation feature names to their CSS file paths relative to build/styles/. */
 const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
@@ -8,32 +8,32 @@ const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
 	elevation: 'defaults/default-elevation.css',
 	animations: 'component-animations.css',
 	icons: 'defaults/default-icons.css',
-	code: 'defaults/default-code.css',
+	code: 'defaults/default-code.css'
 };
 
 /** Theme package scopes to search for installed themes. */
 const THEME_SCOPES = ['@db-ux', '@db-ux-inner-source'] as const;
 
 /**
- Auto-detect the installed DB UX theme package (e.g. @db-ux/db-theme).
- Tries to resolve known theme packages directly, falling back to
- filesystem scanning for custom theme packages.
- Returns the package specifier or null if no theme is found.
+ * Auto-detect the installed DB UX theme package (e.g. @db-ux/db-theme).
+ * Tries to resolve known theme packages directly, falling back to
+ * filesystem scanning for custom theme packages.
+ * Returns the package specifier or null if no theme is found.
  */
 function detectTheme(
 	root: string,
-	preferredTheme?: string,
+	preferredTheme?: string
 ): string | undefined {
 	// Try to resolve known/preferred theme packages directly first
 	const candidatePackages = preferredTheme
 		? [preferredTheme]
 		: THEME_SCOPES.flatMap((scope) =>
-				['db-theme', 'db-theme-db'].map((name) => `${scope}/${name}`),
+				['db-theme', 'db-theme-db'].map((name) => `${scope}/${name}`)
 			);
 
 	for (const pkg of candidatePackages) {
 		try {
-			require.resolve(`${pkg}/package.json`, {paths: [root]});
+			require.resolve(`${pkg}/package.json`, { paths: [root] });
 			return pkg;
 		} catch {
 			// Not found, try next
@@ -47,10 +47,10 @@ function detectTheme(
 			try {
 				const scopeDir = resolve(currentDir, 'node_modules', scope);
 				const packages = readdirSync(scopeDir);
-				const themePackages = packages.filter((pkg) => pkg.endsWith('-theme'));
-				if (themePackages.length === 0) {
-					continue;
-				}
+				const themePackages = packages.filter((pkg) =>
+					pkg.endsWith('-theme')
+				);
+				if (themePackages.length === 0) continue;
 
 				const match =
 					preferredTheme && themePackages.includes(preferredTheme)
@@ -63,10 +63,7 @@ function detectTheme(
 		}
 
 		const parentDir = resolve(currentDir, '..');
-		if (parentDir === currentDir) {
-			break;
-		}
-
+		if (parentDir === currentDir) break;
 		currentDir = parentDir;
 	}
 
@@ -74,9 +71,9 @@ function detectTheme(
 }
 
 /**
- Generate the CSS import statements based on detected/discovered values.
- Produces @import rules for theme, foundations, colors, densities,
- font sizes, and component styles, all wrapped in @layer declarations.
+ * Generate the CSS import statements based on detected/discovered values.
+ * Produces @import rules for theme, foundations, colors, densities,
+ * font sizes, and component styles, all wrapped in @layer declarations.
  */
 export function generateCSS(options: GenerateOptions): string {
 	const {
@@ -86,9 +83,9 @@ export function generateCSS(options: GenerateOptions): string {
 		theme: preferredTheme,
 		hasTailwind,
 		overrideLayers,
-		additionalLayers,
+		additionalLayers
 	} = options;
-	const {components, foundations, colors, densities, fontSizes} = include;
+	const { components, foundations, colors, densities, fontSizes } = include;
 	const imports: string[] = [];
 
 	const theme = detectTheme(root, preferredTheme);
@@ -101,7 +98,14 @@ export function generateCSS(options: GenerateOptions): string {
 		let autoLayers: string[];
 		if (hasTailwind) {
 			autoLayers = themeName
-				? [themeName, 'theme', 'base', 'components', 'db-ux', 'utilities']
+				? [
+						themeName,
+						'theme',
+						'base',
+						'components',
+						'db-ux',
+						'utilities'
+					]
 				: ['theme', 'base', 'components', 'db-ux', 'utilities'];
 		} else {
 			autoLayers = themeName ? [themeName, 'db-ux'] : ['db-ux'];
@@ -122,26 +126,26 @@ export function generateCSS(options: GenerateOptions): string {
 	if (theme) {
 		imports.push(
 			`@import "${theme}/build/styles/rollup.css" layer(${themeName});`,
-			'@import "@db-ux/core-foundations/build/styles/defaults/default-container-properties.css" layer(db-ux);',
+			`@import "@db-ux/core-foundations/build/styles/defaults/default-container-properties.css" layer(db-ux);`
 		);
 	} else {
 		imports.push(
-			'@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);',
-			'@import "@db-ux/core-foundations/build/styles/fonts/rollup.css" layer(db-ux);',
+			`@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);`,
+			`@import "@db-ux/core-foundations/build/styles/fonts/rollup.css" layer(db-ux);`
 		);
 	}
 
 	// Tailwind theme
 	if (hasTailwind) {
 		imports.push(
-			'@import "@db-ux/core-foundations/build/tailwind/theme/index.css";',
+			`@import "@db-ux/core-foundations/build/tailwind/theme/index.css";`
 		);
 	}
 
 	// Required foundation styles
 	imports.push(
-		'@import "@db-ux/core-foundations/build/styles/defaults/default-required.css" layer(db-ux);',
-		'@import "@db-ux/core-foundations/build/styles/defaults/default-root.css" layer(db-ux);',
+		`@import "@db-ux/core-foundations/build/styles/defaults/default-required.css" layer(db-ux);`,
+		`@import "@db-ux/core-foundations/build/styles/defaults/default-root.css" layer(db-ux);`
 	);
 
 	// Optional foundation features
@@ -155,7 +159,9 @@ export function generateCSS(options: GenerateOptions): string {
 				feature === 'animations'
 					? '@db-ux/core-components'
 					: '@db-ux/core-foundations';
-			imports.push(`@import "${basePath}/build/styles/${path}" layer(db-ux);`);
+			imports.push(
+				`@import "${basePath}/build/styles/${path}" layer(db-ux);`
+			);
 		}
 	}
 
@@ -163,7 +169,7 @@ export function generateCSS(options: GenerateOptions): string {
 	for (const color of colors || []) {
 		if (!exclude.colors?.includes(color)) {
 			imports.push(
-				`@import "@db-ux/core-foundations/build/styles/colors/classes/${color}.css" layer(db-ux);`,
+				`@import "@db-ux/core-foundations/build/styles/colors/classes/${color}.css" layer(db-ux);`
 			);
 		}
 	}
@@ -172,7 +178,7 @@ export function generateCSS(options: GenerateOptions): string {
 	for (const density of densities || []) {
 		if (!exclude.densities?.includes(density)) {
 			imports.push(
-				`@import "@db-ux/core-foundations/build/styles/density/classes/${density}.css" layer(db-ux);`,
+				`@import "@db-ux/core-foundations/build/styles/density/classes/${density}.css" layer(db-ux);`
 			);
 		}
 	}
@@ -182,7 +188,7 @@ export function generateCSS(options: GenerateOptions): string {
 		if (!exclude.fontSizes?.includes(fontSize)) {
 			const [category, size] = fontSize.split('-');
 			imports.push(
-				`@import "@db-ux/core-foundations/build/styles/fonts/classes/${category}/${size}.css" layer(db-ux);`,
+				`@import "@db-ux/core-foundations/build/styles/fonts/classes/${category}/${size}.css" layer(db-ux);`
 			);
 		}
 	}
@@ -191,7 +197,7 @@ export function generateCSS(options: GenerateOptions): string {
 	for (const component of components || []) {
 		if (!exclude.components?.includes(component)) {
 			imports.push(
-				`@import "@db-ux/core-components/build/components/${component}/${component}.css" layer(db-ux);`,
+				`@import "@db-ux/core-components/build/components/${component}/${component}.css" layer(db-ux);`
 			);
 		}
 	}

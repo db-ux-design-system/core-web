@@ -1,14 +1,14 @@
-import stylelint, {type Config} from 'stylelint';
-import {describe, expect, test} from 'vitest';
+import stylelint, { type Config } from 'stylelint';
+import { describe, expect, test } from 'vitest';
 import useBorderWidth from '../../src/rules/use-border-width.js';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
-	getVueTest,
+	getVueTest
 } from '../defaults.js';
 
-const {lint} = stylelint;
+const { lint } = stylelint;
 
 const ruleName = 'db-ux/use-border-width';
 
@@ -16,8 +16,8 @@ const config: Config = {
 	...defaultConfig,
 	plugins: [useBorderWidth],
 	rules: {
-		[ruleName]: true,
-	},
+		[ruleName]: true
+	}
 };
 
 describe(`${ruleName}`, () => {
@@ -35,7 +35,7 @@ describe(`${ruleName}`, () => {
 
 	test('allows transparent value', async () => {
 		const {
-			results: [{warnings, parseErrors}],
+			results: [{ warnings, parseErrors }]
 		} = await lint({
 			code: `
 .transparent-with-db-width {
@@ -46,7 +46,7 @@ describe(`${ruleName}`, () => {
 	border: 1px solid transparent;
 }
 			`,
-			config,
+			config
 		});
 
 		expect(parseErrors).toHaveLength(0);
@@ -58,7 +58,7 @@ describe(`${ruleName}`, () => {
 
 	test('allows all border properties with valid widths', async () => {
 		const {
-			results: [{warnings, parseErrors}],
+			results: [{ warnings, parseErrors }]
 		} = await lint({
 			code: `
 .physical-borders {
@@ -78,7 +78,7 @@ describe(`${ruleName}`, () => {
 	border-inline-end: var(--db-border-width-sm) solid transparent;
 }
 			`,
-			config,
+			config
 		});
 
 		expect(parseErrors).toHaveLength(0);
@@ -87,7 +87,7 @@ describe(`${ruleName}`, () => {
 
 	test('rejects invalid widths in all border properties', async () => {
 		const {
-			results: [{warnings, parseErrors}],
+			results: [{ warnings, parseErrors }]
 		} = await lint({
 			code: `
 .physical-borders {
@@ -107,7 +107,7 @@ describe(`${ruleName}`, () => {
 	border-inline-end: 6px solid transparent;
 }
 			`,
-			config,
+			config
 		});
 
 		expect(parseErrors).toHaveLength(0);

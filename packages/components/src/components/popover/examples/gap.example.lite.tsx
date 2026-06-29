@@ -1,12 +1,12 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBPopover from '../popover.lite';
-import {StorybookPopoverArgTypes} from './_popover.arg.types';
+import { StorybookPopoverArgTypes } from './_popover.arg.types';
 
 useMetadata({
 	storybookTitle: 'Gap',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookPopoverArgTypes,
+	storybookArgTypes: StorybookPopoverArgTypes
 });
 
 export default function PopoverGap() {
@@ -15,8 +15,7 @@ export default function PopoverGap() {
 			<DBPopover
 				gap={false}
 				id="popover-11"
-				trigger={<DBButton>(Default) False</DBButton>}
-			>
+				trigger={<DBButton>(Default) False</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
@@ -25,7 +24,10 @@ export default function PopoverGap() {
 					<DBButton>Popover Custom Item 3</DBButton>
 				</>
 			</DBPopover>
-			<DBPopover gap={true} id="popover-12" trigger={<DBButton>True</DBButton>}>
+			<DBPopover
+				gap={true}
+				id="popover-12"
+				trigger={<DBButton>True</DBButton>}>
 				<>
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>

@@ -1,9 +1,9 @@
 import AxeBuilder from '@axe-core/playwright';
-import {expect, test} from '@playwright/experimental-ct-react';
+import { expect, test } from '@playwright/experimental-ct-react';
 
-import {DBButton} from './index';
+import { DBButton } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import {DEFAULT_VIEWPORT} from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const defaultButton: any = (
 	<DBButton onClick={() => alert('test')}>Test</DBButton>
@@ -22,17 +22,23 @@ const testButton = () => {
 				User
 			</DBButton>
 		);
-		test(`should contain text for variant ${variant}`, async ({mount}) => {
+		test(`should contain text for variant ${variant}`, async ({
+			mount
+		}) => {
 			const component = await mount(variantButton);
 			await expect(component).toContainText('Test');
 		});
 
-		test(`should match screenshot for variant ${variant}`, async ({mount}) => {
+		test(`should match screenshot for variant ${variant}`, async ({
+			mount
+		}) => {
 			const component = await mount(variantButton);
 			await expect(component).toHaveScreenshot();
 		});
 
-		test(`should only have icon for variant ${variant}`, async ({mount}) => {
+		test(`should only have icon for variant ${variant}`, async ({
+			mount
+		}) => {
 			const component = await mount(variantIconButton);
 			await expect(component).toHaveScreenshot();
 		});
@@ -40,14 +46,14 @@ const testButton = () => {
 };
 
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({mount}, testInfo) => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
 		const component = await mount(defaultIconButton);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have A11y issues', async ({page, mount}) => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultButton);
-		const accessibilityScanResults = await new AxeBuilder({page})
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
 
@@ -56,10 +62,10 @@ const testA11y = () => {
 
 	test('DBButton with icon only should not have A11y issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(defaultIconButton);
-		const accessibilityScanResults = await new AxeBuilder({page})
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
 
@@ -68,7 +74,7 @@ const testA11y = () => {
 };
 
 const testAction = () => {
-	test(`should open alert`, async ({mount, page}) => {
+	test(`should open alert`, async ({ mount, page }) => {
 		let test = '';
 		const button: any = (
 			<DBButton onClick={() => (test = 'test')}>Test</DBButton>
@@ -79,19 +85,19 @@ const testAction = () => {
 	});
 
 	test('should forward invoker command attributes when provided', async ({
-		mount,
+		mount
 	}) => {
 		const component = await mount(
 			<DBButton command="show-modal" commandfor="dialog">
 				Test
-			</DBButton>,
+			</DBButton>
 		);
 		await expect(component).toHaveAttribute('command', 'show-modal');
 		await expect(component).toHaveAttribute('commandfor', 'dialog');
 	});
 
 	test('should omit invoker command attributes when not provided', async ({
-		mount,
+		mount
 	}) => {
 		const component = await mount(<DBButton>Test</DBButton>);
 		await expect(component).not.toHaveAttribute('command');
@@ -100,7 +106,7 @@ const testAction = () => {
 };
 
 test.describe('DBButton', () => {
-	test.use({viewport: DEFAULT_VIEWPORT});
+	test.use({ viewport: DEFAULT_VIEWPORT });
 	testButton();
 	testA11y();
 	testAction();

@@ -8,10 +8,10 @@ import {
 	DBTableHead,
 	DBTableHeaderCell,
 	DBTableRow,
-	DBTooltip,
-} from '@components';
-import {FlexRender, type RowData, type Table} from '@tanstack/vue-table';
-import Filter from './Filter.vue';
+	DBTooltip
+} from "@components";
+import { FlexRender, type RowData, type Table } from "@tanstack/vue-table";
+import Filter from "./Filter.vue";
 
 interface Props {
 	table: Table<T>;
@@ -19,20 +19,20 @@ interface Props {
 
 defineProps<Props>();
 
-const getSortIcon = (isSorted: false | 'asc' | 'desc') => {
-	if (!isSorted) return 'arrows_vertical';
-	return isSorted === 'asc' ? 'sort_down' : 'sort_up';
+const getSortIcon = (isSorted: false | "asc" | "desc") => {
+	if (!isSorted) return "arrows_vertical";
+	return isSorted === "asc" ? "sort_down" : "sort_up";
 };
 
-const getSortTooltip = (isSorted: false | 'asc' | 'desc') => {
-	if (!isSorted) return 'Sort ascending';
-	return isSorted === 'asc' ? 'Sort descending' : 'Sort ascending';
+const getSortTooltip = (isSorted: false | "asc" | "desc") => {
+	if (!isSorted) return "Sort ascending";
+	return isSorted === "asc" ? "Sort descending" : "Sort ascending";
 };
 </script>
 
 <template>
 	<DBTable
-		:columnSizes="{0: 'min-content', 4: 'min-content', 5: 'min-content'}"
+		:columnSizes="{ 0: 'min-content', 4: 'min-content', 5: 'min-content' }"
 	>
 		<DBTableHead>
 			<DBTableRow
@@ -66,12 +66,18 @@ const getSortTooltip = (isSorted: false | 'asc' | 'desc') => {
 							v-if="header.column.getCanSort()"
 							variant="ghost"
 							size="small"
-							@click="header.column.getToggleSortingHandler()?.($event)"
+							@click="
+								header.column.getToggleSortingHandler()?.(
+									$event
+								)
+							"
 							noText
 							:icon="getSortIcon(header.column.getIsSorted())"
 						>
 							<DBTooltip placement="top">
-								{{ getSortTooltip(header.column.getIsSorted()) }}
+								{{
+									getSortTooltip(header.column.getIsSorted())
+								}}
 							</DBTooltip>
 						</DBButton>
 						<Filter
@@ -89,7 +95,10 @@ const getSortTooltip = (isSorted: false | 'asc' | 'desc') => {
 				:key="row.id"
 				interactive
 			>
-				<DBTableDataCell v-for="cell in row.getVisibleCells()" :key="cell.id">
+				<DBTableDataCell
+					v-for="cell in row.getVisibleCells()"
+					:key="cell.id"
+				>
 					<FlexRender
 						:render="cell.column.columnDef.cell"
 						:props="cell.getContext()"

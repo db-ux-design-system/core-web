@@ -3,7 +3,9 @@
 ```html
 <div class="flex flex-col gap-md">
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-xs">
-		<div class="w-container-md h-siz-lg p-fix-md m-res-sm border-sm radius-md">
+		<div
+			class="w-container-md h-siz-lg p-fix-md m-res-sm border-sm radius-md"
+		>
 			<h1 class="text-head-lg">Headline</h1>
 			<h2 class="text-head-light-md">Subline</h2>
 			<p class="text-body-md">Normal Text</p>

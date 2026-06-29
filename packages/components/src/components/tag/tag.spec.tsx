@@ -1,23 +1,23 @@
 import AxeBuilder from '@axe-core/playwright';
-import {expect, test} from '@playwright/experimental-ct-react';
+import { expect, test } from '@playwright/experimental-ct-react';
 
-import {DBTag} from './index';
+import { DBTag } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import {SEMANTICS} from '../../shared/constants.ts';
-import {DBButton} from '../button';
-import {DBCheckbox} from '../checkbox';
-import {DBLink} from '../link';
-import {DBRadio} from '../radio';
+import { SEMANTICS } from '../../shared/constants.ts';
+import { DBButton } from '../button';
+import { DBCheckbox } from '../checkbox';
+import { DBLink } from '../link';
+import { DBRadio } from '../radio';
 
 const comp: any = <DBTag>Test</DBTag>;
 
 const testComponent = () => {
-	test('should contain text', async ({mount}) => {
+	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('should match screenshot', async ({mount}) => {
+	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
@@ -26,7 +26,7 @@ const testComponent = () => {
 const testVariants = () => {
 	for (const semantic of SEMANTICS) {
 		test(`should match screenshot for semantic ${semantic}`, async ({
-			mount,
+			mount
 		}) => {
 			const variantComp: any = <DBTag semantic={semantic}>Test</DBTag>;
 			const component = await mount(variantComp);
@@ -35,14 +35,14 @@ const testVariants = () => {
 	}
 };
 const testA11y = () => {
-	test('should have same aria-snapshot', async ({mount}, testInfo) => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have A11y issues', async ({page, mount}) => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({page})
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-tag')
 			.analyze();
 
@@ -51,7 +51,7 @@ const testA11y = () => {
 };
 
 const testInterActions = () => {
-	test('should be clickable like a button', async ({mount}) => {
+	test('should be clickable like a button', async ({ mount }) => {
 		let test = '';
 		const buttonTag: any = (
 			<DBTag>
@@ -63,7 +63,7 @@ const testInterActions = () => {
 		expect(test).toEqual('test');
 	});
 
-	test('should be a button', async ({mount}) => {
+	test('should be a button', async ({ mount }) => {
 		const buttonTag: any = (
 			<DBTag>
 				<DBButton>Test</DBButton>
@@ -73,7 +73,7 @@ const testInterActions = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should be a link', async ({mount}) => {
+	test('should be a link', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
 				<DBLink>Test</DBLink>
@@ -83,7 +83,7 @@ const testInterActions = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should be a radio', async ({mount}) => {
+	test('should be a radio', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
 				<DBRadio>Test</DBRadio>
@@ -93,7 +93,7 @@ const testInterActions = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should be a radio checked', async ({mount}) => {
+	test('should be a radio checked', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
 				<DBRadio data-testid="radio">Test</DBRadio>
@@ -104,7 +104,7 @@ const testInterActions = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should be a checkbox', async ({mount}) => {
+	test('should be a checkbox', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
 				<DBCheckbox>Test</DBCheckbox>
@@ -114,7 +114,7 @@ const testInterActions = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should be a checkbox checked', async ({mount}) => {
+	test('should be a checkbox checked', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
 				<DBCheckbox data-testid="checkbox">Test</DBCheckbox>
@@ -125,7 +125,7 @@ const testInterActions = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should be removable', async ({mount}) => {
+	test('should be removable', async ({ mount }) => {
 		let removed = false;
 		const tag: any = (
 			<DBTag behavior="removable" onRemove={() => (removed = true)}>

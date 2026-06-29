@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import {DBHeader, DBBrand} from '@db-ux/v-core-components';
+import { DBHeader, DBBrand } from "@db-ux/v-core-components";
 </script>
 
 <template>
@@ -51,7 +51,9 @@ const toggleDrawer = (open: boolean) => {
 			<DBButton icon="alert" variant="ghost" :no-text="true">
 				Notification
 			</DBButton>
-			<DBButton icon="help" variant="ghost" :no-text="true"> Help </DBButton>
+			<DBButton icon="help" variant="ghost" :no-text="true">
+				Help
+			</DBButton>
 		</template>
 		<template v-slot:meta-navigation>
 			<DBLink href="#">Imprint</DBLink>

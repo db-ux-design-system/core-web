@@ -1,6 +1,6 @@
-@use '../index';
-@use 'get-class';
+@use "../index";
+@use "get-class";
 
-$density: 'expressive';
+$density: "expressive";
 
 @include get-class.init($density);

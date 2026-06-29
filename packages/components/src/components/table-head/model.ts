@@ -1,5 +1,5 @@
-import type {GlobalProps, GlobalState} from '../../shared/model';
-import type {DBTableRowCell, DBTableRowProps} from '../table-row/model';
+import type { GlobalProps, GlobalState } from '../../shared/model';
+import type { DBTableRowCell, DBTableRowProps } from '../table-row/model';
 
 export type DBTableHeadDefaultProps = {
 	rows?: DBTableRowProps[];

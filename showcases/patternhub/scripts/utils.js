@@ -1,8 +1,8 @@
 /**
- @param props {object}
- @param framework {'angular'|'react'|'vue'}
- @param noEvents {boolean}
- @returns {*[]}
+ * @param props {object}
+ * @param framework {'angular'|'react'|'vue'}
+ * @param noEvents {boolean}
+ * @return {*[]}
  */
 const getAttributes = (props, framework, noEvents) => {
 	const attributes = [];
@@ -16,7 +16,7 @@ const getAttributes = (props, framework, noEvents) => {
 					key !== 'identifier' &&
 					key !== 'img' &&
 					key !== 'link' &&
-					key !== 'noContent',
+					key !== 'noContent'
 			)
 		: [];
 
@@ -72,12 +72,12 @@ const getTag = (componentName) =>
 		.join('');
 
 /**
- @param componentName {string}
- @param framework {'angular'|'react'|'vue'}
- @param example {{name:string, props: object,native?:boolean, className?:string, content?:string,children?:{name:string, props: object,native?:boolean}[]}}
- @param noEvents {boolean}
- @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
- @returns {string}
+ * @param componentName {string}
+ * @param framework {'angular'|'react'|'vue'}
+ * @param example {{name:string, props: object,native?:boolean, className?:string, content?:string,children?:{name:string, props: object,native?:boolean}[]}}
+ * @param noEvents {boolean}
+ * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
+ * @returns {string}
  */
 
 export const getCodeByFramework = (
@@ -85,9 +85,9 @@ export const getCodeByFramework = (
 	framework,
 	example,
 	noEvents,
-	children,
+	children
 ) => {
-	const {props, name, content, native} = example;
+	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
 	// Self-contained or composition components
@@ -95,7 +95,7 @@ export const getCodeByFramework = (
 		'input',
 		'select',
 		'textarea',
-		'custom-select',
+		'custom-select'
 	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
@@ -116,7 +116,7 @@ export const getCodeByFramework = (
 	const nonSlots = (children ?? example.children)?.filter(
 		(child) =>
 			!child.slot ||
-			(child.slot.includes('Navigation') && framework !== 'angular'),
+			(child.slot.includes('Navigation') && framework !== 'angular')
 	);
 	const innerContent =
 		nonSlots?.length > 0
@@ -127,17 +127,19 @@ export const getCodeByFramework = (
 							framework,
 							child,
 							noEvents,
-							child.children,
-						),
+							child.children
+						)
 					)
 					.join('\n') + (content ?? '')
 			: (content ??
-				(nonInnerContentComponents.includes(componentName) ? '' : name));
+				(nonInnerContentComponents.includes(componentName)
+					? ''
+					: name));
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
 			? !(child.slot.includes('Navigation') && framework !== 'angular')
-			: false,
+			: false
 	);
 	let reactSlots = '';
 	let otherSlots = '';
@@ -148,7 +150,9 @@ export const getCodeByFramework = (
 				slots
 					.map((child) => {
 						let slotName = getTag(child.slot);
-						slotName = slotName.charAt(0).toLowerCase() + slotName.slice(1);
+						slotName =
+							slotName.charAt(0).toLowerCase() +
+							slotName.slice(1);
 						return `${slotName}={${getCodeByFramework(child.name, framework, child, noEvents, child.children)}}`;
 					})
 					.join('\n');
@@ -162,7 +166,7 @@ export const getCodeByFramework = (
 							framework,
 							child,
 							noEvents,
-							child.children,
+							child.children
 						);
 						if (framework === 'angular') {
 							return `<ng-container ${child.angularDirective ? `*db${getTag(child.slot)}` : child.slot}>${resolvedSlot}</ng-container>`;
@@ -184,7 +188,7 @@ export const getCodeByFramework = (
 			'</',
 			`<${tag}${className} ${attributes.filter((attr) => attr.startsWith('"content')).join(' ')}>${
 				props.content ?? ''
-			}</${tag}></`,
+			}</${tag}></`
 		);
 
 		console.log(tooltipCode);
@@ -216,28 +220,25 @@ export const getColorVariants = () => [
 	'warning-transparent-semi',
 	'informational',
 	'informational-transparent-full',
-	'informational-transparent-semi',
+	'informational-transparent-semi'
 ];
 
 /**
- Clean names by removing spaces and special characters to create valid JavaScript property names
- @param {string} name - The name to clean
- @returns {string} - Cleaned name with only word characters
+ * Clean names by removing spaces and special characters to create valid JavaScript property names
+ * @param {string} name - The name to clean
+ * @returns {string} - Cleaned name with only word characters
  */
 export const cleanupName = (name) => {
-	if (!name) {
-		return '';
-	}
-
+	if (!name) return '';
 	return name.replaceAll(/\s+/g, '').replaceAll(/\W/g, '');
 };
 
 /**
- Generate a consistent key for allExamples object
- @param {string} componentName - Component name
- @param {string} variantName - Variant name (will be cleaned)
- @param {string} exampleName - Example name (will be cleaned)
- @returns {string} - Clean key for allExamples
+ * Generate a consistent key for allExamples object
+ * @param {string} componentName - Component name
+ * @param {string} variantName - Variant name (will be cleaned)
+ * @param {string} exampleName - Example name (will be cleaned)
+ * @returns {string} - Clean key for allExamples
  */
 export const generateExampleKey = (componentName, variantName, exampleName) => {
 	const cleanVariantName = cleanupName(variantName);
@@ -260,6 +261,6 @@ export const getComponentGroup = (components, componentName) =>
 		comp.subNavigation.find(
 			(sub) =>
 				componentName.includes(sub.name) ||
-				componentName.replace('tab-item', 'tabs').includes(sub.name),
-		),
+				componentName.replace('tab-item', 'tabs').includes(sub.name)
+		)
 	);

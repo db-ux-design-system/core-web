@@ -1,6 +1,6 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '@db-ux/core-foundations/build/styles/colors';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
 
 @mixin set-db-puls-horizontal() {
 	&::after {
@@ -26,7 +26,7 @@
 
 %db-puls {
 	&::after {
-		content: '';
+		content: "";
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
 
@@ -44,7 +44,7 @@
 	@extend %db-puls;
 	@include set-db-puls-vertical;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		@include set-db-puls-horizontal;
 	}
 }
@@ -76,7 +76,7 @@
 %show-db-puls-auto {
 	@include show-db-puls-vertical;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		@include show-db-puls-horizontal;
 	}
 }

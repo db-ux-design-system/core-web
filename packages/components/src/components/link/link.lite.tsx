@@ -1,6 +1,11 @@
-import {Show, useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
-import {cls, getBooleanAsString} from '../../utils';
-import {DBLinkProps} from './model';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
+import { cls, getBooleanAsString } from '../../utils';
+import { DBLinkProps } from './model';
 
 useMetadata({});
 
@@ -25,12 +30,11 @@ export default function DBLink(props: DBLinkProps) {
 			data-size={props.size}
 			data-show-icon-trailing={getBooleanAsString(
 				props.showIcon ?? true,
-				'showIcon',
+				'showIcon'
 			)}
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
-			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
-		>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</a>

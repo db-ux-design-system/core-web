@@ -1,4 +1,4 @@
-import {DBNotification} from '../index';
+import { DBNotification } from '../index';
 
 export default function Notification() {
 	return (
@@ -12,7 +12,9 @@ export default function Notification() {
 			<DBNotification semantic="adaptive">Adaptive</DBNotification>
 			<DBNotification semantic="neutral">Neutral</DBNotification>
 			<DBNotification semantic="critical">Critical</DBNotification>
-			<DBNotification semantic="informational">Informational</DBNotification>
+			<DBNotification semantic="informational">
+				Informational
+			</DBNotification>
 			<DBNotification semantic="warning">Warning</DBNotification>
 			<DBNotification semantic="successful">Successful</DBNotification>
 
@@ -38,7 +40,9 @@ export default function Notification() {
 			<DBNotification icon="info">Notification with Icon</DBNotification>
 
 			<h2>8. Custom Class</h2>
-			<DBNotification className="my-custom-class">Custom Class</DBNotification>
+			<DBNotification className="my-custom-class">
+				Custom Class
+			</DBNotification>
 		</>
 	);
 }

@@ -1,9 +1,9 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/icons';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '../../styles/internal/button-components';
-@use '../../styles/internal/icon-passing';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/icon-passing";
 
 @mixin interactive-elements {
 	label,
@@ -32,12 +32,12 @@ $icon-padding-custom-button: calc(
 
 	&:has(
 		:is(input, button):disabled,
-		:is(input, button, a)[aria-disabled='true']
+		:is(input, button, a)[aria-disabled="true"]
 	) {
 		opacity: variables.$db-opacity-md;
 	}
 
-	&[data-variant='brand'] {
+	&[data-variant="brand"] {
 		label {
 			@extend %button-outlined-ghost-colors;
 		}
@@ -47,7 +47,7 @@ $icon-padding-custom-button: calc(
 		}
 	}
 
-	&[data-no-text='true'] {
+	&[data-no-text="true"] {
 		--db-icon-margin-end: 0;
 		--db-icon-passing-inline-start: calc(50% - 0.5em);
 	}
@@ -57,7 +57,7 @@ $icon-padding-custom-button: calc(
 		background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	}
 
-	label:has(input[type='checkbox']:checked) {
+	label:has(input[type="checkbox"]:checked) {
 		@include helpers.not-disabled {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
@@ -69,12 +69,12 @@ $icon-padding-custom-button: calc(
 		}
 	}
 
-	a[tabindex='-1'] {
+	a[tabindex="-1"] {
 		cursor: default;
 		pointer-events: none;
 	}
 
-	&[data-width='full'] {
+	&[data-width="full"] {
 		inline-size: 100%;
 	}
 

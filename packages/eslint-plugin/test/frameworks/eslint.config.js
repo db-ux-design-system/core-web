@@ -11,17 +11,17 @@ export default [
 			parserOptions: {
 				ecmaVersion: 'latest',
 				sourceType: 'module',
-				ecmaFeatures: {jsx: true},
-			},
+				ecmaFeatures: { jsx: true }
+			}
 		},
-		plugins: {'db-ux': dbUx},
-		rules: dbUx.configs.recommended.rules,
+		plugins: { 'db-ux': dbUx },
+		rules: dbUx.configs.recommended.rules
 	},
 	{
 		files: ['**/*.html'],
-		languageOptions: {parser: angularTemplateParser},
-		plugins: {'db-ux': dbUx},
-		rules: dbUx.configs.recommended.rules,
+		languageOptions: { parser: angularTemplateParser },
+		plugins: { 'db-ux': dbUx },
+		rules: dbUx.configs.recommended.rules
 	},
 	{
 		files: ['**/*.vue'],
@@ -31,10 +31,10 @@ export default [
 				parser: tsParser,
 				ecmaVersion: 'latest',
 				sourceType: 'module',
-				extraFileExtensions: ['.vue'],
-			},
+				extraFileExtensions: ['.vue']
+			}
 		},
-		plugins: {'db-ux': dbUx},
-		rules: dbUx.configs.recommended.rules,
-	},
+		plugins: { 'db-ux': dbUx },
+		rules: dbUx.configs.recommended.rules
+	}
 ];

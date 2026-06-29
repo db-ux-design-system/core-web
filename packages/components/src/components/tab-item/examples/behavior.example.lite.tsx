@@ -1,12 +1,12 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBTabList from '../../tab-list/tab-list.lite';
 import DBTabItem from '../tab-item.lite';
-import {StorybookTabItemArgTypes} from './_tab-item.arg.types';
+import { StorybookTabItemArgTypes } from './_tab-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Behavior',
 	storybookNames: ['(Default) Auto Width', 'Width full'],
-	storybookArgTypes: StorybookTabItemArgTypes,
+	storybookArgTypes: StorybookTabItemArgTypes
 });
 
 export default function TabItemBehavior() {
@@ -15,7 +15,7 @@ export default function TabItemBehavior() {
 			<DBTabList>
 				<DBTabItem label="(Default) Auto Width" />
 			</DBTabList>
-			<DBTabList style={{blockSize: '100%'}}>
+			<DBTabList style={{ blockSize: '100%' }}>
 				<DBTabItem label="Width full" />
 			</DBTabList>
 		</Fragment>

@@ -6,7 +6,7 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import {DBButton} from '@db-ux/react-core-components';
+import { DBButton } from "@db-ux/react-core-components";
 
 const App = () => <DBButton variant="brand">Button</DBButton>;
 

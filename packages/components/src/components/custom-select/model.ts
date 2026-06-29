@@ -18,11 +18,11 @@ import type {
 	ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
-	WidthType,
+	WidthType
 } from '../../shared/model';
-import type {CustomSelectDropdownWidthType} from '../custom-select-dropdown/model';
-import type {DBCustomSelectFormFieldDefaultProps} from '../custom-select-form-field/model';
-import type {DBCustomSelectListItemExtraProps} from '../custom-select-list-item/model';
+import type { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import type { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
+import type { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
 
 export type CustomSelectOptionType = {
 	/**
@@ -162,7 +162,7 @@ export type DBCustomSelectDefaultProps = {
 	 */
 	searchFilter?: (
 		option: CustomSelectOptionType,
-		filterText: string,
+		filterText: string
 	) => boolean;
 
 	/**
@@ -230,7 +230,7 @@ export type DBCustomSelectDefaultProps = {
 	 * Optional: If you want to show a custom label based on the selected options.
 	 */
 	transformSelectedLabels?: (
-		selectedOptions?: CustomSelectOptionType[],
+		selectedOptions?: CustomSelectOptionType[]
 	) => string;
 
 	/**
@@ -278,7 +278,7 @@ export type DBCustomSelectDefaultState = {
 	setDescById: (descId?: string) => void;
 	handleTagRemove: (
 		option: CustomSelectOptionType,
-		event?: ClickEvent<HTMLButtonElement> | void,
+		event?: ClickEvent<HTMLButtonElement> | void
 	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;

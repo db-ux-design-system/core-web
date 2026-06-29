@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaNotificationProps = {
 	variant?: string;
@@ -21,8 +21,8 @@ const notificationProps: Record<string, FigmaProp> = {
 		value: {
 			Docked: 'docked',
 			Standalone: 'standalone',
-			Overlay: 'overlay',
-		},
+			Overlay: 'overlay'
+		}
 	},
 	semantic: {
 		type: 'enum',
@@ -32,46 +32,46 @@ const notificationProps: Record<string, FigmaProp> = {
 			Critical: 'critical',
 			Informational: 'informational',
 			Successful: 'successful',
-			Warning: 'warning',
-		},
+			Warning: 'warning'
+		}
 	},
-	headline: {type: 'string', key: 'Headline', guardKeys: ['Show Headline']},
-	showHeadline: {type: 'boolean', key: 'Show Headline'},
-	showIcon: {type: 'boolean', key: 'Show Icon'},
-	showTimestamp: {type: 'boolean', key: 'Show Timestamp'},
-	closeable: {type: 'boolean', key: 'Closeable'},
-	text: {type: 'textContent', key: 'Text'},
+	headline: { type: 'string', key: 'Headline', guardKeys: ['Show Headline'] },
+	showHeadline: { type: 'boolean', key: 'Show Headline' },
+	showIcon: { type: 'boolean', key: 'Show Icon' },
+	showTimestamp: { type: 'boolean', key: 'Show Timestamp' },
+	closeable: { type: 'boolean', key: 'Closeable' },
+	text: { type: 'textContent', key: 'Text' },
 	link: {
 		type: 'string',
 		key: 'Link',
-		guardKeys: ['(Def) Link Variant: Block', '↳ OR Link Variant: Inline'],
+		guardKeys: ['(Def) Link Variant: Block', '↳ OR Link Variant: Inline']
 	},
 	timestamp: {
 		type: 'string',
 		key: 'Timestamp',
-		guardKeys: ['Show Timestamp'],
+		guardKeys: ['Show Timestamp']
 	},
 	linkVariant: {
 		type: 'booleanToEnum',
 		map: [
-			{key: '(Def) Link Variant: Block', value: 'block'},
-			{key: '↳ OR Link Variant: Inline', value: 'inline'},
-		],
+			{ key: '(Def) Link Variant: Block', value: 'block' },
+			{ key: '↳ OR Link Variant: Inline', value: 'inline' }
+		]
 	},
 	_children: {
 		type: 'children',
 		key: 'Children',
-		guardKeys: ['Show Children Slot'],
-	},
+		guardKeys: ['Show Children Slot']
+	}
 };
 
 export const notifications: FigmaCodeConnect = {
 	urls: [
 		'https://www.figma.com/design/FIGMA_FILE?node-id=2:3566',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=2:3812',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=2:2727',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=2:2727'
 	],
-	props: notificationProps,
+	props: notificationProps
 };
 
 export const imageNotifications: FigmaCodeConnect = {
@@ -81,7 +81,7 @@ export const imageNotifications: FigmaCodeConnect = {
 		// Standalone - Image
 		'https://www.figma.com/design/FIGMA_FILE?node-id=35454:16447',
 		// Overlay - Image
-		'https://www.figma.com/design/FIGMA_FILE?node-id=35454:17920',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=35454:17920'
 	],
-	props: notificationProps,
+	props: notificationProps
 };

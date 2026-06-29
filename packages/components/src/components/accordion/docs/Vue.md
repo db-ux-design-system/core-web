@@ -7,7 +7,7 @@ For general installation and configuration look at the [v-core-components](https
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import {DBAccordion, DBAccordionItem} from '@db-ux/v-core-components';
+import { DBAccordion, DBAccordionItem } from "@db-ux/v-core-components";
 </script>
 
 <template>

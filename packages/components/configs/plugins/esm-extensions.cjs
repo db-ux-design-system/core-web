@@ -65,7 +65,7 @@ const resolveEsmPath = (importPath, fromFile) => {
 	// build so a missing file or changed structure does not silently propagate
 	// to consumers as a hard-to-debug runtime error.
 	console.warn(
-		`[esm-extensions] Could not resolve relative import "${importPath}" from "${fromFile}"`,
+		`[esm-extensions] Could not resolve relative import "${importPath}" from "${fromFile}"`
 	);
 	return importPath;
 };
@@ -91,7 +91,7 @@ const fixFileImports = (filePath) => {
 		(match, prefix, importPath, suffix) => {
 			const resolved = resolveEsmPath(importPath, filePath);
 			return `${prefix}${resolved}${suffix}`;
-		},
+		}
 	);
 
 	if (fixed !== source) {
@@ -133,7 +133,7 @@ module.exports = () => ({
 			// they must be skipped (see EXCLUDED_PATTERNS).
 			const allOutputFiles = [
 				...(files.componentFiles || []),
-				...(files.nonComponentFiles || []),
+				...(files.nonComponentFiles || [])
 			];
 
 			for (const file of allOutputFiles) {
@@ -141,11 +141,14 @@ module.exports = () => ({
 					continue;
 				}
 
-				const filePath = path.resolve(file.outputDir, file.outputFilePath);
+				const filePath = path.resolve(
+					file.outputDir,
+					file.outputFilePath
+				);
 				fixFileImports(filePath);
 			}
-		},
-	},
+		}
+	}
 });
 
 module.exports.resolveEsmPath = resolveEsmPath;

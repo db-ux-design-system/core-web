@@ -1,13 +1,13 @@
 /* Required styles to normalize default css */
 
-@use '../variables';
-@use '../colors';
-@use '../helpers';
-@use '../fonts';
-@use '../screen-sizes';
-@use '../colors/default-color-icons';
-@forward '../colors/default-color-mappings';
-@forward '../normalize';
+@use "../variables";
+@use "../colors";
+@use "../helpers";
+@use "../fonts";
+@use "../screen-sizes";
+@use "../colors/default-color-icons";
+@forward "../colors/default-color-mappings";
+@forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
 :root,
@@ -21,11 +21,11 @@
 		@include default-color-icons.get-color-icons-dark;
 	}
 
-	[data-mode='dark'] {
+	[data-mode="dark"] {
 		@include default-color-icons.get-color-icons-dark;
 	}
 
-	[data-mode='light'] {
+	[data-mode="light"] {
 		@include default-color-icons.get-color-icons-light;
 	}
 }
@@ -35,17 +35,17 @@
 	color-scheme: var(--db-color-scheme, light dark);
 
 	// We need to provide the possibility to set the color-scheme via CSS Custom Property, but not set a fallback based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
-	&:has([name='color-scheme']:is([content~='light'], [content~='dark'])) {
+	&:has([name="color-scheme"]:is([content~="light"], [content~="dark"])) {
 		color-scheme: var(--db-color-scheme);
 	}
 }
 
 // TODO: Switch to attr() as soon as this one is fully supported
-[data-mode='light'] {
+[data-mode="light"] {
 	color-scheme: light;
 }
 
-[data-mode='dark'] {
+[data-mode="dark"] {
 	color-scheme: dark;
 }
 
@@ -118,7 +118,7 @@ iframe {
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
-	list-style-type: '\2022' + ' ';
+	list-style-type: "\2022" + " ";
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};
@@ -128,10 +128,10 @@ iframe {
 // * Individual styles
 // Navigation lists
 nav,
-[role='navigation'] {
+[role="navigation"] {
 	ol,
 	ul {
-		list-style-type: '';
+		list-style-type: "";
 		margin: 0;
 		padding: 0;
 	}

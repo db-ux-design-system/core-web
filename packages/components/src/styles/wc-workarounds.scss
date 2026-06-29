@@ -1,4 +1,4 @@
-@use 'internal/custom-elements';
+@use "internal/custom-elements";
 
 // Web Components workaround
 @each $custom-element in custom-elements.$custom-elements {

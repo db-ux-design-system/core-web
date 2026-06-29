@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaTextareaProps = {
 	variant?: string;
@@ -21,15 +21,15 @@ const textareaProps: Record<string, FigmaProp> = {
 	variant: {
 		type: 'enum',
 		key: 'Variant',
-		value: {Above: 'above', Floating: 'floating'},
+		value: { Above: 'above', Floating: 'floating' }
 	},
-	label: {type: 'string', key: 'Label'},
-	showLabel: {type: 'boolean', key: 'Show Label'},
-	placeholder: {type: 'string', key: 'Placeholder'},
-	required: {type: 'boolean', key: 'Required'},
-	showRequiredAsterisk: {type: 'boolean', key: 'Show Required Asterisk'},
-	readonly: {type: 'boolean', key: 'Readonly'},
-	disabled: {type: 'boolean', key: 'Disabled'},
+	label: { type: 'string', key: 'Label' },
+	showLabel: { type: 'boolean', key: 'Show Label' },
+	placeholder: { type: 'string', key: 'Placeholder' },
+	required: { type: 'boolean', key: 'Required' },
+	showRequiredAsterisk: { type: 'boolean', key: 'Show Required Asterisk' },
+	readonly: { type: 'boolean', key: 'Readonly' },
+	disabled: { type: 'boolean', key: 'Disabled' },
 	resize: {
 		type: 'enum',
 		key: 'Resize',
@@ -37,14 +37,14 @@ const textareaProps: Record<string, FigmaProp> = {
 			both: 'both',
 			horizontal: 'horizontal',
 			none: 'none',
-			vertical: 'vertical',
-		},
+			vertical: 'vertical'
+		}
 	},
-	showResizer: {type: 'boolean', key: 'Show Resizer'},
+	showResizer: { type: 'boolean', key: 'Show Resizer' },
 	fieldSizing: {
 		type: 'enum',
 		key: 'Field Sizing',
-		value: {'(Def) Fixed': 'fixed', Content: 'content'},
+		value: { '(Def) Fixed': 'fixed', Content: 'content' }
 	},
 	validation: {
 		type: 'enum',
@@ -52,10 +52,10 @@ const textareaProps: Record<string, FigmaProp> = {
 		value: {
 			'(Def) No Validation': 'no-validation',
 			Invalid: 'invalid',
-			Valid: 'valid',
-		},
+			Valid: 'valid'
+		}
 	},
-	showMessage: {type: 'boolean', key: 'Show Message'},
+	showMessage: { type: 'boolean', key: 'Show Message' },
 	message: {
 		type: 'validationMessage',
 		key: 'Text',
@@ -63,9 +63,9 @@ const textareaProps: Record<string, FigmaProp> = {
 		map: {
 			invalid: 'invalidMessage',
 			valid: 'validMessage',
-			default: 'message',
-		},
-	},
+			default: 'message'
+		}
+	}
 };
 
 export const textareas: FigmaCodeConnect = {
@@ -81,7 +81,7 @@ export const textareas: FigmaCodeConnect = {
 		// Floating Filled
 		'https://www.figma.com/design/FIGMA_FILE?node-id=3714:8838',
 		// Floating Active
-		'https://www.figma.com/design/FIGMA_FILE?node-id=3714:8597',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=3714:8597'
 	],
-	props: textareaProps,
+	props: textareaProps
 };

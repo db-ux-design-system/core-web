@@ -4,19 +4,19 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
-import {DEFAULT_CLOSE_BUTTON} from '../../shared/constants';
-import {ClickEvent} from '../../shared/model';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
 	getNotificationRole,
-	stringPropVisible,
+	stringPropVisible
 } from '../../utils';
 import DBButton from '../button/button.lite';
-import {DBNotificationProps, DBNotificationState} from './model';
+import { DBNotificationProps, DBNotificationState } from './model';
 
 useMetadata({});
 
@@ -33,7 +33,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			if (props.onClose) {
 				props.onClose(event);
 			}
-		},
+		}
 	});
 	// jscpd:ignore-end
 
@@ -45,7 +45,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			role={getNotificationRole({
 				semantic: props.semantic,
 				role: props.role,
-				ariaLive: props.ariaLive,
+				ariaLive: props.ariaLive
 			})}
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
@@ -53,10 +53,11 @@ export default function DBNotification(props: DBNotificationProps) {
 			// Only set `data-icon` when the icon should be shown. We treat an
 			// undefined `showIcon` as "show" (backwards compatible default).
 			// Omit `data-icon` only when `showIcon` is explicitly false.
-			data-icon={getBoolean(props.showIcon) !== false ? props.icon : undefined}
+			data-icon={
+				getBoolean(props.showIcon) !== false ? props.icon : undefined
+			}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
-			data-link-variant={props.linkVariant}
-		>
+			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>
 				<header data-area="head">{props.headline}</header>
@@ -65,7 +66,8 @@ export default function DBNotification(props: DBNotificationProps) {
 				<Show when={props.text}>{props.text}</Show>
 				{props.children}
 			</div>
-			<Show when={stringPropVisible(props.timestamp, props.showTimestamp)}>
+			<Show
+				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
 				<time data-area="timestamp" dateTime={props.timestampDatetime}>
 					{props.timestamp}
 				</time>
@@ -82,8 +84,7 @@ export default function DBNotification(props: DBNotificationProps) {
 					noText
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClose(event)
-					}
-				>
+					}>
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>

@@ -1,9 +1,9 @@
-import {MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 const FORM_COMPONENTS = [
@@ -11,43 +11,42 @@ const FORM_COMPONENTS = [
 	'DBTextarea',
 	'DBSelect',
 	'DBCustomSelect',
-	'DBCheckbox',
+	'DBCheckbox'
 ];
 
 export default {
 	meta: {
 		type: 'suggestion' as const,
 		docs: {
-			description: 'Ensure form components with validation have invalidMessage',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#form-validation-message-required',
+			description:
+				'Ensure form components with validation have invalidMessage',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#form-validation-message-required'
 		},
 		messages: {
-			missingInvalidMessage: MESSAGES.FORM_VALIDATION_MESSAGE_REQUIRED,
+			missingInvalidMessage: MESSAGES.FORM_VALIDATION_MESSAGE_REQUIRED
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const componentName = node.name;
 			const component = FORM_COMPONENTS.find((comp) =>
-				isDBComponent(node, comp),
+				isDBComponent(node, comp)
 			);
-			if (!component) {
-				return;
-			}
+			if (!component) return;
 
 			const invalidMessage = getAttributeValue(node, 'invalidMessage');
-			if (invalidMessage !== undefined) {
-				return;
-			}
+			if (invalidMessage !== undefined) return;
 
 			const required = getAttributeValue(node, 'required');
 			if (required !== undefined) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-					data: {component: componentName, attribute: 'required'},
+					data: { component: componentName, attribute: 'required' }
 				});
 				return;
 			}
@@ -58,30 +57,30 @@ export default {
 
 				if (maxLength !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
 						data: {
 							component: componentName,
-							attribute: 'maxLength',
-						},
+							attribute: 'maxLength'
+						}
 					});
 					return;
 				}
 
 				if (minLength !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
 						data: {
 							component: componentName,
-							attribute: 'minLength',
-						},
+							attribute: 'minLength'
+						}
 					});
 					return;
 				}
@@ -94,36 +93,36 @@ export default {
 
 				if (min !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: {component: componentName, attribute: 'min'},
+						data: { component: componentName, attribute: 'min' }
 					});
 					return;
 				}
 
 				if (max !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: {component: componentName, attribute: 'max'},
+						data: { component: componentName, attribute: 'max' }
 					});
 					return;
 				}
 
 				if (pattern !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: {component: componentName, attribute: 'pattern'},
+						data: { component: componentName, attribute: 'pattern' }
 					});
 				}
 			}
@@ -133,45 +132,46 @@ export default {
 			const angularVisitors = createAngularVisitors(
 				context,
 				comp,
-				angularHandler,
+				angularHandler
 			);
-			if (angularVisitors) {
-				return angularVisitors;
-			}
+			if (angularVisitors) return angularVisitors;
 		}
 
 		const checkFormComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
 			const component = FORM_COMPONENTS.find((comp) =>
-				isDBComponent(openingElement, comp),
+				isDBComponent(openingElement, comp)
 			);
-			if (!component) {
-				return;
-			}
+			if (!component) return;
 
-			const componentName = openingElement.name?.name || openingElement.rawName;
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
 
 			const invalidMessage = getAttributeValue(
 				openingElement,
-				'invalidMessage',
+				'invalidMessage'
 			);
-			if (invalidMessage !== undefined) {
-				return;
-			}
+			if (invalidMessage !== undefined) return;
 
 			const required = getAttributeValue(openingElement, 'required');
 			if (required !== undefined) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-					data: {component: componentName, attribute: 'required'},
+					data: { component: componentName, attribute: 'required' }
 				});
 				return;
 			}
 
 			if (component === 'DBInput' || component === 'DBTextarea') {
-				const maxLength = getAttributeValue(openingElement, 'maxLength');
-				const minLength = getAttributeValue(openingElement, 'minLength');
+				const maxLength = getAttributeValue(
+					openingElement,
+					'maxLength'
+				);
+				const minLength = getAttributeValue(
+					openingElement,
+					'minLength'
+				);
 
 				if (maxLength !== undefined) {
 					context.report({
@@ -179,8 +179,8 @@ export default {
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
 						data: {
 							component: componentName,
-							attribute: 'maxLength',
-						},
+							attribute: 'maxLength'
+						}
 					});
 					return;
 				}
@@ -191,8 +191,8 @@ export default {
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
 						data: {
 							component: componentName,
-							attribute: 'minLength',
-						},
+							attribute: 'minLength'
+						}
 					});
 					return;
 				}
@@ -207,7 +207,7 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: {component: componentName, attribute: 'min'},
+						data: { component: componentName, attribute: 'min' }
 					});
 					return;
 				}
@@ -216,7 +216,7 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: {component: componentName, attribute: 'max'},
+						data: { component: componentName, attribute: 'max' }
 					});
 					return;
 				}
@@ -225,7 +225,7 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: {component: componentName, attribute: 'pattern'},
+						data: { component: componentName, attribute: 'pattern' }
 					});
 				}
 			}
@@ -233,8 +233,8 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkFormComponent, Element: checkFormComponent},
-			{JSXElement: checkFormComponent},
+			{ VElement: checkFormComponent, Element: checkFormComponent },
+			{ JSXElement: checkFormComponent }
 		);
-	},
+	}
 };

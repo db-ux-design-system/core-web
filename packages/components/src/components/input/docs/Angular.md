@@ -3,7 +3,7 @@
 Load SCSS globally within `styles.scss` in your app:
 
 ```scss
-@forward '@db-ux/core-components/build/styles/rollup';
+@forward "@db-ux/core-components/build/styles/rollup";
 ```
 
 Load component within `app.component.ts`:
@@ -65,7 +65,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 <dl>
 	<dt>input's value</dt>
 	<dd>
-		{{ form.get("input")?.value ? form.get("input")?.value : "No Input set" }}
+		{{ form.get("input")?.value ? form.get("input")?.value : "No Input set"
+		}}
 	</dd>
 </dl>
 ```
@@ -74,7 +75,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // form.component.ts
 export class FormComponent {
 	form = new FormGroup({
-		input: new FormControl('Filled with formControl'),
+		input: new FormControl("Filled with formControl")
 	});
 
 	onFormSubmit(): void {
@@ -127,9 +128,9 @@ import { FormsModule } from '@angular/forms';
 ```typescript
 // form.component.ts
 export class FormComponent {
-	input = '';
+	input = "";
 	showValues(): void {
-		alert(JSON.stringify({input: this.input}));
+		alert(JSON.stringify({ input: this.input }));
 	}
 }
 ```

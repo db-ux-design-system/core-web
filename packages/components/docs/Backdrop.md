@@ -26,13 +26,13 @@ dialog::backdrop {
 ## SCSS
 
 ```scss
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/variables';
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .my-backdrop {
 	background-color: color(
-		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
-			#{variables.$db-opacity-lg}
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-lg}
 	);
 }
 
@@ -40,8 +40,8 @@ dialog::backdrop {
 
 dialog::backdrop {
 	background-color: color(
-		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
-			#{variables.$db-opacity-lg}
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-lg}
 	);
 }
 ```

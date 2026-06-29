@@ -1,9 +1,9 @@
-import {MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 const COMPONENTS_WITH_ICON_ATTR = [
@@ -19,7 +19,7 @@ const COMPONENTS_WITH_ICON_ATTR = [
 	'DBSelect',
 	'DBSwitch',
 	'DBTabItem',
-	'DBTag',
+	'DBTag'
 ];
 
 export default {
@@ -27,65 +27,64 @@ export default {
 		type: 'suggestion' as const,
 		docs: {
 			description: 'Prefer icon attribute over DBIcon child component',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#prefer-icon-attribute',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#prefer-icon-attribute'
 		},
 		fixable: 'code' as const,
 		messages: {
-			preferAttribute: MESSAGES.ICON_PREFER_ATTRIBUTE,
+			preferAttribute: MESSAGES.ICON_PREFER_ATTRIBUTE
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const componentName = node.name;
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
-				isDBComponent(node, comp),
+				isDBComponent(node, comp)
 			);
-			if (!component) {
-				return;
-			}
+			if (!component) return;
 
 			const iconChild = node.children?.find(
 				(child: any) =>
 					(child.type === 'Element' || child.type === 'Element$1') &&
-					isDBComponent(child, 'DBIcon'),
+					isDBComponent(child, 'DBIcon')
 			);
 
 			if (iconChild) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
-					iconChild.sourceSpan,
+					iconChild.sourceSpan
 				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
-					data: {component: componentName},
+					data: { component: componentName }
 				});
 			}
 		};
 
 		const angularVisitors: any = {};
 		for (const comp of COMPONENTS_WITH_ICON_ATTR) {
-			const visitors = createAngularVisitors(context, comp, angularHandler);
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
 			if (visitors) {
 				Object.assign(angularVisitors, visitors);
 			}
 		}
 
-		if (Object.keys(angularVisitors).length > 0) {
-			return angularVisitors;
-		}
+		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
 
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
-				isDBComponent(openingElement, comp),
+				isDBComponent(openingElement, comp)
 			);
-			if (!component) {
-				return;
-			}
+			if (!component) return;
 
-			const componentName = openingElement.name?.name || openingElement.rawName;
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
 
 			const iconChild = node.children?.find(
 				(child: any) =>
@@ -93,7 +92,7 @@ export default {
 						child.type === 'VElement' ||
 						child.type === 'Element' ||
 						child.type === 'Element$1') &&
-					isDBComponent(child.openingElement || child, 'DBIcon'),
+					isDBComponent(child.openingElement || child, 'DBIcon')
 			);
 
 			if (iconChild) {
@@ -103,11 +102,10 @@ export default {
 				context.report({
 					node: iconChild,
 					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
-					data: {component: componentName},
+					data: { component: componentName },
 					fix(fixer: any) {
-						if (!iconValue || typeof iconValue !== 'string') {
+						if (!iconValue || typeof iconValue !== 'string')
 							return null;
-						}
 
 						const fixes = [];
 						fixes.push(fixer.remove(iconChild));
@@ -121,8 +119,8 @@ export default {
 							fixes.push(
 								fixer.insertTextAfterRange(
 									[insertPos, insertPos],
-									` icon="${iconValue}"`,
-								),
+									` icon="${iconValue}"`
+								)
 							);
 						} else {
 							// Vue
@@ -133,8 +131,8 @@ export default {
 								fixes.push(
 									fixer.insertTextAfterRange(
 										[insertPos, insertPos],
-										` icon="${iconValue}"`,
-									),
+										` icon="${iconValue}"`
+									)
 								);
 							} else {
 								const insertPos =
@@ -144,22 +142,22 @@ export default {
 								fixes.push(
 									fixer.insertTextAfterRange(
 										[insertPos, insertPos],
-										` icon="${iconValue}"`,
-									),
+										` icon="${iconValue}"`
+									)
 								);
 							}
 						}
 
 						return fixes;
-					},
+					}
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkComponent, Element: checkComponent},
-			{JSXElement: checkComponent},
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
 		);
-	},
+	}
 };

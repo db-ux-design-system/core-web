@@ -1,10 +1,10 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBButton} from '../../button/index';
-import {DBPopover} from '../index';
-import {FigmaPopoverProps, popovers} from './popover.figma';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBButton } from '../../button/index';
+import { DBPopover } from '../index';
+import { FigmaPopoverProps, popovers } from './popover.figma';
 
 useMetadata({
-	figma: popovers,
+	figma: popovers
 });
 
 export default function PopoverFigmaLite(props: FigmaPopoverProps) {

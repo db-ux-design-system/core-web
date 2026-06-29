@@ -79,8 +79,8 @@ The accessibility model is relatively simple and consistent:
 
 - Group container uses `role="group"` for generic clusters of buttons, or `role="toolbar"` when the group is acting as a toolbar controlling another surface.
 - The group must have an accessible label, via:
-  - `aria-label` (for icon-only groups), or
-  - `aria-labelledby` referencing nearby visible text.
+    - `aria-label` (for icon-only groups), or
+    - `aria-labelledby` referencing nearby visible text.
 - Focus stays on individual buttons; **no roving tabindex** is needed. Tab navigation follows DOM order; Space/Enter activates each button as usual.
 - When stacked vertically on mobile, minimum tap target size and contrast rules still apply.
 
@@ -97,8 +97,8 @@ It is important to:
 
 - Clearly scope this initial ButtonGroup research and implementation to **separate actions only**.
 - Plan **segmented / toggle variants** as either:
-  - a separate “SegmentedControl” component, or
-  - a later extension of ButtonGroup with different semantics and ARIA patterns.
+    - a separate “SegmentedControl” component, or
+    - a later extension of ButtonGroup with different semantics and ARIA patterns.
 
 ---
 
@@ -109,19 +109,19 @@ It is important to:
 **Goal:** Provide a compositional component to group 2–7 related action buttons, with minimal API and solid accessibility.
 
 - Implement `<ButtonGroup>` that:
-  - Renders a semantic container with `role="group"` by default.
-  - Accepts an accessible label (`aria-label` / `aria-labelledby`).
-  - Takes existing Button components as children.
+    - Renders a semantic container with `role="group"` by default.
+    - Accepts an accessible label (`aria-label` / `aria-labelledby`).
+    - Takes existing Button components as children.
 - Layout & styling:
-  - Horizontal layout with DS spacing tokens.
-  - Optional `orientation="vertical"` for side usage.
-  - Optional `fullWidth` / `equalWidth` behavior, if consistent with your layout system.
+    - Horizontal layout with DS spacing tokens.
+    - Optional `orientation="vertical"` for side usage.
+    - Optional `fullWidth` / `equalWidth` behavior, if consistent with your layout system.
 - Behavior:
-  - No built-in selection logic; each child button handles its own click.
-  - Group-level `disabled` prop that disables all children (for loading or unavailable states).
+    - No built-in selection logic; each child button handles its own click.
+    - Group-level `disabled` prop that disables all children (for loading or unavailable states).
 - Documentation:
-  - Definition, anatomy, basic examples (dialog footer, card actions, inline toolbar).
-  - Clear distinction from segmented controls and tabs.
+    - Definition, anatomy, basic examples (dialog footer, card actions, inline toolbar).
+    - Clear distinction from segmented controls and tabs.
 
 ### Phase 2 – Toolbar / icon-heavy groups
 
@@ -130,8 +130,8 @@ It is important to:
 - Add `role="toolbar"` option and usage guidelines (must have label).
 - Define recommended patterns for icon-only buttons (tooltips, focus styles, minimum size).
 - Introduce patterns for:
-  - Multiple groups inside a toolbar (e.g., alignment left/right).
-  - Optional overflow pattern when there are more than 5–7 actions.
+    - Multiple groups inside a toolbar (e.g., alignment left/right).
+    - Optional overflow pattern when there are more than 5–7 actions.
 
 ### Phase 3 – Relationship to advanced patterns (out of current scope)
 

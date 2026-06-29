@@ -1,1 +1,1 @@
-export {default as DBTableHeaderCell} from './table-header-cell';
+export { default as DBTableHeaderCell } from './table-header-cell';

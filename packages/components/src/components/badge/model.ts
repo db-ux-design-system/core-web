@@ -6,7 +6,7 @@ import type {
 	SemanticProps,
 	SizeProps,
 	TextProps,
-	WrapProps,
+	WrapProps
 } from '../../shared/model';
 
 export const BadgePlacementList = [
@@ -16,7 +16,7 @@ export const BadgePlacementList = [
 	'corner-center-left',
 	'corner-center-right',
 	'corner-bottom-left',
-	'corner-bottom-right',
+	'corner-bottom-right'
 ] as const;
 export type BadgePlacementType = (typeof BadgePlacementList)[number];
 

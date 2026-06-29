@@ -1,9 +1,9 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/density';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '../../styles/internal/component';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
 
 .db-header {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -16,21 +16,21 @@
 	border-block-end: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
-	&[data-width='small'] {
+	&[data-width="small"] {
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-sm;
 	}
 
-	&[data-width='medium'] {
+	&[data-width="medium"] {
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-md;
 	}
 
-	&[data-width='large'] {
+	&[data-width="large"] {
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
@@ -39,7 +39,7 @@
 		@include helpers.display(inline-block);
 	}
 
-	&[data-on-forcing-mobile='true'] {
+	&[data-on-forcing-mobile="true"] {
 		/*
 		We make the header invisible for a short time if the user passes in data-force-mobile property.
 		We do it because otherwise we see the default desktop-navigation for some mil. sec.
@@ -82,7 +82,7 @@
 	inline-size: 100%;
 	align-items: center;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-md variables.$db-spacing-fixed-lg;
 	}
 }
@@ -97,9 +97,9 @@
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding: variables.$db-spacing-fixed-md;
 
-	@include helpers.divider('top');
+	@include helpers.divider("top");
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 		margin: 0;
 		gap: variables.$db-spacing-fixed-md;
@@ -127,8 +127,8 @@
 	align-items: center;
 	block-size: 100%;
 
-	@include screen-sizes.screen('md') {
-		@include helpers.divider('left');
+	@include screen-sizes.screen("md") {
+		@include helpers.divider("left");
 
 		&::before {
 			position: inherit;
@@ -147,7 +147,7 @@
 }
 
 .db-header-action-container:has(> .db-header-secondary-action:empty) {
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		@include helpers.display(none);
 	}
 }
@@ -157,9 +157,9 @@
 }
 
 .db-header-action-container {
-	@include helpers.divider('left');
+	@include helpers.divider("left");
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		&::before {
 			margin-inline: variables.$db-spacing-fixed-sm;
 		}
@@ -191,9 +191,9 @@
 	flex-shrink: 0;
 	padding-block-start: variables.$db-spacing-fixed-xs;
 
-	@include helpers.divider('top');
+	@include helpers.divider("top");
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		&::before {
 			display: none;
 		}
@@ -213,7 +213,7 @@
 .db-header-navigation {
 	padding-block: variables.$db-spacing-fixed-md;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		margin-inline: variables.$db-spacing-fixed-lg;
 	}
 }
@@ -225,7 +225,7 @@
 	gap: variables.$db-spacing-fixed-sm;
 	padding-inline: variables.$db-spacing-fixed-md;
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		gap: variables.$db-spacing-fixed-xs;
 		padding: 0;
 	}
@@ -256,7 +256,7 @@
 .db-header-action-container > .db-header-secondary-action {
 	@include helpers.display(none);
 
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		@include helpers.display(inherit);
 	}
 }
@@ -268,7 +268,7 @@
 
 .db-header-drawer,
 .db-header-burger-menu-container {
-	@include screen-sizes.screen('md') {
+	@include screen-sizes.screen("md") {
 		@include helpers.display(none);
 	}
 }

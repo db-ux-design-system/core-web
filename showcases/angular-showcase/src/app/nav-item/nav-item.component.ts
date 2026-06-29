@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {DBNavigationItem, NavigationContentDirective} from '@components';
-import {NavItem} from '../utils/navigation-item';
+import { Component, Input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { DBNavigationItem, NavigationContentDirective } from '@components';
+import { NavItem } from '../utils/navigation-item';
 
 @Component({
 	selector: 'app-nav-item',
@@ -10,12 +10,14 @@ import {NavItem} from '../utils/navigation-item';
 		RouterLink,
 		RouterLinkActive,
 		DBNavigationItem,
-		NavigationContentDirective,
+		NavigationContentDirective
 	],
-	standalone: true,
+	standalone: true
 })
 export class NavItemComponent {
-	@Input({required: true}) navItem!: NavItem;
+	@Input({ required: true }) navItem!: NavItem;
 
-	getBackButtonText = () => `Back to ${this.navItem.label}`;
+	getBackButtonText = () => {
+		return `Back to ${this.navItem.label}`;
+	};
 }

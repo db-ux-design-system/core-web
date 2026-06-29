@@ -1,12 +1,12 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBTabList from '../../tab-list/tab-list.lite';
 import DBTabItem from '../tab-item.lite';
-import {StorybookTabItemArgTypes} from './_tab-item.arg.types';
+import { StorybookTabItemArgTypes } from './_tab-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Icon Trailing',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookTabItemArgTypes,
+	storybookArgTypes: StorybookTabItemArgTypes
 });
 
 export default function TabItemShowIconTrailing() {

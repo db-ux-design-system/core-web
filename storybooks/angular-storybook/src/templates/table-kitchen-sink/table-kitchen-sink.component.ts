@@ -1,5 +1,5 @@
-import {Component, effect, signal} from '@angular/core';
-import {DBLink, DBStack} from '@components';
+import { Component, effect, signal } from '@angular/core';
+import { DBLink, DBStack } from '@components';
 import {
 	type ColumnFiltersState,
 	createAngularTable,
@@ -11,13 +11,13 @@ import {
 	getGroupedRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
-	type GroupingState,
+	type GroupingState
 } from '@tanstack/angular-table';
-import {ActionButtonsComponent} from './components/action-buttons.component';
-import {CustomTableComponent} from './components/custom-table.component';
-import {TableControlsComponent} from './components/table-controls.component';
-import {makeData, type Person} from './makeData';
-import {columns, fuzzyFilter, type TableMeta} from './tableModels';
+import { ActionButtonsComponent } from './components/action-buttons.component';
+import { CustomTableComponent } from './components/custom-table.component';
+import { TableControlsComponent } from './components/table-controls.component';
+import { makeData, type Person } from './makeData';
+import { columns, fuzzyFilter, type TableMeta } from './tableModels';
 
 @Component({
 	selector: 'app-table-kitchen-sink',
@@ -27,7 +27,7 @@ import {columns, fuzzyFilter, type TableMeta} from './tableModels';
 		DBLink,
 		TableControlsComponent,
 		CustomTableComponent,
-		ActionButtonsComponent,
+		ActionButtonsComponent
 	],
 	template: `
 		<db-stack>
@@ -38,8 +38,7 @@ import {columns, fuzzyFilter, type TableMeta} from './tableModels';
 					[content]="'external'"
 					[target]="'_blank'"
 					[referrerPolicy]="'no-referrer'"
-					[href]="'https://tanstack.com/table/latest/docs/installation#angular'"
-				>
+					[href]="'https://tanstack.com/table/latest/docs/installation#angular'">
 					TanStack Table
 				</db-link>
 			</p>
@@ -49,16 +48,14 @@ import {columns, fuzzyFilter, type TableMeta} from './tableModels';
 					[content]="'external'"
 					[target]="'_blank'"
 					[referrerPolicy]="'no-referrer'"
-					[href]="'https://github.com/db-ux-design-system/core-web/tree/main/storybooks/angular-storybook/src/templates/table-kitchen-sink'"
-				>
+					[href]="'https://github.com/db-ux-design-system/core-web/tree/main/storybooks/angular-storybook/src/templates/table-kitchen-sink'">
 					here
 				</db-link>
 			</p>
 			<app-table-controls
 				[table]="table"
 				[globalFilter]="globalFilter()"
-				(globalFilterChange)="globalFilter.set($event)"
-			/>
+				(globalFilterChange)="globalFilter.set($event)" />
 			<app-custom-table [table]="table" />
 			<app-action-buttons
 				[hasNextPage]="table.getCanNextPage()"
@@ -69,10 +66,9 @@ import {columns, fuzzyFilter, type TableMeta} from './tableModels';
 				(nextPage)="table.nextPage()"
 				(previousPage)="table.previousPage()"
 				(setPageIndex)="table.setPageIndex($event)"
-				(setPageSize)="table.setPageSize($event)"
-			/>
+				(setPageSize)="table.setPageSize($event)" />
 		</db-stack>
-	`,
+	`
 })
 export class TableKitchenSinkComponent {
 	data = signal(makeData(1000));
@@ -102,12 +98,12 @@ export class TableKitchenSinkComponent {
 		getFacetedMinMaxValues: getFacetedMinMaxValues(),
 		onColumnFiltersChange: (updater) => {
 			this.columnFilters.update((old) =>
-				typeof updater === 'function' ? updater(old) : updater,
+				typeof updater === 'function' ? updater(old) : updater
 			);
 		},
 		onGlobalFilterChange: (updater) => {
 			this.globalFilter.update((old) =>
-				typeof updater === 'function' ? updater(old) : updater,
+				typeof updater === 'function' ? updater(old) : updater
 			);
 		},
 		globalFilterFn: fuzzyFilter,
@@ -116,22 +112,22 @@ export class TableKitchenSinkComponent {
 		columnResizeMode: 'onChange',
 		onColumnVisibilityChange: (updater) => {
 			this.columnVisibility.update((old) =>
-				typeof updater === 'function' ? updater(old) : updater,
+				typeof updater === 'function' ? updater(old) : updater
 			);
 		},
 		onGroupingChange: (updater) => {
 			this.grouping.update((old) =>
-				typeof updater === 'function' ? updater(old) : updater,
+				typeof updater === 'function' ? updater(old) : updater
 			);
 		},
 		onColumnPinningChange: (updater) => {
 			this.columnPinning.update((old) =>
-				typeof updater === 'function' ? updater(old) : updater,
+				typeof updater === 'function' ? updater(old) : updater
 			);
 		},
 		onRowSelectionChange: (updater) => {
 			this.rowSelection.update((old) =>
-				typeof updater === 'function' ? updater(old) : updater,
+				typeof updater === 'function' ? updater(old) : updater
 			);
 		},
 		meta: {
@@ -142,11 +138,11 @@ export class TableKitchenSinkComponent {
 						if (index !== rowIndex) return row;
 						return {
 							...old[rowIndex]!,
-							[columnId]: value,
+							[columnId]: value
 						};
-					}),
+					})
 				);
-			},
+			}
 		} as TableMeta,
 		state: {
 			grouping: this.grouping(),
@@ -154,23 +150,23 @@ export class TableKitchenSinkComponent {
 			globalFilter: this.globalFilter(),
 			columnVisibility: this.columnVisibility(),
 			columnPinning: this.columnPinning(),
-			rowSelection: this.rowSelection(),
+			rowSelection: this.rowSelection()
 		},
 		initialState: {
 			pagination: {
-				pageSize: 5,
-			},
+				pageSize: 5
+			}
 		},
 		debugTable: true,
 		debugHeaders: true,
-		debugColumns: true,
+		debugColumns: true
 	}));
 
 	constructor() {
 		effect(() => {
 			if (this.table.getState().columnFilters[0]?.id === 'fullName') {
 				if (this.table.getState().sorting[0]?.id !== 'fullName') {
-					this.table.setSorting([{id: 'fullName', desc: false}]);
+					this.table.setSorting([{ id: 'fullName', desc: false }]);
 				}
 			}
 		});

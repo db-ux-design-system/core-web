@@ -6,7 +6,7 @@ import type {
 	ShowIconProps,
 	SizeProps,
 	TextProps,
-	WrapProps,
+	WrapProps
 } from '../../shared/model';
 
 export type DBInfotextDefaultProps = {};

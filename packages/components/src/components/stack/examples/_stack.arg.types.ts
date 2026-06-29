@@ -1,7 +1,7 @@
-import type {InputType} from 'storybook/internal/csf';
+import type { InputType } from 'storybook/internal/csf';
 
 export const StorybookStackArgTypes: Record<string, InputType> = {
-	variant: {control: 'select', options: ['simple', 'divider']},
+	variant: { control: 'select', options: ['simple', 'divider'] },
 	gap: {
 		control: 'select',
 		options: [
@@ -14,19 +14,19 @@ export const StorybookStackArgTypes: Record<string, InputType> = {
 			'small',
 			'x-small',
 			'2x-small',
-			'3x-small',
-		],
+			'3x-small'
+		]
 	},
-	direction: {control: 'select', options: ['row', 'column']},
-	wrap: {control: 'boolean'},
+	direction: { control: 'select', options: ['row', 'column'] },
+	wrap: { control: 'boolean' },
 	alignment: {
 		control: 'select',
-		options: ['stretch', 'start', 'end', 'center'],
+		options: ['stretch', 'start', 'end', 'center']
 	},
 	justifyContent: {
 		control: 'select',
-		options: ['space-between', 'start', 'end', 'center'],
+		options: ['space-between', 'start', 'end', 'center']
 	},
-	id: {control: 'text'},
-	autofocus: {control: 'boolean'},
+	id: { control: 'text' },
+	autofocus: { control: 'boolean' }
 };

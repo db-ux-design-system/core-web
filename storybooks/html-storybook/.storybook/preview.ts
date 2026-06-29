@@ -1,8 +1,8 @@
-import type {Preview} from '@storybook/react-vite';
+import type { Preview } from '@storybook/react-vite';
 import * as prettierHtml from 'prettier/plugins/html';
 import * as prettier from 'prettier/standalone';
 import './global.css';
-import {htmlCaptureDecorator, htmlSourceMap} from './html-capture-decorator';
+import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
 
 const preview: Preview = {
 	decorators: [htmlCaptureDecorator],
@@ -10,17 +10,20 @@ const preview: Preview = {
 		controls: {
 			matchers: {
 				color: /(background|color)$/i,
-				date: /Date$/i,
+				date: /Date$/i
 			},
-			disable: true,
+			disable: true
 		},
 		docs: {
 			toc: {
 				headingSelector: 'h1, h3',
-				title: 'Table of Contents',
+				title: 'Table of Contents'
 			},
 			source: {
-				transform: async (_code: string, storyContext: {id: string}) => {
+				transform: async (
+					_code: string,
+					storyContext: { id: string }
+				) => {
 					const html = htmlSourceMap.get(storyContext.id);
 					if (!html) {
 						return '<!-- HTML output not available -->';
@@ -29,13 +32,13 @@ const preview: Preview = {
 						parser: 'html',
 						plugins: [prettierHtml],
 						useTabs: true,
-						printWidth: 80,
+						printWidth: 80
 					});
 				},
-				language: 'html',
-			},
-		},
-	},
+				language: 'html'
+			}
+		}
+	}
 };
 
 export default preview;

@@ -1,5 +1,5 @@
-import {execSync} from 'node:child_process';
-import {describe, expect, test} from 'vitest';
+import { execSync } from 'node:child_process';
+import { describe, expect, test } from 'vitest';
 
 const command = 'node github/get-release.ts';
 
@@ -31,7 +31,7 @@ describe('build-gh-page', () => {
 		}
 
 		expect(result.toString().trim()).toEqual(
-			"Command failed: node github/get-release.ts\nYour tag has to start with 'v'",
+			"Command failed: node github/get-release.ts\nYour tag has to start with 'v'"
 		);
 	});
 
@@ -48,7 +48,7 @@ describe('build-gh-page', () => {
 		}
 
 		expect(result.toString().trim()).toEqual(
-			'Command failed: node github/get-release.ts\nDependabot has no permission to publish!',
+			'Command failed: node github/get-release.ts\nDependabot has no permission to publish!'
 		);
 	});
 });

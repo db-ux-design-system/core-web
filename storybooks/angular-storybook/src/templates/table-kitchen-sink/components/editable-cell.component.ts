@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {DBInput} from '@components';
-import type {Cell} from '@tanstack/angular-table';
-import type {Person} from '../makeData';
-import type {TableMeta} from '../tableModels';
+import { Component, Input, OnInit } from '@angular/core';
+import { DBInput } from '@components';
+import type { Cell } from '@tanstack/angular-table';
+import type { Person } from '../makeData';
+import type { TableMeta } from '../tableModels';
 
 @Component({
 	selector: 'app-editable-cell',
@@ -14,9 +14,8 @@ import type {TableMeta} from '../tableModels';
 			[label]="label"
 			[value]="value"
 			(valueChange)="onValueChange($event)"
-			(blur)="onBlur()"
-		/>
-	`,
+			(blur)="onBlur()" />
+	`
 })
 export class EditableCellComponent implements OnInit {
 	@Input() cell!: Cell<Person, unknown>;

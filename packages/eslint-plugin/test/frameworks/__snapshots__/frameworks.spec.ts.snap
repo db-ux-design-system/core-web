@@ -379,8 +379,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
-    "endColumn": 57,
-    "endLine": 67,
+    "endColumn": 40,
+    "endLine": 68,
     "line": 67,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
@@ -389,8 +389,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
-    "endColumn": 57,
-    "endLine": 67,
+    "endColumn": 40,
+    "endLine": 68,
     "line": 67,
     "message": "DBNavigationItem must have either a text property or children content",
     "messageId": "missingContent",
@@ -400,8 +400,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 70,
-    "line": 70,
+    "endLine": 71,
+    "line": 71,
     "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
     "messageId": "noInteractive",
     "ruleId": "db-ux/no-interactive-tooltip-content",
@@ -410,8 +410,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 70,
-    "line": 70,
+    "endLine": 71,
+    "line": 71,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -420,8 +420,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 6,
     "endColumn": 19,
-    "endLine": 77,
-    "line": 77,
+    "endLine": 78,
+    "line": 78,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "ruleId": "db-ux/no-nested-accordion",
@@ -430,8 +430,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 42,
-    "endLine": 82,
-    "line": 82,
+    "endLine": 83,
+    "line": 83,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -440,8 +440,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 29,
-    "endLine": 87,
-    "line": 87,
+    "endLine": 88,
+    "line": 88,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -450,8 +450,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 32,
-    "endLine": 90,
-    "line": 90,
+    "endLine": 91,
+    "line": 91,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -460,8 +460,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 5,
     "endColumn": 16,
-    "endLine": 94,
-    "line": 94,
+    "endLine": 95,
+    "line": 95,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -486,7 +486,7 @@ exports[`Framework ESLint Integration > should lint React test file > react-fixe
 	DBNotification,
 	DBSelect,
 	DBTag,
-	DBTooltip,
+	DBTooltip
 } from '@db-ux/react-core-components';
 
 export const TestComponent = () => {
@@ -537,7 +537,8 @@ export const TestComponent = () => {
 			</DBLink>
 
 			{/* db-ux/navigation-item-back-button-text-required */}
-			<DBNavigationItem subNavigation={<div>Sub nav</div>}></DBNavigationItem>
+			<DBNavigationItem
+				subNavigation={<div>Sub nav</div>}></DBNavigationItem>
 
 			{/* db-ux/no-interactive-tooltip-content */}
 			<DBTooltip>
@@ -696,8 +697,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
-    "endColumn": 356,
-    "endLine": 42,
+    "endColumn": 4,
+    "endLine": 44,
     "fix": {
       "range": [
         1602,
@@ -714,8 +715,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 22,
-    "endLine": 47,
-    "line": 45,
+    "endLine": 49,
+    "line": 47,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -724,8 +725,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 15,
-    "endLine": 52,
-    "line": 50,
+    "endLine": 54,
+    "line": 52,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -734,8 +735,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 4,
     "endColumn": 22,
-    "endLine": 58,
-    "line": 56,
+    "endLine": 60,
+    "line": 58,
     "message": "DBAccordionItem must have either headline or headlinePlain attribute",
     "messageId": "headlineRequired",
     "ruleId": "db-ux/accordion-item-headline-required",
@@ -744,8 +745,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 5,
     "endColumn": 32,
-    "endLine": 57,
-    "line": 57,
+    "endLine": 59,
+    "line": 59,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "ruleId": "db-ux/no-nested-accordion",
@@ -754,8 +755,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 14,
-    "endLine": 64,
-    "line": 62,
+    "endLine": 66,
+    "line": 64,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -764,8 +765,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 39,
-    "endLine": 67,
-    "line": 67,
+    "endLine": 69,
+    "line": 69,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -774,8 +775,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 39,
-    "endLine": 70,
-    "line": 70,
+    "endLine": 72,
+    "line": 72,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -784,8 +785,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 4,
     "endColumn": 61,
-    "endLine": 74,
-    "line": 74,
+    "endLine": 76,
+    "line": 76,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -836,7 +837,9 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		<DBInput label="Test" type="text" />
 
 		<!-- db-ux/link-external-security -->
-		<DBLink href="https://example.com" target="_blank" content="external" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer">External link</DBLink>
+		<DBLink href="https://example.com" target="_blank" content="external" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer"
+			>External link</DBLink
+		>
 
 		<!-- db-ux/navigation-item-back-button-text-required -->
 		<DBNavigationItem>
@@ -889,8 +892,8 @@ import {
 	DBNotification,
 	DBSelect,
 	DBTag,
-	DBTooltip,
-} from '@db-ux/v-core-components';
+	DBTooltip
+} from "@db-ux/v-core-components";
 </script>
 "
 `;

@@ -1,7 +1,7 @@
-import {DBTabItem} from '../../tab-item/index';
-import {DBTabList} from '../../tab-list/index';
-import {DBTabPanel} from '../../tab-panel/index';
-import {DBTabs} from '../index';
+import { DBTabItem } from '../../tab-item/index';
+import { DBTabList } from '../../tab-list/index';
+import { DBTabPanel } from '../../tab-panel/index';
+import { DBTabs } from '../index';
 
 export default function Tabs() {
 	return (

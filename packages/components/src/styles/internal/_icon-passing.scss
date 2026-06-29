@@ -1,15 +1,18 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/icons';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/icons";
 
-$interactive-button-selectors: 'label,button,a';
+$interactive-button-selectors: "label,button,a";
 
 @mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
-	&[data-icon-leading]:not([data-show-icon-leading='false']),
-	&[data-icon]:not([data-show-icon='false']) {
+	&[data-icon-leading]:not([data-show-icon-leading="false"]),
+	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
 			inset-block-start: calc(50% - 0.5em);
-			inset-inline-start: var(--db-icon-passing-inline-start, #{$inline-start});
+			inset-inline-start: var(
+				--db-icon-passing-inline-start,
+				#{$inline-start}
+			);
 			pointer-events: none;
 			z-index: 1;
 		}
@@ -26,7 +29,7 @@ $interactive-button-selectors: 'label,button,a';
 }
 
 @mixin icon-passing-trailing($inline-end: variables.$db-spacing-fixed-sm) {
-	&[data-icon-trailing]:not([data-show-icon-trailing='false']) {
+	&[data-icon-trailing]:not([data-show-icon-trailing="false"]) {
 		&::after {
 			position: absolute;
 			inset-block-start: calc(50% - 0.5em);

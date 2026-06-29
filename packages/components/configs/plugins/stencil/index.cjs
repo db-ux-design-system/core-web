@@ -16,23 +16,23 @@ module.exports = () => ({
 		post: (code) => {
 			if (!code.includes('componentDidLoad() {')) {
 				console.warn(
-					'[stencil plugin] componentDidLoad() { not found — skipping deleteConnectedElement injection',
+					'[stencil plugin] componentDidLoad() { not found — skipping deleteConnectedElement injection'
 				);
 			}
 			return code
 				.replaceAll(/(?<!\w)for={/g, 'htmlFor={')
 				.replaceAll(
 					'componentDidLoad() {',
-					`componentDidLoad() {${deleteConnectedElement()}\n`,
+					`componentDidLoad() {${deleteConnectedElement()}\n`
 				)
 				.replaceAll(
 					'} from "@stencil/core"',
-					', Element } from "@stencil/core"',
+					', Element } from "@stencil/core"'
 				)
 				.replaceAll(
 					'private _ref',
-					'@Element() rootElement: HTMLElement;\nprivate _ref',
+					'@Element() rootElement: HTMLElement;\nprivate _ref'
 				);
-		},
-	},
+		}
+	}
 });

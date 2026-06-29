@@ -1,15 +1,15 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/icons';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '../../styles/internal/form-components';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/form-components";
 
 // web-component workaround
 db-custom-select-list-item:not(:last-of-type) {
-	.db-custom-select-list-item[data-divider='true'] {
-		@include helpers.divider('bottom');
+	.db-custom-select-list-item[data-divider="true"] {
+		@include helpers.divider("bottom");
 	}
 }
 
@@ -24,7 +24,7 @@ db-custom-select-list-item:not(:last-of-type) {
 	box-sizing: border-box;
 
 	&:has(> label) {
-		&:not(:has(input[type='radio']:checked)) {
+		&:not(:has(input[type="radio"]:checked)) {
 			@include helpers.interactive-bg(
 				colors.$db-adaptive-bg-basic-transparent-full-hovered,
 				colors.$db-adaptive-bg-basic-transparent-full-pressed
@@ -42,8 +42,8 @@ db-custom-select-list-item:not(:last-of-type) {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 	}
 
-	&[data-divider='true']:not(:last-of-type) {
-		@include helpers.divider('bottom');
+	&[data-divider="true"]:not(:last-of-type) {
+		@include helpers.divider("bottom");
 	}
 
 	> label {
@@ -67,15 +67,15 @@ db-custom-select-list-item:not(:last-of-type) {
 			font-weight: 700;
 		}
 
-		&:has(input[type='radio']) {
-			--db-icon-trailing: 'none';
+		&:has(input[type="radio"]) {
+			--db-icon-trailing: "none";
 
 			gap: 0;
 		}
 
-		&:has(input[type='radio']:checked) {
+		&:has(input[type="radio"]:checked) {
 			--db-overwrite-cursor: default;
-			--db-icon-trailing: 'check';
+			--db-icon-trailing: "check";
 		}
 
 		> input {
@@ -85,12 +85,12 @@ db-custom-select-list-item:not(:last-of-type) {
 
 			&::after {
 				position: absolute;
-				content: '';
+				content: "";
 				inset-block: calc(-1 * #{variables.$db-spacing-fixed-xs});
 				inset-inline: calc(-1 * #{variables.$db-spacing-fixed-xs});
 			}
 
-			&[type='radio'] {
+			&[type="radio"] {
 				all: unset;
 			}
 

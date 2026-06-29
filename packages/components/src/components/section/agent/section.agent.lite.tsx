@@ -1,4 +1,4 @@
-import {DBSection} from '../index';
+import { DBSection } from '../index';
 
 export default function Section() {
 	return (

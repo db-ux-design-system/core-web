@@ -1,11 +1,11 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/icons';
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '../../styles/internal/component';
-@use '../../styles/internal/form-components';
-@use '../../styles/internal/button-components';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/button-components";
 
 $icon-padding: calc(
 	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
@@ -16,14 +16,14 @@ $icon-padding: calc(
 	@include form-components.set-default-form-component(input);
 
 	// increased inline size for elements with icons or specific input types that have icons
-	&:is([data-icon], [data-icon-trailing]):not([data-show-icon='false']),
+	&:is([data-icon], [data-icon-trailing]):not([data-show-icon="false"]),
 	&:has(
-		input[type='search'],
-		input[type='date'],
-		input[type='month'],
-		input[type='week'],
-		input[type='datetime-local'],
-		input[type='time']
+		input[type="search"],
+		input[type="date"],
+		input[type="month"],
+		input[type="week"],
+		input[type="datetime-local"],
+		input[type="time"]
 	) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 	}
@@ -34,20 +34,20 @@ $icon-padding: calc(
 	}
 
 	// padding-inline-end according to current amount of icons
-	&[data-icon]:not([data-show-icon='false']),
-	&:has(input[type='search']) {
+	&[data-icon]:not([data-show-icon="false"]),
+	&:has(input[type="search"]) {
 		--db-form-component-padding-inline-start: #{$icon-padding};
 	}
 
-	&[data-icon-trailing]:not([data-show-icon-trailing='false']),
-	&:has(input[type='search']),
+	&[data-icon-trailing]:not([data-show-icon-trailing="false"]),
+	&:has(input[type="search"]),
 	&:has(datalist) {
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
-	&:has(input[type='search']) {
-		@include icons.set-icon('magnifying_glass');
-		@include icons.set-icon('cross', 'after');
+	&:has(input[type="search"]) {
+		@include icons.set-icon("magnifying_glass");
+		@include icons.set-icon("cross", "after");
 
 		&::after {
 			opacity: 0;
@@ -57,7 +57,10 @@ $icon-padding: calc(
 			}
 		}
 
-		&:has(input:not(:placeholder-shown)):has(input:hover, input:focus-visible) {
+		&:has(input:not(:placeholder-shown)):has(
+				input:hover,
+				input:focus-visible
+			) {
 			&::after {
 				opacity: 1;
 			}
@@ -67,42 +70,43 @@ $icon-padding: calc(
 	// This @supports should exclude Mozilla Firefox
 	// TODO: Reevaluate after Mozilla is supporting week and month input types
 	@supports selector(::-webkit-calendar-picker-indicator) {
-		&:has(input[type='week']) {
+		&:has(input[type="week"]) {
 			--db-form-component-padding-inline-end: #{$icon-padding};
 		}
 
-		&:has(input[type='date']),
-		&:has(input[type='datetime-local']) {
+		&:has(input[type="date"]),
+		&:has(input[type="datetime-local"]) {
 			--db-form-component-padding-inline-end: calc(
 				1lh + #{variables.$db-spacing-fixed-xs}
 			);
 		}
 
-		&:has(input[type='date']),
-		&:has(input[type='week']),
-		&:has(input[type='datetime-local']),
-		&:has(input[type='month']) {
-			@include icons.set-icon('calendar', 'after');
+		&:has(input[type="date"]),
+		&:has(input[type="week"]),
+		&:has(input[type="datetime-local"]),
+		&:has(input[type="month"]) {
+			@include icons.set-icon("calendar", "after");
 		}
 
-		&:has(input[type='time']) {
-			@include icons.set-icon('clock', 'after');
+		&:has(input[type="time"]) {
+			@include icons.set-icon("clock", "after");
 		}
 	}
 
-	&:has(input[type='file']) {
+	&:has(input[type="file"]) {
 		input {
 			@extend %db-overwrite-font-size-sm;
 
 			padding-block-start: variables.$db-spacing-fixed-xs;
 		}
 
-		&[data-variant='floating'] {
+		&[data-variant="floating"] {
 			input {
 				@extend %db-overwrite-font-size-xs;
 
 				padding-block-start: calc(
-					#{variables.$db-spacing-fixed-md} + #{variables.$db-spacing-fixed-3xs}
+					#{variables.$db-spacing-fixed-md} +
+						#{variables.$db-spacing-fixed-3xs}
 				);
 
 				&::file-selector-button {
@@ -116,7 +120,7 @@ $icon-padding: calc(
 		}
 	}
 
-	&[data-variant='floating'] {
+	&[data-variant="floating"] {
 		input {
 			&::-webkit-calendar-picker-indicator,
 			&::-webkit-search-cancel-button {
@@ -161,7 +165,8 @@ $icon-padding: calc(
 			appearance: none;
 			position: absolute;
 			inset-inline-end: calc(
-				#{variables.$db-spacing-fixed-sm} + #{variables.$db-border-width-3xs}
+				#{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-border-width-3xs}
 			);
 		}
 
@@ -172,7 +177,8 @@ $icon-padding: calc(
 
 			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			block-size: variables.$db-sizing-sm;
-			padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 
 			&:hover,

@@ -1,4 +1,4 @@
-import {PatternhubProps} from '../../../shared/model';
+import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -14,7 +14,9 @@ import StackWrap from '../examples/wrap.example.lite';
 
 export default function StackShowcase(props: PatternhubProps) {
 	return (
-		<ContainerWrapperShowcase title="DBStack" isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase
+			title="DBStack"
+			isPatternhub={props.isPatternhub}>
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<StackDensity />

@@ -40,18 +40,18 @@ Every rule supports:
 
 ```json5
 {
-	'db-ux/use-xxx': [
+	"db-ux/use-xxx": [
 		true,
 		{
 			allowCalc: true, // Allow all calc() functions
-			ignore: ['test.scss'], // Ignore specific files
+			ignore: ["test.scss"], // Ignore specific files
 			allow: {
-				startsWith: ['map.get'],
-				includes: ['--custom-gap'],
-				exact: ['$custom-padding'],
-			},
-		},
-	],
+				startsWith: ["map.get"],
+				includes: ["--custom-gap"],
+				exact: ["$custom-padding"]
+			}
+		}
+	]
 }
 ```
 

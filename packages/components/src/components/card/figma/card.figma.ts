@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaCardProps = {
 	elevationLevel?: string;
@@ -14,8 +14,8 @@ const cardProps: Record<string, FigmaProp> = {
 		value: {
 			'1': '1',
 			'2': '2',
-			'3': '3',
-		},
+			'3': '3'
+		}
 	},
 	spacing: {
 		type: 'enum',
@@ -24,28 +24,28 @@ const cardProps: Record<string, FigmaProp> = {
 			'(Def) Small': 'small',
 			Medium: 'medium',
 			Large: 'large',
-			None: 'none',
-		},
+			None: 'none'
+		}
 	},
 	behavior: {
 		type: 'enum',
 		key: 'Behavior',
 		value: {
 			'(Def) Static': 'static',
-			Interactive: 'interactive',
-		},
+			Interactive: 'interactive'
+		}
 	},
 	_children: {
 		type: 'children',
-		key: 'Children',
-	},
+		key: 'Children'
+	}
 };
 
 export const cards: FigmaCodeConnect = {
 	urls: [
 		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:4793',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:4898',
-		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:5003',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=32604:5003'
 	],
-	props: cardProps,
+	props: cardProps
 };

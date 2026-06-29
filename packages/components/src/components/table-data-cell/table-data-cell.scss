@@ -1,4 +1,4 @@
-@use './../../styles/internal/table-components';
+@use "./../../styles/internal/table-components";
 
 .db-table-data-cell {
 	@extend %table-cell;

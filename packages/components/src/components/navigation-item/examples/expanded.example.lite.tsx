@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBNavigationItem from '../navigation-item.lite';
-import {StorybookNavigationItemArgTypes} from './_navigation-item.arg.types';
+import { StorybookNavigationItemArgTypes } from './_navigation-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Expanded',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookNavigationItemArgTypes,
+	storybookArgTypes: StorybookNavigationItemArgTypes
 });
 
 export default function NavigationItemExpanded() {
@@ -27,16 +27,14 @@ export default function NavigationItemExpanded() {
 											<a href="#">Navigation-Item 2</a>
 										</DBNavigationItem>
 									</>
-								}
-							>
+								}>
 								Also a navigation item with longer label
 							</DBNavigationItem>
 							<DBNavigationItem>
 								<a href="#">Navigation-Item 1</a>
 							</DBNavigationItem>
 						</>
-					}
-				>
+					}>
 					True
 				</DBNavigationItem>
 			</ul>

@@ -12,6 +12,6 @@ module.exports = {
 		useIdPlugin,
 		onClickPlugin,
 		esmExtensionsPlugin,
-		invokerCommandsPlugin,
-	],
+		invokerCommandsPlugin
+	]
 };

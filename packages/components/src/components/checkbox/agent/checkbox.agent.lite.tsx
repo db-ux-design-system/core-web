@@ -1,4 +1,4 @@
-import {DBCheckbox} from '../index';
+import { DBCheckbox } from '../index';
 
 export default function Checkbox() {
 	return (
@@ -18,7 +18,10 @@ export default function Checkbox() {
 			<h2>4. Validation States</h2>
 			<DBCheckbox validation="valid" label="Valid Checkbox" />
 			<DBCheckbox validation="invalid" label="Invalid Checkbox" />
-			<DBCheckbox validation="no-validation" label="No Validation Checkbox" />
+			<DBCheckbox
+				validation="no-validation"
+				label="No Validation Checkbox"
+			/>
 
 			<h2>5. Disabled State</h2>
 			<DBCheckbox disabled label="Disabled Checkbox" />

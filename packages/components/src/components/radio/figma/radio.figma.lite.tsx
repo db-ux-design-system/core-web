@@ -1,9 +1,9 @@
-import {useMetadata} from '@builder.io/mitosis';
-import {DBRadio} from '../index';
-import {FigmaRadioProps, radios} from './radio.figma';
+import { useMetadata } from '@builder.io/mitosis';
+import { DBRadio } from '../index';
+import { FigmaRadioProps, radios } from './radio.figma';
 
 useMetadata({
-	figma: radios,
+	figma: radios
 });
 
 export default function RadioFigmaLite(props: FigmaRadioProps) {

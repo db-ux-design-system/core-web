@@ -6,7 +6,7 @@ import type {
 	InnerCloseButtonProps,
 	NavigationBehaviorState,
 	ToggleEventProps,
-	ToggleEventState,
+	ToggleEventState
 } from '../../shared/model';
 
 export type DBHeaderDefaultProps = {

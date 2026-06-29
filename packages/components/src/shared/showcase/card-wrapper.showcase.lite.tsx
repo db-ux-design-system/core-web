@@ -5,12 +5,12 @@ import {
 	Show,
 	Slot,
 	useState,
-	useTarget,
+	useTarget
 } from '@builder.io/mitosis';
 import DBCard from '../../components/card/card.lite';
 import DBLink from '../../components/link/link.lite';
-import {DB_UX_LOCAL_STORAGE_FRAMEWORK} from '../constants';
-import {getShowCodeHref} from './show-code-link';
+import { DB_UX_LOCAL_STORAGE_FRAMEWORK } from '../constants';
+import { getShowCodeHref } from './show-code-link';
 
 type Props = {
 	role?: string;
@@ -26,15 +26,17 @@ export default function CardWrapperShowcase(props: Props) {
 			react: () => {
 				// Keep the link in sync while URL updates are still in flight.
 				const frameworkFromUrl = new URLSearchParams(
-					window.location.search,
+					window.location.search
 				).get('framework');
 				const frameworkFromStorage = localStorage.getItem(
-					DB_UX_LOCAL_STORAGE_FRAMEWORK,
+					DB_UX_LOCAL_STORAGE_FRAMEWORK
 				);
 				const framework =
-					frameworkOverride ?? frameworkFromUrl ?? frameworkFromStorage;
+					frameworkOverride ??
+					frameworkFromUrl ??
+					frameworkFromStorage;
 				setHref(getShowCodeHref(window.location.href, framework));
-			},
+			}
 		});
 	}
 
@@ -47,7 +49,10 @@ export default function CardWrapperShowcase(props: Props) {
 		if (typeof window !== 'undefined' && localStorage) {
 			window.addEventListener('popstate', handleHrefUpdateEvent);
 			window.addEventListener('hashchange', handleHrefUpdateEvent);
-			window.addEventListener('db-ux-framework-change', handleHrefUpdateEvent);
+			window.addEventListener(
+				'db-ux-framework-change',
+				handleHrefUpdateEvent
+			);
 
 			updateHref();
 		}
@@ -59,7 +64,7 @@ export default function CardWrapperShowcase(props: Props) {
 			window.removeEventListener('hashchange', handleHrefUpdateEvent);
 			window.removeEventListener(
 				'db-ux-framework-change',
-				handleHrefUpdateEvent,
+				handleHrefUpdateEvent
 			);
 		}
 	});
@@ -70,8 +75,7 @@ export default function CardWrapperShowcase(props: Props) {
 				<div
 					role={props.role}
 					aria-label={props.role ? props.label : undefined}
-					class="variants-list"
-				>
+					class="variants-list">
 					<Slot />
 				</div>
 			</DBCard>
@@ -82,8 +86,7 @@ export default function CardWrapperShowcase(props: Props) {
 					className="show-code-link"
 					target="_blank"
 					href={href}
-					referrerpolicy="no-referrer"
-				>
+					referrerpolicy="no-referrer">
 					Show Code
 				</DBLink>
 			</Show>

@@ -1,14 +1,14 @@
 import type {
 	DBTableCellProps,
 	GlobalProps,
-	GlobalState,
+	GlobalState
 } from '../../shared/model';
 
 export const DBTableHeaderCellScopeList = [
 	'row',
 	'col',
 	'rowgroup',
-	'colgroup',
+	'colgroup'
 ] as const;
 export type DBTableHeaderCellScopeType =
 	(typeof DBTableHeaderCellScopeList)[number];

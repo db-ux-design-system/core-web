@@ -1,4 +1,4 @@
-import {FigmaCodeConnect, FigmaProp} from '../../../shared/figma';
+import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaTagProps = {
 	label?: string;
@@ -15,7 +15,7 @@ export type FigmaTagProps = {
 };
 
 const sharedProps: Record<string, FigmaProp> = {
-	label: {type: 'textContent', key: 'Text'},
+	label: { type: 'textContent', key: 'Text' },
 	semantic: {
 		type: 'enum',
 		key: 'Semantic',
@@ -25,23 +25,23 @@ const sharedProps: Record<string, FigmaProp> = {
 			Informational: 'informational',
 			Neutral: 'neutral',
 			Successful: 'successful',
-			Warning: 'warning',
-		},
+			Warning: 'warning'
+		}
 	},
-	showIcon: {type: 'boolean', key: 'Show Icon'},
+	showIcon: { type: 'boolean', key: 'Show Icon' },
 	icon: {
 		type: 'conditionalProp',
 		key: 'Icon',
 		guardKey: 'Show Icon',
-		attrName: 'icon',
+		attrName: 'icon'
 	},
 	emphasis: {
 		type: 'enum',
 		key: 'Emphasis',
-		value: {weak: 'weak', strong: 'strong'},
+		value: { weak: 'weak', strong: 'strong' }
 	},
-	noText: {type: 'boolean', key: 'No Text'},
-	overflow: {type: 'boolean', key: 'Overflow'},
+	noText: { type: 'boolean', key: 'No Text' },
+	overflow: { type: 'boolean', key: 'Overflow' }
 };
 
 const staticProps: Record<string, FigmaProp> = {
@@ -51,21 +51,21 @@ const staticProps: Record<string, FigmaProp> = {
 		key: 'Behavior',
 		value: {
 			static: 'static',
-			removable: 'removable',
-		},
-	},
+			removable: 'removable'
+		}
+	}
 };
 
 const interactiveProps: Record<string, FigmaProp> = {
 	...sharedProps,
-	disabled: {type: 'boolean', key: 'Disabled'},
+	disabled: { type: 'boolean', key: 'Disabled' }
 };
 
 const interactiveToggleProps: Record<string, FigmaProp> = {
 	...sharedProps,
-	disabled: {type: 'boolean', key: 'Disabled'},
-	checked: {type: 'boolean', key: 'Checked'},
-	showCheckState: {type: 'boolean', key: 'Show Check State'},
+	disabled: { type: 'boolean', key: 'Disabled' },
+	checked: { type: 'boolean', key: 'Checked' },
+	showCheckState: { type: 'boolean', key: 'Show Check State' }
 };
 
 // static + removable (both weak and strong)
@@ -81,9 +81,9 @@ export const staticTag: FigmaCodeConnect = {
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19575',
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19630',
 		// strong removable
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:20661',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:20661'
 	],
-	props: staticProps,
+	props: staticProps
 };
 
 // interactive (both weak and strong, text and icon)
@@ -96,9 +96,9 @@ export const interactiveTag: FigmaCodeConnect = {
 		// strong interactive text
 		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31246',
 		// strong interactive icon
-		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31553',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=15767:31553'
 	],
-	props: interactiveProps,
+	props: interactiveProps
 };
 
 // interactive-toggle (both weak and strong, text and icon)
@@ -109,7 +109,7 @@ export const interactiveToggleTag: FigmaCodeConnect = {
 		// weak interactive-toggle icon
 		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:18803',
 		// strong interactive-toggle text
-		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19673',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=14442:19673'
 	],
-	props: interactiveToggleProps,
+	props: interactiveToggleProps
 };

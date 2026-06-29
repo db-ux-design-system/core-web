@@ -6,7 +6,7 @@ For general installation and configuration look at the [react-core-components](h
 
 ```tsx App.tsx
 // App.tsx
-import {DBNavigation, DBNavigationItem} from '@db-ux/react-core-components';
+import { DBNavigation, DBNavigationItem } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBNavigation>

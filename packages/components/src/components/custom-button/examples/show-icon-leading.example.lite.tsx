@@ -1,7 +1,7 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBCustomButton from '../custom-button.lite';
-import {StorybookCustomButtonArgTypes} from './_custom-button.arg.types';
+import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Icon Leading',
@@ -11,15 +11,18 @@ useMetadata({
 		'(Default) False: Link',
 		'True: Button',
 		'True: Checkbox',
-		'True: Link',
+		'True: Link'
 	],
-	storybookArgTypes: StorybookCustomButtonArgTypes,
+	storybookArgTypes: StorybookCustomButtonArgTypes
 });
 
 export default function CustomButtonShowIconLeading() {
 	return (
 		<Fragment>
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				(Default) False
 			</DBInfotext>
 			<DBCustomButton icon="x_placeholder" showIcon={false}>
@@ -35,7 +38,10 @@ export default function CustomButtonShowIconLeading() {
 				<a href="#">Link</a>
 			</DBCustomButton>
 			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext data-sb-ignore="true" size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				True
 			</DBInfotext>
 			<DBCustomButton icon="x_placeholder" showIcon={true}>

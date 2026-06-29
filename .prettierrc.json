@@ -1,10 +1,14 @@
 {
-	"singleQuote": true,
-	"bracketSpacing": false,
-	"bracketSameLine": false,
-	"trailingComma": "all",
-	"tabWidth": 2,
-	"useTabs": true,
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"overrides": [
+		{
+			"files": ["*.js", "*.jsx", "*.cjs", "*.ts", "*.tsx"],
+			"options": {
+				"bracketSameLine": true
+			}
+		}
+	],
 	"endOfLine": "auto",
 	"plugins": ["prettier-plugin-pkg", "prettier-plugin-organize-imports"]
 }

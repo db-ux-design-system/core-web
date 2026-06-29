@@ -1,12 +1,12 @@
-@use 'sass:math';
-@use 'sass:map';
-@use 'sass:list';
-@use '../helpers';
-@use '../variables';
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+@use "../helpers";
+@use "../variables";
 
 $default-icon-size: 24;
 $default-icon-size-rem: #{helpers.px-to-rem($default-icon-size)};
-$default-icon-variants: 'default', 'filled';
+$default-icon-variants: "default", "filled";
 $default-icon-content: var(--db-icon, attr(data-icon));
 $default-icon-content-after: var(--db-icon-trailing, attr(data-icon-trailing));
 $default-icon-margin-end: var(
@@ -44,41 +44,41 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
 	// TODO: remove the @support wrapper as soon as we drop our partly-support for Firefox < version 128 (Enterprise ESR / Extended Support Release; expected to end in 2026, August / https://whattrainisitnow.com/calendar/)
-	@supports (content: ''/'') {
+	@supports (content: ""/"") {
 		// stylelint-disable-next-line no-invalid-position-declaration
-		content: $icon / '';
+		content: $icon / "";
 	}
 }
 
 @mixin to-filled-icon() {
 	--db-icon-font-family: var(
 		--db-icon-filled-font-family,
-		'db-ux-filled',
-		'icon-font-fallback'
+		"db-ux-filled",
+		"icon-font-fallback"
 	);
 }
 
 // Icon SCSS mixin
-@mixin set-icon($icon: '', $position: 'before') {
-	$pos: 'leading';
+@mixin set-icon($icon: "", $position: "before") {
+	$pos: "leading";
 
-	@if $position == 'after' {
-		$pos: 'trailing';
+	@if $position == "after" {
+		$pos: "trailing";
 	}
 
-	&:not([data-show-icon-#{$pos}='false']) {
+	&:not([data-show-icon-#{$pos}="false"]) {
 		&::#{$position} {
-			@if $icon != '' {
+			@if $icon != "" {
 				@extend %icon;
 
-				@if $position == 'before' {
-					--db-icon: '#{$icon}';
+				@if $position == "before" {
+					--db-icon: "#{$icon}";
 
 					margin-inline-end: $default-icon-margin-end;
 				}
 
-				@if $position == 'after' {
-					--db-icon-trailing: '#{$icon}';
+				@if $position == "after" {
+					--db-icon-trailing: "#{$icon}";
 
 					margin-inline-start: $default-icon-margin-start;
 
@@ -90,10 +90,10 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 // SCSS mixin for elements that text should get hidden in favour of only displaying the included icon
-@mixin is-icon-text-replace($position: 'before') {
+@mixin is-icon-text-replace($position: "before") {
 	font-size: 0 !important;
 
-	@if $position == 'before' {
+	@if $position == "before" {
 		&::before {
 			--db-icon-margin-end: 0;
 		}
@@ -114,17 +114,17 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 @mixin variant-icons($variant) {
 	@include has-no-icon {
 		&::before {
-			@if $variant == 'critical' {
-				--db-icon: 'exclamation_mark_circle';
+			@if $variant == "critical" {
+				--db-icon: "exclamation_mark_circle";
 				/* stylelint-disable-next-line at-rule-empty-line-before */
-			} @else if $variant == 'informational' or $variant == 'neutral' {
-				--db-icon: 'information_circle';
+			} @else if $variant == "informational" or $variant == "neutral" {
+				--db-icon: "information_circle";
 				/* stylelint-disable-next-line at-rule-empty-line-before */
-			} @else if $variant == 'warning' {
-				--db-icon: 'exclamation_mark_triangle';
+			} @else if $variant == "warning" {
+				--db-icon: "exclamation_mark_triangle";
 				/* stylelint-disable-next-line at-rule-empty-line-before */
-			} @else if $variant == 'successful' {
-				--db-icon: 'check_circle';
+			} @else if $variant == "successful" {
+				--db-icon: "check_circle";
 			}
 		}
 	}
@@ -138,7 +138,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(
 		--db-icon-font-family,
-		var(--db-icon-default-font-family, 'db-ux-default', 'icon-font-fallback')
+		var(
+			--db-icon-default-font-family,
+			"db-ux-default",
+			"icon-font-fallback"
+		)
 	) !important;
 	font-size: $default-icon-font-size;
 

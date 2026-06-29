@@ -1,12 +1,12 @@
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
-import {Buffer} from 'buffer';
-import {useEffect, useState} from 'react';
-import {DBLink} from '../../../../output/react/src';
+import { Buffer } from 'buffer';
+import { useEffect, useState } from 'react';
+import { DBLink } from '../../../../output/react/src';
 import {
 	COLOR,
 	COLORS,
 	DENSITIES,
-	DENSITY,
+	DENSITY
 } from '../../../../packages/components/src/shared/constants';
 
 const Base64 = () => {
@@ -20,8 +20,8 @@ const Base64 = () => {
 		setUrl(
 			new URL(
 				`iframe?color=${color}&density=${density}&components=${base64}`,
-				globalThis.location?.href,
-			).href,
+				globalThis.location?.href
+			).toString()
 		);
 	}, [density, color, base64]);
 
@@ -29,17 +29,17 @@ const Base64 = () => {
 		<div className="base-64-container">
 			<textarea
 				onChange={(event) => {
-					setBase64(Buffer.from(event.target.value).toString('base64'));
-				}}
-			></textarea>
+					setBase64(
+						Buffer.from(event.target.value).toString('base64')
+					);
+				}}></textarea>
 			<div>
 				{/* TODO: replace those by DBSelect as soon as this lands */}
 				<select
 					value={density}
 					onChange={(event) => {
 						setDensity(event?.target?.value);
-					}}
-				>
+					}}>
 					{DENSITIES.map((ton) => (
 						<option key={`density-option-${ton}`} value={ton}>
 							{ton}
@@ -50,8 +50,7 @@ const Base64 = () => {
 					value={color}
 					onChange={(event) => {
 						setColor(event?.target?.value);
-					}}
-				>
+					}}>
 					{COLORS.map((col) => (
 						<option key={`density-option-${col}`} value={col}>
 							{col}
@@ -59,7 +58,11 @@ const Base64 = () => {
 					))}
 				</select>
 			</div>
-			<DBLink href={url} target="_blank" variant="brand" content="external">
+			<DBLink
+				href={url}
+				target="_blank"
+				variant="brand"
+				content="external">
 				Open IFrame
 			</DBLink>
 		</div>

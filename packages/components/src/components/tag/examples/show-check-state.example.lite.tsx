@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBTag from '../tag.lite';
-import {StorybookTagArgTypes} from './_tag.arg.types';
+import { StorybookTagArgTypes } from './_tag.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Check State',
 	storybookNames: ['(Default) True', 'False'],
-	storybookArgTypes: StorybookTagArgTypes,
+	storybookArgTypes: StorybookTagArgTypes
 });
 
 export default function TagShowCheckState() {

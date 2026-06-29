@@ -11,7 +11,7 @@ module.exports = {
 	typescript: true,
 	attributePassing: {
 		enabled: true,
-		customRef: '_ref',
+		customRef: '_ref'
 	},
 	api: 'signals',
 	plugins: [
@@ -19,6 +19,6 @@ module.exports = {
 		angularSlotsPlugin,
 		classNamePlugin,
 		onClickPlugin,
-		angularPlugin,
-	],
+		angularPlugin
+	]
 };

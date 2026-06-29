@@ -1,14 +1,12 @@
 /**
- Generates a structured prompt for a deep accessibility audit against WCAG 2.2 AA.
- Instructs the agent to evaluate interactive patterns, focus order, and ARIA usage.
- @param code_snippet - The UI source code to be audited.
- @param code_snippet.code_snippet
- @param framework - The framework the snippet is written in.
- @param code_snippet.framework
+ * Generates a structured prompt for a deep accessibility audit against WCAG 2.2 AA.
+ * Instructs the agent to evaluate interactive patterns, focus order, and ARIA usage.
+ * @param code_snippet - The UI source code to be audited.
+ * @param framework - The framework the snippet is written in.
  */
 export function handleAuditAccessibilityPrompt({
 	code_snippet,
-	framework,
+	framework
 }: {
 	code_snippet: string;
 	framework: string;
@@ -47,9 +45,9 @@ Deliver your analysis in the following strict format:
 1. "Accessibility Audit Summary": A high-level assessment of the snippet's A11y compliance.
 2. "WCAG Violations": A prioritized list of issues. You MUST provide EVIDENCE from the DB UX tools or WCAG guidelines for each violation.
 3. "Manual Testing Script": Step-by-step instructions for a QA engineer to manually validate this snippet using Keyboard-only navigation and a Screen Reader.
-4. "Remediated Code": The fully accessible, DB UX-compliant code block.`,
-				},
-			},
-		],
+4. "Remediated Code": The fully accessible, DB UX-compliant code block.`
+				}
+			}
+		]
 	};
 }

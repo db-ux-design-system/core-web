@@ -1,11 +1,11 @@
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/variables';
-@use './form-components';
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "./form-components";
 
 %select-icon {
 	@extend %dropdown-icon;
 
-	&[data-icon]:not([data-show-icon='false']) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-has-before: 1;
 	}
 }
@@ -35,7 +35,7 @@ $select-icon-padding: calc(
 }
 
 %select-placeholder {
-	[id$='-placeholder'] {
+	[id$="-placeholder"] {
 		--label-block-start: calc(
 			(
 				#{form-components.$label-size-height-xs} +

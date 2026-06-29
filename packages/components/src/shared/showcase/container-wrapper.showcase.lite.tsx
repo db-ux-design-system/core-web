@@ -1,7 +1,7 @@
-import {Fragment, onMount, Show, Slot, useState} from '@builder.io/mitosis';
+import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
 import DBLink from '../../components/link/link.lite';
-import {delay} from '../../utils';
-import {PatternhubProps} from '../model';
+import { delay } from '../../utils';
+import { PatternhubProps } from '../model';
 
 type Props = {
 	title?: string;
@@ -24,9 +24,11 @@ export default function ContainerWrapperShowcase(props: Props) {
 		if (typeof window !== 'undefined') {
 			void delay(() => {
 				const hash = window.location.hash;
-				const queryString = hash.includes('?') ? hash.split('?')[1] : '';
+				const queryString = hash.includes('?')
+					? hash.split('?')[1]
+					: '';
 				const params = new URLSearchParams(
-					window.location.search || queryString,
+					window.location.search || queryString
 				);
 
 				setHidden(Boolean(params.get('page')));
@@ -40,7 +42,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 		const componentName = props.title
 			?.replace(/^DB/, '')
 			.replaceAll(/([A-Z])/g, (match, letter, index) =>
-				index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase(),
+				index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
 			);
 
 		if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
@@ -55,7 +57,9 @@ export default function ContainerWrapperShowcase(props: Props) {
 		if (!filePath) return;
 
 		const targetBranch =
-			process.env['GITHUB_BRANCH'] ?? process.env['BRANCH_NAME'] ?? 'main';
+			process.env['GITHUB_BRANCH'] ??
+			process.env['BRANCH_NAME'] ??
+			'main';
 
 		return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
 	}
@@ -65,7 +69,9 @@ export default function ContainerWrapperShowcase(props: Props) {
 			<div className="default-container">
 				<Show when={!hidden}>
 					<header class="component-header">
-						<Show when={props.isSubComponent} else={<h1>{props.title}</h1>}>
+						<Show
+							when={props.isSubComponent}
+							else={<h1>{props.title}</h1>}>
 							<h2>{props.title}</h2>
 						</Show>
 
@@ -74,8 +80,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 								target="_blank"
 								referrerPolicy="no-referrer"
 								href={getGitHubSourceUrl()}
-								content="external"
-							>
+								content="external">
 								View Source
 							</DBLink>
 						</Show>

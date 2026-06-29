@@ -7,11 +7,11 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
-import {DBRadio} from '@db-ux/v-core-components';
-import {_ref} from 'vue';
-const radio = _ref('');
+import { DBRadio } from "@db-ux/v-core-components";
+import { _ref } from "vue";
+const radio = _ref("");
 
-const radioNames = ['X', 'Y', 'Z'];
+const radioNames = ["X", "Y", "Z"];
 </script>
 
 <template>

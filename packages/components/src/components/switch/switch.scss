@@ -1,9 +1,9 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/fonts';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/icons';
-@use '../../styles/internal/form-components';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/internal/form-components";
 
 // We need some fixed padding here to avoid layout shifts
 /* stylelint-disable-next-line db-ux/use-spacings */
@@ -42,20 +42,20 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
 
-		@include form-components.get-state('active') {
+		@include form-components.get-state("active") {
 			@extend %active-transition;
 		}
 	}
 
 	// jscpd:ignore-start
 	@include form-components.get-validity(check) {
-		&:has(.db-infotext[data-semantic='successful']) {
-			@include form-components.get-validity-color-checkbox('valid');
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include form-components.get-validity-color-checkbox("valid");
 		}
 	}
 
-	@include form-components.get-validity(check, 'invalid') {
-		@include form-components.get-validity-color-checkbox('invalid');
+	@include form-components.get-validity(check, "invalid") {
+		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
 	// jscpd:ignore-end
@@ -80,7 +80,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		gap: $switch-fixed-padding;
 		border-radius: variables.$db-border-radius-full;
 
-		@include icons.set-icon('cross', 'after');
+		@include icons.set-icon("cross", "after");
 
 		&::after {
 			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
@@ -92,7 +92,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 		// thumb
 		&::before {
-			content: '';
+			content: "";
 			text-align: center;
 			align-content: center;
 			aspect-ratio: 1;
@@ -127,7 +127,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: '•' / '';
+				content: "•" / "";
 			}
 		}
 
@@ -180,7 +180,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		}
 	}
 
-	&[data-hide-label='true'] {
+	&[data-hide-label="true"] {
 		> label {
 			margin: 0;
 
@@ -190,13 +190,13 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		}
 	}
 
-	&[data-size='small'] {
+	&[data-size="small"] {
 		input {
 			@extend %db-overwrite-font-size-xs;
 		}
 	}
 
-	&[data-visual-aid='true'] {
+	&[data-visual-aid="true"] {
 		input {
 			&::after {
 				visibility: visible;
@@ -210,11 +210,13 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 			&:checked {
 				&:not([data-aid-icon]) {
-					@include icons.set-icon('check', 'after');
+					@include icons.set-icon("check", "after");
 				}
 
 				&::after {
-					transform: translateX(calc(-100% - #{$switch-fixed-padding}));
+					transform: translateX(
+						calc(-100% - #{$switch-fixed-padding})
+					);
 					transform-origin: center right;
 				}
 			}
@@ -222,7 +224,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 	}
 
 	/* Label position (leading/trailing) */
-	&:not([data-variant='leading']) {
+	&:not([data-variant="leading"]) {
 		> label {
 			flex-direction: row;
 		}
@@ -231,17 +233,17 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			margin-inline-end: variables.$db-spacing-fixed-xs;
 		}
 
-		&[data-size='small'] {
+		&[data-size="small"] {
 			input {
 				margin-inline-end: variables.$db-spacing-fixed-xs;
 			}
 		}
 	}
 
-	&[data-variant='leading'] {
-		&:not([data-hide-asterisk='true']) {
+	&[data-variant="leading"] {
+		&:not([data-hide-asterisk="true"]) {
 			&:has(input:required),
-			&[data-required='true'] {
+			&[data-required="true"] {
 				> label::after {
 					/* We remove default asterisk because we need a wrapping span for switch */
 					content: none;
@@ -250,7 +252,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 				> label::before {
 					order: 1;
 
-					@include icons.icon-content('*');
+					@include icons.icon-content("*");
 				}
 			}
 		}
@@ -260,7 +262,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			margin-inline-start: variables.$db-spacing-fixed-xs;
 		}
 
-		&[data-size='small'] {
+		&[data-size="small"] {
 			input {
 				margin-inline-start: variables.$db-spacing-fixed-2xs;
 			}

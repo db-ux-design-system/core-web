@@ -1,4 +1,4 @@
-import {DBNavigationItem} from '../index';
+import { DBNavigationItem } from '../index';
 
 export default function NavigationItem() {
 	return (
@@ -12,7 +12,9 @@ export default function NavigationItem() {
 			<DBNavigationItem active>Active Navigation Item</DBNavigationItem>
 
 			<h2>3. Disabled State</h2>
-			<DBNavigationItem disabled>Disabled Navigation Item</DBNavigationItem>
+			<DBNavigationItem disabled>
+				Disabled Navigation Item
+			</DBNavigationItem>
 
 			<h2>4. Sub-Navigation</h2>
 			<DBNavigationItem subNavigation={<div>Sub Navigation Content</div>}>
@@ -20,7 +22,9 @@ export default function NavigationItem() {
 			</DBNavigationItem>
 
 			<h2>5. Icon Support</h2>
-			<DBNavigationItem icon="user">Navigation Item with Icon</DBNavigationItem>
+			<DBNavigationItem icon="user">
+				Navigation Item with Icon
+			</DBNavigationItem>
 
 			<h2>6. Custom Class</h2>
 			<DBNavigationItem className="custom-class">

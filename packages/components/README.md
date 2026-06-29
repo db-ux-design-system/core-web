@@ -56,10 +56,10 @@ Import the styles in your main `.css` file.
 /* index.css */
 @layer whitelabel-theme, db-ux;
 /* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
-@import '@db-ux/core-foundations/build/styles/theme/rollup.css'
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
 	layer(whitelabel-theme);
 
-@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 > **Vite 8 Note:** Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `vite.config.ts` like this:
@@ -68,8 +68,8 @@ Import the styles in your main `.css` file.
 // vite.config.ts
 export default defineConfig({
 	build: {
-		cssMinify: 'esbuild',
-	},
+		cssMinify: "esbuild"
+	}
 });
 ```
 
@@ -80,17 +80,19 @@ export default defineConfig({
 // npm install -D lightningcss browserslist
 
 // vite.config.ts
-import {browserslistToTargets} from 'lightningcss';
-import browserslist from 'browserslist';
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
 export default defineConfig({
 	css: {
 		lightningcss: {
 			targets: browserslistToTargets(
-				browserslist('>= 0.5%, last 2 major versions, Firefox ESR, not dead'),
-			),
-		},
-	},
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
+		}
+	}
 });
 ```
 
@@ -105,23 +107,23 @@ In the case you want to include only some components, and you could do it like t
 
 ```css
 /* The theme contains all props required for components like spacings, colors, ... */
-@import '@db-ux/core-foundations/build/styles/bundle.css';
+@import "@db-ux/core-foundations/build/styles/bundle.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import '@db-ux/core-foundations/build/styles/fonts/rollup.css';
+@import "@db-ux/core-foundations/build/styles/fonts/rollup.css";
 /* The required styles will normalize css and add focus and default font to body */
-@import '@db-ux/core-foundations/build/styles/defaults/default-required.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
 /* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
-@import '@db-ux/core-foundations/build/styles/defaults/default-root.css';
+@import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
 
 /* Optional: Add animations / transitions for components */
-@import '@db-ux/core-components/build/styles/component-animations.css';
+@import "@db-ux/core-components/build/styles/component-animations.css";
 
 /* Optional: Add data-icon/data-icon-trailing to global attributes to enable icons for components */
-@import '@db-ux/core-foundations/build/styles/icons/rollup.css';
+@import "@db-ux/core-foundations/build/styles/icons/rollup.css";
 
 /* Optional: Add components */
-@import '@db-ux/core-components/build/components/button/button.css';
-@import '@db-ux/core-components/build/components/input/input.css';
+@import "@db-ux/core-components/build/components/button/button.css";
+@import "@db-ux/core-components/build/components/input/input.css";
 ```
 
 ## Deutsche Bahn brand

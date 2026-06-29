@@ -7,7 +7,7 @@ For general installation and configuration look at the [v-core-components](https
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import {DBNavigation, DBNavigationItem} from '@db-ux/v-core-components';
+import { DBNavigation, DBNavigationItem } from "@db-ux/v-core-components";
 </script>
 
 <template>
@@ -20,7 +20,9 @@ import {DBNavigation, DBNavigationItem} from '@db-ux/v-core-components';
 
 					<template v-slot:sub-navigation>
 						<DBNavigationItem>
-							<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
+							<a href="#" aria-current="page"
+								>Sub-Sub-Navi-Item 1</a
+							>
 						</DBNavigationItem>
 						<DBNavigationItem>
 							<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -54,7 +56,7 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import {DBMainNavigation, DBNavigationItem} from '@db-ux/v-core-components';
+import { DBMainNavigation, DBNavigationItem } from "@db-ux/v-core-components";
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-@use '../variables';
-@use '../colors';
+@use "../variables";
+@use "../colors";
 
 @mixin get-focus-placeholder {
 	outline: #{variables.$db-border-width-2xs} solid
@@ -13,10 +13,10 @@
 }
 
 %focus-placeholder {
-	&:not([data-disable-focus='true']) {
+	&:not([data-disable-focus="true"]) {
 		@include get-focus-placeholder;
 
-		&:not([type='radio'], [role='switch']) {
+		&:not([type="radio"], [role="switch"]) {
 			border-radius: variables.$db-border-radius-xs;
 		}
 	}

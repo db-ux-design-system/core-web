@@ -1,1 +1,1 @@
-export {default as DBTable} from './table';
+export { default as DBTable } from './table';

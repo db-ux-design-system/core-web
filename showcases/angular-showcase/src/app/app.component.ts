@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {ActivatedRoute, Router, RouterOutlet} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
 	COLOR,
 	COLOR_CONST,
@@ -16,13 +16,13 @@ import {
 	DENSITY_CONST,
 	MetaNavigationDirective,
 	NavigationDirective,
-	SecondaryActionDirective,
+	SecondaryActionDirective
 } from '@components';
-import {NavItemComponent} from './nav-item/nav-item.component';
+import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
-	NavItem,
+	NavItem
 } from './utils/navigation-item';
 
 @Component({
@@ -40,9 +40,9 @@ import {
 		DBButton,
 		SecondaryActionDirective,
 		NavigationDirective,
-		MetaNavigationDirective,
+		MetaNavigationDirective
 	],
-	templateUrl: './app.component.html',
+	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
 	drawerOpen = false;
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
 
 	constructor(
 		private readonly router: Router,
-		private readonly route: ActivatedRoute,
+		private readonly route: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
@@ -82,13 +82,15 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	getChangeableClasses = () => `db-density-${this.density} db-${this.color}`;
+	getChangeableClasses = () => {
+		return `db-density-${this.density} db-${this.color}`;
+	};
 
 	onChange = async (_value: unknown) => {
 		await this.router.navigate([], {
 			relativeTo: this.route,
-			queryParams: {density: this.density, color: this.color},
-			queryParamsHandling: 'merge',
+			queryParams: { density: this.density, color: this.color },
+			queryParamsHandling: 'merge'
 		});
 	};
 

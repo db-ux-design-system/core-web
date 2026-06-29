@@ -8,7 +8,7 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import {DBHeader, DBBrand} from '@db-ux/react-core-components';
+import { DBHeader, DBBrand } from "@db-ux/react-core-components";
 
 const App = () => <DBHeader brand={<DBBrand>Header</DBBrand>} />;
 
@@ -19,8 +19,8 @@ export default App;
 
 ```tsx App.tsx
 // App.tsx
-import {useState} from 'react';
-import {DBHeader, DBBrand, DBLink} from '@db-ux/react-core-components';
+import { useState } from "react";
+import { DBHeader, DBBrand, DBLink } from "@db-ux/react-core-components";
 
 const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 

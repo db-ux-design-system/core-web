@@ -1,9 +1,9 @@
 const {
-	blockToAngularSignals,
+	blockToAngularSignals
 } = require('@builder.io/mitosis/lib/generators/angular/signals/blocks.js');
-const {blockToReact} = require('@builder.io/mitosis');
+const { blockToReact } = require('@builder.io/mitosis');
 const {
-	blockToVue,
+	blockToVue
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
 const prettier = require('@prettier/sync');
 /**
@@ -35,7 +35,7 @@ const replaceChildren = (node) => {
 			child.name = 'div';
 			child.bindings = {};
 			child.slots = {};
-			child.properties = {_text: replaceNode};
+			child.properties = { _text: replaceNode };
 		}
 		replaceChildren(child);
 	}
@@ -78,14 +78,22 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 				if (target === 'angular' && overwriteValue.endsWith('()')) {
 					const replacedStateValue = overwriteValue.replace('()', '');
 					overwriteValue = json.state[replacedStateValue].code;
-				} else if (target === 'react' && overwriteValue.startsWith('state.')) {
-					const replacedStateValue = overwriteValue.replace('state.', '');
+				} else if (
+					target === 'react' &&
+					overwriteValue.startsWith('state.')
+				) {
+					const replacedStateValue = overwriteValue.replace(
+						'state.',
+						''
+					);
 					overwriteValue = json.state[replacedStateValue].code;
 				} else if (target === 'vue' && json.state[overwriteValue]) {
 					overwriteValue = json.state[overwriteValue].code;
 				}
 			} catch (e) {
-				console.error(`There is some issue with state values for ${json.name}`);
+				console.error(
+					`There is some issue with state values for ${json.name}`
+				);
 			}
 
 			if (target === 'react' && key === 'class') {
@@ -97,7 +105,7 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 			) {
 				// We handle getImage directly here
 				args.push(
-					`"${key}": ${overwriteValue.replace('{state.getImage()}', '"/assets/images/placeholder.jpg"')}`,
+					`"${key}": ${overwriteValue.replace('{state.getImage()}', '"/assets/images/placeholder.jpg"')}`
 				);
 			} else {
 				args.push(`"${key}": ${overwriteValue}`);
@@ -120,12 +128,12 @@ const getRenderFunction = (
 	componentName,
 	componentNameLowercase,
 	filteredImports,
-	exampleCode,
+	exampleCode
 ) => {
 	if (target === 'react') {
 		const replaced = exampleCode.replace(
 			'properties="replace"',
-			'{...properties}',
+			'{...properties}'
 		);
 		return `render: (properties: any) => (
 		${replaced}
@@ -135,7 +143,7 @@ const getRenderFunction = (
 	if (target === 'angular') {
 		const replaced = exampleCode.replace(
 			'properties="replace"',
-			'${argsToTemplate(args)}',
+			'${argsToTemplate(args)}'
 		);
 
 		return `
@@ -152,7 +160,7 @@ const getRenderFunction = (
 		}
 		const replaced = exampleCode.replace(
 			'properties="replace"',
-			'v-bind="args"',
+			'v-bind="args"'
 		);
 
 		return `
@@ -187,13 +195,13 @@ const getStories = ({
 	meta,
 	componentNameLowercase,
 	componentName,
-	allImports,
+	allImports
 }) => {
 	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 	let exampleNames;
 	if (meta?.useMetadata?.storybookNames) {
 		exampleNames = meta.useMetadata.storybookNames.map((name) =>
-			name.replace(/[^a-zA-Z0-9]/g, ''),
+			name.replace(/[^a-zA-Z0-9]/g, '')
 		);
 	}
 
@@ -218,7 +226,7 @@ const getStories = ({
 			processBindings(json, foundComponent, target, args, overwritesArgs);
 
 			// Remove bindings and properties to replace them with storybook arguments
-			foundComponent.properties = {properties: 'replace'};
+			foundComponent.properties = { properties: 'replace' };
 			foundComponent.bindings = {};
 
 			replaceChildren(example);
@@ -239,19 +247,19 @@ const getStories = ({
 								preserveFileExtensions: false,
 								visuallyIgnoreHostElement: true,
 								defaultExportComponents: false,
-								typescript: true,
+								typescript: true
 							},
 							blockOptions: {
-								childComponents: allImports,
-							},
-						}).trim(),
+								childComponents: allImports
+							}
+						}).trim()
 					)
 					.join('');
 
 				// We need to use prettier for angular storybook isn't doing it for us
 				children = prettier.format(children, {
 					parser: 'html',
-					htmlWhitespaceSensitivity: 'strict',
+					htmlWhitespaceSensitivity: 'strict'
 				});
 				args.push(`"children":\`${children.trim()}\``);
 				foundComponent.slots = {};
@@ -259,11 +267,11 @@ const getStories = ({
 					{
 						name: 'div',
 						properties: {
-							_text: '${children}',
+							_text: '${children}'
 						},
 						bindings: {},
-						children: [],
-					},
+						children: []
+					}
 				];
 
 				template = blockToAngularSignals({
@@ -277,17 +285,17 @@ const getStories = ({
 						preserveFileExtensions: false,
 						visuallyIgnoreHostElement: true,
 						defaultExportComponents: false,
-						typescript: true,
+						typescript: true
 					},
 					blockOptions: {
-						childComponents: allImports,
-					},
+						childComponents: allImports
+					}
 				});
 
 				// We need to use prettier for angular storybook isn't doing it for us
 				template = prettier.format(template, {
 					parser: 'html',
-					htmlWhitespaceSensitivity: 'strict',
+					htmlWhitespaceSensitivity: 'strict'
 				});
 			} else if (target === 'react') {
 				// We need to use the children as "children" argument
@@ -298,12 +306,12 @@ const getStories = ({
 							{
 								typescript: true,
 								stateType: 'useState',
-								stylesType: 'styled-jsx',
+								stylesType: 'styled-jsx'
 							},
 							json,
 							true,
-							[],
-						).trim(),
+							[]
+						).trim()
 					)
 					.join('');
 				const wrappedChildren = (
@@ -324,11 +332,11 @@ const getStories = ({
 					{
 						typescript: true,
 						stateType: 'useState',
-						stylesType: 'styled-jsx',
+						stylesType: 'styled-jsx'
 					},
 					json,
 					true,
-					[],
+					[]
 				);
 			} else if (target === 'vue') {
 				// We need to use the children as "default" argument
@@ -340,16 +348,16 @@ const getStories = ({
 								target,
 								api: 'composition',
 								defineComponent: true,
-								casing: 'pascal',
+								casing: 'pascal'
 							},
-							{isRootNode: true},
-						).trim(),
+							{ isRootNode: true }
+						).trim()
 					)
 					.join('');
 
 				children = prettier.format(children, {
 					parser: 'html',
-					htmlWhitespaceSensitivity: 'strict',
+					htmlWhitespaceSensitivity: 'strict'
 				});
 				args.push(`"default":\`${children.trim()}\``);
 				foundComponent.slots = {};
@@ -357,11 +365,11 @@ const getStories = ({
 					{
 						name: 'div',
 						properties: {
-							_text: '${args.default}',
+							_text: '${args.default}'
 						},
 						bindings: {},
-						children: [],
-					},
+						children: []
+					}
 				];
 				template = blockToVue(
 					example,
@@ -369,9 +377,9 @@ const getStories = ({
 						target,
 						api: 'composition',
 						defineComponent: true,
-						casing: 'pascal',
+						casing: 'pascal'
 					},
-					{isRootNode: true},
+					{ isRootNode: true }
 				);
 			}
 
@@ -388,7 +396,7 @@ const getStories = ({
 				componentName,
 				componentNameLowercase,
 				filteredImports,
-				template,
+				template
 			);
 
 			return `export const ${exampleName}: Story = {
@@ -401,4 +409,4 @@ const getStories = ({
 		.join('\n');
 };
 
-module.exports = {getStories};
+module.exports = { getStories };

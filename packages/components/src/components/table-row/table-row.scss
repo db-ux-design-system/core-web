@@ -1,32 +1,32 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use './../../styles/internal/table-components';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "./../../styles/internal/table-components";
 
 $interactive-row-action: '[data-table-row-trigger="true"]';
-$interactive-nested-child: '#{$interactive-row-action} :is(input, textarea, select)';
-$interactive-child: ':is(#{$interactive-row-action}:is(#{helpers.$interactive-elements}),#{$interactive-nested-child})';
+$interactive-nested-child: "#{$interactive-row-action} :is(input, textarea, select)";
+$interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-elements}),#{$interactive-nested-child})";
 
 %full-absolute {
-	content: '';
+	content: "";
 	position: absolute;
 	inset: 0;
 }
 
 @mixin table-row-interactive-checked {
 	&:has(
-		input:is([type='radio'], [type='checkbox'])#{$interactive-child}:checked
+		input:is([type="radio"], [type="checkbox"])#{$interactive-child}:checked
 	) {
 		@content;
 	}
 }
 
-@mixin table-row-interactive-state($state: 'hover') {
+@mixin table-row-interactive-state($state: "hover") {
 	&:has(
 		#{$interactive-child}:#{$state}:not(
 				:disabled,
-				[aria-disabled='true'],
-				[tabindex='-1']
+				[aria-disabled="true"],
+				[tabindex="-1"]
 			)
 	) {
 		cursor: helpers.$cursor-pointer;
@@ -39,7 +39,7 @@ $interactive-child: ':is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
-	&[data-interactive='true'] {
+	&[data-interactive="true"] {
 		position: relative;
 
 		td :not(#{$interactive-row-action}) {
@@ -63,7 +63,7 @@ $interactive-child: ':is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 			}
 
-			@include table-row-interactive-state('active') {
+			@include table-row-interactive-state("active") {
 				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
 			}
 		}
@@ -73,7 +73,7 @@ $interactive-child: ':is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 			background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 		}
 
-		@include table-row-interactive-state('active') {
+		@include table-row-interactive-state("active") {
 			background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
 		}
 

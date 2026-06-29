@@ -1,6 +1,6 @@
-import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
-import {cls, getNumber} from '../../utils';
-import {DBTableDataCellProps} from './model';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import { cls, getNumber } from '../../utils';
+import { DBTableDataCellProps } from './model';
 
 useMetadata({});
 
@@ -18,8 +18,7 @@ export default function DBTableDataCell(props: DBTableDataCellProps) {
 			data-vertical-alignment={props.verticalAlignment}
 			colSpan={getNumber(props.colSpan, props.colspan)}
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
-			headers={props.headers}
-		>
+			headers={props.headers}>
 			{props.children}
 		</td>
 	);

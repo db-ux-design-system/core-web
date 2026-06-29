@@ -1,10 +1,10 @@
-import type {InputType} from 'storybook/internal/csf';
+import type { InputType } from 'storybook/internal/csf';
 
 export const StorybookPopoverArgTypes: Record<string, InputType> = {
-	id: {control: 'text'},
+	id: { control: 'text' },
 	spacing: {
 		control: 'select',
-		options: ['medium', 'small', 'large', 'none'],
+		options: ['medium', 'small', 'large', 'none']
 	},
 	placement: {
 		control: 'select',
@@ -20,13 +20,13 @@ export const StorybookPopoverArgTypes: Record<string, InputType> = {
 			'left-start',
 			'left-end',
 			'right-start',
-			'right-end',
-		],
+			'right-end'
+		]
 	},
-	gap: {control: 'boolean'},
-	animation: {control: 'boolean'},
-	delay: {control: 'select', options: ['none', 'slow', 'fast']},
-	width: {control: 'select', options: ['auto', 'fixed']},
-	open: {control: 'boolean'},
-	autofocus: {control: 'boolean'},
+	gap: { control: 'boolean' },
+	animation: { control: 'boolean' },
+	delay: { control: 'select', options: ['none', 'slow', 'fast'] },
+	width: { control: 'select', options: ['auto', 'fixed'] },
+	open: { control: 'boolean' },
+	autofocus: { control: 'boolean' }
 };

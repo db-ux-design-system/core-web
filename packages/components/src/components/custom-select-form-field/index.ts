@@ -1,1 +1,1 @@
-export {default as DBCustomSelectFormField} from './custom-select-form-field';
+export { default as DBCustomSelectFormField } from './custom-select-form-field';

@@ -3,7 +3,7 @@ import type {
 	GlobalState,
 	IconProps,
 	ShowIconProps,
-	TextProps,
+	TextProps
 } from '../../shared/model';
 
 export type DBBrandDefaultProps = {

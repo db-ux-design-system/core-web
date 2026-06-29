@@ -1,4 +1,4 @@
-@use '../../styles/screen-sizes'; // Import path is relative to build output (scss → build/styles, tailwind → build/tailwind)
+@use "../../styles/screen-sizes"; // Import path is relative to build output (scss → build/styles, tailwind → build/tailwind)
 
 // stylelint-disable-next-line scss/at-rule-no-unknown
 @theme inline {

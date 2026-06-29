@@ -1,20 +1,24 @@
-@use 'variables';
-@use '../screen-sizes';
-@use '../helpers';
+@use "variables";
+@use "../screen-sizes";
+@use "../helpers";
 
-@function get-variable($key, $density, $size, $device: '') {
+@function get-variable($key, $density, $size, $device: "") {
 	@return var(--db-#{$key}-#{$density}-#{$device}#{$size});
 }
 
 @each $density in variables.$densities {
 	%db-scaling-#{$density} {
 		@each $sizing in variables.$sizings {
-			--db-sizing-#{$sizing}: #{get-variable('sizing', $density, $sizing)};
+			--db-sizing-#{$sizing}: #{get-variable(
+					"sizing",
+					$density,
+					$sizing
+				)};
 		}
 
 		@each $fix in variables.$sizings {
 			--db-spacing-fixed-#{$fix}: #{get-variable(
-					'spacing-fixed',
+					"spacing-fixed",
 					$density,
 					$fix
 				)};
@@ -22,46 +26,46 @@
 
 		@include screen-sizes.screen-min-max(
 			(
-				max: 'sm',
+				max: "sm"
 			)
 		) {
 			@each $res in variables.$sizings {
 				--db-spacing-responsive-#{$res}: #{get-variable(
-						'spacing-responsive',
+						"spacing-responsive",
 						$density,
 						$res,
-						'mobile-'
+						"mobile-"
 					)};
 			}
 		}
 
 		@include screen-sizes.screen-min-max(
 			(
-				min: 'sm',
-				max: 'md',
+				min: "sm",
+				max: "md"
 			)
 		) {
 			@each $res in variables.$sizings {
 				--db-spacing-responsive-#{$res}: #{get-variable(
-						'spacing-responsive',
+						"spacing-responsive",
 						$density,
 						$res,
-						'tablet-'
+						"tablet-"
 					)};
 			}
 		}
 
 		@include screen-sizes.screen-min-max(
 			(
-				min: 'md',
+				min: "md"
 			)
 		) {
 			@each $res in variables.$sizings {
 				--db-spacing-responsive-#{$res}: #{get-variable(
-						'spacing-responsive',
+						"spacing-responsive",
 						$density,
 						$res,
-						'desktop-'
+						"desktop-"
 					)};
 			}
 		}

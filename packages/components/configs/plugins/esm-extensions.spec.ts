@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
-import {createTempDir, removeTempDir, writeFileIn} from './test-utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createTempDir, removeTempDir, writeFileIn } from './test-utils';
 
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
 	resolveEsmPath,
-	fixFileImports,
+	fixFileImports
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./esm-extensions.cjs');
 
@@ -29,7 +29,7 @@ describe('resolveEsmPath', () => {
 		const from = writeFile('src/component.ts');
 		expect(resolveEsmPath('react', from)).toBe('react');
 		expect(resolveEsmPath('@db-ux/core-foundations', from)).toBe(
-			'@db-ux/core-foundations',
+			'@db-ux/core-foundations'
 		);
 	});
 
@@ -42,7 +42,7 @@ describe('resolveEsmPath', () => {
 			'./already.js',
 			'./module.mjs',
 			'./module.cjs',
-			'./sibling.vue',
+			'./sibling.vue'
 		]) {
 			expect(resolveEsmPath(specifier, from)).toBe(specifier);
 		}
@@ -58,7 +58,7 @@ describe('resolveEsmPath', () => {
 		const from = writeFile('src/components/tabs/tabs.ts');
 		writeFile('src/components/button/button.tsx');
 		expect(resolveEsmPath('../button/button', from)).toBe(
-			'../button/button.js',
+			'../button/button.js'
 		);
 	});
 
@@ -66,7 +66,7 @@ describe('resolveEsmPath', () => {
 		const from = writeFile('src/index.ts');
 		writeFile('src/components/accordion/index.ts');
 		expect(resolveEsmPath('./components/accordion', from)).toBe(
-			'./components/accordion/index.js',
+			'./components/accordion/index.js'
 		);
 	});
 
@@ -81,7 +81,9 @@ describe('resolveEsmPath', () => {
 	it('warns and returns the path unchanged when nothing resolves', () => {
 		const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 		const from = writeFile('src/component.ts');
-		expect(resolveEsmPath('./does-not-exist', from)).toBe('./does-not-exist');
+		expect(resolveEsmPath('./does-not-exist', from)).toBe(
+			'./does-not-exist'
+		);
 		expect(warn).toHaveBeenCalledOnce();
 	});
 });
@@ -97,8 +99,8 @@ describe('fixFileImports', () => {
 				'import { Model } from "./model";',
 				'export * from "./utils";',
 				'import "./side-effect";',
-				'import React from "react";',
-			].join('\n'),
+				'import React from "react";'
+			].join('\n')
 		);
 
 		fixFileImports(from);
@@ -108,19 +110,24 @@ describe('fixFileImports', () => {
 				'import { Model } from "./model.js";',
 				'export * from "./utils/index.js";',
 				'import "./side-effect.js";',
-				'import React from "react";',
-			].join('\n'),
+				'import React from "react";'
+			].join('\n')
 		);
 	});
 
 	it('does not rewrite when there is nothing to change', () => {
-		const from = writeFile('src/component.ts', 'import React from "react";\n');
+		const from = writeFile(
+			'src/component.ts',
+			'import React from "react";\n'
+		);
 		const before = fs.readFileSync(from, 'utf-8');
 		fixFileImports(from);
 		expect(fs.readFileSync(from, 'utf-8')).toBe(before);
 	});
 
 	it('is a no-op for a non-existent file', () => {
-		expect(() => fixFileImports(path.join(tmpDir, 'missing.ts'))).not.toThrow();
+		expect(() =>
+			fixFileImports(path.join(tmpDir, 'missing.ts'))
+		).not.toThrow();
 	});
 });

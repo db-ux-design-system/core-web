@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import {glob} from 'glob';
+import { glob } from 'glob';
 import * as fs from 'node:fs';
 import path from 'node:path';
 import * as process from 'node:process';
-import {fileURLToPath} from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 // Configuration
 const config = {
@@ -23,8 +23,8 @@ const config = {
 		'**/node_modules/**',
 		'.git/**',
 		'docs/migration/**',
-		'showcases/patternhub/public/docs/migration/**',
-	],
+		'showcases/patternhub/public/docs/migration/**'
+	]
 };
 
 /**
@@ -36,12 +36,14 @@ const buildPackageDirMap = () => {
 	for (const packagesDir of config.packagesDirs) {
 		const dirPath = path.join(config.rootDir, packagesDir);
 		if (!fs.existsSync(dirPath)) continue;
-		for (const entry of fs.readdirSync(dirPath, {withFileTypes: true})) {
+		for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
 			if (!entry.isDirectory()) continue;
 			const pkgJsonPath = path.join(dirPath, entry.name, 'package.json');
 			if (!fs.existsSync(pkgJsonPath)) continue;
 			try {
-				const {name} = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+				const { name } = JSON.parse(
+					fs.readFileSync(pkgJsonPath, 'utf8')
+				);
 				if (name) {
 					if (!map.has(name)) map.set(name, []);
 					map.get(name).push(path.join(packagesDir, entry.name));
@@ -72,7 +74,7 @@ const findMarkdownFiles = () => {
 			cwd: config.rootDir,
 			ignore: config.ignorePatterns,
 			dot: false,
-			absolute: false,
+			absolute: false
 		});
 		allFiles = [...allFiles, ...files];
 	}
@@ -99,13 +101,13 @@ export const parseDBUXReference = (reference) => {
 	// Escape the org prefix for use in a regular expression
 	const escapedOrgPrefix = config.orgPrefix.replaceAll(
 		/[.*+?^${}()|[\]\\]/g,
-		String.raw`\$&`,
+		String.raw`\$&`
 	);
 	// Extract package name and check if there's a file path after it
 	const match = reference.match(
 		new RegExp(
-			`^(?:(?:\\.\\.?/)+)?(?:node_modules/)?(${escapedOrgPrefix}[^/]+)/(.+)$`,
-		),
+			`^(?:(?:\\.\\.?/)+)?(?:node_modules/)?(${escapedOrgPrefix}[^/]+)/(.+)$`
+		)
 	);
 
 	if (!match) return undefined;
@@ -113,7 +115,7 @@ export const parseDBUXReference = (reference) => {
 	const [, packageName, filePath] = match;
 	if (!filePath) return undefined;
 
-	return {packageName, filePath};
+	return { packageName, filePath };
 };
 
 /**
@@ -126,7 +128,7 @@ const extractFileReferences = (content) => {
 	// Escape org prefix for use in the generic path pattern regex
 	const escapedOrgPrefix = config.orgPrefix.replaceAll(
 		/[.*+?^${}()|[\]\\]/g,
-		String.raw`\$&`,
+		String.raw`\$&`
 	);
 	// Patterns to match different types of imports/references
 	const patterns = [
@@ -139,7 +141,7 @@ const extractFileReferences = (content) => {
 		// HTML link tags
 		/href\s*=\s*["']([^"']+)["']/g,
 		// Generic file paths in code blocks
-		new RegExp(`["']([^"']*${escapedOrgPrefix}[^"']+)["']`, 'g'),
+		new RegExp(`["']([^"']*${escapedOrgPrefix}[^"']+)["']`, 'g')
 	];
 
 	// Track line numbers for each reference
@@ -160,7 +162,7 @@ const extractFileReferences = (content) => {
 				references.push({
 					reference,
 					lineNumber: lineIndex + 1,
-					lineContent: line.trim(),
+					lineContent: line.trim()
 				});
 			}
 		}
@@ -169,7 +171,8 @@ const extractFileReferences = (content) => {
 	// Remove duplicates based on reference string
 	const unique = references.filter(
 		(item, index, array) =>
-			array.findIndex((other) => other.reference === item.reference) === index,
+			array.findIndex((other) => other.reference === item.reference) ===
+			index
 	);
 
 	return unique;
@@ -202,7 +205,7 @@ export const expandBracketAlternatives = (input) => {
 
 	for (const alternative of alternatives) {
 		expanded.push(
-			...expandBracketAlternatives(`${prefix}${alternative}${suffix}`),
+			...expandBracketAlternatives(`${prefix}${alternative}${suffix}`)
 		);
 	}
 
@@ -234,7 +237,10 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 			if (ext) {
 				variations.push(`${withUnderscore}${ext}`);
 			} else {
-				variations.push(`${withUnderscore}.scss`, `${withUnderscore}.css`);
+				variations.push(
+					`${withUnderscore}.scss`,
+					`${withUnderscore}.css`
+				);
 			}
 		}
 
@@ -245,7 +251,7 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 				path.join(originalPath, 'index.scss'),
 				path.join(originalPath, 'index.css'),
 				path.join(originalPath, '_index.scss'),
-				path.join(originalPath, '_index.css'),
+				path.join(originalPath, '_index.css')
 			];
 			variations.push(...indexVariations);
 		}
@@ -262,7 +268,7 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 	// Use the lookup map to find actual directories for this package
 	const packageDirs = packageDirMap.get(packageName) || [
 		// Fallback: try deriving from package name
-		...config.packagesDirs.map((dir) => path.join(dir, packageDirName)),
+		...config.packagesDirs.map((dir) => path.join(dir, packageDirName))
 	];
 
 	for (const variation of fileVariations) {
@@ -276,19 +282,19 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 					relativeDir,
 					'node_modules',
 					packageName,
-					variation,
-				),
+					variation
+				)
 			);
 		}
 
 		// Node_modules (for published packages) - only once
 		possiblePaths.push(
-			path.join(config.rootDir, 'node_modules', packageName, variation),
+			path.join(config.rootDir, 'node_modules', packageName, variation)
 		);
 	}
 
 	const resolvedPath = possiblePaths.find((currentPath) =>
-		fs.existsSync(currentPath),
+		fs.existsSync(currentPath)
 	);
 
 	if (config.debug) {
@@ -296,7 +302,7 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 			console.log(`    🔍 Resolved to: ${resolvedPath}`);
 		} else {
 			console.log(
-				`    ❌ Tried paths: ${possiblePaths.slice(0, 6).join(', ')}...`,
+				`    ❌ Tried paths: ${possiblePaths.slice(0, 6).join(', ')}...`
 			);
 		}
 	}
@@ -308,7 +314,7 @@ const resolvePackageReference = (reference) => {
 	const parsedReference = parseDBUXReference(reference);
 	if (!parsedReference) return [];
 
-	const {packageName, filePath} = parsedReference;
+	const { packageName, filePath } = parsedReference;
 	const expandedFilePaths = expandBracketAlternatives(filePath);
 
 	// Validate each expanded variant independently so that one broken
@@ -317,7 +323,7 @@ const resolvePackageReference = (reference) => {
 		const expandedReference = `${packageName}/${expandedPath}`;
 		return {
 			reference: expandedReference,
-			resolvedPath: resolveSinglePackagePath(packageName, expandedPath),
+			resolvedPath: resolveSinglePackagePath(packageName, expandedPath)
 		};
 	});
 };
@@ -329,7 +335,9 @@ const resolvePackageReference = (reference) => {
  * multiple concrete paths via bracket alternatives.
  */
 const checkFileReference = (referenceObject, markdownFile) => {
-	const resolvedReferences = resolvePackageReference(referenceObject.reference);
+	const resolvedReferences = resolvePackageReference(
+		referenceObject.reference
+	);
 
 	if (resolvedReferences.length === 0) {
 		return [
@@ -339,8 +347,8 @@ const checkFileReference = (referenceObject, markdownFile) => {
 				lineContent: referenceObject.lineContent,
 				exists: false,
 				resolvedPath: null,
-				markdownFile,
-			},
+				markdownFile
+			}
 		];
 	}
 
@@ -350,7 +358,7 @@ const checkFileReference = (referenceObject, markdownFile) => {
 		lineContent: referenceObject.lineContent,
 		exists: Boolean(resolvedReference.resolvedPath),
 		resolvedPath: resolvedReference.resolvedPath,
-		markdownFile,
+		markdownFile
 	}));
 };
 
@@ -358,7 +366,9 @@ const logReferenceResult = (result, file) => {
 	// In debug mode, print detailed information for all references.
 	if (config.debug) {
 		const status = result.exists ? '✅' : '❌';
-		console.log(`  ${status} ${result.reference} (line ${result.lineNumber})`);
+		console.log(
+			`  ${status} ${result.reference} (line ${result.lineNumber})`
+		);
 		console.log(`    📝 ${result.lineContent}`);
 		return;
 	}
@@ -421,7 +431,7 @@ const checkDocs = () => {
 		for (const ref of allReferences) {
 			const status = ref.exists ? '✅' : '❌';
 			console.log(
-				`  ${status} ${ref.reference} (in ${ref.markdownFile}:${ref.lineNumber})`,
+				`  ${status} ${ref.reference} (in ${ref.markdownFile}:${ref.lineNumber})`
 			);
 			console.log(`    📝 Line content: ${ref.lineContent}`);
 			if (ref.resolvedPath) {

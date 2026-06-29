@@ -1,11 +1,11 @@
-import {type Config} from 'stylelint';
-import {describe, test} from 'vitest';
+import { type Config } from 'stylelint';
+import { describe, test } from 'vitest';
 import useBorderRadius from '../../src/rules/use-border-radius.js';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
-	getVueTest,
+	getVueTest
 } from '../defaults.js';
 
 const ruleName = 'db-ux/use-border-radius';
@@ -14,8 +14,8 @@ const config: Config = {
 	...defaultConfig,
 	plugins: [useBorderRadius],
 	rules: {
-		[ruleName]: true,
-	},
+		[ruleName]: true
+	}
 };
 
 describe(`${ruleName}`, () => {

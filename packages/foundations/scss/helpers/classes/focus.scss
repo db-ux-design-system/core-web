@@ -1,6 +1,6 @@
-@use '../index';
+@use "../index";
 
 .db-focus-default,
-[data-focus='default'] {
+[data-focus="default"] {
 	@extend %focus-placeholder;
 }

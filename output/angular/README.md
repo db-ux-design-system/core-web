@@ -22,10 +22,10 @@ Import the styles in your main CSS file:
 /* styles.css */
 @layer whitelabel-theme, db-ux;
 /* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
-@import '@db-ux/core-foundations/build/styles/theme/rollup.css'
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
 	layer(whitelabel-theme);
 
-@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 ### PostCSS Plugin (recommended)
@@ -146,20 +146,20 @@ pnpm add eslint @db-ux/core-eslint-plugin @angular-eslint/template-parser --save
 
 ```js
 // eslint.config.js
-import dbUx from '@db-ux/core-eslint-plugin';
-import angularTemplateParser from '@angular-eslint/template-parser';
+import dbUx from "@db-ux/core-eslint-plugin";
+import angularTemplateParser from "@angular-eslint/template-parser";
 
 export default [
 	{
-		files: ['**/*.html'],
+		files: ["**/*.html"],
 		languageOptions: {
-			parser: angularTemplateParser,
+			parser: angularTemplateParser
 		},
 		plugins: {
-			'db-ux': dbUx,
+			"db-ux": dbUx
 		},
-		rules: dbUx.configs.recommended.rules,
-	},
+		rules: dbUx.configs.recommended.rules
+	}
 ];
 ```
 

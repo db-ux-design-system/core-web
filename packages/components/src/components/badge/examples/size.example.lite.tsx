@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBBadge from '../badge.lite';
-import {StorybookBadgeArgTypes} from './_badge.arg.types';
+import { StorybookBadgeArgTypes } from './_badge.arg.types';
 
 useMetadata({
 	storybookTitle: 'Size',
 	storybookNames: ['(Default) Small', 'Medium'],
-	storybookArgTypes: StorybookBadgeArgTypes,
+	storybookArgTypes: StorybookBadgeArgTypes
 });
 
 export default function BadgeSize() {

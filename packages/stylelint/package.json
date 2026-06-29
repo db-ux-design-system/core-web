@@ -1,52 +1,52 @@
 {
-	"name": "@db-ux/core-stylelint",
-	"version": "4.13.0",
-	"type": "module",
-	"description": "Ensures DB UX styles are used correctly",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/db-ux-design-system/core-web.git"
-	},
-	"license": "Apache-2.0",
-	"exports": {
-		".": {
-			"types": "./build/src/index.d.ts",
-			"default": "./build/src/index.js"
-		}
-	},
-	"files": [
-		"CHANGELOG.md",
-		"build"
-	],
-	"keywords": [
-		"stylelint",
-		"stylelint-plugin"
-	],
-	"scripts": {
-		"build": "tsc",
-		"copy-output": "run-p copy:*",
-		"copy:changelog": "cpr CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md --overwrite",
-		"copy:outputs": "cpr build ../../build-outputs/stylelint/build -o",
-		"copy:package.json": "cpr package.json ../../build-outputs/stylelint/package.json -o",
-		"copy:readme": "cpr README.md ../../build-outputs/stylelint/README.md -o",
-		"test": "vitest run --config vitest.config.ts"
-	},
-	"peerDependencies": {
-		"stylelint": ">=14.0.0"
-	},
-	"devDependencies": {
-		"cpr": "3.0.1",
-		"npm-run-all2": "9.0.2",
-		"postcss": "8.5.15",
-		"postcss-html": "1.8.1",
-		"stylelint-config-standard": "40.0.0",
-		"stylelint-config-standard-scss": "17.0.0",
-		"stylelint-config-standard-vue": "1.0.0",
-		"typescript": "5.9.3",
-		"vitest": "4.1.9"
-	},
-	"publishConfig": {
-		"registry": "https://registry.npmjs.org/",
-		"access": "public"
-	}
+  "name": "@db-ux/core-stylelint",
+  "version": "4.13.0",
+  "type": "module",
+  "description": "Ensures DB UX styles are used correctly",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./build/src/index.d.ts",
+      "default": "./build/src/index.js"
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "build"
+  ],
+  "keywords": [
+    "stylelint",
+    "stylelint-plugin"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "copy-output": "run-p copy:*",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md --overwrite",
+    "copy:outputs": "cpr build ../../build-outputs/stylelint/build -o",
+    "copy:package.json": "cpr package.json ../../build-outputs/stylelint/package.json -o",
+    "copy:readme": "cpr README.md ../../build-outputs/stylelint/README.md -o",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "peerDependencies": {
+    "stylelint": ">=14.0.0"
+  },
+  "devDependencies": {
+    "cpr": "3.0.1",
+    "npm-run-all2": "9.0.2",
+    "postcss": "8.5.15",
+    "postcss-html": "1.8.1",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-config-standard-scss": "17.0.0",
+    "stylelint-config-standard-vue": "1.0.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.9"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
 }

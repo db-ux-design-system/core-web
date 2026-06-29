@@ -14,12 +14,12 @@ export type Component = {
 	};
 	config?: {
 		vue?: {
-			vModel?: {modelValue: string; binding: string}[];
+			vModel?: { modelValue: string; binding: string }[];
 		};
 		angular?: {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
-			directives?: {name: string; ngContentName?: string}[];
+			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
@@ -30,207 +30,211 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
-		name: 'table-data-cell',
+		name: 'table-data-cell'
 	},
 
 	{
-		name: 'table-header-cell',
+		name: 'table-header-cell'
 	},
 
 	{
-		name: 'table-row',
+		name: 'table-row'
 	},
 
 	{
-		name: 'table-footer',
+		name: 'table-footer'
 	},
 
 	{
-		name: 'table-body',
+		name: 'table-body'
 	},
 
 	{
-		name: 'table-head',
+		name: 'table-head'
 	},
 
 	{
-		name: 'table-caption',
+		name: 'table-caption'
 	},
 
 	{
-		name: 'table',
+		name: 'table'
 	},
 
 	{
-		name: 'custom-button',
+		name: 'custom-button'
 	},
 
 	{
-		name: 'stack',
+		name: 'stack'
 	},
 	{
 		name: 'custom-select-list-item',
 		config: {
 			vue: {
-				vModel: [{modelValue: 'checked', binding: ':checked'}],
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked',
-			},
-		},
+				controlValueAccessor: 'checked'
+			}
+		}
 	},
 	{
-		name: 'custom-select-list',
+		name: 'custom-select-list'
 	},
 	{
-		name: 'custom-select-form-field',
+		name: 'custom-select-form-field'
 	},
 	{
-		name: 'custom-select-dropdown',
+		name: 'custom-select-dropdown'
 	},
 	{
 		name: 'custom-select',
 		config: {
 			vue: {
-				vModel: [{modelValue: 'values', binding: ':values'}],
+				vModel: [{ modelValue: 'values', binding: ':values' }]
 			},
 			angular: {
-				controlValueAccessor: 'values',
+				controlValueAccessor: 'values'
 			},
 			react: {
 				propsPassingFilter: [
 					'onOptionSelected',
 					'onAmountChange',
-					'onDropdownToggle',
+					'onDropdownToggle'
 				],
-				containsFragmentMap: true,
-			},
+				containsFragmentMap: true
+			}
 		},
 		overwrites: {
 			angular: [
 				{
 					from: 'attr.checked',
-					to: 'checked',
+					to: 'checked'
 				},
 				{
 					from: `
       <select`,
-					to: '<select',
-				},
+					to: '<select'
+				}
 			],
-			react: [{from: 'key={uuid()}', to: 'key={getOptionLabel(option)}'}],
-		},
+			react: [
+				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }
+			]
+		}
 	},
 	{
 		name: 'switch',
 		overwrites: {
-			angular: [{from: '<HTMLElement>', to: '<HTMLInputElement>'}],
-			stencil: [{from: 'HTMLElement', to: 'HTMLInputElement'}],
-			react: [{from: /HTMLAttributes/g, to: 'InputHTMLAttributes'}],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
-				vModel: [{modelValue: 'checked', binding: ':checked'}],
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked',
-			},
-		},
+				controlValueAccessor: 'checked'
+			}
+		}
 	},
 
 	{
-		name: 'tab-panel',
+		name: 'tab-panel'
 	},
 	{
 		name: 'tab-item',
 		overwrites: {
-			react: [{from: /HTMLAttributes/g, to: 'InputHTMLAttributes'}],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
-				vModel: [{modelValue: 'checked', binding: ':checked'}],
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked',
-			},
-		},
+				controlValueAccessor: 'checked'
+			}
+		}
 	},
 
 	{
 		name: 'tabs',
 		config: {
 			react: {
-				propsPassingFilter: ['onTabSelect', 'onIndexChange'],
-			},
-		},
+				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+			}
+		}
 	},
 
 	{
-		name: 'tab-list',
+		name: 'tab-list'
 	},
 
 	{
-		name: 'tooltip',
+		name: 'tooltip'
 	},
 
 	{
-		name: 'popover',
+		name: 'popover'
 	},
 
 	{
 		name: 'accordion-item',
 		overwrites: {
 			// TS issue
-			stencil: [{from: 'name={this.name}', to: ''}],
+			stencil: [{ from: 'name={this.name}', to: '' }]
 		},
 		config: {
 			react: {
-				propsPassingFilter: ['onToggle'],
-			},
-		},
+				propsPassingFilter: ['onToggle']
+			}
+		}
 	},
 
 	{
 		name: 'accordion',
 		overwrites: {
-			angular: [{from: 'this.initOpenIndex &&', to: 'this.initOpenIndex() &&'}],
-		},
+			angular: [
+				{ from: 'this.initOpenIndex &&', to: 'this.initOpenIndex() &&' }
+			]
+		}
 	},
 
 	{
 		name: 'textarea',
 		config: {
 			vue: {
-				vModel: [{modelValue: 'value', binding: ':value'}],
+				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
-				controlValueAccessor: 'value',
-			},
+				controlValueAccessor: 'value'
+			}
 		},
 		overwrites: {
 			angular: [
-				{from: '<HTMLElement>', to: '<HTMLTextAreaElement>'},
+				{ from: '<HTMLElement>', to: '<HTMLTextAreaElement>' },
 				{
 					from: '</textarea>',
-					to: '{{value()}}</textarea>',
-				},
+					to: '{{value()}}</textarea>'
+				}
 			],
 			vue: [
 				{
 					from: '</textarea>',
-					to: '{{value}}</textarea>',
-				},
+					to: '{{value}}</textarea>'
+				}
 			],
-			react: [{from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes'}],
-			stencil: [{from: 'HTMLElement', to: 'HTMLTextAreaElement'}],
-		},
+			react: [{ from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes' }],
+			stencil: [{ from: 'HTMLElement', to: 'HTMLTextAreaElement' }]
+		}
 	},
 	{
-		name: 'badge',
+		name: 'badge'
 	},
 
 	{
-		name: 'navigation',
+		name: 'navigation'
 	},
 	{
 		name: 'navigation-item',
@@ -238,14 +242,14 @@ export const getComponents = (): Component[] => [
 			vue: [
 				{
 					from: 'navigationItemSafeTriangle: undefined',
-					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle',
-				},
+					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle'
+				}
 			],
 			react: [
 				{
 					from: 'onMouseMove={(event)',
-					to: 'onMouseMove={(event: any)',
-				},
+					to: 'onMouseMove={(event: any)'
+				}
 			],
 			stencil: [
 				{
@@ -254,131 +258,131 @@ export const getComponents = (): Component[] => [
 						At the moment the navigation is broken in stencil and will be fixed in the db-shell.
 						Until then we need to add a named slot for the button, because web-components allow only one default slot.
 					*/
-					to: '<slot name="expandButton">',
-				},
-			],
+					to: '<slot name="expandButton">'
+				}
+			]
 		},
 		config: {
 			angular: {
-				directives: [{name: 'NavigationContent'}],
-			},
-		},
+				directives: [{ name: 'NavigationContent' }]
+			}
+		}
 	},
 	{
 		name: 'select',
 		overwrites: {
-			angular: [{from: '<HTMLElement>', to: '<HTMLSelectElement>'}],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
 			react: [
 				// React not allowing selected for options
-				{from: 'selected={option.selected}', to: ''},
-				{from: 'selected={optgroupOption.selected}', to: ''},
-				{from: /HTMLAttributes/g, to: 'SelectHTMLAttributes'},
+				{ from: 'selected={option.selected}', to: '' },
+				{ from: 'selected={optgroupOption.selected}', to: '' },
+				{ from: /HTMLAttributes/g, to: 'SelectHTMLAttributes' }
 			],
 			stencil: [
-				{from: 'HTMLElement', to: 'HTMLSelectElement'},
-				{from: 'value={', to: '/* @ts-ignore */\nvalue={'},
+				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
+				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' },
 				{
 					from: 'this.value ?? this._value ?? ""',
-					to: 'this.value ?? this._value ?? undefined',
-				},
-			],
+					to: 'this.value ?? this._value ?? undefined'
+				}
+			]
 		},
 		config: {
 			vue: {
-				vModel: [{modelValue: 'value', binding: ':value'}],
+				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
-				controlValueAccessor: 'value',
+				controlValueAccessor: 'value'
 			},
 			react: {
-				containsFragmentMap: true,
-			},
-		},
+				containsFragmentMap: true
+			}
+		}
 	},
 	{
 		name: 'drawer',
 		overwrites: {
-			angular: [{from: '<HTMLElement>', to: '<HTMLDialogElement>'}],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLDialogElement>' }]
 		},
 		config: {
 			react: {
-				propsPassingFilter: ['onClose'],
-			},
-		},
+				propsPassingFilter: ['onClose']
+			}
+		}
 	},
 
 	{
 		name: 'tag',
 		overwrites: {
-			stencil: [{from: /onRemove/g, to: 'remove'}],
+			stencil: [{ from: /onRemove/g, to: 'remove' }]
 		},
 		config: {
 			react: {
-				propsPassingFilter: ['onRemove'],
-			},
-		},
+				propsPassingFilter: ['onRemove']
+			}
+		}
 	},
 	{
 		name: 'checkbox',
 		overwrites: {
-			angular: [{from: '<HTMLElement>', to: '<HTMLInputElement>'}],
-			stencil: [{from: 'HTMLElement', to: 'HTMLInputElement'}],
-			react: [{from: /HTMLAttributes/g, to: 'InputHTMLAttributes'}],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
-				vModel: [{modelValue: 'checked', binding: ':checked'}],
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked',
-			},
-		},
+				controlValueAccessor: 'checked'
+			}
+		}
 	},
 
 	{
 		name: 'radio',
 		overwrites: {
-			angular: [{from: '<HTMLElement>', to: '<HTMLInputElement>'}],
-			stencil: [{from: 'HTMLElement', to: 'HTMLInputElement'}],
-			react: [{from: /HTMLAttributes/g, to: 'InputHTMLAttributes'}],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
-				vModel: [{modelValue: 'value', binding: ':value'}],
+				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
 				controlValueAccessor: 'value',
-				controlValueAccessorRequired: true,
-			},
-		},
+				controlValueAccessorRequired: true
+			}
+		}
 	},
 
 	{
 		name: 'notification',
 		config: {
 			react: {
-				propsPassingFilter: ['onClose'],
-			},
-		},
+				propsPassingFilter: ['onClose']
+			}
+		}
 	},
 
 	{
-		name: 'infotext',
+		name: 'infotext'
 	},
 
 	{
 		name: 'link',
 		overwrites: {
-			react: [{from: /HTMLAttributes/g, to: 'AnchorHTMLAttributes'}],
-		},
+			react: [{ from: /HTMLAttributes/g, to: 'AnchorHTMLAttributes' }]
+		}
 	},
 
 	{
-		name: 'section',
+		name: 'section'
 	},
 
 	{
-		name: 'page',
+		name: 'page'
 	},
 	{
 		name: 'header',
@@ -387,58 +391,58 @@ export const getComponents = (): Component[] => [
 				directives: [
 					{
 						name: 'SecondaryAction',
-						ngContentName: 'secondary-action',
+						ngContentName: 'secondary-action'
 					},
 					{
 						name: 'MetaNavigation',
-						ngContentName: 'meta-navigation',
+						ngContentName: 'meta-navigation'
 					},
 					{
-						name: 'Navigation',
-					},
-				],
+						name: 'Navigation'
+					}
+				]
 			},
 			react: {
-				propsPassingFilter: ['onToggle'],
-			},
-		},
+				propsPassingFilter: ['onToggle']
+			}
+		}
 	},
 	{
-		name: 'brand',
+		name: 'brand'
 	},
 	{
 		name: 'input',
 		overwrites: {
-			global: [{from: ', KeyValueType', to: ''}],
-			vue: [{from: ', index', to: ''}],
-			stencil: [{from: 'HTMLElement', to: 'HTMLInputElement'}],
-			react: [{from: /HTMLAttributes/g, to: 'InputHTMLAttributes'}],
-			angular: [{from: '<HTMLElement>', to: '<HTMLInputElement>'}],
+			global: [{ from: ', KeyValueType', to: '' }],
+			vue: [{ from: ', index', to: '' }],
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }]
 		},
 		config: {
 			vue: {
-				vModel: [{modelValue: 'value', binding: ':value'}],
+				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
-				controlValueAccessor: 'value',
-			},
-		},
+				controlValueAccessor: 'value'
+			}
+		}
 	},
 	{
-		name: 'divider',
+		name: 'divider'
 	},
 	{
-		name: 'card',
+		name: 'card'
 	},
 	{
 		name: 'button',
 		overwrites: {
-			react: [{from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes'}],
-		},
+			react: [{ from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes' }]
+		}
 	},
 	{
-		name: 'icon',
-	},
+		name: 'icon'
+	}
 ];
 
 export default getComponents();

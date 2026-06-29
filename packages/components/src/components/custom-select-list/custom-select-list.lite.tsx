@@ -1,6 +1,6 @@
-import {useDefaultProps, useMetadata, useRef} from '@builder.io/mitosis';
-import {cls} from '../../utils';
-import {DBCustomSelectListProps} from './model';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import { cls } from '../../utils';
+import { DBCustomSelectListProps } from './model';
 
 useMetadata({});
 
@@ -16,8 +16,7 @@ export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 			aria-label={props.label}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			className={cls('db-custom-select-list', props.className)}
-		>
+			className={cls('db-custom-select-list', props.className)}>
 			<ul>{props.children}</ul>
 		</div>
 	);

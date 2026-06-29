@@ -1,4 +1,4 @@
-import {defineConfig} from 'cspell';
+import { defineConfig } from 'cspell';
 
 export default defineConfig({
 	version: '0.2',
@@ -51,7 +51,7 @@ export default defineConfig({
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
 		'showcases/angular-showcase/src/app/components/form/form.component.ts',
-		'.vscode/extensions.json',
+		'.vscode/extensions.json'
 	],
 	dictionaries: [
 		'custom-words',
@@ -62,7 +62,7 @@ export default defineConfig({
 		'lorem-ipsum',
 		'npm',
 		'node',
-		'docker',
+		'docker'
 	],
 
 	// Tell CSpell about your dictionary
@@ -70,7 +70,7 @@ export default defineConfig({
 		{
 			name: 'custom-words',
 			path: './cspellignorewords.txt',
-			addWords: true,
-		},
-	],
+			addWords: true
+		}
+	]
 });

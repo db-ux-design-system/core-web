@@ -1,11 +1,11 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBNavigationItem from '../navigation-item.lite';
-import {StorybookNavigationItemArgTypes} from './_navigation-item.arg.types';
+import { StorybookNavigationItemArgTypes } from './_navigation-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Disabled',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookNavigationItemArgTypes,
+	storybookArgTypes: StorybookNavigationItemArgTypes
 });
 
 export default function NavigationItemDisabled() {

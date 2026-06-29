@@ -27,11 +27,11 @@ pnpm add @db-ux/core-vite-plugin --save-dev
 Add the plugin to your `vite.config.ts`:
 
 ```ts
-import {defineConfig} from 'vite';
-import dbUxPlugin from '@db-ux/core-vite-plugin';
+import { defineConfig } from "vite";
+import dbUxPlugin from "@db-ux/core-vite-plugin";
 
 export default defineConfig({
-	plugins: [dbUxPlugin()],
+	plugins: [dbUxPlugin()]
 });
 ```
 
@@ -39,7 +39,7 @@ Then import the plugin in your CSS file:
 
 ```css
 /* index.css */
-@import '@db-ux/core-vite-plugin/index.css';
+@import "@db-ux/core-vite-plugin/index.css";
 ```
 
 📖 **[Learn more about `@db-ux/core-vite-plugin` node package](https://www.npmjs.com/package/@db-ux/core-vite-plugin)**
@@ -55,16 +55,16 @@ pnpm add @db-ux/core-postcss-plugin --save-dev
 Configure it in `vite.config.ts`:
 
 ```ts
-import {defineConfig} from 'vite';
-import {dbUxFlatten} from '@db-ux/core-postcss-plugin';
+import { defineConfig } from "vite";
+import { dbUxFlatten } from "@db-ux/core-postcss-plugin";
 
 export default defineConfig({
 	css: {
-		transformer: 'postcss', // required for Vite 8+ (default: 'lightningcss')
+		transformer: "postcss", // required for Vite 8+ (default: 'lightningcss')
 		postcss: {
-			plugins: [dbUxFlatten()],
-		},
-	},
+			plugins: [dbUxFlatten()]
+		}
+	}
 });
 ```
 
@@ -78,10 +78,10 @@ If you're not using Vite or prefer manual setup, import the styles in your main 
 /* index.css */
 @layer whitelabel-theme, db-ux;
 /* You may want to include another theme here, this is a whitelabel theme! So instead of including the following line of code, please have a look at the DB Theme section */
-@import '@db-ux/core-foundations/build/styles/theme/rollup.css'
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
 	layer(whitelabel-theme);
 
-@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 ### Vite 8
@@ -92,8 +92,8 @@ Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](htt
 // vite.config.ts
 export default defineConfig({
 	build: {
-		cssMinify: 'esbuild',
-	},
+		cssMinify: "esbuild"
+	}
 });
 ```
 
@@ -104,17 +104,19 @@ export default defineConfig({
 // npm install -D lightningcss browserslist
 
 // vite.config.ts
-import {browserslistToTargets} from 'lightningcss';
-import browserslist from 'browserslist';
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
 export default defineConfig({
 	css: {
 		lightningcss: {
 			targets: browserslistToTargets(
-				browserslist('>= 0.5%, last 2 major versions, Firefox ESR, not dead'),
-			),
-		},
-	},
+				browserslist(
+					">= 0.5%, last 2 major versions, Firefox ESR, not dead"
+				)
+			)
+		}
+	}
 });
 ```
 
@@ -136,7 +138,7 @@ npm i @stencil/core
 
 ```js
 // main.js
-import {defineCustomElements} from '@db-ux/wc-core-components';
+import { defineCustomElements } from "@db-ux/wc-core-components";
 defineCustomElements();
 ```
 
@@ -146,7 +148,7 @@ The bundle entry point is fully self-contained — `@stencil/core` is bundled in
 
 ```js
 // main.js
-import {defineCustomElements} from '@db-ux/wc-core-components/bundle/index.js';
+import { defineCustomElements } from "@db-ux/wc-core-components/bundle/index.js";
 defineCustomElements();
 ```
 

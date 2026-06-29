@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
 	DBButton,
 	DBTable,
@@ -8,16 +8,16 @@ import {
 	DBTableHead,
 	DBTableHeaderCell,
 	DBTableRow,
-	DBTooltip,
+	DBTooltip
 } from '@components';
-import {FlexRenderDirective, type Table} from '@tanstack/angular-table';
-import type {Person} from '../makeData';
-import {EditableCellComponent} from './editable-cell.component';
-import {FilterComponent} from './filter.component';
+import { FlexRenderDirective, type Table } from '@tanstack/angular-table';
+import type { Person } from '../makeData';
+import { EditableCellComponent } from './editable-cell.component';
+import { FilterComponent } from './filter.component';
 import {
 	SelectCellComponent,
 	SelectFooterComponent,
-	SelectHeaderComponent,
+	SelectHeaderComponent
 } from './select-column.component';
 
 @Component({
@@ -38,30 +38,37 @@ import {
 		SelectHeaderComponent,
 		SelectCellComponent,
 		SelectFooterComponent,
-		EditableCellComponent,
+		EditableCellComponent
 	],
 	template: `
 		<db-table [columnSizes]="columnSizes">
 			<db-table-head>
-				@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
+				@for (
+					headerGroup of table.getHeaderGroups();
+					track headerGroup.id
+				) {
 					<db-table-row [interactive]="true">
 						@for (header of headerGroup.headers; track header.id) {
-							<db-table-header-cell [colSpan]="header.colSpan" class="relative">
+							<db-table-header-cell
+								[colSpan]="header.colSpan"
+								class="relative">
 								@if (!header.isPlaceholder) {
 									<div
-										style="display: inline-flex; gap: var(--db-spacing-fixed-3xs); overflow: hidden; inline-size: fit-content; block-size: fit-content"
-									>
+										style="display: inline-flex; gap: var(--db-spacing-fixed-3xs); overflow: hidden; inline-size: fit-content; block-size: fit-content">
 										<span style="white-space: nowrap">
-											@if (header.column.id === 'select') {
-												<app-select-header [table]="table" />
+											@if (
+												header.column.id === 'select'
+											) {
+												<app-select-header
+													[table]="table" />
 											} @else {
 												<ng-container
 													*flexRender="
-														header.column.columnDef.header;
+														header.column.columnDef
+															.header;
 														props: header.getContext();
 														let cell
-													"
-												>
+													">
 													{{ cell }}
 												</ng-container>
 											}
@@ -71,18 +78,29 @@ import {
 												[variant]="'ghost'"
 												[size]="'small'"
 												[noText]="true"
-												[icon]="getSortIcon(header.column.getIsSorted())"
-												(click)="
-													header.column.getToggleSortingHandler()?.($event)
+												[icon]="
+													getSortIcon(
+														header.column.getIsSorted()
+													)
 												"
-											>
+												(click)="
+													header.column.getToggleSortingHandler()?.(
+														$event
+													)
+												">
 												<db-tooltip [placement]="'top'">
-													{{ getSortTooltip(header.column.getIsSorted()) }}
+													{{
+														getSortTooltip(
+															header.column.getIsSorted()
+														)
+													}}
 												</db-tooltip>
 											</db-button>
 										}
 										@if (header.column.getCanFilter()) {
-											<app-filter [column]="header.column" [table]="table" />
+											<app-filter
+												[column]="header.column"
+												[table]="table" />
 										}
 									</div>
 								}
@@ -111,8 +129,7 @@ import {
 											cell.column.columnDef.cell;
 											props: cell.getContext();
 											let cellContent
-										"
-									>
+										">
 										{{ cellContent }}
 									</ng-container>
 								}
@@ -122,11 +139,17 @@ import {
 				}
 			</db-table-body>
 			<db-table-footer>
-				@for (footerGroup of table.getFooterGroups(); track footerGroup.id) {
+				@for (
+					footerGroup of table.getFooterGroups();
+					track footerGroup.id
+				) {
 					<db-table-row>
 						@for (header of footerGroup.headers; track header.id) {
 							<db-table-header-cell [colSpan]="header.colSpan">
-								@if (header.column.id === 'select' && footerGroup.id === '1') {
+								@if (
+									header.column.id === 'select' &&
+									footerGroup.id === '1'
+								) {
 									<app-select-footer [table]="table" />
 								} @else if (!header.isPlaceholder) {
 									<ng-container
@@ -134,8 +157,7 @@ import {
 											header.column.columnDef.footer;
 											props: header.getContext();
 											let footer
-										"
-									>
+										">
 										{{ footer }}
 									</ng-container>
 								}
@@ -145,12 +167,12 @@ import {
 				}
 			</db-table-footer>
 		</db-table>
-	`,
+	`
 })
 export class CustomTableComponent {
 	@Input() table!: Table<Person>;
 
-	columnSizes = {0: 'min-content', 4: 'min-content', 5: 'min-content'};
+	columnSizes = { 0: 'min-content', 4: 'min-content', 5: 'min-content' };
 
 	getSortIcon(isSorted: false | 'asc' | 'desc') {
 		if (!isSorted) return 'arrows_vertical';

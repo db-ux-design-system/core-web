@@ -12,8 +12,8 @@ import {
 	DBTableBody,
 	DBTableRow,
 	DBTableHeaderCell,
-	DBTableDataCell,
-} from '@db-ux/react-core-components';
+	DBTableDataCell
+} from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBTable captionPlain="Table Caption">

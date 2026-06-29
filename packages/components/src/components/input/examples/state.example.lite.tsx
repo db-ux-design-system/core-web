@@ -1,18 +1,21 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
-import {StorybookInputArgTypes} from './_input.arg.types';
+import { StorybookInputArgTypes } from './_input.arg.types';
 
 useMetadata({
 	storybookTitle: 'State',
 	storybookNames: ['(Default) Empty', 'Filled'],
-	storybookArgTypes: StorybookInputArgTypes,
+	storybookArgTypes: StorybookInputArgTypes
 });
 
 export default function InputState() {
 	return (
 		<Fragment>
 			<DBInput label="Label" placeholder="(Default) Empty"></DBInput>
-			<DBInput label="Label" value="Filled" placeholder="Filled"></DBInput>
+			<DBInput
+				label="Label"
+				value="Filled"
+				placeholder="Filled"></DBInput>
 		</Fragment>
 	);
 }

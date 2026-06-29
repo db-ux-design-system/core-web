@@ -1,6 +1,6 @@
-@use '@db-ux/core-foundations/build/styles/helpers';
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-visually-hidden,
-[data-visually-hidden='true'] {
+[data-visually-hidden="true"] {
 	@extend %a11y-visually-hidden;
 }

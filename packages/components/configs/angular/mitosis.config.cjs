@@ -8,6 +8,6 @@ module.exports = {
 	targets: ['angular'],
 	dest: '../../output/tmp',
 	options: {
-		angular,
-	},
+		angular
+	}
 };

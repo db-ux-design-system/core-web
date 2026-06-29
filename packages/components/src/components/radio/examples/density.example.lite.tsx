@@ -1,23 +1,29 @@
-import {useMetadata} from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBRadio from '../radio.lite';
-import {StorybookRadioArgTypes} from './_radio.arg.types';
+import { StorybookRadioArgTypes } from './_radio.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookRadioArgTypes,
+	storybookArgTypes: StorybookRadioArgTypes
 });
 
 export default function RadioDensity() {
 	return (
 		<div role="radiogroup" aria-label="Density">
-			<DBRadio data-density="functional" name="Density" value="functional">
+			<DBRadio
+				data-density="functional"
+				name="Density"
+				value="functional">
 				Functional
 			</DBRadio>
 			<DBRadio data-density="regular" name="Density" value="regular">
 				(Default) Regular
 			</DBRadio>
-			<DBRadio data-density="expressive" name="Density" value="expressive">
+			<DBRadio
+				data-density="expressive"
+				name="Density"
+				value="expressive">
 				Expressive
 			</DBRadio>
 		</div>

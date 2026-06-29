@@ -233,8 +233,8 @@
 		"licence": "https://lucide.dev/license#lucide-license",
 		"origin": "info"
 	},
-	{"name": "brand.svg", "type": "custom", "licence": "DB_LICENSE"},
-	{"name": "x_placeholder.svg", "type": "custom", "licence": "DB_LICENSE"},
+	{ "name": "brand.svg", "type": "custom", "licence": "DB_LICENSE" },
+	{ "name": "x_placeholder.svg", "type": "custom", "licence": "DB_LICENSE" },
 	{
 		"name": "resize_handle_corner.svg",
 		"type": "custom",

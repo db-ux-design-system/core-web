@@ -1,7 +1,7 @@
 @if (navItem) {
 	<db-navigation-item [backButtonText]="getBackButtonText()">
 		@if (navItem.subNavigation) {
-			<ng-container slot="subNavigation" sub-navigation>
+			<ng-container sub-navigation slot="subNavigation">
 				@for (item of navItem.subNavigation; track item.label) {
 					<app-nav-item [navItem]="item" />
 				}
@@ -11,10 +11,10 @@
 			@if (navItem.component) {
 				<a
 					[routerLink]="navItem.path"
-					[routerLinkActiveOptions]="{exact: true}"
+					[routerLinkActiveOptions]="{ exact: true }"
 					ariaCurrentWhenActive="page"
-					queryParamsHandling="merge"
 					routerLinkActive="active"
+					queryParamsHandling="merge"
 				>
 					{{ navItem.label }}
 				</a>

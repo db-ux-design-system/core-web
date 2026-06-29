@@ -1,9 +1,9 @@
-@use '@db-ux/core-foundations/build/styles/variables';
-@use '@db-ux/core-foundations/build/styles/colors';
-@use '@db-ux/core-foundations/build/styles/screen-sizes';
-@use '@db-ux/core-foundations/build/styles/helpers';
-@use '@db-ux/core-foundations/build/styles/animation';
-@use '../../styles/internal/form-components';
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "../../styles/internal/form-components";
 
 .db-custom-select-dropdown {
 	@extend %db-neutral-variables;
@@ -16,7 +16,7 @@
 	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
 
 	&:not([data-width]),
-	&[data-width='fixed'] {
+	&[data-width="fixed"] {
 		/* stylelint-disable-next-line db-ux/use-sizing */
 		inline-size: var(
 			--db-custom-select-dropdown-fixed-inline-size,
@@ -24,7 +24,7 @@
 		);
 	}
 
-	&[data-width='auto'] {
+	&[data-width="auto"] {
 		inline-size: max-content;
 
 		// Auto width grows to the longest option, so labels must not wrap.
@@ -33,11 +33,11 @@
 		}
 	}
 
-	&[data-width='full'] {
+	&[data-width="full"] {
 		inline-size: 100%;
 	}
 
-	@include screen-sizes.screen('sm', 'max') {
+	@include screen-sizes.screen("sm", "max") {
 		position: fixed;
 		z-index: 9999;
 		inset-block: 0;
@@ -51,12 +51,13 @@
 		min-inline-size: variables.$db-sizing-2xl;
 	}
 
-	> db-custom-select-list > div:not([class~='db-custom-select-list']),
-	> div:not([class~='db-custom-select-list']) {
+	> db-custom-select-list > div:not([class~="db-custom-select-list"]),
+	> div:not([class~="db-custom-select-list"]) {
 		&:has(.db-checkbox) {
-			padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
 
-			@include helpers.divider('bottom', 'after');
+			@include helpers.divider("bottom", "after");
 		}
 
 		&:has(.db-button),
@@ -66,13 +67,13 @@
 		}
 
 		&:has(.db-input) {
-			@include helpers.divider('bottom', 'after');
+			@include helpers.divider("bottom", "after");
 		}
 
 		&:has(.db-button) {
-			@include helpers.divider('top', 'after');
+			@include helpers.divider("top", "after");
 
-			@include screen-sizes.screen('sm') {
+			@include screen-sizes.screen("sm") {
 				@include helpers.display(none);
 			}
 		}
@@ -83,10 +84,11 @@
 		padding: variables.$db-spacing-fixed-lg variables.$db-spacing-fixed-md;
 		margin: auto;
 
-		&[data-icon='circular_arrows'] {
+		&[data-icon="circular_arrows"] {
 			&::before {
 				@media (prefers-reduced-motion: no-preference) {
-					animation: rotate 1.5s linear 0s infinite normal none running;
+					animation: rotate 1.5s linear 0s infinite normal none
+						running;
 				}
 			}
 		}

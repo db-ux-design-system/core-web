@@ -7,7 +7,7 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import {DBNotification} from '@db-ux/v-core-components';
+import { DBNotification } from "@db-ux/v-core-components";
 </script>
 
 <template>

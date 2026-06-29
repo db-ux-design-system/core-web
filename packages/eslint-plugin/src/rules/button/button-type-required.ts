@@ -1,11 +1,11 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularFix,
 	createAngularVisitors,
 	createJsxVueFix,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
@@ -13,13 +13,13 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description: 'Ensure DBButton has explicit type attribute',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-type-required',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-type-required'
 		},
 		fixable: 'code' as const,
 		messages: {
-			missingType: MESSAGES.BUTTON_TYPE_REQUIRED,
+			missingType: MESSAGES.BUTTON_TYPE_REQUIRED
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -29,7 +29,9 @@ export default {
 				const hasCommandFor = getAttributeValue(node, 'commandfor');
 				const typeValue =
 					hasClickHandler || hasCommandFor ? 'button' : 'submit';
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.BUTTON_TYPE_REQUIRED,
@@ -37,17 +39,14 @@ export default {
 						const fixData = createAngularFix(
 							context,
 							node,
-							` type="${typeValue}"`,
+							` type="${typeValue}"`
 						);
-						if (!fixData) {
-							return null;
-						}
-
+						if (!fixData) return null;
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText,
+							fixData.attributeText
 						);
-					},
+					}
 				});
 			}
 		};
@@ -55,22 +54,16 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBButton,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkButton = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const type = getAttributeValue(openingElement, 'type');
-			if (type !== undefined) {
-				return;
-			}
+			if (type !== undefined) return;
 
 			const hasClickHandler =
 				getAttributeValue(openingElement, 'onClick') ||
@@ -78,7 +71,8 @@ export default {
 				getAttributeValue(openingElement, '@click');
 
 			const typeValue =
-				hasClickHandler || getAttributeValue(openingElement, 'commandfor')
+				hasClickHandler ||
+				getAttributeValue(openingElement, 'commandfor')
 					? 'button'
 					: 'submit';
 
@@ -89,20 +83,20 @@ export default {
 					const fixData = createJsxVueFix(
 						node,
 						openingElement,
-						` type="${typeValue}"`,
+						` type="${typeValue}"`
 					);
 					return fixer.insertTextAfterRange(
 						[fixData.insertPos, fixData.insertPos],
-						fixData.attributeText,
+						fixData.attributeText
 					);
-				},
+				}
 			});
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkButton, Element: checkButton},
-			{JSXElement: checkButton},
+			{ VElement: checkButton, Element: checkButton },
+			{ JSXElement: checkButton }
 		);
-	},
+	}
 };

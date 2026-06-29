@@ -1,9 +1,9 @@
-import type {Declaration} from 'postcss';
-import stylelint, {type PostcssResult} from 'stylelint';
-import type {RuleFunctionType} from './create-rule.js';
+import type { Declaration } from 'postcss';
+import stylelint, { type PostcssResult } from 'stylelint';
+import type { RuleFunctionType } from './create-rule.js';
 
 const {
-	utils: {report},
+	utils: { report }
 } = stylelint;
 
 export const defaultExact: string[] = [
@@ -12,7 +12,7 @@ export const defaultExact: string[] = [
 	'auto',
 	'inherit',
 	'initial',
-	'unset',
+	'unset'
 ];
 
 export const defaultColorsExact: string[] = ['transparent', 'currentcolor'];
@@ -28,7 +28,7 @@ export const borderPropertiesExact: string[] = [
 	'border-block-end',
 	'border-inline',
 	'border-inline-start',
-	'border-inline-end',
+	'border-inline-end'
 ];
 
 export type IncludesAllowType = {
@@ -42,15 +42,15 @@ export type AllowedType = {
 	exact?: string[];
 	startsWith?: string[];
 	/**
-	 Used to determine if:
-	 - every: All parts of the value (e.g. margin: x x x x) should be allowed
-	 - some: Only some parts of the value (e.g. border: x solid red) should be allowed
+	 * Used to determine if:
+	 * - every: All parts of the value (e.g. margin: x x x x) should be allowed
+	 * - some: Only some parts of the value (e.g. border: x solid red) should be allowed
 	 */
 	type?: 'every' | 'some';
 };
 
-const checkIncludes = (value: string, allowedValues: AllowedType): boolean =>
-	Boolean(
+const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
+	return Boolean(
 		allowedValues.includes?.find((include) => {
 			if (typeof include === 'string') {
 				return value.includes(include);
@@ -64,12 +64,13 @@ const checkIncludes = (value: string, allowedValues: AllowedType): boolean =>
 						? include.or.some((a) => value.includes(a))
 						: true)
 			);
-		}),
+		})
 	);
+};
 
 export const isAllowed = (
 	value: string | string[],
-	allowedValues: AllowedType,
+	allowedValues: AllowedType
 ): boolean => {
 	const splitValue = Array.isArray(value)
 		? value
@@ -83,8 +84,10 @@ export const isAllowed = (
 	const allowMap = splitValue.map(
 		(value_) =>
 			Boolean(allowedValues.exact?.includes(value_)) ||
-			Boolean(allowedValues.startsWith?.find((sw) => value_.startsWith(sw))) ||
-			checkIncludes(value_, allowedValues),
+			Boolean(
+				allowedValues.startsWith?.find((sw) => value_.startsWith(sw))
+			) ||
+			checkIncludes(value_, allowedValues)
 	);
 
 	if (allowedValues.type === 'some') {
@@ -109,26 +112,23 @@ export type DefaultRuleOptionsHitType = {
 export const isDefaultRuleOptionsHit = ({
 	options,
 	result,
-	value,
+	value
 }: DefaultRuleOptionsHitType) => {
 	if (options?.ignore) {
-		const {from} = result.opts;
+		const { from } = result.opts;
 		if (from) {
 			const isIgnored = options.ignore.some(
-				(i) => from.includes(i) || new RegExp(i).test(from),
+				(i) => from.includes(i) || new RegExp(i).test(from)
 			);
-			if (isIgnored) {
-				return true;
-			}
+			if (isIgnored) return true;
 		}
 	}
 
 	if (
 		options?.allowCalc &&
-		isAllowed([value], {includes: [{include: 'calc('}]})
-	) {
+		isAllowed([value], { includes: [{ include: 'calc(' }] })
+	)
 		return true;
-	}
 
 	return Boolean(options?.allow && isAllowed([value], options.allow));
 };
@@ -137,7 +137,7 @@ export const getDeclarationRuleFunction = ({
 	allowedDeclarations,
 	allowedValues,
 	ruleName,
-	messages,
+	messages
 }: {
 	allowedDeclarations: AllowedType;
 	allowedValues: AllowedType;
@@ -150,33 +150,23 @@ export const getDeclarationRuleFunction = ({
 		root,
 		result: PostcssResult,
 		_,
-		options,
+		options
 	) => {
 		root.walkDecls((decl: Declaration) => {
-			const {prop, value} = decl;
+			const { prop, value } = decl;
 
-			if (isDefaultRuleOptionsHit({result, options, value})) {
-				return;
-			}
+			if (isDefaultRuleOptionsHit({ result, options, value })) return;
 
-			if (prop.startsWith('--') || prop.startsWith('$')) {
-				return;
-			}
-
-			if (!isAllowed(prop, allowedDeclarations)) {
-				return;
-			}
-
-			if (isAllowed(value, allowedValues)) {
-				return;
-			}
+			if (prop.startsWith('--') || prop.startsWith('$')) return;
+			if (!isAllowed(prop, allowedDeclarations)) return;
+			if (isAllowed(value, allowedValues)) return;
 
 			report({
 				result,
 				ruleName,
 				message: messages.rejected(prop, value),
 				node: decl,
-				word: value,
+				word: value
 			});
 		});
 	};

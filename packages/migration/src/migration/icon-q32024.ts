@@ -1,85 +1,85 @@
-import type {ReplaceInFileConfig} from 'replace-in-file';
+import type { ReplaceInFileConfig } from 'replace-in-file';
 
 export const iconQ32024: ReplaceInFileConfig[] = [
 	// Renamed icons
 	{
 		files: '',
 		from: /swap_vertical/g,
-		to: 'arrows_vertical',
+		to: 'arrows_vertical'
 	},
 	{
 		files: '',
 		from: /swap_horizontal/g,
-		to: 'arrows_horizontal',
+		to: 'arrows_horizontal'
 	},
 	{
 		files: '',
 		from: /reload/g,
-		to: 'circular_arrows',
+		to: 'circular_arrows'
 	},
 	{
 		files: '',
 		from: /volume_off/g,
-		to: 'volume_silent',
+		to: 'volume_silent'
 	},
 	{
 		files: '',
 		from: /law/g,
-		to: 'paragraph_mark',
+		to: 'paragraph_mark'
 	},
 	{
 		files: '',
 		from: /users/g,
-		to: 'persons',
+		to: 'persons'
 	},
 	{
 		files: '',
 		from: /user/g,
-		to: 'person',
+		to: 'person'
 	},
 	{
 		files: '',
 		from: /wc_men/g,
-		to: 'toilet_men',
+		to: 'toilet_men'
 	},
 	{
 		files: '',
 		from: /wc_women/g,
-		to: 'toilet_women',
+		to: 'toilet_women'
 	},
 	{
 		files: '',
 		from: /wc/g,
-		to: 'toilets',
+		to: 'toilets'
 	},
 	{
 		files: '',
 		from: /filter/g,
-		to: 'sliders_horizontal',
+		to: 'sliders_horizontal'
 	},
 	{
 		files: '',
 		from: /warning_triangle/g,
-		to: 'exclamation_mark_triangle',
+		to: 'exclamation_mark_triangle'
 	},
 	{
 		files: '',
 		from: /visible/g,
-		to: 'eye',
+		to: 'eye'
 	},
 	{
 		files: '',
 		from: /visibility_disabled/g,
-		to: 'eye_disabled',
+		to: 'eye_disabled'
 	},
 	{
 		files: '',
 		from: /flip_horizontal/g,
-		to: 'arrows_horizontal',
+		to: 'arrows_horizontal'
 	},
 	{
 		files: '',
 		from: /flip_vertical/g,
-		to: 'arrows_vertical',
-	},
+		to: 'arrows_vertical'
+	}
 ];

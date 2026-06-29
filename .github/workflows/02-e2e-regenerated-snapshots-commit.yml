@@ -4,19 +4,19 @@ on:
   workflow_call:
     inputs:
       components:
-        description: 'Regenerate snapshots for components'
+        description: "Regenerate snapshots for components"
         required: true
         type: boolean
       foundations:
-        description: 'Regenerate snapshots for foundations'
+        description: "Regenerate snapshots for foundations"
         required: true
         type: boolean
       patternhub:
-        description: 'Regenerate snapshots for patternhub'
+        description: "Regenerate snapshots for patternhub"
         required: true
         type: boolean
       showcases:
-        description: 'Regenerate snapshots for showcases'
+        description: "Regenerate snapshots for showcases"
         required: true
         type: boolean
 
@@ -67,9 +67,9 @@ jobs:
       - name: 🚘 Auto commit
         uses: ./.github/actions/auto-commit
         with:
-          branch-name: '${{ github.head_ref }}-auto'
-          commit-message: 'auto update snapshots'
-          commit-files: '__snapshots__/*'
+          branch-name: "${{ github.head_ref }}-auto"
+          commit-message: "auto update snapshots"
+          commit-files: "__snapshots__/*"
           auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}

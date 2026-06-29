@@ -1,1 +1,1 @@
-export {default as DBSelect} from './select';
+export { default as DBSelect } from './select';

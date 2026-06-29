@@ -1,21 +1,20 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 function hasOptionChildren(node: any): boolean {
 	return node.children?.some((child: any) => {
 		if (child.type === 'JSXElement') {
-			const {name} = child.openingElement;
+			const { name } = child.openingElement;
 			if (name.type === 'JSXIdentifier') {
 				return name.name === 'option';
 			}
 		}
 
-		// eslint-disable-next-line unicorn/prefer-else-if
 		if (child.type === 'VElement' || child.type === 'Element') {
 			return child.rawName === 'option' || child.name === 'option';
 		}
@@ -28,13 +27,14 @@ export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
-			description: 'Ensure DBSelect has options property or option children',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#select-requires-options',
+			description:
+				'Ensure DBSelect has options property or option children',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#select-requires-options'
 		},
 		messages: {
-			missingOptions: MESSAGES.SELECT_MISSING_OPTIONS,
+			missingOptions: MESSAGES.SELECT_MISSING_OPTIONS
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -42,10 +42,12 @@ export default {
 			const hasChildren = hasOptionChildren(node);
 
 			if (options === undefined && !hasChildren) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS,
+					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS
 				});
 			}
 		};
@@ -53,17 +55,13 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBSelect,
-			angularHandler,
+			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkSelect = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBSelect)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBSelect)) return;
 
 			const options = getAttributeValue(openingElement, 'options');
 			const hasChildren = hasOptionChildren(node);
@@ -71,15 +69,15 @@ export default {
 			if (options === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS,
+					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkSelect, Element: checkSelect},
-			{JSXElement: checkSelect},
+			{ VElement: checkSelect, Element: checkSelect },
+			{ JSXElement: checkSelect }
 		);
-	},
+	}
 };

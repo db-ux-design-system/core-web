@@ -1,44 +1,44 @@
 /* We only use this for tests, we allow no-console */
 /* eslint-disable no-console */
 
-import stylelint, {type Config} from 'stylelint';
-import {expect} from 'vitest';
+import stylelint, { type Config } from 'stylelint';
+import { expect } from 'vitest';
 
-const {lint} = stylelint;
+const { lint } = stylelint;
 
 export const defaultConfig: Config = {
 	extends: ['stylelint-config-standard'],
 	overrides: [
 		{
 			files: ['*.scss', '**/*.scss'],
-			extends: ['stylelint-config-standard-scss'],
+			extends: ['stylelint-config-standard-scss']
 		},
 		{
 			files: ['*.vue', '**/*.vue'],
 			extends: [
 				'stylelint-config-standard-scss',
-				'stylelint-config-standard-vue/scss',
+				'stylelint-config-standard-vue/scss'
 			],
 			rules: {
-				'declaration-property-value-no-unknown': false,
-			},
-		},
-	],
+				'declaration-property-value-no-unknown': false
+			}
+		}
+	]
 };
 
 export const getDefaultTest = async (
 	ruleName: string,
 	config: Config,
-	length: number,
+	length: number
 ) => {
 	const {
-		results: [{warnings, parseErrors}],
+		results: [{ warnings, parseErrors }]
 	} = await lint({
 		files: ['./test/fixtures/test.scss', './test/fixtures/ignore.css'],
 		config: {
 			...config,
-			rules: {[ruleName]: [true, {ignore: ['ignore.css']}]},
-		},
+			rules: { [ruleName]: [true, { ignore: ['ignore.css'] }] }
+		}
 	});
 
 	console.log(warnings);
@@ -50,10 +50,10 @@ export const getDefaultTest = async (
 export const getScssAllowTest = async (
 	ruleName: string,
 	config: Config,
-	length: number,
+	length: number
 ) => {
 	const {
-		results: [{warnings, parseErrors}],
+		results: [{ warnings, parseErrors }]
 	} = await lint({
 		files: ['./test/fixtures/test.scss'],
 		config: {
@@ -66,12 +66,12 @@ export const getScssAllowTest = async (
 						allow: {
 							includes: ['--test', 'custom'],
 							exact: ['$default-icon-margin-end'],
-							startsWith: ['map.get'],
-						},
-					},
-				],
-			},
-		},
+							startsWith: ['map.get']
+						}
+					}
+				]
+			}
+		}
 	});
 
 	console.log(warnings);
@@ -82,10 +82,10 @@ export const getScssAllowTest = async (
 
 export const getVueTest = async (config: Config, length: number) => {
 	const {
-		results: [{warnings, parseErrors}],
+		results: [{ warnings, parseErrors }]
 	} = await lint({
 		files: ['./test/fixtures/test.vue'],
-		config,
+		config
 	});
 
 	console.log(warnings);

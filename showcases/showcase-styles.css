@@ -1,6 +1,6 @@
 /* Styles for the showcases */
 .desktop-navigation ul {
-	list-style-type: '';
+	list-style-type: "";
 	display: flex;
 }
 
@@ -47,8 +47,8 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list div[role] > div:not([class^='db-'], [data-area]),
-.variants-list > div:not([class^='db-']) {
+.variants-list div[role] > div:not([class^="db-"], [data-area]),
+.variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
@@ -74,9 +74,9 @@
 	align-self: flex-end;
 }
 
-.variants-list .db-select:has([placeholder='(Default) Basic']),
-.variants-list .db-input:has([placeholder='(Default) Basic']),
-.variants-list .db-textarea:has([placeholder='(Default) Basic']) {
+.variants-list .db-select:has([placeholder="(Default) Basic"]),
+.variants-list .db-input:has([placeholder="(Default) Basic"]),
+.variants-list .db-textarea:has([placeholder="(Default) Basic"]) {
 	margin-block: 0 auto;
 }
 

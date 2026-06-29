@@ -19,7 +19,7 @@ const getStringArrayConst = (initializer) => {
 	if (texts) {
 		return {
 			values: texts,
-			type: 'literal',
+			type: 'literal'
 		};
 	}
 
@@ -71,7 +71,7 @@ const getUnions = (ts, types) => {
 
 	return {
 		values,
-		type: typeUnions ? 'union' : 'literal',
+		type: typeUnions ? 'union' : 'literal'
 	};
 };
 
@@ -84,7 +84,7 @@ const getTypeOfList = (type) => {
 	const resolvedType = type.objectType?.type?.exprName?.escapedText;
 	if (resolvedType) {
 		return {
-			type: resolvedType,
+			type: resolvedType
 		};
 	}
 
@@ -101,7 +101,9 @@ const getMembers = (ts, members) => {
 		return {
 			values: members.map((member) => {
 				const memberType = member.type;
-				const comment = member.jsDoc?.map((doc) => doc.comment).join('\n');
+				const comment = member.jsDoc
+					?.map((doc) => doc.comment)
+					.join('\n');
 				let type;
 
 				if (memberType.typeName) {
@@ -123,21 +125,21 @@ const getMembers = (ts, members) => {
 				return {
 					name,
 					type,
-					comment,
+					comment
 				};
 			}),
-			type: 'props',
+			type: 'props'
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			values: ['ERROR'],
-			type: 'props',
+			type: 'props'
 		};
 	}
 };
 
-export const analyzePhase = ({ts, node, context}) => {
+export const analyzePhase = ({ ts, node, context }) => {
 	if (!context.data) {
 		context.data = {};
 	}
@@ -152,9 +154,10 @@ export const analyzePhase = ({ts, node, context}) => {
 					localExport.value?.declarations ?? localExport.declarations;
 
 				if (declarations) {
-					declarations.forEach(({initializer, type}) => {
+					declarations.forEach(({ initializer, type }) => {
 						if (initializer) {
-							const stringArray = getStringArrayConst(initializer);
+							const stringArray =
+								getStringArrayConst(initializer);
 							if (stringArray) {
 								context.data[name] = stringArray;
 							}
@@ -162,7 +165,10 @@ export const analyzePhase = ({ts, node, context}) => {
 							if (type.types) {
 								context.data[name] = getUnions(ts, type.types);
 							} else if (type.members) {
-								context.data[name] = getMembers(ts, type.members);
+								context.data[name] = getMembers(
+									ts,
+									type.members
+								);
 							} else {
 								const typeOfList = getTypeOfList(type);
 								if (typeOfList) {

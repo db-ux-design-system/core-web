@@ -1,5 +1,5 @@
 ---
-name: 'Pull Request Labeler'
+name: "Pull Request Labeler"
 
 permissions:
   contents: read
@@ -16,5 +16,5 @@ jobs:
         uses: actions/labeler@f27b608878404679385c85cfa523b85ccb86e213 # v6.1.0
         continue-on-error: true
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true

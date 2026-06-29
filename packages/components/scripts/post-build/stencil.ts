@@ -1,7 +1,7 @@
-import {existsSync, writeFileSync} from 'node:fs';
-import {replaceInFileSync} from 'replace-in-file';
-import {runReplacements, transformToUpperComponentName} from '../utils';
-import components, {Overwrite} from './components';
+import { existsSync, writeFileSync } from 'node:fs';
+import { replaceInFileSync } from 'replace-in-file';
+import { runReplacements, transformToUpperComponentName } from '../utils';
+import components, { Overwrite } from './components';
 
 const getSlotDocs = (foundSlots: string[]): string => {
 	return `
@@ -34,7 +34,7 @@ const changeFile = (upperComponentName: string, input: string) => {
 			if (line.includes('<slot name=')) {
 				const firstPart = line.substring(
 					line.indexOf('<slot name='),
-					line.length,
+					line.length
 				);
 				const slotName = firstPart
 					.substring(0, firstPart.indexOf('</slot>') + 7)
@@ -55,7 +55,7 @@ const changeFile = (upperComponentName: string, input: string) => {
 const replaceIndexFile = (
 	file: string,
 	componentName: string,
-	upperComponentName: string,
+	upperComponentName: string
 ) => {
 	const replacement = `import { ${upperComponentName} } from './${componentName}';
 
@@ -76,11 +76,11 @@ export default (tmp?: boolean) => {
 
 		replaceInFileSync({
 			files: [file],
-			processor: (input: string) => changeFile(upperComponentName, input),
+			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
 		const replacements: Overwrite[] = [
-			{from: /(?<!\w)for={/g, to: 'htmlFor={'},
+			{ from: /(?<!\w)for={/g, to: 'htmlFor={' }
 		];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);

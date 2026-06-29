@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DBButton, DBSelect, DBStack, DBTooltip } from '@components';
 
 @Component({
 	selector: 'app-action-buttons',
@@ -9,15 +9,13 @@ import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
 		<db-stack
 			[direction]="'row'"
 			[alignment]="'center'"
-			[justifyContent]="'center'"
-		>
+			[justifyContent]="'center'">
 			<db-button
 				[disabled]="!hasPreviousPage"
 				[variant]="'ghost'"
 				[noText]="true"
 				[icon]="'double_chevron_left'"
-				(click)="setPageIndex.emit(0)"
-			>
+				(click)="setPageIndex.emit(0)">
 				First Page
 				<db-tooltip [placement]="'top'">First Page</db-tooltip>
 			</db-button>
@@ -26,8 +24,7 @@ import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
 				[variant]="'ghost'"
 				[noText]="true"
 				[icon]="'chevron_left'"
-				(click)="previousPage.emit()"
-			>
+				(click)="previousPage.emit()">
 				Previous Page
 				<db-tooltip [placement]="'top'">Previous Page</db-tooltip>
 			</db-button>
@@ -36,8 +33,7 @@ import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
 				[variant]="'ghost'"
 				[noText]="true"
 				[icon]="'chevron_right'"
-				(click)="nextPage.emit()"
-			>
+				(click)="nextPage.emit()">
 				Next Page
 				<db-tooltip [placement]="'top'">Next Page</db-tooltip>
 			</db-button>
@@ -46,8 +42,7 @@ import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
 				[variant]="'ghost'"
 				[noText]="true"
 				[icon]="'double_chevron_right'"
-				(click)="setPageIndex.emit(pageCount - 1)"
-			>
+				(click)="setPageIndex.emit(pageCount - 1)">
 				Last Page
 				<db-tooltip [placement]="'top'">Last Page</db-tooltip>
 			</db-button>
@@ -59,14 +54,13 @@ import {DBButton, DBSelect, DBStack, DBTooltip} from '@components';
 				[variant]="'floating'"
 				[label]="'Amount of Entries'"
 				[value]="pageSize"
-				(valueChange)="setPageSize.emit(+$event)"
-			>
+				(valueChange)="setPageSize.emit(+$event)">
 				@for (size of [5, 10, 20, 30, 40, 50]; track size) {
 					<option [value]="size">Show {{ size }}</option>
 				}
 			</db-select>
 		</db-stack>
-	`,
+	`
 })
 export class ActionButtonsComponent {
 	@Input() hasNextPage = false;

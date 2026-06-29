@@ -1,5 +1,5 @@
 /**
- @type {import('@changesets/types/dist/declarations/src').GetReleaseLine}
+ * @type {import('@changesets/types/dist/declarations/src').GetReleaseLine}
  */
 const getReleaseLine = async (changeset, _type, options) => {
 	const [firstLine, ...futureLines] = changeset.summary
@@ -15,7 +15,7 @@ const getReleaseLine = async (changeset, _type, options) => {
 	}
 
 	if (futureLines.length > 0) {
-		returnValue += ':\n\n';
+		returnValue += `:\n\n`;
 		returnValue += `\n${futureLines
 			.filter((l) => l.length)
 			.map((l) =>
@@ -23,28 +23,28 @@ const getReleaseLine = async (changeset, _type, options) => {
 				l.trim().startsWith('- ') ||
 				l.trim().startsWith('+ ')
 					? `\t\t${l}`
-					: `\t- ${l}`,
+					: `\t- ${l}`
 			)
 			.join('\n')}`;
 	}
 
-	returnValue += '\n';
+	returnValue += `\n`;
 
 	return returnValue;
 };
 
 /**
- @type {import('@changesets/types/dist/declarations/src').GetDependencyReleaseLine}
+ * @type {import('@changesets/types/dist/declarations/src').GetDependencyReleaseLine}
  */
 const getDependencyReleaseLine = async () =>
 	// We don't want dependencies to show in the changelog, because we align the version anyway
 	'';
 /**
- @type {import('@changesets/types/dist/declarations/src').ChangelogFunctions}
+ * @type {import('@changesets/types/dist/declarations/src').ChangelogFunctions}
  */
 const functions = {
 	getReleaseLine,
-	getDependencyReleaseLine,
+	getDependencyReleaseLine
 };
 
 export default functions;

@@ -1,4 +1,4 @@
-@use '../helpers';
+@use "../helpers";
 
 @mixin set-component-variables($size) {
 	/* Those variables are only for components to calculate heights and change icons */
@@ -24,7 +24,7 @@
 	font: var(--db-type-headline-#{$size});
 }
 
-$font-sizes: '3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs';
+$font-sizes: "3xl", "2xl", "xl", "lg", "md", "sm", "xs", "2xs", "3xs";
 
 // Generates 3 types of placeholders, e.g.:
 // - %db-component-variables-md

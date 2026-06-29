@@ -1,10 +1,10 @@
 /**
- Type-safe migration mappings — Single Source of Truth.
- 
- Generated from the Markdown migration guides
- (component-migration.md, color-migration.md, icon-migration.md).
- 
- DO NOT EDIT MANUALLY. Re-generate when the source .md files change.
+ * Type-safe migration mappings — Single Source of Truth.
+ *
+ * Generated from the Markdown migration guides
+ * (component-migration.md, color-migration.md, icon-migration.md).
+ *
+ * DO NOT EDIT MANUALLY. Re-generate when the source .md files change.
  */
 
 // ---------------------------------------------------------------------------
@@ -32,7 +32,10 @@ export type IconMigrationEntry = {
 
 export type MigrationData = {
 	readonly components: Record<string, string>;
-	readonly colors: Record<string, {readonly bg: string; readonly fg: string}>;
+	readonly colors: Record<
+		string,
+		{ readonly bg: string; readonly fg: string }
+	>;
 	readonly icons: Record<string, string>;
 };
 
@@ -59,585 +62,585 @@ export const migrationData: MigrationData = {
 		'cmp-db-tab': 'db-tab-item',
 		'cmp-tab-bar': 'db-tabs',
 		'elm-tag': 'db-tag',
-		'elm-textarea': 'db-textarea',
+		'elm-textarea': 'db-textarea'
 	},
 	colors: {
 		'db-color-yellow-100': {
 			bg: '--db-yellow-bg-basic-level-2-default',
-			fg: '--db-successful-on-bg-inverted-default',
+			fg: '--db-successful-on-bg-inverted-default'
 		},
 		'db-color-yellow-200': {
 			bg: '--db-yellow-bg-basic-level-3-default',
-			fg: '--db-successful-on-bg-inverted-default',
+			fg: '--db-successful-on-bg-inverted-default'
 		},
 		'db-color-yellow-300': {
 			bg: '--db-yellow-bg-basic-level-3-default',
-			fg: '--db-yellow-on-bg-basic-emphasis-60-default',
+			fg: '--db-yellow-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-yellow-400': {
 			bg: '--db-yellow-bg-vibrant-default',
-			fg: '--db-yellow-on-bg-basic-emphasis-60-default',
+			fg: '--db-yellow-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-yellow-500': {
 			bg: '--db-yellow-bg-vibrant-default',
-			fg: '--db-yellow-on-bg-basic-emphasis-60-default',
+			fg: '--db-yellow-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-yellow-600': {
 			bg: '--db-yellow-bg-vibrant-default',
-			fg: '--db-yellow-on-bg-basic-emphasis-60-default',
+			fg: '--db-yellow-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-yellow-700': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-yellow-800': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-yellow-900': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-orange-100': {
 			bg: '--db-yellow-bg-basic-level-2-default',
-			fg: '--db-yellow-on-bg-inverted-default',
+			fg: '--db-yellow-on-bg-inverted-default'
 		},
 		'db-color-orange-200': {
 			bg: '--db-yellow-bg-basic-level-3-default',
-			fg: '--db-yellow-on-bg-inverted-default',
+			fg: '--db-yellow-on-bg-inverted-default'
 		},
 		'db-color-orange-300': {
 			bg: '--db-yellow-bg-basic-level-3-default',
-			fg: '--db-warning-on-bg-basic-emphasis-60-default',
+			fg: '--db-warning-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-orange-400': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-orange-500': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-orange-600': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-orange-700': {
 			bg: '--db-warning-bg-inverted-contrast-low-default',
-			fg: '--db-warning-on-bg-basic-emphasis-70-default',
+			fg: '--db-warning-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-orange-800': {
 			bg: '--db-warning-bg-inverted-contrast-high-default',
-			fg: '--db-warning-on-bg-basic-emphasis-80-default',
+			fg: '--db-warning-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-red-100': {
 			bg: '--db-brand-bg-basic-level-3-default',
-			fg: '--db-brand-on-bg-inverted-default',
+			fg: '--db-brand-on-bg-inverted-default'
 		},
 		'db-color-red-200': {
 			bg: '--db-brand-bg-basic-level-3-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-60-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-red-300': {
 			bg: '--db-brand-bg-vibrant-default',
-			fg: '--db-brand-on-bg-basic-emphasis-50-default',
+			fg: '--db-brand-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-red-400': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-red-500': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-red-600': {
 			bg: '--db-brand-bg-inverted-contrast-high-default',
-			fg: '--db-brand-on-bg-basic-emphasis-80-default',
+			fg: '--db-brand-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-red-700': {
 			bg: '--db-brand-bg-inverted-contrast-high-default',
-			fg: '--db-brand-on-bg-basic-emphasis-90-default',
+			fg: '--db-brand-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-red-800': {
 			bg: '--db-brand-bg-inverted-contrast-max-default',
-			fg: '--db-brand-on-bg-basic-emphasis-90-default',
+			fg: '--db-brand-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-burgundy-100': {
 			bg: '--db-burgundy-bg-basic-level-3-default',
-			fg: '--db-pink-on-bg-inverted-default',
+			fg: '--db-pink-on-bg-inverted-default'
 		},
 		'db-color-burgundy-200': {
 			bg: '--db-pink-bg-basic-level-3-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-60-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-burgundy-300': {
 			bg: '--db-burgundy-bg-vibrant-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-50-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-burgundy-400': {
 			bg: '--db-burgundy-bg-inverted-contrast-low-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-70-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-burgundy-500': {
 			bg: '--db-burgundy-bg-inverted-contrast-high-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-80-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-burgundy-600': {
 			bg: '--db-burgundy-bg-inverted-contrast-high-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-80-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-burgundy-700': {
 			bg: '--db-pink-bg-inverted-contrast-max-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-90-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-burgundy-800': {
 			bg: '--db-pink-bg-inverted-contrast-max-default',
-			fg: '--db-pink-on-bg-basic-emphasis-100-default',
+			fg: '--db-pink-on-bg-basic-emphasis-100-default'
 		},
 		'db-color-pink-100': {
 			bg: '--db-pink-bg-basic-level-3-default',
-			fg: '--db-pink-on-bg-inverted-default',
+			fg: '--db-pink-on-bg-inverted-default'
 		},
 		'db-color-pink-200': {
 			bg: '--db-pink-bg-basic-level-3-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-60-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-pink-300': {
 			bg: '--db-pink-bg-vibrant-default',
-			fg: '--db-pink-on-bg-basic-emphasis-60-default',
+			fg: '--db-pink-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-pink-400': {
 			bg: '--db-pink-bg-vibrant-default',
-			fg: '--db-pink-on-bg-basic-emphasis-50-default',
+			fg: '--db-pink-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-pink-500': {
 			bg: '--db-pink-bg-inverted-contrast-low-default',
-			fg: '--db-pink-on-bg-basic-emphasis-70-default',
+			fg: '--db-pink-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-pink-600': {
 			bg: '--db-pink-bg-inverted-contrast-low-default',
-			fg: '--db-pink-on-bg-basic-emphasis-70-default',
+			fg: '--db-pink-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-pink-700': {
 			bg: '--db-pink-bg-inverted-contrast-high-default',
-			fg: '--db-pink-on-bg-basic-emphasis-80-default',
+			fg: '--db-pink-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-pink-800': {
 			bg: '--db-pink-bg-inverted-contrast-high-default',
-			fg: '--db-pink-on-bg-basic-emphasis-80-default',
+			fg: '--db-pink-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-violett-100': {
 			bg: '--db-violet-bg-basic-level-3-default',
-			fg: '--db-violet-on-bg-inverted-default',
+			fg: '--db-violet-on-bg-inverted-default'
 		},
 		'db-color-violett-200': {
 			bg: '--db-violet-bg-basic-level-3-default',
-			fg: '--db-violet-on-bg-basic-emphasis-60-default',
+			fg: '--db-violet-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-violett-300': {
 			bg: '--db-violet-bg-vibrant-default',
-			fg: '--db-violet-on-bg-basic-emphasis-50-default',
+			fg: '--db-violet-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-violett-400': {
 			bg: '--db-violet-bg-inverted-contrast-low-default',
-			fg: '--db-violet-on-bg-basic-emphasis-70-default',
+			fg: '--db-violet-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-violett-500': {
 			bg: '--db-violet-bg-inverted-contrast-high-default',
-			fg: '--db-violet-on-bg-basic-emphasis-80-default',
+			fg: '--db-violet-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-violett-600': {
 			bg: '--db-violet-bg-inverted-contrast-high-default',
-			fg: '--db-violet-on-bg-basic-emphasis-80-default',
+			fg: '--db-violet-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-violett-700': {
 			bg: '--db-violet-bg-inverted-contrast-high-default',
-			fg: '--db-violet-on-bg-basic-emphasis-90-default',
+			fg: '--db-violet-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-violett-800': {
 			bg: '--db-violet-bg-inverted-contrast-max-default',
-			fg: '--db-violet-on-bg-basic-emphasis-90-default',
+			fg: '--db-violet-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-blue-100': {
 			bg: '--db-informational-bg-basic-level-3-default',
-			fg: '--db-informational-on-bg-inverted-default',
+			fg: '--db-informational-on-bg-inverted-default'
 		},
 		'db-color-blue-200': {
 			bg: '--db-informational-bg-basic-level-3-default',
-			fg: '--db-informational-on-bg-basic-emphasis-60-default',
+			fg: '--db-informational-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-blue-300': {
 			bg: '--db-blue-bg-vibrant-default',
-			fg: '--db-blue-on-bg-basic-emphasis-50-default',
+			fg: '--db-blue-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-blue-400': {
 			bg: '--db-blue-bg-inverted-contrast-low-default',
-			fg: '--db-blue-on-bg-basic-emphasis-70-default',
+			fg: '--db-blue-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-blue-500': {
 			bg: '--db-blue-bg-inverted-contrast-high-default',
-			fg: '--db-blue-on-bg-basic-emphasis-80-default',
+			fg: '--db-blue-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-blue-600': {
 			bg: '--db-blue-bg-inverted-contrast-high-default',
-			fg: '--db-blue-on-bg-basic-emphasis-90-default',
+			fg: '--db-blue-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-blue-700': {
 			bg: '--db-blue-bg-inverted-contrast-max-default',
-			fg: '--db-blue-on-bg-basic-emphasis-90-default',
+			fg: '--db-blue-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-blue-800': {
 			bg: '--db-blue-bg-inverted-contrast-max-default',
-			fg: '--db-blue-on-bg-basic-emphasis-100-default',
+			fg: '--db-blue-on-bg-basic-emphasis-100-default'
 		},
 		'db-color-cyan-100': {
 			bg: '--db-turquoise-bg-basic-level-1-default',
-			fg: '--db-turquoise-on-bg-inverted-default',
+			fg: '--db-turquoise-on-bg-inverted-default'
 		},
 		'db-color-cyan-200': {
 			bg: '--db-informational-bg-basic-level-3-default',
-			fg: '--db-informational-on-bg-basic-emphasis-60-default',
+			fg: '--db-informational-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-cyan-300': {
 			bg: '--db-informational-bg-vibrant-default',
-			fg: '--db-informational-on-bg-basic-emphasis-60-default',
+			fg: '--db-informational-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-cyan-400': {
 			bg: '--db-informational-bg-vibrant-default',
-			fg: '--db-informational-on-bg-basic-emphasis-50-default',
+			fg: '--db-informational-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-cyan-500': {
 			bg: '--db-informational-bg-vibrant-default',
-			fg: '--db-informational-on-bg-basic-emphasis-50-default',
+			fg: '--db-informational-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-cyan-600': {
 			bg: '--db-informational-bg-inverted-contrast-low-default',
-			fg: '--db-informational-on-bg-basic-emphasis-70-default',
+			fg: '--db-informational-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-cyan-700': {
 			bg: '--db-informational-bg-inverted-contrast-high-default',
-			fg: '--db-informational-on-bg-basic-emphasis-80-default',
+			fg: '--db-informational-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-cyan-800': {
 			bg: '--db-informational-bg-inverted-contrast-high-default',
-			fg: '--db-informational-on-bg-basic-emphasis-90-default',
+			fg: '--db-informational-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-turquoise-100': {
 			bg: '--db-turquoise-bg-basic-level-1-default',
-			fg: '--db-turquoise-on-bg-inverted-default',
+			fg: '--db-turquoise-on-bg-inverted-default'
 		},
 		'db-color-turquoise-200': {
 			bg: '--db-turquoise-bg-basic-level-1-default',
-			fg: '--db-turquoise-on-bg-inverted-default',
+			fg: '--db-turquoise-on-bg-inverted-default'
 		},
 		'db-color-turquoise-300': {
 			bg: '--db-turquoise-bg-vibrant-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-50-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-turquoise-400': {
 			bg: '--db-turquoise-bg-vibrant-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-50-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-turquoise-500': {
 			bg: '--db-turquoise-bg-vibrant-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-50-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-turquoise-600': {
 			bg: '--db-turquoise-bg-inverted-contrast-low-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-70-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-turquoise-700': {
 			bg: '--db-turquoise-bg-inverted-contrast-high-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-80-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-turquoise-800': {
 			bg: '--db-turquoise-bg-inverted-contrast-high-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-90-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-green-100': {
 			bg: '--db-green-bg-basic-level-1-default',
-			fg: '--db-green-on-bg-inverted-default',
+			fg: '--db-green-on-bg-inverted-default'
 		},
 		'db-color-green-200': {
 			bg: '--db-green-bg-basic-level-2-default',
-			fg: '--db-successful-on-bg-inverted-default',
+			fg: '--db-successful-on-bg-inverted-default'
 		},
 		'db-color-green-300': {
 			bg: '--db-green-bg-vibrant-default',
-			fg: '--db-green-on-bg-basic-emphasis-50-default',
+			fg: '--db-green-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-green-400': {
 			bg: '--db-green-bg-vibrant-default',
-			fg: '--db-green-on-bg-basic-emphasis-50-default',
+			fg: '--db-green-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-green-500': {
 			bg: '--db-green-bg-inverted-contrast-low-default',
-			fg: '--db-green-on-bg-basic-emphasis-70-default',
+			fg: '--db-green-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-green-600': {
 			bg: '--db-green-bg-inverted-contrast-high-default',
-			fg: '--db-green-on-bg-basic-emphasis-80-default',
+			fg: '--db-green-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-green-700': {
 			bg: '--db-green-bg-inverted-contrast-high-default',
-			fg: '--db-green-on-bg-basic-emphasis-80-default',
+			fg: '--db-green-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-green-800': {
 			bg: '--db-green-bg-inverted-contrast-high-default',
-			fg: '--db-green-on-bg-basic-emphasis-90-default',
+			fg: '--db-green-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-light-green-100': {
 			bg: '--db-successful-bg-basic-level-1-default',
-			fg: '--db-successful-on-bg-inverted-default',
+			fg: '--db-successful-on-bg-inverted-default'
 		},
 		'db-color-light-green-200': {
 			bg: '--db-successful-bg-basic-level-3-default',
-			fg: '--db-green-on-bg-basic-emphasis-60-default',
+			fg: '--db-green-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-light-green-300': {
 			bg: '--db-successful-bg-vibrant-default',
-			fg: '--db-successful-on-bg-basic-emphasis-60-default',
+			fg: '--db-successful-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-light-green-400': {
 			bg: '--db-successful-bg-vibrant-default',
-			fg: '--db-successful-on-bg-basic-emphasis-50-default',
+			fg: '--db-successful-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-light-green-500': {
 			bg: '--db-successful-bg-vibrant-default',
-			fg: '--db-successful-on-bg-basic-emphasis-50-default',
+			fg: '--db-successful-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-light-green-600': {
 			bg: '--db-successful-bg-inverted-contrast-low-default',
-			fg: '--db-successful-on-bg-basic-emphasis-70-default',
+			fg: '--db-successful-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-light-green-700': {
 			bg: '--db-successful-bg-inverted-contrast-high-default',
-			fg: '--db-successful-on-bg-basic-emphasis-80-default',
+			fg: '--db-successful-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-light-green-800': {
 			bg: '--db-successful-bg-inverted-contrast-high-default',
-			fg: '--db-successful-on-bg-basic-emphasis-80-default',
+			fg: '--db-successful-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-warm-gray-100': {
 			bg: '--db-adaptive-bg-basic-level-2-default',
-			fg: '--db-adaptive-on-bg-inverted-default',
+			fg: '--db-adaptive-on-bg-inverted-default'
 		},
 		'db-color-warm-gray-200': {
 			bg: '--db-adaptive-bg-basic-level-3-default',
-			fg: '--db-yellow-on-bg-inverted-default',
+			fg: '--db-yellow-on-bg-inverted-default'
 		},
 		'db-color-warm-gray-300': {
 			bg: '--db-adaptive-bg-vibrant-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-60-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-warm-gray-400': {
 			bg: '--db-adaptive-bg-vibrant-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-50-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-warm-gray-500': {
 			bg: '--db-adaptive-bg-inverted-contrast-low-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-70-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-warm-gray-600': {
 			bg: '--db-adaptive-bg-inverted-contrast-low-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-70-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-warm-gray-700': {
 			bg: '--db-adaptive-bg-inverted-contrast-high-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-90-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-warm-gray-800': {
 			bg: '--db-adaptive-bg-inverted-contrast-max-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-90-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-cool-gray-100': {
 			bg: '--db-adaptive-bg-basic-level-3-default',
-			fg: '--db-informational-on-bg-inverted-default',
+			fg: '--db-informational-on-bg-inverted-default'
 		},
 		'db-color-cool-gray-200': {
 			bg: '--db-adaptive-bg-basic-level-3-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-60-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-cool-gray-300': {
 			bg: '--db-adaptive-bg-vibrant-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-50-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-cool-gray-400': {
 			bg: '--db-adaptive-bg-inverted-contrast-low-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-70-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-cool-gray-500': {
 			bg: '--db-adaptive-bg-inverted-contrast-high-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-80-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-cool-gray-600': {
 			bg: '--db-adaptive-bg-inverted-contrast-high-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-90-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-cool-gray-700': {
 			bg: '--db-adaptive-bg-inverted-contrast-max-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-90-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-cool-gray-800': {
 			bg: '--db-adaptive-bg-inverted-contrast-max-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-100-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-100-default'
 		},
 		'db-color-red': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-white': {
 			bg: '--db-adaptive-bg-basic-level-1-default',
-			fg: '--db-adaptive-on-bg-inverted-default',
+			fg: '--db-adaptive-on-bg-inverted-default'
 		},
 		'db-color-black': {
 			bg: '--db-adaptive-bg-inverted-contrast-max-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-100-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-100-default'
 		},
 		'db-color-success': {
 			bg: '--db-successful-bg-inverted-contrast-low-default',
-			fg: '--db-successful-on-bg-basic-emphasis-70-default',
+			fg: '--db-successful-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-success-small-font': {
 			bg: '--db-successful-bg-inverted-contrast-low-default',
-			fg: '--db-successful-on-bg-basic-emphasis-70-default',
+			fg: '--db-successful-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-error': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-error-small-font': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-warning': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-warning-small-font': {
 			bg: '--db-brand-bg-inverted-contrast-low-default',
-			fg: '--db-brand-on-bg-basic-emphasis-70-default',
+			fg: '--db-brand-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-informative': {
 			bg: '--db-informational-bg-inverted-contrast-low-default',
-			fg: '--db-informational-on-bg-basic-emphasis-70-default',
+			fg: '--db-informational-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-informative-small-font': {
 			bg: '--db-informational-bg-inverted-contrast-high-default',
-			fg: '--db-informational-on-bg-basic-emphasis-80-default',
+			fg: '--db-informational-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-food-drink': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-health': {
 			bg: '--db-burgundy-bg-inverted-contrast-high-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-80-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-things-to-know': {
 			bg: '--db-adaptive-bg-inverted-contrast-low-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-70-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-community-facilities': {
 			bg: '--db-turquoise-bg-vibrant-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-50-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-db-services-facilities': {
 			bg: '--db-blue-bg-inverted-contrast-high-default',
-			fg: '--db-blue-on-bg-basic-emphasis-90-default',
+			fg: '--db-blue-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-shopping': {
 			bg: '--db-violet-bg-inverted-contrast-high-default',
-			fg: '--db-violet-on-bg-basic-emphasis-80-default',
+			fg: '--db-violet-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-arts-culture': {
 			bg: '--db-pink-bg-inverted-contrast-low-default',
-			fg: '--db-pink-on-bg-basic-emphasis-70-default',
+			fg: '--db-pink-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-leisure': {
 			bg: '--db-green-bg-inverted-contrast-low-default',
-			fg: '--db-green-on-bg-basic-emphasis-70-default',
+			fg: '--db-green-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-services': {
 			bg: '--db-informational-bg-vibrant-default',
-			fg: '--db-informational-on-bg-basic-emphasis-50-default',
+			fg: '--db-informational-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-guidance': {
 			bg: '--db-adaptive-bg-inverted-contrast-high-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-90-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-ice': {
 			bg: '--db-adaptive-bg-inverted-contrast-max-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-90-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-90-default'
 		},
 		'db-color-ic': {
 			bg: '--db-adaptive-bg-inverted-contrast-high-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-80-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-ec': {
 			bg: '--db-adaptive-bg-inverted-contrast-high-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-80-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-re': {
 			bg: '--db-adaptive-bg-inverted-contrast-low-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-70-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-rb': {
 			bg: '--db-adaptive-bg-inverted-contrast-low-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-70-default',
+			fg: '--db-adaptive-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-s-bahn': {
 			bg: '--db-green-bg-inverted-contrast-low-default',
-			fg: '--db-green-on-bg-basic-emphasis-70-default',
+			fg: '--db-green-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-u-bahn': {
 			bg: '--db-blue-bg-inverted-contrast-high-default',
-			fg: '--db-blue-on-bg-basic-emphasis-80-default',
+			fg: '--db-blue-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-tram': {
 			bg: '--db-burgundy-bg-inverted-contrast-high-default',
-			fg: '--db-burgundy-on-bg-basic-emphasis-80-default',
+			fg: '--db-burgundy-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-bus': {
 			bg: '--db-violet-bg-inverted-contrast-high-default',
-			fg: '--db-violet-on-bg-basic-emphasis-80-default',
+			fg: '--db-violet-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-intercity-bus': {
 			bg: '--db-pink-bg-inverted-contrast-low-default',
-			fg: '--db-pink-on-bg-basic-emphasis-70-default',
+			fg: '--db-pink-on-bg-basic-emphasis-70-default'
 		},
 		'db-color-call-bus': {
 			bg: '--db-violet-bg-inverted-contrast-high-default',
-			fg: '--db-violet-on-bg-basic-emphasis-80-default',
+			fg: '--db-violet-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-ev-bus': {
 			bg: '--db-pink-bg-inverted-contrast-high-default',
-			fg: '--db-pink-on-bg-basic-emphasis-80-default',
+			fg: '--db-pink-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-ship': {
 			bg: '--db-informational-bg-vibrant-default',
-			fg: '--db-informational-on-bg-basic-emphasis-50-default',
+			fg: '--db-informational-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-airplane': {
 			bg: '--db-turquoise-bg-vibrant-default',
-			fg: '--db-turquoise-on-bg-basic-emphasis-50-default',
+			fg: '--db-turquoise-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-carsharing': {
 			bg: '--db-warning-bg-vibrant-default',
-			fg: '--db-warning-on-bg-basic-emphasis-50-default',
+			fg: '--db-warning-on-bg-basic-emphasis-50-default'
 		},
 		'db-color-taxi': {
 			bg: '--db-yellow-bg-vibrant-default',
-			fg: '--db-yellow-on-bg-basic-emphasis-60-default',
+			fg: '--db-yellow-on-bg-basic-emphasis-60-default'
 		},
 		'db-color-bikesharing': {
 			bg: '--db-brand-bg-inverted-contrast-high-default',
-			fg: '--db-brand-on-bg-basic-emphasis-80-default',
+			fg: '--db-brand-on-bg-basic-emphasis-80-default'
 		},
 		'db-color-walk': {
 			bg: '--db-adaptive-bg-basic-level-3-default',
-			fg: '--db-adaptive-on-bg-basic-emphasis-60-default',
-		},
+			fg: '--db-adaptive-on-bg-basic-emphasis-60-default'
+		}
 	},
 	icons: {
 		account: 'person',
@@ -937,6 +940,6 @@ export const migrationData: MigrationData = {
 		'train-and-car': 'train_and_car',
 		tram: 'tram',
 		walking: 'pedestrian',
-		'walking-fast': 'walking_fast',
-	},
+		'walking-fast': 'walking_fast'
+	}
 } as const;

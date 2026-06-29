@@ -1,9 +1,9 @@
-import {Fragment, useMetadata} from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBIcon from '../../icon/icon.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBBadge from '../badge.lite';
-import {StorybookBadgeArgTypes} from './_badge.arg.types';
+import { StorybookBadgeArgTypes } from './_badge.arg.types';
 
 useMetadata({
 	storybookTitle: 'Placement',
@@ -14,9 +14,9 @@ useMetadata({
 		'Corner - Bottom- Left',
 		'Corner - Top - Right',
 		'Corner - Center - Right',
-		'Corner - Bottom- Right',
+		'Corner - Bottom- Right'
 	],
-	storybookArgTypes: StorybookBadgeArgTypes,
+	storybookArgTypes: StorybookBadgeArgTypes
 });
 
 export default function BadgePlacement() {
@@ -34,14 +34,12 @@ export default function BadgePlacement() {
 					data-sb-decorator="true"
 					icon="x_placeholder"
 					variant="outlined"
-					noText
-				>
+					noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
 						semantic="critical"
-						placement="corner-top-left"
-					></DBBadge>
+						placement="corner-top-left"></DBBadge>
 					Corner - Top - Left
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
@@ -53,14 +51,12 @@ export default function BadgePlacement() {
 					data-sb-decorator="true"
 					icon="x_placeholder"
 					variant="outlined"
-					noText
-				>
+					noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
 						semantic="critical"
-						placement="corner-center-left"
-					></DBBadge>
+						placement="corner-center-left"></DBBadge>
 					Corner - Center - Left
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
@@ -72,14 +68,12 @@ export default function BadgePlacement() {
 					data-sb-decorator="true"
 					icon="x_placeholder"
 					variant="outlined"
-					noText
-				>
+					noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
 						semantic="critical"
-						placement="corner-bottom-left"
-					></DBBadge>
+						placement="corner-bottom-left"></DBBadge>
 					Corner - Bottom- Left
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
@@ -91,14 +85,12 @@ export default function BadgePlacement() {
 					data-sb-decorator="true"
 					icon="x_placeholder"
 					variant="outlined"
-					noText
-				>
+					noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
 						semantic="critical"
-						placement="corner-top-right"
-					></DBBadge>
+						placement="corner-top-right"></DBBadge>
 					Corner - Top - Right
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
@@ -110,14 +102,12 @@ export default function BadgePlacement() {
 					data-sb-decorator="true"
 					icon="x_placeholder"
 					variant="outlined"
-					noText
-				>
+					noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
 						semantic="critical"
-						placement="corner-center-right"
-					></DBBadge>
+						placement="corner-center-right"></DBBadge>
 					Corner - Center - Right
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
@@ -129,14 +119,12 @@ export default function BadgePlacement() {
 					data-sb-decorator="true"
 					icon="x_placeholder"
 					variant="outlined"
-					noText
-				>
+					noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
 						semantic="critical"
-						placement="corner-bottom-right"
-					></DBBadge>
+						placement="corner-bottom-right"></DBBadge>
 					Corner - Bottom- Right
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">

@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {DBBadge, DBCheckbox, DBTooltip} from '@components';
-import type {Table} from '@tanstack/angular-table';
-import type {Person} from '../makeData';
+import { Component, Input } from '@angular/core';
+import { DBBadge, DBCheckbox, DBTooltip } from '@components';
+import type { Table } from '@tanstack/angular-table';
+import type { Person } from '../makeData';
 
 @Component({
 	selector: 'app-select-header',
@@ -14,11 +14,10 @@ import type {Person} from '../makeData';
 			[showLabel]="false"
 			[checked]="table.getIsAllRowsSelected()"
 			[indeterminate]="table.getIsSomeRowsSelected()"
-			(checkedChange)="table.toggleAllRowsSelected(!!$event)"
-		>
+			(checkedChange)="table.toggleAllRowsSelected(!!$event)">
 			<db-tooltip [placement]="'top'">Select All</db-tooltip>
 		</db-checkbox>
-	`,
+	`
 })
 export class SelectHeaderComponent {
 	@Input() table!: Table<Person>;
@@ -35,11 +34,10 @@ export class SelectHeaderComponent {
 			[showLabel]="false"
 			[checked]="row.getIsSelected()"
 			[indeterminate]="row.getIsSomeSelected()"
-			(checkedChange)="row.toggleSelected(!!$event)"
-		>
+			(checkedChange)="row.toggleSelected(!!$event)">
 			<db-tooltip [placement]="'top'">Select Row</db-tooltip>
 		</db-checkbox>
-	`,
+	`
 })
 export class SelectCellComponent {
 	@Input() row!: any;
@@ -52,11 +50,10 @@ export class SelectCellComponent {
 	template: `
 		<db-badge
 			[label]="length + ' Selected'"
-			[semantic]="length > 0 ? 'informational' : 'neutral'"
-		>
+			[semantic]="length > 0 ? 'informational' : 'neutral'">
 			{{ amount }}
 		</db-badge>
-	`,
+	`
 })
 export class SelectFooterComponent {
 	@Input() table!: Table<Person>;
