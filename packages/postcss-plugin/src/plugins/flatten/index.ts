@@ -23,7 +23,7 @@ import { transformRoot } from './helpers/transform.js';
  
  @param opts - Plugin options
  @param options
- * @returns A PostCSS plugin instance
+ @returns A PostCSS plugin instance
  */
 const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 	const removeAtProperty = options.removeAtProperty ?? true;

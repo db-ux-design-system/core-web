@@ -10,7 +10,7 @@ import { type Framework, FRAMEWORK_PKG } from '../types.js';
  @param source_context - The origin/context of the legacy code (e.g. 'db-ui-v2', 'bootstrap-4').
  @param legacy_code.source_context
  @param target_framework - The target framework (react, angular, vue, web-components, html).
- * @param legacy_code.target_framework
+ @param legacy_code.target_framework
  */
 export function handleMigrateComponentPrompt({
 	legacy_code,

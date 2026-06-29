@@ -10,16 +10,16 @@
  
  Never moves issues that are "In progress" or "Waiting for feedback".
  
- * Usage: node scripts/github/reorder-backlog.ts [--dry-run]
- * Requires: gh CLI authenticated with `project` scope
- *
- * Configuration via environment variables (all optional, fall back to the
- * defaults below). These can be provided as GitHub repository/organization
- * variables so the IDs don't have to live in the source:
- *   PROJECT_OWNER, PROJECT_REPO, PROJECT_ID,
- *   PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
- *   BACKLOG_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
- *   WAITING_FOR_FEEDBACK_STATUS, WAITING_FOR_FEEDBACK_OPTION_ID,
+ Usage: node scripts/github/reorder-backlog.ts [--dry-run]
+ Requires: gh CLI authenticated with `project` scope
+ 
+ Configuration via environment variables (all optional, fall back to the
+ defaults below). These can be provided as GitHub repository/organization
+ variables so the IDs don't have to live in the source:
+ PROJECT_OWNER, PROJECT_REPO, PROJECT_ID,
+ PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
+ BACKLOG_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
+ WAITING_FOR_FEEDBACK_STATUS, WAITING_FOR_FEEDBACK_OPTION_ID,
  *   REMINDER_BOT_LOGIN, FEEDBACK_CODEOWNERS
  */
 
