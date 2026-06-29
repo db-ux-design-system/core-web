@@ -48,14 +48,14 @@ export const collapseLightDark = (value: string): string => {
  Transform all declarations in a PostCSS root by resolving static `var()`,
  evaluating `calc()` and `color-mix()`, collapsing identical `light-dark()`,
  and optionally removing `@property` rules and unused declarations.
- 
+
  @param root - The PostCSS root to transform
  @param staticVarMap - Map of static variable names to their resolved values
  @param referencedVars - Set to track which variables are still referenced after resolution
  @param propertyNames - Set of variable names that came from `@property`
  @param dynamicVars - Set of dynamic variable names (never removed)
  @param removeAtProperty - Whether to remove `@property` rules
- * @param removeResolved - Whether to remove unused `@property`-sourced declarations
+ @param removeResolved - Whether to remove unused `@property`-sourced declarations
  */
 export const transformRoot = (
 	root: Root,

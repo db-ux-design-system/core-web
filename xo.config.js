@@ -12,21 +12,8 @@ const xoConfig = [
 		]
 	},
 	{
-		prettier: true,
+		prettier: 'compat',
 		rules: {
-			// Align XO's internal Prettier with .prettierrc.json + .editorconfig to avoid formatting conflicts
-			'prettier/prettier': [
-				'error',
-				{
-					singleQuote: true,
-					trailingComma: 'none',
-					bracketSpacing: true,
-					bracketSameLine: true,
-					useTabs: true,
-					tabWidth: 4,
-					endOfLine: 'auto'
-				}
-			],
 			'n/prefer-global/process': 0,
 			'unicorn/prefer-module': 0,
 			'import-x/order': 0, // We use a prettier plugin to organize imports,
@@ -55,7 +42,11 @@ const xoConfig = [
 			'regexp/no-super-linear-backtracking': 0, // 14 violations — regex performance
 			'@typescript-eslint/no-shadow': 0, // 14 violations — variable shadowing
 			'@eslint-community/eslint-comments/require-description': 0, // 14 violations — eslint-disable comments need descriptions
-			'@stylistic/no-mixed-operators': 'off', // 10 violations — operator precedence
+			'@stylistic/no-mixed-operators': 'off', // 10 violations — operator precedence, XO overrides this
+			'@stylistic/padding-line-between-statements': 0, // 64 violations — conflicts with Prettier formatting
+			'jsdoc/check-indentation': 0, // 1 violation
+			'jsdoc/require-asterisk-prefix': 0, // JSDoc * prefix removed by XO's formatting
+			'unicorn/no-global-object-property-assignment': 0, // 1 violation
 			'unicorn/prefer-array-some': 0, // 7 violations
 			'unicorn/consistent-compound-words': 0, // 5 violations
 			'unicorn/prefer-type-literal-last': 0, // 4 violations
@@ -97,18 +88,6 @@ const xoConfig = [
 	{
 		files: ['./**/angular-**/**/*.html'],
 		rules: {
-			// Use Prettier's Angular parser for correct template formatting
-			'prettier/prettier': [
-				'error',
-				{
-					parser: 'angular',
-					trailingComma: 'none',
-					bracketSpacing: true,
-					useTabs: true,
-					tabWidth: 4,
-					endOfLine: 'auto'
-				}
-			],
 			// Angular templates use case-sensitive bindings (e.g. [(ngModel)], [formControl], (optionSelected))
 			'@html-eslint/lowercase': 0,
 			// @html-eslint cannot parse Angular @if/@for control flow blocks, causing false indent errors

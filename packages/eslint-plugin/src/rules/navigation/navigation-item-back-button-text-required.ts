@@ -40,12 +40,15 @@ export default {
 			COMPONENTS.DBNavigationItem,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkNavigationItem = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem))
+			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem)) {
 				return;
+			}
 
 			const backButtonText = getAttributeValue(
 				openingElement,

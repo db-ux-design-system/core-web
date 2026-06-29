@@ -5,7 +5,7 @@ import { getManifest } from '../utils/manifest';
  Whitelisted path prefixes for docs_search results (using forward slashes
  as manifest keys always use POSIX-style paths from path.relative()).
  Only docs whose manifest key starts with one of these prefixes are returned.
- 
+
  Blacklisted directories (migration/, adr/, research/, .vitepress/) are
  implicitly excluded because they don't match any whitelisted prefix.
  */
@@ -53,18 +53,18 @@ function buildResults(results: string[], query: string): ToolResult {
  Only docs from whitelisted directories (component docs and foundation docs)
  are searched. Migration guides, ADRs, research, and infrastructure files
  are explicitly excluded to reduce token consumption and prevent hallucinations.
- 
+
  Falls back to the embedded manifest when running outside the monorepo.
  Applies a 10-second timeout to prevent hanging on large directory trees.
- 
+
  @param query - Space-separated search terms (tokens shorter than 3 chars are ignored).
- * @param query.query
- * @param category - Search scope: "global" or "component".
- * @param query.category
- * @param componentName - Required when category is "component".
- * @param query.componentName
- * @param docType - Optional filename filter (e.g. "Migration", "Accessibility").
- * @param query.docType
+ @param query.query
+ @param category - Search scope: "global" or "component".
+ @param query.category
+ @param componentName - Required when category is "component".
+ @param query.componentName
+ @param docType - Optional filename filter (e.g. "Migration", "Accessibility").
+ @param query.docType
  */
 export async function handleDocsSearch({
 	query,

@@ -15,6 +15,7 @@ function hasOptionChildren(node: any): boolean {
 			}
 		}
 
+		// eslint-disable-next-line unicorn/prefer-else-if
 		if (child.type === 'VElement' || child.type === 'Element') {
 			return child.rawName === 'option' || child.name === 'option';
 		}

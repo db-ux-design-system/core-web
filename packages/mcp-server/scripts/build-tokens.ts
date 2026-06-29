@@ -1,9 +1,9 @@
 /**
- * Generates assets/tokens/tokens.json from compiled CSS/SCSS sources.
- *
- * Parses CSS custom properties from the DB theme variables and density
- * overrides into a categorised JSON object so the MCP tools can do simple
- * key lookups instead of regex-filtering raw SCSS/CSS at runtime.
+ Generates assets/tokens/tokens.json from compiled CSS/SCSS sources.
+ 
+ Parses CSS custom properties from the DB theme variables and density
+ overrides into a categorised JSON object so the MCP tools can do simple
+ key lookups instead of regex-filtering raw SCSS/CSS at runtime.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -15,8 +15,8 @@ const ROOT = resolve(__dirname, '../../..');
 const TOKENS_DIR = resolve(__dirname, '..', 'assets/tokens');
 
 /**
- * Extracts `--db-*` custom property declarations from CSS/SCSS content.
- * Returns an array of `{ property, value }` objects.
+ Extracts `--db-*` custom property declarations from CSS/SCSS content.
+ Returns an array of `{ property, value }` objects.
  */
 function extractCustomProperties(
 	content: string
@@ -33,24 +33,40 @@ function extractCustomProperties(
 }
 
 /**
- * Categorises a `--db-<prefix>-*` property into a token category.
+ Categorises a `--db-<prefix>-*` property into a token category.
  */
 function categorise(property: string): string {
 	const rest = property.slice(5);
-	if (rest.startsWith('spacing')) return 'spacing';
-	if (rest.startsWith('sizing')) return 'spacing';
-	if (rest.startsWith('elevation')) return 'elevation';
-	if (rest.startsWith('transition')) return 'transitions';
+	if (rest.startsWith('spacing')) {
+		return 'spacing';
+	}
+	if (rest.startsWith('sizing')) {
+		return 'spacing';
+	}
+	if (rest.startsWith('elevation')) {
+		return 'elevation';
+	}
+	if (rest.startsWith('transition')) {
+		return 'transitions';
+	}
 	if (
 		rest.startsWith('typography') ||
 		rest.startsWith('type-') ||
 		rest.startsWith('font')
-	)
+	) {
 		return 'typography';
+	}
+
 	// Base tokens are internal primitives — never expose them to LLMs.
-	if (rest.startsWith('base-')) return '__skip__';
-	if (rest.startsWith('border')) return 'border';
-	if (rest.startsWith('opacity')) return 'opacity';
+	if (rest.startsWith('base-')) {
+		return '__skip__';
+	}
+	if (rest.startsWith('border')) {
+		return 'border';
+	}
+	if (rest.startsWith('opacity')) {
+		return 'opacity';
+	}
 	const colorPrefixes = [
 		'brand',
 		'neutral',
@@ -71,7 +87,9 @@ function categorise(property: string): string {
 		'burgundy'
 	];
 	for (const prefix of colorPrefixes) {
-		if (rest.startsWith(prefix)) return 'colors';
+		if (rest.startsWith(prefix)) {
+			return 'colors';
+		}
 	}
 
 	return 'other';
@@ -91,8 +109,8 @@ type FlatTokens = Record<
 >;
 
 /**
- * Builds the categorised tokens JSON from theme variables and density
- * overrides, writing the result to assets/tokens/tokens.json.
+ Builds the categorised tokens JSON from theme variables and density
+ overrides, writing the result to assets/tokens/tokens.json.
  */
 export async function buildTokens(): Promise<void> {
 	mkdirSync(TOKENS_DIR, { recursive: true });
@@ -122,7 +140,7 @@ export async function buildTokens(): Promise<void> {
 		densityProps = extractCustomProperties(densityContent);
 	} else {
 		console.warn(
-			`[prebuild] SKIP (build artifact): density/classes/all.css not found — density tokens will be incomplete`
+			'[prebuild] SKIP (build artifact): density/classes/all.css not found — density tokens will be incomplete'
 		);
 	}
 
@@ -131,7 +149,9 @@ export async function buildTokens(): Promise<void> {
 
 	function addToken(entry: TokenEntry) {
 		const cat = categorise(entry.property);
-		if (cat === '__skip__') return;
+		if (cat === '__skip__') {
+			return;
+		}
 		tokensJson[cat] ||= {};
 		tokensJson[cat][entry.property] ||= [];
 		tokensJson[cat][entry.property].push(entry);

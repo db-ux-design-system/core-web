@@ -116,6 +116,7 @@ const ComponentSwitch = ({
 		}
 	}
 
+	// eslint-disable-next-line unicorn/prefer-else-if
 	if (type === 'notification') {
 		return (
 			<DBNotification className={className} {...props}>

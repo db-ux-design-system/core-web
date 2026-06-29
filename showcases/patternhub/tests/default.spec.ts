@@ -8,6 +8,7 @@ const getDefaultScreenshotTest = async (
 	fn: (page: Page) => Promise<void>
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
+		// eslint-disable-next-line unicorn/no-useless-template-literals
 		await page.goto(`${path}`, {
 			waitUntil: 'domcontentloaded'
 		});

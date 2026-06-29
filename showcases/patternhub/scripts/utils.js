@@ -1,8 +1,8 @@
 /**
- * @param props {object}
- * @param framework {'angular'|'react'|'vue'}
- * @param noEvents {boolean}
- * @return {*[]}
+ @param props {object}
+ @param framework {'angular'|'react'|'vue'}
+ @param noEvents {boolean}
+ @returns {*[]}
  */
 const getAttributes = (props, framework, noEvents) => {
 	const attributes = [];
@@ -72,12 +72,12 @@ const getTag = (componentName) =>
 		.join('');
 
 /**
- * @param componentName {string}
- * @param framework {'angular'|'react'|'vue'}
- * @param example {{name:string, props: object,native?:boolean, className?:string, content?:string,children?:{name:string, props: object,native?:boolean}[]}}
- * @param noEvents {boolean}
- * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
- * @returns {string}
+ @param componentName {string}
+ @param framework {'angular'|'react'|'vue'}
+ @param example {{name:string, props: object,native?:boolean, className?:string, content?:string,children?:{name:string, props: object,native?:boolean}[]}}
+ @param noEvents {boolean}
+ @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
+ @returns {string}
  */
 
 export const getCodeByFramework = (
@@ -224,21 +224,23 @@ export const getColorVariants = () => [
 ];
 
 /**
- * Clean names by removing spaces and special characters to create valid JavaScript property names
- * @param {string} name - The name to clean
- * @returns {string} - Cleaned name with only word characters
+ Clean names by removing spaces and special characters to create valid JavaScript property names
+ @param {string} name - The name to clean
+ @returns {string} - Cleaned name with only word characters
  */
 export const cleanupName = (name) => {
-	if (!name) return '';
+	if (!name) {
+		return '';
+	}
 	return name.replaceAll(/\s+/g, '').replaceAll(/\W/g, '');
 };
 
 /**
- * Generate a consistent key for allExamples object
- * @param {string} componentName - Component name
- * @param {string} variantName - Variant name (will be cleaned)
- * @param {string} exampleName - Example name (will be cleaned)
- * @returns {string} - Clean key for allExamples
+ Generate a consistent key for allExamples object
+ @param {string} componentName - Component name
+ @param {string} variantName - Variant name (will be cleaned)
+ @param {string} exampleName - Example name (will be cleaned)
+ @returns {string} - Clean key for allExamples
  */
 export const generateExampleKey = (componentName, variantName, exampleName) => {
 	const cleanVariantName = cleanupName(variantName);
