@@ -106,8 +106,61 @@ const testA11y = () => {
 	});
 };
 
+const testDrawerInteraction = () => {
+	test('clicking burger button should open the drawer', async ({
+		mount,
+		page
+	}) => {
+		await mount(comp);
+		const burgerButton = page.locator('.db-control-panel-mobile-button');
+		const dialog = page.locator('.db-drawer dialog');
+		await expect(dialog).not.toHaveAttribute('open');
+		await burgerButton.click();
+		await expect(dialog).toHaveAttribute('open');
+	});
+
+	test('drawer should have accessible name from drawerHeaderText', async ({
+		mount,
+		page
+	}) => {
+		await mount(comp);
+		const burgerButton = page.locator('.db-control-panel-mobile-button');
+		await burgerButton.click();
+		const dialog = page.locator('dialog');
+		await expect(dialog).toHaveAttribute('aria-labelledby');
+	});
+
+	test('pressing Escape should close the drawer', async ({ mount, page }) => {
+		await mount(comp);
+		const burgerButton = page.locator('.db-control-panel-mobile-button');
+		const dialog = page.locator('dialog');
+		await burgerButton.click();
+		await expect(dialog).toHaveAttribute('open');
+		await page.keyboard.press('Escape');
+		await expect(dialog).not.toHaveAttribute('open');
+	});
+
+	test('clicking a navigation item should close the drawer', async ({
+		mount,
+		page
+	}) => {
+		await mount(comp);
+		const burgerButton = page.locator('.db-control-panel-mobile-button');
+		const dialog = page.locator('dialog');
+		await burgerButton.click();
+		await expect(dialog).toHaveAttribute('open');
+		// Click on the "Home" nav item link inside the drawer
+		const navLink = page.locator(
+			'.db-control-panel-mobile-drawer .db-control-panel-navigation-item a'
+		);
+		await navLink.first().click();
+		await expect(dialog).not.toHaveAttribute('open');
+	});
+};
+
 test.describe('DBControlPanelMobile', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
+	testDrawerInteraction();
 });

@@ -131,7 +131,7 @@ const testExpandCollapse = () => {
 		await page.setViewportSize({ width: 1920, height: 1280 });
 		await mount(verticalComp);
 		const toggleButton = page.locator(
-			'.db-control-panel-desktop-toggle-button'
+			'.db-control-panel-desktop-button > .db-button'
 		);
 		await expect(toggleButton).toBeVisible();
 		await expect(toggleButton).toHaveAttribute('aria-expanded');

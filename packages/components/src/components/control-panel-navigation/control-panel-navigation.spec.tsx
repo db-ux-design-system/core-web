@@ -81,6 +81,76 @@ const testHover = () => {
 	});
 };
 
+// Tree variant fixture for ARIA role and keyboard tests
+const treeComp: any = (
+	<DBControlPanelNavigation variant="tree">
+		<DBControlPanelNavigationItemGroup text="Group1" data-testid="group1">
+			<DBControlPanelNavigationItem data-testid="sub1">
+				<a href="#">Sub1</a>
+			</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
+		<DBControlPanelNavigationItem data-testid="item2">
+			<a href="#">Item2</a>
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem data-testid="item3">
+			<a href="#">Item3</a>
+		</DBControlPanelNavigationItem>
+	</DBControlPanelNavigation>
+);
+
+const testTreeVariant = () => {
+	test('tree variant should set role="tree" on the menu', async ({
+		mount
+	}) => {
+		const component = await mount(treeComp);
+		const menu = component.locator('menu');
+		await expect(menu).toHaveAttribute('role', 'tree');
+	});
+
+	test('tree variant should assign role="treeitem" to interactive elements', async ({
+		mount
+	}) => {
+		const component = await mount(treeComp);
+		const treeItems = component.locator('[role="treeitem"]');
+		await expect(treeItems).not.toHaveCount(0);
+	});
+
+	test('tree variant should manage tabindex (only one item with tabindex=0)', async ({
+		mount
+	}) => {
+		const component = await mount(treeComp);
+		const focusableItems = component.locator(
+			'[role="treeitem"][tabindex="0"]'
+		);
+		await expect(focusableItems).toHaveCount(1);
+	});
+
+	test('ArrowDown should move focus to next treeitem', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(treeComp);
+		const firstItem = component.locator('[role="treeitem"]').first();
+		await firstItem.focus();
+		await page.keyboard.press('ArrowDown');
+		const secondItem = component.locator('[role="treeitem"]').nth(1);
+		await expect(secondItem).toBeFocused();
+	});
+
+	test('ArrowUp should move focus to previous treeitem', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(treeComp);
+		const items = component.locator('[role="treeitem"]');
+		const secondItem = items.nth(1);
+		await secondItem.focus();
+		await page.keyboard.press('ArrowUp');
+		const firstItem = items.first();
+		await expect(firstItem).toBeFocused();
+	});
+};
+
 test.describe('DBControlPanelNavigation', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
 		testComponent(viewport);
@@ -91,4 +161,5 @@ test.describe('DBControlPanelNavigation', () => {
 			testA11y();
 		}
 	});
+	testTreeVariant();
 });

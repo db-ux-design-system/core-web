@@ -45,8 +45,53 @@ const testA11y = () => {
 	});
 };
 
+const testInteraction = () => {
+	test('expand button should have aria-expanded and aria-controls', async ({
+		mount
+	}) => {
+		const component = await mount(comp);
+		const expandButton = component.locator(
+			'.db-control-panel-navigation-item-group-expand-button'
+		);
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+		await expect(expandButton).toHaveAttribute('aria-controls');
+	});
+
+	test('clicking expand button should open the menu', async ({ mount }) => {
+		const component = await mount(comp);
+		const expandButton = component.locator(
+			'.db-control-panel-navigation-item-group-expand-button'
+		);
+
+		await expandButton.click();
+
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'true');
+		const menu = component.locator(
+			'.db-control-panel-navigation-item-group-menu'
+		);
+		await expect(menu).toBeVisible();
+	});
+
+	test('opened menu should contain sub-items', async ({ mount }) => {
+		const component = await mount(comp);
+		const expandButton = component.locator(
+			'.db-control-panel-navigation-item-group-expand-button'
+		);
+
+		await expandButton.click();
+
+		const menu = component.locator(
+			'.db-control-panel-navigation-item-group-menu'
+		);
+		await expect(menu).toContainText('Test1');
+		await expect(menu).toContainText('Test2');
+		await expect(menu).toContainText('Test3');
+	});
+};
+
 test.describe('DBControlPanelNavigationItemGroup', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
+	testInteraction();
 });

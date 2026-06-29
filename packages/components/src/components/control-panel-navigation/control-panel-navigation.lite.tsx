@@ -422,7 +422,7 @@ export default function DBControlPanelNavigation(
 	}, [_ref]);
 
 	onUpdate(() => {
-		if (menuRef && state._shellDesktopPosition) {
+		if (menuRef) {
 			if (!props.variant || props.variant === 'popover') {
 				// Clean up tree roles if switching from tree to popover
 				for (const menu of Array.from(
