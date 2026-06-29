@@ -75,8 +75,9 @@ const testAction = () => {
 		await component.getByTestId('item2').click();
 		await expect(component.getByTestId('button')).toBeHidden();
 		await expect(component.getByTestId('textarea')).toBeVisible();
+		// prettier-ignore
 		await expect(
-			component.getByTestId('item3'),
+			component.getByTestId('item3')
 			// VUE: .getByRole('group')
 		).toBeDisabled();
 	});
