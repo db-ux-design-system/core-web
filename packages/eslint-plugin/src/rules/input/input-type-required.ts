@@ -1,11 +1,11 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
 import {
 	createAngularFix,
 	createAngularVisitors,
 	createJsxVueFix,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
 } from '../../shared/utils.js';
 
 export default {
@@ -14,39 +14,33 @@ export default {
 		docs: {
 			description:
 				'Ensure DBInput has type attribute for better developer experience',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-type-required'
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-type-required',
 		},
 		fixable: 'code' as const,
 		messages: {
-			missingType: MESSAGES.INPUT_TYPE_REQUIRED
+			missingType: MESSAGES.INPUT_TYPE_REQUIRED,
 		},
-		schema: []
+		schema: [],
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
 			if (type === undefined) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(
-					node.sourceSpan
-				);
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,
 					fix(fixer: any) {
-						const fixData = createAngularFix(
-							context,
-							node,
-							' type="text"'
-						);
+						const fixData = createAngularFix(context, node, ' type="text"');
 						if (!fixData) {
 							return null;
 						}
 
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText
+							fixData.attributeText,
 						);
-					}
+					},
 				});
 			}
 		};
@@ -54,7 +48,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBInput,
-			angularHandler
+			angularHandler,
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -76,21 +70,21 @@ export default {
 						const fixData = createJsxVueFix(
 							node,
 							openingElement,
-							' type="text"'
+							' type="text"',
 						);
 						return fixer.insertTextAfterRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText
+							fixData.attributeText,
 						);
-					}
+					},
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkInput, Element: checkInput },
-			{ JSXElement: checkInput }
+			{VElement: checkInput, Element: checkInput},
+			{JSXElement: checkInput},
 		);
-	}
+	},
 };

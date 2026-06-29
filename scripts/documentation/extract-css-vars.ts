@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call, no-await-in-loop, unicorn/prefer-top-level-await */
 
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import {existsSync, mkdirSync, readdirSync, writeFileSync} from 'node:fs';
+import {dirname, join, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import sassdoc from 'sassdoc';
 
 const componentSubPath = '../../packages/components/src/components';
@@ -28,7 +28,7 @@ function escapeHtml(string_: string): string {
  @returns Array of subdirectory names.
  */
 function getComponentDirectories(basePath: string): string[] {
-	return readdirSync(basePath, { withFileTypes: true })
+	return readdirSync(basePath, {withFileTypes: true})
 		.filter((d) => d.isDirectory())
 		.map((d) => d.name);
 }
@@ -41,7 +41,7 @@ function getComponentDirectories(basePath: string): string[] {
  */
 async function processComponent(
 	component: string,
-	basePath: string
+	basePath: string,
 ): Promise<void> {
 	const scssFile = join(basePath, component, `${component}.scss`);
 	if (!existsSync(scssFile)) {
@@ -55,11 +55,11 @@ async function processComponent(
 		// Remove HTML anchor tags inserted by SassDoc
 		const md = buildMarkdown(documents).replaceAll(
 			/^[\t ]*<a id="[^"]+"><\/a>[\t ]*\r?\n/gm,
-			''
+			'',
 		);
 		const outPath = join(resolve(__dirname, outputSubPath), component);
 		if (!existsSync(outPath)) {
-			mkdirSync(outPath, { recursive: true });
+			mkdirSync(outPath, {recursive: true});
 		}
 
 		const outFile: string = join(outPath, `${component}.css.md`);
@@ -86,7 +86,7 @@ function extractTags(description: string) {
 		propertyName: undefined,
 		defaultValue: undefined,
 		description: '',
-		example: undefined
+		example: undefined,
 	};
 	const descLines: string[] = [];
 	const exampleLines: string[] = [];
@@ -154,13 +154,13 @@ function buildMarkdown(documents: any[]) {
 		'Default',
 		'CSS Property',
 		'Description',
-		'Example'
+		'Example',
 	];
 	const empty = '—';
 
 	const lines = [
 		`| ${headers.join(' | ')} |`,
-		`| ${headers.map(() => '---').join(' | ')} |`
+		`| ${headers.map(() => '---').join(' | ')} |`,
 	];
 
 	let md = '## CSS Properties\n\n' + lines.join('\n') + '\n';
@@ -170,7 +170,7 @@ function buildMarkdown(documents: any[]) {
 			continue;
 		}
 
-		const { name, propertyName, defaultValue, description, example } =
+		const {name, propertyName, defaultValue, description, example} =
 			extractTags(item.description as string);
 		if (!name) {
 			continue;

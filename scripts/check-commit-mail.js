@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { execSync } from 'node:child_process';
+import {execSync} from 'node:child_process';
 // eslint-disable-next-line unicorn/import-style
-import { dirname, join } from 'node:path';
-import { env, exit, loadEnvFile } from 'node:process';
-import { fileURLToPath } from 'node:url';
+import {dirname, join} from 'node:path';
+import {env, exit, loadEnvFile} from 'node:process';
+import {fileURLToPath} from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const envPath = join(__dirname, '..', '.env');
@@ -18,7 +18,7 @@ const checkCommitMail = () => {
 	console.warn('Check COMMIT_MAIL');
 	if (!env.COMMIT_MAIL) {
 		console.error(
-			"No COMMIT_MAIL set in .env, please take a look at the file '.env.template'"
+			"No COMMIT_MAIL set in .env, please take a look at the file '.env.template'",
 		);
 		exit(1);
 	}
@@ -29,11 +29,9 @@ const checkCommitMail = () => {
 		.toLowerCase();
 	const commitMail = env.COMMIT_MAIL.trim().toLowerCase();
 	if (currentMail !== commitMail) {
+		console.error(`currentMail: ${currentMail} !== initialMail: ${commitMail}`);
 		console.error(
-			`currentMail: ${currentMail} !== initialMail: ${commitMail}`
-		);
-		console.error(
-			`Please set your commit user mail for this project like: 'git config user.email '${commitMail}''`
+			`Please set your commit user mail for this project like: 'git config user.email '${commitMail}''`,
 		);
 		exit(1);
 	}

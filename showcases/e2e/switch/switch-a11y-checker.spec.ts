@@ -1,8 +1,8 @@
-import { test } from '@playwright/test';
-import { runA11yCheckerTest } from '../default.ts';
+import {test} from '@playwright/test';
+import {runA11yCheckerTest} from '../default.ts';
 
 test.describe('DBSwitch', () => {
 	runA11yCheckerTest({
-		path: '03/switch'
+		path: '03/switch',
 	});
 });

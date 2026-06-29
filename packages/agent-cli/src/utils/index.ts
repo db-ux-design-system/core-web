@@ -3,20 +3,20 @@ import {
 	readdirSync,
 	readFileSync,
 	realpathSync,
-	statSync
+	statSync,
 } from 'node:fs';
-import { basename, dirname, join, relative, resolve } from 'node:path';
+import {basename, dirname, join, relative, resolve} from 'node:path';
 
 function findAllNodeModulesDirectories(
 	directory: string,
-	found = new Set<string>()
+	found = new Set<string>(),
 ): Set<string> {
 	if (!existsSync(directory)) {
 		return found;
 	}
 
-	const entries = readdirSync(directory, { withFileTypes: true }).sort(
-		(a, b) => a.name.localeCompare(b.name, 'en')
+	const entries = readdirSync(directory, {withFileTypes: true}).sort((a, b) =>
+		a.name.localeCompare(b.name, 'en'),
 	);
 	for (const entry of entries) {
 		const fullPath = resolve(directory, entry.name);
@@ -54,13 +54,10 @@ export const getInstructions = (rootPath: string): string => {
 			nodeModulesPath,
 			'@db-ux',
 			'agent-cli',
-			'db-ux-consumer-powers'
+			'db-ux-consumer-powers',
 		);
 		if (existsSync(agentCliPowersPath)) {
-			powersPath = relative(rootPath, agentCliPowersPath).replaceAll(
-				'\\',
-				'/'
-			);
+			powersPath = relative(rootPath, agentCliPowersPath).replaceAll('\\', '/');
 			break;
 		}
 	}
@@ -71,10 +68,7 @@ export const getInstructions = (rootPath: string): string => {
 		const packageDir = dirname(dirname(new URL(import.meta.url).pathname));
 		const localPowersPath = join(packageDir, 'db-ux-consumer-powers');
 		if (existsSync(localPowersPath)) {
-			powersPath = relative(rootPath, localPowersPath).replaceAll(
-				'\\',
-				'/'
-			);
+			powersPath = relative(rootPath, localPowersPath).replaceAll('\\', '/');
 		}
 	}
 
@@ -96,7 +90,7 @@ ${
 	for (const nodeModulesPath of nodeModulesDirectories) {
 		const databaseUxPaths = [
 			join(nodeModulesPath, '@db-ux/'),
-			join(nodeModulesPath, '@db-ux-inner-source/')
+			join(nodeModulesPath, '@db-ux-inner-source/'),
 		];
 
 		for (const databaseUxPath of databaseUxPaths) {
@@ -105,7 +99,7 @@ ${
 			}
 
 			const packages = readdirSync(databaseUxPath, {
-				withFileTypes: true
+				withFileTypes: true,
 			});
 			for (const package_ of packages) {
 				let packagePath = resolve(databaseUxPath, package_.name);
@@ -116,15 +110,9 @@ ${
 					// Handle text-file-based symlinks (e.g., Yarn PnP .pnp.cjs creates text files containing relative paths)
 					// These aren't OS-level symlinks, so statSync() sees them as regular files
 					if (!isDirectory && stats.isFile()) {
-						const content = readFileSync(
-							packagePath,
-							'utf8'
-						).trim();
+						const content = readFileSync(packagePath, 'utf8').trim();
 						if (!content.includes('\n')) {
-							const targetPath = resolve(
-								dirname(packagePath),
-								content
-							);
+							const targetPath = resolve(dirname(packagePath), content);
 							if (
 								existsSync(targetPath) &&
 								statSync(targetPath).isDirectory()
@@ -142,20 +130,14 @@ ${
 					const instructionsPath = join(
 						packagePath,
 						'agent',
-						'_instructions.md'
+						'_instructions.md',
 					);
 					if (existsSync(instructionsPath)) {
 						let content = readFileSync(instructionsPath, 'utf8');
 						const relativePath = relative(rootPath, packagePath);
 						content = content
-							.replaceAll(
-								'__agent-path__',
-								relativePath.replaceAll('\\', '/')
-							)
-							.replaceAll(
-								'**agent-path**',
-								relativePath.replaceAll('\\', '/')
-							);
+							.replaceAll('__agent-path__', relativePath.replaceAll('\\', '/'))
+							.replaceAll('**agent-path**', relativePath.replaceAll('\\', '/'));
 						copilotInstructionsContent += `\n# ${basename(databaseUxPath)}/${package_.name}\n${content}\n`;
 					}
 				}

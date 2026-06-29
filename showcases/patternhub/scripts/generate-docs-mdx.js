@@ -5,13 +5,13 @@ import writeCodeFiles from './get-code-files.js';
 import getHowToFile from './get-how-to-file.js';
 import getMigrationFile from './get-migration-file.js';
 import getPropertiesFile from './get-properties-file.js';
-import { getComponentGroup, getComponentName } from './utils.js';
+import {getComponentGroup, getComponentName} from './utils.js';
 
 const componentsPath = './pages/components';
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
 const getRedirectOldFiles = (
-	importPath
+	importPath,
 ) => `import OldRoutingFallback from '${importPath}components/old-routing-fallback';
 const Fallback = () => <OldRoutingFallback />;
 export default Fallback;`;
@@ -20,24 +20,24 @@ const generateDocsMdx = async () => {
 	let elements = [];
 	if (FS.existsSync(webTypesPath)) {
 		const webTypes = JSON.parse(
-			FS.readFileSync(webTypesPath, 'utf8').toString()
+			FS.readFileSync(webTypesPath, 'utf8').toString(),
 		);
 		elements = webTypes?.contributions?.html?.elements;
 	}
 
 	const components = JSON.parse(
-		FS.readFileSync('./data/components.json', 'utf8').toString()
+		FS.readFileSync('./data/components.json', 'utf8').toString(),
 	);
 	if (elements) {
 		for (const element of elements) {
 			const componentName = getComponentName(element.name);
 			const componentGroup = getComponentGroup(components, componentName);
 			const foundComponent = componentGroup?.subNavigation?.find(
-				(component) => component.name === componentName
+				(component) => component.name === componentName,
 			);
 			if (!foundComponent) {
 				console.error(
-					`Component ${componentName} not found in the components.json file`
+					`Component ${componentName} not found in the components.json file`,
 				);
 				continue;
 			}
@@ -59,24 +59,24 @@ const generateDocsMdx = async () => {
 
 				FS.writeFileSync(
 					`${componentPath}/properties.mdx`,
-					getPropertiesFile(element)
+					getPropertiesFile(element),
 				);
 
 				const docsPath = `./../../packages/components/src/components/${componentName}/docs`;
 				if (FS.existsSync(docsPath)) {
 					FS.cpSync(docsPath, `./${componentPath}/docs`, {
-						recursive: true
+						recursive: true,
 					});
 				}
 
 				FS.writeFileSync(
 					`${componentPath}/how-to-use.mdx`,
-					getHowToFile(componentName, displayName)
+					getHowToFile(componentName, displayName),
 				);
 
 				FS.writeFileSync(
 					`${componentPath}/migration.mdx`,
-					getMigrationFile(componentName, displayName)
+					getMigrationFile(componentName, displayName),
 				);
 
 				if (!FS.existsSync('./components/code-docs')) {
@@ -85,7 +85,7 @@ const generateDocsMdx = async () => {
 
 				await writeCodeFiles(
 					`./components/code-docs/${componentName}`,
-					componentName
+					componentName,
 				);
 
 				// Write old files for Marketingportal
@@ -101,14 +101,14 @@ const generateDocsMdx = async () => {
 				for (const framework of ['Angular', 'HTML', 'React', 'Vue']) {
 					FS.writeFileSync(
 						`${componentOldPath}/docs/${framework}.tsx`,
-						getRedirectOldFiles('../../../../')
+						getRedirectOldFiles('../../../../'),
 					);
 				}
 
 				if (!FS.existsSync(`${componentOldPath}/properties.tsx`)) {
 					FS.writeFileSync(
 						`${componentOldPath}/properties.tsx`,
-						getRedirectOldFiles('../../../')
+						getRedirectOldFiles('../../../'),
 					);
 				}
 			}

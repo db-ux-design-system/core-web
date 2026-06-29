@@ -1,5 +1,5 @@
-import { DBRadio } from '@components';
-import React, { useState } from 'react';
+import {DBRadio} from '@components';
+import React, {useState} from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormRadios = () => {
@@ -14,7 +14,8 @@ const FormRadios = () => {
 				checked={controlled === 'radio-0'}
 				onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 					setControlled(event.target.value);
-				}}>
+				}}
+			>
 				Controlled
 			</DBRadio>
 			<DBRadio
@@ -22,7 +23,8 @@ const FormRadios = () => {
 				value="radio-1"
 				onInput={(event) => {
 					setUncontrolled((event.target as HTMLInputElement).value);
-				}}>
+				}}
+			>
 				Uncontrolled
 			</DBRadio>
 		</FormWrapper>

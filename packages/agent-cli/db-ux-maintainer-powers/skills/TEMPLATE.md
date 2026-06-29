@@ -1,37 +1,37 @@
 ---
-name: "<skill-name>"
-description: "<one-line description of what this skill produces>"
+name: '<skill-name>'
+description: '<one-line description of what this skill produces>'
 
 triggers:
-    - "<user intent pattern 1>"
-    - "<user intent pattern 2>"
+  - '<user intent pattern 1>'
+  - '<user intent pattern 2>'
 
 inputs:
-    - name: component_slug
-      type: string
-      required: true
-      description: "Component directory name in kebab-case (e.g. 'navigation-item')"
-    - name: component_name
-      type: string
-      required: true
-      description: "Component symbol name in PascalCase (e.g. 'NavigationItem')"
+  - name: component_slug
+    type: string
+    required: true
+    description: "Component directory name in kebab-case (e.g. 'navigation-item')"
+  - name: component_name
+    type: string
+    required: true
+    description: "Component symbol name in PascalCase (e.g. 'NavigationItem')"
 
 requires:
-    - context: context/architecture.md
-      autoLoad: true
+  - context: context/architecture.md
+    autoLoad: true
 
 tools:
-    - db-ux/list_components
-    - db-ux/get_component_props
+  - db-ux/list_components
+  - db-ux/get_component_props
 
 outputs:
-    - "packages/components/src/components/{component_slug}/"
+  - 'packages/components/src/components/{component_slug}/'
 
 on_error:
-    max_retries: 3
-    actions:
-        - log: "Review the shell output (lint/test/build) and fix reported errors before retrying."
-        - fallback: "If errors persist after 3 retries, report to user with full error output."
+  max_retries: 3
+  actions:
+    - log: 'Review the shell output (lint/test/build) and fix reported errors before retrying.'
+    - fallback: 'If errors persist after 3 retries, report to user with full error output.'
 ---
 
 <!-- AI-IGNORE: This is a template file for creating new skills. It is NOT an active skill and must not be used as context or executed. -->
@@ -52,10 +52,10 @@ on_error:
 
 1. Create `<component_slug>.spec.tsx` in the component directory.
 2. Write test cases covering:
-    - Default rendering
-    - All variants from `<ComponentName>VariantList`
-    - Accessibility (axe-core)
-    - Edge cases
+   - Default rendering
+   - All variants from `<ComponentName>VariantList`
+   - Accessibility (axe-core)
+   - Edge cases
 3. Run the isolated test command and capture the failing output. The RED phase is only complete if the command exits non-zero and the failing test names are observed.
 
 ### Phase 2: GREEN – Minimal Implementation
@@ -76,20 +76,20 @@ on_error:
 
 1. Build all framework outputs:
 
-    ```bash
-    pnpm run build-outputs
-    ```
+   ```bash
+   pnpm run build-outputs
+   ```
 
-    This MUST succeed. It generates Angular, React, Vue, and Stencil outputs from the `.lite.tsx` source.
+   This MUST succeed. It generates Angular, React, Vue, and Stencil outputs from the `.lite.tsx` source.
 
 2. Create a changeset:
 
-    ```bash
-    pnpm changeset
-    ```
+   ```bash
+   pnpm changeset
+   ```
 
-    - Select all affected packages (`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`).
-    - Use `minor` for new features/components, `patch` for bug fixes, `major` for breaking changes.
+   - Select all affected packages (`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`).
+   - Use `minor` for new features/components, `patch` for bug fixes, `major` for breaking changes.
 
 ## Output Checklist
 

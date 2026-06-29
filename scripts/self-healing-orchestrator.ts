@@ -8,10 +8,10 @@
 //   1 - Checks failed, fixes did not produce changes (unfixable)
 //   2 - Checks failed, fixes produced file changes
 
-import { spawn, type ChildProcess } from 'node:child_process';
+import {spawn, type ChildProcess} from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
+import {fileURLToPath} from 'node:url';
 
 // ─── Interfaces ──────────────────────────────────────────────────────────────
 
@@ -52,87 +52,75 @@ export const totalTimeoutMs = 300_000; // 300 seconds total
 export const checkFixMap: CheckConfig[] = [
 	{
 		name: 'lint:xo',
-		checkCommand: { command: 'pnpm', args: ['run', 'lint:xo', '--quiet'] },
+		checkCommand: {command: 'pnpm', args: ['run', 'lint:xo', '--quiet']},
 		fixCommands: [
-			{ command: 'pnpm', args: ['run', 'lint:xo', '--fix', '--quiet'] }
-		]
+			{command: 'pnpm', args: ['run', 'lint:xo', '--fix', '--quiet']},
+		],
 	},
 	{
 		name: 'lint:stylelint',
 		checkCommand: {
 			command: 'pnpm',
-			args: ['run', 'lint:stylelint', '--quiet']
+			args: ['run', 'lint:stylelint', '--quiet'],
 		},
 		fixCommands: [
 			{
 				command: 'pnpm',
-				args: ['run', 'lint:stylelint', '--fix', '--quiet']
-			}
-		]
+				args: ['run', 'lint:stylelint', '--fix', '--quiet'],
+			},
+		],
 	},
 	{
 		name: 'lint:markdownlint',
 		checkCommand: {
 			command: 'pnpm',
-			args: ['run', 'lint:markdownlint', '--quiet']
+			args: ['run', 'lint:markdownlint', '--quiet'],
 		},
 		fixCommands: [
 			{
 				command: 'pnpm',
-				args: ['run', 'lint:markdownlint', '--fix', '--quiet']
-			}
-		]
+				args: ['run', 'lint:markdownlint', '--fix', '--quiet'],
+			},
+		],
 	},
 	{
 		name: 'lint:codespell',
-		checkCommand: { command: 'pnpm', args: ['run', 'lint:codespell'] }, // Cspell already has --quiet in the script
-		fixCommands: []
+		checkCommand: {command: 'pnpm', args: ['run', 'lint:codespell']}, // Cspell already has --quiet in the script
+		fixCommands: [],
 	},
 	{
 		name: 'lint:jscpd',
 		checkCommand: {
 			command: 'pnpm',
-			args: ['run', 'lint:jscpd', '--silent']
+			args: ['run', 'lint:jscpd', '--silent'],
 		},
-		fixCommands: []
+		fixCommands: [],
 	},
 	{
 		name: 'lint:package-json',
-		checkCommand: { command: 'pnpm', args: ['run', 'lint:package-json'] },
-		fixCommands: []
+		checkCommand: {command: 'pnpm', args: ['run', 'lint:package-json']},
+		fixCommands: [],
 	},
 	{
 		name: 'test:scripts',
 		checkCommand: {
 			command: 'pnpm',
-			args: [
-				'--filter',
-				'scripts',
-				'run',
-				'test:scripts',
-				'--reporter=dot'
-			]
+			args: ['--filter', 'scripts', 'run', 'test:scripts', '--reporter=dot'],
 		},
-		fixCommands: []
+		fixCommands: [],
 	},
 	{
 		name: 'test:agent-cli',
 		checkCommand: {
 			command: 'pnpm',
-			args: [
-				'--filter',
-				'@db-ux/agent-cli',
-				'run',
-				'test',
-				'--reporter=dot'
-			]
+			args: ['--filter', '@db-ux/agent-cli', 'run', 'test', '--reporter=dot'],
 		},
 		fixCommands: [
 			{
 				command: 'pnpm',
-				args: ['--filter', '@db-ux/agent-cli', 'run', 'test:update']
-			}
-		]
+				args: ['--filter', '@db-ux/agent-cli', 'run', 'test:update'],
+			},
+		],
 	},
 	{
 		name: 'test:components',
@@ -143,10 +131,10 @@ export const checkFixMap: CheckConfig[] = [
 				'@db-ux/core-components',
 				'run',
 				'test',
-				'--reporter=dot'
-			]
+				'--reporter=dot',
+			],
 		},
-		fixCommands: []
+		fixCommands: [],
 	},
 	{
 		name: 'test:eslint-plugin',
@@ -157,28 +145,23 @@ export const checkFixMap: CheckConfig[] = [
 				'@db-ux/core-eslint-plugin',
 				'run',
 				'test',
-				'--reporter=dot'
-			]
+				'--reporter=dot',
+			],
 		},
 		fixCommands: [
 			{
 				command: 'pnpm',
-				args: [
-					'--filter',
-					'@db-ux/core-eslint-plugin',
-					'run',
-					'test:update'
-				]
-			}
-		]
+				args: ['--filter', '@db-ux/core-eslint-plugin', 'run', 'test:update'],
+			},
+		],
 	},
 	{
 		name: 'test:mcp-server',
 		checkCommand: {
 			command: 'pnpm',
-			args: ['--filter', '@db-ux/mcp-server', 'run', 'test']
+			args: ['--filter', '@db-ux/mcp-server', 'run', 'test'],
 		},
-		fixCommands: []
+		fixCommands: [],
 	},
 	{
 		name: 'test:migration',
@@ -189,10 +172,10 @@ export const checkFixMap: CheckConfig[] = [
 				'@db-ux/core-migration',
 				'run',
 				'test',
-				'--reporter=dot'
-			]
+				'--reporter=dot',
+			],
 		},
-		fixCommands: []
+		fixCommands: [],
 	},
 	{
 		name: 'test:postcss-plugin',
@@ -203,36 +186,31 @@ export const checkFixMap: CheckConfig[] = [
 				'@db-ux/core-postcss-plugin',
 				'run',
 				'test',
-				'--reporter=dot'
-			]
+				'--reporter=dot',
+			],
 		},
 		fixCommands: [
 			{
 				command: 'pnpm',
-				args: [
-					'--filter',
-					'@db-ux/core-postcss-plugin',
-					'run',
-					'test:update'
-				]
-			}
-		]
+				args: ['--filter', '@db-ux/core-postcss-plugin', 'run', 'test:update'],
+			},
+		],
 	},
 	{
 		name: 'check:format',
 		checkCommand: {
 			command: 'prettier',
-			args: ['--check', '.', '--log-level', 'warn']
+			args: ['--check', '.', '--log-level', 'warn'],
 		},
-		fixCommands: []
-	}
+		fixCommands: [],
+	},
 ];
 
 // Fix command that always runs last, after all other fixers, to ensure
 // prettier formats whatever was changed by lint/markdownlint/stylelint/xo.
 export const finalFixCommand: Command = {
 	command: 'prettier',
-	args: ['.', '--write', '--log-level', 'warn']
+	args: ['.', '--write', '--log-level', 'warn'],
 };
 
 // ─── Logging ─────────────────────────────────────────────────────────────────
@@ -262,7 +240,7 @@ export type CommandExecResult = {
 export async function spawnCommand(
 	command: string,
 	args: string[],
-	options: SpawnCommandOptions
+	options: SpawnCommandOptions,
 ): Promise<CommandExecResult> {
 	return new Promise((resolve) => {
 		let child: ChildProcess;
@@ -272,10 +250,10 @@ export async function spawnCommand(
 		try {
 			child = spawn(command, args, {
 				stdio: 'inherit',
-				shell: true
+				shell: true,
 			});
 		} catch {
-			resolve({ exitCode: 1, timedOut: false });
+			resolve({exitCode: 1, timedOut: false});
 			return;
 		}
 
@@ -306,7 +284,7 @@ export async function spawnCommand(
 
 		if (options.abortSignal) {
 			options.abortSignal.addEventListener('abort', onAbort, {
-				once: true
+				once: true,
 			});
 		}
 
@@ -317,7 +295,7 @@ export async function spawnCommand(
 				options.abortSignal.removeEventListener('abort', onAbort);
 			}
 
-			resolve({ exitCode: 1, timedOut: false });
+			resolve({exitCode: 1, timedOut: false});
 		});
 
 		child.on('close', (code) => {
@@ -327,7 +305,7 @@ export async function spawnCommand(
 				options.abortSignal.removeEventListener('abort', onAbort);
 			}
 
-			resolve({ exitCode: code ?? undefined, timedOut: hasTimedOut });
+			resolve({exitCode: code ?? undefined, timedOut: hasTimedOut});
 		});
 	});
 }
@@ -339,7 +317,7 @@ async function runCheck(
 	config: CheckConfig,
 	spawn_: typeof spawnCommand,
 	cmdTimeout: number,
-	abortSignal?: AbortSignal
+	abortSignal?: AbortSignal,
 ): Promise<CheckResult> {
 	const start = Date.now();
 	log(`🔍 Running check: ${config.name}`);
@@ -349,30 +327,28 @@ async function runCheck(
 		config.checkCommand.args,
 		{
 			timeoutMs: cmdTimeout,
-			abortSignal
-		}
+			abortSignal,
+		},
 	);
 
 	const duration = Date.now() - start;
 
 	if (result.timedOut) {
 		log(
-			`⏱️ Check "${config.name}" timed out after ${Math.round(duration / 1000)}s`
+			`⏱️ Check "${config.name}" timed out after ${Math.round(duration / 1000)}s`,
 		);
-		return { name: config.name, passed: false, timedOut: true, duration };
+		return {name: config.name, passed: false, timedOut: true, duration};
 	}
 
 	if (result.exitCode === 0) {
-		log(
-			`✅ Check "${config.name}" passed (${Math.round(duration / 1000)}s)`
-		);
-		return { name: config.name, passed: true, timedOut: false, duration };
+		log(`✅ Check "${config.name}" passed (${Math.round(duration / 1000)}s)`);
+		return {name: config.name, passed: true, timedOut: false, duration};
 	}
 
 	log(
-		`❌ Check "${config.name}" failed with exit code ${result.exitCode} (${Math.round(duration / 1000)}s)`
+		`❌ Check "${config.name}" failed with exit code ${result.exitCode} (${Math.round(duration / 1000)}s)`,
 	);
-	return { name: config.name, passed: false, timedOut: false, duration };
+	return {name: config.name, passed: false, timedOut: false, duration};
 }
 
 // ─── Fix Execution ───────────────────────────────────────────────────────────
@@ -384,7 +360,7 @@ async function runFixes(
 	config: CheckConfig,
 	spawn_: typeof spawnCommand,
 	cmdTimeout: number,
-	abortSignal?: AbortSignal
+	abortSignal?: AbortSignal,
 ): Promise<string[]> {
 	const applied: string[] = [];
 
@@ -394,7 +370,7 @@ async function runFixes(
 
 		const result = await spawn_(fix.command, fix.args, {
 			timeoutMs: cmdTimeout,
-			abortSignal
+			abortSignal,
 		});
 
 		if (result.timedOut) {
@@ -404,7 +380,7 @@ async function runFixes(
 
 		if (result.exitCode !== 0) {
 			logError(
-				`❌ Fix "${fixDescription}" failed with exit code ${result.exitCode}`
+				`❌ Fix "${fixDescription}" failed with exit code ${result.exitCode}`,
 			);
 			continue;
 		}
@@ -429,7 +405,7 @@ export async function detectFileChanges(): Promise<boolean> {
 		try {
 			child = spawn('git', ['status', '--porcelain'], {
 				stdio: ['ignore', 'pipe', 'pipe'],
-				shell: true
+				shell: true,
 			});
 		} catch {
 			logError('❌ Failed to spawn git status');
@@ -470,12 +446,8 @@ export async function detectFileChanges(): Promise<boolean> {
 function printSummaryTable(results: CheckResult[]): void {
 	const rows = results.map((r) => ({
 		check: r.name,
-		status: r.timedOut
-			? '⏱️ timeout'
-			: r.passed
-				? '✅ passed'
-				: '❌ failed',
-		durationSeconds: Math.round(r.duration / 1000)
+		status: r.timedOut ? '⏱️ timeout' : r.passed ? '✅ passed' : '❌ failed',
+		durationSeconds: Math.round(r.duration / 1000),
 	}));
 	console.table(rows);
 }
@@ -490,7 +462,7 @@ export async function orchestrate(
 		totalTimeoutMs?: number;
 		spawnFn?: typeof spawnCommand;
 		detectChangesFn?: typeof detectFileChanges;
-	}
+	},
 ): Promise<OrchestratorResult> {
 	const timeout = options?.totalTimeoutMs ?? totalTimeoutMs;
 	const cmdTimeout = options?.commandTimeoutMs ?? commandTimeoutMs;
@@ -500,7 +472,7 @@ export async function orchestrate(
 	// Set up total timeout
 	const totalTimer = setTimeout(() => {
 		log(
-			`⏱️ Total orchestrator timeout (${timeout / 1000}s) reached. Aborting all commands.`
+			`⏱️ Total orchestrator timeout (${timeout / 1000}s) reached. Aborting all commands.`,
 		);
 		abortController.abort();
 	}, timeout);
@@ -509,7 +481,7 @@ export async function orchestrate(
 		// Phase 1: Run all checks in parallel
 		log('🚀 Starting parallel checks...');
 		const checkPromises = checks.map(async (config) =>
-			runCheck(config, spawn_, cmdTimeout, abortController.signal)
+			runCheck(config, spawn_, cmdTimeout, abortController.signal),
 		);
 		const checkResults = await Promise.allSettled(checkPromises);
 
@@ -524,14 +496,12 @@ export async function orchestrate(
 				name: checks[index].name,
 				passed: false,
 				timedOut: false,
-				duration: 0
+				duration: 0,
 			};
 		});
 
 		// Check if all passed
-		const failedChecks = checks.filter(
-			(_, index) => !results[index].passed
-		);
+		const failedChecks = checks.filter((_, index) => !results[index].passed);
 
 		if (failedChecks.length === 0) {
 			log('✅ All checks passed!');
@@ -540,7 +510,7 @@ export async function orchestrate(
 				exitCode: exitAllPassed,
 				checkResults: results,
 				fixesApplied: [],
-				filesChanged: false
+				filesChanged: false,
 			};
 		}
 
@@ -556,23 +526,23 @@ export async function orchestrate(
 				config,
 				spawn_,
 				cmdTimeout,
-				abortController.signal
+				abortController.signal,
 			);
 			allFixesApplied.push(...fixes);
 		}
 
 		// Always run prettier last so it formats any files changed by other fixers
 		log(
-			`🔧 Running final formatter: ${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+			`🔧 Running final formatter: ${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`,
 		);
 		const finalResult = await spawn_(
 			finalFixCommand.command,
 			finalFixCommand.args,
-			{ timeoutMs: cmdTimeout, abortSignal: abortController.signal }
+			{timeoutMs: cmdTimeout, abortSignal: abortController.signal},
 		);
 		if (finalResult.exitCode === 0) {
 			allFixesApplied.push(
-				`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`
+				`${finalFixCommand.command} ${finalFixCommand.args.join(' ')}`,
 			);
 		}
 
@@ -587,7 +557,7 @@ export async function orchestrate(
 				exitCode: exitUnfixable,
 				checkResults: results,
 				fixesApplied: allFixesApplied,
-				filesChanged: false
+				filesChanged: false,
 			};
 		}
 
@@ -597,7 +567,7 @@ export async function orchestrate(
 			exitCode: exitFixedWithChanges,
 			checkResults: results,
 			fixesApplied: allFixesApplied,
-			filesChanged: true
+			filesChanged: true,
 		};
 	} finally {
 		clearTimeout(totalTimer);
@@ -608,7 +578,7 @@ export async function orchestrate(
 
 const selfPath = fileURLToPath(import.meta.url);
 const isDirectExecution = process.argv.some(
-	(arg) => arg !== undefined && path.resolve(arg) === selfPath
+	(arg) => arg !== undefined && path.resolve(arg) === selfPath,
 );
 if (isDirectExecution) {
 	log('🏁 Self-Healing CI Orchestrator starting...');

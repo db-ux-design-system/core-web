@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { DBSelect } from '../../../../output/react/src';
+import {useEffect, useState} from 'react';
+import {DBSelect} from '../../../../output/react/src';
 import {
 	COLOR,
 	COLOR_CONST,
 	COLORS,
 	DENSITIES,
 	DENSITY,
-	DENSITY_CONST
+	DENSITY_CONST,
 } from '../../../../packages/components/src/shared/constants';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 
@@ -17,15 +17,15 @@ export type MetaNavigationProps = {
 
 const MetaNavigation = ({
 	onDensityChange,
-	onColorChange
+	onColorChange,
 }: MetaNavigationProps) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 	const [density, setDensity] = useState(
-		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
+		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR,
 	);
 	const [color, setColor] = useState(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
+		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1,
 	);
 
 	useEffect(() => {
@@ -45,7 +45,7 @@ const MetaNavigation = ({
 	}, [searchParameters]);
 
 	useEffect(() => {
-		setSearchParameters({ density, color });
+		setSearchParameters({density, color});
 	}, [color, density]);
 
 	return (
@@ -56,7 +56,8 @@ const MetaNavigation = ({
 				value={density}
 				onChange={(event) => {
 					setDensity(event?.target?.value);
-				}}>
+				}}
+			>
 				{DENSITIES.map((ton) => (
 					<option key={`density-option-${ton}`} value={ton}>
 						{ton}
@@ -69,7 +70,8 @@ const MetaNavigation = ({
 				value={color}
 				onChange={(event) => {
 					setColor(event?.target?.value);
-				}}>
+				}}
+			>
 				{COLORS.map((col) => (
 					<option key={`color-option-${col}`} value={col}>
 						{col}

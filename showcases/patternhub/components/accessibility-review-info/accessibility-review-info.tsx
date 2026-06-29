@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { DBInfotext, type SemanticType } from '../../../../output/react/src';
+import {useEffect, useState} from 'react';
+import {DBInfotext, type SemanticType} from '../../../../output/react/src';
 
 export type AccessibilityReviewInfoType = {
 	name: string;
@@ -8,7 +8,7 @@ export type AccessibilityReviewInfoType = {
 };
 
 const AccessibilityReviewInfo = (
-	accessibilityReview?: AccessibilityReviewInfoType
+	accessibilityReview?: AccessibilityReviewInfoType,
 ) => {
 	const [semantic, setSemantic] = useState<SemanticType>('critical');
 	const [text, setText] = useState('Missing');

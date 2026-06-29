@@ -1,5 +1,5 @@
-import { test } from '@playwright/test';
-import { isStencil, runAriaSnapshotTest } from '../default.ts';
+import {test} from '@playwright/test';
+import {isStencil, runAriaSnapshotTest} from '../default.ts';
 
 const path = '01/header';
 test.describe('DBHeader', () => {
@@ -7,5 +7,5 @@ test.describe('DBHeader', () => {
 		test.skip();
 	}
 
-	runAriaSnapshotTest({ path });
+	runAriaSnapshotTest({path});
 });

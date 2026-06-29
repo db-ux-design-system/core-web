@@ -1,15 +1,15 @@
 import stylelint from 'stylelint';
-import { createRule } from '../shared/create-rule.js';
+import {createRule} from '../shared/create-rule.js';
 import {
 	type AllowedType,
 	borderPropertiesExact,
 	defaultColorsExact,
 	defaultExact,
-	getDeclarationRuleFunction
+	getDeclarationRuleFunction,
 } from '../shared/index.js';
 
 const {
-	utils: { ruleMessages }
+	utils: {ruleMessages},
 } = stylelint;
 
 const ruleName = 'db-ux/use-border-color';
@@ -17,27 +17,27 @@ const ruleName = 'db-ux/use-border-color';
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-xx-on-bg-emphasis-[100|90|80|70|60|50]' instead."
+		"Please use 'db-xx-on-bg-emphasis-[100|90|80|70|60|50]' instead.",
 });
 
 const meta = {
-	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md'
+	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md',
 };
 
 const allowedDeclarations: AllowedType = {
-	includes: [{ include: 'border', and: ['color'] }],
-	exact: borderPropertiesExact
+	includes: [{include: 'border', and: ['color']}],
+	exact: borderPropertiesExact,
 };
 const allowedValues: AllowedType = {
 	includes: [
 		{
 			include: 'on-bg-basic-emphasis',
-			or: ['100', '90', '80', '70', '60', '50']
+			or: ['100', '90', '80', '70', '60', '50'],
 		},
-		{ include: 'on-bg-inverted' }
+		{include: 'on-bg-inverted'},
 	],
 	exact: [...defaultExact, ...defaultColorsExact],
-	type: 'some'
+	type: 'some',
 };
 
 const useBorderColor = createRule({
@@ -48,8 +48,8 @@ const useBorderColor = createRule({
 		allowedDeclarations,
 		allowedValues,
 		messages,
-		ruleName
-	})
+		ruleName,
+	}),
 });
 
 export default useBorderColor;

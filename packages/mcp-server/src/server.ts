@@ -1,10 +1,10 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import packageJson from '../package.json';
 
 /** The singleton McpServer instance shared across the entire application. */
 export const server = new McpServer({
 	name: 'db-ux-mcp',
-	version: packageJson.version
+	version: packageJson.version,
 });
 
 /**
@@ -37,7 +37,7 @@ export function registerLifecycleHandlers() {
 			'[DB UX MCP] Fatal Error - Unhandled Rejection at:',
 			promise,
 			'reason:',
-			reason
+			reason,
 		);
 	});
 }

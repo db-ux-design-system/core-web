@@ -1,18 +1,16 @@
 import {
 	usePathname as usePathnameNext,
 	useRouter as useRouterNext,
-	useSearchParams as useSearchParametersNext
+	useSearchParams as useSearchParametersNext,
 } from 'next/navigation';
-import { useSearchParams } from 'react-router-dom';
+import {useSearchParams} from 'react-router-dom';
 
 const useUniversalSearchParameters = (): [
 	URLSearchParams,
-	(parameters: Record<string, string>) => void
+	(parameters: Record<string, string>) => void,
 ] => {
 	const nextRouter =
-		process.env.NEXT_SHOWCASE_VARIANT === 'next'
-			? useRouterNext()
-			: undefined;
+		process.env.NEXT_SHOWCASE_VARIANT === 'next' ? useRouterNext() : undefined;
 	const nextPathName =
 		process.env.NEXT_SHOWCASE_VARIANT === 'next'
 			? usePathnameNext()
@@ -24,10 +22,7 @@ const useUniversalSearchParameters = (): [
 			: useSearchParams();
 
 	const setSearchParameters = (parameters: Record<string, string>) => {
-		if (
-			globalThis.window !== undefined &&
-			globalThis.location !== undefined
-		) {
+		if (globalThis.window !== undefined && globalThis.location !== undefined) {
 			const searchPart = globalThis.location.search || '';
 			const currentParameters = new URLSearchParams(searchPart);
 			currentParameters.sort();
@@ -43,7 +38,7 @@ const useUniversalSearchParameters = (): [
 			_setSearchParameters(parameters);
 		} else if (nextPathName) {
 			nextRouter?.push(
-				`${nextPathName}?${new URLSearchParams(parameters).toString()}`
+				`${nextPathName}?${new URLSearchParams(parameters).toString()}`,
 			);
 		}
 	};

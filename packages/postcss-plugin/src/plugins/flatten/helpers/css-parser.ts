@@ -7,7 +7,7 @@
  */
 export const findMatchingParenthesis = (
 	value: string,
-	openIndex: number
+	openIndex: number,
 ): number => {
 	let depth = 1;
 	let i = openIndex;
@@ -58,8 +58,8 @@ export const findTopLevelComma = (value: string): number => {
 export const findCssFunction = (
 	value: string,
 	funcName: string,
-	fromIndex = 0
-): { start: number; end: number; inner: string } | undefined => {
+	fromIndex = 0,
+): {start: number; end: number; inner: string} | undefined => {
 	const prefix = `${funcName}(`;
 	const idx = value.indexOf(prefix, fromIndex);
 	if (idx === -1) {
@@ -74,6 +74,6 @@ export const findCssFunction = (
 	return {
 		start: idx,
 		end,
-		inner: value.slice(idx + prefix.length, end - 1)
+		inner: value.slice(idx + prefix.length, end - 1),
 	};
 };

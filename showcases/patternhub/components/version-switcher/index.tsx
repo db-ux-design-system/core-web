@@ -1,1 +1,1 @@
-export { default } from './version-switcher';
+export {default} from './version-switcher';

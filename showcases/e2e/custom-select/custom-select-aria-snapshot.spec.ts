@@ -1,5 +1,5 @@
-import { type Page, test } from '@playwright/test';
-import { runAriaSnapshotTest } from '../default.ts';
+import {type Page, test} from '@playwright/test';
+import {runAriaSnapshotTest} from '../default.ts';
 
 const path = '03/custom-select';
 
@@ -20,5 +20,5 @@ const preScreenShot = async (page: Page) => {
 };
 
 test.describe('DBCustomSelect', () => {
-	runAriaSnapshotTest({ path, preScreenShot });
+	runAriaSnapshotTest({path, preScreenShot});
 });

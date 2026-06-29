@@ -32,10 +32,10 @@ v3 uses a layered CSS architecture. All four imports are required in this exact 
 
 ```tsx
 // main.tsx — order matters!
-import "@db-ux/core-foundations/build/styles/theme/rollup.css"; // Layer 1: Palette tokens (@property definitions, e.g. #16181b)
-import "@db-ux/core-foundations/build/styles/bundle.css"; // Layer 2: Semantic tokens (light-dark mappings on :root)
-import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Layer 3: Icon fonts (@font-face declarations)
-import "@db-ux/core-components/build/styles/rollup.css"; // Layer 4: Component styling
+import '@db-ux/core-foundations/build/styles/theme/rollup.css'; // Layer 1: Palette tokens (@property definitions, e.g. #16181b)
+import '@db-ux/core-foundations/build/styles/bundle.css'; // Layer 2: Semantic tokens (light-dark mappings on :root)
+import '@db-ux/core-foundations/build/styles/icons/rollup.css'; // Layer 3: Icon fonts (@font-face declarations)
+import '@db-ux/core-components/build/styles/rollup.css'; // Layer 4: Component styling
 ```
 
 **Layer 1 – Palette tokens:** Defines raw color values as CSS `@property` registrations. These are the primitive building blocks (hex values, numeric scales).

@@ -1,6 +1,6 @@
 import checkerboard from '../../../../public/assets/images/checkerboard.png';
 import CopyClipboardButton from '../../../copy-clipboard-button';
-import { type ColorValue } from '../data';
+import {type ColorValue} from '../data';
 
 const ColorsGrid = ({
 	values,
@@ -8,7 +8,7 @@ const ColorsGrid = ({
 	dataAttributeName,
 	showCheckerboard,
 	enableDarkMode,
-	variant
+	variant,
 }: {
 	values: ColorValue[];
 	prefixClass: string;
@@ -24,24 +24,24 @@ const ColorsGrid = ({
 
 	const getAttributes = (value: string) =>
 		variant === 'class'
-			? { className: `${prefixClass}${value}` }
-			: { [dataAttributeName]: value };
+			? {className: `${prefixClass}${value}`}
+			: {[dataAttributeName]: value};
 
 	return (
 		<div
 			className="color-overview-container db-font-size-sm"
-			data-mode={enableDarkMode ? 'dark' : 'light'}>
+			data-mode={enableDarkMode ? 'dark' : 'light'}
+		>
 			<span
 				style={{
 					backgroundImage: showCheckerboard
 						? `url(${checkerboard.src})`
-						: 'none'
+						: 'none',
 				}}
 			/>{' '}
 			{values.map((value, index) => {
 				const v = typeof value === 'string' ? value : value.value;
-				const appendix =
-					typeof value === 'string' ? undefined : value.appendix;
+				const appendix = typeof value === 'string' ? undefined : value.appendix;
 				return (
 					<div {...getAttributes(v)}>
 						<span>
@@ -50,7 +50,8 @@ const ColorsGrid = ({
 						</span>
 						<CopyClipboardButton
 							name={`copy-button-${index}`}
-							copyText={getText(v)}>
+							copyText={getText(v)}
+						>
 							Copied to clipboard
 						</CopyClipboardButton>
 					</div>

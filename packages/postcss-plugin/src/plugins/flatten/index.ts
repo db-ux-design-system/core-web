@@ -1,17 +1,17 @@
-import type { PluginCreator, Root } from 'postcss';
+import type {PluginCreator, Root} from 'postcss';
 import {
 	type FlattenOptions,
 	type VarEntry,
-	DEFAULT_DYNAMIC_PREFIXES
+	DEFAULT_DYNAMIC_PREFIXES,
 } from './data.js';
 import {
 	collectImportLayers,
 	collectLayerOrder,
 	collectVarsWithLayer,
 	getFileLayer,
-	pickBestVar
+	pickBestVar,
 } from './helpers/collect.js';
-import { transformRoot } from './helpers/transform.js';
+import {transformRoot} from './helpers/transform.js';
 
 /**
  PostCSS plugin that flattens DB UX Design System CSS custom properties
@@ -60,7 +60,7 @@ const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 				dynamicVars,
 				dynamicPrefixes,
 				fileLayer,
-				filePath
+				filePath,
 			);
 		},
 		OnceExit(root: Root) {
@@ -78,14 +78,14 @@ const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 				propertyNames,
 				dynamicVars,
 				removeAtProperty,
-				removeResolved
+				removeResolved,
 			);
-		}
+		},
 	};
 };
 
 dbUxFlatten.postcss = true;
 
-export { dbUxFlatten };
+export {dbUxFlatten};
 
-export { type FlattenOptions } from './data.js';
+export {type FlattenOptions} from './data.js';

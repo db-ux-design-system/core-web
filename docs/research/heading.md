@@ -27,26 +27,26 @@
 ### Questions for dev
 
 - How to handle DB Pulse??
-    - We handle this inside the `@db-ux/db-theme` package
+  - We handle this inside the `@db-ux/db-theme` package
 - Shall we add auto-spacing as dev property (h1+h2, add margin)??
-    - We won't do this for now
+  - We won't do this for now
 
 ### Questions for design
 
 - Shall we really add the margins as property or use stack?
-    - We use `props.paragraphSpacing` with `1lh` instead of stack:
-    ```tsx
-    <DBHeading as="h1" paragraphSpacing>
-      Heading 1
-    </DBHeading>
-    <DBHeading as="h2" paragraphSpacing>
-      Heading 2
-    </DBHeading>
-    <DBStack variant="paragraph" gap="md">
-      <DBText>ABCD</DBText>
-      <DBText>ABCD</DBText>
-    </DBStack>
-    ```
+  - We use `props.paragraphSpacing` with `1lh` instead of stack:
+  ```tsx
+  <DBHeading as="h1" paragraphSpacing>
+    Heading 1
+  </DBHeading>
+  <DBHeading as="h2" paragraphSpacing>
+    Heading 2
+  </DBHeading>
+  <DBStack variant="paragraph" gap="md">
+    <DBText>ABCD</DBText>
+    <DBText>ABCD</DBText>
+  </DBStack>
+  ```
 - Fluid Styles might be a cool feature?
-    - We already have this feature because of our responsive typography
+  - We already have this feature because of our responsive typography
 - [`text-wrap`](https://developer.chrome.com/docs/css-ui/css-text-wrap-balance)-CSS-property (especially with the value `"balance"`) would be a relevant aspect to think about

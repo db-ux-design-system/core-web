@@ -1,5 +1,5 @@
-import { type MouseEvent, type ReactNode, useEffect, useState } from 'react';
-import { DBButton, DBTooltip } from '../../../../output/react/src/index';
+import {type MouseEvent, type ReactNode, useEffect, useState} from 'react';
+import {DBButton, DBTooltip} from '../../../../output/react/src/index';
 
 export type CopyClipboardButtonProps = {
 	name: string;
@@ -10,7 +10,7 @@ export type CopyClipboardButtonProps = {
 const CopyClipboardButton = ({
 	name,
 	children,
-	copyText
+	copyText,
 }: CopyClipboardButtonProps) => {
 	const [justCopied, setJustCopied] = useState(false);
 
@@ -45,13 +45,15 @@ const CopyClipboardButton = ({
 			onClick={(event) => {
 				void onCopyButtonClick(event);
 			}}
-			aria-describedby={name}>
+			aria-describedby={name}
+		>
 			<DBTooltip
 				id={name}
 				placement="top"
 				style={{
-					visibility: justCopied ? 'visible' : 'hidden'
-				}}>
+					visibility: justCopied ? 'visible' : 'hidden',
+				}}
+			>
 				{children}
 			</DBTooltip>
 		</DBButton>

@@ -1,13 +1,13 @@
 import stylelint from 'stylelint';
-import { createRule } from '../shared/create-rule.js';
+import {createRule} from '../shared/create-rule.js';
 import {
 	type AllowedType,
 	defaultExact,
-	getDeclarationRuleFunction
+	getDeclarationRuleFunction,
 } from '../shared/index.js';
 
 const {
-	utils: { ruleMessages }
+	utils: {ruleMessages},
 } = stylelint;
 
 const ruleName = 'db-ux/use-sizing';
@@ -15,11 +15,11 @@ const ruleName = 'db-ux/use-sizing';
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-sizing-*', '%', 'lh', 'vw', 'vh', 'db-screen-*', or 'db-container-*' instead."
+		"Please use 'db-sizing-*', '%', 'lh', 'vw', 'vh', 'db-screen-*', or 'db-container-*' instead.",
 });
 
 const meta = {
-	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md'
+	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md',
 };
 
 const allowedDeclarations: AllowedType = {
@@ -30,8 +30,8 @@ const allowedDeclarations: AllowedType = {
 		'min-height',
 		'min-width',
 		'max-height',
-		'max-width'
-	]
+		'max-width',
+	],
 };
 const allowedValues: AllowedType = {
 	includes: [
@@ -43,7 +43,7 @@ const allowedValues: AllowedType = {
 		'lh',
 		'ch',
 		'vw',
-		'vh'
+		'vh',
 	],
 	exact: [
 		...defaultExact,
@@ -52,8 +52,8 @@ const allowedValues: AllowedType = {
 		'min-content',
 		'revert',
 		'revert-layer',
-		'none'
-	]
+		'none',
+	],
 };
 
 const useSizing = createRule({
@@ -64,8 +64,8 @@ const useSizing = createRule({
 		allowedDeclarations,
 		allowedValues,
 		messages,
-		ruleName
-	})
+		ruleName,
+	}),
 });
 
 export default useSizing;

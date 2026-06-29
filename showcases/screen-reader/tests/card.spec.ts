@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import {getTest, testDefault} from '../default';
 
 const test = getTest();
 
@@ -18,6 +18,6 @@ test.describe('DBCard', () => {
 			await screenReader?.clearSpokenPhraseLog();
 			await screenReader?.previous(); // Card "Functional"
 			await screenReader?.next(); // Card "(Default) Regular"
-		}
+		},
 	});
 });

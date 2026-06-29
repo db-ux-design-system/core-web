@@ -41,10 +41,10 @@ export type NavigationItem = {
 };
 
 export const getSortedNavigationItems = (
-	navigationItems: NavigationItem[]
+	navigationItems: NavigationItem[],
 ): any[] =>
 	navigationItems.toSorted((a: NavigationItem, b: NavigationItem) =>
-		a.path.localeCompare(b.path)
+		a.path.localeCompare(b.path),
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{
@@ -54,10 +54,10 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'notification',
 				label: 'Notification',
-				component: <NotificationShowcase />
+				component: <NotificationShowcase />,
 			},
-			{ path: 'badge', label: 'Badge', component: <BadgeShowcase /> }
-		])
+			{path: 'badge', label: 'Badge', component: <BadgeShowcase />},
+		]),
 	},
 
 	{
@@ -67,14 +67,14 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'navigation-item',
 				label: 'NavigationItem',
-				component: <NavigationItemShowcase />
+				component: <NavigationItemShowcase />,
 			},
 			{
 				path: 'navigation',
 				label: 'Navigation',
-				component: <NavigationShowcase />
-			}
-		])
+				component: <NavigationShowcase />,
+			},
+		]),
 	},
 
 	{
@@ -84,43 +84,43 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'brand',
 				label: 'Brand',
-				component: <BrandShowcase />
+				component: <BrandShowcase />,
 			},
 			{
 				path: 'infotext',
 				label: 'Infotext',
-				component: <InfotextShowcase />
+				component: <InfotextShowcase />,
 			},
 			{
 				path: 'icon',
 				label: 'Icon',
-				component: <IconShowcase />
+				component: <IconShowcase />,
 			},
 			{
 				path: 'tooltip',
 				label: 'Tooltip',
-				component: <TooltipShowcase />
+				component: <TooltipShowcase />,
 			},
-			{ path: 'tag', label: 'Tag', component: <TagShowcase /> },
+			{path: 'tag', label: 'Tag', component: <TagShowcase />},
 			{
 				path: 'accordion',
 				label: 'Accordion',
-				component: <AccordionShowcase />
+				component: <AccordionShowcase />,
 			},
 			{
 				path: 'accordion-item',
 				label: 'AccordionItem',
-				component: <AccordionItemShowcase />
+				component: <AccordionItemShowcase />,
 			},
 			{
 				path: 'tab-item',
 				label: 'TabItem',
-				component: <TabItemShowcase />
+				component: <TabItemShowcase />,
 			},
-			{ path: 'table', label: 'Table', component: <TableShowcase /> },
+			{path: 'table', label: 'Table', component: <TableShowcase />},
 
-			{ path: 'tabs', label: 'Tabs', component: <TabsShowcase /> }
-		])
+			{path: 'tabs', label: 'Tabs', component: <TabsShowcase />},
+		]),
 	},
 	{
 		path: '03',
@@ -129,23 +129,23 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'custom-select',
 				label: 'CustomSelect',
-				component: <CustomSelectShowcase />
+				component: <CustomSelectShowcase />,
 			},
-			{ path: 'input', label: 'Input', component: <InputShowcase /> },
+			{path: 'input', label: 'Input', component: <InputShowcase />},
 			{
 				path: 'textarea',
 				label: 'Textarea',
-				component: <TextareaShowcase />
+				component: <TextareaShowcase />,
 			},
-			{ path: 'radio', label: 'Radio', component: <RadioShowcase /> },
+			{path: 'radio', label: 'Radio', component: <RadioShowcase />},
 			{
 				path: 'checkbox',
 				label: 'Checkbox',
-				component: <CheckboxShowcase />
+				component: <CheckboxShowcase />,
 			},
-			{ path: 'switch', label: 'Switch', component: <SwitchShowcase /> },
-			{ path: 'select', label: 'Select', component: <SelectShowcase /> }
-		])
+			{path: 'switch', label: 'Switch', component: <SwitchShowcase />},
+			{path: 'select', label: 'Select', component: <SelectShowcase />},
+		]),
 	},
 	{
 		path: '02',
@@ -154,40 +154,40 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'custom-button',
 				label: 'CustomButton',
-				component: <CustomButtonShowcase />
+				component: <CustomButtonShowcase />,
 			},
-			{ path: 'link', label: 'Link', component: <LinkShowcase /> },
-			{ path: 'button', label: 'Button', component: <ButtonShowcase /> }
-		])
+			{path: 'link', label: 'Link', component: <LinkShowcase />},
+			{path: 'button', label: 'Button', component: <ButtonShowcase />},
+		]),
 	},
 	{
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
-			{ path: 'stack', label: 'Stack', component: <StackShowcase /> },
-			{ path: 'card', label: 'Card', component: <CardShowcase /> },
-			{ path: 'drawer', label: 'Drawer', component: <DrawerShowcase /> },
+			{path: 'stack', label: 'Stack', component: <StackShowcase />},
+			{path: 'card', label: 'Card', component: <CardShowcase />},
+			{path: 'drawer', label: 'Drawer', component: <DrawerShowcase />},
 			{
 				path: 'divider',
 				label: 'Divider',
-				component: <DividerShowcase />
+				component: <DividerShowcase />,
 			},
 			{
 				path: 'section',
 				label: 'Section',
-				component: <SectionShowcase />
+				component: <SectionShowcase />,
 			},
 			{
 				path: 'popover',
 				label: 'Popover',
-				component: <PopoverShowcase />
+				component: <PopoverShowcase />,
 			},
 			{
 				path: 'header',
 				label: 'Header',
-				component: <HeaderShowcase />
-			}
-		])
+				component: <HeaderShowcase />,
+			},
+		]),
 	},
-	{ path: '', label: 'Home', component: <Home /> }
+	{path: '', label: 'Home', component: <Home />},
 ];

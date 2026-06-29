@@ -74,21 +74,17 @@ const waitingForFeedbackOptionId = envString(
 );
 
 const priorityRank: Record<string, number> = {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	Urgent: 1,
 	High: 2,
 	Medium: 3,
 	Low: 4
-	/* eslint-enable @typescript-eslint/naming-convention */
 };
 const defaultPriorityRank = 5;
 
 const effortRank: Record<string, number> = {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	Low: 1,
 	Medium: 2,
 	High: 3
-	/* eslint-enable @typescript-eslint/naming-convention */
 };
 const defaultEffortRank = 4;
 
@@ -1157,4 +1153,5 @@ const reorderBacklog = async () => {
 	);
 };
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 void reorderBacklog();

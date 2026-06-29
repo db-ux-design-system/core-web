@@ -1,7 +1,7 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
-import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
-import { getManifest } from '../utils/manifest';
+import {readFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {type ToolResult, err, MAX_JSON_OUTPUT, truncate} from '../utils';
+import {getManifest} from '../utils/manifest';
 
 // ---------------------------------------------------------------------------
 // Structured tokens loaded from prebuild-generated JSON
@@ -9,7 +9,7 @@ import { getManifest } from '../utils/manifest';
 
 const TOKENS_JSON_PATH = join(
 	import.meta.dirname,
-	'../../assets/tokens/tokens.json'
+	'../../assets/tokens/tokens.json',
 );
 
 /** In-memory cache for the parsed tokens JSON. */
@@ -28,10 +28,7 @@ async function loadTokensJson(): Promise<
 
 	try {
 		const raw = await readFile(TOKENS_JSON_PATH, 'utf-8');
-		_tokensCache = JSON.parse(raw) as Record<
-			string,
-			Record<string, unknown>
-		>;
+		_tokensCache = JSON.parse(raw) as Record<string, Record<string, unknown>>;
 		return _tokensCache;
 	} catch {
 		return undefined;
@@ -44,7 +41,7 @@ async function loadTokensJson(): Promise<
  Pass `undefined` or call without arguments to clear the cache.
  */
 export function resetTokensCache(
-	override?: Record<string, Record<string, unknown>>
+	override?: Record<string, Record<string, unknown>>,
 ): void {
 	_tokensCache = override;
 }
@@ -63,12 +60,12 @@ export async function handleListDesignTokenCategories(): Promise<ToolResult> {
 		...new Set([
 			...Object.keys(manifest.tokens),
 			...(tokensJson ? Object.keys(tokensJson) : []),
-			'elevation' // Always advertise elevation
-		])
+			'elevation', // Always advertise elevation
+		]),
 	];
 
 	return {
-		content: [{ type: 'text', text: JSON.stringify(categories, null, 2) }]
+		content: [{type: 'text', text: JSON.stringify(categories, null, 2)}],
 	};
 }
 
@@ -80,7 +77,7 @@ export async function handleListDesignTokenCategories(): Promise<ToolResult> {
  categories not covered by the JSON (e.g. animation, transitions raw SCSS).
  */
 export async function handleGetDesignTokens({
-	category
+	category,
 }: {
 	category: string;
 }): Promise<ToolResult> {
@@ -91,9 +88,7 @@ export async function handleGetDesignTokens({
 		const formatted = JSON.stringify(categoryData, null, 2);
 
 		return {
-			content: [
-				{ type: 'text', text: truncate(formatted, MAX_JSON_OUTPUT) }
-			]
+			content: [{type: 'text', text: truncate(formatted, MAX_JSON_OUTPUT)}],
 		};
 	}
 
@@ -104,27 +99,25 @@ export async function handleGetDesignTokens({
 		const availableCategories = [
 			...new Set([
 				...Object.keys(manifest.tokens),
-				...(tokensJson ? Object.keys(tokensJson) : [])
-			])
+				...(tokensJson ? Object.keys(tokensJson) : []),
+			]),
 		];
 		return err(
-			`Error: unknown category '${category}'. Available: ${availableCategories.join(', ')}`
+			`Error: unknown category '${category}'. Available: ${availableCategories.join(', ')}`,
 		);
 	}
 
 	// Filter to lines containing CSS custom properties or SCSS variables
-	const lines = source
-		.split('\n')
-		.filter((line) => /--db-|^\$db-/.test(line));
+	const lines = source.split('\n').filter((line) => /--db-|^\$db-/.test(line));
 	return {
 		content: [
 			{
 				type: 'text',
 				text: truncate(
 					lines.length > 0 ? lines.join('\n') : source,
-					MAX_JSON_OUTPUT
-				)
-			}
-		]
+					MAX_JSON_OUTPUT,
+				),
+			},
+		],
 	};
 }

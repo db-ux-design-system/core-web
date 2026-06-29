@@ -1,11 +1,11 @@
-import { DBInfotext } from '../../../../../output/react/src';
+import {DBInfotext} from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 import ColorsOverviewTabs from '../../../components/foundations/colors/colors-overview-tabs';
 import {
 	additionalColors,
 	backgroundColors,
 	onBackgroundColors,
-	semanticColors
+	semanticColors,
 } from '../../../components/foundations/colors/data';
 
 const ColorSchemes = () => (
@@ -13,25 +13,24 @@ const ColorSchemes = () => (
 		<div>
 			<h1>Color declarations</h1>
 			<p>
-				These <code>data-</code>-attributes (or <strong>classes</strong>
-				) can be used to apply a{' '}
-				<strong>monochromatic adaptive color scheme</strong> or a{' '}
-				<strong>color modifier</strong> (background color, on-background
+				These <code>data-</code>-attributes (or <strong>classes</strong>) can be
+				used to apply a <strong>monochromatic adaptive color scheme</strong> or
+				a <strong>color modifier</strong> (background color, on-background
 				color) to containers and elements.
 			</p>
 			<p>
 				<i>
-					These declarations are <strong>not</strong> intended for
-					individual styling of your own components. The corresponding
-					CSS Custom Properties should be used for this.
+					These declarations are <strong>not</strong> intended for individual
+					styling of your own components. The corresponding CSS Custom
+					Properties should be used for this.
 				</i>
 			</p>
 			<strong>How to use:</strong>
 			<br />
 			<br />
 			<DBInfotext semantic="informational">
-				Note: All three methods are optional: they can be used
-				individually or in any combination on an element.
+				Note: All three methods are optional: they can be used individually or
+				in any combination on an element.
 			</DBInfotext>
 			<ol>
 				<li>
@@ -47,20 +46,20 @@ const ColorSchemes = () => (
 				<li>
 					The contrast of the <strong>text</strong> and{' '}
 					<strong>icon color</strong> can be changed with the{' '}
-					<strong>on-background</strong> <code>data</code>-HTML-
-					attribute: <code>data-on-bg-color="[ color ]"</code>
+					<strong>on-background</strong> <code>data</code>-HTML- attribute:{' '}
+					<code>data-on-bg-color="[ color ]"</code>
 				</li>
 			</ol>
 			<h2 id="container-color-classes">1. Adaptive Color Scheme</h2>
 			<p>
 				These declarations define the{' '}
-				<strong>monochromatic adaptive color scheme</strong> for a
-				container. Texts, icons and backgrounds in it than automatically
-				adapt to the color set.
+				<strong>monochromatic adaptive color scheme</strong> for a container.
+				Texts, icons and backgrounds in it than automatically adapt to the color
+				set.
 			</p>
 			<p>
-				Each adaptive color scheme declaration functions as a shorthand
-				and applies the following by default:
+				Each adaptive color scheme declaration functions as a shorthand and
+				applies the following by default:
 			</p>
 			<ul>
 				<li>
@@ -68,21 +67,20 @@ const ColorSchemes = () => (
 					<strong>monochromatic adaptive color scheme</strong>
 				</li>
 				<li>
-					Background color modifier{' '}
-					<strong>db-bg-color-basic-level-1</strong> (Level 1
-					background by default)
+					Background color modifier <strong>db-bg-color-basic-level-1</strong>{' '}
+					(Level 1 background by default)
 				</li>
 				<li>
 					On background color modifier{' '}
-					<strong>db-on-bg-color-emphasis-100</strong> (highest text
-					contrast by default)
+					<strong>db-on-bg-color-emphasis-100</strong> (highest text contrast by
+					default)
 				</li>
 			</ul>
 			<h3>Semantic color scheme</h3>
 			<p>
-				These semantic colors are used to give a container a
-				corresponding meaning. <strong>Neutral</strong> stands for the
-				regular color scheme, which is usually applied to root.
+				These semantic colors are used to give a container a corresponding
+				meaning. <strong>Neutral</strong> stands for the regular color scheme,
+				which is usually applied to root.
 			</p>
 			<ColorsOverviewTabs
 				values={semanticColors}
@@ -99,11 +97,10 @@ const ColorSchemes = () => (
 				2. Background color modifier
 			</h2>
 			<p>
-				These declarations define the type of background color for a
-				container. The exact color tone than results from the current
-				semantics (in root <strong>neutral</strong> by default). This
-				means that each of these background types exists for each
-				semantic color.
+				These declarations define the type of background color for a container.
+				The exact color tone than results from the current semantics (in root{' '}
+				<strong>neutral</strong> by default). This means that each of these
+				background types exists for each semantic color.
 			</p>
 			<ColorsOverviewTabs
 				values={backgroundColors}
@@ -116,13 +113,13 @@ const ColorSchemes = () => (
 			<p>
 				This declarations is used to define the contrast for{' '}
 				<strong>texts</strong> and <strong>icons</strong>. As with the
-				background colors, these are displayed according to the current
-				color scheme.
+				background colors, these are displayed according to the current color
+				scheme.
 			</p>
 			<p>
 				<strong>
-					* These colors do not have sufficient contrast. They are
-					therefore not permitted as text colors.
+					* These colors do not have sufficient contrast. They are therefore not
+					permitted as text colors.
 				</strong>
 			</p>
 			<ColorsOverviewTabs

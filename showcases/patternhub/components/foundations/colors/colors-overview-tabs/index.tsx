@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import {
 	DBSwitch,
 	DBTabItem,
 	DBTabList,
 	DBTabPanel,
-	DBTabs
+	DBTabs,
 } from '../../../../../../output/react/src';
 import ColorsGrid from '../colors-grid';
-import { type ColorValue } from '../data';
+import {type ColorValue} from '../data';
 
 const ColorsOverviewTabs = ({
 	values,
 	prefixClass,
-	dataAttributeName
+	dataAttributeName,
 }: {
 	values: ColorValue[];
 	prefixClass: string;
@@ -28,14 +28,16 @@ const ColorsOverviewTabs = ({
 					checked={showCheckerboard}
 					onChange={(event) => {
 						setShowCheckerboard(event.target.checked);
-					}}>
+					}}
+				>
 					Show checkerboard
 				</DBSwitch>
 				<DBSwitch
 					checked={enableDarkMode}
 					onChange={(event) => {
 						setEnableDarkMode(event.target.checked);
-					}}>
+					}}
+				>
 					Preview dark mode
 				</DBSwitch>
 			</div>

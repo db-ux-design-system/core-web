@@ -1,12 +1,12 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { getInstructions } from '../utils';
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import {join, resolve} from 'node:path';
+import {getInstructions} from '../utils';
 
 export const generateAmazonQ = (rootPath: string) => {
 	const outputFolder = resolve(rootPath, '.amazonq', 'rules');
 
 	if (!existsSync(outputFolder)) {
-		mkdirSync(outputFolder, { recursive: true });
+		mkdirSync(outputFolder, {recursive: true});
 	}
 
 	const amazonqInstructionsPath = join(outputFolder, 'db-ux.md');
