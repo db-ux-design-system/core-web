@@ -23,7 +23,7 @@ const getReleaseLine = async (changeset, _type, options) => {
 				l.trim().startsWith('- ') ||
 				l.trim().startsWith('+ ')
 					? `\t\t${l}`
-					: `\t- ${l}`,
+					: `\t- ${l}`
 			)
 			.join('\n')}`;
 	}
@@ -44,7 +44,7 @@ const getDependencyReleaseLine = async () =>
  */
 const functions = {
 	getReleaseLine,
-	getDependencyReleaseLine,
+	getDependencyReleaseLine
 };
 
 export default functions;

@@ -1,4 +1,4 @@
-import {generateSnapshot, getTest, testDefault} from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 test.describe('DBTextarea', () => {
@@ -19,7 +19,7 @@ test.describe('DBTextarea', () => {
 			await voiceOver?.next(); // Focus "label 2"
 			await voiceOver?.next(); // Focus "textarea 2"
 			await voiceOver?.next(); // Focus "textarea 2 - helper message"
-		},
+		}
 	});
 	testDefault({
 		test,
@@ -53,9 +53,11 @@ test.describe('DBTextarea', () => {
 				 * There is a timing issue for macOS for typing in input we clean the result
 				 */
 				await generateSnapshot(voiceOver, retry, (phraseLog) =>
-					phraseLog.map((log) => log.replace('Test. ', '').replace('t. ', '')),
+					phraseLog.map((log) =>
+						log.replace('Test. ', '').replace('t. ', '')
+					)
 				);
 			}
-		},
+		}
 	});
 });

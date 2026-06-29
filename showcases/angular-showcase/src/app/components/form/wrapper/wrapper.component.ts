@@ -1,11 +1,11 @@
-import {Component, Input} from '@angular/core';
-import {DBButton} from '@components';
+import { Component, Input } from '@angular/core';
+import { DBButton } from '@components';
 
 @Component({
 	selector: 'app-form-wrapper',
 	imports: [DBButton],
 	templateUrl: './wrapper.component.html',
-	standalone: true,
+	standalone: true
 })
 export class WrapperComponent {
 	@Input('plain') plain!: string | boolean | string[];

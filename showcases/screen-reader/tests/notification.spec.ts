@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -21,6 +21,6 @@ test.describe('DBNotification', () => {
 				await voiceOver?.next(); // Button "Close"
 				await voiceOver?.next(); // Article end
 			}
-		},
+		}
 	});
 });

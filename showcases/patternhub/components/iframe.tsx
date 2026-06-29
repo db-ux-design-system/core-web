@@ -2,7 +2,7 @@ export type IFrameType = {
 	src: string;
 };
 
-const IFrame = ({src}: IFrameType) => (
+const IFrame = ({ src }: IFrameType) => (
 	<iframe
 		src={
 			process.env.NEXT_PUBLIC_BASE_PATH

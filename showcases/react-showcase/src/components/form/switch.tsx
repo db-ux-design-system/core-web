@@ -1,5 +1,5 @@
-import {DBSwitch} from '@components';
-import {useState} from 'react';
+import { DBSwitch } from '@components';
+import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormSwitches = () => {
@@ -13,8 +13,7 @@ const FormSwitches = () => {
 				checked={controlled}
 				onChange={(event) => {
 					setControlled(event.target.checked);
-				}}
-			>
+				}}>
 				Controlled
 			</DBSwitch>
 			<DBSwitch
@@ -22,8 +21,7 @@ const FormSwitches = () => {
 				defaultChecked={uncontrolled}
 				onChange={(event) => {
 					setUncontrolled(event.target.checked);
-				}}
-			>
+				}}>
 				Uncontrolled
 			</DBSwitch>
 		</FormWrapper>

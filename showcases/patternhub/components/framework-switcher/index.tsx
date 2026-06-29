@@ -1,1 +1,1 @@
-export {default} from './framework-switcher';
+export { default } from './framework-switcher';

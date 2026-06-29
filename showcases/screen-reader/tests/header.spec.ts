@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -35,6 +35,6 @@ test.describe('DBHeader', () => {
 				await voiceOver?.next(); // Button "Notification"
 				await voiceOver?.next(); // Button "Help"
 			}
-		},
+		}
 	});
 });

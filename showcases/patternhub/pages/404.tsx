@@ -1,8 +1,8 @@
-import {useRouter} from 'next/router';
-import {useEffect} from 'react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const FallbackPage = () => {
-	const {push, asPath} = useRouter();
+	const { push, asPath } = useRouter();
 
 	useEffect(() => {
 		void push(asPath.endsWith('/overview') ? '/' : `${asPath}/overview`);

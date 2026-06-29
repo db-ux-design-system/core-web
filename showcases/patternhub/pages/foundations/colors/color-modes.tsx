@@ -1,6 +1,6 @@
-import {useState} from 'react';
-import {DBButton, DBCard, DBTag} from '../../../../../output/react/src';
-import {SEMANTICS} from '../../../../../packages/components/src/shared/constants';
+import { useState } from 'react';
+import { DBButton, DBCard, DBTag } from '../../../../../output/react/src';
+import { SEMANTICS } from '../../../../../packages/components/src/shared/constants';
 import DefaultPage from '../../../components/default-page';
 
 const colors = ['neutral', ...SEMANTICS];
@@ -23,10 +23,12 @@ const ColorOverview = () => {
 				<DBButton
 					icon={colorScheme === 'light' ? 'moon' : 'sun'}
 					onClick={() => {
-						setColorScheme(colorScheme === 'light' ? 'dark' : 'light');
-					}}
-				>
-					Interact with me for {colorScheme === 'light' ? 'dark' : 'light'}
+						setColorScheme(
+							colorScheme === 'light' ? 'dark' : 'light'
+						);
+					}}>
+					Interact with me for{' '}
+					{colorScheme === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>
 
@@ -49,10 +51,12 @@ const ColorOverview = () => {
 				<DBButton
 					icon={colorScheme === 'light' ? 'moon' : 'sun'}
 					onClick={() => {
-						setColorScheme2(colorScheme2 === 'light' ? 'dark' : 'light');
-					}}
-				>
-					Interact with me for {colorScheme2 === 'light' ? 'dark' : 'light'}
+						setColorScheme2(
+							colorScheme2 === 'light' ? 'dark' : 'light'
+						);
+					}}>
+					Interact with me for{' '}
+					{colorScheme2 === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>
 				<section className="color-cards">
@@ -61,8 +65,7 @@ const ColorOverview = () => {
 							spacing="medium"
 							elevationLevel="3"
 							className={`db-color-${color}`}
-							key={color}
-						>
+							key={color}>
 							<DBCard spacing="medium" elevationLevel="2">
 								<DBCard spacing="medium">{color}</DBCard>
 							</DBCard>

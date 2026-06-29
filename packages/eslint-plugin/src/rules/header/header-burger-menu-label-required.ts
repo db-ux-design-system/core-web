@@ -1,31 +1,34 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
-			description: 'Ensure DBHeader has burgerMenuLabel for accessibility',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#header-burger-menu-label-required',
+			description:
+				'Ensure DBHeader has burgerMenuLabel for accessibility',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#header-burger-menu-label-required'
 		},
 		messages: {
-			missingBurgerMenuLabel: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL,
+			missingBurgerMenuLabel: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const burgerMenuLabel = getAttributeValue(node, 'burgerMenuLabel');
 			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL,
+					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
 				});
 			}
 		};
@@ -33,7 +36,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBHeader,
-			angularHandler,
+			angularHandler
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -47,21 +50,21 @@ export default {
 
 			const burgerMenuLabel = getAttributeValue(
 				openingElement,
-				'burgerMenuLabel',
+				'burgerMenuLabel'
 			);
 
 			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL,
+					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkHeader, Element: checkHeader},
-			{JSXElement: checkHeader},
+			{ VElement: checkHeader, Element: checkHeader },
+			{ JSXElement: checkHeader }
 		);
-	},
+	}
 };

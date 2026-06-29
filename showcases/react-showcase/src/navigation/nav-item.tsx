@@ -1,11 +1,11 @@
 import NextLink from 'next/link';
-import {usePathname} from 'next/navigation';
-import {useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
-import {DBNavigationItem} from '../../../../output/react/src';
-import type {NavigationItem} from '../utils/navigation-item';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { DBNavigationItem } from '../../../../output/react/src';
+import type { NavigationItem } from '../utils/navigation-item';
 
-const NavItem = ({navItem}: {navItem: NavigationItem}) => {
+const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	const pathname =
 		process.env.NEXT_SHOWCASE_VARIANT === 'next'
 			? usePathname()
@@ -34,34 +34,30 @@ const NavItem = ({navItem}: {navItem: NavigationItem}) => {
 						{navItem.subNavigation
 							.map((subItem: NavigationItem) => ({
 								...subItem,
-								path: `${navItem.path}/${subItem.path}`,
+								path: `${navItem.path}/${subItem.path}`
 							}))
 							.map((subItem: NavigationItem) => (
 								<NavItem
 									key={`router-path-${subItem.path}`}
-									navItem={subItem}
-								></NavItem>
+									navItem={subItem}></NavItem>
 							))}
 					</>
 				)
-			}
-		>
+			}>
 			{navItem.component ? (
 				<>
 					{process.env.NEXT_SHOWCASE_VARIANT === 'next' ? (
 						<NextLink
 							key={`router-path-${navItem.path}`}
 							href={navItem.path}
-							aria-current={isActive ? 'page' : undefined}
-						>
+							aria-current={isActive ? 'page' : undefined}>
 							{navItem.label}
 						</NextLink>
 					) : (
 						<Link
 							key={`router-path-${navItem.path}`}
 							to={navItem.path}
-							aria-current={isActive ? 'page' : undefined}
-						>
+							aria-current={isActive ? 'page' : undefined}>
 							{navItem.label}
 						</Link>
 					)}

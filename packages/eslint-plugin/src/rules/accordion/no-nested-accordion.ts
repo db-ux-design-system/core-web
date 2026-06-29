@@ -1,8 +1,8 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
@@ -10,27 +10,28 @@ export default {
 		type: 'problem' as const,
 		docs: {
 			description: 'Prevent nesting DBAccordion components',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-nested-accordion',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-nested-accordion'
 		},
 		messages: {
-			noNested: MESSAGES.ACCORDION_NO_NESTED,
+			noNested: MESSAGES.ACCORDION_NO_NESTED
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
-			let {parent} = node;
+			let { parent } = node;
 			while (parent) {
 				if (
-					(parent.type === 'Element' || parent.type === 'Element$1') &&
+					(parent.type === 'Element' ||
+						parent.type === 'Element$1') &&
 					isDBComponent(parent, COMPONENTS.DBAccordion)
 				) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
-						node.sourceSpan,
+						node.sourceSpan
 					);
 					context.report({
 						loc,
-						messageId: MESSAGE_IDS.ACCORDION_NO_NESTED,
+						messageId: MESSAGE_IDS.ACCORDION_NO_NESTED
 					});
 					return;
 				}
@@ -42,7 +43,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBAccordion,
-			angularHandler,
+			angularHandler
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -54,7 +55,7 @@ export default {
 				return;
 			}
 
-			let {parent} = node;
+			let { parent } = node;
 			while (parent) {
 				const parentOpening = parent.openingElement || parent;
 				if (
@@ -66,7 +67,7 @@ export default {
 				) {
 					context.report({
 						node: openingElement,
-						messageId: MESSAGE_IDS.ACCORDION_NO_NESTED,
+						messageId: MESSAGE_IDS.ACCORDION_NO_NESTED
 					});
 					return;
 				}
@@ -77,8 +78,8 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkAccordion, Element: checkAccordion},
-			{JSXElement: checkAccordion},
+			{ VElement: checkAccordion, Element: checkAccordion },
+			{ JSXElement: checkAccordion }
 		);
-	},
+	}
 };

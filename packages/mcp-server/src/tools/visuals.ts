@@ -1,7 +1,7 @@
-import {existsSync} from 'node:fs';
-import {readFile, readdir} from 'node:fs/promises';
-import {basename, extname, join} from 'node:path';
-import {type ToolResult, err} from '../utils';
+import { existsSync } from 'node:fs';
+import { readFile, readdir } from 'node:fs/promises';
+import { basename, extname, join } from 'node:path';
+import { type ToolResult, err } from '../utils';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -88,9 +88,9 @@ export async function handleListVisuals(): Promise<ToolResult> {
 			content: [
 				{
 					type: 'text',
-					text: 'No visual references available. The assets/visuals/ directory is empty or missing.',
-				},
-			],
+					text: 'No visual references available. The assets/visuals/ directory is empty or missing.'
+				}
+			]
 		};
 	}
 
@@ -98,9 +98,9 @@ export async function handleListVisuals(): Promise<ToolResult> {
 		content: [
 			{
 				type: 'text',
-				text: JSON.stringify(visuals, null, 2),
-			},
-		],
+				text: JSON.stringify(visuals, null, 2)
+			}
+		]
 	};
 }
 
@@ -116,7 +116,7 @@ export async function handleListVisuals(): Promise<ToolResult> {
  z-index reasoning, or verifying visual hierarchies.
  */
 export async function handleGetVisualReference({
-	name,
+	name
 }: {
 	name: string;
 }): Promise<ToolResult> {
@@ -129,7 +129,7 @@ export async function handleGetVisualReference({
 			`No visual found for '${name}'. ` +
 				(available.length > 0
 					? `Available: ${available.join(', ')}`
-					: 'No visuals are currently available.'),
+					: 'No visuals are currently available.')
 		);
 	}
 
@@ -143,13 +143,13 @@ export async function handleGetVisualReference({
 				{
 					type: 'image' as const,
 					data,
-					mimeType,
+					mimeType
 				},
 				{
 					type: 'text',
-					text: `Visual reference for '${name}' (pre-optimised: max 800×800 px, JPEG q75).`,
-				},
-			],
+					text: `Visual reference for '${name}' (pre-optimised: max 800×800 px, JPEG q75).`
+				}
+			]
 		};
 	} catch (error: unknown) {
 		const message = error instanceof Error ? error.message : String(error);

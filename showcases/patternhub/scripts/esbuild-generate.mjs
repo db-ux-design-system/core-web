@@ -5,13 +5,13 @@ await esbuild.build({
 	bundle: true,
 	outfile: './generated.js',
 	platform: 'node',
-	loader: {'.js': 'jsx'},
+	loader: { '.js': 'jsx' },
 	format: 'esm',
 	banner: {
 		js:
 			'const require = await (async () => { ' +
 			"const { createRequire } = await import('node:module');" +
 			'return createRequire(import.meta.url)' +
-			'})();',
-	},
+			'})();'
+	}
 });

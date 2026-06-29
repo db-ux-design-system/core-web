@@ -1,49 +1,56 @@
-import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularFix,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent,
+	isDBComponent
 } from '../../shared/utils.js';
 
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
-			description: 'Ensure external links have proper security attributes',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#link-external-security',
+			description:
+				'Ensure external links have proper security attributes',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#link-external-security'
 		},
 		fixable: 'code' as const,
 		messages: {
 			missingTargetBlank: MESSAGES.LINK_MISSING_TARGET_BLANK,
 			missingReferrerPolicy: MESSAGES.LINK_MISSING_REFERRER_POLICY,
-			missingContentExternal: MESSAGES.LINK_MISSING_CONTENT_EXTERNAL,
+			missingContentExternal: MESSAGES.LINK_MISSING_CONTENT_EXTERNAL
 		},
-		schema: [],
+		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const content = getAttributeValue(node, 'content');
 			const target = getAttributeValue(node, 'target');
 			const referrerPolicy = getAttributeValue(node, 'referrerPolicy');
-			const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+			const loc = parserServices.convertNodeSourceSpanToLoc(
+				node.sourceSpan
+			);
 
 			if (content === 'external' && target !== '_blank') {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.LINK_MISSING_TARGET_BLANK,
 					fix(fixer: any) {
-						const fixData = createAngularFix(context, node, ' target="_blank"');
+						const fixData = createAngularFix(
+							context,
+							node,
+							' target="_blank"'
+						);
 						if (!fixData) {
 							return null;
 						}
 
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText,
+							fixData.attributeText
 						);
-					},
+					}
 				});
 			}
 
@@ -55,7 +62,7 @@ export default {
 						const fixData = createAngularFix(
 							context,
 							node,
-							' referrerPolicy="no-referrer"',
+							' referrerPolicy="no-referrer"'
 						);
 						if (!fixData) {
 							return null;
@@ -63,9 +70,9 @@ export default {
 
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText,
+							fixData.attributeText
 						);
-					},
+					}
 				});
 			}
 
@@ -77,7 +84,7 @@ export default {
 						const fixData = createAngularFix(
 							context,
 							node,
-							' content="external"',
+							' content="external"'
 						);
 						if (!fixData) {
 							return null;
@@ -85,9 +92,9 @@ export default {
 
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
-							fixData.attributeText,
+							fixData.attributeText
 						);
-					},
+					}
 				});
 			}
 		};
@@ -95,7 +102,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBLink,
-			angularHandler,
+			angularHandler
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -111,7 +118,7 @@ export default {
 			const target = getAttributeValue(openingElement, 'target');
 			const referrerPolicy = getAttributeValue(
 				openingElement,
-				'referrerPolicy',
+				'referrerPolicy'
 			);
 
 			if (content === 'external') {
@@ -121,21 +128,25 @@ export default {
 						messageId: MESSAGE_IDS.LINK_MISSING_TARGET_BLANK,
 						fix(fixer: any) {
 							if (node.openingElement) {
-								const lastAttr = openingElement.attributes.at(-1);
+								const lastAttr =
+									openingElement.attributes.at(-1);
 								const insertPos = lastAttr
 									? lastAttr.range[1]
 									: openingElement.name.range[1];
 								return fixer.insertTextAfterRange(
 									[insertPos, insertPos],
-									' target="_blank"',
+									' target="_blank"'
 								);
 							}
 
 							const attrs = openingElement.startTag.attributes;
 							if (attrs.length > 0) {
 								return fixer.insertTextAfterRange(
-									[attrs.at(-1).range[1], attrs.at(-1).range[1]],
-									' target="_blank"',
+									[
+										attrs.at(-1).range[1],
+										attrs.at(-1).range[1]
+									],
+									' target="_blank"'
 								);
 							}
 
@@ -145,9 +156,9 @@ export default {
 								openingElement.rawName.length;
 							return fixer.insertTextAfterRange(
 								[insertPos, insertPos],
-								' target="_blank"',
+								' target="_blank"'
 							);
-						},
+						}
 					});
 				}
 
@@ -157,21 +168,25 @@ export default {
 						messageId: MESSAGE_IDS.LINK_MISSING_REFERRER_POLICY,
 						fix(fixer: any) {
 							if (node.openingElement) {
-								const lastAttr = openingElement.attributes.at(-1);
+								const lastAttr =
+									openingElement.attributes.at(-1);
 								const insertPos = lastAttr
 									? lastAttr.range[1]
 									: openingElement.name.range[1];
 								return fixer.insertTextAfterRange(
 									[insertPos, insertPos],
-									' referrerPolicy="no-referrer"',
+									' referrerPolicy="no-referrer"'
 								);
 							}
 
 							const attrs = openingElement.startTag.attributes;
 							if (attrs.length > 0) {
 								return fixer.insertTextAfterRange(
-									[attrs.at(-1).range[1], attrs.at(-1).range[1]],
-									' referrerPolicy="no-referrer"',
+									[
+										attrs.at(-1).range[1],
+										attrs.at(-1).range[1]
+									],
+									' referrerPolicy="no-referrer"'
 								);
 							}
 
@@ -181,9 +196,9 @@ export default {
 								openingElement.rawName.length;
 							return fixer.insertTextAfterRange(
 								[insertPos, insertPos],
-								' referrerPolicy="no-referrer"',
+								' referrerPolicy="no-referrer"'
 							);
-						},
+						}
 					});
 				}
 			}
@@ -200,7 +215,7 @@ export default {
 								: openingElement.name.range[1];
 							return fixer.insertTextAfterRange(
 								[insertPos, insertPos],
-								' content="external"',
+								' content="external"'
 							);
 						}
 
@@ -208,7 +223,7 @@ export default {
 						if (attrs.length > 0) {
 							return fixer.insertTextAfterRange(
 								[attrs.at(-1).range[1], attrs.at(-1).range[1]],
-								' content="external"',
+								' content="external"'
 							);
 						}
 
@@ -218,17 +233,17 @@ export default {
 							openingElement.rawName.length;
 						return fixer.insertTextAfterRange(
 							[insertPos, insertPos],
-							' content="external"',
+							' content="external"'
 						);
-					},
+					}
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{VElement: checkLink, Element: checkLink},
-			{JSXElement: checkLink},
+			{ VElement: checkLink, Element: checkLink },
+			{ JSXElement: checkLink }
 		);
-	},
+	}
 };

@@ -1,6 +1,6 @@
-import {test} from '@playwright/test';
-import {runA11yCheckerTest} from '../default.ts';
+import { test } from '@playwright/test';
+import { runA11yCheckerTest } from '../default.ts';
 
 test.describe('DBDrawer', () => {
-	runA11yCheckerTest({path: '01/drawer'});
+	runA11yCheckerTest({ path: '01/drawer' });
 });

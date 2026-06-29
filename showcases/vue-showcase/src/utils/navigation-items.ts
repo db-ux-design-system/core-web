@@ -29,8 +29,8 @@ import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase.vue
 import TagShowcase from '@components/components/tag/showcase/tag.showcase.vue';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase.vue';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
-import {markRaw} from 'vue';
-import type {RouteRecordRaw} from 'vue-router';
+import { markRaw } from 'vue';
+import type { RouteRecordRaw } from 'vue-router';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
@@ -42,7 +42,7 @@ export type NavItem = {
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	navigationItems.toSorted((a: NavItem, b: NavItem) =>
-		a.path.localeCompare(b.path),
+		a.path.localeCompare(b.path)
 	);
 
 export const navigationItems: NavItem[] = [
@@ -53,14 +53,14 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/06/notification',
 				label: 'Notification',
-				component: markRaw(NotificationShowcase),
+				component: markRaw(NotificationShowcase)
 			},
 			{
 				path: '/06/badge',
 				label: 'Badge',
-				component: markRaw(BadgeShowcase),
-			},
-		]),
+				component: markRaw(BadgeShowcase)
+			}
+		])
 	},
 
 	{
@@ -70,14 +70,14 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/05/navigation-item',
 				label: 'NavigationItem',
-				component: markRaw(NavigationItemShowcase),
+				component: markRaw(NavigationItemShowcase)
 			},
 			{
 				path: '/05/navigation',
 				label: 'Navigation',
-				component: markRaw(NavigationShowcase),
-			},
-		]),
+				component: markRaw(NavigationShowcase)
+			}
+		])
 	},
 
 	{
@@ -87,51 +87,51 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/04/brand',
 				label: 'Brand',
-				component: markRaw(BrandShowcase),
+				component: markRaw(BrandShowcase)
 			},
 			{
 				path: '/04/infotext',
 				label: 'Infotext',
-				component: markRaw(InfotextShowcase),
+				component: markRaw(InfotextShowcase)
 			},
 			{
 				path: '/04/icon',
 				label: 'Icon',
-				component: markRaw(IconShowcase),
+				component: markRaw(IconShowcase)
 			},
-			{path: '/04/tag', label: 'Tag', component: markRaw(TagShowcase)},
+			{ path: '/04/tag', label: 'Tag', component: markRaw(TagShowcase) },
 			{
 				path: '/04/accordion',
 				label: 'Accordion',
-				component: markRaw(AccordionShowcase),
+				component: markRaw(AccordionShowcase)
 			},
 			{
 				path: '/04/accordion-item',
 				label: 'AccordionItem',
-				component: markRaw(AccordionItemShowcase),
+				component: markRaw(AccordionItemShowcase)
 			},
 			{
 				path: '/04/tooltip',
 				label: 'Tooltip',
-				component: markRaw(TooltipShowcase),
+				component: markRaw(TooltipShowcase)
 			},
 			{
 				path: '/04/tab-item',
 				label: 'TabItem',
-				component: markRaw(TabItemShowcase),
+				component: markRaw(TabItemShowcase)
 			},
 			{
 				path: '/04/table',
 				label: 'Table',
-				component: markRaw(TableShowcase),
+				component: markRaw(TableShowcase)
 			},
 
 			{
 				path: '/04/tabs',
 				label: 'Tabs',
-				component: markRaw(TabsShowcase),
-			},
-		]),
+				component: markRaw(TabsShowcase)
+			}
+		])
 	},
 	{
 		path: '/03',
@@ -140,39 +140,39 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/03/custom-select',
 				label: 'CustomSelect',
-				component: markRaw(CustomSelectShowcase),
+				component: markRaw(CustomSelectShowcase)
 			},
 			{
 				path: '/03/input',
 				label: 'Input',
-				component: markRaw(InputShowcase),
+				component: markRaw(InputShowcase)
 			},
 			{
 				path: '/03/textarea',
 				label: 'Textarea',
-				component: markRaw(TextareaShowcase),
+				component: markRaw(TextareaShowcase)
 			},
 			{
 				path: '/03/radio',
 				label: 'Radio',
-				component: markRaw(RadioShowcase),
+				component: markRaw(RadioShowcase)
 			},
 			{
 				path: '/03/checkbox',
 				label: 'Checkbox',
-				component: markRaw(CheckboxShowcase),
+				component: markRaw(CheckboxShowcase)
 			},
 			{
 				path: '/03/switch',
 				label: 'Switch',
-				component: markRaw(SwitchShowcase),
+				component: markRaw(SwitchShowcase)
 			},
 			{
 				path: '/03/select',
 				label: 'Select',
-				component: markRaw(SelectShowcase),
-			},
-		]),
+				component: markRaw(SelectShowcase)
+			}
+		])
 	},
 	{
 		path: '/02',
@@ -181,19 +181,19 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/02/link',
 				label: 'Link',
-				component: markRaw(LinkShowcase),
+				component: markRaw(LinkShowcase)
 			},
 			{
 				path: '/02/custom-button',
 				label: 'CustomButton',
-				component: markRaw(CustomButtonShowcase),
+				component: markRaw(CustomButtonShowcase)
 			},
 			{
 				path: '/02/button',
 				label: 'Button',
-				component: markRaw(ButtonShowcase),
-			},
-		]),
+				component: markRaw(ButtonShowcase)
+			}
+		])
 	},
 	{
 		path: '/01',
@@ -202,45 +202,45 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/01/stack',
 				label: 'Stack',
-				component: markRaw(StackShowcase),
+				component: markRaw(StackShowcase)
 			},
 			{
 				path: '/01/card',
 				label: 'Card',
-				component: markRaw(CardShowcase),
+				component: markRaw(CardShowcase)
 			},
 			{
 				path: '/01/drawer',
 				label: 'Drawer',
-				component: markRaw(DrawerShowcase),
+				component: markRaw(DrawerShowcase)
 			},
 			{
 				path: '/01/divider',
 				label: 'Divider',
-				component: markRaw(DividerShowcase),
+				component: markRaw(DividerShowcase)
 			},
 			{
 				path: '/01/popover',
 				label: 'Popover',
-				component: markRaw(PopoverShowcase),
+				component: markRaw(PopoverShowcase)
 			},
 			{
 				path: '/01/section',
 				label: 'Section',
-				component: markRaw(SectionShowcase),
+				component: markRaw(SectionShowcase)
 			},
 			{
 				path: '/01/header',
 				label: 'Header',
-				component: markRaw(HeaderShowcase),
-			},
-		]),
+				component: markRaw(HeaderShowcase)
+			}
+		])
 	},
-	{path: '/', label: 'Home', component: markRaw(Home)},
+	{ path: '/', label: 'Home', component: markRaw(Home) }
 ];
 
 const pushRoute = (routes: RouteRecordRaw[], item: NavItem) => {
-	routes.push({path: item.path, component: item.component});
+	routes.push({ path: item.path, component: item.component });
 
 	if (item.subNavigation) {
 		for (const subItem of item.subNavigation) {

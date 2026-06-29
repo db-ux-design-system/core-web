@@ -1,13 +1,13 @@
 import stylelint from 'stylelint';
-import {createRule} from '../shared/create-rule.js';
+import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
 	defaultExact,
-	getDeclarationRuleFunction,
+	getDeclarationRuleFunction
 } from '../shared/index.js';
 
 const {
-	utils: {ruleMessages},
+	utils: { ruleMessages }
 } = stylelint;
 
 const ruleName = 'db-ux/use-spacings';
@@ -15,16 +15,16 @@ const ruleName = 'db-ux/use-spacings';
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-spacing-[fixed|responsive]-xx' instead of px or rem.",
+		"Please use 'db-spacing-[fixed|responsive]-xx' instead of px or rem."
 });
 
 const meta = {
-	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md',
+	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md'
 };
 
 const allowedDeclarations: AllowedType = {
 	includes: ['margin', 'padding'],
-	exact: ['gap'],
+	exact: ['gap']
 };
 const allowedValues: AllowedType = {
 	includes: [
@@ -33,9 +33,9 @@ const allowedValues: AllowedType = {
 		'db-sizing',
 		'%',
 		'vw',
-		'vh',
+		'vh'
 	],
-	exact: defaultExact,
+	exact: defaultExact
 };
 
 const useSpacings = createRule({
@@ -46,8 +46,8 @@ const useSpacings = createRule({
 		allowedDeclarations,
 		allowedValues,
 		messages,
-		ruleName,
-	}),
+		ruleName
+	})
 });
 
 export default useSpacings;

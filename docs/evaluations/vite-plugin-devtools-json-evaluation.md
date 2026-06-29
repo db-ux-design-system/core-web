@@ -32,14 +32,14 @@ The repository currently uses Vite in several locations:
 ### Showcases
 
 - **React Showcase** (`/showcases/react-showcase/vite.config.ts`)
-  - Uses `@vitejs/plugin-react`
-  - Builds to `build-showcases/react-showcase`
-  - Enables CSS dev source maps
+    - Uses `@vitejs/plugin-react`
+    - Builds to `build-showcases/react-showcase`
+    - Enables CSS dev source maps
 
 - **Vue Showcase** (`/showcases/vue-showcase/vite.config.ts`)
-  - Uses `@vitejs/plugin-vue`
-  - Builds to `build-showcases/vue-showcase`
-  - Enables CSS dev source maps
+    - Uses `@vitejs/plugin-vue`
+    - Builds to `build-showcases/vue-showcase`
+    - Enables CSS dev source maps
 
 ## Evaluation Criteria
 
@@ -119,8 +119,8 @@ The repository currently uses Vite in several locations:
 #### Phase 2: Full Rollout
 
 1. Add to all Vite configurations if Phase 1 is successful:
-   - React showcase
-   - Vue showcase
+    - React showcase
+    - Vue showcase
 2. Update documentation with DevTools usage guidelines
 
 #### Phase 3: Documentation
@@ -133,49 +133,49 @@ The repository currently uses Vite in several locations:
 ### React Showcase Configuration
 
 ```typescript
-import react from '@vitejs/plugin-react';
-import devtoolsJson from 'vite-plugin-devtools-json';
-import {defineConfig} from 'vite';
+import react from "@vitejs/plugin-react";
+import devtoolsJson from "vite-plugin-devtools-json";
+import { defineConfig } from "vite";
 
 export default defineConfig({
 	base: `/react-showcase/`,
 	plugins: [
 		react(),
-		devtoolsJson(), // Add DevTools JSON generation
+		devtoolsJson() // Add DevTools JSON generation
 	],
 	build: {
-		outDir: '../../build-showcases/react-showcase',
-		emptyOutDir: true,
+		outDir: "../../build-showcases/react-showcase",
+		emptyOutDir: true
 	},
 	define: {
-		process,
+		process
 	},
 	css: {
-		devSourcemap: true,
-	},
+		devSourcemap: true
+	}
 });
 ```
 
 ### Vue Showcase Configuration
 
 ```typescript
-import vue from '@vitejs/plugin-vue';
-import devtoolsJson from 'vite-plugin-devtools-json';
-import {defineConfig} from 'vite';
+import vue from "@vitejs/plugin-vue";
+import devtoolsJson from "vite-plugin-devtools-json";
+import { defineConfig } from "vite";
 
 export default defineConfig({
 	base: `/vue-showcase/`,
 	plugins: [
 		vue(),
-		devtoolsJson(), // Add DevTools JSON generation
+		devtoolsJson() // Add DevTools JSON generation
 	],
 	build: {
-		outDir: '../../build-showcases/vue-showcase',
-		emptyOutDir: true,
+		outDir: "../../build-showcases/vue-showcase",
+		emptyOutDir: true
 	},
 	css: {
-		devSourcemap: true,
-	},
+		devSourcemap: true
+	}
 });
 ```
 
