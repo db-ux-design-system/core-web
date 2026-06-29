@@ -18,7 +18,7 @@ export const TOOL_TIMEOUT_MS = 10_000;
  If the operation does not settle within TOOL_TIMEOUT_MS, returns a semantic
  MCP error object instead of throwing, so the LLM receives a readable message.
  
- Note on cancellation:** When the timeout fires, the original `operation`
+ **Note on cancellation:** When the timeout fires, the original `operation`
  promise continues running in the background until it settles (there is no
  way to cancel an arbitrary Promise in JavaScript). This is acceptable here
  because the only callers are lightweight in-memory manifest lookups that
