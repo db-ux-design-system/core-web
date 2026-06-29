@@ -196,12 +196,12 @@ export default (tmp?: boolean) => {
 					to:
 						`errors = input<any>(undefined);\n\n` +
 						`\t\t/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */\n` +
-						`\t\tvalue = model<string | undefined>();\n\n` +
+						`\t\tvalue = model<any>();\n\n` +
 						`\t\t/** @internal Sync value → values (Signal Forms writes to value) */\n` +
 						`\t\tprivate _syncValueToValues = effect(() => {\n` +
 						`\t\t\tconst v = this.value();\n` +
 						`\t\t\tif (v !== undefined) {\n` +
-						`\t\t\t\tthis.values.set(v ? [v] : []);\n` +
+						`\t\t\t\tthis.values.set(Array.isArray(v) ? v : v ? [v] : []);\n` +
 						`\t\t\t}\n` +
 						`\t\t});\n\n` +
 						`\t\t/** @internal Sync values → value (CVA/user interaction writes to values) */\n` +
@@ -293,6 +293,16 @@ export default (tmp?: boolean) => {
 						`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
 						`      this._invalidMessage.set('');\n` +
 						`    }\n`
+				});
+			}
+
+			// Signal Forms type compatibility: widen 'pattern' input to accept RegExp[] from FieldState
+			// Angular Signal Forms binds FieldState.pattern (readonly RegExp[]) to the host's pattern input
+			if (fileContent2.includes(`input<${upperComponentName}Props["pattern"]>`)) {
+				replaceInFileSync({
+					files: file,
+					from: `pattern: InputSignal<${upperComponentName}Props["pattern"]> =\n    input<${upperComponentName}Props["pattern"]>()`,
+					to: `pattern: InputSignal<${upperComponentName}Props["pattern"] | readonly RegExp[]> =\n    input<${upperComponentName}Props["pattern"] | readonly RegExp[]>()`
 				});
 			}
 		}
