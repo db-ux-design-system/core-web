@@ -1,15 +1,15 @@
-import { expect, type Page, test } from '@playwright/test';
-import Components from '../data/components.json' with { type: 'json' };
+import {expect, type Page, test} from '@playwright/test';
+import Components from '../data/components.json' with {type: 'json'};
 
 const getDefaultScreenshotTest = async (
 	name: string,
 	type: string,
 	path: string,
-	fn: (page: Page) => Promise<void>
+	fn: (page: Page) => Promise<void>,
 ) => {
-	test(`${type} should match screenshot`, async ({ page }) => {
+	test(`${type} should match screenshot`, async ({page}) => {
 		await page.goto(`${path}`, {
-			waitUntil: 'domcontentloaded'
+			waitUntil: 'domcontentloaded',
 		});
 		await fn(page);
 		await expect(page).toHaveScreenshot([name, 'patternhub.png']);
@@ -26,7 +26,7 @@ for (const group of Components) {
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();
-				}
+				},
 			);
 		});
 		test.describe(component.name, () => {
@@ -37,7 +37,7 @@ for (const group of Components) {
 				async (page) => {
 					const firstH1 = page.locator('h1').first();
 					await expect(firstH1).toBeVisible();
-				}
+				},
 			);
 		});
 		test.describe(component.name, () => {
@@ -48,7 +48,7 @@ for (const group of Components) {
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();
-				}
+				},
 			);
 		});
 	}

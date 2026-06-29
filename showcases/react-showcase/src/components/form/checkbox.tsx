@@ -1,5 +1,5 @@
-import { DBCheckbox } from '@components';
-import { useState } from 'react';
+import {DBCheckbox} from '@components';
+import {useState} from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormCheckboxes = () => {
@@ -13,7 +13,8 @@ const FormCheckboxes = () => {
 				checked={controlled}
 				onChange={(event) => {
 					setControlled(event.target.checked);
-				}}>
+				}}
+			>
 				Controlled
 			</DBCheckbox>
 			<DBCheckbox
@@ -21,7 +22,8 @@ const FormCheckboxes = () => {
 				defaultChecked={uncontrolled}
 				onChange={(event) => {
 					setUncontrolled(event.target.checked);
-				}}>
+				}}
+			>
 				Uncontrolled
 			</DBCheckbox>
 		</FormWrapper>

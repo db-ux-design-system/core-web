@@ -1,5 +1,5 @@
-import { DBTextarea } from '@components';
-import { useState } from 'react';
+import {DBTextarea} from '@components';
+import {useState} from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormTextareas = () => {

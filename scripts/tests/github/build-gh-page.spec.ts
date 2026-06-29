@@ -1,6 +1,6 @@
-import { execSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
-import { describe, expect, test } from 'vitest';
+import {execSync} from 'node:child_process';
+import {existsSync} from 'node:fs';
+import {describe, expect, test} from 'vitest';
 
 const command = 'node github/build-gh-page.ts';
 

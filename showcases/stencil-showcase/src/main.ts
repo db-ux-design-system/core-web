@@ -1,5 +1,5 @@
-import { renderNavigation } from './navigation';
-import { initRouter } from './router';
+import {renderNavigation} from './navigation';
+import {initRouter} from './router';
 import './styles.css';
 
 // Render the navigation shell

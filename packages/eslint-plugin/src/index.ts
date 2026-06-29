@@ -1,4 +1,4 @@
-import packageJson from '../package.json' with { type: 'json' };
+import packageJson from '../package.json' with {type: 'json'};
 import accordionItemHeadlineRequired from './rules/accordion/accordion-item-headline-required.js';
 import noNestedAccordion from './rules/accordion/no-nested-accordion.js';
 import badgeCornerPlacementRules from './rules/badge/badge-corner-placement-rules.js';
@@ -45,14 +45,14 @@ const recommended = {
 		'db-ux/select-requires-options': 'error',
 		'db-ux/tag-removable-remove-button-required': 'error',
 		'db-ux/text-or-children-required': 'error',
-		'db-ux/tooltip-requires-interactive-parent': 'error'
-	}
+		'db-ux/tooltip-requires-interactive-parent': 'error',
+	},
 };
 
 const plugin = {
 	meta: {
 		name: '@db-ux/core-eslint-plugin',
-		version: packageJson.version
+		version: packageJson.version,
 	},
 	rules: {
 		'button-no-text-requires-tooltip': buttonNoTextRequiresTooltip,
@@ -76,14 +76,13 @@ const plugin = {
 		'header-burger-menu-label-required': headerBurgerMenuLabelRequired,
 		'navigation-item-back-button-text-required':
 			navigationItemBackButtonTextRequired,
-		'tag-removable-remove-button-required':
-			tagRemovableRemoveButtonRequired,
+		'tag-removable-remove-button-required': tagRemovableRemoveButtonRequired,
 		'input-type-required': inputTypeRequired,
-		'input-file-type-validation': inputFileTypeValidation
+		'input-file-type-validation': inputFileTypeValidation,
 	},
 	configs: {
-		recommended
-	}
+		recommended,
+	},
 };
 
 export default plugin;

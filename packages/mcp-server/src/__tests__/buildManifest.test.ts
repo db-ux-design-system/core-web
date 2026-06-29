@@ -1,16 +1,16 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 
 // Mock fs before importing the module under test
-vi.mock('node:fs', () => ({ existsSync: vi.fn() }));
+vi.mock('node:fs', () => ({existsSync: vi.fn()}));
 vi.mock('node:fs/promises', () => ({
 	readdir: vi.fn().mockResolvedValue([]),
 	readFile: vi.fn(),
-	writeFile: vi.fn().mockResolvedValue(undefined)
+	writeFile: vi.fn().mockResolvedValue(undefined),
 }));
 
-const { existsSync } = await import('node:fs');
-const { readFile, writeFile } = await import('node:fs/promises');
-const { processComponent } = await import('../../scripts/build-manifest.js');
+const {existsSync} = await import('node:fs');
+const {readFile, writeFile} = await import('node:fs/promises');
+const {processComponent} = await import('../../scripts/build-manifest.js');
 
 const BASE = '/mock/components';
 const OUTPUT = '/mock/output';
@@ -26,13 +26,17 @@ describe('processComponent', () => {
 	it('returns hasError:false with props and examples on success', async () => {
 		vi.mocked(existsSync).mockImplementation(
 			(p: any) =>
-				String(p).includes('model.ts') || String(p).includes('showcase')
+				String(p).includes('model.ts') || String(p).includes('showcase'),
 		);
 		vi.mocked(readFile).mockImplementation(async (p: any) => {
-			if (String(p).includes('model.ts'))
+			if (String(p).includes('model.ts')) {
 				return 'export interface ButtonProps {}';
-			if (String(p).includes('showcase'))
+			}
+
+			if (String(p).includes('showcase')) {
 				return 'exampleName="Variant" exampleName="Size"';
+			}
+
 			return '';
 		});
 
@@ -49,7 +53,7 @@ describe('processComponent', () => {
 	it('returns hasError:true when readFile throws', async () => {
 		vi.mocked(existsSync).mockReturnValue(true);
 		vi.mocked(readFile).mockRejectedValue(
-			new Error('EACCES: permission denied')
+			new Error('EACCES: permission denied'),
 		);
 
 		const result = await processComponent('broken', BASE, OUTPUT);
@@ -75,9 +79,7 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 	let exitSpy: ReturnType<typeof vi.spyOn>;
 
 	beforeEach(() => {
-		exitSpy = vi
-			.spyOn(process, 'exit')
-			.mockImplementation((() => {}) as any);
+		exitSpy = vi.spyOn(process, 'exit').mockImplementation((() => {}) as any);
 	});
 
 	afterEach(() => {
@@ -88,19 +90,20 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		// Simulate: 'button' succeeds, 'broken' throws during readFile
 		vi.mocked(existsSync).mockImplementation(
 			(p: any) =>
-				(String(p).includes('button') &&
-					String(p).includes('model.ts')) ||
-				(String(p).includes('broken') && String(p).includes('model.ts'))
+				(String(p).includes('button') && String(p).includes('model.ts')) ||
+				(String(p).includes('broken') && String(p).includes('model.ts')),
 		);
 		vi.mocked(readFile).mockImplementation(async (p: any) => {
-			if (String(p).includes('broken'))
+			if (String(p).includes('broken')) {
 				throw new Error('ENOENT: broken component');
+			}
+
 			return '// button props';
 		});
 
 		const results = await Promise.all([
 			processComponent('button', BASE, OUTPUT),
-			processComponent('broken', BASE, OUTPUT)
+			processComponent('broken', BASE, OUTPUT),
 		]);
 
 		const hasErrors = results.some((r) => r.hasError);
@@ -118,7 +121,10 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		expect(hasErrors).toBe(true);
 
 		// Simulate what buildManifest does after Promise.all
-		if (hasErrors) process.exit(1);
+		if (hasErrors) {
+			process.exit(1);
+		}
+
 		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
@@ -127,11 +133,13 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 
 		const results = await Promise.all([
 			processComponent('button', BASE, OUTPUT),
-			processComponent('input', BASE, OUTPUT)
+			processComponent('input', BASE, OUTPUT),
 		]);
 
 		const hasErrors = results.some((r) => r.hasError);
-		if (hasErrors) process.exit(1);
+		if (hasErrors) {
+			process.exit(1);
+		}
 
 		expect(exitSpy).not.toHaveBeenCalled();
 	});

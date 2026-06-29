@@ -2,12 +2,12 @@ import {
 	COMPONENTS,
 	INTERACTIVE_ELEMENTS,
 	MESSAGE_IDS,
-	MESSAGES
+	MESSAGES,
 } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
-	isDBComponent
+	isDBComponent,
 } from '../../shared/utils.js';
 
 function isInteractiveElement(node: any): boolean {
@@ -37,20 +37,19 @@ export default {
 		docs: {
 			description:
 				'Ensure DBTooltip is child of interactive element for accessibility',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tooltip-requires-interactive-parent'
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tooltip-requires-interactive-parent',
 		},
 		messages: {
-			requiresInteractive: MESSAGES.TOOLTIP_REQUIRES_INTERACTIVE
+			requiresInteractive: MESSAGES.TOOLTIP_REQUIRES_INTERACTIVE,
 		},
-		schema: []
+		schema: [],
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
-			let { parent } = node;
+			let {parent} = node;
 			while (parent) {
 				if (
-					(parent.type === 'Element' ||
-						parent.type === 'Element$1') &&
+					(parent.type === 'Element' || parent.type === 'Element$1') &&
 					isInteractiveElement(parent)
 				) {
 					return;
@@ -59,19 +58,17 @@ export default {
 				parent = parent.parent;
 			}
 
-			const loc = parserServices.convertNodeSourceSpanToLoc(
-				node.sourceSpan
-			);
+			const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
 			context.report({
 				loc,
-				messageId: MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE
+				messageId: MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE,
 			});
 		};
 
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBTooltip,
-			angularHandler
+			angularHandler,
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -83,7 +80,7 @@ export default {
 				return;
 			}
 
-			let { parent } = node;
+			let {parent} = node;
 			while (parent) {
 				if (
 					(parent.type === 'JSXElement' ||
@@ -99,14 +96,14 @@ export default {
 
 			context.report({
 				node: openingElement,
-				messageId: MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE
+				messageId: MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE,
 			});
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkTooltip, Element: checkTooltip },
-			{ JSXElement: checkTooltip }
+			{VElement: checkTooltip, Element: checkTooltip},
+			{JSXElement: checkTooltip},
 		);
-	}
+	},
 };

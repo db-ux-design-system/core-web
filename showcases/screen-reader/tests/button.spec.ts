@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import {getTest, testDefault} from '../default';
 
 const test = getTest();
 
@@ -17,7 +17,7 @@ test.describe('DBButton', () => {
 			await screenReader?.clearSpokenPhraseLog();
 			await screenReader?.previous();
 			await screenReader?.next();
-		}
+		},
 	});
 	testDefault({
 		test,
@@ -34,6 +34,6 @@ test.describe('DBButton', () => {
 			await nvda?.clearSpokenPhraseLog();
 			await nvda?.press('Shift+Tab');
 			await nvda?.press('Tab');
-		}
+		},
 	});
 });

@@ -3,7 +3,7 @@ import {
 	generateExampleKey,
 	getCodeByFramework,
 	getComponentName,
-	transformToUpperComponentName
+	transformToUpperComponentName,
 } from './utils.js';
 
 const sharedPath = '../shared';
@@ -13,14 +13,14 @@ const generateExampleJSX = () => {
 	let elements = [];
 	if (FS.existsSync(webTypesPath)) {
 		const webTypes = JSON.parse(
-			FS.readFileSync(webTypesPath, 'utf8').toString()
+			FS.readFileSync(webTypesPath, 'utf8').toString(),
 		);
 		elements = webTypes?.contributions?.html?.elements;
 	}
 
 	const imports = [];
 	const examples = [];
-	for (const { name } of elements) {
+	for (const {name} of elements) {
 		if (!name.startsWith('db-')) {
 			continue;
 		}
@@ -38,13 +38,13 @@ const generateExampleJSX = () => {
 						'react',
 						example,
 						true,
-						variant.children
+						variant.children,
 					);
 
 					const exampleKey = generateExampleKey(
 						componentName,
 						variant.name,
-						example.name
+						example.name,
 					);
 					examples.push(`"${exampleKey}":renderToString(${[code]})`);
 				}
@@ -57,11 +57,11 @@ const generateExampleJSX = () => {
 	}
 
 	FS.writeFileSync(
-		`./scripts/generated/index.jsx`,
+		'./scripts/generated/index.jsx',
 		"import { renderToString } from 'react-dom/server';\n" +
 			"import React from 'react';\n" +
 			`import {${imports.join(',')}} from '../../../../output/react/src';\n\n` +
-			`export const allExamples = {${examples.join(',\n')}}`
+			`export const allExamples = {${examples.join(',\n')}}`,
 	);
 };
 

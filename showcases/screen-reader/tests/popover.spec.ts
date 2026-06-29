@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import {getTest, testDefault} from '../default';
 
 const test = getTest();
 test.describe('DBPopover', () => {
@@ -28,6 +28,6 @@ test.describe('DBPopover', () => {
 				await voiceOver?.next(); // Navigating to end of article
 				await voiceOver?.next(); // Navigating to next button and open next popover
 			}
-		}
+		},
 	});
 });

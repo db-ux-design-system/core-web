@@ -34,103 +34,103 @@ Add to your ESLint config:
 
 ```js
 // eslint.config.js
-import dbUx from "@db-ux/core-eslint-plugin";
+import dbUx from '@db-ux/core-eslint-plugin';
 
 export default [
 	{
 		plugins: {
-			"db-ux": dbUx
+			'db-ux': dbUx,
 		},
-		rules: dbUx.configs.recommended.rules
-	}
+		rules: dbUx.configs.recommended.rules,
+	},
 ];
 ```
 
 **For Vue projects**, configure the Vue parser:
 
 ```js
-import dbUx from "@db-ux/core-eslint-plugin";
-import vueParser from "vue-eslint-parser";
-import tsParser from "@typescript-eslint/parser";
+import dbUx from '@db-ux/core-eslint-plugin';
+import vueParser from 'vue-eslint-parser';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
 	{
-		files: ["**/*.vue"],
+		files: ['**/*.vue'],
 		languageOptions: {
 			parser: vueParser,
 			parserOptions: {
 				parser: tsParser,
-				ecmaVersion: "latest",
-				sourceType: "module"
-			}
+				ecmaVersion: 'latest',
+				sourceType: 'module',
+			},
 		},
 		plugins: {
-			"db-ux": dbUx
+			'db-ux': dbUx,
 		},
-		rules: dbUx.configs.recommended.rules
-	}
+		rules: dbUx.configs.recommended.rules,
+	},
 ];
 ```
 
 **For Angular projects**, configure the Angular template parser:
 
 ```js
-import dbUx from "@db-ux/core-eslint-plugin";
-import angularTemplateParser from "@angular-eslint/template-parser";
+import dbUx from '@db-ux/core-eslint-plugin';
+import angularTemplateParser from '@angular-eslint/template-parser';
 
 export default [
 	{
-		files: ["**/*.html"],
+		files: ['**/*.html'],
 		languageOptions: {
-			parser: angularTemplateParser
+			parser: angularTemplateParser,
 		},
 		plugins: {
-			"db-ux": dbUx
+			'db-ux': dbUx,
 		},
-		rules: dbUx.configs.recommended.rules
-	}
+		rules: dbUx.configs.recommended.rules,
+	},
 ];
 ```
 
 **Or enable rules individually:**
 
 ```js
-import dbUx from "@db-ux/core-eslint-plugin";
+import dbUx from '@db-ux/core-eslint-plugin';
 
 export default [
 	{
 		plugins: {
-			"db-ux": dbUx
+			'db-ux': dbUx,
 		},
 		rules: {
-			"db-ux/button-no-text-requires-tooltip": "error"
-		}
-	}
+			'db-ux/button-no-text-requires-tooltip': 'error',
+		},
+	},
 ];
 ```
 
 **For React/TypeScript projects**, configure the TypeScript parser:
 
 ```js
-import dbUx from "@db-ux/core-eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
+import dbUx from '@db-ux/core-eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
 	{
-		files: ["**/*.ts", "**/*.tsx"],
+		files: ['**/*.ts', '**/*.tsx'],
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
-				ecmaVersion: "latest",
-				sourceType: "module",
-				ecmaFeatures: { jsx: true }
-			}
+				ecmaVersion: 'latest',
+				sourceType: 'module',
+				ecmaFeatures: {jsx: true},
+			},
 		},
 		plugins: {
-			"db-ux": dbUx
+			'db-ux': dbUx,
 		},
-		rules: dbUx.configs.recommended.rules
-	}
+		rules: dbUx.configs.recommended.rules,
+	},
 ];
 ```
 

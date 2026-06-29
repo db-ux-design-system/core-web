@@ -32,12 +32,12 @@ Enable rules inside your `.stylelintrc.json` with:
 ```json5
 {
 	rules: {
-		"db-ux/use-spacings": [true], // margins, paddings, gaps
-		"db-ux/use-sizing": [true], // height, width, block-size, inline-size
-		"db-ux/use-border-width": [true], // border-width & border
-		"db-ux/use-border-radius": [true], // border-radius
-		"db-ux/use-border-color": [true] // border-color & border
-	}
+		'db-ux/use-spacings': [true], // margins, paddings, gaps
+		'db-ux/use-sizing': [true], // height, width, block-size, inline-size
+		'db-ux/use-border-width': [true], // border-width & border
+		'db-ux/use-border-radius': [true], // border-radius
+		'db-ux/use-border-color': [true], // border-color & border
+	},
 }
 ```
 
@@ -48,19 +48,19 @@ There are some additional settings for every rule which can be applied to the `.
 ```json5
 {
 	rules: {
-		"db-ux/use-xxx": [
+		'db-ux/use-xxx': [
 			true,
 			{
 				allowCalc: true, // allow all calc() functions - they are hard to lint
-				ignore: ["test.scss"], // ignore specific files
+				ignore: ['test.scss'], // ignore specific files
 				allow: {
 					// allow additional values e.g. for SASS or exceptions/workarounds
-					startsWith: ["map.get"],
-					includes: ["--custom-gap"],
-					exact: ["$custom-padding"]
-				}
-			}
-		]
-	}
+					startsWith: ['map.get'],
+					includes: ['--custom-gap'],
+					exact: ['$custom-padding'],
+				},
+			},
+		],
+	},
 }
 ```

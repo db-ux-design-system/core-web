@@ -1,5 +1,5 @@
-import { renderHomePage } from './home';
-import { NAVIGATION_ITEMS } from './navigation';
+import {renderHomePage} from './home';
+import {NAVIGATION_ITEMS} from './navigation';
 
 /**
  Parse the current hash to extract route information.
@@ -15,7 +15,7 @@ function parseHash(hash: string): {
 	const parameters = new URLSearchParams(queryString ?? '');
 
 	if (!hashPath || hashPath === '/') {
-		return { category: undefined, component: undefined, parameters };
+		return {category: undefined, component: undefined, parameters};
 	}
 
 	const segments = hashPath.split('/').filter(Boolean);
@@ -24,14 +24,14 @@ function parseHash(hash: string): {
 		return {
 			category: segments[0],
 			component: segments[1],
-			parameters
+			parameters,
 		};
 	}
 
 	return {
 		category: segments[0] ?? undefined,
 		component: undefined,
-		parameters
+		parameters,
 	};
 }
 
@@ -41,7 +41,7 @@ function parseHash(hash: string): {
 function isKnownRoute(category: string, component: string): boolean {
 	const path = `${category}/${component}`;
 	return NAVIGATION_ITEMS.some(
-		(item) => item.children?.some((child) => child.path === path) ?? false
+		(item) => item.children?.some((child) => child.path === path) ?? false,
 	);
 }
 
@@ -52,7 +52,7 @@ function isKnownRoute(category: string, component: string): boolean {
 function renderShowcasePage(
 	container: HTMLElement,
 	component: string,
-	parameters: URLSearchParams
+	parameters: URLSearchParams,
 ): void {
 	const showcaseTag = `${component}-showcase`;
 
@@ -92,9 +92,7 @@ function handleRoute(): void {
 		return;
 	}
 
-	const { category, component, parameters } = parseHash(
-		globalThis.location.hash
-	);
+	const {category, component, parameters} = parseHash(globalThis.location.hash);
 
 	// Home route or empty hash
 	if (!category || !component) {
@@ -136,7 +134,7 @@ export function initRouter(): void {
 		globalThis.addEventListener('hashchange', handleRoute);
 		handleRoute();
 	} else if (page) {
-		observer.observe(page, { attributeFilter: ['class'] });
+		observer.observe(page, {attributeFilter: ['class']});
 	}
 }
 

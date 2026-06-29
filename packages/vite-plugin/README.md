@@ -15,11 +15,11 @@ npm install @db-ux/core-vite-plugin --save-dev
 Add the plugin to your `vite.config.js` or `vite.config.ts`:
 
 ```js
-import { defineConfig } from "vite";
-import dbUxPlugin from "@db-ux/core-vite-plugin";
+import {defineConfig} from 'vite';
+import dbUxPlugin from '@db-ux/core-vite-plugin';
 
 export default defineConfig({
-	plugins: [dbUxPlugin()]
+	plugins: [dbUxPlugin()],
 });
 ```
 
@@ -27,7 +27,7 @@ Then import the plugin in your CSS file:
 
 ```css
 /* styles.css or main.css */
-@import "@db-ux/core-vite-plugin/index.css";
+@import '@db-ux/core-vite-plugin/index.css';
 ```
 
 The plugin handles theme detection, component CSS, and foundation styles automatically.
@@ -39,14 +39,14 @@ If you're currently using the manual CSS layer imports, you can replace them wit
 ```css
 /* Before */
 @layer whitelabel-theme, db-ux;
-@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+@import '@db-ux/core-foundations/build/styles/theme/rollup.css'
 	layer(whitelabel-theme);
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
 ```
 
 ```css
 /* After */
-@import "@db-ux/core-vite-plugin/index.css";
+@import '@db-ux/core-vite-plugin/index.css';
 ```
 
 ### Advanced Usage
@@ -54,32 +54,32 @@ If you're currently using the manual CSS layer imports, you can replace them wit
 For more control, you can configure the plugin:
 
 ```js
-import { defineConfig } from "vite";
-import dbUxPlugin from "@db-ux/core-vite-plugin";
+import {defineConfig} from 'vite';
+import dbUxPlugin from '@db-ux/core-vite-plugin';
 
 export default defineConfig({
 	plugins: [
 		dbUxPlugin({
 			include: {
-				components: ["button", "input"], // Force include specific components
-				foundations: ["helpers", "animations", "icons"], // Force include foundation features
-				colors: ["neutral", "brand"], // Force include color schemes
-				densities: ["regular", "functional"], // Force include densities
-				fontSizes: ["body-md", "headline-lg"] // Force include font sizes
+				components: ['button', 'input'], // Force include specific components
+				foundations: ['helpers', 'animations', 'icons'], // Force include foundation features
+				colors: ['neutral', 'brand'], // Force include color schemes
+				densities: ['regular', 'functional'], // Force include densities
+				fontSizes: ['body-md', 'headline-lg'], // Force include font sizes
 			},
 			exclude: {
-				components: ["tooltip"], // Exclude specific components
-				foundations: ["elevation"], // Exclude foundation features
-				colors: ["critical"], // Exclude color schemes
-				densities: ["expressive"], // Exclude densities
-				fontSizes: ["body-3xs"] // Exclude font sizes
+				components: ['tooltip'], // Exclude specific components
+				foundations: ['elevation'], // Exclude foundation features
+				colors: ['critical'], // Exclude color schemes
+				densities: ['expressive'], // Exclude densities
+				fontSizes: ['body-3xs'], // Exclude font sizes
 			},
 			optimize: true, // Remove unused CSS variable declarations to reduce bundle size (default: true).
-			theme: "db-theme", // Specify preferred theme package name (e.g., "db-theme")
-			additionalLayers: { after: ["ri-extension"] }, // Append custom layers to the auto-generated order
-			debug: false // Generate detection report for debugging (default: false)
-		})
-	]
+			theme: 'db-theme', // Specify preferred theme package name (e.g., "db-theme")
+			additionalLayers: {after: ['ri-extension']}, // Append custom layers to the auto-generated order
+			debug: false, // Generate detection report for debugging (default: false)
+		}),
+	],
 });
 ```
 
@@ -118,9 +118,9 @@ export default defineConfig({
 // Adds layers around the auto-generated ones
 dbUxPlugin({
 	additionalLayers: {
-		before: ["reset"],
-		after: ["ri-extension"]
-	}
+		before: ['reset'],
+		after: ['ri-extension'],
+	},
 });
 // → @layer reset, db-theme, db-ux, ri-extension;
 ```
@@ -133,7 +133,7 @@ dbUxPlugin({
 
 ```js
 dbUxPlugin({
-	overrideLayers: ["db-theme", "db-ux", "ri-extension"]
+	overrideLayers: ['db-theme', 'db-ux', 'ri-extension'],
 });
 // → @layer db-theme, db-ux, ri-extension;
 ```
@@ -165,23 +165,23 @@ It then generates an optimized CSS bundle containing only:
 If you're using Tailwind CSS alongside this plugin, **the order matters**. The `@db-ux/core-vite-plugin` must be placed **before** the Tailwind plugin in your Vite configuration:
 
 ```js
-import { defineConfig } from "vite";
-import dbUxPlugin from "@db-ux/core-vite-plugin";
-import tailwindcss from "@tailwindcss/vite";
+import {defineConfig} from 'vite';
+import dbUxPlugin from '@db-ux/core-vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
 	plugins: [
 		dbUxPlugin(), // Must come before tailwindcss()
-		tailwindcss()
-	]
+		tailwindcss(),
+	],
 });
 ```
 
 And in your CSS file:
 
 ```css
-@import "tailwindcss";
-@import "@db-ux/core-vite-plugin/index.css";
+@import 'tailwindcss';
+@import '@db-ux/core-vite-plugin/index.css';
 ```
 
 **Why?** The DB UX plugin needs to process and replace the `@import "@db-ux/core-vite-plugin/index.css"` statement with actual CSS before Tailwind processes the file. Tailwind will strip out unrecognized imports, so the DB UX plugin must run first to transform the import into valid CSS that Tailwind can then process.
@@ -205,7 +205,7 @@ The plugin's `transform` hook only runs for CSS that is part of Vite's module gr
 
 ```ts
 // main.ts or main.tsx
-import "./styles.css";
+import './styles.css';
 ```
 
 This pulls the CSS into Vite's module graph where the plugin can transform it. The production build is not affected by this issue.

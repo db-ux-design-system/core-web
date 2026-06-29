@@ -1,11 +1,11 @@
-import type { ToolResult } from '../utils';
+import type {ToolResult} from '../utils';
 
 /**
- * Instructs the LLM to verify its changes against the project's own toolchain.
- *
- * Instead of writing temporary files and running hardcoded compilers, this tool
- * returns a textual instruction for the LLM to discover and run the appropriate
- * verification scripts from the project's package.json.
+ Instructs the LLM to verify its changes against the project's own toolchain.
+ 
+ Instead of writing temporary files and running hardcoded compilers, this tool
+ returns a textual instruction for the LLM to discover and run the appropriate
+ verification scripts from the project's package.json.
  */
 export async function handleVerifyMigratedCode(): Promise<ToolResult> {
 	const instruction = [
@@ -19,15 +19,15 @@ export async function handleVerifyMigratedCode(): Promise<ToolResult> {
 		'2. Prefer "typecheck" or "check" scripts if available.',
 		'3. Fall back to "lint" or "build" if no dedicated check script exists.',
 		'4. Run the chosen script and report any errors.',
-		'5. If no suitable script is found, inform the user that manual verification is needed.'
+		'5. If no suitable script is found, inform the user that manual verification is needed.',
 	].join('\n');
 
 	return {
 		content: [
 			{
 				type: 'text',
-				text: instruction
-			}
-		]
+				text: instruction,
+			},
+		],
 	};
 }

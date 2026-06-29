@@ -5,11 +5,7 @@
 }
 @if (!page) {
 	<db-page [fadeIn]="true" documentOverflow="auto" variant="fixed">
-		<db-header
-			(toggle)="toggleDrawer($event)"
-			[drawerOpen]="drawerOpen"
-			header
-		>
+		<db-header (toggle)="toggleDrawer($event)" [drawerOpen]="drawerOpen" header>
 			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation aria-label="main-navigation">
 				@for (item of navigationItems; track item.label) {
@@ -43,10 +39,7 @@
 				</db-select>
 			</ng-container>
 			<ng-container primary-action>
-				<db-button
-					[noText]="true"
-					icon="magnifying_glass"
-					variant="ghost"
+				<db-button [noText]="true" icon="magnifying_glass" variant="ghost"
 					>Search</db-button
 				>
 			</ng-container>

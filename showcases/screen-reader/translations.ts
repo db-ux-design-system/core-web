@@ -26,8 +26,8 @@ export const translations: Record<string, string[]> = {
 	link: ['Link'],
 	'list, with': ['Liste, mit'],
 	'Please check this box if you want to proceed': [
-		'Klicke dieses Kästchen an, wenn du fortfahren möchtest'
+		'Klicke dieses Kästchen an, wenn du fortfahren möchtest',
 	],
 	'out of list': ['Liste Ende'],
-	'navigation landmark': ['Navigation Sprungmarke']
+	'navigation landmark': ['Navigation Sprungmarke'],
 };

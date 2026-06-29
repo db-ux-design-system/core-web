@@ -7,10 +7,7 @@ const TAG = 'cleanup-gh-pages:';
 
 const removeOldFromPath = (isTag, data) => {
 	const path = `public/${isTag ? 'version' : 'review'}`;
-	if (
-		FS.existsSync(path) &&
-		data?.filter((branch) => branch.name).length > 0
-	) {
+	if (FS.existsSync(path) && data?.filter((branch) => branch.name).length > 0) {
 		const dirsToDelete = FS.readdirSync(path)
 			// eslint-disable-next-line unicorn/prefer-array-some
 			.filter((file) => !data.find((branch) => branch.name === file))
@@ -19,13 +16,13 @@ const removeOldFromPath = (isTag, data) => {
 		if (dirsToDelete?.length > 0) {
 			console.log(
 				TAG,
-				`Start removing ${isTag ? 'tags' : 'branches'} from gh-pages`
+				`Start removing ${isTag ? 'tags' : 'branches'} from gh-pages`,
 			);
 			console.log(TAG, dirsToDelete);
 			for (const dir of dirsToDelete) {
 				FS.rmSync(`${path}/${dir}`, {
 					recursive: true,
-					force: true
+					force: true,
 				});
 				console.log(TAG, `deleted  ${isTag ? 'tag' : 'branch'} ${dir}`);
 			}
@@ -39,23 +36,23 @@ const removeOldFromPath = (isTag, data) => {
 	return false;
 };
 
-const cleanUpPages = async ({ github, context }) => {
-	const { repo, owner } = context.repo;
+const cleanUpPages = async ({github, context}) => {
+	const {repo, owner} = context.repo;
 	const branches = await github.rest.repos.listBranches({
 		owner,
 		repo,
 		// eslint-disable-next-line camelcase
-		per_page: 100
+		per_page: 100,
 	});
 	const tags = await github.rest.repos.listTags({
 		owner,
-		repo
+		repo,
 	});
 
 	return {
 		deploy:
 			removeOldFromPath(false, branches.data) ||
-			removeOldFromPath(true, tags.data)
+			removeOldFromPath(true, tags.data),
 	};
 };
 

@@ -1,5 +1,5 @@
-import { expect, test, type FullProject, type Page } from '@playwright/test';
-import { getDefaultScreenshotTest } from '../default.ts';
+import {expect, test, type FullProject, type Page} from '@playwright/test';
+import {getDefaultScreenshotTest} from '../default.ts';
 
 const path = '04/tabs';
 
@@ -18,6 +18,6 @@ const preScreenShot = async (page: Page, project: FullProject) => {
 test.describe('DBTabs', () => {
 	getDefaultScreenshotTest({
 		path,
-		preScreenShot
+		preScreenShot,
 	});
 });

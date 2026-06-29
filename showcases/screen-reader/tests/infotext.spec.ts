@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import {getTest, testDefault} from '../default';
 
 const test = getTest();
 
@@ -18,6 +18,6 @@ test.describe('DBInfotext', () => {
 				await voiceOver?.previous(); // Infotext "Functional"
 				await voiceOver?.next(); // Infotext "(Default) Regular"
 			}
-		}
+		},
 	});
 });

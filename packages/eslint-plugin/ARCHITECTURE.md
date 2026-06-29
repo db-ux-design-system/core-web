@@ -62,18 +62,18 @@ export default createRule({
 
 ```ts
 // Check component type
-if (!isDBComponent(openingElement, "DBButton")) return;
+if (!isDBComponent(openingElement, 'DBButton')) return;
 
 // Get prop values
-const noText = getAttributeValue(openingElement, "noText");
-const icon = getAttributeValue(openingElement, "icon");
+const noText = getAttributeValue(openingElement, 'noText');
+const icon = getAttributeValue(openingElement, 'icon');
 
 // Check children
-const hasTooltip = hasChildOfType(node, "DBTooltip");
+const hasTooltip = hasChildOfType(node, 'DBTooltip');
 
 // Report issues
 if (!hasTooltip) {
-	context.report({ node, messageId: "missingTooltip" });
+	context.report({node, messageId: 'missingTooltip'});
 }
 ```
 

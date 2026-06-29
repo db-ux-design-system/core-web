@@ -1,5 +1,5 @@
-import { MDXProvider } from '@mdx-js/react';
-import type { AppProps } from 'next/app';
+import {MDXProvider} from '@mdx-js/react';
+import type {AppProps} from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 import React from 'react';
@@ -15,7 +15,7 @@ type HeadingProps = React.DetailedHTMLProps<
 	HTMLHeadingElement
 >;
 
-const App = ({ Component, pageProps }: AppProps) => (
+const App = ({Component, pageProps}: AppProps) => (
 	<MDXProvider
 		components={{
 			h1: (props: HeadingProps) => (
@@ -58,22 +58,14 @@ const App = ({ Component, pageProps }: AppProps) => (
 				properties: React.DetailedHTMLProps<
 					React.AnchorHTMLAttributes<HTMLAnchorElement>,
 					HTMLAnchorElement
-				>
-			) => (
-				<a
-					target="_blank"
-					referrerPolicy="no-referrer"
-					{...properties}
-				/>
-			),
-			table: (properties) => (
-				<table className="static-table" {...properties} />
-			),
+				>,
+			) => <a target="_blank" referrerPolicy="no-referrer" {...properties} />,
+			table: (properties) => <table className="static-table" {...properties} />,
 			img: (
 				properties: React.DetailedHTMLProps<
 					React.ImgHTMLAttributes<HTMLImageElement>,
 					HTMLImageElement
-				>
+				>,
 			) => (
 				<img
 					{...properties}
@@ -83,8 +75,9 @@ const App = ({ Component, pageProps }: AppProps) => (
 							: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${properties.src}`
 					}
 				/>
-			)
-		}}>
+			),
+		}}
+	>
 		{process.env.NEXT_PUBLIC_BASE_PATH !== '/core-web/sub/' && (
 			<Script
 				src={

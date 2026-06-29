@@ -1,11 +1,11 @@
-import { globSync } from 'glob';
+import {globSync} from 'glob';
 
 /**
- * Find all CHANGELOG.md files in the repo, excluding node_modules, using glob.
+ Find all CHANGELOG.md files in the repo, excluding node_modules, using glob.
  */
 export function findChangelogFiles(
 	repoRoot: string,
-	ignores?: string[]
+	ignores?: string[],
 ): string[] {
 	const ignore = ignores ?? [];
 	ignore.push('**/node_modules/**');
@@ -13,13 +13,13 @@ export function findChangelogFiles(
 	return globSync('**/CHANGELOG.md', {
 		cwd: repoRoot,
 		ignore,
-		absolute: true
+		absolute: true,
 	});
 }
 
 /**
- * Extracts the first changelog section (from the first '##' header to the next '##' or end of file).
- * This is useful for extracting the latest release notes, regardless of version string.
+ Extracts the first changelog section (from the first '##' header to the next '##' or end of file).
+ This is useful for extracting the latest release notes, regardless of version string.
  */
 export function extractChangelogForVersion(changelog: string): string {
 	// Find the index of the first '##' header

@@ -1,12 +1,12 @@
 /**
- * Build-time path constants for the MCP server build scripts.
- *
- * These paths resolve into the monorepo source tree and are ONLY used at
- * build time (by build-manifest.ts). The runtime server reads exclusively
- * from its own assets/ directory — see src/utils/path.ts.
+ Build-time path constants for the MCP server build scripts.
+ 
+ These paths resolve into the monorepo source tree and are ONLY used at
+ build time (by build-manifest.ts). The runtime server reads exclusively
+ from its own assets/ directory — see src/utils/path.ts.
  */
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import {dirname, join, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -16,7 +16,7 @@ export const REPO_ROOT = resolve(__dirname, '../../..');
 /** Absolute path to the component source directory. */
 export const COMPONENTS_DIR = join(
 	REPO_ROOT,
-	'packages/components/src/components'
+	'packages/components/src/components',
 );
 
 /** Absolute path to the framework output directory. */
@@ -35,5 +35,5 @@ export const TOKEN_FILES: Record<string, string> = {
 	spacing: join(FOUNDATIONS_DIR, 'scss/_variables.scss'),
 	density: join(FOUNDATIONS_DIR, 'scss/density/_variables.scss'),
 	animation: join(FOUNDATIONS_DIR, 'scss/animation/_animations.scss'),
-	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss')
+	transitions: join(FOUNDATIONS_DIR, 'scss/animation/_transitions.scss'),
 };

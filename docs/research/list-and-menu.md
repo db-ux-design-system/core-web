@@ -23,41 +23,41 @@
 ## Conclusion
 
 - We might add those components:
-    - `<DBList>`
-    - `<DBListGroup>`
-    - `<DBListGroupTitle>`
-    - `<DBListItem>`
-    - optional subcomponents to work with `:has()` and grid:
-        - `<DBListItemContentStart>`
-        - `<DBListItemContentEnd>`
-    - See [Example in HTML](#example-what-should-be-rendered-in-html)
+  - `<DBList>`
+  - `<DBListGroup>`
+  - `<DBListGroupTitle>`
+  - `<DBListItem>`
+  - optional subcomponents to work with `:has()` and grid:
+    - `<DBListItemContentStart>`
+    - `<DBListItemContentEnd>`
+  - See [Example in HTML](#example-what-should-be-rendered-in-html)
 - Based on the children inside `<DBListItem>` we might change the role of the `DBList` or `DBListGroup`
-    - maybe we could just use the normal list semantics even for `<button>` or `<input/>` with additional JS for keyboard navigation, but we need to check how screen-readers will handle this
-    - there should be also a property like `semanticRole="list" | "menu"` to override the default behavior and skip the check for children
-    - if children are `<button>` and `<a>` we might use `role="menu"` + `role="menuitem"`
-    - we need to check if how we can support `details` + `summary` inside a slot of `<DBListItem>`, maybe with `display: grid` and `subgrid`
+  - maybe we could just use the normal list semantics even for `<button>` or `<input/>` with additional JS for keyboard navigation, but we need to check how screen-readers will handle this
+  - there should be also a property like `semanticRole="list" | "menu"` to override the default behavior and skip the check for children
+  - if children are `<button>` and `<a>` we might use `role="menu"` + `role="menuitem"`
+  - we need to check if how we can support `details` + `summary` inside a slot of `<DBListItem>`, maybe with `display: grid` and `subgrid`
 - The "Menu" component will be an example `<DBPopover>` + `<DBList>`
 - An `orientation` property on `DBList` and/or `DBListGroup` will handle the layout for `<DBListItem>`:
-    - `horizontal` (Default):
-        - ```css
+  - `horizontal` (Default):
+    - ```css
+      grid-template-areas:
+      	'content-start icon text icon-trailing content-end'
+      	'content-start icon description icon-trailing content-end';
+      ```
+  - `vertical`:
+    - ````css
           grid-template-areas:
-          	"content-start icon text icon-trailing content-end"
-          	"content-start icon description icon-trailing content-end";
+          	"content-start content-start"
+          	"icon icon"
+          	"text text"
+          	"description icon-trailing"
+          	"content-end content-end";
           ```
-    - `vertical`:
-        - ````css
-              grid-template-areas:
-              	"content-start content-start"
-              	"icon icon"
-              	"text text"
-              	"description icon-trailing"
-              	"content-end content-end";
-              ```
-          ````
+      ````
 - `DBListGroup` has property `showDivider`, which might be a Mitosis component like this:
-    - `<Fragment><li class="db-list-group"></li><Show when={showDivider}><li class="db-list-divider"></li></Show></Fragment>`
-    - Maybe we should use `variant="divider"` on `DBList` to handle this for all `DBListGroup` ???
-    - `variant="divider"` would allow us to use `variant="card"` to align with `DBAccordion` and `DBTable`
+  - `<Fragment><li class="db-list-group"></li><Show when={showDivider}><li class="db-list-divider"></li></Show></Fragment>`
+  - Maybe we should use `variant="divider"` on `DBList` to handle this for all `DBListGroup` ???
+  - `variant="divider"` would allow us to use `variant="card"` to align with `DBAccordion` and `DBTable`
 - `overflow` for `DBList` and `DBListGroup`
 - `width`: `auto` or `full` for `DBListGroup`
 - `<input type="checkbox">` or `<input type="radio">` with `:checked` will have `basic-bg-level-2`
@@ -70,11 +70,11 @@
 
 - [MDN Menu/Group/MenuItem Example](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/group_role#:~:text=The%20following%20example%20uses%20the%20group%20role%20with%20a%20drop%2Ddown%20menu%20containing%20menuitems%3A)
 - W3 Aria Patterns:
-    - [Listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/)
-    - [Menu](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/)
+  - [Listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/)
+  - [Menu](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/)
 
 - Interesting aria-roles:
-    - [aria-activedescendant](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-activedescendant)
+  - [aria-activedescendant](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-activedescendant)
 
 ### Example what should be rendered in HTML
 
@@ -90,10 +90,10 @@
 				list-style: none;
 			}
 
-			[role="separator"] {
+			[role='separator'] {
 				/* We need some content to enforce screen-reader to read "separator" */
 				&::before {
-					content: "---";
+					content: '---';
 					height: 1px;
 					border-top: 1px solid black;
 					display: block;
@@ -109,9 +109,7 @@
 				<!-- <DBListGroup> -->
 				<li class="db-list-section" aria-labelledby="section-1">
 					<!-- <DBListGroupTitle> -->
-					<div class="db-list-group-title" id="section-1">
-						Section 1
-					</div>
+					<div class="db-list-group-title" id="section-1">Section 1</div>
 					<ul>
 						<!-- <DBListItem>-->
 						<li class="db-list-item">Test 1</li>
@@ -122,9 +120,7 @@
 				<!-- showDivider inside <DBListGroup> -->
 				<li class="db-list-divider" role="separator"></li>
 				<li class="db-list-section" aria-labelledby="section-2">
-					<div class="db-list-group-title" id="section-2">
-						Section 2
-					</div>
+					<div class="db-list-group-title" id="section-2">Section 2</div>
 					<ul>
 						<li class="db-list-item">Test 4</li>
 						<li class="db-list-item">Test 5</li>
@@ -265,11 +261,7 @@ const App = () => {
 				contentEnd={
 					<DBPopover
 						trigger={
-							<DBButton
-								variant="ghost"
-								icon="chevron_left"
-								noText
-							>
+							<DBButton variant="ghost" icon="chevron_left" noText>
 								Hover on me
 							</DBButton>
 						}

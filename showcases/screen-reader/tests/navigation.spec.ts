@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import {getTest, testDefault} from '../default';
 
 const test = getTest();
 
@@ -38,6 +38,6 @@ test.describe('DBNavigation', () => {
 				await voiceOver?.next(); // 		Link "Navi-Item 3" - dimmed
 				await voiceOver?.next(); // List A end
 			}
-		}
+		},
 	});
 });

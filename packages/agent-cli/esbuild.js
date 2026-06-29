@@ -1,4 +1,4 @@
-import { build } from 'esbuild';
+import {build} from 'esbuild';
 
 await build({
 	entryPoints: ['./src/cli.ts'],
@@ -6,5 +6,5 @@ await build({
 	outfile: './build/index.js',
 	platform: 'node',
 	format: 'esm',
-	packages: 'external'
+	packages: 'external',
 });
