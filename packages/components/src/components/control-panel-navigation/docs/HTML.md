@@ -10,22 +10,26 @@ For general installation and configuration look at the [components](https://www.
 <body>
 	<nav class="db-control-panel-navigation">
 		<menu>
-			<li class="db-control-panel-navigation-item">
+			<li class="db-control-panel-navigation-item-group">
 				<button
-					class="db-control-panel-navigation-item-expand-button"
+					class="db-control-panel-navigation-item-group-expand-button"
 					aria-haspopup="true"
+					aria-expanded="false"
 				>
-					Navi-Item 1
+					Navi-Group 1
 				</button>
-				<menu class="db-sub-navigation">
-					<li class="db-control-panel-navigation-item">
+				<menu class="db-control-panel-navigation-item-group-menu">
+					<li class="db-control-panel-navigation-item-group">
 						<button
-							class="db-control-panel-navigation-item-expand-button"
+							class="db-control-panel-navigation-item-group-expand-button"
 							aria-haspopup="true"
+							aria-expanded="false"
 						>
-							Sub-Navi-Item 1
+							Sub-Group 1
 						</button>
-						<menu class="db-sub-navigation">
+						<menu
+							class="db-control-panel-navigation-item-group-menu"
+						>
 							<li class="db-control-panel-navigation-item">
 								<a href="#" aria-current="page"
 									>Sub-Sub-Navi-Item 1</a

@@ -6,12 +6,17 @@ For general installation and configuration look at the [ngx-core-components](htt
 
 ```ts app.component.ts
 // app.component.ts
-import { DBControlPanelNavigation, DBControlPanelNavigationItem, NavigationContentDirective } from '@db-ux/ngx-core-components';
+import {
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup,
+	NavigationContentDirective
+} from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBControlPanelNavigation, DBControlPanelNavigationItem, NavigationContentDirective],
+  imports: [..., DBControlPanelNavigation, DBControlPanelNavigationItem, DBControlPanelNavigationItemGroup, NavigationContentDirective],
   // ...
 })
 ```
@@ -22,35 +27,25 @@ import { DBControlPanelNavigation, DBControlPanelNavigationItem, NavigationConte
 <!-- app.component.html -->
 
 <db-control-panel-navigation>
-	<db-control-panel-navigation-item>
-		<ng-container sub-navigation>
+	<db-control-panel-navigation-item-group text="Navi-Group 1">
+		<db-control-panel-navigation-item-group text="Sub-Group 1">
 			<db-control-panel-navigation-item>
 				<ng-container *dbNavigationContent>
-					Sub-Navi-Item 1
-				</ng-container>
-				<ng-container sub-navigation>
-					<db-control-panel-navigation-item>
-						<ng-container *dbNavigationContent>
-							<a href="#" aria-current="page"
-								>Sub-Sub-Navi-Item 1</a
-							>
-						</ng-container>
-					</db-control-panel-navigation-item>
-					<db-control-panel-navigation-item>
-						<ng-container *dbNavigationContent>
-							<a href="#">Sub-Sub-Navi-Item 2</a>
-						</ng-container>
-					</db-control-panel-navigation-item>
+					<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
 				</ng-container>
 			</db-control-panel-navigation-item>
 			<db-control-panel-navigation-item>
 				<ng-container *dbNavigationContent>
-					<a href="#">Sub-Navi-Item 2</a>
+					<a href="#">Sub-Sub-Navi-Item 2</a>
 				</ng-container>
 			</db-control-panel-navigation-item>
-		</ng-container>
-		<ng-container *dbNavigationContent> Navi-Item 1 </ng-container>
-	</db-control-panel-navigation-item>
+		</db-control-panel-navigation-item-group>
+		<db-control-panel-navigation-item>
+			<ng-container *dbNavigationContent>
+				<a href="#">Sub-Navi-Item 2</a>
+			</ng-container>
+		</db-control-panel-navigation-item>
+	</db-control-panel-navigation-item-group>
 	<db-control-panel-navigation-item icon="x_placeholder">
 		<ng-container *dbNavigationContent>
 			<a href="#">Navi-Item 2</a>
@@ -75,7 +70,11 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```ts app.component.ts
 // app.component.ts
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { DBControlPanelNavigation, DBControlPanelNavigationItem } from '@db-ux/ngx-core-components';
+import {
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
+} from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
@@ -85,7 +84,8 @@ import { DBControlPanelNavigation, DBControlPanelNavigationItem } from '@db-ux/n
 	RouterLink,
 	RouterLinkActive,
 	DBControlPanelNavigation,
-	DBControlPanelNavigationItem
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
   ],
   // ...
 })
@@ -109,22 +109,21 @@ The active style is automatically set once an item receives the `aria-current="p
 			</a>
 		</ng-container>
 	</db-control-panel-navigation-item>
-	<db-control-panel-navigation-item>
-		<ng-container *dbNavigationContent> Demo Pages </ng-container>
-		<ng-container sub-navigation>
-			<db-control-panel-navigation-item>
-				<ng-container *dbNavigationContent>
-					<a routerLink="/demo/1" ariaCurrentWhenActive="page">
-						Demo Page 1
-					</a>
-				</ng-container>
-				<ng-container *dbNavigationContent>
-					<a routerLink="/demo/2" ariaCurrentWhenActive="page">
-						Demo Page 2
-					</a>
-				</ng-container>
-			</db-control-panel-navigation-item>
-		</ng-container>
-	</db-control-panel-navigation-item>
+	<db-control-panel-navigation-item-group text="Demo Pages">
+		<db-control-panel-navigation-item>
+			<ng-container *dbNavigationContent>
+				<a routerLink="/demo/1" ariaCurrentWhenActive="page">
+					Demo Page 1
+				</a>
+			</ng-container>
+		</db-control-panel-navigation-item>
+		<db-control-panel-navigation-item>
+			<ng-container *dbNavigationContent>
+				<a routerLink="/demo/2" ariaCurrentWhenActive="page">
+					Demo Page 2
+				</a>
+			</ng-container>
+		</db-control-panel-navigation-item>
+	</db-control-panel-navigation-item-group>
 </db-control-panel-navigation>
 ```

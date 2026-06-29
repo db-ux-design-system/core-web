@@ -9,10 +9,11 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<div class="db-shell">
-		<control-panel-desktop class="db-control-panel-desktop"
-			>...</control-panel-desktop
-		>
-		Main Shell
+		<header class="db-control-panel-desktop">
+			<div class="db-control-panel-brand">My App</div>
+			<!-- Navigation goes here -->
+		</header>
+		<main class="db-shell-content">Main Content</main>
 	</div>
 </body>
 ```

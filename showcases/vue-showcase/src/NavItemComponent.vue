@@ -12,16 +12,17 @@ defineProps<{
 
 <template>
 	<template v-if="navItem.subNavigation">
-		<DBControlPanelNavigationItemGroup :text="navItem.label">
+		<DBControlPanelNavigationItemGroup
+			:text="navItem.label"
+			:backButtonText="`Back to ${navItem.label}`"
+		>
 			<template v-for="item of navItem.subNavigation">
 				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>
 		</DBControlPanelNavigationItemGroup>
 	</template>
 	<template v-if="!navItem.subNavigation">
-		<DBControlPanelNavigationItem
-			:backButtonText="`Back to ${navItem.label}`"
-		>
+		<DBControlPanelNavigationItem>
 			<router-link :to="navItem.path" ariaCurrentValue="page">
 				{{ navItem.label }}
 			</router-link>

@@ -8,38 +8,27 @@ For general installation and configuration look at the [react-core-components](h
 // App.tsx
 import {
 	DBControlPanelNavigation,
-	DBControlPanelNavigationItem
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
 } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBControlPanelNavigation>
-		<DBControlPanelNavigationItem
-			subNavigation={
-				<>
-					<DBControlPanelNavigationItem
-						subNavigation={
-							<>
-								<DBControlPanelNavigationItem>
-									<a href="#" aria-current="page">
-										Sub-Sub-Navi-Item 1
-									</a>
-								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
-									<a href="#">Sub-Sub-Navi-Item 2</a>
-								</DBControlPanelNavigationItem>
-							</>
-						}
-					>
-						Sub-Navi-Item 1
-					</DBControlPanelNavigationItem>
-					<DBControlPanelNavigationItem>
-						<a href="#">Sub-Navi-Item 2</a>
-					</DBControlPanelNavigationItem>
-				</>
-			}
-		>
-			Navi-Item 1
-		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItemGroup text="Navi-Group 1">
+			<DBControlPanelNavigationItemGroup text="Sub-Group 1">
+				<DBControlPanelNavigationItem>
+					<a href="#" aria-current="page">
+						Sub-Sub-Navi-Item 1
+					</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
+					<a href="#">Sub-Sub-Navi-Item 2</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>
+				<a href="#">Sub-Navi-Item 2</a>
+			</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
 		<DBControlPanelNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
 		</DBControlPanelNavigationItem>

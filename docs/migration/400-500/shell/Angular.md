@@ -260,7 +260,7 @@ import {
 			<db-button icon="help" variant="ghost" [noText]="true">
 				Help
 			</db-button>
-		</db-control-panel-secondary-action>
+		</db-control-panel-secondary-actions>
 	`
 })
 export class SecondaryActionsComponent {}
@@ -351,26 +351,30 @@ import { NavigationComponent } from "./navigation.component";
 	standalone: true,
 	template: `
 		<db-shell fadeIn>
-			<db-control-panel-desktop
-				control-panel-desktop
-			>
-				<db-control-panel-brand brand>My Awesome App</db-brand>
+			<db-control-panel-desktop>
+				<db-control-panel-brand brand
+					>My Awesome App</db-control-panel-brand
+				>
 				<app-meta-navigation meta-navigation></app-meta-navigation>
 				<app-primary-actions primary-actions></app-primary-actions>
-				<app-secondary-actions secondary-actions></app-secondary-actions>
+				<app-secondary-actions
+					secondary-actions
+				></app-secondary-actions>
 				<app-navigation></app-navigation>
 			</db-control-panel-desktop>
-			<db-control-panel-mobile
-				control-panel-mobile
-			>
-				<db-control-panel-brand brand>My Awesome App</db-brand>
+			<db-control-panel-mobile>
+				<db-control-panel-brand brand
+					>My Awesome App</db-control-panel-brand
+				>
 				<app-meta-navigation meta-navigation></app-meta-navigation>
 				<app-primary-actions primary-actions></app-primary-actions>
-				<app-secondary-actions secondary-actions></app-secondary-actions>
+				<app-secondary-actions
+					secondary-actions
+				></app-secondary-actions>
 				<app-navigation></app-navigation>
 			</db-control-panel-mobile>
-			Main Page
-		</db-page>
+			<db-shell-content>Main Page</db-shell-content>
+		</db-shell>
 	`
 })
 export class AppComponent {

@@ -35,6 +35,13 @@ export default function DBControlPanelNavigationItem(
 
 	onMount(() => {
 		if (_ref) {
+			// Read initial role value synchronously in case parent set it before mount
+			const initialRole =
+				(_ref as HTMLElement).getAttribute('role') ?? undefined;
+			if (initialRole !== state._role) {
+				state._role = initialRole;
+			}
+
 			// Observe role attribute set imperatively by the parent navigation
 			// and persist it in state so frameworks re-apply it after reconciliation.
 			const observer = new MutationObserver((mutations) => {

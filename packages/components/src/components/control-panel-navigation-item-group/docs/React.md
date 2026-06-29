@@ -6,11 +6,22 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { DBControlPanelNavigationItemGroup } from "@db-ux/react-core-components";
+import {
+	DBControlPanelNavigationItemGroup,
+	DBControlPanelNavigationItem
+} from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBControlPanelNavigationItemGroup>
-		NavigationItemGroup
+	<DBControlPanelNavigationItemGroup
+		text="Group Label"
+		backButtonText="Back to Group"
+	>
+		<DBControlPanelNavigationItem>
+			<a href="/page-1">Sub-Item 1</a>
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem>
+			<a href="/page-2">Sub-Item 2</a>
+		</DBControlPanelNavigationItem>
 	</DBControlPanelNavigationItemGroup>
 );
 

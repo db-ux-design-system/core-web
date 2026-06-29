@@ -23,9 +23,10 @@ import { DBShell, DBControlPanelDesktop } from '@db-ux/ngx-core-components';
 ```html app.component.html
 <!-- app.component.html -->
 <db-shell>
-	<db-control-panel-desktop control-panel-desktop
-		>...</db-control-panel-desktop
-	>
-	Main Shell
+	<db-control-panel-desktop>
+		<db-control-panel-brand brand>My App</db-control-panel-brand>
+		<!-- Navigation goes here -->
+	</db-control-panel-desktop>
+	<db-shell-content>Main Content</db-shell-content>
 </db-shell>
 ```

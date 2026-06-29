@@ -145,7 +145,22 @@ const testA11y = () => {
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have any A11y issues', async ({ page, mount }) => {
+	test('should not have any A11y issues on mobile', async ({
+		page,
+		mount
+	}) => {
+		await mount(comp);
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-shell')
+			.analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
+	test('should not have any A11y issues on desktop', async ({
+		page,
+		mount
+	}) => {
+		await page.setViewportSize({ width: 1920, height: 1280 });
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-shell')
@@ -155,11 +170,49 @@ const testA11y = () => {
 	});
 };
 
+const skipLinkComp: any = (
+	<DBShell skipNavigationLinkText="Skip to content">
+		<DBControlPanelDesktop
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			<DBControlPanelNavigation aria-label="Navigation">
+				<DBControlPanelNavigationItem>
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelDesktop>
+		<DBShellContent mainLabel="Main">Content</DBShellContent>
+	</DBShell>
+);
+
+const testSkipLink = () => {
+	test('skip-link should become visible on focus', async ({
+		page,
+		mount
+	}) => {
+		await page.setViewportSize({ width: 1920, height: 1280 });
+		await mount(skipLinkComp);
+		const skipLink = page.locator(
+			'.db-shell-skip-navigation-link-container a'
+		);
+		await expect(skipLink).toBeAttached();
+		await skipLink.focus();
+		await expect(skipLink).toBeVisible();
+	});
+
+	test('skip-link should target #main-content', async ({ page, mount }) => {
+		await page.setViewportSize({ width: 1920, height: 1280 });
+		await mount(skipLinkComp);
+		const skipLink = page.locator(
+			'.db-shell-skip-navigation-link-container a'
+		);
+		await expect(skipLink).toHaveAttribute('href', '#main-content');
+	});
+};
+
 test.describe('DBShell', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
 		testComponent(viewport);
-		if (viewport.name === 'mobile') {
-			testA11y();
-		}
 	});
+	testA11y();
+	testSkipLink();
 });

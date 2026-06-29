@@ -30,7 +30,7 @@ The `DBDrawer` component now requires a `DBDrawerHeader` component to be placed 
 <template>
 	<DBButton @click="open = true">Open Drawer</DBButton>
 	<DBDrawer :open="open" @close="open = false">
-		<template #drawer-header>
+		<template #header>
 			<DBDrawerHeader>My Title</DBDrawerHeader>
 		</template>
 		Drawer content

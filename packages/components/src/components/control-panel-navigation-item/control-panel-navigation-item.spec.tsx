@@ -19,6 +19,14 @@ const comp: any = (
 	</menu>
 );
 
+const disabledComp: any = (
+	<menu style={{ display: 'flex' }}>
+		<DBControlPanelNavigationItem disabled>
+			<a href="#">Disabled Item</a>
+		</DBControlPanelNavigationItem>
+	</menu>
+);
+
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
@@ -30,6 +38,23 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
+
+const testDisabledState = () => {
+	test('disabled item should have aria-disabled on the root li', async ({
+		mount
+	}) => {
+		const component = await mount(disabledComp);
+		const listItem = component.locator('.db-control-panel-navigation-item');
+		await expect(listItem).toHaveAttribute('aria-disabled', 'true');
+	});
+
+	test('disabled item anchor should have tabindex -1', async ({ mount }) => {
+		const component = await mount(disabledComp);
+		const anchor = component.locator('.db-control-panel-navigation-item a');
+		await expect(anchor).toHaveAttribute('tabindex', '-1');
+	});
+};
+
 const testA11y = () => {
 	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
 		const component = await mount(comp);
@@ -52,5 +77,6 @@ const testA11y = () => {
 test.describe('DBControlPanelNavigationItem', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
+	testDisabledState();
 	testA11y();
 });

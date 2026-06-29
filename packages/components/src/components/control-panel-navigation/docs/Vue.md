@@ -9,34 +9,26 @@ For general installation and configuration look at the [v-core-components](https
 <script>
 import {
 	DBControlPanelNavigation,
-	DBControlPanelNavigationItem
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
 } from "@db-ux/v-core-components";
 </script>
 
 <template>
 	<DBControlPanelNavigation>
-		<DBControlPanelNavigationItem>
-			Navi-Item 1
-			<template v-slot:sub-navigation>
+		<DBControlPanelNavigationItemGroup text="Navi-Group 1">
+			<DBControlPanelNavigationItemGroup text="Sub-Group 1">
 				<DBControlPanelNavigationItem>
-					Sub-Navi-Item 1
-
-					<template v-slot:sub-navigation>
-						<DBControlPanelNavigationItem>
-							<a href="#" aria-current="page"
-								>Sub-Sub-Navi-Item 1</a
-							>
-						</DBControlPanelNavigationItem>
-						<DBControlPanelNavigationItem>
-							<a href="#">Sub-Sub-Navi-Item 2</a>
-						</DBControlPanelNavigationItem>
-					</template>
+					<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
 				</DBControlPanelNavigationItem>
 				<DBControlPanelNavigationItem>
-					<a href="#">Sub-Navi-Item 2</a>
+					<a href="#">Sub-Sub-Navi-Item 2</a>
 				</DBControlPanelNavigationItem>
-			</template>
-		</DBControlPanelNavigationItem>
+			</DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>
+				<a href="#">Sub-Navi-Item 2</a>
+			</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
 		<DBControlPanelNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
 		</DBControlPanelNavigationItem>
@@ -61,7 +53,8 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 <script>
 import {
 	DBControlPanelNavigation,
-	DBControlPanelNavigationItem
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup
 } from "@db-ux/v-core-components";
 </script>
 
@@ -70,21 +63,18 @@ import {
 		<DBControlPanelNavigationItem>
 			<RouterLink to="/" ariaCurrentValue="page">Home</RouterLink>
 		</DBControlPanelNavigationItem>
-		<DBControlPanelNavigationItem>
-			<template> Demo Pages </template>
-			<template #subnavigation>
-				<DBControlPanelNavigationItem>
-					<RouterLink to="/demo/1" ariaCurrentValue="page">
-						Demo Page 1
-					</RouterLink>
-				</DBControlPanelNavigationItem>
-				<DBControlPanelNavigationItem>
-					<RouterLink to="/demo/2" ariaCurrentValue="page">
-						Demo Page 2
-					</RouterLink>
-				</DBControlPanelNavigationItem>
-			</template>
-		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItemGroup text="Demo Pages">
+			<DBControlPanelNavigationItem>
+				<RouterLink to="/demo/1" ariaCurrentValue="page">
+					Demo Page 1
+				</RouterLink>
+			</DBControlPanelNavigationItem>
+			<DBControlPanelNavigationItem>
+				<RouterLink to="/demo/2" ariaCurrentValue="page">
+					Demo Page 2
+				</RouterLink>
+			</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
 	</DBControlPanelNavigation>
 </template>
 ```

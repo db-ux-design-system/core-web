@@ -62,6 +62,21 @@ const comp: any = (
 	</DBShell>
 );
 
+// Vertical sidebar fixture for expand/collapse testing
+const verticalComp: any = (
+	<DBShell controlPanelDesktopPosition="left">
+		<DBControlPanelDesktop
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			<DBControlPanelNavigation aria-label="Main Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Home</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelDesktop>
+		<DBShellContent mainLabel="Main">Content</DBShellContent>
+	</DBShell>
+);
+
 const testComponent = (viewport: any) => {
 	test(`should contain text for device ${viewport.name}`, async ({
 		mount,
@@ -94,7 +109,11 @@ const testA11y = () => {
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have any A11y issues', async ({ page, mount }) => {
+	test('should not have any A11y issues on desktop', async ({
+		page,
+		mount
+	}) => {
+		await page.setViewportSize({ width: 1920, height: 1280 });
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-control-panel-desktop')
@@ -104,11 +123,25 @@ const testA11y = () => {
 	});
 };
 
+const testExpandCollapse = () => {
+	test('should have a collapse/expand toggle button in vertical mode', async ({
+		page,
+		mount
+	}) => {
+		await page.setViewportSize({ width: 1920, height: 1280 });
+		await mount(verticalComp);
+		const toggleButton = page.locator(
+			'.db-control-panel-desktop-toggle-button'
+		);
+		await expect(toggleButton).toBeVisible();
+		await expect(toggleButton).toHaveAttribute('aria-expanded');
+	});
+};
+
 test.describe('DBControlPanelDesktop', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
 		testComponent(viewport);
-		if (viewport.name === 'mobile') {
-			testA11y();
-		}
 	});
+	testA11y();
+	testExpandCollapse();
 });

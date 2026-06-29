@@ -49,7 +49,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 		},
 		handleNavigationItemClick: (event: any) => {
 			if (isEventTargetNavigationItem(event)) {
-				state.handleToggle(event);
+				state.handleClose(event);
 			}
 		}
 	});

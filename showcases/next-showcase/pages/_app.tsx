@@ -3,6 +3,7 @@ import {
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
 	DBShell,
+	DBShellContent,
 	DBShellSubNavigation
 } from '@components';
 import type { AppProps } from 'next/app';

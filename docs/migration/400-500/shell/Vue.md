@@ -252,42 +252,38 @@ const toggleDrawer = (open: boolean) => {
 
 <template>
 	<DBShell fadeIn>
-		<template v-slot:controlPanelDesktop>
-			<DBControlPanelDesktop>
-				<template v-slot:brand>
-					<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
-				</template>
-				<template v-slot:primary-actions>
-					<PrimaryActions />
-				</template>
-				<template v-slot:secondary-actions>
-					<SecondaryActions />
-				</template>
-				<template v-slot:meta-navigation>
-					<MetaNavigation />
-				</template>
+		<DBControlPanelDesktop>
+			<template v-slot:brand>
+				<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
+			</template>
+			<template v-slot:primary-actions>
+				<PrimaryActions />
+			</template>
+			<template v-slot:secondary-actions>
+				<SecondaryActions />
+			</template>
+			<template v-slot:meta-navigation>
+				<MetaNavigation />
+			</template>
 
-				<Navigation />
-			</DBControlPanelDesktop>
-		</template>
-		<template v-slot:controlPanelMobile>
-			<DBControlPanelMobile>
-				<template v-slot:brand>
-					<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
-				</template>
-				<template v-slot:primary-actions>
-					<PrimaryActions />
-				</template>
-				<template v-slot:secondary-actions>
-					<SecondaryActions />
-				</template>
-				<template v-slot:meta-navigation>
-					<MetaNavigation />
-				</template>
-				<Navigation />
-			</DBControlPanelMobile>
-		</template>
-		Main Page
+			<Navigation />
+		</DBControlPanelDesktop>
+		<DBControlPanelMobile>
+			<template v-slot:brand>
+				<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
+			</template>
+			<template v-slot:primary-actions>
+				<PrimaryActions />
+			</template>
+			<template v-slot:secondary-actions>
+				<SecondaryActions />
+			</template>
+			<template v-slot:meta-navigation>
+				<MetaNavigation />
+			</template>
+			<Navigation />
+		</DBControlPanelMobile>
+		<DBShellContent>Main Page</DBShellContent>
 	</DBShell>
 </template>
 ```

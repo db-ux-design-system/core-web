@@ -237,10 +237,9 @@ function renderPrimaryActions(): string {
 			<db-drawer
 				class="js-settings-drawer"
 				direction="custom"
-				spacing="small"
-				drawer-header-plain="Settings"
 				rounded="true"
 			>
+				<db-drawer-header slot="header" text="Settings"></db-drawer-header>
 				${renderSettingsControls()}
 			</db-drawer>
 			<db-button
@@ -302,7 +301,7 @@ export function renderNavigation(): void {
 			</db-control-panel-desktop>
 
 			<db-control-panel-mobile
-				drawer-headline-plain="Showcase"
+				drawer-header-text="Showcase"
 			>
 				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>
 				${renderMetaNavigation()}

@@ -4,28 +4,31 @@ For general installation and configuration take a look at the [components](https
 
 ### Use component
 
-If you want to use sub-navigations for mobile you need to add a `eventListener:click` on the `db-control-panel-navigation-item-expand-button`. This eventListener should set `aria-expanded` to `true` for the `button`. This will open a static overlay for mobile/tablet devices with your `db-sub-navigation`. For desktop devices it works by default with `:hover`.
-
 ```html index.html
 <!-- index.html -->
 ...
 <body>
-	<!-- Only link	-->
+	<!-- Simple link item -->
 	<li class="db-control-panel-navigation-item">
 		<a href="mypath">NavigationItem</a>
 	</li>
 
-	<!-- With Sub-Navigation -->
-	<li class="db-control-panel-navigation-item">
+	<!-- With Sub-Navigation (use db-control-panel-navigation-item-group) -->
+	<li class="db-control-panel-navigation-item-group">
 		<button
-			class="db-control-panel-navigation-item-expand-button"
+			class="db-control-panel-navigation-item-group-expand-button"
 			aria-haspopup="true"
+			aria-expanded="false"
 		>
-			Navi-Item 1
+			Navi-Group 1
 		</button>
-		<menu class="db-sub-navigation">
-			<a href="mypath">Sub-Navi-Item 1</a>
-			<a href="mypath">Sub-Navi-Item 2</a>
+		<menu class="db-control-panel-navigation-item-group-menu">
+			<li class="db-control-panel-navigation-item">
+				<a href="mypath">Sub-Navi-Item 1</a>
+			</li>
+			<li class="db-control-panel-navigation-item">
+				<a href="mypath">Sub-Navi-Item 2</a>
+			</li>
 		</menu>
 	</li>
 </body>

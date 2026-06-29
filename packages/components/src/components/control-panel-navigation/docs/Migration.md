@@ -7,9 +7,9 @@
 
 ### class
 
-| Before               | Status | After           | Description |
-| -------------------- | :----: | --------------- | ----------- |
-| `cmp-mainnavigation` |   🔁   | `db-navigation` |             |
+| Before               | Status | After                         | Description |
+| -------------------- | :----: | ----------------------------- | ----------- |
+| `cmp-mainnavigation` |   🔁   | `db-control-panel-navigation` |             |
 
 ### children
 

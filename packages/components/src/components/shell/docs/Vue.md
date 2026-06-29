@@ -7,15 +7,23 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBShell, DBControlPanelDesktop } from "@db-ux/v-core-components";
+import {
+	DBShell,
+	DBShellContent,
+	DBControlPanelDesktop,
+	DBControlPanelBrand
+} from "@db-ux/v-core-components";
 </script>
 
 <template>
 	<DBShell>
-		<DBControlPanelDesktop slot="control-panel-desktop"
-			>...</DBControlPanelDesktop
-		>
-		Main Shell
+		<DBControlPanelDesktop>
+			<template v-slot:brand>
+				<DBControlPanelBrand>My App</DBControlPanelBrand>
+			</template>
+			<!-- Navigation goes here -->
+		</DBControlPanelDesktop>
+		<DBShellContent>Main Content</DBShellContent>
 	</DBShell>
 </template>
 ```

@@ -172,6 +172,13 @@ export default function DBControlPanelNavigationItemGroup(
 		// Observe role attribute set imperatively by the parent navigation
 		// and persist it in state so frameworks re-apply it after reconciliation.
 		if (_ref) {
+			// Read initial role value synchronously in case parent set it before mount
+			const initialRole =
+				(_ref as HTMLElement).getAttribute('role') ?? undefined;
+			if (initialRole !== state._role) {
+				state._role = initialRole;
+			}
+
 			const observer = new MutationObserver((mutations) => {
 				for (const mutation of mutations) {
 					if (mutation.attributeName === 'role') {

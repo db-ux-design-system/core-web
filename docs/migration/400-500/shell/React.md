@@ -111,6 +111,7 @@ export default App;
 ```tsx
 import {
 	DBShell, // previously: DBPage
+	DBShellContent, // new
 	DBControlPanelDesktop, // previously: DBHeader
 	DBControlPanelMobile, // previously: DBHeader
 	DBControlPanelBrand, // previously: DBBrand
@@ -187,31 +188,25 @@ const Navigation = () => (
 );
 
 const App = () => (
-	<DBShell
-		fadeIn
-		controlPanelDesktop={
-			<DBControlPanelDesktop
-				brand={<DBBrand>My Awesome App</DBBrand>}
-				metaNavigation={<MetaNavigation />}
-				primaryActions={<PrimaryActions />}
-				secondaryActions={<SecondaryActions />}
-			>
-				<Navigation />
-			</DBControlPanelDesktop>
-		}
-		controlPanelMobile={
-			<DBControlPanelMobile
-				drawerHeaderText="My Awesome App"
-				brand={<DBBrand>My Awesome App</DBBrand>}
-				metaNavigation={<MetaNavigation />}
-				primaryActions={<PrimaryActions />}
-				secondaryActions={<SecondaryActions />}
-			>
-				<Navigation />
-			</DBControlPanelMobile>
-		}
-	>
-		Main Page
+	<DBShell fadeIn>
+		<DBControlPanelDesktop
+			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
+			metaNavigation={<MetaNavigation />}
+			primaryActions={<PrimaryActions />}
+			secondaryActions={<SecondaryActions />}
+		>
+			<Navigation />
+		</DBControlPanelDesktop>
+		<DBControlPanelMobile
+			drawerHeaderText="My Awesome App"
+			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
+			metaNavigation={<MetaNavigation />}
+			primaryActions={<PrimaryActions />}
+			secondaryActions={<SecondaryActions />}
+		>
+			<Navigation />
+		</DBControlPanelMobile>
+		<DBShellContent>Main Page</DBShellContent>
 	</DBShell>
 );
 
