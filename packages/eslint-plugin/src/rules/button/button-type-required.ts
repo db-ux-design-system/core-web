@@ -41,7 +41,10 @@ export default {
 							node,
 							` type="${typeValue}"`
 						);
-						if (!fixData) return null;
+						if (!fixData) {
+							return null;
+						}
+
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
 							fixData.attributeText
@@ -56,14 +59,20 @@ export default {
 			COMPONENTS.DBButton,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkButton = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) {
+				return;
+			}
 
 			const type = getAttributeValue(openingElement, 'type');
-			if (type !== undefined) return;
+			if (type !== undefined) {
+				return;
+			}
 
 			const hasClickHandler =
 				getAttributeValue(openingElement, 'onClick') ||
