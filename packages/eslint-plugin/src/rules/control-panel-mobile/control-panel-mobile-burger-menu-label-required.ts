@@ -59,7 +59,11 @@ export default {
 				'burgerMenuLabel'
 			);
 
-			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
+			if (
+				burgerMenuLabel === undefined ||
+				burgerMenuLabel === '' ||
+				burgerMenuLabel === true
+			) {
 				context.report({
 					node: openingElement,
 					messageId:

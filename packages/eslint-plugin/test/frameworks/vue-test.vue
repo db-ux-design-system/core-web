@@ -44,9 +44,9 @@
 		>
 
 		<!-- db-ux/navigation-item-back-button-text-required -->
-		<DBControlPanelNavigationItem>
-			<template #subNavigation>Sub nav</template>
-		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
 
 		<!-- db-ux/no-interactive-tooltip-content -->
 		<DBTooltip>

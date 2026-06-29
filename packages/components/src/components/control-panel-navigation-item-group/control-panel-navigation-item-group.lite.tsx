@@ -10,14 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	uuid
-} from '../../utils';
+import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { handleDataOutside } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
 import {
@@ -282,7 +275,7 @@ export default function DBControlPanelNavigationItemGroup(
 				props.className
 			)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={getBooleanAsString(props.active, 'active')}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button

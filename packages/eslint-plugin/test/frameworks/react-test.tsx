@@ -5,6 +5,7 @@ import {
 	DBButton,
 	DBControlPanelMobile,
 	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup,
 	DBCustomSelect,
 	DBDrawer,
 	DBIcon,
@@ -63,10 +64,11 @@ export const TestComponent = () => {
 			</DBLink>
 
 			{/* db-ux/navigation-item-back-button-text-required */}
-			<DBControlPanelNavigationItem
-				subNavigation={
-					<div>Sub nav</div>
-				}></DBControlPanelNavigationItem>
+			<DBControlPanelNavigationItemGroup>
+				<DBControlPanelNavigationItem>
+					Item
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigationItemGroup>
 
 			{/* db-ux/no-interactive-tooltip-content */}
 			<DBTooltip>

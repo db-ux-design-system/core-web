@@ -51,6 +51,27 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		handleEnter(): void {
 			state.isExpanded = true;
+
+			// Clean up any existing observers to prevent leaks from repeated enter
+			if (state._documentScrollListenerCallbackId) {
+				new DocumentScrollListener().removeCallback(
+					state._documentScrollListenerCallbackId!
+				);
+				state._documentScrollListenerCallbackId = undefined;
+			}
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
+
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event)

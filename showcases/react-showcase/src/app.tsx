@@ -43,7 +43,7 @@ const App = () => {
 			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
 			subNavigationMobilePosition={settings.subNavigationMobilePosition}
 			showSubNavigation={settings.subNavigation === 'true'}
-			skipNavigationLink={<a href="#">Skip navigation</a>}>
+			skipNavigationLink={<a href="#main-content">Skip navigation</a>}>
 			<DBShellSubNavigation>
 				<Navigation
 					variant={settings.subNavigationVariant}

@@ -88,9 +88,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 				secondaryActions={<SecondaryActions />}>
 				<Navigation variant={settings.navigationDesktopVariant} />
 			</DBControlPanelDesktop>
-			<div data-density={density} className={`db-${color}`}>
+			<DBShellContent data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
-			</div>
+			</DBShellContent>
 		</DBShell>
 	);
 };

@@ -80,7 +80,8 @@ export default function DBControlPanelNavigationItem(
 			class={cls('db-control-panel-navigation-item', props.className)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
-			data-active={getBooleanAsString(props.active, 'active')}>
+			data-active={getBooleanAsString(props.active, 'active')}
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 			<Slot name="endSlot"></Slot>

@@ -933,6 +933,28 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUnMount(() => {
 		state.abortController?.abort();
+
+		// Clean up singleton observers if dropdown was open when unmounting
+		if (state._documentClickListenerCallbackId) {
+			new DocumentClickListener().removeCallback(
+				state._documentClickListenerCallbackId!
+			);
+		}
+		if (state._documentScrollListenerCallbackId) {
+			new DocumentScrollListener().removeCallback(
+				state._documentScrollListenerCallbackId!
+			);
+		}
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+		}
+		if (state._intersectionObserverCallbackId) {
+			new IntersectionObserverListener().unobserve(
+				state._intersectionObserverCallbackId!
+			);
+		}
 	});
 
 	function satisfyReact(event: any) {

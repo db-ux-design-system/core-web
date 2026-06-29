@@ -22,19 +22,19 @@ describe('navigation-item-back-button-text-required', () => {
 	ruleTester.run('navigation-item-back-button-text-required', rule, {
 		valid: [
 			{
-				code: '<DBControlPanelNavigationItem backButtonText="Back">Item</DBControlPanelNavigationItem>'
+				code: '<DBControlPanelNavigationItemGroup backButtonText="Back">Item</DBControlPanelNavigationItemGroup>'
 			},
 			{
-				code: '<DBControlPanelNavigationItem backButtonText="Go back">Item</DBControlPanelNavigationItem>'
+				code: '<DBControlPanelNavigationItemGroup backButtonText="Go back">Item</DBControlPanelNavigationItemGroup>'
 			}
 		],
 		invalid: [
 			{
-				code: '<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>',
+				code: '<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>',
 				errors: [{ messageId: 'missingBackButtonText' }]
 			},
 			{
-				code: '<DBControlPanelNavigationItem icon="home">Item</DBControlPanelNavigationItem>',
+				code: '<DBControlPanelNavigationItemGroup icon="home">Item</DBControlPanelNavigationItemGroup>',
 				errors: [{ messageId: 'missingBackButtonText' }]
 			}
 		]
@@ -46,15 +46,15 @@ describe('navigation-item-back-button-text-required', () => {
 		{
 			valid: [
 				{
-					code: '<db-control-panel-navigation-item backButtonText="Back">Item</db-control-panel-navigation-item>'
+					code: '<db-control-panel-navigation-item-group backButtonText="Back">Item</db-control-panel-navigation-item-group>'
 				},
 				{
-					code: '<db-control-panel-navigation-item [backButtonText]="backText">Item</db-control-panel-navigation-item>'
+					code: '<db-control-panel-navigation-item-group [backButtonText]="backText">Item</db-control-panel-navigation-item-group>'
 				}
 			],
 			invalid: [
 				{
-					code: '<db-control-panel-navigation-item>Item</db-control-panel-navigation-item>',
+					code: '<db-control-panel-navigation-item-group>Item</db-control-panel-navigation-item-group>',
 					errors: [{ messageId: 'missingBackButtonText' }]
 				}
 			]

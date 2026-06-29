@@ -30,6 +30,8 @@ export default function DBControlPanelDesktop(
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
 		handleToggle: (event: any) => {
+			/* Guard: In WC/Stencil, custom events wrap payload in event.detail as object.
+			   Native click has event.detail as number. Prevents double-toggle. */
 			if (typeof event.detail !== 'object') {
 				event.stopPropagation();
 

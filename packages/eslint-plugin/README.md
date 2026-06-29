@@ -646,35 +646,35 @@ Ensures DBControlPanelMobile has burgerMenuLabel attribute for accessibility.
 
 ### `navigation-item-back-button-text-required`
 
-Ensures DBControlPanelNavigationItem has backButtonText attribute for accessibility.
+Ensures DBControlPanelNavigationItemGroup has backButtonText attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
-<DBControlPanelNavigationItem icon="home">Item</DBControlPanelNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup icon="home">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-control-panel-navigation-item>Item</db-control-panel-navigation-item>
+<db-control-panel-navigation-item-group>Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBControlPanelNavigationItem backButtonText="Back">Item</DBControlPanelNavigationItem>
-<DBControlPanelNavigationItem backButtonText="Go back">Item</DBControlPanelNavigationItem>
+<DBControlPanelNavigationItemGroup backButtonText="Back">Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup backButtonText="Go back">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-control-panel-navigation-item backButtonText="Back">Item</db-control-panel-navigation-item>
-<db-control-panel-navigation-item [backButtonText]="backText">Item</db-control-panel-navigation-item>
+<db-control-panel-navigation-item-group backButtonText="Back">Item</db-control-panel-navigation-item-group>
+<db-control-panel-navigation-item-group [backButtonText]="backText">Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBControlPanelNavigationItem :backButtonText="text">Item</DBControlPanelNavigationItem>
+<DBControlPanelNavigationItemGroup :backButtonText="text">Item</DBControlPanelNavigationItemGroup>
 ```
 
 ### `custom-select-tags-remove-text-required`

@@ -15,6 +15,7 @@ export const INTERACTIVE_ELEMENTS = [
 	'DBRadio',
 	'DBSwitch',
 	'DBControlPanelNavigationItem',
+	'DBControlPanelNavigationItemGroup',
 	'DBTabItem',
 	'DBTag'
 ];
@@ -85,7 +86,7 @@ export const MESSAGES = {
 	LINK_MISSING_CONTENT_EXTERNAL:
 		'DBLink with target="_blank" should have content="external"',
 	NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT:
-		'DBControlPanelNavigationItem must have backButtonText attribute for accessibility',
+		'DBControlPanelNavigationItemGroup must have backButtonText attribute for accessibility',
 	SELECT_MISSING_OPTIONS:
 		'DBSelect must have either an options property or <option> children',
 	CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS:

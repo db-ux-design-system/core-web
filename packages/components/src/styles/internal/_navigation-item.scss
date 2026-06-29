@@ -37,7 +37,11 @@
 		transform: translateX(-100%);
 		clip-path: var(
 			--db-control-panel-navigation-item-clip-path,
-			polygon(10% 30px, 100% 0, 100% 100%)
+			polygon(
+				10% calc(1lh + #{variables.$db-spacing-fixed-2xs}),
+				100% 0,
+				100% 100%
+			)
 		);
 	}
 

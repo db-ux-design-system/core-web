@@ -65,7 +65,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'control-panel-mobile'
+		name: 'control-panel-mobile',
+		config: {
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
+		}
 	},
 	{
 		name: 'table-data-cell'
@@ -394,12 +399,7 @@ export const getComponents = (): Component[] => [
 		name: 'shell'
 	},
 	{
-		name: 'control-panel-desktop',
-		config: {
-			react: {
-				propsPassingFilter: ['onToggle']
-			}
-		}
+		name: 'control-panel-desktop'
 	},
 	{
 		name: 'control-panel-brand'

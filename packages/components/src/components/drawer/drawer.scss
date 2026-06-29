@@ -48,26 +48,11 @@
 
 	&:not([data-container-size]),
 	&[data-container-size="large"] {
-		--db-drawer-max-height-vertical: 3367;
+		--db-drawer-max-height-vertical: 67lvh;
 	}
 }
 
 %direction-left {
-	@extend %container-size-horizontal;
-
-	&:not([data-transition="open"]) {
-		transform: translateX(110%);
-	}
-
-	inset-inline: auto 0;
-
-	&[data-rounded="true"] {
-		border-start-start-radius: variables.$db-border-radius-sm;
-		border-end-start-radius: variables.$db-border-radius-sm;
-	}
-}
-
-%direction-right {
 	@extend %container-size-horizontal;
 
 	&:not([data-transition="open"]) {
@@ -79,6 +64,21 @@
 	&[data-rounded="true"] {
 		border-start-end-radius: variables.$db-border-radius-sm;
 		border-end-end-radius: variables.$db-border-radius-sm;
+	}
+}
+
+%direction-right {
+	@extend %container-size-horizontal;
+
+	&:not([data-transition="open"]) {
+		transform: translateX(110%);
+	}
+
+	inset-inline: auto 0;
+
+	&[data-rounded="true"] {
+		border-start-start-radius: variables.$db-border-radius-sm;
+		border-end-start-radius: variables.$db-border-radius-sm;
 	}
 }
 
