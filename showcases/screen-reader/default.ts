@@ -47,8 +47,9 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) => {
 		const phraseParts = phrase.split('. ');
 		let result = phraseParts
-			.filter((sPhrase) =>
-				standardPhrases.every((string) => !sPhrase.includes(string))
+			.filter(
+				(sPhrase) =>
+					!standardPhrases.some((string) => sPhrase.includes(string))
 			)
 			.map((part, index) => {
 				// There is an issue with macOS duplicating some parts, we remove the duplicates here
@@ -84,9 +85,7 @@ export const generateSnapshot = async (
 	retry?: number,
 	phraseLogConvertFn?: (phraseLog: string[]) => string[]
 ) => {
-	if (!screenReader) {
-		return;
-	}
+	if (!screenReader) return;
 
 	let phraseLog: string[] = await screenReader.spokenPhraseLog();
 
@@ -184,15 +183,13 @@ export const runTest = async ({
 
 	const screenRecorder: VoiceOverPlaywright | NVDAPlaywright | undefined =
 		nvda ?? voiceOver;
-	if (!screenRecorder) {
-		return;
-	}
+	if (!screenRecorder) return;
 
 	/**
-	 In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
-	 Therefore, we need to move back with the cursor to the start and delete the logs before starting.
-	 In windows:Chrome the cursor is on the middle element.
-	 Therefore, we need to move back and delete the logs, and then start everything.
+	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
+	 * Therefore, we need to move back with the cursor to the start and delete the logs before starting.
+	 * In windows:Chrome the cursor is on the middle element.
+	 * Therefore, we need to move back and delete the logs, and then start everything.
 	 */
 
 	await (nvda

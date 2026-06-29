@@ -42,10 +42,7 @@ export default {
 							node,
 							' target="_blank"'
 						);
-						if (!fixData) {
-							return null;
-						}
-
+						if (!fixData) return null;
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
 							fixData.attributeText
@@ -64,10 +61,7 @@ export default {
 							node,
 							' referrerPolicy="no-referrer"'
 						);
-						if (!fixData) {
-							return null;
-						}
-
+						if (!fixData) return null;
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
 							fixData.attributeText
@@ -86,10 +80,7 @@ export default {
 							node,
 							' content="external"'
 						);
-						if (!fixData) {
-							return null;
-						}
-
+						if (!fixData) return null;
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
 							fixData.attributeText
@@ -104,15 +95,11 @@ export default {
 			COMPONENTS.DBLink,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkLink = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBLink)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBLink)) return;
 
 			const content = getAttributeValue(openingElement, 'content');
 			const target = getAttributeValue(openingElement, 'target');

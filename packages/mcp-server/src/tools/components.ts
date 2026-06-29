@@ -13,9 +13,9 @@ import {
 import { getManifest } from '../utils/manifest';
 
 /**
- Resolves and verifies a component path within a given base directory.
- Handles path traversal protection via resolveSafePath and existence check.
- @returns The resolved absolute path, or a ToolResult error object on failure.
+ * Resolves and verifies a component path within a given base directory.
+ * Handles path traversal protection via resolveSafePath and existence check.
+ * @returns The resolved absolute path, or a ToolResult error object on failure.
  */
 function resolveComponentPath(
 	baseDir: string,
@@ -52,9 +52,8 @@ export async function handleListComponents(): Promise<ToolResult> {
 }
 
 /**
- Returns the list of example names for a component by reading its showcase file.
- @param componentName - The kebab-case component name (e.g. "button").
- @param componentName.componentName
+ * Returns the list of example names for a component by reading its showcase file.
+ * @param componentName - The kebab-case component name (e.g. "button").
  */
 export async function handleGetComponentDetails({
 	componentName
@@ -63,10 +62,7 @@ export async function handleGetComponentDetails({
 }): Promise<ToolResult> {
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) {
-		return err(COMPONENT_NOT_FOUND_MSG(componentName));
-	}
-
+	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
 	return {
 		content: [
 			{
@@ -81,9 +77,8 @@ export async function handleGetComponentDetails({
 }
 
 /**
- Returns the raw TypeScript content of a component's model.ts file.
- @param componentName - The kebab-case component name (e.g. "button").
- @param componentName.componentName
+ * Returns the raw TypeScript content of a component's model.ts file.
+ * @param componentName - The kebab-case component name (e.g. "button").
  */
 export async function handleGetComponentProps({
 	componentName
@@ -92,16 +87,11 @@ export async function handleGetComponentProps({
 }): Promise<ToolResult> {
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) {
-		return err(COMPONENT_NOT_FOUND_MSG(componentName));
-	}
-
-	if (!comp.props) {
+	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	if (!comp.props)
 		return err(
 			`Error: Props file (model.ts) for component '${componentName}' not found.`
 		);
-	}
-
 	return {
 		content: [
 			{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
@@ -114,7 +104,7 @@ function toKebabCase(name: string): string {
 	return name
 		.trim()
 		.toLowerCase()
-		.replaceAll(/[^\da-z]+/g, '-')
+		.replaceAll(/[^a-z\d]+/g, '-')
 		.replaceAll(/^-|-$/g, '');
 }
 
@@ -130,9 +120,9 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 };
 
 /**
- Finds the best-matching example filename from a list of candidates.
- Prefers exact stem match, then falls back to partial inclusion.
- Inspects at most the first 10 entries to avoid excessive scanning.
+ * Finds the best-matching example filename from a list of candidates.
+ * Prefers exact stem match, then falls back to partial inclusion.
+ * Inspects at most the first 10 entries to avoid excessive scanning.
  */
 function fuzzyMatchExample(
 	entries: string[],
@@ -140,24 +130,18 @@ function fuzzyMatchExample(
 	ext: string
 ): string | undefined {
 	return entries.slice(0, 10).find((f) => {
-		if (!f.endsWith(`.example.${ext}`)) {
-			return false;
-		}
-
+		if (!f.endsWith(`.example.${ext}`)) return false;
 		const stem = f.replace(`.example.${ext}`, '');
 		return stem === kebab || stem.includes(kebab) || kebab.includes(stem);
 	});
 }
 
 /**
- Returns the generated framework-specific source code for a component example.
- Applies a 10-second timeout to prevent hanging on slow filesystem reads.
- @param componentName - The kebab-case component name (e.g. "button").
- @param componentName.componentName
- @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
- @param componentName.exampleName
- @param framework - The target framework (react, angular, vue, web-components, html).
- @param componentName.framework
+ * Returns the generated framework-specific source code for a component example.
+ * Applies a 10-second timeout to prevent hanging on slow filesystem reads.
+ * @param componentName - The kebab-case component name (e.g. "button").
+ * @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
+ * @param framework - The target framework (react, angular, vue, web-components, html).
  */
 export async function handleGetExampleCode({
 	componentName,

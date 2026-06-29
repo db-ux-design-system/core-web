@@ -20,12 +20,9 @@ const getAllNames = (name) => {
 };
 
 /**
- @param componentValue {{description: string,  name: string, attributes:any[], slots:any[], events:any[]}}
- @param componentValue.name
- @param componentValue.attributes
- @param componentValue.events
- @param componentValue.slots
- @returns {string}
+ *
+ * @param componentValue {{description: string,  name: string, attributes:any[], slots:any[], events:any[]}}
+ * @returns {string}
  */
 const getPropertiesFile = ({ name, attributes, events, slots }) => {
 	let propertyTable = '';
@@ -45,7 +42,7 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 		propertyTable += ['icon', 'icon-trailing', 'message-icon'].includes(
 			name
 		)
-			? '| [IconTypes](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview) |\n'
+			? `| [IconTypes](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview) |\n`
 			: `| ${isUnion ? `<pre><code className="code-pre-wrap">${value.type.replaceAll('|', '&#124;')}</code></pre>` : ''} |\n`;
 	}
 

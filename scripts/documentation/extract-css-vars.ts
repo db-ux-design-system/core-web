@@ -11,8 +11,8 @@ const outputSubPath = '../../output/docs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
- Escape HTML special characters in a string.
- @param string_
+ * Escape HTML special characters in a string.
+ * @param string_
  */
 function escapeHtml(string_: string): string {
 	return string_
@@ -23,9 +23,9 @@ function escapeHtml(string_: string): string {
 }
 
 /**
- Get the names of all subdirectories under the given directory.
- @param basePath - The directory to search.
- @returns Array of subdirectory names.
+ * Get the names of all subdirectories under the given directory.
+ * @param basePath - The directory to search.
+ * @returns Array of subdirectory names.
  */
 function getComponentDirectories(basePath: string): string[] {
 	return readdirSync(basePath, { withFileTypes: true })
@@ -34,10 +34,10 @@ function getComponentDirectories(basePath: string): string[] {
 }
 
 /**
- Process a single component SCSS file to extract CSS custom properties
- @param component {string} - The name of the component.
- @param basePath {string} - The base path to the components' directory.
- @returns
+ * Process a single component SCSS file to extract CSS custom properties
+ * @param component {string} - The name of the component.
+ * @param basePath {string} - The base path to the components' directory.
+ * @returns {Promise<void>}
  */
 async function processComponent(
 	component: string,
@@ -54,7 +54,7 @@ async function processComponent(
 	if (documents.length > 0) {
 		// Remove HTML anchor tags inserted by SassDoc
 		const md = buildMarkdown(documents).replaceAll(
-			/^[\t ]*<a id="[^"]+"><\/a>[\t ]*\r?\n/gm,
+			/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gm,
 			''
 		);
 		const outPath = join(resolve(__dirname, outputSubPath), component);
@@ -69,9 +69,9 @@ async function processComponent(
 }
 
 /**
- Extract name, defaultValue, description & example from
- the raw SassDoc description block.
- @param description
+ * Extract name, defaultValue, description & example from
+ * the raw SassDoc description block.
+ * @param {string} description
  */
 function extractTags(description: string) {
 	const lines = description.split(/\r?\n/).map((l) => l.trim());
@@ -93,7 +93,7 @@ function extractTags(description: string) {
 	let inExample = false;
 
 	for (const line of lines) {
-		const tagMatch = /^@(\w+)\s*(?::\s*)?(.*)$/.exec(line);
+		const tagMatch = /^@(\w+)\s*:?\s*(.*)$/.exec(line);
 		if (tagMatch) {
 			const [, tag, rest] = tagMatch;
 			switch (tag) {
@@ -145,8 +145,8 @@ function extractTags(description: string) {
 }
 
 /**
- Build Markdown table for a component.
- @param documents - The SassDoc documentation array for the component.
+ * Build Markdown table for a component.
+ * @param {Array} documents - The SassDoc documentation array for the component.
  */
 function buildMarkdown(documents: any[]) {
 	const headers = [
@@ -163,7 +163,7 @@ function buildMarkdown(documents: any[]) {
 		`| ${headers.map(() => '---').join(' | ')} |`
 	];
 
-	let md = '## CSS Properties\n\n' + lines.join('\n') + '\n';
+	let md = `## CSS Properties\n\n` + lines.join('\n') + '\n';
 
 	for (const item of documents) {
 		if (!item.description.includes('@cssprop')) {
@@ -186,8 +186,8 @@ function buildMarkdown(documents: any[]) {
 }
 
 /**
- Extract CSS variables from all components and write them to Markdown files.
- @returns
+ * Extract CSS variables from all components and write them to Markdown files.
+ * @returns {Promise<void>}
  */
 async function extractCssVariables(): Promise<void> {
 	const basePath = resolve(__dirname, componentSubPath);
@@ -199,7 +199,7 @@ async function extractCssVariables(): Promise<void> {
 }
 
 /**
- Main function to execute the script.
+ * Main function to execute the script.
  */
 try {
 	void extractCssVariables();

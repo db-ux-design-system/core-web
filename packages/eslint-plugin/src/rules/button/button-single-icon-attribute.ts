@@ -44,15 +44,11 @@ export default {
 			COMPONENTS.DBButton,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkButton = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const icon = getAttributeValue(openingElement, 'icon');
 			const iconLeading = getAttributeValue(

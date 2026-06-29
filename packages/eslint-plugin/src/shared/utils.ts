@@ -67,10 +67,7 @@ export function getAttributeValue(
 		const input = node.inputs.find(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
-		if (input) {
-			return true;
-		}
-
+		if (input) return true;
 		return undefined;
 	}
 
@@ -91,10 +88,8 @@ export function getAttributeValue(
 					argName === kebabAttrName ||
 					argName === attrName.toLowerCase() ||
 					argName === kebabAttrName.toLowerCase())
-			) {
+			)
 				return true;
-			}
-
 			return (
 				keyName === attrName ||
 				keyName === kebabAttrName ||
@@ -102,14 +97,8 @@ export function getAttributeValue(
 				keyName === `:${kebabAttrName}`
 			);
 		});
-		if (!attr) {
-			return undefined;
-		}
-
-		if (!attr.value) {
-			return true;
-		}
-
+		if (!attr) return undefined;
+		if (!attr.value) return true;
 		return attr.value.value ?? true;
 	}
 
@@ -118,22 +107,10 @@ export function getAttributeValue(
 		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
 	) as TSESTree.JSXAttribute | undefined;
 
-	if (!attr) {
-		return undefined;
-	}
-
-	if (!attr.value) {
-		return true;
-	}
-
-	if (attr.value.type === 'Literal') {
-		return attr.value.value as string;
-	}
-
-	if (attr.value.type === 'JSXExpressionContainer') {
-		return true;
-	}
-
+	if (!attr) return undefined;
+	if (!attr.value) return true;
+	if (attr.value.type === 'Literal') return attr.value.value as string;
+	if (attr.value.type === 'JSXExpressionContainer') return true;
 	return undefined;
 }
 
@@ -191,10 +168,7 @@ export function isDBComponent(
 		return node.rawName === componentName || node.rawName === kebabName;
 	}
 
-	if (node.name.type !== 'JSXIdentifier') {
-		return false;
-	}
-
+	if (node.name.type !== 'JSXIdentifier') return false;
 	const { name } = node.name;
 	return name === componentName || name === kebabName;
 }
@@ -279,10 +253,7 @@ export function createAngularFix(
 	const endOffset = node.sourceSpan.end.offset;
 	const tagText = text.substring(startOffset, endOffset);
 	const closeTagIndex = tagText.indexOf('>');
-	if (closeTagIndex === -1) {
-		return null;
-	}
-
+	if (closeTagIndex === -1) return null;
 	const insertPos = startOffset + closeTagIndex;
 	return { insertPos, attributeText };
 }

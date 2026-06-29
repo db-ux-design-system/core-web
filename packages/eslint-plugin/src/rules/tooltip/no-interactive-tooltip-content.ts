@@ -74,15 +74,11 @@ export default {
 			COMPONENTS.DBTooltip,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkTooltip = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, 'DBTooltip')) {
-				return;
-			}
+			if (!isDBComponent(openingElement, 'DBTooltip')) return;
 
 			if (hasInteractiveChild(node)) {
 				context.report({

@@ -65,15 +65,11 @@ export default {
 			COMPONENTS.DBInput,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkInput = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) return;
 
 			const type = getAttributeValue(openingElement, 'type');
 			const accept = getAttributeValue(openingElement, 'accept');

@@ -1,10 +1,10 @@
 /**
- Generates src/manifest.json at build time.
- Run via: npx tsx scripts/build-manifest.ts
-
- The manifest embeds all component metadata and example source code so the
- MCP server can operate without access to the monorepo source tree (e.g.
- when invoked via `npx @db-ux/mcp-server`).
+ * Generates src/manifest.json at build time.
+ * Run via: npx tsx scripts/build-manifest.ts
+ *
+ * The manifest embeds all component metadata and example source code so the
+ * MCP server can operate without access to the monorepo source tree (e.g.
+ * when invoked via `npx @db-ux/mcp-server`).
  */
 import { existsSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
@@ -25,22 +25,19 @@ type Framework = (typeof FRAMEWORKS)[number];
 
 /** Reads a file and returns its content, or `undefined` if the file does not exist. */
 async function readOptional(path: string): Promise<string | undefined> {
-	if (!existsSync(path)) {
-		return undefined;
-	}
-
+	if (!existsSync(path)) return undefined;
 	return readFile(path, 'utf-8');
 }
 
 /**
- Collects all metadata for a single component: props, example names, and
- per-framework example source code.
-
- @param name - The component directory name (e.g. "button").
- @param componentsSrc - Absolute path to the components source directory.
- @param outputDir - Absolute path to the framework output root directory.
- @returns A discriminated union: `{ hasError: false, name, data }` on success
- or `{ hasError: true }` when any file read fails.
+ * Collects all metadata for a single component: props, example names, and
+ * per-framework example source code.
+ *
+ * @param name - The component directory name (e.g. "button").
+ * @param componentsSrc - Absolute path to the components source directory.
+ * @param outputDir - Absolute path to the framework output root directory.
+ * @returns A discriminated union: `{ hasError: false, name, data }` on success
+ *          or `{ hasError: true }` when any file read fails.
  */
 export async function processComponent(
 	name: string,
@@ -81,10 +78,7 @@ export async function processComponent(
 				name,
 				'examples'
 			);
-			if (!existsSync(exDir)) {
-				continue;
-			}
-
+			if (!existsSync(exDir)) continue;
 			const files = await readdir(exDir);
 			for (const file of files.filter(
 				(f) => !f.startsWith('_') && f.includes('.example.')
@@ -109,16 +103,13 @@ export async function processComponent(
 }
 
 /**
- Reads all token SCSS files defined in TOKEN_FILES and returns their raw
- content keyed by category name. Skips categories whose file does not exist.
+ * Reads all token SCSS files defined in TOKEN_FILES and returns their raw
+ * content keyed by category name. Skips categories whose file does not exist.
  */
 async function collectTokens(): Promise<Record<string, string>> {
 	const tokens: Record<string, string> = {};
 	for (const [category, filePath] of Object.entries(TOKEN_FILES)) {
-		if (!existsSync(filePath)) {
-			continue;
-		}
-
+		if (!existsSync(filePath)) continue;
 		tokens[category] = await readFile(filePath, 'utf-8');
 	}
 
@@ -126,12 +117,12 @@ async function collectTokens(): Promise<Record<string, string>> {
 }
 
 /**
- Whitelisted directories for docs collection.
- Only Markdown files from these directories are included in the manifest
- to reduce token consumption and prevent context collisions (hallucinations).
-
- Explicitly excluded: docs/migration/ (has its own tool), docs/adr/,
- docs/research/, docs/.vitepress/, and all other top-level docs/ files.
+ * Whitelisted directories for docs collection.
+ * Only Markdown files from these directories are included in the manifest
+ * to reduce token consumption and prevent context collisions (hallucinations).
+ *
+ * Explicitly excluded: docs/migration/ (has its own tool), docs/adr/,
+ * docs/research/, docs/.vitepress/, and all other top-level docs/ files.
  */
 const DOCS_WHITELIST_DIRS: string[] = [
 	join(COMPONENTS_DIR), // Packages/components/src/components/*/docs/
@@ -139,21 +130,18 @@ const DOCS_WHITELIST_DIRS: string[] = [
 ];
 
 /**
- Recursively scans a directory for Markdown files and returns their content
- keyed by path relative to the repo root.
-
- @param dir - The directory to scan.
- @param depth - Maximum recursion depth (default 5).
+ * Recursively scans a directory for Markdown files and returns their content
+ * keyed by path relative to the repo root.
+ *
+ * @param dir - The directory to scan.
+ * @param depth - Maximum recursion depth (default 5).
  */
 async function collectDocs(
 	dir: string,
 	depth = 5
 ): Promise<Record<string, string>> {
 	const docs: Record<string, string> = {};
-	if (!existsSync(dir) || depth === 0) {
-		return docs;
-	}
-
+	if (!existsSync(dir) || depth === 0) return docs;
 	const entries = await readdir(dir, { withFileTypes: true });
 	for (const entry of entries) {
 		const fullPath = join(dir, entry.name);
@@ -171,9 +159,9 @@ async function collectDocs(
 }
 
 /**
- Collects Markdown docs exclusively from whitelisted directories
- (component docs and foundation docs). This prevents ADRs, migration guides,
- research documents, and infrastructure files from polluting the AI context.
+ * Collects Markdown docs exclusively from whitelisted directories
+ * (component docs and foundation docs). This prevents ADRs, migration guides,
+ * research documents, and infrastructure files from polluting the AI context.
  */
 async function collectWhitelistedDocs(): Promise<Record<string, string>> {
 	const docs: Record<string, string> = {};
@@ -185,8 +173,8 @@ async function collectWhitelistedDocs(): Promise<Record<string, string>> {
 }
 
 /**
- Reads all .md files from the migration guides directory.
- At build time this always reads from docs/migration/db-ui/ in the monorepo.
+ * Reads all .md files from the migration guides directory.
+ * At build time this always reads from docs/migration/db-ui/ in the monorepo.
  */
 async function collectMigrationGuides(): Promise<Record<string, string>> {
 	if (!existsSync(MIGRATION_DIR)) {
@@ -198,10 +186,7 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
 	const entries = await readdir(MIGRATION_DIR, { withFileTypes: true });
 	const guides: Record<string, string> = {};
 	for (const entry of entries) {
-		if (!entry.isFile() || !entry.name.endsWith('.md')) {
-			continue;
-		}
-
+		if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
 		const key = entry.name.slice(0, -3);
 
 		guides[key] = await readFile(join(MIGRATION_DIR, entry.name), 'utf-8');
@@ -211,9 +196,9 @@ async function collectMigrationGuides(): Promise<Record<string, string>> {
 }
 
 /**
- Entry point for the build step. Collects all component data, icons, tokens,
- and docs, then writes the result to src/manifest.json.
- Calls process.exit(1) if any component failed to process.
+ * Entry point for the build step. Collects all component data, icons, tokens,
+ * and docs, then writes the result to src/manifest.json.
+ * Calls process.exit(1) if any component failed to process.
  */
 export async function buildManifest() {
 	const componentEntries = await readdir(COMPONENTS_DIR, {
@@ -245,9 +230,7 @@ export async function buildManifest() {
 	const hasErrors = entries.some((entry) => entry.hasError);
 
 	for (const entry of entries) {
-		if (!entry.hasError) {
-			components[entry.name] = entry.data;
-		}
+		if (!entry.hasError) components[entry.name] = entry.data;
 	}
 
 	const [tokens, docs, migrationGuides] = await Promise.all([
@@ -266,9 +249,7 @@ export async function buildManifest() {
 		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`
 	);
 
-	if (hasErrors) {
-		process.exit(1);
-	}
+	if (hasErrors) process.exit(1);
 }
 
 // Only run when executed directly (not when imported by prebuild.ts or tests)

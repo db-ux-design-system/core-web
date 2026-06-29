@@ -2,9 +2,9 @@
 // Usage: Pass in the context objects It returns the name based on RELEASE/PRE_RELEASE env vars.
 
 /**
- Extracts the branch or tag name for workflow output and constructs the BASE_URL.
- @param {object} context - The GitHub Actions context object
- @returns {{ name: string, baseUrl: string, repo: string, owner: string }}
+ * Extracts the branch or tag name for workflow output and constructs the BASE_URL.
+ * @param {object} context - The GitHub Actions context object
+ * @returns {{ name: string, baseUrl: string, repo: string, owner: string }}
  */
 function extractNameAndBaseUrl(context) {
 	console.log('Starting extractNameAndBaseUrl...');

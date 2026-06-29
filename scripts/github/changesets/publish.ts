@@ -27,7 +27,7 @@ function run(cmd: string, options = {}): any {
 }
 
 /**
- Get the current version from package.json - we can use foundations here as it's always in sync with the other packages
+ * Get the current version from package.json - we can use foundations here as it's always in sync with the other packages
  */
 function getVersion(): string {
 	const pkgPath = path.resolve(
@@ -56,7 +56,7 @@ function getReleaseNotes(): string {
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
 			const entry = `# ${headline}\n${section}`;
 			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
-			const isVersionBump = /^\s*(?:[*+\-]\s*)?_version bump_\s*$/m.test(
+			const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/m.test(
 				section
 			);
 			if (isVersionBump) {
@@ -96,7 +96,7 @@ function main() {
 	}
 
 	// Write notes to a temporary file for safe shell usage
-	const temporaryFile = path.join(os.tmpdir(), 'dbux-release-notes.md');
+	const temporaryFile = path.join(os.tmpdir(), `dbux-release-notes.md`);
 	fs.writeFileSync(temporaryFile, notes, 'utf8');
 	try {
 		const releaseCommand = `gh release create "${tag}" --target main --title "${tag}" --notes-file "${temporaryFile}"`;

@@ -21,8 +21,9 @@ const getFileTypeByFramework = (framework) => {
 	return 'html';
 };
 
-const getCustomCodeCommentByFramework = (componentName, framework) =>
-	`<DBLink content="external" target="_blank" href="how-to-use?current=${framework}">How to use this in ${framework}</DBLink>`;
+const getCustomCodeCommentByFramework = (componentName, framework) => {
+	return `<DBLink content="external" target="_blank" href="how-to-use?current=${framework}">How to use this in ${framework}</DBLink>`;
+};
 
 const getExamplesAsMDX = async (componentName, variant) => {
 	const { examples, children } = variant;
@@ -131,9 +132,9 @@ export default ${variant.name};`;
 };
 
 /**
- @param componentPath {string}
- @param componentName {string}
- @returns {Promise<string>}
+ * @param componentPath {string}
+ * @param componentName {string}
+ * @returns {Promise<string>}
  */
 const writeCodeFiles = async (componentPath, componentName) => {
 	const codePath = componentPath;

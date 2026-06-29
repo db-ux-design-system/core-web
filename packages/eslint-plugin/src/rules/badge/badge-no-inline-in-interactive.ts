@@ -26,9 +26,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const placement = getAttributeValue(node, 'placement');
-			if (placement && placement !== 'inline') {
-				return;
-			}
+			if (placement && placement !== 'inline') return;
 
 			let { parent } = node;
 			while (parent) {
@@ -55,10 +53,7 @@ export default {
 									node,
 									' placement="corner-top-right"'
 								);
-								if (!fixData) {
-									return null;
-								}
-
+								if (!fixData) return null;
 								return fixer.insertTextBeforeRange(
 									[fixData.insertPos, fixData.insertPos],
 									fixData.attributeText
@@ -78,20 +73,14 @@ export default {
 			COMPONENTS.DBBadge,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkBadge = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) return;
 
 			const placement = getAttributeValue(openingElement, 'placement');
-			if (placement && placement !== 'inline') {
-				return;
-			}
+			if (placement && placement !== 'inline') return;
 
 			let { parent } = node;
 			while (parent) {

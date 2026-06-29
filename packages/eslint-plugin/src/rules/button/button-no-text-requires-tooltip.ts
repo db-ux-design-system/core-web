@@ -25,9 +25,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const noText = getAttributeValue(node, 'noText');
-			if (noText === undefined) {
-				return;
-			}
+			if (noText === undefined) return;
 
 			const icon =
 				getAttributeValue(node, 'icon') ||
@@ -59,16 +57,11 @@ export default {
 						const tagText = text.substring(startOffset, endOffset);
 
 						// Check if tooltip already exists (prevents duplicate fixes)
-						if (tagText.includes('<db-tooltip>')) {
-							return null;
-						}
+						if (tagText.includes('<db-tooltip>')) return null;
 
 						const closeTagIndex =
 							tagText.lastIndexOf('</db-button>');
-						if (closeTagIndex === -1) {
-							return null;
-						}
-
+						if (closeTagIndex === -1) return null;
 						const insertPos = startOffset + closeTagIndex;
 						return fixer.insertTextBeforeRange(
 							[insertPos, insertPos],
@@ -84,21 +77,15 @@ export default {
 			COMPONENTS.DBButton,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkButton = (node: any) => {
 			const openingElement = node.openingElement || node;
 
-			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const noText = getAttributeValue(openingElement, 'noText');
-			if (noText === undefined) {
-				return;
-			}
+			if (noText === undefined) return;
 
 			const icon =
 				getAttributeValue(openingElement, 'icon') ||
@@ -120,10 +107,7 @@ export default {
 						if (node.openingElement) {
 							// JSX
 							const closingTag = node.closingElement;
-							if (!closingTag) {
-								return null;
-							}
-
+							if (!closingTag) return null;
 							const componentName =
 								openingElement.name.type === 'JSXIdentifier'
 									? openingElement.name.name
@@ -138,14 +122,8 @@ export default {
 						}
 
 						// Vue
-						if (!node.endTag) {
-							return null;
-						}
-
-						if (!node.startTag?.range) {
-							return null;
-						}
-
+						if (!node.endTag) return null;
+						if (!node.startTag?.range) return null;
 						const componentName = openingElement.rawName;
 						const tooltipName = componentName.includes('-')
 							? 'db-tooltip'

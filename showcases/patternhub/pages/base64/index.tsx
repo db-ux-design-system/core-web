@@ -21,7 +21,7 @@ const Base64 = () => {
 			new URL(
 				`iframe?color=${color}&density=${density}&components=${base64}`,
 				globalThis.location?.href
-			).href
+			).toString()
 		);
 	}, [density, color, base64]);
 

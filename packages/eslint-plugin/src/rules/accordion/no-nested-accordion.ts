@@ -45,15 +45,11 @@ export default {
 			COMPONENTS.DBAccordion,
 			angularHandler
 		);
-		if (angularVisitors) {
-			return angularVisitors;
-		}
+		if (angularVisitors) return angularVisitors;
 
 		const checkAccordion = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBAccordion)) {
-				return;
-			}
+			if (!isDBComponent(openingElement, COMPONENTS.DBAccordion)) return;
 
 			let { parent } = node;
 			while (parent) {

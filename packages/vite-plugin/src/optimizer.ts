@@ -6,9 +6,9 @@ export type OptimizerContext = {
 };
 
 /**
- Remove unused CSS custom properties, @property declarations, and rule blocks
- for colors, densities, and font sizes that were not detected in the project.
- Also strips empty @layer declarations and @charset directives.
+ * Remove unused CSS custom properties, @property declarations, and rule blocks
+ * for colors, densities, and font sizes that were not detected in the project.
+ * Also strips empty @layer declarations and @charset directives.
  */
 export function removeUnusedStyles(
 	css: string,

@@ -77,16 +77,21 @@ const nameComponentMap = {
 
 const addComponentsToNavigationItems = (
 	navigationItems: NavigationItem[]
-): NavigationItem[] =>
-	navigationItems.map((navigationItem) => ({
-		...navigationItem,
-		subNavigation: navigationItem.subNavigation?.map((subNavItem) => ({
-			...subNavItem,
-			component: subNavItem.name
-				? nameComponentMap[subNavItem.name]
-				: undefined
-		}))
-	}));
+): NavigationItem[] => {
+	return navigationItems.map((navigationItem) => {
+		return {
+			...navigationItem,
+			subNavigation: navigationItem.subNavigation?.map((subNavItem) => {
+				return {
+					...subNavItem,
+					component: subNavItem.name
+						? nameComponentMap[subNavItem.name]
+						: undefined
+				};
+			})
+		};
+	});
+};
 
 export const componentChildren: NavigationItem[] =
 	addComponentsToNavigationItems(Components);
@@ -285,5 +290,8 @@ export const getBreadcrumb = (path: string) => {
 		.toSorted((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
-export const getAllComponentGroupNames = (): string[] =>
-	componentChildren.filter(({ name }) => name).map(({ name }) => name!);
+export const getAllComponentGroupNames = (): string[] => {
+	return componentChildren
+		.filter(({ name }) => Boolean(name))
+		.map(({ name }) => name!);
+};

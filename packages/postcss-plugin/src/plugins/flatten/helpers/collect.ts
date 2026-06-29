@@ -2,9 +2,9 @@ import type { AtRule, ChildNode, Declaration, Root } from 'postcss';
 import type { VarEntry } from '../data.js';
 
 /**
- Check whether a CSS selector targets only `:root` and/or `:host`.
- @param selector - The CSS selector string to check
- @returns True if the selector only contains `:root` and/or `:host`
+ * Check whether a CSS selector targets only `:root` and/or `:host`.
+ * @param selector - The CSS selector string to check
+ * @returns True if the selector only contains `:root` and/or `:host`
  */
 export const isRootSelector = (selector: string): boolean => {
 	const trimmed = selector.trim();
@@ -12,9 +12,9 @@ export const isRootSelector = (selector: string): boolean => {
 };
 
 /**
- Walk up the PostCSS AST from a node to find the enclosing `@layer` name.
- @param node - The PostCSS child node to start from
- @returns The layer name, or null if not inside any `@layer`
+ * Walk up the PostCSS AST from a node to find the enclosing `@layer` name.
+ * @param node - The PostCSS child node to start from
+ * @returns The layer name, or null if not inside any `@layer`
  */
 export const getLayerName = (node: ChildNode): string | undefined => {
 	let current: any = node.parent;
@@ -34,18 +34,15 @@ export const getLayerName = (node: ChildNode): string | undefined => {
 };
 
 /**
- Parse `@layer` order declarations (e.g. `@layer db-ux, db-theme;`) from a root.
- Later names in the list get higher priority indices.
- @param root - The PostCSS root to scan
- @returns A map of layer name to priority index
+ * Parse `@layer` order declarations (e.g. `@layer db-ux, db-theme;`) from a root.
+ * Later names in the list get higher priority indices.
+ * @param root - The PostCSS root to scan
+ * @returns A map of layer name to priority index
  */
 export const collectLayerOrder = (root: Root): Map<string, number> => {
 	const order = new Map<string, number>();
 	root.walkAtRules('layer', (atRule: AtRule) => {
-		if (atRule.nodes && atRule.nodes.length > 0) {
-			return;
-		}
-
+		if (atRule.nodes && atRule.nodes.length > 0) return;
 		const names = atRule.params
 			.split(',')
 			.map((n) => n.trim())
@@ -58,56 +55,47 @@ export const collectLayerOrder = (root: Root): Map<string, number> => {
 };
 
 /**
- Parse `@import` rules to extract file-specifier to layer name mappings.
- @param root - The PostCSS root to scan
- @returns A map of import specifier to layer name
+ * Parse `@import` rules to extract file-specifier to layer name mappings.
+ * @param root - The PostCSS root to scan
+ * @returns A map of import specifier to layer name
  */
 export const collectImportLayers = (root: Root): Map<string, string> => {
 	const importLayers = new Map<string, string>();
 	root.walkAtRules('import', (atRule: AtRule) => {
 		const { params } = atRule;
 		const layerMatch = /layer\(([^)]+)\)/.exec(params);
-		if (!layerMatch) {
-			return;
-		}
-
+		if (!layerMatch) return;
 		const layerName = layerMatch[1].trim();
 		const fileMatch = /(?:url\(\s*)?["']([^"']+)["'](?:\s*\))?/.exec(
 			params
 		);
-		if (!fileMatch) {
-			return;
-		}
-
+		if (!fileMatch) return;
 		importLayers.set(fileMatch[1], layerName);
 	});
 	return importLayers;
 };
 
 /**
- Get the numeric priority for a layer. Unlayered CSS (null) gets the highest
- priority (`MAX_SAFE_INTEGER`), matching the CSS spec.
- @param layer - The layer name, or null for unlayered CSS
- @param layerOrder - The layer priority map
- @returns The numeric priority (higher = wins)
+ * Get the numeric priority for a layer. Unlayered CSS (null) gets the highest
+ * priority (`MAX_SAFE_INTEGER`), matching the CSS spec.
+ * @param layer - The layer name, or null for unlayered CSS
+ * @param layerOrder - The layer priority map
+ * @returns The numeric priority (higher = wins)
  */
 export const getLayerPriority = (
 	layer: string | undefined,
 	layerOrder: Map<string, number>
 ): number => {
-	if (!layer) {
-		return Number.MAX_SAFE_INTEGER;
-	}
-
+	if (!layer) return Number.MAX_SAFE_INTEGER;
 	return layerOrder.get(layer) ?? -1;
 };
 
 /**
- Pick the best (highest-priority) value from multiple `VarEntry` entries
- for the same variable, based on `@layer` priority.
- @param entries - All collected entries for a single variable
- @param layerOrder - The layer priority map
- @returns The value string from the highest-priority entry
+ * Pick the best (highest-priority) value from multiple `VarEntry` entries
+ * for the same variable, based on `@layer` priority.
+ * @param entries - All collected entries for a single variable
+ * @param layerOrder - The layer priority map
+ * @returns The value string from the highest-priority entry
  */
 export const pickBestVar = (
 	entries: VarEntry[],
@@ -127,11 +115,11 @@ export const pickBestVar = (
 };
 
 /**
- Look up the `@layer` name for a file by matching its path against
- known `@import ... layer()` specifiers.
- @param filePath - The absolute file path to look up
- @param importLayerMap - Map of import specifiers to layer names
- @returns The layer name, or null if not associated with any layer
+ * Look up the `@layer` name for a file by matching its path against
+ * known `@import ... layer()` specifiers.
+ * @param filePath - The absolute file path to look up
+ * @param importLayerMap - Map of import specifiers to layer names
+ * @returns The layer name, or null if not associated with any layer
  */
 export const getFileLayer = (
 	filePath: string,
@@ -151,16 +139,16 @@ export const getFileLayer = (
 };
 
 /**
- Collect all CSS custom property declarations and `@property` initial-values
- from a PostCSS root, assigning each a layer and detecting dynamic variables.
- 
- A variable is marked as dynamic if:
- - Its name matches one of the `prefixes`
- - It is declared inside a non-`:root`/`:host` selector
- - It is declared inside `@media` within `:root`/`:host`
- 
- Duplicate entries (same prop + file + layer) are skipped.
- 
+ * Collect all CSS custom property declarations and `@property` initial-values
+ * from a PostCSS root, assigning each a layer and detecting dynamic variables.
+ *
+ * A variable is marked as dynamic if:
+ * - Its name matches one of the `prefixes`
+ * - It is declared inside a non-`:root`/`:host` selector
+ * - It is declared inside `@media` within `:root`/`:host`
+ *
+ * Duplicate entries (same prop + file + layer) are skipped.
+ *
  * @param root - The PostCSS root to scan
  * @param varMap - Shared map to accumulate variable entries into
  * @param propertyNames - Shared set to track `@property` variable names

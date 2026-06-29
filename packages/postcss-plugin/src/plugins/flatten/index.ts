@@ -14,15 +14,14 @@ import {
 import { transformRoot } from './helpers/transform.js';
 
 /**
- PostCSS plugin that flattens DB UX Design System CSS custom properties
- by resolving `var()`, `@property`, `calc()`, `color-mix()`, and `light-dark()`.
- 
- Detects dynamic variables (re-declared in non-`:root` selectors, `@media`,
- or matching `dynamicPrefixes`) and leaves them as `var()` references.
- Respects `@layer` priority via `@layer` order declarations and `@import ... layer()` rules.
- 
- @param opts - Plugin options
- @param options
+ * PostCSS plugin that flattens DB UX Design System CSS custom properties
+ * by resolving `var()`, `@property`, `calc()`, `color-mix()`, and `light-dark()`.
+ *
+ * Detects dynamic variables (re-declared in non-`:root` selectors, `@media`,
+ * or matching `dynamicPrefixes`) and leaves them as `var()` references.
+ * Respects `@layer` priority via `@layer` order declarations and `@import ... layer()` rules.
+ *
+ * @param opts - Plugin options
  * @returns A PostCSS plugin instance
  */
 const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
