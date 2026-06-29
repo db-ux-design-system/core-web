@@ -58,13 +58,13 @@ function buildResults(results: string[], query: string): ToolResult {
  Applies a 10-second timeout to prevent hanging on large directory trees.
  
  @param query - Space-separated search terms (tokens shorter than 3 chars are ignored).
- * @param query.query
- * @param category - Search scope: "global" or "component".
- * @param query.category
- * @param componentName - Required when category is "component".
- * @param query.componentName
- * @param docType - Optional filename filter (e.g. "Migration", "Accessibility").
- * @param query.docType
+ @param query.query
+ @param category - Search scope: "global" or "component".
+ @param query.category
+ @param componentName - Required when category is "component".
+ @param query.componentName
+ @param docType - Optional filename filter (e.g. "Migration", "Accessibility").
+ @param query.docType
  */
 export async function handleDocsSearch({
 	query,

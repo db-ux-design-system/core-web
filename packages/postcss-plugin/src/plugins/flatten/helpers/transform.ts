@@ -55,7 +55,7 @@ export const collapseLightDark = (value: string): string => {
  @param propertyNames - Set of variable names that came from `@property`
  @param dynamicVars - Set of dynamic variable names (never removed)
  @param removeAtProperty - Whether to remove `@property` rules
- * @param removeResolved - Whether to remove unused `@property`-sourced declarations
+ @param removeResolved - Whether to remove unused `@property`-sourced declarations
  */
 export const transformRoot = (
 	root: Root,

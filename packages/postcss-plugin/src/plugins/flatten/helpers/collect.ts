@@ -161,13 +161,13 @@ export const getFileLayer = (
  
  Duplicate entries (same prop + file + layer) are skipped.
  
- * @param root - The PostCSS root to scan
- * @param varMap - Shared map to accumulate variable entries into
- * @param propertyNames - Shared set to track `@property` variable names
- * @param dynamicVars - Shared set to track dynamic variable names
- * @param prefixes - Variable prefixes that are always treated as dynamic
- * @param forceLayer - If set, overrides the detected layer for all entries
- * @param file - The source file path for deduplication
+ @param root - The PostCSS root to scan
+ @param varMap - Shared map to accumulate variable entries into
+ @param propertyNames - Shared set to track `@property` variable names
+ @param dynamicVars - Shared set to track dynamic variable names
+ @param prefixes - Variable prefixes that are always treated as dynamic
+ @param forceLayer - If set, overrides the detected layer for all entries
+ @param file - The source file path for deduplication
  */
 export const collectVarsWithLayer = (
 	root: Root,
