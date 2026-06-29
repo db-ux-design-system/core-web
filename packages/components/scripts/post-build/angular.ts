@@ -45,6 +45,12 @@ const setControlValueAccessorReplacements = (
 		from: `constructor(`,
 		to: `constructor(private renderer: Renderer2,`
 	});
+
+	// Ensure hidden attribute works despite :host { display: contents }
+	replacements.push({
+		from: '`:host { display: contents; }`',
+		to: '`:host { display: contents; } :host([hidden]) { display: none !important; }`'
+	});
 	// NOTE: Mitosis already generates form-related fields (value/checked/disabled) as model() signals.
 	// No input → model conversion needed. For checked components (valueAccessor === 'checked'),
 	// the 'value' field intentionally remains as InputSignal to prevent Signal Forms
