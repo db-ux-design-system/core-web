@@ -1,17 +1,17 @@
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
 	handleAuditAccessibilityPrompt,
 	handleMigrateComponentPrompt,
 	handleReviewUiCodePrompt,
-	handleScaffoldPagePrompt
+	handleScaffoldPagePrompt,
 } from './prompts';
 import {
 	auditAccessibilitySchema,
 	migrateComponentSchema,
 	reviewUiCodeSchema,
-	scaffoldPageSchema
+	scaffoldPageSchema,
 } from './prompts/schemas.js';
-import { registerLifecycleHandlers, server } from './server.js';
+import {registerLifecycleHandlers, server} from './server.js';
 import {
 	handleDocsSearch,
 	handleGetComponentDetails,
@@ -26,7 +26,7 @@ import {
 	handleListMigrationGuides,
 	handleListVisuals,
 	handleScanV2Migration,
-	handleVerifyMigratedCode
+	handleVerifyMigratedCode,
 } from './tools';
 import {
 	docsSearchSchema,
@@ -42,7 +42,7 @@ import {
 	listMigrationGuidesSchema,
 	listVisualsSchema,
 	scanV2MigrationSchema,
-	verifyMigratedCodeSchema
+	verifyMigratedCodeSchema,
 } from './tools/schemas.js';
 
 export {
@@ -59,90 +59,90 @@ export {
 	handleListMigrationGuides,
 	handleListVisuals,
 	handleScanV2Migration,
-	handleVerifyMigratedCode
+	handleVerifyMigratedCode,
 } from './tools/index.js';
-export { resolveSafePath } from './utils/index.js';
+export {resolveSafePath} from './utils/index.js';
 
 // Tools
 server.registerTool(
 	'list_components',
 	listComponentsSchema,
-	handleListComponents
+	handleListComponents,
 );
 server.registerTool(
 	'get_component_details',
 	getComponentDetailsSchema,
-	handleGetComponentDetails
+	handleGetComponentDetails,
 );
 server.registerTool(
 	'get_component_props',
 	getComponentPropsSchema,
-	handleGetComponentProps
+	handleGetComponentProps,
 );
 server.registerTool(
 	'list_design_token_categories',
 	listDesignTokenCategoriesSchema,
-	handleListDesignTokenCategories
+	handleListDesignTokenCategories,
 );
 server.registerTool(
 	'get_design_tokens',
 	getDesignTokensSchema,
-	handleGetDesignTokens
+	handleGetDesignTokens,
 );
 server.registerTool('list_icons', listIconsSchema, handleListIcons);
 server.registerTool(
 	'get_example_code',
 	getExampleCodeSchema,
-	handleGetExampleCode
+	handleGetExampleCode,
 );
 server.registerTool('docs_search', docsSearchSchema, handleDocsSearch);
 server.registerTool(
 	'list_migration_guides',
 	listMigrationGuidesSchema,
-	handleListMigrationGuides
+	handleListMigrationGuides,
 );
 server.registerTool(
 	'get_migration_guide',
 	getMigrationGuideSchema,
-	handleGetMigrationGuide
+	handleGetMigrationGuide,
 );
 server.registerTool(
 	'verify_migrated_code',
 	verifyMigratedCodeSchema,
-	handleVerifyMigratedCode
+	handleVerifyMigratedCode,
 );
 server.registerTool(
 	'scan_v2_migration',
 	scanV2MigrationSchema,
-	handleScanV2Migration
+	handleScanV2Migration,
 );
 server.registerTool('list_visuals', listVisualsSchema, handleListVisuals);
 server.registerTool(
 	'get_visual_reference',
 	getVisualReferenceSchema,
-	handleGetVisualReference
+	handleGetVisualReference,
 );
 
 // Prompts
 server.registerPrompt(
 	'scaffold_page',
 	scaffoldPageSchema,
-	handleScaffoldPagePrompt
+	handleScaffoldPagePrompt,
 );
 server.registerPrompt(
 	'review_ui_code',
 	reviewUiCodeSchema,
-	handleReviewUiCodePrompt
+	handleReviewUiCodePrompt,
 );
 server.registerPrompt(
 	'migrate_component',
 	migrateComponentSchema,
-	handleMigrateComponentPrompt
+	handleMigrateComponentPrompt,
 );
 server.registerPrompt(
 	'audit_accessibility',
 	auditAccessibilitySchema,
-	handleAuditAccessibilityPrompt
+	handleAuditAccessibilityPrompt,
 );
 
 // Bootstrap

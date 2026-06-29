@@ -1,15 +1,15 @@
-import { type Root } from 'postcss';
+import {type Root} from 'postcss';
 import stylelint, {
 	type PostcssResult,
 	type Rule,
 	type RuleContext,
 	type RuleMessages,
-	type RuleMeta
+	type RuleMeta,
 } from 'stylelint';
 
 const {
 	createPlugin,
-	utils: { validateOptions }
+	utils: {validateOptions},
 } = stylelint;
 
 export type RuleFunctionType<T> = (
@@ -17,7 +17,7 @@ export type RuleFunctionType<T> = (
 	result: PostcssResult,
 	primaryOptions: boolean,
 	secondaryOptions: T,
-	context: RuleContext
+	context: RuleContext,
 ) => void;
 
 export type CreateRuleProps<T> = {
@@ -31,14 +31,14 @@ export const createRule = <T = any>({
 	ruleName,
 	meta,
 	messages,
-	fn
+	fn,
 }: CreateRuleProps<T>) => {
 	const ruleFunction: Rule =
 		(primaryOptions: boolean, secondaryOptions: T, context) =>
 		(root: Root, result: PostcssResult) => {
 			const validOptions = validateOptions(result, ruleName, {
 				actual: primaryOptions,
-				possible: [true]
+				possible: [true],
 			});
 
 			if (!validOptions) {

@@ -1,9 +1,9 @@
 #!/usr/bin/env tsx
-import { readFileSync, readdirSync } from 'node:fs';
+import {readFileSync, readdirSync} from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { publint } from 'publint';
-import { formatMessage } from 'publint/utils';
+import {publint} from 'publint';
+import {formatMessage} from 'publint/utils';
 
 const mode = process.argv[2];
 
@@ -21,8 +21,8 @@ type PkgJson = {
 	peerDependencies?: Record<string, string>;
 };
 
-const dirs = readdirSync('build-outputs', { withFileTypes: true }).filter(
-	(entry) => entry.isDirectory()
+const dirs = readdirSync('build-outputs', {withFileTypes: true}).filter(
+	(entry) => entry.isDirectory(),
 );
 
 const results = await Promise.all(
@@ -32,31 +32,31 @@ const results = await Promise.all(
 
 		try {
 			const pkgJson = JSON.parse(
-				readFileSync(packageJsonPath, 'utf8')
+				readFileSync(packageJsonPath, 'utf8'),
 			) as PkgJson;
 
-			const { messages } = await publint({
+			const {messages} = await publint({
 				pkgDir: path.resolve(packagePath),
 				level: 'warning',
-				pack: false
+				pack: false,
 			});
 
-			return { pkgJson, packagePath, messages, error: null };
+			return {pkgJson, packagePath, messages, error: null};
 		} catch (error) {
 			return {
 				pkgJson: null,
 				packagePath,
 				messages: [],
-				error: error instanceof Error ? error.message : String(error)
+				error: error instanceof Error ? error.message : String(error),
 			};
 		}
-	})
+	}),
 );
 
 let hasErrors = false;
 let totalIssues = 0;
 
-for (const { pkgJson, packagePath, messages, error } of results) {
+for (const {pkgJson, packagePath, messages, error} of results) {
 	if (error) {
 		console.error(`\n❌ Failed to process ${packagePath}: ${error}`);
 		hasErrors = true;
@@ -64,7 +64,7 @@ for (const { pkgJson, packagePath, messages, error } of results) {
 		continue;
 	}
 
-	const { name } = pkgJson!;
+	const {name} = pkgJson!;
 	console.log(`\n📦 Checking ${name} (${packagePath})...`);
 
 	if (messages.length > 0) {
@@ -81,7 +81,7 @@ for (const { pkgJson, packagePath, messages, error } of results) {
 }
 
 console.log(
-	`\n📊 Summary: ${totalIssues} package(s) with issues out of ${dirs.length} checked`
+	`\n📊 Summary: ${totalIssues} package(s) with issues out of ${dirs.length} checked`,
 );
 
 if (hasErrors) {

@@ -1,7 +1,7 @@
-import { globSync } from 'glob';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import {globSync} from 'glob';
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import {fileURLToPath} from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outputDirectory = path
@@ -17,13 +17,13 @@ const componentsDirectory = path
 	.replaceAll('\\', '/');
 
 const includeComponents = globSync(
-	path.join(componentsDirectory, '*/agent/*').replaceAll('\\', '/')
+	path.join(componentsDirectory, '*/agent/*').replaceAll('\\', '/'),
 ).map(
-	(file) => path.dirname(file).replaceAll('\\', '/').split('/').at(-2) ?? ''
+	(file) => path.dirname(file).replaceAll('\\', '/').split('/').at(-2) ?? '',
 );
 
 const includeSet = new Set(
-	includeComponents.map((n) => n?.trim().toLowerCase()).filter(Boolean)
+	includeComponents.map((n) => n?.trim().toLowerCase()).filter(Boolean),
 );
 
 /**
@@ -38,7 +38,7 @@ function toPascalCase(string_: string): string {
 		.replaceAll(
 			/\s+(.)(\w*)/g,
 			(_, firstChar: string, rest: string) =>
-				firstChar.toUpperCase() + rest.toLowerCase()
+				firstChar.toUpperCase() + rest.toLowerCase(),
 		)
 		.replace(/^\w/, (char: string) => char.toUpperCase());
 }
@@ -51,8 +51,7 @@ function toPascalCase(string_: string): string {
 function getGroupedFiles(files: string[]): Record<string, string[]> {
 	const groupedFiles: Record<string, string[]> = {};
 	for (const file of files) {
-		let directoryName: string =
-			path.dirname(file).split(path.sep).pop() ?? '';
+		let directoryName: string = path.dirname(file).split(path.sep).pop() ?? '';
 		if (documentsDirectory === directoryName) {
 			continue;
 		}
@@ -76,16 +75,16 @@ function getGroupedFiles(files: string[]): Record<string, string[]> {
 const files: string[] = globSync(
 	path.join(documentsDirectory, '**', '*.md').replaceAll('\\', '/'),
 	{
-		nodir: true
-	}
+		nodir: true,
+	},
 ).map((path: string) => path.replaceAll('\\', '/'));
 const groupedFiles = getGroupedFiles(files);
 
 const targets = [
-	{ name: 'react', lib: 'react' },
-	{ name: 'vue', lib: 'v' },
-	{ name: 'angular', lib: 'ngx' },
-	{ name: 'stencil', lib: 'wc' }
+	{name: 'react', lib: 'react'},
+	{name: 'vue', lib: 'v'},
+	{name: 'angular', lib: 'ngx'},
+	{name: 'stencil', lib: 'wc'},
 ];
 
 // Process each group of files
@@ -102,7 +101,7 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 		continue;
 	}
 
-	for (const { name, lib } of targets) {
+	for (const {name, lib} of targets) {
 		const snippetPath = path.join(
 			outputDirectory,
 			name,
@@ -110,7 +109,7 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 			'components',
 			prefix,
 			'agent',
-			`${prefix}.agent.md`
+			`${prefix}.agent.md`,
 		);
 		try {
 			let snippet = '';
@@ -121,20 +120,17 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 			const targetDocumentationDirectory = path.join(
 				outputDirectory,
 				name,
-				'agent'
+				'agent',
 			);
-			mkdirSync(targetDocumentationDirectory, { recursive: true });
+			mkdirSync(targetDocumentationDirectory, {recursive: true});
 			const finalContent = `${mergedContent}\n\n${snippet}`.replaceAll(
 				'core-components',
-				`${lib}-core-components`
+				`${lib}-core-components`,
 			);
 			writeFileSync(
-				path.join(
-					targetDocumentationDirectory,
-					`${toPascalCase(prefix)}.md`
-				),
+				path.join(targetDocumentationDirectory, `${toPascalCase(prefix)}.md`),
 				finalContent,
-				'utf8'
+				'utf8',
 			);
 		} catch (error: any) {
 			console.error(error);
@@ -142,12 +138,12 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 	}
 }
 
-for (const { name, lib } of targets) {
+for (const {name, lib} of targets) {
 	const instructionsFilePath = path.join(
 		outputDirectory,
 		name,
 		'agent',
-		'_instructions.md'
+		'_instructions.md',
 	);
 
 	let instructionsContent = `- Use "@db-ux/${lib}-core-components" as import for components:`;

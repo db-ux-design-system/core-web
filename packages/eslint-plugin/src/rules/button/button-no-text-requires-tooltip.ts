@@ -1,26 +1,25 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	hasChildOfType,
-	isDBComponent
+	isDBComponent,
 } from '../../shared/utils.js';
 
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
-			description:
-				'Ensure DBButton with noText has icon and DBTooltip child',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-no-text-requires-tooltip'
+			description: 'Ensure DBButton with noText has icon and DBTooltip child',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-no-text-requires-tooltip',
 		},
 		fixable: 'code' as const,
 		messages: {
 			missingIcon: MESSAGES.BUTTON_NO_TEXT_MISSING_ICON,
-			missingTooltip: MESSAGES.BUTTON_NO_TEXT_MISSING_TOOLTIP
+			missingTooltip: MESSAGES.BUTTON_NO_TEXT_MISSING_TOOLTIP,
 		},
-		schema: []
+		schema: [],
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -34,14 +33,12 @@ export default {
 				getAttributeValue(node, 'iconLeading') ||
 				getAttributeValue(node, 'iconTrailing');
 
-			const loc = parserServices.convertNodeSourceSpanToLoc(
-				node.sourceSpan
-			);
+			const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
 
 			if (!icon) {
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON
+					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON,
 				});
 			}
 
@@ -51,8 +48,7 @@ export default {
 					loc,
 					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_TOOLTIP,
 					fix(fixer: any) {
-						const sourceCode =
-							context.sourceCode || context.getSourceCode();
+						const sourceCode = context.sourceCode || context.getSourceCode();
 						const text = sourceCode.getText();
 						const startOffset = node.sourceSpan.start.offset;
 						const endOffset = node.sourceSpan.end.offset;
@@ -63,8 +59,7 @@ export default {
 							return null;
 						}
 
-						const closeTagIndex =
-							tagText.lastIndexOf('</db-button>');
+						const closeTagIndex = tagText.lastIndexOf('</db-button>');
 						if (closeTagIndex === -1) {
 							return null;
 						}
@@ -72,9 +67,9 @@ export default {
 						const insertPos = startOffset + closeTagIndex;
 						return fixer.insertTextBeforeRange(
 							[insertPos, insertPos],
-							'\n  <db-tooltip>Describe action</db-tooltip>'
+							'\n  <db-tooltip>Describe action</db-tooltip>',
 						);
-					}
+					},
 				});
 			}
 		};
@@ -82,7 +77,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBButton,
-			angularHandler
+			angularHandler,
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -107,7 +102,7 @@ export default {
 			if (!icon) {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON
+					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON,
 				});
 			}
 
@@ -133,7 +128,7 @@ export default {
 								: 'DBTooltip';
 							return fixer.insertTextBefore(
 								closingTag,
-								`\n  <${tooltipName}>Describe action</${tooltipName}>`
+								`\n  <${tooltipName}>Describe action</${tooltipName}>`,
 							);
 						}
 
@@ -152,17 +147,17 @@ export default {
 							: 'DBTooltip';
 						return fixer.insertTextAfterRange(
 							[node.startTag.range[1], node.startTag.range[1]],
-							`\n  <${tooltipName}>Describe action</${tooltipName}>`
+							`\n  <${tooltipName}>Describe action</${tooltipName}>`,
 						);
-					}
+					},
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkButton, Element: checkButton },
-			{ JSXElement: checkButton }
+			{VElement: checkButton, Element: checkButton},
+			{JSXElement: checkButton},
 		);
-	}
+	},
 };
