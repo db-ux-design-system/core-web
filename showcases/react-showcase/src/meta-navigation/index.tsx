@@ -30,7 +30,7 @@ const MetaNavigation = ({
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
-			if (value) {
+			if (value !== '') {
 				if (key === DENSITY_CONST && density !== value) {
 					setDensity(value);
 					onDensityChange(value);
