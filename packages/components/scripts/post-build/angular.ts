@@ -207,7 +207,7 @@ export default (tmp?: boolean) => {
 						`\t\t/** @internal Sync values → value (CVA/user interaction writes to values) */\n` +
 						`\t\tprivate _syncValuesToValue = effect(() => {\n` +
 						`\t\t\tconst vals = this.values();\n` +
-						`\t\t\tconst current = vals.length > 0 ? vals[0] : undefined;\n` +
+						`\t\t\tconst current = vals && vals.length > 0 ? vals[0] : undefined;\n` +
 						`\t\t\tif (current !== this.value()) {\n` +
 						`\t\t\t\tthis.value.set(current);\n` +
 						`\t\t\t}\n` +
@@ -256,6 +256,18 @@ export default (tmp?: boolean) => {
 		if (component.config?.angular?.controlValueAccessor) {
 			const fileContent2 = readFileSync(file, 'utf-8');
 			if (fileContent2.includes('handleValidation()')) {
+				// Declare _validMessage and _valid signals needed by the validation bridge
+				replaceInFileSync({
+					files: file,
+					from: `errors = input<any>(undefined);`,
+					to:
+						`errors = input<any>(undefined);\n\n` +
+						`\t\t/** @internal Signal Forms validation state */\n` +
+						`\t\t_validMessage = signal<string | undefined>('');\n` +
+						`\t\t/** @internal Signal Forms validation state */\n` +
+						`\t\t_valid = signal<string | undefined>(undefined);`
+				});
+
 				replaceInFileSync({
 					files: file,
 					from: /handleValidation\(\)\s*\{\s*\n/,
