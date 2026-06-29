@@ -21,7 +21,7 @@ for (const group of Components) {
 		test.describe(component.name, () => {
 			void getDefaultScreenshotTest(
 				component.name,
-				`docs`,
+				'docs',
 				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
@@ -32,7 +32,7 @@ for (const group of Components) {
 		test.describe(component.name, () => {
 			void getDefaultScreenshotTest(
 				component.name,
-				`overview`,
+				'overview',
 				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
 					const firstH1 = page.locator('h1').first();
@@ -43,7 +43,7 @@ for (const group of Components) {
 		test.describe(component.name, () => {
 			void getDefaultScreenshotTest(
 				component.name,
-				`properties`,
+				'properties',
 				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();

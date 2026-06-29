@@ -44,7 +44,7 @@ const RE_ICON_ATTR =
 
 /** Matches v2 npm package imports: @db-ui/react-components, @db-ui/ngx-components, @db-ui/v-components, @db-ui/elements */
 const RE_V2_IMPORT =
-	/['"](@db-ui\/(?:react-components|ngx-components|v-components|elements))['"]/g;
+	/["'](@db-ui\/(?:react-components|ngx-components|v-components|elements))["']/g;
 
 /** Maps v2 package names to their v3 equivalents */
 const V2_PACKAGE_MAP: Record<string, string> = {
@@ -59,8 +59,8 @@ const V2_PACKAGE_MAP: Record<string, string> = {
 // ---------------------------------------------------------------------------
 
 /**
- * Scans a single line for all v2 migration patterns.
- * Returns findings with deterministic suggestions from the migration data.
+ Scans a single line for all v2 migration patterns.
+ Returns findings with deterministic suggestions from the migration data.
  */
 function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const findings: ScanFinding[] = [];
@@ -151,15 +151,15 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 // ---------------------------------------------------------------------------
 
 /**
- * Analyzes a file for DB UI v2 patterns that need migration to DB UX v3.
- *
- * Deterministically scans for:
- * - v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*)
- * - v2 color tokens (db-color-*)
- * - v2 icon names (cross-referenced against the icon migration data)
- *
- * Returns a JSON report with line numbers, findings, and migration suggestions
- * resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
+ Analyzes a file for DB UI v2 patterns that need migration to DB UX v3.
+ 
+ Deterministically scans for:
+ - v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*)
+ - v2 color tokens (db-color-*)
+ - v2 icon names (cross-referenced against the icon migration data)
+ 
+ Returns a JSON report with line numbers, findings, and migration suggestions
+ resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
  */
 export async function handleScanV2Migration({
 	filePath

@@ -3,9 +3,9 @@
 // Requires: GITHUB_TOKEN in env
 
 /**
- * Update PR description with a test URL section.
- * @param {import('@actions/github').GitHub} github - Octokit client from actions/github-script
- * @param {object} context - GitHub Actions context
+ Update PR description with a test URL section.
+ @param {import('@actions/github').GitHub} github - Octokit client from actions/github-script
+ @param {object} context - GitHub Actions context
  */
 async function previewUrlPrDescription({ github, context }) {
 	const { owner, repo } = context.repo;
