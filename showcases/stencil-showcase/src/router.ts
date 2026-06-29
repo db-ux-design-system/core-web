@@ -58,11 +58,12 @@ function escapeHtmlAttribute(value: string): string {
 }
 
 /**
- Validate that an attribute name contains only safe characters
- (alphanumeric, hyphens, underscores).
+ Validate that an attribute name is safe for HTML interpolation.
+ Must contain only alphanumeric, hyphens, or underscores, and must NOT
+ be an inline event handler (on*) to prevent XSS via crafted URLs.
  */
 function isValidAttributeName(name: string): boolean {
-	return /^[a-z][\w-]*$/i.test(name);
+	return /^[a-z][\w-]*$/i.test(name) && !/^on/i.test(name);
 }
 
 /**
