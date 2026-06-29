@@ -1,6 +1,6 @@
-import {useState} from 'react';
-import {Outlet} from 'react-router-dom';
-import {DBBrand, DBButton, DBHeader, DBPage} from '../../../output/react/src';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
@@ -37,28 +37,38 @@ const App = () => {
 					}
 					primaryAction={
 						/* TODO: Use DBSearchBar in future */
-						<DBButton icon="magnifying_glass" variant="ghost" noText>
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton icon="x_placeholder" variant="ghost" noText>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
 								Profile
 							</DBButton>
-							<DBButton icon="x_placeholder" variant="ghost" noText>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
 								Notification
 							</DBButton>
-							<DBButton icon="x_placeholder" variant="ghost" noText>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
 								Help
 							</DBButton>
 						</>
-					}
-				>
+					}>
 					<Navigation />
 				</DBHeader>
-			}
-		>
+			}>
 			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>

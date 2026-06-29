@@ -1,6 +1,6 @@
-import {test} from '@playwright/test';
-import {getDefaultScreenshotTest, isStencil} from '../default.ts';
-import {hoverPre} from '../fixtures/hover';
+import { test } from '@playwright/test';
+import { getDefaultScreenshotTest, isStencil } from '../default.ts';
+import { hoverPre } from '../fixtures/hover';
 
 const selector = '.db-popover';
 const path = '01/popover';
@@ -14,6 +14,6 @@ test.describe('DBPopover', () => {
 		fixedHeight: (project) =>
 			project.name === 'webkit' || project.name === 'mobile_safari'
 				? 1886
-				: undefined,
+				: undefined
 	});
 });

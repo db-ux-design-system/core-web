@@ -1,9 +1,9 @@
-import type {HTMLDbCustomSelectElement} from '@db-ux/wc-core-components/bundle';
+import type { HTMLDbCustomSelectElement } from '@db-ux/wc-core-components/bundle';
 
 const CUSTOM_SELECT_OPTIONS = [
-	{value: 'combobox-0', id: 'combobox-0'},
-	{value: 'combobox-1', id: 'combobox-1'},
-	{value: 'combobox-2', id: 'combobox-2'},
+	{ value: 'combobox-0', id: 'combobox-0' },
+	{ value: 'combobox-1', id: 'combobox-1' },
+	{ value: 'combobox-2', id: 'combobox-2' }
 ];
 
 /**
@@ -12,7 +12,9 @@ const CUSTOM_SELECT_OPTIONS = [
  */
 function initCustomSelects(container: HTMLElement): void {
 	const customSelects =
-		container.querySelectorAll<HTMLDbCustomSelectElement>('db-custom-select');
+		container.querySelectorAll<HTMLDbCustomSelectElement>(
+			'db-custom-select'
+		);
 
 	for (const customSelect of customSelects) {
 		const element = customSelect;

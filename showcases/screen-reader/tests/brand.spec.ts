@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -23,6 +23,6 @@ test.describe('DBBrand', () => {
 				await nvda?.next(); // Logo image
 				await nvda?.next(); // Label 3
 			}
-		},
+		}
 	});
 });

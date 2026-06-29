@@ -1,5 +1,5 @@
-import {type ToolResult, err} from '../utils';
-import {getManifest} from '../utils/manifest';
+import { type ToolResult, err } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 export async function handleListMigrationGuides(): Promise<ToolResult> {
 	const manifest = await getManifest();
@@ -7,14 +7,18 @@ export async function handleListMigrationGuides(): Promise<ToolResult> {
 		content: [
 			{
 				type: 'text',
-				text: JSON.stringify(Object.keys(manifest.migrationGuides), null, 2),
-			},
-		],
+				text: JSON.stringify(
+					Object.keys(manifest.migrationGuides),
+					null,
+					2
+				)
+			}
+		]
 	};
 }
 
 export async function handleGetMigrationGuide({
-	guideName,
+	guideName
 }: {
 	guideName: string;
 }): Promise<ToolResult> {
@@ -22,9 +26,9 @@ export async function handleGetMigrationGuide({
 	const guide = manifest.migrationGuides[guideName];
 	if (!guide) {
 		return err(
-			`Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.`,
+			`Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.`
 		);
 	}
 
-	return {content: [{type: 'text', text: guide}]};
+	return { content: [{ type: 'text', text: guide }] };
 }

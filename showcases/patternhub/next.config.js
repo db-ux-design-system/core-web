@@ -8,12 +8,12 @@ const withMDX = generated({
 	options: {
 		remarkPlugins: [remarkGfm, remarkTransformLinks],
 		rehypePlugins: [rehypeSlug],
-		providerImportSource: '@mdx-js/react',
-	},
+		providerImportSource: '@mdx-js/react'
+	}
 });
 
 const mdxConfig = withMDX({
-	pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+	pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
 });
 
 // Wrap (instead of replace) the webpack function that `withMDX` provides, so
@@ -30,7 +30,7 @@ const withExtensionAlias = (mdxWebpack) => (webpackConfig, options) => {
 	// back to `.ts`/`.tsx` so Webpack can resolve them.
 	updatedConfig.resolve.extensionAlias = {
 		...updatedConfig.resolve.extensionAlias,
-		'.js': ['.ts', '.tsx', '.js'],
+		'.js': ['.ts', '.tsx', '.js']
 	};
 	return updatedConfig;
 };
@@ -38,7 +38,11 @@ const withExtensionAlias = (mdxWebpack) => (webpackConfig, options) => {
 const config = {
 	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-	transpilePackages: ['../../output/react/src', '../react-showcase/', '@db-ux'],
+	transpilePackages: [
+		'../../output/react/src',
+		'../react-showcase/',
+		'@db-ux'
+	],
 	...mdxConfig,
 	webpack: withExtensionAlias(mdxConfig.webpack),
 	env: {
@@ -48,8 +52,8 @@ const config = {
 		NEXT_PUBLIC_APP_NAME: 'DB UX',
 		NEXT_PUBLIC_GITHUB_VERSION_SWITCHER: 'true',
 		NEXT_PUBLIC_GITHUB_OWNER: 'db-ux-design-system',
-		NEXT_PUBLIC_GITHUB_REPO: 'core-web',
-	},
+		NEXT_PUBLIC_GITHUB_REPO: 'core-web'
+	}
 };
 
 export default config;

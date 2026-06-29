@@ -1,5 +1,5 @@
-import {DBSelect} from '@components';
-import {useState} from 'react';
+import { DBSelect } from '@components';
+import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormSelects = () => {
@@ -13,8 +13,7 @@ const FormSelects = () => {
 				label="Controlled"
 				onChange={(event) => {
 					setControlled(event.target.value);
-				}}
-			>
+				}}>
 				<option value="combobox-0">combobox-0</option>
 				<option value="combobox-1">combobox-1</option>
 				<option value="combobox-2">combobox-2</option>
@@ -24,8 +23,7 @@ const FormSelects = () => {
 				label="Uncontrolled"
 				onChange={(event) => {
 					setUncontrolled(event.target.value);
-				}}
-			>
+				}}>
 				<option value="combobox-0">combobox-0</option>
 				<option value="combobox-1">combobox-1</option>
 				<option value="combobox-2">combobox-2</option>

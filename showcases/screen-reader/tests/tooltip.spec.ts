@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -16,6 +16,6 @@ test.describe('DBTooltip', () => {
 				await voiceOver?.previous(); // Focus "button 1 with tooltip"
 				await voiceOver?.next(); // Focus "button 2 with tooltip"
 			}
-		},
+		}
 	});
 });

@@ -1,4 +1,4 @@
-import {findCssFunction, findTopLevelComma} from './css-parser.js';
+import { findCssFunction, findTopLevelComma } from './css-parser.js';
 
 // ── var() ───────────────────────────────────────────────────────────────
 
@@ -10,7 +10,7 @@ import {findCssFunction, findTopLevelComma} from './css-parser.js';
  */
 const findNextVar = (
 	value: string,
-	fromIndex: number,
+	fromIndex: number
 ):
 	| {
 			start: number;
@@ -31,7 +31,7 @@ const findNextVar = (
 			start: found.start,
 			end: found.end,
 			name: found.inner.trim(),
-			fallback: undefined,
+			fallback: undefined
 		};
 	}
 
@@ -39,7 +39,7 @@ const findNextVar = (
 		start: found.start,
 		end: found.end,
 		name: found.inner.slice(0, commaIdx).trim(),
-		fallback: found.inner.slice(commaIdx + 1).trim(),
+		fallback: found.inner.slice(commaIdx + 1).trim()
 	};
 };
 
@@ -56,7 +56,7 @@ const findNextVar = (
 export const resolveVars = (
 	value: string,
 	varMap: Map<string, string>,
-	seen: Set<string> = new Set(),
+	seen: Set<string> = new Set()
 ): string => {
 	let result = value;
 	let searchFrom = 0;
@@ -67,7 +67,7 @@ export const resolveVars = (
 			break;
 		}
 
-		const {start, end, name, fallback} = found;
+		const { start, end, name, fallback } = found;
 
 		if (seen.has(name)) {
 			searchFrom = end;
@@ -102,7 +102,7 @@ export const resolveVars = (
  */
 export const collectVarReferences = (
 	value: string,
-	refs: Set<string>,
+	refs: Set<string>
 ): void => {
 	let searchFrom = 0;
 	while (searchFrom < value.length) {
@@ -136,7 +136,7 @@ const resolveCssFunction = (
 	value: string,
 	funcName: string,
 	evaluate: (inner: string) => string | undefined,
-	skipNestedFunctions = false,
+	skipNestedFunctions = false
 ): string => {
 	let result = value;
 	let searchFrom = 0;
@@ -162,7 +162,9 @@ const resolveCssFunction = (
 			searchFrom = found.end;
 		} else {
 			result =
-				result.slice(0, found.start) + evaluated + result.slice(found.end);
+				result.slice(0, found.start) +
+				evaluated +
+				result.slice(found.end);
 			searchFrom = found.start + evaluated.length;
 		}
 	}
@@ -179,14 +181,14 @@ const resolveCssFunction = (
  @returns An object with `value` and `unit`, or null if not parseable
  */
 const parseUnit = (
-	string_: string,
-): {value: number; unit: string} | undefined => {
+	string_: string
+): { value: number; unit: string } | undefined => {
 	const match = /^(-?[\d.]+)\s*(%|[a-z]*)$/i.exec(string_.trim());
 	if (!match) {
 		return undefined;
 	}
 
-	return {value: Number.parseFloat(match[1]), unit: match[2] || ''};
+	return { value: Number.parseFloat(match[1]), unit: match[2] || '' };
 };
 
 /**
@@ -249,7 +251,8 @@ const evaluateCalc = (expr: string): string | undefined => {
 		}
 	}
 
-	const rounded = Math.abs(result) < 1e-10 ? 0 : Math.round(result * 1e6) / 1e6;
+	const rounded =
+		Math.abs(result) < 1e-10 ? 0 : Math.round(result * 1e6) / 1e6;
 	return `${rounded}${resultUnit}`;
 };
 
@@ -271,7 +274,7 @@ export const resolveCalc = (value: string): string =>
  @returns An [r, g, b, a] tuple (0-255 for rgb, 0-1 for alpha), or null if not parseable
  */
 const parseHexColor = (
-	hex: string,
+	hex: string
 ): [number, number, number, number] | undefined => {
 	const h = hex.replace('#', '');
 	let r: number;
@@ -339,18 +342,18 @@ const toHex = (n: number): string =>
  */
 const evaluateColorMix = (args: string): string | undefined => {
 	const srgbMatch = /^in\s+srgb\s*,\s*([\s\S]+?)\s*,\s*([\s\S]+?)\s*$/.exec(
-		args,
+		args
 	);
 	if (!srgbMatch) {
 		return undefined;
 	}
 
 	const parseColorArg = (
-		arg: string,
-	): {color: string; percentage: number | undefined} | undefined => {
+		arg: string
+	): { color: string; percentage: number | undefined } | undefined => {
 		const parts = arg.trim().split(/\s+/);
 		if (parts.length === 1) {
-			return {color: parts[0], percentage: undefined};
+			return { color: parts[0], percentage: undefined };
 		}
 
 		if (parts.length === 2) {
@@ -361,7 +364,7 @@ const evaluateColorMix = (args: string): string | undefined => {
 
 			return {
 				color: parts[0],
-				percentage: Number.parseFloat(pctMatch[1]),
+				percentage: Number.parseFloat(pctMatch[1])
 			};
 		}
 

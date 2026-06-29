@@ -16,11 +16,11 @@ inquirer
 				}
 
 				return true;
-			},
-		},
+			}
+		}
 	])
 
-	.then(({name}) => {
+	.then(({ name }) => {
 		const path = `./research/${name}.md`;
 		let fileContent = `# DEV Research ${name}
 

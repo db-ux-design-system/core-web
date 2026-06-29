@@ -1,54 +1,54 @@
 ---
 name: test-component
-description: 'Runs, analyzes, and fixes Playwright and accessibility tests for a specific DB UX component.'
+description: "Runs, analyzes, and fixes Playwright and accessibility tests for a specific DB UX component."
 
 triggers:
-  - 'test <component> component'
-  - 'run <component> playwright tests'
-  - 'fix failing <component> playwright tests'
-  - 'update <component> snapshots'
-  - 'fix <component> test failures'
+    - "test <component> component"
+    - "run <component> playwright tests"
+    - "fix failing <component> playwright tests"
+    - "update <component> snapshots"
+    - "fix <component> test failures"
 
 inputs:
-  - name: component_slug
-    type: string
-    required: true
-    description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
-  - name: component_name
-    type: string
-    required: false
-    description: "Optional PascalCase symbol name (e.g. 'Button'). If omitted, derive it from component_slug."
-  - name: update_snapshots
-    type: boolean
-    required: false
-    description: 'Whether to update failing screenshots instead of fixing code (default: false)'
-  - name: figma_file_key
-    type: string
-    required: false
-    description: 'Figma file key. Useful when validating visual diffs against the Figma spec.'
-  - name: figma_node_id
-    type: string
-    required: false
-    description: 'Figma node ID of the target component/frame. Used together with figma_file_key for visual validation.'
+    - name: component_slug
+      type: string
+      required: true
+      description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
+    - name: component_name
+      type: string
+      required: false
+      description: "Optional PascalCase symbol name (e.g. 'Button'). If omitted, derive it from component_slug."
+    - name: update_snapshots
+      type: boolean
+      required: false
+      description: "Whether to update failing screenshots instead of fixing code (default: false)"
+    - name: figma_file_key
+      type: string
+      required: false
+      description: "Figma file key. Useful when validating visual diffs against the Figma spec."
+    - name: figma_node_id
+      type: string
+      required: false
+      description: "Figma node ID of the target component/frame. Used together with figma_file_key for visual validation."
 
 requires:
-  - context: context/architecture.md
-    autoLoad: true
+    - context: context/architecture.md
+      autoLoad: true
 
 tools:
-  - db-ux/list_components
-  - db-ux/get_component_props
-  - figma/get_figma_data
-  - figma/download_figma_images
+    - db-ux/list_components
+    - db-ux/get_component_props
+    - figma/get_figma_data
+    - figma/download_figma_images
 
 outputs:
-  - 'packages/components/src/components/{component_slug}/{component_slug}.spec.tsx'
+    - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"
 
 on_error:
-  max_retries: 3
-  actions:
-    - log: "Analyze test failure output. Determine if it's a snapshot mismatch, code bug, or a11y violation."
-    - fallback: 'If errors persist after 3 retries, report full Playwright output to user.'
+    max_retries: 3
+    actions:
+        - log: "Analyze test failure output. Determine if it's a snapshot mismatch, code bug, or a11y violation."
+        - fallback: "If errors persist after 3 retries, report full Playwright output to user."
 ---
 
 # Skill: Test Component
@@ -143,9 +143,9 @@ Only update when the rendered delta is intentional and explicitly explained. Bef
 1. Read the violation details: `id`, `impact`, `nodes`, `help`.
 2. Identify the DOM element causing the violation.
 3. Fix in `.lite.tsx`, e.g.:
-   - Missing `aria-label`: add label prop handling.
-   - Missing role: add `role` attribute.
-   - Color contrast: update SCSS with accessible token.
+    - Missing `aria-label`: add label prop handling.
+    - Missing role: add `role` attribute.
+    - Color contrast: update SCSS with accessible token.
 4. NEVER suppress axe-core rules. Fix the underlying issue.
 5. Re-run tests.
 
@@ -174,9 +174,9 @@ Only update when the rendered delta is intentional and explicitly explained. Bef
 
 2. Run full test suite: `pnpm run test` (confirm no regressions).
 3. Report results to user:
-   - Number of tests: passed / failed / skipped.
-   - Any snapshots updated (with explicit justification for each).
-   - Any a11y fixes applied.
+    - Number of tests: passed / failed / skipped.
+    - Any snapshots updated (with explicit justification for each).
+    - Any a11y fixes applied.
 
 ## Output Checklist
 

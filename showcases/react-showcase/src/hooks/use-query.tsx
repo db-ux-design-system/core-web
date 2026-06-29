@@ -1,30 +1,30 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import {
 	COLOR,
 	COLOR_CONST,
 	DENSITY,
-	DENSITY_CONST,
+	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
 const useQuery = (
-	redirectURLSearchParameters = true,
+	redirectURLSearchParameters = true
 ): [
 	string,
 	(v: string) => void,
 	string,
 	(v: string) => void,
 	string | undefined,
-	boolean,
+	boolean
 ] => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
 	const [density, setDensity] = useState(
-		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR,
+		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
 	const [color, setColor] = useState(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1,
+		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState(false);
@@ -58,7 +58,7 @@ const useQuery = (
 		if (searchRead) {
 			const nextQuery: Record<string, string> = {
 				density,
-				color,
+				color
 			};
 			if (page) {
 				nextQuery.page = page;

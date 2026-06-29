@@ -1,4 +1,4 @@
-import {getTest, testDefault} from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -27,6 +27,6 @@ test.describe('DBCheckbox', () => {
 				await voiceOver?.next(); // Focus checkbox 2 label
 				await voiceOver?.next(); // Focus checkbox 2 message
 			}
-		},
+		}
 	});
 });

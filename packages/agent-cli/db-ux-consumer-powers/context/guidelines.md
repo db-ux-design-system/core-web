@@ -17,10 +17,10 @@
 - **NEVER** hardcode spacing values (`margin: 15px`, `padding: 8px`).
 - **ALWAYS** use `var(--db-*)` CSS custom properties from the design token system.
 - Common token patterns:
-  - Spacing: `var(--db-spacing-fixed-sm)`, `var(--db-spacing-responsive-md)`
-  - Colors: `var(--db-color-text-default)`, `var(--db-color-bg-basic-level-1)`
-  - Sizing: `var(--db-sizing-md)`
-  - Border radius: `var(--db-border-radius-sm)`
+    - Spacing: `var(--db-spacing-fixed-sm)`, `var(--db-spacing-responsive-md)`
+    - Colors: `var(--db-color-text-default)`, `var(--db-color-bg-basic-level-1)`
+    - Sizing: `var(--db-sizing-md)`
+    - Border radius: `var(--db-border-radius-sm)`
 
 ## Icons
 
@@ -64,8 +64,8 @@ If you are building a website or application **for Deutsche Bahn (DB)**, you mus
 
 ```css
 @layer db-theme, db-ux;
-@import '@db-ux/db-theme/build/styles/rollup.css' layer(db-theme);
-@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 ### White-label / custom theme (no DB Theme)
@@ -74,7 +74,7 @@ For non-DB applications, import only the component styles. The default theme or 
 
 ```css
 @layer db-ux;
-@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
 For JavaScript framework-specific component imports:

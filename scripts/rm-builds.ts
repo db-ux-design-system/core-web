@@ -1,5 +1,5 @@
-import {resolve} from 'node:path';
-import {rimraf} from 'rimraf';
+import { resolve } from 'node:path';
+import { rimraf } from 'rimraf';
 
 const root = resolve(import.meta.dirname, '..');
 
@@ -27,7 +27,7 @@ const paths = [
 	'showcases/patternhub/components/src/**/*.ts',
 	'showcases/patternhub/components/src/**/*.tsx',
 	// Playwright
-	'output/react/playwright',
+	'output/react/playwright'
 ].map((p) => resolve(root, p));
 
-await rimraf(paths, {glob: true});
+await rimraf(paths, { glob: true });

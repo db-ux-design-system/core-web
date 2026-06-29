@@ -59,17 +59,17 @@ Verify each item:
 If a changeset is required (changes in `packages/components/src` or `packages/foundations/scss`):
 
 - For `packages/components/src` changes, verify the changeset frontmatter includes **up to five** required packages:
-  - `@db-ux/core-components`
-  - `@db-ux/ngx-core-components`
-  - `@db-ux/react-core-components`
-  - `@db-ux/wc-core-components`
-  - `@db-ux/v-core-components`
+    - `@db-ux/core-components`
+    - `@db-ux/ngx-core-components`
+    - `@db-ux/react-core-components`
+    - `@db-ux/wc-core-components`
+    - `@db-ux/v-core-components`
 - **Validate the bump level against the diff** — presence alone is not enough; an invalid `patch`/`minor` can publish a breaking change under a non-major version. For each affected package, confirm the declared bump matches the actual change:
-  - **`major`** — a breaking change. Per `packages/components/AGENTS.md`, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
-  - **`minor`** — a new, backwards-compatible feature, e.g. of a prop is added in any `model.ts`
-  - **`patch`** — a backwards-compatible bug fix
+    - **`major`** — a breaking change. Per `packages/components/AGENTS.md`, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
+    - **`minor`** — a new, backwards-compatible feature, e.g. of a prop is added in any `model.ts`
+    - **`patch`** — a backwards-compatible bug fix
 - If the diff warrants a `major` bump but the changeset declares `patch`/`minor` (or vice versa), fix the changeset before committing.
-  - `@db-ux/v-core-components`
+    - `@db-ux/v-core-components`
 - For `packages/foundations/scss` changes, verify the changeset includes `@db-ux/core-foundations`
 
 ### Step 3: Design System Compliance
@@ -105,19 +105,19 @@ Once all checks pass:
 
 1. **Ensure you are on a feature branch — never commit on `main`:**
 
-   Check the current branch first:
+    Check the current branch first:
 
-   ```bash
-   git branch --show-current
-   ```
+    ```bash
+    git branch --show-current
+    ```
 
-   - If the current branch is `main` (or another protected/default branch such as `master`/`develop`), you **must** create and switch to a new feature branch before staging or committing:
+    - If the current branch is `main` (or another protected/default branch such as `master`/`develop`), you **must** create and switch to a new feature branch before staging or committing:
 
-     ```bash
-     git switch -c <branch-name>
-     ```
+        ```bash
+        git switch -c <branch-name>
+        ```
 
-   - If you are already on a dedicated feature branch, continue on it.
+    - If you are already on a dedicated feature branch, continue on it.
 
 2. **Branch naming** — use `-` as separator (e.g. `feat-my-feature`, `fix-button-style`). Never use `/` — it breaks preview URLs.
 
@@ -125,11 +125,11 @@ Once all checks pass:
 
 4. **Commit message format**:
 
-   ```markdown
-   <type>: <short description>
+    ```markdown
+    <type>: <short description>
 
-   <summary of what changed and why>
-   ```
+    <summary of what changed and why>
+    ```
 
 5. **Let Husky run** — Do NOT use `--no-verify` unless Husky blocks due to a missing `.env` `COMMIT_MAIL`. The pre-commit hook validates the branch name, checks `COMMIT_MAIL`, and runs `lint-staged` (linting + Prettier). These checks must pass before pushing.
 

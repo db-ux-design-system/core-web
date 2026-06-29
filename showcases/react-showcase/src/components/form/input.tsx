@@ -1,5 +1,5 @@
-import {DBInput} from '@components';
-import {useState} from 'react';
+import { DBInput } from '@components';
+import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormInputs = () => {

@@ -103,8 +103,8 @@ Set these using `mcp_github_issue_write` with `issue_fields`. **This depends on 
 ```json
 {
 	"issue_fields": [
-		{"field_name": "Priority", "field_option_name": "<chosen value>"},
-		{"field_name": "Effort", "field_option_name": "<chosen value>"}
+		{ "field_name": "Priority", "field_option_name": "<chosen value>" },
+		{ "field_name": "Effort", "field_option_name": "<chosen value>" }
 	]
 }
 ```

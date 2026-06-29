@@ -79,11 +79,11 @@ Only after phases 1–4 are complete, write or modify files. Adapt the output of
 
 ```typescript
 // ✅ CORRECT: explicit framework
-get_example_code('button', 'Show Icon Leading', 'react');
-get_example_code('button', 'Show Icon Leading', 'angular');
-get_example_code('button', 'Show Icon Leading', 'vue');
-get_example_code('button', 'Show Icon Leading', 'web-components');
-get_example_code('button', 'Show Icon Leading', 'html');
+get_example_code("button", "Show Icon Leading", "react");
+get_example_code("button", "Show Icon Leading", "angular");
+get_example_code("button", "Show Icon Leading", "vue");
+get_example_code("button", "Show Icon Leading", "web-components");
+get_example_code("button", "Show Icon Leading", "html");
 
 // ❌ WRONG: writing framework code from memory
 // <DBButton icon="arrow-right"> ← icon name unverified, may not exist
