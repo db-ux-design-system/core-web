@@ -35,7 +35,21 @@ const xoConfig = [
 		files: ['./**/angular-**/**/*.html'],
 		rules: {
 			// Angular templates use case-sensitive bindings (e.g. [(ngModel)], [formControl], (optionSelected))
-			'@html-eslint/lowercase': 0
+			'@html-eslint/lowercase': 0,
+			// @html-eslint cannot parse Angular @if/@for control flow blocks, causing false indent errors
+			'@html-eslint/indent': 0,
+			'@html-eslint/attrs-newline': 0
+		}
+	},
+	{
+		files: ['./showcases/**/*.html'],
+		rules: {
+			// Showcase HTML files are dev/test artifacts, not production pages
+			'@html-eslint/require-meta-description': 0,
+			'@html-eslint/require-open-graph-protocol': 0,
+			// Self-closing tags (e.g. <meta />) and spacing before /> are standard in frameworks
+			'@html-eslint/require-closing-tags': 0,
+			'@html-eslint/no-extra-spacing-tags': 0
 		}
 	},
 	{
