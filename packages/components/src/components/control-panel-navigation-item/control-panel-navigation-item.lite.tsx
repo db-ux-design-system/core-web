@@ -1,4 +1,6 @@
 import {
+	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	Slot,
@@ -26,7 +28,40 @@ export default function DBControlPanelNavigationItem(
 
 	const state = useStore<DBControlPanelNavigationItemState>({
 		_tooltip: undefined,
-		_savedHref: undefined
+		_savedHref: undefined,
+		_role: undefined,
+		_attributeObserver: undefined
+	});
+
+	onMount(() => {
+		if (_ref) {
+			// Observe role attribute set imperatively by the parent navigation
+			// and persist it in state so frameworks re-apply it after reconciliation.
+			const observer = new MutationObserver((mutations) => {
+				for (const mutation of mutations) {
+					if (mutation.attributeName === 'role') {
+						const newRole =
+							(_ref as HTMLElement).getAttribute('role') ??
+							undefined;
+						if (newRole !== state._role) {
+							state._role = newRole;
+						}
+					}
+				}
+			});
+			observer.observe(_ref, {
+				attributes: true,
+				attributeFilter: ['role']
+			});
+			state._attributeObserver = observer;
+		}
+	});
+
+	onUnMount(() => {
+		if (state._attributeObserver) {
+			state._attributeObserver.disconnect();
+			state._attributeObserver = undefined;
+		}
 	});
 
 	onUpdate(() => {
@@ -77,6 +112,7 @@ export default function DBControlPanelNavigationItem(
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			role={state._role}
 			class={cls('db-control-panel-navigation-item', props.className)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}

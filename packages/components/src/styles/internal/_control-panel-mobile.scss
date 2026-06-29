@@ -80,7 +80,7 @@
 		--db-drawer-max-height: 67lvh;
 
 		> .db-drawer-container {
-			@extend %direction-up;
+			@extend %direction-from-bottom-to-top;
 
 			border-block-start: component.$component-border;
 			border-inline-end: 0; // revert the default setting

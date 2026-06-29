@@ -45,6 +45,8 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_intersectionObserverCallbackId?: string;
 	_resizeObserverCallbackId?: string;
 	_variantObserver?: MutationObserver;
+	_attributeObserver?: MutationObserver;
+	_role?: string;
 	_popoverListenersAttached: boolean;
 
 	/**

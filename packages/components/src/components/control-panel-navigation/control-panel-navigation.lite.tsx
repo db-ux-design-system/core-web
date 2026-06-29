@@ -12,7 +12,7 @@ import {
 	DEFAULT_SCROLL_LEFT,
 	DEFAULT_SCROLL_RIGHT
 } from '../../shared/constants';
-import { cls, delay, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
@@ -38,7 +38,6 @@ export default function DBControlPanelNavigation(
 		showScrollRight: false,
 		_shellDesktopPosition: undefined,
 		_subNavigationDesktopPosition: undefined,
-		_variant: undefined,
 		initialized: false,
 		_isSubNavigation: false,
 		_resizeObserverCallbackId: undefined,
@@ -136,9 +135,9 @@ export default function DBControlPanelNavigation(
 		_handleTreeKeyDown(event: any) {
 			if (!menuRef) return;
 
-			if (state._variant === 'tree') {
+			if (props.variant === 'tree') {
 				state._handleTreeKeys(event);
-			} else if (state._variant === 'popover') {
+			} else if (props.variant === 'popover') {
 				state._handlePopoverKeys(event);
 			}
 		},
@@ -412,54 +411,8 @@ export default function DBControlPanelNavigation(
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
-			void delay(() => {
-				const element = _ref as HTMLElement;
-
-				if (!element) return;
-
-				let endVariant = props.variant ?? 'popover';
-
-				const parentClassList =
-					element.parentElement?.nodeName.startsWith('DB')
-						? element.parentElement?.parentElement?.classList
-						: element.parentElement?.classList;
-
-				const shell = element.closest('.db-shell');
-				const shellDesktopPosition = shell?.getAttribute(
-					'data-control-panel-desktop-position'
-				);
-				const shellSubNaviDesktopPosition = shell?.getAttribute(
-					'data-sub-navigation-desktop-position'
-				);
-				state._shellDesktopPosition = shellDesktopPosition;
-				state._subNavigationDesktopPosition =
-					shellSubNaviDesktopPosition;
-				const isSubNavigation = parentClassList?.contains(
-					'db-shell-sub-navigation'
-				);
-				state._isSubNavigation = isSubNavigation;
-				const requiresPopover =
-					(shellDesktopPosition === 'top' &&
-						parentClassList?.contains(
-							'db-control-panel-desktop-scroll-container'
-						)) ||
-					((shellSubNaviDesktopPosition === 'top' ||
-						shellDesktopPosition === 'left') &&
-						isSubNavigation);
-
-				if (requiresPopover) {
-					endVariant = 'popover';
-				}
-
-				state._variant = endVariant;
-			}, 1);
-		}
-	}, [_ref, props.variant, state.initialized]);
-
-	onUpdate(() => {
-		if (menuRef && state._variant) {
-			if (!state._variant || state._variant === 'popover') {
+		if (menuRef && props.variant) {
+			if (!props.variant || props.variant === 'popover') {
 				// Clean up tree roles if switching from tree to popover
 				for (const menu of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
@@ -485,7 +438,7 @@ export default function DBControlPanelNavigation(
 				}
 
 				state._handleSubNavigation();
-			} else if (state._variant === 'tree') {
+			} else if (props.variant === 'tree') {
 				for (const menu of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
 						'.db-control-panel-navigation-item-group-menu'
@@ -538,13 +491,13 @@ export default function DBControlPanelNavigation(
 					});
 			}
 		}
-	}, [menuRef, state._variant, state._shellDesktopPosition, props.behavior]);
+	}, [menuRef, props.variant, state._shellDesktopPosition, props.behavior]);
 
 	return (
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			data-variant={state._variant}
+			data-variant={props.variant}
 			data-behavior={props.behavior}
 			data-show-tree-line={getBooleanAsString(
 				props.showTreeLine ?? 'true',
@@ -563,7 +516,7 @@ export default function DBControlPanelNavigation(
 				</DBButton>
 			</Show>
 			<menu
-				role={state._variant === 'tree' ? 'tree' : undefined}
+				role={props.variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
 				onScroll={() => state.onScroll()}
 				onKeyDown={(event: any) => state._handleTreeKeyDown(event)}>

@@ -42,6 +42,8 @@ export default function DBControlPanelNavigationItemGroup(
 		autoClose: false,
 		hasPopup: false,
 		initialized: false,
+		_role: undefined,
+		_attributeObserver: undefined,
 		_itemGroupMenuId:
 			'db-control-panel-navigation-item-group-menu-' + uuid(),
 		_intersectionObserverCallbackId: undefined,
@@ -160,6 +162,28 @@ export default function DBControlPanelNavigationItemGroup(
 
 	onMount(() => {
 		state.initialized = true;
+
+		// Observe role attribute set imperatively by the parent navigation
+		// and persist it in state so frameworks re-apply it after reconciliation.
+		if (_ref) {
+			const observer = new MutationObserver((mutations) => {
+				for (const mutation of mutations) {
+					if (mutation.attributeName === 'role') {
+						const newRole =
+							(_ref as HTMLElement).getAttribute('role') ??
+							undefined;
+						if (newRole !== state._role) {
+							state._role = newRole;
+						}
+					}
+				}
+			});
+			observer.observe(_ref, {
+				attributes: true,
+				attributeFilter: ['role']
+			});
+			state._attributeObserver = observer;
+		}
 	});
 
 	onUnMount(() => {
@@ -167,6 +191,9 @@ export default function DBControlPanelNavigationItemGroup(
 
 		state._variantObserver?.disconnect();
 		state._variantObserver = undefined;
+
+		state._attributeObserver?.disconnect();
+		state._attributeObserver = undefined;
 	});
 
 	onUpdate(() => {
@@ -262,6 +289,7 @@ export default function DBControlPanelNavigationItemGroup(
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			role={state._role}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
