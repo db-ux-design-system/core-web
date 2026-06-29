@@ -37,9 +37,7 @@ export default function DBControlPanelNavigation(
 		showScrollLeft: false,
 		showScrollRight: false,
 		_shellDesktopPosition: undefined,
-		_subNavigationDesktopPosition: undefined,
 		initialized: false,
-		_isSubNavigation: false,
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
 		_attachSingleBehaviorObserver() {

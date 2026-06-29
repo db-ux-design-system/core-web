@@ -841,15 +841,15 @@ export type NavigationItemGroupVariant = {
 	variant?: NavigationItemGroupVariantType;
 };
 
-export const CollapsableBehaviorList = ['single', 'multiple'] as const;
-export type CollapsableBehaviorType = (typeof CollapsableBehaviorList)[number];
+export const CollapsibleBehaviorList = ['single', 'multiple'] as const;
+export type CollapsibleBehaviorType = (typeof CollapsibleBehaviorList)[number];
 
-export type CollapsableBehaviorPops = {
+export type CollapsibleBehaviorProps = {
 	/**
 	 * To allow multiple items open at the same time or only 1 item
 	 * @default 'multiple'
 	 */
-	behavior?: CollapsableBehaviorType;
+	behavior?: CollapsibleBehaviorType;
 };
 
 export type DocumentScrollState = {

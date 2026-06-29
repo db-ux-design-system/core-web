@@ -1,5 +1,5 @@
 import {
-	CollapsableBehaviorPops,
+	CollapsibleBehaviorProps,
 	GlobalProps,
 	InitializedState
 } from '../../shared/model';
@@ -39,7 +39,7 @@ export type DBAccordionDefaultProps = {
 
 export type DBAccordionProps = DBAccordionDefaultProps &
 	GlobalProps &
-	CollapsableBehaviorPops;
+	CollapsibleBehaviorProps;
 
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;

@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -157,6 +158,16 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		}
 	}, [_ref, state.initialized, props.position]);
+
+	onUnMount(() => {
+		if (_ref && props.position === 'absolute') {
+			const refElement = _ref as HTMLDialogElement;
+			const parent = refElement.parentElement;
+			if (parent) {
+				parent.style.position = '';
+			}
+		}
+	});
 
 	return (
 		<dialog
