@@ -283,18 +283,18 @@ const parseHexColor = (
 	let a = 1;
 	switch (h.length) {
 		case 3: {
-			r = Number.parseInt(h.at(0) + h.at(0), 16);
-			g = Number.parseInt(h.at(1) + h.at(1), 16);
-			b = Number.parseInt(h.at(2) + h.at(2), 16);
+			r = Number.parseInt(h.at(0)! + h.at(0)!, 16);
+			g = Number.parseInt(h.at(1)! + h.at(1)!, 16);
+			b = Number.parseInt(h.at(2)! + h.at(2)!, 16);
 
 			break;
 		}
 
 		case 4: {
-			r = Number.parseInt(h.at(0) + h.at(0), 16);
-			g = Number.parseInt(h.at(1) + h.at(1), 16);
-			b = Number.parseInt(h.at(2) + h.at(2), 16);
-			a = Number.parseInt(h.at(3) + h.at(3), 16) / 255;
+			r = Number.parseInt(h.at(0)! + h.at(0)!, 16);
+			g = Number.parseInt(h.at(1)! + h.at(1)!, 16);
+			b = Number.parseInt(h.at(2)! + h.at(2)!, 16);
+			a = Number.parseInt(h.at(3)! + h.at(3)!, 16) / 255;
 
 			break;
 		}
