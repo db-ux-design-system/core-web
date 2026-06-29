@@ -168,36 +168,37 @@ export default function DBControlPanelNavigationItemGroup(
 
 	onMount(() => {
 		state.initialized = true;
+	});
 
-		// Observe role attribute set imperatively by the parent navigation
-		// and persist it in state so frameworks re-apply it after reconciliation.
-		if (_ref) {
-			// Read initial role value synchronously in case parent set it before mount
-			const initialRole =
-				(_ref as HTMLElement).getAttribute('role') ?? undefined;
-			if (initialRole !== state._role) {
-				state._role = initialRole;
-			}
+	// Observe role attribute set imperatively by the parent navigation
+	// and persist it in state so frameworks re-apply it after reconciliation.
+	onUpdate(() => {
+		if (!state.initialized || !_ref || state._attributeObserver) return;
 
-			const observer = new MutationObserver((mutations) => {
-				for (const mutation of mutations) {
-					if (mutation.attributeName === 'role') {
-						const newRole =
-							(_ref as HTMLElement).getAttribute('role') ??
-							undefined;
-						if (newRole !== state._role) {
-							state._role = newRole;
-						}
+		// Read initial role value synchronously in case parent set it before mount
+		const initialRole =
+			(_ref as HTMLElement).getAttribute('role') ?? undefined;
+		if (initialRole !== state._role) {
+			state._role = initialRole;
+		}
+
+		const observer = new MutationObserver((mutations) => {
+			for (const mutation of mutations) {
+				if (mutation.attributeName === 'role') {
+					const newRole =
+						(_ref as HTMLElement).getAttribute('role') ?? undefined;
+					if (newRole !== state._role) {
+						state._role = newRole;
 					}
 				}
-			});
-			observer.observe(_ref, {
-				attributes: true,
-				attributeFilter: ['role']
-			});
-			state._attributeObserver = observer;
-		}
-	});
+			}
+		});
+		observer.observe(_ref, {
+			attributes: true,
+			attributeFilter: ['role']
+		});
+		state._attributeObserver = observer;
+	}, [_ref, state.initialized]);
 
 	onUnMount(() => {
 		state._teardownPopover();

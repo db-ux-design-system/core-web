@@ -30,46 +30,48 @@ export default function DBControlPanelNavigationItem(
 		_tooltip: undefined,
 		_savedHref: undefined,
 		_role: undefined,
-		_attributeObserver: undefined
+		_attributeObserver: undefined,
+		initialized: false
+	});
+
+	onMount(() => {
+		state.initialized = true;
 	});
 
 	// jscpd:ignore-start
-	onMount(() => {
-		if (_ref) {
-			// Read initial role value synchronously in case parent set it before mount
-			const initialRole =
-				(_ref as HTMLElement).getAttribute('role') ?? undefined;
-			if (initialRole !== state._role) {
-				state._role = initialRole;
-			}
+	onUpdate(() => {
+		if (!state.initialized || !_ref || state._attributeObserver) return;
 
-			// Observe role attribute set imperatively by the parent navigation
-			// and persist it in state so frameworks re-apply it after reconciliation.
-			const observer = new MutationObserver((mutations) => {
-				for (const mutation of mutations) {
-					if (mutation.attributeName === 'role') {
-						const newRole =
-							(_ref as HTMLElement).getAttribute('role') ??
-							undefined;
-						if (newRole !== state._role) {
-							state._role = newRole;
-						}
+		// Read initial role value synchronously in case parent set it before mount
+		const initialRole =
+			(_ref as HTMLElement).getAttribute('role') ?? undefined;
+		if (initialRole !== state._role) {
+			state._role = initialRole;
+		}
+
+		// Observe role attribute set imperatively by the parent navigation
+		// and persist it in state so frameworks re-apply it after reconciliation.
+		const observer = new MutationObserver((mutations) => {
+			for (const mutation of mutations) {
+				if (mutation.attributeName === 'role') {
+					const newRole =
+						(_ref as HTMLElement).getAttribute('role') ?? undefined;
+					if (newRole !== state._role) {
+						state._role = newRole;
 					}
 				}
-			});
-			observer.observe(_ref, {
-				attributes: true,
-				attributeFilter: ['role']
-			});
-			state._attributeObserver = observer;
-		}
-	});
+			}
+		});
+		observer.observe(_ref, {
+			attributes: true,
+			attributeFilter: ['role']
+		});
+		state._attributeObserver = observer;
+	}, [_ref, state.initialized]);
 
 	onUnMount(() => {
-		if (state._attributeObserver) {
-			state._attributeObserver.disconnect();
-			state._attributeObserver = undefined;
-		}
+		state._attributeObserver?.disconnect();
+		state._attributeObserver = undefined;
 	});
 	// jscpd:ignore-end
 
@@ -129,7 +131,9 @@ export default function DBControlPanelNavigationItem(
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
-			<Slot name="endSlot"></Slot>
+			<div class="db-control-panel-navigation-item-end-slot-container">
+				<Slot name="endSlot"></Slot>
+			</div>
 			<DBTooltip placement="right" delay="slow">
 				{state._tooltip ?? DEFAULT_LABEL}
 			</DBTooltip>

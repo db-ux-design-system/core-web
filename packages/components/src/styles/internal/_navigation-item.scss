@@ -70,25 +70,7 @@
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
-
-	// Mobile
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
-		min-block-size: variables.$db-sizing-md;
-	}
-
-	// Desktop
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
-		block-size: variables.$db-sizing-md;
-		white-space: nowrap; // we don't want to break
-	}
+	min-block-size: variables.$db-sizing-md;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;

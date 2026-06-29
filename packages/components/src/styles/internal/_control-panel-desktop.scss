@@ -70,6 +70,12 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		scrollbar-gutter: stable both-edges;
 		flex-direction: row;
 
+		#{string.unquote(custom-elements.$control-panel-navigation-item-group)},
+		#{string.unquote(custom-elements.$control-panel-navigation-item)} {
+			block-size: variables.$db-sizing-md;
+			white-space: nowrap; // we don't want to break
+		}
+
 		#{string.unquote(custom-elements.$control-panel-navigation-item-group)} {
 			> .db-control-panel-navigation-item-group-expand-button {
 				> .db-control-panel-navigation-item-group-expand-button-end-slot-container {
@@ -141,6 +147,10 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		.db-control-panel-navigation-item-group,
 		.db-control-panel-navigation-item {
 			inline-size: 100%;
+		}
+
+		.db-control-panel-navigation-item-end-slot-container {
+			inset-inline-end: #{variables.$db-spacing-fixed-sm};
 		}
 	}
 }

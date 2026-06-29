@@ -225,10 +225,7 @@ export default function ShellSlots() {
 						<DBControlPanelNavigation aria-label="shell-slots-group-badge">
 							<DBControlPanelNavigationItem
 								endSlot={
-									<DBBadge
-										semantic="successful"
-										size="small"
-										placement="corner-top-right">
+									<DBBadge semantic="successful" size="small">
 										2
 									</DBBadge>
 								}>
@@ -282,10 +279,7 @@ export default function ShellSlots() {
 						<DBControlPanelNavigation aria-label="shell-slots-group-badge-mobile">
 							<DBControlPanelNavigationItem
 								endSlot={
-									<DBBadge
-										semantic="successful"
-										size="small"
-										placement="corner-top-right">
+									<DBBadge semantic="successful" size="small">
 										2
 									</DBBadge>
 								}>
@@ -363,10 +357,7 @@ export default function ShellSlots() {
 							variant="tree">
 							<DBControlPanelNavigationItem
 								endSlot={
-									<DBBadge
-										semantic="successful"
-										size="small"
-										placement="corner-top-right">
+									<DBBadge semantic="successful" size="small">
 										2
 									</DBBadge>
 								}>
@@ -422,10 +413,7 @@ export default function ShellSlots() {
 							variant="tree">
 							<DBControlPanelNavigationItem
 								endSlot={
-									<DBBadge
-										semantic="successful"
-										size="small"
-										placement="corner-top-right">
+									<DBBadge semantic="successful" size="small">
 										2
 									</DBBadge>
 								}>

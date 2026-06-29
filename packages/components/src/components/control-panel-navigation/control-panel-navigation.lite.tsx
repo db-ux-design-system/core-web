@@ -42,10 +42,8 @@ export default function DBControlPanelNavigation(
 		_singleBehaviorObserver: undefined,
 		_attachSingleBehaviorObserver() {
 			// Disconnect any previous observer
-			if (state._singleBehaviorObserver) {
-				state._singleBehaviorObserver.disconnect();
-				state._singleBehaviorObserver = undefined;
-			}
+			state._singleBehaviorObserver?.disconnect();
+			state._singleBehaviorObserver = undefined;
 
 			if (!menuRef) return;
 
@@ -402,10 +400,8 @@ export default function DBControlPanelNavigation(
 			state._resizeObserverCallbackId = undefined;
 		}
 
-		if (state._singleBehaviorObserver) {
-			state._singleBehaviorObserver.disconnect();
-			state._singleBehaviorObserver = undefined;
-		}
+		state._singleBehaviorObserver?.disconnect();
+		state._singleBehaviorObserver = undefined;
 	});
 
 	onUpdate(() => {
@@ -485,7 +481,12 @@ export default function DBControlPanelNavigation(
 					state._attachSingleBehaviorObserver();
 				}
 			}
+		}
+	}, [menuRef, props.variant, state._shellDesktopPosition, props.behavior]);
 
+	onUpdate(() => {
+		if (state._shellDesktopPosition) {
+			state._handleSubNavigation();
 			state.evaluateScrollButtons(menuRef);
 
 			// Re-evaluate scroll buttons and re-position the sub-navigation on
@@ -500,7 +501,7 @@ export default function DBControlPanelNavigation(
 					});
 			}
 		}
-	}, [menuRef, props.variant, state._shellDesktopPosition, props.behavior]);
+	}, [menuRef, state._shellDesktopPosition]);
 
 	return (
 		<nav

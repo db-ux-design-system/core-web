@@ -37,4 +37,4 @@ export type DBControlPanelNavigationItemDefaultState = {
 };
 
 export type DBControlPanelNavigationItemState =
-	DBControlPanelNavigationItemDefaultState & GlobalState;
+	DBControlPanelNavigationItemDefaultState & GlobalState & InitializedState;
