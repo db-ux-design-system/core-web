@@ -1,8 +1,11 @@
-import { uuid } from './index';
+import { AbstractObserverListener } from './abstract-observer-listener';
 
 type ResizeCallback = (entry: ResizeObserverEntry) => void;
 
-export class ResizeObserverListener {
+export class ResizeObserverListener extends AbstractObserverListener<
+	ResizeObserver,
+	ResizeObserverEntry
+> {
 	private static _instance: ResizeObserverListener | null = null;
 	private static callbacks: Record<
 		string,
@@ -11,6 +14,8 @@ export class ResizeObserverListener {
 	private static observer: ResizeObserver | null = null;
 
 	constructor() {
+		super();
+
 		if (ResizeObserverListener._instance) {
 			return ResizeObserverListener._instance;
 		}
@@ -32,30 +37,25 @@ export class ResizeObserverListener {
 		}
 	}
 
-	public observe(
-		element: Element,
-		callback: ResizeCallback
-	): string | undefined {
-		if (!ResizeObserverListener.observer) return undefined;
-		const id = uuid();
-		ResizeObserverListener.callbacks[id] = { element, callback };
-		ResizeObserverListener.observer.observe(element);
-		return id;
+	protected getCallbacks(): Record<
+		string,
+		{ element: Element; callback: ResizeCallback }
+	> {
+		return ResizeObserverListener.callbacks;
 	}
 
-	public unobserve(id: string): void {
-		const entry = ResizeObserverListener.callbacks[id];
-		if (entry && ResizeObserverListener.observer) {
-			// Only unobserve the element if no other callback watches it
-			const hasOtherWatchers = Object.entries(
-				ResizeObserverListener.callbacks
-			).some(([key, val]) => key !== id && val.element === entry.element);
+	protected getObserver(): ResizeObserver | null {
+		return ResizeObserverListener.observer;
+	}
 
-			if (!hasOtherWatchers) {
-				ResizeObserverListener.observer.unobserve(entry.element);
-			}
+	protected observeElement(observer: ResizeObserver, element: Element): void {
+		observer.observe(element);
+	}
 
-			delete ResizeObserverListener.callbacks[id];
-		}
+	protected unobserveElement(
+		observer: ResizeObserver,
+		element: Element
+	): void {
+		observer.unobserve(element);
 	}
 }

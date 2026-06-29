@@ -1,8 +1,11 @@
-import { uuid } from './index';
+import { AbstractObserverListener } from './abstract-observer-listener';
 
 type IntersectionCallback = (entry: IntersectionObserverEntry) => void;
 
-export class IntersectionObserverListener {
+export class IntersectionObserverListener extends AbstractObserverListener<
+	IntersectionObserver,
+	IntersectionObserverEntry
+> {
 	private static _instance: IntersectionObserverListener | null = null;
 	private static callbacks: Record<
 		string,
@@ -11,6 +14,8 @@ export class IntersectionObserverListener {
 	private static observer: IntersectionObserver | null = null;
 
 	constructor() {
+		super();
+
 		if (IntersectionObserverListener._instance) {
 			return IntersectionObserverListener._instance;
 		}
@@ -34,30 +39,28 @@ export class IntersectionObserverListener {
 		}
 	}
 
-	public observe(
-		element: Element,
-		callback: IntersectionCallback
-	): string | undefined {
-		if (!IntersectionObserverListener.observer) return undefined;
-		const id = uuid();
-		IntersectionObserverListener.callbacks[id] = { element, callback };
-		IntersectionObserverListener.observer.observe(element);
-		return id;
+	protected getCallbacks(): Record<
+		string,
+		{ element: Element; callback: IntersectionCallback }
+	> {
+		return IntersectionObserverListener.callbacks;
 	}
 
-	public unobserve(id: string): void {
-		const entry = IntersectionObserverListener.callbacks[id];
-		if (entry && IntersectionObserverListener.observer) {
-			// Only unobserve the element if no other callback watches it
-			const hasOtherWatchers = Object.entries(
-				IntersectionObserverListener.callbacks
-			).some(([key, val]) => key !== id && val.element === entry.element);
+	protected getObserver(): IntersectionObserver | null {
+		return IntersectionObserverListener.observer;
+	}
 
-			if (!hasOtherWatchers) {
-				IntersectionObserverListener.observer.unobserve(entry.element);
-			}
+	protected observeElement(
+		observer: IntersectionObserver,
+		element: Element
+	): void {
+		observer.observe(element);
+	}
 
-			delete IntersectionObserverListener.callbacks[id];
-		}
+	protected unobserveElement(
+		observer: IntersectionObserver,
+		element: Element
+	): void {
+		observer.unobserve(element);
 	}
 }
