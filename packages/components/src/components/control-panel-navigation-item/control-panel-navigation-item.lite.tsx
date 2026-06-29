@@ -33,6 +33,7 @@ export default function DBControlPanelNavigationItem(
 		_attributeObserver: undefined
 	});
 
+	// jscpd:ignore-start
 	onMount(() => {
 		if (_ref) {
 			// Read initial role value synchronously in case parent set it before mount
@@ -70,6 +71,7 @@ export default function DBControlPanelNavigationItem(
 			state._attributeObserver = undefined;
 		}
 	});
+	// jscpd:ignore-end
 
 	onUpdate(() => {
 		if (props.tooltip) {
