@@ -58,6 +58,7 @@ const xoConfig = [
 			'unicorn/prefer-number-coercion': 0, // 2 violations
 			'unicorn/no-exports-in-scripts': 0, // 2 violations
 			'unicorn/prefer-url-href': 0, // 1 violation
+			'unicorn/prefer-unicode-code-point-escapes': 0, // Changes \u2013 to \u{2013} which breaks string matching
 			'unicorn/prefer-iterator-to-array': 0, // 1 violation
 			'unicorn/no-return-array-push': 0, // 1 violation
 			'unicorn/no-optional-chaining-on-undeclared-variable': 0, // 1 violation
