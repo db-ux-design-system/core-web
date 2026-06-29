@@ -1,29 +1,29 @@
-import { z } from 'zod/v3';
+import {z} from 'zod/v3';
 
 export const listComponentsSchema = {
 	description:
-		'Returns all available DB UX component names by scanning packages/components/src/components.'
+		'Returns all available DB UX component names by scanning packages/components/src/components.',
 };
 
 export const getComponentDetailsSchema = {
 	description:
 		'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
 	inputSchema: {
-		componentName: z.string().max(100).describe("e.g. 'button'")
-	}
+		componentName: z.string().max(100).describe("e.g. 'button'"),
+	},
 };
 
 export const getComponentPropsSchema = {
 	description:
 		"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
 	inputSchema: {
-		componentName: z.string().max(100).describe("e.g. 'button'")
-	}
+		componentName: z.string().max(100).describe("e.g. 'button'"),
+	},
 };
 
 export const listDesignTokenCategoriesSchema = {
 	description:
-		'Returns all available DB UX design token categories (e.g. colors, spacing, typography).'
+		'Returns all available DB UX design token categories (e.g. colors, spacing, typography).',
 };
 
 export const getDesignTokensSchema = {
@@ -34,14 +34,14 @@ export const getDesignTokensSchema = {
 			.string()
 			.max(100)
 			.describe(
-				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories."
-			)
-	}
+				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories.",
+			),
+	},
 };
 
 export const listIconsSchema = {
 	description:
-		"Returns all available DB UX icon names (e.g. 'arrow_down', 'chevron_right') from the generated all-icons.ts in packages/foundations/src."
+		"Returns all available DB UX icon names (e.g. 'arrow_down', 'chevron_right') from the generated all-icons.ts in packages/foundations/src.",
 };
 
 export const getExampleCodeSchema = {
@@ -56,9 +56,9 @@ export const getExampleCodeSchema = {
 		framework: z
 			.enum(['react', 'angular', 'vue', 'web-components', 'html'])
 			.describe(
-				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'"
-			)
-	}
+				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'",
+			),
+	},
 };
 
 export const docsSearchSchema = {
@@ -69,32 +69,32 @@ export const docsSearchSchema = {
 			.string()
 			.max(200)
 			.describe(
-				"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc."
+				"Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc.",
 			),
 		category: z
 			.enum(['global', 'component'])
 			.describe(
-				"Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/)."
+				"Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/).",
 			),
 		componentName: z
 			.string()
 			.max(100)
 			.optional()
 			.describe(
-				"Required if category is 'component' (e.g., 'button', 'navigation')."
+				"Required if category is 'component' (e.g., 'button', 'navigation').",
 			),
 		docType: z
 			.enum(['React', 'Angular', 'Vue', 'HTML', 'Accessibility'])
 			.optional()
 			.describe(
-				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead."
-			)
-	}
+				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead.",
+			),
+	},
 };
 
 export const listMigrationGuidesSchema = {
 	description:
-		'Returns all available DB UX migration guide names. Call this first to discover which guides exist before calling get_migration_guide.'
+		'Returns all available DB UX migration guide names. Call this first to discover which guides exist before calling get_migration_guide.',
 };
 
 export const getMigrationGuideSchema = {
@@ -106,19 +106,19 @@ export const getMigrationGuideSchema = {
 			.max(100)
 			.regex(
 				/^[\w\-.]+$/,
-				'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.'
+				'Guide name must only contain alphanumeric characters, dots, hyphens, and underscores.',
 			)
 			.describe(
-				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'."
-			)
-	}
+				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'.",
+			),
+	},
 };
 
 export const verifyMigratedCodeSchema = {
 	description:
 		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
 		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
-		'If errors are found, fix the code and call the tool again (max 3 attempts).'
+		'If errors are found, fix the code and call the tool again (max 3 attempts).',
 };
 
 export const scanV2MigrationSchema = {
@@ -134,15 +134,15 @@ export const scanV2MigrationSchema = {
 			.string()
 			.max(500)
 			.describe(
-				'Absolute path or path relative to the workspace root of the file to scan.'
-			)
-	}
+				'Absolute path or path relative to the workspace root of the file to scan.',
+			),
+	},
 };
 
 export const listVisualsSchema = {
 	description:
 		'Returns all available visual reference names (e.g. dashboard, form, table). ' +
-		'Call this first to discover which visuals exist before requesting one.'
+		'Call this first to discover which visuals exist before requesting one.',
 };
 
 export const getVisualReferenceSchema = {
@@ -156,7 +156,7 @@ export const getVisualReferenceSchema = {
 			.string()
 			.max(100)
 			.describe(
-				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names."
-			)
-	}
+				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names.",
+			),
+	},
 };

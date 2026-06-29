@@ -47,7 +47,7 @@ function extractNameAndBaseUrl(context) {
 	const baseUrl = `/${repoName}/${path}/${name}`;
 	console.log('Constructed baseUrl:', baseUrl);
 
-	const result = { name, baseUrl, repo: repoName, owner: ownerName };
+	const result = {name, baseUrl, repo: repoName, owner: ownerName};
 	console.log('Result:', result);
 
 	return result;

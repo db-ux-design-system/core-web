@@ -1,8 +1,8 @@
 import dbUxFlatten from '@db-ux/core-postcss-plugin';
 import vue from '@vitejs/plugin-vue';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {defineConfig} from 'vite';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -13,17 +13,17 @@ export default defineConfig({
 	build: {
 		outDir: '../../build-showcases/vue-showcase',
 		emptyOutDir: true,
-		cssMinify: 'esbuild',
+		cssMinify: 'esbuild'
 	},
 	resolve: {
 		alias: {
-			'@components': path.resolve(__dirname, '../../output/vue/src'),
-		},
+			'@components': path.resolve(__dirname, '../../output/vue/src')
+		}
 	},
 	css: {
 		devSourcemap: true, // Enables source maps in dev mode for CSS
 		postcss: {
-			plugins: [dbUxFlatten()],
-		},
-	},
+			plugins: [dbUxFlatten()]
+		}
+	}
 });

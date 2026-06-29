@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-import { execSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import {execSync} from 'node:child_process';
+import {readFileSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import {fileURLToPath} from 'node:url';
 
 const repoRoot =
 	process.env.GITHUB_WORKSPACE ??
 	path.join(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
-const { VALID_SEMVER_VERSION } = process.env;
+const {VALID_SEMVER_VERSION} = process.env;
 const RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
 const CI = process.env.CI === 'true';
@@ -26,13 +26,13 @@ if (!VALID_SEMVER_VERSION) {
 if (!RELEASE && !PRE_RELEASE) {
 	if (CI) {
 		console.error(
-			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
+			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!',
 		);
 		process.exit(1);
 	}
 
 	console.warn(
-		'⚠️ No RELEASE/PRE_RELEASE set, defaulting to PRE_RELEASE=true for local run'
+		'⚠️ No RELEASE/PRE_RELEASE set, defaulting to PRE_RELEASE=true for local run',
 	);
 	process.env.PRE_RELEASE = 'true';
 }
@@ -47,19 +47,19 @@ const buildOutputs = path.join(repoRoot, 'build-outputs');
 console.log(`goto build-outputs: ${buildOutputs}`);
 
 const packages = [
-	{ dir: 'foundations', name: 'core-foundations' },
-	{ dir: 'components', name: 'core-components' },
-	{ dir: 'angular', name: 'ngx-core-components' },
-	{ dir: 'react', name: 'react-core-components' },
-	{ dir: 'vue', name: 'v-core-components' },
-	{ dir: 'wc-core-components', name: 'wc-core-components' },
-	{ dir: 'migration', name: 'core-migration' },
-	{ dir: 'stylelint', name: 'core-stylelint' },
-	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
-	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
-	{ dir: 'postcss-plugin', name: 'core-postcss-plugin' },
-	{ dir: 'agent-cli', name: 'agent-cli' },
-	{ dir: 'mcp-server', name: 'mcp-server' }
+	{dir: 'foundations', name: 'core-foundations'},
+	{dir: 'components', name: 'core-components'},
+	{dir: 'angular', name: 'ngx-core-components'},
+	{dir: 'react', name: 'react-core-components'},
+	{dir: 'vue', name: 'v-core-components'},
+	{dir: 'wc-core-components', name: 'wc-core-components'},
+	{dir: 'migration', name: 'core-migration'},
+	{dir: 'stylelint', name: 'core-stylelint'},
+	{dir: 'eslint-plugin', name: 'core-eslint-plugin'},
+	{dir: 'vite-plugin', name: 'core-vite-plugin'},
+	{dir: 'postcss-plugin', name: 'core-postcss-plugin'},
+	{dir: 'agent-cli', name: 'agent-cli'},
+	{dir: 'mcp-server', name: 'mcp-server'},
 ];
 
 const packagesWithFoundationsDep = new Set([
@@ -67,17 +67,17 @@ const packagesWithFoundationsDep = new Set([
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
 ]);
 
 const packagesWithComponentsDep = new Set([
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
 ]);
 
-for (const { dir, name: PACKAGE } of packages) {
+for (const {dir, name: PACKAGE} of packages) {
 	console.log(`Start ${PACKAGE} bundle:`);
 
 	// Always update version so pnpm pack produces the correct .tgz filename
@@ -103,7 +103,7 @@ for (const { dir, name: PACKAGE } of packages) {
 	try {
 		execSync(
 			'pnpm pack --quiet --config.ignore-scripts=true --ignore-workspace',
-			{ cwd: path.join(buildOutputs, dir), stdio: 'inherit' }
+			{cwd: path.join(buildOutputs, dir), stdio: 'inherit'},
 		);
 	} catch (error) {
 		console.error(`❌ pnpm pack failed for ${PACKAGE}`);
@@ -121,21 +121,21 @@ console.log(`📰 Publish Package to Registry with tag: ${TAG}`);
 
 console.log('🔒 Authenticate NPM Registry');
 execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
-	stdio: 'inherit'
+	stdio: 'inherit',
 });
 console.log('🔑 Using trusted publishing for NPM');
 
 // Only run provenance (real publish) in CI, locally only dry-run
 for (const step of CI ? ['dry-run', 'provenance'] : ['dry-run']) {
-	for (const { dir, name: PACKAGE } of packages) {
+	for (const {dir, name: PACKAGE} of packages) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {
 			execSync(
-				`pnpm publish --tag ${TAG} ${path.join(buildOutputs, dir, `db-ux-${PACKAGE}-${VALID_SEMVER}.tgz`)} --${step} --no-git-checks`
+				`pnpm publish --tag ${TAG} ${path.join(buildOutputs, dir, `db-ux-${PACKAGE}-${VALID_SEMVER}.tgz`)} --${step} --no-git-checks`,
 			);
 		} catch (error) {
 			console.error(
-				`❌ ${step} publish failed for ${PACKAGE} with tag ${TAG} to NPM`
+				`❌ ${step} publish failed for ${PACKAGE} with tag ${TAG} to NPM`,
 			);
 			console.error(error.message || error);
 			process.exit(1);

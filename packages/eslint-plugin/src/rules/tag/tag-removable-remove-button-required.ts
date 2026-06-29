@@ -1,23 +1,22 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
 } from '../../shared/utils.js';
 
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
-			description:
-				'Ensure DBTag with behavior="removable" has removeButton',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tag-removable-remove-button-required'
+			description: 'Ensure DBTag with behavior="removable" has removeButton',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tag-removable-remove-button-required',
 		},
 		messages: {
-			missingRemoveButton: MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+			missingRemoveButton: MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED,
 		},
-		schema: []
+		schema: [],
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -29,12 +28,10 @@ export default {
 			const removeButton = getAttributeValue(node, 'removeButton');
 
 			if (removeButton === undefined || removeButton === '') {
-				const loc = parserServices.convertNodeSourceSpanToLoc(
-					node.sourceSpan
-				);
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED,
 				});
 			}
 		};
@@ -42,7 +39,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBTag,
-			angularHandler
+			angularHandler,
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -59,23 +56,20 @@ export default {
 				return;
 			}
 
-			const removeButton = getAttributeValue(
-				openingElement,
-				'removeButton'
-			);
+			const removeButton = getAttributeValue(openingElement, 'removeButton');
 
 			if (removeButton === undefined || removeButton === '') {
 				context.report({
 					node: openingElement,
-					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED,
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkTag, Element: checkTag },
-			{ JSXElement: checkTag }
+			{VElement: checkTag, Element: checkTag},
+			{JSXElement: checkTag},
 		);
-	}
+	},
 };

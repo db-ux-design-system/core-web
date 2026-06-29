@@ -1,9 +1,9 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import {MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
 } from '../../shared/utils.js';
 
 const FORM_COMPONENTS = [
@@ -13,13 +13,13 @@ const FORM_COMPONENTS = [
 	'DBCustomSelect',
 	'DBCheckbox',
 	'DBRadio',
-	'DBSwitch'
+	'DBSwitch',
 ];
 
 const COMPONENTS_WITH_CHILDREN_LABEL = new Set([
 	'DBCheckbox',
 	'DBRadio',
-	'DBSwitch'
+	'DBSwitch',
 ]);
 
 export default {
@@ -28,18 +28,18 @@ export default {
 		docs: {
 			description:
 				'Ensure form components have a label attribute for accessibility',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#form-label-required'
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#form-label-required',
 		},
 		messages: {
-			missingLabel: MESSAGES.FORM_LABEL_REQUIRED
+			missingLabel: MESSAGES.FORM_LABEL_REQUIRED,
 		},
-		schema: []
+		schema: [],
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const componentName = node.name;
 			const component = FORM_COMPONENTS.find((comp) =>
-				isDBComponent(node, comp)
+				isDBComponent(node, comp),
 			);
 			if (!component) {
 				return;
@@ -47,35 +47,27 @@ export default {
 
 			const label = getAttributeValue(node, 'label');
 			const hasChildren = node.children?.some(
-				(child: any) =>
-					child.type === 'Text' && child.value.trim() !== ''
+				(child: any) => child.type === 'Text' && child.value.trim() !== '',
 			);
 
-			const canUseChildren =
-				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
+			const canUseChildren = COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
 				(label === undefined || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(
-					node.sourceSpan
-				);
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.FORM_LABEL_REQUIRED,
-					data: { component: componentName }
+					data: {component: componentName},
 				});
 			}
 		};
 
 		const angularVisitors: any = {};
 		for (const comp of FORM_COMPONENTS) {
-			const visitors = createAngularVisitors(
-				context,
-				comp,
-				angularHandler
-			);
+			const visitors = createAngularVisitors(context, comp, angularHandler);
 			if (visitors) {
 				Object.assign(angularVisitors, visitors);
 			}
@@ -89,25 +81,23 @@ export default {
 			const openingElement = node.openingElement || node;
 
 			const component = FORM_COMPONENTS.find((comp) =>
-				isDBComponent(openingElement, comp)
+				isDBComponent(openingElement, comp),
 			);
 			if (!component) {
 				return;
 			}
 
-			const componentName =
-				openingElement.name?.name || openingElement.rawName;
+			const componentName = openingElement.name?.name || openingElement.rawName;
 
 			const label = getAttributeValue(openingElement, 'label');
 			const hasChildren = node.children?.some(
 				(child: any) =>
 					(child.type === 'JSXText' && child.value.trim() !== '') ||
 					(child.type === 'VText' && child.value.trim() !== '') ||
-					(child.type === 'Text' && child.value.trim() !== '')
+					(child.type === 'Text' && child.value.trim() !== ''),
 			);
 
-			const canUseChildren =
-				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
+			const canUseChildren = COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
 				(label === undefined || label === '') &&
@@ -116,15 +106,15 @@ export default {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_LABEL_REQUIRED,
-					data: { component: componentName }
+					data: {component: componentName},
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkFormComponent, Element: checkFormComponent },
-			{ JSXElement: checkFormComponent }
+			{VElement: checkFormComponent, Element: checkFormComponent},
+			{JSXElement: checkFormComponent},
 		);
-	}
+	},
 };

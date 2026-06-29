@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { DBIcon } from '../../../../output/react/src';
+import {DBIcon} from '../../../../output/react/src';
 
-const LinkHeader = ({ id }) => {
+const LinkHeader = ({id}) => {
 	if (id) {
 		return (
 			<Link className="header-link" href={`?current=${id}`}>

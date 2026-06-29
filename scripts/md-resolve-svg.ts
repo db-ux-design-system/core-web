@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/prefer-regexp-exec */
 
-import { glob } from 'glob';
+import {glob} from 'glob';
 import fs from 'node:fs';
 import * as https from 'node:https';
-import { replaceInFileSync } from 'replace-in-file';
+import {replaceInFileSync} from 'replace-in-file';
 
 // eslint-disable-next-line prefer-regex-literals
 const shieldRegex = new RegExp(String.raw`https://img\.shields\.io/[^)|\s]*`);
@@ -39,7 +39,7 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 		const pathNameSvg = `${pathname}.svg`;
 
 		const foundSvg = filesToReplace.find(
-			(downloadFile) => downloadFile.svgUrl === svgUrl
+			(downloadFile) => downloadFile.svgUrl === svgUrl,
 		);
 
 		if (foundSvg) {
@@ -51,7 +51,7 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 				files: [file],
 				svgUrl,
 				pathname,
-				pathNameSvg
+				pathNameSvg,
 			});
 		}
 
@@ -62,21 +62,18 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 
 const startReplacement = (filesToReplace: Replacement[]) => {
 	for (const downloadFile of filesToReplace) {
-		const { svgUrl, pathNameSvg, pathname, files } = downloadFile;
+		const {svgUrl, pathNameSvg, pathname, files} = downloadFile;
 
 		replaceInFileSync({
 			files,
 			processor(input: string) {
 				let replacedInput: string = input;
 				while (replacedInput.includes(svgUrl)) {
-					replacedInput = replacedInput.replace(
-						svgUrl,
-						`/${pathNameSvg}`
-					);
+					replacedInput = replacedInput.replace(svgUrl, `/${pathNameSvg}`);
 				}
 
 				return replacedInput;
-			}
+			},
 		});
 
 		if (!fs.existsSync(pathNameSvg)) {
@@ -88,7 +85,7 @@ const startReplacement = (filesToReplace: Replacement[]) => {
 					fileStream.close();
 					fs.writeFileSync(
 						`${pathname}.licence`,
-						`retrieved from URL: ${svgUrl}`
+						`retrieved from URL: ${svgUrl}`,
 					);
 				});
 			});
@@ -102,7 +99,7 @@ const convertImages = async () => {
 	}
 
 	const mdfiles: string[] = await glob('**/*.md', {
-		ignore: '**/node_modules/**'
+		ignore: '**/node_modules/**',
 	});
 	let filesToReplace: Replacement[] = [];
 
@@ -113,9 +110,7 @@ const convertImages = async () => {
 	// Windows has double backslash for paths
 	filesToReplace = filesToReplace.map((file) => ({
 		...file,
-		files: file.files.map((fileName: string) =>
-			fileName.replaceAll('\\', '/')
-		)
+		files: file.files.map((fileName: string) => fileName.replaceAll('\\', '/')),
 	}));
 
 	startReplacement(filesToReplace);

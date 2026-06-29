@@ -11,7 +11,7 @@
 export function handleScaffoldPagePrompt({
 	page_type,
 	framework,
-	additional_requirements
+	additional_requirements,
 }: {
 	page_type: string;
 	framework: string;
@@ -71,9 +71,9 @@ Do not output code until all four phases are complete. Then structure your respo
 
 1. "Architectural Blueprint": Bulleted list of DB UX components selected, the example used for each, and how Additional Requirements influenced the plan.
 2. "Implementation": Complete source code for the requested page as a single file (or clearly separated components if complexity demands it). All imports must reference the correct @db-ux/* package for "${framework}". No hardcoded values, no native interactive elements, no invented icon names.
-3. "Accessibility Statement": Confirmation of how semantic HTML and ARIA states are applied through DB UX components, and any additional accessibility measures taken.`
-				}
-			}
-		]
+3. "Accessibility Statement": Confirmation of how semantic HTML and ARIA states are applied through DB UX components, and any additional accessibility measures taken.`,
+				},
+			},
+		],
 	};
 }

@@ -1,9 +1,9 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import {COMPONENTS, MESSAGES, MESSAGE_IDS} from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
 } from '../../shared/utils.js';
 
 export default {
@@ -12,13 +12,12 @@ export default {
 		docs: {
 			description:
 				'Ensure DBCustomSelect with selectedType="tag" has removeTagsTexts',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#custom-select-tags-remove-text-required'
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#custom-select-tags-remove-text-required',
 		},
 		messages: {
-			missingRemoveTagsTexts:
-				MESSAGES.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS
+			missingRemoveTagsTexts: MESSAGES.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS,
 		},
-		schema: []
+		schema: [],
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
@@ -30,13 +29,10 @@ export default {
 			const removeTagsTexts = getAttributeValue(node, 'removeTagsTexts');
 
 			if (removeTagsTexts === undefined || removeTagsTexts === '') {
-				const loc = parserServices.convertNodeSourceSpanToLoc(
-					node.sourceSpan
-				);
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
 				context.report({
 					loc,
-					messageId:
-						MESSAGE_IDS.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS
+					messageId: MESSAGE_IDS.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS,
 				});
 			}
 		};
@@ -44,7 +40,7 @@ export default {
 		const angularVisitors = createAngularVisitors(
 			context,
 			COMPONENTS.DBCustomSelect,
-			angularHandler
+			angularHandler,
 		);
 		if (angularVisitors) {
 			return angularVisitors;
@@ -56,32 +52,28 @@ export default {
 				return;
 			}
 
-			const selectedType = getAttributeValue(
-				openingElement,
-				'selectedType'
-			);
+			const selectedType = getAttributeValue(openingElement, 'selectedType');
 			if (selectedType !== 'tag') {
 				return;
 			}
 
 			const removeTagsTexts = getAttributeValue(
 				openingElement,
-				'removeTagsTexts'
+				'removeTagsTexts',
 			);
 
 			if (removeTagsTexts === undefined || removeTagsTexts === '') {
 				context.report({
 					node: openingElement,
-					messageId:
-						MESSAGE_IDS.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS
+					messageId: MESSAGE_IDS.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS,
 				});
 			}
 		};
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkCustomSelect, Element: checkCustomSelect },
-			{ JSXElement: checkCustomSelect }
+			{VElement: checkCustomSelect, Element: checkCustomSelect},
+			{JSXElement: checkCustomSelect},
 		);
-	}
+	},
 };

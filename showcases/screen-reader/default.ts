@@ -1,19 +1,19 @@
-import { WindowsKeyCodes, WindowsModifiers } from '@guidepup/guidepup';
+import {WindowsKeyCodes, WindowsModifiers} from '@guidepup/guidepup';
 import {
 	type NVDAPlaywright,
 	nvdaTest,
 	type VoiceOverPlaywright,
-	voiceOverTest
+	voiceOverTest,
 } from '@guidepup/playwright';
-import { macOSRecord, windowsRecord } from '@guidepup/record';
-import { expect } from '@playwright/test';
-import { platform } from 'node:os';
+import {macOSRecord, windowsRecord} from '@guidepup/record';
+import {expect} from '@playwright/test';
+import {platform} from 'node:os';
 import {
 	type DefaultTestType,
 	type RunTestType,
-	type ScreenReaderTestType
+	type ScreenReaderTestType,
 } from './data';
-import { translations } from './translations';
+import {translations} from './translations';
 
 const standardPhrases = [
 	'You are currently',
@@ -32,7 +32,7 @@ const standardPhrases = [
 	'To expand',
 	'Login Items',
 	'You can manage',
-	'To open'
+	'To open',
 ];
 
 const flakyExpressions: Record<string, string> = {
@@ -40,7 +40,7 @@ const flakyExpressions: Record<string, string> = {
 	'checked. checked': 'checked',
 	'selected. selected': 'selected',
 	'expanded. expanded': 'expanded',
-	'not checked. not checked': 'not checked'
+	'not checked. not checked': 'not checked',
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
@@ -48,7 +48,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 		const phraseParts = phrase.split('. ');
 		let result = phraseParts
 			.filter((sPhrase) =>
-				standardPhrases.every((string) => !sPhrase.includes(string))
+				standardPhrases.every((string) => !sPhrase.includes(string)),
 			)
 			.map((part, index) => {
 				// There is an issue with macOS duplicating some parts, we remove the duplicates here
@@ -82,7 +82,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
 	retry?: number,
-	phraseLogConvertFn?: (phraseLog: string[]) => string[]
+	phraseLogConvertFn?: (phraseLog: string[]) => string[],
 ) => {
 	if (!screenReader) {
 		return;
@@ -113,16 +113,16 @@ export const generateSnapshot = async (
 
 const SWITCH_APPLICATION = {
 	keyCode: [WindowsKeyCodes.Escape],
-	modifiers: [WindowsModifiers.Alt]
+	modifiers: [WindowsModifiers.Alt],
 };
 const MOVE_TO_TOP = {
 	keyCode: [WindowsKeyCodes.Home],
-	modifiers: [WindowsModifiers.Control]
+	modifiers: [WindowsModifiers.Control],
 };
 
 const nvdaNavigateToWebContent = async (
 	screenRecorder: NVDAPlaywright,
-	pageTitle: string
+	pageTitle: string,
 ) => {
 	// Make sure NVDA is not in focus mode.
 	await screenRecorder.perform(screenRecorder.keyboardCommands.exitFocusMode);
@@ -134,9 +134,7 @@ const nvdaNavigateToWebContent = async (
 		while (switchRetryCount < 10) {
 			switchRetryCount++;
 			await screenRecorder.perform(SWITCH_APPLICATION);
-			await screenRecorder.perform(
-				screenRecorder.keyboardCommands.reportTitle
-			);
+			await screenRecorder.perform(screenRecorder.keyboardCommands.reportTitle);
 			windowTitle = await screenRecorder.lastSpokenPhrase();
 			if (windowTitle.startsWith(pageTitle)) {
 				break;
@@ -145,13 +143,13 @@ const nvdaNavigateToWebContent = async (
 	}
 
 	await screenRecorder.perform(
-		screenRecorder.keyboardCommands.readNextFocusableItem
+		screenRecorder.keyboardCommands.readNextFocusableItem,
 	);
 	await screenRecorder.perform(
-		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
+		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode,
 	);
 	await screenRecorder.perform(
-		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
+		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode,
 	);
 	await screenRecorder.perform(MOVE_TO_TOP);
 	// Clear out logs.
@@ -168,10 +166,10 @@ export const runTest = async ({
 	page,
 	nvda,
 	voiceOver,
-	retry
+	retry,
 }: DefaultTestType & RunTestType) => {
 	await page.goto(`${url}${additionalParams}`, {
-		waitUntil: 'networkidle'
+		waitUntil: 'networkidle',
 	});
 	const pageTitle = await page.title();
 
@@ -206,7 +204,7 @@ export const runTest = async ({
 };
 
 export const testDefault = (defaultTestType: DefaultTestType) => {
-	const { test, title, additionalParams, postTestFn } = defaultTestType;
+	const {test, title, additionalParams, postTestFn} = defaultTestType;
 	const fallbackPostFn = async (voiceOver, nvda, retry) => {
 		await generateSnapshot(voiceOver ?? nvda, retry);
 	};
@@ -215,28 +213,27 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 		...defaultTestType,
 		postTestFn: postTestFn ?? fallbackPostFn,
 		additionalParams:
-			additionalParams ??
-			'&color=neutral-bg-basic-level-1&density=regular'
+			additionalParams ?? '&color=neutral-bg-basic-level-1&density=regular',
 	};
 
 	if (isWin()) {
-		test.use({ nvdaStartOptions: { capture: true } });
-		test?.(title, async ({ page, nvda }, { retry }) => {
+		test.use({nvdaStartOptions: {capture: true}});
+		test?.(title, async ({page, nvda}, {retry}) => {
 			await runTest({
 				...testType,
 				page,
 				nvda,
-				retry
+				retry,
 			});
 		});
 	} else {
-		test.use({ voiceOverStartOptions: { capture: true } });
-		test?.(title, async ({ page, voiceOver }, { retry }) => {
+		test.use({voiceOverStartOptions: {capture: true}});
+		test?.(title, async ({page, voiceOver}, {retry}) => {
 			await runTest({
 				...testType,
 				page,
 				voiceOver,
-				retry
+				retry,
 			});
 		});
 	}
