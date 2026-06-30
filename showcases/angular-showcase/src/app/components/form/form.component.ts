@@ -48,6 +48,8 @@ type FormData = {
 		FormField
 	],
 	standalone: true,
+	// NO_ERRORS_SCHEMA required for Angular 21 [formField] directive template type-checking.
+	// Remove when Angular 22 is the minimum supported version.
 	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {

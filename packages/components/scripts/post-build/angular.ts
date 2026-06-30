@@ -196,28 +196,38 @@ export default (tmp?: boolean) => {
 
 			// Signal Forms value alias for components using 'values' (e.g. DBCustomSelect)
 			if (component.config.angular.signalFormsValueAlias) {
-				// Inject value alias and bidirectional sync effects after duck-typing fields
+				// Inject value alias and bidirectional sync effects after duck-typing fields.
+				// Uses a _syncing flag to prevent circular effect triggering between value↔values.
 				replacements.push({
 					from: 'errors = input<any>(undefined);',
-					to:
-						`errors = input<any>(undefined);\n\n` +
-						`\t\t/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */\n` +
-						`\t\tvalue = model<any>();\n\n` +
-						`\t\t/** @internal Sync value → values (Signal Forms writes to value) */\n` +
-						`\t\tprivate _syncValueToValues = effect(() => {\n` +
-						`\t\t\tconst v = this.value();\n` +
-						`\t\t\tif (v !== undefined) {\n` +
-						`\t\t\t\tthis.values.set(Array.isArray(v) ? v : v ? [v] : []);\n` +
-						`\t\t\t}\n` +
-						`\t\t});\n\n` +
-						`\t\t/** @internal Sync values → value (CVA/user interaction writes to values) */\n` +
-						`\t\tprivate _syncValuesToValue = effect(() => {\n` +
-						`\t\t\tconst vals = this.values();\n` +
-						`\t\t\tconst current = vals && vals.length > 0 ? vals : undefined;\n` +
-						`\t\t\tif (current !== this.value()) {\n` +
-						`\t\t\t\tthis.value.set(current);\n` +
-						`\t\t\t}\n` +
-						`\t\t});`
+					to: `errors = input<any>(undefined);
+
+		/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */
+		value = model<any>();
+
+		/** @internal Flag to prevent circular sync between value↔values */
+		private _syncing = false;
+
+		/** @internal Sync value → values (Signal Forms writes to value) */
+		private _syncValueToValues = effect(() => {
+			const v = this.value();
+			if (this._syncing) return;
+			this._syncing = true;
+			if (v !== undefined) {
+				this.values.set(Array.isArray(v) ? v : v ? [v] : []);
+			}
+			this._syncing = false;
+		});
+
+		/** @internal Sync values → value (CVA/user interaction writes to values) */
+		private _syncValuesToValue = effect(() => {
+			const vals = this.values();
+			if (this._syncing) return;
+			this._syncing = true;
+			const current = vals && vals.length > 0 ? vals : undefined;
+			this.value.set(current);
+			this._syncing = false;
+		});`
 				});
 			}
 		}
@@ -261,17 +271,31 @@ export default (tmp?: boolean) => {
 		// Only applies to CVA components that have handleValidation (not tab-item, custom-select-list-item, radio)
 		if (component.config?.angular?.controlValueAccessor) {
 			const fileContent2 = readFileSync(file, 'utf-8');
+
+			// Ensure 'signal' is imported (defensive — Mitosis currently always includes it)
+			if (
+				!fileContent2.includes('signal,') &&
+				!fileContent2.includes('signal }') &&
+				!fileContent2.includes(', signal')
+			) {
+				replaceInFileSync({
+					files: file,
+					from: `Renderer2 } from "@angular/core";`,
+					to: `Renderer2, signal } from "@angular/core";`
+				});
+			}
+
 			if (fileContent2.includes('handleValidation()')) {
 				// Declare _validMessage and _valid signals needed by the validation bridge
 				replaceInFileSync({
 					files: file,
 					from: `errors = input<any>(undefined);`,
-					to:
-						`errors = input<any>(undefined);\n\n` +
-						`\t\t/** @internal Signal Forms validation state */\n` +
-						`\t\t_validMessage = signal<string | undefined>('');\n` +
-						`\t\t/** @internal Signal Forms validation state */\n` +
-						`\t\t_valid = signal<string | undefined>(undefined);`
+					to: `errors = input<any>(undefined);
+
+		/** @internal Signal Forms validation state */
+		_validMessage = signal<string | undefined>('');
+		/** @internal Signal Forms validation state */
+		_valid = signal<string | undefined>(undefined);`
 				});
 
 				// Connect _valid to aria-invalid and data-custom-validity in the template
@@ -291,10 +315,9 @@ export default (tmp?: boolean) => {
 				replaceInFileSync({
 					files: file,
 					from: /hasValidState\(\)\s*\{\s*\n\s*return !!\(this\.validMessage\(\) \?\? this\.validation\(\) === "valid"\);\s*\n\s*\}/,
-					to:
-						`hasValidState() {\n` +
-						`    return !!(this.validMessage() || this._valid() === 'valid' || this.validation() === "valid");\n` +
-						`  }`
+					to: `hasValidState() {
+    return !!(this.validMessage() || this._valid() === 'valid' || this.validation() === "valid");
+  }`
 				});
 
 				// For custom-select which uses _validity signal: bridge _valid into _validity
@@ -304,28 +327,28 @@ export default (tmp?: boolean) => {
 				replaceInFileSync({
 					files: file,
 					from: /handleValidation\(\)\s*\{\s*\n/,
-					to:
-						`handleValidation() {\n` +
-						`    // Signal Forms validation bridge: errors InputSignal has priority\n` +
-						`    const signalFormErrors = this.errors();\n` +
-						`    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {\n` +
-						`      this._descByIds.set(this._invalidMessageId());\n` +
-						`      this._invalidMessage.set(\n` +
-						`        signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE\n` +
-						`      );\n` +
-						`      this._validMessage.set('');\n` +
-						`      this._valid.set('invalid');\n` +
-						`      if (hasVoiceOver()) {\n` +
-						`        this._voiceOverFallback.set(this._invalidMessage());\n` +
-						`        void delay(() => this._voiceOverFallback.set(""), 1000);\n` +
-						`      }\n` +
-						`      return; // Signal Forms errors take priority\n` +
-						`    } else if (this.errors() !== undefined) {\n` +
-						`      // Signal Forms provided errors=[] (valid state)\n` +
-						`      this._valid.set('valid');\n` +
-						`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
-						`      this._invalidMessage.set('');\n` +
-						`    }\n`
+					to: `handleValidation() {
+    // Signal Forms validation bridge: errors InputSignal has priority
+    const signalFormErrors = this.errors();
+    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
+      this._descByIds.set(this._invalidMessageId());
+      this._invalidMessage.set(
+        signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE
+      );
+      this._validMessage.set('');
+      this._valid.set('invalid');
+      if (hasVoiceOver()) {
+        this._voiceOverFallback.set(this._invalidMessage());
+        void delay(() => this._voiceOverFallback.set(""), 1000);
+      }
+      return; // Signal Forms errors take priority
+    } else if (this.errors() !== undefined) {
+      // Signal Forms provided errors=[] (valid state)
+      this._valid.set('valid');
+      this._validMessage.set(DEFAULT_VALID_MESSAGE);
+      this._invalidMessage.set('');
+    }
+`
 				});
 
 				// For custom-select: also set _validity in the injected bridge code
@@ -333,24 +356,32 @@ export default (tmp?: boolean) => {
 					replaceInFileSync({
 						files: file,
 						from: `return; // Signal Forms errors take priority`,
-						to:
-							`this._validity.set('invalid');\n` +
-							`      return; // Signal Forms errors take priority`
+						to: `this._validity.set('invalid');
+      return; // Signal Forms errors take priority`
 					});
 					replaceInFileSync({
 						files: file,
-						from:
-							`// Signal Forms provided errors=[] (valid state)\n` +
-							`      this._valid.set('valid');\n` +
-							`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
-							`      this._invalidMessage.set('');`,
-						to:
-							`// Signal Forms provided errors=[] (valid state)\n` +
-							`      this._valid.set('valid');\n` +
-							`      this._validity.set('valid');\n` +
-							`      this._validMessage.set(DEFAULT_VALID_MESSAGE);\n` +
-							`      this._invalidMessage.set('');`
+						from: `// Signal Forms provided errors=[] (valid state)
+      this._valid.set('valid');
+      this._validMessage.set(DEFAULT_VALID_MESSAGE);
+      this._invalidMessage.set('');`,
+						to: `// Signal Forms provided errors=[] (valid state)
+      this._valid.set('valid');
+      this._validity.set('valid');
+      this._validMessage.set(DEFAULT_VALID_MESSAGE);
+      this._invalidMessage.set('');`
 					});
+				}
+
+				// Verify the validation bridge was injected successfully
+				const verifyContent = readFileSync(file, 'utf-8');
+				if (
+					!verifyContent.includes('// Signal Forms validation bridge')
+				) {
+					console.warn(
+						`⚠️  Signal Forms validation bridge was NOT injected into ${componentName}. ` +
+							`The handleValidation() format may have changed.`
+					);
 				}
 			}
 
@@ -380,14 +411,13 @@ export default (tmp?: boolean) => {
 				replaceInFileSync({
 					files: file,
 					from: /handleValidation\(\)\s*\{/,
-					to:
-						`getPatternAttr(): string | undefined {\n` +
-						`    const p = this.pattern();\n` +
-						`    if (typeof p === 'string') return p || undefined;\n` +
-						`    if (Array.isArray(p) && p.length > 0) return p.map((r: RegExp) => r.source).join('|');\n` +
-						`    return undefined;\n` +
-						`  }\n` +
-						`  handleValidation() {`
+					to: `getPatternAttr(): string | undefined {
+    const p = this.pattern();
+    if (typeof p === 'string') return p || undefined;
+    if (Array.isArray(p) && p.length > 0) return p.map((r: RegExp) => r.source).join('|');
+    return undefined;
+  }
+  handleValidation() {`
 				});
 			}
 		}
