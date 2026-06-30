@@ -5,6 +5,13 @@
 	// reported as unused — consumers may rely on them outside this monorepo.
 	"tags": ["-public"],
 
+	// Figma code connect files use intentional semantic aliases (same value, different names)
+	"ignoreIssues": {
+		"packages/components/src/components/select/figma/select.figma.ts": [
+			"duplicates"
+		]
+	},
+
 	// These workspaces are generated or framework-specific and produce false positives
 	"ignoreWorkspaces": [
 		"output/*",
