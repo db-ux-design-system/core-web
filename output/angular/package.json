@@ -18,6 +18,10 @@
     "ng": "ng",
     "start": "ng serve"
   },
+  "peerDependencies": {
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0"
+  },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*"
