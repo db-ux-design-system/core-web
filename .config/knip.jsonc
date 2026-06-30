@@ -89,6 +89,8 @@
 				"configs/**/*.{cjs,js}",
 				"test/**/*.{js,ts}"
 			],
+			// react.ts is injected as an import string by scripts/post-build/react.ts
+			"ignoreFiles": ["src/utils/react.ts"],
 			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
 		},
 
