@@ -6,6 +6,8 @@ const xoConfig = [
 		ignores: [
 			...ignoreFolders,
 			'**/*.vue',
+			// Tsconfig files use JSONC (comments/trailing commas) which XO's strict JSON parser rejects
+			'**/tsconfig*.json',
 			// We don't need to check for stories - they will be generated
 			'storybooks/*/src/**',
 			'scripts/check-docs.js'
