@@ -60,7 +60,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				!event.relatedTarget ||
 				!_ref?.contains(event.relatedTarget as Node)
 			) {
-				state.isSubNavigationExpanded = true;
+				// Only expand via focus on desktop; mobile uses click-to-open
+				if (globalThis.matchMedia?.('(min-width: 64em)')?.matches) {
+					state.isSubNavigationExpanded = true;
+				}
 			}
 		},
 		handleFocusOut: (event: FocusEvent | any) => {
