@@ -1,5 +1,5 @@
-import { hasCssFlag } from '.';
 import { handleFixedPopover } from './floating-components';
+import { hasCssFlag } from './index';
 
 export type TriangleData = {
 	itemRect: DOMRect;

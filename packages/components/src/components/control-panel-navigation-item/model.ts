@@ -4,6 +4,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InitializedState,
 	ShowIconProps,
 	TextProps
 } from '../../shared/model';
