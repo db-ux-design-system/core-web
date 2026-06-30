@@ -1,15 +1,11 @@
 /**
- * @public
  * Find the matching closing paren for a CSS function call starting at a given position.
  * Assumes the opening `(` has already been consumed (depth starts at 1).
  * @param value - The full CSS value string
  * @param openIndex - The index right after the opening `(`
  * @returns The index right after the matching `)`, or -1 if unbalanced
  */
-export const findMatchingParenthesis = (
-	value: string,
-	openIndex: number
-): number => {
+const findMatchingParenthesis = (value: string, openIndex: number): number => {
 	let depth = 1;
 	let i = openIndex;
 	while (i < value.length && depth > 0) {
