@@ -34,7 +34,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
-				state.isSubNavigationExpanded = false;
+				// Don't override controlled prop
+				if (props.subNavigationExpanded === undefined) {
+					state.isSubNavigationExpanded = false;
+				}
 				state.autoClose = true;
 				void delay(() => {
 					state.autoClose = false;
@@ -71,7 +74,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				!event.relatedTarget ||
 				!_ref?.contains(event.relatedTarget as Node)
 			) {
-				state.isSubNavigationExpanded = false;
+				// Don't override controlled prop
+				if (props.subNavigationExpanded === undefined) {
+					state.isSubNavigationExpanded = false;
+				}
 			}
 		}
 	});
