@@ -34,6 +34,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
+				state.isSubNavigationExpanded = false;
 				state.autoClose = true;
 				void delay(() => {
 					state.autoClose = false;
