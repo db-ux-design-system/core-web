@@ -231,10 +231,12 @@ export function createAngularVisitors(
 	};
 }
 
+/** @public */
 export function toKebabCase(string_: string): string {
 	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
+/** @public */
 export function getAngularComponentName(componentName: string): string {
 	// For DB components, convert DBComponentName -> db-component-name
 	return componentName.startsWith('DB')

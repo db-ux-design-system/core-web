@@ -60,4 +60,5 @@ export const migrate = (
 	return undefined;
 };
 
+/** @public */
 export default { migrate };

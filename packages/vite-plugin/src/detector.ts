@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 /**
+ * @public
  * Walk up the directory tree from `root` to locate a package path inside node_modules.
  * Handles monorepo hoisting where dependencies may live in a parent node_modules.
  * Returns the resolved absolute path or `undefined` if not found.

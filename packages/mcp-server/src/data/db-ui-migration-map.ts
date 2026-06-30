@@ -11,20 +11,20 @@
 // Types
 // ---------------------------------------------------------------------------
 
-/** Maps a v2 CSS class (cmp-*, elm-*, rea-*) to its v3 CSS class (db-*). */
+/** @public Maps a v2 CSS class (cmp-*, elm-*, rea-*) to its v3 CSS class (db-*). */
 export type ComponentMigrationEntry = {
 	readonly old: string;
 	readonly new: string;
 };
 
-/** Maps a legacy db-color-* token to its v3 background and foreground tokens. */
+/** @public Maps a legacy db-color-* token to its v3 background and foreground tokens. */
 export type ColorMigrationEntry = {
 	readonly old: string;
 	readonly bg: string;
 	readonly fg: string;
 };
 
-/** Maps a legacy icon name to its v3 replacement. */
+/** @public Maps a legacy icon name to its v3 replacement. */
 export type IconMigrationEntry = {
 	readonly old: string;
 	readonly new: string;
