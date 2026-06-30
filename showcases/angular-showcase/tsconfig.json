@@ -2,8 +2,6 @@
 	"compileOnSave": false,
 	"compilerOptions": {
 		"outDir": "./dist/out-tsc",
-		//  silence errors about deprecated baseUrl and moduleResolution: "node" (which resolves to node10). These options are still required by Angular's toolchain, so suppressing the deprecation warning is the correct approach until Angular updates.
-		"ignoreDeprecations": "6.0",
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"noImplicitOverride": true,
@@ -16,8 +14,7 @@
 		"sourceMap": true,
 		"declaration": false,
 		"experimentalDecorators": true,
-		"moduleResolution": "node",
-		"baseUrl": "./",
+		"moduleResolution": "bundler",
 		"importHelpers": true,
 		"resolveJsonModule": true,
 		"target": "ES2022",
@@ -25,7 +22,6 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2023", "dom"],
 		"paths": {
-			"@angular/*": ["node_modules/@angular/*"],
 			"@components": ["../../output/angular/src"],
 			"@components/src/*": ["../../output/angular/src/*"],
 			"@components/components/*": [
