@@ -57,6 +57,7 @@ runs:
 
     - name: 🪗 Create Pull Request
       if: env.changes_detected == 'true'
+      id: create_pr
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
@@ -68,5 +69,16 @@ runs:
 
         Target PR (this PR will be merged into): <https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}>"
 
-        # Create the PR and capture its URL; label it for the auto-merge workflow
-        gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "$PR_BODY" --label "🔄automated"
+        # Create the PR and capture its URL; label it for verification by the merge workflow
+        PR_URL=$(gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "$PR_BODY" --label "🔄automated")
+        PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+        echo "pr-number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+    - name: 🚀 Trigger auto-merge workflow
+      if: env.changes_detected == 'true'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh-token }}
+        PR_NUMBER: ${{ steps.create_pr.outputs.pr-number }}
+      run: |
+        gh workflow run 99-auto-merge-automated-prs.yml --field pr-number="$PR_NUMBER"

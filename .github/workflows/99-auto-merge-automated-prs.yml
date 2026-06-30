@@ -1,17 +1,19 @@
 ---
-# SECURITY: This workflow uses pull_request_target so it always runs from the
-# base branch (main). This is critical because it generates a GitHub App token
-# with elevated permissions (bypass branch protection for merge). By running
-# from main, a PR author cannot modify this workflow to exfiltrate the token.
+# SECURITY: This workflow runs from the default branch (main) because it is
+# triggered via workflow_dispatch. This is critical because it generates a
+# GitHub App token with elevated permissions (bypass branch protection for
+# merge). Running from main ensures a PR author cannot modify this workflow.
 #
 # IMPORTANT: Never check out or execute code from the PR head ref here.
-# The only operation is a squash-merge of a labeled, automated PR.
+# The only operation is a squash-merge of a verified automated PR.
 #
-# Multiple trust checks are enforced before minting the token:
-#   1. PR must carry the "🔄automated" label
-#   2. PR must be authored by github-actions[bot]
+# Trust checks enforced before minting the token:
+#   1. PR must be authored by github-actions[bot]
+#   2. PR must carry the "🔄automated" label
 #   3. PR must target a feature branch (not main) — automated fix PRs always
 #      target the original PR's branch, never the default branch directly
+#
+# Triggered by: .github/actions/auto-commit/action.yml via `gh workflow run`
 name: 🤖 Auto-merge automated PRs
 
 permissions:
@@ -19,18 +21,54 @@ permissions:
   pull-requests: write
 
 on:
-  pull_request_target:
-    types: [labeled, opened, synchronize]
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: "PR number to squash-merge"
+        required: true
+        type: string
 
 jobs:
   auto-merge:
     name: Squash-merge automated PR
     runs-on: ubuntu-24.04
-    if: >-
-      contains(github.event.pull_request.labels.*.name, '🔄automated') &&
-      github.event.pull_request.user.login == 'github-actions[bot]' &&
-      github.event.pull_request.base.ref != github.event.repository.default_branch
     steps:
+      - name: 🔍 Verify PR is a trusted automated PR
+        id: verify
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ inputs.pr-number }}
+          REPO: ${{ github.repository }}
+        run: |
+          PR_JSON=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json author,labels,baseRefName,url)
+
+          AUTHOR=$(echo "$PR_JSON" | jq -r '.author.login')
+          HAS_LABEL=$(echo "$PR_JSON" | jq -r '.labels[] | select(.name == "🔄automated") | .name')
+          BASE_REF=$(echo "$PR_JSON" | jq -r '.baseRefName')
+          PR_URL=$(echo "$PR_JSON" | jq -r '.url')
+
+          echo "Author: $AUTHOR"
+          echo "Has automated label: $HAS_LABEL"
+          echo "Base ref: $BASE_REF"
+
+          if [[ "$AUTHOR" != "github-actions[bot]" ]]; then
+            echo "::error::PR #$PR_NUMBER is not authored by github-actions[bot] (got: $AUTHOR)"
+            exit 1
+          fi
+
+          if [[ -z "$HAS_LABEL" ]]; then
+            echo "::error::PR #$PR_NUMBER does not have the 🔄automated label"
+            exit 1
+          fi
+
+          DEFAULT_BRANCH=$(gh repo view "$REPO" --json defaultBranchRef --jq '.defaultBranchRef.name')
+          if [[ "$BASE_REF" == "$DEFAULT_BRANCH" ]]; then
+            echo "::error::PR #$PR_NUMBER targets the default branch ($DEFAULT_BRANCH) — refusing to merge"
+            exit 1
+          fi
+
+          echo "pr-url=$PR_URL" >> "$GITHUB_OUTPUT"
+
       - name: 🧬 Generate a token
         id: generate-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
@@ -41,5 +79,5 @@ jobs:
       - name: 🤖 Squash-merge the PR
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: ${{ steps.verify.outputs.pr-url }}
         run: gh pr merge --squash "$PR_URL"
