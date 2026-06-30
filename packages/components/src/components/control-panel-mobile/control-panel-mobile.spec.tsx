@@ -113,7 +113,7 @@ const testDrawerInteraction = () => {
 	}) => {
 		await mount(comp);
 		const burgerButton = page.locator('.db-control-panel-mobile-button');
-		const dialog = page.locator('.db-drawer dialog');
+		const dialog = page.locator('dialog');
 		await expect(dialog).not.toHaveAttribute('open');
 		await burgerButton.click();
 		await expect(dialog).toHaveAttribute('open');

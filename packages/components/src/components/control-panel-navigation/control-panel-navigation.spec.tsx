@@ -103,7 +103,7 @@ const testTreeVariant = () => {
 		mount
 	}) => {
 		const component = await mount(treeComp);
-		const menu = component.locator('menu');
+		const menu = component.locator('menu').first();
 		await expect(menu).toHaveAttribute('role', 'tree');
 	});
 
@@ -133,7 +133,7 @@ const testTreeVariant = () => {
 		const firstItem = component.locator('[role="treeitem"]').first();
 		await firstItem.focus();
 		await page.keyboard.press('ArrowDown');
-		const secondItem = component.locator('[role="treeitem"]').nth(1);
+		const secondItem = component.locator('[role="treeitem"]').nth(2);
 		await expect(secondItem).toBeFocused();
 	});
 
@@ -143,7 +143,7 @@ const testTreeVariant = () => {
 	}) => {
 		const component = await mount(treeComp);
 		const items = component.locator('[role="treeitem"]');
-		const secondItem = items.nth(1);
+		const secondItem = items.nth(2);
 		await secondItem.focus();
 		await page.keyboard.press('ArrowUp');
 		const firstItem = items.first();

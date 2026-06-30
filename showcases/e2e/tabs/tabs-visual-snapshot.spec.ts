@@ -11,7 +11,7 @@ const preScreenShot = async (page: Page, project: FullProject) => {
 		test.skip();
 	}
 
-	const scrollRight = page.locator('[data-icon=chevron_right]');
+	const scrollRight = page.locator('.db-tabs [data-icon=chevron_right]');
 	await expect(scrollRight).toBeVisible();
 };
 
