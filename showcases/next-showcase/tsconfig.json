@@ -13,7 +13,6 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"strictNullChecks": true,
-		"downlevelIteration": true,
 		"target": "ES2017",
 		"paths": {
 			"@components": ["../../output/react/src"],
