@@ -2,7 +2,6 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"baseUrl": "./",
 		"outDir": "./dist/out-tsc",
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
@@ -12,19 +11,17 @@
 		"noFallthroughCasesInSwitch": true,
 		"sourceMap": true,
 		"paths": {
-			"lib": ["dist/src"]
+			"lib": ["./dist/src"]
 		},
 		"declaration": false,
-		"downlevelIteration": true,
 		"experimentalDecorators": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"importHelpers": true,
-		"target": "es2017",
-		"module": "es2020",
+		"target": "es2022",
+		"module": "es2022",
 		"lib": ["es2022", "dom"],
 		"types": ["node"],
 		"declarationMap": false,
-		"allowSyntheticDefaultImports": true,
 		"useDefineForClassFields": false,
 		"noImplicitAny": false,
 		"skipLibCheck": true
