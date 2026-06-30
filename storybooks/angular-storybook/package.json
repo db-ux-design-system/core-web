@@ -26,7 +26,6 @@
     "@db-ux/db-theme": "5.8.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
-    "@db-ux/ngx-core-components": "workspace:*",
     "@faker-js/faker": "10.5.0",
     "@tanstack/angular-table": "8.21.4",
     "@tanstack/match-sorter-utils": "8.19.4",

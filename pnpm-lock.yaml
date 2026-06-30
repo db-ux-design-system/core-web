@@ -1352,9 +1352,6 @@ importers:
       '@db-ux/db-theme-icons':
         specifier: 3.9.0
         version: 3.9.0
-      '@db-ux/ngx-core-components':
-        specifier: workspace:*
-        version: link:../../output/angular
       '@faker-js/faker':
         specifier: 10.5.0
         version: 10.5.0
