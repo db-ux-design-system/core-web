@@ -205,7 +205,7 @@ export const handleSubNavigationPosition = (
 		parseInt((element as HTMLElement).dataset['level'] ?? '-1', 10) + 1;
 
 	const navItems = element.querySelectorAll(
-		':scope > .db-control-panel-navigation-item-group, :scope > db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'
+		':scope > .db-control-panel-navigation-item-group, db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'
 	);
 
 	for (const navItem of Array.from(navItems)) {

@@ -67,7 +67,7 @@ const App = () => {
 				<Navigation variant={settings.navigationMobileVariant} />
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
-				brand={<DBControlPanelBrand />}
+				brand={<DBControlPanelBrand data-logo="db-systel" />}
 				metaNavigation={<MetaNavigation />}
 				primaryActions={
 					<PrimaryActions

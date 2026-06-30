@@ -20,7 +20,10 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 </script>
 
 <template>
-	<div v-if="page || fullscreen" :class="classNames">
+	<div
+		v-if="page || fullscreen"
+		:class="`fullscreen-container ${classNames}`"
+	>
 		<router-view></router-view>
 	</div>
 	<DBShell

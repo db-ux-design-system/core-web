@@ -17,8 +17,7 @@ export const useLayout = () => {
 	const fullscreen = ref();
 
 	const classNames = computed(
-		() =>
-			`fullscreen-container db-density-${density.value} db-color-${color.value}`
+		() => `db-density-${density.value} db-color-${color.value}`
 	);
 
 	const onChange = async (event: Event, target?: string) => {

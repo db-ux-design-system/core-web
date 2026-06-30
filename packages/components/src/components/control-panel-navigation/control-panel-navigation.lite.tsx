@@ -41,43 +41,72 @@ export default function DBControlPanelNavigation(
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
 		_attachSingleBehaviorObserver() {
-			// Disconnect any previous observer
-			state._singleBehaviorObserver?.disconnect();
-			state._singleBehaviorObserver = undefined;
-
 			if (!menuRef) return;
 
+			let isProcessing = false;
 			const observer = new MutationObserver((mutations) => {
+				if (isProcessing) return;
 				for (const mutation of mutations) {
 					if (
 						mutation.type === 'attributes' &&
 						mutation.attributeName === 'aria-expanded'
 					) {
 						const target = mutation.target as HTMLElement;
-						if (target.getAttribute('aria-expanded') === 'true') {
-							// Collapse sibling groups at the same level
-							const parentGroup = target.closest(
-								'.db-control-panel-navigation-item-group'
-							);
-							const parentContainer = parentGroup?.parentElement;
-							if (parentContainer) {
-								const siblingButtons =
-									parentContainer.querySelectorAll(
-										':scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
-									);
-								for (const sibling of Array.from(
-									siblingButtons
-								)) {
+						const newValue = target.getAttribute('aria-expanded');
+						// Only act if the value actually changed to avoid
+						// infinite loops when Angular re-applies the same
+						// binding value during change detection.
+						if (
+							newValue === mutation.oldValue ||
+							newValue !== 'true'
+						) {
+							continue;
+						}
+						// Collapse sibling groups at the same level
+						const parentGroup = target.closest(
+							'.db-control-panel-navigation-item-group'
+						);
+						// Navigate to the actual parent container (menu).
+						// In Angular/Stencil the parentElement might be a custom element
+						// host wrapper, so traverse up until we find the menu container.
+						const parentContainer =
+							parentGroup?.closest(
+								'menu, .db-control-panel-navigation-item-group-menu'
+							) ?? parentGroup?.parentElement;
+						if (parentContainer) {
+							const siblingButtons =
+								parentContainer.querySelectorAll(
+									':scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button, ' +
+										':scope > db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
+								);
+							isProcessing = true;
+							for (const sibling of Array.from(siblingButtons)) {
+								if (
+									sibling !== target &&
+									sibling.getAttribute('aria-expanded') ===
+										'true'
+								) {
+									const siblingHtml = sibling as HTMLElement;
 									if (
-										sibling !== target &&
-										sibling.getAttribute(
-											'aria-expanded'
-										) === 'true'
+										siblingHtml.dataset['isCollapsing'] ===
+										'true'
 									) {
-										(sibling as HTMLElement).click();
+										siblingHtml.removeAttribute(
+											'data-is-collapsing'
+										);
+									} else {
+										siblingHtml.dataset['isCollapsing'] =
+											'true';
+										siblingHtml.dispatchEvent(
+											new MouseEvent('click', {
+												bubbles: false,
+												cancelable: true
+											})
+										);
 									}
 								}
 							}
+							isProcessing = false;
 						}
 					}
 				}
@@ -90,6 +119,7 @@ export default function DBControlPanelNavigation(
 			for (const button of Array.from(expandButtons)) {
 				observer.observe(button, {
 					attributes: true,
+					attributeOldValue: true,
 					attributeFilter: ['aria-expanded']
 				});
 			}
@@ -405,7 +435,7 @@ export default function DBControlPanelNavigation(
 	});
 
 	onUpdate(() => {
-		if (_ref) {
+		if (_ref && state.initialized) {
 			state._shellDesktopPosition = hasCssFlag(
 				_ref,
 				'--db-control-panel-navigation-horizontal'
@@ -413,7 +443,7 @@ export default function DBControlPanelNavigation(
 				? 'top'
 				: 'left';
 		}
-	}, [_ref]);
+	}, [_ref, state.initialized]);
 
 	onUpdate(() => {
 		if (menuRef) {

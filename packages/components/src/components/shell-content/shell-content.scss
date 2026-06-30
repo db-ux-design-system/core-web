@@ -21,22 +21,26 @@
 			@extend %shell-content-overflow;
 		}
 
-		&:not(:has(.db-main + *)) {
-			.db-main {
-				// jscpd:ignore-start
-				/* stylelint-disable-next-line db-ux/use-spacings */
-				margin-block-end: env(safe-area-inset-bottom);
+		@media all and (display-mode: standalone) {
+			&:not(:has(.db-main + *)) {
+				.db-main {
+					// jscpd:ignore-start
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					margin-block-end: env(safe-area-inset-bottom);
 
-				// jscpd:ignore-end
+					// jscpd:ignore-end
+				}
 			}
 		}
 	}
 
-	&:has(.db-main + *) {
-		// in this case there is some footer etc.
-		*:last-child {
-			/* stylelint-disable-next-line db-ux/use-spacings */
-			padding-block-end: env(safe-area-inset-bottom);
+	@media all and (display-mode: standalone) {
+		&:has(.db-main + *) {
+			// in this case there is some footer etc.
+			.db-main + *:last-child {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-block-end: env(safe-area-inset-bottom);
+			}
 		}
 	}
 }

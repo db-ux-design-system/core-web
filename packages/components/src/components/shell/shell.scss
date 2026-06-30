@@ -25,6 +25,10 @@
 	}
 }
 
+body:has(.db-shell[data-fonts-loaded="true"]) {
+	overflow: hidden;
+}
+
 .db-shell {
 	@extend %fade-in-loading-fonts;
 
