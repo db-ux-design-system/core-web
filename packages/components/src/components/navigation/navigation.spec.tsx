@@ -53,7 +53,7 @@ const compWithSubLevels: any = (
 			}>
 			TopLevel
 		</DBNavigationItem>
-		<DBNavigationItem>
+		<DBNavigationItem data-testid="other">
 			<a href="#">Other</a>
 		</DBNavigationItem>
 	</DBNavigation>
@@ -210,7 +210,7 @@ const testFocus = () => {
 		await expect(topButton).toHaveAttribute('aria-expanded', 'true');
 
 		// Move focus outside the nav item: should collapse
-		const outsideNavItem = component.getByText('Other');
+		const outsideNavItem = component.getByTestId('other').locator('a');
 		await outsideNavItem.focus();
 		await expect(topButton).toHaveAttribute('aria-expanded', 'false');
 	});
