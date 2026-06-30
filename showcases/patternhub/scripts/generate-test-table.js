@@ -65,7 +65,7 @@ const generateTestTable = () => {
 	}
 
 	FS.writeFileSync(
-		`./data/testing-table.ts`,
+		'./data/testing-table.ts',
 		'export const testTableData: any[] = ' + JSON.stringify(data)
 	);
 };
