@@ -38,7 +38,9 @@
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.2",
     "postcss": "8.5.15",
+    "stylelint-config-standard": "40.0.0",
     "stylelint-config-standard-scss": "17.0.0",
+    "stylelint-config-standard-vue": "1.0.0",
     "typescript": "5.9.3",
     "vitest": "4.1.9"
   },

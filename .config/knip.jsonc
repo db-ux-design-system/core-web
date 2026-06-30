@@ -101,7 +101,11 @@
 
 		// Stylelint plugin: test fixtures are loaded by stylelint.lint() as file paths
 		"packages/stylelint": {
-			"ignoreFiles": ["test/fixtures/**"]
+			"ignoreFiles": ["test/fixtures/**"],
+			"ignoreDependencies": [
+				"stylelint-config-standard",
+				"stylelint-config-standard-vue"
+			]
 		},
 
 		// ESLint plugin: test framework file imports packages used in the real world
