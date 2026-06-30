@@ -77,7 +77,7 @@
 				"assets/**/*.ts",
 				"test/**/*.{js,ts}"
 			],
-			"ignoreDependencies": ["@csstools/normalize.css", "glob"]
+			"ignoreDependencies": ["@csstools/normalize.css"]
 		},
 
 		// Components: Mitosis .lite.tsx + configs are consumed by the mitosis CLI
