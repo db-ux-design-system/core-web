@@ -27,9 +27,11 @@ function resolveComponentPath(
 	} catch {
 		return err(`Error: Invalid component name '${componentName}'.`);
 	}
+
 	if (!existsSync(safePath)) {
 		return err(COMPONENT_NOT_FOUND_MSG(componentName));
 	}
+
 	return safePath;
 }
 
@@ -102,16 +104,15 @@ function toKebabCase(name: string): string {
 	return name
 		.trim()
 		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/^-|-$/g, '');
+		.replaceAll(/[^a-z\d]+/g, '-')
+		.replaceAll(/^-|-$/g, '');
 }
 
-const FRAMEWORK_EXT: Record<Framework, string> = {
+const FRAMEWORK_EXT: Partial<Record<Framework, string>> = {
 	react: 'tsx',
 	angular: 'ts',
 	vue: 'vue',
-	'web-components': 'tsx',
-	html: 'html'
+	'web-components': 'tsx'
 };
 
 const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
@@ -159,21 +160,12 @@ export async function handleGetExampleCode({
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
 				if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
-				if (framework === 'html') {
-					const htmlEntry = comp.exampleCode['html']?.['index.html'];
-					if (!htmlEntry)
-						return err(
-							`Error: No HTML example found for component '${componentName}'.`
-						);
-					return {
-						content: [
-							{
-								type: 'text',
-								text: truncate(htmlEntry, MAX_FILE_CONTENT)
-							}
-						]
-					};
+				if (framework === 'html' || framework === 'vanilla') {
+					return err(
+						`Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage.`
+					);
 				}
+
 				const fwExamples = comp.exampleCode[framework] ?? {};
 				const directKey = `${kebab}.example.${ext}`;
 				const matchKey = fwExamples[directKey]
@@ -184,6 +176,7 @@ export async function handleGetExampleCode({
 						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					);
 				}
+
 				return {
 					content: [
 						{

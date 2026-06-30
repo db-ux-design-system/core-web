@@ -33,7 +33,12 @@ export default function CustomSelectDropdownWidth() {
 						{ value: 'Option 2', id: 'qc908rx6z' },
 						{ value: 'Option 3', id: 'qc908rx5z' },
 						{ value: 'Option 4', id: 'qc908rx4z' },
-						{ value: 'Option 5', id: 'qc908rx3z' }
+						{ value: 'Option 5', id: 'qc908rx3z' },
+						{
+							value: 'long',
+							label: 'Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf und Halle (Saale) Hbf',
+							id: 'qc908rx2z'
+						}
 					]}
 					label="(Default) Fixed"
 					formFieldWidth="full"
@@ -61,7 +66,12 @@ export default function CustomSelectDropdownWidth() {
 						{ value: '2', id: '0iiu59zbg' },
 						{ value: '3', id: '0iiu69zbg' },
 						{ value: '4', id: '0iiu79zbg' },
-						{ value: '5', id: '0iiu89zbg' }
+						{ value: '5', id: '0iiu89zbg' },
+						{
+							value: 'long',
+							label: 'Frankfurt(Main)Hbf - Berlin Hauptbahnhof (tief) via Erfurt Hbf und Halle (Saale) Hbf',
+							id: '0iiu99zbg'
+						}
 					]}
 					label="Full"
 					formFieldWidth="full"

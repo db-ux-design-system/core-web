@@ -7,7 +7,7 @@ export type Framework =
 	| 'html'
 	| 'vanilla';
 
-/** Maps each framework to its corresponding @db-ux/* npm package name. */
+/** Maps each framework to its corresponding @db-ux/* Npm package name. */
 export const FRAMEWORK_PKG: Record<Framework, string> = {
 	react: '@db-ux/react-core-components',
 	angular: '@db-ux/ngx-core-components',

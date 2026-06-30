@@ -11,13 +11,13 @@ const MAX_SCAN_SIZE = 5 * 1024 * 1024;
 // Types
 // ---------------------------------------------------------------------------
 
-interface ScanFinding {
+type ScanFinding = {
 	line: number;
 	type: 'component' | 'color' | 'icon' | 'import';
 	found: string;
 	context: string;
 	suggestion?: string;
-}
+};
 
 // ---------------------------------------------------------------------------
 // Regex Patterns
@@ -64,9 +64,9 @@ const V2_PACKAGE_MAP: Record<string, string> = {
  */
 function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const findings: ScanFinding[] = [];
-	const ctx = line.length > 120 ? line.substring(0, 120) + '…' : line;
+	const ctx = line.length > 120 ? line.slice(0, 120) + '…' : line;
 
-	// --- v2 CSS classes (cmp-*, elm-*, rea-*) ---
+	// --- V2 CSS classes (cmp-*, elm-*, rea-*) ---
 	for (const match of line.matchAll(RE_V2_CSS_CLASS)) {
 		const old = match[1];
 		const finding: ScanFinding = {
@@ -79,20 +79,22 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		if (replacement) {
 			finding.suggestion = replacement;
 		}
+
 		findings.push(finding);
 	}
 
-	// --- v2 Web Components (<db-*>) ---
+	// --- V2 Web Components (<db-*>) ---
 	for (const match of line.matchAll(RE_V2_WEB_COMPONENT)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
 			type: 'component',
 			found: `<${old}>`,
-			context: ctx.trim()
+			context: ctx.trim(),
+			// V2 <db-*> maps to v3 <db-*> — flag for API review
+			suggestion: `${old} (v3) — review changed props/API`
 		};
-		// v2 <db-*> maps to v3 <db-*> — flag for API review
-		finding.suggestion = `${old} (v3) — review changed props/API`;
+
 		findings.push(finding);
 	}
 
@@ -109,6 +111,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		if (replacement) {
 			finding.suggestion = `BG: ${replacement.bg}${replacement.fg ? `, FG: ${replacement.fg}` : ''}`;
 		}
+
 		findings.push(finding);
 	}
 
@@ -128,7 +131,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		}
 	}
 
-	// --- v2 npm package imports (@db-ui/*) ---
+	// --- V2 npm package imports (@db-ui/*) ---
 	for (const match of line.matchAll(RE_V2_IMPORT)) {
 		const old = match[1];
 		findings.push({
@@ -187,6 +190,7 @@ export async function handleScanV2Migration({
 			`Error: Expected a file, but '${absolutePath}' is a directory.`
 		);
 	}
+
 	if (stats.size > MAX_SCAN_SIZE) {
 		return err(
 			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
@@ -197,16 +201,17 @@ export async function handleScanV2Migration({
 	const content = await readFile(absolutePath, 'utf-8');
 
 	// 🔒 Binary file guard: reject files containing NUL bytes
-	if (content.substring(0, 8192).includes('\0')) {
+	if (content.slice(0, 8192).includes('\0')) {
 		return err(
 			'Error: File appears to be binary. Only text files can be scanned.'
 		);
 	}
+
 	const lines = content.split('\n');
 	const findings: ScanFinding[] = [];
 
-	for (let i = 0; i < lines.length; i++) {
-		findings.push(...scanLine(lines[i], i + 1));
+	for (const [i, line] of lines.entries()) {
+		findings.push(...scanLine(line, i + 1));
 	}
 
 	if (findings.length === 0) {
@@ -224,6 +229,7 @@ export async function handleScanV2Migration({
 	const componentCount = findings.filter(
 		(f) => f.type === 'component'
 	).length;
+
 	const colorCount = findings.filter((f) => f.type === 'color').length;
 	const iconCount = findings.filter((f) => f.type === 'icon').length;
 	const importCount = findings.filter((f) => f.type === 'import').length;

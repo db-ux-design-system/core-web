@@ -25,15 +25,10 @@ db-custom-select-list-item:not(:last-of-type) {
 
 	&:has(> label) {
 		&:not(:has(input[type="radio"]:checked)) {
-			@include helpers.not-disabled {
-				@include helpers.hover {
-					background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-				}
-
-				@include helpers.active {
-					background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-				}
-			}
+			@include helpers.interactive-bg(
+				colors.$db-adaptive-bg-basic-transparent-full-hovered,
+				colors.$db-adaptive-bg-basic-transparent-full-pressed
+			);
 		}
 	}
 
@@ -56,6 +51,17 @@ db-custom-select-list-item:not(:last-of-type) {
 		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 
 		inline-size: 100%;
+
+		.db-custom-select-list-item-label {
+			// Long labels wrap onto new lines by default (fixed/full dropdowns).
+			// The auto-width dropdown overrides this to stay single-line
+			// (see custom-select-dropdown.scss [data-width="auto"]).
+			// min-inline-size: 0 lets the label shrink inside the flex label so
+			// the text wraps instead of overflowing.
+			min-inline-size: 0;
+			overflow-wrap: anywhere;
+			color: inherit;
+		}
 
 		&:has(input:checked) {
 			font-weight: 700;

@@ -76,7 +76,22 @@ export const handleFixedDropdown = (
 	placement: string
 ) => {
 	if (!element || !parent) return;
-	// We skip this if we are in mobile it's already fixed
+
+	const fullWidth = element.dataset['width'] === 'full';
+	const autoWidth = element.dataset['width'] === 'auto';
+
+	// Reset width-specific inline styles first so a previous mode (e.g. "auto")
+	// doesn't leave a stale minInlineSize/inlineSize behind when the dropdown
+	// width changes at runtime. This must happen before getFloatingProps
+	// measures the element, otherwise the dropdown would be measured with a
+	// width it no longer has and positioned incorrectly. It also has to run
+	// before the mobile bailout below: otherwise a desktop minInlineSize would
+	// survive into the mobile sheet, where CSS min-inline-size beats the
+	// mobile max-inline-size guard and overflows the viewport.
+	element.style.inlineSize = '';
+	element.style.minInlineSize = '';
+
+	// We skip the rest if we are in mobile, it's already fixed via CSS.
 	if (getComputedStyle(element).zIndex === '9999') return;
 
 	const {
@@ -87,32 +102,77 @@ export const handleFixedDropdown = (
 		width,
 		right,
 		left,
-		correctedPlacement
+		correctedPlacement,
+		innerWidth
 	} = getFloatingProps(element, parent, placement);
 
-	const fullWidth = element.dataset['width'] === 'full';
+	// For auto width the dropdown is forced to be at least as wide as the trigger,
+	// but clamped to its own max-inline-size: CSS lets a min-inline-size override
+	// the max when the minimum is larger, so a trigger wider than the viewport
+	// limit would otherwise drop the side margins or overflow horizontally.
+	let autoMinWidth = width;
+	if (autoWidth) {
+		const maxInlineSize = parseFloat(
+			getComputedStyle(element).maxInlineSize
+		);
+		if (!isNaN(maxInlineSize) && maxInlineSize > 0) {
+			autoMinWidth = Math.min(width, maxInlineSize);
+		}
+	}
 
 	if (fullWidth) {
 		element.style.inlineSize = `${width}px`;
+	} else if (autoWidth) {
+		element.style.minInlineSize = `${autoMinWidth}px`;
+	}
+
+	// getFloatingProps measured childWidth before the inline styles were
+	// (re)applied, so use the width the dropdown will actually have:
+	// - auto: the clamped minimum, so end-aligned dropdowns don't extend past
+	//   the trigger's right edge.
+	// - full: the trigger width (the reset above drops it to content width).
+	let effectiveChildWidth = childWidth;
+	if (autoWidth) {
+		effectiveChildWidth = Math.max(childWidth, autoMinWidth);
+	} else if (fullWidth) {
+		effectiveChildWidth = width;
+	}
+
+	// getFloatingProps detects horizontal overflow assuming a centered element
+	// (it halves childWidth). The dropdown is actually start-aligned (inset =
+	// left), so for the wider auto dropdown re-check overflow against its full
+	// width and flip to end-alignment when it would extend past the viewport.
+	let dropdownPlacement = correctedPlacement;
+	if (
+		autoWidth &&
+		(dropdownPlacement === 'top' ||
+			dropdownPlacement === 'bottom' ||
+			dropdownPlacement === 'top-start' ||
+			dropdownPlacement === 'bottom-start') &&
+		left + effectiveChildWidth > innerWidth
+	) {
+		dropdownPlacement = dropdownPlacement.startsWith('top')
+			? 'top-end'
+			: 'bottom-end';
 	}
 
 	if (
-		correctedPlacement === 'top' ||
-		correctedPlacement === 'bottom' ||
-		correctedPlacement === 'top-start' ||
-		correctedPlacement === 'bottom-start'
+		dropdownPlacement === 'top' ||
+		dropdownPlacement === 'bottom' ||
+		dropdownPlacement === 'top-start' ||
+		dropdownPlacement === 'bottom-start'
 	) {
 		element.style.insetInlineStart = `${left}px`;
 	} else if (
-		correctedPlacement === 'top-end' ||
-		correctedPlacement === 'bottom-end'
+		dropdownPlacement === 'top-end' ||
+		dropdownPlacement === 'bottom-end'
 	) {
-		element.style.insetInlineStart = `${right - childWidth}px`;
+		element.style.insetInlineStart = `${Math.max(right - effectiveChildWidth, 0)}px`;
 	}
 
-	if (correctedPlacement?.startsWith('top')) {
+	if (dropdownPlacement?.startsWith('top')) {
 		element.style.insetBlockStart = `${top - childHeight}px`;
-	} else if (correctedPlacement?.startsWith('bottom')) {
+	} else if (dropdownPlacement?.startsWith('bottom')) {
 		element.style.insetBlockStart = `${bottom}px`;
 	}
 

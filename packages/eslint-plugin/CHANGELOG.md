@@ -1,5 +1,23 @@
 # @db-ux/core-eslint-plugin
 
+## 4.13.0
+
+### Minor Changes
+
+- feat: enable Invoker Commands (`command`- and `commandfor`-HTML-attributes) for DBButton - [see commit 00f50c3](https://github.com/db-ux-design-system/core-web/commit/00f50c3fc4508e62f2e30589c00148c54e2fc852)
+
+### Patch Changes
+
+- fix: return `undefined` instead of `null` from `getAttributeValue` when attribute is missing - [see commit 5dca414](https://github.com/db-ux-design-system/core-web/commit/5dca414656a7f1a9f33b0ddd2ce4f82ec93e1028)
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
 ## 4.11.1
 
 _version bump_

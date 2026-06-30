@@ -7,21 +7,24 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
-function getTextContent(node: any): string | null {
+function getTextContent(node: any): string | undefined {
 	if (node.children) {
 		for (const child of node.children) {
 			if (child.type === 'JSXText') {
 				return child.value.trim();
 			}
+
 			if (child.type === 'Text') {
-				return child.value?.trim() || null;
+				return child.value?.trim() || undefined;
 			}
+
 			if (child.type === 'VText') {
-				return child.value?.trim() || null;
+				return child.value?.trim() || undefined;
 			}
 		}
 	}
-	return null;
+
+	return undefined;
 }
 
 export default {
@@ -135,9 +138,7 @@ export default {
 								);
 								if (!label) {
 									const lastAttr =
-										openingElement.attributes[
-											openingElement.attributes.length - 1
-										];
+										openingElement.attributes.at(-1);
 									const insertPos = lastAttr
 										? lastAttr.range[1]
 										: openingElement.name.range[1];

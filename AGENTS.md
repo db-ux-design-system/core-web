@@ -58,7 +58,7 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
     pnpm run dev
     ```
 
-    **Interactive**: Will prompt to select frameworks (plain-html, angular, react, vue, stencil, etc.). Default selection is plain-html.
+    **Interactive**: Will prompt to select frameworks (angular, react, vue, stencil, etc.). Default selection is react.
     **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
 
 - **Start documentation site (Patternhub)**:

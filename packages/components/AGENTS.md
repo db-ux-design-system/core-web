@@ -18,7 +18,6 @@ pnpm run generate:component     # Scaffold a new component (hygen)
 pnpm run generate:docs          # Regenerate component docs
 pnpm run generate:showcase      # Generate showcase files via Mitosis
 pnpm run generate:stories       # Generate Storybook stories via Mitosis
-pnpm run dev:html               # Dev server for plain HTML showcase
 pnpm run dev:react              # Watch + recompile React output
 pnpm run dev:vue                # Watch + recompile Vue output
 pnpm run dev:angular            # Watch + recompile Angular output
@@ -43,6 +42,8 @@ configs/
 ├── mitosis.figma.config.cjs        # Config for Figma Code Connect generation
 ├── mitosis.agent.config.cjs        # Config for agent documentation generation
 ├── plugins/
+│   ├── esm-extensions.cjs          # Appends explicit .js/index.js extensions to relative imports (ESM)
+│   ├── react/                      # React-specific Mitosis plugins
 │   ├── storybook/                  # Storybook generation plugin
 │   ├── figma/                      # Figma Code Connect generation plugin
 │   ├── angular/                    # Angular-specific Mitosis plugins
@@ -75,6 +76,29 @@ Each component can have a `figma/` folder with Figma Code Connect definitions. T
 
 - Edit only the source files in `src/components/[name]/figma/`
 - Never edit files in `figma-code-connect/` directly — they are generated
+
+## ESM Import Extensions (`configs/plugins/esm-extensions.cjs`)
+
+The published outputs are ESM (`"type": "module"`), which requires relative imports to carry explicit file extensions. The `esm-extensions` Mitosis plugin runs in `build.post` for the React, Vue and Stencil targets and appends the correct extension to every relative import/export specifier in the generated source:
+
+- File import → `./model` becomes `./model.js`
+- Directory import (barrel) → `./components/accordion` becomes `./components/accordion/index.js`
+- Specifiers that already carry an extension (`.js`, `.vue`, `.css`, …) are left untouched
+- Showcase/example/`arg.types` files are skipped (they are consumed as raw TypeScript and never compiled to `.js`)
+
+This replaced the earlier `tsc-esm-fix` / Vite / post-tsc workaround. The React output's `tsconfig.json` uses `module`/`moduleResolution: "node16"` so any missing extension fails at compile time rather than at runtime.
+
+Consumers of the **raw** `output/react/src` (Patternhub and next-showcase via webpack) need `resolve.extensionAlias` mapping `.js → .ts/.tsx/.js`; Vite-based consumers (react-showcase) resolve this natively. Unit tests live in `configs/plugins/esm-extensions.spec.ts`.
+
+## React Invoker Commands Types (`configs/plugins/react/invoker-commands.cjs`)
+
+React's type definitions do not yet ship the [Invoker Commands API](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) `command` and `commandfor` HTML attributes, so consumers of `@db-ux/react-core-components` would get a type error when passing them to `DBButton`. The `react-invoker-commands` Mitosis plugin runs in `build.post` for the React target only and appends a type-only `declare module "react"` augmentation to the generated `index.ts` entrypoint:
+
+- The augmentation is type-only, so it adds no runtime code to the published bundle
+- The append is idempotent (guarded by a marker comment) so incremental builds do not duplicate it
+- This is a temporary workaround — remove the plugin once React's type definitions support these attributes natively
+
+Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
 ## Storybook Generation
 
@@ -146,13 +170,26 @@ Before adding a new prop to a component's `model.ts`, **always check `src/shared
 
 If a prop is needed by multiple components and does not yet exist in `src/shared/model.ts`, **add it there** and import it in each component's `model.ts`. If an existing component already has a similar prop that should be shared, **move it to `src/shared/model.ts`** and update all affected `model.ts` files (this is a `major` changeset if the prop type changes).
 
+## Build Pipeline: Mitosis Output is Always Regenerated Fresh
+
+The Mitosis CLI **cleans and regenerates** all output files on every build (see [`packages/cli/src/build/build.ts`](https://github.com/BuilderIO/mitosis/blob/main/packages/cli/src/build/build.ts)). The build flow per target is:
+
+1. `clean()` — removes stale output files that no longer have a corresponding source
+2. `buildAndOutputComponentFiles()` / `buildAndOutputNonComponentFiles()` — writes fresh files via `outputFile()`, overwriting any existing content
+
+**This means post-build scripts always operate on freshly generated files.** They do NOT need idempotency guards (e.g. "check if content was already appended before appending"). The output directory is never carried over between builds — Mitosis always produces a clean baseline before post-build runs.
+
+When reviewing code that appends or modifies files in `output/*/src/`, do **not** flag missing idempotency checks as a concern. It is a false positive.
+
 ## ⚠️ Deprecated: `scripts/post-build/`
 
 The `scripts/post-build/` folder contains post-Mitosis transformations that run after code generation. **This folder is deprecated.**
 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
-- Existing post-build logic will be migrated to plugins over time
+- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`)
+
+> Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
 ## Changeset Rules
 
