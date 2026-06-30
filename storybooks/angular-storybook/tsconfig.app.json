@@ -7,7 +7,31 @@
 		"types": [],
 		"paths": {
 			"@components": ["../../output/angular/src"],
-			"@components/src/*": ["../../output/angular/src/*"]
+			"@components/src/*": ["../../output/angular/src/*"],
+			"@angular/core": ["./node_modules/@angular/core"],
+			"@angular/core/*": ["./node_modules/@angular/core/*"],
+			"@angular/common": ["./node_modules/@angular/common"],
+			"@angular/common/*": ["./node_modules/@angular/common/*"],
+			"@angular/forms": ["./node_modules/@angular/forms"],
+			"@angular/forms/*": ["./node_modules/@angular/forms/*"],
+			"@angular/router": ["./node_modules/@angular/router"],
+			"@angular/router/*": ["./node_modules/@angular/router/*"],
+			"@angular/animations": ["./node_modules/@angular/animations"],
+			"@angular/animations/*": ["./node_modules/@angular/animations/*"],
+			"@angular/platform-browser": [
+				"./node_modules/@angular/platform-browser"
+			],
+			"@angular/platform-browser/*": [
+				"./node_modules/@angular/platform-browser/*"
+			],
+			"@angular/platform-browser-dynamic": [
+				"./node_modules/@angular/platform-browser-dynamic"
+			],
+			"@angular/platform-browser-dynamic/*": [
+				"./node_modules/@angular/platform-browser-dynamic/*"
+			],
+			"@angular/compiler": ["./node_modules/@angular/compiler"],
+			"@angular/compiler/*": ["./node_modules/@angular/compiler/*"]
 		},
 		"skipLibCheck": true
 	},

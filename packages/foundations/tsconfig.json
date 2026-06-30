@@ -1,12 +1,13 @@
 {
 	"compilerOptions": {
 		"outDir": "build",
+		"rootDir": "./src",
 		"declaration": true,
 		"module": "ESNext",
 		"esModuleInterop": true,
 		"target": "ES6",
 		"lib": ["ESNext"],
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"skipLibCheck": true
 	},
 	"include": ["./src"],

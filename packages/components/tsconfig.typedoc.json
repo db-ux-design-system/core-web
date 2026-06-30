@@ -5,9 +5,8 @@
 		"skipLibCheck": true,
 		"target": "es2015",
 		"module": "ESNext",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
 		"strict": true
 	},
 	"include": ["src/components/**/*.ts", "src/components/**/*.tsx"],
