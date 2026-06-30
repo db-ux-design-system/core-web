@@ -6,6 +6,12 @@
 #
 # IMPORTANT: Never check out or execute code from the PR head ref here.
 # The only operation is a squash-merge of a labeled, automated PR.
+#
+# Multiple trust checks are enforced before minting the token:
+#   1. PR must carry the "🔄automated" label
+#   2. PR must be authored by github-actions[bot]
+#   3. PR must target a feature branch (not main) — automated fix PRs always
+#      target the original PR's branch, never the default branch directly
 name: 🤖 Auto-merge automated PRs
 
 permissions:
@@ -20,8 +26,10 @@ jobs:
   auto-merge:
     name: Squash-merge automated PR
     runs-on: ubuntu-24.04
-    # Only act on PRs created by the auto-commit action (labeled "🔄automated")
-    if: contains(github.event.pull_request.labels.*.name, '🔄automated')
+    if: >-
+      contains(github.event.pull_request.labels.*.name, '🔄automated') &&
+      github.event.pull_request.user.login == 'github-actions[bot]' &&
+      github.event.pull_request.base.ref != github.event.repository.default_branch
     steps:
       - name: 🧬 Generate a token
         id: generate-token
