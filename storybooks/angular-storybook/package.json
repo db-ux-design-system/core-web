@@ -44,6 +44,7 @@
     "@storybook/angular": "10.4.6",
     "@types/node": "25.9.3",
     "eslint-plugin-storybook": "10.4.6",
-    "storybook": "10.4.6"
+    "storybook": "10.4.6",
+    "typescript": "5.9.3"
   }
 }
