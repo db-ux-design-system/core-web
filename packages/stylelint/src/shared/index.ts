@@ -82,12 +82,12 @@ export const isAllowed = (
 				.split(' ');
 
 	const allowMap = splitValue.map(
-		(val) =>
-			Boolean(allowedValues.exact?.includes(val)) ||
+		(value_) =>
+			Boolean(allowedValues.exact?.includes(value_)) ||
 			Boolean(
-				allowedValues.startsWith?.find((sw) => val.startsWith(sw))
+				allowedValues.startsWith?.find((sw) => value_.startsWith(sw))
 			) ||
-			checkIncludes(val, allowedValues)
+			checkIncludes(value_, allowedValues)
 	);
 
 	if (allowedValues.type === 'some') {
@@ -115,7 +115,7 @@ export const isDefaultRuleOptionsHit = ({
 	value
 }: DefaultRuleOptionsHitType) => {
 	if (options?.ignore) {
-		const from = result.opts.from;
+		const { from } = result.opts;
 		if (from) {
 			const isIgnored = options.ignore.some(
 				(i) => from.includes(i) || new RegExp(i).test(from)

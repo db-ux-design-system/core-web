@@ -20,7 +20,7 @@ module.exports = () => ({
 				);
 			}
 			return code
-				.replaceAll('for={', 'htmlFor={')
+				.replaceAll(/(?<!\w)for={/g, 'htmlFor={')
 				.replaceAll(
 					'componentDidLoad() {',
 					`componentDidLoad() {${deleteConnectedElement()}\n`

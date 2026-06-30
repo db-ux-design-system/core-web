@@ -25,7 +25,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const noText = getAttributeValue(node, 'noText');
-			if (noText === null) return;
+			if (noText === undefined) return;
 
 			const icon =
 				getAttributeValue(node, 'icon') ||
@@ -85,7 +85,7 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const noText = getAttributeValue(openingElement, 'noText');
-			if (noText === null) return;
+			if (noText === undefined) return;
 
 			const icon =
 				getAttributeValue(openingElement, 'icon') ||
@@ -119,22 +119,19 @@ export default {
 								closingTag,
 								`\n  <${tooltipName}>Describe action</${tooltipName}>`
 							);
-						} else {
-							// Vue
-							if (!node.endTag) return null;
-							if (!node.startTag?.range) return null;
-							const componentName = openingElement.rawName;
-							const tooltipName = componentName.includes('-')
-								? 'db-tooltip'
-								: 'DBTooltip';
-							return fixer.insertTextAfterRange(
-								[
-									node.startTag.range[1],
-									node.startTag.range[1]
-								],
-								`\n  <${tooltipName}>Describe action</${tooltipName}>`
-							);
 						}
+
+						// Vue
+						if (!node.endTag) return null;
+						if (!node.startTag?.range) return null;
+						const componentName = openingElement.rawName;
+						const tooltipName = componentName.includes('-')
+							? 'db-tooltip'
+							: 'DBTooltip';
+						return fixer.insertTextAfterRange(
+							[node.startTag.range[1], node.startTag.range[1]],
+							`\n  <${tooltipName}>Describe action</${tooltipName}>`
+						);
 					}
 				});
 			}

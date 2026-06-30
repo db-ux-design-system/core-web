@@ -8,36 +8,36 @@
  */
 
 // ---------------------------------------------------------------------------
-// Interfaces
+// Types
 // ---------------------------------------------------------------------------
 
 /** Maps a v2 CSS class (cmp-*, elm-*, rea-*) to its v3 CSS class (db-*). */
-export interface ComponentMigrationEntry {
+export type ComponentMigrationEntry = {
 	readonly old: string;
 	readonly new: string;
-}
+};
 
 /** Maps a legacy db-color-* token to its v3 background and foreground tokens. */
-export interface ColorMigrationEntry {
+export type ColorMigrationEntry = {
 	readonly old: string;
 	readonly bg: string;
 	readonly fg: string;
-}
+};
 
 /** Maps a legacy icon name to its v3 replacement. */
-export interface IconMigrationEntry {
+export type IconMigrationEntry = {
 	readonly old: string;
 	readonly new: string;
-}
+};
 
-export interface MigrationData {
+export type MigrationData = {
 	readonly components: Record<string, string>;
 	readonly colors: Record<
 		string,
 		{ readonly bg: string; readonly fg: string }
 	>;
 	readonly icons: Record<string, string>;
-}
+};
 
 // ---------------------------------------------------------------------------
 // Data
@@ -807,7 +807,8 @@ export const migrationData: MigrationData = {
 		regioguide: 'regio_guide',
 		reservation: 'reservation',
 		'standing-room': 'standing_room',
-		// cSpell:ignore steppless
+		// Legacy typo 'steppless-entry' preserved for backward compatibility
+		// cspell:ignore steppless
 		'steppless-entry': 'stepless_entry',
 		'support-dog': 'support_dog',
 		breakfast: 'breakfast',

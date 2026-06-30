@@ -45,15 +45,14 @@
           	"content-start icon description icon-trailing content-end";
           ```
     - `vertical`:
-        - ````css
-              grid-template-areas:
-              	"content-start content-start"
-              	"icon icon"
-              	"text text"
-              	"description icon-trailing"
-              	"content-end content-end";
-              ```
-          ````
+        - ```css
+          grid-template-areas:
+          	"content-start content-start"
+          	"icon icon"
+          	"text text"
+          	"description icon-trailing"
+          	"content-end content-end";
+          ```
 - `DBListGroup` has property `showDivider`, which might be a Mitosis component like this:
     - `<Fragment><li class="db-list-group"></li><Show when={showDivider}><li class="db-list-divider"></li></Show></Fragment>`
     - Maybe we should use `variant="divider"` on `DBList` to handle this for all `DBListGroup` ???

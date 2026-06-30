@@ -1,5 +1,15 @@
 # @db-ux/core-foundations
 
+## 4.13.0
+
+### Patch Changes
+
+- fix: add missing `@property --db-screen-lg` - [see commit 43c450e](https://github.com/db-ux-design-system/core-web/commit/43c450e0a731b85f59ae22efd029ceb435bdeca4)
+
+## 4.12.1
+
+_version bump_
+
 ## 4.12.0
 
 _version bump_

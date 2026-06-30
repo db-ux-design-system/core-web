@@ -15,7 +15,7 @@ export function truncate(
 	label = 'TRUNCATED DUE TO SIZE'
 ): string {
 	return text.length > limit
-		? text.substring(0, limit) + `\n... [${label}]`
+		? text.slice(0, Math.max(0, limit)) + `\n... [${label}]`
 		: text;
 }
 

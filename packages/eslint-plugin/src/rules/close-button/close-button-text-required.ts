@@ -39,10 +39,13 @@ export default {
 				);
 				// Check for [closeable]="false" - Angular AST structure
 				if (input) {
-					const val = input.value;
-					if (val?.type === 'LiteralPrimitive' && val.value === false)
+					const value_ = input.value;
+					if (
+						value_?.type === 'LiteralPrimitive' &&
+						value_.value === false
+					)
 						return;
-					if (val?.source === 'false') return;
+					if (value_?.source === 'false') return;
 				} else {
 					// Check for plain attribute closeable (no binding)
 					const attr = node.attributes?.find(
@@ -58,7 +61,7 @@ export default {
 				];
 			const value = getAttributeValue(node, attribute);
 
-			if (value === null || value === '') {
+			if (value === undefined || value === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -81,6 +84,7 @@ export default {
 				Object.assign(angularVisitors, visitors);
 			}
 		}
+
 		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
 
 		const checkComponent = (node: any) => {
@@ -116,6 +120,7 @@ export default {
 						a.key?.argument?.name === 'closeable'
 					);
 				};
+
 				const isVueCloseableStatic = (a: any) => {
 					const keyName =
 						typeof a.key?.name === 'string'
@@ -154,7 +159,7 @@ export default {
 				];
 			const value = getAttributeValue(openingElement, attribute);
 
-			if (value === null || value === '') {
+			if (value === undefined || value === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
