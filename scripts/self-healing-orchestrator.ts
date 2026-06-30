@@ -60,7 +60,10 @@ export const checkFixMap: CheckConfig[] = [
 	{
 		name: 'lint:knip',
 		checkCommand: { command: 'pnpm', args: ['run', 'lint:knip'] },
-		fixCommands: [{ command: 'pnpm', args: ['run', 'lint:knip', '--fix'] }]
+		fixCommands: [
+			{ command: 'pnpm', args: ['run', 'lint:knip', '--fix'] },
+			{ command: 'pnpm', args: ['install', '--no-frozen-lockfile'] }
+		]
 	},
 	{
 		name: 'lint:stylelint',
