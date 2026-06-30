@@ -105,12 +105,12 @@ export async function handleListVisuals(): Promise<ToolResult> {
 
 /**
  MCP tool handler: `get_visual_reference`
- 
+
  Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75)
  as a Base64-encoded MCP image block. Images are read from `assets/visuals/`
  which is populated at build time by the prebuild step — NO image processing
  or native dependencies (sharp) are needed at runtime.
- 
+
  Use this tool when the LLM needs visual context for complex layouts,
  z-index reasoning, or verifying visual hierarchies.
  */

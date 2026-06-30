@@ -10,7 +10,7 @@ export const server = new McpServer({
 /**
  Registers process-level signal and error handlers for graceful shutdown
  and crash resistance. Should be called once during server bootstrap.
- 
+
  Handles: SIGINT, SIGTERM, uncaughtException, unhandledRejection.
  */
 export function registerLifecycleHandlers() {

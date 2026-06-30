@@ -1,6 +1,6 @@
 /**
  E2E transport test — verifies the MCP server communicates correctly over stdio.
- 
+
  StdioClientTransport spawns the server process itself, so no manual
  child_process.spawn is needed. transport.close() shuts down the child
  process cleanly on teardown.

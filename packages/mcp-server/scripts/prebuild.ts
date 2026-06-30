@@ -1,6 +1,6 @@
 /**
  Prebuild asset copy script for @db-ux/mcp-server node package.
- 
+
  Copies migration guides and compiled token files from the monorepo into the
  local assets/ directories so they are available for standalone npx usage.
  */

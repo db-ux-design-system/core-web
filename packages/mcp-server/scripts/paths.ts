@@ -1,6 +1,6 @@
 /**
  Build-time path constants for the MCP server build scripts.
- 
+
  These paths resolve into the monorepo source tree and are ONLY used at
  build time (by build-manifest.ts). The runtime server reads exclusively
  from its own assets/ directory — see src/utils/path.ts.

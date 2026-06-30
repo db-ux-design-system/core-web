@@ -2,7 +2,7 @@ import type { ToolResult } from '../utils';
 
 /**
  Instructs the LLM to verify its changes against the project's own toolchain.
- 
+
  Instead of writing temporary files and running hardcoded compilers, this tool
  returns a textual instruction for the LLM to discover and run the appropriate
  verification scripts from the project's package.json.

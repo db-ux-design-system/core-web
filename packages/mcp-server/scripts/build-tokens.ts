@@ -1,6 +1,6 @@
 /**
  Generates assets/tokens/tokens.json from compiled CSS/SCSS sources.
- 
+
  Parses CSS custom properties from the DB theme variables and density
  overrides into a categorised JSON object so the MCP tools can do simple
  key lookups instead of regex-filtering raw SCSS/CSS at runtime.

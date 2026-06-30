@@ -26,7 +26,7 @@ const DEFAULT_FOUNDATIONS = [
  Create the DB UX Vite plugin.
  Returns two plugins: a pre-transform plugin for CSS generation and
  a post-build plugin for optimizing the final CSS bundle.
- 
+
  During dev, all available styles are included for instant HMR.
  During build, only detected styles are included and unused ones are stripped.
  */

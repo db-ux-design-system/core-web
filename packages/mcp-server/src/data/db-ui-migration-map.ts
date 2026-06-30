@@ -1,9 +1,9 @@
 /**
  Type-safe migration mappings — Single Source of Truth.
- 
+
  Generated from the Markdown migration guides
  (component-migration.md, color-migration.md, icon-migration.md).
- 
+
  DO NOT EDIT MANUALLY. Re-generate when the source .md files change.
  */
 
