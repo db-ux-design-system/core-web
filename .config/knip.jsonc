@@ -59,6 +59,7 @@
 		// Foundations: SCSS files are compiled by sass CLI, not imported in TS
 		"packages/foundations": {
 			"entry": [
+				"src/index.ts",
 				"scripts/**/*.ts",
 				"assets/fonts/*.ts",
 				"test/**/*.{js,ts}"
