@@ -99,6 +99,11 @@
 			"ignore": ["test/fixtures/**"]
 		},
 
+		// Stylelint plugin: test fixtures are loaded by stylelint.lint() as file paths
+		"packages/stylelint": {
+			"ignoreFiles": ["test/fixtures/**"]
+		},
+
 		// ESLint plugin: test framework file imports packages used in the real world
 		"packages/eslint-plugin": {
 			"entry": ["test/**/*.{ts,tsx,js}"],
