@@ -300,22 +300,31 @@ export default (tmp?: boolean) => {
 
 				// Connect _valid to aria-invalid and data-custom-validity in the template
 				// For regular form components (input, textarea, select, checkbox, switch)
+				// validation="no-validation" always wins — suppresses both Signal Forms and native validation UI
 				replaceInFileSync({
 					files: file,
 					from: `[attr.aria-invalid]="validation() === 'invalid'"`,
-					to: `[attr.aria-invalid]="(_valid() ?? validation()) === 'invalid'"`
+					to: `[attr.aria-invalid]="validation() !== 'no-validation' && (_valid() ?? validation()) === 'invalid'"`
+				});
+				// Switch uses a different aria-invalid pattern (ternary with 'true'/undefined)
+				replaceInFileSync({
+					files: file,
+					from: `[attr.aria-invalid]="validation() === 'invalid' ? 'true' : undefined"`,
+					to: `[attr.aria-invalid]="validation() !== 'no-validation' && (_valid() ?? validation()) === 'invalid' ? 'true' : undefined"`
 				});
 				replaceInFileSync({
 					files: file,
 					from: `[attr.data-custom-validity]="validation()"`,
-					to: `[attr.data-custom-validity]="_valid() ?? validation()"`
+					to: `[attr.data-custom-validity]="validation() === 'no-validation' ? 'no-validation' : (_valid() ?? validation())"`
 				});
 
 				// Override hasValidState to also consider Signal Forms _valid state
+				// but respect validation="no-validation" as a hard override
 				replaceInFileSync({
 					files: file,
 					from: /hasValidState\(\)\s*\{\s*\n\s*return !!\(this\.validMessage\(\) \?\? this\.validation\(\) === "valid"\);\s*\n\s*\}/,
 					to: `hasValidState() {
+    if (this.validation() === 'no-validation') return false;
     return !!(this.validMessage() || this._valid() === 'valid' || this.validation() === "valid");
   }`
 				});
@@ -328,6 +337,15 @@ export default (tmp?: boolean) => {
 					files: file,
 					from: /handleValidation\(\)\s*\{\s*\n/,
 					to: `handleValidation() {
+    // validation="no-validation" suppresses ALL validation UI (Signal Forms + native)
+    if (this.validation() === 'no-validation') {
+      this._valid.set(undefined);${hasValidity ? '\n      this._validity.set(undefined);' : ''}
+      this._invalidMessage.set('');
+      this._validMessage.set('');
+      this._descByIds.set(undefined);
+      return;
+    }
+
     // Signal Forms validation bridge: errors InputSignal has priority
     const signalFormErrors = this.errors();
     if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
@@ -348,6 +366,13 @@ export default (tmp?: boolean) => {
       this._validMessage.set(DEFAULT_VALID_MESSAGE);
       this._invalidMessage.set('');
     }
+
+    // If Signal Forms says "valid" but native validation disagrees, reset _valid
+    // so native validation can take over via CSS :user-invalid selectors
+    if (this._valid() === 'valid' && this._ref()?.nativeElement && !this._ref()?.nativeElement?.validity?.valid) {
+      this._valid.set(undefined);
+      this._validMessage.set('');
+    }
 `
 				});
 
@@ -364,12 +389,29 @@ export default (tmp?: boolean) => {
 						from: `// Signal Forms provided errors=[] after previous invalid state → now valid
       this._valid.set('valid');
       this._validMessage.set(DEFAULT_VALID_MESSAGE);
-      this._invalidMessage.set('');`,
+      this._invalidMessage.set('');
+    }
+
+    // If Signal Forms says "valid" but native validation disagrees, reset _valid
+    // so native validation can take over via CSS :user-invalid selectors
+    if (this._valid() === 'valid' && this._ref()?.nativeElement && !this._ref()?.nativeElement?.validity?.valid) {
+      this._valid.set(undefined);
+      this._validMessage.set('');
+    }`,
 						to: `// Signal Forms provided errors=[] after previous invalid state → now valid
       this._valid.set('valid');
       this._validity.set('valid');
       this._validMessage.set(DEFAULT_VALID_MESSAGE);
-      this._invalidMessage.set('');`
+      this._invalidMessage.set('');
+    }
+
+    // If Signal Forms says "valid" but native validation disagrees, reset _valid
+    // so native validation can take over via CSS :user-invalid selectors
+    if (this._valid() === 'valid' && this._ref()?.nativeElement && !this._ref()?.nativeElement?.validity?.valid) {
+      this._valid.set(undefined);
+      this._validity.set(undefined);
+      this._validMessage.set('');
+    }`
 					});
 				}
 
