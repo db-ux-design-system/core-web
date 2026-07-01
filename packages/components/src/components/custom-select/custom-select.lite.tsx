@@ -966,18 +966,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					onChange={(event) => satisfyReact(event)}>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
-							{(
-								option: CustomSelectOptionType,
-								index: number
-							) => (
+							{(option: CustomSelectOptionType) => (
 								<option
 									key={useTarget({
 										vue: undefined,
 										stencil: undefined,
 										default: getOptionKey(
 											option,
-											'native-select-option-',
-											index
+											'native-select-option-'
 										)
 									})}
 									disabled={option.disabled}
@@ -1025,18 +1021,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
-									{(
-										option: CustomSelectOptionType,
-										index: number
-									) => (
+									{(option: CustomSelectOptionType) => (
 										<DBTag
 											key={useTarget({
 												vue: undefined,
 												stencil: undefined,
 												default: getOptionKey(
 													option,
-													'tag-',
-													index
+													'tag-'
 												)
 											})}
 											removeButton={state.getTagRemoveLabel(
@@ -1126,8 +1118,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										}>
 										<For each={state._options}>
 											{(
-												option: CustomSelectOptionType,
-												index: number
+												option: CustomSelectOptionType
 											) => (
 												<DBCustomSelectListItem
 													key={useTarget({
@@ -1135,8 +1126,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 														stencil: undefined,
 														default: getOptionKey(
 															option,
-															'custom-select-list-item-',
-															index
+															'custom-select-list-item-'
 														)
 													})}
 													type={

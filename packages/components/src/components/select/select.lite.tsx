@@ -342,7 +342,7 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
-						{(option: DBSelectOptionType, index: number) => (
+						{(option: DBSelectOptionType) => (
 							<>
 								<Show
 									when={option.options}
@@ -353,8 +353,7 @@ export default function DBSelect(props: DBSelectProps) {
 												stencil: undefined,
 												default: getOptionKey(
 													option,
-													'select-option-',
-													index
+													'select-option-'
 												)
 											})}
 											value={option.value}
@@ -370,14 +369,12 @@ export default function DBSelect(props: DBSelectProps) {
 											stencil: undefined,
 											default: getOptionKey(
 												option,
-												'select-optgroup-',
-												index
+												'select-optgroup-'
 											)
 										})}>
 										<For each={option.options}>
 											{(
-												optgroupOption: DBSelectOptionType,
-												optgroupIndex: number
+												optgroupOption: DBSelectOptionType
 											) => (
 												<option
 													key={useTarget({
@@ -385,8 +382,7 @@ export default function DBSelect(props: DBSelectProps) {
 														stencil: undefined,
 														default: getOptionKey(
 															optgroupOption,
-															'select-optgroup-option-',
-															optgroupIndex
+															'select-optgroup-option-'
 														)
 													})}
 													value={optgroupOption.value}
