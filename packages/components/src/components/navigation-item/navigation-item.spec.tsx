@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBNavigationItem } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
 	<menu style={{ display: 'flex' }}>
@@ -19,6 +19,17 @@ const comp: any = (
 	</menu>
 );
 
+const compWithSubNavigation: any = (
+	<div style={{ display: 'flex', gap: '200px', alignItems: 'flex-start' }}>
+		<menu style={{ display: 'flex' }}>
+			<DBNavigationItem subNavigation={<a href="#">Sub Item</a>}>
+				<a href="#">Parent Item</a>
+			</DBNavigationItem>
+		</menu>
+		<button data-testid="outside-target">Outside target</button>
+	</div>
+);
+
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
@@ -28,6 +39,57 @@ const testComponent = () => {
 	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
+	});
+
+	test('should expand on hover and collapse on pointer leave', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubNavigation);
+		const expandButton = component.locator(
+			'.db-navigation-item-expand-button'
+		);
+
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+		await expandButton.hover();
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'true');
+		await component.locator('[data-testid="outside-target"]').hover();
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+	});
+
+	test('should collapse after hovering submenu and then leaving navigation item', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({
+			width: DESKTOP_VIEWPORT.width,
+			height: DESKTOP_VIEWPORT.height
+		});
+		const component = await mount(compWithSubNavigation);
+		const expandButton = component.locator(
+			'.db-navigation-item-expand-button'
+		);
+
+		// Initial state: collapsed
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+
+		// Hover the expand button to open the submenu
+		await expandButton.hover();
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'true');
+
+		// Move pointer into an element inside the submenu
+		const submenuItem = component.locator('.db-sub-navigation a').first();
+		await submenuItem.hover();
+
+		// Then move pointer outside the entire navigation item
+		await component.locator('[data-testid="outside-target"]').hover();
+
+		// aria-expanded should be collapsed again
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
 	});
 };
 const testA11y = () => {

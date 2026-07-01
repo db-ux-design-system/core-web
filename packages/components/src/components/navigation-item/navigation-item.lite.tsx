@@ -34,6 +34,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
+				/* Don't override controlled prop */
+				if (props.subNavigationExpanded === undefined) {
+					state.isSubNavigationExpanded = false;
+				}
 				state.autoClose = true;
 				void delay(() => {
 					state.autoClose = false;
@@ -53,6 +57,28 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
+		},
+		handleFocusIn: (event: FocusEvent | any) => {
+			if (
+				!event.relatedTarget ||
+				!_ref?.contains(event.relatedTarget as Node)
+			) {
+				/* Only expand via focus on desktop; mobile uses click-to-open */
+				if (globalThis.matchMedia?.('(min-width: 64em)')?.matches) {
+					state.isSubNavigationExpanded = true;
+				}
+			}
+		},
+		handleFocusOut: (event: FocusEvent | any) => {
+			if (
+				!event.relatedTarget ||
+				!_ref?.contains(event.relatedTarget as Node)
+			) {
+				/* Don't override controlled prop */
+				if (props.subNavigationExpanded === undefined) {
+					state.isSubNavigationExpanded = false;
+				}
+			}
 		}
 	});
 
@@ -88,6 +114,19 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 								subNavigationSlot
 							);
 					}
+
+					_ref.addEventListener('focusin', (event: any) =>
+						state.handleFocusIn(event)
+					);
+					_ref.addEventListener('focusout', (event: any) =>
+						state.handleFocusOut(event)
+					);
+					_ref.addEventListener('mouseenter', (event: any) =>
+						state.handleFocusIn(event)
+					);
+					_ref.addEventListener('mouseleave', (event: any) =>
+						state.handleFocusOut(event)
+					);
 				} else {
 					state.hasSubNavigation = false;
 				}
