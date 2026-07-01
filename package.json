@@ -75,7 +75,7 @@
     "validate": "tsx scripts/self-healing-orchestrator.ts"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.11.3",
+    "@axe-core/playwright": "4.12.1",
     "@changesets/cli": "2.31.0",
     "@changesets/types": "6.1.0",
     "@commitlint/cli": "21.1.0",
