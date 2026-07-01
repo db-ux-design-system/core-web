@@ -10,7 +10,7 @@ The conventions and anti-patterns to check are documented in a shared reference:
 
 <!-- markdownlint-disable MD018 -->
 
-#[[file:docs/code-review-conventions.md]]
+#[[file]]
 
 <!-- markdownlint-enable MD018 -->
 

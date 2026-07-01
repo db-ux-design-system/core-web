@@ -26,7 +26,7 @@ Go through the PR template checklist from `.github/PULL_REQUEST_TEMPLATE.md`:
 
 <!-- markdownlint-disable MD018 -->
 
-#[[file:.github/PULL_REQUEST_TEMPLATE.md]]
+#[[file]]
 
 <!-- markdownlint-enable MD018 -->
 
