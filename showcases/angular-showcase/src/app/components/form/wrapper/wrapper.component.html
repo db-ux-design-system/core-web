@@ -4,11 +4,13 @@
 		<db-button type="reset" data-testid="reset-button">Reset</db-button>
 	</form>
 	<dl data-testid="data-list">
-		<dt>Plain:</dt>
-		<dd>{{ plain.toString() }}</dd>
-		<dt>ngModel:</dt>
-		<dd>{{ model.toString() }}</dd>
-		<dt>formControl:</dt>
-		<dd>{{ control.toString() }}</dd>
+		<dt><code>[value]</code> / <code>(change)</code> (Plain):</dt>
+		<dd>{{ plain().toString() }}</dd>
+		<dt><code>[(ngModel)]</code> (Template Driven Forms):</dt>
+		<dd>{{ model().toString() }}</dd>
+		<dt><code>[formControl]</code> (Reactive Forms):</dt>
+		<dd>{{ control().toString() }}</dd>
+		<dt><code>[formField]</code> (Signal Forms):</dt>
+		<dd>{{ signalForms().toString() }}</dd>
 	</dl>
 </div>

@@ -1,83 +1,22 @@
 <!-- [html-validate-disable attr-case] -->
 <div class="form-container">
 	<div>
-		<db-input
-			name="ngModelInput"
-			[(ngModel)]="model.input"
-			label="Input with ngModel"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-		>
-		</db-input>
-
-		<db-textarea
-			name="textarea"
-			label="Textarea Controlled"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			[value]="textarea"
-			(change)="changeTextarea('textarea', $event)"
-		></db-textarea>
-
-		<db-textarea
-			name="textarea"
-			label="Textarea with defaultValue"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			(change)="changeTextarea('textareaDefaultValue', $event)"
-		></db-textarea>
-
-		<db-textarea
-			name="ngModelTextarea"
-			[(ngModel)]="model.textarea"
-			label="Textarea with ngModel"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			value="Textarea"
-		></db-textarea>
-
-		<db-checkbox
-			[(ngModel)]="model.checkbox2"
-			name="checkbox2"
-			label="Checkbox ngModel"
-		></db-checkbox>
-
-		<p>DBSelect:</p>
-		<db-select
-			name="ngModelSelect"
-			[(ngModel)]="model.select"
-			label="Select with ngModel"
-			message="Description"
-		>
-			<option value="test1">Test1</option>
-			<option value="test2">Test2</option>
-			<option value="test3">Test3</option>
-			<option value="test4">Test4</option>
-			<option value="test5">Test5</option>
-		</db-select>
-
-		<p>Reactive Forms Example:</p>
-		<form [formGroup]="form" (submit)="onFormSubmit()">
+		<p>Signal Forms Example:</p>
+		<form (submit)="onFormSubmit()">
 			<fieldset>
 				<legend>Input:</legend>
 
 				<db-input
-					name="form"
 					id="form"
 					label="Textinput"
 					placeholder="Placeholder"
 					message="Description"
 					icon="x_placeholder"
-					formControlName="input"
+					[formField]="myForm.input"
 				>
 				</db-input>
 
 				<db-input
-					name="form"
 					id="datalist"
 					label="Textinput with Datalist"
 					placeholder="Placeholder"
@@ -88,11 +27,10 @@
 				</db-input>
 
 				<db-input
-					name="form"
 					label="Date input"
 					message="Description"
 					type="date"
-					formControlName="dateinput"
+					[formField]="myForm.dateinput"
 				>
 				</db-input>
 
@@ -102,10 +40,10 @@
 						<li>
 							<db-radio
 								label="Label"
-								name="RadioGroup"
 								[value]="radioName"
-								(change)="model.radio = radioName"
 								[label]="getRadioName(radioName)"
+								[checked]="radio() === radioName"
+								(change)="radio.set(radioName)"
 							></db-radio>
 						</li>
 					}
@@ -114,13 +52,12 @@
 				<p>Textarea:</p>
 
 				<db-textarea
-					name="textarea"
 					id="textarea"
 					label="Textarea"
 					placeholder="Placeholder"
 					message="Description"
 					icon="x_placeholder"
-					formControlName="textarea"
+					[formField]="myForm.textarea"
 				></db-textarea>
 
 				<p>Tags:</p>
@@ -139,9 +76,8 @@
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
-					formControlName="checkbox"
-					name="checkbox4"
-					label="Checkbox formControl value"
+					label="Checkbox formField value"
+					[formField]="myForm.checkbox"
 				></db-checkbox>
 				<db-divider></db-divider>
 				<db-checkbox
@@ -174,13 +110,11 @@
 				></db-checkbox>
 				<p>Select:</p>
 				<db-select
-					name="select"
 					label="Select"
 					placeholder="Placeholder"
 					message="Description"
 					icon="x_placeholder"
-					formControlName="select"
-					(change)="handleChange4($event)"
+					[formField]="myForm.select"
 				>
 					<option value="test1">Test1</option>
 					<option value="test2">Test2</option>
@@ -188,17 +122,6 @@
 					<option value="test4">Test4</option>
 					<option value="test5">Test5</option>
 				</db-select>
-				<!-- <db-select
-        [value]="select"
-        label="Label"
-        (change)="select = $event.target.value"
-        >
-        <option value="test1">Test1</option>
-        <option value="test2">Test2</option>
-        <option value="test3">Test3</option>
-        <option value="test4">Test4</option>
-        <option value="test5">Test5</option>
-      </db-select> -->
 				<p>Button:</p>
 				<db-button type="button" (click)="resetValues()">
 					Reset
@@ -212,66 +135,29 @@
 		<p>Switch with Angular signals</p>
 		<db-switch
 			[checked]="checkedSignal()"
-			(change)="handleChange($event)"
+			(change)="handleSwitchChange($event)"
 			label="My Switch"
 		>
 		</db-switch>
-		<p>
-			Switch with signals {{ checkedSignal() }} and no-signal
-			{{ checkedNonSignal }}
-		</p>
+		<p>Switch with signals {{ checkedSignal() }}</p>
 	</div>
 	<div>
 		<h1>Output</h1>
 		<dl>
 			<dt>inputs value</dt>
-			<dd>
-				{{
-					form.get("input")?.value
-						? form.get("input")?.value
-						: "No Input set"
-				}}
-			</dd>
-			<dt>NgModel inputs value</dt>
-			<dd>{{ model.input ? model.input : "No Input set" }}</dd>
+			<dd>{{ myForm.input().value() || "No Input set" }}</dd>
 			<dt>textarea value</dt>
-			<dd>{{ textarea ? textarea : "No textarea set" }}</dd>
-			<dt>textarea default value</dt>
-			<dd>
-				{{
-					textareaDefaultValue
-						? textareaDefaultValue
-						: "No textareaDefaultValue set"
-				}}
-			</dd>
-			<dt>textareas value</dt>
-			<dd>
-				{{
-					form.get("textarea")?.value
-						? form.get("textarea")?.value
-						: "No Textarea set"
-				}}
-			</dd>
-			<dt>NgModel textareas value</dt>
-			<dd>{{ model.textarea ? model.textarea : "No Textarea set" }}</dd>
+			<dd>{{ myForm.textarea().value() || "No Textarea set" }}</dd>
 			<dt>date inputs value</dt>
-			<dd>
-				{{ form.get("dateinput")?.value || "No Date Input set" }}
-			</dd>
+			<dd>{{ myForm.dateinput().value() || "No Date Input set" }}</dd>
 			<dt>radio value</dt>
-			<dd>{{ model.radio ? model.radio : "No radio set" }}</dd>
-			<dt>checkbox value (ngModel)</dt>
-			<dd>checkbox {{ model.checkbox2 ? "" : "un" }}checked</dd>
-			<dt>checkbox formControl value</dt>
-			<dd>
-				checkbox {{ form.get("checkbox")?.value ? "" : "un" }}checked
-			</dd>
+			<dd>{{ radio() || "No radio set" }}</dd>
+			<dt>checkbox formField value</dt>
+			<dd>checkbox {{ myForm.checkbox().value() ? "" : "un" }}checked</dd>
 			<dt>checkbox value indeterminate</dt>
 			<dd>checkbox {{ checked[0] && checked[1] ? "" : "un" }}checked</dd>
-			<dt>select with ngmodel</dt>
-			<dd>{{ model.select ? model.select : "No select set" }}</dd>
 			<dt>select value</dt>
-			<dd>{{ form.get("select")?.value || "No select set" }}</dd>
+			<dd>{{ myForm.select().value() || "No select set" }}</dd>
 			<dt>tags value</dt>
 			<dd>{{ getTags() }}</dd>
 
@@ -303,53 +189,11 @@
 				<db-tab-panel>
 					It is a long established fact that a reader will be
 					distracted by the readable content of a page when looking at
-					its layout. The point of using Lorem Ipsum is that it has a
-					more-or-less normal distribution of letters, as opposed to
-					using 'Content here, content here', making it look like
-					readable English. Many desktop publishing packages and web
-					page editors now use Lorem Ipsum as their default model
-					text, and a search for 'lorem ipsum' will uncover many web
-					sites still in their infancy. Various versions have evolved
-					over the years, sometimes by accident, sometimes on purpose
-					(injected humour and the like).
+					its layout.
 				</db-tab-panel>
 				<db-tab-panel>Tab Panel 2</db-tab-panel>
 				<db-tab-panel>Tab Panel 3</db-tab-panel>
-				<db-tab-panel lang="la">
-					At vero eos et accusamus et iusto odio dignissimos ducimus
-					qui blanditiis praesentium voluptatum deleniti atque
-					corrupti quos dolores et quas molestias excepturi sint
-					occaecati cupiditate non provident, similique sunt in culpa
-					qui officia deserunt mollitia animi, id est laborum et
-					dolorum fuga. Et harum quidem rerum facilis est et expedita
-					distinctio. Name libero tempore, cum soluta nobis est
-					eligendi option cumque nihil impedit quo minus id quod
-					maxime placeat facere possimus, omnis voluptas assumenda
-					est, omnis dolor repellendus. Temporibus autem quibusdam et
-					aut officiis debitis aut rerum necessitatibus saepe eveniet
-					ut et voluptates repudiandae sint et molestiae non
-					recusandae. Itaque earum rerum hic tenetur a sapiente
-					delectus, ut aut reiciendis voluptatibus maiores alias
-					consequatur aut perferendis doloribus asperiores repellat. n
-					the other hand, we denounce with righteous indignation and
-					dislike men who are so beguiled and demoralized by the
-					charms of pleasure of the moment, so blinded by desire, that
-					they cannot foresee the pain and trouble that are bound to
-					ensue; and equal blame belongs to those who fail in their
-					duty through weakness of will, which is the same as saying
-					through shrinking from toil and pain. These cases are
-					perfectly simple and easy to distinguish. In a free hour,
-					when our power of choice is untrammelled and when nothing
-					prevents our being able to do what we like best, every
-					pleasure is to be welcomed and every pain avoided. But in
-					certain circumstances and owing to the claims of duty or the
-					obligations of business it will frequently occur that
-					pleasures have to be repudiated and annoyances accepted. The
-					wise man therefore always holds in these matters to this
-					principle of selection: he rejects pleasures to secure other
-					greater pleasures, or else he endures pains to avoid worse
-					pains.
-				</db-tab-panel>
+				<db-tab-panel>Tab Panel 4</db-tab-panel>
 				<db-tab-panel>Tab Panel 5</db-tab-panel>
 			</db-tabs>
 

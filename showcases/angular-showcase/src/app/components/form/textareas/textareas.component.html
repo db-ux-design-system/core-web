@@ -2,6 +2,7 @@
 	[plain]="plain"
 	[model]="ngModel"
 	[control]="formControl.value"
+	[signalForms]="signalForm.value().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -26,6 +27,12 @@
 			message="Description"
 			name="textarea-name"
 			[formControl]="formControl"
+		/>
+		<db-textarea
+			label="signalForms"
+			placeholder="Placeholder"
+			message="Description"
+			[formField]="signalForm.value"
 		/>
 	</fieldset>
 </app-form-wrapper>
