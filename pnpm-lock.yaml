@@ -83,11 +83,11 @@ importers:
         specifier: 1.4.8
         version: 1.4.8(supports-color@5.5.0)
       '@guidepup/guidepup':
-        specifier: 0.25.1
-        version: 0.25.1(supports-color@5.5.0)
+        specifier: 0.27.0
+        version: 0.27.0(supports-color@5.5.0)
       '@guidepup/playwright':
-        specifier: 0.16.1
-        version: 0.16.1(@guidepup/guidepup@0.25.1(supports-color@5.5.0))(@playwright/test@1.60.0)
+        specifier: 0.17.0
+        version: 0.17.0(@guidepup/guidepup@0.27.0(supports-color@5.5.0))(@playwright/test@1.60.0)
       '@guidepup/record':
         specifier: 0.1.0
         version: 0.1.0(supports-color@5.5.0)
@@ -3818,13 +3818,13 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.25.1':
-    resolution: {integrity: sha512-45X149GzAiOQ9uwa2CNXndoGZcQYOQMKHuxE/Ff6EQzRkLxmojtz9tiZhcxpD/sfR/0Dv76kYWKGcFlLMVuAlQ==}
+  '@guidepup/guidepup@0.27.0':
+    resolution: {integrity: sha512-ZB2zswfkG4nDMrlmCpR4pYenkG5OEw19eoPNIxirZPIgR5tllTKFmPWV+7e2R+TXtlSQaLgaNYt95SDN7Nr87w==}
 
-  '@guidepup/playwright@0.16.1':
-    resolution: {integrity: sha512-QGZhovyO2O5u+i0iZnTmVHwWPG6oX/+QfmidiqxYt5RrwaZAppr/wB/GimjI6u4I2BJ4+Usffi/9oy+11SvEVA==}
+  '@guidepup/playwright@0.17.0':
+    resolution: {integrity: sha512-bG9ejx9wXM/LbneuXZHp3bbh6zN66wsXJRl2K04bPnGQoQiLqlGwNuKuqQquDg7kRT2XziNddbOk72vdw1j9qg==}
     peerDependencies:
-      '@guidepup/guidepup': '>=0.25.0'
+      '@guidepup/guidepup': '>=0.27.0'
       '@playwright/test': ^1.57.0
 
   '@guidepup/record@0.1.0':
@@ -19188,7 +19188,7 @@ snapshots:
       outdent: 0.5.0
       prettier: 2.8.8
       resolve-from: 5.0.0
-      semver: 7.8.5
+      semver: 7.8.4
 
   '@changesets/assemble-release-plan@6.0.10':
     dependencies:
@@ -19197,7 +19197,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
-      semver: 7.8.5
+      semver: 7.8.4
 
   '@changesets/changelog-git@0.2.1':
     dependencies:
@@ -19254,7 +19254,7 @@ snapshots:
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
       picocolors: 1.1.1
-      semver: 7.8.5
+      semver: 7.8.4
 
   '@changesets/get-release-plan@4.0.16':
     dependencies:
@@ -20374,16 +20374,16 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.25.1(supports-color@5.5.0)':
+  '@guidepup/guidepup@0.27.0(supports-color@5.5.0)':
     dependencies:
       regedit: 5.1.2(supports-color@5.5.0)
-      semver: 7.8.4
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.16.1(@guidepup/guidepup@0.25.1(supports-color@5.5.0))(@playwright/test@1.60.0)':
+  '@guidepup/playwright@0.17.0(@guidepup/guidepup@0.27.0(supports-color@5.5.0))(@playwright/test@1.60.0)':
     dependencies:
-      '@guidepup/guidepup': 0.25.1(supports-color@5.5.0)
+      '@guidepup/guidepup': 0.27.0(supports-color@5.5.0)
       '@playwright/test': 1.60.0
 
   '@guidepup/record@0.1.0(supports-color@5.5.0)':
@@ -21296,7 +21296,7 @@ snapshots:
       https-proxy-agent: 7.0.6
       node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 8.1.0
-      semver: 7.8.5
+      semver: 7.8.4
       tar: 7.5.17
     transitivePeerDependencies:
       - encoding
@@ -21609,7 +21609,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.8.5
+      semver: 7.7.4
 
   '@npmcli/git@7.0.2':
     dependencies:
@@ -21676,7 +21676,7 @@ snapshots:
       perfect-debounce: 2.1.0
       pkg-types: 2.3.1
       scule: 1.3.0
-      semver: 7.8.5
+      semver: 7.8.4
       srvx: 0.11.16
       std-env: 4.1.0
       tinyclip: 0.1.14
@@ -21710,7 +21710,7 @@ snapshots:
       magicast: 0.5.3
       pathe: 2.0.3
       pkg-types: 2.3.1
-      semver: 7.8.5
+      semver: 7.8.4
 
   '@nuxt/devtools@3.2.4(supports-color@5.5.0)(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))':
     dependencies:
@@ -21737,7 +21737,7 @@ snapshots:
       pathe: 2.0.3
       perfect-debounce: 2.1.0
       pkg-types: 2.3.1
-      semver: 7.8.5
+      semver: 7.8.4
       simple-git: 3.36.0(supports-color@5.5.0)
       sirv: 3.0.2
       structured-clone-es: 2.0.0
@@ -21770,7 +21770,7 @@ snapshots:
       pkg-types: 2.3.1
       rc9: 3.0.1
       scule: 1.3.0
-      semver: 7.8.5
+      semver: 7.8.4
       tinyglobby: 0.2.17
       ufo: 1.6.4
       unctx: 2.5.0
@@ -26046,7 +26046,7 @@ snapshots:
       postcss-modules-scope: 3.2.1(postcss@8.5.15)
       postcss-modules-values: 4.0.0(postcss@8.5.15)
       postcss-value-parser: 4.2.0
-      semver: 7.8.5
+      semver: 7.7.4
     optionalDependencies:
       webpack: 5.105.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.12)
 
@@ -26059,7 +26059,7 @@ snapshots:
       postcss-modules-scope: 3.2.1(postcss@8.5.15)
       postcss-modules-values: 4.0.0(postcss@8.5.15)
       postcss-value-parser: 4.2.0
-      semver: 7.8.5
+      semver: 7.7.4
     optionalDependencies:
       webpack: 5.105.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.15)
 
@@ -29151,7 +29151,7 @@ snapshots:
       '@babel/parser': 7.29.7
       '@istanbuljs/schema': 0.1.6
       istanbul-lib-coverage: 3.2.2
-      semver: 7.8.5
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -30826,7 +30826,7 @@ snapshots:
       rollup: 4.62.2
       rollup-plugin-visualizer: 7.0.1(rolldown@1.1.3)(rollup@4.62.2)
       scule: 1.3.0
-      semver: 7.8.5
+      semver: 7.8.4
       serve-placeholder: 2.0.2
       serve-static: 2.2.1
       source-map: 0.7.6
@@ -30948,7 +30948,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.8.5
+      semver: 7.7.4
       tar: 7.5.17
       tinyglobby: 0.2.17
       undici: 6.27.0
@@ -30992,7 +30992,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.2
-      semver: 7.8.5
+      semver: 7.8.4
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -31013,7 +31013,7 @@ snapshots:
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.8.5
+      semver: 7.7.4
 
   npm-normalize-package-bin@5.0.0: {}
 
@@ -31023,7 +31023,7 @@ snapshots:
     dependencies:
       hosted-git-info: 9.0.3
       proc-log: 6.1.0
-      semver: 7.8.5
+      semver: 7.7.4
       validate-npm-package-name: 7.0.2
 
   npm-package-json-lint@10.4.1(supports-color@5.5.0)(typescript@5.9.3):
@@ -32034,7 +32034,7 @@ snapshots:
       cosmiconfig: 9.0.2(typescript@5.9.3)
       jiti: 2.7.0
       postcss: 8.5.12
-      semver: 7.8.5
+      semver: 7.7.4
     optionalDependencies:
       webpack: 5.105.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.12)
     transitivePeerDependencies:
@@ -32045,7 +32045,7 @@ snapshots:
       cosmiconfig: 9.0.2(typescript@5.9.3)
       jiti: 2.7.0
       postcss: 8.5.12
-      semver: 7.8.5
+      semver: 7.7.4
     optionalDependencies:
       webpack: 5.105.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.15)
     transitivePeerDependencies:
@@ -33534,7 +33534,7 @@ snapshots:
 
   simple-update-notifier@2.0.0:
     dependencies:
-      semver: 7.8.5
+      semver: 7.8.4
 
   sirv@3.0.2:
     dependencies:
