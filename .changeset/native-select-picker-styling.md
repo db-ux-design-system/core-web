@@ -2,4 +2,4 @@
 "@db-ux/core-components": patch
 ---
 
-fix: align native select options box with the field via `::picker(select)` styling
+refactor: consolidate CustomSelect and native Select element styling so the opened options layer looks identical
