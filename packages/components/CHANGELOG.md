@@ -1,5 +1,9 @@
 # @db-ux/core-components
 
+## 4.13.0
+
+_version bump_
+
 ## 4.12.1
 
 ### Patch Changes

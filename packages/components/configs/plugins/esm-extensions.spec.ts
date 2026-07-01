@@ -1,7 +1,7 @@
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createTempDir, removeTempDir, writeFileIn } from './test-utils';
 
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
@@ -12,19 +12,15 @@ const {
 
 let tmpDir: string;
 
-const writeFile = (relativePath: string, content = '') => {
-	const absolute = path.join(tmpDir, relativePath);
-	fs.mkdirSync(path.dirname(absolute), { recursive: true });
-	fs.writeFileSync(absolute, content, 'utf-8');
-	return absolute;
-};
+const writeFile = (relativePath: string, content = '') =>
+	writeFileIn(tmpDir, relativePath, content);
 
 beforeEach(() => {
-	tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'esm-extensions-'));
+	tmpDir = createTempDir('esm-extensions');
 });
 
 afterEach(() => {
-	fs.rmSync(tmpDir, { recursive: true, force: true });
+	removeTempDir(tmpDir);
 	vi.restoreAllMocks();
 });
 
