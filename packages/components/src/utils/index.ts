@@ -207,23 +207,42 @@ export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
 
 // WeakMap to store generated keys for option objects without mutating them.
-// This ensures keys are stable (same object reference → same key across
-// re-renders) and works safely with frozen/immutable option objects.
+// Used only as a last resort for options that have neither id, value, nor label.
 const optionKeyMap = new WeakMap<object, string>();
 
 export const getOptionKey = (
-	option: { id?: string; value?: string | number | string[] | undefined },
+	option: {
+		id?: string;
+		label?: string;
+		value?: string | number | string[] | undefined;
+	},
 	prefix: string
 ) => {
-	// If the consumer provided an id, use it directly.
+	// 1. Consumer-provided id — stable and unique (best case).
 	if (option.id) {
 		return `${prefix}${option.id}`;
 	}
 
-	// Otherwise look up or generate a stable key for this object reference.
-	// Using a WeakMap avoids mutating the consumer's option object (which
-	// could be frozen or part of immutable state) while still persisting
-	// the generated key across re-renders, reorders, and filtering.
+	// 2. Data-based key from value and/or label — stable across object
+	//    recreations (e.g. inline options={[...]} on every render).
+	//    Combining both fields maximizes uniqueness: two options may share
+	//    a value but users couldn't distinguish identical labels, so in
+	//    practice the combination is unique.
+	const value =
+		option.value !== undefined && option.value !== ''
+			? String(option.value)
+			: '';
+	const label = option.label ?? '';
+
+	if (value || label) {
+		return `${prefix}${value}-${label}`;
+	}
+
+	// 3. Last resort for truly anonymous options (no id, no value, no label).
+	//    WeakMap ties a generated uuid to the object reference so the key
+	//    persists as long as the same object is reused. If the consumer
+	//    recreates these objects every render, keys will be unstable — but
+	//    that's an unsolvable edge case without any data to anchor to.
 	let key = optionKeyMap.get(option);
 	if (!key) {
 		key = uuid();
