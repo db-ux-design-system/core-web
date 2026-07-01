@@ -342,8 +342,8 @@ export default (tmp?: boolean) => {
         void delay(() => this._voiceOverFallback.set(""), 1000);
       }
       return; // Signal Forms errors take priority
-    } else if (this.errors() !== undefined) {
-      // Signal Forms provided errors=[] (valid state)
+    } else if (Array.isArray(signalFormErrors) && signalFormErrors.length === 0 && this._valid() === 'invalid') {
+      // Signal Forms provided errors=[] after previous invalid state → now valid
       this._valid.set('valid');
       this._validMessage.set(DEFAULT_VALID_MESSAGE);
       this._invalidMessage.set('');
@@ -361,11 +361,11 @@ export default (tmp?: boolean) => {
 					});
 					replaceInFileSync({
 						files: file,
-						from: `// Signal Forms provided errors=[] (valid state)
+						from: `// Signal Forms provided errors=[] after previous invalid state → now valid
       this._valid.set('valid');
       this._validMessage.set(DEFAULT_VALID_MESSAGE);
       this._invalidMessage.set('');`,
-						to: `// Signal Forms provided errors=[] (valid state)
+						to: `// Signal Forms provided errors=[] after previous invalid state → now valid
       this._valid.set('valid');
       this._validity.set('valid');
       this._validMessage.set(DEFAULT_VALID_MESSAGE);
