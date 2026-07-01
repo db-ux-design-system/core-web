@@ -117,18 +117,22 @@ Validation errors are automatically propagated to the component via the `errors`
 
 Signal Forms coexists with Reactive Forms and Template-Driven Forms without conflict. The `NG_VALUE_ACCESSOR` provider is always registered, so `formControlName`, `formControl`, and `ngModel` continue to work alongside `[formField]`.
 
-For incremental migration, use `compatForm()` to wrap an existing `FormGroup`:
+For incremental migration, use `compatForm()` to bridge existing Reactive Forms into Signal Forms:
 
 ```typescript
-import { FormGroup, FormControl } from "@angular/forms";
-import { compatForm } from "@angular/forms/signals";
+import { signal } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { compatForm } from "@angular/forms/signals/compat";
 
-legacyForm = new FormGroup({ name: new FormControl("") });
-signalForm = compatForm(this.legacyForm);
+// Nest the existing FormControl inside a signal model
+model = signal({
+	name: new FormControl("", Validators.required)
+});
+signalForm = compatForm(this.model);
 ```
 
 ```html
-<db-input label="Name" [formField]="signalForm.controls.name"></db-input>
+<db-input label="Name" [formField]="signalForm.name"></db-input>
 ```
 
 ## How It Works (Duck-Typing)
