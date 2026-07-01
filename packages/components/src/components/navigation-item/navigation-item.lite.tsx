@@ -34,7 +34,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		subNavigationToggleId: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
-				// Don't override controlled prop
+				/* Don't override controlled prop */
 				if (props.subNavigationExpanded === undefined) {
 					state.isSubNavigationExpanded = false;
 				}
@@ -63,7 +63,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				!event.relatedTarget ||
 				!_ref?.contains(event.relatedTarget as Node)
 			) {
-				// Only expand via focus on desktop; mobile uses click-to-open
+				/* Only expand via focus on desktop; mobile uses click-to-open */
 				if (globalThis.matchMedia?.('(min-width: 64em)')?.matches) {
 					state.isSubNavigationExpanded = true;
 				}
@@ -74,7 +74,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				!event.relatedTarget ||
 				!_ref?.contains(event.relatedTarget as Node)
 			) {
-				// Don't override controlled prop
+				/* Don't override controlled prop */
 				if (props.subNavigationExpanded === undefined) {
 					state.isSubNavigationExpanded = false;
 				}
