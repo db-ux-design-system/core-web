@@ -1,11 +1,7 @@
+import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import {
-	COLOR,
-	COLOR_CONST,
-	DENSITY,
-	DENSITY_CONST
-} from '../../../../packages/components/src/shared/constants';
+import { defaultSettings } from '../../../settings';
 import {
 	getSortedNavigationItems,
 	navigationItems
@@ -14,26 +10,39 @@ import {
 export const useLayout = () => {
 	const router = useRouter();
 	const route = useRoute();
-	const density = ref(DENSITY.REGULAR);
-	const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
+	const density = ref<string>(DENSITY.REGULAR);
+	const color = ref<string>(SEMANTIC.NEUTRAL);
+	const settings = ref<any>(defaultSettings);
 	const page = ref();
 	const fullscreen = ref();
-	const drawerOpen = ref(false);
-
-	const toggleDrawer = (open: boolean) => {
-		drawerOpen.value = open;
-	};
 
 	const classNames = computed(
-		() => `db-density-${density.value} db-${color.value}`
+		() => `db-density-${density.value} db-color-${color.value}`
 	);
 
 	const onChange = async (event: Event, target?: string) => {
 		const inputEvent = event as Event & { target: HTMLInputElement };
-		if (target === 'density') {
-			density.value = inputEvent.target.value;
-		} else if (target === 'color') {
-			color.value = inputEvent.target.value;
+		if (target) {
+			switch (target) {
+				case 'density': {
+					density.value = inputEvent.target.value;
+
+					break;
+				}
+
+				case 'color': {
+					color.value = inputEvent.target.value;
+
+					break;
+				}
+
+				case 'settings': {
+					settings.value = event;
+
+					break;
+				}
+				// No default
+			}
 		}
 
 		await router.push({
@@ -41,7 +50,8 @@ export const useLayout = () => {
 			query: {
 				...route.query,
 				[DENSITY_CONST]: density.value,
-				[COLOR_CONST]: color.value
+				[COLOR_CONST]: color.value,
+				settings: JSON.stringify(settings.value)
 			}
 		});
 	};
@@ -67,6 +77,13 @@ export const useLayout = () => {
 			if (query.fullscreen) {
 				page.value = query.fullscreen;
 			}
+
+			if (
+				query.settings &&
+				JSON.stringify(settings.value) !== query.settings
+			) {
+				settings.value = JSON.parse(query.settings);
+			}
 		},
 		{ immediate: true }
 	);
@@ -78,10 +95,9 @@ export const useLayout = () => {
 		fullscreen,
 		density,
 		color,
-		drawerOpen,
 		classNames,
 		onChange,
-		toggleDrawer,
-		sortedNavigation
+		sortedNavigation,
+		settings
 	};
 };

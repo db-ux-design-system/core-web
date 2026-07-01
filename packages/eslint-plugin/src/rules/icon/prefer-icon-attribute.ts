@@ -8,13 +8,12 @@ import {
 
 const COMPONENTS_WITH_ICON_ATTR = [
 	'DBInput',
-	'DBBrand',
 	'DBButton',
 	'DBCustomSelectListItem',
 	'DBCustomSelect',
 	'DBInfotext',
 	'DBLink',
-	'DBNavigationItem',
+	'DBControlPanelNavigationItem',
 	'DBNotification',
 	'DBSelect',
 	'DBSwitch',

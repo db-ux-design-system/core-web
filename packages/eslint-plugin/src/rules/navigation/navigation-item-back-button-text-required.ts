@@ -1,4 +1,4 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -6,12 +6,14 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
+const TARGET_COMPONENT = 'DBControlPanelNavigationItemGroup';
+
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
 			description:
-				'Ensure DBNavigationItem has backButtonText for accessibility',
+				'Ensure DBControlPanelNavigationItemGroup has backButtonText for accessibility',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
@@ -37,15 +39,14 @@ export default {
 
 		const angularVisitors = createAngularVisitors(
 			context,
-			COMPONENTS.DBNavigationItem,
+			TARGET_COMPONENT,
 			angularHandler
 		);
 		if (angularVisitors) return angularVisitors;
 
-		const checkNavigationItem = (node: any) => {
+		const checkNavigationItemGroup = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem))
-				return;
+			if (!isDBComponent(openingElement, TARGET_COMPONENT)) return;
 
 			const backButtonText = getAttributeValue(
 				openingElement,
@@ -63,8 +64,11 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkNavigationItem, Element: checkNavigationItem },
-			{ JSXElement: checkNavigationItem }
+			{
+				VElement: checkNavigationItemGroup,
+				Element: checkNavigationItemGroup
+			},
+			{ JSXElement: checkNavigationItemGroup }
 		);
 	}
 };

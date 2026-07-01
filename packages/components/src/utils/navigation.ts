@@ -1,20 +1,23 @@
-import { handleDataOutside } from './floating-components';
+import { handleFixedPopover } from './floating-components';
+import { hasCssFlag } from './index';
 
 export type TriangleData = {
 	itemRect: DOMRect;
 	parentElementWidth: number;
 	subNavigationHeight: number;
 	padding: number;
-	outsideVX: 'left' | 'right' | undefined;
-	outsideVY: 'top' | 'bottom' | undefined;
+	/**
+	 * The direction the sub-navigation opens relative to the element.
+	 * 'right' = sub-menu is to the right of the item
+	 * 'left' = sub-menu is to the left of the item
+	 * 'bottom' = sub-menu is below the item
+	 */
+	openDirection: 'left' | 'right' | 'bottom';
 };
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
-	return Boolean(
-		!target?.classList?.contains('db-navigation-item-expand-button') &&
-		target?.parentElement?.classList.contains('db-navigation-item')
-	);
+	return Boolean(target?.closest('.db-control-panel-navigation-item'));
 };
 
 export class NavigationItemSafeTriangle {
@@ -36,14 +39,16 @@ export class NavigationItemSafeTriangle {
 			return;
 		}
 
-		this.parentSubNavigation = this.element?.closest('.db-sub-navigation');
+		this.parentSubNavigation =
+			this.element?.closest(
+				'.db-control-panel-navigation-item-group-menu'
+			) ?? this.element;
 
 		/*
 		 * only initiate if:
-		 * 1. item is not at root navigation level
 		 * 2. item is not in the mobile navigation / within db-drawer
 		 */
-		if (this.parentSubNavigation && !this.element.closest('.db-drawer')) {
+		if (!this.element.closest('.db-drawer')) {
 			this.init();
 		}
 	}
@@ -55,7 +60,7 @@ export class NavigationItemSafeTriangle {
 		// the triangle has the width of the sub-navigation, current nav-item can be wider.
 		// so the width of the triangle must be adapted to a possibly wider nav-item.
 		this.element?.style.setProperty(
-			'--db-navigation-item-inline-size',
+			'--db-control-panel-navigation-item-inline-size',
 			`${parentElementWidth}px`
 		);
 
@@ -63,29 +68,32 @@ export class NavigationItemSafeTriangle {
 	}
 
 	public enableFollow() {
-		if (
-			!this.initialized ||
-			this.triangleData ||
-			!this.element ||
-			!this.subNavigation
-		) {
+		if (!this.initialized || !this.element || !this.subNavigation) {
 			return;
 		}
 
-		const dataOutsidePair = handleDataOutside(this.subNavigation);
-
 		const itemRect = this.element.getBoundingClientRect();
+		const subRect = this.subNavigation.getBoundingClientRect();
 		const parentElementWidth =
 			this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
+
+		// Determine the actual direction the sub-menu opens by comparing positions.
+		// The 4px tolerance accounts for sub-pixel rounding in getBoundingClientRect.
+		let openDirection: 'left' | 'right' | 'bottom';
+		if (subRect.top >= itemRect.bottom - 4) {
+			openDirection = 'bottom';
+		} else if (subRect.left >= itemRect.right - 4) {
+			openDirection = 'right';
+		} else {
+			openDirection = 'left';
+		}
 
 		this.triangleData = {
 			itemRect,
 			parentElementWidth,
-			subNavigationHeight:
-				this.subNavigation.getBoundingClientRect().height,
+			subNavigationHeight: subRect.height,
 			padding: (parentElementWidth - itemRect.width) / 2,
-			outsideVX: dataOutsidePair.vx,
-			outsideVY: dataOutsidePair.vy
+			openDirection
 		};
 	}
 
@@ -93,106 +101,32 @@ export class NavigationItemSafeTriangle {
 		this.triangleData = undefined;
 	}
 
-	private getTriangleTipX(): number {
-		if (!this.triangleData) return 0;
-
-		if (this.triangleData.outsideVX === 'right') {
-			// vertical flipped triangle needs an inverted x pos
-			return this.triangleData.itemRect.width - this.mouseX;
-		}
-
-		// triangle stops shrinking from 75% x pos
-		return Math.min(this.mouseX, this.triangleData.itemRect.width * 0.75);
-	}
-
-	private getTriangleTipY(): number {
-		if (!this.triangleData) return 0;
-
-		// padding must be added to the y pos of the tip so that the y pos matches the cursor
-		const mouseYLimited =
-			Math.max(
-				Math.min(this.mouseY, this.triangleData.itemRect.height),
-				0
-			) + this.triangleData.padding;
-
-		if (this.triangleData.outsideVY === 'bottom') {
-			// add offset to tip y pos to match corrected sub-navigation y pos
-			return (
-				mouseYLimited +
-				(this.triangleData.subNavigationHeight -
-					this.triangleData.padding * 2 -
-					this.triangleData.itemRect.height)
-			);
-		}
-
-		return mouseYLimited;
-	}
-
 	private hasMouseEnteredSubNavigation(): boolean {
 		if (!this.triangleData) {
 			return false;
 		}
 
-		const isSubNavigationOnLeftSide =
-			this.triangleData.outsideVX === 'right';
-
-		if (
-			isSubNavigationOnLeftSide &&
-			this.mouseX < -1 * this.triangleData.padding
-		) {
-			return true;
+		switch (this.triangleData.openDirection) {
+			case 'left':
+				return this.mouseX < -1 * this.triangleData.padding;
+			case 'right':
+				return (
+					this.mouseX >
+					this.triangleData.parentElementWidth -
+						this.triangleData.padding
+				);
+			case 'bottom':
+				return this.mouseY > this.triangleData.itemRect.height;
+			default: {
+				const _exhaustive: never = this.triangleData.openDirection;
+				void _exhaustive;
+				return false;
+			}
 		}
-
-		if (
-			!isSubNavigationOnLeftSide &&
-			this.mouseX >
-				this.triangleData.parentElementWidth - this.triangleData.padding
-		) {
-			return true;
-		}
-
-		return false;
 	}
 
-	private getTriangleCoordinates(variant: 'safe-triangle' | 'fill-gap'):
-		| undefined
-		| {
-				lb: string;
-				lt: string;
-				rt: string;
-				rb: string;
-		  } {
-		if (!this.triangleData) {
-			return;
-		}
-
-		if (variant === 'fill-gap') {
-			const itemHeight = `${this.triangleData.itemRect.height + 2 * this.triangleData.padding}px`;
-			const xStart = `${this.triangleData.parentElementWidth - this.triangleData.padding}px`;
-
-			return {
-				lb: `${xStart} ${itemHeight}`,
-				lt: `${xStart} 0`,
-				rt: '100% 0',
-				rb: `100% ${itemHeight}`
-			};
-		}
-
-		const tipX = this.getTriangleTipX();
-		const tipY = this.getTriangleTipY();
-
-		const lb = `${tipX}px ${tipY}px`;
-		const lt = `${tipX}px ${tipY}px`;
-
-		return {
-			lb,
-			lt,
-			rt: '100% 0',
-			rb: '100% 100%'
-		};
-	}
-
-	public followByMouseEvent(event: MouseEvent) {
+	// We use a loose type here because React passes `MouseEvent<HTMLLIElement, MouseEvent>`
+	public followByMouseEvent(event: { clientX: number; clientY: number }) {
 		if (
 			!this.initialized ||
 			!this.triangleData ||
@@ -207,26 +141,110 @@ export class NavigationItemSafeTriangle {
 
 		const isOverSubNavigation = this.hasMouseEnteredSubNavigation();
 
-		const coordinates = this.getTriangleCoordinates(
-			isOverSubNavigation ? 'fill-gap' : 'safe-triangle'
-		);
-
-		if (!coordinates) {
+		if (isOverSubNavigation) {
+			this.disableFollow();
 			return;
 		}
 
-		this.element.style.setProperty(
-			'--db-navigation-item-clip-path',
-			`polygon(${coordinates.lb}, ${coordinates.lt}, ${coordinates.rt}, ${coordinates.rb})`
+		// Calculate tip position in the ::before's coordinate space.
+		// The ::before is positioned at the sub-menu's left edge and shifted
+		// left by its own width (translateX(-100%)).
+		// Its width = parentElementWidth, height = sub-menu height.
+		const subRect = this.subNavigation.getBoundingClientRect();
+		const beforeLeft = subRect.left - this.triangleData.parentElementWidth;
+		const beforeWidth = this.triangleData.parentElementWidth;
+		const beforeTop = subRect.top;
+		const beforeHeight = subRect.height;
+
+		const tipXPx = event.clientX - beforeLeft;
+		const tipYPct = Math.max(
+			0,
+			Math.min(100, ((event.clientY - beforeTop) / beforeHeight) * 100)
 		);
 
-		if (isOverSubNavigation) {
-			this.triangleData = undefined;
+		// Ensure the triangle has a minimum width of 0.5rem (8px)
+		const minWidth = 8;
+		let coordinates: string;
+
+		switch (this.triangleData.openDirection) {
+			case 'right':
+				coordinates = `${Math.min(tipXPx, beforeWidth - minWidth)}px ${tipYPct}%, 100% 0%, 100% 100%`;
+				break;
+			case 'left':
+				coordinates = `0% 0%, ${Math.max(tipXPx, minWidth)}px ${tipYPct}%, 0% 100%`;
+				break;
+			case 'bottom':
+				coordinates = `${tipXPx}px ${tipYPct}%, ${beforeWidth}px 100%, 0px 100%`;
+				break;
+			default: {
+				const _exhaustive: never = this.triangleData.openDirection;
+				void _exhaustive;
+				coordinates = '0% 0%, 100% 0%, 100% 100%, 0% 100%';
+				break;
+			}
 		}
+
+		this.element.style.setProperty(
+			'--db-control-panel-navigation-item-clip-path',
+			`polygon(${coordinates})`
+		);
 	}
 }
 
-export default {
-	isEventTargetNavigationItem,
-	NavigationItemSafeTriangle
+export const handleSubNavigationPosition = (
+	element: HTMLElement,
+	level?: number,
+	vertical: boolean = false
+) => {
+	if (!element) return;
+
+	// If no level provided, read it from the element's data-level attribute
+	// (set by a previous call) and process children at level + 1
+	const resolvedLevel =
+		level ??
+		parseInt((element as HTMLElement).dataset['level'] ?? '-1', 10) + 1;
+
+	const navItems = element.querySelectorAll(
+		':scope > .db-control-panel-navigation-item-group, db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'
+	);
+
+	for (const navItem of Array.from(navItems)) {
+		const subNavigation: HTMLElement | null = navItem.querySelector(
+			':scope > .db-control-panel-navigation-item-group-menu'
+		);
+		const button: HTMLElement | null = navItem.querySelector(
+			':scope > .db-control-panel-navigation-item-group-expand-button'
+		);
+		if (subNavigation && button) {
+			/*
+			 * This is set via css inside:
+			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover.scss`.
+			 * We don't need to calculate the position of the menu as a popover.
+			 */
+			const isMobile = hasCssFlag(
+				subNavigation,
+				'--db-control-panel-navigation-item-group-menu-mobile'
+			);
+			if (isMobile) {
+				subNavigation.style.insetBlock = '';
+				subNavigation.style.insetInline = '';
+				continue;
+			}
+
+			subNavigation.dataset['level'] = resolvedLevel.toString();
+
+			if (resolvedLevel === 0) {
+				if (vertical) {
+					// Sub-Navigation should be opened vertical (top position, level 0)
+					handleFixedPopover(subNavigation, button, 'bottom-start');
+					subNavigation.dataset['open'] = 'vertical';
+				} else {
+					handleFixedPopover(subNavigation, button, 'right-start');
+					subNavigation.dataset['open'] = 'horizontal';
+				}
+			}
+
+			handleSubNavigationPosition(subNavigation, resolvedLevel + 1);
+		}
+	}
 };

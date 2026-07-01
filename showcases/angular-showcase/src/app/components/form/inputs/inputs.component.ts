@@ -7,7 +7,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	selector: 'app-inputs',
 	standalone: true,
 	imports: [WrapperComponent, DBInput, FormsModule, ReactiveFormsModule],
-	templateUrl: './inputs.component.html'
+	templateUrl: './inputs.component.html',
+	schemas: []
 })
 export class InputsComponent {
 	plain = 'test1';

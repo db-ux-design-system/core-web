@@ -1,5 +1,6 @@
 import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
@@ -25,7 +26,8 @@ export default function DrawerDensity() {
 				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={<DBDrawerHeader>Functional</DBDrawerHeader>}>
 					Functional
 				</DBDrawer>
 			</div>
@@ -37,7 +39,8 @@ export default function DrawerDensity() {
 				</DBButton>
 				<DBDrawer
 					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={<DBDrawerHeader>(Default) Regular</DBDrawerHeader>}>
 					(Default) Regular
 				</DBDrawer>
 			</div>
@@ -49,7 +52,8 @@ export default function DrawerDensity() {
 				</DBButton>
 				<DBDrawer
 					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={<DBDrawerHeader>Expressive</DBDrawerHeader>}>
 					Expressive
 				</DBDrawer>
 			</div>

@@ -1,26 +1,27 @@
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
-import BrandShowcase from '@components/components/brand/showcase/brand.showcase.vue';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
+import ControlPanelBrand from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase.vue';
+import ControlPanelDesktop from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase.vue';
+import ControlPanelFlatIcon from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase.vue';
+import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
-import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
 import InputShowcase from '@components/components/input/showcase/input.showcase.vue';
 import LinkShowcase from '@components/components/link/showcase/link.showcase.vue';
-import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase.vue';
-import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase.vue';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase.vue';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase.vue';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase.vue';
 import SectionShowcase from '@components/components/section/showcase/section.showcase.vue';
 import SelectShowcase from '@components/components/select/showcase/select.showcase.vue';
+import Shell from '@components/components/shell/showcase/shell.showcase.vue';
 import StackShowcase from '@components/components/stack/showcase/stack.showcase.vue';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase.vue';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase.vue';
@@ -68,14 +69,29 @@ export const navigationItems: NavItem[] = [
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: '/05/navigation-item',
-				label: 'NavigationItem',
-				component: markRaw(NavigationItemShowcase)
+				path: '/05/shell',
+				label: 'Shell',
+				component: markRaw(Shell)
 			},
 			{
-				path: '/05/navigation',
-				label: 'Navigation',
-				component: markRaw(NavigationShowcase)
+				path: '/05/control-panel-brand',
+				label: 'ControlPanelBrand',
+				component: markRaw(ControlPanelBrand)
+			},
+			{
+				path: '/05/control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: markRaw(ControlPanelDesktop)
+			},
+			{
+				path: '/05/control-panel-flat-icon',
+				label: 'ControlPanelFlatIcon',
+				component: markRaw(ControlPanelFlatIcon)
+			},
+			{
+				path: '/05/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: markRaw(ControlPanelMobile)
 			}
 		])
 	},
@@ -84,11 +100,6 @@ export const navigationItems: NavItem[] = [
 		path: '/04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
-			{
-				path: '/04/brand',
-				label: 'Brand',
-				component: markRaw(BrandShowcase)
-			},
 			{
 				path: '/04/infotext',
 				label: 'Infotext',
@@ -228,11 +239,6 @@ export const navigationItems: NavItem[] = [
 				path: '/01/section',
 				label: 'Section',
 				component: markRaw(SectionShowcase)
-			},
-			{
-				path: '/01/header',
-				label: 'Header',
-				component: markRaw(HeaderShowcase)
 			}
 		])
 	},

@@ -1,23 +1,39 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+import { DBDrawerHeader } from '../drawer-header/index';
 import { DBDrawer } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
 
-const comp: any = <DBDrawer open={true}>Test</DBDrawer>;
+const comp: any = (
+	<DBDrawer open={true} header={<DBDrawerHeader>Title</DBDrawerHeader>}>
+		{/*<template v-slot:header><DBDrawerHeader>Title</DBDrawerHeader></template>*/}
+		Test
+	</DBDrawer>
+);
 
 const testComponent = (viewport) => {
 	test(`should contain text for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
 	test.fixme(`should match screenshot for device ${viewport.name}`, async ({
-		mount
+		mount,
+		page
 	}) => {
+		await page.setViewportSize({
+			width: viewport.width,
+			height: viewport.height
+		});
 		const component = await mount(comp);
 		// TODO: Screenshots are not captured for top-layer
 		await expect(component).toHaveScreenshot();
@@ -44,7 +60,10 @@ const testAction = () => {
 	test(`should open and close drawer`, async ({ mount, page }) => {
 		let test: string = '';
 		const drawer: any = (
-			<DBDrawer open={true} onClose={() => (test = 'close')}>
+			<DBDrawer
+				open={true}
+				onClose={() => (test = 'close')}
+				header={<DBDrawerHeader>Title</DBDrawerHeader>}>
 				<span data-testid="test">Test</span>
 			</DBDrawer>
 		);
@@ -58,7 +77,6 @@ const testAction = () => {
 
 test.describe('DBDrawer', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
 		testComponent(viewport);
 		if (viewport.name === 'mobile') {
 			testA11y();

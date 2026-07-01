@@ -17,12 +17,17 @@ export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add an invalidMessage';
 export const DEFAULT_REMOVE: string = 'Remove';
 export const DEFAULT_BACK: string = 'Back';
 export const DEFAULT_SELECTED: string = 'Selected';
+export const DEFAULT_EXPAND: string = 'Expand';
+export const DEFAULT_COLLAPSE: string = 'Collapse';
+export const DEFAULT_SCROLL_LEFT: string = 'Scroll left';
+export const DEFAULT_SCROLL_RIGHT: string = 'Scroll right';
 
 export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
 export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_ROWS: number = 4;
 
 export const DEFAULT_CLOSE_BUTTON: string = 'Close';
+export const MAIN_CONTENT_ID: string = 'main-content';
 export const DENSITY_CONST: string = 'density';
 export const COLOR_CONST: string = 'color';
 
@@ -78,12 +83,12 @@ export const COLORS_SIMPLE: COLOR_SIMPLE[] = Object.entries(COLOR_SIMPLE).map(
 );
 
 export enum SEMANTIC {
+	'NEUTRAL' = 'neutral',
 	'CRITICAL' = 'critical',
 	'INFORMATIONAL' = 'informational',
 	'WARNING' = 'warning',
 	'SUCCESSFUL' = 'successful'
 }
-
 export const SEMANTICS: SEMANTIC[] = Object.entries(SEMANTIC).map(
 	([, value]) => value
 );

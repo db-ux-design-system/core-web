@@ -9,7 +9,7 @@ import {
 	DBSelect,
 	DBTag,
 	DBTextarea
-} from "../../../../../output/vue/src";
+} from "@components";
 
 import { ref } from "vue";
 const drawerOpen = ref(false);

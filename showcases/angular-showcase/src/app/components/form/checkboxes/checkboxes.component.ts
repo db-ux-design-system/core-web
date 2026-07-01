@@ -7,7 +7,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	selector: 'app-checkboxes',
 	standalone: true,
 	imports: [WrapperComponent, DBCheckbox, FormsModule, ReactiveFormsModule],
-	templateUrl: './checkboxes.component.html'
+	templateUrl: './checkboxes.component.html',
+	schemas: []
 })
 export class CheckboxesComponent {
 	plain = true;

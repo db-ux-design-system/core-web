@@ -1,79 +1,98 @@
+import {
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBShell,
+	DBShellContent,
+	DBShellSubNavigation
+} from '@components';
 import type { AppProps } from 'next/app';
-import { useState } from 'react';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import { useId } from 'react';
+import MetaNavigation from '../../react-showcase/src/control-panel/meta-navigation';
+import PrimaryActions from '../../react-showcase/src/control-panel/primary-actions';
+import SecondaryActions from '../../react-showcase/src/control-panel/secondary-actions';
 import useQuery from '../../react-showcase/src/hooks/use-query';
-import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
 import '../styles/global.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
-	const [density, setDensity, color, setColor, pageName, fullscreen] =
-		useQuery();
+	const controlPanelDesktopId = useId();
+	const controlPanelMobileId = useId();
+	const shellId = useId();
 
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+	const {
+		density,
+		setDensity,
+		color,
+		setColor,
+		page,
+		fullscreen,
+		setSettings,
+		settings
+	} = useQuery();
 
-	if (pageName ?? fullscreen) {
+	if (page ?? fullscreen) {
 		return (
-			<div data-density={density} className={`db-${color}`}>
+			<div data-density={density} className={`db-color-${color}`}>
 				<Component {...pageProps} />
 			</div>
 		);
 	}
 
 	return (
-		<DBPage
-			variant="fixed"
-			documentOverflow="auto"
+		<DBShell
 			fadeIn
-			header={
-				<DBHeader
-					drawerOpen={drawerOpen}
-					onToggle={setDrawerOpen}
-					brand={<DBBrand>Showcase</DBBrand>}
-					metaNavigation={
-						<MetaNavigation
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
-					}
-					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
-							Search
-						</DBButton>
-					}
-					secondaryAction={
-						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Profile
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Notification
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Help
-							</DBButton>
-						</>
-					}>
-					<Navigation />
-				</DBHeader>
-			}>
-			<div data-density={density} className={`db-${color}`}>
+			controlPanelDesktopPosition={settings.controlPanelDesktopPosition}
+			controlPanelMobilePosition={settings.controlPanelMobilePosition}
+			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
+			subNavigationMobilePosition={settings.subNavigationMobilePosition}
+			showSubNavigation={settings.subNavigation === 'true'}>
+			<DBShellSubNavigation id={shellId}>
+				<Navigation
+					variant={settings.subNavigationVariant}
+					aria-label="sub navigation"
+				/>
+			</DBShellSubNavigation>
+			<DBControlPanelMobile
+				id={controlPanelMobileId}
+				drawerHeaderText="Showcase"
+				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				primaryActions={
+					<PrimaryActions
+						color={color}
+						settings={settings}
+						density={density}
+						onSettingsChange={setSettings}
+						onColorChange={setColor}
+						onDensityChange={setDensity}
+					/>
+				}
+				secondaryActions={<SecondaryActions />}
+				metaNavigation={<MetaNavigation />}>
+				<Navigation variant={settings.navigationMobileVariant} />
+			</DBControlPanelMobile>
+			<DBControlPanelDesktop
+				id={controlPanelDesktopId}
+				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				metaNavigation={<MetaNavigation />}
+				primaryActions={
+					<PrimaryActions
+						color={color}
+						settings={settings}
+						density={density}
+						onSettingsChange={setSettings}
+						onColorChange={setColor}
+						onDensityChange={setDensity}
+					/>
+				}
+				secondaryActions={<SecondaryActions />}>
+				<Navigation variant={settings.navigationDesktopVariant} />
+			</DBControlPanelDesktop>
+			<DBShellContent data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
-			</div>
-		</DBPage>
+			</DBShellContent>
+		</DBShell>
 	);
 };
 

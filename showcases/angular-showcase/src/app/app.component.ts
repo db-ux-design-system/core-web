@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
-	COLOR,
 	COLOR_CONST,
-	COLORS,
-	DBBrand,
-	DBButton,
-	DBHeader,
-	DBNavigation,
-	DBPage,
-	DBSelect,
-	DENSITIES,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBControlPanelNavigation,
+	DBShell,
+	DBShellContent,
+	DBShellSubNavigation,
 	DENSITY,
 	DENSITY_CONST,
-	MetaNavigationDirective,
-	NavigationDirective,
-	SecondaryActionDirective
+	SEMANTIC
 } from '@components';
+import { defaultSettings, DefaultSettings } from '../../../settings';
+import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
+import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
+import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
@@ -28,19 +28,21 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
+	schemas: [],
 	imports: [
 		FormsModule,
 		RouterOutlet,
+		MetaNavigationComponent,
+		PrimaryActionsComponent,
+		SecondaryActionsComponent,
 		NavItemComponent,
-		DBPage,
-		DBHeader,
-		DBBrand,
-		DBNavigation,
-		DBSelect,
-		DBButton,
-		SecondaryActionDirective,
-		NavigationDirective,
-		MetaNavigationDirective
+		DBShell,
+		DBShellContent,
+		DBControlPanelBrand,
+		DBControlPanelDesktop,
+		DBControlPanelMobile,
+		DBControlPanelNavigation,
+		DBShellSubNavigation
 	],
 	templateUrl: './app.component.html'
 })
@@ -48,19 +50,14 @@ export class AppComponent implements OnInit {
 	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
-	densities = DENSITIES;
-	colors = COLORS;
-
 	density = DENSITY.REGULAR;
-	color = COLOR.NEUTRAL_BG_LEVEL_1;
+	color = SEMANTIC.NEUTRAL;
+	settings: DefaultSettings = defaultSettings;
 
 	page?: string;
 	fullscreen = false;
 
-	constructor(
-		private readonly router: Router,
-		private readonly route: ActivatedRoute
-	) {}
+	constructor(private readonly route: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
@@ -79,22 +76,21 @@ export class AppComponent implements OnInit {
 			if (parameters['fullscreen']) {
 				this.fullscreen = parameters['fullscreen'];
 			}
+
+			if (
+				parameters['settings'] &&
+				JSON.stringify(this.settings) !== parameters['settings']
+			) {
+				this.settings = JSON.parse(parameters['settings']);
+			}
 		});
 	}
 
 	getChangeableClasses = () => {
-		return `db-density-${this.density} db-${this.color}`;
+		return `db-density-${this.density} db-color-${this.color}`;
 	};
 
-	onChange = async (_value: unknown) => {
-		await this.router.navigate([], {
-			relativeTo: this.route,
-			queryParams: { density: this.density, color: this.color },
-			queryParamsHandling: 'merge'
-		});
-	};
-
-	toggleDrawer = (open: boolean | void) => {
-		this.drawerOpen = Boolean(open);
+	getFullscreenClasses = () => {
+		return `fullscreen-container ${this.getChangeableClasses()}`;
 	};
 }

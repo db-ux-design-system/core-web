@@ -7,7 +7,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	selector: 'app-selects',
 	standalone: true,
 	imports: [WrapperComponent, DBSelect, FormsModule, ReactiveFormsModule],
-	templateUrl: './selects.component.html'
+	templateUrl: './selects.component.html',
+	schemas: []
 })
 export class SelectsComponent {
 	plain = 'combobox-2';

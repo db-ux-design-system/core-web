@@ -1,4 +1,7 @@
-import { DBNavigation } from '../../../../output/react/src';
+import {
+	DBControlPanelNavigation,
+	type NavigationItemGroupVariantType
+} from '@components';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -6,8 +9,12 @@ import {
 } from '../utils/navigation-item';
 import NavItem from './nav-item';
 
-const Navigation = () => (
-	<DBNavigation aria-label="main navigation">
+const Navigation = ({
+	variant
+}: {
+	variant?: NavigationItemGroupVariantType;
+}) => (
+	<DBControlPanelNavigation variant={variant} aria-label="main navigation">
 		{getSortedNavigationItems(NAVIGATION_ITEMS).map(
 			(navItem: NavigationItem) => (
 				<NavItem
@@ -16,7 +23,7 @@ const Navigation = () => (
 				/>
 			)
 		)}
-	</DBNavigation>
+	</DBControlPanelNavigation>
 );
 
 export default Navigation;

@@ -1,0 +1,80 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/navigation-item";
+@use "control-panel-navigation-item-group-menu-popover";
+@use "../../styles/internal/icon-passing";
+
+.db-control-panel-navigation-item-group {
+	@extend %navigation-item;
+
+	&:has(> .db-control-panel-navigation-item-group-menu:hover),
+	&:has(> .db-control-panel-navigation-item-group-menu:focus) {
+		> .db-control-panel-navigation-item-group-expand-button {
+			// If we hover on the triangle we should still show hover color of the item
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+		}
+	}
+
+	.db-control-panel-navigation-item-group-expand-button {
+		@extend %navigation-item-interactive-element;
+
+		.db-control-panel-navigation-item-group-expand-button-end-slot-container {
+			--db-has-badge-position: static;
+
+			display: inline-flex;
+			align-items: center;
+			margin-inline-start: auto;
+		}
+
+		// Mobile
+		@include screen-sizes.screen-min-max(
+			(
+				max: "sm"
+			)
+		) {
+			&::after {
+				--db-icon-margin-start: auto;
+			}
+		}
+
+		// Desktop
+		@include screen-sizes.screen-min-max(
+			(
+				min: "sm"
+			)
+		) {
+			&::after {
+				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+			}
+		}
+	}
+
+	.db-control-panel-navigation-item {
+		/* Hide tooltips for nested navigation items */
+		.db-tooltip {
+			display: none;
+		}
+	}
+
+	&::after {
+		// Mobile navigation item is always sizing-md
+		// We add this fixed block-size to avoid issues with tree navigation
+		--indicator-vertical-block-size: #{variables.$db-sizing-md};
+		--indicator-vertical-inset-block-start: calc(
+			#{variables.$db-sizing-md} / 2
+		);
+	}
+}
+
+.db-control-panel-navigation-item-group-back-button {
+	display: flex;
+	font-weight: normal;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	padding-block-end: variables.$db-spacing-fixed-xs;
+	margin-block-end: variables.$db-spacing-fixed-xs;
+
+	@include helpers.divider("bottom");
+}

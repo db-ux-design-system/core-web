@@ -5,7 +5,6 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
-@use "../colors/default-color-icons";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
@@ -13,21 +12,6 @@
 :root,
 :host {
 	@extend %db-font-size-md;
-
-	/* COLORS */
-	@include default-color-icons.get-color-icons-light;
-
-	@media (prefers-color-scheme: dark) {
-		@include default-color-icons.get-color-icons-dark;
-	}
-
-	[data-mode="dark"] {
-		@include default-color-icons.get-color-icons-dark;
-	}
-
-	[data-mode="light"] {
-		@include default-color-icons.get-color-icons-light;
-	}
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
@@ -49,6 +33,15 @@
 	color-scheme: dark;
 }
 
+[data-pride="true"] {
+	--db-pride-red: #{colors.$db-red-origin-default};
+	--db-pride-orange: #{colors.$db-orange-origin-default};
+	--db-pride-yellow: #{colors.$db-yellow-origin-default};
+	--db-pride-green: #{colors.$db-light-green-origin-default};
+	--db-pride-blue: #{colors.$db-blue-origin-default};
+	--db-pride-violet: #{colors.$db-violet-origin-default};
+}
+
 // *! this is an opionionated (especially based on "enhancing" normalize.css) version of minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css
 html,
 body {
@@ -56,16 +49,12 @@ body {
 	padding: 0;
 }
 
-/* stylelint-disable selector-max-id */
-body,
-#root,
-#app {
-	block-size: inherit;
-}
-/* stylelint-enable selector-max-id */
-
 body {
 	font-family: var(--db-font-family-sans);
+}
+
+html {
+	-webkit-tap-highlight-color: #{colors.$db-informational-bg-basic-transparent-semi-default};
 }
 
 // Box sizing

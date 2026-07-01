@@ -1,0 +1,92 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/form-components";
+@forward "shell-desktop";
+@forward "shell-mobile";
+
+%fade-in-loading-fonts {
+	&[data-fade-in="true"] {
+		opacity: 0;
+
+		&:not([data-fonts-loaded]),
+		&[data-fonts-loaded="true"] {
+			opacity: 1;
+		}
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: opacity variables.$db-transition-straight-emotional;
+		}
+	}
+}
+
+body:has(.db-shell[data-fonts-loaded="true"]) {
+	overflow: hidden;
+}
+
+.db-shell {
+	@extend %fade-in-loading-fonts;
+
+	block-size: 100lvh;
+	inline-size: 100lvw;
+	display: grid;
+
+	&[data-control-panel-desktop-position="left"] {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			@extend %control-panel-desktop-vertical-orientation;
+		}
+	}
+
+	&[data-control-panel-desktop-position="top"] {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			@extend %control-panel-desktop-horizontal-orientation;
+		}
+	}
+
+	&[data-control-panel-mobile-position="top"] {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
+			@extend %control-panel-mobile-position-top;
+		}
+	}
+
+	&[data-control-panel-mobile-position="bottom"] {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
+			@extend %control-panel-mobile-position-bottom;
+		}
+	}
+
+	&[data-show-sub-navigation="false"] {
+		#{string.unquote(custom-elements.$shell-sub-navigation)} {
+			display: none;
+		}
+	}
+
+	.db-shell-skip-navigation-link-container {
+		position: absolute;
+		inset-block-start: variables.$db-spacing-fixed-sm;
+		inset-inline-start: variables.$db-spacing-fixed-sm;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		border-radius: variables.$db-border-radius-sm;
+		z-index: 9999;
+		transform: translateX(-110%);
+
+		&:not(:empty) {
+			padding: variables.$db-spacing-fixed-3xs;
+		}
+
+		&:focus-within {
+			transform: none;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
+				#{variables.$db-transition-timing-emotional};
+		}
+	}
+}

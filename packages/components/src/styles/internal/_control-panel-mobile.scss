@@ -1,0 +1,107 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "./component";
+@use "./custom-elements";
+@use "../../components/drawer/drawer";
+
+@mixin has-empty-drawer {
+	&:has(.db-control-panel-mobile-drawer-scroll-container:empty):not(
+			:has(.db-control-panel-secondary-actions)
+		) {
+		@content;
+	}
+}
+
+%control-panel-mobile-position-top {
+	border-block-end: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template-areas: var(
+		--db-control-panel-mobile-position-top-grid-areas,
+		"brand primary drawer-button"
+	);
+	grid-template-columns: var(
+		--db-control-panel-mobile-position-top-grid-columns,
+		[brand] 1fr [primary] min-content [drawer-button] min-content
+	);
+	justify-items: center;
+	padding-block: calc(
+			#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top)
+		)
+		variables.$db-spacing-fixed-xs;
+
+	.db-control-panel-primary-actions {
+		// fake divider margin
+		padding-inline-end: variables.$db-spacing-fixed-xs;
+
+		@include helpers.divider("right");
+
+		&::before {
+			margin-inline-start: variables.$db-spacing-fixed-xs;
+		}
+	}
+}
+
+%control-panel-mobile-position-bottom {
+	border-block-start: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template-areas: "brand drawer-button primary";
+	grid-template-columns:
+		minmax(#{variables.$db-sizing-md}, min-content)
+		1fr minmax(#{variables.$db-sizing-md}, min-content);
+	justify-content: space-evenly;
+	padding-block: variables.$db-spacing-fixed-xs
+		calc(#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-bottom));
+
+	/* jscpd:ignore-start */
+	.db-control-panel-brand {
+		inline-size: variables.$db-sizing-md;
+		overflow: hidden;
+
+		&::before {
+			aspect-ratio: var(
+				--db-logo-aspect-ratio-short,
+				var(--db-logo-aspect-ratio)
+			);
+			background-image: var(--db-logo-url-short, var(--db-logo-url));
+		}
+	}
+
+	/* jscpd:ignore-end */
+
+	> db-button > .db-control-panel-mobile-button,
+	> .db-control-panel-mobile-button {
+		place-self: center;
+	}
+
+	// Override drawer to use direction-up settings
+	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
+		--db-drawer-max-height: 67lvh;
+
+		> .db-drawer-container {
+			@extend %direction-from-bottom-to-top;
+
+			border-block-start: component.$component-border;
+			border-inline-end: 0; // revert the default setting
+			inline-size: 100lvw;
+			max-inline-size: 100lvw;
+		}
+
+		&[open] {
+			.db-drawer-container {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
+				}
+
+				&[hidden] {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,4 +1,5 @@
 - dialog:
   - article:
+    - text: Title
     - button "Close"
     - text: Test

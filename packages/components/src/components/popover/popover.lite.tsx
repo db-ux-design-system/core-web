@@ -10,6 +10,8 @@ import {
 import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBPopoverProps, DBPopoverState } from './model';
 
 useMetadata({});
@@ -22,7 +24,8 @@ export default function DBPopover(props: DBPopoverProps) {
 		initialized: false,
 		isExpanded: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
@@ -37,11 +40,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
-					handleFixedPopover(
-						article,
-						_ref,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+					handleFixedPopover(article, _ref);
 				}, 1);
 			}
 		},
@@ -52,14 +51,48 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		handleEnter(): void {
 			state.isExpanded = true;
+
+			// Clean up any existing observers to prevent leaks from repeated enter
+			if (state._documentScrollListenerCallbackId) {
+				new DocumentScrollListener().removeCallback(
+					state._documentScrollListenerCallbackId!
+				);
+				state._documentScrollListenerCallbackId = undefined;
+			}
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
+
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event)
 				);
 			state.handleAutoPlacement();
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(
+					document.documentElement,
+					() => state.handleAutoPlacement()
+				);
 			const child = state.getTrigger();
 			if (child) {
-				state._observer?.observe(child);
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						child,
+						(entry) => {
+							if (!entry.isIntersecting) {
+								state.handleEscape(false);
+							}
+						}
+					);
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,11 +112,21 @@ export default function DBPopover(props: DBPopoverProps) {
 					new DocumentScrollListener().removeCallback(
 						state._documentScrollListenerCallbackId!
 					);
+					state._documentScrollListenerCallbackId = undefined;
 				}
 
-				const child = state.getTrigger();
-				if (child) {
-					state._observer?.unobserve(child);
+				if (state._resizeObserverCallbackId) {
+					new ResizeObserverListener().unobserve(
+						state._resizeObserverCallbackId!
+					);
+					state._resizeObserverCallbackId = undefined;
+				}
+
+				if (state._intersectionObserverCallbackId) {
+					new IntersectionObserverListener().unobserve(
+						state._intersectionObserverCallbackId!
+					);
+					state._intersectionObserverCallbackId = undefined;
 				}
 			}
 		},
@@ -111,6 +154,27 @@ export default function DBPopover(props: DBPopoverProps) {
 		state.initialized = true;
 	});
 
+	onUnMount(() => {
+		if (state._documentScrollListenerCallbackId) {
+			new DocumentScrollListener().removeCallback(
+				state._documentScrollListenerCallbackId!
+			);
+			state._documentScrollListenerCallbackId = undefined;
+		}
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
+		if (state._intersectionObserverCallbackId) {
+			new IntersectionObserverListener().unobserve(
+				state._intersectionObserverCallbackId!
+			);
+			state._intersectionObserverCallbackId = undefined;
+		}
+	});
+
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initialized = false;
@@ -129,20 +193,6 @@ export default function DBPopover(props: DBPopoverProps) {
 			['mouseleave', 'focusout'].forEach((event) => {
 				_ref.addEventListener(event, () => state.handleLeave());
 			});
-
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
-				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(
-						({ target }) => target === state.getTrigger()
-					);
-					if (entry && !entry.isIntersecting) {
-						state.handleEscape(false);
-					}
-				});
-			}
 		}
 	}, [_ref, state.initialized]);
 

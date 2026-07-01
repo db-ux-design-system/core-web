@@ -7,7 +7,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	selector: 'app-textareas',
 	standalone: true,
 	imports: [WrapperComponent, DBTextarea, FormsModule, ReactiveFormsModule],
-	templateUrl: './textareas.component.html'
+	templateUrl: './textareas.component.html',
+	schemas: []
 })
 export class TextareasComponent {
 	plain = 'test1';

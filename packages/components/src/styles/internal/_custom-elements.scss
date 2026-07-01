@@ -1,12 +1,37 @@
 $custom-elements: //hygen-insert
 
-	db-table-data-cell, db-table-header-cell, db-table-row, db-table-footer,
-	db-table-body, db-table-head, db-table-caption, db-table, db-custom-button,
+	db-shell-sub-navigation, db-control-panel-flat-icon, db-drawer-footer,
+	db-drawer-header, db-shell-content, db-control-panel-navigation-item-group,
+	db-control-panel-secondary-actions, db-control-panel-primary-actions,
+	db-control-panel-meta, db-control-panel-mobile, db-table-data-cell,
+	db-table-header-cell, db-table-row, db-table-footer, db-table-body,
+	db-table-head, db-table-caption, db-table, db-custom-button,
 	db-custom-select-list-item, db-custom-select-list,
 	db-custom-select-dropdown, db-custom-select-form-field, db-custom-select,
 	db-stack, db-switch, db-tab-panel, db-tabs, db-tab-list, db-tab-item,
-	db-tab-bar, db-tooltip, db-popover, db-textarea, db-navigation,
-	db-accordion-item, db-accordion, db-badge, db-navigation-item, db-tag,
-	db-radio, db-select, db-notification, db-brand, db-button, db-card,
-	db-checkbox, db-divider, db-drawer, db-header, db-icon, db-infotext,
-	db-input, db-link, db-page, db-section, db-tab;
+	db-tab-bar, db-tooltip, db-popover, db-textarea,
+	db-control-panel-navigation, db-accordion-item, db-accordion, db-badge,
+	db-control-panel-navigation-item, db-tag, db-radio, db-select,
+	db-notification, db-control-panel-brand, db-button, db-card, db-checkbox,
+	db-divider, db-drawer, db-control-panel-desktop, db-icon, db-infotext,
+	db-input, db-link, db-shell, db-section, db-tab;
+
+/* Sub components for shell */
+
+@function get-sub-component($selector) {
+	@return "> * > #{$selector} > .#{$selector}, > #{$selector} > .#{$selector}, > .#{$selector}";
+}
+
+$control-panel-desktop: get-sub-component(db-control-panel-desktop);
+$control-panel-flat-icon: get-sub-component(db-control-panel-flat-icon);
+$control-panel-mobile: get-sub-component(db-control-panel-mobile);
+$control-panel-navigation: get-sub-component(db-control-panel-navigation);
+$control-panel-navigation-item: get-sub-component(
+	db-control-panel-navigation-item
+);
+$control-panel-navigation-item-group: get-sub-component(
+	db-control-panel-navigation-item-group
+);
+$shell-sub-navigation: get-sub-component(db-shell-sub-navigation);
+$overflow-scroll-right-button: "> .overflow-scroll-right-button, > db-button > .overflow-scroll-right-button";
+$overflow-scroll-left-button: "> .overflow-scroll-left-button, > db-button > .overflow-scroll-left-button";

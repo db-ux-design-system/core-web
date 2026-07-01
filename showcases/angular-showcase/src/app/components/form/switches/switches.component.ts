@@ -7,7 +7,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	selector: 'app-switches',
 	standalone: true,
 	imports: [WrapperComponent, DBSwitch, FormsModule, ReactiveFormsModule],
-	templateUrl: './switches.component.html'
+	templateUrl: './switches.component.html',
+	schemas: []
 })
 export class SwitchesComponent {
 	plain = true;

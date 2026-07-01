@@ -33,6 +33,8 @@
 		"**/test/**",
 		"**/tsconfig.json",
 		"**/e2e/**/*.spec.ts",
+		"**/showcases/angular-showcase/src/app/app.component.html",
+		"**/packages/components/configs/plugins/**/slots.cjs",
 		"**/packages/components/scripts/post-build/components.ts",
 		"**/packages/components/src/components/**/*.spec.tsx",
 		"**/packages/components/src/components/**/index.html",
@@ -71,7 +73,8 @@
 		"**/examples/**/*.example.lite.tsx",
 		"**/figma/**/*.figma.lite.tsx",
 		"**/figma/**/*.figma.ts",
-		"**/packages/eslint-plugin/src/rules/**"
+		"**/packages/eslint-plugin/src/rules/**",
+		"**/packages/foundations/assets/images/**"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true,

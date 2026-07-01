@@ -12,7 +12,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 		FormsModule,
 		ReactiveFormsModule
 	],
-	templateUrl: './custom-selects.component.html'
+	templateUrl: './custom-selects.component.html',
+	schemas: []
 })
 export class CustomSelectsComponent {
 	plain = ['combobox-2'];

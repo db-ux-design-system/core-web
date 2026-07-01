@@ -25,17 +25,6 @@ module.exports = () => ({
 			const { allImports } = resolveImports(imports);
 			const dataImports = resolveDataImports(imports);
 
-			if (target === 'angular') {
-				// TODO: Remove the this when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
-				// Add directive imports for navigation, just for simplicity we add it to every component
-				allImports.push(
-					'MetaNavigationDirective',
-					'NavigationDirective',
-					'NavigationContentDirective',
-					'SecondaryActionDirective'
-				);
-			}
-
 			// Validate component import
 			if (!componentName)
 				throw new Error(

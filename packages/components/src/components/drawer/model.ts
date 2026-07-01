@@ -5,10 +5,7 @@ import type {
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
-	InitializedState,
-	InnerCloseButtonProps,
-	SpacingProps,
-	WidthProps
+	InitializedState
 } from '../../shared/model';
 
 export const DrawerBackdropList = [
@@ -28,6 +25,14 @@ export type DrawerVariantType = (typeof DrawerVariantList)[number];
 export const DrawerPositionList = ['fixed', 'absolute'] as const;
 export type DrawerPositionType = (typeof DrawerPositionList)[number];
 
+export const DrawerContainerSizeList = [
+	'small',
+	'medium',
+	'large',
+	'full'
+] as const;
+export type DrawerContainerSizeType = (typeof DrawerContainerSizeList)[number];
+
 export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
@@ -43,7 +48,17 @@ export type DBDrawerDefaultProps = {
 	/**
 	 * Slot for changing the header of the drawer.
 	 */
-	drawerHeader?: any;
+	header?: any;
+
+	/**
+	 * Slot for changing the footer of the drawer.
+	 */
+	footer?: any;
+
+	/**
+	 * Shows a spacing between screen and drawer-content to provide enough space for the backdrop
+	 */
+	showSpacing?: boolean | string;
 
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
@@ -65,6 +80,11 @@ export type DBDrawerDefaultProps = {
 	 * - `absolute`: Renders with `show()`, acting as a simple overlay **without** a focus trap.
 	 */
 	position?: DrawerPositionType;
+
+	/**
+	 * Change the size of the drawer container.
+	 */
+	containerSize?: DrawerContainerSizeType;
 };
 
 export type DBDrawerProps = DBDrawerDefaultProps &
@@ -72,10 +92,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	CloseEventProps<
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 		| GeneralKeyboardEvent<HTMLDialogElement>
-	> &
-	InnerCloseButtonProps &
-	WidthProps &
-	SpacingProps;
+	>;
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;

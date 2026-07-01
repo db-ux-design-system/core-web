@@ -2,7 +2,7 @@ import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
-test.describe('DBNavigation', () => {
+test.describe('DBControlPanelNavigation', () => {
 	testDefault({
 		test,
 		title: 'default',

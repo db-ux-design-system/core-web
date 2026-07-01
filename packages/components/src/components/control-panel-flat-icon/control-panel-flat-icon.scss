@@ -1,0 +1,244 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/indicator";
+
+%control-panel-flat-icon-desktop {
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		inline-size: fit-content;
+
+		@include helpers.divider("right", after);
+
+		.db-tooltip {
+			// We show tooltip for desktop always
+			--db-show-popover-visibility: visible;
+		}
+
+		.db-control-panel-navigation {
+			inline-size: fit-content;
+			padding: variables.$db-spacing-fixed-sm
+				calc(
+					#{variables.$db-spacing-fixed-sm} +
+						env(safe-area-inset-left)
+				);
+
+			> menu {
+				flex-direction: column;
+
+				.db-control-panel-navigation-item {
+					a {
+						inline-size: 100%;
+						block-size: 100%;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						display: inline;
+						text-align: center;
+
+						@include indicator.set-indicator-vertical;
+					}
+
+					@include navigation-item.active-navigation-item {
+						a {
+							@include indicator.show-indicator-vertical;
+						}
+					}
+				}
+			}
+		}
+
+		&[data-no-text="true"] {
+			.db-control-panel-navigation {
+				.db-control-panel-navigation-item {
+					aspect-ratio: 1;
+					inline-size: variables.$db-sizing-md;
+
+					&::before {
+						--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+					}
+
+					a {
+						padding: 0;
+
+						@include helpers.a11y-visually-hidden-text;
+					}
+				}
+			}
+		}
+
+		&:not([data-no-text="true"]) {
+			.db-control-panel-navigation-item {
+				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-3xs};
+
+				block-size: 2lh;
+				inline-size: variables.$db-sizing-lg;
+
+				&::before {
+					--db-icon-passing-inset-block-start: calc(
+						2 * var(--db-icon-passing-padding-inline-start)
+					);
+				}
+
+				a {
+					// stylelint-disable-next-line db-ux/use-spacings
+					padding-inline-end: var(
+						--db-icon-passing-padding-inline-start
+					);
+					padding-block: calc(
+							50% - 2 *
+								var(--db-icon-passing-padding-inline-start)
+						)
+						0;
+				}
+			}
+		}
+	}
+}
+
+%control-panel-flat-icon-mobile {
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		--db-control-panel-flat-icon-mobile: 1;
+
+		@include helpers.divider("top");
+
+		.db-control-panel-navigation {
+			padding-block: variables.$db-spacing-fixed-xs
+				calc(
+					#{variables.$db-spacing-fixed-xs} +
+						env(safe-area-inset-bottom)
+				);
+
+			> menu {
+				flex-direction: row;
+				justify-content: space-evenly;
+				inline-size: 100%;
+				max-inline-size: variables.$db-container-md;
+
+				.db-control-panel-navigation-item {
+					a {
+						position: relative;
+
+						@include indicator.set-indicator-horizontal;
+					}
+
+					@include navigation-item.active-navigation-item {
+						a {
+							@include indicator.show-indicator-horizontal;
+						}
+					}
+				}
+			}
+		}
+
+		&[data-no-text="true"] {
+			.db-control-panel-navigation {
+				.db-control-panel-navigation-item {
+					--db-icon-passing-padding-inline-start: 0;
+
+					&::before {
+						--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+					}
+
+					a {
+						@include helpers.a11y-visually-hidden-text;
+
+						padding: 0;
+						inline-size: variables.$db-sizing-md;
+					}
+
+					.db-tooltip {
+						// We show tooltip for collapsed state
+						--db-show-popover-visibility: visible;
+					}
+				}
+			}
+		}
+
+		&:not([data-no-text="true"]) {
+			.db-control-panel-navigation-item {
+				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-3xs};
+				--nav-icon-size: #{form-components.$font-size-height};
+
+				&::before {
+					--db-icon-passing-inset-block-start: 0;
+				}
+
+				a {
+					padding-inline-end: variables.$db-spacing-fixed-3xs;
+					// stylelint-disable-next-line db-ux/use-spacings
+					padding-block: var(--nav-icon-size) 0;
+					inline-size: variables.$db-sizing-lg;
+					justify-content: center;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					display: inline;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+.db-control-panel-flat-icon {
+	@extend %control-panel-flat-icon-mobile;
+	@extend %control-panel-flat-icon-desktop;
+
+	grid-area: control-panel;
+
+	/* Hide navigation-item-group and navigation-items without icon */
+	.db-control-panel-navigation-item-group,
+	.db-control-panel-navigation-item:not([data-icon]) {
+		display: none;
+	}
+
+	.db-control-panel-navigation {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		> menu {
+			display: flex;
+			gap: variables.$db-spacing-fixed-sm;
+		}
+	}
+
+	.db-control-panel-navigation-item {
+		justify-content: center;
+		align-items: center;
+
+		a {
+			@extend %db-overwrite-font-size-3xs;
+			@extend %indicator;
+
+			min-block-size: variables.$db-sizing-md;
+			min-inline-size: variables.$db-sizing-md;
+		}
+	}
+
+	&:not([data-no-text="true"]) {
+		.db-control-panel-navigation-item {
+			&::before {
+				--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+			}
+		}
+	}
+
+	.overflow-scroll-left-button,
+	.overflow-scroll-right-button {
+		display: none;
+	}
+}

@@ -1,0 +1,7 @@
+@use "../../styles/internal/control-panel-actions";
+
+.db-control-panel-secondary-actions {
+	@extend %control-panel-actions;
+
+	grid-area: secondary;
+}
