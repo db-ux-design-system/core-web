@@ -206,19 +206,31 @@ export const stringPropVisible = (
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
 
+// WeakMap to store generated keys for option objects without mutating them.
+// This ensures keys are stable (same object reference → same key across
+// re-renders) and works safely with frozen/immutable option objects.
+const optionKeyMap = new WeakMap<object, string>();
+
 export const getOptionKey = (
 	option: { id?: string; value?: string | number | string[] | undefined },
 	prefix: string
 ) => {
-	// If the consumer didn't provide an id, generate one and persist it on
-	// the option object itself. Because the object is passed by reference,
-	// the generated id survives re-renders, reorders, and filtering — making
-	// the key both stable and unique across all frameworks.
-	if (!option.id) {
-		option.id = uuid();
+	// If the consumer provided an id, use it directly.
+	if (option.id) {
+		return `${prefix}${option.id}`;
 	}
 
-	return `${prefix}${option.id}`;
+	// Otherwise look up or generate a stable key for this object reference.
+	// Using a WeakMap avoids mutating the consumer's option object (which
+	// could be frozen or part of immutable state) while still persisting
+	// the generated key across re-renders, reorders, and filtering.
+	let key = optionKeyMap.get(option);
+	if (!key) {
+		key = uuid();
+		optionKeyMap.set(option, key);
+	}
+
+	return `${prefix}${key}`;
 };
 
 export const isKeyboardEvent = <T>(
