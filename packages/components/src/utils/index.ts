@@ -210,7 +210,7 @@ export const getOptionKey = (
 	option: { id?: string; value?: string | number | string[] | undefined },
 	prefix: string
 ) => {
-	const key = option.id || option.value || uuid();
+	const key = option.id || uuid();
 	return `${prefix}${key}`;
 };
 
