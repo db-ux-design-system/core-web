@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "./form-components";
+@use "./component";
 
 %select-icon {
 	@extend %dropdown-icon;
@@ -11,20 +12,35 @@
 	}
 }
 
-// Shared dropdown container styling, referenced by both the CustomSelect
-// dropdown (.db-custom-select-dropdown) and the native select `::picker(select)`.
+// Shared floating "layer" surface: border, elevation, background and
+// positioning. Referenced by both the CustomSelect dropdown
+// (.db-custom-select-dropdown) and the native styled select `::picker(select)`,
+// so the opened layer looks identical regardless of the underlying element.
 %select-dropdown-container {
+	@extend %default-card;
+
 	position: absolute;
 	z-index: 32;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
 	min-inline-size: variables.$db-sizing-xl;
 	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
 }
 
-// Shared list max-block-size, referenced by both the CustomSelect list
-// (.db-custom-select-list) and the native select `::picker(select)`.
-// (option height + padding) * 5.5 items (showing partial item to indicate more content) + list padding
-%select-list-max-block-size {
+// Shared scrollable options list: padding, scroll behaviour and the max height
+// cap that shows a partial item to hint at more content. Referenced by both the
+// CustomSelect list (.db-custom-select-list) and the native `::picker(select)`,
+// which plays both the container and the list role.
+// Implemented as a mixin (not a placeholder) on purpose: the CustomSelect list
+// applies `all: unset` in its own rule, which is emitted after any `@extend`
+// output and would otherwise reset these values. A mixin emits the declarations
+// at the include site, so they win the cascade.
+@mixin select-list-styles {
+	padding: variables.$db-spacing-fixed-sm;
+	overflow-y: auto;
+	overflow-block: auto;
+
+	// (option height + padding) * 5.5 items + list padding
 	max-block-size: calc(
 		5.5 *
 			(
@@ -36,6 +52,10 @@
 			) +
 			(#{variables.$db-spacing-fixed-sm} * 2)
 	);
+
+	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		border-start-end-radius: 0;
+	}
 }
 
 // Shared list-item base styling, referenced by both the CustomSelect list item

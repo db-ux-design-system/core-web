@@ -1,20 +1,11 @@
-@use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/select-components";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-custom-select-list {
 	all: unset;
-	padding: variables.$db-spacing-fixed-sm;
-	overflow-y: auto;
-	overflow-block: auto;
 
-	&::-webkit-scrollbar-button:single-button:vertical:decrement {
-		border-start-end-radius: 0;
-	}
-
-	/* (checkbox height + list-item padding) * 6 items + list padding */
-	@extend %select-list-max-block-size;
+	@include select-components.select-list-styles;
 
 	> ul {
 		all: unset;

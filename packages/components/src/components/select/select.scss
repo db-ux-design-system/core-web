@@ -70,16 +70,12 @@
 
 		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 		:is(::picker(select)) {
-			@extend %default-card;
+			// Shared floating layer surface (border, elevation, background)
 			@extend %select-dropdown-container;
-			@extend %select-list-max-block-size;
 
-			// Adapted from .db-card
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			padding: variables.$db-spacing-fixed-sm;
-
-			// Adapted from .db-custom-select-list
-			overflow-block: auto;
+			// Shared scrollable options list (padding, scroll, max-height).
+			// The picker plays both the container and the list role.
+			@include select-components.select-list-styles;
 		}
 
 		option {
