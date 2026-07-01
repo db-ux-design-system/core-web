@@ -13,6 +13,7 @@ communityfeedback
 # further words
 moz
 webkit
+checkmark
 cicd
 Patternhub
 Textlink
