@@ -208,10 +208,16 @@ export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 
 export const getOptionKey = (
 	option: { id?: string; value?: string | number | string[] | undefined },
-	prefix: string
+	prefix: string,
+	index: number
 ) => {
-	const key = option.id || uuid();
-	return `${prefix}${key}`;
+	// Prefer a stable identifier (id, then value). uuid() is only a last
+	// resort: it returns a new value on every call, which would defeat stable
+	// keys in React and break trackBy in Angular (nodes recreated every cycle).
+	// The index is always appended to guarantee uniqueness even when multiple
+	// options share the same value.
+	const key = option.id || option.value || uuid();
+	return `${prefix}${key}-${index}`;
 };
 
 export const isKeyboardEvent = <T>(
