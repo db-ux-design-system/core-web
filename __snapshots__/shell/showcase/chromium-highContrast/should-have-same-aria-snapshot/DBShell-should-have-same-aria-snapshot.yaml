@@ -1,0 +1,397 @@
+- main:
+  - heading "DBShell" [level=1]
+  - link "Position"
+  - navigation "shell-position-top":
+    - list:
+      - listitem:
+        - link "Item"
+      - listitem: Item disabled
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - main "shell-position-top":
+    - text: Top position content
+    - button "Action"
+  - navigation "shell-position-left":
+    - list:
+      - listitem:
+        - link "Item"
+      - listitem: Item disabled
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - button "Collapse" [expanded]
+  - main "shell-position-left":
+    - text: Left position content
+    - button "Action"
+  - link "Flat Icon"
+  - navigation "Flat Icon With Text":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - main "shell-flat-icon-with-text":
+    - text: Flat icon with text content
+    - button "Action"
+  - navigation "Flat Icon No Text":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - main "shell-flat-icon-no-text":
+    - text: Flat icon no text content
+    - button "Action"
+  - navigation "Flat Icon With Text Sub Nav":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - complementary "shell-flat-icon-with-text-sub-nav":
+    - navigation "shell-flat-icon-with-text-sub-nav":
+      - list:
+        - listitem:
+          - link "Test 1"
+        - listitem:
+          - link "Test 2"
+        - listitem:
+          - link "Test 3"
+  - main "shell-flat-icon-with-text-sub":
+    - text: Flat icon with text content + Sub-Navigation
+    - button "Action"
+  - navigation "Flat Icon No Text Sub Nav":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - complementary "shell-flat-icon-no-text-sub-nav":
+    - navigation "shell-flat-icon-no-text-sub-nav":
+      - list:
+        - listitem:
+          - link "Test 1"
+        - listitem:
+          - link "Test 2"
+        - listitem:
+          - link "Test 3"
+  - main "shell-flat-icon-no-text-sub":
+    - text: Flat icon no text content + Sub-Navigation
+    - button "Action"
+  - link "Content"
+  - navigation "content-position-auto-top":
+    - list:
+      - listitem:
+        - link "Item"
+      - listitem: Item disabled
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - article: Test Test
+  - main "shell-position-auto-top":
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - button "Action"
+  - article: Test Test
+  - navigation "content-position-fixed-top":
+    - list:
+      - listitem:
+        - link "Item"
+      - listitem: Item disabled
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - article: Test Test
+  - main "shell-position-fixed-top":
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - button "Action"
+  - article: Test Test
+  - navigation "content-position-auto-left":
+    - list:
+      - listitem:
+        - link "Item"
+      - listitem: Item disabled
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - button "Collapse" [expanded]
+  - article: Test Test
+  - main "shell-position-auto-left":
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - button "Action"
+  - article: Test Test
+  - navigation "content-position-fixed-left":
+    - list:
+      - listitem:
+        - link "Item"
+      - listitem: Item disabled
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - button "Collapse" [expanded]
+  - article: Test Test
+  - main "shell-position-fixed-left":
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - button "Action"
+  - article: Test Test
+  - link "Sub Navigation"
+  - navigation "shell-top-sub-top-main":
+    - list:
+      - listitem:
+        - link "Item 1"
+      - listitem:
+        - link "Item 2"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - complementary "shell-top-sub-top-sub":
+    - navigation "shell-top-sub-top-sub":
+      - list:
+        - listitem:
+          - button "Group 1"
+        - listitem:
+          - link "Sub-Item 3"
+        - listitem:
+          - link "Sub-Item 4"
+        - listitem:
+          - link "Sub-Item 5"
+  - main "shell-top-sub-top":
+    - text: Top + Sub Top content
+    - button "Action"
+  - navigation "shell-top-sub-left-main":
+    - list:
+      - listitem:
+        - link "Item 1"
+      - listitem:
+        - link "Item 2"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - complementary "shell-top-sub-left-sub":
+    - navigation "shell-top-sub-left-sub":
+      - list:
+        - listitem:
+          - button "Group 1"
+        - listitem:
+          - link "Sub-Item 3"
+        - listitem:
+          - link "Sub-Item 4"
+        - listitem:
+          - link "Sub-Item 5"
+    - button "Collapse" [expanded]
+  - main "shell-top-sub-left":
+    - text: Top + Sub Left Popover content
+    - button "Action"
+  - navigation "shell-top-sub-left-tree-main":
+    - list:
+      - listitem:
+        - link "Item 1"
+      - listitem:
+        - link "Item 2"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - complementary "shell-top-sub-left-tree-sub":
+    - navigation "shell-top-sub-left-tree-sub":
+      - tree "shell-top-sub-left-tree-sub":
+        - treeitem "Group 1"
+        - listitem:
+          - treeitem "Sub-Item 3"
+        - listitem:
+          - treeitem "Sub-Item 4"
+        - listitem:
+          - treeitem "Sub-Item 5"
+    - button "Collapse" [expanded]
+  - main "shell-top-sub-left-tree":
+    - text: Top + Sub Left Tree content
+    - button "Action"
+  - navigation "shell-left-sub-top-main":
+    - list:
+      - listitem:
+        - link "Item 1"
+      - listitem:
+        - link "Item 2"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Collapse" [expanded]
+  - complementary "shell-left-sub-top-sub":
+    - navigation "shell-left-sub-top-sub":
+      - list:
+        - listitem:
+          - button "Group 1"
+        - listitem:
+          - link "Sub-Item 3"
+        - listitem:
+          - link "Sub-Item 4"
+        - listitem:
+          - link "Sub-Item 5"
+  - main "shell-left-sub-top":
+    - text: Left + Sub Top content
+    - button "Action"
+  - link "Deep Navigation"
+  - navigation "shell-deep-nav-top":
+    - list:
+      - listitem:
+        - button "Level 1a"
+      - listitem:
+        - button "Level 1b"
+      - listitem:
+        - link "Simple Item"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - main "shell-deep-nav-top":
+    - text: Deep Navigation - Top Position
+    - button "Action"
+  - navigation "shell-deep-nav-left":
+    - list:
+      - listitem:
+        - button "Level 1a"
+      - listitem:
+        - button "Level 1b"
+      - listitem:
+        - link "Simple Item"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Collapse" [expanded]
+  - main "shell-deep-nav-left":
+    - text: Deep Navigation - Left Position
+    - button "Action"
+  - link "Slots"
+  - text: New
+  - navigation "shell-slots-top":
+    - list:
+      - listitem:
+        - link "Inbox"
+        - text: LABEL SHOULD BE SET 3
+      - listitem:
+        - button "Tasks LABEL SHOULD BE SET 2"
+      - listitem:
+        - link "Dashboard"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - main "shell-slots-nav-item-badge":
+    - text: Navigation Item with Badge - StartSlot and EndSlot
+    - button "Action"
+  - text: New
+  - navigation "shell-slots-group-badge":
+    - list:
+      - listitem:
+        - link "Inbox"
+        - text: "2"
+      - listitem:
+        - button "Tasks 2"
+      - listitem:
+        - link "Dashboard"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Collapse" [expanded]
+  - main "shell-slots-group-badge-mobile":
+    - text: Group with Badge - StartSlot and EndSlot
+    - button "Action"
+  - text: New
+  - navigation "shell-slots-left-tree":
+    - tree "shell-slots-left-tree":
+      - listitem:
+        - treeitem "Inbox"
+        - text: "2"
+      - treeitem "Tasks 2"
+      - listitem:
+        - treeitem "Dashboard"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Collapse" [expanded]
+  - main "shell-slots-group-badge":
+    - text: Group with Badge - StartSlot and EndSlot
+    - button "Action"
+  - link "Tree Navigation"
+  - navigation "shell-tree-nav-single":
+    - tree "shell-tree-nav-single":
+      - treeitem "Category A"
+      - treeitem "Category B"
+      - treeitem "Category C"
+      - listitem:
+        - treeitem "Simple Item"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Collapse" [expanded]
+  - main "shell-tree-nav-single":
+    - text: Tree Navigation - Single Behavior (only one group open at a time)
+    - button "Action"
+  - navigation "shell-tree-nav-multiple":
+    - tree "shell-tree-nav-multiple":
+      - treeitem "Category A"
+      - treeitem "Category B"
+      - treeitem "Category C"
+      - listitem:
+        - treeitem "Simple Item"
+  - link "Imprint"
+  - link "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Collapse" [expanded]
+  - main "shell-tree-nav-multiple":
+    - text: Tree Navigation - Multiple Behavior (multiple groups can be open simultaneously)
+    - button "Action"
