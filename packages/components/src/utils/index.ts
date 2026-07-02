@@ -228,6 +228,8 @@ export const getOptionKey = (
 	//    Combining both fields maximizes uniqueness: two options may share
 	//    a value but users couldn't distinguish identical labels, so in
 	//    practice the combination is unique.
+	//    We prefix each segment with its length to avoid ambiguous
+	//    concatenations (e.g. 'a-b'+'c' vs 'a'+'b-c').
 	const value =
 		option.value !== undefined && option.value !== ''
 			? String(option.value)
@@ -235,7 +237,7 @@ export const getOptionKey = (
 	const label = option.label ?? '';
 
 	if (value || label) {
-		return `${prefix}${value}-${label}`;
+		return `${prefix}${value.length}:${value}.${label}`;
 	}
 
 	// 3. Last resort for truly anonymous options (no id, no value, no label).
