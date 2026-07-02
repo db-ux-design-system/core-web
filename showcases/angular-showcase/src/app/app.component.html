@@ -5,17 +5,17 @@
 }
 @if (!page) {
 	<db-shell
-		[fadeIn]="true"
 		[controlPanelDesktopPosition]="settings.controlPanelDesktopPosition"
 		[controlPanelMobilePosition]="settings.controlPanelMobilePosition"
+		[fadeIn]="true"
+		[showSubNavigation]="settings.subNavigation === 'true'"
 		[subNavigationDesktopPosition]="settings.subNavigationDesktopPosition"
 		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
-		[showSubNavigation]="settings.subNavigation === 'true'"
 	>
 		<db-shell-sub-navigation>
 			<db-control-panel-navigation
-				aria-label="sub-navigation"
 				[variant]="settings.subNavigationVariant"
+				aria-label="sub-navigation"
 			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
@@ -29,15 +29,15 @@
 			></db-control-panel-brand>
 			<app-meta-navigation meta-navigation />
 			<app-primary-actions
-				primary-actions
-				[density]="density"
 				[color]="color"
+				[density]="density"
 				[settings]="settings"
+				primary-actions
 			></app-primary-actions>
 			<app-secondary-actions secondary-actions></app-secondary-actions>
 			<db-control-panel-navigation
-				aria-label="desktop-navigation"
 				[variant]="settings.navigationDesktopVariant"
+				aria-label="desktop-navigation"
 			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
@@ -51,15 +51,15 @@
 			></db-control-panel-brand>
 			<app-meta-navigation meta-navigation />
 			<app-primary-actions
-				primary-actions
-				[density]="density"
 				[color]="color"
+				[density]="density"
 				[settings]="settings"
+				primary-actions
 			></app-primary-actions>
 			<app-secondary-actions secondary-actions></app-secondary-actions>
 			<db-control-panel-navigation
-				aria-label="mobile-navigation"
 				[variant]="settings.navigationMobileVariant"
+				aria-label="mobile-navigation"
 			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>

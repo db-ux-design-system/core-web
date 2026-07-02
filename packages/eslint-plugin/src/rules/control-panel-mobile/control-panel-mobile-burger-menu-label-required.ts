@@ -47,12 +47,17 @@ export default {
 			}
 		}
 
-		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
+		if (Object.keys(angularVisitors).length > 0) {
+			return angularVisitors;
+		}
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBControlPanelMobile))
+			if (
+				!isDBComponent(openingElement, COMPONENTS.DBControlPanelMobile)
+			) {
 				return;
+			}
 
 			const burgerMenuLabel = getAttributeValue(
 				openingElement,

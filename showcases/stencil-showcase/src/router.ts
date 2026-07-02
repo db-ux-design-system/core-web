@@ -58,7 +58,7 @@ function renderShowcasePage(
 
 	// Build attribute string from query params for Playwright compatibility.
 	// The `settings` param only controls the shell layout, not the showcase.
-	const attributes = [...parameters.entries()]
+	const attributes = [...parameters]
 		.filter(([key]) => key !== 'settings')
 		.map(([key, value]) => `${key}="${value}"`)
 		.join(' ');
@@ -75,10 +75,10 @@ function updateActiveNavItem(): void {
 	const navLinks = document.querySelectorAll(
 		'db-control-panel-navigation-item a'
 	);
-	const currentHash = (globalThis.location.hash || '#/').split('?')[0];
+	const currentHash = (globalThis.location.hash || '#/').split('?', 1)[0];
 
 	for (const link of navLinks) {
-		const href = (link.getAttribute('href') ?? '').split('?')[0];
+		const href = (link.getAttribute('href') ?? '').split('?', 1)[0];
 		if (href === currentHash) {
 			link.setAttribute('aria-current', 'page');
 		} else {
@@ -92,7 +92,9 @@ function updateActiveNavItem(): void {
  */
 function handleRoute(): void {
 	const container = document.querySelector<HTMLElement>('main');
-	if (!container) return;
+	if (!container) {
+		return;
+	}
 
 	const { category, component, parameters } = parseHash(
 		globalThis.location.hash

@@ -1,14 +1,14 @@
 <db-control-panel-primary-actions #metaRef>
 	<db-drawer
-		[open]="open()"
 		(close)="open.set(false)"
+		[open]="open()"
 		drawerHeaderPlain="Settings"
 	>
 		<db-select
-			variant="floating"
-			label="Density"
-			[value]="density()"
 			(change)="onChange('density', $event)"
+			[value]="density()"
+			label="Density"
+			variant="floating"
 		>
 			@for (t of densities; track t) {
 				<option>
@@ -17,11 +17,11 @@
 			}
 		</db-select>
 		<db-select
-			#colorRef
-			variant="floating"
-			label="Color"
-			[value]="color()"
 			(change)="onChange('color', $event)"
+			[value]="color()"
+			#colorRef
+			label="Color"
+			variant="floating"
 		>
 			@for (c of colors; track c) {
 				<option>
@@ -37,10 +37,10 @@
 			let idx = $index
 		) {
 			<db-select
-				variant="floating"
+				(change)="changeSettings($event, array[0])"
 				[label]="array[0]"
 				[value]="settings()[array[0]]"
-				(change)="changeSettings($event, array[0])"
+				variant="floating"
 			>
 				@for (v of array[1]; track v) {
 					<option>
@@ -54,10 +54,10 @@
 		}
 	</db-drawer>
 	<db-button
+		(click)="open.set(true)"
+		[noText]="true"
 		icon="gear_wheel"
 		variant="ghost"
-		[noText]="true"
-		(click)="open.set(true)"
 	>
 		Settings
 		<db-tooltip> Settings </db-tooltip>

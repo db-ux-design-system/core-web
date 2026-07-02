@@ -86,11 +86,9 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	getChangeableClasses = () => {
-		return `db-density-${this.density} db-color-${this.color}`;
-	};
+	getChangeableClasses = () =>
+		`db-density-${this.density} db-color-${this.color}`;
 
-	getFullscreenClasses = () => {
-		return `fullscreen-container ${this.getChangeableClasses()}`;
-	};
+	getFullscreenClasses = () =>
+		`fullscreen-container ${this.getChangeableClasses()}`;
 }

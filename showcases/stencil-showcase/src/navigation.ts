@@ -275,7 +275,9 @@ function renderSecondaryActions(): string {
 export function renderNavigation(): void {
 	const app = document.querySelector('#app');
 
-	if (!app) return;
+	if (!app) {
+		return;
+	}
 
 	settings = getSettings();
 
@@ -340,7 +342,9 @@ function setNavigationVariant(selector: string, variant: string): void {
 function applyShellSettings(): void {
 	const shell = document.querySelector<ShellElement>('db-shell');
 
-	if (!shell) return;
+	if (!shell) {
+		return;
+	}
 
 	shell.controlPanelDesktopPosition = settings.controlPanelDesktopPosition;
 	shell.controlPanelMobilePosition = settings.controlPanelMobilePosition;
@@ -387,11 +391,15 @@ function initSettingsControls(): void {
 	document.addEventListener('click', (event) => {
 		const eventTarget = event.target;
 
-		if (!(eventTarget instanceof HTMLElement)) return;
+		if (!(eventTarget instanceof HTMLElement)) {
+			return;
+		}
 
 		const toggle = eventTarget.closest('.js-settings-toggle');
 
-		if (!toggle) return;
+		if (!toggle) {
+			return;
+		}
 
 		const drawer = toggle
 			.closest('db-control-panel-primary-actions')
@@ -406,7 +414,9 @@ function initSettingsControls(): void {
 	document.addEventListener('close', (event) => {
 		const eventTarget = event.target;
 
-		if (!(eventTarget instanceof HTMLElement)) return;
+		if (!(eventTarget instanceof HTMLElement)) {
+			return;
+		}
 
 		const drawer = eventTarget.closest<OpenElement>('.js-settings-drawer');
 
@@ -419,13 +429,17 @@ function initSettingsControls(): void {
 	document.addEventListener('change', (event) => {
 		const eventTarget = event.target;
 
-		if (!(eventTarget instanceof HTMLSelectElement)) return;
+		if (!(eventTarget instanceof HTMLSelectElement)) {
+			return;
+		}
 
 		const host = eventTarget.closest<HTMLElement>(
 			'db-select[data-setting]'
 		);
 
-		if (!host) return;
+		if (!host) {
+			return;
+		}
 
 		const { setting } = host.dataset;
 

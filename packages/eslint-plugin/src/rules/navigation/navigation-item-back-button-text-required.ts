@@ -42,11 +42,15 @@ export default {
 			TARGET_COMPONENT,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkNavigationItemGroup = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, TARGET_COMPONENT)) return;
+			if (!isDBComponent(openingElement, TARGET_COMPONENT)) {
+				return;
+			}
 
 			const backButtonText = getAttributeValue(
 				openingElement,
