@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/vue-storybook",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook build --output-dir ../../build-storybooks/vue-storybook",
     "storybook": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6007"
   },
   "dependencies": {
