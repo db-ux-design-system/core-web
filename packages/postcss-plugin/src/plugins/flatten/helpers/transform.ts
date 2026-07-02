@@ -8,6 +8,7 @@ import {
 } from './resolve.js';
 
 /**
+ * @public
  * Collapse `light-dark(x, y)` to just `x` when both arguments are identical
  * after trimming whitespace. Handles nested parentheses correctly.
  * @param value - The CSS value string potentially containing `light-dark()` calls
