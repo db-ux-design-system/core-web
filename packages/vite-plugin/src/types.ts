@@ -7,11 +7,7 @@
  * - `code`: Include code styling
  */
 export type FoundationFeature =
-	| 'icons'
-	| 'helpers'
-	| 'elevation'
-	| 'animations'
-	| 'code';
+	'icons' | 'helpers' | 'elevation' | 'animations' | 'code';
 
 /**
  * Available color schemes for the design system.
