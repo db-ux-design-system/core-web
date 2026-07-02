@@ -77,6 +77,9 @@
 - In an Image + Text row (a 2-cell Grid), the text block is vertically centered against
   the image: give the text `ContainerVertical` `fillHeight: true` and `align: "left"`
   (left = horizontally left, vertically centered).
+- The Grid for a Media/Text row uses `gridLayout: "50-50"` and **`gridGap: "xl"`**.
+  Never use the default gap for media/text rows — the larger gap creates the necessary
+  breathing room between image and copy.
 - Rounded image corners MUST bind a DB radius token (`radius: "radius.lg"` etc.), never a
   raw pixel value. Pass `radius: "none"` for square corners.
 

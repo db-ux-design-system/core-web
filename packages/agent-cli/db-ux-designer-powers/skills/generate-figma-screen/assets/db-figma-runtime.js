@@ -610,8 +610,9 @@ async function renderNode(node, parent) {
       const kids = node.children ?? [];
       const byCount = { 1: "100", 2: "50-50", 3: "(Def) 33-33-33", 4: "25-25-25-25" };
       const layout = node.gridLayout ?? byCount[kids.length] ?? "(Def) 33-33-33";
+      const gap    = node.gridGap   ?? "(Def) md";
       // Append FIRST (settle the tree), configure AFTER, re-resolve cells fresh per child.
-      const g = createLocalInstance("Grid", { Layout: layout });
+      const g = createLocalInstance("Grid", { Layout: layout, Gap: gap });
       parent.appendChild(g);
       fillWidth(g);
       configureGrid(g);
@@ -825,6 +826,8 @@ async function auditTree(root) {
  *   Image     imageHeight (px, default 280); radius = DB radius TOKEN name
  *             ("radius.md" | "radius.lg" | ... , default "radius.lg") or "none".
  *             NEVER a raw pixel number.
+ *   gridGap   Grid gap token: "(Def) md" (default) | "xl" | "2xl" etc.
+ *             Media/Text rows on landing pages use "xl".
  *   gridLayout Grid column split: defaults to the child count (2->"50-50",
  *             3->"(Def) 33-33-33", 4->"25-25-25-25"); override e.g. "66-33" | "25-75".
  *   title       Section: heading text (auto-styled headline + color.text.strong)

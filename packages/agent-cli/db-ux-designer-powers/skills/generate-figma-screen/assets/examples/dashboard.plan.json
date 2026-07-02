@@ -11,7 +11,10 @@
 		"color.text.muted"
 	],
 	"layout": [
-		{ "type": "Header", "appName": "Infrastruktur-Monitor" },
+		{
+			"type": "Header",
+			"appName": "Infrastruktur-Monitor"
+		},
 		{
 			"type": "Section",
 			"fills": "color.background.canvas",
@@ -24,7 +27,9 @@
 					"children": [
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -34,18 +39,37 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "headline", "content": "16,4 Mrd €", "fills": "color.text.strong" },
-												{ "type": "Badge", "props": { "content": "text" }, "label": "Budget", "semantic": "Informational" }
+												{
+													"type": "Text",
+													"style": "headline",
+													"content": "16,4 Mrd €",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "Budget",
+													"semantic": "Informational"
+												}
 											]
 										},
-										{ "type": "Text", "style": "body.sm", "content": "Investitionsvolumen 2026", "fills": "color.text.muted" }
+										{
+											"type": "Text",
+											"style": "body.sm",
+											"content": "Investitionsvolumen 2026",
+											"fills": "color.text.muted"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -55,11 +79,28 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "headline", "content": "1.284 km", "fills": "color.text.strong" },
-												{ "type": "Badge", "props": { "content": "text" }, "label": "Aktiv", "semantic": "Successful" }
+												{
+													"type": "Text",
+													"style": "headline",
+													"content": "1.284 km",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "Aktiv",
+													"semantic": "Successful"
+												}
 											]
 										},
-										{ "type": "Text", "style": "body.sm", "content": "Strecken in Betrieb", "fills": "color.text.muted" }
+										{
+											"type": "Text",
+											"style": "body.sm",
+											"content": "Strecken in Betrieb",
+											"fills": "color.text.muted"
+										}
 									]
 								}
 							]
@@ -71,7 +112,9 @@
 					"children": [
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -81,18 +124,37 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "headline", "content": "98,2 %", "fills": "color.text.strong" },
-												{ "type": "Badge", "props": { "content": "text" }, "label": "Pünktlich", "semantic": "Successful" }
+												{
+													"type": "Text",
+													"style": "headline",
+													"content": "98,2 %",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "Pünktlich",
+													"semantic": "Successful"
+												}
 											]
 										},
-										{ "type": "Text", "style": "body.sm", "content": "Pünktlichkeit Fernverkehr", "fills": "color.text.muted" }
+										{
+											"type": "Text",
+											"style": "body.sm",
+											"content": "Pünktlichkeit Fernverkehr",
+											"fills": "color.text.muted"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -102,18 +164,37 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "headline", "content": "342", "fills": "color.text.strong" },
-												{ "type": "Badge", "props": { "content": "text" }, "label": "Baustellen", "semantic": "Warning" }
+												{
+													"type": "Text",
+													"style": "headline",
+													"content": "342",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "Baustellen",
+													"semantic": "Warning"
+												}
 											]
 										},
-										{ "type": "Text", "style": "body.sm", "content": "Aktive Bauprojekte", "fills": "color.text.muted" }
+										{
+											"type": "Text",
+											"style": "body.sm",
+											"content": "Aktive Bauprojekte",
+											"fills": "color.text.muted"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -123,18 +204,37 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "headline", "content": "27", "fills": "color.text.strong" },
-												{ "type": "Badge", "props": { "content": "text" }, "label": "Störungen", "semantic": "Critical" }
+												{
+													"type": "Text",
+													"style": "headline",
+													"content": "27",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "Störungen",
+													"semantic": "Critical"
+												}
 											]
 										},
-										{ "type": "Text", "style": "body.sm", "content": "Offene Störungen", "fills": "color.text.muted" }
+										{
+											"type": "Text",
+											"style": "body.sm",
+											"content": "Offene Störungen",
+											"fills": "color.text.muted"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -144,11 +244,28 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "headline", "content": "4,7 Mio", "fills": "color.text.strong" },
-												{ "type": "Badge", "props": { "content": "text" }, "label": "Reisende", "semantic": "Informational" }
+												{
+													"type": "Text",
+													"style": "headline",
+													"content": "4,7 Mio",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "Reisende",
+													"semantic": "Informational"
+												}
 											]
 										},
-										{ "type": "Text", "style": "body.sm", "content": "Fahrgäste pro Tag", "fills": "color.text.muted" }
+										{
+											"type": "Text",
+											"style": "body.sm",
+											"content": "Fahrgäste pro Tag",
+											"fills": "color.text.muted"
+										}
 									]
 								}
 							]
@@ -168,7 +285,9 @@
 					"children": [
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -182,21 +301,47 @@
 													"type": "ContainerHorizontal",
 													"gap": "sm",
 													"children": [
-														{ "type": "Text", "style": "headline.sm", "content": "Neubaustrecke Hannover–Bielefeld", "fills": "color.text.strong" },
-														{ "type": "Badge", "props": { "content": "text" }, "label": "Neu", "semantic": "Informational" }
+														{
+															"type": "Text",
+															"style": "headline.sm",
+															"content": "Neubaustrecke Hannover–Bielefeld",
+															"fills": "color.text.strong"
+														},
+														{
+															"type": "Badge",
+															"props": {
+																"content": "text"
+															},
+															"label": "Neu",
+															"semantic": "Informational"
+														}
 													]
 												},
-												{ "type": "Text", "style": "body.sm", "content": "Kapazitätsausbau auf der Nord-Süd-Achse.", "fills": "color.text.weak" }
+												{
+													"type": "Text",
+													"style": "body.sm",
+													"content": "Kapazitätsausbau auf der Nord-Süd-Achse.",
+													"fills": "color.text.weak"
+												}
 											]
 										},
-										{ "type": "Button", "props": { "variant": "filled", "iconOnly": false }, "label": "Details" }
+										{
+											"type": "Button",
+											"props": {
+												"variant": "filled",
+												"iconOnly": false
+											},
+											"label": "Details"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -210,21 +355,47 @@
 													"type": "ContainerHorizontal",
 													"gap": "sm",
 													"children": [
-														{ "type": "Text", "style": "headline.sm", "content": "Ausbau Knoten Köln", "fills": "color.text.strong" },
-														{ "type": "Badge", "props": { "content": "text" }, "label": "Planung", "semantic": "Warning" }
+														{
+															"type": "Text",
+															"style": "headline.sm",
+															"content": "Ausbau Knoten Köln",
+															"fills": "color.text.strong"
+														},
+														{
+															"type": "Badge",
+															"props": {
+																"content": "text"
+															},
+															"label": "Planung",
+															"semantic": "Warning"
+														}
 													]
 												},
-												{ "type": "Text", "style": "body.sm", "content": "Engpassbeseitigung im Rheinland.", "fills": "color.text.weak" }
+												{
+													"type": "Text",
+													"style": "body.sm",
+													"content": "Engpassbeseitigung im Rheinland.",
+													"fills": "color.text.weak"
+												}
 											]
 										},
-										{ "type": "Button", "props": { "variant": "filled", "iconOnly": false }, "label": "Details" }
+										{
+											"type": "Button",
+											"props": {
+												"variant": "filled",
+												"iconOnly": false
+											},
+											"label": "Details"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -238,14 +409,38 @@
 													"type": "ContainerHorizontal",
 													"gap": "sm",
 													"children": [
-														{ "type": "Text", "style": "headline.sm", "content": "Digitale Schiene Deutschland", "fills": "color.text.strong" },
-														{ "type": "Badge", "props": { "content": "text" }, "label": "Aktiv", "semantic": "Successful" }
+														{
+															"type": "Text",
+															"style": "headline.sm",
+															"content": "Digitale Schiene Deutschland",
+															"fills": "color.text.strong"
+														},
+														{
+															"type": "Badge",
+															"props": {
+																"content": "text"
+															},
+															"label": "Aktiv",
+															"semantic": "Successful"
+														}
 													]
 												},
-												{ "type": "Text", "style": "body.sm", "content": "ETCS-Rollout im Kernnetz.", "fills": "color.text.weak" }
+												{
+													"type": "Text",
+													"style": "body.sm",
+													"content": "ETCS-Rollout im Kernnetz.",
+													"fills": "color.text.weak"
+												}
 											]
 										},
-										{ "type": "Button", "props": { "variant": "filled", "iconOnly": false }, "label": "Details" }
+										{
+											"type": "Button",
+											"props": {
+												"variant": "filled",
+												"iconOnly": false
+											},
+											"label": "Details"
+										}
 									]
 								}
 							]
@@ -266,7 +461,9 @@
 					"children": [
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerHorizontal",
@@ -276,18 +473,37 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "body.sm.bold", "content": "08:42", "fills": "color.text.muted" },
-												{ "type": "Text", "style": "body", "content": "Signalstörung Frankfurt Hbf behoben", "fills": "color.text.strong" }
+												{
+													"type": "Text",
+													"style": "body.sm.bold",
+													"content": "08:42",
+													"fills": "color.text.muted"
+												},
+												{
+													"type": "Text",
+													"style": "body",
+													"content": "Signalstörung Frankfurt Hbf behoben",
+													"fills": "color.text.strong"
+												}
 											]
 										},
-										{ "type": "Badge", "props": { "content": "text" }, "label": "Gelöst", "semantic": "Successful" }
+										{
+											"type": "Badge",
+											"props": {
+												"content": "text"
+											},
+											"label": "Gelöst",
+											"semantic": "Successful"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerHorizontal",
@@ -297,18 +513,37 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "body.sm.bold", "content": "07:15", "fills": "color.text.muted" },
-												{ "type": "Text", "style": "body", "content": "Weichenstörung Hamburg-Altona", "fills": "color.text.strong" }
+												{
+													"type": "Text",
+													"style": "body.sm.bold",
+													"content": "07:15",
+													"fills": "color.text.muted"
+												},
+												{
+													"type": "Text",
+													"style": "body",
+													"content": "Weichenstörung Hamburg-Altona",
+													"fills": "color.text.strong"
+												}
 											]
 										},
-										{ "type": "Badge", "props": { "content": "text" }, "label": "In Arbeit", "semantic": "Warning" }
+										{
+											"type": "Badge",
+											"props": {
+												"content": "text"
+											},
+											"label": "In Arbeit",
+											"semantic": "Warning"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerHorizontal",
@@ -318,11 +553,28 @@
 											"type": "ContainerHorizontal",
 											"gap": "sm",
 											"children": [
-												{ "type": "Text", "style": "body.sm.bold", "content": "06:03", "fills": "color.text.muted" },
-												{ "type": "Text", "style": "body", "content": "Oberleitungsschaden Strecke Ulm–Augsburg", "fills": "color.text.strong" }
+												{
+													"type": "Text",
+													"style": "body.sm.bold",
+													"content": "06:03",
+													"fills": "color.text.muted"
+												},
+												{
+													"type": "Text",
+													"style": "body",
+													"content": "Oberleitungsschaden Strecke Ulm–Augsburg",
+													"fills": "color.text.strong"
+												}
 											]
 										},
-										{ "type": "Badge", "props": { "content": "text" }, "label": "Kritisch", "semantic": "Critical" }
+										{
+											"type": "Badge",
+											"props": {
+												"content": "text"
+											},
+											"label": "Kritisch",
+											"semantic": "Critical"
+										}
 									]
 								}
 							]

@@ -10,7 +10,10 @@
 		"color.text.weak"
 	],
 	"layout": [
-		{ "type": "Header", "appName": "DB UX Design System" },
+		{
+			"type": "Header",
+			"appName": "DB UX Design System"
+		},
 		{
 			"type": "Section",
 			"fills": "color.background.canvas",
@@ -21,7 +24,14 @@
 			"titleStyle": "display",
 			"descriptionStyle": "body",
 			"children": [
-				{ "type": "Button", "props": { "variant": "brand", "iconOnly": false }, "label": "Loslegen" }
+				{
+					"type": "Button",
+					"props": {
+						"variant": "brand",
+						"iconOnly": false
+					},
+					"label": "Loslegen"
+				}
 			]
 		},
 		{
@@ -36,7 +46,9 @@
 					"children": [
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -46,18 +58,37 @@
 											"type": "ContainerVertical",
 											"gap": "2xs",
 											"children": [
-												{ "type": "Text", "style": "headline.sm", "content": "Barrierefrei", "fills": "color.text.strong" },
-												{ "type": "Text", "style": "body.sm", "content": "WCAG-konforme Komponenten out of the box.", "fills": "color.text.weak" }
+												{
+													"type": "Text",
+													"style": "headline.sm",
+													"content": "Barrierefrei",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Text",
+													"style": "body.sm",
+													"content": "WCAG-konforme Komponenten out of the box.",
+													"fills": "color.text.weak"
+												}
 											]
 										},
-										{ "type": "Button", "props": { "variant": "filled", "iconOnly": false }, "label": "Mehr erfahren" }
+										{
+											"type": "Button",
+											"props": {
+												"variant": "filled",
+												"iconOnly": false
+											},
+											"label": "Mehr erfahren"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -67,18 +98,37 @@
 											"type": "ContainerVertical",
 											"gap": "2xs",
 											"children": [
-												{ "type": "Text", "style": "headline.sm", "content": "Framework-agnostisch", "fills": "color.text.strong" },
-												{ "type": "Text", "style": "body.sm", "content": "Angular, React, Vue und Web Components.", "fills": "color.text.weak" }
+												{
+													"type": "Text",
+													"style": "headline.sm",
+													"content": "Framework-agnostisch",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Text",
+													"style": "body.sm",
+													"content": "Angular, React, Vue und Web Components.",
+													"fills": "color.text.weak"
+												}
 											]
 										},
-										{ "type": "Button", "props": { "variant": "filled", "iconOnly": false }, "label": "Mehr erfahren" }
+										{
+											"type": "Button",
+											"props": {
+												"variant": "filled",
+												"iconOnly": false
+											},
+											"label": "Mehr erfahren"
+										}
 									]
 								}
 							]
 						},
 						{
 							"type": "Card",
-							"props": { "elevationLevel": "1" },
+							"props": {
+								"elevationLevel": "1"
+							},
 							"children": [
 								{
 									"type": "ContainerVertical",
@@ -88,11 +138,28 @@
 											"type": "ContainerVertical",
 											"gap": "2xs",
 											"children": [
-												{ "type": "Text", "style": "headline.sm", "content": "Token-basiert", "fills": "color.text.strong" },
-												{ "type": "Text", "style": "body.sm", "content": "Design Tokens für Farben, Abstände und Typografie.", "fills": "color.text.weak" }
+												{
+													"type": "Text",
+													"style": "headline.sm",
+													"content": "Token-basiert",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Text",
+													"style": "body.sm",
+													"content": "Design Tokens für Farben, Abstände und Typografie.",
+													"fills": "color.text.weak"
+												}
 											]
 										},
-										{ "type": "Button", "props": { "variant": "filled", "iconOnly": false }, "label": "Mehr erfahren" }
+										{
+											"type": "Button",
+											"props": {
+												"variant": "filled",
+												"iconOnly": false
+											},
+											"label": "Mehr erfahren"
+										}
 									]
 								}
 							]
@@ -109,7 +176,14 @@
 			"title": "Bereit für konsistente Produkte?",
 			"description": "Starte in wenigen Minuten mit dem DB UX Design System.",
 			"children": [
-				{ "type": "Button", "props": { "variant": "brand", "iconOnly": false }, "label": "Dokumentation öffnen" }
+				{
+					"type": "Button",
+					"props": {
+						"variant": "brand",
+						"iconOnly": false
+					},
+					"label": "Dokumentation öffnen"
+				}
 			]
 		}
 	]
