@@ -73,6 +73,10 @@ on_error:
 > setBoundVariable, createFrame, etc.) WITHOUT having first authored a Composition Plan JSON
 > and pasted the render runtime (`assets/db-figma-runtime.js`) verbatim → STOP immediately.
 > Read this skill from the top. There is NO shortcut. Every screen goes through `renderPlan`.
+>
+> **OUTPUT IS ALWAYS A FIGMA FRAME — NEVER HTML, CSS, JSX or any workspace file.**
+> If you are about to create or edit a file in the workspace: STOP.
+> The only permitted output is a rendered frame in the Figma file via `use_figma` + `renderPlan`.
 
 Turns a prompt into a DB UX-compliant Figma screen. The agent authors a declarative
 **Composition Plan (JSON)** and hands it to the hardened **render runtime**

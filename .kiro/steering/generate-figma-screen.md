@@ -19,6 +19,10 @@ https://www.figma.com/design/uI6oKmJ0qDhsEuE0nFah2W/...?node-id=177-1091
 
 ## Pflichtprozess – NIEMALS umgehen
 
+> **OUTPUT IST IMMER EIN FIGMA-FRAME — NIEMALS HTML, CSS, JSX oder andere Code-Dateien.**
+> Wenn du daran denkst, eine Datei im Workspace zu erstellen oder zu bearbeiten: STOP.
+> Der einzige erlaubte Output ist ein gerenderter Frame in der Figma-Datei via `use_figma` + `renderPlan`.
+
 Der Agent darf **keinen** imperativen Figma-Node-Code schreiben (`createFrame`, `createInstance`, `appendChild`, `setBoundVariable` direkt). Jeder Screen läuft ausschließlich über den folgenden Prozess:
 
 1. **Composition Plan (JSON)** erstellen – ein deklaratives Layout-Objekt mit `screen`, `targetNodeId` und `layout[]`.

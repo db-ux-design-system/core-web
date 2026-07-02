@@ -1,17 +1,18 @@
 {
   "enabled": true,
   "name": "Figma Screen – Skill Enforcement",
-  "description": "Before any Figma write (use_figma) call, verifies the agent is following the generate-figma-screen skill: Composition Plan authored, db-figma-runtime.js pasted verbatim, renderPlan called. Blocks hand-written imperative Figma node code.",
+  "description": "Before any Figma write or workspace file write, verifies the agent is following the generate-figma-screen skill and not building HTML/CSS prototypes instead of rendering in Figma.",
   "version": "1",
   "when": {
     "type": "preToolUse",
     "toolTypes": [
       ".*use_figma.*",
-      ".*figma.*write.*"
+      ".*figma.*write.*",
+      "write"
     ]
   },
   "then": {
     "type": "askAgent",
-    "prompt": "You are about to write to a Figma file. STOP and verify:\n1. Have you read the generate-figma-screen SKILL.md from `db-ux-designer-powers/skills/generate-figma-screen/SKILL.md`?\n2. Have you authored a Composition Plan (JSON) with `layout`, `screen`, and `targetNodeId`?\n3. Does your use_figma code paste `assets/db-figma-runtime.js` verbatim and call `renderPlan(PLAN)`?\n4. Are you NOT using createFrame / createInstance / appendChild / setBoundVariable directly?\n\nIf ALL four are YES → proceed with the EXACT same tool call parameters.\nIf ANY is NO → STOP. Read the SKILL.md first, then author the plan and paste the runtime before calling use_figma. Never write imperative Figma node code directly."
+    "prompt": "STOP before proceeding. Check the active context:\n\nIs the current task triggered by 'DB Designer:' or '#generate-figma-screen'?\n\nIF YES:\n  The output MUST be a rendered Figma frame — NEVER an HTML, CSS, JSX or any other workspace file.\n  If you are about to create or edit a file in the workspace: ABORT. That is the wrong output.\n\n  Verify instead:\n  1. Have you read `db-ux-designer-powers/skills/generate-figma-screen/SKILL.md`?\n  2. Have you authored a Composition Plan (JSON) with `layout`, `screen`, and `targetNodeId`?\n  3. Will your use_figma code paste `assets/db-figma-runtime.js` verbatim and call `renderPlan(PLAN)`?\n  4. Are you NOT using createFrame / createInstance / appendChild / setBoundVariable directly?\n\n  If all four YES → proceed with the Figma render call (use_figma + renderPlan).\n  If any NO → read the SKILL.md first, then author the plan.\n\nIF NO (normal coding task): proceed with the EXACT same tool call parameters."
   }
 }
