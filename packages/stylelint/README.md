@@ -10,8 +10,6 @@ npm install stylelint @db-ux/core-stylelint --save-dev
 
 > **Note:** We recommend installing `stylelint-config-standard`, `stylelint-use-logical` & `@double-great/stylelint-a11y` as well.
 
-````shell
-
 ## Usage
 
 Add this to your `.stylelintrc.json` configuration file:
@@ -23,7 +21,7 @@ Add this to your `.stylelintrc.json` configuration file:
 		"@db-ux/core-stylelint"
 	]
 }
-````
+```
 
 ## Rules
 
