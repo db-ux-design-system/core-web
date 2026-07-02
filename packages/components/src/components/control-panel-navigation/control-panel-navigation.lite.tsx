@@ -457,6 +457,9 @@ export default function DBControlPanelNavigation(
 					(menu as HTMLElement).removeAttribute('role');
 				}
 
+				// Remove forwarded aria-label from the <menu> when not in tree variant
+				(menuRef as HTMLElement).removeAttribute('aria-label');
+
 				for (const navItem of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
 						'.db-control-panel-navigation-item[role="none"], .db-control-panel-navigation-item-group[role="none"]'
@@ -481,6 +484,17 @@ export default function DBControlPanelNavigation(
 				)) {
 					(menu as HTMLElement).style.position = '';
 					(menu as HTMLElement).setAttribute('role', 'group');
+				}
+
+				// Forward aria-label from the <nav> to the <menu role="tree">
+				const navAriaLabel = (_ref as HTMLElement)?.getAttribute(
+					'aria-label'
+				);
+				if (navAriaLabel) {
+					(menuRef as HTMLElement).setAttribute(
+						'aria-label',
+						navAriaLabel
+					);
 				}
 
 				const allTreeItems: HTMLElement[] = [];

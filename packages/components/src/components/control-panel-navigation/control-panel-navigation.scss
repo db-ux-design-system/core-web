@@ -177,4 +177,10 @@
 	&[data-variant="tree"] {
 		@extend %tree-navigation;
 	}
+
+	.overflow-scroll-left-button,
+	.overflow-scroll-right-button {
+		// We hide the overflow buttons, only showing them in horizontal desktop
+		display: none;
+	}
 }

@@ -64,6 +64,7 @@ const testAction = () => {
 				open={true}
 				onClose={() => (test = 'close')}
 				header={<DBDrawerHeader>Title</DBDrawerHeader>}>
+				{/*<template v-slot:header><DBDrawerHeader>Title</DBDrawerHeader></template>*/}
 				<span data-testid="test">Test</span>
 			</DBDrawer>
 		);

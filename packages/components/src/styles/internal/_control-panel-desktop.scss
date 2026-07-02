@@ -120,11 +120,6 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		padding-block: $control-panel-desktop-vertical-padding-block;
 	}
 
-	#{string.unquote(custom-elements.$overflow-scroll-left-button)},
-	#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
-		display: none;
-	}
-
 	&:not([data-variant]),
 	&[data-variant="popover"] {
 		> menu {
@@ -203,6 +198,11 @@ $control-panel-desktop-vertical-padding-inline: calc(
 
 		&::before {
 			inset-block: #{$control-panel-desktop-horizontal-padding-block};
+		}
+
+		.overflow-scroll-left-button,
+		.overflow-scroll-right-button {
+			display: flex;
 		}
 	}
 

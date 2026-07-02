@@ -76,6 +76,7 @@ export default function DBControlPanelDesktop(
 			data-width={props.width}
 			data-orientation={props.orientation}
 			data-open={getBooleanAsString(state._open)}>
+			<Slot name="skipNavigation" />
 			<div class="db-control-panel-desktop-brand-container">
 				<Slot name="brand" />
 			</div>

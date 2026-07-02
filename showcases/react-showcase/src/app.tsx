@@ -2,6 +2,7 @@ import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
+	DBControlPanelSkipNavigation,
 	DBShell,
 	DBShellContent,
 	DBShellSubNavigation
@@ -42,8 +43,7 @@ const App = () => {
 			controlPanelMobilePosition={settings.controlPanelMobilePosition}
 			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
 			subNavigationMobilePosition={settings.subNavigationMobilePosition}
-			showSubNavigation={settings.subNavigation === 'true'}
-			skipNavigationLink={<a href="#main-content">Skip navigation</a>}>
+			showSubNavigation={settings.subNavigation === 'true'}>
 			<DBShellSubNavigation>
 				<Navigation
 					variant={settings.subNavigationVariant}
@@ -51,6 +51,11 @@ const App = () => {
 				/>
 			</DBShellSubNavigation>
 			<DBControlPanelMobile
+				skipNavigation={
+					<DBControlPanelSkipNavigation>
+						<a href="#main-content">Skip navigation</a>
+					</DBControlPanelSkipNavigation>
+				}
 				brand={<DBControlPanelBrand data-logo="db-systel" />}
 				primaryActions={
 					<PrimaryActions
@@ -67,6 +72,11 @@ const App = () => {
 				<Navigation variant={settings.navigationMobileVariant} />
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
+				skipNavigation={
+					<DBControlPanelSkipNavigation>
+						<a href="#main-content">Skip navigation</a>
+					</DBControlPanelSkipNavigation>
+				}
 				brand={<DBControlPanelBrand data-logo="db-systel" />}
 				metaNavigation={<MetaNavigation />}
 				primaryActions={

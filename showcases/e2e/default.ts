@@ -196,7 +196,7 @@ export const runAxeCoreTest = ({
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
-			.include('main')
+			.include('#main-content')
 			.disableRules(axeDisableRules ?? [])
 			.analyze();
 
@@ -290,7 +290,10 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		let snapshot = await page.locator('main').ariaSnapshot();
+		let snapshot = await page
+			.locator('#main-content')
+			.first()
+			.ariaSnapshot();
 
 		// Remove `/url` in snapshot because they differ in every showcase
 		const lines = snapshot.split('\n');

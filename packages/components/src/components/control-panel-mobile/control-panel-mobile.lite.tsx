@@ -62,6 +62,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			data-position={props.position}
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
+			<Slot name="skipNavigation" />
 			<DBDrawer
 				header={<DBDrawerHeader text={props.drawerHeaderText} />}
 				className="db-control-panel-mobile-drawer"

@@ -89,11 +89,6 @@
 					padding: variables.$db-spacing-fixed-xs
 						component.$drawer-content-padding-inline;
 
-					#{string.unquote(custom-elements.$overflow-scroll-left-button)},
-					#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
-						display: none;
-					}
-
 					/* jscpd:ignore-start */
 					> menu {
 						@include navigation-item.direct-navigation-items {

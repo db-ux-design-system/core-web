@@ -151,7 +151,7 @@ const testDrawerInteraction = () => {
 		await expect(dialog).toHaveAttribute('open');
 		// Click on the "Home" nav item link inside the drawer
 		const navLink = page.locator(
-			'.db-control-panel-mobile-drawer .db-control-panel-navigation-item a'
+			'dialog .db-control-panel-navigation-item a'
 		);
 		await navLink.first().click();
 		await expect(dialog).not.toHaveAttribute('open');

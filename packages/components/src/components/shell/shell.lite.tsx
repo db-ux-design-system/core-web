@@ -1,12 +1,10 @@
 import {
 	onMount,
-	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { MAIN_CONTENT_ID } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DBShellProps, DBShellState } from './model';
 
@@ -62,16 +60,6 @@ export default function DBShell(props: DBShellProps) {
 			)}
 			data-fade-in={getBooleanAsString(props.fadeIn, 'fadeIn')}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
-			<div class="db-shell-skip-navigation-link-container">
-				<Show
-					when={props.skipNavigationLinkText}
-					else={props.skipNavigationLink}>
-					<a
-						href={`#${props.skipNavigationTarget ?? MAIN_CONTENT_ID}`}>
-						{props.skipNavigationLinkText}
-					</a>
-				</Show>
-			</div>
 			{props.children}
 		</div>
 	);

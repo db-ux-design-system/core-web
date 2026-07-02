@@ -103,8 +103,8 @@ export default function ShellFlatIcon() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelFlatIcon>
-					<DBShellSubNavigation>
-						<DBControlPanelNavigation>
+					<DBShellSubNavigation aria-label="shell-flat-icon-with-text-sub-nav">
+						<DBControlPanelNavigation aria-label="shell-flat-icon-with-text-sub-nav">
 							<DBControlPanelNavigationItem active>
 								<a href="#">Test 1</a>
 							</DBControlPanelNavigationItem>
@@ -147,8 +147,8 @@ export default function ShellFlatIcon() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelFlatIcon>
-					<DBShellSubNavigation>
-						<DBControlPanelNavigation>
+					<DBShellSubNavigation aria-label="shell-flat-icon-no-text-sub-nav">
+						<DBControlPanelNavigation aria-label="shell-flat-icon-no-text-sub-nav">
 							<DBControlPanelNavigationItem active>
 								<a href="#">Test 1</a>
 							</DBControlPanelNavigationItem>

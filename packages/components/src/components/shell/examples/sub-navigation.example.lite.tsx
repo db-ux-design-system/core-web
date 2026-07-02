@@ -128,7 +128,7 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellSubNavigation>
+					<DBShellSubNavigation aria-label="shell-top-sub-top-sub">
 						<DBControlPanelNavigation aria-label="shell-top-sub-top-sub">
 							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
@@ -258,7 +258,7 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellSubNavigation>
+					<DBShellSubNavigation aria-label="shell-top-sub-left-sub">
 						<DBControlPanelNavigation aria-label="shell-top-sub-left-sub">
 							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
@@ -388,7 +388,7 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellSubNavigation>
+					<DBShellSubNavigation aria-label="shell-top-sub-left-tree-sub">
 						<DBControlPanelNavigation
 							variant="tree"
 							aria-label="shell-top-sub-left-tree-sub">
@@ -521,7 +521,7 @@ export default function ShellSubNavigation() {
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
-					<DBShellSubNavigation>
+					<DBShellSubNavigation aria-label="shell-left-sub-top-sub">
 						<DBControlPanelNavigation aria-label="shell-left-sub-top-sub">
 							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>

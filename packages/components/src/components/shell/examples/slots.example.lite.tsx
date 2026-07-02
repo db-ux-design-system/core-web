@@ -306,7 +306,7 @@ export default function ShellSlots() {
 					</DBControlPanelMobile>
 					<DBShellContent
 						mainId="main-content-slots-group-badge"
-						mainLabel="shell-slots-group-badge">
+						mainLabel="shell-slots-group-badge-mobile">
 						Group with Badge - StartSlot and EndSlot
 					</DBShellContent>
 				</DBShell>

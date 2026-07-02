@@ -1,6 +1,7 @@
 import {
 	onUnMount,
 	onUpdate,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -74,6 +75,7 @@ export default function DBControlPanelFlatIcon(
 			id={props.id ?? props.propOverrides?.id}
 			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			class={cls('db-control-panel-flat-icon', props.className)}>
+			<Slot name="skipNavigation" />
 			{props.children}
 		</header>
 	);

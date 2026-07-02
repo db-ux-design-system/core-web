@@ -768,6 +768,10 @@ export type ControlPanelProps = {
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
 	secondaryActions?: any;
+	/**
+	 * Slot to pass an anchor or link to skip the navigation and jump to main content.
+	 */
+	skipNavigation?: any;
 };
 
 export type NoTextProps = {

@@ -30,6 +30,8 @@ export * from './components/control-panel-primary-actions';
 export * from './components/control-panel-primary-actions/model';
 export * from './components/control-panel-secondary-actions';
 export * from './components/control-panel-secondary-actions/model';
+export * from './components/control-panel-skip-navigation';
+export * from './components/control-panel-skip-navigation/model';
 export * from './components/custom-button';
 export * from './components/custom-button/model';
 export * from './components/custom-select';

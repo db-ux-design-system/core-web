@@ -158,11 +158,6 @@
 
 			@include control-panel-desktop.horizontal-navigation(false);
 
-			#{string.unquote(custom-elements.$overflow-scroll-left-button)},
-			#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
-				display: none;
-			}
-
 			> menu {
 				padding-block: variables.$db-spacing-fixed-xs;
 

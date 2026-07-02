@@ -29,6 +29,10 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'control-panel-skip-navigation'
+	},
+
+	{
 		name: 'drawer-footer'
 	},
 

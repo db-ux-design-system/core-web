@@ -1,7 +1,8 @@
 $custom-elements: //hygen-insert
 
-	db-shell-sub-navigation, db-control-panel-flat-icon, db-drawer-footer,
-	db-drawer-header, db-shell-content, db-control-panel-navigation-item-group,
+	db-control-panel-skip-navigation, db-shell-sub-navigation,
+	db-control-panel-flat-icon, db-drawer-footer, db-drawer-header,
+	db-shell-content, db-control-panel-navigation-item-group,
 	db-control-panel-secondary-actions, db-control-panel-primary-actions,
 	db-control-panel-meta, db-control-panel-mobile, db-table-data-cell,
 	db-table-header-cell, db-table-row, db-table-footer, db-table-body,
@@ -33,5 +34,3 @@ $control-panel-navigation-item-group: get-sub-component(
 	db-control-panel-navigation-item-group
 );
 $shell-sub-navigation: get-sub-component(db-shell-sub-navigation);
-$overflow-scroll-right-button: "> .overflow-scroll-right-button, > db-button > .overflow-scroll-right-button";
-$overflow-scroll-left-button: "> .overflow-scroll-left-button, > db-button > .overflow-scroll-left-button";
