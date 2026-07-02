@@ -1,35 +1,171 @@
 <!-- [html-validate-disable attr-case] -->
 <div class="form-container">
-	<div>
-		<app-signal-forms></app-signal-forms>
+	<!-- Signal Forms -->
+	<section>
+		<h2>Signal Forms — DB UX Components</h2>
 
-		<p>Switch with Angular signals</p>
-		<db-switch
-			[checked]="checkedSignal()"
-			(change)="handleSwitchChange($event)"
-			label="My Switch"
+		<h3>DBInput</h3>
+		<db-input
+			label="Benutzername"
+			[formField]="userForm.username"
+			[validation]="fieldValidation(userForm.username)"
+		></db-input>
+		<db-input
+			label="E-Mail"
+			type="email"
+			[formField]="userForm.email"
+			[validation]="fieldValidation(userForm.email)"
+		></db-input>
+		<db-input
+			label="Passwort"
+			type="password"
+			[formField]="userForm.password"
+			[validation]="fieldValidation(userForm.password)"
+		></db-input>
+		<db-input
+			label="Alter"
+			type="number"
+			[formField]="userForm.age"
+			[validation]="fieldValidation(userForm.age)"
+		></db-input>
+		<db-input
+			label="Geburtstag"
+			type="date"
+			[formField]="userForm.birthday"
+		></db-input>
+		<db-input
+			label="Uhrzeit"
+			type="time"
+			[formField]="userForm.appointmentTime"
+		></db-input>
+		<db-input
+			label="Termin (Datum + Uhrzeit)"
+			type="datetime-local"
+			[formField]="userForm.appointmentDateTime"
+		></db-input>
+		<db-input
+			label="Website"
+			type="url"
+			[formField]="userForm.website"
+			[validation]="fieldValidation(userForm.website)"
+		></db-input>
+		@if (!userForm.phone().hidden()) {
+			<db-input
+				label="Telefon"
+				type="tel"
+				[formField]="userForm.phone"
+				[validation]="fieldValidation(userForm.phone)"
+			></db-input>
+		} @else {
+			<p><em>Telefon-Feld ist hidden (Kontaktmethode ≠ "phone")</em></p>
+		}
+		<db-input
+			label="Suche"
+			type="search"
+			[formField]="userForm.search"
+		></db-input>
+
+		<h3>DBSelect</h3>
+		<db-select
+			label="Land"
+			[formField]="userForm.country"
+			[validation]="fieldValidation(userForm.country)"
 		>
-		</db-switch>
-		<p>Switch with signals {{ checkedSignal() }}</p>
-	</div>
-	<div>
-		<h1>Output</h1>
+			<option value="de">Deutschland</option>
+			<option value="at">Österreich</option>
+			<option value="ch">Schweiz</option>
+		</db-select>
 
-		<db-tag><db-checkbox>Checkbox</db-checkbox></db-tag>
-		<db-tag><db-radio>Checkbox</db-radio></db-tag>
-		<db-tag><db-button>Checkbox</db-button></db-tag>
+		<h3>DBCustomSelect</h3>
+		<db-custom-select
+			label="Stadt"
+			[formField]="userForm.city"
+			[multiple]="true"
+			[options]="cityOptions"
+		></db-custom-select>
 
+		<h3>DBTextarea</h3>
+		<db-textarea
+			label="Biografie"
+			[formField]="userForm.bio"
+			[rows]="4"
+			[validation]="fieldValidation(userForm.bio)"
+		></db-textarea>
+
+		<h3>DBCheckbox</h3>
+		<db-checkbox
+			label="Newsletter abonnieren"
+			[formField]="userForm.newsletter"
+		></db-checkbox>
+
+		<h3>DBRadio</h3>
+		<fieldset>
+			<legend>Bevorzugte Kontaktmethode</legend>
+			<db-radio
+				label="E-Mail"
+				name="contactMethod"
+				[checked]="userForm.contactMethod().value() === 'email'"
+				(change)="userForm.contactMethod().value.set('email')"
+			></db-radio>
+			<db-radio
+				label="Telefon"
+				name="contactMethod"
+				[checked]="userForm.contactMethod().value() === 'phone'"
+				(change)="userForm.contactMethod().value.set('phone')"
+			></db-radio>
+			<db-radio
+				label="Brief"
+				name="contactMethod"
+				[checked]="userForm.contactMethod().value() === 'letter'"
+				(change)="userForm.contactMethod().value.set('letter')"
+			></db-radio>
+		</fieldset>
+
+		<h3>DBSwitch (Signal Forms)</h3>
+		<db-switch
+			label="Dark Mode"
+			[formField]="userForm.darkMode"
+		></db-switch>
+
+		<h3>Form State</h3>
+		<output>
+			<pre>{{ userForm().value() | json }}</pre>
+		</output>
+	</section>
+
+	<!-- Other showcase elements -->
+	<section>
+		<h2>Standalone Switch</h2>
+		<db-switch
+			label="My Switch"
+			(change)="handleSwitchChange($event)"
+			[checked]="checkedSignal()"
+		></db-switch>
+		<p>Switch with signals: {{ checkedSignal() }}</p>
+
+		<h2>Tag + nested components</h2>
+		<db-tag>
+			<db-checkbox>Checkbox</db-checkbox>
+		</db-tag>
+		<db-tag>
+			<db-radio>Radio</db-radio>
+		</db-tag>
+		<db-tag>
+			<db-button>Button</db-button>
+		</db-tag>
+
+		<h2>Tabs</h2>
 		<db-tabs orientation="vertical">
 			<db-tab-list>
 				<db-tab-item icon="x_placeholder">Airplane Button</db-tab-item>
-				<db-tab-item iconTrailing="cancel">Cancel Button</db-tab-item>
-				<db-tab-item iconTrailing="cancel">
+				<db-tab-item icon-trailing="cancel">Cancel Button</db-tab-item>
+				<db-tab-item icon-trailing="cancel">
 					Long Button Label with a lot of text
 				</db-tab-item>
-				<db-tab-item icon="x_placeholder" iconTrailing="cancel">
+				<db-tab-item icon="x_placeholder" icon-trailing="cancel">
 					Another Button Label with a lot of text
 				</db-tab-item>
-				<db-tab-item icon="x_placeholder" [noText]="true"></db-tab-item>
+				<db-tab-item icon="x_placeholder" no-text="true"></db-tab-item>
 			</db-tab-list>
 			<db-tab-panel>
 				It is a long established fact that a reader will be distracted
@@ -48,12 +184,12 @@
 			close.
 		</p>
 		<db-button (click)="drawerOpen = true">Open Drawer</db-button>
-		<db-drawer [open]="drawerOpen" (close)="drawerOpen = false">
+		<db-drawer (close)="drawerOpen = false" [open]="drawerOpen">
 			<span drawer-header>Drawer Header</span>
-			<db-infotext style="margin: 100px; display: flex">
+			<db-infotext>
 				Test: Mouse down here, drag to backdrop, release. Drawer should
 				stay open.
 			</db-infotext>
 		</db-drawer>
-	</div>
+	</section>
 </div>
