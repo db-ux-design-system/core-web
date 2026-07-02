@@ -1,0 +1,281 @@
+{
+  "_meta": {
+    "library": "DB UX DS v3 - Core Components - v4.13.0",
+    "libraryKey": "lk-28a3e643a84a4a7eb262f30f43c9e84c74f2e698e3cbaf4a0e91d6f1e00b3d5243c9df8e96e05ff5562fc620238556c89a86ae8bef8c1ce07b7428f9f8b5a960",
+    "schema": "Keyed by CANONICAL component (docs/code identity). Figma splits a component into multiple component_sets for performance only; those live under figmaSets with their exact Figma name + key + axes. The agent reasons in canonical name + props; axes resolve to the right figma set key.",
+    "resolution": "1) find canonical component by name. 2) match desired props against figmaSets[*].axes. 3) importComponentSetByKeyAsync(key). 4) pick variant child + createInstance(). If no axes match, STOP and report.",
+    "naming": "❌ = deprecated, ↳ / 🛟 = helper/subcomponent (only inside parent), (Beta)/(Concept) = maturity.",
+    "coreLab": "Concept components in db-lab-component-registry.json (require user confirmation)."
+  },
+
+  "components": {
+    "Button": {
+      "codeName": "button", "maturity": "Stable", "required": true,
+      "labelNodePath": "Container > Text",
+      "note": "Figma splits Button by variant (and icon-only) for performance; conceptually one Button component with props variant/size/icon.",
+      "figmaSets": {
+        "Button → Brand": { "key": "bcd676a2ab5beb47eef54a9f36d74d91f2aa4a20", "axes": { "variant": "brand", "iconOnly": false } },
+        "Button → Filled": { "key": "324c20d16cf7f1a285279547f4d9ca1407df39ed", "axes": { "variant": "filled", "iconOnly": false } },
+        "Button → (Def) Outlined": { "key": "8c488eae78e6f082da0be2571ba7a0dd26caf962", "axes": { "variant": "outlined", "iconOnly": false } },
+        "Button → Ghost": { "key": "46f934fb9da2c1bcfc1d357cf04694b888400c19", "axes": { "variant": "ghost", "iconOnly": false } },
+        "Icon Button → Brand": { "key": "d3d9596ab2f065b22e89fbfbc0163f51967d5eff", "axes": { "variant": "brand", "iconOnly": true } },
+        "Icon Button → Filled": { "key": "890bbab6c64b4357b781cfee90ac524c7337c0f3", "axes": { "variant": "filled", "iconOnly": true } },
+        "Icon Button → (Def) Outlined": { "key": "92bbe193756813cbe30f9b8448043016318ff097", "axes": { "variant": "outlined", "iconOnly": true } },
+        "Icon Button → Ghost": { "key": "647b29562542c1141dd918ce1f0095157db64459", "axes": { "variant": "ghost", "iconOnly": true } }
+      },
+      "forbiddenFallback": "Never recreate or recolor a Button. No fake white/inverted variants."
+    },
+    "Card": {
+      "codeName": "card", "maturity": "Beta", "required": true, "contentSlot": "Children",
+      "note": "Figma splits Card by elevation level; one Card component with prop elevationLevel.",
+      "figmaSets": {
+        "Card → (Def) Level 1 (Beta)": { "key": "ac60c14fe38796f4d53e293d9b8cc813a9079193", "axes": { "elevationLevel": "1" } },
+        "Card → Level 2 (Beta)": { "key": "245f3f9d7c51155844b58acfd939a21a473aefce", "axes": { "elevationLevel": "2" } },
+        "Card → Level 3 (Beta)": { "key": "f5ac595ff7bbc6ae121b29dbc5f45246fcc8d3c9", "axes": { "elevationLevel": "3" } },
+        "❌ Card → (Def) Level 1 (Deprecated)": { "key": "752f46efea6fac9957607dd5726a3bc9f7a12952", "axes": { "elevationLevel": "1" }, "deprecated": true },
+        "❌ Card → Level 2 (Deprecated)": { "key": "dc15fd32983de6a773dbcba6c6000b3dab25aee8", "axes": { "elevationLevel": "2" }, "deprecated": true },
+        "❌ Card → Level 3 (Deprecated)": { "key": "afea88eec3a56713d81e497d7a8dae54ab28ede8", "axes": { "elevationLevel": "3" }, "deprecated": true }
+      },
+      "forbiddenFallback": "Never recreate a Card with a custom frame. Use the 'Children' slot."
+    },
+
+    "Tag": {
+      "codeName": "tag", "maturity": "Beta", "required": true,
+      "labelNodePath": "children[1] > children[0] > children[3] > children[0]",
+      "note": "Figma splits Tag by icon/emphasis/behavior for performance; one Tag component with props icon/emphasis/behavior.",
+      "figmaSets": {
+        "(Def) Tag → (Def) Weak - (Def) Static (Beta)": { "key": "d0ad401dcfc5665cc2d10f920c71f30007caafe5", "axes": { "icon": false, "emphasis": "weak", "behavior": "static" } },
+        "(Def) Tag → Strong - (Def) Static (Beta)": { "key": "d572ddecf60d3a16a72c799af2c97a72932df0af", "axes": { "icon": false, "emphasis": "strong", "behavior": "static" } },
+        "(Def) Tag → (Def) Weak - Removable (Beta)": { "key": "eda7e0b0091a5e9210befc179f3e45013e9aa519", "axes": { "icon": false, "emphasis": "weak", "behavior": "removable" } },
+        "(Def) Tag → (Def) Weak - Interactive (Beta)": { "key": "34fa98d8e15e9b0aa8a34295d362ebce154818bb", "axes": { "icon": false, "emphasis": "weak", "behavior": "interactive" } },
+        "(Def) Tag → (Def) Weak - Interactive Toggle (Beta)": { "key": "51e393a136b8035ea1d973a1fb7b2de6a32d7e17", "axes": { "icon": false, "emphasis": "weak", "behavior": "interactive-toggle" } },
+        "(Def) Tag → Strong - Removable (Beta)": { "key": "38b63c37cbdb5c8c693fbb1143190e69c0fd9c2a", "axes": { "icon": false, "emphasis": "strong", "behavior": "removable" } },
+        "(Def) Tag → Strong - Interactive (Beta)": { "key": "4e0a4801ff8321e83b5117ad744a2e0f86c4a10e", "axes": { "icon": false, "emphasis": "strong", "behavior": "interactive" } },
+        "(Def) Tag → Strong - Interactive Toggle (Beta)": { "key": "1512a97edef89e7083cde217fb9dd3fa472391b0", "axes": { "icon": false, "emphasis": "strong", "behavior": "interactive-toggle" } },
+        "Icon Tag → (Def) Weak - (Def) Static (Beta)": { "key": "d2deb712823dc6af00070c3f330c5c5f800be169", "axes": { "icon": true, "emphasis": "weak", "behavior": "static" } },
+        "Icon Tag → (Def) Weak - Interactive (Beta)": { "key": "91e5f51ce1c825552fb1bc7e9917a94c3748f14d", "axes": { "icon": true, "emphasis": "weak", "behavior": "interactive" } },
+        "Icon Tag → (Def) Weak - Interactive Toggle (Beta)": { "key": "01f16f2c4d358a4d93e8a02734d27d667d28ce09", "axes": { "icon": true, "emphasis": "weak", "behavior": "interactive-toggle" } },
+        "Icon Tag → Strong - (Def) Static (Beta)": { "key": "1bcb38ae4812c6fd3212a8a09aa420f7034fce9a", "axes": { "icon": true, "emphasis": "strong", "behavior": "static" } },
+        "Icon Tag → Strong - Interactive (Beta)": { "key": "669635e78bb99bbe3215e5ffe2d18d6656c849d6", "axes": { "icon": true, "emphasis": "strong", "behavior": "interactive" } },
+        "Icon Tag → Strong - Interactive Toggle (Beta)": { "key": "3e0df23772f8d52afb08ca4120bcd4728525f592", "axes": { "icon": true, "emphasis": "strong", "behavior": "interactive-toggle" } }
+      },
+      "forbiddenFallback": "Never recreate a Tag with a custom frame."
+    },
+    "Badge": {
+      "codeName": "badge", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Badge → (Def) Text": { "key": "022c804cdaa04f2468bfa0ce0cdff649abe3ac57", "axes": { "content": "text" } },
+        "Badge → Dot": { "key": "6f45aa090ea8728319522ea7c916d150dde2ad71", "axes": { "content": "dot" } },
+        "Badge → Icon": { "key": "85c9797ce5f015696239c6fd7e267a1b61005dea", "axes": { "content": "icon" } }
+      }
+    },
+
+    "Input": {
+      "codeName": "input", "maturity": "Stable", "required": false,
+      "note": "Figma splits Input by label position + value state; one Input component.",
+      "figmaSets": {
+        "Input → (Def) Label Above - (Def) Empty": { "key": "08ffb65e50921a3c1cd9a9bf7fa48135fc97430a", "axes": { "label": "above", "state": "empty" } },
+        "Input → (Def) Label Above - Filled": { "key": "01229bdc8f305c4cc10adfce424481364463e3a0", "axes": { "label": "above", "state": "filled" } },
+        "Input → (Def) Label Above - Active": { "key": "8696ab641dc40085ae634633ab47463d17b06f99", "axes": { "label": "above", "state": "active" } },
+        "Input → Floating Label - (Def) Empty": { "key": "db70f90473d860893d4378ca27a65b65918e3894", "axes": { "label": "floating", "state": "empty" } },
+        "Input → Floating Label - Filled": { "key": "6c3b2901a87c442c36d2faf0521ea23f82db7bd9", "axes": { "label": "floating", "state": "filled" } },
+        "Input → Floating Label - Active": { "key": "4a7e873a8a2215584cd595fbd9b3eda9c38d8c94", "axes": { "label": "floating", "state": "active" } }
+      }
+    },
+    "Textarea": {
+      "codeName": "textarea", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Textarea → Label Above - Filled": { "key": "9e875608630b9479ae55561311b9f000e2ae9a87", "axes": { "label": "above", "state": "filled" } }
+      }
+    },
+    "Checkbox": {
+      "codeName": "checkbox", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Checkbox → (Def) Medium - (Def) Auto Width": { "key": "f55dbce9bf3ba1650ca8ac5b44c76b84378d15ca", "axes": { "size": "medium", "width": "auto" } },
+        "Checkbox → Small - (Def) Auto Width": { "key": "08080b223a829e943bbe42682d249ccfaeda252a", "axes": { "size": "small", "width": "auto" } },
+        "Checkbox → (Def) Medium - Full Width": { "key": "04364aeaaf01abe73f7286b1a4ea2b024f79f7fb", "axes": { "size": "medium", "width": "full" } },
+        "Checkbox → Small - Full Width": { "key": "b206fe4be942442945b40ac8d6f9e82c8afc7f1e", "axes": { "size": "small", "width": "full" } }
+      }
+    },
+    "Radio": {
+      "codeName": "radio", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Radio → (Def) Medium - (Def) Auto Width": { "key": "06d45155016e374aee5782a33c994922c87ede24", "axes": { "size": "medium", "width": "auto" } },
+        "Radio → Small - (Def) Auto Width": { "key": "096d5459aed351b10f24079134ebf443cf03da19", "axes": { "size": "small", "width": "auto" } },
+        "Radio → (Def) Medium - Full Width": { "key": "2cc01a4da359b8d324080ad78c155e7d2e869874", "axes": { "size": "medium", "width": "full" } },
+        "Radio → Small - Full Width": { "key": "b8c8cc9190b2de7c12ff3130506d51f046cbd7c9", "axes": { "size": "small", "width": "full" } }
+      }
+    },
+    "Switch": {
+      "codeName": "switch", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Switch → (Def) Trailing - Full Width - Small": { "key": "bb9ad253da472dd8c821acf8f1ff7f8a82d14e32", "axes": { "labelPosition": "trailing", "width": "full", "size": "small" } },
+        "Switch → Leading - Full Width - (Def) Medium": { "key": "641334e04985ebd35e4db6cd4c993dd70137d81b", "axes": { "labelPosition": "leading", "width": "full", "size": "medium" } }
+      }
+    },
+    "Select": {
+      "codeName": "select", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Select → (Def) Label Above - (Def) Empty": { "key": "c68719e1c018e149324b1b99f70085305b1e1eb8", "axes": { "label": "above", "state": "empty" } },
+        "Select → (Def) Label Above - Selected": { "key": "6dc8c2e6686d7b90e6c3db8fd49d63b182b4ee46", "axes": { "label": "above", "state": "selected" } },
+        "Select → Floating Label - (Def) Empty": { "key": "aff8a7d7435948ef3b312f198ed8f2130caebab0", "axes": { "label": "floating", "state": "empty" } },
+        "Select → Floating Label - Selected": { "key": "a017ac6759ac04fcf3b0103766ea823ad6220f67", "axes": { "label": "floating", "state": "selected" } }
+      }
+    },
+    "Infotext": {
+      "codeName": "infotext", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Infotext - (Def) Auto Width": { "key": "072e65767d05b99f91d63f489ef0c28620b002ca", "axes": { "width": "auto" } },
+        "Infotext - Full Width": { "key": "af81be60e9498309b5fcf195fa6731d6381b82f0", "axes": { "width": "full" } }
+      }
+    },
+    "Link": {
+      "codeName": "link", "maturity": "Stable", "required": false,
+      "figmaSets": {
+        "Link → (Def) Internal": { "key": "d516c148ca0b438df205de010c206584b4a3a8be", "axes": { "target": "internal", "brand": false } },
+        "Link → External": { "key": "392ec8286886c8ceb051b689c3ed8e68f35c1c3a", "axes": { "target": "external", "brand": false } },
+        "Link → (Def) Internal - Brand": { "key": "991b35aca7658dc3837705718549e95501c5812f", "axes": { "target": "internal", "brand": true } },
+        "Link → External - Brand": { "key": "be74885f007bdaaacbd026592725f8ce8b6cc715", "axes": { "target": "external", "brand": true } }
+      }
+    },
+
+    "CustomSelect": {
+      "codeName": "custom-select", "maturity": "Beta", "required": false,
+      "note": "Figma splits CustomSelect by dropdown position / width / device; helpers (↳/🛟) only inside parent.",
+      "figmaSets": {
+        "CustomSelect → (Def) Bottom - (Def) Full Width - Desktop (Beta)": { "key": "5663eb5b669847efc6830c3493de50569dc65d91", "axes": { "position": "bottom", "width": "full", "device": "desktop" } },
+        "CustomSelect → (Def) Bottom - Auto Width - Desktop (Beta)": { "key": "076383cd1d4af782bd99427f205ebd1caff9504b", "axes": { "position": "bottom", "width": "auto", "device": "desktop" } },
+        "CustomSelect → Top - (Def) Full Width - Desktop (Beta)": { "key": "c6ac18208077edaeefdfb3d083d5ba0f101b6536", "axes": { "position": "top", "width": "full", "device": "desktop" } },
+        "CustomSelect → Top - Auto Width - Desktop (Beta)": { "key": "cc24bcf386c20a33e729ba182926aac93724e0d4", "axes": { "position": "top", "width": "auto", "device": "desktop" } },
+        "CustomSelect → Mobile (Beta)": { "key": "b6fec1571f3c9f14e7d6ddb7f0ae26f06aacfcd2", "axes": { "device": "mobile" } }
+      },
+      "helperSets": {
+        "↳ CustomSelect SEARCH (Beta)": "028d70030b6eeb48bfd0f5a9ad2107dc6a13146b",
+        "↳ CustomSelect DROPDOWN → Desktop (Beta)": "1e4822f712214278ffd3caa2568646ba419f30ad",
+        "↳ CustomSelect DROPDOWN → Mobile (Beta)": "9bf691f2a76cd99d73118db823f105a3e8e3299a",
+        "🛟 CustomSelect LIST → Single (Beta)": "43bbe20bf3a659e591b6ba25dcab653c5d8a7162",
+        "🛟 CustomSelect LIST → Multiple (Beta)": "72022bbc70c4c322fe98ff4d93ba2f2afa6c2a17",
+        "↳ CustomSelect LIST ITEM → Single (Beta)": "b245051a27dad4ddac09df71965eed6950b5d8a4",
+        "↳ CustomSelect LIST ITEM → (Def) Multiple (Beta)": "fb5d0696d56ba553b0f20981129d15d0781fa9e3",
+        "↳ CustomSelect FORM FIELD → (Def) Label Above - Selected (Beta)": "6ce0b6ab33c71adb63c3869cb867127eb1f65a6c",
+        "↳ CustomSelect FORM FIELD → (Def) Label Above - (Def) Empty (Beta)": "8d6547d1d1c76b61a24111ae2df8b986d736ce2f",
+        "↳ CustomSelect FORM FIELD → Floating Label - Selected (Beta)": "86520ba35593ec3e2b9664de18bc64d93e477769",
+        "🛟 CustomSelect TAG LIST": "264004d54bfda158e83610675d8e78a1cd5fd2b2"
+      }
+    },
+    "Notification": {
+      "codeName": "notification", "maturity": "Stable", "required": false,
+      "note": "Figma splits Notification by placement (docked/standalone/overlay) and media (icon/image).",
+      "figmaSets": {
+        "Notification → (Def) Docked - (Def) Icon": { "key": "0b8195110baab8ec2bde79769a21728fe5fe0ace", "axes": { "placement": "docked", "media": "icon" } },
+        "Notification → (Def) Docked - Image": { "key": "e1162439b4fcea78e74f0fab350556ea64a40806", "axes": { "placement": "docked", "media": "image" } },
+        "Notification → Standalone - (Def) Icon": { "key": "21d0406331e71a91bdea08bc2ff312290748be5a", "axes": { "placement": "standalone", "media": "icon" } },
+        "Notification → Standalone - Image": { "key": "04ffed0aab92a88eb3ece16f40ce499df2d705b4", "axes": { "placement": "standalone", "media": "image" } },
+        "Notification → Overlay - (Def) Icon": { "key": "106477a728f386c6266693059f0b8cecc960042d", "axes": { "placement": "overlay", "media": "icon" } },
+        "Notification → Overlay - Image": { "key": "abb0a0df1e439b23dcffe568851b4e4fa1ea95c0", "axes": { "placement": "overlay", "media": "image" } }
+      }
+    },
+    "Header": {
+      "codeName": "header", "maturity": "Beta", "required": false,
+      "figmaSets": {
+        "Header → Desktop (Beta)": { "key": "df5e3e03d7d2814f87f867bb632348b4af673e59", "axes": { "device": "desktop" } },
+        "Header → Mobile (Beta)": { "key": "16733f0cd068c631552b3820614d80ccb66631b3", "axes": { "device": "mobile" } }
+      },
+      "forbiddenFallback": "Never recreate a Header / top nav bar from frames + text + logo."
+    },
+
+    "Navigation": {
+      "codeName": "navigation", "maturity": "Beta", "required": false,
+      "figmaSets": {
+        "Navigation → Desktop (Beta)": { "key": "117fcc8e53e9d76450c0f584b3d35722c1a83f6d", "axes": { "device": "desktop" } }
+      },
+      "helperSets": {
+        "🛟 Navigation LIST → Horizontal - AutoWidth (Beta)": "27d541f022e56db371c521294fed97c99fec0edd",
+        "🛟 Navigation LIST → Vertical - FullWidth": "0d0ab32331cb79951fd7dc261fffb7ed08078cea"
+      },
+      "forbiddenFallback": "Never recreate Navigation from frames + text."
+    },
+    "NavigationItem": {
+      "codeName": "navigation-item", "maturity": "Beta", "required": false, "role": "helper",
+      "figmaSets": {
+        "↳ NAVIGATION ITEM → (Def) Horizontal - (Def) Auto Width (Beta)": { "key": "5edf1c7bbf95fe6ae7643b5fb9e17ec760b631ba", "axes": { "orientation": "horizontal", "width": "auto" } },
+        "↳ NAVIGATION ITEM → Horizontal - Full Width (Beta)": { "key": "338feb96205e0c746ae3b0f5ba010f40b8695411", "axes": { "orientation": "horizontal", "width": "full" } },
+        "↳ NAVIGATION ITEM → Vertical - AutoWidth (Beta)": { "key": "00985b32bfcaa6c651c240460948aad290041b27", "axes": { "orientation": "vertical", "width": "auto" } },
+        "↳ NAVIGATION ITEM → Vertical - (Def) Full Width (Beta)": { "key": "e16c30e7327415ae9dfe15e4384b7c2666e111cb", "axes": { "orientation": "vertical", "width": "full" } }
+      }
+    },
+    "Drawer": {
+      "codeName": "drawer", "maturity": "Stable", "required": false, "contentSlot": "Slot",
+      "note": "Figma splits Drawer by side; one Drawer component with prop side.",
+      "figmaSets": {
+        "Drawer → (Def) Right": { "key": "98b8a88910f95ec114b6d6d3a93052769d8189fc", "axes": { "side": "right" } },
+        "Drawer → Left": { "key": "876f2f8ee010c4cb9d931273fa074bf43bdb2afa", "axes": { "side": "left" } },
+        "Drawer → Bottom": { "key": "843510bda466febad9111e551dfc206a5130d90a", "axes": { "side": "bottom" } },
+        "Drawer → Full": { "key": "b11d12cc0a8030ee2f891cf13e25e71918c53532", "axes": { "side": "full" } },
+        "❌ Drawer → (Def) Right (Deprecated)": { "key": "e0b1436276d012f8641a79d96e6357281ee4a4ec", "axes": { "side": "right" }, "deprecated": true },
+        "❌ Drawer → Left (Deprecated)": { "key": "a9bb7805dfcffb279832a583e22febc8a59cfcfd", "axes": { "side": "left" }, "deprecated": true },
+        "❌ Drawer → Top (Deprecated)": { "key": "5741f0189c62d664a7fe383049dbd1bf905a16bc", "axes": { "side": "top" }, "deprecated": true },
+        "❌ Drawer → Bottom (Deprecated)": { "key": "af4fc28e589c602335e7f965e5c0cd11e378edb3", "axes": { "side": "bottom" }, "deprecated": true },
+        "❌ Drawer → Full (Deprecated)": { "key": "4d9a307c0cce8780452eec178a27f7770a193410", "axes": { "side": "full" }, "deprecated": true }
+      },
+      "helperSets": { "↳ Drawer HEADER": "53d3ec5f937cfd92e05bac78f70381d32b063bba" }
+    },
+    "Accordion": {
+      "codeName": "accordion", "maturity": "Beta", "required": false,
+      "figmaSets": {
+        "Accordion (Beta)": { "key": "c842298934e02a0332e36c451ad8e1d3f0cc8955", "axes": {} }
+      },
+      "helperSets": {
+        "🛟 ACCORDION LIST → Card (Beta)": "cf0228de78a7eee7dec9f7331f03ddb0fe572e25",
+        "🛟 ACCORDION LIST → (Def) Divider (Beta)": "d1b0a3010827a62de89421308e5dd99000196a28",
+        "↳ ACCORDION ITEM → Card (Beta)": "29791af5e69cc3ce9da735d16e0bed87210d5380",
+        "↳ ACCORDION ITEM → (Def) Divider (Beta)": "5a35b8c20d8d9765c68d1b25915851b9d952182d"
+      }
+    },
+    "Divider": {
+      "codeName": "divider", "maturity": "Beta", "required": false,
+      "figmaSets": { "Divider (Beta)": { "key": "401c3242f2e720f68b8c4255bb60670481e29451", "axes": {} } }
+    },
+    "Tooltip": {
+      "codeName": "tooltip", "maturity": "Beta", "required": false,
+      "figmaSets": {
+        "Tooltip → Left (Beta)": { "key": "313242eddbd58b864208a63edaad666ecdb7e17f", "axes": { "position": "left" } },
+        "Tooltip → Top (Beta)": { "key": "b9ee3b09d239c9820e55808401291abfce4801bf", "axes": { "position": "top" } }
+      }
+    },
+    "Scrollbar": {
+      "codeName": "scrollbar", "maturity": "Beta", "required": false,
+      "figmaSets": { "Scrollbar (Beta)": { "key": "0acec28113e9b871689d0bc1f5afe93b32c0b946", "axes": {} } }
+    },
+    "Popover": {
+      "codeName": "popover", "maturity": "Stable", "required": false,
+      "note": "Only a deprecated set is currently available in Figma.",
+      "figmaSets": {
+        "❌ Popover (Deprecated)": { "key": "b504b478399850f2987dcdaf4dec5aa73b0845b8", "axes": {}, "deprecated": true }
+      }
+    },
+    "Section": {
+      "codeName": "section", "maturity": "Beta", "required": true, "contentSlot": "Children",
+      "note": "Library Section (Beta). Local layout-primitive variant also exists (see localLayoutPrimitives).",
+      "figmaSets": { "Section (Beta)": { "key": "55ce6d2d8deba893cfdfdd49e826a52673cf06da", "axes": {} } }
+    }
+  },
+
+  "localLayoutPrimitives": {
+    "_note": "Local components on the 'Components' page (not external library). Resolve via figma.root findOne by id.",
+    "Section": { "localComponentSetId": "17:59", "contentSlot": "Children" },
+    "Grid": { "localComponentSetId": "23:4017", "slots": ["Slot-1", "Slot-2", "Slot-3", "Slot-4"] },
+    "ContainerVertical": { "localComponentSetId": "29:3988", "slot": "Slot" },
+    "ContainerHorizontal": { "localComponentSetId": "29:3989", "slot": "Slot" }
+  },
+
+  "unresolved": {
+    "_note": "Code-catalog families with no standalone Core Components set found. Resolve via search before use; never approximate.",
+    "table": "No Table / Table Row / Table Cell set surfaced in Core Components or Core Lab.",
+    "brand": "DB Brand/logo mark not found as a Core Components set; likely a brand asset library.",
+    "page": "No Page wrapper set; use layout primitives.",
+    "tabs": "Concept only — see db-lab-component-registry.json (requires confirmation).",
+    "stack": "Use local ContainerVertical / ContainerHorizontal primitives.",
+    "icon": "Functional icons: 'DB Theme Icons' library. Illustrative: 'DB Theme Illustrative Icons'. See db-library-registry.json."
+  }
+}

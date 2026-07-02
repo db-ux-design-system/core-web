@@ -1,0 +1,9 @@
+name: "db-ux-designer"
+version: 1.0.0
+description: "Official AI integration for designing DB UX Design System v3-compliant screens in Figma."
+author: DB UX Core Team
+skills:
+  - skills/generate-figma-screen/SKILL.md
+
+mcp:
+  config: mcp.json

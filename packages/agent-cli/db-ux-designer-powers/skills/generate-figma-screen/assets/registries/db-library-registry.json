@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "note": "Source-of-truth for which Figma library a component/token/icon must come from. The agent resolves component & variable sourcing through this registry. libraryKey values are real (from get_libraries on file uI6oKmJ0qDhsEuE0nFah2W)."
+  },
+
+  "core-components": {
+    "displayName": "DB UX DS v3 - Core Components - v4.13.0",
+    "libraryKey": "lk-28a3e643a84a4a7eb262f30f43c9e84c74f2e698e3cbaf4a0e91d6f1e00b3d5243c9df8e96e05ff5562fc620238556c89a86ae8bef8c1ce07b7428f9f8b5a960",
+    "role": "components",
+    "maturityStates": ["Beta", "Stable"],
+    "availableInCode": true,
+    "default": true,
+    "usage": "Primary source for all UI components (Button, Card, Tag, Input, Navigation, Notification, ...). Always prefer this library."
+  },
+
+  "core-lab": {
+    "displayName": "DB UX DS v3 - Core Lab",
+    "libraryKey": "lk-a3cdd1c1a84ac1722095a8f87e0eb9024968bbed54bad4e33e4cc6acf87f32d71601e76e89105f41d369b93c165f3c09fd9eac224a596525c901f611ac834d99",
+    "role": "components",
+    "maturityStates": ["Concept"],
+    "availableInCode": false,
+    "default": false,
+    "requiresUserConfirmation": true,
+    "confirmationPrompt": "Möchtest du auch Concept Components (Core Lab) nutzen? Diese sind noch nicht im Code verfügbar.",
+    "usage": "Concept / pre-release components NOT yet available in code. Only use after the user explicitly confirms. Ask the confirmation question right after the prompt."
+  },
+
+  "core-foundation": {
+    "displayName": "DB UX DS v3 - Core Foundation - v4.13.0",
+    "libraryKey": "lk-dca623e4fe6a278521c3e384086a88f5a4511d1e7c66a84dac5611dae850210b9ba889f56045d8acb1eaee45638959f61e53dbe8b1b3a5eed8cc9a4ad1d33934",
+    "role": "tokens",
+    "usage": "All Figma Variables / tokens: colors, spacing, typography, radius, sizing, elevation. Bind everything from here."
+  },
+
+  "theme-icons": {
+    "displayName": "DB UX DS v3 - DB Theme Icons - v3.9.1",
+    "libraryKey": "lk-405f7373fe20b7990aed6a0f3d01e81892a983f671ff1a5e1bf812b3a9496945bb2db5d2afe4e1b258891ce405c56d1e034e1457b9f495ae4e704ac030939318",
+    "role": "icons-functional",
+    "usage": "Functional UI icons (e.g. inside buttons, nav, inputs). Use these for any icon that is part of a UI element. Never substitute emoji for UI icons."
+  },
+
+  "theme-illustrative-icons": {
+    "displayName": "DB UX DS v3 - DB Theme Illustrative Icons - v3.3.0",
+    "libraryKey": "lk-353bb57e4222a3926b7e4e6a2cb3d0555ddbc521369346a64473b5c3c232884de93e4fd5bd7a68e6e89e228b77f26ae3b850a13449791d0060f350653985a1aa",
+    "role": "icons-illustrative",
+    "usage": "Illustrative / decorative icons used as CONTENT, not as UI element icons. Do not use for buttons, inputs, nav, etc."
+  },
+
+  "core-patterns": {
+    "displayName": "DB UX DS v3 - Core Patterns - v4.13.0",
+    "libraryKey": "lk-d79b688b3f927920d6537aa3279be460b8d52f996598376fcb1e5511387badbf07d35718707d154cca6e2be8bee81e7d55e382d6d572faf0f7a00c0b220f35d6",
+    "role": "patterns",
+    "usage": "Currently contains only the Focus State. Can be neglected for normal screen generation."
+  }
+}
