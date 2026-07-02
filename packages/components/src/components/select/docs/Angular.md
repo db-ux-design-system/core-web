@@ -98,15 +98,13 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 
 ```html
 <db-select
-  label="Country"
-  [formField]="myForm.country"
-  [validation]="fieldValidation(myForm.country)"
+	label="Country"
+	[formField]="myForm.country"
+	[validation]="fieldValidation(myForm.country)"
 >
-  <option value="de">Germany</option>
+	<option value="de">Germany</option>
 </db-select>
 ```
-
-
 
 ## How to use with Reactive Forms
 

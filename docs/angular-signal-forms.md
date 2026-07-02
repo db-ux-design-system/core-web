@@ -138,9 +138,9 @@ Then bind `[validation]` in the template alongside `[formField]`:
 
 ```html
 <db-input
-  label="Username"
-  [formField]="myForm.username"
-  [validation]="fieldValidation(myForm.username)"
+	label="Username"
+	[formField]="myForm.username"
+	[validation]="fieldValidation(myForm.username)"
 ></db-input>
 ```
 

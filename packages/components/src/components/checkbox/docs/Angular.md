@@ -139,13 +139,11 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 
 ```html
 <db-checkbox
-  label="Accept Terms"
-  [formField]="myForm.acceptTerms"
-  [validation]="fieldValidation(myForm.acceptTerms)"
+	label="Accept Terms"
+	[formField]="myForm.acceptTerms"
+	[validation]="fieldValidation(myForm.acceptTerms)"
 ></db-checkbox>
 ```
-
-
 
 ## How to use with Template Driven Forms
 

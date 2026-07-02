@@ -119,14 +119,12 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 
 ```html
 <db-custom-select
-  label="Custom Select"
-  [options]="options"
-  [formField]="myForm.values"
-  [validation]="fieldValidation(myForm.values)"
+	label="Custom Select"
+	[options]="options"
+	[formField]="myForm.values"
+	[validation]="fieldValidation(myForm.values)"
 ></db-custom-select>
 ```
-
-
 
 ## How to use with Reactive Forms
 

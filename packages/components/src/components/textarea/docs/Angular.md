@@ -113,13 +113,11 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 
 ```html
 <db-textarea
-  label="Message"
-  [formField]="myForm.message"
-  [validation]="fieldValidation(myForm.message)"
+	label="Message"
+	[formField]="myForm.message"
+	[validation]="fieldValidation(myForm.message)"
 ></db-textarea>
 ```
-
-
 
 ## How to use with Reactive Forms
 

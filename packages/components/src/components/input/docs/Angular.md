@@ -102,13 +102,11 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 
 ```html
 <db-input
-  label="Input"
-  [formField]="myForm.input"
-  [validation]="fieldValidation(myForm.input)"
+	label="Input"
+	[formField]="myForm.input"
+	[validation]="fieldValidation(myForm.input)"
 ></db-input>
 ```
-
-
 
 ## How to use with Reactive Forms
 

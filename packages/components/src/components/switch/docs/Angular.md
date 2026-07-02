@@ -94,13 +94,11 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 
 ```html
 <db-switch
-  label="Enable Notifications"
-  [formField]="myForm.enableNotifications"
-  [validation]="fieldValidation(myForm.enableNotifications)"
+	label="Enable Notifications"
+	[formField]="myForm.enableNotifications"
+	[validation]="fieldValidation(myForm.enableNotifications)"
 ></db-switch>
 ```
-
-
 
 ## How to use with Template Driven Forms
 
