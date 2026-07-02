@@ -1,6 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/button-components";
 @use "../../styles/internal/icon-passing";
@@ -14,7 +13,7 @@
 }
 
 $icon-padding-custom-button: calc(
-	#{variables.$db-spacing-fixed-sm} + #{icons.$default-icon-margin-end} +
+	#{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs} +
 		var(--db-icon-font-size)
 );
 
@@ -48,7 +47,6 @@ $icon-padding-custom-button: calc(
 	}
 
 	&[data-no-text="true"] {
-		--db-icon-margin-end: 0;
 		--db-icon-passing-inline-start: calc(50% - 0.5em);
 	}
 

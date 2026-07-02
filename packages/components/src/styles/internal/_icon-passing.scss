@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/icons";
 
 $interactive-button-selectors: "label,button,a";
 
@@ -19,7 +18,7 @@ $interactive-button-selectors: "label,button,a";
 
 		#{$interactive-button-selectors} {
 			--db-padding-inline-start: calc(
-				#{$inline-start} + #{icons.$default-icon-margin-end} + 1lh
+				#{$inline-start} + #{variables.$db-spacing-fixed-xs} + 1lh
 			);
 
 			/* stylelint-disable-next-line db-ux/use-spacings */
@@ -40,7 +39,7 @@ $interactive-button-selectors: "label,button,a";
 
 		#{$interactive-button-selectors} {
 			padding-inline-end: calc(
-				#{$inline-end} + #{icons.$default-icon-margin-end} +
+				#{$inline-end} + #{variables.$db-spacing-fixed-xs} +
 					var(--db-icon-font-size)
 			);
 		}

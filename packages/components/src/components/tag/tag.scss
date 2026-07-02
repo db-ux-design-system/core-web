@@ -47,8 +47,6 @@
 }
 
 %db-tag {
-	--db-icon-margin-end: 0;
-
 	@extend %default-interactive-component;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-button;
@@ -68,8 +66,6 @@
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
-		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
-
 		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
 		@include tag-components.get-tag-colors-interactive;
 	}
@@ -99,7 +95,7 @@
 
 	&[data-show-check-state="true"] {
 		label {
-			--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
+			gap: variables.$db-spacing-fixed-2xs;
 
 			@include icons.set-icon("circle", "after");
 
@@ -169,7 +165,6 @@
 		text-decoration: none;
 
 		&::after {
-			--db-icon-margin-start: 0;
 			--db-icon-font-size: 0;
 
 			content: none !important;

@@ -71,6 +71,7 @@
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
 	justify-content: space-between;
+	gap: variables.$db-spacing-fixed-xs;
 
 	@include helpers.display(inline-flex);
 	@include helpers.interactive-bg(
@@ -106,7 +107,7 @@
 
 			.db-navigation-item-expand-button {
 				&::after {
-					--db-icon-margin-start: auto;
+					margin-inline-start: auto;
 				}
 			}
 		}
@@ -152,7 +153,7 @@
 	&:not([data-width="full"]) {
 		.db-navigation-item-expand-button {
 			&::after {
-				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+				margin-inline-start: variables.$db-spacing-fixed-sm;
 			}
 		}
 	}
@@ -162,7 +163,7 @@
 
 		.db-navigation-item-expand-button {
 			&::after {
-				--db-icon-margin-start: auto;
+				margin-inline-start: auto;
 			}
 		}
 	}

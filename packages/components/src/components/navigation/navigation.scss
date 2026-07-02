@@ -33,7 +33,6 @@
 				// overwrite for navigation items
 				@include screen-sizes.screen("md") {
 					&::after {
-						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 						--db-icon-trailing: "chevron_down";
 
 						@media (prefers-reduced-motion: no-preference) {
@@ -63,7 +62,8 @@
 					@include screen-sizes.screen("md") {
 						&::after {
 							--db-icon-trailing: "chevron_right";
-							--db-icon-margin-start: auto;
+
+							margin-inline-start: auto;
 						}
 
 						&:is(:hover, :focus-visible),

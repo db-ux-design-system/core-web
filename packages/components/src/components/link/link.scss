@@ -8,7 +8,6 @@
 @use "../../styles/internal/link-components";
 
 .db-link {
-	--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 	--db-icon-vertical-align: top;
 
 	@extend %db-default-link;
@@ -46,9 +45,15 @@
 		}
 	}
 
-	&[data-size="small"] {
-		--db-icon-margin-start: #{variables.$db-spacing-fixed-3xs};
+	&::after {
+		margin-inline-start: variables.$db-spacing-fixed-2xs;
+	}
 
+	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
+
+		&::after {
+			margin-inline-start: variables.$db-spacing-fixed-3xs;
+		}
 	}
 }
