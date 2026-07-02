@@ -68,7 +68,7 @@ jobs:
     needs: [build-packages]
 
   build-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-figma-code-connect.yml
     needs: [init]
 
@@ -115,7 +115,7 @@ jobs:
     secrets: inherit
 
   test-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
     needs: [build-figma-code-connect, init]
     secrets: inherit
@@ -539,7 +539,7 @@ jobs:
     if: |
       ${{
       !cancelled() && github.actor != 'dependabot[bot]' &&
-      (github.event_name == 'release' || github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') &&
+      (github.event_name == 'release' || github.event.pull_request == null || needs.init.outputs.isFork != 'true') &&
       needs.init.outputs.isChangesetRelease != 'true' &&
       needs.checks-done.result == 'success'
       }}
@@ -553,9 +553,9 @@ jobs:
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publish-figma-code-connect:
-    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
+    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && needs.init.outputs.isFork != 'true' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
-    needs: [checks-done, test-figma-code-connect]
+    needs: [checks-done, test-figma-code-connect, init]
     secrets: inherit
 
   preview-url-pr-description:

@@ -23,7 +23,7 @@ export type ScreenReaderTestType = TestType<
 export type DefaultTestType = {
 	test?: ScreenReaderTestType;
 	/**
-	 * Should be very short because this will be the name for the output
+	 Should be very short because this will be the name for the output
 	 */
 	title: string;
 	description: string;

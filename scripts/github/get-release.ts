@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 const getRelease = () => {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	const { GITHUB_REF } = process.env;
 	const { GITHUB_ACTOR } = process.env;
 	const { GITHUB_COMMITISH } = process.env;
 	const GITHUB_PRE_RELEASE = process.env.GITHUB_PRE_RELEASE === 'true';
-	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (GITHUB_REF?.startsWith('refs/tags/v')) {
 		if (GITHUB_ACTOR === 'dependabot[bot]') {

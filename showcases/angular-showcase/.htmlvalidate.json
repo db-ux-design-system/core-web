@@ -1,0 +1,10 @@
+{
+	"rules": {
+		"attr-case": [
+			"error",
+			{
+				"style": ["lowercase", "camelcase"]
+			}
+		]
+	}
+}
