@@ -64,12 +64,15 @@ export default {
 			COMPONENTS.DBAccordionItem,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkAccordionItem = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBAccordionItem))
+			if (!isDBComponent(openingElement, COMPONENTS.DBAccordionItem)) {
 				return;
+			}
 
 			const headlinePlain = getAttributeValue(
 				openingElement,

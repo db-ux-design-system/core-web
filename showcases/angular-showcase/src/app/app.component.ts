@@ -82,9 +82,7 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	getChangeableClasses = () => {
-		return `db-density-${this.density} db-${this.color}`;
-	};
+	getChangeableClasses = () => `db-density-${this.density} db-${this.color}`;
 
 	onChange = async (_value: unknown) => {
 		await this.router.navigate([], {

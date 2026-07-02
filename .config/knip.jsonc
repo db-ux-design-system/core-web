@@ -1,0 +1,122 @@
+{
+	"$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+
+	// Exports tagged @public are part of the published API and should never be
+	// reported as unused — consumers may rely on them outside this monorepo.
+	"tags": ["-public"],
+
+	// Figma code connect files use intentional semantic aliases (same value, different names)
+	"ignoreIssues": {
+		"packages/components/src/components/select/figma/select.figma.ts": [
+			"duplicates"
+		]
+	},
+
+	// These workspaces are generated or framework-specific and produce false positives
+	"ignoreWorkspaces": [
+		"output/*",
+		"showcases/*",
+		"storybooks/*",
+		"docs",
+		"figma-code-connect/*"
+	],
+
+	// Design token packages and shared configs consumed implicitly
+	"ignoreDependencies": [
+		"@db-ux/db-theme",
+		"@db-ux/db-theme-fonts",
+		"@db-ux/db-theme-icons",
+		"@db-ux/core-components",
+		"@db-ux/core-foundations",
+		"@db-ux/core-eslint-plugin",
+		"eslint-plugin-package-json",
+		"stylelint-config-standard-scss"
+	],
+
+	"workspaces": {
+		// Root workspace
+		".": {
+			"entry": [".config/*.{js,ts}"],
+			"project": [".config/**/*.{js,ts}"],
+			"ignoreDependencies": [
+				"@figma/code-connect",
+				"@guidepup/guidepup",
+				"@guidepup/playwright",
+				"@guidepup/record",
+				"@guidepup/setup",
+				"@playwright/experimental-ct-core",
+				"accessibility-checker-engine",
+				"validate-branch-name"
+			]
+		},
+
+		// Scripts workspace: files are executed directly, not imported
+		"scripts": {
+			"entry": [
+				"*.{js,ts}",
+				"documentation/*.ts",
+				"github/**/*.{js,ts}",
+				"tests/**/*.ts"
+			],
+			"project": ["**/*.{js,ts}"],
+			"ignoreDependencies": ["postcss-scss", "@actions/github"]
+		},
+
+		// Foundations: SCSS files are compiled by sass CLI, not imported in TS
+		"packages/foundations": {
+			"entry": [
+				"scripts/**/*.ts",
+				"assets/fonts/*.ts",
+				"test/**/*.{js,ts}"
+			],
+			"project": [
+				"src/**/*.ts",
+				"scripts/**/*.ts",
+				"assets/**/*.ts",
+				"test/**/*.{js,ts}"
+			],
+			"ignoreDependencies": ["@csstools/normalize.css"]
+		},
+
+		// Components: Mitosis .lite.tsx + configs are consumed by the mitosis CLI
+		"packages/components": {
+			"entry": [
+				"src/**/index.ts",
+				"src/**/*.lite.tsx",
+				"src/**/*.figma.ts",
+				"scripts/**/*.ts",
+				"configs/**/*.{cjs,js}",
+				"test/**/*.{js,ts}"
+			],
+			"project": [
+				"src/**/*.{ts,tsx}",
+				"scripts/**/*.ts",
+				"configs/**/*.{cjs,js}",
+				"test/**/*.{js,ts}"
+			],
+			// react.ts is injected as an import string by scripts/post-build/react.ts
+			"ignoreFiles": ["src/utils/react.ts"],
+			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
+		},
+
+		// Vite plugin: test fixtures are mock apps with their own unlisted deps
+		"packages/vite-plugin": {
+			"ignore": ["test/fixtures/**"]
+		},
+
+		// Stylelint plugin: test fixtures are loaded by stylelint.lint() as file paths
+		"packages/stylelint": {
+			"ignoreFiles": ["test/fixtures/**"],
+			"ignoreDependencies": [
+				"stylelint-config-standard",
+				"stylelint-config-standard-vue"
+			]
+		},
+
+		// ESLint plugin: test framework file imports packages used in the real world
+		"packages/eslint-plugin": {
+			"entry": ["test/**/*.{ts,tsx,js}"],
+			"ignoreDependencies": ["@db-ux/react-core-components"]
+		}
+	}
+}
