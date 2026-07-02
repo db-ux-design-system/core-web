@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Figma Screen – Skill Enforcement",
+  "description": "Before any Figma write (use_figma) call, verifies the agent is following the generate-figma-screen skill: Composition Plan authored, db-figma-runtime.js pasted verbatim, renderPlan called. Blocks hand-written imperative Figma node code.",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      ".*use_figma.*",
+      ".*figma.*write.*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to write to a Figma file. STOP and verify:\n1. Have you read the generate-figma-screen SKILL.md from `db-ux-designer-powers/skills/generate-figma-screen/SKILL.md`?\n2. Have you authored a Composition Plan (JSON) with `layout`, `screen`, and `targetNodeId`?\n3. Does your use_figma code paste `assets/db-figma-runtime.js` verbatim and call `renderPlan(PLAN)`?\n4. Are you NOT using createFrame / createInstance / appendChild / setBoundVariable directly?\n\nIf ALL four are YES → proceed with the EXACT same tool call parameters.\nIf ANY is NO → STOP. Read the SKILL.md first, then author the plan and paste the runtime before calling use_figma. Never write imperative Figma node code directly."
+  }
+}

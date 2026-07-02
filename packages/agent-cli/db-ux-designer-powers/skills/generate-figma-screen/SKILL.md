@@ -8,6 +8,16 @@ triggers:
     - "build a Figma dashboard"
     - "design a screen in Figma"
     - "create a Figma layout with DB UX"
+    - "erstelle einen Figma Screen"
+    - "erstelle ein Dashboard"
+    - "erstelle eine Landingpage"
+    - "baue mir einen Screen"
+    - "baue mir ein Dashboard"
+    - "entwirf einen Screen"
+    - "entwirf ein Dashboard"
+    - "figma screen"
+    - "figma dashboard"
+    - "figma layout"
 
 inputs:
     - name: description
@@ -58,6 +68,11 @@ on_error:
 ---
 
 # Generate Figma Screen (DB UX)
+
+> **MANDATORY:** If you are about to write ANY Figma node code (createInstance, appendChild,
+> setBoundVariable, createFrame, etc.) WITHOUT having first authored a Composition Plan JSON
+> and pasted the render runtime (`assets/db-figma-runtime.js`) verbatim → STOP immediately.
+> Read this skill from the top. There is NO shortcut. Every screen goes through `renderPlan`.
 
 Turns a prompt into a DB UX-compliant Figma screen. The agent authors a declarative
 **Composition Plan (JSON)** and hands it to the hardened **render runtime**
