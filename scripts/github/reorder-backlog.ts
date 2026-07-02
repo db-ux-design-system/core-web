@@ -1,25 +1,24 @@
 #!/usr/bin/env node
 /**
- * Reorder the "UX Engineering Team Backlog" project (#6)
- * for db-ux-design-system/core-web issues.
- *
- * Sorting rules:
- * 1. Community feedback issues first (highest priority, lowest effort)
- * 2. Non-community issues second (highest priority, lowest effort)
- * 3. Issues with no status or "Backlog" status go to the end
- *
- * Never moves issues that are "In progress" or "Waiting for feedback".
- *
- * Usage: node scripts/github/reorder-backlog.ts [--dry-run]
- * Requires: gh CLI authenticated with `project` scope
- *
- * Configuration via environment variables (all optional, fall back to the
- * defaults below). These can be provided as GitHub repository/organization
- * variables so the IDs don't have to live in the source:
- *   PROJECT_OWNER, PROJECT_REPO, PROJECT_ID,
- *   PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
- *   BACKLOG_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
- *   WAITING_FOR_FEEDBACK_STATUS, WAITING_FOR_FEEDBACK_OPTION_ID,
+ Reorder the "UX Engineering Team Backlog" project (#6)
+ for db-ux-design-system/core-web issues.
+ Sorting rules:
+ 1. Community feedback issues first (highest priority, lowest effort)
+ 2. Non-community issues second (highest priority, lowest effort)
+ 3. Issues with no status or "Backlog" status go to the end
+
+ Never moves issues that are "In progress" or "Waiting for feedback".
+
+ Usage: node scripts/github/reorder-backlog.ts [--dry-run]
+ Requires: gh CLI authenticated with `project` scope
+
+ Configuration via environment variables (all optional, fall back to the
+ defaults below). These can be provided as GitHub repository/organization
+ variables so the IDs don't have to live in the source:
+ PROJECT_OWNER, PROJECT_REPO, PROJECT_ID,
+ PRIORITY_FIELD_ID, EFFORT_FIELD_ID, STATUS_FIELD_ID,
+ BACKLOG_OPTION_ID, COMMUNITY_FEEDBACK_LABEL,
+ WAITING_FOR_FEEDBACK_STATUS, WAITING_FOR_FEEDBACK_OPTION_ID,
  *   REMINDER_BOT_LOGIN, FEEDBACK_CODEOWNERS
  */
 
@@ -74,21 +73,17 @@ const waitingForFeedbackOptionId = envString(
 );
 
 const priorityRank: Record<string, number> = {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	Urgent: 1,
 	High: 2,
 	Medium: 3,
 	Low: 4
-	/* eslint-enable @typescript-eslint/naming-convention */
 };
 const defaultPriorityRank = 5;
 
 const effortRank: Record<string, number> = {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	Low: 1,
 	Medium: 2,
 	High: 3
-	/* eslint-enable @typescript-eslint/naming-convention */
 };
 const defaultEffortRank = 4;
 
@@ -440,7 +435,9 @@ const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
 			};
 		};
 		const fieldValues = parsed.data?.node?.fieldValues;
-		if (!fieldValues) break;
+		if (!fieldValues) {
+			break;
+		}
 
 		node.fieldValues.nodes.push(...(fieldValues.nodes ?? []));
 		pageInfo = fieldValues.pageInfo;
@@ -528,7 +525,10 @@ const fetchProjectItems = async (
 			}
 		}
 
-		if (!pageInfo.hasNextPage) break;
+		if (!pageInfo.hasNextPage) {
+			break;
+		}
+
 		cursor = pageInfo.endCursor;
 
 		// eslint-disable-next-line no-await-in-loop
@@ -568,7 +568,9 @@ const fetchIssueFields = async (
 	for (let i = 0; i < items.length; i++) {
 		const item = items[i];
 		const number = item.content?.number;
-		if (!number) continue;
+		if (!number) {
+			continue;
+		}
 
 		process.stdout.write(
 			`   [${String(i + 1)}/${String(items.length)}] #${String(number)}...\r`
@@ -666,7 +668,9 @@ const isStillBacklogItem = async (itemId: string): Promise<boolean> => {
 		data?: { node?: ProjectItemNode | undefined };
 	};
 	const node = parsed.data?.node;
-	if (!node) return false;
+	if (!node) {
+		return false;
+	}
 
 	// The Status value could sit on a later fieldValues page; pull the rest
 	// before classifying so we don't misread an active item as "no status".
@@ -813,10 +817,15 @@ const fetchRecentComments = (
 		];
 
 		// Stop as soon as the request is in view; everything newer is collected.
-		if (requestFound(comments)) break;
+		if (requestFound(comments)) {
+			break;
+		}
 
 		const pageInfo = connection?.pageInfo;
-		if (!pageInfo?.hasPreviousPage || !pageInfo.startCursor) break;
+		if (!pageInfo?.hasPreviousPage || !pageInfo.startCursor) {
+			break;
+		}
+
 		cursor = pageInfo.startCursor;
 	}
 
@@ -876,10 +885,14 @@ const postStaleReminder = (issueAuthor: string, number: number): void => {
 
 const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	const number = item.content?.number;
-	if (!number) return;
+	if (!number) {
+		return;
+	}
 
 	const issueAuthor = item.content?.author?.login;
-	if (!issueAuthor) return;
+	if (!issueAuthor) {
+		return;
+	}
 
 	let comments: IssueComment[];
 	try {
@@ -902,7 +915,9 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 		return;
 	}
 
-	if (comments.length === 0) return;
+	if (comments.length === 0) {
+		return;
+	}
 
 	// The feedback request is the latest comment from a codeowner *other than
 	// the issue author* — that is the point in time the issue started waiting on
@@ -915,7 +930,10 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 		comments,
 		(author) => author !== issueAuthor && isCodeowner(author)
 	);
-	if (!feedbackRequest) return;
+	if (!feedbackRequest) {
+		return;
+	}
+
 	const feedbackRequestTime = timeOf(feedbackRequest);
 
 	// Did the author respond *after* the feedback was requested? Comparing
@@ -1010,7 +1028,10 @@ const reorderBacklog = async () => {
 	console.log('\n🔄 Fetching core-web project items...');
 	const allCoreWebItems = await fetchProjectItems(
 		(node) => {
-			if (node.content?.__typename !== 'Issue') return false;
+			if (node.content?.__typename !== 'Issue') {
+				return false;
+			}
+
 			return (
 				node.content.repository?.nameWithOwner === `${owner}/${repo}`
 			);
@@ -1026,9 +1047,16 @@ const reorderBacklog = async () => {
 	console.log(`\n📦 Fetching backlog items from ${repo}...`);
 	const backlogItems = await fetchProjectItems(
 		(node) => {
-			if (!isOpenIssue(node)) return false;
-			if (node.content?.repository?.nameWithOwner !== `${owner}/${repo}`)
+			if (!isOpenIssue(node)) {
 				return false;
+			}
+
+			if (
+				node.content?.repository?.nameWithOwner !== `${owner}/${repo}`
+			) {
+				return false;
+			}
+
 			return isBacklogItem(node);
 		},
 		'Fetching',
@@ -1124,4 +1152,5 @@ const reorderBacklog = async () => {
 	);
 };
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 void reorderBacklog();

@@ -20,7 +20,9 @@ export const collapseLightDark = (value: string): string => {
 
 	while (searchFrom < result.length) {
 		const found = findCssFunction(result, 'light-dark', searchFrom);
-		if (!found) break;
+		if (!found) {
+			break;
+		}
 
 		const commaIdx = findTopLevelComma(found.inner);
 		if (commaIdx === -1) {
@@ -71,7 +73,9 @@ export const transformRoot = (
 		const hasColorMix = decl.value.includes('color-mix(');
 		const hasLightDark = decl.value.includes('light-dark(');
 
-		if (!hasVar && !hasCalc && !hasColorMix && !hasLightDark) return;
+		if (!hasVar && !hasCalc && !hasColorMix && !hasLightDark) {
+			return;
+		}
 
 		let resolved = decl.value;
 

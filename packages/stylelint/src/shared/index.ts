@@ -43,15 +43,15 @@ export type AllowedType = {
 	exact?: string[];
 	startsWith?: string[];
 	/**
-	 * Used to determine if:
-	 * - every: All parts of the value (e.g. margin: x x x x) should be allowed
-	 * - some: Only some parts of the value (e.g. border: x solid red) should be allowed
+	 Used to determine if:
+	 - every: All parts of the value (e.g. margin: x x x x) should be allowed
+	 - some: Only some parts of the value (e.g. border: x solid red) should be allowed
 	 */
 	type?: 'every' | 'some';
 };
 
-const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
-	return Boolean(
+const checkIncludes = (value: string, allowedValues: AllowedType): boolean =>
+	Boolean(
 		allowedValues.includes?.find((include) => {
 			if (typeof include === 'string') {
 				return value.includes(include);
@@ -67,7 +67,6 @@ const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
 			);
 		})
 	);
-};
 
 /** @public */
 export const isAllowed = (
@@ -124,15 +123,18 @@ export const isDefaultRuleOptionsHit = ({
 			const isIgnored = options.ignore.some(
 				(i) => from.includes(i) || new RegExp(i).test(from)
 			);
-			if (isIgnored) return true;
+			if (isIgnored) {
+				return true;
+			}
 		}
 	}
 
 	if (
 		options?.allowCalc &&
 		isAllowed([value], { includes: [{ include: 'calc(' }] })
-	)
+	) {
 		return true;
+	}
 
 	return Boolean(options?.allow && isAllowed([value], options.allow));
 };
@@ -159,11 +161,19 @@ export const getDeclarationRuleFunction = ({
 		root.walkDecls((decl: Declaration) => {
 			const { prop, value } = decl;
 
-			if (isDefaultRuleOptionsHit({ result, options, value })) return;
+			if (isDefaultRuleOptionsHit({ result, options, value })) {
+				return;
+			}
 
-			if (prop.startsWith('--') || prop.startsWith('$')) return;
-			if (!isAllowed(prop, allowedDeclarations)) return;
-			if (isAllowed(value, allowedValues)) return;
+			if (prop.startsWith('--') || prop.startsWith('$')) {
+				return;
+			}
+			if (!isAllowed(prop, allowedDeclarations)) {
+				return;
+			}
+			if (isAllowed(value, allowedValues)) {
+				return;
+			}
 
 			report({
 				result,

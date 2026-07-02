@@ -14,7 +14,9 @@ export class InputsComponent {
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
 	public handlePlainChange(event: Event | void) {
-		if (!event) return;
+		if (!event) {
+			return;
+		}
 		this.plain = (event.target as HTMLInputElement).value;
 	}
 }

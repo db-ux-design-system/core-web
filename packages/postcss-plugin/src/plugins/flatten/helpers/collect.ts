@@ -44,7 +44,9 @@ export const getLayerName = (node: ChildNode): string | undefined => {
 export const collectLayerOrder = (root: Root): Map<string, number> => {
 	const order = new Map<string, number>();
 	root.walkAtRules('layer', (atRule: AtRule) => {
-		if (atRule.nodes && atRule.nodes.length > 0) return;
+		if (atRule.nodes && atRule.nodes.length > 0) {
+			return;
+		}
 		const names = atRule.params
 			.split(',')
 			.map((n) => n.trim())
@@ -66,12 +68,16 @@ export const collectImportLayers = (root: Root): Map<string, string> => {
 	root.walkAtRules('import', (atRule: AtRule) => {
 		const { params } = atRule;
 		const layerMatch = /layer\(([^)]+)\)/.exec(params);
-		if (!layerMatch) return;
+		if (!layerMatch) {
+			return;
+		}
 		const layerName = layerMatch[1].trim();
 		const fileMatch = /(?:url\(\s*)?["']([^"']+)["'](?:\s*\))?/.exec(
 			params
 		);
-		if (!fileMatch) return;
+		if (!fileMatch) {
+			return;
+		}
 		importLayers.set(fileMatch[1], layerName);
 	});
 	return importLayers;
@@ -89,7 +95,9 @@ export const getLayerPriority = (
 	layer: string | undefined,
 	layerOrder: Map<string, number>
 ): number => {
-	if (!layer) return Number.MAX_SAFE_INTEGER;
+	if (!layer) {
+		return Number.MAX_SAFE_INTEGER;
+	}
 	return layerOrder.get(layer) ?? -1;
 };
 

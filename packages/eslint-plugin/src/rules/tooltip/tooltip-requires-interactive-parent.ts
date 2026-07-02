@@ -17,7 +17,9 @@ function isInteractiveElement(node: any): boolean {
 		(openingElement.name?.type === 'JSXIdentifier'
 			? openingElement.name.name
 			: openingElement.name || null);
-	if (!tagName) return false;
+	if (!tagName) {
+		return false;
+	}
 
 	const normalizedTag = tagName.toLowerCase();
 	return INTERACTIVE_ELEMENTS.some((element) => {
@@ -71,11 +73,15 @@ export default {
 			COMPONENTS.DBTooltip,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkTooltip = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, 'DBTooltip')) return;
+			if (!isDBComponent(openingElement, 'DBTooltip')) {
+				return;
+			}
 
 			let { parent } = node;
 			while (parent) {
