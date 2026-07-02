@@ -1,4 +1,5 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
+import DBButton from '../../button/button.lite';
 import DBControlPanelFlatIcon from '../../control-panel-flat-icon/control-panel-flat-icon.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
@@ -47,6 +48,7 @@ export default function ShellFlatIcon() {
 						mainId="main-content-flat-icon-with-text"
 						mainLabel="shell-flat-icon-with-text">
 						Flat icon with text content
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -76,6 +78,7 @@ export default function ShellFlatIcon() {
 						mainId="main-content-flat-icon-no-text"
 						mainLabel="shell-flat-icon-no-text">
 						Flat icon no text content
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -120,6 +123,7 @@ export default function ShellFlatIcon() {
 						mainId="main-content-flat-icon-with-text-sub"
 						mainLabel="shell-flat-icon-with-text-sub">
 						Flat icon with text content + Sub-Navigation
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -164,6 +168,7 @@ export default function ShellFlatIcon() {
 						mainId="main-content-flat-icon-no-text-sub"
 						mainLabel="shell-flat-icon-no-text-sub">
 						Flat icon no text content + Sub-Navigation
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>

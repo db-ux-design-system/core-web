@@ -5,7 +5,12 @@ import { lvl3 } from '../fixtures/variants';
 const axeDisableRules = [
 	// We have multiple <main> because we want to showcase them in the showcases lol
 	'landmark-main-is-top-level',
-	'landmark-no-duplicate-main'
+	'landmark-no-duplicate-main',
+
+	// We have an axe-core false-positive with the `role=treeitem`
+	'aria-required-children',
+	'presentation-role-conflict',
+	'aria-required-parent'
 ];
 
 test.describe('DBShell', () => {

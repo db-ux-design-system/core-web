@@ -164,6 +164,7 @@ export default function ShellContent() {
 						<p>Auto-Top position content</p>
 						<p>Auto-Top position content</p>
 						<p>Auto-Top position content</p>
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -304,6 +305,7 @@ export default function ShellContent() {
 						<p>Fixed-Top position content</p>
 						<p>Fixed-Top position content</p>
 						<p>Fixed-Top position content</p>
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -444,6 +446,7 @@ export default function ShellContent() {
 						<p>Auto-Left position content</p>
 						<p>Auto-Left position content</p>
 						<p>Auto-Left position content</p>
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -585,6 +588,7 @@ export default function ShellContent() {
 						<p>Fixed-Left position content</p>
 						<p>Fixed-Left position content</p>
 						<p>Fixed-Left position content</p>
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>

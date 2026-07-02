@@ -178,6 +178,7 @@ export default function ShellSlots() {
 						mainId="main-content-slots-nav-item-badge"
 						mainLabel="shell-slots-nav-item-badge">
 						Navigation Item with Badge - StartSlot and EndSlot
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -308,6 +309,7 @@ export default function ShellSlots() {
 						mainId="main-content-slots-group-badge"
 						mainLabel="shell-slots-group-badge-mobile">
 						Group with Badge - StartSlot and EndSlot
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -442,6 +444,7 @@ export default function ShellSlots() {
 						mainId="main-content-slots-group-badge"
 						mainLabel="shell-slots-group-badge">
 						Group with Badge - StartSlot and EndSlot
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>

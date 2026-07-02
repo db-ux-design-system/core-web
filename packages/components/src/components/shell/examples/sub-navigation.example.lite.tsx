@@ -155,6 +155,7 @@ export default function ShellSubNavigation() {
 						mainId="main-content-top-sub-top"
 						mainLabel="shell-top-sub-top">
 						Top + Sub Top content
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -285,6 +286,7 @@ export default function ShellSubNavigation() {
 						mainId="main-content-top-sub-left"
 						mainLabel="shell-top-sub-left">
 						Top + Sub Left Popover content
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -417,6 +419,7 @@ export default function ShellSubNavigation() {
 						mainId="main-content-top-sub-left-tree"
 						mainLabel="shell-top-sub-left-tree">
 						Top + Sub Left Tree content
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
@@ -548,6 +551,7 @@ export default function ShellSubNavigation() {
 						mainId="main-content-left-sub-top"
 						mainLabel="shell-left-sub-top">
 						Left + Sub Top content
+						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
 			</div>
