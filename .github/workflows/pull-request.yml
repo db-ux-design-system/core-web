@@ -19,5 +19,5 @@ jobs:
     uses: ./.github/workflows/99-dependency-review.yml
 
   labeler:
-    if: github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
+    if: github.event.pull_request.head.repo.full_name == github.repository
     uses: ./.github/workflows/99-labeler.yml
