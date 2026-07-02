@@ -113,6 +113,51 @@ myForm = form(this.model, (fields) => {
 
 Validation errors are automatically propagated to the component via the `errors` InputSignal, which maps to the component's built-in error display.
 
+### Controlling Validation Timing
+
+By default, Signal Forms validation errors are displayed **immediately** — even before the user has interacted with the field. This may not be the desired user experience. In most forms, you want to show errors only after the user has touched or edited the field (i.e. after `dirty` state is reached).
+
+You can control this behaviour using the `[validation]` property together with a helper method that maps Signal Forms field state to the component's validation mode:
+
+```typescript
+import { type FieldTree } from "@angular/forms/signals";
+
+// Helper: only show validation state after user interaction
+fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
+  if (field().dirty() && field().invalid() && !field().pending()) {
+    return "invalid";
+  }
+  if (field().dirty() && field().valid() && !field().pending()) {
+    return "valid";
+  }
+  return "no-validation";
+}
+```
+
+Then bind `[validation]` in the template alongside `[formField]`:
+
+```html
+<db-input
+  label="Username"
+  [formField]="myForm.username"
+  [validation]="fieldValidation(myForm.username)"
+></db-input>
+```
+
+**How it works:**
+
+| Field state                      | `fieldValidation()` returns | Effect                                     |
+| -------------------------------- | --------------------------- | ------------------------------------------ |
+| User has not interacted yet      | `"no-validation"`           | No validation styling or messages shown    |
+| User edited and field is valid   | `"valid"`                   | Green valid state shown                    |
+| User edited and field is invalid | `"invalid"`                 | Red invalid state with error message shown |
+
+> **Tip:** If you prefer to show errors only on blur (rather than on every keystroke), check `field().touched()` instead of `field().dirty()` in the helper.
+
+### Using Native Validation Without Signal Forms Validators
+
+If you use `[formField]` only for value binding (no Signal Forms validators), the component falls back to native browser validation. The browser's `validationMessage` (e.g. "Value must be at least 2") will be displayed based on native HTML attributes like `required`, `min`, `max`, `pattern`, etc.
+
 ## Coexistence with Reactive Forms
 
 Signal Forms coexists with Reactive Forms and Template-Driven Forms without conflict. The `NG_VALUE_ACCESSOR` provider is always registered, so `formControlName`, `formControl`, and `ngModel` continue to work alongside `[formField]`.

@@ -97,6 +97,30 @@ export class FormComponent {
 </dl>
 ```
 
+### Controlling validation timing
+
+By default, Signal Forms validation errors appear immediately. To show errors only after user interaction, use a helper method with the `[validation]` property:
+
+```typescript
+import { type FieldTree } from "@angular/forms/signals";
+
+fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
+  if (field().dirty() && field().invalid() && !field().pending()) return "invalid";
+  if (field().dirty() && field().valid() && !field().pending()) return "valid";
+  return "no-validation";
+}
+```
+
+```html
+<db-textarea
+  label="Message"
+  [formField]="myForm.message"
+  [validation]="fieldValidation(myForm.message)"
+></db-textarea>
+```
+
+
+
 ## How to use with Reactive Forms
 
 Third party controls require a ControlValueAccessor to function with angular forms.

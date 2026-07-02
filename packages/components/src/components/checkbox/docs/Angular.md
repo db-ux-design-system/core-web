@@ -123,6 +123,30 @@ export class FormComponent {
 </dl>
 ```
 
+### Controlling validation timing
+
+By default, Signal Forms validation errors appear immediately. To show errors only after user interaction, use a helper method with the `[validation]` property:
+
+```typescript
+import { type FieldTree } from "@angular/forms/signals";
+
+fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
+  if (field().dirty() && field().invalid() && !field().pending()) return "invalid";
+  if (field().dirty() && field().valid() && !field().pending()) return "valid";
+  return "no-validation";
+}
+```
+
+```html
+<db-checkbox
+  label="Accept Terms"
+  [formField]="myForm.acceptTerms"
+  [validation]="fieldValidation(myForm.acceptTerms)"
+></db-checkbox>
+```
+
+
+
 ## How to use with Template Driven Forms
 
 Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
