@@ -3,9 +3,10 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 /**
- Walk up the directory tree from `root` to locate a package path inside node_modules.
- Handles monorepo hoisting where dependencies may live in a parent node_modules.
- Returns the resolved absolute path or `undefined` if not found.
+ * @public
+ * Walk up the directory tree from `root` to locate a package path inside node_modules.
+ * Handles monorepo hoisting where dependencies may live in a parent node_modules.
+ * Returns the resolved absolute path or `undefined` if not found.
  */
 export function resolvePackagePath(
 	root: string,
@@ -65,9 +66,9 @@ const cache = new Map<
 >();
 
 /**
- Discover all available components, colors, densities, and font sizes
- by reading the installed @db-ux packages from the filesystem.
- Results are cached per project root.
+ * Discover all available components, colors, densities, and font sizes
+ * by reading the installed @db-ux packages from the filesystem.
+ * Results are cached per project root.
  */
 function discover(root: string) {
 	if (cache.has(root)) {
@@ -120,8 +121,8 @@ export function discoverAll(root: string) {
 }
 
 /**
- Scan detected component CSS files for referenced colors, densities, and font sizes
- so the optimizer doesn't strip variables that components depend on.
+ * Scan detected component CSS files for referenced colors, densities, and font sizes
+ * so the optimizer doesn't strip variables that components depend on.
  */
 export function scanComponentDependencies(
 	root: string,
@@ -178,9 +179,9 @@ function toKebabCase(string_: string): string {
 }
 
 /**
- Build an array of regex patterns to detect usage of design system values.
- Covers CSS classes (e.g. db-color-cyan), data attributes (e.g. data-color="cyan"),
- HTML attributes, and JS object notation.
+ * Build an array of regex patterns to detect usage of design system values.
+ * Covers CSS classes (e.g. db-color-cyan), data attributes (e.g. data-color="cyan"),
+ * HTML attributes, and JS object notation.
  */
 function buildPatterns(
 	classPrefix: string,
@@ -225,9 +226,9 @@ function readSource(filePath: string): string | undefined {
 }
 
 /**
- Scan all project source files to detect which DB UX components are used.
- Supports JSX (<DBButton>), kebab-case (<db-button>), CSS classes (class="db-button"),
- and named imports (import { DBButton } from '...').
+ * Scan all project source files to detect which DB UX components are used.
+ * Supports JSX (<DBButton>), kebab-case (<db-button>), CSS classes (class="db-button"),
+ * and named imports (import { DBButton } from '...').
  */
 export async function detectComponents(
 	root: string,
@@ -285,9 +286,9 @@ export async function detectComponents(
 }
 
 /**
- Shared detection logic for colors, densities, and font sizes.
- Scans all project source files for class names and data attributes
- matching the given patterns, returning the set of detected values.
+ * Shared detection logic for colors, densities, and font sizes.
+ * Scans all project source files for class names and data attributes
+ * matching the given patterns, returning the set of detected values.
  */
 async function detectByPatterns(
 	root: string,

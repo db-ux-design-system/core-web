@@ -55,3 +55,34 @@ The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_forma
 ### markdown files via markdownlint
 
 - [github.com/markdownlint/markdownlint](https://github.com/markdownlint/markdownlint/)
+
+### Unused code and dependencies via Knip
+
+[Knip](https://knip.dev/) finds unused files, dependencies, and exports across the monorepo. It runs as part of `pnpm run lint` (via the `lint:knip` script) and can also be run standalone:
+
+```shell
+pnpm run lint:knip
+```
+
+Configuration lives in `.config/knip.jsonc`. See the [Knip documentation](https://knip.dev/overview/configuration) for details on workspace-level configuration.
+
+#### `@public` / `@internal` export tagging
+
+Since this is a published library, we use JSDoc tags to distinguish intentional public API from internal helpers:
+
+- **`@public`** — part of the published API surface, safe for consumers to rely on. Knip will never report these as unused.
+- **`@internal`** (or untagged) — exported for internal use (testing, cross-package). Knip will report these if unused, signaling candidates for cleanup.
+
+When adding new exports to published packages, tag them accordingly:
+
+```ts
+/** @public */
+export function myPublicUtility() {
+	/* ... */
+}
+
+/** @internal */
+export function helperForTests() {
+	/* ... */
+}
+```

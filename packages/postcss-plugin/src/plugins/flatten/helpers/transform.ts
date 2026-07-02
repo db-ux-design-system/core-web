@@ -8,10 +8,11 @@ import {
 } from './resolve.js';
 
 /**
- Collapse `light-dark(x, y)` to just `x` when both arguments are identical
- after trimming whitespace. Handles nested parentheses correctly.
- @param value - The CSS value string potentially containing `light-dark()` calls
- @returns The value with identical-argument `light-dark()` calls collapsed
+ * @public
+ * Collapse `light-dark(x, y)` to just `x` when both arguments are identical
+ * after trimming whitespace. Handles nested parentheses correctly.
+ * @param value - The CSS value string potentially containing `light-dark()` calls
+ * @returns The value with identical-argument `light-dark()` calls collapsed
  */
 export const collapseLightDark = (value: string): string => {
 	let result = value;
@@ -45,17 +46,17 @@ export const collapseLightDark = (value: string): string => {
 };
 
 /**
- Transform all declarations in a PostCSS root by resolving static `var()`,
- evaluating `calc()` and `color-mix()`, collapsing identical `light-dark()`,
- and optionally removing `@property` rules and unused declarations.
-
- @param root - The PostCSS root to transform
- @param staticVarMap - Map of static variable names to their resolved values
- @param referencedVars - Set to track which variables are still referenced after resolution
- @param propertyNames - Set of variable names that came from `@property`
- @param dynamicVars - Set of dynamic variable names (never removed)
- @param removeAtProperty - Whether to remove `@property` rules
- @param removeResolved - Whether to remove unused `@property`-sourced declarations
+ * Transform all declarations in a PostCSS root by resolving static `var()`,
+ * evaluating `calc()` and `color-mix()`, collapsing identical `light-dark()`,
+ * and optionally removing `@property` rules and unused declarations.
+ *
+ * @param root - The PostCSS root to transform
+ * @param staticVarMap - Map of static variable names to their resolved values
+ * @param referencedVars - Set to track which variables are still referenced after resolution
+ * @param propertyNames - Set of variable names that came from `@property`
+ * @param dynamicVars - Set of dynamic variable names (never removed)
+ * @param removeAtProperty - Whether to remove `@property` rules
+ * @param removeResolved - Whether to remove unused `@property`-sourced declarations
  */
 export const transformRoot = (
 	root: Root,
@@ -123,9 +124,9 @@ export const transformRoot = (
 };
 
 /**
- Remove empty rules and `@layer` at-rules left behind after
- declarations and `@property` rules have been stripped.
- Walks bottom-up so nested empty containers are cleaned recursively.
+ * Remove empty rules and `@layer` at-rules left behind after
+ * declarations and `@property` rules have been stripped.
+ * Walks bottom-up so nested empty containers are cleaned recursively.
  */
 const removeEmptyContainers = (root: Root) => {
 	let changed = true;

@@ -48,6 +48,11 @@ const xoConfig = [
 			'@stylistic/padding-line-between-statements': 0, // 64 violations — conflicts with Prettier formatting
 			'jsdoc/check-indentation': 0, // 1 violation
 			'jsdoc/require-asterisk-prefix': 0, // JSDoc * prefix removed by XO's formatting
+			// `@public` is used across the monorepo as Knip's public-API marker
+			// (see knip.jsonc `tags: ["-public"]`). XO 3's JSDoc rules otherwise
+			// reject it as redundant/non-empty, which would conflict with Knip.
+			'jsdoc/check-tag-names': 0,
+			'jsdoc/empty-tags': 0,
 			'unicorn/no-global-object-property-assignment': 0, // 1 violation
 			'unicorn/prefer-array-some': 0, // 7 violations
 			'unicorn/consistent-compound-words': 0, // 5 violations
