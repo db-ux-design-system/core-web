@@ -555,7 +555,7 @@ jobs:
   publish-figma-code-connect:
     if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && needs.init.outputs.isFork != 'true' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
-    needs: [checks-done, test-figma-code-connect]
+    needs: [checks-done, test-figma-code-connect, init]
     secrets: inherit
 
   preview-url-pr-description:
