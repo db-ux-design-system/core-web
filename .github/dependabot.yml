@@ -103,10 +103,6 @@ updates:
           - "typescript"
           - "tsx"
           - "tslib"
-      # Commitlint
-      commitlint:
-        patterns:
-          - "@commitlint*"
       # Other grouped dependencies
       builder.io:
         patterns:
