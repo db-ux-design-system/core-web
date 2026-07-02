@@ -326,6 +326,20 @@ Manual-inclusion steering files for specialized workflows. Activate in Kiro chat
 | `#pre-commit-review` | `.kiro/steering/pre-commit-review.md` | Self-review checklist before committing and pushing to a new branch                                        |
 | `#issue-triage`      | `.kiro/steering/issue-triage.md`      | Triage issues: validate template, label, set priority/effort, post AI summary, batch-process new issues    |
 
+### Kiro File Includes and Linting
+
+Kiro steering files support including external files via `#[[file:<relative_path>]]`. Because this syntax starts with `#` followed by a non-space character, markdownlint flags it as **MD018** (no space after hash on atx-style heading) and Prettier may reformat it. Wrap every Kiro include with lint-suppression comments:
+
+```markdown
+<!-- markdownlint-disable MD018 --><!-- prettier-ignore -->
+
+#[[file:docs/code-review-conventions.md]]
+
+<!-- markdownlint-enable MD018 -->
+```
+
+Always add these comments when creating or editing a `#[[file:...]]` include in any Markdown file.
+
 ---
 
 ## Pull Request Workflow
