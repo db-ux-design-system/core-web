@@ -25,7 +25,7 @@ footer?
 If you'd like to test your commit message previous to using it, you could test it on the command line:
 
 ```shell
-echo 'foo: bar' | commitlint
+echo 'foo: bar' | commitlint --default-config
 ```
 
 ## Code conventions
