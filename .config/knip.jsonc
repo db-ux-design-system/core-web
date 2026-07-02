@@ -29,7 +29,6 @@
 		"@db-ux/core-components",
 		"@db-ux/core-foundations",
 		"@db-ux/core-eslint-plugin",
-		"@commitlint/config-conventional",
 		"eslint-plugin-package-json",
 		"stylelint-config-standard-scss"
 	],
@@ -66,7 +65,6 @@
 		// Foundations: SCSS files are compiled by sass CLI, not imported in TS
 		"packages/foundations": {
 			"entry": [
-				"src/index.ts",
 				"scripts/**/*.ts",
 				"assets/fonts/*.ts",
 				"test/**/*.{js,ts}"
