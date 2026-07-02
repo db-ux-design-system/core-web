@@ -6,40 +6,40 @@
 
 		<h3>DBInput</h3>
 		<db-input
-			label="Benutzername"
+			label="Username"
 			[formField]="userForm.username"
 			[validation]="fieldValidation(userForm.username)"
 		></db-input>
 		<db-input
-			label="E-Mail"
+			label="Email"
 			type="email"
 			[formField]="userForm.email"
 			[validation]="fieldValidation(userForm.email)"
 		></db-input>
 		<db-input
-			label="Passwort"
+			label="Password"
 			type="password"
 			[formField]="userForm.password"
 			[validation]="fieldValidation(userForm.password)"
 		></db-input>
 		<db-input
-			label="Alter"
+			label="Age"
 			type="number"
 			[formField]="userForm.age"
 			[validation]="fieldValidation(userForm.age)"
 		></db-input>
 		<db-input
-			label="Geburtstag"
+			label="Birthday"
 			type="date"
 			[formField]="userForm.birthday"
 		></db-input>
 		<db-input
-			label="Uhrzeit"
+			label="Time"
 			type="time"
 			[formField]="userForm.appointmentTime"
 		></db-input>
 		<db-input
-			label="Termin (Datum + Uhrzeit)"
+			label="Appointment (date + time)"
 			type="datetime-local"
 			[formField]="userForm.appointmentDateTime"
 		></db-input>
@@ -51,34 +51,34 @@
 		></db-input>
 		@if (!userForm.phone().hidden()) {
 			<db-input
-				label="Telefon"
+				label="Phone"
 				type="tel"
 				[formField]="userForm.phone"
 				[validation]="fieldValidation(userForm.phone)"
 			></db-input>
 		} @else {
-			<p><em>Telefon-Feld ist hidden (Kontaktmethode ≠ "phone")</em></p>
+			<p><em>Phone field is hidden (contact method ≠ "phone")</em></p>
 		}
 		<db-input
-			label="Suche"
+			label="Search"
 			type="search"
 			[formField]="userForm.search"
 		></db-input>
 
 		<h3>DBSelect</h3>
 		<db-select
-			label="Land"
+			label="Country"
 			[formField]="userForm.country"
 			[validation]="fieldValidation(userForm.country)"
 		>
-			<option value="de">Deutschland</option>
-			<option value="at">Österreich</option>
-			<option value="ch">Schweiz</option>
+			<option value="de">Germany</option>
+			<option value="at">Austria</option>
+			<option value="ch">Switzerland</option>
 		</db-select>
 
 		<h3>DBCustomSelect</h3>
 		<db-custom-select
-			label="Stadt"
+			label="City"
 			[formField]="userForm.city"
 			[multiple]="true"
 			[options]="cityOptions"
@@ -86,7 +86,7 @@
 
 		<h3>DBTextarea</h3>
 		<db-textarea
-			label="Biografie"
+			label="Bio"
 			[formField]="userForm.bio"
 			[rows]="4"
 			[validation]="fieldValidation(userForm.bio)"
@@ -94,27 +94,28 @@
 
 		<h3>DBCheckbox</h3>
 		<db-checkbox
-			label="Newsletter abonnieren"
+			label="Subscribe to newsletter"
 			[formField]="userForm.newsletter"
 		></db-checkbox>
 
+		<!-- DBRadio does not integrate with Signal Forms directly — managed manually -->
 		<h3>DBRadio</h3>
 		<fieldset>
-			<legend>Bevorzugte Kontaktmethode</legend>
+			<legend>Preferred contact method</legend>
 			<db-radio
-				label="E-Mail"
+				label="Email"
 				name="contactMethod"
 				[checked]="userForm.contactMethod().value() === 'email'"
 				(change)="userForm.contactMethod().value.set('email')"
 			></db-radio>
 			<db-radio
-				label="Telefon"
+				label="Phone"
 				name="contactMethod"
 				[checked]="userForm.contactMethod().value() === 'phone'"
 				(change)="userForm.contactMethod().value.set('phone')"
 			></db-radio>
 			<db-radio
-				label="Brief"
+				label="Letter"
 				name="contactMethod"
 				[checked]="userForm.contactMethod().value() === 'letter'"
 				(change)="userForm.contactMethod().value.set('letter')"
@@ -141,7 +142,7 @@
 			(change)="handleSwitchChange($event)"
 			[checked]="checkedSignal()"
 		></db-switch>
-		<p>Switch with signals: {{ checkedSignal() }}</p>
+		<p>Switch value: {{ checkedSignal() }}</p>
 
 		<h2>Tag + nested components</h2>
 		<db-tag>
@@ -179,16 +180,15 @@
 
 		<h2>Drawer Test</h2>
 		<p>
-			Test: Click "Open Drawer", then mouse down inside the drawer
-			content, drag to the backdrop, and release. The drawer should NOT
-			close.
+			Click "Open Drawer", then mouse down inside the drawer content, drag
+			to the backdrop, and release. The drawer should NOT close.
 		</p>
 		<db-button (click)="drawerOpen = true">Open Drawer</db-button>
 		<db-drawer (close)="drawerOpen = false" [open]="drawerOpen">
 			<span drawer-header>Drawer Header</span>
 			<db-infotext>
-				Test: Mouse down here, drag to backdrop, release. Drawer should
-				stay open.
+				Mouse down here, drag to backdrop, release. Drawer should stay
+				open.
 			</db-infotext>
 		</db-drawer>
 	</section>
