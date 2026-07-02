@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/vue-storybook",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook build --output-dir ../../build-storybooks/vue-storybook",
     "storybook": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6007"
   },
   "dependencies": {
@@ -19,10 +19,10 @@
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
     "@db-ux/v-core-components": "workspace:*",
-    "@faker-js/faker": "10.4.0",
+    "@faker-js/faker": "10.5.0",
     "@tanstack/match-sorter-utils": "8.19.4",
     "@tanstack/vue-table": "8.21.3",
-    "vue": "3.5.38"
+    "vue": "3.5.39"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.2.1",
@@ -36,7 +36,7 @@
     "eslint-plugin-storybook": "10.4.6",
     "storybook": "10.4.6",
     "typescript": "~5.9.3",
-    "vite": "8.0.16",
+    "vite": "8.1.0",
     "vue-tsc": "3.3.5"
   }
 }

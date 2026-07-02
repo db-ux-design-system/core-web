@@ -27,7 +27,7 @@
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.9.0",
     "@db-ux/ngx-core-components": "workspace:*",
-    "@faker-js/faker": "10.4.0",
+    "@faker-js/faker": "10.5.0",
     "@tanstack/angular-table": "8.21.4",
     "@tanstack/match-sorter-utils": "8.19.4",
     "rxjs": "7.8.2",
@@ -35,14 +35,14 @@
     "zone.js": "0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.15",
-    "@angular/build": "21.2.15",
-    "@angular/cli": "21.2.15",
+    "@angular-devkit/build-angular": "21.2.17",
+    "@angular/build": "21.2.17",
+    "@angular/cli": "21.2.17",
     "@angular/compiler-cli": "21.2.17",
-    "@compodoc/compodoc": "1.2.1",
+    "@compodoc/compodoc": "2.0.0",
     "@storybook/addon-docs": "10.4.6",
     "@storybook/angular": "10.4.6",
-    "@types/node": "25.9.3",
+    "@types/node": "26.0.1",
     "eslint-plugin-storybook": "10.4.6",
     "storybook": "10.4.6"
   }
