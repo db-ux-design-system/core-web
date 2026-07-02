@@ -46,9 +46,8 @@ export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
-export const hasWebComponentSyntax = (showcase?: string): boolean => {
-	return isAngular(showcase) || isStencil(showcase);
-};
+export const hasWebComponentSyntax = (showcase?: string): boolean =>
+	isAngular(showcase) || isStencil(showcase);
 
 export const waitForDBShell = async (page: Page) => {
 	const dbShell = page.locator('.db-shell:not([data-test-id])');
@@ -101,7 +100,7 @@ export const getDefaultScreenshotTest = ({
 	skip,
 	ratio
 }: DefaultSnapshotTestType) => {
-	test(`should match screenshot`, async ({ page }, { project }) => {
+	test('should match screenshot', async ({ page }, { project }) => {
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const isWebkit =
@@ -240,7 +239,9 @@ export const runA11yCheckerTest = ({
 
 			const results: Issue[] = await page.evaluate(async () => {
 				const { ace } = globalThis as any;
-				if (!ace?.Checker) return [];
+				if (!ace?.Checker) {
+					return [];
+				}
 				const checker: Checker = new ace.Checker();
 				const report = await checker.check(document, [
 					'IBM_Accessibility'
@@ -269,7 +270,7 @@ export const runAriaSnapshotTest = ({
 	preScreenShot,
 	skip
 }: DefaultSnapshotTestType) => {
-	test(`should have same aria-snapshot`, async ({ page }, {
+	test('should have same aria-snapshot', async ({ page }, {
 		project,
 		title
 	}) => {

@@ -115,6 +115,7 @@ const ComponentSwitch = ({
 		}
 	}
 
+	// eslint-disable-next-line unicorn/prefer-else-if
 	if (type === 'notification') {
 		return (
 			<DBNotification className={className} {...props}>
@@ -382,17 +383,15 @@ const ComponentParser = ({ componentsString }: ComponentParserType) => {
 	if (components && Array.isArray(components)) {
 		return (
 			<>
-				{components.map((component: ComponentType, index: number) => {
-					return (
-						<ComponentSwitch
-							key={`component-${index}`}
-							index={index}
-							type={component.type}
-							content={component.content}
-							props={component.props}
-						/>
-					);
-				})}
+				{components.map((component: ComponentType, index: number) => (
+					<ComponentSwitch
+						key={`component-${index}`}
+						index={index}
+						type={component.type}
+						content={component.content}
+						props={component.props}
+					/>
+				))}
 			</>
 		);
 	}

@@ -116,7 +116,7 @@ const DefaultPage = ({
 			}
 		}
 
-		const pathWithoutQuery = router.asPath.split('?')[0];
+		const pathWithoutQuery = router.asPath.split('?', 1)[0];
 
 		const { previous, next } = getNavigationList(pathWithoutQuery);
 

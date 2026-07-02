@@ -84,8 +84,8 @@ const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
 /**
- * Serialises a partial manifest structure and parses it back for use as a
- * resetManifestCache override.
+ Serialises a partial manifest structure and parses it back for use as a
+ resetManifestCache override.
  */
 function makeManifest({
 	components,
@@ -110,9 +110,9 @@ function makeManifest({
 }
 
 /**
- * Builds a manifest JSON string containing a single "button" component whose
- * react exampleCode is populated with the given example file keys.
- * Used to exercise the fuzzy-matching logic in handleGetExampleCode.
+ Builds a manifest JSON string containing a single "button" component whose
+ react exampleCode is populated with the given example file keys.
+ Used to exercise the fuzzy-matching logic in handleGetExampleCode.
  */
 function makeFuzzyManifest(exampleKeys: string[]) {
 	const exampleCode: Record<string, Record<string, string>> = {
@@ -133,8 +133,8 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 }
 
 /**
- * Extracts the text from a ToolResult content item, asserting it is a TextContent.
- * Avoids TS2339 on the `TextContent | ImageContent` union type.
+ Extracts the text from a ToolResult content item, asserting it is a TextContent.
+ Avoids TS2339 on the `TextContent | ImageContent` union type.
  */
 function text(content: { type: string; text?: string }): string {
 	expect(content.type).toBe('text');
@@ -142,8 +142,8 @@ function text(content: { type: string; text?: string }): string {
 }
 
 /**
- * Asserts that a prompt handler result contains exactly one user-role message
- * and returns its text content for further assertions.
+ Asserts that a prompt handler result contains exactly one user-role message
+ and returns its text content for further assertions.
  */
 function assertUserMessage(result: any) {
 	expect(result.messages).toHaveLength(1);
@@ -909,7 +909,9 @@ describe('resolveSafePath', () => {
 		it('rejects Unix absolute path /var/log/syslog', () => {
 			// On Windows /var/log/syslog resolves within the current drive,
 			// which may or may not be inside BASE — skip on Windows.
-			if (platform() === 'win32') return;
+			if (platform() === 'win32') {
+				return;
+			}
 			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow(
 				'Path traversal detected'
 			);

@@ -1,8 +1,8 @@
 /**
- * Prebuild asset copy script for @db-ux/mcp-server node package.
- *
- * Copies migration guides and compiled token files from the monorepo into the
- * local assets/ directories so they are available for standalone npx usage.
+ Prebuild asset copy script for @db-ux/mcp-server node package.
+
+ Copies migration guides and compiled token files from the monorepo into the
+ local assets/ directories so they are available for standalone npx usage.
  */
 
 import { cpSync, existsSync, mkdirSync } from 'node:fs';
@@ -14,9 +14,9 @@ import { buildTokens } from './build-tokens.ts';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 
 /**
- * Copies src → dest.
- * Throws a hard error when src does not exist to prevent publishing
- * an incomplete package.
+ Copies src → dest.
+ Throws a hard error when src does not exist to prevent publishing
+ an incomplete package.
  */
 function copyAsset(
 	src: string,

@@ -243,3 +243,6 @@ notext
 subcomponent
 prebundle
 treeitems
+knip
+checkin
+commitlintrc

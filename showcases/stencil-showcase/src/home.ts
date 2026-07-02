@@ -7,8 +7,8 @@ const CUSTOM_SELECT_OPTIONS = [
 ];
 
 /**
- * Initialize custom-select elements by setting options programmatically.
- * The db-custom-select component requires options to be set via JS properties.
+ Initialize custom-select elements by setting options programmatically.
+ The db-custom-select component requires options to be set via JS properties.
  */
 function initCustomSelects(container: HTMLElement): void {
 	const customSelects =
@@ -24,8 +24,8 @@ function initCustomSelects(container: HTMLElement): void {
 }
 
 /**
- * Render the home page content into the main content area.
- * Mirrors the form test tabs from other showcases (react, vue, angular).
+ Render the home page content into the main content area.
+ Mirrors the form test tabs from other showcases (react, vue, angular).
  */
 export function renderHomePage(container: HTMLElement): void {
 	container.innerHTML = `
