@@ -68,7 +68,7 @@ jobs:
     needs: [build-packages]
 
   build-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-figma-code-connect.yml
     needs: [init]
 
@@ -115,7 +115,7 @@ jobs:
     secrets: inherit
 
   test-figma-code-connect:
-    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' }}
+    if: ${{ github.event_name != 'release' && github.repository_owner == 'db-ux-design-system' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
     needs: [build-figma-code-connect, init]
     secrets: inherit
@@ -175,6 +175,7 @@ jobs:
     secrets: inherit
 
   build-showcase-stencil:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages, init]
     secrets: inherit
@@ -188,6 +189,7 @@ jobs:
     needs: [build-showcase-stencil]
 
   build-showcase-angular:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
@@ -201,6 +203,7 @@ jobs:
     needs: [build-showcase-angular]
 
   build-showcase-angular-ssr:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
@@ -214,6 +217,7 @@ jobs:
     needs: [build-showcase-angular-ssr]
 
   build-showcase-react:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
@@ -227,6 +231,7 @@ jobs:
     needs: [build-showcase-react]
 
   build-showcase-next:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
@@ -240,6 +245,7 @@ jobs:
     needs: [build-showcase-next]
 
   build-showcase-vue:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
@@ -253,6 +259,7 @@ jobs:
     needs: [build-showcase-vue]
 
   build-showcase-nuxt:
+    if: ${{ needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
