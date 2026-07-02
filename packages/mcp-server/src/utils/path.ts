@@ -1,4 +1,4 @@
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 
 /**
  * Normalizes a path to use forward slashes on all platforms.
@@ -6,28 +6,6 @@ import { join, resolve } from 'node:path';
  */
 function normalize(p: string): string {
 	return p.replaceAll('\\', '/');
-}
-
-/**
- * Absolute path to the assets directory shipped with the published package.
- * The prebuild step copies all required assets (tokens, migration guides, etc.)
- * into this directory. The server reads strictly from here — no monorepo fallbacks.
- */
-const ASSETS_DIR = join(import.meta.dirname, '../../assets');
-
-/** @public Absolute path to the migration guide assets. */
-export const MIGRATION_ASSETS_DIR = join(ASSETS_DIR, 'migration');
-
-/**
- * @public
- * Finds a migration guide by name, falling back to the legacy `db-ui-`
- * prefixed key for backwards compatibility with older manifest formats.
- */
-export function findGuide(
-	guides: Record<string, string>,
-	name: string
-): string | undefined {
-	return guides[name] ?? guides[`db-ui-${name}`];
 }
 
 /**
