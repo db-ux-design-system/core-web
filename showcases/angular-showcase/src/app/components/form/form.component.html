@@ -6,70 +6,70 @@
 
 		<h3>DBInput</h3>
 		<db-input
-			label="Username"
 			[formField]="userForm.username"
 			[validation]="fieldValidation(userForm.username)"
+			label="Username"
 		></db-input>
 		<db-input
-			label="Email"
 			type="email"
 			[formField]="userForm.email"
 			[validation]="fieldValidation(userForm.email)"
+			label="Email"
 		></db-input>
 		<db-input
-			label="Password"
 			type="password"
 			[formField]="userForm.password"
 			[validation]="fieldValidation(userForm.password)"
+			label="Password"
 		></db-input>
 		<db-input
-			label="Age"
 			type="number"
 			[formField]="userForm.age"
 			[validation]="fieldValidation(userForm.age)"
+			label="Age"
 		></db-input>
 		<db-input
-			label="Birthday"
 			type="date"
 			[formField]="userForm.birthday"
+			label="Birthday"
 		></db-input>
 		<db-input
-			label="Time"
 			type="time"
 			[formField]="userForm.appointmentTime"
+			label="Time"
 		></db-input>
 		<db-input
-			label="Appointment (date + time)"
 			type="datetime-local"
 			[formField]="userForm.appointmentDateTime"
+			label="Appointment (date + time)"
 		></db-input>
 		<db-input
-			label="Website"
 			type="url"
 			[formField]="userForm.website"
 			[validation]="fieldValidation(userForm.website)"
+			label="Website"
 		></db-input>
 		@if (!userForm.phone().hidden()) {
 			<db-input
-				label="Phone"
 				type="tel"
 				[formField]="userForm.phone"
 				[validation]="fieldValidation(userForm.phone)"
+				label="Phone"
 			></db-input>
 		} @else {
 			<p><em>Phone field is hidden (contact method ≠ "phone")</em></p>
 		}
 		<db-input
-			label="Search"
 			type="search"
 			[formField]="userForm.search"
+			label="Search"
 		></db-input>
 
 		<h3>DBSelect</h3>
 		<db-select
-			label="Country"
 			[formField]="userForm.country"
 			[validation]="fieldValidation(userForm.country)"
+			label="Country"
 		>
 			<option value="de">Germany</option>
 			<option value="at">Austria</option>
@@ -78,24 +78,24 @@
 
 		<h3>DBCustomSelect</h3>
 		<db-custom-select
-			label="City"
 			[formField]="userForm.city"
 			[multiple]="true"
 			[options]="cityOptions"
+			label="City"
 		></db-custom-select>
 
 		<h3>DBTextarea</h3>
 		<db-textarea
-			label="Bio"
 			[formField]="userForm.bio"
 			[rows]="4"
 			[validation]="fieldValidation(userForm.bio)"
+			label="Bio"
 		></db-textarea>
 
 		<h3>DBCheckbox</h3>
 		<db-checkbox
-			label="Subscribe to newsletter"
 			[formField]="userForm.newsletter"
+			label="Subscribe to newsletter"
 		></db-checkbox>
 
 		<!-- DBRadio does not integrate with Signal Forms directly — managed manually -->
@@ -103,29 +103,29 @@
 		<fieldset>
 			<legend>Preferred contact method</legend>
 			<db-radio
+				(change)="userForm.contactMethod().value.set('email')"
+				[checked]="userForm.contactMethod().value() === 'email'"
 				label="Email"
 				name="contactMethod"
-				[checked]="userForm.contactMethod().value() === 'email'"
-				(change)="userForm.contactMethod().value.set('email')"
 			></db-radio>
 			<db-radio
+				(change)="userForm.contactMethod().value.set('phone')"
+				[checked]="userForm.contactMethod().value() === 'phone'"
 				label="Phone"
 				name="contactMethod"
-				[checked]="userForm.contactMethod().value() === 'phone'"
-				(change)="userForm.contactMethod().value.set('phone')"
 			></db-radio>
 			<db-radio
+				(change)="userForm.contactMethod().value.set('letter')"
+				[checked]="userForm.contactMethod().value() === 'letter'"
 				label="Letter"
 				name="contactMethod"
-				[checked]="userForm.contactMethod().value() === 'letter'"
-				(change)="userForm.contactMethod().value.set('letter')"
 			></db-radio>
 		</fieldset>
 
 		<h3>DBSwitch (Signal Forms)</h3>
 		<db-switch
-			label="Dark Mode"
 			[formField]="userForm.darkMode"
+			label="Dark Mode"
 		></db-switch>
 
 		<h3>Form State</h3>
@@ -138,9 +138,9 @@
 	<section>
 		<h2>Standalone Switch</h2>
 		<db-switch
-			label="My Switch"
 			(change)="handleSwitchChange($event)"
 			[checked]="checkedSignal()"
+			label="My Switch"
 		></db-switch>
 		<p>Switch value: {{ checkedSignal() }}</p>
 
