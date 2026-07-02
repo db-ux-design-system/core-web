@@ -411,6 +411,56 @@ function setInstanceFields(inst, fields) {
   }
   if (Object.keys(props).length) { try { inst.setProperties(props); } catch {} }
 }
+/* applyProps — set ANY component property by plan-level { key: value } dict.
+ *
+ * Covers ALL four property types the Figma Plugin API exposes on instances:
+ *   TEXT          → string value, matched by normalized-name substring
+ *   VARIANT       → string value (variant option name), matched by normalized-name substring
+ *   BOOLEAN       → boolean value (true/false or "true"/"false"), matched by normalized-name
+ *   INSTANCE_SWAP → component key string, resolved via importComponentSetByKeyAsync,
+ *                   matched by normalized-name substring
+ *
+ * Usage in a plan node:
+ *   {
+ *     "type": "Input",
+ *     "props": { "label": "above", "state": "filled" },   // variant axes → instance selection
+ *     "applyProps": {                                       // set on the live instance
+ *       "Label": "E-Mail",                                 // TEXT
+ *       "Show Required Asterisk": true,                    // BOOLEAN
+ *       "Interaction State": "Error",                      // VARIANT (not an axis)
+ *       "Icon Trailing": "some-component-key"              // INSTANCE_SWAP
+ *     }
+ *   }
+ *
+ * Keys are matched case-insensitively by normalized substring, so short aliases work:
+ *   "label" matches "✏️ Label#552:45", "required" matches "Show Required Asterisk#…".
+ */
+async function applyProps(inst, map) {
+  if (!map || typeof map !== "object") return;
+  const cp = inst.componentProperties ?? {};
+  const textVarProps = {};
+  for (const [want, val] of Object.entries(map)) {
+    const norm = normName(want);
+    const key = Object.keys(cp).find((k) => normName(k).includes(norm));
+    if (!key) continue; // unknown key — skip silently (never throw for optional overrides)
+    const type = cp[key]?.type;
+    if (type === "TEXT" || type === "VARIANT") {
+      textVarProps[key] = String(val);
+    } else if (type === "BOOLEAN") {
+      textVarProps[key] = val === true || val === "true";
+    } else if (type === "INSTANCE_SWAP") {
+      // val = a component key string; import and swap
+      try {
+        const set = await figma.importComponentSetByKeyAsync(String(val));
+        const comp = set.type === "COMPONENT_SET" ? (set.defaultVariant ?? set.children[0]) : set;
+        textVarProps[key] = { type: "COMPONENT", key: comp.key };
+      } catch {
+        // If the key is invalid, skip (don't break the whole render)
+      }
+    }
+  }
+  if (Object.keys(textVarProps).length) { try { inst.setProperties(textVarProps); } catch {} }
+}
 let _colorCollection = null;
 async function getColorCollection() {
   if (_colorCollection) return _colorCollection;
@@ -501,6 +551,7 @@ async function buildHeader(node) {
     const tk = Object.keys(cp2).find((k) => cp2[k]?.type === "TEXT" && /application/i.test(k));
     if (tk) inst.setProperties({ [tk]: node.appName });
   }
+  if (node.applyProps) await applyProps(inst, node.applyProps);
   return inst;
 }
 
@@ -535,6 +586,7 @@ async function renderNode(node, parent) {
       const b = await createLibraryInstance("Button", node.props ?? { variant: "brand", iconOnly: false });
       await ensureFonts();
       if (node.label) setInstanceLabel(b, node.label);
+      if (node.applyProps) await applyProps(b, node.applyProps);
       parent.appendChild(b);
       return b;
     }
@@ -543,6 +595,7 @@ async function renderNode(node, parent) {
       await ensureFonts();
       if (node.label) setInstanceLabel(tg, node.label);
       if (node.semantic) await setSemantic(tg, node.semantic);
+      if (node.applyProps) await applyProps(tg, node.applyProps);
       parent.appendChild(tg);
       return tg;
     }
@@ -551,6 +604,7 @@ async function renderNode(node, parent) {
       await ensureFonts();
       if (node.label) setInstanceLabel(bd, node.label);
       if (node.semantic) await setSemantic(bd, node.semantic);
+      if (node.applyProps) await applyProps(bd, node.applyProps);
       parent.appendChild(bd);
       return bd;
     }
@@ -656,6 +710,7 @@ async function renderNode(node, parent) {
         if (node.label) setInstanceLabel(inst, node.label);
         if (node.text) setInstanceFields(inst, node.text);
         if (node.semantic) await setSemantic(inst, node.semantic);
+        if (node.applyProps) await applyProps(inst, node.applyProps);
         parent.appendChild(inst);
         if (node.fillWidth ?? FILL_DEFAULT.has(node.type)) fillWidth(inst);
         return inst;
@@ -820,6 +875,10 @@ async function auditTree(root) {
  *   props     variant axes (matched against the registry, e.g. {variant:"brand"})
  *   text      { fieldName: value } — sets multiple named TEXT props (e.g. Notification
  *             { headline, description }). label sets the single primary TEXT prop.
+ *   applyProps { "Property Name": value } — set ANY component property on the live instance.
+ *             TEXT → string, VARIANT → string, BOOLEAN → boolean, INSTANCE_SWAP → key string.
+ *             Keys matched by normalized-name substring (case-insensitive, emoji stripped).
+ *             Example: { "Label": "E-Mail", "Show Required Asterisk": true, "Size": "small" }
  *   fillWidth force the instance to FILL its container width (default on for form fields)
  *   fillHeight Container: FILL the grid row height and vertically center its content
  *             (Align "left"/"center") — use for the text block beside an Image.
@@ -842,17 +901,7 @@ async function auditTree(root) {
  *   align,gap,padding   Container variant axes (gap uses "(Def) md" for md)
  *
  * SECTION STRUCTURE: a content Section should have a `title` (and optional
- * `description`); never render a bare Grid/Card group without a heading. Don't leave a
- * thin title-only section either — put the first content group in the same section as
- * the page title. The runtime places the header block above the content automatically.riant:"brand"})
- *   label     visible label for Tag/Button/Badge (set via TEXT component property)
- *   semantic  Tag/Badge state: Successful|Informational|Warning|Critical|Neutral|…
- *   style     Text: a registered text-style name (headline.lg, body, …)
- *   content   Text content
- *   fills     color token name (Section bg / Text color)
- *   align,gap,padding   Container variant axes (gap uses "(Def) md" for md)
- *
- * GESTALT: don't give every element the same gap. Separate groups with a larger
+ * `description`); never render a bare Grid/Card group without a heading.
  * gap ("(Def) md") and keep tight sub-groups ("2xs"/"xs") in nested containers.
  * ZEBRA: first Section = color.background.canvas, then alternate surface/canvas.
  *
