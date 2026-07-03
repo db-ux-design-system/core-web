@@ -142,7 +142,7 @@ export default function ShellPosition() {
 					<DBShellContent
 						mainId="main-content-position-top"
 						mainLabel="shell-position-top">
-						Top position content
+						<p>Top position content</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
@@ -268,7 +268,7 @@ export default function ShellPosition() {
 					<DBShellContent
 						mainId="main-content-position-left"
 						mainLabel="shell-position-left">
-						Left position content
+						<p>Left position content</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>

@@ -171,7 +171,7 @@ export default function ShellDeepNavigation() {
 					<DBShellContent
 						mainId="main-content-deep-nav-top"
 						mainLabel="shell-deep-nav-top">
-						Deep Navigation - Top Position
+						<p>Deep Navigation - Top Position</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
@@ -324,7 +324,7 @@ export default function ShellDeepNavigation() {
 					<DBShellContent
 						mainId="main-content-deep-nav-left"
 						mainLabel="shell-deep-nav-left">
-						Deep Navigation - Left Position
+						<p>Deep Navigation - Left Position</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>

@@ -100,7 +100,11 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 				path: '05/control-panel-desktop',
 				label: 'Control Panel Desktop'
 			},
-			{ path: '05/control-panel-mobile', label: 'Control Panel Mobile' }
+			{ path: '05/control-panel-mobile', label: 'Control Panel Mobile' },
+			{
+				path: '05/control-panel-flat-icon',
+				label: 'Control Panel Flat Icon'
+			}
 		])
 	},
 	{

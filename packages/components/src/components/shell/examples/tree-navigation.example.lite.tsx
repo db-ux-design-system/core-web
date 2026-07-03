@@ -149,8 +149,10 @@ export default function ShellTreeNavigation() {
 					<DBShellContent
 						mainId="main-content-tree-nav-single"
 						mainLabel="shell-tree-nav-single">
-						Tree Navigation - Single Behavior (only one group open
-						at a time)
+						<p>
+							Tree Navigation - Single Behavior (only one group
+							open at a time)
+						</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
@@ -281,8 +283,10 @@ export default function ShellTreeNavigation() {
 					<DBShellContent
 						mainId="main-content-tree-nav-multiple"
 						mainLabel="shell-tree-nav-multiple">
-						Tree Navigation - Multiple Behavior (multiple groups can
-						be open simultaneously)
+						<p>
+							Tree Navigation - Multiple Behavior (multiple groups
+							can be open simultaneously)
+						</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>

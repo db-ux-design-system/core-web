@@ -47,7 +47,7 @@ export default function ShellFlatIcon() {
 					<DBShellContent
 						mainId="main-content-flat-icon-with-text"
 						mainLabel="shell-flat-icon-with-text">
-						Flat icon with text content
+						<p>Flat icon with text content</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
@@ -77,7 +77,7 @@ export default function ShellFlatIcon() {
 					<DBShellContent
 						mainId="main-content-flat-icon-no-text"
 						mainLabel="shell-flat-icon-no-text">
-						Flat icon no text content
+						<p>Flat icon no text content</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
@@ -122,7 +122,7 @@ export default function ShellFlatIcon() {
 					<DBShellContent
 						mainId="main-content-flat-icon-with-text-sub"
 						mainLabel="shell-flat-icon-with-text-sub">
-						Flat icon with text content + Sub-Navigation
+						<p>Flat icon with text content + Sub-Navigation</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
@@ -167,7 +167,7 @@ export default function ShellFlatIcon() {
 					<DBShellContent
 						mainId="main-content-flat-icon-no-text-sub"
 						mainLabel="shell-flat-icon-no-text-sub">
-						Flat icon no text content + Sub-Navigation
+						<p>Flat icon no text content + Sub-Navigation</p>
 						<DBButton>Action</DBButton>
 					</DBShellContent>
 				</DBShell>
