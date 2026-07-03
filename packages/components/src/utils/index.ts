@@ -26,9 +26,7 @@ export const addAttributeToChildren = (
 };
 
 export type ClassNameArg =
-	| string
-	| { [key: string]: boolean | undefined }
-	| undefined;
+	string | { [key: string]: boolean | undefined } | undefined;
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
 
