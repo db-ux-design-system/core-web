@@ -156,13 +156,13 @@
   - button "BurgerMenu"
   - complementary "shell-top-sub-left-tree-sub":
     - navigation "shell-top-sub-left-tree-sub":
-      - tree "shell-top-sub-left-tree-sub":
+      - list:
         - listitem:
-          - treeitem "Sub-Item 3"
+          - link "Sub-Item 3"
         - listitem:
-          - treeitem "Sub-Item 4"
+          - link "Sub-Item 4"
         - listitem:
-          - treeitem "Sub-Item 5"
+          - link "Sub-Item 5"
   - main "shell-top-sub-left-tree":
     - text: Top + Sub Left Tree content
     - button "Action"
