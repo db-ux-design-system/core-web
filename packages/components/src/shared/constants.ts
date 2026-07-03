@@ -83,6 +83,7 @@ export const COLORS_SIMPLE: COLOR_SIMPLE[] = Object.entries(COLOR_SIMPLE).map(
 );
 
 export enum SEMANTIC {
+	NEUTRAL = 'neutral',
 	CRITICAL = 'critical',
 	INFORMATIONAL = 'informational',
 	WARNING = 'warning',

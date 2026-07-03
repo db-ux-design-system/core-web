@@ -242,12 +242,37 @@ export default function DBControlPanelNavigation(
 			const openKey = isHorizontal ? 'ArrowDown' : 'ArrowRight';
 			const closeKey = isHorizontal ? 'ArrowUp' : 'ArrowLeft';
 
+			// Handle keyboard navigation when focus is on the back button
+			// (which is not included in the ITEM_SELECTOR items list).
+			const isOnBackButton = activeElement.closest(
+				'.db-control-panel-navigation-item-group-back-button'
+			);
+			if (isOnBackButton && !isTopLevel) {
+				if (key === nextKey) {
+					event.preventDefault();
+					items[0]?.focus();
+				} else if (key === prevKey) {
+					event.preventDefault();
+					items[items.length - 1]?.focus();
+				}
+				return;
+			}
+
 			if (key === nextKey) {
 				event.preventDefault();
 				if (currentIndex < items.length - 1) {
 					items[currentIndex + 1]?.focus();
 				} else if (!isTopLevel) {
-					state._closeSubMenuAndReturnToParent(parentGroupMenu!);
+					// Check if a visible back button exists (mobile).
+					// If so, wrap to the back button instead of closing.
+					const backButton = parentGroupMenu!.querySelector(
+						':scope > .db-control-panel-navigation-item-group-back-button button'
+					) as HTMLElement | null;
+					if (backButton && backButton.offsetParent !== null) {
+						backButton.focus();
+					} else {
+						state._closeSubMenuAndReturnToParent(parentGroupMenu!);
+					}
 				} else {
 					// Wrap at top level
 					items[0]?.focus();
@@ -257,7 +282,16 @@ export default function DBControlPanelNavigation(
 				if (currentIndex > 0) {
 					items[currentIndex - 1]?.focus();
 				} else if (!isTopLevel) {
-					state._closeSubMenuAndReturnToParent(parentGroupMenu!);
+					// Check if a visible back button exists in the sub-menu
+					// (mobile only). If so, focus it instead of closing.
+					const backButton = parentGroupMenu!.querySelector(
+						':scope > .db-control-panel-navigation-item-group-back-button button'
+					) as HTMLElement | null;
+					if (backButton && backButton.offsetParent !== null) {
+						backButton.focus();
+					} else {
+						state._closeSubMenuAndReturnToParent(parentGroupMenu!);
+					}
 				} else {
 					// Wrap at top level
 					items[items.length - 1]?.focus();

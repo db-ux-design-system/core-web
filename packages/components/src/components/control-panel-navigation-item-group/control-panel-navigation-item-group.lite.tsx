@@ -49,6 +49,7 @@ export default function DBControlPanelNavigationItemGroup(
 		autoClose: false,
 		hasPopup: false,
 		initialized: false,
+		_isMobile: false,
 		_role: undefined,
 		_attributeObserver: undefined,
 		_itemGroupMenuId:
@@ -86,6 +87,57 @@ export default function DBControlPanelNavigationItemGroup(
 		_handleMouseLeave: () => {
 			if (!state.hasPopup) return;
 			state.isSubNavigationExpanded = false;
+		},
+		_setSiblingsInert: (inert: boolean) => {
+			if (!_ref || !_menuRef) return;
+
+			// 1. Mark sibling <li> elements within the parent <menu> as inert
+			const parentMenu = (_ref as HTMLElement).parentElement;
+			if (parentMenu) {
+				const siblings = parentMenu.children;
+				for (let i = 0; i < siblings.length; i++) {
+					const sibling = siblings[i] as HTMLElement;
+					if (sibling !== (_ref as HTMLElement)) {
+						if (inert) {
+							sibling.setAttribute('inert', '');
+						} else {
+							sibling.removeAttribute('inert');
+						}
+					}
+				}
+			}
+
+			// 2. Mark the expand button as inert when the sub-menu
+			// overlay is open, since it is visually behind the overlay.
+			if (_buttonRef) {
+				if (inert) {
+					(_buttonRef as HTMLElement).setAttribute('inert', '');
+				} else {
+					(_buttonRef as HTMLElement).removeAttribute('inert');
+				}
+			}
+
+			// 3. Mark other sections in the drawer scroll container as inert
+			// (e.g. meta navigation), but NOT the <nav> ancestor of this item.
+			const scrollContainer = (_ref as HTMLElement).closest(
+				'.db-control-panel-mobile-drawer-scroll-container'
+			);
+			if (scrollContainer) {
+				const navAncestor = (_ref as HTMLElement).closest(
+					'.db-control-panel-navigation'
+				);
+				const children = scrollContainer.children;
+				for (let i = 0; i < children.length; i++) {
+					const child = children[i] as HTMLElement;
+					if (child !== navAncestor) {
+						if (inert) {
+							child.setAttribute('inert', '');
+						} else {
+							child.removeAttribute('inert');
+						}
+					}
+				}
+			}
 		},
 		_attachPopoverListeners: () => {
 			if (state._popoverListenersAttached || !_ref) return;
@@ -156,6 +208,14 @@ export default function DBControlPanelNavigationItemGroup(
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
+
+			// Return focus to the expand button after closing the sub-menu.
+			// Use a delay to ensure the inert attribute has been removed first.
+			void delay(() => {
+				if (_buttonRef) {
+					(_buttonRef as HTMLElement).focus();
+				}
+			}, 1);
 		},
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
@@ -202,6 +262,7 @@ export default function DBControlPanelNavigationItemGroup(
 
 	onUnMount(() => {
 		state._teardownPopover();
+		state._setSiblingsInert(false);
 
 		state._attributeObserver?.disconnect();
 		state._attributeObserver = undefined;
@@ -224,8 +285,36 @@ export default function DBControlPanelNavigationItemGroup(
 				_ref,
 				'--db-control-panel-navigation-item-group-menu-popover'
 			);
+
+			if (_menuRef) {
+				state._isMobile = hasCssFlag(
+					_menuRef,
+					'--db-control-panel-navigation-item-group-menu-mobile'
+				);
+			}
 		}
 	}, [_ref, state.initialized]);
+
+	// When a sub-navigation is expanded in mobile mode, mark sibling
+	// navigation items as inert so screenreader/keyboard focus cannot
+	// escape the visible overlay (resolves #5883).
+	onUpdate(() => {
+		if (state._isMobile && state.isSubNavigationExpanded) {
+			state._setSiblingsInert(true);
+
+			// Move focus to the first navigation item link inside the sub-menu
+			if (_menuRef) {
+				const firstLink = (_menuRef as HTMLElement).querySelector(
+					'.db-control-panel-navigation-item a'
+				) as HTMLElement | null;
+				if (firstLink) {
+					firstLink.focus();
+				}
+			}
+		} else {
+			state._setSiblingsInert(false);
+		}
+	}, [state._isMobile, state.isSubNavigationExpanded]);
 
 	onUpdate(() => {
 		if (_ref && _buttonRef && _menuRef && state.hasPopup) {
