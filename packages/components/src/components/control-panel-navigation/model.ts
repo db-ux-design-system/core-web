@@ -25,6 +25,7 @@ export type DBControlPanelNavigationProps =
 
 export type DBControlPanelNavigationDefaultState = {
 	onScroll: () => void;
+	_shellMobile?: boolean;
 	_shellDesktopPosition?: string | null;
 	_handleSubNavigation: () => void;
 	_handleTreeKeyDown: (event: any) => void;
@@ -35,6 +36,7 @@ export type DBControlPanelNavigationDefaultState = {
 	_resizeObserverCallbackId?: string;
 	_singleBehaviorObserver?: MutationObserver;
 	_attachSingleBehaviorObserver: () => void;
+	_setShellMobile: () => void;
 };
 
 export type DBControlPanelNavigationState =

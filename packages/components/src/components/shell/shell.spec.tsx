@@ -13,6 +13,7 @@ import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
 import { DBControlPanelPrimaryActions } from '../control-panel-primary-actions';
 import { DBControlPanelSecondaryActions } from '../control-panel-secondary-actions';
+import { DBControlPanelSkipNavigation } from '../control-panel-skip-navigation';
 import { DBShellContent } from '../shell-content';
 
 // template v-slot is used for vue component tests
@@ -171,9 +172,18 @@ const testA11y = () => {
 };
 
 const skipLinkComp: any = (
-	<DBShell skipNavigationLinkText="Skip to content">
+	<DBShell>
 		<DBControlPanelDesktop
+			skipNavigation={
+				<DBControlPanelSkipNavigation text="Skip to content" />
+			}
 			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			{/*<template v-slot:skip-navigation>
+				<DBControlPanelSkipNavigation text="Skip to content" />
+			</template>*/}
 			<DBControlPanelNavigation aria-label="Navigation">
 				<DBControlPanelNavigationItem>
 					<a href="#">Item</a>
@@ -191,9 +201,7 @@ const testSkipLink = () => {
 	}) => {
 		await page.setViewportSize({ width: 1920, height: 1280 });
 		await mount(skipLinkComp);
-		const skipLink = page.locator(
-			'.db-shell-skip-navigation-link-container a'
-		);
+		const skipLink = page.locator('.db-control-panel-skip-navigation a');
 		await expect(skipLink).toBeAttached();
 		await skipLink.focus();
 		await expect(skipLink).toBeVisible();
@@ -202,9 +210,7 @@ const testSkipLink = () => {
 	test('skip-link should target #main-content', async ({ page, mount }) => {
 		await page.setViewportSize({ width: 1920, height: 1280 });
 		await mount(skipLinkComp);
-		const skipLink = page.locator(
-			'.db-shell-skip-navigation-link-container a'
-		);
+		const skipLink = page.locator('.db-control-panel-skip-navigation a');
 		await expect(skipLink).toHaveAttribute('href', '#main-content');
 	});
 };

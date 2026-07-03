@@ -36,10 +36,17 @@ export default function DBControlPanelNavigation(
 	const state = useStore<DBControlPanelNavigationState>({
 		showScrollLeft: false,
 		showScrollRight: false,
+		_shellMobile: false,
 		_shellDesktopPosition: undefined,
 		initialized: false,
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
+		_setShellMobile: () => {
+			state._shellMobile = hasCssFlag(
+				_ref,
+				'--db-control-panel-sub-navigation-mobile'
+			);
+		},
 		_attachSingleBehaviorObserver() {
 			if (!menuRef) return;
 
@@ -442,26 +449,35 @@ export default function DBControlPanelNavigation(
 			)
 				? 'top'
 				: 'left';
+
+			state._setShellMobile();
 		}
 	}, [_ref, state.initialized]);
 
 	onUpdate(() => {
 		if (menuRef) {
-			if (!props.variant || props.variant === 'popover') {
+			const menuElement = menuRef as HTMLElement;
+
+			if (
+				!props.variant ||
+				props.variant === 'popover' ||
+				state._shellMobile
+			) {
 				// Clean up tree roles if switching from tree to popover
 				for (const menu of Array.from(
-					(menuRef as HTMLElement).querySelectorAll(
+					menuElement.querySelectorAll(
 						'.db-control-panel-navigation-item-group-menu[role="group"]'
 					)
 				)) {
 					(menu as HTMLElement).removeAttribute('role');
 				}
 
-				// Remove forwarded aria-label from the <menu> when not in tree variant
-				(menuRef as HTMLElement).removeAttribute('aria-label');
+				// Remove forwarded aria-label and role from the <menu> when not in tree variant
+				menuElement.removeAttribute('aria-label');
+				menuElement.removeAttribute('role');
 
 				for (const navItem of Array.from(
-					(menuRef as HTMLElement).querySelectorAll(
+					menuElement.querySelectorAll(
 						'.db-control-panel-navigation-item[role="none"], .db-control-panel-navigation-item-group[role="none"]'
 					)
 				)) {
@@ -478,7 +494,7 @@ export default function DBControlPanelNavigation(
 				state._handleSubNavigation();
 			} else if (props.variant === 'tree') {
 				for (const menu of Array.from(
-					(menuRef as HTMLElement).querySelectorAll(
+					menuElement.querySelectorAll(
 						'.db-control-panel-navigation-item-group-menu'
 					)
 				)) {
@@ -491,15 +507,12 @@ export default function DBControlPanelNavigation(
 					'aria-label'
 				);
 				if (navAriaLabel) {
-					(menuRef as HTMLElement).setAttribute(
-						'aria-label',
-						navAriaLabel
-					);
+					menuElement.setAttribute('aria-label', navAriaLabel);
 				}
 
 				const allTreeItems: HTMLElement[] = [];
 				for (const navItem of Array.from(
-					(menuRef as HTMLElement).querySelectorAll(
+					menuElement.querySelectorAll(
 						'.db-control-panel-navigation-item, .db-control-panel-navigation-item-group'
 					)
 				)) {
@@ -526,7 +539,13 @@ export default function DBControlPanelNavigation(
 				}
 			}
 		}
-	}, [menuRef, props.variant, state._shellDesktopPosition, props.behavior]);
+	}, [
+		menuRef,
+		props.variant,
+		state._shellDesktopPosition,
+		state._shellMobile,
+		props.behavior
+	]);
 
 	onUpdate(() => {
 		if (state._shellDesktopPosition) {
