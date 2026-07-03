@@ -57,7 +57,7 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 ```vue
 <template>
 	<DBDrawer :open="open" @close="open = false">
-		<template #drawer-header>
+		<template #header>
 			<DBDrawerHeader>Title</DBDrawerHeader>
 		</template>
 		Content

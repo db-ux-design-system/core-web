@@ -20,6 +20,9 @@
 	position: relative;
 	grid-area: brand;
 
+	// The brand logo depends on the theme package (e.g. @db-ux/db-theme)
+	// providing --db-logo-url and --db-logo-aspect-ratio CSS custom properties.
+	// Without a theme, the logo will not be visible.
 	&::before {
 		content: "";
 
@@ -28,7 +31,7 @@
 		}
 
 		block-size: 1lh;
-		aspect-ratio: var(--db-logo-aspect-ratio);
+		aspect-ratio: var(--db-logo-aspect-ratio, 1);
 		background-image: var(--db-logo-url);
 		background-repeat: no-repeat;
 		background-size: auto #{variables.$db-sizing-sm};

@@ -56,17 +56,16 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	});
 
 	return (
-		<header
+		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-drawer-header', props.className)}>
-			<div class="db-drawer-header-container">
+			<header id={state._headingId} class="db-drawer-header-container">
 				<Slot name="startSlot" />
-				<Show when={props.text}>
-					<header id={state._headingId}>{props.text}</header>
+				<Show when={props.text} else={props.children}>
+					<h2>{props.text}</h2>
 				</Show>
-				{props.children}
-			</div>
+			</header>
 			<Slot name="endSlot" />
 			<DBButton
 				data-action="close"
@@ -78,6 +77,6 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 				{props.closeButtonText}
 				<DBTooltip>{props.closeButtonText}</DBTooltip>
 			</DBButton>
-		</header>
+		</div>
 	);
 }

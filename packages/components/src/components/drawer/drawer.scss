@@ -132,6 +132,14 @@
 	.db-drawer-container {
 		@extend %drawer-safe-area;
 
+		// Close delay: 0s by default (reduced motion), set to transition duration
+		// when motion is allowed. Read by JS to schedule dialog.close().
+		--db-drawer-close-delay: 0;
+
+		@media (prefers-reduced-motion: no-preference) {
+			--db-drawer-close-delay: #{variables.$db-transition-duration-slow};
+		}
+
 		display: grid;
 		grid-template-rows:
 			[header] auto
@@ -145,6 +153,7 @@
 
 		> .db-drawer-content {
 			overflow-y: auto;
+			overscroll-behavior: contain;
 			padding: variables.$db-spacing-fixed-xs
 				component.$drawer-content-padding-inline;
 		}
@@ -241,8 +250,7 @@
 
 			&[data-transition="close"] {
 				@media (prefers-reduced-motion: no-preference) {
-					transition: transform
-						#{variables.$db-transition-duration-slow}
+					transition: transform var(--db-drawer-close-delay)
 						#{variables.$db-transition-timing-emotional};
 				}
 			}

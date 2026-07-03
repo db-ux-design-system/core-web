@@ -260,7 +260,9 @@ export default function DBControlPanelNavigation(
 
 			if (key === nextKey) {
 				event.preventDefault();
-				if (currentIndex < items.length - 1) {
+				if (currentIndex === -1) {
+					items[0]?.focus();
+				} else if (currentIndex < items.length - 1) {
 					items[currentIndex + 1]?.focus();
 				} else if (!isTopLevel) {
 					// Check if a visible back button exists (mobile).

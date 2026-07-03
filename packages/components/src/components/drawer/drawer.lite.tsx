@@ -28,6 +28,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const state = useStore<DBDrawerState>({
 		initialized: false,
 		backdropPointerDown: false,
+		_closeTimeoutId: undefined as number | undefined,
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -118,7 +119,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					} else {
 						_ref.showModal();
 					}
-					void delay(() => {
+					delay(() => {
 						if (dialogContainerRef) {
 							(dialogContainerRef as HTMLDivElement).dataset[
 								'transition'
@@ -132,9 +133,29 @@ export default function DBDrawer(props: DBDrawerProps) {
 							'transition'
 						] = 'close';
 					}
-					void delay(() => {
+					// Cancel any previously scheduled close to prevent double-close on rapid toggling
+					if (state._closeTimeoutId !== undefined) {
+						clearTimeout(state._closeTimeoutId);
+					}
+
+					// Read close delay from CSS (already accounts for prefers-reduced-motion)
+					let closeDelay = 0;
+					if (dialogContainerRef) {
+						const durationStr = getComputedStyle(
+							dialogContainerRef as HTMLDivElement
+						)
+							.getPropertyValue('--db-drawer-close-delay')
+							.trim();
+						const seconds = parseFloat(durationStr);
+						if (seconds > 0) {
+							closeDelay = seconds * 1000 + 1;
+						}
+					}
+
+					state._closeTimeoutId = window.setTimeout(() => {
 						_ref?.close();
-					}, 401);
+						state._closeTimeoutId = undefined;
+					}, closeDelay);
 				}
 			}
 		}
@@ -160,6 +181,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 	}, [_ref, state.initialized, props.position]);
 
 	onUnMount(() => {
+		// Cancel any pending close timeout to prevent stale references
+		if (state._closeTimeoutId !== undefined) {
+			clearTimeout(state._closeTimeoutId);
+		}
 		if (_ref && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
 			const parent = refElement.parentElement;

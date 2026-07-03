@@ -22,8 +22,7 @@ export const DEFAULT_COLLAPSE: string = 'Collapse';
 export const DEFAULT_SCROLL_LEFT: string = 'Scroll left';
 export const DEFAULT_SCROLL_RIGHT: string = 'Scroll right';
 
-export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
-export const DEFAULT_ICON: string = 'brand';
+export const DEFAULT_BURGER_MENU: string = 'Open navigation menu';
 export const DEFAULT_ROWS: number = 4;
 
 export const DEFAULT_CLOSE_BUTTON: string = 'Close';

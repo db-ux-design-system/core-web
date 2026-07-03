@@ -842,6 +842,11 @@ export type NavigationItemGroupVariantType =
 	(typeof NavigationItemGroupVariantList)[number];
 
 export type NavigationItemGroupVariant = {
+	/**
+	 * Selects the navigation interaction model: `popover` shows sub-items
+	 * in a flyout menu, `tree` shows a collapsible tree structure.
+	 * Note: This selects an interaction model, not just a visual variant.
+	 */
 	variant?: NavigationItemGroupVariantType;
 };
 

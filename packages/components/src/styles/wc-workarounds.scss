@@ -11,7 +11,7 @@ db-notification {
 	inline-size: inherit;
 }
 
-db-control-panel-navigation-item-group {
+db-control-panel-navigation-item-group:not(:defined) {
 	button {
 		// workaround for angular flash of unstyled content
 		appearance: none;

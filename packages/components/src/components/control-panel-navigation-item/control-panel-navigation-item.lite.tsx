@@ -9,7 +9,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_LABEL } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
@@ -119,6 +118,22 @@ export default function DBControlPanelNavigationItem(
 		}
 	}, [_ref, props.disabled]);
 
+	// When active, set aria-current="page" on the contained anchor so
+	// assistive tech announces the current page link properly.
+	onUpdate(() => {
+		if (_ref) {
+			const listElement = _ref as HTMLLIElement;
+			const anchor = listElement.querySelector('a');
+			if (anchor) {
+				if (getBoolean(props.active, 'active')) {
+					anchor.setAttribute('aria-current', 'page');
+				} else {
+					anchor.removeAttribute('aria-current');
+				}
+			}
+		}
+	}, [_ref, props.active]);
+
 	return (
 		<li
 			ref={_ref}
@@ -134,9 +149,11 @@ export default function DBControlPanelNavigationItem(
 			<div class="db-control-panel-navigation-item-end-slot-container">
 				<Slot name="endSlot"></Slot>
 			</div>
-			<DBTooltip placement="right" delay="slow">
-				{state._tooltip ?? DEFAULT_LABEL}
-			</DBTooltip>
+			<Show when={state._tooltip}>
+				<DBTooltip placement="right" delay="slow">
+					{state._tooltip}
+				</DBTooltip>
+			</Show>
 		</li>
 	);
 }

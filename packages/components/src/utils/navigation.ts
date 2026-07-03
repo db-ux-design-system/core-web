@@ -191,6 +191,8 @@ export class NavigationItemSafeTriangle {
 	}
 }
 
+const MAX_SUB_NAVIGATION_DEPTH = 10;
+
 export const handleSubNavigationPosition = (
 	element: HTMLElement,
 	level?: number,
@@ -203,6 +205,9 @@ export const handleSubNavigationPosition = (
 	const resolvedLevel =
 		level ??
 		parseInt((element as HTMLElement).dataset['level'] ?? '-1', 10) + 1;
+
+	// Guard against deeply nested or accidentally cyclic markup
+	if (resolvedLevel >= MAX_SUB_NAVIGATION_DEPTH) return;
 
 	const navItems = element.querySelectorAll(
 		':scope > .db-control-panel-navigation-item-group, db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'

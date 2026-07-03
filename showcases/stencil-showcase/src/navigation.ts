@@ -240,7 +240,7 @@ function renderPrimaryActions(): string {
 		<db-control-panel-primary-actions>
 			<db-drawer
 				class="js-settings-drawer"
-				direction="custom"
+				direction="left"
 				rounded="true"
 			>
 				<db-drawer-header slot="header" text="Settings"></db-drawer-header>

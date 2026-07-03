@@ -25,6 +25,8 @@
 	}
 }
 
+// This global rule locks body scrolling when the shell has loaded fonts.
+// On SSR pages, scrolling is possible until hydration sets data-fonts-loaded="true".
 body:has(.db-shell[data-fonts-loaded="true"]) {
 	overflow: hidden;
 }
