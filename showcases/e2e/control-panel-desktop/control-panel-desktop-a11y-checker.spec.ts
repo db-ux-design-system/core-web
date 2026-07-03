@@ -2,7 +2,8 @@ import { test } from '@playwright/test';
 import { runA11yCheckerTest } from '../default.ts';
 
 test.describe('DBControlPanelDesktop', () => {
-	test.beforeEach((_fixtures, { project }) => {
+	// eslint-disable-next-line no-empty-pattern
+	test.beforeEach(({}, { project }) => {
 		if (project.name.startsWith('mobile')) {
 			test.skip();
 		}

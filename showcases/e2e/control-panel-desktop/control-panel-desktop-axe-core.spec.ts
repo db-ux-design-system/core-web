@@ -3,7 +3,8 @@ import { runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBControlPanelDesktop', () => {
-	test.beforeEach((_fixtures, { project }) => {
+	// eslint-disable-next-line no-empty-pattern
+	test.beforeEach(({}, { project }) => {
 		if (project.name.startsWith('mobile')) {
 			test.skip();
 		}
