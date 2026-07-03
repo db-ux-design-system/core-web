@@ -67,7 +67,6 @@ $control-panel-desktop-vertical-padding-inline: calc(
 
 	> menu {
 		overflow: auto hidden;
-		scrollbar-gutter: stable both-edges;
 		flex-direction: row;
 
 		#{string.unquote(custom-elements.$control-panel-navigation-item-group)},

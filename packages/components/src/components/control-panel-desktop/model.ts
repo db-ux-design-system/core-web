@@ -4,6 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	OrientationProps,
+	ResetIdState,
 	SidebarProps,
 	SidebarState,
 	ToggleEventState
@@ -23,4 +24,5 @@ export type DBControlPanelDesktopDefaultState = {};
 export type DBControlPanelDesktopState = DBControlPanelDesktopDefaultState &
 	GlobalState &
 	ToggleEventState<HTMLButtonElement> &
-	SidebarState;
+	SidebarState &
+	ResetIdState;

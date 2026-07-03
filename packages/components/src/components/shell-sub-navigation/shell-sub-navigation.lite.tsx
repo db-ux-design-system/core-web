@@ -8,7 +8,6 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
-import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBShellSubNavigationProps, DBShellSubNavigationState } from './model';
 
@@ -64,19 +63,20 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 			class={cls('db-shell-sub-navigation', props.className)}>
 			{props.children}
 			<div class="db-shell-sub-navigation-button">
-				<DBButton
+				<button
 					onClick={(event) => state.handleToggle(event)}
-					variant="ghost"
+					class="db-button"
+					data-variant="ghost"
 					aria-controls={
 						props.id ?? props.propOverrides?.id ?? state._id
 					}
 					aria-expanded={getBooleanAsString(state._open)}
-					noText
-					icon="double_chevron_left">
+					data-no-text="true"
+					data-icon="double_chevron_left">
 					<DBTooltip variant="label" placement="right">
 						{state.getToggleButtonText()}
 					</DBTooltip>
-				</DBButton>
+				</button>
 			</div>
 		</aside>
 	);

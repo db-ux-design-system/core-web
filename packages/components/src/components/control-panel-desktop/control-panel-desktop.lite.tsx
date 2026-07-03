@@ -1,5 +1,6 @@
 import {
 	onInit,
+	onUpdate,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -9,7 +10,6 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
-import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	DBControlPanelDesktopProps,
@@ -27,7 +27,7 @@ export default function DBControlPanelDesktop(
 	const _scrollContainerRef = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelDesktopState>({
-		_id: `db-control-panel-desktop-${uuid()}`,
+		_id: undefined,
 		_open: true,
 		handleToggle: (event: any) => {
 			/* Guard: In WC/Stencil, custom events wrap payload in event.detail as object.
@@ -57,22 +57,36 @@ export default function DBControlPanelDesktop(
 			return (
 				fnOutput() ?? (state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND)
 			);
+		},
+		resetIds: () => {
+			state._id =
+				props.id ??
+				props.propOverrides?.id ??
+				`db-control-panel-desktop-${uuid()}`;
 		}
 	});
 
 	// jscpd:ignore-end
 
 	onInit(() => {
+		state.resetIds();
+	});
+
+	onUpdate(() => {
+		state.resetIds();
+	}, [props.id, props.propOverrides]);
+
+	onUpdate(() => {
 		if (props.expanded !== undefined) {
 			state._open = getBoolean(props.expanded, 'expanded') ?? true;
 		}
-	});
+	}, [props.expanded]);
 
 	return (
 		<header
 			ref={_ref}
 			class={cls('db-control-panel-desktop', props.className)}
-			id={props.id ?? props.propOverrides?.id ?? state._id}
+			id={state._id}
 			data-width={props.width}
 			data-orientation={props.orientation}
 			data-open={getBooleanAsString(state._open)}>
@@ -89,18 +103,19 @@ export default function DBControlPanelDesktop(
 			<Slot name="primaryActions" />
 			<Slot name="secondaryActions" />
 			<div className="db-control-panel-desktop-button">
-				<DBButton
+				<button
 					onClick={(event) => state.handleToggle(event)}
-					variant="ghost"
-					aria-controls={props.id ?? state._id}
+					class="db-button"
+					data-variant="ghost"
+					aria-controls={state._id}
 					aria-expanded={getBooleanAsString(state._open)}
-					noText
+					data-no-text="true"
 					type="button"
-					icon="double_chevron_left">
+					data-icon="double_chevron_left">
 					<DBTooltip variant="label" placement="right">
 						{state.getToggleButtonText()}
 					</DBTooltip>
-				</DBButton>
+				</button>
 			</div>
 		</header>
 	);
