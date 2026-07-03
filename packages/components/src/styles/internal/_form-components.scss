@@ -92,7 +92,8 @@ $db-min-inline-size: var(
 				[value*="7"],
 				[value*="8"],
 				[value*="9"],
-				[value*="0"]
+				[value*="0"],
+    			:placeholder-shown
 			)::-webkit-datetime-edit {
 			@content;
 		}
