@@ -207,3 +207,5 @@ Changes in `packages/components/src` require a changeset for:
 - `patch` — bug fix
 - `minor` — new feature or example, or any prop added in `model.ts`
 - `major` — any prop in `model.ts` removed, renamed, or retyped
+
+> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
