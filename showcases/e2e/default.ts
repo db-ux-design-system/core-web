@@ -7,6 +7,7 @@ import { setScrollViewport } from './fixtures/viewport';
 
 import type { Checker } from 'accessibility-checker-engine';
 import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
+import { type PageAssertionsToHaveScreenshotOptions } from 'playwright/types/test';
 
 const density = 'regular';
 
@@ -110,7 +111,7 @@ export const getDefaultScreenshotTest = ({
 			test.skip();
 		}
 
-		const config: Record<string, unknown> = {};
+		const config: PageAssertionsToHaveScreenshotOptions = {};
 
 		if (maxDiffPixelRatio ?? diffPixel) {
 			if (maxDiffPixelRatio) {
@@ -130,9 +131,10 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		const header = page.locator('header').first();
+		const headerDesktop = page.locator('.db-control-panel-desktop').first();
+		const headerMobile = page.locator('.db-control-panel-mobile').first();
 
-		config.mask = [header];
+		config.mask = [headerDesktop, headerMobile];
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
