@@ -86,14 +86,34 @@ const testComponent = () => {
 		const navigationItemButton = page.getByRole('button', {
 			name: 'Navi-Item 1'
 		});
-		const subNavigationItemButton = page.getByRole('button', {
-			name: 'Sub-Navi-Item 1'
-		});
+
+		// Wait for the component to detect sub-navigation children
+		await expect(navigationItemButton).toHaveAttribute(
+			'aria-haspopup',
+			'true'
+		);
+		await expect(navigationItemButton).toHaveAttribute(
+			'aria-expanded',
+			'false'
+		);
 
 		await navigationItemButton.click({ force: true });
 		await expect(navigationItemButton).toHaveAttribute(
 			'aria-expanded',
 			'true'
+		);
+
+		const subNavigationItemButton = page.getByRole('button', {
+			name: 'Sub-Navi-Item 1'
+		});
+
+		await expect(subNavigationItemButton).toHaveAttribute(
+			'aria-haspopup',
+			'true'
+		);
+		await expect(subNavigationItemButton).toHaveAttribute(
+			'aria-expanded',
+			'false'
 		);
 
 		await subNavigationItemButton.click({ force: true });
