@@ -228,20 +228,7 @@ fbca
 unreviewed
 notext
 prebundle
-subcomponent
-# GitHub Project IDs
-PVTSSF
-ADOC
-# Labels
-communityfeedback
-bruno-sch
-# Usernames
-mfranzke
-michaelmkraus
-nmerget
 notext
-subcomponent
-prebundle
 treeitems
 knip
 checkin
