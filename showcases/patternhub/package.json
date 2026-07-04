@@ -47,7 +47,7 @@
     "@mdx-js/react": "3.1.1",
     "@next/mdx": "16.2.9",
     "@types/dompurify": "3.2.0",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "cpr": "3.0.1",
@@ -59,7 +59,7 @@
     "iframe-resizer": "5.5.9",
     "npm-run-all2": "9.0.2",
     "open-cli": "9.0.0",
-    "prettier": "3.8.5",
+    "prettier": "3.9.4",
     "sass": "1.101.0",
     "typescript": "5.9.3",
     "unist-util-visit": "5.1.0"

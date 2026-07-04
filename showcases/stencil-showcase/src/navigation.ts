@@ -99,7 +99,9 @@ function renderNavItems(items: NavItem[]): string {
 
 export function renderNavigation(): void {
 	const app = document.querySelector('#app');
-	if (!app) return;
+	if (!app) {
+		return;
+	}
 
 	app.innerHTML = `
 		<db-page variant="fixed" fade-in="true">

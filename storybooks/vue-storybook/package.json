@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/vue-storybook",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook build --output-dir ../../build-storybooks/vue-storybook",
     "storybook": "cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6007"
   },
   "dependencies": {
@@ -36,7 +36,7 @@
     "eslint-plugin-storybook": "10.4.6",
     "storybook": "10.4.6",
     "typescript": "~5.9.3",
-    "vite": "8.1.0",
-    "vue-tsc": "3.3.5"
+    "vite": "8.1.2",
+    "vue-tsc": "3.3.6"
   }
 }

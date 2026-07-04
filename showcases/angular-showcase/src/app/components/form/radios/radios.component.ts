@@ -14,7 +14,9 @@ export class RadiosComponent {
 	ngModel = '';
 	formControl: FormControl = new FormControl('');
 	public handlePlainChange(event: Event | void) {
-		if (!event) return;
+		if (!event) {
+			return;
+		}
 		this.plain = (event.target as HTMLInputElement).value;
 	}
 }
