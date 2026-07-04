@@ -97,7 +97,7 @@ const testComponent = () => {
 			'false'
 		);
 
-		await navigationItemButton.click({ force: true });
+		await navigationItemButton.click();
 		await expect(navigationItemButton).toHaveAttribute(
 			'aria-expanded',
 			'true'
@@ -116,7 +116,7 @@ const testComponent = () => {
 			'false'
 		);
 
-		await subNavigationItemButton.click({ force: true });
+		await subNavigationItemButton.click();
 		await expect(subNavigationItemButton).toHaveAttribute(
 			'aria-expanded',
 			'true'
