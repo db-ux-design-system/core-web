@@ -46,8 +46,29 @@ function isKnownRoute(category: string, component: string): boolean {
 }
 
 /**
- * Render a component showcase page by inserting the corresponding
- * custom element tag into the main content area.
+ Escape a string for safe use inside an HTML attribute value.
+ */
+function escapeHtmlAttribute(value: string): string {
+	return value
+		.replaceAll('&', '&amp;')
+		.replaceAll('"', '&quot;')
+		.replaceAll("'", '&#x27;')
+		.replaceAll('<', '&lt;')
+		.replaceAll('>', '&gt;');
+}
+
+/**
+ Validate that an attribute name is safe for HTML interpolation.
+ Must contain only alphanumeric, hyphens, or underscores, and must NOT
+ be an inline event handler (on*) to prevent XSS via crafted URLs.
+ */
+function isValidAttributeName(name: string): boolean {
+	return /^[a-z][\w-]*$/i.test(name) && !/^on/i.test(name);
+}
+
+/**
+ Render a component showcase page by inserting the corresponding
+ custom element tag into the main content area.
  */
 function renderShowcasePage(
 	container: HTMLElement,
@@ -56,11 +77,12 @@ function renderShowcasePage(
 ): void {
 	const showcaseTag = `${component}-showcase`;
 
-	// Build attribute string from query params for Playwright compatibility.
+	// Build attribute string from query params for Playwright compatibility,
+	// sanitizing to prevent XSS from user-controlled URL parameters.
 	// The `settings` param only controls the shell layout, not the showcase.
 	const attributes = [...parameters]
-		.filter(([key]) => key !== 'settings')
-		.map(([key, value]) => `${key}="${value}"`)
+		.filter(([key]) => key !== 'settings' && isValidAttributeName(key))
+		.map(([key, value]) => `${key}="${escapeHtmlAttribute(value)}"`)
 		.join(' ');
 
 	container.innerHTML = attributes
