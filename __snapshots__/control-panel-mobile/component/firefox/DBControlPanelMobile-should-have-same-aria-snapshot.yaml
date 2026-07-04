@@ -1,4 +1,4 @@
 - banner:
   - button "Search"
-  - button "BurgerMenu"
+  - button "Open navigation menu"
 - main "Main": Content
