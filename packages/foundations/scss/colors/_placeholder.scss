@@ -7,10 +7,7 @@
 	background-color: #{$bg};
 	color: #{$on};
 
-	&::before,
-	&::after {
-		--db-icon-color: #{$on};
-	}
+	--db-icon-color: #{$on};
 
 	@if $hovered or $pressed {
 		@include functions.not-disabled {
