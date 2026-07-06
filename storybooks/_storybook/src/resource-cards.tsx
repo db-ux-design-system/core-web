@@ -1,12 +1,20 @@
 import { DBCard } from '@components';
 
 declare const __FRAMEWORK_URLS__: {
+	html: string;
 	angular: string;
 	react: string;
 	vue: string;
 };
 
 const RESOURCES = [
+	{
+		title: 'HTML5',
+		description: 'Native HTML components',
+		url: `${__FRAMEWORK_URLS__.html}/?path=/docs/getting-started--docs`,
+		icon: 'html5.svg',
+		label: 'View Storybook'
+	},
 	{
 		title: 'Angular',
 		description: 'Native Angular components',
@@ -40,7 +48,7 @@ const ResourceCards = () => (
 					{resource.icon && (
 						<img
 							src={getIconPath(resource.icon)}
-							alt={`Image for ${resource.title}, ${resource.description}`}
+							alt={`${resource.title} logo`}
 							width="32"
 							height="32"
 						/>
