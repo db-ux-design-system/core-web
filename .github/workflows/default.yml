@@ -220,7 +220,7 @@ jobs:
 
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages, init]
+    needs: [build-packages]
     secrets: inherit
     with:
       showcase: react-showcase
@@ -329,7 +329,7 @@ jobs:
   test-showcase-patternhub:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-e2e-patternhub.yml
-    needs: [build-showcase-patternhub, init, init]
+    needs: [build-showcase-patternhub, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
