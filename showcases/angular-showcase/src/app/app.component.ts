@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, NO_ERRORS_SCHEMA, OnInit, signal } from '@angular/core';
+import { form, FormField } from '@angular/forms/signals';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
 	COLOR,
@@ -29,7 +29,6 @@ import {
 	selector: 'app-root',
 	standalone: true,
 	imports: [
-		FormsModule,
 		RouterOutlet,
 		NavItemComponent,
 		DBPage,
@@ -40,8 +39,12 @@ import {
 		DBButton,
 		SecondaryActionDirective,
 		NavigationDirective,
-		MetaNavigationDirective
+		MetaNavigationDirective,
+		FormField
 	],
+	// NO_ERRORS_SCHEMA required for Angular 21 [formField] directive template type-checking.
+	// Remove when Angular 22 is the minimum supported version.
+	schemas: [NO_ERRORS_SCHEMA],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
@@ -51,8 +54,12 @@ export class AppComponent implements OnInit {
 	densities = DENSITIES;
 	colors = COLORS;
 
-	density = DENSITY.REGULAR;
-	color = COLOR.NEUTRAL_BG_LEVEL_1;
+	settingsModel = signal({
+		density: DENSITY.REGULAR,
+		color: COLOR.NEUTRAL_BG_LEVEL_1
+	});
+
+	settingsForm = form(this.settingsModel);
 
 	page?: string;
 	fullscreen = false;
@@ -65,11 +72,17 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
 			if (parameters[DENSITY_CONST]) {
-				this.density = parameters[DENSITY_CONST];
+				this.settingsModel.update((m) => ({
+					...m,
+					density: parameters[DENSITY_CONST]
+				}));
 			}
 
 			if (parameters[COLOR_CONST]) {
-				this.color = parameters[COLOR_CONST];
+				this.settingsModel.update((m) => ({
+					...m,
+					color: parameters[COLOR_CONST]
+				}));
 			}
 
 			if (parameters['page']) {
@@ -82,12 +95,18 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	getChangeableClasses = () => `db-density-${this.density} db-${this.color}`;
+	getChangeableClasses = () => {
+		const density = this.settingsForm.density().value();
+		const color = this.settingsForm.color().value();
+		return `db-density-${density} db-${color}`;
+	};
 
 	onChange = async (_value: unknown) => {
+		const density = this.settingsForm.density().value();
+		const color = this.settingsForm.color().value();
 		await this.router.navigate([], {
 			relativeTo: this.route,
-			queryParams: { density: this.density, color: this.color },
+			queryParams: { density, color },
 			queryParamsHandling: 'merge'
 		});
 	};

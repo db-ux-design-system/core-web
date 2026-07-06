@@ -2,6 +2,7 @@
 	[control]="formControl.value"
 	[model]="ngModel"
 	[plain]="plain"
+	[signalForms]="signalForm.value().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -30,5 +31,6 @@
 			name="input-name"
 			placeholder="Placeholder"
 		/>
+		<app-signal-forms-input />
 	</fieldset>
 </app-form-wrapper>

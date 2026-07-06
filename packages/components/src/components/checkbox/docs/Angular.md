@@ -71,6 +71,80 @@ import { DBCheckbox, DBInfotext } from "@db-ux/ngx-core-components";
 export class AppComponent {}
 ```
 
+## How to use with Signal Forms
+
+[Angular Signal Forms](https://angular.dev/essentials/signal-forms) (Angular ≥ 21) are supported via Duck-Typing. The `DBCheckbox` component exposes a `checked` ModelSignal that Angular's `[formField]` directive recognizes automatically as a `FormCheckboxControl`.
+
+```ts app.component.ts
+//app.component.ts
+import { DBCheckbox } from '@db-ux/ngx-core-components';
+import { FormField } from '@angular/forms/signals';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBCheckbox,
+		FormField
+	],
+	// ...
+})
+```
+
+```ts form.component.ts
+// form.component.ts
+import { Component, signal } from "@angular/core";
+import { form } from "@angular/forms/signals";
+
+export class FormComponent {
+	model = signal({ acceptTerms: false });
+	myForm = form(this.model);
+
+	onFormSubmit(): void {
+		alert(JSON.stringify(this.model()));
+	}
+}
+```
+
+```html form.component.html
+<!-- form.component.html -->
+<form (submit)="onFormSubmit()">
+	<db-checkbox
+		label="Accept Terms"
+		[formField]="myForm.acceptTerms"
+	></db-checkbox>
+	<button type="submit">Submit</button>
+</form>
+
+<h2>Output</h2>
+<dl>
+	<dt>checkbox's value</dt>
+	<dd>checkbox {{ myForm.acceptTerms().value() ? "" : "un" }}checked</dd>
+</dl>
+```
+
+### Controlling validation timing
+
+By default, Signal Forms validation errors appear immediately. To show errors only after user interaction, use a helper method with the `[validation]` property:
+
+```typescript
+import { type FieldTree } from "@angular/forms/signals";
+
+fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
+  if (field().dirty() && field().invalid() && !field().pending()) return "invalid";
+  if (field().dirty() && field().valid() && !field().pending()) return "valid";
+  return "no-validation";
+}
+```
+
+```html
+<db-checkbox
+	label="Accept Terms"
+	[formField]="myForm.acceptTerms"
+	[validation]="fieldValidation(myForm.acceptTerms)"
+></db-checkbox>
+```
+
 ## How to use with Template Driven Forms
 
 Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
@@ -85,7 +159,7 @@ import { FormsModule } from '@angular/forms';
 	imports: [
 		// ...,
 		FormsModule
-    ],
+	],
 	// ...
 })
 ```
