@@ -1,9 +1,5 @@
 - main:
   - heading "DBControlPanelMobile" [level=1]
-  - link "Density"
-  - button "Open navigation menu"
-  - button "Open navigation menu"
-  - button "Open navigation menu"
   - link "Position"
   - button "Open navigation menu"
   - button "Open navigation menu"
