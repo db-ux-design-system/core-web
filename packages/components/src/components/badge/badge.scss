@@ -116,5 +116,5 @@
 // Global styles
 
 [data-has-badge="true"] {
-	position: relative;
+	position: var(--db-has-badge-position, relative);
 }

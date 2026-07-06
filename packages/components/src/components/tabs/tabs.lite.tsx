@@ -10,8 +10,13 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
+import {
+	DEFAULT_SCROLL_LEFT,
+	DEFAULT_SCROLL_RIGHT
+} from '../../shared/constants';
 import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
@@ -30,7 +35,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		_resizeObserver: undefined,
+		_resizeObserverCallbackId: undefined,
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -81,13 +86,19 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
-							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
-							if (!state._resizeObserver) {
-								const observer = new ResizeObserver(() => {
-									state.evaluateScrollButtons(container);
-								});
-								observer.observe(container);
-								state._resizeObserver = observer;
+							// Re-evaluate scroll buttons on container resize because it
+							// provides more accurate, container-specific resize
+							// detection than global window resize events.
+							if (!state._resizeObserverCallbackId) {
+								state._resizeObserverCallbackId =
+									new ResizeObserverListener().observe(
+										container,
+										() => {
+											state.evaluateScrollButtons(
+												container
+											);
+										}
+									);
 							}
 						}
 					}
@@ -97,7 +108,9 @@ export default function DBTabs(props: DBTabsProps) {
 		initTabs(init?: boolean) {
 			if (_ref) {
 				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item')
+					_ref.querySelectorAll(
+						':is(:scope > db-tab-list .db-tab-item, :scope > .db-tab-list .db-tab-item)'
+					)
 				);
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
@@ -194,8 +207,12 @@ export default function DBTabs(props: DBTabsProps) {
 	// jscpd:ignore-end
 
 	onUnMount(() => {
-		state._resizeObserver?.disconnect();
-		state._resizeObserver = undefined;
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
 	});
 
 	onUpdate(() => {
@@ -240,13 +257,13 @@ export default function DBTabs(props: DBTabsProps) {
 			onChange={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
-					class="tabs-scroll-left"
+					class="overflow-scroll-left-button"
 					variant="ghost"
 					icon="chevron_left"
 					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
-					Scroll left
+					{props.scrollLeftText ?? DEFAULT_SCROLL_LEFT}
 				</DBButton>
 			</Show>
 			<Show when={props.tabs}>
@@ -276,13 +293,13 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
-					class="tabs-scroll-right"
+					class="overflow-scroll-right-button"
 					variant="ghost"
 					icon="chevron_right"
 					type="button"
 					noText
 					onClick={() => state.scroll()}>
-					Scroll right
+					{props.scrollRightText ?? DEFAULT_SCROLL_RIGHT}
 				</DBButton>
 			</Show>
 

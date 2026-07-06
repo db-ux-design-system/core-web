@@ -5,7 +5,9 @@
 @use "./component";
 
 %db-link-height {
-	@include helpers.display(inline-block);
+	@include helpers.display(inline-flex);
+
+	align-items: center;
 
 	&:not([data-wrap="true"]) {
 		block-size: variables.$db-sizing-sm;
@@ -63,5 +65,9 @@
 	&[aria-disabled="true"] {
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
+	}
+
+	&::after {
+		text-decoration: none;
 	}
 }
