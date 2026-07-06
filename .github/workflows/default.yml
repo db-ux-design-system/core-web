@@ -44,7 +44,6 @@ jobs:
       release: ${{ github.event_name == 'release' }}
 
   lint:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-validate.yml
     needs: [init]
     secrets: inherit
@@ -90,7 +89,6 @@ jobs:
     needs: [build-stories]
 
   init-playwright:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-init-playwright.yml
     needs: [init]
     secrets: inherit
@@ -110,7 +108,7 @@ jobs:
 
   test-vite-plugin:
     uses: ./.github/workflows/02-vite-plugin-test.yml
-    needs: [build-outputs]
+    needs: [build-outputs, init]
     secrets: inherit
 
   test-figma-code-connect:
@@ -134,6 +132,7 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-storybook-composition:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -142,6 +141,7 @@ jobs:
     secrets: inherit
 
   build-storybook-angular:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -150,6 +150,7 @@ jobs:
     secrets: inherit
 
   build-storybook-react:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -158,6 +159,7 @@ jobs:
     secrets: inherit
 
   build-storybook-vue:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -166,6 +168,7 @@ jobs:
     secrets: inherit
 
   build-storybook-html:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init, build-stories]
     with:
@@ -174,6 +177,7 @@ jobs:
     secrets: inherit
 
   build-showcase-stencil:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages, init]
     secrets: inherit
@@ -187,8 +191,9 @@ jobs:
     needs: [build-showcase-stencil]
 
   build-showcase-angular:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: angular-showcase
@@ -200,8 +205,9 @@ jobs:
     needs: [build-showcase-angular]
 
   build-showcase-angular-ssr:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: angular-ssr-showcase
@@ -214,7 +220,7 @@ jobs:
 
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: react-showcase
@@ -226,8 +232,9 @@ jobs:
     needs: [build-showcase-react]
 
   build-showcase-next:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: next-showcase
@@ -239,8 +246,9 @@ jobs:
     needs: [build-showcase-next]
 
   build-showcase-vue:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: vue-showcase
@@ -252,8 +260,9 @@ jobs:
     needs: [build-showcase-vue]
 
   build-showcase-nuxt:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
     secrets: inherit
     with:
       showcase: nuxt-showcase
@@ -265,6 +274,7 @@ jobs:
     needs: [build-showcase-nuxt]
 
   build-showcase-patternhub:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages, init]
     with:
@@ -278,6 +288,7 @@ jobs:
     needs: [build-showcase-patternhub]
 
   test-showcase-stencil:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
     secrets: inherit
@@ -287,6 +298,7 @@ jobs:
       test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-angular:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
     secrets: inherit
@@ -305,6 +317,7 @@ jobs:
       test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-vue:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
     secrets: inherit
@@ -314,6 +327,7 @@ jobs:
       test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-patternhub:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, init, init]
     secrets: inherit
@@ -359,6 +373,7 @@ jobs:
     if: |
       github.event_name == 'release' ||
       github.event_name == 'workflow_dispatch' ||
+      needs.init.outputs.isChangesetRelease == 'true' ||
       needs.init.outputs.test-ally == 'true' ||
       github.event.pull_request == null ||
       contains(github.head_ref, 'guidepup')
@@ -423,8 +438,33 @@ jobs:
           IS_CHANGESET_RELEASE: ${{ needs.init.outputs.isChangesetRelease }}
         run: |
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
-            echo "🎉 Changeset release PR - skipping checks."
-            exit 0
+            echo "🔍 Changeset release PR - validating core checks only."
+            resultBuildOutputs="${{ needs.build-outputs.result }}"
+            resultTestPackages="${{ needs.test-components.result }}"
+            resultTestFoundations="${{ needs.test-foundations.result }}"
+            resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
+            resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
+            resultTestScreenReader="${{ needs.test-screen-reader.result }}"
+
+            echo "resultBuildOutputs: $resultBuildOutputs"
+            echo "resultTestPackages: $resultTestPackages"
+            echo "resultTestFoundations: $resultTestFoundations"
+            echo "resultTestVitePlugin: $resultTestVitePlugin"
+            echo "resultTestShowcaseReact: $resultTestShowcaseReact"
+            echo "resultTestScreenReader: $resultTestScreenReader"
+
+            if [[ $resultBuildOutputs == "success" ]] && \
+               [[ $resultTestPackages == "success" ]] && \
+               [[ $resultTestFoundations == "success" ]] && \
+               [[ $resultTestVitePlugin == "success" ]] && \
+               [[ $resultTestShowcaseReact == "success" ]] && \
+               [[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]]; then
+              echo "🎉 All changeset release checks passed."
+              exit 0
+            else
+              echo "Some changeset release checks were failing."
+              exit 1
+            fi
           fi
           resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
           resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
