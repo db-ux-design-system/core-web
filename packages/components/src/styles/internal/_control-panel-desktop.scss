@@ -71,7 +71,6 @@ $control-panel-desktop-vertical-padding-inline: calc(
 
 		#{string.unquote(custom-elements.$control-panel-navigation-item-group)},
 		#{string.unquote(custom-elements.$control-panel-navigation-item)} {
-			block-size: variables.$db-sizing-md;
 			white-space: nowrap; // we don't want to break
 		}
 
