@@ -64,8 +64,6 @@ export type DBHeaderProps = DBHeaderDefaultProps &
 
 export type DBHeaderDefaultState = {
 	forcedToMobile?: boolean;
-	open: boolean;
-	handleClose: (event: any) => void;
 };
 
 export type DBHeaderState = DBHeaderDefaultState &

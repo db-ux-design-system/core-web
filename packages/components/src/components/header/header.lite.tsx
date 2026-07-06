@@ -8,10 +8,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_BURGER_MENU } from '../../shared/constants';
-import { addAttributeToChildren, cls } from '../../utils';
+import { addAttributeToChildren, cls, getBoolean } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
-import DBDrawerFooter from '../drawer-footer/drawer-footer.lite';
 import DBDrawerHeader from '../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer/drawer.lite';
 import { DBHeaderProps, DBHeaderState } from './model';
@@ -26,28 +25,15 @@ export default function DBHeader(props: DBHeaderProps) {
 	const state = useStore<DBHeaderState>({
 		initialized: false,
 		forcedToMobile: false,
-		open: false,
-		handleToggle: (event: any) => {
-			if (event?.stopPropagation) {
+		handleToggle: (event?: any) => {
+			if (event && event.stopPropagation) {
 				event.stopPropagation();
 			}
 
-			const reverseOpen = !state.open;
-			state.open = reverseOpen;
+			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
 
 			if (props.onToggle) {
-				props.onToggle(reverseOpen);
-			}
-		},
-		handleClose: (event: any) => {
-			if (event?.stopPropagation) {
-				event.stopPropagation();
-			}
-
-			state.open = false;
-
-			if (props.onToggle) {
-				props.onToggle(false);
+				props.onToggle(open);
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {
@@ -121,15 +107,8 @@ export default function DBHeader(props: DBHeaderProps) {
 				}
 				className="db-header-drawer"
 				rounded
-				open={state.open}
-				onClose={(event) => state.handleClose(event)}
-				footer={
-					<DBDrawerFooter>
-						<div class="db-header-secondary-action">
-							<Slot name="secondaryAction" />
-						</div>
-					</DBDrawerFooter>
-				}>
+				open={getBoolean(props.drawerOpen)}
+				onClose={() => state.handleToggle()}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
