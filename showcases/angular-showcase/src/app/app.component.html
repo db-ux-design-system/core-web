@@ -19,7 +19,7 @@
 			<ng-container *dbMetaNavigation>
 				<db-select
 					(change)="onChange($event)"
-					[(ngModel)]="density"
+					[formField]="settingsForm.density"
 					label="Density"
 					variant="floating"
 				>
@@ -31,7 +31,7 @@
 				</db-select>
 				<db-select
 					(change)="onChange($event)"
-					[(ngModel)]="color"
+					[formField]="settingsForm.color"
 					label="Color"
 					variant="floating"
 				>
