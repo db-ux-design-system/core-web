@@ -228,5 +228,4 @@ fbca
 unreviewed
 notext
 prebundle
-knip
-checkin
+unprovide

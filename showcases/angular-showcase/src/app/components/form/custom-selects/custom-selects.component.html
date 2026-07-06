@@ -1,27 +1,34 @@
 <app-form-wrapper
-	[control]="formControl.value"
-	[model]="ngModel"
 	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
+	[signalForms]="signalForm.values().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-custom-select
-			(optionSelected)="handlePlainChange($event)"
 			[options]="options"
-			[values]="plain"
 			label="Plain"
+			[values]="plain"
+			(optionSelected)="handlePlainChange($event)"
 		>
 		</db-custom-select>
 		<db-custom-select
-			[(ngModel)]="ngModel"
 			[options]="options"
 			label="ngModel"
+			[(ngModel)]="ngModel"
 		>
 		</db-custom-select>
 		<db-custom-select
-			[formControl]="formControl"
 			[options]="options"
 			label="formControl"
+			[formControl]="formControl"
+		>
+		</db-custom-select>
+		<db-custom-select
+			[options]="options"
+			label="signalForms"
+			[formField]="signalForm.values"
 		>
 		</db-custom-select>
 	</fieldset>

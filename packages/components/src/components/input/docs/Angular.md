@@ -17,7 +17,7 @@ import { DBInput } from '@db-ux/ngx-core-components';
 	imports: [
 		// ...,
 		DBInput
-    ],
+	],
 	// ...
 })
 ```
@@ -31,6 +31,81 @@ Use component in template:
 	description="Description"
 	(change)="onInputChange()"
 ></DBInput>
+```
+
+## How to use with Signal Forms
+
+[Angular Signal Forms](https://angular.dev/essentials/signal-forms) (Angular ≥ 21) are supported via Duck-Typing. The `DBInput` component exposes a `value` ModelSignal that Angular's `[formField]` directive recognizes automatically.
+
+```ts app.component.ts
+//app.component.ts
+import { DBInput } from '@db-ux/ngx-core-components';
+import { FormField } from '@angular/forms/signals';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBInput,
+		FormField
+	],
+	// ...
+})
+```
+
+```ts form.component.ts
+// form.component.ts
+import { Component, signal } from "@angular/core";
+import { form } from "@angular/forms/signals";
+
+export class FormComponent {
+	model = signal({ input: "" });
+	myForm = form(this.model);
+
+	onFormSubmit(): void {
+		alert(JSON.stringify(this.model()));
+	}
+}
+```
+
+```html form.component.html
+<!-- form.component.html -->
+<form (submit)="onFormSubmit()">
+	<db-input
+		label="Input"
+		placeholder="Placeholder"
+		[formField]="myForm.input"
+	></db-input>
+	<button type="submit">Submit</button>
+</form>
+
+<h2>Output</h2>
+<dl>
+	<dt>input's value</dt>
+	<dd>{{ myForm.input().value() || "No Input set" }}</dd>
+</dl>
+```
+
+### Controlling validation timing
+
+By default, Signal Forms validation errors appear immediately. To show errors only after user interaction, use a helper method with the `[validation]` property:
+
+```typescript
+import { type FieldTree } from "@angular/forms/signals";
+
+fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
+  if (field().dirty() && field().invalid() && !field().pending()) return "invalid";
+  if (field().dirty() && field().valid() && !field().pending()) return "valid";
+  return "no-validation";
+}
+```
+
+```html
+<db-input
+	label="Input"
+	[formField]="myForm.input"
+	[validation]="fieldValidation(myForm.input)"
+></db-input>
 ```
 
 ## How to use with Reactive Forms
@@ -49,7 +124,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 	imports: [
 		// ...,
 		ReactiveFormsModule
-    ],
+	],
 	// ...
 })
 ```
@@ -98,7 +173,7 @@ import { FormsModule } from '@angular/forms';
 	imports: [
 		// ...,
 		FormsModule
-    ],
+	],
 	// ...
 })
 ```
