@@ -52,7 +52,7 @@ const App = () => {
 			<DBDrawer
 				open={open}
 				onClose={() => setOpen(false)}
-				slotHeader={<DBDrawerHeader>My Title</DBDrawerHeader>}
+				header={<DBDrawerHeader>My Title</DBDrawerHeader>}
 			>
 				Drawer content
 			</DBDrawer>
@@ -79,7 +79,7 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 <DBDrawer
 	open={open}
 	onClose={() => setOpen(false)}
-	slotHeader={<DBDrawerHeader>Title</DBDrawerHeader>}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
 >
 	Content
 </DBDrawer>

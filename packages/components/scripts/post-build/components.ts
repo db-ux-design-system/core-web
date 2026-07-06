@@ -312,6 +312,14 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
+		name: 'drawer-header'
+	},
+
+	{
+		name: 'drawer-footer'
+	},
+
+	{
 		name: 'tag',
 		overwrites: {
 			stencil: [{ from: /onRemove/g, to: 'remove' }]

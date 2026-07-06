@@ -29,7 +29,7 @@ The `DBDrawer` component now requires a `DBDrawerHeader` component to be placed 
 ```html
 <db-button (click)="open.set(true)">Open Drawer</db-button>
 <db-drawer [open]="open()" (close)="open.set(false)">
-	<db-drawer-header drawer-header>My Title</db-drawer-header>
+	<db-drawer-header header>My Title</db-drawer-header>
 	Drawer content
 </db-drawer>
 ```
@@ -50,7 +50,7 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 
 ```html
 <db-drawer [open]="open()" (close)="open.set(false)">
-	<db-drawer-header drawer-header>Title</db-drawer-header>
+	<db-drawer-header header>Title</db-drawer-header>
 	Content
 </db-drawer>
 ```

@@ -509,8 +509,7 @@ const FormComponent = () => {
 					onClose={() => {
 						setDrawerOpen(false);
 					}}
-					open={drawerOpen}
-					spacing="none">
+					open={drawerOpen}>
 					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
 						Test: Mouse down here, drag to backdrop, release. Drawer
 						should stay open.
