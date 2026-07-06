@@ -8,9 +8,11 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_BURGER_MENU } from '../../shared/constants';
-import { addAttributeToChildren, cls, getBoolean } from '../../utils';
+import { addAttributeToChildren, cls } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
+import DBDrawerFooter from '../drawer-footer/drawer-footer.lite';
+import DBDrawerHeader from '../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer/drawer.lite';
 import { DBHeaderProps, DBHeaderState } from './model';
 
@@ -24,15 +26,28 @@ export default function DBHeader(props: DBHeaderProps) {
 	const state = useStore<DBHeaderState>({
 		initialized: false,
 		forcedToMobile: false,
-		handleToggle: (event?: any) => {
-			if (event && event.stopPropagation) {
+		open: false,
+		handleToggle: (event: any) => {
+			if (event?.stopPropagation) {
 				event.stopPropagation();
 			}
 
-			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
+			const reverseOpen = !state.open;
+			state.open = reverseOpen;
 
 			if (props.onToggle) {
-				props.onToggle(open);
+				props.onToggle(reverseOpen);
+			}
+		},
+		handleClose: (event: any) => {
+			if (event?.stopPropagation) {
+				event.stopPropagation();
+			}
+
+			state.open = false;
+
+			if (props.onToggle) {
+				props.onToggle(false);
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {
@@ -97,13 +112,24 @@ export default function DBHeader(props: DBHeaderProps) {
 			</div>
 
 			<DBDrawer
-				class="db-header-drawer"
+				header={
+					<DBDrawerHeader
+						closeButtonId={props.closeButtonId}
+						closeButtonText={props.closeButtonText}
+						text={props.drawerHeaderText}
+					/>
+				}
+				className="db-header-drawer"
 				rounded
-				spacing="small"
-				closeButtonId={props.closeButtonId}
-				closeButtonText={props.closeButtonText}
-				open={getBoolean(props.drawerOpen)}
-				onClose={() => state.handleToggle()}>
+				open={state.open}
+				onClose={(event) => state.handleClose(event)}
+				footer={
+					<DBDrawerFooter>
+						<div class="db-header-secondary-action">
+							<Slot name="secondaryAction" />
+						</div>
+					</DBDrawerFooter>
+				}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
@@ -115,9 +141,6 @@ export default function DBHeader(props: DBHeaderProps) {
 					<div class="db-header-meta-navigation">
 						<Slot name="metaNavigation" />
 					</div>
-				</div>
-				<div class="db-header-secondary-action">
-					<Slot name="secondaryAction" />
 				</div>
 			</DBDrawer>
 		</header>

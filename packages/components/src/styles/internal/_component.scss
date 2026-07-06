@@ -6,6 +6,10 @@
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
+$drawer-content-padding-inline: max(
+	#{variables.$db-spacing-fixed-sm},
+	max(env(safe-area-inset-left), env(safe-area-inset-right))
+);
 $component-border: variables.$db-border-width-3xs solid
 	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 

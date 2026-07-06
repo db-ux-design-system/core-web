@@ -1,0 +1,17 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+.db-drawer-header {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	align-items: center;
+	padding: calc(#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top))
+		variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-xs;
+
+	@include helpers.divider("bottom");
+
+	.db-drawer-header-container {
+		font-weight: 700;
+		margin-inline-end: auto;
+	}
+}

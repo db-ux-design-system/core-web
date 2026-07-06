@@ -5,56 +5,49 @@ import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
 useMetadata({
-	storybookTitle: 'Density',
-	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
+	storybookTitle: 'Show Spacing',
+	storybookNames: ['(Default) With Spacing', 'Without Spacing'],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
 		open: false
 	}
 });
 
-export default function DrawerDensity() {
+export default function DrawerShowSpacing() {
 	const [openIndex, setOpenIndex] = useState<number>(-1);
 
 	return (
 		<Fragment>
-			<div data-density="functional">
+			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
 					onClick={() => setOpenIndex(0)}>
-					Open: Functional
+					Open: (Default) With Spacing
 				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
+					showSpacing
+					containerSize="full"
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>Functional</DBDrawerHeader>}>
-					Functional
+					header={
+						<DBDrawerHeader>(Default) With Spacing</DBDrawerHeader>
+					}>
+					(Default) With Spacing
 				</DBDrawer>
 			</div>
-			<div data-density="regular">
+			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
 					onClick={() => setOpenIndex(1)}>
-					Open: (Default) Regular
+					Open: Without Spacing
 				</DBButton>
 				<DBDrawer
+					showSpacing={false}
+					containerSize="full"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>(Default) Regular</DBDrawerHeader>}>
-					(Default) Regular
-				</DBDrawer>
-			</div>
-			<div data-density="expressive">
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
-					Open: Expressive
-				</DBButton>
-				<DBDrawer
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>Expressive</DBDrawerHeader>}>
-					Expressive
+					header={<DBDrawerHeader>Without Spacing</DBDrawerHeader>}>
+					Without Spacing
 				</DBDrawer>
 			</div>
 		</Fragment>

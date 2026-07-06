@@ -6,18 +6,59 @@
 @use "../../styles/internal/component";
 @use "../../styles/dialog-init";
 
-%direction-right {
-	transform: translateX(110%);
-	inset-inline: auto 0;
+%container-size-horizontal {
+	inline-size: calc(
+		100lvw - var(--db-drawer-container-backdrop-spacing, 0px)
+	);
+	min-inline-size: var(--db-drawer-min-width, auto);
+	max-inline-size: var(
+		--db-drawer-max-width,
+		var(--db-drawer-max-width-horizontal)
+	);
 
-	&[data-rounded="true"] {
-		border-start-start-radius: variables.$db-border-radius-sm;
-		border-end-start-radius: variables.$db-border-radius-sm;
+	&:not([data-container-size]),
+	&[data-container-size="small"] {
+		--db-drawer-max-width-horizontal: #{variables.$db-container-xs};
+	}
+
+	&[data-container-size="medium"] {
+		--db-drawer-max-width-horizontal: #{variables.$db-container-lg};
+	}
+
+	&[data-container-size="large"] {
+		--db-drawer-max-width-horizontal: #{variables.$db-container-3xl};
 	}
 }
 
-%direction-left {
-	transform: translateX(-110%);
+%container-size-vertical {
+	block-size: calc(100lvh - var(--db-drawer-container-backdrop-spacing, 0px));
+	min-block-size: var(--db-drawer-min-height, auto);
+	max-block-size: var(
+		--db-drawer-max-height,
+		var(--db-drawer-max-height-vertical)
+	);
+
+	&[data-container-size="small"] {
+		--db-drawer-max-height-vertical: 33lvh;
+	}
+
+	&[data-container-size="medium"] {
+		--db-drawer-max-height-vertical: 50lvh;
+	}
+
+	&:not([data-container-size]),
+	&[data-container-size="large"] {
+		--db-drawer-max-height-vertical: 67lvh;
+	}
+}
+
+%direction-from-left-to-right {
+	@extend %container-size-horizontal;
+
+	&:not([data-transition="open"]) {
+		transform: translateX(-110%);
+	}
+
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
@@ -26,27 +67,28 @@
 	}
 }
 
-%full-horizontal {
-	&:not([data-width="full"]) {
-		/// Sets the maximum height of the drawer
-		/// @propertyname max-block-size
-		/// @cssprop --db-drawer-max-height
-		/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		max-block-size: var(
-			--db-drawer-max-height,
-			calc(100% - #{variables.$db-spacing-fixed-xl})
-		);
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		min-block-size: var(--db-drawer-min-height, auto);
-		max-inline-size: none;
+%direction-from-right-to-left {
+	@extend %container-size-horizontal;
+
+	&:not([data-transition="open"]) {
+		transform: translateX(110%);
+	}
+
+	inset-inline: auto 0;
+
+	&[data-rounded="true"] {
+		border-start-start-radius: variables.$db-border-radius-sm;
+		border-end-start-radius: variables.$db-border-radius-sm;
 	}
 }
 
-%direction-up {
-	@extend %full-horizontal;
+%direction-from-bottom-to-top {
+	@extend %container-size-vertical;
 
-	transform: translateY(110%);
+	&:not([data-transition="open"]) {
+		transform: translateY(110%);
+	}
+
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -55,10 +97,13 @@
 	}
 }
 
-%direction-down {
-	@extend %full-horizontal;
+%direction-from-top-to-bottom {
+	@extend %container-size-vertical;
 
-	transform: translateY(-110%);
+	&:not([data-transition="open"]) {
+		transform: translateY(-110%);
+	}
+
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -67,116 +112,66 @@
 	}
 }
 
-$spacings: (
-	"small": (
-		"block": variables.$db-spacing-fixed-xs,
-		"inline": variables.$db-spacing-fixed-md
-	),
-	"medium": (
-		"block": variables.$db-spacing-fixed-sm,
-		"inline": variables.$db-spacing-fixed-lg
-	),
-	"large": (
-		"block": variables.$db-spacing-fixed-md,
-		"inline": variables.$db-spacing-fixed-xl
-	),
-	"none": (
-		"block": 0,
-		"inline": 0
-	)
-);
-
-@mixin get-spacing($spacing) {
-	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
-	& {
-		padding-block: map.get($spacing, "block");
-	}
-
-	.db-drawer-header {
-		// We need this variable to overwrite it inside the header
-		/// Controls the bottom padding inside the drawer header
-		/// @propertyname padding-block-end
-		/// @cssprop --db-drawer-header-padding-block-end
-		/// @default #{map.get($spacing, "block")}
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-block-end: var(
-			--db-drawer-header-padding-block-end,
-			#{map.get($spacing, "block")}
-		);
-		padding-inline: map.get($spacing, "inline");
-	}
-
-	.db-drawer-content {
-		// We need this variable to overwrite it inside the header
-		/// Controls left/right padding inside the drawer content area
-		/// @propertyname padding-inline
-		/// @cssprop --db-drawer-content-padding-inline
-		/// @default #{map.get($spacing, "inline")}
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-inline: var(
-			--db-drawer-content-padding-inline,
-			#{map.get($spacing, "inline")}
-		);
-
-		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
-		overflow-y: auto;
-		overflow-block: auto;
-	}
-}
-
-%spacing-drawer {
-	@each $name, $spacing in $spacings {
-		@if $name == "medium" {
-			@include get-spacing($spacing);
+%drawer-safe-area {
+	&:not(:has(.db-drawer-footer)) {
+		> .db-drawer-content {
+			margin-block-end: env(safe-area-inset-bottom);
 		}
+	}
 
-		&[data-spacing="#{$name}"] {
-			@include get-spacing($spacing);
+	&:has(.db-drawer-footer) {
+		.db-drawer-footer {
+			padding-block-end: calc(
+				#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-bottom)
+			);
 		}
 	}
 }
 
 .db-drawer {
 	.db-drawer-container {
-		@extend %spacing-drawer;
+		@extend %drawer-safe-area;
 
-		display: flex;
-		flex-direction: column;
+		// Close delay: 0s by default (reduced motion), set to transition duration
+		// when motion is allowed. Read by JS to schedule dialog.close().
+		--db-drawer-close-delay: 0;
+
+		@media (prefers-reduced-motion: no-preference) {
+			--db-drawer-close-delay: #{variables.$db-transition-duration-slow};
+		}
+
+		display: grid;
+		grid-template-rows:
+			[header] auto
+			[main] 1fr
+			[footer] auto;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		block-size: 100%;
-		inline-size: 100%;
+		inline-size: 100lvw;
+		block-size: 100lvh;
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
 
-		&:not([data-width="full"]) {
-			/// Sets the maximum width of the drawer
-			/// and some default values for the drawer
-			/// @propertyname max-inline-size
-			/// @cssprop --db-drawer-max-width
-			/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
-			///
-			/// @example css - Wide drawer
-			///   .db-drawer-wide {
-			///     --db-drawer-max-width: 800px;
-			///   }
-			///   <div class="db-drawer db-drawer-wide">
-			///     <!-- wide drawer -->
-			///   </div>
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			max-inline-size: var(
-				--db-drawer-max-width,
-				calc(100% - #{variables.$db-spacing-fixed-xl})
+		> .db-drawer-content {
+			overflow-y: auto;
+			overscroll-behavior: contain;
+			padding: var(
+				--db-drawer-content-padding,
+				variables.$db-spacing-fixed-xs
+					component.$drawer-content-padding-inline
 			);
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			min-inline-size: var(--db-drawer-min-width, auto);
+		}
+
+		&[data-show-spacing="true"] {
+			// We use the size of a button for this spacing to make sure backdrop is clickable
+			--db-drawer-container-backdrop-spacing: #{variables.$db-sizing-md};
 
 			&:not([data-direction]),
-			&[data-direction="right"] {
-				border-inline-start: component.$component-border;
-			}
-
 			&[data-direction="left"] {
 				border-inline-end: component.$component-border;
+			}
+
+			&[data-direction="right"] {
+				border-inline-start: component.$component-border;
 			}
 
 			&[data-direction="up"] {
@@ -198,46 +193,21 @@ $spacings: (
 				#{variables.$db-transition-timing-emotional};
 		}
 
-		&:not([data-direction]),
 		&[data-direction="right"] {
-			@extend %direction-right;
+			@extend %direction-from-left-to-right;
 		}
 
+		&:not([data-direction]),
 		&[data-direction="left"] {
-			@extend %direction-left;
+			@extend %direction-from-right-to-left;
 		}
 
 		&[data-direction="up"] {
-			@extend %direction-up;
+			@extend %direction-from-bottom-to-top;
 		}
 
 		&[data-direction="down"] {
-			@extend %direction-down;
-		}
-
-		.db-drawer-header {
-			display: none;
-
-			@include helpers.divider("bottom");
-
-			.db-drawer-header-text {
-				margin-block: auto;
-				font-weight: 700;
-			}
-
-			.button-close-drawer {
-				margin-inline-start: auto;
-
-				// angular-workaround
-				button {
-					margin-inline-start: auto;
-				}
-			}
-
-			&:has(.button-close-drawer),
-			&:has(:not(.db-drawer-header-text:empty)) {
-				display: flex;
-			}
+			@extend %direction-from-top-to-bottom;
 		}
 	}
 
@@ -259,15 +229,15 @@ $spacings: (
 			flex-direction: column;
 		}
 
-		&[data-direction="left"],
+		&[data-direction="right"],
 		&[data-direction="down"] {
-			align-items: start;
+			align-items: flex-start;
 		}
 
 		&:not([data-direction]),
-		&[data-direction="right"],
+		&[data-direction="left"],
 		&[data-direction="up"] {
-			align-items: end;
+			align-items: flex-end;
 		}
 
 		.db-drawer-container {
@@ -278,22 +248,12 @@ $spacings: (
 	&[open] {
 		.db-drawer-container {
 			&[data-transition="open"] {
-				&:not([data-direction]),
-				&[data-direction="right"],
-				&[data-direction="left"] {
-					transform: none;
-				}
-
-				&[data-direction="up"],
-				&[data-direction="down"] {
-					transform: none;
-				}
+				transform: none;
 			}
 
 			&[data-transition="close"] {
 				@media (prefers-reduced-motion: no-preference) {
-					transition: transform
-						#{variables.$db-transition-duration-slow}
+					transition: transform var(--db-drawer-close-delay)
 						#{variables.$db-transition-timing-emotional};
 				}
 			}

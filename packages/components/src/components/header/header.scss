@@ -186,17 +186,11 @@
 }
 
 .db-header-secondary-action {
-	flex: 0 1 auto;
-	flex-grow: 0;
-	flex-shrink: 0;
-	padding-block-start: variables.$db-spacing-fixed-xs;
-
-	@include helpers.divider("top");
-
 	@include screen-sizes.screen("md") {
-		&::before {
-			display: none;
-		}
+		flex: 0 1 auto;
+		flex-grow: 0;
+		flex-shrink: 0;
+		padding-block-start: variables.$db-spacing-fixed-xs;
 	}
 }
 
@@ -211,8 +205,6 @@
 }
 
 .db-header-navigation {
-	padding-block: variables.$db-spacing-fixed-md;
-
 	@include screen-sizes.screen("md") {
 		margin-inline: variables.$db-spacing-fixed-lg;
 	}
@@ -223,7 +215,6 @@
 	@include helpers.display(flex);
 
 	gap: variables.$db-spacing-fixed-sm;
-	padding-inline: variables.$db-spacing-fixed-md;
 
 	@include screen-sizes.screen("md") {
 		gap: variables.$db-spacing-fixed-xs;
@@ -232,14 +223,7 @@
 }
 
 .db-header-drawer {
-	--db-drawer-content-padding-inline: 0;
-
-	// 1px for box shadow of header
-	--db-drawer-header-padding-block-end: calc(
-		1px + #{variables.$db-spacing-fixed-xs}
-	);
-
-	padding-block-end: 0;
+	--db-drawer-content-padding: 0;
 
 	.db-drawer-content {
 		@include helpers.display(flex);
@@ -247,6 +231,29 @@
 		flex-direction: column;
 		block-size: 100%;
 		overflow: hidden;
+
+		.db-header-navigation {
+			display: flex;
+			flex-direction: column;
+			block-size: 100%;
+			overflow-x: hidden;
+			padding: variables.$db-spacing-fixed-xs
+				component.$drawer-content-padding-inline;
+		}
+
+		.db-header-meta-navigation {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding: variables.$db-spacing-fixed-xs
+				component.$drawer-content-padding-inline;
+			margin-block-start: auto;
+			flex-flow: column nowrap;
+
+			@include helpers.divider("top");
+		}
+	}
+
+	.db-drawer-footer:has(.db-header-secondary-action:empty) {
+		display: none;
 	}
 }
 
