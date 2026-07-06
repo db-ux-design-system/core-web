@@ -48,7 +48,7 @@ const ResourceCards = () => (
 					{resource.icon && (
 						<img
 							src={getIconPath(resource.icon)}
-							alt={`${resource.title} logo`}
+							alt=""
 							width="32"
 							height="32"
 						/>
