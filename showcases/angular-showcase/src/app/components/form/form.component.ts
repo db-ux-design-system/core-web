@@ -134,7 +134,10 @@ export class FormComponent {
 			disabled(path.city, ({ valueOf }) => valueOf(path.country) === '');
 
 			// Email becomes readonly once username is filled (demonstrates readonly)
-			readonly(path.email, ({ valueOf }) => valueOf(path.username) !== '');
+			readonly(
+				path.email,
+				({ valueOf }) => valueOf(path.username) !== ''
+			);
 
 			// Phone field is hidden unless contact method is "phone"
 			hidden(
@@ -152,7 +155,9 @@ export class FormComponent {
 	];
 
 	handleSwitchChange(event: Event | void) {
-		if (!event) return;
+		if (!event) {
+			return;
+		}
 		this.checkedSignal.set((event.target as HTMLInputElement).checked);
 	}
 

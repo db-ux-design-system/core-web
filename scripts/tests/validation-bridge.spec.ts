@@ -1,6 +1,6 @@
-import { describe, expect, test } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { describe, expect, test } from 'vitest';
 
 const defaultInvalidMessage = 'TODO: Add an invalidMessage';
 const defaultValidMessage = 'TODO: Add a validMessage';
@@ -29,8 +29,7 @@ function simulateValidationBridge(component: {
 	_valid: { (): string | undefined; set: (v: string | undefined) => void };
 	validation: () => string;
 	_ref: () =>
-		| { nativeElement?: { validity?: { valid: boolean } } }
-		| undefined;
+		{ nativeElement?: { validity?: { valid: boolean } } } | undefined;
 }): 'no-validation' | 'signal-forms' | 'native-fallback' | 'continue' {
 	// Validation="no-validation" suppresses ALL validation UI
 	if (component.validation() === 'no-validation') {
@@ -331,7 +330,7 @@ describe('Validation Bridge Logic', () => {
 			validation: () => '',
 			// Simulate a <div> element without validity property
 			_ref: () => ({
-				nativeElement: {} // no .validity property
+				nativeElement: {} // No .validity property
 			})
 		};
 
@@ -343,7 +342,6 @@ describe('Validation Bridge Logic', () => {
 		expect(state.valid).toBe('valid');
 	});
 });
-
 
 describe('Validation Bridge Injection (generated output)', () => {
 	const outputPath = resolve(
@@ -362,9 +360,7 @@ describe('Validation Bridge Injection (generated output)', () => {
 			);
 			expect(content).toContain('_valid.set(');
 			expect(content).toContain('_validMessage');
-			expect(content).toContain(
-				"validation() === 'no-validation'"
-			);
+			expect(content).toContain("validation() === 'no-validation'");
 		}
 	);
 

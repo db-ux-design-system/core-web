@@ -20,8 +20,7 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 		placeholder="Placeholder"
 		message="Description"
 		icon="x_placeholder"
-		[formField]="signalForm.value"
-	/>`
+		[formField]="signalForm.value" />`
 })
 export class SignalFormsInputComponent {
 	signalModel = signal({ value: 'test4' });
