@@ -7,8 +7,8 @@
 .db-shell-content {
 	grid-area: shell-content;
 	overflow-x: hidden;
-	display: grid;
-	grid-template-rows: [start-slot] auto [main] 1fr [end-slot] auto;
+	display: flex;
+	flex-direction: column;
 
 	&:not([data-variant="fixed"]) {
 		@extend %shell-content-overflow;
@@ -19,6 +19,9 @@
 
 		.db-main {
 			@extend %shell-content-overflow;
+
+			flex: 1 1 0;
+			min-block-size: 0;
 		}
 
 		@media all and (display-mode: standalone) {
