@@ -1,9 +1,12 @@
 /**
- * Generates a structured prompt that guides an AI agent through the full DB UX
- * MCP discovery workflow before scaffolding a complete page layout.
- * @param page_type - The functional domain of the page (e.g. "Dashboard", "Login Portal").
- * @param framework - The target framework (react, angular, vue, web-components, html).
- * @param additional_requirements - Optional constraints that refine the component plan.
+ Generates a structured prompt that guides an AI agent through the full DB UX
+ MCP discovery workflow before scaffolding a complete page layout.
+ @param page_type - The functional domain of the page (e.g. "Dashboard", "Login Portal").
+ @param page_type.page_type
+ @param framework - The target framework (react, angular, vue, web-components, html).
+ @param page_type.framework
+ @param additional_requirements - Optional constraints that refine the component plan.
+ @param page_type.additional_requirements
  */
 export function handleScaffoldPagePrompt({
 	page_type,

@@ -29,10 +29,14 @@ describe('processComponent', () => {
 				String(p).includes('model.ts') || String(p).includes('showcase')
 		);
 		vi.mocked(readFile).mockImplementation(async (p: any) => {
-			if (String(p).includes('model.ts'))
+			if (String(p).includes('model.ts')) {
 				return 'export interface ButtonProps {}';
-			if (String(p).includes('showcase'))
+			}
+
+			if (String(p).includes('showcase')) {
 				return 'exampleName="Variant" exampleName="Size"';
+			}
+
 			return '';
 		});
 
@@ -93,8 +97,10 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 				(String(p).includes('broken') && String(p).includes('model.ts'))
 		);
 		vi.mocked(readFile).mockImplementation(async (p: any) => {
-			if (String(p).includes('broken'))
+			if (String(p).includes('broken')) {
 				throw new Error('ENOENT: broken component');
+			}
+
 			return '// button props';
 		});
 
@@ -118,7 +124,9 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		expect(hasErrors).toBe(true);
 
 		// Simulate what buildManifest does after Promise.all
-		if (hasErrors) process.exit(1);
+		if (hasErrors) {
+			process.exit(1);
+		}
 		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
@@ -131,7 +139,9 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		]);
 
 		const hasErrors = results.some((r) => r.hasError);
-		if (hasErrors) process.exit(1);
+		if (hasErrors) {
+			process.exit(1);
+		}
 
 		expect(exitSpy).not.toHaveBeenCalled();
 	});

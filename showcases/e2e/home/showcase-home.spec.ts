@@ -78,7 +78,7 @@ const testFormComponents = async (
 			}
 
 			case 'group': {
-				expect(text).toEqual(`combobox-0`);
+				expect(text).toEqual('combobox-0');
 				break;
 			}
 
@@ -125,7 +125,7 @@ const testFormComponents = async (
 
 			case 'combobox':
 			case 'group': {
-				expect(text).toEqual(`combobox-2`);
+				expect(text).toEqual('combobox-2');
 				break;
 			}
 

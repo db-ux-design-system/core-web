@@ -230,3 +230,5 @@ fbca
 unreviewed
 notext
 prebundle
+knip
+checkin

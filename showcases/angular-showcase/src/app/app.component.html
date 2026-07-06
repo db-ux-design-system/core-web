@@ -4,11 +4,11 @@
 	</div>
 }
 @if (!page) {
-	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
+	<db-page [fadeIn]="true" documentOverflow="auto" variant="fixed">
 		<db-header
-			header
-			[drawerOpen]="drawerOpen"
 			(toggle)="toggleDrawer($event)"
+			[drawerOpen]="drawerOpen"
+			header
 		>
 			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation aria-label="main-navigation">
@@ -18,10 +18,10 @@
 			</db-navigation>
 			<ng-container *dbMetaNavigation>
 				<db-select
-					variant="floating"
-					label="Density"
-					[(ngModel)]="density"
 					(change)="onChange($event)"
+					[(ngModel)]="density"
+					label="Density"
+					variant="floating"
 				>
 					@for (t of densities; track t) {
 						<option>
@@ -30,10 +30,10 @@
 					}
 				</db-select>
 				<db-select
-					variant="floating"
-					label="Color"
-					[(ngModel)]="color"
 					(change)="onChange($event)"
+					[(ngModel)]="color"
+					label="Color"
+					variant="floating"
 				>
 					@for (c of colors; track c) {
 						<option>
@@ -44,20 +44,20 @@
 			</ng-container>
 			<ng-container primary-action>
 				<db-button
+					[noText]="true"
 					icon="magnifying_glass"
 					variant="ghost"
-					[noText]="true"
 					>Search</db-button
 				>
 			</ng-container>
 			<ng-container *dbSecondaryAction>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
+				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
 					Profile
 				</db-button>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
+				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
 					Notification
 				</db-button>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
+				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
 					Help
 				</db-button>
 			</ng-container>

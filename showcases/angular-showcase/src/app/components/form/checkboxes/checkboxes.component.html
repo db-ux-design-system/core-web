@@ -1,25 +1,25 @@
 <app-form-wrapper
-	[plain]="plain"
-	[model]="ngModel"
 	[control]="formControl.value"
+	[model]="ngModel"
+	[plain]="plain"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-checkbox
-			[checked]="plain"
 			(change)="handlePlainChange($event)"
-			name="checkbox"
+			[checked]="plain"
 			label="Plain"
+			name="checkbox"
 		></db-checkbox>
 		<db-checkbox
 			[(ngModel)]="ngModel"
-			name="checkbox"
 			label="ngModel"
+			name="checkbox"
 		></db-checkbox>
 		<db-checkbox
 			[formControl]="formControl"
-			name="checkbox"
 			label="formControl"
+			name="checkbox"
 		></db-checkbox>
 	</fieldset>
 </app-form-wrapper>

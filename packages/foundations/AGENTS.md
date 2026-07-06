@@ -44,6 +44,8 @@ Changes in `packages/foundations/scss` require a changeset for `@db-ux/core-foun
 - `minor` — new token or feature
 - `major` — removed or renamed token (breaking for consumers)
 
+> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, variable renaming without API impact), it does not require a changeset. Changesets are only necessary when the change affects token values, styling output, public APIs, or behavior visible to consumers.
+
 ## Important Notes
 
 - **Never hardcode values** — always use `var(--db-*)` tokens in component styles

@@ -33,10 +33,14 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const invalidMessage = getAttributeValue(node, 'invalidMessage');
-			if (invalidMessage !== undefined) return;
+			if (invalidMessage !== undefined) {
+				return;
+			}
 
 			const required = getAttributeValue(node, 'required');
 			if (required !== undefined) {
@@ -134,7 +138,9 @@ export default {
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (angularVisitors) {
+				return angularVisitors;
+			}
 		}
 
 		const checkFormComponent = (node: any) => {
@@ -142,7 +148,9 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
@@ -151,7 +159,9 @@ export default {
 				openingElement,
 				'invalidMessage'
 			);
-			if (invalidMessage !== undefined) return;
+			if (invalidMessage !== undefined) {
+				return;
+			}
 
 			const required = getAttributeValue(openingElement, 'required');
 			if (required !== undefined) {

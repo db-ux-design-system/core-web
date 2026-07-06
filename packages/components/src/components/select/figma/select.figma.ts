@@ -74,5 +74,7 @@ export const selects: FigmaCodeConnect = {
 	props: selectProps
 };
 
+/** @public Semantic alias for above-positioned selects (shares config with default selects). */
 export const aboveSelects = selects;
+/** @public Semantic alias for floating selects (shares config with default selects). */
 export const floatingSelects = selects;

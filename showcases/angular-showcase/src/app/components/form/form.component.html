@@ -367,7 +367,7 @@
 				NOT close.
 			</p>
 			<db-button (click)="drawerOpen = true">Open Drawer</db-button>
-			<db-drawer [open]="drawerOpen" (close)="drawerOpen = false">
+			<db-drawer (close)="drawerOpen = false" [open]="drawerOpen">
 				<span drawer-header>Drawer Header</span>
 				<db-infotext style="margin: 100px; display: flex">
 					Test: Mouse down here, drag to backdrop, release. Drawer
