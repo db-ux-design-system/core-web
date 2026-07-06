@@ -473,7 +473,6 @@ export const handleFixedPopover = (
 		element.style.maxBlockSize = `calc(${innerHeight}px - 2 * ${distance})`;
 	} else {
 		element.style.overflow = '';
-		element.style.insetBlock = '';
 		element.style.maxBlockSize = '';
 	}
 
