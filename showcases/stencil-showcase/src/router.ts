@@ -46,24 +46,21 @@ function isKnownRoute(category: string, component: string): boolean {
 }
 
 /**
- Escape a string for safe use inside an HTML attribute value.
- */
-function escapeHtmlAttribute(value: string): string {
-	return value
-		.replaceAll('&', '&amp;')
-		.replaceAll('"', '&quot;')
-		.replaceAll("'", '&#x27;')
-		.replaceAll('<', '&lt;')
-		.replaceAll('>', '&gt;');
-}
-
-/**
  Validate that an attribute name is safe for HTML interpolation.
  Must contain only alphanumeric, hyphens, or underscores, and must NOT
  be an inline event handler (on*) to prevent XSS via crafted URLs.
  */
 function isValidAttributeName(name: string): boolean {
 	return /^[a-z][\w-]*$/i.test(name) && !/^on/i.test(name);
+}
+
+/**
+ Validate that a custom element tag name is safe for HTML interpolation.
+ Custom element names must contain only lowercase letters, digits, and hyphens,
+ and must include at least one hyphen (per the HTML spec for custom elements).
+ */
+function isValidCustomElementName(name: string): boolean {
+	return /^[a-z][\da-z]*(?:-[\da-z]+)+$/.test(name);
 }
 
 /**
@@ -77,17 +74,22 @@ function renderShowcasePage(
 ): void {
 	const showcaseTag = `${component}-showcase`;
 
-	// Build attribute string from query params for Playwright compatibility,
-	// sanitizing to prevent XSS from user-controlled URL parameters.
-	// The `settings` param only controls the shell layout, not the showcase.
-	const attributes = [...parameters]
-		.filter(([key]) => key !== 'settings' && isValidAttributeName(key))
-		.map(([key, value]) => `${key}="${escapeHtmlAttribute(value)}"`)
-		.join(' ');
+	// Validate the tag name to prevent DOM injection even though
+	// callers gate this behind isKnownRoute().
+	if (!isValidCustomElementName(showcaseTag)) {
+		return;
+	}
 
-	container.innerHTML = attributes
-		? `<${showcaseTag} ${attributes}></${showcaseTag}>`
-		: `<${showcaseTag}></${showcaseTag}>`;
+	// Set attributes from query params for Playwright compatibility,
+	// using safe DOM APIs instead of innerHTML to prevent XSS.
+	const element = document.createElement(showcaseTag);
+	for (const [key, value] of parameters) {
+		if (key !== 'settings' && isValidAttributeName(key)) {
+			element.setAttribute(key, value);
+		}
+	}
+
+	container.replaceChildren(element);
 }
 
 /**
