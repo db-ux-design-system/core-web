@@ -56,7 +56,6 @@ jobs:
     needs: [lint]
 
   build-packages:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
     secrets: inherit
