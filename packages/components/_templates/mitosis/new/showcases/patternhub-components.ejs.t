@@ -1,6 +1,6 @@
 ---
 inject: true
-to: "<%= showcases ? `../../showcases/patternhub/data/components.json` : null %>"
+to: "<%= (!subComponent && showcases) ? `../../showcases/patternhub/data/components.json` : null %>"
 after: \[
 ---
 	{

@@ -123,6 +123,24 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
+### Sub-Components
+
+Sub-components (e.g. `accordion-item`, `navigation-item`, `tab-item`) are child components that
+are always used inside a parent component. They do **not** have standalone:
+
+- Spec test files (`*.spec.tsx`) — tested within the parent component's spec
+- Density example files — demonstrated within the parent's examples
+- Showcase files — showcased within the parent's showcase page
+- E2E test files — covered by the parent's e2e tests
+- Router/navigation entries — no standalone showcase page exists
+
+When generating a sub-component with `pnpm run generate:component`, answer **Yes** to the
+"Is this a sub-component?" prompt. The generator's `subComponent` flag skips all of the above
+files automatically.
+
+**Examples of sub-components:** `accordion-item`, `navigation-item`, `tab-item`, `tab-panel`,
+`drawer-handle`, `split-button-menu`
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
