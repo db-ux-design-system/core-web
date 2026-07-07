@@ -268,7 +268,19 @@ function injectPatternWidening(code, componentName) {
  * that use 'values' (array) internally but need a 'value' ModelSignal for Signal Forms.
  */
 function injectValueAlias(code) {
-	// Ensure 'effect' is imported
+	// Ensure 'linkedSignal' is imported
+	if (
+		!code.includes('linkedSignal,') &&
+		!code.includes('linkedSignal }') &&
+		!code.includes(', linkedSignal')
+	) {
+		code = code.replace(
+			/(\w+)\s*\} from "@angular\/core";/,
+			'$1, linkedSignal } from "@angular/core";'
+		);
+	}
+
+	// Ensure 'effect' is imported (still needed for values→value sync)
 	if (
 		!code.includes('effect,') &&
 		!code.includes('effect }') &&
@@ -288,27 +300,36 @@ function injectValueAlias(code) {
 		/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */
 		value = model<any>();
 
-		/** @internal Flag to prevent circular sync between value↔values */
-		private _syncing = false;
+		/**
+		 * @internal Tracks whether the last write originated from 'value' or 'values'.
+		 * This prevents infinite ping-pong between the two effects.
+		 * Convergence is additionally guaranteed by Angular's signal equality check
+		 * (setting a signal to the same value does not trigger dependents).
+		 */
+		private _syncSource = linkedSignal<'value' | 'values' | 'none'>(() => 'none' as const);
 
 		/** @internal Sync value → values (Signal Forms writes to value) */
 		private _syncValueToValues = effect(() => {
 			const v = this.value();
-			if (this._syncing) return;
-			this._syncing = true;
+			if (this._syncSource() === 'values') {
+				this._syncSource.set('none');
+				return;
+			}
+			this._syncSource.set('value');
 			if (v !== undefined) {
 				this.values.set(Array.isArray(v) ? v : v ? [v] : []);
 			}
-			this._syncing = false;
 		});
 
 		/** @internal Sync values → value (CVA/user interaction writes to values) */
 		private _syncValuesToValue = effect(() => {
 			const vals = this.values();
-			if (this._syncing) return;
-			this._syncing = true;
+			if (this._syncSource() === 'value') {
+				this._syncSource.set('none');
+				return;
+			}
+			this._syncSource.set('values');
 			this.value.set(vals ?? []);
-			this._syncing = false;
 		});`
 	);
 
