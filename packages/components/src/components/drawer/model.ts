@@ -16,7 +16,12 @@ export const DrawerBackdropList = [
 ] as const;
 export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 
-export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
+export const DrawerDirectionList = [
+	'to-left',
+	'to-right',
+	'up',
+	'down'
+] as const;
 export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
 export const DrawerVariantList = ['modal', 'inside'] as const;
@@ -41,7 +46,7 @@ export type DBDrawerDefaultProps = {
 	backdrop?: DrawerBackdropType;
 	/**
 	 * The direction attribute changes the position & animation of the drawer.
-	 * E.g. "left" slides from left screen border to the right.
+	 * E.g. "to-left" slides from right screen border to the left.
 	 */
 	direction?: DrawerDirectionType;
 

@@ -6,7 +6,7 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
 useMetadata({
 	storybookTitle: 'Direction',
-	storybookNames: ['(Default) Left', 'Right', 'Up', 'Down'],
+	storybookNames: ['(Default) To-Left', 'To-Right', 'Up', 'Down'],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
 		open: false
@@ -22,27 +22,27 @@ export default function DrawerDirection() {
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
 					onClick={() => setOpenIndex(0)}>
-					Open: (Default) Left
+					Open: (Default) To-Left
 				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>(Default) Left</DBDrawerHeader>}>
-					(Default) Left
+					header={<DBDrawerHeader>(Default) To-Left</DBDrawerHeader>}>
+					(Default) To-Left
 				</DBDrawer>
 			</div>
 			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
 					onClick={() => setOpenIndex(1)}>
-					Open: Right
+					Open: To-Right
 				</DBButton>
 				<DBDrawer
-					direction="right"
+					direction="to-right"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>Right</DBDrawerHeader>}>
-					Right
+					header={<DBDrawerHeader>To-Right</DBDrawerHeader>}>
+					To-Right
 				</DBDrawer>
 			</div>
 			<div>

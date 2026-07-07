@@ -166,11 +166,11 @@
 			--db-drawer-container-backdrop-spacing: #{variables.$db-sizing-md};
 
 			&:not([data-direction]),
-			&[data-direction="left"] {
+			&[data-direction="to-left"] {
 				border-inline-end: component.$component-border;
 			}
 
-			&[data-direction="right"] {
+			&[data-direction="to-right"] {
 				border-inline-start: component.$component-border;
 			}
 
@@ -193,12 +193,12 @@
 				#{variables.$db-transition-timing-emotional};
 		}
 
-		&[data-direction="right"] {
+		&[data-direction="to-right"] {
 			@extend %direction-from-left-to-right;
 		}
 
 		&:not([data-direction]),
-		&[data-direction="left"] {
+		&[data-direction="to-left"] {
 			@extend %direction-from-right-to-left;
 		}
 
@@ -224,18 +224,18 @@
 		}
 
 		&:not([data-direction]),
-		&[data-direction="right"],
-		&[data-direction="left"] {
+		&[data-direction="to-right"],
+		&[data-direction="to-left"] {
 			flex-direction: column;
 		}
 
-		&[data-direction="right"],
+		&[data-direction="to-right"],
 		&[data-direction="down"] {
 			align-items: flex-start;
 		}
 
 		&:not([data-direction]),
-		&[data-direction="left"],
+		&[data-direction="to-left"],
 		&[data-direction="up"] {
 			align-items: flex-end;
 		}

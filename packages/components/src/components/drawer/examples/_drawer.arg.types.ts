@@ -12,7 +12,10 @@ export const StorybookDrawerArgTypes: Record<string, InputType> = {
 		control: 'select',
 		options: ['none', 'strong', 'weak', 'invisible']
 	},
-	direction: { control: 'select', options: ['left', 'right', 'up', 'down'] },
+	direction: {
+		control: 'select',
+		options: ['to-left', 'to-right', 'up', 'down']
+	},
 	variant: { control: 'select', options: ['modal', 'inside'] },
 	position: { control: 'select', options: ['fixed', 'absolute'] },
 	id: { control: 'text' },
