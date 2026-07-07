@@ -44,6 +44,21 @@ function injectDuckTypingFields(code) {
 		);
 	}
 
+	// Add ValidationError import from @angular/forms/signals
+	if (!code.includes('ValidationError')) {
+		code = code.replace(
+			/} from ['"]@angular\/forms\/signals['"];/,
+			'ValidationError } from "@angular/forms/signals";'
+		);
+		// If no @angular/forms/signals import exists yet, add one after @angular/core
+		if (!code.includes('ValidationError')) {
+			code = code.replace(
+				/(} from "@angular\/core";)/,
+				'$1\nimport { ValidationError } from "@angular/forms/signals";'
+			);
+		}
+	}
+
 	// Inject hidden/errors inputs + @HostBinding before ngAfterViewInit
 	// Find the first ngAfterViewInit() occurrence (the actual method definition)
 	code = code.replace(
@@ -51,7 +66,7 @@ function injectDuckTypingFields(code) {
 		`
 		/** Signal Forms optional fields (Duck-Typing compatibility) */
 		hidden = input<boolean>(false);
-		errors = input<any>(undefined);
+		errors = input<ValidationError[] | undefined>(undefined);
 
 		/**
 		 * Reflect Signal Forms hidden state to the host element.
@@ -93,8 +108,8 @@ function injectValidationBridge(code) {
 
 	// Declare _validMessage and _valid signals after errors input
 	code = code.replace(
-		'errors = input<any>(undefined);',
-		`errors = input<any>(undefined);
+		'errors = input<ValidationError[] | undefined>(undefined);',
+		`errors = input<ValidationError[] | undefined>(undefined);
 
 		/** @internal Signal Forms validation state */
 		_validMessage = signal<string | undefined>('');
@@ -232,8 +247,8 @@ function injectValueAlias(code) {
 
 	// Inject value alias and sync effects after errors input
 	code = code.replace(
-		'errors = input<any>(undefined);',
-		`errors = input<any>(undefined);
+		'errors = input<ValidationError[] | undefined>(undefined);',
+		`errors = input<ValidationError[] | undefined>(undefined);
 
 		/** Signal Forms alias — maps to 'values' for FormValueControl duck-typing */
 		value = model<any>();
