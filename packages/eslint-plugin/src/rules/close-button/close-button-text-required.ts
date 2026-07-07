@@ -8,7 +8,7 @@ import {
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
-	DBDrawer: 'closeButtonText',
+	DBDrawerHeader: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
