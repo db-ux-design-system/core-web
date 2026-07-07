@@ -118,21 +118,50 @@ function injectValidationBridge(code) {
 	);
 
 	// Connect _valid to aria-invalid in the template
+	const ariaInvalidFrom = `[attr.aria-invalid]="validation() === 'invalid'"`;
+	const ariaInvalidTernaryFrom = `[attr.aria-invalid]="validation() === 'invalid' ? 'true' : undefined"`;
+	const hasAriaInvalid = code.includes(ariaInvalidFrom);
+	const hasAriaInvalidTernary = code.includes(ariaInvalidTernaryFrom);
+
 	code = code.replace(
-		`[attr.aria-invalid]="validation() === 'invalid'"`,
+		ariaInvalidFrom,
 		`[attr.aria-invalid]="validation() !== 'no-validation' && (_valid() ?? validation()) === 'invalid'"`
 	);
 	// Switch uses a different aria-invalid pattern (ternary with 'true'/undefined)
 	code = code.replace(
-		`[attr.aria-invalid]="validation() === 'invalid' ? 'true' : undefined"`,
+		ariaInvalidTernaryFrom,
 		`[attr.aria-invalid]="validation() !== 'no-validation' && (_valid() ?? validation()) === 'invalid' ? 'true' : undefined"`
 	);
 
+	// At least one aria-invalid pattern must have been found
+	if (hasAriaInvalid || hasAriaInvalidTernary) {
+		const replaced =
+			code.includes('_valid() ?? validation()') &&
+			code.includes('[attr.aria-invalid]');
+		if (!replaced) {
+			throw new Error(
+				'Signal Forms: aria-invalid replacement failed. ' +
+					'The template format may have changed.'
+			);
+		}
+	}
+
 	// Connect _valid to data-custom-validity
+	const dataValidityFrom = `[attr.data-custom-validity]="validation()"`;
+	const hasDataValidity = code.includes(dataValidityFrom);
 	code = code.replace(
-		`[attr.data-custom-validity]="validation()"`,
+		dataValidityFrom,
 		`[attr.data-custom-validity]="validation() === 'no-validation' ? 'no-validation' : (_valid() ?? validation())"`
 	);
+	if (
+		hasDataValidity &&
+		!code.includes(`'no-validation' : (_valid() ?? validation())`)
+	) {
+		throw new Error(
+			'Signal Forms: data-custom-validity replacement failed. ' +
+				'The template format may have changed.'
+		);
+	}
 
 	// Override hasValidState to consider Signal Forms _valid state
 	code = code.replace(
@@ -212,6 +241,12 @@ function injectPatternWidening(code, componentName) {
 		'[attr.pattern]="pattern()"',
 		'[attr.pattern]="getPatternAttr()"'
 	);
+	if (!code.includes('getPatternAttr()')) {
+		throw new Error(
+			`Signal Forms: [attr.pattern] replacement failed in ${componentName}. ` +
+				'The template format may have changed.'
+		);
+	}
 
 	// Inject helper method before handleValidation
 	code = code.replace(
