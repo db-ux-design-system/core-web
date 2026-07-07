@@ -34,6 +34,13 @@ auditConfig:
     # Vulnerability is in @builder.io/mitosis transitive dep, not exploitable in our build context.
     - GHSA-jrmj-c5cx-3cw6
     - GHSA-v4hv-rgfq-gp49
+    # @angular/compiler <=19.2.25: XSS via two-way property binding sanitization bypass.
+    # Transitive dep of @builder.io/mitosis, only used at build time, not exploitable.
+    # Override forces >=19.2.26 but audit still reports due to declared range in mitosis.
+    - GHSA-58w9-8g37-x9v5
+    # @angular/compiler <=18.2.14: XSS via template/attribute namespace sanitization bypass.
+    # Same context as above — mitosis transitive dep, build-only, override applied.
+    - GHSA-f3m7-gqxr-g87x
     # esbuild: patched version >=0.24.3 does not exist on npm.
     # Vulnerability only affects esbuild dev server (not used in production builds).
     - GHSA-67mh-4wv8-2f99
@@ -43,6 +50,9 @@ auditConfig:
     # sassdoc-extras: patched version >=3.0.1 does not exist.
     # Transitive dep of sassdoc-theme-default, dev-only.
     - GHSA-3mpm-jx38-9m8w
+    # decompress: patched version >=4.2.2 does not exist (project abandoned at 4.2.1).
+    # Transitive dep of @guidepup/setup, dev-only, not exploitable in our build context.
+    - GHSA-mp2f-45pm-3cg9
 
 engineStrict: true
 
@@ -53,30 +63,24 @@ minimumReleaseAgeExclude:
   - brace-expansion@5.0.6
   - got@11.8.5
   - marked@4.0.10
-  - semver-regex@3.1.3
-  - semver-regex@3.1.4
-  - svelte@4.2.19
-  - svelte@5.51.5
+  - semver-regex@3.1.3 || 3.1.4
+  - svelte@4.2.19 || 5.51.5 || 5.53.5 || 5.55.7
   - ajv@8.18.0
   - file-type@21.3.1
-  - svelte@5.53.5
   - picomatch@4.0.4
   - postcss@8.5.10
   - ip-address@10.1.1
   - webpack-dev-server@5.2.4
-  - svelte@5.55.7
   - "@db-ux/db-theme@5.8.0"
   - esbuild@0.28.1
   - form-data@4.0.6
   - vite@7.3.5
-  - js-yaml@4.1.2
+  - js-yaml@3.15.0 || 4.1.2
   - "@babel/core@7.29.1"
   - markdown-it@14.1.2
-  - http-proxy-middleware@3.0.7
-  - http-proxy-middleware@3.0.6
+  - http-proxy-middleware@3.0.6 || 3.0.7
   - piscina@5.1.5
-  - undici@7.28.0
-  - undici@6.27.0
+  - undici@6.27.0 || 7.28.0
 
 overrides:
   "@babel/core@<=7.29.0": ^7.29.1
@@ -90,6 +94,7 @@ overrides:
   http-proxy-middleware@>=0.16.0 <3.0.6: ^3.0.6
   http-proxy-middleware@>=3.0.4 <3.0.7: ^3.0.7
   ip-address@<=10.1.0: ^10.1.1
+  js-yaml@<3.15.0: ^3.15.0
   js-yaml@>=4.0.0 <=4.1.1: ^4.1.2
   markdown-it@<=14.1.1: ^14.1.2
   marked@<4.0.10: ^4.0.10
@@ -105,7 +110,6 @@ overrides:
   svelte@<=5.55.6: ^5.55.7
   undici@<6.27.0: ^6.27.0
   undici@>=7.0.0 <7.28.0: ^7.28.0
-  undici@>=7.23.0 <7.28.0: ^7.28.0
   uuid@<11.1.1: ^11.1.1
   vite@>=7.0.0 <=7.3.4: ^7.3.5
   webpack-dev-server@<=5.2.3: ^5.2.4
