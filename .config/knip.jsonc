@@ -96,6 +96,12 @@
 			],
 			// react.ts is injected as an import string by scripts/post-build/react.ts
 			"ignoreFiles": ["src/utils/react.ts"],
+			// Each component index.ts re-exports via `./<name>` (e.g. `./tab-panel`).
+			// The real source is a Mitosis `.lite.tsx` file, which knip's resolver
+			// cannot map from `./<name>`; it normally resolves to the co-located
+			// `<name>.scss` instead. tab-panel has no `.scss`, so `./tab-panel`
+			// stays unresolved even though `tab-panel.lite.tsx` is used elsewhere.
+			"ignoreUnresolved": ["./tab-panel"],
 			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
 		},
 
