@@ -13,6 +13,11 @@ const axeDisableRules = [
 	'aria-required-parent'
 ];
 
+if (hasWebComponentSyntax(process.env.showcase)) {
+	// For angular and stencil the <li> is wrapped inside <db-control-panel-item> which is a false-positive in axe-core
+	axeDisableRules.push('listitem');
+}
+
 test.describe('DBShell', () => {
 	runAxeCoreTest({
 		path: '05/shell',
