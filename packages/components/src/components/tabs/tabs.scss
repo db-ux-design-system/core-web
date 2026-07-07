@@ -303,7 +303,8 @@ $focus-outline-reach: calc(
 				border-block-width: 0;
 				padding-block: variables.$db-spacing-fixed-xs
 					calc(
-						#{variables.$db-spacing-fixed-xs} + #{$indicator-gap-offset}
+						#{variables.$db-spacing-fixed-xs} +
+							#{$indicator-gap-offset}
 					);
 				align-items: flex-start;
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
