@@ -8,11 +8,11 @@ useDefaultProps<DBTableHeaderCellProps>({});
 
 export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableCellElement | any>(null);
+	const _ref = useRef<HTMLTableCellElement | any>(undefined);
 	return (
 		<th
 			ref={_ref}
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id}
 			class={cls('db-table-header-cell', props.className)}
 			data-horizontal-alignment={props.horizontalAlignment}
 			data-vertical-alignment={props.verticalAlignment}

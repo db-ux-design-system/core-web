@@ -19,7 +19,7 @@ useDefaultProps<DBTableRowProps>({});
 
 export default function DBTableRow(props: DBTableRowProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableRowElement | any>(null);
+	const _ref = useRef<HTMLTableRowElement | any>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBTableRowState>({
 		getHeaderCell: (
@@ -38,7 +38,7 @@ export default function DBTableRow(props: DBTableRowProps) {
 	return (
 		<tr
 			ref={_ref}
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id}
 			class={cls('db-table-row', props.className)}
 			data-interactive={getBooleanAsString(props.interactive)}
 			data-sub-header-emphasis={props.subHeaderEmphasis}>

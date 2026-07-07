@@ -123,14 +123,6 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
-## Mitosis Limitations
-
-Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
-
-- **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
-- **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
-- **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
-
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:

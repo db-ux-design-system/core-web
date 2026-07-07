@@ -3,7 +3,7 @@
 @use "../../styles/internal/component";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/indicator";
+@use "../../styles/internal/db-puls";
 
 .db-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
@@ -26,7 +26,7 @@
 		}
 
 		.db-navigation-item {
-			@extend %indicator-auto;
+			@extend %db-puls-auto;
 
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
@@ -86,10 +86,10 @@
 			&:has([data-active="true"]),
 			&[aria-current="page"],
 			&[data-active="true"] {
-				@extend %show-indicator-auto;
+				@extend %show-db-puls-auto;
 			}
 
-			// angular workaround: as no direct-child selector can be used, the indicator is hidden from the second level onwards
+			// angular workaround: as no direct-child selector can be used, the pulse is hidden from the second level onwards
 			.db-navigation-item {
 				&::after {
 					display: none;

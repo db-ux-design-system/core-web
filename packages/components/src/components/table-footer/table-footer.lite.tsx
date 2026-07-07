@@ -16,11 +16,11 @@ useDefaultProps<DBTableFooterProps>({});
 
 export default function DBTableFooter(props: DBTableFooterProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableSectionElement | any>(null);
+	const _ref = useRef<HTMLTableSectionElement | any>(undefined);
 	return (
 		<tfoot
 			ref={_ref}
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id}
 			class={cls('db-table-footer', props.className)}>
 			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>

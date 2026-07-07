@@ -186,7 +186,6 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Generate new component**: `pnpm run generate:component`
 - **Component build location**: `packages/components/build/`
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
-- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
 
 ### Working with Styles
 

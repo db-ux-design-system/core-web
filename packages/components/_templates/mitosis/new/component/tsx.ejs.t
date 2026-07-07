@@ -15,7 +15,7 @@ useDefaultProps< DB<%= h.changeCase.pascal(name) %>Props>({});
 
 export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.changeCase.pascal(name) %>Props) {
   // This is used as forwardRef
-  const _ref = useRef<HTMLDivElement | any>(null);
+  const _ref = useRef<HTMLDivElement | any>(undefined);
   // jscpd:ignore-start
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
       <% if(formValue!=="no"){   -%>
@@ -88,7 +88,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
   return (
     <div
     	ref={_ref}
-    	id={props.id ?? props.propOverrides?.id}
+    	id={props.id}
     	class={cls('db-<%= name %>', props.className)}
 <% if(formValue!=="no"){   -%>
 		onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
