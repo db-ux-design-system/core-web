@@ -136,7 +136,7 @@ Flattens DB UX Design System CSS custom properties by resolving `var()`, `@prope
 1. **Collects** all `@property` declarations and their `initial-value` as a resolution cache
 2. **Detects `@layer` priority** from `@layer` order declarations and `@import ... layer()` rules — theme values override base values regardless of processing order
 3. **Detects dynamic variables** that must stay as `var()` references:
-    - Variables re-declared in non-`:root`/`:host` selectors (e.g. `[data-density=functional]`)
+    - Variables re-declared in non-`:root` selectors (e.g. `[data-density=functional]`)
     - Variables re-declared inside `@media` queries
     - Variables matching `dynamicPrefixes` (default: `--db-adaptive-*`)
 4. **Resolves** all static `var()` references recursively — including nested `var()` with fallbacks like `var(--a, var(--b))`
@@ -165,7 +165,7 @@ dbUxFlatten({
 
 #### Static vs. dynamic variables
 
-- **Static**: Only declared in `:root`/`:host` and `@property` — safe to inline everywhere
+- **Static**: Only declared in `:root` and `@property` — safe to inline everywhere
 - **Dynamic**: Re-declared in class selectors, data attributes, `@media` queries, or matching `dynamicPrefixes` — must stay as `var()` references
 
 ```css
