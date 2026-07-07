@@ -18,7 +18,7 @@ allowBuilds:
   chromedriver: false
   core-js: false
   esbuild: true
-  ffmpeg-static: false
+  ffmpeg-static: true
   lmdb: false
   msgpackr-extract: false
   puppeteer: true
