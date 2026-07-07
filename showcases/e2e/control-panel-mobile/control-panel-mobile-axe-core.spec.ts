@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { runAxeCoreTest } from '../default.ts';
+import { hasWebComponentSyntax, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 const axeDisableRules = [];
