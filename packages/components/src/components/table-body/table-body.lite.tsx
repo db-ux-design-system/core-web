@@ -16,11 +16,11 @@ useDefaultProps<DBTableBodyProps>({});
 
 export default function DBTableBody(props: DBTableBodyProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableSectionElement | any>(undefined);
+	const _ref = useRef<HTMLTableSectionElement | any>(null);
 	return (
 		<tbody
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-body', props.className)}>
 			{/* jscpd:ignore-start */}
 			<Show when={props.rows} else={props.children}>
