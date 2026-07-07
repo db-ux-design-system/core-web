@@ -1,10 +1,10 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/db-puls";
+@use "../../styles/internal/indicator";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
-$pulse-gap-offset: calc(
+$indicator-gap-offset: calc(
 	#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
 );
 
@@ -13,18 +13,18 @@ $focus-outline-reach: calc(
 	#{variables.$db-border-width-xs} + #{variables.$db-border-width-2xs}
 );
 
-%horizontal-pulse {
+%horizontal-indicator {
 	.db-tab-item {
-		@include db-puls.set-db-puls-horizontal;
+		@include indicator.set-indicator-horizontal;
 
 		&::after {
 			inset-block-end: calc(
-				-1 * #{$pulse-gap-offset}
-			) !important; // overrides inset-block shorthand set in _db-puls.scss
+				-1 * #{$indicator-gap-offset}
+			) !important; // overrides inset-block shorthand set in _indicator.scss
 		}
 
 		&[aria-selected="true"] {
-			@include db-puls.show-db-puls-horizontal;
+			@include indicator.show-indicator-horizontal;
 
 			&::after {
 				inline-size: 100%;
@@ -33,9 +33,9 @@ $focus-outline-reach: calc(
 	}
 }
 
-%vertical-pulse {
+%vertical-indicator {
 	.db-tab-item {
-		@include db-puls.set-db-puls-vertical;
+		@include indicator.set-indicator-vertical;
 
 		&::after {
 			inset-inline: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) auto;
@@ -43,7 +43,7 @@ $focus-outline-reach: calc(
 		}
 
 		&[aria-selected="true"] {
-			@include db-puls.show-db-puls-vertical;
+			@include indicator.show-indicator-vertical;
 
 			&::after {
 				block-size: 100%;
@@ -52,7 +52,7 @@ $focus-outline-reach: calc(
 	}
 }
 
-%pulse-track {
+%indicator-track {
 	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	content: "";
 	border-radius: variables.$db-border-radius-xs;
@@ -90,7 +90,7 @@ $focus-outline-reach: calc(
 			padding: variables.$db-spacing-fixed-xs
 				variables.$db-spacing-fixed-xs 0 variables.$db-spacing-fixed-xs;
 
-			@extend %horizontal-pulse;
+			@extend %horizontal-indicator;
 
 			background-image: linear-gradient(
 				colors.$db-adaptive-bg-basic-transparent-semi-default,
@@ -105,7 +105,7 @@ $focus-outline-reach: calc(
 
 			.db-tab-item {
 				// stylelint-disable-next-line db-ux/use-spacings
-				margin-block-end: $pulse-gap-offset;
+				margin-block-end: $indicator-gap-offset;
 			}
 
 			&[role="tablist"],
@@ -122,7 +122,7 @@ $focus-outline-reach: calc(
 		flex-direction: row;
 
 		.db-tab-list {
-			--db-tabs-line-gap-vertical: #{$pulse-gap-offset};
+			--db-tabs-line-gap-vertical: #{$indicator-gap-offset};
 
 			/*
 			min and nominal size must both be set to ensure
@@ -136,10 +136,10 @@ $focus-outline-reach: calc(
 				var(--db-tabs-line-gap-vertical);
 			margin-block-end: auto;
 
-			@extend %vertical-pulse;
+			@extend %vertical-indicator;
 
 			&::before {
-				@extend %pulse-track;
+				@extend %indicator-track;
 
 				display: block;
 				inset-inline-start: 0;
@@ -269,7 +269,7 @@ $focus-outline-reach: calc(
 				// top so it isn't clipped by overflow:auto, and compensate with a
 				// negative margin so tabs/track/buttons stay visually in place.
 				// stylelint-disable-next-line db-ux/use-spacings
-				padding: $focus-outline-reach 0 $pulse-gap-offset;
+				padding: $focus-outline-reach 0 $indicator-gap-offset;
 				// stylelint-disable-next-line db-ux/use-spacings
 				margin-block-start: calc(-1 * #{$focus-outline-reach});
 				background-image: none;
@@ -303,7 +303,7 @@ $focus-outline-reach: calc(
 				border-block-width: 0;
 				padding-block: variables.$db-spacing-fixed-xs
 					calc(
-						#{variables.$db-spacing-fixed-xs} + #{$pulse-gap-offset}
+						#{variables.$db-spacing-fixed-xs} + #{$indicator-gap-offset}
 					);
 				align-items: flex-start;
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -328,7 +328,7 @@ $focus-outline-reach: calc(
 					padding-block: variables.$db-spacing-fixed-2xs
 						calc(
 							#{variables.$db-spacing-fixed-2xs} +
-								#{$pulse-gap-offset}
+								#{$indicator-gap-offset}
 						);
 				}
 
@@ -336,7 +336,7 @@ $focus-outline-reach: calc(
 					padding-block: variables.$db-spacing-fixed-sm
 						calc(
 							#{variables.$db-spacing-fixed-sm} +
-								#{$pulse-gap-offset}
+								#{$indicator-gap-offset}
 						);
 				}
 			}

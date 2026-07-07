@@ -3,7 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
-@use "../../styles/internal/db-puls";
+@use "../../styles/internal/indicator";
 @use "../../styles/internal/component";
 
 .db-tab-item {
@@ -62,7 +62,7 @@
 		overflow: hidden;
 	}
 
-	@extend %db-puls;
+	@extend %indicator;
 	@include helpers.display(flex);
 
 	&::after {
