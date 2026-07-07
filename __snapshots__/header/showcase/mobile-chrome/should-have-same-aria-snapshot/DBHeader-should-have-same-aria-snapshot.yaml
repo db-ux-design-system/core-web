@@ -3,32 +3,32 @@
   - link "Density"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - link "Width"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - link "Behavior"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - text: DBHeader
   - button "Search"
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - link "Examples"
   - text: DBHeader
-  - button "Open navigation menu"
+  - button "BurgerMenu"
   - text: DBHeader
-  - button "Open navigation menu"
+  - button "BurgerMenu"
