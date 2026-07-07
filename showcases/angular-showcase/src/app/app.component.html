@@ -18,16 +18,16 @@
 			</db-navigation>
 			<ng-container *dbMetaNavigation>
 				<app-settings-select
+					(changed)="onChange($event)"
 					[formField]="settingsForm.density"
 					[options]="densities"
 					label="Density"
-					(changed)="onChange($event)"
 				></app-settings-select>
 				<app-settings-select
+					(changed)="onChange($event)"
 					[formField]="settingsForm.color"
 					[options]="colors"
 					label="Color"
-					(changed)="onChange($event)"
 				></app-settings-select>
 			</ng-container>
 			<ng-container primary-action>

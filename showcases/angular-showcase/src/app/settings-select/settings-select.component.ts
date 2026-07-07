@@ -24,8 +24,7 @@ import { DBSelect } from '@components';
 			(change)="changed.emit($event)"
 			[formField]="formField()"
 			[label]="label()"
-			variant="floating"
-		>
+			variant="floating">
 			@for (option of options(); track option) {
 				<option>{{ option }}</option>
 			}
