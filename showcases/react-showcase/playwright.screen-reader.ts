@@ -9,6 +9,7 @@ const defaultScreenReaderConfig: PlaywrightTestConfig = {
 	reportSlowTests: null,
 	testDir: '../screen-reader/tests',
 	snapshotDir: '../screen-reader/__snapshots__',
+	outputDir: './test-results/',
 	timeout: 3 * 60 * 1000,
 	webServer: {
 		command: `npm run preview`,

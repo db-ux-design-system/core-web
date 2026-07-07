@@ -2,33 +2,54 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/colors";
 
-@mixin set-db-puls-horizontal() {
+$indicator-background: linear-gradient(
+	135deg,
+	var(--db-pride-red, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		16.7%,
+	var(--db-pride-orange, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		0,
+	var(--db-pride-orange, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		33.4%,
+	var(--db-pride-yellow, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		0,
+	var(--db-pride-yellow, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		50.1%,
+	var(--db-pride-green, #{colors.$db-brand-on-bg-basic-emphasis-70-default}) 0,
+	var(--db-pride-green, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		66.8%,
+	var(--db-pride-blue, #{colors.$db-brand-on-bg-basic-emphasis-70-default}) 0,
+	var(--db-pride-blue, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		83.5%,
+	var(--db-pride-violet, #{colors.$db-brand-on-bg-basic-emphasis-70-default})
+		0
+);
+
+@mixin set-indicator-horizontal() {
 	&::after {
 		block-size: variables.$db-border-width-xs;
 		inline-size: 0;
 		transform: translate(-50%, 0);
 		inset-inline-start: 50%;
-		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		inset-block: auto calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }
 
-@mixin set-db-puls-vertical() {
+@mixin set-indicator-vertical() {
 	&::after {
 		block-size: 0;
 		inline-size: variables.$db-border-width-xs;
 		transform: translate(0, -50%);
-		inset-block: 50% auto;
-		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		inset-block: var(--indicator-vertical-inset-block-start, 50%) auto;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }
 
-%db-puls {
+%indicator {
 	&::after {
 		content: "";
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
+		background: $indicator-background;
 
 		@media (prefers-reduced-motion: no-preference) {
 			transition:
@@ -40,16 +61,16 @@
 	}
 }
 
-%db-puls-auto {
-	@extend %db-puls;
-	@include set-db-puls-vertical;
+%indicator-auto {
+	@extend %indicator;
+	@include set-indicator-vertical;
 
 	@include screen-sizes.screen("md") {
-		@include set-db-puls-horizontal;
+		@include set-indicator-horizontal;
 	}
 }
 
-@mixin show-db-puls-horizontal() {
+@mixin show-indicator-horizontal() {
 	&::after {
 		block-size: variables.$db-border-width-xs;
 		inline-size: 100%;
@@ -61,9 +82,9 @@
 	}
 }
 
-@mixin show-db-puls-vertical() {
+@mixin show-indicator-vertical() {
 	&::after {
-		block-size: 100%;
+		block-size: var(--indicator-vertical-block-size, 100%);
 		inline-size: variables.$db-border-width-xs;
 
 		@media (forced-colors: active), print {
@@ -73,10 +94,10 @@
 	}
 }
 
-%show-db-puls-auto {
-	@include show-db-puls-vertical;
+%show-indicator-auto {
+	@include show-indicator-vertical;
 
 	@include screen-sizes.screen("md") {
-		@include show-db-puls-horizontal;
+		@include show-indicator-horizontal;
 	}
 }
