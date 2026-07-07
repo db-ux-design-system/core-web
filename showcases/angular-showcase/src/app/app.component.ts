@@ -1,5 +1,5 @@
-import { Component, NO_ERRORS_SCHEMA, OnInit, signal } from '@angular/core';
-import { form, FormField } from '@angular/forms/signals';
+import { Component, OnInit, signal } from '@angular/core';
+import { form } from '@angular/forms/signals';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
 	COLOR,
@@ -10,7 +10,6 @@ import {
 	DBHeader,
 	DBNavigation,
 	DBPage,
-	DBSelect,
 	DENSITIES,
 	DENSITY,
 	DENSITY_CONST,
@@ -19,6 +18,7 @@ import {
 	SecondaryActionDirective
 } from '@components';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { SettingsSelectComponent } from './settings-select/settings-select.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -35,16 +35,12 @@ import {
 		DBHeader,
 		DBBrand,
 		DBNavigation,
-		DBSelect,
 		DBButton,
 		SecondaryActionDirective,
 		NavigationDirective,
 		MetaNavigationDirective,
-		FormField
+		SettingsSelectComponent
 	],
-	// NO_ERRORS_SCHEMA required for Angular 21 [formField] directive template type-checking.
-	// Remove when Angular 22 is the minimum supported version.
-	schemas: [NO_ERRORS_SCHEMA],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
