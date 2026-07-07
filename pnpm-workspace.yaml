@@ -50,6 +50,9 @@ auditConfig:
     # sassdoc-extras: patched version >=3.0.1 does not exist.
     # Transitive dep of sassdoc-theme-default, dev-only.
     - GHSA-3mpm-jx38-9m8w
+    # decompress: patched version >=4.2.2 does not exist (project abandoned at 4.2.1).
+    # Transitive dep of @guidepup/setup, dev-only, not exploitable in our build context.
+    - GHSA-mp2f-45pm-3cg9
 
 engineStrict: true
 
@@ -107,7 +110,6 @@ overrides:
   svelte@<=5.55.6: ^5.55.7
   undici@<6.27.0: ^6.27.0
   undici@>=7.0.0 <7.28.0: ^7.28.0
-  undici@>=7.23.0 <7.28.0: ^7.28.0
   uuid@<11.1.1: ^11.1.1
   vite@>=7.0.0 <=7.3.4: ^7.3.5
   webpack-dev-server@<=5.2.3: ^5.2.4
