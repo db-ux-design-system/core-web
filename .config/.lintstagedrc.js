@@ -14,5 +14,5 @@ export default {
 	// Screen-reader snapshot files must not have a trailing newline —
 	// Playwright's toMatchSnapshot() compares byte-for-byte.
 	'showcases/screen-reader/__snapshots__/**/*.txt':
-		'node scripts/strip-final-newline.js'
+		'node scripts/strip-final-newline.js --fix'
 };
