@@ -80,17 +80,17 @@ importers:
         specifier: 1.4.8
         version: 1.4.8
       '@guidepup/guidepup':
-        specifier: 0.25.1
-        version: 0.25.1(supports-color@5.5.0)
+        specifier: 0.28.1
+        version: 0.28.1
       '@guidepup/playwright':
-        specifier: 0.16.1
-        version: 0.16.1(@guidepup/guidepup@0.25.1(supports-color@5.5.0))(@playwright/test@1.60.0)
+        specifier: 0.17.0
+        version: 0.17.0(@guidepup/guidepup@0.28.1)(@playwright/test@1.60.0)
       '@guidepup/record':
         specifier: 0.1.0
         version: 0.1.0(supports-color@5.5.0)
       '@guidepup/setup':
-        specifier: 0.22.0
-        version: 0.22.0(supports-color@5.5.0)
+        specifier: 0.23.0
+        version: 0.23.0
       '@playwright/experimental-ct-core':
         specifier: 1.60.0
         version: 1.60.0(@types/node@26.1.0)(jiti@2.7.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.100.0)(terser@5.48.0)(tsx@4.23.0)(yaml@2.9.0)
@@ -3780,20 +3780,20 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.25.1':
-    resolution: {integrity: sha512-45X149GzAiOQ9uwa2CNXndoGZcQYOQMKHuxE/Ff6EQzRkLxmojtz9tiZhcxpD/sfR/0Dv76kYWKGcFlLMVuAlQ==}
+  '@guidepup/guidepup@0.28.1':
+    resolution: {integrity: sha512-z0v8cuEU4w8wwKAg/C1YpxdQKMz+mu54aOnNYfzGRDEiw7JE0vHFCfLzG3TUU1qbaI1bqtCKtfsEXb3dbsXCQw==}
 
-  '@guidepup/playwright@0.16.1':
-    resolution: {integrity: sha512-QGZhovyO2O5u+i0iZnTmVHwWPG6oX/+QfmidiqxYt5RrwaZAppr/wB/GimjI6u4I2BJ4+Usffi/9oy+11SvEVA==}
+  '@guidepup/playwright@0.17.0':
+    resolution: {integrity: sha512-bG9ejx9wXM/LbneuXZHp3bbh6zN66wsXJRl2K04bPnGQoQiLqlGwNuKuqQquDg7kRT2XziNddbOk72vdw1j9qg==}
     peerDependencies:
-      '@guidepup/guidepup': '>=0.25.0'
+      '@guidepup/guidepup': '>=0.27.0'
       '@playwright/test': ^1.57.0
 
   '@guidepup/record@0.1.0':
     resolution: {integrity: sha512-jtSqZ0CZVdWzWIbLWHYoUi1IbNJVKns20oEYzwcTftw8rY5RXsK1OTXaXFx9Gup5mnmYaFLnON8WwTS+4DYwrQ==}
 
-  '@guidepup/setup@0.22.0':
-    resolution: {integrity: sha512-vSLtSp5G1+Av39+HgJi4HwrjldYQaK9i6hO+WawB4Fl58BpWKT4OACoTGyYaovMfSaKN1NcqnTdQ4ayVVieeWw==}
+  '@guidepup/setup@0.23.0':
+    resolution: {integrity: sha512-0VueaaH48QY+3Z+JXq8O+I060HT+lAzvPTw1ufUpIyRw7aVitvNUagJB2L1Fjua/vUAFD9/BbtIGFdU8mhMGMg==}
     hasBin: true
 
   '@harperfast/extended-iterable@1.0.3':
@@ -20265,16 +20265,16 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.25.1(supports-color@5.5.0)':
+  '@guidepup/guidepup@0.28.1':
     dependencies:
-      regedit: 5.1.2(supports-color@5.5.0)
-      semver: 7.8.4
+      regedit: 5.1.2
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.16.1(@guidepup/guidepup@0.25.1(supports-color@5.5.0))(@playwright/test@1.60.0)':
+  '@guidepup/playwright@0.17.0(@guidepup/guidepup@0.28.1)(@playwright/test@1.60.0)':
     dependencies:
-      '@guidepup/guidepup': 0.25.1(supports-color@5.5.0)
+      '@guidepup/guidepup': 0.28.1
       '@playwright/test': 1.60.0
 
   '@guidepup/record@0.1.0(supports-color@5.5.0)':
@@ -20283,13 +20283,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/setup@0.22.0(supports-color@5.5.0)':
+  '@guidepup/setup@0.23.0':
     dependencies:
       chalk: 4.1.2
       decompress: 4.2.1
       https-proxy-agent: 7.0.6
-      regedit: 5.0.1(supports-color@5.5.0)
-      semver: 7.8.4
+      regedit: 5.0.1
+      semver: 7.8.5
     optionalDependencies:
       '@guidepup/record': 0.1.0(supports-color@5.5.0)
     transitivePeerDependencies:
@@ -32678,7 +32678,7 @@ snapshots:
       get-proto: 1.0.1
       which-builtin-type: 1.2.1
 
-  regedit@5.0.1(supports-color@5.5.0):
+  regedit@5.0.1:
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
       if-async: 3.7.4
@@ -32687,7 +32687,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  regedit@5.1.2(supports-color@5.5.0):
+  regedit@5.1.2:
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
       if-async: 3.7.4
