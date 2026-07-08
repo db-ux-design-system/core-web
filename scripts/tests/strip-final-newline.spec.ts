@@ -41,13 +41,13 @@ describe('strip-final-newline', () => {
 			expect(readFileSync(file, 'utf8')).toBe('');
 		});
 
-		test('removes only a single trailing newline', () => {
+		test('removes all trailing newlines', () => {
 			const file = join(temporaryDir, 'double-lf.txt');
 			writeFileSync(file, 'content\n\n');
 
 			execFileSync('node', [scriptPath, '--fix', file]);
 
-			expect(readFileSync(file, 'utf8')).toBe('content\n');
+			expect(readFileSync(file, 'utf8')).toBe('content');
 		});
 
 		test('processes multiple files in one invocation', () => {
