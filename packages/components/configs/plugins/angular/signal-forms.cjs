@@ -210,7 +210,7 @@ function injectValidationBridge(code) {
     if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
       this._descByIds.set(this._invalidMessageId());
       this._invalidMessage.set(
-        signalFormErrors[0].message ?? DEFAULT_INVALID_MESSAGE
+        this.invalidMessage() || signalFormErrors[0].message || this._ref()?.nativeElement?.validationMessage || DEFAULT_INVALID_MESSAGE
       );
       this._validMessage.set('');
       this._valid.set('invalid');${hasValidity ? "\n      this._validity.set('invalid');" : ''}
