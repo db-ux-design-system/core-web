@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 
 @mixin accordion-subsequent-item-selector() {
@@ -40,6 +41,17 @@ The spacings are not part of the styling of the accordion items themselves.
 		}
 
 		.db-accordion-item {
+			// The whole card (summary + expanded content) is filled with a
+			// level-1 background, so an open item stays level-1 throughout.
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+			> details > summary {
+				@include helpers.interactive-bg(
+					colors.$db-adaptive-bg-basic-level-1-hovered,
+					colors.$db-adaptive-bg-basic-level-1-pressed
+				);
+			}
+
 			/*
 			Adding the component-border to the item itself leads to a render error (tested in Chrome and Safari):
 			On mouseover, a small white gap appears between the rounded border and the rounded gray area.
