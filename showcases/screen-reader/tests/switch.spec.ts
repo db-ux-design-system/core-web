@@ -28,13 +28,15 @@ test.describe('DBSwitch', () => {
 			if (nvda) {
 				/*
 				 * There is a timing issue for windows which results in different outputs in CICD.
-				 * We avoid this by replacing the generated log files
+				 * NVDA sometimes announces "blank" instead of the disabled switch,
+				 * so we normalize it to the expected announcement.
 				 */
 				await generateSnapshot(nvda, retry, (phraseLog) =>
 					phraseLog.map((log) =>
-						log
-							// NVDA sometimes shows "blank"
-							.replace('blank', 'check box, not checked, True')
+						log.replace(
+							'blank',
+							'check box, unavailable, not checked, True'
+						)
 					)
 				);
 			} else if (voiceOver) {
