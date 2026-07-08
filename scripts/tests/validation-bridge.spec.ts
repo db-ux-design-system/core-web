@@ -30,7 +30,13 @@ function simulateValidationBridge(component: {
 	_valid: { (): string | undefined; set: (v: string | undefined) => void };
 	validation: () => string;
 	_ref: () =>
-		{ nativeElement?: { validity?: { valid: boolean }; validationMessage?: string } } | undefined;
+		| {
+				nativeElement?: {
+					validity?: { valid: boolean };
+					validationMessage?: string;
+				};
+		  }
+		| undefined;
 }): 'no-validation' | 'signal-forms' | 'native-fallback' | 'continue' {
 	// Validation="no-validation" suppresses ALL validation UI
 	if (component.validation() === 'no-validation') {
@@ -46,7 +52,10 @@ function simulateValidationBridge(component: {
 		component._descByIds.set(component._invalidMessageId());
 		component._invalidMessage.set(
 			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-			component.invalidMessage() || signalFormErrors[0].message || component._ref()?.nativeElement?.validationMessage || defaultInvalidMessage
+			component.invalidMessage() ||
+				signalFormErrors[0].message ||
+				component._ref()?.nativeElement?.validationMessage ||
+				defaultInvalidMessage
 		);
 		component._validMessage.set('');
 		component._valid.set('invalid');
