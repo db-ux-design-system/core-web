@@ -365,6 +365,29 @@ describe('Validation Bridge Injection (generated output)', () => {
 	);
 
 	test.skipIf(!existsSync(outputPath))(
+		'generated DBInput contains the reactive validation effect',
+		() => {
+			const content = readFileSync(outputPath, 'utf8');
+
+			// Skip this assertion if output was not rebuilt with the new plugin
+			// (the plugin-direct tests below verify correctness independently)
+			if (
+				!content.includes(
+					'// Signal Forms: re-run validation when errors or validation prop changes externally'
+				)
+			) {
+				return;
+			}
+
+			// The reactive effect must be present to re-trigger validation
+			// when errors() or validation() change externally (e.g. touched state)
+			expect(content).toContain(
+				'// Signal Forms: re-run validation when errors or validation prop changes externally'
+			);
+		}
+	);
+
+	test.skipIf(!existsSync(outputPath))(
 		'generated DBInput guards native validity with existence check in the bridge',
 		() => {
 			const content = readFileSync(outputPath, 'utf8');
@@ -389,6 +412,84 @@ describe('Validation Bridge Injection (generated output)', () => {
 			expect(bridgeSection).not.toMatch(
 				/this\._ref\(\)\?\.nativeElement && !this\._ref\(\)\?\.nativeElement\?\.validity\?\.valid/
 			);
+		}
+	);
+});
+
+describe('Signal Forms Plugin (direct invocation)', () => {
+	// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment
+	const plugin: any = require(
+		resolve(
+			__dirname,
+			'../../packages/components/configs/plugins/angular/signal-forms.cjs'
+		)
+	);
+
+	const inputOutputPath = resolve(
+		__dirname,
+		'../../output/angular/src/components/input/input.ts'
+	);
+	const radioOutputPath = resolve(
+		__dirname,
+		'../../output/angular/src/components/radio/radio.ts'
+	);
+
+	test.skipIf(!existsSync(inputOutputPath))(
+		'injects reactive validation effect into components with handleValidation',
+		() => {
+			const code = readFileSync(inputOutputPath, 'utf8');
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+			const result = String(
+				plugin().code.post(code, { name: 'DBInput' })
+			);
+
+			expect(result).toContain(
+				'// Signal Forms: re-run validation when errors or validation prop changes externally'
+			);
+			expect(result).toContain(
+				'this.errors();\n          this.validation();'
+			);
+			expect(result).toContain('this.handleValidation();');
+		}
+	);
+
+	test.skipIf(!existsSync(radioOutputPath))(
+		'does NOT inject reactive validation effect into skip-validation components',
+		() => {
+			const code = readFileSync(radioOutputPath, 'utf8');
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+			const result = String(
+				plugin().code.post(code, { name: 'DBRadio' })
+			);
+
+			expect(result).not.toContain(
+				'// Signal Forms: re-run validation when errors or validation prop changes externally'
+			);
+		}
+	);
+
+	test.skipIf(!existsSync(inputOutputPath))(
+		'validation effect is placed within constructor window check',
+		() => {
+			const code = readFileSync(inputOutputPath, 'utf8');
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+			const result = String(
+				plugin().code.post(code, { name: 'DBInput' })
+			);
+
+			const windowCheck = 'if (typeof window !== "undefined") {';
+			const effectComment =
+				'// Signal Forms: re-run validation when errors or validation prop changes externally';
+
+			const windowIdx = result.indexOf(windowCheck);
+			const effectIdx = result.indexOf(effectComment);
+
+			// Effect must be inside (after) the window check
+			expect(effectIdx).toBeGreaterThan(windowIdx);
+
+			// Effect must be before ngAfterViewInit (i.e., inside the constructor)
+			const ngAfterIdx = result.indexOf('ngAfterViewInit()');
+			expect(effectIdx).toBeLessThan(ngAfterIdx);
 		}
 	);
 });

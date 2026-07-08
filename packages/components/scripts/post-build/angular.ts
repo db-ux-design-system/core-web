@@ -79,7 +79,11 @@ const setControlValueAccessorReplacements = (
 
 		/** @legacy CVA - will be removed in a future major version */
 		registerOnTouched(onTouched: any) {
+		  this.propagateTouched = onTouched;
 		}
+
+		/** @legacy CVA - will be removed in a future major version */
+		propagateTouched() {}
 
 		/** @legacy CVA - will be removed in a future major version */
 		setDisabledState(disabled: boolean) {

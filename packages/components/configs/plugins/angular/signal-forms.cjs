@@ -73,6 +73,41 @@ $1`
 }
 
 /**
+ * Injects a reactive effect that re-runs handleValidation() whenever
+ * the `errors()` or `validation()` signals change. Without this,
+ * validation UI is never updated when field state (e.g. touched)
+ * toggles the validation prop externally after the initial render.
+ */
+function injectValidationEffect(code) {
+	const effectCode = `
+      // Signal Forms: re-run validation when errors or validation prop changes externally
+      effect(
+        () => {
+          this.errors();
+          this.validation();
+          this.handleValidation();
+        },
+        Number(VERSION.major) < 19
+          ? ({ allowSignalWrites: true } as any)
+          : undefined
+      );`;
+
+	// Inject after `if (typeof window !== "undefined") {` in the constructor.
+	// This is a stable anchor present in all Mitosis-generated Angular components.
+	const anchor = 'if (typeof window !== "undefined") {';
+	const anchorIdx = code.indexOf(anchor);
+	if (anchorIdx === -1) {
+		throw new Error(
+			'Signal Forms: Could not find constructor window check to inject validation effect.'
+		);
+	}
+	const insertIdx = anchorIdx + anchor.length;
+	code = code.slice(0, insertIdx) + effectCode + code.slice(insertIdx);
+
+	return code;
+}
+
+/**
  * Injects the validation bridge into handleValidation().
  * This drives aria-invalid and validation UI from Signal Forms errors.
  */
@@ -314,6 +349,20 @@ function escapeRegExp(string) {
 }
 
 /**
+ * Injects `this.propagateTouched()` into handleBlur() so the CVA notifies
+ * Angular (Reactive Forms, ngModel, Signal Forms) that the control was touched.
+ * Without this, Signal Forms' `touched()` signal never becomes true.
+ */
+function injectPropagateTouched(code) {
+	// Match handleBlur method and inject propagateTouched call at the end
+	code = code.replace(
+		/handleBlur\(event:[^)]+\)\s*\{\n/,
+		`handleBlur(event: any) {\n    this.propagateTouched();\n`
+	);
+	return code;
+}
+
+/**
  * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
 module.exports = () => ({
@@ -345,12 +394,18 @@ module.exports = () => ({
 							`Please update the injection logic in configs/plugins/angular/signal-forms.cjs.`
 					);
 				}
+
+				// 3b. Inject reactive effect to re-trigger validation on errors/validation changes
+				code = injectValidationEffect(code);
 			}
 
 			// 4. Pattern type widening (for components with a 'pattern' input)
 			if (config.hasPattern) {
 				code = injectPatternWidening(code, json.name);
 			}
+
+			// 5. Inject propagateTouched() call in handleBlur (CVA touched state)
+			code = injectPropagateTouched(code);
 
 			return code;
 		}

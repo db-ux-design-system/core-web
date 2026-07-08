@@ -154,6 +154,19 @@ Then bind `[validation]` in the template alongside `[formField]`:
 
 > **Tip:** If you prefer to show errors only on blur (rather than on every keystroke), check `field().touched()` instead of `field().dirty()` in the helper.
 
+```typescript
+// Alternative: only show validation state after blur (touched)
+fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
+  if (field().touched() && field().invalid() && !field().pending()) {
+    return "invalid";
+  }
+  if (field().touched() && field().valid() && !field().pending()) {
+    return "valid";
+  }
+  return "no-validation";
+}
+```
+
 ### Using Native Validation Without Signal Forms Validators
 
 If you use `[formField]` only for value binding (no Signal Forms validators), the component falls back to native browser validation. The browser's `validationMessage` (e.g. "Value must be at least 2") will be displayed based on native HTML attributes like `required`, `min`, `max`, `pattern`, etc.
