@@ -24,9 +24,3 @@ indent_style = space
 [*.{yaml,yml}]
 indent_style = space
 indent_size = 2
-
-# Screen-reader snapshot files must NOT have a trailing newline.
-# Playwright's toMatchSnapshot() compares byte-for-byte against the
-# in-memory string which has no trailing newline.
-[showcases/screen-reader/__snapshots__/**/*.txt]
-insert_final_newline = false
