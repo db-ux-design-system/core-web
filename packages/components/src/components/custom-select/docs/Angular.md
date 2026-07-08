@@ -76,7 +76,7 @@ export class FormComponent {
 		{ value: "Option 2", id: "option-2" },
 		{ value: "Option 3", id: "option-3" }
 	];
-	model = signal({ values: ["option-2"] });
+	model = signal({ values: ["Option 2"] });
 	myForm = form(this.model);
 
 	onFormSubmit(): void {

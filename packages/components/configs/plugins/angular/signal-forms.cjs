@@ -44,13 +44,21 @@ function injectDuckTypingFields(code) {
 		);
 	}
 
+	// Add booleanAttribute import if not present (needed for hidden input transform)
+	if (!code.includes('booleanAttribute')) {
+		code = code.replace(
+			'} from "@angular/core";',
+			'booleanAttribute, } from "@angular/core";'
+		);
+	}
+
 	// Inject hidden/errors inputs + @HostBinding before ngAfterViewInit
 	// Find the first ngAfterViewInit() occurrence (the actual method definition)
 	code = code.replace(
 		/(\n\s*ngAfterViewInit\(\))/,
 		`
 		/** Signal Forms optional fields (Duck-Typing compatibility) */
-		hidden = input<boolean>(false);
+		hidden = input(false, { transform: booleanAttribute });
 		errors = input<readonly {message?: string}[] | undefined>(undefined);
 
 		/** Signal Forms touch output — emitted on blur to mark the control as touched */
@@ -285,7 +293,10 @@ function injectPatternWidening(code, componentName) {
 		'      // Only reflect regexes that are full-match (anchored with ^ and $) to the HTML pattern attribute.',
 		'      // Partial-match regexes (e.g. /^https?:\\/\\//) would change semantics because browser patterns',
 		'      // implicitly match the entire value (as if wrapped in ^(?:...)$).',
-		"      const fullMatch = p.filter((r: RegExp) => r.source.startsWith('^') && r.source.endsWith('$'));",
+		'      // Additionally, skip regexes with flags (e.g. /i for case-insensitive) because HTML pattern',
+		'      // does not support flags — reflecting them would cause a semantics mismatch where Signal Forms',
+		'      // considers the value valid but the browser pattern rejects it.',
+		"      const fullMatch = p.filter((r: RegExp) => r.source.startsWith('^') && r.source.endsWith('$') && !r.flags);",
 		'      if (fullMatch.length === 0) return undefined;',
 		'      // Strip anchors since HTML pattern is implicitly anchored',
 		"      return fullMatch.map((r: RegExp) => r.source.slice(1, -1)).join('|');",
@@ -329,9 +340,11 @@ function injectValueAlias(code) {
 		value = model<any>();
 
 		/**
-		 * @internal Tracks the origin of the last write to prevent infinite ping-pong.
-		 * Convergence is guaranteed by Angular's signal equality check
-		 * (setting a signal to the same value does not re-notify dependents).
+		 * @internal Tracks the origin of the last write to prevent redundant
+		 * re-processing within the same synchronous microtask.
+		 * NOTE: The actual infinite-loop prevention relies on Angular's signal
+		 * equality check (setting a signal to the same value does not re-notify).
+		 * This marker is an optimization to skip unnecessary array conversions.
 		 */
 		private _syncSource: 'value' | 'values' | 'none' = 'none';
 
@@ -345,6 +358,10 @@ function injectValueAlias(code) {
 			this._syncSource = 'value';
 			if (v !== undefined) {
 				this.values.set(Array.isArray(v) ? v : v ? [v] : []);
+			} else {
+				// Reset: undefined clears the selection and resets the sync marker
+				// so subsequent user interactions via 'values' are not blocked.
+				this.values.set([]);
 			}
 		});
 
@@ -373,6 +390,10 @@ function escapeRegExp(string) {
  * into handleBlur() so both legacy CVA and Signal Forms are notified that the
  * control was touched. Without this, Signal Forms' `touched()` signal never
  * becomes true.
+ *
+ * NOTE: DBCustomSelect has no handleBlur — its touch state is handled separately
+ * through CVA's onTouched callback when the dropdown closes. A future improvement
+ * could emit touch.emit() on dropdown close for full Signal Forms touched() support.
  */
 function injectPropagateTouched(code) {
 	// Match handleBlur method and inject propagateTouched + touch.emit() call at the start
