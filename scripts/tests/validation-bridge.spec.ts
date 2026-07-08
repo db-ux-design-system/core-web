@@ -438,7 +438,7 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 		'injects reactive validation effect into components with handleValidation',
 		() => {
 			const code = readFileSync(inputOutputPath, 'utf8');
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
 			const result = String(
 				plugin().code.post(code, { name: 'DBInput' })
 			);
@@ -457,7 +457,7 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 		'does NOT inject reactive validation effect into skip-validation components',
 		() => {
 			const code = readFileSync(radioOutputPath, 'utf8');
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
 			const result = String(
 				plugin().code.post(code, { name: 'DBRadio' })
 			);
@@ -472,7 +472,7 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 		'validation effect is placed within constructor window check',
 		() => {
 			const code = readFileSync(inputOutputPath, 'utf8');
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
 			const result = String(
 				plugin().code.post(code, { name: 'DBInput' })
 			);
