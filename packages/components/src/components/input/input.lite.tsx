@@ -203,7 +203,7 @@ export default function DBInput(props: DBInputProps) {
 		},
 		handleEmptyState: () => {
 			if (_ref && DateTimeInputTypeList.includes(props.type ?? '')) {
-				_ref.setAttribute('data-empty', _ref.value ? 'false' : 'true');
+				_ref.dataset.empty = !_ref.value;
 			}
 		},
 		resetIds: () => {
