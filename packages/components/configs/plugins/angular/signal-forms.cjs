@@ -253,19 +253,7 @@ function injectPatternWidening(code, componentName) {
  * that use 'values' (array) internally but need a 'value' ModelSignal for Signal Forms.
  */
 function injectValueAlias(code) {
-	// Ensure 'linkedSignal' is imported
-	if (
-		!code.includes('linkedSignal,') &&
-		!code.includes('linkedSignal }') &&
-		!code.includes(', linkedSignal')
-	) {
-		code = code.replace(
-			/(\w+),?\s*\} from "@angular\/core";/,
-			'$1, linkedSignal, } from "@angular/core";'
-		);
-	}
-
-	// Ensure 'effect' is imported (still needed for values→value sync)
+	// Ensure 'effect' is imported (needed for values→value sync)
 	if (
 		!code.includes('effect,') &&
 		!code.includes('effect }') &&
@@ -286,21 +274,20 @@ function injectValueAlias(code) {
 		value = model<any>();
 
 		/**
-		 * @internal Tracks whether the last write originated from 'value' or 'values'.
-		 * This prevents infinite ping-pong between the two effects.
-		 * Convergence is additionally guaranteed by Angular's signal equality check
-		 * (setting a signal to the same value does not trigger dependents).
+		 * @internal Tracks the origin of the last write to prevent infinite ping-pong.
+		 * Convergence is guaranteed by Angular's signal equality check
+		 * (setting a signal to the same value does not re-notify dependents).
 		 */
-		private _syncSource = linkedSignal<'value' | 'values' | 'none'>(() => 'none' as const);
+		private _syncSource: 'value' | 'values' | 'none' = 'none';
 
 		/** @internal Sync value → values (Signal Forms writes to value) */
 		private _syncValueToValues = effect(() => {
 			const v = this.value();
-			if (this._syncSource() === 'values') {
-				this._syncSource.set('none');
+			if (this._syncSource === 'values') {
+				this._syncSource = 'none';
 				return;
 			}
-			this._syncSource.set('value');
+			this._syncSource = 'value';
 			if (v !== undefined) {
 				this.values.set(Array.isArray(v) ? v : v ? [v] : []);
 			}
@@ -309,11 +296,11 @@ function injectValueAlias(code) {
 		/** @internal Sync values → value (CVA/user interaction writes to values) */
 		private _syncValuesToValue = effect(() => {
 			const vals = this.values();
-			if (this._syncSource() === 'value') {
-				this._syncSource.set('none');
+			if (this._syncSource === 'value') {
+				this._syncSource = 'none';
 				return;
 			}
-			this._syncSource.set('values');
+			this._syncSource = 'values';
 			this.value.set(vals ?? []);
 		});`
 	);
