@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import { Component, input, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { form, FormField } from '@angular/forms/signals';
 import { DBInput } from '@components';
@@ -20,11 +20,10 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 		placeholder="Placeholder"
 		message="Description"
 		icon="x_placeholder"
-		[formField]="signalForm.value" />`
+		[formField]="formField()" />`
 })
 export class SignalFormsInputComponent {
-	signalModel = signal({ value: 'test4' });
-	signalForm = form(this.signalModel);
+	formField = input.required<any>();
 }
 
 @Component({
