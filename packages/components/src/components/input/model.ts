@@ -141,6 +141,7 @@ export type DBInputDefaultState = {
 	handleEmptyState: () => void;
 };
 
+/** @internal List of input types whose value is rendered inside `::-webkit-datetime-edit`. Internal helper for the `data-empty` placeholder styling. */
 export const DateTimeInputTypeList: string[] = [
 	'date',
 	'datetime-local',
