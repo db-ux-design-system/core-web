@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Checks or strips trailing newlines from screen-reader snapshot files.
+ * Checks or strips trailing newlines (LF and CRLF) from screen-reader snapshot files.
  *
  * Playwright's toMatchSnapshot() compares the in-memory string byte-for-byte
  * against the snapshot file on disk. The string never has a trailing newline,
@@ -36,7 +36,10 @@ for (const file of files) {
 	const content = readFileSync(file);
 	if (content.length > 0 && content.at(-1) === 0x0a) {
 		let end = content.length;
-		while (end > 0 && content[end - 1] === 0x0a) {
+		while (
+			end > 0 &&
+			(content[end - 1] === 0x0a || content[end - 1] === 0x0d)
+		) {
 			end--;
 		}
 

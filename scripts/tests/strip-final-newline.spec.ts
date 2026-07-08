@@ -73,6 +73,24 @@ describe('strip-final-newline', () => {
 				'["Label, edit, required","T","e","s","t"]'
 			);
 		});
+
+		test('strips trailing CRLF', () => {
+			const file = join(temporaryDir, 'crlf.txt');
+			writeFileSync(file, 'content\r\n');
+
+			execFileSync('node', [scriptPath, '--fix', file]);
+
+			expect(readFileSync(file, 'utf8')).toBe('content');
+		});
+
+		test('strips multiple trailing CRLF', () => {
+			const file = join(temporaryDir, 'multi-crlf.txt');
+			writeFileSync(file, 'content\r\n\r\n');
+
+			execFileSync('node', [scriptPath, '--fix', file]);
+
+			expect(readFileSync(file, 'utf8')).toBe('content');
+		});
 	});
 
 	describe('lint mode (no --fix)', () => {
