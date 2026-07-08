@@ -50,13 +50,14 @@ function simulateValidationBridge(component: {
 	const signalFormErrors = component.errors();
 	if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
 		component._descByIds.set(component._invalidMessageId());
+		/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 		component._invalidMessage.set(
-			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 			component.invalidMessage() ||
 				signalFormErrors[0].message ||
 				component._ref()?.nativeElement?.validationMessage ||
 				defaultInvalidMessage
 		);
+		/* eslint-enable @typescript-eslint/prefer-nullish-coalescing */
 		component._validMessage.set('');
 		component._valid.set('invalid');
 		return 'signal-forms';
