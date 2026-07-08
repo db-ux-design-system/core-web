@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import { getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 
@@ -9,17 +9,17 @@ test.describe('DBNotification', () => {
 		description:
 			'should have texts inline or as data-label attributes (next())',
 		url: './#/06/notification?page=closeable',
-		async testFn(voiceOver, nvda) {
-			if (nvda) {
+		async testFn(screenReader) {
+			if (isWin()) {
 				// Skip functional notification
-				await nvda?.previous(); // Text "(Default) False"
-				await nvda?.next(); // Text "True"
-				await nvda?.next(); // Button "Close"
-			} else if (voiceOver) {
-				await voiceOver?.next(); // Headline "Headline"
-				await voiceOver?.next(); // Text "functional"
-				await voiceOver?.next(); // Button "Close"
-				await voiceOver?.next(); // Article end
+				await screenReader.previous(); // Text "(Default) False"
+				await screenReader.next(); // Text "True"
+				await screenReader.next(); // Button "Close"
+			} else {
+				await screenReader.next(); // Headline "Headline"
+				await screenReader.next(); // Text "functional"
+				await screenReader.next(); // Button "Close"
+				await screenReader.next(); // Article end
 			}
 		}
 	});

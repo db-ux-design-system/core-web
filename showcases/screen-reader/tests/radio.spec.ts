@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import { getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 test.describe('DBRadio', () => {
@@ -7,22 +7,22 @@ test.describe('DBRadio', () => {
 		title: 'next()',
 		description: 'should label duplicated (next())',
 		url: './#/03/radio?page=density',
-		async testFn(voiceOver, nvda) {
-			if (nvda) {
-				await nvda?.next();
-				await nvda?.clearSpokenPhraseLog();
-				await nvda?.previous();
-				await nvda?.next();
-				await nvda?.next();
-			} else if (voiceOver) {
+		async testFn(screenReader) {
+			if (isWin()) {
+				await screenReader.next();
+				await screenReader.clearSpokenPhraseLog();
+				await screenReader.previous();
+				await screenReader.next();
+				await screenReader.next();
+			} else {
 				// We are on the radio group after loading
 				// Every element (radio, label) will be read as single element
-				await voiceOver?.next();
-				await voiceOver?.next();
-				await voiceOver?.next();
-				await voiceOver?.next();
-				await voiceOver?.next();
-				await voiceOver?.next();
+				await screenReader.next();
+				await screenReader.next();
+				await screenReader.next();
+				await screenReader.next();
+				await screenReader.next();
+				await screenReader.next();
 			}
 		}
 	});
@@ -31,17 +31,17 @@ test.describe('DBRadio', () => {
 		title: 'arrows',
 		description: 'should label duplicated (arrows)',
 		url: './#/03/radio?page=density',
-		async testFn(voiceOver, nvda) {
-			if (voiceOver) {
+		async testFn(screenReader) {
+			if (!isWin()) {
 				// Voiceover isn't working with tab in pipeline
 				test.skip();
 			}
 
-			await nvda?.press('Left');
-			await nvda?.clearSpokenPhraseLog();
-			await nvda?.press('Left');
-			await nvda?.press('Right');
-			await nvda?.press('Right');
+			await screenReader.press('Left');
+			await screenReader.clearSpokenPhraseLog();
+			await screenReader.press('Left');
+			await screenReader.press('Right');
+			await screenReader.press('Right');
 		}
 	});
 });

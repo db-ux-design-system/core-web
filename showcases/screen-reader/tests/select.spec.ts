@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 
@@ -8,29 +8,29 @@ test.describe('DBSelect', () => {
 		title: 'default',
 		description: 'should open and close select (next())',
 		url: './#/03/select?page=density',
-		async testFn(voiceOver, nvda) {
-			if (nvda) {
-				await nvda?.press('Tab'); // Focus select
-				await nvda?.act(); // Open select
-				await nvda?.next(); // Option 1
-				await nvda?.next(); // Option 2
-			} else if (voiceOver) {
-				await voiceOver?.clearSpokenPhraseLog();
-				await voiceOver?.next(); // Focus select
-				await voiceOver?.act(); // Open select
-				await voiceOver?.press('ArrowDown'); // Move to "Option 1"
-				await voiceOver?.press('ArrowDown'); // Move to "Option 2"
-				await voiceOver?.act(); // Select "Option 2"
+		async testFn(screenReader) {
+			if (isWin()) {
+				await screenReader.press('Tab'); // Focus select
+				await screenReader.act(); // Open select
+				await screenReader.next(); // Option 1
+				await screenReader.next(); // Option 2
+			} else {
+				await screenReader.clearSpokenPhraseLog();
+				await screenReader.next(); // Focus select
+				await screenReader.act(); // Open select
+				await screenReader.press('ArrowDown'); // Move to "Option 1"
+				await screenReader.press('ArrowDown'); // Move to "Option 2"
+				await screenReader.act(); // Select "Option 2"
 			}
 		},
-		async postTestFn(voiceOver, nvda, retry) {
-			if (nvda) {
-				await generateSnapshot(nvda, retry);
-			} else if (voiceOver) {
+		async postTestFn(screenReader, retry) {
+			if (isWin()) {
+				await generateSnapshot(screenReader, retry);
+			} else {
 				/*
 				 * There is a timing issue for macOS for reading menu items length
 				 */
-				await generateSnapshot(voiceOver, retry, (phraseLog) =>
+				await generateSnapshot(screenReader, retry, (phraseLog) =>
 					phraseLog.map((log) => log.replace('menu 3 items ✓', ''))
 				);
 			}

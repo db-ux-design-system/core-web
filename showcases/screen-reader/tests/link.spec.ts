@@ -9,10 +9,9 @@ test.describe('DBLink', () => {
 		description:
 			'should not mention icon, should have link and dimmed link (next())',
 		url: './#/02/link?page=disabled',
-		async testFn(voiceOver, nvda) {
-			const screenReader = voiceOver ?? nvda;
-			await screenReader?.previous(); // Link "Enabled (Default)/Hover/Pressed"
-			await screenReader?.next(); // Link dimmed "Disabled"
+		async testFn(screenReader) {
+			await screenReader.previous(); // Link "Enabled (Default)/Hover/Pressed"
+			await screenReader.next(); // Link dimmed "Disabled"
 		}
 	});
 });

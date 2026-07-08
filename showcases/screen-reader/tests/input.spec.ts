@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 test.describe('DBInput', () => {
@@ -7,18 +7,18 @@ test.describe('DBInput', () => {
 		title: 'next()',
 		description: 'should have message and label (next())',
 		url: './#/03/input?page=show+message',
-		async testFn(voiceOver, nvda) {
-			if (nvda) {
+		async testFn(screenReader) {
+			if (isWin()) {
 				// Nvda doesn't have a next if the element is an input
 				test.skip();
 			}
 
 			// We are on the label after loading
 			// Every element (input, label) will be read as single element
-			await voiceOver?.next();
-			await voiceOver?.next();
-			await voiceOver?.next();
-			await voiceOver?.next();
+			await screenReader.next();
+			await screenReader.next();
+			await screenReader.next();
+			await screenReader.next();
 		}
 	});
 	testDefault({
@@ -26,16 +26,16 @@ test.describe('DBInput', () => {
 		title: 'tab',
 		description: 'should have message and label (tab)',
 		url: './#/03/input?page=show+message',
-		async testFn(voiceOver, nvda) {
-			if (voiceOver) {
+		async testFn(screenReader) {
+			if (!isWin()) {
 				// Voiceover isn't working with tab in pipeline
 				test.skip();
 			}
 
-			await nvda?.press('Tab');
-			await nvda?.clearSpokenPhraseLog();
-			await nvda?.press('Shift+Tab');
-			await nvda?.press('Tab');
+			await screenReader.press('Tab');
+			await screenReader.clearSpokenPhraseLog();
+			await screenReader.press('Shift+Tab');
+			await screenReader.press('Tab');
 		}
 	});
 	testDefault({
@@ -43,33 +43,33 @@ test.describe('DBInput', () => {
 		title: 'required',
 		description: 'should inform user for changes',
 		url: './#/03/input?page=required',
-		async testFn(voiceOver, nvda) {
-			if (voiceOver) {
-				/* Goto desired input */
-				await voiceOver?.next();
-				await voiceOver?.next();
-				await voiceOver?.clearSpokenPhraseLog();
-				await voiceOver?.next();
-				await voiceOver?.type('Test');
-				await voiceOver?.press('Command+A');
-				await voiceOver?.press('Delete');
-				await voiceOver?.type('Test');
+		async testFn(screenReader) {
+			if (isWin()) {
+				await screenReader.press('Tab');
+				await screenReader.type('Test');
+				await screenReader.press('Control+A');
+				await screenReader.press('Delete');
+				await screenReader.type('Test');
 			} else {
-				await nvda?.press('Tab');
-				await nvda?.type('Test');
-				await nvda?.press('Control+A');
-				await nvda?.press('Delete');
-				await nvda?.type('Test');
+				/* Goto desired input */
+				await screenReader.next();
+				await screenReader.next();
+				await screenReader.clearSpokenPhraseLog();
+				await screenReader.next();
+				await screenReader.type('Test');
+				await screenReader.press('Command+A');
+				await screenReader.press('Delete');
+				await screenReader.type('Test');
 			}
 		},
-		async postTestFn(voiceOver, nvda, retry) {
-			if (nvda) {
-				await generateSnapshot(nvda, retry);
-			} else if (voiceOver) {
+		async postTestFn(screenReader, retry) {
+			if (isWin()) {
+				await generateSnapshot(screenReader, retry);
+			} else {
 				/*
 				 * There is a timing issue for macOS for typing in input we clean the result
 				 */
-				await generateSnapshot(voiceOver, retry, (phraseLog) =>
+				await generateSnapshot(screenReader, retry, (phraseLog) =>
 					phraseLog.map((log) =>
 						log.replace('Test. ', '').replace('t. ', '')
 					)

@@ -25,6 +25,46 @@ npm run test-sr:macos --workspace=react-showcase -- --ui
 npm run test-sr:windows --workspace=react-showcase -- --ui
 ```
 
+## Architecture
+
+Tests use the unified `screenReaderTest` fixture from `@guidepup/playwright` (v0.17.0+), which provides an OS-agnostic `screenReader` instance. This single API automatically uses VoiceOver on macOS and NVDA on Windows.
+
+### Test pattern
+
+```ts
+import { getTest, isWin, testDefault } from "../default";
+
+const test = getTest();
+
+test.describe("DBComponent", () => {
+	testDefault({
+		test,
+		title: "default",
+		description: "should do something",
+		url: "./#/01/component?page=density",
+		async testFn(screenReader) {
+			// Use screenReader directly — works on both platforms
+			await screenReader.next();
+			await screenReader.act();
+
+			// For platform-specific behavior, use isWin()
+			if (isWin()) {
+				await screenReader.press("Tab");
+			} else {
+				await screenReader.previous();
+			}
+		}
+	});
+});
+```
+
+### Key helpers
+
+- `getTest()` — returns `screenReaderTest` from `@guidepup/playwright`
+- `testDefault()` — runs a test with automatic page navigation, snapshot generation, and screen reader start options
+- `generateSnapshot()` — captures spoken phrases, cleans noise, applies translations, and matches snapshot
+- `isWin()` — returns `true` on Windows (use for platform-specific branching)
+
 ## Gotchas
 
 - Local: Don't switch in between your windows while testing, it will capture only your current screen
