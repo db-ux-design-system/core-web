@@ -8,24 +8,20 @@ test.describe('DBSwitch', () => {
 		title: 'default',
 		description:
 			'should toggle switches, should not toggle disabled switch',
-		url: './#/03/switch?page=checked',
+		url: './#/03/switch?page=disabled',
 		async testFn(voiceOver, nvda, page) {
 			if (nvda) {
 				await nvda?.previous(); // Focus "switch 1"
 				await nvda?.act(); // Interact "switch 1"
 				await nvda?.next(); // Focus "switch 2"
 				await nvda?.act(); // Interact "switch 2"
-				await nvda?.next(); // Focus "switch 3"
 			} else if (voiceOver) {
 				await voiceOver?.previous(); // Focus "switch 1"
 				await voiceOver?.act(); // Interact "switch 1"
 				await voiceOver?.next(); // Focus "switch 1 inline text"
 				await voiceOver?.next(); // Focus "switch 2"
-				await voiceOver?.act(); // Interact "switch 1"
+				await voiceOver?.act(); // Interact "switch 2"
 				await voiceOver?.next(); // Focus "switch 2 inline text"
-				await voiceOver?.next(); // Focus "switch 3"
-				await voiceOver?.act(); // Interact "switch 1"
-				await voiceOver?.next(); // Focus "switch 3 inline text"
 			}
 		},
 		async postTestFn(voiceOver, nvda, retry) {
