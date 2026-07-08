@@ -22,6 +22,7 @@ const defaultValidMessage = 'TODO: Add a validMessage';
  */
 function simulateValidationBridge(component: {
 	errors: () => Array<{ message?: string }> | undefined;
+	invalidMessage: () => string | undefined;
 	_descByIds: { set: (v: string | undefined) => void };
 	_invalidMessageId: () => string;
 	_invalidMessage: { set: (v: string) => void };
@@ -29,7 +30,7 @@ function simulateValidationBridge(component: {
 	_valid: { (): string | undefined; set: (v: string | undefined) => void };
 	validation: () => string;
 	_ref: () =>
-		{ nativeElement?: { validity?: { valid: boolean } } } | undefined;
+		{ nativeElement?: { validity?: { valid: boolean }; validationMessage?: string } } | undefined;
 }): 'no-validation' | 'signal-forms' | 'native-fallback' | 'continue' {
 	// Validation="no-validation" suppresses ALL validation UI
 	if (component.validation() === 'no-validation') {
@@ -44,7 +45,8 @@ function simulateValidationBridge(component: {
 	if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
 		component._descByIds.set(component._invalidMessageId());
 		component._invalidMessage.set(
-			signalFormErrors[0].message ?? defaultInvalidMessage
+			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+			component.invalidMessage() || signalFormErrors[0].message || component._ref()?.nativeElement?.validationMessage || defaultInvalidMessage
 		);
 		component._validMessage.set('');
 		component._valid.set('invalid');
@@ -82,6 +84,8 @@ describe('Validation Bridge Logic', () => {
 		validation?: string;
 		_validValue?: string | undefined;
 		nativeValid?: boolean;
+		invalidMessage?: string;
+		nativeValidationMessage?: string;
 	}) {
 		const state = {
 			descByIds: undefined as string | undefined,
@@ -93,6 +97,7 @@ describe('Validation Bridge Logic', () => {
 		return {
 			component: {
 				errors: () => overrides.errors,
+				invalidMessage: () => overrides.invalidMessage,
 				_descByIds: {
 					set(v: string | undefined) {
 						state.descByIds = v;
@@ -117,7 +122,8 @@ describe('Validation Bridge Logic', () => {
 				validation: () => overrides.validation ?? '',
 				_ref: () => ({
 					nativeElement: {
-						validity: { valid: overrides.nativeValid ?? true }
+						validity: { valid: overrides.nativeValid ?? true },
+						validationMessage: overrides.nativeValidationMessage
 					}
 				})
 			},
@@ -197,15 +203,66 @@ describe('Validation Bridge Logic', () => {
 		expect(state.invalidMessage).toBe(defaultInvalidMessage);
 	});
 
-	test('error with empty string message preserves empty string', () => {
+	test('error with empty string message falls through to next cascade level', () => {
 		const { component, state } = createMockComponent({
-			errors: [{ message: '' }]
+			errors: [{ message: '' }],
+			nativeValidationMessage: 'Please fill out this field'
 		});
 
 		const result = simulateValidationBridge(component);
 
 		expect(result).toBe('signal-forms');
-		expect(state.invalidMessage).toBe('');
+		// Empty string is falsy, so cascade falls through to browser message
+		expect(state.invalidMessage).toBe('Please fill out this field');
+	});
+
+	// NEW: Invalid message fallback cascade tests
+	test('cascade: invalidMessage prop takes highest priority', () => {
+		const { component, state } = createMockComponent({
+			errors: [{ message: 'Schema error' }],
+			invalidMessage: 'Explicit message',
+			nativeValidationMessage: 'Browser message'
+		});
+
+		const result = simulateValidationBridge(component);
+
+		expect(result).toBe('signal-forms');
+		expect(state.invalidMessage).toBe('Explicit message');
+	});
+
+	test('cascade: Signal Forms schema message used when no invalidMessage prop', () => {
+		const { component, state } = createMockComponent({
+			errors: [{ message: 'Schema error' }],
+			nativeValidationMessage: 'Browser message'
+		});
+
+		const result = simulateValidationBridge(component);
+
+		expect(result).toBe('signal-forms');
+		expect(state.invalidMessage).toBe('Schema error');
+	});
+
+	test('cascade: browser validationMessage used when no invalidMessage and no schema message', () => {
+		const { component, state } = createMockComponent({
+			errors: [{}],
+			nativeValidationMessage: 'Please fill out this field'
+		});
+
+		const result = simulateValidationBridge(component);
+
+		expect(result).toBe('signal-forms');
+		expect(state.invalidMessage).toBe('Please fill out this field');
+	});
+
+	test('cascade: TODO fallback used when no other message available', () => {
+		const { component, state } = createMockComponent({
+			errors: [{}]
+		});
+
+		const result = simulateValidationBridge(component);
+
+		expect(result).toBe('signal-forms');
+		expect(state.invalidMessage).toBe(defaultInvalidMessage);
 	});
 
 	// NEW: validation="no-validation" tests
@@ -306,6 +363,7 @@ describe('Validation Bridge Logic', () => {
 
 		const component = {
 			errors: () => [] as Array<{ message?: string }>,
+			invalidMessage: () => undefined as string | undefined,
 			_descByIds: {
 				set(v: string | undefined) {
 					state.descByIds = v;
@@ -440,6 +498,7 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 			const code = readFileSync(inputOutputPath, 'utf8');
 
 			const result = String(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				plugin().code.post(code, { name: 'DBInput' })
 			);
 
@@ -459,6 +518,7 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 			const code = readFileSync(radioOutputPath, 'utf8');
 
 			const result = String(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				plugin().code.post(code, { name: 'DBRadio' })
 			);
 
@@ -474,6 +534,7 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 			const code = readFileSync(inputOutputPath, 'utf8');
 
 			const result = String(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				plugin().code.post(code, { name: 'DBInput' })
 			);
 

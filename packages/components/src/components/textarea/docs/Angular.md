@@ -119,6 +119,17 @@ fieldValidation<T>(field: FieldTree<T>): "invalid" | "valid" | "no-validation" {
 ></db-textarea>
 ```
 
+### Invalid message fallback cascade
+
+When a form field becomes invalid, the displayed error message is resolved through the following priority chain (first match wins):
+
+1. **`invalidMessage` prop** — explicitly set on the component
+2. **Signal Forms schema message** — `errors[0].message` from the form schema validators
+3. **Browser default** — native `validationMessage` (e.g. "Please fill out this field" for `required`)
+4. **`"TODO: Add an invalidMessage"`** — fallback indicating a custom message should be provided
+
+This means for simple HTML constraints (`required`, `minlength`, `maxlength`, `pattern`), the browser's localized message is used automatically when no explicit message is configured.
+
 ## How to use with Reactive Forms
 
 Third party controls require a ControlValueAccessor to function with angular forms.
