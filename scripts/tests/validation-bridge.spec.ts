@@ -1,25 +1,27 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, test } from 'vitest';
 
 const defaultInvalidMessage = 'TODO: Add an invalidMessage';
 const defaultValidMessage = 'TODO: Add a validMessage';
 
-/**
- * Simulates the validation bridge logic injected into handleValidation().
- *
- * NOTE: This mirrors the code injected by post-build/angular.ts. When the injection
- * logic changes, this simulation must be updated to match. The post-build script now
- * throws (hard failure) if injection fails, so CI will catch drift between the template
- * and the generated output. The snapshot assertion below additionally verifies that the
- * injected code contains the expected bridge markers.
- *
- * Returns:
- * - 'no-validation' if validation="no-validation" suppressed everything
- * - 'signal-forms' if Signal Forms errors triggered an early return
- * - 'native-fallback' if _valid was reset because native validation disagrees
- * - 'continue' if normal validation flow continues
- */
+/*
+Simulates the validation bridge logic injected into handleValidation().
+
+NOTE: This mirrors the code injected by post-build/angular.ts. When the injection
+logic changes, this simulation must be updated to match. The post-build script now
+throws (hard failure) if injection fails, so CI will catch drift between the template
+and the generated output. The snapshot assertion below additionally verifies that the
+injected code contains the expected bridge markers.
+
+Returns:
+- 'no-validation' if validation="no-validation" suppressed everything
+- 'signal-forms' if Signal Forms errors triggered an early return
+- 'native-fallback' if _valid was reset because native validation disagrees
+- 'continue' if normal validation flow continues
+*/
+// eslint-disable-next-line complexity -- Test helper intentionally mirrors the real validation bridge logic
 function simulateValidationBridge(component: {
 	errors: () => Array<{ message?: string }> | undefined;
 	invalidMessage: () => string | undefined;
@@ -43,6 +45,7 @@ function simulateValidationBridge(component: {
 		component._valid.set(undefined);
 		component._invalidMessage.set('');
 		component._validMessage.set('');
+		// Preserve helper text aria-describedby when validation is suppressed
 		component._descByIds.set(undefined);
 		return 'no-validation';
 	}
@@ -50,14 +53,19 @@ function simulateValidationBridge(component: {
 	const signalFormErrors = component.errors();
 	if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
 		component._descByIds.set(component._invalidMessageId());
-		/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+		const invalidMessage = component.invalidMessage();
+		const errorMessage = signalFormErrors[0].message;
+		const nativeMessage =
+			component._ref()?.nativeElement?.validationMessage;
 		component._invalidMessage.set(
-			component.invalidMessage() ||
-				signalFormErrors[0].message ||
-				component._ref()?.nativeElement?.validationMessage ||
-				defaultInvalidMessage
+			invalidMessage !== undefined && invalidMessage !== ''
+				? invalidMessage
+				: errorMessage !== undefined && errorMessage !== ''
+					? errorMessage
+					: nativeMessage !== undefined && nativeMessage !== ''
+						? nativeMessage
+						: defaultInvalidMessage
 		);
-		/* eslint-enable @typescript-eslint/prefer-nullish-coalescing */
 		component._validMessage.set('');
 		component._valid.set('invalid');
 		return 'signal-forms';
@@ -413,8 +421,8 @@ describe('Validation Bridge Logic', () => {
 
 describe('Validation Bridge Injection (generated output)', () => {
 	const outputPath = resolve(
-		__dirname,
-		'../../output/angular/src/components/input/input.ts'
+		fileURLToPath(import.meta.url),
+		'../../../output/angular/src/components/input/input.ts'
 	);
 
 	test.skipIf(!existsSync(outputPath))(
@@ -477,40 +485,41 @@ describe('Validation Bridge Injection (generated output)', () => {
 				'this._ref()?.nativeElement?.validity && !this._ref()?.nativeElement?.validity?.valid'
 			);
 			// The bridge section must NOT contain the old unguarded pattern
-			expect(bridgeSection).not.toMatch(
-				/this\._ref\(\)\?\.nativeElement && !this\._ref\(\)\?\.nativeElement\?\.validity\?\.valid/
+			expect(bridgeSection).not.toContain(
+				'this._ref()?.nativeElement && !this._ref()?.nativeElement?.validity?.valid'
 			);
 		}
 	);
 });
 
 describe('Signal Forms Plugin (direct invocation)', () => {
-	// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment
-	const plugin: any = require(
-		resolve(
-			__dirname,
-			'../../packages/components/configs/plugins/angular/signal-forms.cjs'
-		)
-	);
+	const pluginPath = new URL(
+		'../../packages/components/configs/plugins/angular/signal-forms.cjs',
+		import.meta.url
+	).pathname;
 
 	const inputOutputPath = resolve(
-		__dirname,
-		'../../output/angular/src/components/input/input.ts'
+		fileURLToPath(import.meta.url),
+		'../../../output/angular/src/components/input/input.ts'
 	);
 	const radioOutputPath = resolve(
-		__dirname,
-		'../../output/angular/src/components/radio/radio.ts'
+		fileURLToPath(import.meta.url),
+		'../../../output/angular/src/components/radio/radio.ts'
 	);
 
 	test.skipIf(!existsSync(inputOutputPath))(
 		'injects reactive validation effect into components with handleValidation',
-		() => {
+		async () => {
 			const code = readFileSync(inputOutputPath, 'utf8');
+			const { default: plugin } = (await import(pluginPath)) as {
+				default: () => {
+					code: {
+						post: (code: string, json: { name: string }) => string;
+					};
+				};
+			};
 
-			const result = String(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-				plugin().code.post(code, { name: 'DBInput' })
-			);
+			const result = plugin().code.post(code, { name: 'DBInput' });
 
 			expect(result).toContain(
 				'// Signal Forms: re-run validation when errors or validation prop changes externally'
@@ -524,13 +533,17 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 
 	test.skipIf(!existsSync(radioOutputPath))(
 		'does NOT inject reactive validation effect into skip-validation components',
-		() => {
+		async () => {
 			const code = readFileSync(radioOutputPath, 'utf8');
+			const { default: plugin } = (await import(pluginPath)) as {
+				default: () => {
+					code: {
+						post: (code: string, json: { name: string }) => string;
+					};
+				};
+			};
 
-			const result = String(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-				plugin().code.post(code, { name: 'DBRadio' })
-			);
+			const result = plugin().code.post(code, { name: 'DBRadio' });
 
 			expect(result).not.toContain(
 				'// Signal Forms: re-run validation when errors or validation prop changes externally'
@@ -540,13 +553,17 @@ describe('Signal Forms Plugin (direct invocation)', () => {
 
 	test.skipIf(!existsSync(inputOutputPath))(
 		'validation effect is placed within constructor window check',
-		() => {
+		async () => {
 			const code = readFileSync(inputOutputPath, 'utf8');
+			const { default: plugin } = (await import(pluginPath)) as {
+				default: () => {
+					code: {
+						post: (code: string, json: { name: string }) => string;
+					};
+				};
+			};
 
-			const result = String(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-				plugin().code.post(code, { name: 'DBInput' })
-			);
+			const result = plugin().code.post(code, { name: 'DBInput' });
 
 			const windowCheck = 'if (typeof window !== "undefined") {';
 			const effectComment =

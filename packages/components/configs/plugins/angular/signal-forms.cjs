@@ -53,6 +53,9 @@ function injectDuckTypingFields(code) {
 		hidden = input<boolean>(false);
 		errors = input<readonly {message?: string}[] | undefined>(undefined);
 
+		/** Signal Forms touch output — emitted on blur to mark the control as touched */
+		touch = output<void>();
+
 		/**
 		 * Reflect Signal Forms hidden state to the host element.
 		 * This intentionally intercepts Angular's native [hidden] binding —
@@ -198,10 +201,15 @@ function injectValidationBridge(code) {
 		`handleValidation() {
     // validation="no-validation" suppresses ALL validation UI (Signal Forms + native)
     if (this.validation() === 'no-validation') {
-      this._valid.set(undefined);${hasValidity ? '\n      this._validity.set(undefined);' : ''}
+      this._valid.set(undefined);${hasValidity ? "\n      this._validity.set('no-validation');" : ''}
       this._invalidMessage.set('');
       this._validMessage.set('');
-      this._descByIds.set(undefined);
+      // Preserve helper text aria-describedby when validation is suppressed
+      if (this.message && stringPropVisible(this.message(), this.showMessage?.())) {
+        this._descByIds.set(this._messageId());
+      } else {
+        this._descByIds.set(undefined);
+      }
       return;
     }
 
@@ -269,15 +277,27 @@ function injectPatternWidening(code, componentName) {
 	}
 
 	// Inject helper method before handleValidation
+	const patternHelper = [
+		'getPatternAttr(): string | undefined {',
+		'    const p = this.pattern();',
+		"    if (typeof p === 'string') return p || undefined;",
+		'    if (Array.isArray(p) && p.length > 0) {',
+		'      // Only reflect regexes that are full-match (anchored with ^ and $) to the HTML pattern attribute.',
+		'      // Partial-match regexes (e.g. /^https?:\\/\\//) would change semantics because browser patterns',
+		'      // implicitly match the entire value (as if wrapped in ^(?:...)$).',
+		"      const fullMatch = p.filter((r: RegExp) => r.source.startsWith('^') && r.source.endsWith('$'));",
+		'      if (fullMatch.length === 0) return undefined;',
+		'      // Strip anchors since HTML pattern is implicitly anchored',
+		"      return fullMatch.map((r: RegExp) => r.source.slice(1, -1)).join('|');",
+		'    }',
+		'    return undefined;',
+		'  }'
+	].join('\n  ');
+
 	code = code.replace(
 		/handleValidation\(\)\s*\{/,
-		`getPatternAttr(): string | undefined {
-    const p = this.pattern();
-    if (typeof p === 'string') return p || undefined;
-    if (Array.isArray(p) && p.length > 0) return p.map((r: RegExp) => r.source).join('|');
-    return undefined;
-  }
-  handleValidation() {`
+		// Use a function replacer to avoid $-sign interpretation in the replacement string
+		() => `${patternHelper}\n  handleValidation() {`
 	);
 
 	return code;
@@ -349,15 +369,16 @@ function escapeRegExp(string) {
 }
 
 /**
- * Injects `this.propagateTouched()` into handleBlur() so the CVA notifies
- * Angular (Reactive Forms, ngModel, Signal Forms) that the control was touched.
- * Without this, Signal Forms' `touched()` signal never becomes true.
+ * Injects `this.propagateTouched()` and a Signal Forms `touch` output emission
+ * into handleBlur() so both legacy CVA and Signal Forms are notified that the
+ * control was touched. Without this, Signal Forms' `touched()` signal never
+ * becomes true.
  */
 function injectPropagateTouched(code) {
-	// Match handleBlur method and inject propagateTouched call at the end
+	// Match handleBlur method and inject propagateTouched + touch.emit() call at the start
 	code = code.replace(
 		/handleBlur\(event:[^)]+\)\s*\{\n/,
-		`handleBlur(event: any) {\n    this.propagateTouched();\n`
+		`handleBlur(event: any) {\n    this.propagateTouched();\n    this.touch.emit();\n`
 	);
 	return code;
 }
