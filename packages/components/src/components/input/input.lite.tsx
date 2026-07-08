@@ -257,7 +257,7 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		state._value = props.value;
 		state.handleEmptyState();
-	}, [props.value]);
+	}, [props.value, props.type]);
 
 	onUpdate(() => {
 		// If angular uses ngModel value and _value are null
