@@ -48,11 +48,7 @@ import {
 	handleFrameworkEventVue
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import {
-	DateTimeInputTypeList,
-	DBInputProps,
-	DBInputState
-} from './model';
+import { DateTimeInputTypeList, DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
