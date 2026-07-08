@@ -35,5 +35,5 @@ export class SettingsSelectComponent {
 	formField = input.required<FieldTree<string>>();
 	label = input.required<string>();
 	options = input.required<readonly string[]>();
-	@Output() changed = new EventEmitter<Event>();
+	@Output() changed = new EventEmitter<Event | void>();
 }

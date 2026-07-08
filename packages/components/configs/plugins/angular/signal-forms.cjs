@@ -101,8 +101,8 @@ function injectValidationBridge(code) {
 		!code.includes(', signal')
 	) {
 		code = code.replace(
-			/(\w+)\s*\} from "@angular\/core";/,
-			'$1, signal } from "@angular/core";'
+			/(\w+),?\s*\} from "@angular\/core";/,
+			'$1, signal, } from "@angular/core";'
 		);
 	}
 
@@ -275,8 +275,8 @@ function injectValueAlias(code) {
 		!code.includes(', linkedSignal')
 	) {
 		code = code.replace(
-			/(\w+)\s*\} from "@angular\/core";/,
-			'$1, linkedSignal } from "@angular/core";'
+			/(\w+),?\s*\} from "@angular\/core";/,
+			'$1, linkedSignal, } from "@angular/core";'
 		);
 	}
 
@@ -287,8 +287,8 @@ function injectValueAlias(code) {
 		!code.includes(', effect')
 	) {
 		code = code.replace(
-			/(\w+)\s*\} from "@angular\/core";/,
-			'$1, effect } from "@angular/core";'
+			/(\w+),?\s*\} from "@angular\/core";/,
+			'$1, effect, } from "@angular/core";'
 		);
 	}
 
