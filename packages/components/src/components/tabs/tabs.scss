@@ -67,12 +67,6 @@ $focus-outline-reach: calc(
 	inline-size: 100%;
 	position: relative;
 
-	.db-tab-panel {
-		padding: variables.$db-spacing-fixed-xs;
-		position: relative;
-		z-index: 1;
-	}
-
 	.db-tab-list {
 		position: relative;
 		z-index: $db-tabs-z-index-tab-list;
