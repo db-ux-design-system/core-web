@@ -92,7 +92,9 @@ $db-min-inline-size: var(
 				[value*="7"],
 				[value*="8"],
 				[value*="9"],
-				[value*="0"]
+				[value*="0"],
+				/* values set via the DOM value property (e.g. react-hook-form) are mirrored onto data-empty by the component */
+				[data-empty="false"]
 			)::-webkit-datetime-edit {
 			@content;
 		}

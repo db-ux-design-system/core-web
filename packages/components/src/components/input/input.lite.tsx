@@ -48,7 +48,11 @@ import {
 	handleFrameworkEventVue
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import { DBInputProps, DBInputState } from './model';
+import {
+	DateTimeInputTypeList,
+	DBInputProps,
+	DBInputState
+} from './model';
 
 useMetadata({
 	angular: {
@@ -145,6 +149,7 @@ export default function DBInput(props: DBInputProps) {
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
+			state.handleEmptyState();
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLInputElement>,
@@ -177,6 +182,7 @@ export default function DBInput(props: DBInputProps) {
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
+			state.handleEmptyState();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
@@ -199,6 +205,11 @@ export default function DBInput(props: DBInputProps) {
 					: _list) || []
 			);
 		},
+		handleEmptyState: () => {
+			if (_ref && DateTimeInputTypeList.includes(props.type ?? '')) {
+				_ref.setAttribute('data-empty', _ref.value ? 'false' : 'true');
+			}
+		},
 		resetIds: () => {
 			const mId =
 				props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
@@ -213,6 +224,7 @@ export default function DBInput(props: DBInputProps) {
 	onMount(() => {
 		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		void delay(() => state.handleEmptyState(), 1);
 	});
 
 	onUpdate(() => {
@@ -248,6 +260,7 @@ export default function DBInput(props: DBInputProps) {
 
 	onUpdate(() => {
 		state._value = props.value;
+		state.handleEmptyState();
 	}, [props.value]);
 
 	onUpdate(() => {
