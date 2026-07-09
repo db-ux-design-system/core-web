@@ -348,6 +348,9 @@ function injectValueAlias(code) {
 		 */
 		private _syncSource: 'value' | 'values' | 'none' = 'none';
 
+		/** @internal Tracks whether the value alias has been explicitly bound (driven by Signal Forms). */
+		private _valueAliasActive = false;
+
 		/** @internal Sync value → values (Signal Forms writes to value) */
 		private _syncValueToValues = effect(() => {
 			const v = this.value();
@@ -355,6 +358,11 @@ function injectValueAlias(code) {
 				this._syncSource = 'none';
 				return;
 			}
+			// Only sync when the alias is actively driven (not initial undefined from unbound state)
+			if (v === undefined && !this._valueAliasActive) {
+				return;
+			}
+			this._valueAliasActive = true;
 			this._syncSource = 'value';
 			if (v !== undefined) {
 				this.values.set(Array.isArray(v) ? v : v ? [v] : []);

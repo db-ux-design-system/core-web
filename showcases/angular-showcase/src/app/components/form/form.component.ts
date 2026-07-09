@@ -133,10 +133,13 @@ export class FormComponent {
 			// City is disabled until a country is selected
 			disabled(path.city, ({ valueOf }) => valueOf(path.country) === '');
 
-			// Email becomes readonly once username is filled (demonstrates readonly)
+			// Email becomes readonly once both username AND email are filled
+			// (prevents locking an empty required field)
 			readonly(
 				path.email,
-				({ valueOf }) => valueOf(path.username) !== ''
+				({ valueOf }) =>
+					valueOf(path.username) !== '' &&
+					valueOf(path.email) !== ''
 			);
 
 			// Phone field is hidden unless contact method is "phone"
