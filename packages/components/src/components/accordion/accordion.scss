@@ -52,6 +52,19 @@ The spacings are not part of the styling of the accordion items themselves.
 				);
 			}
 
+			// A disabled card must dim as a whole. The base disabled opacity
+			// sits on the inner `<details>` (see accordion-item.scss), which
+			// would leave the level-1 fill and border on the item fully
+			// opaque. Mirror the disabled state on the item and reset the
+			// inner one so the opacity does not stack.
+			&:has(> details[aria-disabled="true"]) {
+				opacity: variables.$db-opacity-md;
+
+				> details[aria-disabled="true"] {
+					opacity: 1;
+				}
+			}
+
 			/*
 			Adding the component-border to the item itself leads to a render error (tested in Chrome and Safari):
 			On mouseover, a small white gap appears between the rounded border and the rounded gray area.
