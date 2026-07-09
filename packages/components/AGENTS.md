@@ -123,6 +123,14 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
+## Mitosis Limitations
+
+Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
+
+- **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
+- **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
+- **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
@@ -139,7 +147,7 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_icon-passing.scss`      | Icon passing via data attributes                        |
 | `_custom-elements.scss`   | Custom element host/shadow styles                       |
 | `_component.scss`         | Base component resets and defaults                      |
-| `_db-puls.scss`           | DB Puls animation                                       |
+| `_indicator.scss`         | Indicator animation                                     |
 | `_scrollbar.scss`         | Scrollbar styling                                       |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
