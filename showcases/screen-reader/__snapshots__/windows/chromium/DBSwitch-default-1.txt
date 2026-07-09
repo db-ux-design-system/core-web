@@ -1,1 +1,1 @@
-["switch, off, (Default) False","","switch, unavailable, on, True","off","switch, off, True"]
+["switch, off, (Default) False","","switch, unavailable, off, True","off","switch, off, True"]
