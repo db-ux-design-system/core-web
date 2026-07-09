@@ -318,7 +318,9 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 			const activeTabIndex = state
 				.getTabs()
-				.findIndex((tab: DBSimpleTabProps) => getBoolean(tab.active));
+				.findIndex((tab: DBSimpleTabProps) =>
+					getBoolean(tab.active, 'active')
+				);
 			return activeTabIndex > -1 ? activeTabIndex : 0;
 		},
 
