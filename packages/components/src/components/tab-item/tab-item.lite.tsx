@@ -133,7 +133,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// When inside DBTabs, this is immediately overridden by DBTabs' initTabs/syncSelection.
 	onUpdate(() => {
 		if (_ref && state.initialized && props.active !== undefined) {
-			const isActive = getBoolean(props.active) || false;
+			const isActive = getBoolean(props.active, 'active') || false;
 			_ref.setAttribute('aria-selected', String(isActive));
 			_ref.setAttribute('tabindex', isActive ? '0' : '-1');
 		}
