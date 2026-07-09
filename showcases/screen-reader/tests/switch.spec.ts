@@ -9,7 +9,7 @@ test.describe('DBSwitch', () => {
 		description:
 			'should toggle switches, should not toggle disabled switch',
 		url: './#/03/switch?page=checked',
-		async testFn(voiceOver, nvda, page) {
+		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.previous(); // Focus "switch 1"
 				await nvda?.act(); // Interact "switch 1"
