@@ -8,7 +8,10 @@
 	@include helpers.display(inline-block);
 
 	&:not([data-wrap="true"]) {
-		block-size: variables.$db-sizing-sm;
+		@include helpers.display(inline-flex);
+
+		block-size: 1lh;
+		align-items: center;
 	}
 }
 
@@ -63,5 +66,9 @@
 	&[aria-disabled="true"] {
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
+	}
+
+	&::after {
+		text-decoration: none;
 	}
 }
