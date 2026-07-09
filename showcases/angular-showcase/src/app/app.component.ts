@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, signal } from '@angular/core';
+import { form } from '@angular/forms/signals';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
 	COLOR,
@@ -10,7 +10,6 @@ import {
 	DBHeader,
 	DBNavigation,
 	DBPage,
-	DBSelect,
 	DENSITIES,
 	DENSITY,
 	DENSITY_CONST,
@@ -19,6 +18,7 @@ import {
 	SecondaryActionDirective
 } from '@components';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { SettingsSelectComponent } from './settings-select/settings-select.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -29,18 +29,17 @@ import {
 	selector: 'app-root',
 	standalone: true,
 	imports: [
-		FormsModule,
 		RouterOutlet,
 		NavItemComponent,
 		DBPage,
 		DBHeader,
 		DBBrand,
 		DBNavigation,
-		DBSelect,
 		DBButton,
 		SecondaryActionDirective,
 		NavigationDirective,
-		MetaNavigationDirective
+		MetaNavigationDirective,
+		SettingsSelectComponent
 	],
 	templateUrl: './app.component.html'
 })
@@ -51,8 +50,12 @@ export class AppComponent implements OnInit {
 	densities = DENSITIES;
 	colors = COLORS;
 
-	density = DENSITY.REGULAR;
-	color = COLOR.NEUTRAL_BG_LEVEL_1;
+	settingsModel = signal({
+		density: DENSITY.REGULAR,
+		color: COLOR.NEUTRAL_BG_LEVEL_1
+	});
+
+	settingsForm = form(this.settingsModel);
 
 	page?: string;
 	fullscreen = false;
@@ -65,11 +68,17 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
 			if (parameters[DENSITY_CONST]) {
-				this.density = parameters[DENSITY_CONST];
+				this.settingsModel.update((m) => ({
+					...m,
+					density: parameters[DENSITY_CONST]
+				}));
 			}
 
 			if (parameters[COLOR_CONST]) {
-				this.color = parameters[COLOR_CONST];
+				this.settingsModel.update((m) => ({
+					...m,
+					color: parameters[COLOR_CONST]
+				}));
 			}
 
 			if (parameters['page']) {
@@ -82,12 +91,18 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	getChangeableClasses = () => `db-density-${this.density} db-${this.color}`;
+	getChangeableClasses = () => {
+		const density = this.settingsForm.density().value();
+		const color = this.settingsForm.color().value();
+		return `db-density-${density} db-${color}`;
+	};
 
 	onChange = async (_value: unknown) => {
+		const density = this.settingsForm.density().value();
+		const color = this.settingsForm.color().value();
 		await this.router.navigate([], {
 			relativeTo: this.route,
-			queryParams: { density: this.density, color: this.color },
+			queryParams: { density, color },
 			queryParamsHandling: 'merge'
 		});
 	};

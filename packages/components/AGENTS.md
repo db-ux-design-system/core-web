@@ -222,7 +222,7 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
-- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`)
+- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
 
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
