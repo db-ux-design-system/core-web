@@ -1,0 +1,6 @@
+<db-tabs (tabSelect)="handleSelect($event)">
+  Test
+</db-tabs>
+<db-tabs @tabSelect="handleSelect">
+  Test
+</db-tabs>

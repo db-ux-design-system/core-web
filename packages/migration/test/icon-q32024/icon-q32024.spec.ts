@@ -12,8 +12,13 @@ describe('icon-q32024', () => {
 
 		expect(result).not.undefined;
 
+		// Restrict to `.txt` fixtures: the migration now evaluates every rule
+		// in dry-run mode and also scans this spec file, whose `.filter(` call
+		// matches the `filter` icon rule. Only the fixture is relevant here.
 		expect(
-			(result as ReplaceResult[]).filter((res) => res.hasChanged)
+			(result as ReplaceResult[]).filter(
+				(res) => res.hasChanged && res.file.endsWith('.txt')
+			)
 		).toHaveLength(1);
 	});
 });

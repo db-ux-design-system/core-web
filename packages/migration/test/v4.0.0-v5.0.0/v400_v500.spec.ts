@@ -12,8 +12,15 @@ describe('v400_v500', () => {
 
 		expect(result).not.undefined;
 
+		// Two fixtures change: `has-changes.txt` (matches the React handler
+		// rename) and `tab-select-only.txt` (matches only the framework event
+		// rename). The latter guards against the dry-run loop stopping after
+		// the first replacement rule. Restrict to `.txt` fixtures so the spec
+		// file itself (also scanned by the migration) can't skew the count.
 		expect(
-			(result as ReplaceResult[]).filter((res) => res.hasChanged)
-		).toHaveLength(1);
+			(result as ReplaceResult[]).filter(
+				(res) => res.hasChanged && res.file.endsWith('.txt')
+			)
+		).toHaveLength(2);
 	});
 });

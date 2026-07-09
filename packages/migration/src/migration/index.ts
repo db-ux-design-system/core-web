@@ -41,6 +41,8 @@ export const migrate = (
 			}
 		}
 
+		const results: ReplaceResult[] = [];
+
 		for (const update of replacements) {
 			const option = {
 				...update,
@@ -48,12 +50,31 @@ export const migrate = (
 				dry
 			};
 			const result: ReplaceResult[] = replaceInFileSync(option);
+
 			if (dry) {
-				if (cli) {
-					console.log(result.filter((res) => res.hasChanged));
+				// Merge per-file results across ALL replacement configs so a
+				// dry run also reports files that only match a later rule
+				// (e.g. a file with only `tabSelect`, not `onTabSelect`).
+				// Returning inside the loop stopped after the first config.
+				for (const res of result) {
+					const existing = results.find(
+						(entry) => entry.file === res.file
+					);
+					if (existing) {
+						existing.hasChanged =
+							existing.hasChanged || res.hasChanged;
+					} else {
+						results.push({ ...res });
+					}
 				}
-				return result;
 			}
+		}
+
+		if (dry) {
+			if (cli) {
+				console.log(results.filter((res) => res.hasChanged));
+			}
+			return results;
 		}
 	}
 
