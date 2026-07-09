@@ -147,7 +147,7 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_icon-passing.scss`      | Icon passing via data attributes                        |
 | `_custom-elements.scss`   | Custom element host/shadow styles                       |
 | `_component.scss`         | Base component resets and defaults                      |
-| `_db-puls.scss`           | DB Puls animation                                       |
+| `_indicator.scss`         | Indicator animation                                     |
 | `_scrollbar.scss`         | Scrollbar styling                                       |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.

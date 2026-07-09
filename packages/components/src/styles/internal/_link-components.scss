@@ -10,7 +10,10 @@
 	align-items: center;
 
 	&:not([data-wrap="true"]) {
-		block-size: variables.$db-sizing-sm;
+		@include helpers.display(inline-flex);
+
+		block-size: 1lh;
+		align-items: center;
 	}
 }
 
