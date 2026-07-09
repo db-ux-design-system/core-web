@@ -135,6 +135,15 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 
+			// Persist a resolved fallback so the render path
+			// (getRenderIndex -> _activeIndex) stays consistent with the DOM.
+			// Without this, an invalid/disabled requested index would keep
+			// _activeIndex stale and a later render could show a disabled panel
+			// or hide every panel while another tab is actually selected.
+			if (currentIndex !== requestedIndex) {
+				state._activeIndex = currentIndex;
+			}
+
 			const rovingIndex =
 				currentIndex === -1
 					? buttons.findIndex((button: HTMLElement) =>
