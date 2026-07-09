@@ -26,9 +26,11 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const placement = getAttributeValue(node, 'placement');
-			if (placement && placement !== 'inline') return;
+			if (placement && placement !== 'inline') {
+				return;
+			}
 
-			let parent: any = node.parent;
+			let { parent } = node;
 			while (parent) {
 				if (parent.type === 'Element' || parent.type === 'Element$1') {
 					const parentName = parent.name;
@@ -53,7 +55,9 @@ export default {
 									node,
 									' placement="corner-top-right"'
 								);
-								if (!fixData) return null;
+								if (!fixData) {
+									return null;
+								}
 								return fixer.insertTextBeforeRange(
 									[fixData.insertPos, fixData.insertPos],
 									fixData.attributeText
@@ -63,6 +67,7 @@ export default {
 						return;
 					}
 				}
+
 				parent = parent.parent;
 			}
 		};
@@ -72,16 +77,22 @@ export default {
 			COMPONENTS.DBBadge,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkBadge = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) {
+				return;
+			}
 
 			const placement = getAttributeValue(openingElement, 'placement');
-			if (placement && placement !== 'inline') return;
+			if (placement && placement !== 'inline') {
+				return;
+			}
 
-			let parent: any = node.parent;
+			let { parent } = node;
 			while (parent) {
 				if (
 					parent.type === 'JSXElement' ||
@@ -125,66 +136,60 @@ export default {
 												placementAttr,
 												'placement="corner-top-right"'
 											);
-										} else {
-											const lastAttr =
-												openingElement.attributes[
-													openingElement.attributes
-														.length - 1
-												];
-											const insertPos = lastAttr
-												? lastAttr.range[1]
-												: openingElement.name.range[1];
-											return fixer.insertTextAfterRange(
-												[insertPos, insertPos],
-												' placement="corner-top-right"'
-											);
 										}
-									} else {
-										// Vue
-										const placementAttr =
-											openingElement.startTag.attributes.find(
-												(a: any) =>
-													a.key.name === 'placement'
-											);
-										if (placementAttr) {
-											return fixer.replaceText(
-												placementAttr,
-												'placement="corner-top-right"'
-											);
-										} else {
-											const attrs =
-												openingElement.startTag
-													.attributes;
-											if (attrs.length > 0) {
-												const lastAttr =
-													attrs[attrs.length - 1];
-												return fixer.insertTextAfterRange(
-													[
-														lastAttr.range[1],
-														lastAttr.range[1]
-													],
-													' placement="corner-top-right"'
-												);
-											} else {
-												const insertPos =
-													openingElement.startTag
-														.range[0] +
-													1 +
-													openingElement.rawName
-														.length;
-												return fixer.insertTextAfterRange(
-													[insertPos, insertPos],
-													' placement="corner-top-right"'
-												);
-											}
-										}
+
+										const lastAttr =
+											openingElement.attributes.at(-1);
+										const insertPos = lastAttr
+											? lastAttr.range[1]
+											: openingElement.name.range[1];
+										return fixer.insertTextAfterRange(
+											[insertPos, insertPos],
+											' placement="corner-top-right"'
+										);
 									}
+
+									// Vue
+									const placementAttr =
+										openingElement.startTag.attributes.find(
+											(a: any) =>
+												a.key.name === 'placement'
+										);
+									if (placementAttr) {
+										return fixer.replaceText(
+											placementAttr,
+											'placement="corner-top-right"'
+										);
+									}
+
+									const attrs =
+										openingElement.startTag.attributes;
+									if (attrs.length > 0) {
+										const lastAttr = attrs.at(-1);
+										return fixer.insertTextAfterRange(
+											[
+												lastAttr.range[1],
+												lastAttr.range[1]
+											],
+											' placement="corner-top-right"'
+										);
+									}
+
+									const insertPos =
+										openingElement.startTag.range[0] +
+										1 +
+										openingElement.rawName.length;
+									return fixer.insertTextAfterRange(
+										[insertPos, insertPos],
+										' placement="corner-top-right"'
+									);
 								}
 							});
 							return;
 						}
 					}
 				}
+
 				parent = parent.parent;
 			}
 		};

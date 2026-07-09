@@ -28,7 +28,7 @@ export default {
 			const multiple = getAttributeValue(node, 'multiple');
 
 			if (type === 'file') {
-				if (accept === null) {
+				if (accept === undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -38,7 +38,7 @@ export default {
 					});
 				}
 			} else {
-				if (multiple !== null) {
+				if (multiple !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -47,7 +47,8 @@ export default {
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
-				if (accept !== null) {
+
+				if (accept !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -64,31 +65,36 @@ export default {
 			COMPONENTS.DBInput,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkInput = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) {
+				return;
+			}
 
 			const type = getAttributeValue(openingElement, 'type');
 			const accept = getAttributeValue(openingElement, 'accept');
 			const multiple = getAttributeValue(openingElement, 'multiple');
 
 			if (type === 'file') {
-				if (accept === null) {
+				if (accept === undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
 					});
 				}
 			} else {
-				if (multiple !== null) {
+				if (multiple !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
-				if (accept !== null) {
+
+				if (accept !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT

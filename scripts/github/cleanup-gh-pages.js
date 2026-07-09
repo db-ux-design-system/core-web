@@ -12,7 +12,7 @@ const removeOldFromPath = (isTag, data) => {
 		data?.filter((branch) => branch.name).length > 0
 	) {
 		const dirsToDelete = FS.readdirSync(path)
-			// eslint-disable-next-line unicorn/prefer-array-some
+
 			.filter((file) => !data.find((branch) => branch.name === file))
 			// Let's not clean up specific folders
 			.filter((file) => !['main', 'latest'].includes(file));

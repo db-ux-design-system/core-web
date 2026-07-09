@@ -33,13 +33,17 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const invalidMessage = getAttributeValue(node, 'invalidMessage');
-			if (invalidMessage !== null) return;
+			if (invalidMessage !== undefined) {
+				return;
+			}
 
 			const required = getAttributeValue(node, 'required');
-			if (required !== null) {
+			if (required !== undefined) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -55,7 +59,7 @@ export default {
 				const maxLength = getAttributeValue(node, 'maxLength');
 				const minLength = getAttributeValue(node, 'minLength');
 
-				if (maxLength !== null) {
+				if (maxLength !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -70,7 +74,7 @@ export default {
 					return;
 				}
 
-				if (minLength !== null) {
+				if (minLength !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -91,7 +95,7 @@ export default {
 				const max = getAttributeValue(node, 'max');
 				const pattern = getAttributeValue(node, 'pattern');
 
-				if (min !== null) {
+				if (min !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -103,7 +107,7 @@ export default {
 					return;
 				}
 
-				if (max !== null) {
+				if (max !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -115,7 +119,7 @@ export default {
 					return;
 				}
 
-				if (pattern !== null) {
+				if (pattern !== undefined) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -134,7 +138,9 @@ export default {
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (angularVisitors) {
+				return angularVisitors;
+			}
 		}
 
 		const checkFormComponent = (node: any) => {
@@ -142,7 +148,9 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
@@ -151,10 +159,12 @@ export default {
 				openingElement,
 				'invalidMessage'
 			);
-			if (invalidMessage !== null) return;
+			if (invalidMessage !== undefined) {
+				return;
+			}
 
 			const required = getAttributeValue(openingElement, 'required');
-			if (required !== null) {
+			if (required !== undefined) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -173,7 +183,7 @@ export default {
 					'minLength'
 				);
 
-				if (maxLength !== null) {
+				if (maxLength !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -185,7 +195,7 @@ export default {
 					return;
 				}
 
-				if (minLength !== null) {
+				if (minLength !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -203,7 +213,7 @@ export default {
 				const max = getAttributeValue(openingElement, 'max');
 				const pattern = getAttributeValue(openingElement, 'pattern');
 
-				if (min !== null) {
+				if (min !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -212,7 +222,7 @@ export default {
 					return;
 				}
 
-				if (max !== null) {
+				if (max !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -221,7 +231,7 @@ export default {
 					return;
 				}
 
-				if (pattern !== null) {
+				if (pattern !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,

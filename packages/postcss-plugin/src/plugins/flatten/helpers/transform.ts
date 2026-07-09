@@ -8,6 +8,7 @@ import {
 } from './resolve.js';
 
 /**
+ * @public
  * Collapse `light-dark(x, y)` to just `x` when both arguments are identical
  * after trimming whitespace. Handles nested parentheses correctly.
  * @param value - The CSS value string potentially containing `light-dark()` calls
@@ -19,7 +20,9 @@ export const collapseLightDark = (value: string): string => {
 
 	while (searchFrom < result.length) {
 		const found = findCssFunction(result, 'light-dark', searchFrom);
-		if (!found) break;
+		if (!found) {
+			break;
+		}
 
 		const commaIdx = findTopLevelComma(found.inner);
 		if (commaIdx === -1) {
@@ -70,19 +73,24 @@ export const transformRoot = (
 		const hasColorMix = decl.value.includes('color-mix(');
 		const hasLightDark = decl.value.includes('light-dark(');
 
-		if (!hasVar && !hasCalc && !hasColorMix && !hasLightDark) return;
+		if (!hasVar && !hasCalc && !hasColorMix && !hasLightDark) {
+			return;
+		}
 
 		let resolved = decl.value;
 
 		if (hasVar) {
 			resolved = resolveVars(resolved, staticVarMap);
 		}
+
 		if (resolved.includes('calc(')) {
 			resolved = resolveCalc(resolved);
 		}
+
 		if (resolved.includes('color-mix(')) {
 			resolved = resolveColorMix(resolved);
 		}
+
 		if (resolved.includes('light-dark(')) {
 			resolved = collapseLightDark(resolved);
 		}
@@ -126,14 +134,14 @@ const removeEmptyContainers = (root: Root) => {
 		changed = false;
 
 		root.walkRules((rule: Rule) => {
-			if (rule.nodes && rule.nodes.length === 0) {
+			if (rule.nodes?.length === 0) {
 				rule.remove();
 				changed = true;
 			}
 		});
 
 		root.walkAtRules('layer', (atRule: AtRule) => {
-			if (atRule.nodes && atRule.nodes.length === 0) {
+			if (atRule.nodes?.length === 0) {
 				atRule.remove();
 				changed = true;
 			}

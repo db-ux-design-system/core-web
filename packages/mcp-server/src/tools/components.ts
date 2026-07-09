@@ -13,9 +13,9 @@ import {
 import { getManifest } from '../utils/manifest';
 
 /**
- * Resolves and verifies a component path within a given base directory.
- * Handles path traversal protection via resolveSafePath and existence check.
- * @returns The resolved absolute path, or a ToolResult error object on failure.
+ Resolves and verifies a component path within a given base directory.
+ Handles path traversal protection via resolveSafePath and existence check.
+ @returns The resolved absolute path, or a ToolResult error object on failure.
  */
 function resolveComponentPath(
 	baseDir: string,
@@ -27,9 +27,11 @@ function resolveComponentPath(
 	} catch {
 		return err(`Error: Invalid component name '${componentName}'.`);
 	}
+
 	if (!existsSync(safePath)) {
 		return err(COMPONENT_NOT_FOUND_MSG(componentName));
 	}
+
 	return safePath;
 }
 
@@ -50,8 +52,9 @@ export async function handleListComponents(): Promise<ToolResult> {
 }
 
 /**
- * Returns the list of example names for a component by reading its showcase file.
- * @param componentName - The kebab-case component name (e.g. "button").
+ Returns the list of example names for a component by reading its showcase file.
+ @param componentName - The kebab-case component name (e.g. "button").
+ @param componentName.componentName
  */
 export async function handleGetComponentDetails({
 	componentName
@@ -60,7 +63,9 @@ export async function handleGetComponentDetails({
 }): Promise<ToolResult> {
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	if (!comp) {
+		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	}
 	return {
 		content: [
 			{
@@ -75,8 +80,9 @@ export async function handleGetComponentDetails({
 }
 
 /**
- * Returns the raw TypeScript content of a component's model.ts file.
- * @param componentName - The kebab-case component name (e.g. "button").
+ Returns the raw TypeScript content of a component's model.ts file.
+ @param componentName - The kebab-case component name (e.g. "button").
+ @param componentName.componentName
  */
 export async function handleGetComponentProps({
 	componentName
@@ -85,11 +91,15 @@ export async function handleGetComponentProps({
 }): Promise<ToolResult> {
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
-	if (!comp.props)
+	if (!comp) {
+		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	}
+	if (!comp.props) {
 		return err(
 			`Error: Props file (model.ts) for component '${componentName}' not found.`
 		);
+	}
+
 	return {
 		content: [
 			{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
@@ -102,16 +112,15 @@ function toKebabCase(name: string): string {
 	return name
 		.trim()
 		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/^-|-$/g, '');
+		.replaceAll(/[^a-z\d]+/g, '-')
+		.replaceAll(/^-|-$/g, '');
 }
 
-const FRAMEWORK_EXT: Record<Framework, string> = {
+const FRAMEWORK_EXT: Partial<Record<Framework, string>> = {
 	react: 'tsx',
 	angular: 'ts',
 	vue: 'vue',
-	'web-components': 'tsx',
-	html: 'html'
+	'web-components': 'tsx'
 };
 
 const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
@@ -119,9 +128,9 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 };
 
 /**
- * Finds the best-matching example filename from a list of candidates.
- * Prefers exact stem match, then falls back to partial inclusion.
- * Inspects at most the first 10 entries to avoid excessive scanning.
+ Finds the best-matching example filename from a list of candidates.
+ Prefers exact stem match, then falls back to partial inclusion.
+ Inspects at most the first 10 entries to avoid excessive scanning.
  */
 function fuzzyMatchExample(
 	entries: string[],
@@ -129,18 +138,23 @@ function fuzzyMatchExample(
 	ext: string
 ): string | undefined {
 	return entries.slice(0, 10).find((f) => {
-		if (!f.endsWith(`.example.${ext}`)) return false;
+		if (!f.endsWith(`.example.${ext}`)) {
+			return false;
+		}
 		const stem = f.replace(`.example.${ext}`, '');
 		return stem === kebab || stem.includes(kebab) || kebab.includes(stem);
 	});
 }
 
 /**
- * Returns the generated framework-specific source code for a component example.
- * Applies a 10-second timeout to prevent hanging on slow filesystem reads.
- * @param componentName - The kebab-case component name (e.g. "button").
- * @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
- * @param framework - The target framework (react, angular, vue, web-components, html).
+ Returns the generated framework-specific source code for a component example.
+ Applies a 10-second timeout to prevent hanging on slow filesystem reads.
+ @param componentName - The kebab-case component name (e.g. "button").
+ @param componentName.componentName
+ @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
+ @param componentName.exampleName
+ @param framework - The target framework (react, angular, vue, web-components, html).
+ @param componentName.framework
  */
 export async function handleGetExampleCode({
 	componentName,
@@ -158,22 +172,15 @@ export async function handleGetExampleCode({
 				const ext = FRAMEWORK_EXT[framework];
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
-				if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
-				if (framework === 'html') {
-					const htmlEntry = comp.exampleCode['html']?.['index.html'];
-					if (!htmlEntry)
-						return err(
-							`Error: No HTML example found for component '${componentName}'.`
-						);
-					return {
-						content: [
-							{
-								type: 'text',
-								text: truncate(htmlEntry, MAX_FILE_CONTENT)
-							}
-						]
-					};
+				if (!comp) {
+					return err(COMPONENT_NOT_FOUND_MSG(componentName));
 				}
+				if (framework === 'html' || framework === 'vanilla') {
+					return err(
+						"Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage."
+					);
+				}
+
 				const fwExamples = comp.exampleCode[framework] ?? {};
 				const directKey = `${kebab}.example.${ext}`;
 				const matchKey = fwExamples[directKey]
@@ -184,6 +191,7 @@ export async function handleGetExampleCode({
 						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					);
 				}
+
 				return {
 					content: [
 						{

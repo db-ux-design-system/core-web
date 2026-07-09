@@ -6,8 +6,8 @@ export const MAX_FILE_CONTENT = 20_000;
 export const MAX_JSON_OUTPUT = 20_000;
 
 /**
- * Truncates a string to at most `limit` characters and appends a labelled marker.
- * Returns the original string unchanged when it is within the limit.
+ Truncates a string to at most `limit` characters and appends a labelled marker.
+ Returns the original string unchanged when it is within the limit.
  */
 export function truncate(
 	text: string,
@@ -15,7 +15,7 @@ export function truncate(
 	label = 'TRUNCATED DUE TO SIZE'
 ): string {
 	return text.length > limit
-		? text.substring(0, limit) + `\n... [${label}]`
+		? text.slice(0, Math.max(0, limit)) + `\n... [${label}]`
 		: text;
 }
 

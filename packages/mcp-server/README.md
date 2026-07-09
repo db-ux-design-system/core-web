@@ -291,8 +291,7 @@ manifest.json
             ├── react{}              — { "variant.example.tsx": "<source>" }
             ├── angular{}            — { "variant.example.ts":  "<source>" }
             ├── vue{}                — { "variant.example.vue": "<source>" }
-            ├── web-components{}     — { "variant.example.ts":  "<source>" }
-            └── html{}               — { "index.html": "<source>" }
+            └── web-components{}     — { "variant.example.ts":  "<source>" }
 ```
 
 This manifest is bundled into the final `index.js` by esbuild, producing a **~775 KB standalone executable** that carries all component knowledge inside it.

@@ -15,6 +15,7 @@ function hasHeadlineSlot(node: any): boolean {
 			);
 			return slotAttr?.value === 'headline';
 		}
+
 		// Vue: <template #headline> or <template v-slot:headline>
 		if (child.type === 'VElement' && child.rawName === 'template') {
 			return child.startTag.attributes.some(
@@ -24,6 +25,7 @@ function hasHeadlineSlot(node: any): boolean {
 					a.key.name === 'headline'
 			);
 		}
+
 		return false;
 	});
 }
@@ -62,12 +64,15 @@ export default {
 			COMPONENTS.DBAccordionItem,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkAccordionItem = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBAccordionItem))
+			if (!isDBComponent(openingElement, COMPONENTS.DBAccordionItem)) {
 				return;
+			}
 
 			const headlinePlain = getAttributeValue(
 				openingElement,

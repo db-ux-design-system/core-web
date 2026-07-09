@@ -4,15 +4,15 @@ export type FlattenOptions = {
 	/** Remove declarations whose variables came from @property and are no longer referenced (default: true) */
 	removeResolved?: boolean;
 	/**
-	 * Variable prefixes that are always treated as dynamic (never resolved).
-	 * Default: ['--db-adaptive-']
+	 Variable prefixes that are always treated as dynamic (never resolved).
+	 Default: ['--db-adaptive-']
 	 */
 	dynamicPrefixes?: string[];
 };
 
 export type VarEntry = {
 	value: string;
-	layer: string | null;
+	layer: string | undefined;
 	file: string;
 };
 

@@ -31,6 +31,7 @@ export const borderPropertiesExact: string[] = [
 	'border-inline-end'
 ];
 
+/** @public */
 export type IncludesAllowType = {
 	include: string;
 	and?: string[];
@@ -42,15 +43,15 @@ export type AllowedType = {
 	exact?: string[];
 	startsWith?: string[];
 	/**
-	 * Used to determine if:
-	 * - every: All parts of the value (e.g. margin: x x x x) should be allowed
-	 * - some: Only some parts of the value (e.g. border: x solid red) should be allowed
+	 Used to determine if:
+	 - every: All parts of the value (e.g. margin: x x x x) should be allowed
+	 - some: Only some parts of the value (e.g. border: x solid red) should be allowed
 	 */
 	type?: 'every' | 'some';
 };
 
-const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
-	return Boolean(
+const checkIncludes = (value: string, allowedValues: AllowedType): boolean =>
+	Boolean(
 		allowedValues.includes?.find((include) => {
 			if (typeof include === 'string') {
 				return value.includes(include);
@@ -66,8 +67,8 @@ const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
 			);
 		})
 	);
-};
 
+/** @public */
 export const isAllowed = (
 	value: string | string[],
 	allowedValues: AllowedType
@@ -82,12 +83,12 @@ export const isAllowed = (
 				.split(' ');
 
 	const allowMap = splitValue.map(
-		(val) =>
-			Boolean(allowedValues.exact?.includes(val)) ||
+		(value_) =>
+			Boolean(allowedValues.exact?.includes(value_)) ||
 			Boolean(
-				allowedValues.startsWith?.find((sw) => val.startsWith(sw))
+				allowedValues.startsWith?.find((sw) => value_.startsWith(sw))
 			) ||
-			checkIncludes(val, allowedValues)
+			checkIncludes(value_, allowedValues)
 	);
 
 	if (allowedValues.type === 'some') {
@@ -97,6 +98,7 @@ export const isAllowed = (
 	return allowMap.every(Boolean);
 };
 
+/** @public */
 export type DefaultRuleOptions = {
 	allowCalc?: boolean;
 	ignore?: string[];
@@ -109,26 +111,30 @@ export type DefaultRuleOptionsHitType = {
 	value: string;
 };
 
+/** @public */
 export const isDefaultRuleOptionsHit = ({
 	options,
 	result,
 	value
 }: DefaultRuleOptionsHitType) => {
 	if (options?.ignore) {
-		const from = result.opts.from;
+		const { from } = result.opts;
 		if (from) {
 			const isIgnored = options.ignore.some(
 				(i) => from.includes(i) || new RegExp(i).test(from)
 			);
-			if (isIgnored) return true;
+			if (isIgnored) {
+				return true;
+			}
 		}
 	}
 
 	if (
 		options?.allowCalc &&
 		isAllowed([value], { includes: [{ include: 'calc(' }] })
-	)
+	) {
 		return true;
+	}
 
 	return Boolean(options?.allow && isAllowed([value], options.allow));
 };
@@ -155,11 +161,19 @@ export const getDeclarationRuleFunction = ({
 		root.walkDecls((decl: Declaration) => {
 			const { prop, value } = decl;
 
-			if (isDefaultRuleOptionsHit({ result, options, value })) return;
+			if (isDefaultRuleOptionsHit({ result, options, value })) {
+				return;
+			}
 
-			if (prop.startsWith('--') || prop.startsWith('$')) return;
-			if (!isAllowed(prop, allowedDeclarations)) return;
-			if (isAllowed(value, allowedValues)) return;
+			if (prop.startsWith('--') || prop.startsWith('$')) {
+				return;
+			}
+			if (!isAllowed(prop, allowedDeclarations)) {
+				return;
+			}
+			if (isAllowed(value, allowedValues)) {
+				return;
+			}
 
 			report({
 				result,

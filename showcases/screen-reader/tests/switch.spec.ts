@@ -38,7 +38,7 @@ test.describe('DBSwitch', () => {
 					phraseLog.map((log) =>
 						log
 							// NVDA sometimes shows "blank"
-							.replace('blank', 'check box, not checked, True')
+							.replace('blank', 'switch, off, True')
 					)
 				);
 			} else if (voiceOver) {

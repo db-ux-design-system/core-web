@@ -41,7 +41,9 @@ export default {
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const iconChild = node.children?.find(
 				(child: any) =>
@@ -72,7 +74,10 @@ export default {
 				Object.assign(angularVisitors, visitors);
 			}
 		}
-		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
+
+		if (Object.keys(angularVisitors).length > 0) {
+			return angularVisitors;
+		}
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
@@ -80,7 +85,9 @@ export default {
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
@@ -103,18 +110,16 @@ export default {
 					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
 					data: { component: componentName },
 					fix(fixer: any) {
-						if (!iconValue || typeof iconValue !== 'string')
+						if (!iconValue || typeof iconValue !== 'string') {
 							return null;
+						}
 
 						const fixes = [];
 						fixes.push(fixer.remove(iconChild));
 
 						if (node.openingElement) {
 							// JSX
-							const lastAttr =
-								openingElement.attributes[
-									openingElement.attributes.length - 1
-								];
+							const lastAttr = openingElement.attributes.at(-1);
 							const insertPos = lastAttr
 								? lastAttr.range[1]
 								: openingElement.name.range[1];
@@ -128,7 +133,7 @@ export default {
 							// Vue
 							const attrs = openingElement.startTag.attributes;
 							if (attrs.length > 0) {
-								const lastAttr = attrs[attrs.length - 1];
+								const lastAttr = attrs.at(-1);
 								const insertPos = lastAttr.range[1];
 								fixes.push(
 									fixer.insertTextAfterRange(

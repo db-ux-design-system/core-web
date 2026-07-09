@@ -19,7 +19,7 @@ beforeEach(() => {
 	vi.resetAllMocks();
 	// Default: no example dirs exist
 	vi.mocked(existsSync).mockReturnValue(false);
-	vi.mocked(writeFile).mockResolvedValue(undefined as any);
+	vi.mocked(writeFile).mockResolvedValue(undefined);
 });
 
 describe('processComponent', () => {
@@ -28,16 +28,16 @@ describe('processComponent', () => {
 			(p: any) =>
 				String(p).includes('model.ts') || String(p).includes('showcase')
 		);
-		vi.mocked(readFile).mockImplementation((p: any) => {
-			if (String(p).includes('model.ts'))
-				return Promise.resolve(
-					'export interface ButtonProps {}' as any
-				);
-			if (String(p).includes('showcase'))
-				return Promise.resolve(
-					'exampleName="Variant" exampleName="Size"' as any
-				);
-			return Promise.resolve('' as any);
+		vi.mocked(readFile).mockImplementation(async (p: any) => {
+			if (String(p).includes('model.ts')) {
+				return 'export interface ButtonProps {}';
+			}
+
+			if (String(p).includes('showcase')) {
+				return 'exampleName="Variant" exampleName="Size"';
+			}
+
+			return '';
 		});
 
 		const result = await processComponent('button', BASE, OUTPUT);
@@ -61,15 +61,15 @@ describe('processComponent', () => {
 		expect(result.hasError).toBe(true);
 	});
 
-	it('returns hasError:false with null props when model.ts is absent', async () => {
-		// existsSync returns false for everything → readOptional returns null
+	it('returns hasError:false with undefined props when model.ts is absent', async () => {
+		// ExistsSync returns false for everything → readOptional returns undefined
 		vi.mocked(existsSync).mockReturnValue(false);
 
 		const result = await processComponent('button', BASE, OUTPUT);
 
 		expect(result.hasError).toBe(false);
 		if (!result.hasError) {
-			expect(result.data.props).toBeNull();
+			expect(result.data.props).toBeUndefined();
 			expect(result.data.examples).toEqual([]);
 		}
 	});
@@ -96,10 +96,12 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 					String(p).includes('model.ts')) ||
 				(String(p).includes('broken') && String(p).includes('model.ts'))
 		);
-		vi.mocked(readFile).mockImplementation((p: any) => {
-			if (String(p).includes('broken'))
-				return Promise.reject(new Error('ENOENT: broken component'));
-			return Promise.resolve('// button props' as any);
+		vi.mocked(readFile).mockImplementation(async (p: any) => {
+			if (String(p).includes('broken')) {
+				throw new Error('ENOENT: broken component');
+			}
+
+			return '// button props';
 		});
 
 		const results = await Promise.all([
@@ -112,16 +114,19 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 
 		// Both settled — no early crash
 		expect(results).toHaveLength(2);
-		// button succeeded
+		// Button succeeded
 		expect(successful).toHaveLength(1);
 		if (!successful[0].hasError) {
 			expect(successful[0].name).toBe('button');
 		}
-		// broken failed
+
+		// Broken failed
 		expect(hasErrors).toBe(true);
 
 		// Simulate what buildManifest does after Promise.all
-		if (hasErrors) process.exit(1);
+		if (hasErrors) {
+			process.exit(1);
+		}
 		expect(exitSpy).toHaveBeenCalledWith(1);
 	});
 
@@ -134,7 +139,9 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		]);
 
 		const hasErrors = results.some((r) => r.hasError);
-		if (hasErrors) process.exit(1);
+		if (hasErrors) {
+			process.exit(1);
+		}
 
 		expect(exitSpy).not.toHaveBeenCalled();
 	});

@@ -32,6 +32,9 @@ on:
       isChangesetRelease:
         description: "If this is a changeset release PR"
         value: ${{ jobs.init.outputs.isChangesetRelease }}
+      isFork:
+        description: "If this is a pull request from a fork or running in a fork repository"
+        value: ${{ jobs.init.outputs.isFork }}
       # Publish outputs
       release:
         description: "If the current tag is a release"
@@ -53,10 +56,11 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       test-ally: ${{ steps.ally.outputs.test-ally }}
       isChangesetRelease: ${{ steps.changeset-check.outputs.isChangesetRelease }}
+      isFork: ${{ steps.fork-check.outputs.isFork }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
           fetch-tags: false
@@ -114,6 +118,23 @@ jobs:
             echo "isChangesetRelease=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: 🍴 Check if fork PR or fork repository
+        id: fork-check
+        run: |
+          # Case 1: Pull request from a fork — the head repo differs from the base repo.
+          # This is the most common fork scenario and does not require a hardcoded org name.
+          if [[ "${{ github.event_name }}" == "pull_request" ]] && \
+             [[ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]]; then
+            echo "isFork=true" >> $GITHUB_OUTPUT
+          # Case 2: Non-PR events (push, workflow_dispatch) running inside a fork repository.
+          # The PR head repo check above is empty for these events, so we fall back to an
+          # owner check to prevent jobs that require upstream secrets (e.g. Figma) from running.
+          elif [[ "${{ github.repository_owner }}" != "db-ux-design-system" ]]; then
+            echo "isFork=true" >> $GITHUB_OUTPUT
+          else
+            echo "isFork=false" >> $GITHUB_OUTPUT
+          fi
+
   publish:
     name: Get and save publish version
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
@@ -124,7 +145,7 @@ jobs:
       version: ${{ steps.getVersion.outputs.version }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache

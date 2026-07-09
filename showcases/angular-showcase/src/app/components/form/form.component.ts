@@ -1,14 +1,26 @@
-import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import {
-	FormControl,
-	FormGroup,
-	FormsModule,
-	ReactiveFormsModule
-} from '@angular/forms';
+	type FieldTree,
+	FormField,
+	debounce,
+	disabled,
+	email,
+	form,
+	hidden,
+	max,
+	maxLength,
+	min,
+	minLength,
+	pattern,
+	readonly,
+	required,
+	validate
+} from '@angular/forms/signals';
 import {
 	DBButton,
 	DBCheckbox,
-	DBDivider,
+	DBCustomSelect,
 	DBDrawer,
 	DBInfotext,
 	DBInput,
@@ -27,158 +39,143 @@ import {
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: [
-		FormsModule,
-		ReactiveFormsModule,
+		JsonPipe,
+		FormField,
 		DBInput,
-		DBTextarea,
 		DBSelect,
-		DBRadio,
-		DBTag,
+		DBCustomSelect,
+		DBTextarea,
 		DBCheckbox,
-		DBDivider,
+		DBRadio,
+		DBSwitch,
+		DBTag,
 		DBButton,
 		DBTabs,
 		DBTabList,
 		DBTabItem,
 		DBTabPanel,
-		DBSwitch,
 		DBDrawer,
 		DBInfotext
 	],
-	standalone: true,
-	schemas: [NO_ERRORS_SCHEMA]
+	standalone: true
 })
 export class FormComponent {
 	// Drawer state
 	drawerOpen = false;
 
-	// DB Switch with Angular signals
+	// Switch with signals (standalone, not Signal Forms)
 	checkedSignal = signal(false);
-	checkedNonSignal = false;
 
-	array = ['X', 'Y', 'Z'];
-	radio = '';
-	input = '';
-	textarea = 'default value';
-	textareaDefaultValue = '';
-	dateinput = '';
-	tags: string[] = [];
-	// Fieldset checkbox state
-	checked = [true, false];
+	// Signal Forms
+	protected readonly userForm = form(
+		signal({
+			username: '',
+			email: '',
+			password: '',
+			age: 0,
+			birthday: '',
+			appointmentTime: '',
+			appointmentDateTime: '',
+			website: '',
+			phone: '',
+			search: '',
+			country: '',
+			city: [] as string[],
+			bio: '',
+			newsletter: false,
+			contactMethod: '',
+			darkMode: false
+		}),
+		(path) => {
+			required(path.username, { message: 'Username is required' });
+			minLength(path.username, 3, { message: 'At least 3 characters' });
+			maxLength(path.username, 20, { message: 'At most 20 characters' });
 
-	model = {
-		input: 'Anna',
-		dateinput: '2024-05-04',
-		textarea: 'default value',
-		radio: 'X',
-		checkbox: true,
-		checkbox2: true,
-		select: 'test2'
-	};
+			required(path.email, { message: 'Email is required' });
+			email(path.email, { message: 'Not a valid email address' });
 
-	dataList = [{ value: 'test', label: 'Test' }, { value: 'test2' }];
-
-	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
-	form = new FormGroup({
-		input: new FormControl('Filled with formControl'),
-		dateinput: new FormControl('2024-05-04'),
-		textarea: new FormControl('Filled with formControl as well'),
-		checkbox: new FormControl(true),
-		select: new FormControl('test2')
-	});
-
-	getRadioName = (radioName: string): string => `Radio ${radioName}`;
-
-	getTagName = (tag: string): string => `Tag ${tag}`;
-
-	getTags = (): string => JSON.stringify(this.tags);
-
-	changeTags = (tag: string) => {
-		this.tags = this.tags.includes(tag)
-			? this.tags.filter((t) => t !== tag)
-			: [...this.tags, tag];
-	};
-
-	changeTextarea(
-		key: 'textarea' | 'textareaDefaultValue',
-		event: Event | void
-	) {
-		if (!event) return;
-		this[key] = (event.target as HTMLTextAreaElement).value;
-	}
-
-	resetValues(): void {
-		this.textarea = '';
-		this.model.input = 'reset';
-		this.model.textarea = 'resetted as well';
-		this.model.checkbox = false;
-		this.model.checkbox2 = false;
-		this.form.get('input')?.setValue('reset');
-		this.form.get('textarea')?.setValue('reset');
-		this.form.get('dateinput')?.setValue('');
-		this.form.get('checkbox')?.setValue(false);
-	}
-
-	onFormSubmit(): void {
-		// eslint-disable-next-line no-alert
-		alert(
-			'Formvalue: ' +
-				JSON.stringify(this.form.value) +
-				' / Model data: ' +
-				JSON.stringify(this.model)
-		);
-	}
-
-	// Checkbox changes
-	handleChange1 = (event?: Event | void) => {
-		if (!event) return;
-		const checked = (event.target as HTMLInputElement)?.checked;
-		this.checked = [checked, checked];
-	};
-
-	handleChange2 = (event: Event | void) => {
-		if (!event) return;
-		this.checked = [
-			(event.target as HTMLInputElement).checked,
-			this.checked[1]
-		];
-	};
-
-	handleChange3 = (event: Event | void) => {
-		if (!event) return;
-		this.checked = [
-			this.checked[0],
-			(event.target as HTMLInputElement).checked
-		];
-	};
-
-	handleChange4 = (event: Event | void) => {
-		if (!event) return;
-		this.form
-			.get('select')
-			?.setValue((event.target as HTMLSelectElement).value, {
-				onlySelf: true
+			required(path.password, { message: 'Password is required' });
+			minLength(path.password, 8, { message: 'At least 8 characters' });
+			pattern(path.password, /[A-Z]/u, {
+				message: 'At least one uppercase letter'
 			});
-	};
 
-	showValues(): void {
-		// eslint-disable-next-line no-alert
-		alert(
-			JSON.stringify({
-				input: this.input,
-				textarea: this.textarea,
-				radio: this.radio,
-				checkbox: this.model.checkbox,
-				checkbox2: this.model.checkbox2,
-				tags: this.tags
-			})
-		);
+			min(path.age, 18, { message: 'Minimum age: 18' });
+			max(path.age, 120, { message: 'Maximum age: 120' });
+
+			required(path.country, { message: 'Country is required' });
+
+			required(path.bio, { message: 'Bio is required' });
+			minLength(path.bio, 10, { message: 'At least 10 characters' });
+			maxLength(path.bio, 500, { message: 'At most 500 characters' });
+
+			// URL must start with http(s)://
+			pattern(path.website, /^https?:\/\//u, {
+				message: 'Must start with http(s)://'
+			});
+
+			validate(path.phone, ({ value }) => {
+				const v = value();
+
+				if (v !== '' && !/^\+?\d[\s\d-]{6,}$/u.test(v)) {
+					return {
+						kind: 'invalidPhone',
+						message: 'Not a valid phone number'
+					};
+				}
+
+				return null;
+			});
+
+			// Debounce search input by 300ms
+			debounce(path.search, 300);
+
+			// City is disabled until a country is selected
+			disabled(path.city, ({ valueOf }) => valueOf(path.country) === '');
+
+			// Email becomes readonly once both username AND email are filled
+			// (prevents locking an empty required field)
+			readonly(
+				path.email,
+				({ valueOf }) =>
+					valueOf(path.username) !== '' && valueOf(path.email) !== ''
+			);
+
+			// Phone field is hidden unless contact method is "phone"
+			hidden(
+				path.phone,
+				({ valueOf }) => valueOf(path.contactMethod) !== 'phone'
+			);
+		}
+	);
+
+	protected readonly cityOptions = [
+		{ value: 'berlin', label: 'Berlin' },
+		{ value: 'vienna', label: 'Vienna' },
+		{ value: 'zurich', label: 'Zurich' },
+		{ value: 'munich', label: 'Munich' }
+	];
+
+	handleSwitchChange(event: Event | void) {
+		if (!event) {
+			return;
+		}
+
+		this.checkedSignal.set((event.target as HTMLInputElement).checked);
 	}
 
-	handleChange(event: Event | void) {
-		if (!event) return;
-		console.log(event.currentTarget);
-		this.checkedSignal.set((event.target as HTMLInputElement).checked);
-		this.checkedNonSignal = (event.target as HTMLInputElement).checked;
+	/** Returns the Signal Forms validation state for a field after interaction. */
+	protected fieldValidation<T>(
+		field: FieldTree<T>
+	): 'invalid' | 'valid' | 'no-validation' {
+		if (field().dirty() && field().invalid() && !field().pending()) {
+			return 'invalid';
+		}
+
+		if (field().dirty() && field().valid() && !field().pending()) {
+			return 'valid';
+		}
+
+		return 'no-validation';
 	}
 }

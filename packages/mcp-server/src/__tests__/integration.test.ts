@@ -1,6 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetManifestCache } from '../utils/manifest';
 
+import { platform } from 'node:os';
+import { resolve } from 'node:path';
+
 // ---------------------------------------------------------------------------
 // Mocks for handleVerifyMigratedCode — must be at top level so vi.mock hoisting works
 // ---------------------------------------------------------------------------
@@ -11,19 +14,23 @@ const { execMock, writeFileMock, unlinkMock } = vi.hoisted(() => ({
 }));
 
 vi.mock('node:child_process', () => ({
-	exec: (
+	exec(
 		_cmd: string,
 		_opts: unknown,
 		cb: (
-			err: Error | null,
+			err: Error | undefined,
 			result?: { stdout: string; stderr: string }
 		) => void
-	) => {
+	) {
 		const result = execMock(_cmd, _opts);
 		if (result && typeof result.then === 'function') {
 			result.then(
-				(val: { stdout: string; stderr: string }) => cb(null, val),
-				(err: Error) => cb(err)
+				(val: { stdout: string; stderr: string }) => {
+					cb(null, val);
+				},
+				(error: Error) => {
+					cb(error);
+				}
 			);
 		} else {
 			cb(null, { stdout: '', stderr: '' });
@@ -35,12 +42,13 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 	const actual = await importOriginal<typeof import('node:fs/promises')>();
 	return {
 		...actual,
-		writeFile: (...args: unknown[]) => {
+		writeFile(...args: unknown[]) {
 			// If writeFileMock has been configured with a custom implementation, use it.
 			// Otherwise, pass through to the real fs.writeFile for scaffold tests etc.
 			if (writeFileMock.getMockImplementation()) {
 				return writeFileMock(...args);
 			}
+
 			return actual.writeFile(
 				...(args as Parameters<typeof actual.writeFile>)
 			);
@@ -76,23 +84,35 @@ const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
 /**
- * Serialises a partial manifest structure and parses it back for use as a
- * resetManifestCache override.
+ Serialises a partial manifest structure and parses it back for use as a
+ resetManifestCache override.
  */
-function makeManifest(
-	components: Record<string, unknown> = {},
-	icons: string[] = [],
-	tokens: Record<string, string> = {},
-	docs: Record<string, string> = {},
-	migrationGuides: Record<string, string> = {}
-) {
-	return JSON.stringify({ icons, components, tokens, docs, migrationGuides });
+function makeManifest({
+	components,
+	icons,
+	tokens,
+	docs,
+	migrationGuides
+}: {
+	components?: Record<string, unknown>;
+	icons?: string[];
+	tokens?: Record<string, string>;
+	docs?: Record<string, string>;
+	migrationGuides?: Record<string, string>;
+} = {}) {
+	return JSON.stringify({
+		icons: icons ?? [],
+		components: components ?? {},
+		tokens: tokens ?? {},
+		docs: docs ?? {},
+		migrationGuides: migrationGuides ?? {}
+	});
 }
 
 /**
- * Builds a manifest JSON string containing a single "button" component whose
- * react exampleCode is populated with the given example file keys.
- * Used to exercise the fuzzy-matching logic in handleGetExampleCode.
+ Builds a manifest JSON string containing a single "button" component whose
+ react exampleCode is populated with the given example file keys.
+ Used to exercise the fuzzy-matching logic in handleGetExampleCode.
  */
 function makeFuzzyManifest(exampleKeys: string[]) {
 	const exampleCode: Record<string, Record<string, string>> = {
@@ -103,8 +123,9 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 		html: {}
 	};
 	for (const key of exampleKeys) {
-		exampleCode['react'][key] = `// source of ${key}`;
+		exampleCode.react[key] = `// source of ${key}`;
 	}
+
 	return JSON.stringify({
 		icons: [],
 		components: { button: { props: null, examples: [], exampleCode } }
@@ -112,8 +133,8 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 }
 
 /**
- * Extracts the text from a ToolResult content item, asserting it is a TextContent.
- * Avoids TS2339 on the `TextContent | ImageContent` union type.
+ Extracts the text from a ToolResult content item, asserting it is a TextContent.
+ Avoids TS2339 on the `TextContent | ImageContent` union type.
  */
 function text(content: { type: string; text?: string }): string {
 	expect(content.type).toBe('text');
@@ -121,8 +142,8 @@ function text(content: { type: string; text?: string }): string {
 }
 
 /**
- * Asserts that a prompt handler result contains exactly one user-role message
- * and returns its text content for further assertions.
+ Asserts that a prompt handler result contains exactly one user-role message
+ and returns its text content for further assertions.
  */
 function assertUserMessage(result: any) {
 	expect(result.messages).toHaveLength(1);
@@ -143,7 +164,9 @@ beforeEach(() => {
 // ---------------------------------------------------------------------------
 describe('handleListComponents', () => {
 	it('returns component names from the manifest', async () => {
-		resetManifestCache(JSON.parse(makeManifest({ button: {}, input: {} })));
+		resetManifestCache(
+			JSON.parse(makeManifest({ components: { button: {}, input: {} } }))
+		);
 
 		const result = await handleListComponents();
 
@@ -169,10 +192,12 @@ describe('handleGetComponentDetails', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: {
-						props: null,
-						examples: ['Variant', 'Show Icon Leading'],
-						exampleCode: {}
+					components: {
+						button: {
+							props: null,
+							examples: ['Variant', 'Show Icon Leading'],
+							exampleCode: {}
+						}
 					}
 				})
 			)
@@ -191,7 +216,9 @@ describe('handleGetComponentDetails', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: { props: null, examples: [], exampleCode: {} }
+					components: {
+						button: { props: null, examples: [], exampleCode: {} }
+					}
 				})
 			)
 		);
@@ -223,7 +250,13 @@ describe('handleGetComponentProps', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: { props: FAKE_PROPS, examples: [], exampleCode: {} }
+					components: {
+						button: {
+							props: FAKE_PROPS,
+							examples: [],
+							exampleCode: {}
+						}
+					}
 				})
 			)
 		);
@@ -251,7 +284,13 @@ describe('handleGetComponentProps', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					'no-props': { props: null, examples: [], exampleCode: {} }
+					components: {
+						'no-props': {
+							props: null,
+							examples: [],
+							exampleCode: {}
+						}
+					}
 				})
 			)
 		);
@@ -271,7 +310,7 @@ describe('handleGetComponentProps', () => {
 describe('handleListDesignTokenCategories', () => {
 	it('returns categories from manifest.tokens', async () => {
 		resetManifestCache(
-			JSON.parse(makeManifest({}, [], { colors: '', spacing: '' }))
+			JSON.parse(makeManifest({ tokens: { colors: '', spacing: '' } }))
 		);
 
 		const result = await handleListDesignTokenCategories();
@@ -299,7 +338,9 @@ describe('handleGetDesignTokens', () => {
 	it('returns filtered --db-* lines from manifest.tokens', async () => {
 		const scss =
 			'--db-color-red: #ff0000;\n--db-spacing-md: 16px;\nsome-other: value;';
-		resetManifestCache(JSON.parse(makeManifest({}, [], { colors: scss })));
+		resetManifestCache(
+			JSON.parse(makeManifest({ tokens: { colors: scss } }))
+		);
 		resetTokensCache({}); // Disable JSON lookups → force manifest fallback
 
 		const result = await handleGetDesignTokens({ category: 'colors' });
@@ -329,12 +370,14 @@ describe('handleListIcons', () => {
 	it('returns icon names from the manifest', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest({}, [
-					'arrow_down',
-					'chevron_right',
-					'person',
-					'alarm_clock'
-				])
+				makeManifest({
+					icons: [
+						'arrow_down',
+						'chevron_right',
+						'person',
+						'alarm_clock'
+					]
+				})
 			)
 		);
 
@@ -348,7 +391,7 @@ describe('handleListIcons', () => {
 	});
 
 	it('returns empty array when manifest has no icons (manifest mode does not read migration file)', async () => {
-		resetManifestCache(JSON.parse(makeManifest({}, [])));
+		resetManifestCache(JSON.parse(makeManifest({ icons: [] })));
 
 		const result = await handleListIcons();
 
@@ -367,13 +410,17 @@ describe('handleGetExampleCode', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: {
-						props: null,
-						examples: ['Variant'],
-						exampleCode: {
-							react: { 'variant.example.tsx': FAKE_EXAMPLE_CODE },
-							angular: {},
-							vue: {}
+					components: {
+						button: {
+							props: null,
+							examples: ['Variant'],
+							exampleCode: {
+								react: {
+									'variant.example.tsx': FAKE_EXAMPLE_CODE
+								},
+								angular: {},
+								vue: {}
+							}
 						}
 					}
 				})
@@ -394,10 +441,12 @@ describe('handleGetExampleCode', () => {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
-					button: {
-						props: null,
-						examples: [],
-						exampleCode: { react: {}, angular: {}, vue: {} }
+					components: {
+						button: {
+							props: null,
+							examples: [],
+							exampleCode: { react: {}, angular: {}, vue: {} }
+						}
 					}
 				})
 			)
@@ -550,17 +599,13 @@ describe('handleListMigrationGuides', () => {
 	it('returns guide names from the manifest', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
+				makeManifest({
+					migrationGuides: {
 						'db-ui-color-migration':
 							'# DB-UI → DB-UX Color Migration',
 						'db-ui-component-migration': '# DB UI to DB UX'
 					}
-				)
+				})
 			)
 		);
 
@@ -588,15 +633,11 @@ describe('handleGetMigrationGuide', () => {
 	it('returns the full markdown content of a guide', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{},
-					{
+				makeManifest({
+					migrationGuides: {
 						'db-ui-component-migration': '# DB UI to DB UX'
 					}
-				)
+				})
 			)
 		);
 
@@ -628,15 +669,12 @@ describe('handleDocsSearch', () => {
 	it('returns matching docs from the manifest', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{
+				makeManifest({
+					docs: {
 						'packages/foundations/docs/Colors.md':
 							'# Colors\nHow to use adaptive colors in the design system.'
 					}
-				)
+				})
 			)
 		);
 
@@ -652,14 +690,9 @@ describe('handleDocsSearch', () => {
 	it('returns no-match message when query has no results', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{
-						'packages/foundations/docs/Colors.md': '# Colors'
-					}
-				)
+				makeManifest({
+					docs: { 'packages/foundations/docs/Colors.md': '# Colors' }
+				})
 			)
 		);
 
@@ -675,11 +708,8 @@ describe('handleDocsSearch', () => {
 	it('filters out docs from blacklisted directories', async () => {
 		resetManifestCache(
 			JSON.parse(
-				makeManifest(
-					{},
-					[],
-					{},
-					{
+				makeManifest({
+					docs: {
 						'docs/migration/v1.x.x-to-v2.0.0.md':
 							'# Migration guide content',
 						'docs/adr/adr-01-framework.md':
@@ -689,7 +719,7 @@ describe('handleDocsSearch', () => {
 						'packages/components/src/components/button/docs/React.md':
 							'# Button React docs'
 					}
-				)
+				})
 			)
 		);
 
@@ -806,9 +836,6 @@ describe('handleAuditAccessibilityPrompt', () => {
 	});
 });
 
-import { platform } from 'node:os';
-import { resolve } from 'node:path';
-
 // ---------------------------------------------------------------------------
 // resolveSafePath — unit tests for path traversal protection
 // ---------------------------------------------------------------------------
@@ -882,7 +909,9 @@ describe('resolveSafePath', () => {
 		it('rejects Unix absolute path /var/log/syslog', () => {
 			// On Windows /var/log/syslog resolves within the current drive,
 			// which may or may not be inside BASE — skip on Windows.
-			if (platform() === 'win32') return;
+			if (platform() === 'win32') {
+				return;
+			}
 			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow(
 				'Path traversal detected'
 			);
@@ -891,7 +920,7 @@ describe('resolveSafePath', () => {
 		// On Windows C:\path is absolute and escapes the base — throws.
 		// On Unix backslashes are literal filename chars — resolves inside base.
 		it('handles Windows-style path correctly per platform', () => {
-			const input = 'C:\\Windows\\System32';
+			const input = String.raw`C:\Windows\System32`;
 			if (process.platform === 'win32') {
 				expect(() => resolveSafePath(BASE, input)).toThrow(
 					'Path traversal detected'
@@ -966,7 +995,7 @@ describe('handleMigrateComponentPrompt', () => {
 			target_framework: 'react'
 		});
 
-		const text = result.messages[0].content.text;
+		const { text } = result.messages[0].content;
 
 		expect(text).toContain('STEP 1: MIGRATION ANALYSIS');
 		expect(text).toContain('STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL');
@@ -1006,9 +1035,9 @@ describe('handleMigrateComponentPrompt', () => {
 			target_framework: 'react'
 		});
 
-		const text = result.messages[0].content.text;
+		const { text } = result.messages[0].content;
 		// Boundary pattern: <LEGACY_CODE_{timestamp}_{random}>
-		const boundaryMatch = text.match(/<(LEGACY_CODE_\d+_[a-z0-9]+)>/);
+		const boundaryMatch = /<(LEGACY_CODE_\d+_[a-z\d]+)>/.exec(text);
 		expect(boundaryMatch).not.toBeNull();
 		// Closing tag must also exist
 		expect(text).toContain(`</${boundaryMatch![1]}>`);
@@ -1033,7 +1062,7 @@ describe('handleMigrateComponentPrompt', () => {
 			target_framework: 'react'
 		});
 
-		const text = result.messages[0].content.text;
+		const { text } = result.messages[0].content;
 		expect(text).toContain('get_visual_reference');
 		expect(text).toContain('OPTIONAL');
 	});
@@ -1045,13 +1074,13 @@ describe('handleMigrateComponentPrompt', () => {
 			target_framework: 'react'
 		});
 
-		const text = result.messages[0].content.text;
+		const { text } = result.messages[0].content;
 
 		expect(text).toContain('@ts-nocheck');
 		expect(text).toContain('@ts-ignore');
 		expect(text).toContain('@ts-expect-error');
 		expect(text).toContain('eslint-disable');
-		expect(text).toMatch(/NEVER\s+allowed/i);
+		expect(text).toMatch(/never\s+allowed/i);
 	});
 });
 describe('handleVerifyMigratedCode', () => {
@@ -1193,7 +1222,7 @@ describe('handleScanV2Migration', () => {
 			const result = await handleScanV2Migration({ filePath: tmp });
 			const output = text(result.content[0]);
 
-			// elm-button is on line 3
+			// Elm-button is on line 3
 			expect(output).toContain('"line": 3');
 		} finally {
 			unlinkSync(tmp);
@@ -1248,7 +1277,7 @@ describe('handleListVisuals', () => {
 		expect(result.isError).toBeUndefined();
 		const visuals: string[] = JSON.parse(text(result.content[0]));
 		expect(Array.isArray(visuals)).toBe(true);
-		// prebuild generates these from src/data/visuals-source/
+		// Prebuild generates these from src/data/visuals-source/
 		expect(visuals).toContain('dashboard');
 		expect(visuals).toContain('form');
 		expect(visuals).toContain('table');
@@ -1278,7 +1307,8 @@ describe('handleGetVisualReference', () => {
 		expect(imgBlock.data.length).toBeGreaterThan(100);
 
 		// Validate Base64 is decodable and starts with JPEG magic bytes
-		const buffer = Buffer.from(imgBlock.data, 'base64');
+		const { Buffer: NodeBuffer } = await import('node:buffer');
+		const buffer = NodeBuffer.from(imgBlock.data, 'base64');
 		expect(buffer[0]).toBe(0xff);
 		expect(buffer[1]).toBe(0xd8);
 		expect(buffer[2]).toBe(0xff);

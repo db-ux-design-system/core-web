@@ -23,11 +23,13 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const selectedType = getAttributeValue(node, 'selectedType');
-			if (selectedType !== 'tag') return;
+			if (selectedType !== 'tag') {
+				return;
+			}
 
 			const removeTagsTexts = getAttributeValue(node, 'removeTagsTexts');
 
-			if (removeTagsTexts === null || removeTagsTexts === '') {
+			if (removeTagsTexts === undefined || removeTagsTexts === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -44,25 +46,30 @@ export default {
 			COMPONENTS.DBCustomSelect,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkCustomSelect = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBCustomSelect))
+			if (!isDBComponent(openingElement, COMPONENTS.DBCustomSelect)) {
 				return;
+			}
 
 			const selectedType = getAttributeValue(
 				openingElement,
 				'selectedType'
 			);
-			if (selectedType !== 'tag') return;
+			if (selectedType !== 'tag') {
+				return;
+			}
 
 			const removeTagsTexts = getAttributeValue(
 				openingElement,
 				'removeTagsTexts'
 			);
 
-			if (removeTagsTexts === null || removeTagsTexts === '') {
+			if (removeTagsTexts === undefined || removeTagsTexts === '') {
 				context.report({
 					node: openingElement,
 					messageId:

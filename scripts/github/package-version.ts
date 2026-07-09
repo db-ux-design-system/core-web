@@ -2,12 +2,10 @@
 import findVersions from 'find-versions';
 
 export const packageVersion = () => {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	const { TAG } = process.env;
 	const RELEASE: boolean = process.env.RELEASE === 'true';
 	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
 	const { GITHUB_SHA } = process.env;
-	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (!TAG) {
 		console.error('TAG is not defined');
@@ -19,7 +17,6 @@ export const packageVersion = () => {
 		process.exit(1);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const SEMVER_VERSION: string = findVersions(TAG).toString();
 
 	if (RELEASE) {
@@ -33,9 +30,8 @@ export const packageVersion = () => {
 		console.log(SEMVER_VERSION);
 	} else if (PRE_RELEASE) {
 		if (SEMVER_VERSION.includes('-')) {
-			// eslint-disable-next-line @typescript-eslint/naming-convention
 			const GITHUB_SHA_SHORT: string = GITHUB_SHA.slice(0, 7);
-			// eslint-disable-next-line @typescript-eslint/naming-convention
+
 			const VALID_SEMVER_VERSION = `${SEMVER_VERSION}-${GITHUB_SHA_SHORT}`;
 			console.log(VALID_SEMVER_VERSION);
 		} else {

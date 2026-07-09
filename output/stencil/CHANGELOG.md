@@ -1,5 +1,25 @@
 # @db-ux/wc-core-components
 
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: correct accordion variant backgrounds to match design (divider is transparent, card is level-1 including the open content area) - [see commit b611b84](https://github.com/db-ux-design-system/core-web/commit/b611b845e6aded8f50dd07f3727ebf5fdf902b69)
+
+- fix: use inline-flex with align-items center for link components to vertically center text with fixed height across densities - [see commit 5ebdef8](https://github.com/db-ux-design-system/core-web/commit/5ebdef89b14d56d901630aa61e098213704ba603)
+
+- fix: `key` special attributes need to be unique - [see commit 63eb9d5](https://github.com/db-ux-design-system/core-web/commit/63eb9d596e83f196ca00aee1de26a5a2e33b4864)
+
+## 4.13.0
+
+### Minor Changes
+
+- feat: enable Invoker Commands (`command`- and `commandfor`-HTML-attributes) for DBButton - [see commit 00f50c3](https://github.com/db-ux-design-system/core-web/commit/00f50c3fc4508e62f2e30589c00148c54e2fc852)
+
 ## 4.12.1
 
 ### Patch Changes
