@@ -117,7 +117,7 @@ export class FormComponent {
 			validate(path.phone, ({ value }) => {
 				const v = value();
 
-				if (v !== '' && !/^\+?\d[\d\s-]{6,}$/u.test(v)) {
+				if (v !== '' && !/^\+?\d[\s\d-]{6,}$/u.test(v)) {
 					return {
 						kind: 'invalidPhone',
 						message: 'Not a valid phone number'
@@ -138,8 +138,7 @@ export class FormComponent {
 			readonly(
 				path.email,
 				({ valueOf }) =>
-					valueOf(path.username) !== '' &&
-					valueOf(path.email) !== ''
+					valueOf(path.username) !== '' && valueOf(path.email) !== ''
 			);
 
 			// Phone field is hidden unless contact method is "phone"
@@ -161,6 +160,7 @@ export class FormComponent {
 		if (!event) {
 			return;
 		}
+
 		this.checkedSignal.set((event.target as HTMLInputElement).checked);
 	}
 
