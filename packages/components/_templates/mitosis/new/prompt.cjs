@@ -14,6 +14,9 @@ module.exports = [
 		type: 'confirm',
 		name: 'showcases',
 		default: true,
+		skip() {
+			return this.state.answers.subComponent === true;
+		},
 		message: 'Do you want to auto-generate files for showcases?'
 	},
 	{

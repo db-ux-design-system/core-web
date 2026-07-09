@@ -134,12 +134,21 @@ are always used inside a parent component. They do **not** have standalone:
 - E2E test files — covered by the parent's e2e tests
 - Router/navigation entries — no standalone showcase page exists
 
+They **do** still get:
+
+- Patternhub component parser entries (import, switch case, type) — needed to render inside parent examples
+- A `components.json` entry with `"isHiddenInMenu": true` — needed for docs/properties generation
+
 When generating a sub-component with `pnpm run generate:component`, answer **Yes** to the
 "Is this a sub-component?" prompt. The generator's `subComponent` flag skips all of the above
-files automatically.
+standalone files automatically while preserving the parser and docs metadata entries.
 
 **Examples of sub-components:** `accordion-item`, `navigation-item`, `tab-item`, `tab-panel`,
 `drawer-handle`, `split-button-menu`
+
+**Sub-component suffix convention:** The test-table generator
+(`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
+in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
 
 ## Shared Styles (`src/styles/internal/`)
 
