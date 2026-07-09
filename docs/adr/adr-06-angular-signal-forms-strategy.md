@@ -15,7 +15,7 @@ This approach was chosen because:
 
 ## Problem description and context
 
-The library must simultaneously support the **last three Angular major versions** (20, 21, 22):
+The library must simultaneously support the **last three Angular major versions** ([Active and two LTS](https://angular.dev/reference/releases#actively-supported-versions): currently 20, 21, 22):
 
 - **Angular 22**: Signal Forms are stable. The `FormField` directive uses Duck-Typing to detect `FormValueControl` (has `value: ModelSignal`) or `FormCheckboxControl` (has `checked: ModelSignal`).
 - **Angular 21**: Signal Forms are experimental. The `[formField]` directive works but is not yet stable. Reactive Forms and Template-Driven Forms still require CVA.
