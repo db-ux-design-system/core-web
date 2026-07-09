@@ -323,6 +323,41 @@ describe('sub-component-required-parent', () => {
 				]
 			}
 		);
+
+		vueRuleTester.run(
+			'sub-component-required-parent (Vue - NavigationItem with kebab-case slot)',
+			rule,
+			{
+				valid: [
+					{
+						code: '<template><DBNavigation><DBNavigationItem>Item</DBNavigationItem></DBNavigation></template>'
+					},
+					{
+						// Vue uses kebab-case slot names: #sub-navigation
+						code: '<template><DBNavigation><DBNavigationItem><template #sub-navigation><DBNavigationItem>Sub</DBNavigationItem></template></DBNavigationItem></DBNavigation></template>'
+					},
+					{
+						// Vue also accepts camelCase slot names: #subNavigation
+						code: '<template><DBNavigation><DBNavigationItem><template v-slot:subNavigation><DBNavigationItem>Sub</DBNavigationItem></template></DBNavigationItem></DBNavigation></template>'
+					}
+				],
+				invalid: [
+					{
+						code: '<template><div><DBNavigationItem>Item</DBNavigationItem></div></template>',
+						errors: [
+							{
+								messageId: 'subComponentRequiredParent',
+								data: {
+									component: 'DBNavigationItem',
+									parent: 'DBNavigation or DBNavigationItem (in slot "subNavigation")',
+									slot: ''
+								}
+							}
+						]
+					}
+				]
+			}
+		);
 	});
 
 	describe('DBTableRow', () => {

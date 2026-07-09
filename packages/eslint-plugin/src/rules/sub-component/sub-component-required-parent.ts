@@ -18,33 +18,33 @@ import {
  */
 const SUB_COMPONENT_CONFIG: Record<
 	string,
-	{ parents: Array<{ name: string; slot: string | null }> }
+	{ parents: Array<{ name: string; slot: string | undefined }> }
 > = {
 	DBDrawerHeader: { parents: [{ name: 'DBDrawer', slot: 'header' }] },
 	DBDrawerFooter: { parents: [{ name: 'DBDrawer', slot: 'footer' }] },
-	DBAccordionItem: { parents: [{ name: 'DBAccordion', slot: null }] },
+	DBAccordionItem: { parents: [{ name: 'DBAccordion', slot: undefined }] },
 	DBNavigationItem: {
 		parents: [
-			{ name: 'DBNavigation', slot: null },
+			{ name: 'DBNavigation', slot: undefined },
 			{ name: 'DBNavigationItem', slot: 'subNavigation' }
 		]
 	},
-	DBTabList: { parents: [{ name: 'DBTabs', slot: null }] },
-	DBTabItem: { parents: [{ name: 'DBTabList', slot: null }] },
-	DBTabPanel: { parents: [{ name: 'DBTabs', slot: null }] },
-	DBTableHead: { parents: [{ name: 'DBTable', slot: null }] },
-	DBTableBody: { parents: [{ name: 'DBTable', slot: null }] },
-	DBTableFooter: { parents: [{ name: 'DBTable', slot: null }] },
+	DBTabList: { parents: [{ name: 'DBTabs', slot: undefined }] },
+	DBTabItem: { parents: [{ name: 'DBTabList', slot: undefined }] },
+	DBTabPanel: { parents: [{ name: 'DBTabs', slot: undefined }] },
+	DBTableHead: { parents: [{ name: 'DBTable', slot: undefined }] },
+	DBTableBody: { parents: [{ name: 'DBTable', slot: undefined }] },
+	DBTableFooter: { parents: [{ name: 'DBTable', slot: undefined }] },
 	DBTableCaption: { parents: [{ name: 'DBTable', slot: 'caption' }] },
 	DBTableRow: {
 		parents: [
-			{ name: 'DBTableHead', slot: null },
-			{ name: 'DBTableBody', slot: null },
-			{ name: 'DBTableFooter', slot: null }
+			{ name: 'DBTableHead', slot: undefined },
+			{ name: 'DBTableBody', slot: undefined },
+			{ name: 'DBTableFooter', slot: undefined }
 		]
 	},
-	DBTableHeaderCell: { parents: [{ name: 'DBTableRow', slot: null }] },
-	DBTableDataCell: { parents: [{ name: 'DBTableRow', slot: null }] }
+	DBTableHeaderCell: { parents: [{ name: 'DBTableRow', slot: undefined }] },
+	DBTableDataCell: { parents: [{ name: 'DBTableRow', slot: undefined }] }
 };
 
 /**
@@ -54,9 +54,32 @@ function matchesComponentName(
 	rawName: string | undefined,
 	componentName: string
 ): boolean {
-	if (!rawName) return false;
+	if (!rawName) {
+		return false;
+	}
 	const kebabName = getAngularComponentName(componentName);
 	return rawName === componentName || rawName === kebabName;
+}
+
+/**
+ * Converts a camelCase string to kebab-case for slot name comparison.
+ */
+function toKebabCase(string_: string): string {
+	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+/**
+ * Checks if two slot names match, comparing both camelCase and kebab-case forms.
+ */
+function slotNamesMatch(actual: string, expected: string): boolean {
+	if (actual === expected) {
+		return true;
+	}
+	return (
+		toKebabCase(actual) === toKebabCase(expected) ||
+		actual === toKebabCase(expected) ||
+		toKebabCase(actual) === expected
+	);
 }
 
 /**
@@ -68,13 +91,13 @@ function matchesComponentName(
 function isInsideAngularParent(
 	node: any,
 	parentName: string,
-	slotName: string | null
+	slotName: string | undefined
 ): boolean {
 	// First check if the node itself has the slot attribute
 	let hasSlotAttribute = false;
 	if (slotName) {
 		const selfAttrs = node.attributes || [];
-		if (selfAttrs.some((a: any) => a.name === slotName)) {
+		if (selfAttrs.some((a: any) => slotNamesMatch(a.name, slotName))) {
 			hasSlotAttribute = true;
 		}
 	}
@@ -83,10 +106,14 @@ function isInsideAngularParent(
 
 	while (current) {
 		// Check if current node has the slot attribute
-		if (slotName && !hasSlotAttribute && current.attributes) {
-			if (current.attributes.some((a: any) => a.name === slotName)) {
-				hasSlotAttribute = true;
-			}
+		if (
+			slotName &&
+			!hasSlotAttribute &&
+			current.attributes?.some((a: any) =>
+				slotNamesMatch(a.name, slotName)
+			)
+		) {
+			hasSlotAttribute = true;
 		}
 
 		// Check if we reached the parent component
@@ -94,10 +121,7 @@ function isInsideAngularParent(
 			(current.type === 'Element' || current.type === 'Element$1') &&
 			isDBComponent(current, parentName)
 		) {
-			if (slotName) {
-				return hasSlotAttribute;
-			}
-			return true;
+			return slotName ? hasSlotAttribute : true;
 		}
 
 		current = current.parent;
@@ -112,7 +136,7 @@ function isInsideAngularParent(
 function isInsideVueParent(
 	node: any,
 	parentName: string,
-	slotName: string | null
+	slotName: string | undefined
 ): boolean {
 	let current = node.parent;
 	let hasSlotTemplate = false;
@@ -143,7 +167,11 @@ function isInsideVueParent(
 							: attr.key.argument.name?.name
 					: undefined;
 
-				return keyName === 'slot' && argName === slotName;
+				return (
+					keyName === 'slot' &&
+					argName !== undefined &&
+					slotNamesMatch(argName, slotName)
+				);
 			});
 			if (matchesSlot) {
 				hasSlotTemplate = true;
@@ -155,10 +183,7 @@ function isInsideVueParent(
 			current.rawName !== 'template' &&
 			matchesComponentName(current.rawName, parentName)
 		) {
-			if (slotName) {
-				return hasSlotTemplate;
-			}
-			return true;
+			return slotName ? hasSlotTemplate : true;
 		}
 
 		current = current.parent;
@@ -168,9 +193,13 @@ function isInsideVueParent(
 }
 
 /**
- * Checks if a JSX node is inside the expected parent.
+ * Checks if a JSX node is inside the expected parent, or is passed as a slot prop value.
  */
-function isInsideJsxParent(node: any, parentName: string): boolean {
+function isInsideJsxParent(
+	node: any,
+	parentName: string,
+	slotName: string | undefined
+): boolean {
 	let current = node.parent;
 
 	while (current) {
@@ -180,6 +209,26 @@ function isInsideJsxParent(node: any, parentName: string): boolean {
 				return true;
 			}
 		}
+
+		// Check if this node is passed as a prop value (JSX expression container)
+		// e.g. <DBDrawer header={<DBDrawerHeader>Title</DBDrawerHeader>}>
+		if (
+			slotName &&
+			current.type === 'JSXExpressionContainer' &&
+			current.parent?.type === 'JSXAttribute'
+		) {
+			const attr = current.parent;
+			const attrName =
+				typeof attr.name?.name === 'string' ? attr.name.name : '';
+			if (slotNamesMatch(attrName, slotName)) {
+				// Check that the attribute belongs to the expected parent
+				const parentElement = attr.parent; // JSXOpeningElement
+				if (parentElement && isDBComponent(parentElement, parentName)) {
+					return true;
+				}
+			}
+		}
+
 		current = current.parent;
 	}
 
@@ -207,13 +256,17 @@ export default {
 			const component = subComponents.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const config = SUB_COMPONENT_CONFIG[component];
 			const isValid = config.parents.some((p) =>
 				isInsideAngularParent(node, p.name, p.slot)
 			);
-			if (isValid) return;
+			if (isValid) {
+				return;
+			}
 
 			// Build the parent description for the error message
 			const parentDesc = config.parents
@@ -261,7 +314,9 @@ export default {
 			const component = subComponents.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const config = SUB_COMPONENT_CONFIG[component];
 			const componentName =
@@ -273,7 +328,7 @@ export default {
 
 			if (isJsx) {
 				const isValid = config.parents.some((p) =>
-					isInsideJsxParent(node, p.name)
+					isInsideJsxParent(node, p.name, p.slot)
 				);
 				if (!isValid) {
 					const parentDesc = config.parents

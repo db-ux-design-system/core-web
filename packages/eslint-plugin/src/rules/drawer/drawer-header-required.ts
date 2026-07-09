@@ -2,7 +2,6 @@ import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
-	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
 
@@ -36,34 +35,63 @@ function hasAngularHeaderSlot(node: any): boolean {
  */
 function hasVueHeaderSlot(node: any): boolean {
 	return (node.children || []).some((child: any) => {
-		if (child.type === 'VElement' || child.type === 'Element') {
-			// Check for <template v-slot:header> or <template #header>
-			if (child.rawName === 'template' || child.name === 'template') {
-				const attrs = child.startTag?.attributes || [];
-				return attrs.some((attr: any) => {
-					const keyName =
-						typeof attr.key?.name === 'string'
-							? attr.key.name
-							: attr.key?.name?.name;
-					const argName = attr.key?.argument
-						? typeof attr.key.argument === 'string'
-							? attr.key.argument
-							: typeof attr.key.argument.name === 'string'
-								? attr.key.argument.name
-								: attr.key.argument.name?.name
-						: undefined;
-
-					// v-slot:header (keyName='slot', argName='header')
-					if (keyName === 'slot' && argName === 'header') {
-						return true;
-					}
-					// #header shorthand (keyName='slot', argName='header' via VDirectiveKey)
-					return false;
-				});
-			}
+		if (child.type !== 'VElement' && child.type !== 'Element') {
+			return false;
 		}
-		return false;
+
+		if (child.rawName !== 'template' && child.name !== 'template') {
+			return false;
+		}
+
+		const attrs = child.startTag?.attributes || [];
+		return attrs.some((attr: any) => {
+			const keyName =
+				typeof attr.key?.name === 'string'
+					? attr.key.name
+					: attr.key?.name?.name;
+			const argName = attr.key?.argument
+				? typeof attr.key.argument === 'string'
+					? attr.key.argument
+					: typeof attr.key.argument.name === 'string'
+						? attr.key.argument.name
+						: attr.key.argument.name?.name
+				: undefined;
+
+			return keyName === 'slot' && argName === 'header';
+		});
 	});
+}
+
+/**
+ * Checks if a JSX header attribute value contains a valid DBDrawerHeader or
+ * a dynamic expression that we cannot statically verify.
+ */
+function isValidHeaderProp(headerAttr: any): boolean {
+	const { value } = headerAttr;
+	if (value?.type !== 'JSXExpressionContainer') {
+		// String literal or other static value — accept it
+		return true;
+	}
+
+	const expr = value.expression;
+	if (expr?.type === 'JSXElement') {
+		const innerOpening = expr.openingElement;
+		return (
+			Boolean(innerOpening) &&
+			isDBComponent(innerOpening, COMPONENTS.DBDrawerHeader)
+		);
+	}
+
+	// Allow variable references (e.g. header={headerSlot})
+	// since we can't statically verify what the variable contains
+	const dynamicTypes = [
+		'Identifier',
+		'MemberExpression',
+		'CallExpression',
+		'ConditionalExpression',
+		'LogicalExpression'
+	];
+	return dynamicTypes.includes(expr?.type);
 }
 
 export default {
@@ -113,14 +141,40 @@ export default {
 				return;
 			}
 
-			// In React, DBDrawerHeader is passed via the `header` prop
-			const headerProp = getAttributeValue(openingElement, 'header');
-			if (headerProp !== undefined) {
+			// In React, DBDrawerHeader is passed via the `header` prop (JSXAttribute)
+			const headerAttr = (openingElement.attributes || []).find(
+				(attr: any) =>
+					attr.type === 'JSXAttribute' && attr.name?.name === 'header'
+			);
+			if (headerAttr && isValidHeaderProp(headerAttr)) {
 				return;
 			}
 
 			// In Vue, check for <template v-slot:header> or <template #header>
 			if (hasVueHeaderSlot(node)) {
+				return;
+			}
+
+			// In Vue, check for v-bind:header / :header prop
+			const startTag = node.startTag || openingElement;
+			const vueHeaderAttr = (startTag.attributes || []).find(
+				(attr: any) => {
+					if (attr.directive && attr.key) {
+						const keyName =
+							typeof attr.key.name === 'string'
+								? attr.key.name
+								: attr.key.name?.name;
+						const argName = attr.key.argument
+							? typeof attr.key.argument === 'string'
+								? attr.key.argument
+								: attr.key.argument.name
+							: undefined;
+						return keyName === 'bind' && argName === 'header';
+					}
+					return false;
+				}
+			);
+			if (vueHeaderAttr) {
 				return;
 			}
 

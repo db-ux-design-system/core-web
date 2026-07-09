@@ -6,7 +6,7 @@
 | --------------------------- | ---------------------------- | --------------------------------------------------- |
 | `header` slot now required  | Optional, no header needed   | Must pass `<DBDrawerHeader>` in the `header` slot   |
 | `spacing` property removed  | `<DBDrawer spacing="small">` | Remove `spacing` prop (no longer supported)         |
-| Default `direction` changed | `right`                      | `left`                                              |
+| `direction` values renamed  | `right`, `left`              | `to-left`, `to-right`                               |
 | `width` renamed             | `<DBDrawer width="full">`    | `<DBDrawer containerSize="full">`                   |
 | New `showSpacing` property  | N/A                          | `<DBDrawer showSpacing={false}>` to disable         |
 | New `containerSize` options | `width`: `full`, `auto`      | `containerSize`: `small`, `medium`, `large`, `full` |
@@ -85,9 +85,9 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 </DBDrawer>
 ```
 
-## Default `direction` Changed
+## `direction` Values Renamed
 
-The default direction has changed from `right` to `left`. If you relied on the default `right` behavior, you now need to set `direction="right"` explicitly.
+The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. If you relied on the default `right` behavior (which was opening from right), you now need to set `direction="to-left"` explicitly (slides from right border to the left).
 
 ### Before
 
@@ -104,9 +104,9 @@ The default direction has changed from `right` to `left`. If you relied on the d
 
 ```tsx
 {
-	/* Now opens from the left by default — add direction="right" to keep old behavior */
+	/* Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) */
 }
-<DBDrawer direction="right" open={open} onClose={() => setOpen(false)}>
+<DBDrawer direction="to-left" open={open} onClose={() => setOpen(false)}>
 	Content
 </DBDrawer>;
 ```
