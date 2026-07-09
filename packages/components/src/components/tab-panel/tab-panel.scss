@@ -1,3 +1,5 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+
 .db-tab-panel {
 	padding: variables.$db-spacing-fixed-xs;
 	position: relative;
