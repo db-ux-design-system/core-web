@@ -33,10 +33,9 @@ test.describe('DBSwitch', () => {
 				 */
 				await generateSnapshot(nvda, retry, (phraseLog) =>
 					phraseLog.map((log) =>
-						log.replace(
-							'blank',
-							'check box, unavailable, not checked, True'
-						)
+						log
+							// NVDA sometimes shows "blank"
+							.replace('blank', 'switch, unavailable, off, True')
 					)
 				);
 			} else if (voiceOver) {
