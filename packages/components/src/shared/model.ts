@@ -766,57 +766,6 @@ export type OverflowScrollButtonState = {
 	evaluateScrollButtons: (tabList: Element) => void;
 };
 
-export type SidebarProps = {
-	/**
-	 * Set the expanded/collapsed state initially for the left sidebar
-	 */
-	expanded?: boolean | string;
-
-	/**
-	 * Set the tooltip for the expand/collapse button
-	 */
-	expandButtonTooltip?: string;
-
-	/**
-	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
-	 */
-	expandButtonTooltipFn?: (open: boolean) => string;
-
-	/**
-	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
-	 */
-	onExpandButtonTooltipFn?: (open: boolean) => string;
-};
-
-export type SidebarState = {
-	_open: boolean;
-	getToggleButtonText: () => string;
-};
-
-export const NavigationItemGroupVariantList = ['popover', 'tree'] as const;
-export type NavigationItemGroupVariantType =
-	(typeof NavigationItemGroupVariantList)[number];
-
-export type NavigationItemGroupVariant = {
-	/**
-	 * Selects the navigation interaction model: `popover` shows sub-items
-	 * in a flyout menu, `tree` shows a collapsible tree structure.
-	 * Note: This selects an interaction model, not just a visual variant.
-	 */
-	variant?: NavigationItemGroupVariantType;
-};
-
-export const CollapsibleBehaviorList = ['single', 'multiple'] as const;
-export type CollapsibleBehaviorType = (typeof CollapsibleBehaviorList)[number];
-
-export type CollapsibleBehaviorProps = {
-	/**
-	 * To allow multiple items open at the same time or only 1 item
-	 * @default 'multiple'
-	 */
-	behavior?: CollapsibleBehaviorType;
-};
-
 export type DocumentScrollState = {
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
