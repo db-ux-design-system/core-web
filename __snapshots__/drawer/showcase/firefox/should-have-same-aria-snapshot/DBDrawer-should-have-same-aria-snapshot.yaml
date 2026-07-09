@@ -27,8 +27,8 @@
   - 'button "Open: Invisible"'
   - 'button "Open: No Backdrop"'
   - link "Direction"
-  - 'button "Open: (Default) Left"'
-  - 'button "Open: Right"'
+  - 'button "Open: (Default) To-Left"'
+  - 'button "Open: To-Right"'
   - 'button "Open: Up"'
   - 'button "Open: Down"'
   - link "Example"
