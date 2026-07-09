@@ -767,6 +767,7 @@ export default function DBTabs(props: DBTabsProps) {
 								iconTrailing={tab.iconTrailing}
 								showIconTrailing={tab.showIconTrailing}
 								disabled={tab.disabled}
+								active={state.getRenderIndex() === index}
 								value={tab.value}
 							/>
 						)}

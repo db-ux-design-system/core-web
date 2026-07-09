@@ -129,16 +129,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	}, [_ref, state.isTruncated]);
 
-	// Convenience: set aria-selected from active prop for standalone/example usage.
-	// When inside DBTabs, this is immediately overridden by DBTabs' initTabs/syncSelection.
-	onUpdate(() => {
-		if (_ref && state.initialized && props.active !== undefined) {
-			const isActive = getBoolean(props.active, 'active') || false;
-			_ref.setAttribute('aria-selected', String(isActive));
-			_ref.setAttribute('tabindex', isActive ? '0' : '-1');
-		}
-	}, [_ref, state.initialized, props.active]);
-
 	return (
 		<button
 			ref={_ref}
@@ -149,6 +139,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 			title={state.isTruncated ? '' : undefined}
 			disabled={getBoolean(props.disabled, 'disabled') ? true : undefined}
 			id={props.id}
+			// Initial selection state rendered declaratively so SSR/no-JS output
+			// and the first paint expose a selected tab and a roving tabindex.
+			// When inside DBTabs this is kept in sync by initTabs/syncSelection.
+			// Omitted when active is undefined (standalone usage stays focusable).
+			aria-selected={getBooleanAsString(props.active, 'active')}
+			tabIndex={
+				props.active === undefined
+					? undefined
+					: getBoolean(props.active, 'active')
+						? 0
+						: -1
+			}
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}
 			<span
