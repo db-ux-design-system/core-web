@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/indicator";
+@use "../../styles/internal/scrollbar";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -62,17 +63,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	position: absolute;
 }
 
-@mixin angular-button-workaround() {
-	> .db-button,
-	&:is(.db-button) {
-		@content;
-	}
-}
-
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
-	$db-tabs-z-index-button-background: 21;
-	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
 	@include helpers.display(flex);
@@ -294,71 +286,34 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	&[data-scroll-behavior="arrows"] {
+		@include scrollbar.set-overflow-scroll-buttons;
+
 		.db-tab-list {
 			> ul {
+				@supports (scrollbar-width: none) {
+					scrollbar-width: none;
+				}
+
 				&::-webkit-scrollbar {
 					display: none;
 				}
 			}
 		}
 
-		&:has(.tabs-scroll-left) {
+		&:has(.overflow-scroll-left-button) {
 			&::before {
 				content: "";
 			}
 		}
 
-		&:has(.tabs-scroll-right) {
+		&:has(.overflow-scroll-right-button) {
 			&::after {
 				content: "";
 			}
 		}
 
 		&:has(.db-button) {
-			&::before,
-			&::after {
-				position: absolute;
-				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-				inline-size: variables.$db-sizing-md;
-				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-sizing-md}
-				);
-				flex: 0 0 auto;
-			}
-
-			&::before {
-				inset-inline-start: 0;
-			}
-
-			&::after {
-				inset-inline-end: 0;
-			}
-		}
-
-		/*
-		 * Scroll left / right buttons
-		 */
-		.tabs-scroll-left {
-			@include angular-button-workaround {
-				inset-inline-start: 0;
-			}
-		}
-
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				inset-inline-end: 0;
-			}
-		}
-
-		.tabs-scroll-left,
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				position: absolute;
-				z-index: $db-tabs-z-index-button;
-				inset-block: variables.$db-spacing-fixed-xs;
-			}
+			@include scrollbar.set-overflow-scroll-button-backgrounds;
 		}
 	}
 }

@@ -18,6 +18,8 @@ import {
 } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBTooltipProps, DBTooltipState } from './model';
 
 useMetadata({});
@@ -30,7 +32,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		_attachedParent: undefined,
 		_attachedId: undefined,
 		_activeTriggerCount: 0,
@@ -64,11 +67,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
-						handleFixedPopover(
-							_ref,
-							parent,
-							(props.placement as unknown as string) ?? 'bottom'
-						);
+						handleFixedPopover(_ref, parent);
 					}
 				}, 1);
 			}
@@ -96,7 +95,19 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._documentScrollListenerCallbackId = undefined;
 			}
 
-			state._observer?.unobserve(state.getParent());
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
 		},
 		handleEnter(parent?: HTMLElement): void {
 			// Register the shared scroll callback only for the first active
@@ -108,7 +119,20 @@ export default function DBTooltip(props: DBTooltipProps) {
 					new DocumentScrollListener().addCallback((event) =>
 						state.handleDocumentScroll(event, parent)
 					);
-				state._observer?.observe(state.getParent());
+				state._resizeObserverCallbackId =
+					new ResizeObserverListener().observe(
+						document.documentElement,
+						() => state.handleAutoPlacement(parent)
+					);
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						state.getParent(),
+						(entry) => {
+							if (!entry.isIntersecting) {
+								state.handleEscape(false);
+							}
+						}
+					);
 			}
 			state.handleAutoPlacement(parent);
 		},
@@ -125,8 +149,20 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._documentScrollListenerCallbackId = undefined;
 			}
 
-			state._observer?.disconnect();
-			state._observer = undefined;
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
+
 			state._activeTriggerCount = 0;
 
 			const bound = state._boundListeners ?? [];
@@ -212,20 +248,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 				state._attachedParent = parent;
 				state._attachedId = state._id;
-			}
-
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
-				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(
-						({ target }) => target === state.getParent()
-					);
-					if (entry && !entry.isIntersecting) {
-						state.handleEscape(false);
-					}
-				});
 			}
 
 			state.initialized = false;

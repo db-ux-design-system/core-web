@@ -1,5 +1,21 @@
 # @db-ux/ngx-core-components
 
+## 4.14.0
+
+### Minor Changes
+
+- feat: support Angular Signal Forms starting with Angular 21 - [see commit e6be73f](https://github.com/db-ux-design-system/core-web/commit/e6be73fa3b104a324ac5d29ccda12f2857a6f807)
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: correct accordion variant backgrounds to match design (divider is transparent, card is level-1 including the open content area) - [see commit b611b84](https://github.com/db-ux-design-system/core-web/commit/b611b845e6aded8f50dd07f3727ebf5fdf902b69)
+
+- fix: `track` special attributes need to be unique - [see commit 63eb9d5](https://github.com/db-ux-design-system/core-web/commit/63eb9d596e83f196ca00aee1de26a5a2e33b4864)
+
+- fix: use inline-flex with align-items center for link components to vertically center text with fixed height across densities - [see commit 5ebdef8](https://github.com/db-ux-design-system/core-web/commit/5ebdef89b14d56d901630aa61e098213704ba603)
+
 ## 4.13.0
 
 ### Minor Changes

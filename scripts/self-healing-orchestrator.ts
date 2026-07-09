@@ -233,6 +233,26 @@ export const checkFixMap: CheckConfig[] = [
 			args: ['--check', '.', '--log-level', 'warn']
 		},
 		fixCommands: []
+	},
+	{
+		name: 'check:snapshot-newlines',
+		checkCommand: {
+			command: 'node',
+			args: [
+				'scripts/strip-final-newline.js',
+				'showcases/screen-reader/__snapshots__/**/*.txt'
+			]
+		},
+		fixCommands: [
+			{
+				command: 'node',
+				args: [
+					'scripts/strip-final-newline.js',
+					'--fix',
+					'showcases/screen-reader/__snapshots__/**/*.txt'
+				]
+			}
+		]
 	}
 ];
 
