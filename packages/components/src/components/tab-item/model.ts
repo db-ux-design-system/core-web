@@ -51,6 +51,7 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 
 export type DBTabItemDefaultState = {
 	_resizeObserver: ResizeObserver | null | undefined;
+	_mutationObserver: MutationObserver | null | undefined;
 	isTruncated: boolean;
 	checkTruncation: () => void;
 	tooltipText: string;

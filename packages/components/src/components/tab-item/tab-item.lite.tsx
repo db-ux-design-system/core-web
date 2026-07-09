@@ -32,6 +32,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
+		_mutationObserver: null,
 		checkTruncation: () => {
 			if (_labelRef) {
 				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
@@ -86,6 +87,23 @@ export default function DBTabItem(props: DBTabItemProps) {
 						resizeObserver.observe(_labelRef);
 						state._resizeObserver = resizeObserver;
 					}
+					// The ResizeObserver only reacts to box-size changes. When
+					// slotted/children text changes in place (e.g. i18n or an
+					// async badge count) the box can keep its size while
+					// scrollWidth changes, so also observe content mutations.
+					if (_labelRef && !state._mutationObserver) {
+						const mutationObserver = new MutationObserver(() => {
+							requestAnimationFrame(() => {
+								state.checkTruncation();
+							});
+						});
+						mutationObserver.observe(_labelRef, {
+							childList: true,
+							subtree: true,
+							characterData: true
+						});
+						state._mutationObserver = mutationObserver;
+					}
 				});
 			};
 			const hasIcon = !!(
@@ -101,9 +119,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	}, [_labelRef, state.initialized]);
 
-	// Disconnect the observer
+	// Disconnect the observers
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
+		state._mutationObserver?.disconnect();
 	});
 
 	// Re-check truncation when the label content changes. The ResizeObserver only
