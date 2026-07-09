@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 
@@ -9,40 +9,40 @@ test.describe('DBSwitch', () => {
 		description:
 			'should toggle switches, should not toggle disabled switch',
 		url: './#/03/switch?page=checked',
-		async testFn(voiceOver, nvda, page) {
-			if (nvda) {
-				await nvda?.previous(); // Focus "switch 1"
-				await nvda?.act(); // Interact "switch 1"
-				await nvda?.next(); // Focus "switch 2"
-				await nvda?.act(); // Interact "switch 2"
-				await nvda?.next(); // Focus "switch 3"
-			} else if (voiceOver) {
-				await voiceOver?.previous(); // Focus "switch 1"
-				await voiceOver?.act(); // Interact "switch 1"
-				await voiceOver?.next(); // Focus "switch 1 inline text"
-				await voiceOver?.next(); // Focus "switch 2"
-				await voiceOver?.act(); // Interact "switch 1"
-				await voiceOver?.next(); // Focus "switch 2 inline text"
-				await voiceOver?.next(); // Focus "switch 3"
-				await voiceOver?.act(); // Interact "switch 1"
-				await voiceOver?.next(); // Focus "switch 3 inline text"
+		async testFn(screenReader) {
+			if (isWin()) {
+				await screenReader.previous(); // Focus "switch 1"
+				await screenReader.act(); // Interact "switch 1"
+				await screenReader.next(); // Focus "switch 2"
+				await screenReader.act(); // Interact "switch 2"
+				await screenReader.next(); // Focus "switch 3"
+			} else {
+				await screenReader.previous(); // Focus "switch 1"
+				await screenReader.act(); // Interact "switch 1"
+				await screenReader.next(); // Focus "switch 1 inline text"
+				await screenReader.next(); // Focus "switch 2"
+				await screenReader.act(); // Interact "switch 1"
+				await screenReader.next(); // Focus "switch 2 inline text"
+				await screenReader.next(); // Focus "switch 3"
+				await screenReader.act(); // Interact "switch 1"
+				await screenReader.next(); // Focus "switch 3 inline text"
 			}
 		},
-		async postTestFn(voiceOver, nvda, retry) {
-			if (nvda) {
+		async postTestFn(screenReader, retry) {
+			if (isWin()) {
 				/*
 				 * There is a timing issue for windows which results in different outputs in CICD.
 				 * We avoid this by replacing the generated log files
 				 */
-				await generateSnapshot(nvda, retry, (phraseLog) =>
+				await generateSnapshot(screenReader, retry, (phraseLog) =>
 					phraseLog.map((log) =>
 						log
 							// NVDA sometimes shows "blank"
 							.replace('blank', 'switch, off, True')
 					)
 				);
-			} else if (voiceOver) {
-				await generateSnapshot(voiceOver, retry);
+			} else {
+				await generateSnapshot(screenReader, retry);
 			}
 		}
 	});
@@ -51,17 +51,17 @@ test.describe('DBSwitch', () => {
 		title: 'icon',
 		description: 'should not announce icons',
 		url: './#/03/switch?page=visual+aid',
-		async testFn(voiceOver, nvda) {
-			if (nvda) {
-				await nvda?.previous(); // Focus "switch 1"
-				await nvda?.next(); // Focus "switch 2"
-				await nvda?.act(); // Interact "switch 2"
-			} else if (voiceOver) {
-				await voiceOver?.previous(); // Focus "switch 1"
-				await voiceOver?.next(); // Focus "switch 1 inline text"
-				await voiceOver?.next(); // Focus "switch 2"
-				await voiceOver?.act(); // Interact "switch 2"
-				await voiceOver?.next(); // Focus "switch 2"
+		async testFn(screenReader) {
+			if (isWin()) {
+				await screenReader.previous(); // Focus "switch 1"
+				await screenReader.next(); // Focus "switch 2"
+				await screenReader.act(); // Interact "switch 2"
+			} else {
+				await screenReader.previous(); // Focus "switch 1"
+				await screenReader.next(); // Focus "switch 1 inline text"
+				await screenReader.next(); // Focus "switch 2"
+				await screenReader.act(); // Interact "switch 2"
+				await screenReader.next(); // Focus "switch 2"
 			}
 		}
 	});

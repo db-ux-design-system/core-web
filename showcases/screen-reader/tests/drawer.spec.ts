@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 
@@ -8,19 +8,18 @@ test.describe('DBDrawer', () => {
 		title: 'autofocus',
 		description: 'should autofocus',
 		url: './#/01/drawer?page=density',
-		async testFn(voiceOver, nvda, page) {
-			const screenReader = voiceOver ?? nvda;
-			await screenReader?.previous();
-			await screenReader?.act();
-			await screenReader?.next();
+		async testFn(screenReader) {
+			await screenReader.previous();
+			await screenReader.act();
+			await screenReader.next();
 		},
-		async postTestFn(voiceOver, nvda, retry) {
-			if (nvda) {
+		async postTestFn(screenReader, retry) {
+			if (isWin()) {
 				/*
 				 * There is a timing issue for windows which results in different outputs in CICD.
 				 * We avoid this by replacing the generated log files
 				 */
-				await generateSnapshot(nvda, retry, (phraseLog) =>
+				await generateSnapshot(screenReader, retry, (phraseLog) =>
 					phraseLog.map((log) =>
 						log
 							.replace('Showcase, document. unknown', 'button')
@@ -32,8 +31,8 @@ test.describe('DBDrawer', () => {
 							)
 					)
 				);
-			} else if (voiceOver) {
-				await generateSnapshot(voiceOver, retry);
+			} else {
+				await generateSnapshot(screenReader, retry);
 			}
 		}
 	});
