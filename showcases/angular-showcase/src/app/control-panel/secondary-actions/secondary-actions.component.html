@@ -1,7 +1,5 @@
 <db-control-panel-secondary-actions>
-	<db-button [noText]="true" icon="x_placeholder" variant="ghost">
-		Profile
-	</db-button>
+	<db-switch [checked]="shell" (change)="onShellToggle()"> Shell </db-switch>
 	<db-button [noText]="true" icon="x_placeholder" variant="ghost">
 		Notification
 	</db-button>

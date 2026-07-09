@@ -1,6 +1,7 @@
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
+import BrandShowcase from '@components/components/brand/showcase/brand.showcase';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -12,10 +13,13 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
+import HeaderShowcase from '@components/components/header/showcase/header.showcase';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
+import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
+import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
@@ -87,6 +91,29 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'control-panel-mobile',
 				label: 'ControlPanelMobile',
 				component: <ControlPanelMobileShowcase />
+			},
+
+			// OLD
+
+			{
+				path: 'navigation-item',
+				label: 'NavigationItem',
+				component: <NavigationItemShowcase />
+			},
+			{
+				path: 'navigation',
+				label: 'Navigation',
+				component: <NavigationShowcase />
+			},
+			{
+				path: 'brand',
+				label: 'Brand',
+				component: <BrandShowcase />
+			},
+			{
+				path: 'header',
+				label: 'Header',
+				component: <HeaderShowcase />
 			}
 		])
 	},

@@ -19,6 +19,7 @@ export type Component = {
 		angular?: {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
+			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
@@ -281,6 +282,41 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
+		name: 'navigation'
+	},
+	{
+		name: 'navigation-item',
+		overwrites: {
+			vue: [
+				{
+					from: 'navigationItemSafeTriangle: undefined',
+					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle'
+				}
+			],
+			react: [
+				{
+					from: 'onMouseMove={(event)',
+					to: 'onMouseMove={(event: any)'
+				}
+			],
+			stencil: [
+				{
+					from: '<slot>',
+					/* This is a workaround for stencil.
+						At the moment the navigation is broken in stencil and will be fixed in the db-shell.
+						Until then we need to add a named slot for the button, because web-components allow only one default slot.
+					*/
+					to: '<slot name="expandButton">'
+				}
+			]
+		},
+		config: {
+			angular: {
+				directives: [{ name: 'NavigationContent' }]
+			}
+		}
+	},
+	{
 		name: 'control-panel-navigation'
 	},
 	{
@@ -398,7 +434,35 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'section'
 	},
-
+	{
+		name: 'page'
+	},
+	{
+		name: 'header',
+		config: {
+			angular: {
+				directives: [
+					{
+						name: 'SecondaryAction',
+						ngContentName: 'secondary-action'
+					},
+					{
+						name: 'MetaNavigation',
+						ngContentName: 'meta-navigation'
+					},
+					{
+						name: 'Navigation'
+					}
+				]
+			},
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
+		}
+	},
+	{
+		name: 'brand'
+	},
 	{
 		name: 'shell'
 	},

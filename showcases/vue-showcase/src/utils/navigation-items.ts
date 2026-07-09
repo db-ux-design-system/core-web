@@ -1,6 +1,7 @@
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
+import BrandShowcase from '@components/components/brand/showcase/brand.showcase.vue';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
@@ -12,10 +13,13 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
+import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
 import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
 import InputShowcase from '@components/components/input/showcase/input.showcase.vue';
 import LinkShowcase from '@components/components/link/showcase/link.showcase.vue';
+import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase.vue';
+import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase.vue';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase.vue';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase.vue';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase.vue';
@@ -92,6 +96,26 @@ export const navigationItems: NavItem[] = [
 				path: '/05/control-panel-mobile',
 				label: 'ControlPanelMobile',
 				component: markRaw(ControlPanelMobile)
+			},
+			{
+				path: '/05/navigation-item',
+				label: 'NavigationItem',
+				component: markRaw(NavigationItemShowcase)
+			},
+			{
+				path: '/05/navigation',
+				label: 'Navigation',
+				component: markRaw(NavigationShowcase)
+			},
+			{
+				path: '/05/brand',
+				label: 'Brand',
+				component: markRaw(BrandShowcase)
+			},
+			{
+				path: '/05/header',
+				label: 'Header',
+				component: markRaw(HeaderShowcase)
 			}
 		])
 	},

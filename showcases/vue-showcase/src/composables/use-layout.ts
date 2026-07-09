@@ -15,6 +15,7 @@ export const useLayout = () => {
 	const settings = ref<any>(defaultSettings);
 	const page = ref();
 	const fullscreen = ref();
+	const shell = ref<boolean>(true);
 
 	const classNames = computed(
 		() => `db-density-${density.value} db-color-${color.value}`
@@ -41,6 +42,12 @@ export const useLayout = () => {
 
 					break;
 				}
+
+				case 'shell': {
+					shell.value = !shell.value;
+
+					break;
+				}
 				// No default
 			}
 		}
@@ -51,6 +58,7 @@ export const useLayout = () => {
 				...route.query,
 				[DENSITY_CONST]: density.value,
 				[COLOR_CONST]: color.value,
+				shell: String(shell.value),
 				settings: JSON.stringify(settings.value)
 			}
 		});
@@ -75,7 +83,11 @@ export const useLayout = () => {
 			}
 
 			if (query.fullscreen) {
-				page.value = query.fullscreen;
+				fullscreen.value = query.fullscreen;
+			}
+
+			if (query.shell !== undefined) {
+				shell.value = query.shell === 'true';
 			}
 
 			if (
@@ -95,6 +107,7 @@ export const useLayout = () => {
 		fullscreen,
 		density,
 		color,
+		shell,
 		classNames,
 		onChange,
 		sortedNavigation,

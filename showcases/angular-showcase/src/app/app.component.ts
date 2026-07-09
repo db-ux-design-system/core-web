@@ -19,6 +19,7 @@ import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-na
 import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
 import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { PageComponent } from './page/page.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -36,6 +37,7 @@ import {
 		PrimaryActionsComponent,
 		SecondaryActionsComponent,
 		NavItemComponent,
+		PageComponent,
 		DBShell,
 		DBShellContent,
 		DBControlPanelBrand,
@@ -56,6 +58,7 @@ export class AppComponent implements OnInit {
 
 	page?: string;
 	fullscreen = false;
+	shell = true;
 
 	constructor(private readonly route: ActivatedRoute) {}
 
@@ -75,6 +78,10 @@ export class AppComponent implements OnInit {
 
 			if (parameters['fullscreen']) {
 				this.fullscreen = parameters['fullscreen'];
+			}
+
+			if (parameters['shell'] !== undefined) {
+				this.shell = parameters['shell'] === 'true';
 			}
 
 			if (

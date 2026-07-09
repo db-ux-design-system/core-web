@@ -104,7 +104,11 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			{
 				path: '05/control-panel-flat-icon',
 				label: 'Control Panel Flat Icon'
-			}
+			},
+			{ path: '05/navigation-item', label: 'NavigationItem' },
+			{ path: '05/navigation', label: 'Navigation' },
+			{ path: '05/brand', label: 'Brand' },
+			{ path: '05/header', label: 'Header' }
 		])
 	},
 	{
@@ -270,7 +274,7 @@ function renderMetaNavigation(): string {
 function renderSecondaryActions(): string {
 	return `
 		<db-control-panel-secondary-actions>
-			<db-button icon="x_placeholder" variant="ghost" no-text="true">Profile</db-button>
+			<db-switch class="js-shell-toggle" checked="true">Shell</db-switch>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Notification</db-button>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Help</db-button>
 		</db-control-panel-secondary-actions>`;
@@ -426,6 +430,22 @@ function initSettingsControls(): void {
 
 		if (drawer) {
 			drawer.open = false;
+		}
+	});
+
+	// Shell toggle
+	document.addEventListener('change', (event) => {
+		const eventTarget = event.target;
+
+		if (!(eventTarget instanceof HTMLElement)) {
+			return;
+		}
+
+		const shellToggle = eventTarget.closest('.js-shell-toggle');
+
+		if (shellToggle) {
+			setUrlParameters({ shell: 'false' });
+			globalThis.dispatchEvent(new HashChangeEvent('hashchange'));
 		}
 	});
 

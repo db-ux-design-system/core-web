@@ -43,7 +43,7 @@ export default function DrawerSize() {
 				</DBButton>
 				<DBDrawer
 					containerSize="small"
-					direction="left"
+					direction="to-left"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={<DBDrawerHeader>(Default) Small</DBDrawerHeader>}>
@@ -58,7 +58,7 @@ export default function DrawerSize() {
 				</DBButton>
 				<DBDrawer
 					containerSize="medium"
-					direction="left"
+					direction="to-left"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={<DBDrawerHeader>Medium</DBDrawerHeader>}>
@@ -73,7 +73,7 @@ export default function DrawerSize() {
 				</DBButton>
 				<DBDrawer
 					containerSize="large"
-					direction="left"
+					direction="to-left"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={<DBDrawerHeader>Large</DBDrawerHeader>}>
@@ -88,7 +88,7 @@ export default function DrawerSize() {
 				</DBButton>
 				<DBDrawer
 					containerSize="full"
-					direction="left"
+					direction="to-left"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
 					header={<DBDrawerHeader>Full</DBDrawerHeader>}>

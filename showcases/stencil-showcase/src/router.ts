@@ -97,7 +97,7 @@ function renderShowcasePage(
  */
 function updateActiveNavItem(): void {
 	const navLinks = document.querySelectorAll(
-		'db-control-panel-navigation-item a'
+		'db-control-panel-navigation-item a, db-navigation-item a'
 	);
 	const currentHash = (globalThis.location.hash || '#/').split('?', 1)[0];
 
@@ -149,20 +149,42 @@ function handleRoute(): void {
  */
 export function initRouter(): void {
 	const shell = document.querySelector('db-shell');
+	const page = document.querySelector('db-page');
 
-	const observer = new MutationObserver(() => {
-		if (shell?.classList.contains('hydrated')) {
-			observer.disconnect();
-			globalThis.addEventListener('hashchange', handleRoute);
-			handleRoute();
-		}
-	});
-
-	if (shell?.classList.contains('hydrated')) {
+	const startRouting = () => {
 		globalThis.addEventListener('hashchange', handleRoute);
 		handleRoute();
-	} else if (shell) {
-		observer.observe(shell, { attributeFilter: ['class'] });
+	};
+
+	if (shell) {
+		const observer = new MutationObserver(() => {
+			if (shell?.classList.contains('hydrated')) {
+				observer.disconnect();
+				startRouting();
+			}
+		});
+
+		if (shell?.classList.contains('hydrated')) {
+			startRouting();
+		} else {
+			observer.observe(shell, { attributeFilter: ['class'] });
+		}
+	} else if (page) {
+		const observer = new MutationObserver(() => {
+			if (page?.classList.contains('hydrated')) {
+				observer.disconnect();
+				startRouting();
+			}
+		});
+
+		if (page?.classList.contains('hydrated')) {
+			startRouting();
+		} else {
+			observer.observe(page, { attributeFilter: ['class'] });
+		}
+	} else {
+		// Fallback: start routing immediately
+		startRouting();
 	}
 }
 

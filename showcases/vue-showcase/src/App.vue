@@ -14,8 +14,9 @@ import { useLayout } from "./composables/use-layout";
 import MetaNavigation from "./control-panel/MetaNavigation.vue";
 import PrimaryActions from "./control-panel/PrimaryActions.vue";
 import SecondaryActions from "./control-panel/SecondaryActions.vue";
+import Page from "./page/Page.vue";
 
-const { page, fullscreen, classNames, sortedNavigation, settings } =
+const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 	useLayout();
 </script>
 
@@ -26,8 +27,9 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 	>
 		<router-view></router-view>
 	</div>
+	<Page v-else-if="!shell" />
 	<DBShell
-		v-if="!page && !fullscreen"
+		v-if="!page && !fullscreen && shell"
 		fadeIn
 		:controlPanelDesktopPosition="settings.controlPanelDesktopPosition"
 		:controlPanelMobilePosition="settings.controlPanelMobilePosition"

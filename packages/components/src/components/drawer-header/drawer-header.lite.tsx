@@ -27,7 +27,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	const state = useStore<DBDrawerHeaderState>({
 		_headingId: 'db-drawer-header-heading-' + uuid(),
 		setAriaLabelledBy() {
-			if (_ref && props.text) {
+			if (_ref) {
 				const dialog = (_ref as HTMLElement).closest('dialog');
 				if (dialog) {
 					dialog.setAttribute('aria-labelledby', state._headingId);

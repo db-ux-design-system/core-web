@@ -108,6 +108,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (_ref) {
 				const dialogOpen = getBoolean(props.open, 'open');
+				if (dialogOpen && state._closeTimeoutId !== undefined) {
+					// Cancel any pending close timeout when reopening to prevent
+					// a stale timer from closing the dialog after it was reopened.
+					clearTimeout(state._closeTimeoutId);
+					state._closeTimeoutId = undefined;
+				}
 				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(
@@ -119,7 +125,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					} else {
 						_ref.showModal();
 					}
-					delay(() => {
+					void delay(() => {
 						if (dialogContainerRef) {
 							(dialogContainerRef as HTMLDivElement).dataset[
 								'transition'

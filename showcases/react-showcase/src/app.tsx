@@ -13,6 +13,7 @@ import PrimaryActions from './control-panel/primary-actions';
 import SecondaryActions from './control-panel/secondary-actions';
 import useQuery from './hooks/use-query';
 import Navigation from './navigation';
+import Page from './page/page';
 
 const App = () => {
 	const {
@@ -23,8 +24,11 @@ const App = () => {
 		page,
 		fullscreen,
 		setSettings,
-		settings
+		settings,
+		shell
 	} = useQuery();
+
+	console.log({ shell });
 
 	if (page ?? fullscreen) {
 		return (
@@ -34,6 +38,10 @@ const App = () => {
 				<Outlet />
 			</div>
 		);
+	}
+
+	if (!shell) {
+		return <Page />;
 	}
 
 	return (

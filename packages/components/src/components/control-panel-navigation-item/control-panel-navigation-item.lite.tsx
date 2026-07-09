@@ -118,22 +118,6 @@ export default function DBControlPanelNavigationItem(
 		}
 	}, [_ref, props.disabled]);
 
-	// When active, set aria-current="page" on the contained anchor so
-	// assistive tech announces the current page link properly.
-	onUpdate(() => {
-		if (_ref) {
-			const listElement = _ref as HTMLLIElement;
-			const anchor = listElement.querySelector('a');
-			if (anchor) {
-				if (getBoolean(props.active, 'active')) {
-					anchor.setAttribute('aria-current', 'page');
-				} else {
-					anchor.removeAttribute('aria-current');
-				}
-			}
-		}
-	}, [_ref, props.active]);
-
 	return (
 		<li
 			ref={_ref}

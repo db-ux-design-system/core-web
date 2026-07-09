@@ -15,6 +15,7 @@ const useQuery = (redirectURLSearchParameters = true) => {
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState(false);
+	const [shell, setShell] = useState<boolean>(true);
 	const [searchRead, setSearchRead] = useState(false);
 
 	const [settings, setSettings] = useState(
@@ -38,8 +39,12 @@ const useQuery = (redirectURLSearchParameters = true) => {
 					setPage(value.toLowerCase());
 				}
 
-				if (key === 'fullscreen' && fullscreen !== Boolean(value)) {
-					setFullscreen(Boolean(value));
+				if (key === 'shell' && shell !== (value === 'true')) {
+					setShell(value === 'true');
+				}
+
+				if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
+					setFullscreen(value === 'true');
 				}
 
 				if (key === 'settings' && JSON.stringify(settings) !== value) {
@@ -62,6 +67,12 @@ const useQuery = (redirectURLSearchParameters = true) => {
 				nextQuery.page = page;
 			}
 
+			if (shell) {
+				nextQuery.shell = 'true';
+			} else {
+				nextQuery.shell = 'false';
+			}
+
 			if (fullscreen) {
 				nextQuery.fullscreen = 'true';
 			}
@@ -70,7 +81,7 @@ const useQuery = (redirectURLSearchParameters = true) => {
 				setSearchParameters(nextQuery);
 			}
 		}
-	}, [color, density, page, fullscreen, searchRead, settings]);
+	}, [color, density, page, fullscreen, searchRead, settings, shell]);
 
 	return {
 		density,
@@ -78,6 +89,8 @@ const useQuery = (redirectURLSearchParameters = true) => {
 		color,
 		setColor,
 		page,
+		shell,
+		setShell,
 		fullscreen,
 		settings,
 		setSettings

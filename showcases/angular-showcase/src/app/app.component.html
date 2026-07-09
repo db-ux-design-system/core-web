@@ -3,7 +3,10 @@
 		<router-outlet></router-outlet>
 	</div>
 }
-@if (!page) {
+@if (!page && !shell) {
+	<app-page></app-page>
+}
+@if (!page && shell) {
 	<db-shell
 		[controlPanelDesktopPosition]="settings.controlPanelDesktopPosition"
 		[controlPanelMobilePosition]="settings.controlPanelMobilePosition"
