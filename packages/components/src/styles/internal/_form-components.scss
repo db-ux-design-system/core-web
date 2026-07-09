@@ -72,7 +72,7 @@ $db-min-inline-size: var(
 		@content;
 	}
 
-	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
+	// Workaround until the :blank pseudo-class (https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:blank#browser_compatibility) is widely supported; then prefer targeting that pseudo-class.
 	#{$selector} {
 		&:is(
 				[type="date"],
@@ -94,7 +94,6 @@ $db-min-inline-size: var(
 				[value*="9"],
 				[value*="0"],
 				/* values set via the DOM value property (e.g. react-hook-form) are mirrored onto data-empty by the component */
-				/* TODO: We might want to change this to :blank CSS Pseudo Selector as soon as that one got standardized: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:blank#browser_compatibility */
 				[data-empty="false"]
 			)::-webkit-datetime-edit {
 			@content;
