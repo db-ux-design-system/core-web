@@ -140,6 +140,7 @@
 		}
 	}
 
+	/* jscpd:ignore-start */
 	&:has([aria-current="page"]),
 	&:has([data-active="true"]),
 	&[aria-current="page"],
@@ -157,6 +158,8 @@
 		}
 	}
 
+	/* jscpd:ignore-end */
+
 	&[data-width="full"] {
 		inline-size: 100%;
 
@@ -173,6 +176,7 @@
 	}
 }
 
+/* jscpd:ignore-start */
 @mixin sub-navigation-item-mobile() {
 	padding: variables.$db-spacing-fixed-xs
 		component.$drawer-content-padding-inline;
@@ -191,6 +195,8 @@
 			#{component.$min-mobile-header-height} + env(safe-area-inset-bottom)
 		);
 }
+
+/* jscpd:ignore-end */
 
 .db-sub-navigation {
 	@extend %component-border;
@@ -236,6 +242,7 @@
 			pointer-events: none;
 		}
 
+		/* jscpd:ignore-start */
 		&::before {
 			content: "";
 			position: absolute;
@@ -252,6 +259,8 @@
 					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
+
+		/* jscpd:ignore-end */
 
 		.db-sub-navigation {
 			// 1px for box shadow
@@ -285,6 +294,7 @@
 				}
 			}
 
+			/* jscpd:ignore-start */
 			&::before {
 				content: "";
 				position: absolute;
@@ -312,6 +322,8 @@
 				block-size: 100%;
 				inline-size: variables.$db-spacing-fixed-xs;
 			}
+
+			/* jscpd:ignore-end */
 		}
 	}
 

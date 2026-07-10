@@ -1,9 +1,9 @@
-<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
+<db-page [fadeIn]="true" documentOverflow="auto" variant="fixed">
 	<db-header
-		header
-		[drawerOpen]="drawerOpen"
 		(toggle)="onToggle($event)"
+		[drawerOpen]="drawerOpen"
 		drawerHeaderText="Showcase"
+		header
 	>
 		<db-brand brand>Showcase</db-brand>
 		<db-navigation *dbNavigation aria-label="main-navigation">
@@ -43,7 +43,7 @@
 			>
 		</ng-container>
 		<ng-container *dbSecondaryAction>
-			<db-switch [checked]="shell" (change)="onShellToggle()">
+			<db-switch (change)="onShellToggle()" [checked]="shell">
 				Shell
 			</db-switch>
 			<db-button [noText]="true" icon="x_placeholder" variant="ghost">

@@ -74,6 +74,7 @@
 				block-size: 100%;
 				overflow-x: hidden;
 
+				/* jscpd:ignore-start */
 				.db-control-panel-meta {
 					/* stylelint-disable-next-line db-ux/use-spacings */
 					padding: variables.$db-spacing-fixed-xs
@@ -83,6 +84,8 @@
 
 					@include helpers.divider("top");
 				}
+
+				/* jscpd:ignore-end */
 
 				.db-control-panel-navigation {
 					/* stylelint-disable-next-line db-ux/use-spacings */

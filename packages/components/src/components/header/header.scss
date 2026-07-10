@@ -20,6 +20,7 @@
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
+	/* jscpd:ignore-start */
 	&[data-width="small"] {
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-sm;
@@ -34,6 +35,8 @@
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
+
+	/* jscpd:ignore-end */
 
 	.db-link {
 		@include helpers.display(inline-block);
@@ -241,6 +244,7 @@
 				component.$drawer-content-padding-inline;
 		}
 
+		/* jscpd:ignore-start */
 		.db-header-meta-navigation {
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding: variables.$db-spacing-fixed-xs
@@ -250,6 +254,8 @@
 
 			@include helpers.divider("top");
 		}
+
+		/* jscpd:ignore-end */
 	}
 
 	.db-drawer-footer:has(.db-header-secondary-action:empty) {
