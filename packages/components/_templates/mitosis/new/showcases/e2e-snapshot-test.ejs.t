@@ -1,5 +1,5 @@
 ---
-to: "<%= showcases ? `../../showcases/e2e/${name}/${name}-visual-snapshot.spec.ts` : null %>"
+to: "<%= (!subComponent && showcases) ? `../../showcases/e2e/${name}/${name}-visual-snapshot.spec.ts` : null %>"
 ---
 import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
