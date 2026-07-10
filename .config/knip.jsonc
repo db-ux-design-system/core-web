@@ -59,7 +59,8 @@
 				"tests/**/*.ts"
 			],
 			"project": ["**/*.{js,ts}"],
-			"ignoreDependencies": ["postcss-scss", "@actions/github"]
+			"ignoreDependencies": ["postcss-scss", "@actions/github"],
+			"ignoreBinaries": ["gh"]
 		},
 
 		// Foundations: SCSS files are compiled by sass CLI, not imported in TS
