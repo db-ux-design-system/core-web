@@ -1,5 +1,17 @@
 # @db-ux/core-foundations
 
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: allow overriding font-weight on `text-body-*` / `text-head-*` Tailwind utilities - [see commit 771da1a](https://github.com/db-ux-design-system/core-web/commit/771da1aead25ba11a3aff37b7a578edeecf54605):
+
+    - The typography utilities applied the `font` shorthand, which reset `font-weight` to its initial value and made utilities like `font-bold` ineffective. The utilities now re-apply `font-weight` via Tailwind's `--tw-font-weight` variable, keeping the token's natural weight as the default while allowing independent overrides.
+
 ## 4.13.0
 
 ### Patch Changes

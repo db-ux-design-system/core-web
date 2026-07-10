@@ -51,6 +51,7 @@ jobs:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
           version: pnpm run ci:version
+          prDraft: always
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           HUSKY: 0 # Disable Husky hooks in CI

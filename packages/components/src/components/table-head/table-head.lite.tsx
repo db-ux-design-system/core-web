@@ -17,7 +17,7 @@ useDefaultProps<DBTableHeadProps>({});
 
 export default function DBTableHead(props: DBTableHeadProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableSectionElement | any>(undefined);
+	const _ref = useRef<HTMLTableSectionElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTableHeadState>({
 		getCells: (cells?: DBTableRowCell[]) => {
@@ -32,7 +32,7 @@ export default function DBTableHead(props: DBTableHeadProps) {
 	return (
 		<thead
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-head', props.className)}>
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>

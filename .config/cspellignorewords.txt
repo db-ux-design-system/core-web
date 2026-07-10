@@ -230,3 +230,5 @@ notext
 prebundle
 knip
 checkin
+focusgroup
+unprovide

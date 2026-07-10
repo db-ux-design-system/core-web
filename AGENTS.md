@@ -104,7 +104,9 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 ### When to Add a Changeset
 
-**Always add a new changeset when making changes inside the following folders:**
+**Always add a new changeset when making developer-facing changes inside the following folders:**
+
+> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
 | Folder                      | Packages to include                                                                                                                                                                                 |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -184,6 +186,7 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Generate new component**: `pnpm run generate:component`
 - **Component build location**: `packages/components/build/`
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
+- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
 
 ### Working with Styles
 
@@ -395,7 +398,7 @@ When the developer agrees, extract the out-of-scope changes into their own branc
 3. **Apply, commit & push** only the extracted changes:
     - restore the stash / re-apply the diff, then stage precisely those files (`git add <files…>`)
     - `git commit -m "<type>: <short description>" -m "<what changed and why>"` (add `--no-verify` if Husky blocks on a missing `.env`)
-    - **add a changeset** if the extracted changes touch `packages/components/src` (SCSS/CSS) or `packages/foundations/scss` (see "Changesets")
+    - **add a changeset** if the extracted changes touch `packages/components/src` (SCSS/CSS) or `packages/foundations/scss` **and** affect logic, styling, or public APIs — not for code-style-only changes (see "Changesets")
     - `git push origin chore-extract-<topic>`
 4. **Open a new PR** via `gh pr create` (or the GitHub MCP) using `.github/PULL_REQUEST_TEMPLATE.md` as the body; link the related issue if one exists.
 5. **Clean up the original branch** so the current PR stays focused:
