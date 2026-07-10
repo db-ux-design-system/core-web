@@ -101,7 +101,7 @@
     "cspell": "10.0.1",
     "eslint": "10.6.0",
     "eslint-config-prettier": "10.1.8",
-    "eslint-config-xo": "0.56.0",
+    "eslint-config-xo": "0.57.0",
     "eslint-plugin-package-json": "1.5.0",
     "husky": "9.1.7",
     "jscpd": "5.0.11",
