@@ -55,7 +55,9 @@ function injectDuckTypingFields(code) {
 	// Add output import if not present (needed for the injected `touch` output).
 	// Components without their own Mitosis outputs (e.g. the button-based
 	// DBTabItem) don't import `output`, so ensure it is present here.
-	const coreImport = code.match(/import\s*\{([^}]*)\}\s*from\s*"@angular\/core";/);
+	const coreImport = code.match(
+		/import\s*\{([^}]*)\}\s*from\s*"@angular\/core";/
+	);
 	if (coreImport && !/\boutput\b/.test(coreImport[1])) {
 		code = code.replace(
 			'} from "@angular/core";',
