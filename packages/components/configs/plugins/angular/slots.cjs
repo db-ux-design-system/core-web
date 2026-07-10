@@ -119,20 +119,27 @@ module.exports = () => ({
 						'a href="#" *dbNavigationContent'
 					);
 			}
-			return code
-				.replace(/SLOT="([^"]+)"/g, '$1')
-				.replaceAll(
-					'<ng-container meta-navigation',
-					'<ng-container *dbMetaNavigation'
+
+			if (
+				['Header', 'Page'].some((exampleName) =>
+					json.name.startsWith(exampleName)
 				)
-				.replaceAll(
-					'<ng-container secondary-action',
-					'<ng-container *dbSecondaryAction'
-				)
-				.replaceAll(
-					'<ng-container navigation-content',
-					'<ng-container *dbNavigationContent'
-				);
+			) {
+				code = code
+					.replaceAll(
+						'<ng-container meta-navigation',
+						'<ng-container *dbMetaNavigation'
+					)
+					.replaceAll(
+						'<ng-container secondary-action',
+						'<ng-container *dbSecondaryAction'
+					)
+					.replaceAll(
+						'<ng-container navigation-content',
+						'<ng-container *dbNavigationContent'
+					);
+			}
+			return code.replace(/SLOT="([^"]+)"/g, '$1');
 		}
 	}
 });
