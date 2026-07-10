@@ -4,16 +4,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { extract } from 'tar';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const buildGHPage = async () => {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	const { NAME } = process.env;
 	const { OWNER_NAME } = process.env;
 	const { REPO_NAME } = process.env;
 	const OUT_DIR: string = process.env.OUT_DIR ?? 'out';
 	const RELEASE: boolean = process.env.RELEASE === 'true';
 	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
-	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (!NAME) {
 		console.error('Error: Missing NAME variable');
@@ -40,7 +37,7 @@ const buildGHPage = async () => {
 	console.log('📦 Unpack Tar');
 	await extract({
 		file: 'gh-pages.tar.gz',
-		// eslint-disable-next-line @typescript-eslint/naming-convention
+
 		C: 'public',
 		strip: 1
 	});
@@ -97,4 +94,5 @@ const buildGHPage = async () => {
 	}
 };
 
+ 
 void buildGHPage();

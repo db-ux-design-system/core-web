@@ -104,7 +104,9 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 ### When to Add a Changeset
 
-**Always add a new changeset when making changes inside the following folders:**
+**Always add a new changeset when making developer-facing changes inside the following folders:**
+
+> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
 | Folder                      | Packages to include                                                                                                                                                                                 |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -184,6 +186,7 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Generate new component**: `pnpm run generate:component`
 - **Component build location**: `packages/components/build/`
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
+- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
 
 ### Working with Styles
 
@@ -227,6 +230,22 @@ pnpm run lint               # Run all linters (known issue: may fail if Nuxt sho
 pnpm run clean              # Clean build artifacts
 pnpm run generate:component # Generate new component scaffolding
 ```
+
+### Knip: `@public` / `@internal` export tagging
+
+Knip reports unused exports unless they carry a `@public` JSDoc tag. When adding new exports to published packages (`packages/components`, `packages/foundations`, `packages/vite-plugin`, etc.), tag them:
+
+- **`@public`** — intentional public API for consumers. Knip ignores these.
+- **`@internal`** or untagged — internal helpers. Knip reports these if unused.
+
+```ts
+/** @public */
+export function myPublicUtility() {
+	/* ... */
+}
+```
+
+See `docs/conventions.md` for the full convention.
 
 ## Known Issues and Workarounds
 
@@ -326,17 +345,76 @@ Manual-inclusion steering files for specialized workflows. Activate in Kiro chat
 | `#pre-commit-review` | `.kiro/steering/pre-commit-review.md` | Self-review checklist before committing and pushing to a new branch                                        |
 | `#issue-triage`      | `.kiro/steering/issue-triage.md`      | Triage issues: validate template, label, set priority/effort, post AI summary, batch-process new issues    |
 
+### Kiro File Includes and Linting
+
+Kiro steering files support including external files via `#[[file:<relative_path>]]`. Because this syntax starts with `#` followed by a non-space character, markdownlint flags it as **MD018** (no space after hash on atx-style heading) and Prettier may reformat it. Wrap every Kiro include with lint-suppression comments:
+
+```markdown
+<!-- markdownlint-disable MD018 --><!-- prettier-ignore -->
+
+#[[file]]
+
+<!-- markdownlint-enable MD018 -->
+```
+
+Always add these comments when creating or editing a `#[[file:...]]` include in any Markdown file.
+
 ---
 
 ## Pull Request Workflow
 
 When an agent completes a task and commits + pushes to a branch, it **must** follow this workflow:
 
-### 1. Pre-commit Checklist
+### 1. Scope Guard — keep the PR focused (run before every commit)
+
+**Run this check automatically as the first step of every commit.** Its goal is to keep a PR strictly limited to its linked issue and to prevent feature creep. Do not skip it, even for small changes.
+
+#### 1.1 Scope analysis
+
+- Determine the linked issue: read it from the branch name, a `resolves #<n>` reference in the PR body/commit, or ask the developer if it cannot be inferred. If the work is genuinely issue-less (e.g. a small chore), treat the task description the developer gave as the scope.
+- Compare the full working-tree diff — staged, unstaged, and relevant untracked files (`git status`, `git diff`, `git diff --staged`) — against that scope.
+- Classify every change as **in-scope** (required to resolve the issue) or **out-of-scope** (unrelated refactors, drive-by fixes, reformatting of otherwise-untouched files, changes in unrelated packages/components, dependency bumps not needed by the fix, etc.).
+- **Generated/expected artifacts count as in-scope** when they are the direct consequence of an in-scope source change: framework outputs (`output/*`), generated showcase files, Playwright snapshots, `pnpm-lock.yaml` updates caused by an in-scope manifest change, and a matching changeset. Do not flag these as feature creep.
+
+#### 1.2 Isolation & proposal
+
+- If everything is in scope, continue with the normal commit workflow below.
+- If out-of-scope changes are found, **do not block or silently drop them.** Instead, list the affected files/code blocks and ask the developer, e.g.:
+    > "These changes don't appear to belong to the core issue (`#<n>`): `<file/…>`. Should I move them to a separate branch and open a dedicated PR for them?"
+- **Wait for an explicit decision. Never commit, push, or extract without the developer's go** (this also satisfies the repo's "commit only on request" rule).
+
+#### 1.3 Automatic extraction (only after approval)
+
+When the developer agrees, extract the out-of-scope changes into their own branch/PR:
+
+1. **Preserve** the out-of-scope changes — `git stash push -- <files…>` (or record the diff / note the commit hashes) so they are not lost.
+2. **Branch from the up-to-date target branch** (usually `main`), using `-` as separator (never `/`, it breaks preview URLs):
+
+    ```bash
+    git checkout main && git pull --ff-only
+    git checkout -b chore-extract-<topic>
+    ```
+
+3. **Apply, commit & push** only the extracted changes:
+    - restore the stash / re-apply the diff, then stage precisely those files (`git add <files…>`)
+    - `git commit -m "<type>: <short description>" -m "<what changed and why>"` (add `--no-verify` if Husky blocks on a missing `.env`)
+    - **add a changeset** if the extracted changes touch `packages/components/src` (SCSS/CSS) or `packages/foundations/scss` **and** affect logic, styling, or public APIs — not for code-style-only changes (see "Changesets")
+    - `git push origin chore-extract-<topic>`
+4. **Open a new PR** via `gh pr create` (or the GitHub MCP) using `.github/PULL_REQUEST_TEMPLATE.md` as the body; link the related issue if one exists.
+5. **Clean up the original branch** so the current PR stays focused:
+    - `git checkout <original-branch>`
+    - revert the extracted changes there, e.g. `git restore --source=main --staged --worktree <files…>` (or `git checkout main -- <files…>`)
+    - re-run the Scope Guard to confirm the diff is now scope-clean, then commit the cleanup and push
+
+#### 1.4 Verify both branches
+
+After an extraction, run the relevant checks (`pnpm run build`, `pnpm run test`, `pnpm run lint`) on **both** the original and the extracted branch so neither is left in a broken state.
+
+### 2. Pre-commit Checklist
 
 Before committing, go through every item in `.github/PULL_REQUEST_TEMPLATE.md` and verify it applies to your changes. Do not commit if any applicable item is unresolved.
 
-### 2. Commit & Push
+### 3. Commit & Push
 
 ```bash
 git add .
@@ -350,7 +428,7 @@ git push origin <branch-name>
 >
 > If Husky blocks the commit due to a missing `.env`, add `--no-verify` (see "Git hook issues" above).
 
-### 3. PR Description
+### 4. PR Description
 
 When opening a pull request, use `.github/PULL_REQUEST_TEMPLATE.md` as the PR body. Fill in the `Proposed changes` section with a concise summary of:
 

@@ -53,7 +53,7 @@
     "build:postcss-plugin": "pnpm --filter @db-ux/core-postcss-plugin run build",
     "build:stylelint": "pnpm --filter @db-ux/core-stylelint run build",
     "build:vite-plugin": "pnpm --filter @db-ux/core-vite-plugin run build",
-    "dev": "tsx dev.js",
+    "dev": "node dev.ts",
     "dev:angular-components": "pnpm --filter @db-ux/core-components run dev:angular",
     "dev:react-components": "pnpm --filter @db-ux/core-components run dev:react",
     "dev:sass": "pnpm --filter @db-ux/core-components run dev:scss",
@@ -81,25 +81,24 @@
     "update:icon-fonts": "pnpm run generate:icon-fonts && pnpm run generate:icon-types"
   },
   "dependencies": {
-    "@db-ux/db-theme": "5.8.0",
+    "@db-ux/db-theme": "5.9.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "3.9.0",
+    "@db-ux/db-theme-icons": "3.10.0",
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
     "@inquirer/prompts": "8.5.2",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
-    "inquirer": "14.0.2",
     "npm-run-all2": "9.0.2",
     "publint": "0.3.21",
     "replace-in-file": "8.4.0",
     "rimraf": "6.1.3",
     "sassdoc": "2.7.4",
-    "tar": "7.5.17",
-    "typedoc": "0.28.19",
+    "tar": "7.5.19",
+    "typedoc": "0.28.20",
     "typedoc-plugin-markdown": "4.12.0",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "4.1.9"
+    "vitest": "4.1.10"
   }
 }
