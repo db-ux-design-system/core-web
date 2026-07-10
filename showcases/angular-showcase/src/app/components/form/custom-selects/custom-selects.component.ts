@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { form, FormField } from '@angular/forms/signals';
 import { DBCustomSelect } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
@@ -10,8 +11,12 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 		WrapperComponent,
 		DBCustomSelect,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		FormField
 	],
+	// NO_ERRORS_SCHEMA required for Angular 21 [formField] directive template type-checking.
+	// Remove when Angular 22 is the minimum supported version.
+	schemas: [NO_ERRORS_SCHEMA],
 	templateUrl: './custom-selects.component.html',
 	schemas: []
 })
@@ -19,6 +24,8 @@ export class CustomSelectsComponent {
 	plain = ['combobox-2'];
 	ngModel = ['combobox-2'];
 	formControl: FormControl = new FormControl(['combobox-2']);
+	signalModel = signal({ values: ['combobox-2'] });
+	signalForm = form(this.signalModel);
 
 	options = [
 		{ value: 'combobox-0', id: 'combobox-0' },

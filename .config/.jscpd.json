@@ -54,6 +54,7 @@
 		"**/packages/mcp-server/CONTEXT.md",
 		"**/packages/migration/test/**/has-changes.txt",
 		"**/packages/migration/test/**/no-change.txt",
+		"**/showcases/angular-showcase/src/app/components/form/**",
 		"**/showcases/angular-showcase/.angular/cache",
 		"**/showcases/angular-showcase/.angular/cache/**",
 		"**/showcases/angular-ssr-showcase/.angular/cache/**",

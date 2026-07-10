@@ -171,6 +171,13 @@ export const getFloatingProps = (
 				} else if (outsideRight) {
 					correctedPlacement = 'top-end';
 				}
+			} else {
+				// Both outsideBottom and outsideTop: keep bottom but still apply horizontal correction
+				if (outsideLeft) {
+					correctedPlacement = 'bottom-start';
+				} else if (outsideRight) {
+					correctedPlacement = 'bottom-end';
+				}
 			}
 		} else {
 			if (outsideLeft && outsideRight) {
@@ -192,6 +199,13 @@ export const getFloatingProps = (
 					correctedPlacement = 'bottom-start';
 				} else if (outsideRight) {
 					correctedPlacement = 'bottom-end';
+				}
+			} else {
+				// Both outsideTop and outsideBottom: keep top but still apply horizontal correction
+				if (outsideLeft) {
+					correctedPlacement = 'top-start';
+				} else if (outsideRight) {
+					correctedPlacement = 'top-end';
 				}
 			}
 		} else {
@@ -407,6 +421,10 @@ export const handleFixedPopover = (
 	}
 
 	// Popover position
+	// Reset shorthand inset properties from previous calls (e.g. outsideYBoth)
+	// before writing new individual inset values
+	element.style.insetBlock = '';
+	element.style.insetInline = '';
 
 	if (correctedPlacement === 'right' || correctedPlacement === 'left') {
 		// center horizontally

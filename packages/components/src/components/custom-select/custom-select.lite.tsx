@@ -285,7 +285,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void | any
+			event?: ClickEvent<HTMLButtonElement> | Event | void
 		) => {
 			if (event) {
 				event.stopPropagation();

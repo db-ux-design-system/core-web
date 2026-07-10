@@ -25,7 +25,7 @@ const setControlValueAccessorReplacements = (
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
-	// inserting provider
+	// inserting provider (CVA always registered for backward compat with Reactive/Template-Driven Forms)
 	replacements.push({
 		from: '@Component({',
 		to: `@Component({
@@ -45,21 +45,20 @@ const setControlValueAccessorReplacements = (
 		from: `constructor(`,
 		to: `constructor(private renderer: Renderer2,`
 	});
-	// We need `model` to be able to read/write to a signal
-	replacements.push({
-		from: `${valueAccessor} = input`,
-		to: `${valueAccessor} = model`
-	});
-	replacements.push({
-		from: `disabled = input`,
-		to: `disabled = model`
-	});
+
+	// NOTE: Mitosis already generates form-related fields (value/checked/disabled) as model() signals.
+	// No input → model conversion needed. For checked components (valueAccessor === 'checked'),
+	// the 'value' field intentionally remains as InputSignal to prevent Signal Forms
+	// from misidentifying the component as FormValueControl.
+	// Signal Forms uses Duck-Typing: a 'value' ModelSignal → FormValueControl,
+	// a 'checked' ModelSignal → FormCheckboxControl.
 
 	// insert custom interface functions before ngOnInit
 	// TODO update attribute by config if necessary (e.g. for checked attribute?)
 	replacements.push({
 		from: 'ngAfterViewInit()',
 		to: `
+		/** @legacy CVA - will be removed in a future major version */
 		writeValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
@@ -70,15 +69,23 @@ const setControlValueAccessorReplacements = (
 			${valueAccessorRequired ? '}' : ''}
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		propagateChange(_: any) {}
 
+		/** @legacy CVA - will be removed in a future major version */
 		registerOnChange(onChange: any) {
 		  this.propagateChange = onChange;
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
 		registerOnTouched(onTouched: any) {
+		  this.propagateTouched = onTouched;
 		}
 
+		/** @legacy CVA - will be removed in a future major version */
+		propagateTouched() {}
+
+		/** @legacy CVA - will be removed in a future major version */
 		setDisabledState(disabled: boolean) {
 		  this.disabled.set(disabled);
 		}
@@ -156,6 +163,7 @@ export class ${directive.name}Directive {}
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
