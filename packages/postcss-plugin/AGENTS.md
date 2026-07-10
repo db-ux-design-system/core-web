@@ -35,7 +35,7 @@ src/
 
 ## Key Concepts
 
-- **Static variables**: Only declared in `:root` and `@property` — safe to inline
+- **Static variables**: Only declared in `:root`/`:host` and `@property` — safe to inline
 - **Dynamic variables**: Re-declared in class selectors, `@media`, or matching `dynamicPrefixes` (default: `--db-adaptive-*`) — must stay as `var()` references
 - **Layer priority**: Detected from `@layer` order declarations and `@import ... layer()` rules — theme values override base values
 - **`light-dark()` collapsing**: When both arguments resolve to the same value, the function is collapsed to a single value
