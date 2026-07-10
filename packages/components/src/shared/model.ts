@@ -316,11 +316,14 @@ export type ValueProps = {
 	value?: any;
 };
 
-export type BaseFormProps = {
+export type DisabledProps = {
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the form element.
+	 * The disabled attribute can be set to keep a user from clicking on the item.
 	 */
 	disabled?: boolean | string;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -330,7 +333,7 @@ export type BaseFormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
-};
+} & DisabledProps;
 
 export type CustomFormProps = {
 	/**
@@ -742,7 +745,8 @@ export type ValueLabelType = {
 export type DocumentScrollState = {
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
-	_observer?: IntersectionObserver;
+	_intersectionObserverCallbackId?: string;
+	_resizeObserverCallbackId?: string;
 };
 
 export type PopoverState = {
