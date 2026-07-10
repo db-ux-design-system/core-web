@@ -17,7 +17,7 @@ export default () => {
 					if (framework === 'vue') {
 						replaceInFileSync({
 							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
-							from: ['{/*', '*/}'],
+							from: [/\{\/\*/g, /\*\/}/g],
 							to: ''
 						});
 						replaceInFileSync({

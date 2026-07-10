@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= name %>/examples/density.example.lite.tsx
+to: "<%= subComponent ? null : `src/components/${name}/examples/density.example.lite.tsx` %>"
 ---
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DB<%= h.changeCase.pascal(name) %> from '../<%= name %>.lite';
