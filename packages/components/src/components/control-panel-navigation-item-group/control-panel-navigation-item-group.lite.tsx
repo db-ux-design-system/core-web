@@ -21,6 +21,7 @@ import {
 import { handleDataOutside } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
 import {
+	adjustNestedSubNavigationPosition,
 	handleSubNavigationPosition,
 	NavigationItemSafeTriangle
 } from '../../utils/navigation';
@@ -76,6 +77,9 @@ export default function DBControlPanelNavigationItemGroup(
 			if (!state.hasPopup) return;
 			if (_menuRef) {
 				handleSubNavigationPosition(_menuRef);
+				// Compute a precise pixel-based transform to keep the
+				// menu within the viewport (replaces the CSS -200% shift).
+				adjustNestedSubNavigationPosition(_menuRef);
 				// Check if the menu overflows the viewport and set
 				// data-outside-vy / data-outside-vx for CSS flipping.
 				// visibility:hidden elements report correct layout via
