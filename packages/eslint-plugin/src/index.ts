@@ -51,7 +51,7 @@ const recommended = {
 		'db-ux/text-or-children-required': 'error',
 		'db-ux/tooltip-requires-interactive-parent': 'error'
 	}
-};
+} as const;
 
 const plugin = {
 	meta: {
