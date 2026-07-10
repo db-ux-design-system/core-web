@@ -3,6 +3,7 @@ import { renderPage } from './page';
 import { initRouter } from './router';
 import './styles.css';
 
+// TODO: Remove shell state and `showcases/stencil-showcase/src/page.ts` after v6.0.0
 function getShellState(): boolean {
 	const [, queryString = ''] = (globalThis.location.hash || '#/').split('?');
 	const parameters = new URLSearchParams(queryString);

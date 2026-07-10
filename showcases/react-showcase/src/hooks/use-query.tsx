@@ -15,6 +15,7 @@ const useQuery = (redirectURLSearchParameters = true) => {
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState(false);
+	// TODO: Remove shell state and `showcases/react-showcase/src/page` folder after v6.0.0
 	const [shell, setShell] = useState<boolean>(true);
 	const [searchRead, setSearchRead] = useState(false);
 

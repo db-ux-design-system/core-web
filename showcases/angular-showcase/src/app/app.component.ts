@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
 
 	page?: string;
 	fullscreen = false;
+	// TODO: Remove shell state and `showcases/angular-showcase/src/app/page` folder after v6.0.0
 	shell = true;
 
 	constructor(private readonly route: ActivatedRoute) {}

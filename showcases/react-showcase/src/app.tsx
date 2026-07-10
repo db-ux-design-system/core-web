@@ -28,8 +28,6 @@ const App = () => {
 		shell
 	} = useQuery();
 
-	console.log({ shell });
-
 	if (page ?? fullscreen) {
 		return (
 			<div

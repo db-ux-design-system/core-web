@@ -12,6 +12,10 @@
 
 	&:not([data-variant="fixed"]) {
 		@extend %shell-content-overflow;
+
+		.db-main {
+			margin-block-end: auto;
+		}
 	}
 
 	&[data-variant="fixed"] {

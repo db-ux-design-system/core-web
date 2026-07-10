@@ -17,8 +17,7 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	// NO_ERRORS_SCHEMA required for Angular 21 [formField] directive template type-checking.
 	// Remove when Angular 22 is the minimum supported version.
 	schemas: [NO_ERRORS_SCHEMA],
-	templateUrl: './custom-selects.component.html',
-	schemas: []
+	templateUrl: './custom-selects.component.html'
 })
 export class CustomSelectsComponent {
 	plain = ['combobox-2'];
