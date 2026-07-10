@@ -1,4 +1,4 @@
-- dialog:
+- dialog "Title":
   - article:
     - text: Title
     - button "Close"
