@@ -739,7 +739,19 @@ export default function DBTabs(props: DBTabsProps) {
 					(mutation) => mutation.type === 'characterData'
 				);
 
-				if (!hasTabChange && !hasContentChange) return;
+				// Detect disabled/aria-disabled attribute changes on tab buttons
+				// so that selection falls back when the active tab becomes disabled.
+				const hasDisabledChange = mutations.some(
+					(mutation) =>
+						mutation.type === 'attributes' &&
+						(mutation.attributeName === 'disabled' ||
+							mutation.attributeName === 'aria-disabled') &&
+						(mutation.target as Element)?.getAttribute?.('role') ===
+							'tab'
+				);
+
+				if (!hasTabChange && !hasContentChange && !hasDisabledChange)
+					return;
 
 				const rafId = state._pendingRafId;
 				if (rafId !== null) cancelAnimationFrame(rafId);
@@ -749,13 +761,18 @@ export default function DBTabs(props: DBTabsProps) {
 					if (hasTabChange) {
 						state.initTabs();
 					}
+					if (hasDisabledChange) {
+						state.syncSelection(state._activeIndex);
+					}
 				});
 			});
 
 			observer.observe(_ref, {
 				childList: true,
 				subtree: true,
-				characterData: true
+				characterData: true,
+				attributes: true,
+				attributeFilter: ['disabled', 'aria-disabled']
 			});
 
 			state._observer = observer;
