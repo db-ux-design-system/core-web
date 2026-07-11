@@ -8,7 +8,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean, NAVIGATION_KEYS, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	hasFocusgroupSupport,
+	NAVIGATION_KEYS,
+	uuid
+} from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
@@ -34,6 +40,9 @@ export default function DBTabs(props: DBTabsProps) {
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
 		_pendingRafId: null,
 		_scrollListener: null,
+		// True when the browser natively supports the focusgroup attribute –
+		// in that case we skip JS-based roving tabindex and arrow-key navigation.
+		_focusgroupSupported: false,
 		// Cached DOM references – updated by initTabs, used by syncSelection for fast access
 		_tabButtons: [] as HTMLElement[],
 		_tabPanels: [] as HTMLElement[],
@@ -155,7 +164,9 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				const tabIndex = rovingIndex === index ? 0 : -1;
 				button.setAttribute('aria-selected', String(isSelected));
-				button.setAttribute('tabindex', String(tabIndex));
+				if (!state._focusgroupSupported) {
+					button.setAttribute('tabindex', String(tabIndex));
+				}
 			});
 
 			panels.forEach((panel: HTMLElement, index: number) => {
@@ -211,6 +222,12 @@ export default function DBTabs(props: DBTabsProps) {
 			if (key === 'Enter' || key === ' ') {
 				event.preventDefault();
 				state.activateTab(currentIndex);
+				return;
+			}
+
+			// When focusgroup is supported, the browser handles arrow-key
+			// navigation natively – skip our JS-based roving tabindex logic.
+			if (state._focusgroupSupported) {
 				return;
 			}
 
@@ -272,7 +289,9 @@ export default function DBTabs(props: DBTabsProps) {
 		// intentionally left untouched so manual-activation keyboard users can
 		// arrow through tabs without changing the active panel, per the
 		// WAI-ARIA roving tabindex pattern.
+		// Skipped when focusgroup is natively supported (browser manages tab stops).
 		moveRovingTabindex(focusIndex: number) {
+			if (state._focusgroupSupported) return;
 			const buttons = state._tabButtons;
 			buttons.forEach((button: HTMLElement, index: number) => {
 				button.setAttribute(
@@ -423,6 +442,18 @@ export default function DBTabs(props: DBTabsProps) {
 						'aria-orientation',
 						props.orientation ?? 'horizontal'
 					);
+
+					// Set the focusgroup attribute to match orientation.
+					// 'tablist' defaults to inline wrap (horizontal);
+					// for vertical tabs we override with 'block'.
+					if (state._focusgroupSupported) {
+						const focusgroupValue =
+							props.orientation === 'vertical'
+								? 'tablist block wrap'
+								: 'tablist';
+						container.setAttribute('focusgroup', focusgroupValue);
+					}
+
 					const label = props.label;
 					if (label) {
 						container.setAttribute('aria-label', label);
@@ -644,6 +675,7 @@ export default function DBTabs(props: DBTabsProps) {
 	]);
 
 	onMount(() => {
+		state._focusgroupSupported = hasFocusgroupSupport();
 		state.resetIds();
 
 		let startIndex = state.getInitialIndex();
@@ -764,7 +796,7 @@ export default function DBTabs(props: DBTabsProps) {
 				</DBButton>
 			</Show>
 			<Show when={state.getTabs().length} else={props.children}>
-				<DBTabList>
+				<DBTabList orientation={props.orientation}>
 					<For each={state.getTabs()}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem

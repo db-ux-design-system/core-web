@@ -138,6 +138,7 @@ export type DBTabsDefaultState = {
 	_observer?: MutationObserver | null;
 	_pendingRafId: number | null;
 	_scrollListener: { fn: () => void } | null;
+	_focusgroupSupported: boolean;
 	_activeIndex: number;
 	activateTab: (index: number) => void;
 	getTabId: (index: number | string) => string | undefined;

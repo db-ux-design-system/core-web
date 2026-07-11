@@ -24,7 +24,12 @@ export default function DBTabList(props: DBTabListProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id ?? state._id}
 			class={cls('db-tab-list', props.className)}
-			role="tablist">
+			role="tablist"
+			focusgroup={
+				props.orientation === 'vertical'
+					? 'tablist block wrap'
+					: 'tablist'
+			}>
 			{props.children}
 		</div>
 	);
