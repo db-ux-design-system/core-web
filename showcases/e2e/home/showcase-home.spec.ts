@@ -95,11 +95,13 @@ const testFormComponents = async (
 
 	const formResetButton = await page.getByTestId('reset-button').all();
 	for (const locator of formResetButton) {
-		if (await locator.isVisible()) {
-			await locator.click({ force: true });
-			// Wait until event for reset was fired
-			await page.waitForTimeout(1000);
+		if (!(await locator.isVisible())) {
+			continue;
 		}
+
+		await locator.click({ force: true });
+		// Wait until event for reset was fired
+		await page.waitForTimeout(1000);
 	}
 
 	for (const def of definition) {

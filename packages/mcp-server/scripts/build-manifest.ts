@@ -100,8 +100,8 @@ export async function processComponent(
 			data: { props, examples, exampleCode }
 		};
 	} catch (error: unknown) {
-		const msg = error instanceof Error ? error.message : String(error);
-		console.error(`Failed to process component ${name}: ${msg}`);
+		const message = error instanceof Error ? error.message : String(error);
+		console.error(`Failed to process component ${name}: ${message}`);
 		return { hasError: true as const };
 	}
 }
