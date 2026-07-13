@@ -21,7 +21,7 @@ const comp: any = (
 	<DBShell controlPanelDesktopPosition="top">
 		<DBControlPanelDesktop
 			brand={<DBControlPanelBrand data-logo="db-systel" />}
-			metaNavigation={
+			meta={
 				<DBControlPanelMeta>
 					<a href="#">Imprint</a>
 					<a href="#">Help</a>
@@ -44,7 +44,7 @@ const comp: any = (
 			{/*<template v-slot:brand>
 				<DBControlPanelBrand data-logo="db-systel" />
 			</template>*/}
-			{/*<template v-slot:meta-navigation>
+			{/*<template v-slot:meta>
 				<DBControlPanelMeta>
 					<a href="#">Imprint</a>
 					<a href="#">Help</a>

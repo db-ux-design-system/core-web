@@ -149,7 +149,7 @@ export default function ControlPanelMobileExamplesBottom() {
 					position="bottom"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
-					metaNavigation={
+					meta={
 						<DBControlPanelMeta>
 							<DBLink href="#">Imprint</DBLink>
 							<DBLink href="#">Help</DBLink>

@@ -23,3 +23,9 @@
 | —                 |   🆕   | `expanded`            | Set the expanded/collapsed state initially for the left sidebar |
 | —                 |   🆕   | `expandButtonTooltip` | Set the tooltip for the expand/collapse button                  |
 | —                 |   🆕   | `orientation`         | Change the orientation (horizontal/vertical)                    |
+
+### slots
+
+| Before           | Status | After  | Description                         |
+| ---------------- | :----: | ------ | ----------------------------------- |
+| `metaNavigation` |   🔁   | `meta` | Shortened slot name for conciseness |

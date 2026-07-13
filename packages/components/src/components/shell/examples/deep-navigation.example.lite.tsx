@@ -29,7 +29,7 @@ export default function ShellDeepNavigation() {
 					controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -182,7 +182,7 @@ export default function ShellDeepNavigation() {
 					controlPanelDesktopPosition="left">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>

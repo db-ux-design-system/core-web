@@ -755,7 +755,7 @@ export type ControlPanelProps = {
 	 * Desktop: Above the regular control-panel-desktop
 	 * Mobile: Inside the drawer
 	 */
-	metaNavigation?: any;
+	meta?: any;
 	/**
 	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
 	 * Desktop: Shown next to the main-navigation

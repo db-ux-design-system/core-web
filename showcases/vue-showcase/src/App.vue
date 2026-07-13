@@ -65,7 +65,7 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 			<template v-slot:secondary-actions>
 				<SecondaryActions />
 			</template>
-			<template v-slot:meta-navigation>
+			<template v-slot:meta>
 				<MetaNavigation />
 			</template>
 		</DBControlPanelDesktop>
@@ -87,7 +87,7 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 			<template v-slot:secondary-actions>
 				<SecondaryActions />
 			</template>
-			<template v-slot:meta-navigation>
+			<template v-slot:meta>
 				<MetaNavigation />
 			</template>
 		</DBControlPanelMobile>

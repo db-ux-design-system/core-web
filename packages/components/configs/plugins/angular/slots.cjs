@@ -100,14 +100,6 @@ module.exports = () => ({
 					.replaceAll(
 						'<db-navigation aria-label',
 						'<db-navigation *dbNavigation aria-label'
-					)
-					.replaceAll(
-						'<ng-container meta-navigation',
-						'<ng-container *dbMetaNavigation'
-					)
-					.replaceAll(
-						'<ng-container secondary-action',
-						'<ng-container *dbSecondaryAction'
 					);
 			}
 			if (
@@ -129,6 +121,14 @@ module.exports = () => ({
 			}
 			return code
 				.replace(/SLOT="([^"]+)"/g, '$1')
+				.replaceAll(
+					'<ng-container meta-navigation',
+					'<ng-container *dbMetaNavigation'
+				)
+				.replaceAll(
+					'<ng-container secondary-action',
+					'<ng-container *dbSecondaryAction'
+				)
 				.replaceAll(
 					'<ng-container navigation-content',
 					'<ng-container *dbNavigationContent'

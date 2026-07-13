@@ -43,7 +43,7 @@ export default function ShellSlots() {
 								</DBBadge>
 							</DBControlPanelBrand>
 						}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -199,7 +199,7 @@ export default function ShellSlots() {
 								</DBBadge>
 							</DBControlPanelBrand>
 						}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -330,7 +330,7 @@ export default function ShellSlots() {
 								</DBBadge>
 							</DBControlPanelBrand>
 						}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>

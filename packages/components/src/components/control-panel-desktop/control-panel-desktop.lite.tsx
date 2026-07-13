@@ -98,7 +98,7 @@ export default function DBControlPanelDesktop(
 				ref={_scrollContainerRef}
 				class="db-control-panel-desktop-scroll-container">
 				{props.children}
-				<Slot name="metaNavigation" />
+				<Slot name="meta" />
 			</div>
 			<Slot name="primaryActions" />
 			<Slot name="secondaryActions" />

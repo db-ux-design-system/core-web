@@ -74,7 +74,7 @@ const App = () => {
 					/>
 				}
 				secondaryActions={<SecondaryActions />}
-				metaNavigation={<MetaNavigation />}>
+				meta={<MetaNavigation />}>
 				<Navigation variant={settings.navigationMobileVariant} />
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
@@ -84,7 +84,7 @@ const App = () => {
 					</DBControlPanelSkipNavigation>
 				}
 				brand={<DBControlPanelBrand data-logo="db-systel" />}
-				metaNavigation={<MetaNavigation />}
+				meta={<MetaNavigation />}
 				primaryActions={
 					<PrimaryActions
 						color={color}

@@ -78,7 +78,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 					onClick={(event) => state.handleNavigationItemClick(event)}
 					class="db-control-panel-mobile-drawer-scroll-container">
 					{props.children}
-					<Slot name="metaNavigation" />
+					<Slot name="meta" />
 				</div>
 			</DBDrawer>
 			<Slot name="brand" />

@@ -34,7 +34,7 @@ export default function ShellContent() {
 					controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -89,7 +89,7 @@ export default function ShellContent() {
 					<DBControlPanelMobile
 						drawerHeaderText="Auto Top"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -174,7 +174,7 @@ export default function ShellContent() {
 					controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -229,7 +229,7 @@ export default function ShellContent() {
 					<DBControlPanelMobile
 						drawerHeaderText="Fixed Top"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -316,7 +316,7 @@ export default function ShellContent() {
 					controlPanelMobilePosition="bottom">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -371,7 +371,7 @@ export default function ShellContent() {
 					<DBControlPanelMobile
 						drawerHeaderText="Auto Left"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -457,7 +457,7 @@ export default function ShellContent() {
 					controlPanelMobilePosition="bottom">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -512,7 +512,7 @@ export default function ShellContent() {
 					<DBControlPanelMobile
 						drawerHeaderText="Fixed Left"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>

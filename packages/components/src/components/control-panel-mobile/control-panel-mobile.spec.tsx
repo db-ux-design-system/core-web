@@ -38,7 +38,7 @@ const comp: any = (
 					</DBButton>
 				</DBControlPanelSecondaryActions>
 			}
-			metaNavigation={
+			meta={
 				<DBControlPanelMeta>
 					<a href="#">Imprint</a>
 					<a href="#">Help</a>

@@ -37,7 +37,7 @@ export default function ShellSubNavigation() {
 					showSubNavigation={true}>
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -168,7 +168,7 @@ export default function ShellSubNavigation() {
 					showSubNavigation={true}>
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -299,7 +299,7 @@ export default function ShellSubNavigation() {
 					showSubNavigation={true}>
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -433,7 +433,7 @@ export default function ShellSubNavigation() {
 					showSubNavigation={true}>
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>

@@ -28,7 +28,7 @@ export default function ShellPosition() {
 					controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -83,7 +83,7 @@ export default function ShellPosition() {
 					<DBControlPanelMobile
 						drawerHeaderText="Top Position"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -154,7 +154,7 @@ export default function ShellPosition() {
 					controlPanelMobilePosition="bottom">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
@@ -209,7 +209,7 @@ export default function ShellPosition() {
 					<DBControlPanelMobile
 						drawerHeaderText="Left Position"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						metaNavigation={
+						meta={
 							<DBControlPanelMeta>
 								<DBLink href="#">Imprint</DBLink>
 								<DBLink href="#">Help</DBLink>
