@@ -69,13 +69,13 @@ const App = ({ Component, pageProps }: AppProps) => {
 					/>
 				}
 				secondaryActions={<SecondaryActions />}
-				metaNavigation={<MetaNavigation />}>
+				meta={<MetaNavigation />}>
 				<Navigation variant={settings.navigationMobileVariant} />
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
 				id={controlPanelDesktopId}
 				brand={<DBControlPanelBrand data-logo="db-systel" />}
-				metaNavigation={<MetaNavigation />}
+				meta={<MetaNavigation />}
 				primaryActions={
 					<PrimaryActions
 						color={color}
