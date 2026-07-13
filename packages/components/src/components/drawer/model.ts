@@ -61,7 +61,7 @@ export type DBDrawerDefaultProps = {
 	footer?: any;
 
 	/**
-	 * Shows a spacing between screen and drawer-content to provide enough space for the backdrop
+	 * Shows a spacing between viewport frame and drawer-content to provide enough space for the backdrop
 	 */
 	showSpacing?: boolean | string;
 
