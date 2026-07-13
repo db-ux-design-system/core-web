@@ -1,6 +1,6 @@
 import { findCssFunction, findTopLevelComma } from './css-parser.js';
 
-// ── var() ───────────────────────────────────────────────────────────────
+// Â”€â”€ var() â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  Find the next `var(` occurrence and parse it into name and optional fallback.
@@ -120,7 +120,7 @@ export const collectVarReferences = (
 	}
 };
 
-// ── Generic CSS function resolver ───────────────────────────────────────
+// Â”€â”€ Generic CSS function resolver â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  Find and evaluate all occurrences of a CSS function in a value string.
@@ -172,7 +172,7 @@ const resolveCssFunction = (
 	return result;
 };
 
-// ── calc() ──────────────────────────────────────────────────────────────
+// Â”€â”€ calc() â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  Parse a CSS unit value like "0.75rem" into its numeric value and unit.
@@ -265,7 +265,7 @@ const evaluateCalc = (expr: string): string | undefined => {
 export const resolveCalc = (value: string): string =>
 	resolveCssFunction(value, 'calc', evaluateCalc, true);
 
-// ── color-mix() ─────────────────────────────────────────────────────────
+// Â”€â”€ color-mix() â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  Parse a hex color string to an RGBA tuple.
