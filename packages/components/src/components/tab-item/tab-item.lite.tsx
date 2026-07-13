@@ -33,6 +33,29 @@ export default function DBTabItem(props: DBTabItemProps) {
 		tooltipText: '',
 		_resizeObserver: null,
 		_mutationObserver: null,
+		// Removes only the truncation tooltip's ID from aria-describedby,
+		// preserving any consumer-provided IDs in the space-separated list.
+		_cleanupTooltipAria: () => {
+			if (!_ref) return;
+			if (!_ref.hasAttribute('data-has-tooltip')) return;
+
+			_ref.removeAttribute('data-has-tooltip');
+
+			const tooltipEl = _ref.querySelector('.db-tooltip');
+			if (!tooltipEl || !tooltipEl.id) return;
+
+			const describedBy = _ref.getAttribute('aria-describedby') || '';
+			const remaining = describedBy
+				.split(' ')
+				.filter((id: string) => id !== '' && id !== tooltipEl.id)
+				.join(' ');
+
+			if (remaining) {
+				_ref.setAttribute('aria-describedby', remaining);
+			} else {
+				_ref.removeAttribute('aria-describedby');
+			}
+		},
 		checkTruncation: () => {
 			if (_labelRef) {
 				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
@@ -42,13 +65,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 				if (state.isTruncated !== truncated) {
 					state.isTruncated = truncated;
 
-					if (!truncated && _ref) {
-						if (_ref.hasAttribute('data-has-tooltip')) {
-							_ref.removeAttribute('data-has-tooltip');
-						}
-						if (_ref.hasAttribute('aria-describedby')) {
-							_ref.removeAttribute('aria-describedby');
-						}
+					if (!truncated) {
+						state._cleanupTooltipAria();
 					}
 				}
 
@@ -134,17 +152,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	}, [props.label]);
 
-	// Manually sync DOM attributes
+	// Manually sync DOM attributes when truncation state changes
 	onUpdate(() => {
-		if (_ref) {
-			if (!state.isTruncated) {
-				if (_ref.hasAttribute('data-has-tooltip')) {
-					_ref.removeAttribute('data-has-tooltip');
-				}
-				if (_ref.hasAttribute('aria-describedby')) {
-					_ref.removeAttribute('aria-describedby');
-				}
-			}
+		if (_ref && !state.isTruncated) {
+			state._cleanupTooltipAria();
 		}
 	}, [_ref, state.isTruncated]);
 
