@@ -67,6 +67,18 @@ describe('button-type-required', () => {
 				code: '<usermedia><div><DBButton>Nested</DBButton></div></usermedia>',
 				errors: [{ messageId: 'missingType' }],
 				output: '<usermedia><div><DBButton type="button">Nested</DBButton></div></usermedia>'
+			},
+			{
+				// PascalCase component names are not native permission elements
+				code: '<Geolocation><DBButton>Submit</DBButton></Geolocation>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<Geolocation><DBButton type="submit">Submit</DBButton></Geolocation>'
+			},
+			{
+				// PascalCase component names are not native permission elements
+				code: '<Usermedia><DBButton>Submit</DBButton></Usermedia>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<Usermedia><DBButton type="submit">Submit</DBButton></Usermedia>'
 			}
 		]
 	});

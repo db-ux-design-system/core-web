@@ -28,7 +28,14 @@ export default {
 			let { parent } = node;
 			while (parent) {
 				if (['Element', 'Element$1'].includes(parent.type)) {
-					if (PERMISSION_ELEMENTS.has(parent.name?.toLowerCase())) {
+					// Only match native (already lowercase) tag names.
+					// PascalCase components like <Geolocation> are not
+					// native permission elements.
+					if (
+						parent.name &&
+						parent.name === parent.name.toLowerCase() &&
+						PERMISSION_ELEMENTS.has(parent.name)
+					) {
 						return true;
 					}
 				} else if (
@@ -44,7 +51,12 @@ export default {
 							: parentName?.type === 'JSXIdentifier'
 								? parentName.name
 								: null;
-					if (name && PERMISSION_ELEMENTS.has(name.toLowerCase())) {
+					// Only match native (already lowercase) tag names.
+					if (
+						name &&
+						name === name.toLowerCase() &&
+						PERMISSION_ELEMENTS.has(name)
+					) {
 						return true;
 					}
 				}
