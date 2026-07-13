@@ -13,8 +13,9 @@ export const setScrollViewport =
 		);
 
 		const width = page.viewportSize()?.width ?? 0;
+		const computedHeight = headerHeight + mainHeight;
 
-		const height = fixedHeight ?? headerHeight + mainHeight;
+		const height = fixedHeight ?? computedHeight;
 
 		await page.setViewportSize({
 			width,
