@@ -449,13 +449,11 @@ export default function DBTabs(props: DBTabsProps) {
 					// Set the focusgroup attribute to match orientation.
 					// 'tablist' defaults to inline wrap (horizontal);
 					// for vertical tabs we override with 'block'.
-					if (state._focusgroupSupported) {
-						const focusgroupValue =
-							props.orientation === 'vertical'
-								? 'tablist block wrap'
-								: 'tablist';
-						container.setAttribute('focusgroup', focusgroupValue);
-					}
+					const focusgroupValue =
+						props.orientation === 'vertical'
+							? 'tablist block wrap'
+							: 'tablist';
+					container.setAttribute('focusgroup', focusgroupValue);
 
 					const label = props.label;
 					if (label) {
