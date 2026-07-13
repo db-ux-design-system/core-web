@@ -334,6 +334,23 @@ export default function DBTabs(props: DBTabsProps) {
 				: state.getInitialIndex();
 		},
 
+		// Returns the index that should receive tabIndex={0} during render.
+		// When no tab is selected (manual mode, getRenderIndex() === -1),
+		// the first non-disabled tab should still be focusable to ensure
+		// at least one tab is in the sequential tab order for SSR/no-JS.
+		getRenderFocusIndex(): number {
+			const activeIdx = state.getRenderIndex();
+			if (activeIdx !== -1) {
+				return activeIdx;
+			}
+			// In manual mode, find the first enabled tab from the data-driven list.
+			const tabs = state.getTabs();
+			const firstEnabled = tabs.findIndex(
+				(tab: DBSimpleTabProps) => !getBoolean(tab.disabled, 'disabled')
+			);
+			return firstEnabled !== -1 ? firstEnabled : 0;
+		},
+
 		// Synchronously resolves the initially selected index from props/active entry. Used during render so SSR output hides inactive panels and at mount.
 		getInitialIndex(): number {
 			if (props.activeIndex !== undefined) {
@@ -837,7 +854,13 @@ export default function DBTabs(props: DBTabsProps) {
 								iconTrailing={tab.iconTrailing}
 								showIconTrailing={tab.showIconTrailing}
 								disabled={tab.disabled}
-								active={state.getRenderIndex() === index}
+								active={
+									state.getRenderIndex() === -1
+										? state.getRenderFocusIndex() === index
+											? undefined
+											: false
+										: state.getRenderIndex() === index
+								}
 								value={tab.value}
 							/>
 						)}

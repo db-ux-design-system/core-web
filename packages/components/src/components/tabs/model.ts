@@ -124,6 +124,7 @@ export type DBTabsDefaultState = {
 	getTabs: () => DBSimpleTabProps[];
 	getInitialIndex: () => number;
 	getRenderIndex: () => number;
+	getRenderFocusIndex: () => number;
 	getActiveChildIndex: () => number;
 	shouldUseActiveChild: (hashApplied: boolean) => boolean;
 	moveRovingTabindex: (focusIndex: number) => void;
