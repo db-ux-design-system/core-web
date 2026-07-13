@@ -36,12 +36,12 @@ export const createRule = <T = any>({
 	const ruleFunction: Rule =
 		(primaryOptions: boolean, secondaryOptions: T, context) =>
 		(root: Root, result: PostcssResult) => {
-			const validOptions = validateOptions(result, ruleName, {
+			const isValidOptions = validateOptions(result, ruleName, {
 				actual: primaryOptions,
 				possible: [true]
 			});
 
-			if (!validOptions) {
+			if (!isValidOptions) {
 				return;
 			}
 

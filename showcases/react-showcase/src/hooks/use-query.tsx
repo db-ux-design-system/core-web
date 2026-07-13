@@ -32,22 +32,24 @@ const useQuery = (
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
-			if (value) {
-				if (key === DENSITY_CONST && density !== value) {
-					setDensity(value);
-				}
+			if (!value) {
+				continue;
+			}
 
-				if (key === COLOR_CONST && color !== value) {
-					setColor(value);
-				}
+			if (key === DENSITY_CONST && density !== value) {
+				setDensity(value);
+			}
 
-				if (key === 'page' && page !== value.toLowerCase()) {
-					setPage(value.toLowerCase());
-				}
+			if (key === COLOR_CONST && color !== value) {
+				setColor(value);
+			}
 
-				if (key === 'fullscreen' && fullscreen !== Boolean(value)) {
-					setFullscreen(Boolean(value));
-				}
+			if (key === 'page' && page !== value.toLowerCase()) {
+				setPage(value.toLowerCase());
+			}
+
+			if (key === 'fullscreen' && fullscreen !== Boolean(value)) {
+				setFullscreen(Boolean(value));
 			}
 		}
 
