@@ -36,6 +36,9 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<DBDrawer header={headerSlot}>Content</DBDrawer>'
+			},
+			{
+				code: '<DBDrawer header={<><DBDrawerHeader>Title</DBDrawerHeader></>}>Content</DBDrawer>'
 			}
 		],
 		invalid: [
@@ -59,6 +62,24 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<DBDrawer header={<div>Title</div>}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
+			{
+				code: '<DBDrawer header>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
+			{
+				code: '<DBDrawer header="Title">Content</DBDrawer>',
 				errors: [
 					{
 						messageId: 'drawerHeaderRequired',

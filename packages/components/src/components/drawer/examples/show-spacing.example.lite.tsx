@@ -30,7 +30,7 @@ export default function DrawerShowSpacing() {
 					containerSize="full"
 					onClose={() => setOpenIndex(-1)}
 					header={
-						<DBDrawerHeader>(Default) With Spacing</DBDrawerHeader>
+						<DBDrawerHeader closeButtonText="Close">(Default) With Spacing</DBDrawerHeader>
 					}>
 					(Default) With Spacing
 				</DBDrawer>
@@ -46,7 +46,7 @@ export default function DrawerShowSpacing() {
 					containerSize="full"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>Without Spacing</DBDrawerHeader>}>
+					header={<DBDrawerHeader closeButtonText="Close">Without Spacing</DBDrawerHeader>}>
 					Without Spacing
 				</DBDrawer>
 			</div>

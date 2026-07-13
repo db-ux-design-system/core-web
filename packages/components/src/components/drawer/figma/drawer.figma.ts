@@ -15,7 +15,7 @@ const drawerProps: Record<string, FigmaProp> = {
 	direction: {
 		type: 'enum',
 		key: 'Direction',
-		value: { Right: 'to-right', Left: 'to-left', Bottom: 'up', Top: 'down' }
+		value: { Right: 'to-left', Left: 'to-right', Bottom: 'up', Top: 'down' }
 	},
 	size: {
 		type: 'enum',

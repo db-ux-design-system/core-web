@@ -108,6 +108,21 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 - `configs/plugins/storybook/get-stories.cjs` — builds individual story exports
 - `configs/plugins/storybook/storybook-plugin.cjs` — main Mitosis plugin entry
 
+## Model Convention: Always Keep `DefaultProps` and `DefaultState`
+
+Every component's `model.ts` **must** export a `DB[ComponentName]DefaultProps` and `DB[ComponentName]DefaultState` type, even if they are empty (`{}`). This ensures consistency across all components and makes it straightforward to add default values later without restructuring the type hierarchy.
+
+```ts
+// Always present, even when empty:
+export type DBDrawerFooterDefaultProps = {};
+export type DBDrawerFooterProps = DBDrawerFooterDefaultProps & GlobalProps;
+
+export type DBDrawerFooterDefaultState = {};
+export type DBDrawerFooterState = DBDrawerFooterDefaultState & GlobalState;
+```
+
+During code review, **do not flag empty `DefaultProps`/`DefaultState` types as dead code** — they are intentional for alignment with the component architecture.
+
 ## Adding or Modifying Components
 
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually

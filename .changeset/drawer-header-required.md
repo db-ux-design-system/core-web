@@ -6,8 +6,10 @@
 "@db-ux/v-core-components": major
 ---
 
-refactor: require `DBDrawerHeader` in `header` slot, remove `spacing` property, and change default `direction` to `left` for `DBDrawer`
+refactor: DBDrawer with breaking changes
 
 - The `DBDrawer` component now requires a `DBDrawerHeader` component to be passed in the `header` slot.
 - The `spacing` property has been removed from `DBDrawer`.
-- The default `direction` has changed from `right` to `left`.
+- The default `direction` has changed from `right` to `to-left`.
+- The `width` property has been renamed to `containerSize`.
+- The `direction` values have been renamed from `right`/`left` to `to-left`/`to-right`.

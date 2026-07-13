@@ -28,7 +28,7 @@ export default function DrawerRounded() {
 					rounded={false}
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>(Default) False</DBDrawerHeader>}>
+					header={<DBDrawerHeader closeButtonText="Close">(Default) False</DBDrawerHeader>}>
 					(Default) False
 				</DBDrawer>
 			</div>
@@ -42,7 +42,7 @@ export default function DrawerRounded() {
 					rounded={true}
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader>True</DBDrawerHeader>}>
+					header={<DBDrawerHeader closeButtonText="Close">True</DBDrawerHeader>}>
 					True
 				</DBDrawer>
 			</div>

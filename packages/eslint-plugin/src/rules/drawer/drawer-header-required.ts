@@ -68,9 +68,15 @@ function hasVueHeaderSlot(node: any): boolean {
  */
 function isValidHeaderProp(headerAttr: any): boolean {
 	const { value } = headerAttr;
+
+	// Boolean attribute (e.g. <DBDrawer header>) or string literal (e.g. <DBDrawer header="Title">)
+	// are NOT valid — the header prop must contain a DBDrawerHeader component
+	if (!value || value.type === 'Literal') {
+		return false;
+	}
+
 	if (value?.type !== 'JSXExpressionContainer') {
-		// String literal or other static value — accept it
-		return true;
+		return false;
 	}
 
 	const expr = value.expression;
@@ -91,6 +97,12 @@ function isValidHeaderProp(headerAttr: any): boolean {
 		'ConditionalExpression',
 		'LogicalExpression'
 	];
+
+	// Also allow JSX fragments (e.g. header={<><DBDrawerHeader>Title</DBDrawerHeader></>})
+	if (expr?.type === 'JSXFragment') {
+		return true;
+	}
+
 	return dynamicTypes.includes(expr?.type);
 }
 
