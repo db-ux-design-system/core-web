@@ -711,7 +711,8 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 
 		if (typeof window !== 'undefined') {
-			requestAnimationFrame(() => {
+			state._pendingRafId = requestAnimationFrame(() => {
+				state._pendingRafId = null;
 				state.initTabList();
 				state.initTabs();
 				let resolvedIndex = startIndex;
