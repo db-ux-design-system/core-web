@@ -27,7 +27,11 @@ export default function DrawerDensity() {
 				<DBDrawer
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader closeButtonText="Close">Functional</DBDrawerHeader>}>
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							Functional
+						</DBDrawerHeader>
+					}>
 					Functional
 				</DBDrawer>
 			</div>
@@ -40,7 +44,11 @@ export default function DrawerDensity() {
 				<DBDrawer
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader closeButtonText="Close">(Default) Regular</DBDrawerHeader>}>
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							(Default) Regular
+						</DBDrawerHeader>
+					}>
 					(Default) Regular
 				</DBDrawer>
 			</div>
@@ -53,7 +61,11 @@ export default function DrawerDensity() {
 				<DBDrawer
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
-					header={<DBDrawerHeader closeButtonText="Close">Expressive</DBDrawerHeader>}>
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							Expressive
+						</DBDrawerHeader>
+					}>
 					Expressive
 				</DBDrawer>
 			</div>
