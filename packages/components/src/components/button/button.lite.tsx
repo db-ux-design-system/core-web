@@ -23,9 +23,11 @@ export default function DBButton(props: DBButtonProps) {
 		getButtonType: () => {
 			if (props.type) {
 				return props.type;
-			} else if (props.onClick) {
-				return 'button';
-			} else if (props.commandfor) {
+			} else if (
+				props.onClick ||
+				props.commandfor ||
+				_ref?.closest('usermedia, geolocation')
+			) {
 				return 'button';
 			}
 			return 'submit';

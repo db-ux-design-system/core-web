@@ -105,9 +105,70 @@ const testAction = () => {
 	});
 };
 
+const testButtonType = () => {
+	test('should default to type="submit" without onClick or commandfor', async ({
+		mount
+	}) => {
+		const component = await mount(<DBButton>Test</DBButton>);
+		await expect(component).toHaveAttribute('type', 'submit');
+	});
+
+	test('should use explicit type prop when provided', async ({ mount }) => {
+		const component = await mount(<DBButton type="reset">Test</DBButton>);
+		await expect(component).toHaveAttribute('type', 'reset');
+	});
+
+	test('should be type="button" when onClick is provided', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBButton onClick={() => {}}>Test</DBButton>
+		);
+		await expect(component).toHaveAttribute('type', 'button');
+	});
+
+	test('should be type="button" when commandfor is provided', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBButton command="show-modal" commandfor="my-dialog">
+				Test
+			</DBButton>
+		);
+		await expect(component).toHaveAttribute('type', 'button');
+	});
+
+	test('should be type="button" when wrapped in a usermedia element', async ({
+		mount,
+		page
+	}) => {
+		await page.setContent('<usermedia><div id="mount"></div></usermedia>');
+		const component = await mount(<DBButton>Test</DBButton>, {
+			hooksConfig: undefined,
+			selector: '#mount'
+		});
+		await expect(component).toHaveAttribute('type', 'button');
+	});
+
+	test('should be type="button" when wrapped in a geolocation element', async ({
+		mount,
+		page
+	}) => {
+		await page.setContent(
+			'<geolocation><div id="mount"></div></geolocation>'
+		);
+		const component = await mount(<DBButton>Test</DBButton>, {
+			hooksConfig: undefined,
+			selector: '#mount'
+		});
+		await expect(component).toHaveAttribute('type', 'button');
+	});
+};
+
 test.describe('DBButton', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testButton();
 	testA11y();
 	testAction();
+	testButtonType();
 });
