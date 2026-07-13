@@ -13,3 +13,4 @@ refactor: multiple components with breaking changes
 - `DBBrand` becomes `DBControlPanelBrand`
 - `subNavigation` slot of `NavigationItem` is removed, use `NavigationItemGroup` instead
 - `DBControlPanelFlatIconNavigation` becomes `DBControlPanelFlatIcon`
+- `metaNavigation` slot/prop of `DBControlPanelDesktop` and `DBControlPanelMobile` is renamed to `meta`
