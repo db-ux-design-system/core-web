@@ -94,6 +94,9 @@ export default function DBTabs(props: DBTabsProps) {
 			// Only emit the change and let the parent drive selection via
 			// props.activeIndex, which flows through onUpdate -> syncSelection.
 			if (props.activeIndex !== undefined) {
+				if (index === Number(props.activeIndex)) {
+					return;
+				}
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
