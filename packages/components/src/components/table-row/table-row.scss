@@ -43,7 +43,6 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 		position: relative;
 
 		td :not(#{$interactive-row-action}) {
-			position: relative;
 			z-index: 1;
 		}
 
