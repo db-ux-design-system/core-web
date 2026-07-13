@@ -48,7 +48,6 @@ export const migrate = (
 				dry
 			};
 			const result: ReplaceResult[] = replaceInFileSync(option);
-
 			if (dry) {
 				if (cli) {
 					console.log(result.filter((res) => res.hasChanged));
