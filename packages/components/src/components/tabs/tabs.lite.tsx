@@ -623,6 +623,15 @@ export default function DBTabs(props: DBTabsProps) {
 				'aria-orientation',
 				props.orientation ?? 'horizontal'
 			);
+			// Keep the focusgroup attribute in sync so browsers that support
+			// it use the correct axis for arrow-key navigation.
+			if (container) {
+				const focusgroupValue =
+					props.orientation === 'vertical'
+						? 'tablist block wrap'
+						: 'tablist';
+				container.setAttribute('focusgroup', focusgroupValue);
+			}
 		}
 	}, [_ref, props.orientation]);
 
