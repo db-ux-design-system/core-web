@@ -1,6 +1,6 @@
 # Migration DBDrawer
 
-## Breaking Changes
+## Breaking changes
 
 | Change                             | Before                       | After                                               |
 | ---------------------------------- | ---------------------------- | --------------------------------------------------- |
@@ -61,7 +61,7 @@ const App = () => {
 };
 ```
 
-## Removed `spacing` Property
+## Removed `spacing` property
 
 The `spacing` property has been removed from `DBDrawer`. Remove any usage of this prop.
 
@@ -85,7 +85,7 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 </DBDrawer>
 ```
 
-## `direction` Values Renamed
+## `direction` values renamed
 
 The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. If you relied on the default `right` behavior (which was opening from right), you now need to set `direction="to-left"` explicitly (slides from right border to the left).
 
@@ -111,7 +111,7 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 </DBDrawer>;
 ```
 
-## `width` Renamed to `containerSize`
+## `width` renamed to `containerSize`
 
 The `width` property has been replaced by `containerSize` with new size options: `small` (default on desktop), `medium`, `large`, and `full`.
 
@@ -131,7 +131,7 @@ The `width` property has been replaced by `containerSize` with new size options:
 </DBDrawer>
 ```
 
-## New `showSpacing` Property
+## New `showSpacing` property
 
 The `showSpacing` property controls the spacing between the screen edge and the drawer content. It defaults to `true`. Set `showSpacing={false}` to remove the spacing.
 
