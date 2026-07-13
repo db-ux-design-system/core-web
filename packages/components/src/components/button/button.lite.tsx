@@ -1,4 +1,5 @@
 import {
+	onMount,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -20,17 +21,24 @@ export default function DBButton(props: DBButtonProps) {
 	const _ref = useRef<HTMLButtonElement | any>(null);
 
 	const state = useStore<DBButtonState>({
+		_isInsidePermissionElement: false,
 		getButtonType: () => {
 			if (props.type) {
 				return props.type;
 			} else if (
 				props.onClick ||
 				props.commandfor ||
-				_ref?.closest('usermedia, geolocation')
+				state._isInsidePermissionElement
 			) {
 				return 'button';
 			}
 			return 'submit';
+		}
+	});
+
+	onMount(() => {
+		if (_ref?.closest('usermedia, geolocation')) {
+			state._isInsidePermissionElement = true;
 		}
 	});
 

@@ -86,6 +86,7 @@ export type DBButtonProps = DBButtonDefaultProps &
 	NoTextProps;
 
 export type DBButtonDefaultState = {
+	_isInsidePermissionElement: boolean;
 	getButtonType: () => ButtonTypeType;
 };
 
