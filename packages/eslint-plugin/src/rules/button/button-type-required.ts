@@ -22,13 +22,51 @@ export default {
 		schema: []
 	},
 	create(context: any) {
+		const PERMISSION_ELEMENTS = new Set(['usermedia', 'geolocation']);
+
+		const hasPermissionElementAncestor = (node: any): boolean => {
+			let { parent } = node;
+			while (parent) {
+				if (['Element', 'Element$1'].includes(parent.type)) {
+					if (PERMISSION_ELEMENTS.has(parent.name?.toLowerCase())) {
+						return true;
+					}
+				} else if (
+					parent.type === 'JSXElement' ||
+					parent.type === 'VElement'
+				) {
+					const parentOpening = parent.openingElement || parent;
+					const parentName =
+						parentOpening.name || parentOpening.rawName;
+					const name =
+						typeof parentName === 'string'
+							? parentName
+							: parentName?.type === 'JSXIdentifier'
+								? parentName.name
+								: null;
+					if (name && PERMISSION_ELEMENTS.has(name.toLowerCase())) {
+						return true;
+					}
+				}
+
+				parent = parent.parent;
+			}
+			return false;
+		};
+
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
 			if (type === undefined) {
 				const hasClickHandler = getAttributeValue(node, '(click)');
 				const hasCommandFor = getAttributeValue(node, 'commandfor');
+				const isInsidePermissionElement =
+					hasPermissionElementAncestor(node);
 				const typeValue =
-					hasClickHandler || hasCommandFor ? 'button' : 'submit';
+					hasClickHandler ||
+					hasCommandFor ||
+					isInsidePermissionElement
+						? 'button'
+						: 'submit';
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -78,9 +116,13 @@ export default {
 				getAttributeValue(openingElement, '(click)') ||
 				getAttributeValue(openingElement, '@click');
 
+			const isInsidePermissionElement =
+				hasPermissionElementAncestor(node);
+
 			const typeValue =
 				hasClickHandler ||
-				getAttributeValue(openingElement, 'commandfor')
+				getAttributeValue(openingElement, 'commandfor') ||
+				isInsidePermissionElement
 					? 'button'
 					: 'submit';
 

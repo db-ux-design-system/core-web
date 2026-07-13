@@ -52,6 +52,21 @@ describe('button-type-required', () => {
 				code: '<DBButton commandfor="dialog">Toggle</DBButton>',
 				errors: [{ messageId: 'missingType' }],
 				output: '<DBButton commandfor="dialog" type="button">Toggle</DBButton>'
+			},
+			{
+				code: '<usermedia><DBButton>Grant Access</DBButton></usermedia>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<usermedia><DBButton type="button">Grant Access</DBButton></usermedia>'
+			},
+			{
+				code: '<geolocation><DBButton>Share Location</DBButton></geolocation>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<geolocation><DBButton type="button">Share Location</DBButton></geolocation>'
+			},
+			{
+				code: '<usermedia><div><DBButton>Nested</DBButton></div></usermedia>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<usermedia><div><DBButton type="button">Nested</DBButton></div></usermedia>'
 			}
 		]
 	});
@@ -75,6 +90,16 @@ describe('button-type-required', () => {
 				code: '<db-button commandfor="dialog">Toggle</db-button>',
 				errors: [{ messageId: 'missingType' }],
 				output: '<db-button commandfor="dialog" type="button">Toggle</db-button>'
+			},
+			{
+				code: '<usermedia><db-button>Grant Access</db-button></usermedia>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<usermedia><db-button type="button">Grant Access</db-button></usermedia>'
+			},
+			{
+				code: '<geolocation><db-button>Share Location</db-button></geolocation>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<geolocation><db-button type="button">Share Location</db-button></geolocation>'
 			}
 		]
 	});
