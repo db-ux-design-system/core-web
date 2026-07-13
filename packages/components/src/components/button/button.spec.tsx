@@ -139,29 +139,27 @@ const testButtonType = () => {
 	});
 
 	test('should be type="button" when wrapped in a usermedia element', async ({
-		mount,
-		page
+		mount
 	}) => {
-		await page.setContent('<usermedia><div id="mount"></div></usermedia>');
-		const component = await mount(<DBButton>Test</DBButton>, {
-			hooksConfig: undefined,
-			selector: '#mount'
-		});
-		await expect(component).toHaveAttribute('type', 'button');
+		const component = await mount(
+			<usermedia>
+				<DBButton>Test</DBButton>
+			</usermedia>
+		);
+		const button = component.locator('.db-button');
+		await expect(button).toHaveAttribute('type', 'button');
 	});
 
 	test('should be type="button" when wrapped in a geolocation element', async ({
-		mount,
-		page
+		mount
 	}) => {
-		await page.setContent(
-			'<geolocation><div id="mount"></div></geolocation>'
+		const component = await mount(
+			<geolocation>
+				<DBButton>Test</DBButton>
+			</geolocation>
 		);
-		const component = await mount(<DBButton>Test</DBButton>, {
-			hooksConfig: undefined,
-			selector: '#mount'
-		});
-		await expect(component).toHaveAttribute('type', 'button');
+		const button = component.locator('.db-button');
+		await expect(button).toHaveAttribute('type', 'button');
 	});
 };
 
