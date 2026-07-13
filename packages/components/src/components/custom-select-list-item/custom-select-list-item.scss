@@ -51,6 +51,10 @@ db-custom-select-list-item:not(:last-of-type) {
 
 		inline-size: 100%;
 
+		&::before {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
 		&::after {
 			margin-inline-start: auto;
 		}
@@ -72,8 +76,6 @@ db-custom-select-list-item:not(:last-of-type) {
 
 		&:has(input[type="radio"]) {
 			--db-icon-trailing: "none";
-
-			gap: 0;
 		}
 
 		&:has(input[type="radio"]:checked) {

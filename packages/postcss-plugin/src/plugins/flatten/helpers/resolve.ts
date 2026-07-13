@@ -422,14 +422,12 @@ const evaluateColorMix = (args: string): string | undefined => {
 		alpha2 = parsed[3];
 	}
 
-	 
 	const mixedAlpha = alpha1 * pct1 + alpha2 * pct2;
 	if (mixedAlpha === 0) {
 		return 'transparent';
 	}
 
 	const mix = (c1: number, c2: number): number =>
-		 
 		(c1 * alpha1 * pct1 + c2 * alpha2 * pct2) / mixedAlpha;
 
 	const r = mix(rgb1[0], rgb2[0]);

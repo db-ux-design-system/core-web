@@ -1,5 +1,3 @@
- 
-
 import { glob } from 'glob';
 import fs from 'node:fs';
 import * as https from 'node:https';
@@ -18,13 +16,13 @@ type Replacement = {
 
 const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 	let readFile = fs.readFileSync(file).toString();
-	let match = readFile.match(shieldRegex);
+	let match = shieldRegex.exec(readFile);
 
 	while (match && match.length > 0) {
 		const svgUrl = match[0];
 		let svgName = svgUrl;
 		if (svgUrl.includes('badge/dynamic/')) {
-			const dynamicsMatch = svgUrl.match('query=%24.*');
+			const dynamicsMatch = /query=%24.*/.exec(svgUrl);
 			if (dynamicsMatch) {
 				svgName = dynamicsMatch[0].replace('query=%24', '');
 			}
@@ -56,7 +54,7 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 		}
 
 		readFile = readFile.slice((match.index ?? 0) + svgUrl.length);
-		match = readFile.match(shieldRegex);
+		match = shieldRegex.exec(readFile);
 	}
 };
 

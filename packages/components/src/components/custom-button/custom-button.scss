@@ -48,6 +48,7 @@ $icon-padding-custom-button: calc(
 
 	&[data-no-text="true"] {
 		--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+		--db-icon-passing-padding-inline-start: 0;
 	}
 
 	label:has(input:checked) {

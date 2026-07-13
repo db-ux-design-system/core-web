@@ -94,5 +94,4 @@ const buildGHPage = async () => {
 	}
 };
 
- 
-void buildGHPage();
+await buildGHPage();

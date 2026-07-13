@@ -62,7 +62,10 @@
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
-		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
+		@include icon-passing.icon-passing(
+			variables.$db-spacing-fixed-2xs,
+			variables.$db-spacing-fixed-2xs
+		);
 		@include tag-components.get-tag-colors-interactive;
 	}
 

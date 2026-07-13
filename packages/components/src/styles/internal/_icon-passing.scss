@@ -4,16 +4,13 @@ $interactive-button-selectors: "label,button,a";
 
 @mixin icon-passing(
 	$inline-start: variables.$db-spacing-fixed-sm,
-	$block-start: calc(50% - 0.5em)
+	$gap: variables.$db-spacing-fixed-xs
 ) {
 	&[data-icon-leading]:not([data-show-icon-leading="false"]),
 	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
-			inset-block-start: var(
-				--db-icon-passing-inset-block-start,
-				#{$block-start}
-			);
+			inset-block-start: calc(50% - 0.5em);
 			inset-inline-start: var(
 				--db-icon-passing-inset-inline-start,
 				#{$inline-start}
@@ -27,10 +24,7 @@ $interactive-button-selectors: "label,button,a";
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding-inline-start: var(
 				--db-icon-passing-padding-inline-start,
-				calc(
-					#{$inline-start} + #{icons.$default-icon-margin-end} +
-						var(--db-icon-font-size)
-				)
+				calc(#{$inline-start} + #{$gap} + 1lh)
 			);
 		}
 	}
@@ -49,8 +43,7 @@ $interactive-button-selectors: "label,button,a";
 		> :is(#{$interactive-button-selectors}),
 		> * > :is(#{$interactive-button-selectors}) {
 			padding-inline-end: calc(
-				#{$inline-end} + #{variables.$db-spacing-fixed-xs} +
-					var(--db-icon-font-size)
+				#{$inline-end} + #{variables.$db-spacing-fixed-xs} + 1lh
 			);
 		}
 	}

@@ -1152,5 +1152,4 @@ const reorderBacklog = async () => {
 	);
 };
 
- 
-void reorderBacklog();
+await reorderBacklog();
