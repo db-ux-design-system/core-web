@@ -167,11 +167,11 @@
 
 			&:not([data-direction]),
 			&[data-direction="to-left"] {
-				border-inline-end: component.$component-border;
+				border-inline-start: component.$component-border;
 			}
 
 			&[data-direction="to-right"] {
-				border-inline-start: component.$component-border;
+				border-inline-end: component.$component-border;
 			}
 
 			&[data-direction="up"] {

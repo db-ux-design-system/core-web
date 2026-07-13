@@ -86,6 +86,15 @@ describe('drawer-header-required', () => {
 						data: { component: 'DBDrawer' }
 					}
 				]
+			},
+			{
+				code: '<DBDrawer header={<><div>Title</div></>}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
 			}
 		]
 	});

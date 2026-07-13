@@ -73,6 +73,18 @@ describe('close-button-text-required', () => {
 				]
 			},
 			{
+				code: '<DBDrawerHeader closeButtonText>Title</DBDrawerHeader>',
+				errors: [
+					{
+						messageId: 'missingCloseButtonText',
+						data: {
+							component: 'DBDrawerHeader',
+							attribute: 'closeButtonText'
+						}
+					}
+				]
+			},
+			{
 				code: '<DBCustomSelect label="Select" />',
 				errors: [
 					{

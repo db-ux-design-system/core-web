@@ -98,9 +98,15 @@ function isValidHeaderProp(headerAttr: any): boolean {
 		'LogicalExpression'
 	];
 
-	// Also allow JSX fragments (e.g. header={<><DBDrawerHeader>Title</DBDrawerHeader></>})
+	// Allow JSX fragments only if they contain a DBDrawerHeader child
 	if (expr?.type === 'JSXFragment') {
-		return true;
+		const children = expr.children || [];
+		return children.some(
+			(child: any) =>
+				child.type === 'JSXElement' &&
+				child.openingElement &&
+				isDBComponent(child.openingElement, COMPONENTS.DBDrawerHeader)
+		);
 	}
 
 	return dynamicTypes.includes(expr?.type);

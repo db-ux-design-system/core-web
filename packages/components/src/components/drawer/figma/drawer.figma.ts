@@ -2,9 +2,9 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 
 export type FigmaDrawerProps = {
 	direction?: string;
-	size?: string;
+	containerSize?: string;
 	rounded?: boolean;
-	spacing?: string;
+	showSpacing?: boolean;
 	showBackdrop?: boolean;
 	drawerHeader?: string;
 	showText?: boolean;
@@ -17,22 +17,13 @@ const drawerProps: Record<string, FigmaProp> = {
 		key: 'Direction',
 		value: { Right: 'to-left', Left: 'to-right', Bottom: 'up', Top: 'down' }
 	},
-	size: {
+	containerSize: {
 		type: 'enum',
 		key: 'Size',
 		value: { Medium: 'medium', Full: 'full' }
 	},
 	rounded: { type: 'boolean', key: 'Rounded' },
-	spacing: {
-		type: 'enum',
-		key: 'Spacing',
-		value: {
-			'(Def) Medium': 'medium',
-			Small: 'small',
-			Large: 'large',
-			None: 'none'
-		}
-	},
+	showSpacing: { type: 'boolean', key: 'Show Spacing' },
 	showBackdrop: { type: 'boolean', key: 'Show Backdrop' },
 	drawerHeader: {
 		type: 'string',

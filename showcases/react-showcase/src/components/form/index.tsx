@@ -6,6 +6,7 @@ import {
 	DBCustomSelect,
 	DBDivider,
 	DBDrawer,
+	DBDrawerHeader,
 	DBInfotext,
 	DBInput,
 	DBLink,
