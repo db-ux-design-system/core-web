@@ -162,8 +162,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Disconnect the observers
 	onUnMount(() => {
 		state._unmounted = true;
-		if (state._setupRafId !== null) {
-			cancelAnimationFrame(state._setupRafId);
+		const rafId = state._setupRafId;
+		if (rafId !== null) {
+			cancelAnimationFrame(rafId);
 			state._setupRafId = null;
 		}
 		state._resizeObserver?.disconnect();
