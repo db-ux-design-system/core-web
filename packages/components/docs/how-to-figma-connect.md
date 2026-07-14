@@ -509,9 +509,10 @@ export const checkboxes: FigmaCodeConnect = {
 
 ### Update snapshots
 
-After any change to `.figma.ts` or `.figma.lite.tsx` files, update the snapshots for all three frameworks:
+After any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks:
 
 ```shell
+pnpm run generate:figma --workspace=@db-ux/core-components
 pnpm run test:update --workspace=react-figma
 pnpm run test:update --workspace=angular-figma
 pnpm run test:update --workspace=vue-figma
