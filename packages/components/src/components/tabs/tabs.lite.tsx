@@ -175,7 +175,15 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				const tabIndex = rovingIndex === index ? 0 : -1;
 				button.setAttribute('aria-selected', String(isSelected));
-				if (!state._focusgroupSupported) {
+				if (state._focusgroupSupported) {
+					// Mark the active tab as the focusgroup entry point so the
+					// browser tabs into the selected tab rather than the first one.
+					if (rovingIndex === index) {
+						button.setAttribute('focusgroupstart', '');
+					} else {
+						button.removeAttribute('focusgroupstart');
+					}
+				} else {
 					button.setAttribute('tabindex', String(tabIndex));
 				}
 			});
