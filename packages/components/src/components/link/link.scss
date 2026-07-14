@@ -13,8 +13,6 @@
 	@extend %db-default-link;
 	@extend %db-overwrite-font-size-md;
 
-	gap: variables.$db-spacing-fixed-2xs;
-
 	a {
 		// Workaround for angular
 		@extend %db-link-height;
@@ -30,6 +28,10 @@
 		&:not([data-variant="inline"]) {
 			@include icons.set-icon("arrow_up_right", "after");
 		}
+	}
+
+	&::after {
+		margin-inline-start: variables.$db-spacing-fixed-2xs;
 	}
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
@@ -50,6 +52,8 @@
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
 
-		gap: variables.$db-spacing-fixed-3xs;
+		&::after {
+			margin-inline-start: variables.$db-spacing-fixed-3xs;
+		}
 	}
 }
