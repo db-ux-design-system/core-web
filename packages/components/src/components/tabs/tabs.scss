@@ -156,7 +156,7 @@ $focus-outline-reach: calc(
 			inline-size: 100%;
 		}
 
-		.db-tab-item {
+		&:not([data-orientation="vertical"]) .db-tab-item {
 			flex: 1 0 0;
 			inline-size: 0;
 			max-inline-size: none;
