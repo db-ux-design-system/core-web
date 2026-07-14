@@ -742,10 +742,46 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 
 		if (typeof window !== 'undefined') {
-			// Immediately hide composed panels to prevent a flash of all
-			// panels before the RAF-deferred syncSelection runs. This is
-			// synchronous so it applies before the first paint.
+			// Immediately set initial selection state on composed tabs and
+			// panels to prevent a flash of all panels / all-focusable tabs
+			// before the RAF-deferred syncSelection runs. This is synchronous
+			// so it applies before the first paint.
 			if (_ref) {
+				const tabListEl =
+					_ref.querySelector('[role="tablist"]') ?? null;
+				if (tabListEl) {
+					const buttons = Array.from<HTMLElement>(
+						tabListEl.querySelectorAll('[role="tab"]')
+					);
+					// Determine which tab gets focus (roving tabindex).
+					// In manual mode (startIndex === -1) the first enabled
+					// tab should still be focusable.
+					const isEnabled = (button?: HTMLElement) =>
+						!!button &&
+						!(button as HTMLButtonElement).disabled &&
+						button.getAttribute('aria-disabled') !== 'true';
+					const rovingIndex =
+						startIndex === -1
+							? buttons.findIndex((b: HTMLElement) =>
+									isEnabled(b)
+								)
+							: startIndex;
+
+					buttons.forEach((button: HTMLElement, index: number) => {
+						const isSelected = startIndex === index;
+						button.setAttribute(
+							'aria-selected',
+							String(isSelected)
+						);
+						if (!state._focusgroupSupported) {
+							button.setAttribute(
+								'tabindex',
+								rovingIndex === index ? '0' : '-1'
+							);
+						}
+					});
+				}
+
 				const panels = Array.from<HTMLElement>(
 					_ref.querySelectorAll('[role="tabpanel"]')
 				).filter((panel) => state._isOwnedPanel(panel));
