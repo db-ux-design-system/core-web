@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { migrationData } from '../data/db-ui-migration-map';
-import { type ToolResult, MAX_JSON_OUTPUT, truncate, error } from '../utils';
+import { type ToolResult, error, MAX_JSON_OUTPUT, truncate } from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
 const MAX_SCAN_SIZE = 5 * 1024 * 1024;
