@@ -67,6 +67,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 					if (!truncated) {
 						state._cleanupTooltipAria();
+						// Remove the empty title we set to suppress native
+						// tooltip; consumer-provided titles are re-applied by
+						// the framework spread on the next render.
+						if (_ref && _ref.getAttribute('title') === '') {
+							_ref.removeAttribute('title');
+						}
+					} else if (_ref) {
+						// Suppress native browser tooltip while our custom
+						// truncation tooltip is active.
+						_ref.setAttribute('title', '');
 					}
 				}
 
@@ -165,8 +175,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			type="button"
 			role="tab"
 			class={cls('db-tab-item', props.className)}
-			// Suppress native browser tooltip only when custom truncation tooltip is active
-			title={state.isTruncated ? '' : undefined}
 			disabled={getBoolean(props.disabled, 'disabled') ? true : undefined}
 			id={props.id}
 			// Initial selection state rendered declaratively so SSR/no-JS output
