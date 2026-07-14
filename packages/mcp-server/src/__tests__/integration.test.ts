@@ -49,7 +49,9 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 				return writeFileMock(...args);
 			}
 
-			return actual.writeFile(...args);
+			return actual.writeFile(
+				...(args as Parameters<typeof actual.writeFile>)
+			);
 		},
 		unlink: (...args: unknown[]) => unlinkMock(...args)
 	};

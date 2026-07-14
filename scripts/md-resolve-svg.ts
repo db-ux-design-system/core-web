@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/prefer-regexp-exec */
+
 import { glob } from 'glob';
 import fs from 'node:fs';
 import * as https from 'node:https';
@@ -16,13 +18,13 @@ type Replacement = {
 
 const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 	let readFile = fs.readFileSync(file).toString();
-	let match = shieldRegex.exec(readFile);
+	let match = readFile.match(shieldRegex);
 
 	while (match && match.length > 0) {
 		const svgUrl = match[0];
 		let svgName = svgUrl;
 		if (svgUrl.includes('badge/dynamic/')) {
-			const dynamicsMatch = /query=%24.*/.exec(svgUrl);
+			const dynamicsMatch = svgUrl.match('query=%24.*');
 			if (dynamicsMatch) {
 				svgName = dynamicsMatch[0].replace('query=%24', '');
 			}
@@ -54,7 +56,7 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 		}
 
 		readFile = readFile.slice((match.index ?? 0) + svgUrl.length);
-		match = shieldRegex.exec(readFile);
+		match = readFile.match(shieldRegex);
 	}
 };
 

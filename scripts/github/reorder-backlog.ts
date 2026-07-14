@@ -1152,4 +1152,5 @@ const reorderBacklog = async () => {
 	);
 };
 
-await reorderBacklog();
+// eslint-disable-next-line unicorn/prefer-top-level-await
+void reorderBacklog();

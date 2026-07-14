@@ -96,7 +96,7 @@ function discover(root: string) {
 	);
 	const densities = densityDir ? readCssNames(densityDir) : [];
 
-	// Font sizes: body/<size>.css + headline/<size>.css â†’ "body-sm", "headline-lg"
+	// Font sizes: body/<size>.css + headline/<size>.css → "body-sm", "headline-lg"
 	const fontDir = resolvePackagePath(
 		root,
 		'@db-ux/core-foundations/build/styles/fonts/classes'
@@ -173,7 +173,7 @@ export function scanComponentDependencies(
 	}
 }
 
-/** Convert PascalCase to kebab-case: "NavigationItem" â†’ "navigation-item". */
+/** Convert PascalCase to kebab-case: "NavigationItem" → "navigation-item". */
 function toKebabCase(string_: string): string {
 	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }

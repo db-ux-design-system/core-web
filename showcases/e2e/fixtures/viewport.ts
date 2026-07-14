@@ -13,9 +13,8 @@ export const setScrollViewport =
 		);
 
 		const width = page.viewportSize()?.width ?? 0;
-		const computedHeight = headerHeight + mainHeight;
-
-		const height = fixedHeight ?? computedHeight;
+		// eslint-disable-next-line @stylistic/no-mixed-operators
+		const height = fixedHeight ?? headerHeight + mainHeight;
 
 		await page.setViewportSize({
 			width,

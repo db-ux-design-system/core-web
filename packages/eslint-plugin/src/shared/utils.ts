@@ -112,9 +112,8 @@ export function getAttributeValue(
 
 	const variants = new Set([attrName, `[${attrName}]`, `:${attrName}`]);
 	const attr = node.attributes.find(
-		(a): a is TSESTree.JSXAttribute =>
-			a.type === 'JSXAttribute' && variants.has(a.name.name as string)
-	);
+		(a) => a.type === 'JSXAttribute' && variants.has(a.name.name as string)
+	) as TSESTree.JSXAttribute | undefined;
 
 	if (!attr) {
 		return undefined;

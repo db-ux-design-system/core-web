@@ -1,5 +1,7 @@
 import { findCssFunction, findTopLevelComma } from './css-parser.js';
 
+// ── var() ───────────────────────────────────────────────────────────────
+
 /**
  Find the next `var(` occurrence and parse it into name and optional fallback.
  @param value - The CSS value string to search
@@ -118,7 +120,7 @@ export const collectVarReferences = (
 	}
 };
 
-// Ã‚â€â‚¬Ã¢â€â‚¬ Generic CSS function resolver Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+// ── Generic CSS function resolver ───────────────────────────────────────
 
 /**
  Find and evaluate all occurrences of a CSS function in a value string.
@@ -170,7 +172,7 @@ const resolveCssFunction = (
 	return result;
 };
 
-// Ã‚â€â‚¬Ã¢â€â‚¬ calc() Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+// ── calc() ──────────────────────────────────────────────────────────────
 
 /**
  Parse a CSS unit value like "0.75rem" into its numeric value and unit.
@@ -263,7 +265,7 @@ const evaluateCalc = (expr: string): string | undefined => {
 export const resolveCalc = (value: string): string =>
 	resolveCssFunction(value, 'calc', evaluateCalc, true);
 
-// Ã‚â€â‚¬Ã¢â€â‚¬ color-mix() Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+// ── color-mix() ─────────────────────────────────────────────────────────
 
 /**
  Parse a hex color string to an RGBA tuple.
@@ -420,16 +422,15 @@ const evaluateColorMix = (args: string): string | undefined => {
 		alpha2 = parsed[3];
 	}
 
-	const weightedAlpha1 = alpha1 * pct1;
-	const weightedAlpha2 = alpha2 * pct2;
-	const mixedAlpha = weightedAlpha1 + weightedAlpha2;
+	// eslint-disable-next-line @stylistic/no-mixed-operators
+	const mixedAlpha = alpha1 * pct1 + alpha2 * pct2;
 	if (mixedAlpha === 0) {
 		return 'transparent';
 	}
 
 	const mix = (c1: number, c2: number): number =>
 		// eslint-disable-next-line @stylistic/no-mixed-operators
-		(c1 * weightedAlpha1 + c2 * weightedAlpha2) / mixedAlpha;
+		(c1 * alpha1 * pct1 + c2 * alpha2 * pct2) / mixedAlpha;
 
 	const r = mix(rgb1[0], rgb2[0]);
 	const g = mix(rgb1[1], rgb2[1]);
