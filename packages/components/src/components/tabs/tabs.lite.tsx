@@ -370,12 +370,21 @@ export default function DBTabs(props: DBTabsProps) {
 			if (props.initialSelectedMode === 'manually') {
 				return -1;
 			}
-			const activeTabIndex = state
-				.getTabs()
-				.findIndex((tab: DBSimpleTabProps) =>
-					getBoolean(tab.active, 'active')
-				);
-			return activeTabIndex > -1 ? activeTabIndex : 0;
+			const tabs = state.getTabs();
+			const isEnabled = (tab: DBSimpleTabProps) =>
+				!getBoolean(tab.disabled, 'disabled');
+
+			// Find the first tab marked active that is not disabled.
+			const activeTabIndex = tabs.findIndex(
+				(tab: DBSimpleTabProps) =>
+					getBoolean(tab.active, 'active') && isEnabled(tab)
+			);
+			if (activeTabIndex > -1) {
+				return activeTabIndex;
+			}
+			// Fallback: first enabled tab (or 0 if all are disabled).
+			const firstEnabled = tabs.findIndex(isEnabled);
+			return firstEnabled > -1 ? firstEnabled : 0;
 		},
 
 		// Composition-API fallback: when tabs are provided as DBTabItem children
