@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createTempDir, removeTempDir, writeFileIn } from '../test-utils';
+import { describeBuildPostPlugin } from './augmentation-test-utils';
 
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
@@ -70,52 +71,10 @@ describe('appendFocusgroupAugmentation', () => {
 	});
 });
 
-describe('build.post plugin', () => {
-	const runBuildPost = (files?: {
-		componentFiles: { outputDir: string; outputFilePath: string }[];
-		nonComponentFiles: { outputDir: string; outputFilePath: string }[];
-	}) => {
-		const plugin = focusgroupPlugin();
-		return plugin.build.post({ target: 'react' }, files);
-	};
-
-	it('augments the index.ts found among the non-component files', () => {
-		writeFile('src/index.ts', "export * from './components/tab-list';\n");
-
-		runBuildPost({
-			componentFiles: [
-				{
-					outputDir: tmpDir,
-					outputFilePath: 'src/components/tab-list/tab-list.tsx'
-				}
-			],
-			nonComponentFiles: [
-				{ outputDir: tmpDir, outputFilePath: 'src/index.ts' }
-			]
-		});
-
-		expect(
-			fs.readFileSync(path.join(tmpDir, 'src/index.ts'), 'utf-8')
-		).toContain('declare module "react"');
-	});
-
-	it('does nothing when files is undefined', () => {
-		expect(() => runBuildPost(undefined)).not.toThrow();
-	});
-
-	it('silently skips when no src/index.ts is present in the build output', () => {
-		const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
-
-		expect(() =>
-			runBuildPost({
-				componentFiles: [],
-				nonComponentFiles: [
-					{ outputDir: tmpDir, outputFilePath: 'src/shared/model.ts' }
-				]
-			})
-		).not.toThrow();
-
-		// Storybook/Figma builds legitimately have no entrypoint, so no warning.
-		expect(warn).not.toHaveBeenCalled();
-	});
+describeBuildPostPlugin({
+	pluginFactory: focusgroupPlugin,
+	getTmpDir: () => tmpDir,
+	writeFile,
+	indexContent: "export * from './components/tab-list';\n",
+	expectedMarker: 'declare module "react"'
 });

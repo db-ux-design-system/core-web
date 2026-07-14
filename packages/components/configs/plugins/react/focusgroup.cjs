@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const { createBuildPostHandler } = require('./augmentation-utils.cjs');
 
 /**
  * Type augmentation that extends React's `HTMLAttributes` with the
@@ -66,20 +67,7 @@ const appendFocusgroupAugmentation = (filePath) => {
 module.exports = () => ({
 	name: 'react-focusgroup',
 	build: {
-		post: (targetContext, files) => {
-			if (!files) return;
-
-			const indexFile = (files.nonComponentFiles || []).find(
-				(file) => file.outputFilePath === 'src/index.ts'
-			);
-			if (!indexFile) return;
-
-			const filePath = path.resolve(
-				indexFile.outputDir,
-				indexFile.outputFilePath
-			);
-			appendFocusgroupAugmentation(filePath);
-		}
+		post: createBuildPostHandler(appendFocusgroupAugmentation)
 	}
 });
 
