@@ -181,7 +181,6 @@ export default function DBTabs(props: DBTabsProps) {
 			panels.forEach((panel: HTMLElement, index: number) => {
 				const isSelected = currentIndex === index;
 				panel.hidden = !isSelected;
-				panel.setAttribute('tabindex', isSelected ? '0' : '-1');
 			});
 		},
 
@@ -888,7 +887,6 @@ export default function DBTabs(props: DBTabsProps) {
 							id={state.getPanelId(index)}
 							aria-labelledby={state.getTabId(index)}
 							hidden={state.getRenderIndex() !== index}
-							tabIndex={state.getRenderIndex() === index ? 0 : -1}
 							content={tab.content}>
 							{tab.children}
 						</DBTabPanel>
