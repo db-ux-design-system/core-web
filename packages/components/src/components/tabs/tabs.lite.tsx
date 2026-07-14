@@ -952,7 +952,9 @@ export default function DBTabs(props: DBTabsProps) {
 				</DBButton>
 			</Show>
 			<Show when={state.getTabs().length} else={props.children}>
-				<DBTabList orientation={props.orientation}>
+				<DBTabList
+					orientation={props.orientation}
+					aria-label={props.label}>
 					<For each={state.getTabs()}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
