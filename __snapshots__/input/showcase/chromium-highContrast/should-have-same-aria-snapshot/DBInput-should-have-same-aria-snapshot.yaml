@@ -76,7 +76,7 @@
     - /placeholder: (Default) No validation
   - status
   - text: Label
-  - textbox "Label":
+  - textbox "Label" [invalid]:
     - /placeholder: Invalid
   - text: Invalid Message
   - status
@@ -204,7 +204,7 @@
     - text: Readonly - Filled
   - status
   - text: Label
-  - textbox "Label":
+  - textbox "Label" [invalid]:
     - /placeholder: Invalid
   - text: Invalid Message
   - status
