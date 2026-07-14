@@ -129,14 +129,14 @@ export const collectVarReferences = (
  @param funcName - The CSS function name to match (e.g. "calc", "color-mix")
  @param evaluate - Callback that receives the inner content and returns the
  evaluated result, or null to skip
- @param skipNestedFunctions - If true, skip when inner content contains other CSS functions
+ @param shouldSkipNestedFunctions - If true, skip when inner content contains other CSS functions
  @returns The value with all evaluable occurrences replaced
  */
 const resolveCssFunction = (
 	value: string,
 	funcName: string,
 	evaluate: (inner: string) => string | undefined,
-	skipNestedFunctions = false
+	shouldSkipNestedFunctions = false
 ): string => {
 	let result = value;
 	let searchFrom = 0;
@@ -152,7 +152,7 @@ const resolveCssFunction = (
 			continue;
 		}
 
-		if (skipNestedFunctions && /[a-z-]+\(/i.test(found.inner)) {
+		if (shouldSkipNestedFunctions && /[a-z-]+\(/i.test(found.inner)) {
 			searchFrom = found.end;
 			continue;
 		}

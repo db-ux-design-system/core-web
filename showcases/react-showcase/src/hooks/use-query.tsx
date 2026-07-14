@@ -8,7 +8,7 @@ import {
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
 const useQuery = (
-	redirectURLSearchParameters = true
+	shouldRedirectURLSearchParameters = true
 ): [
 	string,
 	(v: string) => void,
@@ -70,7 +70,7 @@ const useQuery = (
 				nextQuery.fullscreen = 'true';
 			}
 
-			if (redirectURLSearchParameters) {
+			if (shouldRedirectURLSearchParameters) {
 				setSearchParameters(nextQuery);
 			}
 		}

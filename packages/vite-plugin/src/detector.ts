@@ -36,8 +36,8 @@ export function resolvePackagePath(
 function readDirNames(dirPath: string): string[] {
 	try {
 		return readdirSync(dirPath, { withFileTypes: true })
-			.filter((e) => e.isDirectory())
-			.map((e) => e.name);
+			.filter((entry) => entry.isDirectory())
+			.map((entry) => entry.name);
 	} catch {
 		return [];
 	}

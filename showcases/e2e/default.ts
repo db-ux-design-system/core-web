@@ -73,6 +73,7 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
 	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
@@ -180,6 +181,7 @@ export const runAxeCoreTest = ({
 
 		// This is a workaround for axe for browsers using forcedColors
 		// see https://github.com/dequelabs/axe-core-npm/issues/1067
+		/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
 		await page.evaluate(($project) => {
 			if ($project.use.contextOptions?.forcedColors === 'active') {
 				const style = document.createElement('style');
@@ -189,6 +191,7 @@ export const runAxeCoreTest = ({
 				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
 			}
 		}, project);
+		/* eslint-enable unicorn/isolated-functions */
 
 		if (preAxe) {
 			await preAxe(page);
@@ -239,6 +242,7 @@ export const runA11yCheckerTest = ({
 			const enginePath = require.resolve('accessibility-checker-engine');
 			await page.addScriptTag({ path: enginePath });
 
+			/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
 			const results: Issue[] = await page.evaluate(async () => {
 				const { ace } = globalThis as any;
 				if (!ace?.Checker) {
@@ -250,6 +254,7 @@ export const runA11yCheckerTest = ({
 				]);
 				return report.results ?? [];
 			});
+			/* eslint-enable unicorn/isolated-functions */
 
 			failures = results.filter(
 				(result: Issue) =>

@@ -70,7 +70,7 @@ function getReleaseNotes(): string {
 	return notes.join('\n\n---\n\n').trim();
 }
 
-function releaseExists(tag: string): boolean {
+function hasRelease(tag: string): boolean {
 	try {
 		run(`gh release view "${tag}"`);
 		return true;
@@ -88,7 +88,7 @@ function main() {
 	// Extract release notes
 	const notes = getReleaseNotes();
 
-	if (releaseExists(tag)) {
+	if (hasRelease(tag)) {
 		console.log(
 			`Release ${tag} already exists. Skipping release creation.`
 		);

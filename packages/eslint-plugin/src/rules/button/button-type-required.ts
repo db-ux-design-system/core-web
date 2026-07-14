@@ -25,10 +25,10 @@ export default {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
 			if (type === undefined) {
-				const hasClickHandler = getAttributeValue(node, '(click)');
-				const hasCommandFor = getAttributeValue(node, 'commandfor');
+				const clickHandler = getAttributeValue(node, '(click)');
+				const commandFor = getAttributeValue(node, 'commandfor');
 				const typeValue =
-					hasClickHandler || hasCommandFor ? 'button' : 'submit';
+					clickHandler || commandFor ? 'button' : 'submit';
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -73,14 +73,13 @@ export default {
 				return;
 			}
 
-			const hasClickHandler =
+			const clickHandler =
 				getAttributeValue(openingElement, 'onClick') ||
 				getAttributeValue(openingElement, '(click)') ||
 				getAttributeValue(openingElement, '@click');
 
 			const typeValue =
-				hasClickHandler ||
-				getAttributeValue(openingElement, 'commandfor')
+				clickHandler || getAttributeValue(openingElement, 'commandfor')
 					? 'button'
 					: 'submit';
 

@@ -10,7 +10,7 @@ const repoRoot =
 
 const { VALID_SEMVER_VERSION } = process.env;
 const IS_RELEASE = process.env.RELEASE === 'true';
-const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
+let isPreRelease = process.env.PRE_RELEASE === 'true';
 const IS_CI = process.env.CI === 'true';
 
 if (!VALID_SEMVER_VERSION) {
@@ -23,7 +23,7 @@ if (!VALID_SEMVER_VERSION) {
 	console.warn('⚠️ No version set, using 0.0.0-local for local run');
 }
 
-if (!IS_RELEASE && !PRE_RELEASE) {
+if (!IS_RELEASE && !isPreRelease) {
 	if (IS_CI) {
 		console.error(
 			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
@@ -38,7 +38,7 @@ if (!IS_RELEASE && !PRE_RELEASE) {
 }
 
 const VALID_SEMVER = process.env.VALID_SEMVER_VERSION;
-const IS_PRE_RELEASE = process.env.PRE_RELEASE === 'true';
+isPreRelease = process.env.PRE_RELEASE === 'true';
 
 console.log('🛠 Forge all packages version numbers');
 console.log(`which package version ?: ${VALID_SEMVER}`);
@@ -113,7 +113,7 @@ for (const { dir, name: PACKAGE } of packages) {
 }
 
 let TAG = 'latest';
-if (IS_PRE_RELEASE) {
+if (isPreRelease) {
 	TAG = 'next';
 }
 

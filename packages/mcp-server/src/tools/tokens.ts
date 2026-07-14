@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
+import { type ToolResult, error, MAX_JSON_OUTPUT, truncate } from '../utils';
 import { getManifest } from '../utils/manifest';
 
 // ---------------------------------------------------------------------------
@@ -38,7 +38,7 @@ async function loadTokensJson(): Promise<
 }
 
 /**
- Clears or overrides the tokens cache — useful for testing.
+ Clears or overrides the tokens cache - useful for testing.
  Pass an empty `{}` to disable JSON lookups (forces manifest fallback).
  Pass `undefined` or call without arguments to clear the cache.
  */
@@ -106,7 +106,7 @@ export async function handleGetDesignTokens({
 				...(tokensJson ? Object.keys(tokensJson) : [])
 			])
 		];
-		return err(
+		return error(
 			`Error: unknown category '${category}'. Available: ${availableCategories.join(', ')}`
 		);
 	}

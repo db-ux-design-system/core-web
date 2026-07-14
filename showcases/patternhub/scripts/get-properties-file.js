@@ -27,7 +27,7 @@ const getAllNames = (name) => {
  @param componentValue.slots
  @returns {string}
  */
-const getPropertiesFile = ({ name, attributes, events, slots }) => {
+export default function getPropertiesFile({ name, attributes, events, slots }) {
 	let propertyTable = '';
 	let slotsTable = '';
 	let eventsTable = '';
@@ -88,6 +88,4 @@ ${eventsTable}
 ${propertyTable}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;`;
-};
-
-export default getPropertiesFile;
+}

@@ -55,8 +55,8 @@ export const collapseLightDark = (value: string): string => {
  * @param referencedVars - Set to track which variables are still referenced after resolution
  * @param propertyNames - Set of variable names that came from `@property`
  * @param dynamicVars - Set of dynamic variable names (never removed)
- * @param removeAtProperty - Whether to remove `@property` rules
- * @param removeResolved - Whether to remove unused `@property`-sourced declarations
+ * @param shouldRemoveAtProperty - Whether to remove `@property` rules
+ * @param shouldRemoveResolved - Whether to remove unused `@property`-sourced declarations
  */
 export const transformRoot = (
 	root: Root,
@@ -64,8 +64,8 @@ export const transformRoot = (
 	referencedVars: Set<string>,
 	propertyNames: Set<string>,
 	dynamicVars: Set<string>,
-	removeAtProperty: boolean,
-	removeResolved: boolean
+	shouldRemoveAtProperty: boolean,
+	shouldRemoveResolved: boolean
 ) => {
 	root.walkDecls((decl: Declaration) => {
 		const hasVar = decl.value.includes('var(');
@@ -99,7 +99,7 @@ export const transformRoot = (
 		decl.value = resolved;
 	});
 
-	if (removeAtProperty) {
+	if (shouldRemoveAtProperty) {
 		root.walkAtRules('property', (atRule: AtRule) => {
 			const propName = atRule.params.trim();
 			if (!referencedVars.has(propName)) {
@@ -108,7 +108,7 @@ export const transformRoot = (
 		});
 	}
 
-	if (removeResolved) {
+	if (shouldRemoveResolved) {
 		root.walkDecls(/^--/, (decl: Declaration) => {
 			if (
 				propertyNames.has(decl.prop) &&

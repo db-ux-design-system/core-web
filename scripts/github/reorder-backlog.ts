@@ -449,9 +449,9 @@ const ensureAllFieldValues = async (node: ProjectItemNode): Promise<void> => {
 };
 
 const fetchProjectItems = async (
-	filter: (node: ProjectItemNode) => boolean,
+	isIncluded: (node: ProjectItemNode) => boolean,
 	progressLabel: string,
-	includeLabels = false
+	hasLabels = false
 ): Promise<ProjectItemNode[]> => {
 	const allItems: ProjectItemNode[] = [];
 	let cursor: string | undefined;
@@ -460,7 +460,7 @@ const fetchProjectItems = async (
 	while (true) {
 		page++;
 		const afterClause = cursor ? `, after: "${cursor}"` : '';
-		const labelsFragment = includeLabels
+		const labelsFragment = hasLabels
 			? 'labels(first: 100) { nodes { name } }'
 			: '';
 
@@ -520,7 +520,7 @@ const fetchProjectItems = async (
 			// eslint-disable-next-line no-await-in-loop
 			await ensureAllFieldValues(node);
 
-			if (filter(node)) {
+			if (isIncluded(node)) {
 				allItems.push(node);
 			}
 		}
@@ -760,7 +760,7 @@ type IssueComment = {
 // we can stop. A page cap bounds the work on pathologically long threads.
 const fetchRecentComments = (
 	number: number,
-	requestFound: (comments: IssueComment[]) => boolean
+	isRequestFound: (comments: IssueComment[]) => boolean
 ): IssueComment[] => {
 	const pageSize = 30;
 	const maxPages = 20; // Safety cap (~600 comments) for very long threads.
@@ -817,7 +817,7 @@ const fetchRecentComments = (
 		];
 
 		// Stop as soon as the request is in view; everything newer is collected.
-		if (requestFound(comments)) {
+		if (isRequestFound(comments)) {
 			break;
 		}
 
@@ -838,11 +838,11 @@ const timeOf = (comment: IssueComment | undefined): number =>
 // Returns the most recent comment whose author satisfies `predicate`.
 const lastCommentBy = (
 	comments: IssueComment[],
-	predicate: (author: string) => boolean
+	isMatchingAuthor: (author: string) => boolean
 ): IssueComment | undefined => {
 	for (let i = comments.length - 1; i >= 0; i--) {
 		const { author } = comments[i];
-		if (author && predicate(author)) {
+		if (author && isMatchingAuthor(author)) {
 			return comments[i];
 		}
 	}
@@ -883,7 +883,7 @@ const postStaleReminder = (issueAuthor: string, number: number): void => {
 	}
 };
 
-const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
+const processWaitingItem = (item: ProjectItemNode, isDryRun: boolean): void => {
 	const number = item.content?.number;
 	if (!number) {
 		return;
@@ -953,7 +953,7 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 		console.log(
 			`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
 		);
-		if (!dryRun) {
+		if (!isDryRun) {
 			moveItemToBacklog(item.id, number);
 		}
 
@@ -980,14 +980,14 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 	console.log(
 		`   💬 #${String(number)}: still waiting → posting stale reminder`
 	);
-	if (!dryRun) {
+	if (!isDryRun) {
 		postStaleReminder(issueAuthor, number);
 	}
 };
 
 const processWaitingForFeedback = async (
 	items: ProjectItemNode[],
-	dryRun: boolean
+	isDryRun: boolean
 ): Promise<void> => {
 	console.log('\n⏳ Processing "Waiting for Feedback" items...');
 	const waitingItems = items.filter(
@@ -1004,7 +1004,7 @@ const processWaitingForFeedback = async (
 	);
 
 	for (const item of waitingItems) {
-		processWaitingItem(item, dryRun);
+		processWaitingItem(item, isDryRun);
 		// eslint-disable-next-line no-await-in-loop
 		await sleep(200);
 	}

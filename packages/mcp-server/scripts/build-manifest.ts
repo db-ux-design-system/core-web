@@ -215,8 +215,8 @@ export async function buildManifest() {
 		withFileTypes: true
 	});
 	const componentNames = componentEntries
-		.filter((e) => e.isDirectory())
-		.map((e) => e.name);
+		.filter((entry) => entry.isDirectory())
+		.map((entry) => entry.name);
 
 	// Icon list from all-icons.ts
 	const icons = ALL_ICONS;
