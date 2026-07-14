@@ -42,10 +42,6 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 	&[data-interactive="true"] {
 		position: relative;
 
-		td :not(#{$interactive-row-action}) {
-			z-index: 1;
-		}
-
 		@include table-row-interactive-checked {
 			@extend %db-informational-variables;
 

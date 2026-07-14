@@ -16,7 +16,7 @@
 // RTL-safe alternative to text-indent: -9999px.
 @mixin a11y-visually-hidden-text {
 	overflow: hidden;
-	text-indent: 100%;
+	text-indent: -200vw;
 	white-space: nowrap;
 }
 

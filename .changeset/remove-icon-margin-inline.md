@@ -7,4 +7,4 @@
 "@db-ux/v-core-components": major
 ---
 
-refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap`
+refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap`; change `is-icon-text-replace` from `font-size: 0` to `text-indent: -100lvh` for better accessibility

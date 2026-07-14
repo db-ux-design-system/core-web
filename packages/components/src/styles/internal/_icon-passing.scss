@@ -10,7 +10,10 @@ $interactive-button-selectors: "label,button,a";
 	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
-			inset-block-start: calc(50% - 0.5em);
+			inset-block-start: var(
+				--db-icon-passing-inset-block-start,
+				calc(50% - 0.5em)
+			);
 			inset-inline-start: var(
 				--db-icon-passing-inset-inline-start,
 				#{$inline-start}
@@ -24,7 +27,7 @@ $interactive-button-selectors: "label,button,a";
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding-inline-start: var(
 				--db-icon-passing-padding-inline-start,
-				calc(#{$inline-start} + #{$gap} + 1lh)
+				calc(#{$inline-start} + #{$gap} + var(--db-icon-font-size, 1lh))
 			);
 		}
 	}
@@ -34,7 +37,10 @@ $interactive-button-selectors: "label,button,a";
 	&[data-icon-trailing]:not([data-show-icon-trailing="false"]) {
 		&::after {
 			position: absolute;
-			inset-block-start: calc(50% - 0.5em);
+			inset-block-start: var(
+				--db-icon-passing-inset-block-start,
+				calc(50% - 0.5em)
+			);
 			inset-inline-end: $inline-end;
 			pointer-events: none;
 			z-index: 1;
@@ -43,7 +49,8 @@ $interactive-button-selectors: "label,button,a";
 		> :is(#{$interactive-button-selectors}),
 		> * > :is(#{$interactive-button-selectors}) {
 			padding-inline-end: calc(
-				#{$inline-end} + #{variables.$db-spacing-fixed-xs} + 1lh
+				#{$inline-end} + #{variables.$db-spacing-fixed-xs} +
+					var(--db-icon-font-size, 1lh)
 			);
 		}
 	}

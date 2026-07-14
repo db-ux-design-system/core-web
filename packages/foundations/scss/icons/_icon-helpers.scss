@@ -78,7 +78,12 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 // SCSS mixin for elements that text should get hidden in favour of only displaying the included icon
 @mixin is-icon-text-replace($position: "before") {
-	text-indent: -9999px;
+	text-indent: -200vw;
+	overflow: hidden;
+
+	[role="tooltip"] {
+		text-indent: 0;
+	}
 
 	@if $position == "before" {
 		&::before {

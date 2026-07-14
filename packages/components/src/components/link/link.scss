@@ -13,6 +13,8 @@
 	@extend %db-default-link;
 	@extend %db-overwrite-font-size-md;
 
+	gap: variables.$db-spacing-fixed-2xs;
+
 	a {
 		// Workaround for angular
 		@extend %db-link-height;
@@ -45,15 +47,9 @@
 		}
 	}
 
-	&::after {
-		margin-inline-start: variables.$db-spacing-fixed-2xs;
-	}
-
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
 
-		&::after {
-			margin-inline-start: variables.$db-spacing-fixed-3xs;
-		}
+		gap: variables.$db-spacing-fixed-3xs;
 	}
 }
