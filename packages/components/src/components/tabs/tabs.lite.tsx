@@ -933,6 +933,7 @@ export default function DBTabs(props: DBTabsProps) {
 								key={props.label + 'tab-item' + index}
 								id={state.getTabId(index)}
 								aria-controls={state.getPanelId(index)}
+								aria-label={tab.ariaLabel}
 								label={tab.label}
 								icon={tab.icon}
 								showIcon={tab.showIcon}

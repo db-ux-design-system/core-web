@@ -23,7 +23,13 @@ export const TabsInitialSelectedModeList = ['auto', 'manually'] as const;
 export type TabsInitialSelectedModeType =
 	(typeof TabsInitialSelectedModeList)[number];
 
-export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
+export type DBSimpleTabProps = DBTabItemProps &
+	DBTabPanelProps & {
+		/**
+		 * Accessible label for icon-only tabs (rendered as aria-label on the tab button).
+		 */
+		ariaLabel?: string;
+	};
 export type DBTabsDefaultProps = {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
