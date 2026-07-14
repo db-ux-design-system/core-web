@@ -1,22 +1,9 @@
+import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import { useEffect, useState } from 'react';
-import {
-	COLOR,
-	COLOR_CONST,
-	DENSITY,
-	DENSITY_CONST
-} from '../../../../packages/components/src/shared/constants';
+import { defaultSettings } from '../../../settings';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (
-	redirectURLSearchParameters = true
-): [
-	string,
-	(v: string) => void,
-	string,
-	(v: string) => void,
-	string | undefined,
-	boolean
-] => {
+const useQuery = (redirectURLSearchParameters = true) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
@@ -24,11 +11,19 @@ const useQuery = (
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
 	const [color, setColor] = useState(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
+		searchParameters.get(COLOR_CONST) ?? SEMANTIC.NEUTRAL
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState(false);
+	// TODO: Remove shell state and `showcases/react-showcase/src/page` folder after v6.0.0
+	const [shell, setShell] = useState<boolean>(true);
 	const [searchRead, setSearchRead] = useState(false);
+
+	const [settings, setSettings] = useState(
+		searchParameters.has('settings')
+			? JSON.parse(searchParameters.get('settings')!)
+			: defaultSettings
+	);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
@@ -45,8 +40,16 @@ const useQuery = (
 					setPage(value.toLowerCase());
 				}
 
-				if (key === 'fullscreen' && fullscreen !== Boolean(value)) {
-					setFullscreen(Boolean(value));
+				if (key === 'shell' && shell !== (value === 'true')) {
+					setShell(value === 'true');
+				}
+
+				if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
+					setFullscreen(value === 'true');
+				}
+
+				if (key === 'settings' && JSON.stringify(settings) !== value) {
+					setSettings(JSON.parse(value));
 				}
 			}
 		}
@@ -58,10 +61,17 @@ const useQuery = (
 		if (searchRead) {
 			const nextQuery: Record<string, string> = {
 				density,
-				color
+				color,
+				settings: JSON.stringify(settings)
 			};
 			if (page) {
 				nextQuery.page = page;
+			}
+
+			if (shell) {
+				nextQuery.shell = 'true';
+			} else {
+				nextQuery.shell = 'false';
 			}
 
 			if (fullscreen) {
@@ -72,9 +82,20 @@ const useQuery = (
 				setSearchParameters(nextQuery);
 			}
 		}
-	}, [color, density, page, fullscreen, searchRead]);
+	}, [color, density, page, fullscreen, searchRead, settings, shell]);
 
-	return [density, setDensity, color, setColor, page, fullscreen];
+	return {
+		density,
+		setDensity,
+		color,
+		setColor,
+		page,
+		shell,
+		setShell,
+		fullscreen,
+		settings,
+		setSettings
+	};
 };
 
 export default useQuery;

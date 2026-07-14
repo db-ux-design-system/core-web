@@ -1,0 +1,119 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/indicator";
+
+.db-control-panel-mobile {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	display: grid;
+	position: relative;
+	min-block-size: component.$min-mobile-header-height;
+	gap: variables.$db-spacing-fixed-xs;
+	padding-inline: variables.$db-spacing-fixed-sm;
+	grid-area: control-panel;
+
+	&[data-position="top"] {
+		@extend %control-panel-mobile-position-top;
+	}
+
+	&[data-position="bottom"] {
+		@extend %control-panel-mobile-position-bottom;
+	}
+
+	.db-control-panel-brand {
+		justify-self: self-start;
+		inline-size: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.db-control-panel-mobile-button {
+		grid-area: drawer-button;
+	}
+
+	@include control-panel-mobile.has-empty-drawer {
+		--db-control-panel-mobile-position-top-grid-areas: "brand primary";
+		--db-control-panel-mobile-position-top-grid-columns: [brand] 1fr
+			[primary] min-content;
+
+		// If drawer is empty we hide burger button
+		.db-control-panel-mobile-button {
+			display: none;
+		}
+
+		// We don't show primary border in this case
+		.db-control-panel-primary-actions {
+			padding-inline-end: 0;
+
+			&::before {
+				display: none;
+			}
+		}
+	}
+
+	.db-control-panel-mobile-drawer {
+		&:not(:has(.db-control-panel-secondary-actions)) {
+			.db-drawer-footer {
+				display: none;
+			}
+		}
+
+		.db-drawer-content {
+			padding: 0;
+
+			.db-control-panel-mobile-drawer-scroll-container {
+				display: flex;
+				flex-direction: column;
+				block-size: 100%;
+				overflow-x: hidden;
+
+				/* jscpd:ignore-start */
+				.db-control-panel-meta {
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding: variables.$db-spacing-fixed-xs
+						component.$drawer-content-padding-inline;
+					margin-block-start: auto;
+					flex-flow: column nowrap;
+
+					@include helpers.divider("top");
+				}
+
+				/* jscpd:ignore-end */
+
+				.db-control-panel-navigation {
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding: variables.$db-spacing-fixed-xs
+						component.$drawer-content-padding-inline;
+
+					/* jscpd:ignore-start */
+					> menu {
+						@include navigation-item.direct-navigation-items {
+							@extend %indicator;
+							@include indicator.set-indicator-vertical;
+
+							@include navigation-item.active-navigation-item {
+								@include indicator.show-indicator-vertical;
+							}
+
+							@include navigation-item.direct-navigation-items {
+								/* Workaround for custom-elements */
+								&::after {
+									content: none;
+								}
+							}
+						}
+					}
+
+					/* jscpd:ignore-end */
+				}
+			}
+		}
+	}
+}

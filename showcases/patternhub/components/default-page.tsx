@@ -1,3 +1,13 @@
+import {
+	DBCard,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBIcon,
+	DBSection,
+	DBShell,
+	DBShellContent
+} from '@components';
 import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -10,24 +20,14 @@ import {
 	useState
 } from 'react';
 import {
-	DBBrand,
-	DBCard,
-	DBHeader,
-	DBIcon,
-	DBPage,
-	DBSection,
-	DBSwitch,
-	DBTooltip
-} from '../../../output/react/src';
-import {
 	getBreadcrumb,
 	getNavigationList,
 	type NavigationItem
 } from '../data/routes';
+import PrimaryActions from './control-panel/primary-actions';
+import SecondaryActions from './control-panel/secondary-actions';
 import { FrameworkProvider } from './framework-context';
-import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
-import VersionSwitcher from './version-switcher';
 
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
@@ -134,110 +134,108 @@ const DefaultPage = ({
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
-				<DBPage
-					data-mode={mode ? 'dark' : 'light'}
-					fadeIn
-					variant="fixed"
-					header={
-						<DBHeader
-							drawerOpen={drawerOpen}
-							onToggle={setDrawerOpen}
-							brand={
-								<DBBrand>
-									{process.env.NEXT_PUBLIC_APP_NAME}
-								</DBBrand>
-							}
-							primaryAction={
-								<DBSwitch
-									checked={mode}
-									visualAid
-									icon="sun"
-									iconTrailing="moon"
-									showLabel={false}
-									onChange={() => {
-										setColorMode(!mode);
-									}}>
-									<DBTooltip>
-										Switch color scheme (light/dark)
-									</DBTooltip>
-									Switch color scheme (light/dark)
-								</DBSwitch>
-							}
-							secondaryAction={
-								<>
-									<FrameworkSwitcher />
-									<VersionSwitcher />
-								</>
-							}>
-							<Navigation />
-						</DBHeader>
-					}>
-					{breadcrumb && breadcrumb.length > 1 && (
-						<DBSection spacing="none" width="large">
-							<div
-								data-density="functional"
-								className="breadcrumb-container">
-								{breadcrumb?.map((navItem) => (
-									<Fragment
-										key={`breadcrumb-${navItem.path}`}>
-										{navItem.path !== '/' && (
-											<DBIcon icon="chevron_right" />
-										)}
-										<Link
-											className="db-button"
-											data-variant="ghost"
-											data-icon={
-												navItem.path === '/'
-													? 'house'
-													: 'none'
-											}
-											data-no-text={navItem.path === '/'}
-											href={navItem.path ?? '/'}>
-											{navItem.label}
-										</Link>
-									</Fragment>
-								))}
-							</div>
-						</DBSection>
-					)}
-					<DBSection spacing="none" width="large">
-						{children}
-					</DBSection>
-					{!noNavigation &&
-						(previousNavigationItem ?? nextNavigationItem) && (
-							<DBSection
-								width="large"
-								spacing="small"
-								className="link-containers">
-								{previousNavigationItem && (
-									<Link
-										className="previous-link-container"
-										href={
-											previousNavigationItem.path ?? '/'
-										}>
-										<DBCard behavior="interactive">
-											<small>Previous</small>
-											<span data-icon="arrow_left">
-												{previousNavigationItem.label}
-											</span>
-										</DBCard>
-									</Link>
-								)}
-								{nextNavigationItem && (
-									<Link
-										className="next-link-container"
-										href={nextNavigationItem.path ?? '/'}>
-										<DBCard behavior="interactive">
-											<small>Next</small>
-											<span data-icon-trailing="arrow_right">
-												{nextNavigationItem.label}
-											</span>
-										</DBCard>
-									</Link>
-								)}
+				<DBShell data-mode={mode ? 'dark' : 'light'} fadeIn>
+					<DBControlPanelDesktop
+						brand={<DBControlPanelBrand></DBControlPanelBrand>}
+						primaryActions={
+							<PrimaryActions
+								mode={mode}
+								setColorMode={setColorMode}
+							/>
+						}
+						secondaryActions={<SecondaryActions />}>
+						<Navigation />
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						brand={
+							<DBControlPanelBrand>
+								{process.env.NEXT_PUBLIC_APP_NAME}
+							</DBControlPanelBrand>
+						}
+						primaryActions={
+							<PrimaryActions
+								mode={mode}
+								setColorMode={setColorMode}
+							/>
+						}
+						secondaryActions={<SecondaryActions />}>
+						<Navigation />
+					</DBControlPanelMobile>
+					<DBShellContent>
+						{breadcrumb && breadcrumb.length > 1 && (
+							<DBSection spacing="none" width="large">
+								<div
+									data-density="functional"
+									className="breadcrumb-container">
+									{breadcrumb?.map((navItem) => (
+										<Fragment
+											key={`breadcrumb-${navItem.path}`}>
+											{navItem.path !== '/' && (
+												<DBIcon icon="chevron_right" />
+											)}
+											<Link
+												className="db-button"
+												data-variant="ghost"
+												data-icon={
+													navItem.path === '/'
+														? 'house'
+														: 'none'
+												}
+												data-no-text={
+													navItem.path === '/'
+												}
+												href={navItem.path ?? '/'}>
+												{navItem.label}
+											</Link>
+										</Fragment>
+									))}
+								</div>
 							</DBSection>
 						)}
-				</DBPage>
+						<DBSection spacing="none" width="large">
+							{children}
+						</DBSection>
+						{!noNavigation &&
+							(previousNavigationItem ?? nextNavigationItem) && (
+								<DBSection
+									width="large"
+									spacing="small"
+									className="link-containers">
+									{previousNavigationItem && (
+										<Link
+											className="previous-link-container"
+											href={
+												previousNavigationItem.path ??
+												'/'
+											}>
+											<DBCard behavior="interactive">
+												<small>Previous</small>
+												<span data-icon="arrow_left">
+													{
+														previousNavigationItem.label
+													}
+												</span>
+											</DBCard>
+										</Link>
+									)}
+									{nextNavigationItem && (
+										<Link
+											className="next-link-container"
+											href={
+												nextNavigationItem.path ?? '/'
+											}>
+											<DBCard behavior="interactive">
+												<small>Next</small>
+												<span data-icon-trailing="arrow_right">
+													{nextNavigationItem.label}
+												</span>
+											</DBCard>
+										</Link>
+									)}
+								</DBSection>
+							)}
+					</DBShellContent>
+				</DBShell>
 			)}
 		</FrameworkProvider>
 	);

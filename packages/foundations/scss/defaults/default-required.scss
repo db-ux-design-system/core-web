@@ -5,7 +5,6 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
-@use "../colors/default-color-icons";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
@@ -13,21 +12,6 @@
 :root,
 :host {
 	@extend %db-font-size-md;
-
-	/* COLORS */
-	@include default-color-icons.get-color-icons-light;
-
-	@media (prefers-color-scheme: dark) {
-		@include default-color-icons.get-color-icons-dark;
-	}
-
-	[data-mode="dark"] {
-		@include default-color-icons.get-color-icons-dark;
-	}
-
-	[data-mode="light"] {
-		@include default-color-icons.get-color-icons-light;
-	}
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
@@ -65,16 +49,12 @@ body {
 	padding: 0;
 }
 
-/* stylelint-disable selector-max-id */
-body,
-#root,
-#app {
-	block-size: inherit;
-}
-/* stylelint-enable selector-max-id */
-
 body {
 	font-family: var(--db-font-family-sans);
+}
+
+html {
+	-webkit-tap-highlight-color: #{colors.$db-informational-bg-basic-transparent-semi-default};
 }
 
 // Box sizing

@@ -1,0 +1,65 @@
+<db-control-panel-primary-actions #metaRef>
+	<db-drawer
+		(close)="open.set(false)"
+		[open]="open()"
+		drawerHeaderPlain="Settings"
+	>
+		<db-select
+			(change)="onChange('density', $event)"
+			[value]="density()"
+			label="Density"
+			variant="floating"
+		>
+			@for (t of densities; track t) {
+				<option>
+					{{ t }}
+				</option>
+			}
+		</db-select>
+		<db-select
+			(change)="onChange('color', $event)"
+			[value]="color()"
+			#colorRef
+			label="Color"
+			variant="floating"
+		>
+			@for (c of colors; track c) {
+				<option>
+					{{ c }}
+				</option>
+			}
+		</db-select>
+		<db-divider></db-divider>
+
+		@for (
+			array of defaultSettingsMapping;
+			track array[0];
+			let idx = $index
+		) {
+			<db-select
+				(change)="changeSettings($event, array[0])"
+				[label]="array[0]"
+				[value]="settings()[array[0]]"
+				variant="floating"
+			>
+				@for (v of array[1]; track v) {
+					<option>
+						{{ v }}
+					</option>
+				}
+			</db-select>
+			@if (idx === 1 || idx === 3) {
+				<db-divider></db-divider>
+			}
+		}
+	</db-drawer>
+	<db-button
+		(click)="open.set(true)"
+		[noText]="true"
+		icon="gear_wheel"
+		variant="ghost"
+	>
+		Settings
+		<db-tooltip> Settings </db-tooltip>
+	</db-button>
+</db-control-panel-primary-actions>

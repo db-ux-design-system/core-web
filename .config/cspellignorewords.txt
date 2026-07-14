@@ -228,7 +228,10 @@ fbca
 unreviewed
 notext
 prebundle
+notext
+treeitems
 knip
 checkin
+commitlintrc
 focusgroup
 unprovide

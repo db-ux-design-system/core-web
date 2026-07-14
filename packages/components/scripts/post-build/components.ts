@@ -1,5 +1,5 @@
 export type Overwrite = {
-	from: string | RegExp;
+	from: string | string[] | RegExp;
 	to: string;
 };
 
@@ -29,6 +29,54 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'control-panel-skip-navigation'
+	},
+
+	{
+		name: 'drawer-footer'
+	},
+
+	{
+		name: 'drawer-header'
+	},
+
+	{
+		name: 'shell-content'
+	},
+
+	{
+		name: 'control-panel-flat-icon'
+	},
+
+	{
+		name: 'shell-sub-navigation'
+	},
+
+	{
+		name: 'control-panel-navigation-item-group'
+	},
+
+	{
+		name: 'control-panel-secondary-actions'
+	},
+
+	{
+		name: 'control-panel-primary-actions'
+	},
+
+	{
+		name: 'control-panel-meta'
+	},
+
+	{
+		name: 'control-panel-mobile',
+		config: {
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
+		}
+	},
 	{
 		name: 'table-data-cell'
 	},
@@ -269,6 +317,12 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
+		name: 'control-panel-navigation'
+	},
+	{
+		name: 'control-panel-navigation-item'
+	},
+	{
 		name: 'select',
 		overwrites: {
 			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
@@ -380,7 +434,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'section'
 	},
-
 	{
 		name: 'page'
 	},
@@ -409,6 +462,15 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'brand'
+	},
+	{
+		name: 'shell'
+	},
+	{
+		name: 'control-panel-desktop'
+	},
+	{
+		name: 'control-panel-brand'
 	},
 	{
 		name: 'input',

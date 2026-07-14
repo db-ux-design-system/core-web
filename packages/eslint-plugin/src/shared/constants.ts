@@ -14,7 +14,8 @@ export const INTERACTIVE_ELEMENTS = [
 	'DBCheckbox',
 	'DBRadio',
 	'DBSwitch',
-	'DBNavigationItem',
+	'DBControlPanelNavigationItem',
+	'DBControlPanelNavigationItemGroup',
 	'DBTabItem',
 	'DBTag'
 ];
@@ -36,8 +37,8 @@ export const COMPONENTS: Record<string, string> = {
 	DBLink: 'DBLink',
 	DBNotification: 'DBNotification',
 	DBDrawer: 'DBDrawer',
-	DBHeader: 'DBHeader',
-	DBNavigationItem: 'DBNavigationItem',
+	DBControlPanelMobile: 'DBControlPanelMobile',
+	DBControlPanelNavigationItem: 'DBControlPanelNavigationItem',
 	DBTag: 'DBTag',
 	DBTabItem: 'DBTabItem'
 };
@@ -85,13 +86,13 @@ export const MESSAGES = {
 	LINK_MISSING_CONTENT_EXTERNAL:
 		'DBLink with target="_blank" should have content="external"',
 	NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT:
-		'DBNavigationItem must have backButtonText attribute for accessibility',
+		'DBControlPanelNavigationItemGroup must have backButtonText attribute for accessibility',
 	SELECT_MISSING_OPTIONS:
 		'DBSelect must have either an options property or <option> children',
 	CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS:
 		'DBCustomSelect with selectedType="tag" must have removeTagsTexts attribute for accessibility',
-	HEADER_MISSING_BURGER_MENU_LABEL:
-		'DBHeader must have burgerMenuLabel attribute for accessibility',
+	CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL:
+		'DBControlPanelMobile must have burgerMenuLabel attribute for accessibility',
 	ICON_PREFER_ATTRIBUTE:
 		'Use icon attribute instead of DBIcon child in {{component}}',
 	TOOLTIP_NO_INTERACTIVE:
@@ -125,7 +126,7 @@ export const MESSAGE_IDS = {
 	NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT: 'missingBackButtonText',
 	SELECT_MISSING_OPTIONS: 'missingOptions',
 	CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS: 'missingRemoveTagsTexts',
-	HEADER_MISSING_BURGER_MENU_LABEL: 'missingBurgerMenuLabel',
+	CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL: 'missingBurgerMenuLabel',
 	ICON_PREFER_ATTRIBUTE: 'preferAttribute',
 	TOOLTIP_NO_INTERACTIVE: 'noInteractive',
 	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive'

@@ -2,20 +2,19 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
-	DBBrand,
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBControlPanelMobile,
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
 	DBCustomButton,
 	DBCustomSelect,
 	DBDivider,
-	DBHeader,
 	DBIcon,
 	DBInfotext,
 	DBInput,
 	DBLink,
-	DBNavigation,
-	DBNavigationItem,
 	DBNotification,
 	DBPopover,
 	DBRadio,
@@ -31,9 +30,9 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../output/react/src/index';
-
+} from '@components';
 import { useEffect, useState } from 'react';
+
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
@@ -125,14 +124,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'brand') {
-		return (
-			<DBBrand className={className} {...props}>
-				{resolvedContent}
-			</DBBrand>
-		);
-	}
-
 	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
@@ -154,14 +145,6 @@ const ComponentSwitch = ({
 			<DBDivider className={className} {...props}>
 				{resolvedContent}
 			</DBDivider>
-		);
-	}
-
-	if (type === 'header') {
-		return (
-			<DBHeader className={className} {...props}>
-				{resolvedContent}
-			</DBHeader>
 		);
 	}
 
@@ -247,9 +230,9 @@ const ComponentSwitch = ({
 
 	if (type === 'navigation-item') {
 		return (
-			<DBNavigationItem className={className} {...props}>
+			<DBControlPanelNavigationItem className={className} {...props}>
 				{resolvedContent}
-			</DBNavigationItem>
+			</DBControlPanelNavigationItem>
 		);
 	}
 
@@ -271,9 +254,9 @@ const ComponentSwitch = ({
 
 	if (type === 'navigation') {
 		return (
-			<DBNavigation className={className} {...props}>
+			<DBControlPanelNavigation className={className} {...props}>
 				{resolvedContent}
-			</DBNavigation>
+			</DBControlPanelNavigation>
 		);
 	}
 
@@ -370,6 +353,14 @@ const ComponentSwitch = ({
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'control-panel-mobile') {
+		return (
+			<DBControlPanelMobile className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelMobile>
 		);
 	}
 

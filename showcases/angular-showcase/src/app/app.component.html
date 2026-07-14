@@ -1,57 +1,76 @@
 @if (page) {
-	<div [class]="getChangeableClasses()">
+	<div [class]="getFullscreenClasses()">
 		<router-outlet></router-outlet>
 	</div>
 }
-@if (!page) {
-	<db-page [fadeIn]="true" documentOverflow="auto" variant="fixed">
-		<db-header
-			(toggle)="toggleDrawer($event)"
-			[drawerOpen]="drawerOpen"
-			header
-		>
-			<db-brand brand>Showcase</db-brand>
-			<db-navigation *dbNavigation aria-label="main-navigation">
+@if (!page && !shell) {
+	<app-page></app-page>
+}
+@if (!page && shell) {
+	<db-shell
+		[controlPanelDesktopPosition]="settings.controlPanelDesktopPosition"
+		[controlPanelMobilePosition]="settings.controlPanelMobilePosition"
+		[fadeIn]="true"
+		[showSubNavigation]="settings.subNavigation === 'true'"
+		[subNavigationDesktopPosition]="settings.subNavigationDesktopPosition"
+		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
+	>
+		<db-shell-sub-navigation>
+			<db-control-panel-navigation
+				[variant]="settings.subNavigationVariant"
+				aria-label="sub-navigation"
+			>
+				@for (item of navigationItems; track item.label) {
+					<app-nav-item [navItem]="item"> </app-nav-item>
+				}</db-control-panel-navigation
+		></db-shell-sub-navigation>
+
+		<db-control-panel-desktop>
+			<db-control-panel-brand
+				brand
+				data-logo="db-systel"
+			></db-control-panel-brand>
+			<app-meta-navigation meta />
+			<app-primary-actions
+				[color]="color"
+				[density]="density"
+				[settings]="settings"
+				primary-actions
+			></app-primary-actions>
+			<app-secondary-actions secondary-actions></app-secondary-actions>
+			<db-control-panel-navigation
+				[variant]="settings.navigationDesktopVariant"
+				aria-label="desktop-navigation"
+			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
-			</db-navigation>
-			<ng-container *dbMetaNavigation>
-				<app-settings-select
-					(changed)="onChange($event)"
-					[formField]="settingsForm.density"
-					[options]="densities"
-					label="Density"
-				></app-settings-select>
-				<app-settings-select
-					(changed)="onChange($event)"
-					[formField]="settingsForm.color"
-					[options]="colors"
-					label="Color"
-				></app-settings-select>
-			</ng-container>
-			<ng-container primary-action>
-				<db-button
-					[noText]="true"
-					icon="magnifying_glass"
-					variant="ghost"
-					>Search</db-button
-				>
-			</ng-container>
-			<ng-container *dbSecondaryAction>
-				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
-					Profile
-				</db-button>
-				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
-					Notification
-				</db-button>
-				<db-button [noText]="true" icon="x_placeholder" variant="ghost">
-					Help
-				</db-button>
-			</ng-container>
-		</db-header>
-		<div [class]="getChangeableClasses()">
+			</db-control-panel-navigation>
+		</db-control-panel-desktop>
+		<db-control-panel-mobile drawerHeaderText="Showcase">
+			<db-control-panel-brand
+				brand
+				data-logo="db-systel"
+			></db-control-panel-brand>
+			<app-meta-navigation meta />
+			<app-primary-actions
+				[color]="color"
+				[density]="density"
+				[settings]="settings"
+				primary-actions
+			></app-primary-actions>
+			<app-secondary-actions secondary-actions></app-secondary-actions>
+			<db-control-panel-navigation
+				[variant]="settings.navigationMobileVariant"
+				aria-label="mobile-navigation"
+			>
+				@for (item of navigationItems; track item.label) {
+					<app-nav-item [navItem]="item"> </app-nav-item>
+				}
+			</db-control-panel-navigation>
+		</db-control-panel-mobile>
+		<db-shell-content [class]="getChangeableClasses()">
 			<router-outlet></router-outlet>
-		</div>
-	</db-page>
+		</db-shell-content>
+	</db-shell>
 }

@@ -1,3 +1,5 @@
+import { type ReactElement } from 'react';
+// Import * as iconCode from '../components/code-docs/icon';
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
@@ -28,8 +30,12 @@ import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
-import type { ReactElement } from 'react';
 
+import ControlPanelBrandShowcase from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
+import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
+import ControlPanelFlatIconShowcase from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
+import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
+import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -43,6 +49,15 @@ export type NavigationItem = {
 
 const nameComponentMap = {
 	accordion: <AccordionShowcase isPatternhub />,
+
+	'control-panel-brand': <ControlPanelBrandShowcase isPatternhub />,
+	'control-panel-mobile': <ControlPanelMobileShowcase isPatternhub />,
+
+	'control-panel-desktop': <ControlPanelDesktopShowcase isPatternhub />,
+
+	'control-panel-flat-icon': <ControlPanelFlatIconShowcase isPatternhub />,
+
+	shell: <ShellShowcase isPatternhub />,
 
 	'accordion-item': <AccordionItemShowcase isPatternhub />,
 	badge: <BadgeShowcase isPatternhub />,

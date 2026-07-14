@@ -277,7 +277,7 @@ Prefer using the `icon` attribute over `<DBIcon>` child component for components
 
 ### `text-or-children-required`
 
-Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBNavigationItem, DBNotification) have either a `text` property or children content.
+Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBControlPanelNavigationItem, DBNotification) have either a `text` property or children content.
 
 **❌ Invalid:**
 
@@ -613,70 +613,68 @@ Ensures components with close buttons have appropriate text attributes for acces
 <DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />
 ```
 
-### `header-burger-menu-label-required`
+### `control-panel-mobile-burger-menu-label-required`
 
-Ensures DBHeader has burgerMenuLabel attribute for accessibility.
+Ensures DBControlPanelMobile has burgerMenuLabel attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBHeader>Content</DBHeader>
-<DBHeader closeButtonText="Close">Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 
 // Angular
-<db-header>Content</db-header>
+<db-control-panel-mobile>Content</db-control-panel-mobile>
 
 // Vue
-<DBHeader>Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBHeader burgerMenuLabel="Menu">Content</DBHeader>
-<DBHeader burgerMenuLabel="Open navigation">Content</DBHeader>
+<DBControlPanelMobile burgerMenuLabel="Menu">Content</DBControlPanelMobile>
 
 // Angular
-<db-header burgerMenuLabel="Menu">Content</db-header>
-<db-header [burgerMenuLabel]="menuLabel">Content</db-header>
+<db-control-panel-mobile burgerMenuLabel="Menu">Content</db-control-panel-mobile>
+<db-control-panel-mobile [burgerMenuLabel]="menuLabel">Content</db-control-panel-mobile>
 
 // Vue
-<DBHeader :burgerMenuLabel="label">Content</DBHeader>
+<DBControlPanelMobile :burgerMenuLabel="label">Content</DBControlPanelMobile>
 ```
 
 ### `navigation-item-back-button-text-required`
 
-Ensures DBNavigationItem has backButtonText attribute for accessibility.
+Ensures DBControlPanelNavigationItemGroup has backButtonText attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBNavigationItem>Item</DBNavigationItem>
-<DBNavigationItem icon="home">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup icon="home">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-navigation-item>Item</db-navigation-item>
+<db-control-panel-navigation-item-group>Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBNavigationItem>Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBNavigationItem backButtonText="Back">Item</DBNavigationItem>
-<DBNavigationItem backButtonText="Go back">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup backButtonText="Back">Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup backButtonText="Go back">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-navigation-item backButtonText="Back">Item</db-navigation-item>
-<db-navigation-item [backButtonText]="backText">Item</db-navigation-item>
+<db-control-panel-navigation-item-group backButtonText="Back">Item</db-control-panel-navigation-item-group>
+<db-control-panel-navigation-item-group [backButtonText]="backText">Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBNavigationItem :backButtonText="text">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup :backButtonText="text">Item</DBControlPanelNavigationItemGroup>
 ```
 
 ### `custom-select-tags-remove-text-required`

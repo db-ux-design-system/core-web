@@ -1,0 +1,148 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/component";
+@use "../shell-sub-navigation/shell-sub-navigation";
+
+@mixin shell-control-panel-bottom-sub-navigation-top {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		@include helpers.divider("bottom");
+
+		padding-block-start: calc(
+			#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top)
+		);
+	}
+}
+
+.db-shell {
+	// MOBILE
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		&:not(
+			:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})
+		) {
+			&[data-control-panel-mobile-position="top"] {
+				&:not([data-sub-navigation-mobile-position]),
+				&[data-sub-navigation-mobile-position="none"] {
+					grid-template-areas:
+						"control-panel"
+						"shell-content";
+					grid-template-rows:
+						[control-panel] auto
+						[shell-content] 1fr;
+
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						display: none;
+					}
+				}
+
+				&[data-sub-navigation-mobile-position="top"] {
+					grid-template-areas:
+						"control-panel"
+						"sub-navigation"
+						"shell-content";
+					grid-template-rows:
+						[control-panel] auto
+						[sub-navigation] auto
+						[shell-content] 1fr;
+
+					@include shell-control-panel-bottom-sub-navigation-top;
+				}
+
+				&[data-sub-navigation-mobile-position="bottom"] {
+					grid-template-areas:
+						"control-panel"
+						"shell-content"
+						"sub-navigation";
+					grid-template-rows:
+						[control-panel] auto
+						[shell-content] 1fr
+						[sub-navigation] auto;
+
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						@include helpers.divider("top");
+
+						padding-block-end: calc(
+							#{variables.$db-spacing-fixed-xs} +
+								env(safe-area-inset-bottom)
+						);
+					}
+				}
+			}
+		}
+
+		&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
+		&[data-control-panel-mobile-position="bottom"] {
+			// Override popover bottom mobile navigation, second level
+			.db-control-panel-navigation[data-variant="popover"] {
+				.db-control-panel-navigation-item-group-menu {
+					max-inline-size: 100%;
+
+					/*
+						We use the drawer-max-height defined in packages/components/src/components/control-panel-mobile/control-panel-mobile.scss
+						to get the inverted height plus the size of the drawer header
+						*/
+					inset-block-start: calc(
+						100lvh - var(--db-drawer-max-height) +
+							#{component.$min-mobile-header-height} +
+							env(safe-area-inset-top)
+					);
+				}
+			}
+
+			&:not([data-sub-navigation-mobile-position]),
+			&[data-sub-navigation-mobile-position="bottom"],
+			&[data-sub-navigation-mobile-position="none"] {
+				grid-template-areas:
+					"shell-content"
+					"control-panel";
+				grid-template-rows:
+					[shell-content] 1fr
+					[control-panel] auto;
+
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					display: none;
+				}
+			}
+
+			&[data-sub-navigation-mobile-position="top"] {
+				grid-template-areas:
+					"sub-navigation"
+					"shell-content"
+					"control-panel";
+				grid-template-rows:
+					[sub-navigation] auto
+					[shell-content] 1fr
+					[control-panel] auto;
+
+				@include shell-control-panel-bottom-sub-navigation-top;
+			}
+		}
+
+		@include shell-sub-navigation.sub-navigation-mobile;
+
+		// Hide desktop control panel
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			display: none;
+		}
+
+		// Hide desktop control-panel-flat-icon
+		&:has(
+			> db-control-panel-flat-icon:nth-of-type(2),
+			> .db-control-panel-flat-icon:nth-of-type(2)
+		) {
+			> db-control-panel-flat-icon:nth-of-type(1)
+				> .db-control-panel-flat-icon,
+			> .db-control-panel-flat-icon:nth-of-type(1) {
+				display: none;
+			}
+		}
+	}
+}

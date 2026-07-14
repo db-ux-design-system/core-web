@@ -80,6 +80,19 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
+ * Checks whether a CSS custom property on an element equals '1'.
+ * Useful for detecting CSS-driven boolean state (e.g. responsive breakpoints)
+ * without coupling JS to hardcoded breakpoint values.
+ *
+ * @param element - The element to read computed styles from
+ * @param property - The CSS custom property name (e.g. '--db-my-flag')
+ * @returns `true` if the trimmed property value is '1'
+ */
+export const hasCssFlag = (element: Element, property: string): boolean =>
+	typeof window !== 'undefined' &&
+	getComputedStyle(element).getPropertyValue(property).trim() === '1';
+
+/**
  * Converts boolean-like inputs to "true" or "false" strings.
  * Handles HTML-style boolean attributes where an empty string or the
  * attribute's own name as value (e.g. noText="noText") should be treated as true.

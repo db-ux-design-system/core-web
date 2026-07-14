@@ -1,5 +1,6 @@
 {
 	"extends": ["stylelint-config-standard-scss"],
+	"ignoreFiles": ["**/node_modules/**", "scripts/**"],
 	"plugins": [
 		"stylelint-use-logical",
 		"@double-great/stylelint-a11y",
@@ -14,8 +15,11 @@
 					"includes": [
 						"-calc",
 						"$default-icon-margin",
+						"$control-panel-desktop",
 						"form-components.",
-						"section-padding-inline"
+						"section-padding-inline",
+						"component.$",
+						"env(safe-area-"
 					],
 					"startsWith": ["icons.$", "map.get"]
 				}
@@ -26,11 +30,17 @@
 			{
 				"allowCalc": true,
 				"allow": {
-					"includes": ["$db-", "$font-size-height"],
+					"includes": [
+						"$db-",
+						"$font-size-height",
+						"--db-drawer-max-",
+						"--db-drawer-min-"
+					],
 					"startsWith": [
 						"icons.$",
 						"component.$",
-						"form-components.$"
+						"form-components.$",
+						"calc-size("
 					],
 					"exact": ["$popover-gap-size", "$scrollbar-width"]
 				}

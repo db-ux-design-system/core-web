@@ -28,6 +28,7 @@ export default defineConfig({
 		'**/results/**',
 		'./showcases/screen-reader/translations.ts',
 		'storybooks/_storybook/src/welcome.mdx',
+		'storybooks/**/*.ts',
 		'playwright-report/**',
 		'showcases/shared/*.json',
 		'**/*.example.lite.tsx',
@@ -51,7 +52,7 @@ export default defineConfig({
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
 		'showcases/angular-showcase/src/app/components/form/form.component.ts',
-		'.vscode/extensions.json'
+		'.vscode/*.json'
 	],
 	dictionaries: [
 		'custom-words',

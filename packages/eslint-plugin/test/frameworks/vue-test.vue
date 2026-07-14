@@ -32,8 +32,8 @@
 		<!-- db-ux/form-validation-message-required -->
 		<DBInput label="Email" required />
 
-		<!-- db-ux/header-burger-menu-label-required -->
-		<DBHeader></DBHeader>
+		<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
+		<DBControlPanelMobile></DBControlPanelMobile>
 
 		<!-- db-ux/input-type-required -->
 		<DBInput label="Test" />
@@ -44,9 +44,9 @@
 		>
 
 		<!-- db-ux/navigation-item-back-button-text-required -->
-		<DBNavigationItem>
-			<template #subNavigation>Sub nav</template>
-		</DBNavigationItem>
+		<DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
 
 		<!-- db-ux/no-interactive-tooltip-content -->
 		<DBTooltip>
@@ -84,13 +84,13 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelMobile,
+	DBControlPanelNavigationItem,
 	DBCustomSelect,
 	DBDrawer,
-	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
-	DBNavigationItem,
 	DBNotification,
 	DBSelect,
 	DBTag,

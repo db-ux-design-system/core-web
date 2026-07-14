@@ -1,0 +1,211 @@
+- main:
+  - heading "DBShell" [level=1]
+  - link "Position"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-position-top":
+    - paragraph: Top position content
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-position-left":
+    - paragraph: Left position content
+    - button "Action"
+  - link "Flat Icon"
+  - navigation "Flat Icon With Text":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - main "shell-flat-icon-with-text":
+    - paragraph: Flat icon with text content
+    - button "Action"
+  - navigation "Flat Icon No Text":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - main "shell-flat-icon-no-text":
+    - paragraph: Flat icon no text content
+    - button "Action"
+  - navigation "Flat Icon With Text Sub Nav":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - complementary "shell-flat-icon-with-text-sub-nav":
+    - navigation "shell-flat-icon-with-text-sub-nav":
+      - list:
+        - listitem:
+          - link "Test 1"
+        - listitem:
+          - link "Test 2"
+        - listitem:
+          - link "Test 3"
+  - main "shell-flat-icon-with-text-sub":
+    - paragraph: Flat icon with text content + Sub-Navigation
+    - button "Action"
+  - navigation "Flat Icon No Text Sub Nav":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Search Full"
+      - listitem:
+        - link "Account"
+  - complementary "shell-flat-icon-no-text-sub-nav":
+    - navigation "shell-flat-icon-no-text-sub-nav":
+      - list:
+        - listitem:
+          - link "Test 1"
+        - listitem:
+          - link "Test 2"
+        - listitem:
+          - link "Test 3"
+  - main "shell-flat-icon-no-text-sub":
+    - paragraph: Flat icon no text content + Sub-Navigation
+    - button "Action"
+  - link "Content"
+  - button "Search"
+  - button "Open navigation menu"
+  - article: Test Test
+  - main "shell-position-auto-top":
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - paragraph: Auto-Top position content
+    - button "Action"
+  - article: Test Test
+  - button "Search"
+  - button "Open navigation menu"
+  - article: Test Test
+  - main "shell-position-fixed-top":
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - paragraph: Fixed-Top position content
+    - button "Action"
+  - article: Test Test
+  - button "Search"
+  - button "Open navigation menu"
+  - article: Test Test
+  - main "shell-position-auto-left":
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - paragraph: Auto-Left position content
+    - button "Action"
+  - article: Test Test
+  - button "Search"
+  - button "Open navigation menu"
+  - article: Test Test
+  - main "shell-position-fixed-left":
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - paragraph: Fixed-Left position content
+    - button "Action"
+  - article: Test Test
+  - link "Sub Navigation"
+  - button "Search"
+  - button "Open navigation menu"
+  - complementary "shell-top-sub-top-sub":
+    - navigation "shell-top-sub-top-sub":
+      - list:
+        - listitem:
+          - link "Sub-Item 3"
+        - listitem:
+          - link "Sub-Item 4"
+        - listitem:
+          - link "Sub-Item 5"
+  - main "shell-top-sub-top":
+    - paragraph: Top + Sub Top content
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - complementary "shell-top-sub-left-sub":
+    - navigation "shell-top-sub-left-sub":
+      - list:
+        - listitem:
+          - link "Sub-Item 3"
+        - listitem:
+          - link "Sub-Item 4"
+        - listitem:
+          - link "Sub-Item 5"
+  - main "shell-top-sub-left":
+    - paragraph: Top + Sub Left Popover content
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - complementary "shell-top-sub-left-tree-sub":
+    - navigation "shell-top-sub-left-tree-sub":
+      - list:
+        - listitem:
+          - link "Sub-Item 3"
+        - listitem:
+          - link "Sub-Item 4"
+        - listitem:
+          - link "Sub-Item 5"
+  - main "shell-top-sub-left-tree":
+    - paragraph: Top + Sub Left Tree content
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-left-sub-top":
+    - paragraph: Left + Sub Top content
+    - button "Action"
+  - link "Deep Navigation"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-deep-nav-top":
+    - paragraph: Deep Navigation - Top Position
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-deep-nav-left":
+    - paragraph: Deep Navigation - Left Position
+    - button "Action"
+  - link "Slots"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-slots-nav-item-badge":
+    - paragraph: Navigation Item with Badge - StartSlot and EndSlot
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-slots-group-badge-mobile":
+    - paragraph: Group with Badge - StartSlot and EndSlot
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-slots-group-badge":
+    - paragraph: Group with Badge - StartSlot and EndSlot
+    - button "Action"
+  - link "Tree Navigation"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-tree-nav-single":
+    - paragraph: Tree Navigation - Single Behavior (only one group open at a time)
+    - button "Action"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-tree-nav-multiple":
+    - paragraph: Tree Navigation - Multiple Behavior (multiple groups can be open simultaneously)
+    - button "Action"

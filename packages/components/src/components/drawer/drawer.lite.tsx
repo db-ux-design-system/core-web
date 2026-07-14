@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -7,7 +8,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
@@ -16,7 +16,6 @@ import {
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
-import DBButton from '../button/button.lite';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -29,6 +28,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const state = useStore<DBDrawerState>({
 		initialized: false,
 		backdropPointerDown: false,
+		_closeTimeoutId: undefined as number | undefined,
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -45,6 +45,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			state.backdropPointerDown =
 				(event?.target as any)?.nodeName === 'DIALOG';
 		},
+		/**
+		 * Handles close events from multiple sources:
+		 * - Escape key
+		 * - Backdrop click (when backdrop is enabled)
+		 * - Any element inside the drawer with `[data-action="close"]` attribute
+		 *   (e.g. the close button rendered by `DBDrawerHeader`)
+		 * - Direct forceClose calls
+		 *
+		 * CONTRACT: The `DBDrawerHeader` component must render its close button
+		 * with `data-action="close"` for this detection to work.
+		 */
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -72,12 +83,18 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 
-				if (
+				const isBackdrop =
 					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
 					props.backdrop !== 'none' &&
-					state.backdropPointerDown
-				) {
+					state.backdropPointerDown;
+				const isCloseButton = Boolean(
+					(event.target as HTMLElement)?.closest?.(
+						'[data-action="close"]'
+					)
+				);
+
+				if (isBackdrop || isCloseButton) {
 					if (props.onClose) {
 						props.onClose(event);
 					}
@@ -91,6 +108,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (_ref) {
 				const dialogOpen = getBoolean(props.open, 'open');
+				if (dialogOpen && state._closeTimeoutId !== undefined) {
+					// Cancel any pending close timeout when reopening to prevent
+					// a stale timer from closing the dialog after it was reopened.
+					clearTimeout(state._closeTimeoutId);
+					state._closeTimeoutId = undefined;
+				}
 				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(
@@ -100,11 +123,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (state.isNotModal()) {
 						_ref.show();
 					} else {
-						// Set the closedby attribute imperatively: the JSX
-						// dialog type does not know this attribute yet, and it
-						// only applies to modal dialogs. "any" enables native
-						// light dismiss (backdrop click / Esc).
-						_ref.setAttribute('closedby', 'any');
 						_ref.showModal();
 					}
 					void delay(() => {
@@ -121,9 +139,29 @@ export default function DBDrawer(props: DBDrawerProps) {
 							'transition'
 						] = 'close';
 					}
-					void delay(() => {
+					// Cancel any previously scheduled close to prevent double-close on rapid toggling
+					if (state._closeTimeoutId !== undefined) {
+						clearTimeout(state._closeTimeoutId);
+					}
+
+					// Read close delay from CSS (already accounts for prefers-reduced-motion)
+					let closeDelay = 0;
+					if (dialogContainerRef) {
+						const durationStr = getComputedStyle(
+							dialogContainerRef as HTMLDivElement
+						)
+							.getPropertyValue('--db-drawer-close-delay')
+							.trim();
+						const seconds = parseFloat(durationStr);
+						if (seconds > 0) {
+							closeDelay = seconds * 1000 + 1;
+						}
+					}
+
+					state._closeTimeoutId = window.setTimeout(() => {
 						_ref?.close();
-					}, 401);
+						state._closeTimeoutId = undefined;
+					}, closeDelay);
 				}
 			}
 		}
@@ -148,6 +186,20 @@ export default function DBDrawer(props: DBDrawerProps) {
 		}
 	}, [_ref, state.initialized, props.position]);
 
+	onUnMount(() => {
+		// Cancel any pending close timeout to prevent stale references
+		if (state._closeTimeoutId !== undefined) {
+			clearTimeout(state._closeTimeoutId);
+		}
+		if (_ref && props.position === 'absolute') {
+			const refElement = _ref as HTMLDialogElement;
+			const parent = refElement.parentElement;
+			if (parent) {
+				parent.style.position = '';
+			}
+		}
+	});
+
 	return (
 		<dialog
 			id={props.id ?? props.propOverrides?.id}
@@ -163,25 +215,16 @@ export default function DBDrawer(props: DBDrawerProps) {
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
-				data-spacing={props.spacing}
-				data-width={props.width}
+				data-container-size={props.containerSize}
+				data-show-spacing={getBooleanAsString(
+					props.showSpacing ?? true,
+					'showSpacing'
+				)}
 				data-direction={props.direction}
 				data-rounded={getBooleanAsString(props.rounded, 'rounded')}>
-				<header class="db-drawer-header">
-					<div class="db-drawer-header-text">
-						<Slot name="drawerHeader" />
-					</div>
-					<DBButton
-						class="button-close-drawer"
-						id={props.closeButtonId}
-						icon="cross"
-						variant="ghost"
-						noText
-						onClick={(event) => state.handleClose(event, true)}>
-						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-					</DBButton>
-				</header>
+				<Slot name="header" />
 				<div class="db-drawer-content">{props.children}</div>
+				<Slot name="footer" />
 			</article>
 		</dialog>
 	);

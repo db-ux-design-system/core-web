@@ -1,0 +1,105 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/control-panel-desktop";
+@use "../shell-sub-navigation/shell-sub-navigation";
+@use "../../styles/internal/custom-elements";
+
+@mixin control-panel-top {
+	&:not(:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})) {
+		&[data-control-panel-desktop-position="top"] {
+			// Sub-navigation: top
+			&[data-sub-navigation-desktop-position="top"] {
+				grid-template-areas:
+					"control-panel"
+					"shell-content";
+				grid-template-rows:
+					[control-panel] max-content
+					[shell-content] 1fr;
+
+				&:has(
+					#{string.unquote(custom-elements.$shell-sub-navigation)}
+				) {
+					grid-template-areas:
+						"control-panel"
+						"sub-navigation"
+						"shell-content";
+					grid-template-rows:
+						[control-panel] max-content
+						[sub-navigation] max-content
+						[shell-content] 1fr;
+				}
+
+				@include shell-sub-navigation.sub-navigation-top;
+			}
+
+			// Sub-navigation: left
+			&[data-sub-navigation-desktop-position="left"] {
+				grid-template:
+					[control-panel] "control-panel control-panel" max-content
+					[shell-content] "shell-content shell-content" 1fr;
+
+				&:has(
+					#{string.unquote(custom-elements.$shell-sub-navigation)}
+				) {
+					grid-template:
+						[control-panel] "control-panel control-panel" max-content
+						[shell-content] "sub-navigation shell-content" 1fr /
+						[sub-navigation] auto
+						[shell-content] 1fr;
+				}
+
+				@include shell-sub-navigation.sub-navigation-left;
+			}
+		}
+	}
+}
+
+@mixin control-panel-left {
+	&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
+	&[data-control-panel-desktop-position="left"] {
+		grid-template-areas:
+			"control-panel shell-content"
+			"control-panel shell-content";
+		grid-template-columns:
+			[control-panel] min-content
+			[shell-content] 1fr;
+
+		&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
+			grid-template-areas:
+				"control-panel sub-navigation"
+				"control-panel shell-content";
+			grid-template-rows:
+				[control-panel] min-content
+				[shell-content] 1fr;
+		}
+
+		@include shell-sub-navigation.sub-navigation-top;
+	}
+}
+
+.db-shell {
+	// DESKTOP
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		@include control-panel-top;
+		@include control-panel-left;
+
+		// Hide mobile control panel
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
+			display: none;
+		}
+
+		// Hide mobile control-panel-flat-icon
+		db-control-panel-flat-icon
+			+ db-control-panel-flat-icon
+			> .db-control-panel-flat-icon,
+		.db-control-panel-flat-icon + .db-control-panel-flat-icon {
+			display: none;
+		}
+	}
+}

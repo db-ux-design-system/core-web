@@ -1,0 +1,152 @@
+# Migration DBDrawer
+
+## Breaking Changes
+
+| Change                      | Before                       | After                                               |
+| --------------------------- | ---------------------------- | --------------------------------------------------- |
+| `header` slot now required  | Optional, no header needed   | Must pass `<DBDrawerHeader>` in the `header` slot   |
+| `spacing` property removed  | `<DBDrawer spacing="small">` | Remove `spacing` prop (no longer supported)         |
+| Default `direction` changed | `right`                      | `left`                                              |
+| `width` renamed             | `<DBDrawer width="full">`    | `<DBDrawer containerSize="full">`                   |
+| New `showSpacing` property  | N/A                          | `<DBDrawer showSpacing={false}>` to disable         |
+| New `containerSize` options | `width`: `full`, `auto`      | `containerSize`: `small`, `medium`, `large`, `full` |
+
+## Required `DBDrawerHeader`
+
+The `DBDrawer` component now requires a `DBDrawerHeader` component to be placed in the `header` slot. The `DBDrawerHeader` provides a consistent header with a built-in close button.
+
+### Before
+
+```tsx
+import { DBDrawer, DBButton } from "@db-ux/react-core-components";
+
+const App = () => {
+	const [open, setOpen] = useState(false);
+
+	return (
+		<>
+			<DBButton onClick={() => setOpen(true)}>Open Drawer</DBButton>
+			<DBDrawer open={open} onClose={() => setOpen(false)}>
+				Drawer content
+			</DBDrawer>
+		</>
+	);
+};
+```
+
+### After
+
+```tsx
+import {
+	DBDrawer,
+	DBDrawerHeader,
+	DBButton
+} from "@db-ux/react-core-components";
+
+const App = () => {
+	const [open, setOpen] = useState(false);
+
+	return (
+		<>
+			<DBButton onClick={() => setOpen(true)}>Open Drawer</DBButton>
+			<DBDrawer
+				open={open}
+				onClose={() => setOpen(false)}
+				slotHeader={<DBDrawerHeader>My Title</DBDrawerHeader>}
+			>
+				Drawer content
+			</DBDrawer>
+		</>
+	);
+};
+```
+
+## Removed `spacing` Property
+
+The `spacing` property has been removed from `DBDrawer`. Remove any usage of this prop.
+
+### Before
+
+```tsx
+<DBDrawer spacing="small" open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>
+```
+
+### After
+
+```tsx
+<DBDrawer
+	open={open}
+	onClose={() => setOpen(false)}
+	slotHeader={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
+	Content
+</DBDrawer>
+```
+
+## Default `direction` Changed
+
+The default direction has changed from `right` to `left`. If you relied on the default `right` behavior, you now need to set `direction="right"` explicitly.
+
+### Before
+
+```tsx
+{
+	/* Previously opened from the right by default */
+}
+<DBDrawer open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>;
+```
+
+### After
+
+```tsx
+{
+	/* Now opens from the left by default — add direction="right" to keep old behavior */
+}
+<DBDrawer direction="right" open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>;
+```
+
+## `width` Renamed to `containerSize`
+
+The `width` property has been replaced by `containerSize` with new size options: `small` (default on desktop), `medium`, `large`, and `full`.
+
+### Before
+
+```tsx
+<DBDrawer width="full" open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>
+```
+
+### After
+
+```tsx
+<DBDrawer containerSize="full" open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>
+```
+
+## New `showSpacing` Property
+
+The `showSpacing` property controls the spacing between the screen edge and the drawer content. It defaults to `true`. Set `showSpacing={false}` to remove the spacing.
+
+```tsx
+{
+	/* Default: with spacing */
+}
+<DBDrawer open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>;
+
+{
+	/* Without spacing */
+}
+<DBDrawer showSpacing={false} open={open} onClose={() => setOpen(false)}>
+	Content
+</DBDrawer>;
+```

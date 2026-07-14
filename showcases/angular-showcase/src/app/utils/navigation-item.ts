@@ -1,6 +1,4 @@
-import { TableComponent } from '../components/table.component';
-
-import { Routes } from '@angular/router';
+import { type Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
 import { BadgeShowcase } from '@components/components/badge/showcase/badge.showcase';
@@ -8,6 +6,10 @@ import { BrandShowcase } from '@components/components/brand/showcase/brand.showc
 import { ButtonShowcase } from '@components/components/button/showcase/button.showcase';
 import { CardShowcase } from '@components/components/card/showcase/card.showcase';
 import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
+import { ControlPanelBrandShowcase } from '@components/components/control-panel-brand/showcase/control-panel-brand.showcase';
+import { ControlPanelDesktopShowcase } from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
+import { ControlPanelFlatIconShowcase } from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
+import { ControlPanelMobileShowcase } from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
@@ -24,9 +26,11 @@ import { PopoverShowcase } from '@components/components/popover/showcase/popover
 import { RadioShowcase } from '@components/components/radio/showcase/radio.showcase';
 import { SectionShowcase } from '@components/components/section/showcase/section.showcase';
 import { SelectShowcase } from '@components/components/select/showcase/select.showcase';
+import { ShellShowcase } from '@components/components/shell/showcase/shell.showcase';
 import { StackShowcase } from '@components/components/stack/showcase/stack.showcase';
 import { SwitchShowcase } from '@components/components/switch/showcase/switch.showcase';
 import { TabItemShowcase } from '@components/components/tab-item/showcase/tab-item.showcase';
+import { TableShowcase } from '@components/components/table/showcase/table.showcase';
 import { TabsShowcase } from '@components/components/tabs/showcase/tabs.showcase';
 import { TagShowcase } from '@components/components/tag/showcase/tag.showcase';
 import { TextareaShowcase } from '@components/components/textarea/showcase/textarea.showcase';
@@ -64,6 +68,31 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
 			{
+				path: '05/shell',
+				label: 'Shell',
+				component: ShellShowcase
+			},
+			{
+				path: '05/control-panel-brand',
+				label: 'ControlPanelBrand',
+				component: ControlPanelBrandShowcase
+			},
+			{
+				path: '05/control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: ControlPanelDesktopShowcase
+			},
+			{
+				path: '05/control-panel-flat-icon',
+				label: 'ControlPanelFlatIcon',
+				component: ControlPanelFlatIconShowcase
+			},
+			{
+				path: '05/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: ControlPanelMobileShowcase
+			},
+			{
 				path: '05/navigation-item',
 				label: 'NavigationItem',
 				component: NavigationItemShowcase
@@ -72,6 +101,16 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '05/navigation',
 				label: 'Navigation',
 				component: NavigationShowcase
+			},
+			{
+				path: '05/brand',
+				label: 'Brand',
+				component: BrandShowcase
+			},
+			{
+				path: '05/header',
+				label: 'Header',
+				component: HeaderShowcase
 			}
 		])
 	},
@@ -81,11 +120,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
 			{ path: '04/icon', label: 'Icon', component: IconShowcase },
-			{
-				path: '04/brand',
-				label: 'Brand',
-				component: BrandShowcase
-			},
 			{
 				path: '04/tooltip',
 				label: 'Tooltip',
@@ -112,7 +146,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'TabItem',
 				component: TabItemShowcase
 			},
-			{ path: '04/table', label: 'Table', component: TableComponent },
+			{ path: '04/table', label: 'Table', component: TableShowcase },
 
 			{ path: '04/tabs', label: 'Tabs', component: TabsShowcase }
 		])
@@ -176,11 +210,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/section',
 				label: 'Section',
 				component: SectionShowcase
-			},
-			{
-				path: '01/header',
-				label: 'Header',
-				component: HeaderShowcase
 			}
 		])
 	},

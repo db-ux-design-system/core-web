@@ -8,6 +8,7 @@ export type ComponentType = {
 		/* Template hygen type */
 		| 'custom-button'
 		| 'table'
+		| 'control-panel-mobile'
 		| 'stack'
 		| 'switch'
 		| 'custom-select'

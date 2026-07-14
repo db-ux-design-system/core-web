@@ -14,6 +14,11 @@
 	}
 }
 
+.fullscreen-container {
+	overflow-y: auto;
+	block-size: 100lvh;
+}
+
 /* TODO: we're disabling the code link temporarily and need to reintegrate it afterwards */
 .show-code-link {
 	display: none;
@@ -38,6 +43,11 @@
 	justify-content: center;
 }
 
+.variants-list .db-select,
+.w-full {
+	inline-size: 100%;
+}
+
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -45,20 +55,47 @@
 	justify-content: center;
 	align-items: center;
 	gap: var(--db-spacing-fixed-md);
-}
 
-.variants-list div[role] > div:not([class^="db-"], [data-area]),
-.variants-list > div:not([class^="db-"]) {
-	align-items: center;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: var(--db-spacing-fixed-md);
-}
+	div[role] > div:not([class^="db-"], [data-area]),
+	> div:not([class^="db-"]) {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--db-spacing-fixed-md);
+	}
 
-.variants-list .db-select,
-.w-full {
-	inline-size: 100%;
+	.db-shell {
+		border: var(--db-border-width-3xs) dashed
+			var(--db-adaptive-on-bg-basic-emphasis-100-default);
+
+		&:is(
+			:not([data-control-panel-desktop-position]),
+			[data-control-panel-desktop-position="top"]
+		) {
+			block-size: var(--db-container-sm);
+			inline-size: 100%;
+		}
+
+		&[data-control-panel-desktop-position="left"] {
+			block-size: var(--db-container-sm);
+			inline-size: 100%;
+		}
+	}
+
+	&:has([placeholder="(Default) Basic"]) {
+		margin-block: 0 auto;
+	}
+
+	&:has(.db-shell) {
+		flex-direction: column;
+		align-items: center;
+
+		> div {
+			justify-content: center;
+			inline-size: 100%;
+		}
+	}
 }
 
 .variants-list > db-popover > .db-popover > db-button > button,
@@ -72,12 +109,6 @@
 .variants-list * > .db-input,
 .variants-list * > .db-textarea {
 	align-self: flex-end;
-}
-
-.variants-list .db-select:has([placeholder="(Default) Basic"]),
-.variants-list .db-input:has([placeholder="(Default) Basic"]),
-.variants-list .db-textarea:has([placeholder="(Default) Basic"]) {
-	margin-block: 0 auto;
 }
 
 .html-code-container {
@@ -147,10 +178,6 @@
 	margin-inline-start: var(--db-spacing-responsive-md);
 }
 
-.fixed-header-footer {
-	overflow: hidden;
-}
-
 .fit-content-container {
 	flex-direction: column;
 	inline-size: fit-content;
@@ -162,20 +189,6 @@
 
 .tab-hide-article article {
 	display: none !important;
-}
-
-.db-page.fixed-header-footer main {
-	overflow-x: hidden;
-	overflow-inline: hidden;
-}
-
-:root:has(.db-page) {
-	block-size: 100%;
-	overflow: hidden;
-}
-
-main .db-header {
-	block-size: 100%;
 }
 
 .stack-container {
@@ -211,4 +224,38 @@ main .db-header {
 	background-color: var(--db-successful-bg-basic-level-1-default);
 	color: var(--db-successful-on-bg-basic-emphasis-100-default);
 	padding-inline: var(--db-spacing-fixed-xs);
+}
+
+.db-control-panel-primary-actions {
+	.db-drawer {
+		.db-drawer-content {
+			display: flex;
+			flex-direction: column;
+			padding: var(--db-spacing-fixed-xs);
+			gap: var(--db-spacing-fixed-xs);
+		}
+	}
+}
+
+/* stylelint-disable  selector-type-no-unknown */
+app-meta-navigation,
+app-primary-actions,
+app-secondary-actions,
+app-nav-item {
+	display: contents;
+}
+
+@media screen and (width >= 768px) {
+	.db-shell[data-control-panel-desktop-position="top"] {
+		.db-control-panel-meta:first-of-type {
+			justify-content: flex-end;
+		}
+	}
+}
+
+.meta-workaround {
+	.db-link {
+		/* This workaround is for reduce the amount of screenshot changes */
+		block-size: calc(var(--db-sizing-sm) + 4px);
+	}
 }
