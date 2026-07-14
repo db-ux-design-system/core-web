@@ -255,6 +255,13 @@
 	.db-drawer-footer:has(.db-header-secondary-action:empty) {
 		display: none;
 	}
+
+	// When footer is hidden (empty secondaryAction), content needs safe-area spacing
+	&:has(.db-drawer-footer:has(.db-header-secondary-action:empty)) {
+		.db-drawer-content {
+			margin-block-end: env(safe-area-inset-bottom);
+		}
+	}
 }
 
 /* Only for Desktop */

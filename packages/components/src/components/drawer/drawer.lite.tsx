@@ -113,6 +113,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 					// a stale timer from closing the dialog after it was reopened.
 					clearTimeout(state._closeTimeoutId);
 					state._closeTimeoutId = undefined;
+					// Restore the open transition state since the close was cancelled
+					if (dialogContainerRef) {
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'open';
+					}
 				}
 				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {

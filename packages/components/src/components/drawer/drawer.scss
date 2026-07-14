@@ -137,7 +137,7 @@
 		--db-drawer-close-delay: 0;
 
 		@media (prefers-reduced-motion: no-preference) {
-			--db-drawer-close-delay: #{variables.$db-transition-duration-slow};
+			--db-drawer-close-delay: #{variables.$db-transition-duration-extra-slow};
 		}
 
 		display: grid;

@@ -6,8 +6,8 @@ export type FigmaDrawerProps = {
 	rounded?: boolean;
 	showSpacing?: boolean;
 	showBackdrop?: boolean;
-	drawerHeader?: string;
-	showText?: boolean;
+	_drawerHeader?: string;
+	_showText?: boolean;
 	_children?: any;
 };
 
@@ -25,12 +25,12 @@ const drawerProps: Record<string, FigmaProp> = {
 	rounded: { type: 'boolean', key: 'Rounded' },
 	showSpacing: { type: 'boolean', key: 'Show Spacing' },
 	showBackdrop: { type: 'boolean', key: 'Show Backdrop' },
-	drawerHeader: {
+	_drawerHeader: {
 		type: 'string',
 		key: '✏️ Text',
 		layer: '↳ Drawer HEADER'
 	},
-	showText: {
+	_showText: {
 		type: 'boolean',
 		key: 'Show Text',
 		layer: '↳ Drawer HEADER'

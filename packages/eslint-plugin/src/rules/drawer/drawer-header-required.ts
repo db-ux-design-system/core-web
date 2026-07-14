@@ -6,7 +6,8 @@ import {
 } from '../../shared/utils.js';
 
 /**
- * Checks if an Angular node has a child with the `header` attribute.
+ * Checks if an Angular node has a child with the `header` attribute that
+ * contains (or is) a DBDrawerHeader component.
  * In Angular, the drawer uses `<ng-content select="[header]">` for slot projection,
  * so a valid usage is:
  *   <db-drawer><db-drawer-header header>Title</db-drawer-header></db-drawer>
@@ -20,7 +21,12 @@ function hasAngularHeaderSlot(node: any): boolean {
 				(attr: any) => attr.name === 'header'
 			);
 			if (hasHeaderAttr) {
-				return true;
+				// Verify the child IS a db-drawer-header or CONTAINS one
+				if (isDBComponent(child, 'DBDrawerHeader')) {
+					return true;
+				}
+				// Check if any descendant is a db-drawer-header
+				return containsDrawerHeader(child);
 			}
 		}
 		return false;
@@ -28,7 +34,26 @@ function hasAngularHeaderSlot(node: any): boolean {
 }
 
 /**
- * Checks if a Vue node has a child template with v-slot:header or #header.
+ * Recursively checks if a node or its children contain a DBDrawerHeader component.
+ */
+function containsDrawerHeader(node: any): boolean {
+	if (!node.children) {
+		return false;
+	}
+	return node.children.some((child: any) => {
+		if (
+			(child.type === 'Element' || child.type === 'Element$1') &&
+			isDBComponent(child, 'DBDrawerHeader')
+		) {
+			return true;
+		}
+		return containsDrawerHeader(child);
+	});
+}
+
+/**
+ * Checks if a Vue node has a child template with v-slot:header or #header
+ * that contains a DBDrawerHeader component.
  * In Vue, the drawer uses a named slot:
  *   <DBDrawer><template v-slot:header><DBDrawerHeader>Title</DBDrawerHeader></template></DBDrawer>
  *   <DBDrawer><template #header><DBDrawerHeader>Title</DBDrawerHeader></template></DBDrawer>
@@ -44,7 +69,7 @@ function hasVueHeaderSlot(node: any): boolean {
 		}
 
 		const attrs = child.startTag?.attributes || [];
-		return attrs.some((attr: any) => {
+		const isHeaderSlot = attrs.some((attr: any) => {
 			const keyName =
 				typeof attr.key?.name === 'string'
 					? attr.key.name
@@ -59,6 +84,31 @@ function hasVueHeaderSlot(node: any): boolean {
 
 			return keyName === 'slot' && argName === 'header';
 		});
+
+		if (!isHeaderSlot) {
+			return false;
+		}
+
+		// Verify the slot template contains a DBDrawerHeader
+		return containsVueDrawerHeader(child);
+	});
+}
+
+/**
+ * Recursively checks if a Vue node or its children contain a DBDrawerHeader component.
+ */
+function containsVueDrawerHeader(node: any): boolean {
+	if (!node.children) {
+		return false;
+	}
+	return node.children.some((child: any) => {
+		if (
+			(child.type === 'VElement' || child.type === 'Element') &&
+			isDBComponent(child, 'DBDrawerHeader')
+		) {
+			return true;
+		}
+		return containsVueDrawerHeader(child);
 	});
 }
 

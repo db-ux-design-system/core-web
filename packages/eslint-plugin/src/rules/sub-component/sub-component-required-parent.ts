@@ -206,7 +206,18 @@ function isInsideJsxParent(
 		if (current.type === 'JSXElement') {
 			const opening = current.openingElement;
 			if (opening && isDBComponent(opening, parentName)) {
-				return true;
+				// If no slot is required, any ancestor match is valid
+				if (!slotName) {
+					return true;
+				}
+				// If a slot IS required, accept direct JSX children of the parent
+				// (React Mitosis output handles children as slots internally)
+				if (node.parent === current) {
+					return true;
+				}
+				// For nested cases, only accept if passed through the slot prop
+				// (handled by the JSXExpressionContainer check below).
+				// Do not return true here — continue walking up.
 			}
 		}
 

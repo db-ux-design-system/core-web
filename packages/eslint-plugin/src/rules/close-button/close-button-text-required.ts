@@ -223,6 +223,33 @@ export default {
 					});
 				}
 			}
+
+			// For Vue: reject bare boolean attributes (e.g. <DBDrawerHeader closeButtonText>)
+			// Vue startTag attributes that are not directives and have no value are bare booleans
+			if (value === true && openingElement.startTag?.attributes) {
+				const kebabAttr = attribute
+					.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+					.toLowerCase();
+				const vueAttr = openingElement.startTag.attributes.find(
+					(a: any) => {
+						if (a.directive) {
+							return false;
+						}
+						const keyName =
+							typeof a.key?.name === 'string'
+								? a.key.name
+								: a.key?.name?.name;
+						return keyName === attribute || keyName === kebabAttr;
+					}
+				);
+				if (vueAttr && !vueAttr.value) {
+					context.report({
+						node: openingElement,
+						messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
+						data: { component: componentName, attribute }
+					});
+				}
+			}
 		};
 
 		return defineTemplateBodyVisitor(

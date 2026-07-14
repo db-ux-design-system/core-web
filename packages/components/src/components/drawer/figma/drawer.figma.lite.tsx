@@ -12,7 +12,7 @@ export default function DrawerFigmaLite(props: FigmaDrawerProps) {
 		<DBDrawer
 			header={
 				<DBDrawerHeader>
-					{props.showText ? props.drawerHeader : ''}
+					{props._showText ? props._drawerHeader : ''}
 				</DBDrawerHeader>
 			}>
 			{props._children}
