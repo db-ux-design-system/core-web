@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { basename, extname, join } from 'node:path';
-import { type ToolResult } from '../utils';
+import { type ToolResult, error } from '../utils';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -150,8 +150,8 @@ export async function handleGetVisualReference({
 				}
 			]
 		};
-	} catch (error: unknown) {
-		const message = error instanceof Error ? error.message : String(error);
+	} catch (err: unknown) {
+		const message = err instanceof Error ? err.message : String(err);
 		return error(`Failed to read visual for '${name}': ${message}`);
 	}
 }
