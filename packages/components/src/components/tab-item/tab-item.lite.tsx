@@ -33,7 +33,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		tooltipText: '',
 		_resizeObserver: null,
 		_mutationObserver: null,
-		// Removes only the truncation tooltip's ID from aria-describedby,
+		// Removes only the truncation tooltip ID from aria-describedby,
 		// preserving any consumer-provided IDs in the space-separated list.
 		_cleanupTooltipAria: () => {
 			if (!_ref) return;

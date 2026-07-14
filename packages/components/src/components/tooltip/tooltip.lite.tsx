@@ -273,7 +273,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		}
 	}, [_ref, state.initialized, state._id]);
 
-	// Remove parent listeners/observers on unmount so stale closures don't fire after the tooltip is gone.
+	// Remove parent listeners/observers on unmount so stale closures do not fire after the tooltip is gone.
 	onUnMount(() => {
 		state._detachListeners();
 	});
