@@ -496,7 +496,7 @@ export const checkboxes: FigmaCodeConnect = {
 1. Generate all Figma files via Mitosis:
 
     ```shell
-    pnpm run generate:figma --workspace=@db-ux/core-components
+    pnpm --filter=@db-ux/core-components run generate:figma
     ```
 
 2. Check the generated output in `figma-code-connect/react-figma/src/`.
@@ -504,7 +504,7 @@ export const checkboxes: FigmaCodeConnect = {
 3. Run the tests:
 
     ```shell
-    pnpm run test --workspace=react-figma
+    pnpm --filter=react-figma run test
     ```
 
 ### Update snapshots
@@ -512,10 +512,10 @@ export const checkboxes: FigmaCodeConnect = {
 After any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks:
 
 ```shell
-pnpm run generate:figma --workspace=@db-ux/core-components
-pnpm run test:update --workspace=react-figma
-pnpm run test:update --workspace=angular-figma
-pnpm run test:update --workspace=vue-figma
+pnpm --filter=@db-ux/core-components run generate:figma
+pnpm --filter=react-figma run test:update
+pnpm --filter=angular-figma run test:update
+pnpm --filter=vue-figma run test:update
 ```
 
 > **When required:** Whenever you add a new component, change URLs, change props, or change example templates. The CI will fail if snapshots are out of date.
@@ -552,5 +552,5 @@ These files **must be committed** — they are the baseline for CI.
 2. Publish:
 
     ```shell
-    pnpm run connect --workspace=react-figma
+    pnpm --filter=react-figma run connect
     ```

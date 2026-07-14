@@ -191,14 +191,14 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 ### Working with Figma Code Connect
 
 - **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
-- **Generate Figma files** (must run before updating snapshots): `pnpm run generate:figma --workspace=@db-ux/core-components`
+- **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
 - **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
     ```bash
-    pnpm run test:update --workspace=react-figma
-    pnpm run test:update --workspace=angular-figma
-    pnpm run test:update --workspace=vue-figma
+    pnpm --filter=react-figma run test:update
+    pnpm --filter=angular-figma run test:update
+    pnpm --filter=vue-figma run test:update
     ```
-- **Run Figma tests**: `pnpm run test --workspace=react-figma`
+- **Run Figma tests**: `pnpm --filter=react-figma run test`
 
 ### Working with Styles
 
