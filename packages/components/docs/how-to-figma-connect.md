@@ -504,7 +504,7 @@ export const checkboxes: FigmaCodeConnect = {
 3. Run the tests:
 
     ```shell
-    pnpm --filter=react-figma run test
+    pnpm --filter=react-figma --filter=angular-figma --filter=vue-figma run test
     ```
 
 ### Update snapshots

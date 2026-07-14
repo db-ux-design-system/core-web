@@ -198,7 +198,7 @@ Most `major` changeset entries indicate a breaking change that requires consumer
     pnpm --filter=angular-figma run test:update
     pnpm --filter=vue-figma run test:update
     ```
-- **Run Figma tests**: `pnpm --filter=react-figma run test`
+- **Run Figma tests**: `pnpm --filter=react-figma --filter=angular-figma --filter=vue-figma run test`
 
 ### Working with Styles
 
