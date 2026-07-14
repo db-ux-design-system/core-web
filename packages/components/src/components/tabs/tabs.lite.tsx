@@ -37,7 +37,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollStart: false,
 		showScrollEnd: false,
 		_resizeObserver: null,
-		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
+		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis does not support cross-lifecycle local variables)
 		_pendingRafId: null,
 		_scrollListener: null,
 		// True when the browser natively supports the focusgroup attribute –
@@ -120,7 +120,7 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// Lightweight method that only toggles selection state on cached references.
-		// Does NOT re-query the DOM or set up IDs/ARIA – that's initTabs' job.
+		// Does NOT re-query the DOM or set up IDs/ARIA – that is the job of initTabs.
 		syncSelection(activeIndex?: number) {
 			const buttons = state._tabButtons;
 			const panels = state._tabPanels;
@@ -326,7 +326,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// have no live state yet, so we fall back to the initial index for
 		// correct SSR/no-JS output. After initialization we render from the
 		// current _activeIndex so a parent re-render (e.g. arrows behavior
-		// updating scroll buttons) can never reset a panel's hidden state back
+		// updating scroll buttons) can never reset a panel hidden state back
 		// to the initially selected tab.
 		getRenderIndex(): number {
 			return state.initialized
@@ -416,7 +416,7 @@ export default function DBTabs(props: DBTabsProps) {
 			);
 		},
 
-		// Determines the visibility of scroll buttons based on the container's scroll position.
+		// Determines the visibility of scroll buttons based on the scroll position of the container.
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			if (!needsScroll) {
@@ -516,9 +516,9 @@ export default function DBTabs(props: DBTabsProps) {
 
 		// True only for panels that belong directly to this DBTabs instance.
 		// We look at the nearest ancestor that is either a `.db-tabs` root or
-		// another `[role="tabpanel"]`: if it is this instance's root (_ref) the
+		// another `[role="tabpanel"]`: if it is this instance root (_ref) the
 		// panel is a direct child; if an intervening tabpanel (foreign tabpanel
-		// rendered inside a panel's content) or a nested `.db-tabs` is hit
+		// rendered inside a panel content) or a nested `.db-tabs` is hit
 		// first, the panel is not ours and must not shift the index mapping.
 		_isOwnedPanel(panel: HTMLElement): boolean {
 			const owner = panel.parentElement?.closest(
@@ -630,7 +630,7 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	}, [state._id]);
 
-	// Reflect orientation changes onto the tablist's aria-orientation
+	// Reflect orientation changes onto the tablist aria-orientation
 	onUpdate(() => {
 		if (_ref) {
 			const container = state._getScrollContainer() as HTMLElement | null;
@@ -650,7 +650,7 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	}, [_ref, props.orientation]);
 
-	// Reflect label changes onto the tablist's aria-label
+	// Reflect label changes onto the tablist aria-label
 	onUpdate(() => {
 		if (_ref) {
 			const label = props.label;
