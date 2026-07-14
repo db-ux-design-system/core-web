@@ -33,6 +33,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 		tooltipText: '',
 		_resizeObserver: null,
 		_mutationObserver: null,
+		_setupRafId: null,
+		_unmounted: false,
 		// Removes only the truncation tooltip ID from aria-describedby,
 		// preserving any consumer-provided IDs in the space-separated list.
 		_cleanupTooltipAria: () => {
@@ -104,12 +106,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 			!state._resizeObserver
 		) {
 			const setupObserverAndCheck = () => {
-				requestAnimationFrame(() => {
+				state._setupRafId = requestAnimationFrame(() => {
+					state._setupRafId = null;
+					if (state._unmounted) return;
 					state.checkTruncation();
 					if (_labelRef && !state._resizeObserver) {
 						const resizeObserver = new ResizeObserver(() => {
 							requestAnimationFrame(() => {
-								state.checkTruncation();
+								if (!state._unmounted) {
+									state.checkTruncation();
+								}
 							});
 						});
 						resizeObserver.observe(_labelRef);
@@ -122,7 +128,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 					if (_labelRef && !state._mutationObserver) {
 						const mutationObserver = new MutationObserver(() => {
 							requestAnimationFrame(() => {
-								state.checkTruncation();
+								if (!state._unmounted) {
+									state.checkTruncation();
+								}
 							});
 						});
 						mutationObserver.observe(_labelRef, {
@@ -140,7 +148,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 				props.iconTrailing
 			);
 			if (hasIcon && document.fonts?.ready) {
-				document.fonts.ready.then(setupObserverAndCheck);
+				document.fonts.ready.then(() => {
+					if (!state._unmounted) {
+						setupObserverAndCheck();
+					}
+				});
 			} else {
 				setupObserverAndCheck();
 			}
@@ -149,6 +161,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	// Disconnect the observers
 	onUnMount(() => {
+		state._unmounted = true;
+		if (state._setupRafId !== null) {
+			cancelAnimationFrame(state._setupRafId);
+			state._setupRafId = null;
+		}
 		state._resizeObserver?.disconnect();
 		state._mutationObserver?.disconnect();
 	});

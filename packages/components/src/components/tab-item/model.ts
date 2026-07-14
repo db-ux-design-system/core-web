@@ -52,6 +52,8 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 export type DBTabItemDefaultState = {
 	_resizeObserver: ResizeObserver | null | undefined;
 	_mutationObserver: MutationObserver | null | undefined;
+	_setupRafId: number | null;
+	_unmounted: boolean;
 	isTruncated: boolean;
 	_cleanupTooltipAria: () => void;
 	checkTruncation: () => void;
