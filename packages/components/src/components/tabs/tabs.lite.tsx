@@ -152,7 +152,13 @@ export default function DBTabs(props: DBTabsProps) {
 			// Without this, an invalid/disabled requested index would keep
 			// _activeIndex stale and a later render could show a disabled panel
 			// or hide every panel while another tab is actually selected.
-			if (currentIndex !== requestedIndex) {
+			// In controlled mode, do NOT persist the fallback: the parent owns
+			// the index and a later change (e.g. tab becoming enabled) must
+			// still be driven by props.activeIndex without stale state blocking it.
+			if (
+				currentIndex !== requestedIndex &&
+				props.activeIndex === undefined
+			) {
 				state._activeIndex = currentIndex;
 			}
 
