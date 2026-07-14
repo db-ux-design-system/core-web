@@ -586,6 +586,15 @@ export default function DBTabs(props: DBTabsProps) {
 							baseIdChanged &&
 							panel.id === `${previousBaseId}-tab-panel-${index}`;
 
+						if (!panel.id || wasGeneratedPanelId) {
+							panel.id = panelId;
+						}
+
+						// Use the actual resolved IDs (which may be
+						// consumer-provided) for the ARIA relationship.
+						const resolvedPanelId = panel.id;
+						const resolvedTabId = button.id;
+
 						const ariaControls =
 							button.getAttribute('aria-controls');
 						if (
@@ -594,10 +603,10 @@ export default function DBTabs(props: DBTabsProps) {
 								ariaControls ===
 									`${previousBaseId}-tab-panel-${index}`)
 						) {
-							button.setAttribute('aria-controls', panelId);
-						}
-						if (!panel.id || wasGeneratedPanelId) {
-							panel.id = panelId;
+							button.setAttribute(
+								'aria-controls',
+								resolvedPanelId
+							);
 						}
 						const labelledBy =
 							panel.getAttribute('aria-labelledby');
@@ -608,7 +617,10 @@ export default function DBTabs(props: DBTabsProps) {
 										`${previousBaseId}-tab-${index}`)) &&
 							!panel.getAttribute('aria-label')
 						) {
-							panel.setAttribute('aria-labelledby', tabId);
+							panel.setAttribute(
+								'aria-labelledby',
+								resolvedTabId
+							);
 						}
 					}
 				});
