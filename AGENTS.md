@@ -188,6 +188,18 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
 - **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
 
+### Working with Figma Code Connect
+
+- **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
+    ```bash
+    pnpm run test:update --workspace=react-figma
+    pnpm run test:update --workspace=angular-figma
+    pnpm run test:update --workspace=vue-figma
+    ```
+- **Generate Figma files**: `pnpm run generate:figma --workspace=@db-ux/core-components`
+- **Run Figma tests**: `pnpm run test --workspace=react-figma`
+
 ### Working with Styles
 
 - **Foundation styles**: `packages/foundations/`
