@@ -112,7 +112,7 @@
     "npm-run-all2": "9.0.2",
     "playwright": "1.60.0",
     "playwright-core": "1.60.0",
-    "prettier": "3.9.4",
+    "prettier": "3.9.5",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-pkg": "0.22.1",
     "stylelint": "17.14.0",
