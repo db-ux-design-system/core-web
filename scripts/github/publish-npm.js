@@ -9,12 +9,12 @@ const repoRoot =
 	path.join(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 const { VALID_SEMVER_VERSION } = process.env;
-const RELEASE = process.env.RELEASE === 'true';
+const IS_RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
-const CI = process.env.CI === 'true';
+const IS_CI = process.env.CI === 'true';
 
 if (!VALID_SEMVER_VERSION) {
-	if (CI) {
+	if (IS_CI) {
 		console.error('Version is missing!');
 		process.exit(1);
 	}
@@ -23,8 +23,8 @@ if (!VALID_SEMVER_VERSION) {
 	console.warn('⚠️ No version set, using 0.0.0-local for local run');
 }
 
-if (!RELEASE && !PRE_RELEASE) {
-	if (CI) {
+if (!IS_RELEASE && !PRE_RELEASE) {
+	if (IS_CI) {
 		console.error(
 			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
 		);
@@ -126,7 +126,7 @@ execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
 console.log('🔑 Using trusted publishing for NPM');
 
 // Only run provenance (real publish) in CI, locally only dry-run
-for (const step of CI ? ['dry-run', 'provenance'] : ['dry-run']) {
+for (const step of IS_CI ? ['dry-run', 'provenance'] : ['dry-run']) {
 	for (const { dir, name: PACKAGE } of packages) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {

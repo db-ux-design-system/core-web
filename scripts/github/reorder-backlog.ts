@@ -701,8 +701,8 @@ const reorderItems = async (
 		// keep the previous anchor) so we never reposition an active/closed
 		// issue into the backlog ordering.
 		// eslint-disable-next-line no-await-in-loop
-		const stillBacklog = await isStillBacklogItem(item.itemId);
-		if (!stillBacklog) {
+		const isStillBacklog = await isStillBacklogItem(item.itemId);
+		if (!isStillBacklog) {
 			console.log(
 				`\n   ⏭️  #${String(item.number)} is no longer an open backlog item — skipping`
 			);
@@ -944,11 +944,11 @@ const processWaitingItem = (item: ProjectItemNode, dryRun: boolean): void => {
 		comments,
 		(author) => author === issueAuthor
 	);
-	const authorResponded =
+	const isAuthorResponded =
 		lastAuthorComment !== undefined &&
 		timeOf(lastAuthorComment) > feedbackRequestTime;
 
-	if (authorResponded) {
+	if (isAuthorResponded) {
 		// Creator responded → move back to Backlog (codeowners need to act).
 		console.log(
 			`   📥 #${String(number)}: creator @${issueAuthor} responded → moving to Backlog`
@@ -1013,9 +1013,9 @@ const processWaitingForFeedback = async (
 // --- Main ---
 
 const reorderBacklog = async () => {
-	const dryRun = process.argv.includes('--dry-run');
+	const isDryRun = process.argv.includes('--dry-run');
 
-	if (dryRun) {
+	if (isDryRun) {
 		console.log('🏜️  DRY RUN — no mutations will be executed\n');
 	}
 
@@ -1041,7 +1041,7 @@ const reorderBacklog = async () => {
 	);
 
 	// Step 0b: Process "Waiting for Feedback" items
-	await processWaitingForFeedback(allCoreWebItems, dryRun);
+	await processWaitingForFeedback(allCoreWebItems, isDryRun);
 
 	// Step 1: Fetch backlog items via targeted GraphQL query
 	console.log(`\n📦 Fetching backlog items from ${repo}...`);
@@ -1114,7 +1114,7 @@ const reorderBacklog = async () => {
 	}
 
 	// Step 5: Reorder via GraphQL mutations
-	if (dryRun) {
+	if (isDryRun) {
 		console.log(
 			'\n🏜️  DRY RUN complete. No changes were made to the project.'
 		);
