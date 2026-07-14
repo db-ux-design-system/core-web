@@ -601,34 +601,6 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@26.1.0)(jsdom@24.1.3)(vite@8.1.3(@types/node@26.1.0)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.23.0)(yaml@2.9.0))
 
-  packages/migration:
-    dependencies:
-      commander:
-        specifier: 15.0.0
-        version: 15.0.0
-      glob:
-        specifier: 13.0.6
-        version: 13.0.6
-      replace-in-file:
-        specifier: 8.4.0
-        version: 8.4.0
-    devDependencies:
-      cpr:
-        specifier: 3.0.1
-        version: 3.0.1
-      esbuild:
-        specifier: 0.28.1
-        version: 0.28.1
-      npm-run-all2:
-        specifier: 9.0.2
-        version: 9.0.2
-      tsx:
-        specifier: 4.23.0
-        version: 4.23.0
-      vitest:
-        specifier: 4.1.10
-        version: 4.1.10(@types/node@26.1.0)(jsdom@24.1.3)(vite@8.1.3(@types/node@26.1.0)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.4)(sass@1.101.0)(terser@5.48.0)(tsx@4.23.0)(yaml@2.9.0))
-
   packages/postcss-plugin:
     devDependencies:
       cpr:
