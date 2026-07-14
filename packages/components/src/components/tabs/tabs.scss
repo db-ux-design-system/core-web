@@ -225,8 +225,8 @@ $focus-outline-reach: calc(
 		$db-tabs-z-index-button: 22;
 		$db-tabs-z-index-track: 19;
 
-		.db-tab-list::-webkit-scrollbar {
-			display: none;
+		.db-tab-list {
+			scrollbar-width: none;
 		}
 
 		&:not([data-orientation="vertical"]) {
