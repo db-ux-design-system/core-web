@@ -189,12 +189,14 @@ export function generateCSS(options: GenerateOptions): string {
 
 	// Font sizes
 	for (const fontSize of fontSizes || []) {
-		if (!exclude.fontSizes?.includes(fontSize)) {
-			const [category, size] = fontSize.split('-');
-			imports.push(
-				`@import "@db-ux/core-foundations/build/styles/fonts/classes/${category}/${size}.css" layer(db-ux);`
-			);
+		if (exclude.fontSizes?.includes(fontSize)) {
+			continue;
 		}
+
+		const [category, size] = fontSize.split('-');
+		imports.push(
+			`@import "@db-ux/core-foundations/build/styles/fonts/classes/${category}/${size}.css" layer(db-ux);`
+		);
 	}
 
 	// Component styles

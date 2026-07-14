@@ -129,21 +129,21 @@ export const transformRoot = (
  * Walks bottom-up so nested empty containers are cleaned recursively.
  */
 const removeEmptyContainers = (root: Root) => {
-	let changed = true;
-	while (changed) {
-		changed = false;
+	let isChanged = true;
+	while (isChanged) {
+		isChanged = false;
 
 		root.walkRules((rule: Rule) => {
 			if (rule.nodes?.length === 0) {
 				rule.remove();
-				changed = true;
+				isChanged = true;
 			}
 		});
 
 		root.walkAtRules('layer', (atRule: AtRule) => {
 			if (atRule.nodes?.length === 0) {
 				atRule.remove();
-				changed = true;
+				isChanged = true;
 			}
 		});
 	}

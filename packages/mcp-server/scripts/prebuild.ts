@@ -21,7 +21,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 function copyAsset(
 	src: string,
 	dest: string,
-	opts: { recursive?: boolean } = {}
+	options: { recursive?: boolean } = {}
 ): void {
 	const srcAbs = resolve(ROOT, src);
 	const destAbs = resolve(
@@ -36,7 +36,7 @@ function copyAsset(
 
 	mkdirSync(dirname(destAbs), { recursive: true });
 	cpSync(srcAbs, destAbs, {
-		recursive: opts.recursive ?? false,
+		recursive: options.recursive ?? false,
 		force: true
 	});
 	console.log(`[prebuild] copied: ${src} → ${dest}`);
