@@ -25,6 +25,7 @@ export default function DBTabList(props: DBTabListProps) {
 			id={props.id ?? props.propOverrides?.id ?? state._id}
 			class={cls('db-tab-list', props.className)}
 			role="tablist"
+			aria-orientation={props.orientation ?? 'horizontal'}
 			focusgroup={
 				props.orientation === 'vertical'
 					? 'tablist block wrap'
