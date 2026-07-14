@@ -51,6 +51,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 		_appliedBaseId: undefined,
 
+		_appliedLabel: undefined as string | undefined,
+
 		resetIds: () => {
 			state._id = props.id ?? props.propOverrides?.id ?? `tabs-${uuid()}`;
 		},
@@ -490,6 +492,7 @@ export default function DBTabs(props: DBTabsProps) {
 					const label = props.label;
 					if (label) {
 						container.setAttribute('aria-label', label);
+						state._appliedLabel = label;
 					}
 
 					if (props.behavior === 'arrows') {
@@ -684,8 +687,15 @@ export default function DBTabs(props: DBTabsProps) {
 			const container = state._getScrollContainer() as HTMLElement | null;
 			if (label) {
 				container?.setAttribute('aria-label', label);
-			} else {
-				container?.removeAttribute('aria-label');
+				state._appliedLabel = label;
+			} else if (state._appliedLabel) {
+				// Only remove aria-label if we previously set it;
+				// preserve any consumer-provided label on DBTabList.
+				const current = container?.getAttribute('aria-label');
+				if (current === state._appliedLabel) {
+					container?.removeAttribute('aria-label');
+				}
+				state._appliedLabel = undefined;
 			}
 		}
 	}, [_ref, props.label]);
