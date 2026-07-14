@@ -789,6 +789,11 @@ export default function DBTabs(props: DBTabsProps) {
 			// panels to prevent a flash of all panels / all-focusable tabs
 			// before the RAF-deferred syncSelection runs. This is synchronous
 			// so it applies before the first paint.
+			// Skip the aria-selected overwrite when the active-child fallback
+			// applies (composition path with no explicit selection props) to
+			// preserve declarative <DBTabItem active> state for the later
+			// getActiveChildIndex() lookup.
+			const useActiveChild = state.shouldUseActiveChild(hashApplied);
 			if (_ref) {
 				const tabListEl =
 					_ref.querySelector('[role="tablist"]') ?? null;
@@ -796,9 +801,6 @@ export default function DBTabs(props: DBTabsProps) {
 					const buttons = Array.from<HTMLElement>(
 						tabListEl.querySelectorAll('[role="tab"]')
 					);
-					// Determine which tab gets focus (roving tabindex).
-					// In manual mode (startIndex === -1) the first enabled
-					// tab should still be focusable.
 					const isEnabled = (button?: HTMLElement) =>
 						!!button &&
 						!(button as HTMLButtonElement).disabled &&
@@ -811,12 +813,14 @@ export default function DBTabs(props: DBTabsProps) {
 							: startIndex;
 
 					buttons.forEach((button: HTMLElement, index: number) => {
-						const isSelected = startIndex === index;
-						button.setAttribute(
-							'aria-selected',
-							String(isSelected)
-						);
-						if (!state._focusgroupSupported) {
+						if (!useActiveChild) {
+							const isSelected = startIndex === index;
+							button.setAttribute(
+								'aria-selected',
+								String(isSelected)
+							);
+						}
+						if (!state._focusgroupSupported && !useActiveChild) {
 							button.setAttribute(
 								'tabindex',
 								rovingIndex === index ? '0' : '-1'
@@ -828,9 +832,11 @@ export default function DBTabs(props: DBTabsProps) {
 				const panels = Array.from<HTMLElement>(
 					_ref.querySelectorAll('[role="tabpanel"]')
 				).filter((panel) => state._isOwnedPanel(panel));
-				panels.forEach((panel: HTMLElement, index: number) => {
-					panel.hidden = startIndex !== index;
-				});
+				if (!useActiveChild) {
+					panels.forEach((panel: HTMLElement, index: number) => {
+						panel.hidden = startIndex !== index;
+					});
+				}
 			}
 
 			state._pendingRafId = requestAnimationFrame(() => {
