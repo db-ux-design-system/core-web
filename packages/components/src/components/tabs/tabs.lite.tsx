@@ -408,7 +408,8 @@ export default function DBTabs(props: DBTabsProps) {
 				!props.tabs &&
 				props.activeIndex === undefined &&
 				props.initialSelectedIndex === undefined &&
-				props.initialSelectedMode === undefined
+				(props.initialSelectedMode === undefined ||
+					props.initialSelectedMode === 'auto')
 			);
 		},
 
