@@ -106,7 +106,12 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 {
 	/* Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) */
 }
-<DBDrawer direction="to-left" open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	direction="to-left"
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>;
 ```
@@ -126,7 +131,12 @@ The `width` property has been replaced by `containerSize` with new size options:
 ### After
 
 ```tsx
-<DBDrawer containerSize="full" open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	containerSize="full"
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>
 ```
@@ -139,14 +149,23 @@ The `showSpacing` property controls the spacing between the screen edge and the 
 {
 	/* Default: with spacing */
 }
-<DBDrawer open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>;
 
 {
 	/* Without spacing */
 }
-<DBDrawer showSpacing={false} open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	showSpacing={false}
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>;
 ```

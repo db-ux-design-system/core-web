@@ -71,6 +71,7 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 ```html
 <!-- Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) -->
 <db-drawer direction="to-left" [open]="open()" (close)="open.set(false)">
+	<db-drawer-header header>Title</db-drawer-header>
 	Content
 </db-drawer>
 ```
@@ -91,6 +92,7 @@ The `width` property has been replaced by `containerSize` with new size options:
 
 ```html
 <db-drawer containerSize="full" [open]="open()" (close)="open.set(false)">
+	<db-drawer-header header>Title</db-drawer-header>
 	Content
 </db-drawer>
 ```
@@ -101,10 +103,14 @@ The `showSpacing` property controls the spacing between the screen edge and the 
 
 ```html
 <!-- Default: with spacing -->
-<db-drawer [open]="open()" (close)="open.set(false)"> Content </db-drawer>
+<db-drawer [open]="open()" (close)="open.set(false)">
+	<db-drawer-header header>Title</db-drawer-header>
+	Content
+</db-drawer>
 
 <!-- Without spacing -->
 <db-drawer [showSpacing]="false" [open]="open()" (close)="open.set(false)">
+	<db-drawer-header header>Title</db-drawer-header>
 	Content
 </db-drawer>
 ```

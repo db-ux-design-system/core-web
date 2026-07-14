@@ -84,6 +84,9 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 <template>
 	<!-- Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) -->
 	<DBDrawer direction="to-left" :open="open" @close="open = false">
+		<template #header>
+			<DBDrawerHeader>Title</DBDrawerHeader>
+		</template>
 		Content
 	</DBDrawer>
 </template>
@@ -108,6 +111,9 @@ The `width` property has been replaced by `containerSize` with new size options:
 ```vue
 <template>
 	<DBDrawer containerSize="full" :open="open" @close="open = false">
+		<template #header>
+			<DBDrawerHeader>Title</DBDrawerHeader>
+		</template>
 		Content
 	</DBDrawer>
 </template>
@@ -120,10 +126,18 @@ The `showSpacing` property controls the spacing between the screen edge and the 
 ```vue
 <template>
 	<!-- Default: with spacing -->
-	<DBDrawer :open="open" @close="open = false"> Content </DBDrawer>
+	<DBDrawer :open="open" @close="open = false">
+		<template #header>
+			<DBDrawerHeader>Title</DBDrawerHeader>
+		</template>
+		Content
+	</DBDrawer>
 
 	<!-- Without spacing -->
 	<DBDrawer :showSpacing="false" :open="open" @close="open = false">
+		<template #header>
+			<DBDrawerHeader>Title</DBDrawerHeader>
+		</template>
 		Content
 	</DBDrawer>
 </template>
