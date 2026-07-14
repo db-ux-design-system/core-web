@@ -191,7 +191,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 				if (parent.getAttribute('aria-labelledby') === attachedId) {
 					parent.removeAttribute('aria-labelledby');
 				}
-				if (parent.getAttribute('aria-describedby') === attachedId) {
+				// Remove only the tooltip ID from aria-describedby,
+				// preserving any other consumer-provided IDs.
+				const describedBy =
+					parent.getAttribute('aria-describedby') || '';
+				const remaining = describedBy
+					.split(' ')
+					.filter((id: string) => id !== '' && id !== attachedId)
+					.join(' ');
+				if (remaining) {
+					parent.setAttribute('aria-describedby', remaining);
+				} else if (describedBy) {
 					parent.removeAttribute('aria-describedby');
 				}
 				state._attachedParent = undefined;
@@ -242,7 +252,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 				if (props.variant === 'label') {
 					parent.setAttribute('aria-labelledby', state._id);
 				} else {
-					parent.setAttribute('aria-describedby', state._id);
+					// Append tooltip ID to existing aria-describedby to
+					// preserve any consumer-provided description IDs.
+					const existing =
+						parent.getAttribute('aria-describedby') || '';
+					const ids = existing
+						.split(' ')
+						.filter((id: string) => id !== '');
+					if (!ids.includes(state._id)) {
+						ids.push(state._id);
+					}
+					parent.setAttribute('aria-describedby', ids.join(' '));
 				}
 
 				state._attachedParent = parent;
