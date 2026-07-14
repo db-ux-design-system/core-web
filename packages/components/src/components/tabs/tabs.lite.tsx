@@ -742,6 +742,18 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 
 		if (typeof window !== 'undefined') {
+			// Immediately hide composed panels to prevent a flash of all
+			// panels before the RAF-deferred syncSelection runs. This is
+			// synchronous so it applies before the first paint.
+			if (_ref) {
+				const panels = Array.from<HTMLElement>(
+					_ref.querySelectorAll('[role="tabpanel"]')
+				).filter((panel) => state._isOwnedPanel(panel));
+				panels.forEach((panel: HTMLElement, index: number) => {
+					panel.hidden = startIndex !== index;
+				});
+			}
+
 			state._pendingRafId = requestAnimationFrame(() => {
 				state._pendingRafId = null;
 				state.initTabList();
