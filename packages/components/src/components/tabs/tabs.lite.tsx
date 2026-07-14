@@ -372,16 +372,28 @@ export default function DBTabs(props: DBTabsProps) {
 				const parsedIndex = Number(props.activeIndex);
 				return isNaN(parsedIndex) ? 0 : parsedIndex;
 			}
+
+			const tabs = state.getTabs();
+			const isEnabled = (tab: DBSimpleTabProps) =>
+				!getBoolean(tab.disabled, 'disabled');
+
 			if (props.initialSelectedIndex !== undefined) {
 				const parsedIndex = Number(props.initialSelectedIndex);
-				return isNaN(parsedIndex) ? 0 : parsedIndex;
+				if (isNaN(parsedIndex)) return 0;
+				// Skip disabled tabs at the requested index.
+				if (
+					tabs.length > 0 &&
+					tabs[parsedIndex] &&
+					!isEnabled(tabs[parsedIndex])
+				) {
+					const firstEnabled = tabs.findIndex(isEnabled);
+					return firstEnabled > -1 ? firstEnabled : 0;
+				}
+				return parsedIndex;
 			}
 			if (props.initialSelectedMode === 'manually') {
 				return -1;
 			}
-			const tabs = state.getTabs();
-			const isEnabled = (tab: DBSimpleTabProps) =>
-				!getBoolean(tab.disabled, 'disabled');
 
 			// Find the first tab marked active that is not disabled.
 			const activeTabIndex = tabs.findIndex(
