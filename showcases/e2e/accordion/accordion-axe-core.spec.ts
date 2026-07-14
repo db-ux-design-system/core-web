@@ -9,5 +9,9 @@ const isSkipAxe = hasWebComponentSyntax(process.env.showcase);
 test.describe('DBAccordion', () => {
 	runAxeCoreTest({ path: '04/accordion', skipAxe: isSkipAxe });
 	runAxeCoreTest({ path: '04/accordion', color: lvl3, skipAxe: isSkipAxe });
-	runAxeCoreTest({ path: '04/accordion', density: 'functional', skipAxe: isSkipAxe });
+	runAxeCoreTest({
+		path: '04/accordion',
+		density: 'functional',
+		skipAxe: isSkipAxe
+	});
 });

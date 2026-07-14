@@ -1109,7 +1109,10 @@ describe('handleScanV2Migration', () => {
 	function writeCwdTemporary(name: string, content: string): string {
 		const { writeFileSync } = require('node:fs');
 		const { join } = require('node:path');
-		const temporary = join(process.cwd(), `.scan-test-${name}-${Date.now()}`);
+		const temporary = join(
+			process.cwd(),
+			`.scan-test-${name}-${Date.now()}`
+		);
 		writeFileSync(temporary, content);
 		return temporary;
 	}

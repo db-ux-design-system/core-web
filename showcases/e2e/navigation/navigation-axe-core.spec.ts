@@ -6,5 +6,9 @@ const isSkipAxe = hasWebComponentSyntax(process.env.showcase);
 test.describe('DBNavigation', () => {
 	runAxeCoreTest({ path: '05/navigation', skipAxe: isSkipAxe });
 	runAxeCoreTest({ path: '05/navigation', color: lvl3, skipAxe: isSkipAxe });
-	runAxeCoreTest({ path: '05/navigation', density: 'functional', skipAxe: isSkipAxe });
+	runAxeCoreTest({
+		path: '05/navigation',
+		density: 'functional',
+		skipAxe: isSkipAxe
+	});
 });

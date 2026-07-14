@@ -8,7 +8,6 @@ const getDefaultScreenshotTest = async (
 	fn: (page: Page) => Promise<void>
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
-		 
 		await page.goto(path, {
 			waitUntil: 'domcontentloaded'
 		});
