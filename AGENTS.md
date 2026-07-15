@@ -338,7 +338,6 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 - `packages/agent-cli/AGENTS.md` — CLI tool for generating AI agent instructions
 - `packages/components/AGENTS.md` — component authoring, Mitosis, changeset rules
 - `packages/foundations/AGENTS.md` — design tokens, assets, SCSS structure
-- `packages/migration/AGENTS.md` — migration CLI development
 - `packages/postcss-plugin/AGENTS.md` — PostCSS flatten plugin
 - `packages/stylelint/AGENTS.md` — Stylelint plugin rules
 - `packages/vite-plugin/AGENTS.md` — Vite plugin for optimized CSS

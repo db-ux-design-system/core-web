@@ -15,8 +15,6 @@
 [data-icon-leading] {
 	&::before {
 		@extend %icon !optional;
-
-		margin-inline-end: icons.$default-icon-margin-end;
 	}
 }
 
@@ -32,9 +30,6 @@
 [data-icon-trailing] {
 	&::after {
 		@extend %icon !optional;
-
-		margin-inline-start: icons.$default-icon-margin-start;
-
 		@include icons.icon-content(icons.$default-icon-content-after);
 	}
 }

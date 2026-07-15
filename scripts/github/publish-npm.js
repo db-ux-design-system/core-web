@@ -53,7 +53,6 @@ const packages = [
 	{ dir: 'react', name: 'react-core-components' },
 	{ dir: 'vue', name: 'v-core-components' },
 	{ dir: 'wc-core-components', name: 'wc-core-components' },
-	{ dir: 'migration', name: 'core-migration' },
 	{ dir: 'stylelint', name: 'core-stylelint' },
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
