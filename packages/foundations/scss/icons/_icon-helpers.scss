@@ -78,22 +78,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 // SCSS mixin for elements that text should get hidden in favour of only displaying the included icon
 @mixin is-icon-text-replace($position: "before") {
-	text-indent: -200vw;
-
-	> * {
-		text-indent: 0;
-	}
-
-	@if $position == "before" {
-		&::before {
-			text-indent: 0;
-		}
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	} @else {
-		&::after {
-			text-indent: 0;
-		}
-	}
+	font-size: 0 !important;
 }
 
 @mixin has-no-icon() {
