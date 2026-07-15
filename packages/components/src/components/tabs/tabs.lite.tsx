@@ -331,20 +331,27 @@ export default function DBTabs(props: DBTabsProps) {
 					return parsed.map((tab: DBSimpleTabProps) => {
 						const entry = tab as Record<string, unknown>;
 						if (!entry['ariaLabel'] && entry['aria-label']) {
-							entry['ariaLabel'] = entry['aria-label'];
+							return {
+								...entry,
+								ariaLabel: entry['aria-label']
+							} as DBSimpleTabProps;
 						}
-						return entry as DBSimpleTabProps;
+						return tab;
 					});
 				} else if (props.tabs) {
 					// Normalize hyphenated aria-label to camelCase ariaLabel
-					// for object arrays as well (users may pass 'aria-label' keys).
+					// for object arrays as well (users may pass aria-label keys).
+					// Return a shallow copy to avoid mutating frozen input data.
 					return (props.tabs as DBSimpleTabProps[]).map(
 						(tab: DBSimpleTabProps) => {
 							const entry = tab as Record<string, unknown>;
 							if (!entry['ariaLabel'] && entry['aria-label']) {
-								entry['ariaLabel'] = entry['aria-label'];
+								return {
+									...entry,
+									ariaLabel: entry['aria-label']
+								} as DBSimpleTabProps;
 							}
-							return entry as DBSimpleTabProps;
+							return tab;
 						}
 					);
 				}
@@ -392,8 +399,14 @@ export default function DBTabs(props: DBTabsProps) {
 			if (props.activeIndex !== undefined) {
 				const parsedIndex = Number(props.activeIndex);
 				const idx = isNaN(parsedIndex) ? 0 : parsedIndex;
-				// Skip disabled tabs at the controlled index.
-				if (tabs.length > 0 && tabs[idx] && !isEnabled(tabs[idx])) {
+				// Clamp out-of-range or disabled controlled index to the first
+				// enabled tab so the initial render is never empty.
+				if (
+					tabs.length > 0 &&
+					(idx < 0 ||
+						idx >= tabs.length ||
+						(tabs[idx] && !isEnabled(tabs[idx])))
+				) {
 					const firstEnabled = tabs.findIndex(isEnabled);
 					return firstEnabled > -1 ? firstEnabled : 0;
 				}
