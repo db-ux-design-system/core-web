@@ -178,7 +178,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		if (_labelRef && state.initialized) {
 			state.checkTruncation();
 		}
-	}, [props.label]);
+	}, [props.label, state.initialized, _labelRef]);
 
 	// Manually sync DOM attributes when truncation state changes
 	onUpdate(() => {
