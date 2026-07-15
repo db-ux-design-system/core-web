@@ -138,6 +138,8 @@ export type DBTabsDefaultState = {
 	_isOwnedPanel: (panel: HTMLElement) => boolean;
 	initTabList: () => void;
 	_teardownScrollHandlers: () => void;
+	_resolveHashIndex: () => { startIndex: number; hashApplied: boolean };
+	_setupObserver: () => void;
 	initTabs: () => void;
 	syncSelection: (activeIndex?: number) => void;
 	_tabButtons: HTMLElement[];

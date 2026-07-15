@@ -31,7 +31,7 @@ useDefaultProps<DBTabsProps>({
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
-	const state = useStore<DBTabsState>({
+	const state: DBTabsState = useStore<DBTabsState>({
 		_activeIndex: 0,
 		initialized: false,
 		showScrollStart: false,
@@ -68,7 +68,8 @@ export default function DBTabs(props: DBTabsProps) {
 		// See getTabId: returns undefined until a base id is available so the
 		// pre-mount render does not emit `undefined-tab-panel-x` ids.
 		getPanelId(index: number | string) {
-			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
+			const baseId: string | undefined =
+				props.id ?? props.propOverrides?.id ?? state._id;
 			return baseId ? `${baseId}-tab-panel-${index}` : undefined;
 		},
 
@@ -608,6 +609,103 @@ export default function DBTabs(props: DBTabsProps) {
 			return owner === _ref;
 		},
 
+		// Resolves the initially selected index from the URL hash if it matches
+		// this tabs instance. Returns { startIndex, hashApplied } so the caller
+		// can decide whether to consult the active-child fallback.
+		_resolveHashIndex(): { startIndex: number; hashApplied: boolean } {
+			let startIndex = state.getInitialIndex();
+			let hashApplied = false;
+
+			const baseId = state.getBaseId();
+			if (
+				typeof window !== 'undefined' &&
+				window.location.hash &&
+				baseId
+			) {
+				const hashId = window.location.hash.substring(1);
+				const prefix = `${baseId}-tab-`;
+
+				if (hashId.startsWith(prefix)) {
+					const indexStr = hashId.replace(prefix, '');
+					const index = parseInt(indexStr, 10);
+
+					if (!isNaN(index)) {
+						startIndex = index;
+						hashApplied = true;
+					}
+				}
+			}
+
+			return { startIndex, hashApplied };
+		},
+
+		// Sets up a MutationObserver on _ref that watches for structural
+		// tab/panel changes and disabled attribute mutations. Re-runs
+		// initTabList/initTabs/syncSelection as needed via RAF batching.
+		_setupObserver() {
+			if (!_ref) return;
+
+			const observer = new MutationObserver((mutations) => {
+				const isTabNode = (node: Node) => {
+					const element = node as Element;
+					return (
+						!!element.matches &&
+						(element.matches('[role="tab"], [role="tabpanel"]') ||
+							!!element.querySelector?.(
+								'[role="tab"], [role="tabpanel"]'
+							))
+					);
+				};
+
+				const hasTabChange = mutations.some(
+					(mutation) =>
+						Array.from(mutation.addedNodes).some(isTabNode) ||
+						Array.from(mutation.removedNodes).some(isTabNode)
+				);
+
+				const hasContentChange = mutations.some(
+					(mutation) => mutation.type === 'characterData'
+				);
+
+				// Detect disabled/aria-disabled attribute changes on tab buttons
+				// so that selection falls back when the active tab becomes disabled.
+				const hasDisabledChange = mutations.some(
+					(mutation) =>
+						mutation.type === 'attributes' &&
+						(mutation.attributeName === 'disabled' ||
+							mutation.attributeName === 'aria-disabled') &&
+						(mutation.target as Element)?.getAttribute?.('role') ===
+							'tab'
+				);
+
+				if (!hasTabChange && !hasContentChange && !hasDisabledChange)
+					return;
+
+				const rafId = state._pendingRafId;
+				if (rafId !== null) cancelAnimationFrame(rafId);
+				state._pendingRafId = requestAnimationFrame(() => {
+					state._pendingRafId = null;
+					state.initTabList();
+					if (hasTabChange) {
+						state.initTabs();
+					}
+					if (hasDisabledChange) {
+						state.syncSelection(state._activeIndex);
+					}
+				});
+			});
+
+			observer.observe(_ref, {
+				childList: true,
+				subtree: true,
+				characterData: true,
+				attributes: true,
+				attributeFilter: ['disabled', 'aria-disabled']
+			});
+
+			state._observer = observer;
+		},
+
 		// Caches button/panel references and sets up static IDs/ARIA wiring.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		// Only called on mount and when the MutationObserver detects structural changes.
@@ -663,7 +761,7 @@ export default function DBTabs(props: DBTabsProps) {
 			state.initTabs();
 			state.syncSelection(state._activeIndex);
 		}
-	}, [props.tabs]);
+	}, [props.tabs, state.initialized]);
 
 	// Reset IDs when the id prop changes
 	onUpdate(() => {
@@ -761,182 +859,32 @@ export default function DBTabs(props: DBTabsProps) {
 		state._focusgroupSupported = hasFocusgroupSupport();
 		state.resetIds();
 
-		let startIndex = state.getInitialIndex();
-
-		let hashApplied = false;
-		const baseId = state.getBaseId();
-		if (typeof window !== 'undefined' && window.location.hash && baseId) {
-			const hashId = window.location.hash.substring(1);
-			const prefix = `${baseId}-tab-`;
-
-			if (hashId.startsWith(prefix)) {
-				const indexStr = hashId.replace(prefix, '');
-				const index = parseInt(indexStr, 10);
-
-				if (!isNaN(index)) {
-					startIndex = index;
-					hashApplied = true;
-				}
-			}
-		}
+		const { startIndex, hashApplied } = state._resolveHashIndex();
 
 		state._activeIndex = startIndex;
 		state.initialized = true;
 
-		if (typeof window !== 'undefined') {
-			// Immediately set initial selection state on composed tabs and
-			// panels to prevent a flash of all panels / all-focusable tabs
-			// before the RAF-deferred syncSelection runs. This is synchronous
-			// so it applies before the first paint.
-			// Skip the aria-selected overwrite when the active-child fallback
-			// applies (composition path with no explicit selection props) to
-			// preserve declarative <DBTabItem active> state for the later
-			// getActiveChildIndex() lookup.
-			const useActiveChild = state.shouldUseActiveChild(hashApplied);
-			if (_ref) {
-				const tabListEl =
-					_ref.querySelector('[role="tablist"]') ?? null;
-				if (tabListEl) {
-					const buttons = Array.from<HTMLElement>(
-						tabListEl.querySelectorAll('[role="tab"]')
-					);
-					const isEnabled = (button?: HTMLElement) =>
-						!!button &&
-						!(button as HTMLButtonElement).disabled &&
-						button.getAttribute('aria-disabled') !== 'true';
-					const rovingIndex =
-						startIndex === -1
-							? buttons.findIndex((b: HTMLElement) =>
-									isEnabled(b)
-								)
-							: startIndex;
+		if (typeof window !== 'undefined' && _ref) {
+			// Run initialization synchronously — DOM is ready at onMount,
+			// children are already rendered in all target frameworks.
+			// This eliminates the previous RAF deferral and the duplicate
+			// pre-paint sync block, preventing any flash of unstyled panels.
+			state.initTabList();
+			state.initTabs();
 
-					buttons.forEach((button: HTMLElement, index: number) => {
-						if (!useActiveChild) {
-							const isSelected = startIndex === index;
-							button.setAttribute(
-								'aria-selected',
-								String(isSelected)
-							);
-						}
-						if (!state._focusgroupSupported && !useActiveChild) {
-							button.setAttribute(
-								'tabindex',
-								rovingIndex === index ? '0' : '-1'
-							);
-						}
-					});
-				}
-
-				const panels = Array.from<HTMLElement>(
-					_ref.querySelectorAll('[role="tabpanel"]')
-				).filter((panel) => state._isOwnedPanel(panel));
-				if (useActiveChild) {
-					// For the composed active-child path, read which tab has
-					// aria-selected="true" (set declaratively by DBTabItem)
-					// and hide all panels except the matching one.
-					// Skip disabled tabs to mirror the data-driven behavior.
-					const tabListEl2 =
-						_ref.querySelector('[role="tablist"]') ?? null;
-					const activeIdx = tabListEl2
-						? Array.from<HTMLElement>(
-								tabListEl2.querySelectorAll('[role="tab"]')
-							).findIndex(
-								(b: HTMLElement) =>
-									b.getAttribute('aria-selected') ===
-										'true' &&
-									!(b as HTMLButtonElement).disabled &&
-									b.getAttribute('aria-disabled') !== 'true'
-							)
-						: 0;
-					const visibleIndex = activeIdx > -1 ? activeIdx : 0;
-					panels.forEach((panel: HTMLElement, index: number) => {
-						panel.hidden = visibleIndex !== index;
-					});
-				} else {
-					panels.forEach((panel: HTMLElement, index: number) => {
-						panel.hidden = startIndex !== index;
-					});
+			let resolvedIndex = startIndex;
+			if (state.shouldUseActiveChild(hashApplied)) {
+				const activeChildIndex = state.getActiveChildIndex();
+				if (activeChildIndex > -1) {
+					resolvedIndex = activeChildIndex;
+					state._activeIndex = activeChildIndex;
 				}
 			}
 
-			state._pendingRafId = requestAnimationFrame(() => {
-				state._pendingRafId = null;
-				state.initTabList();
-				state.initTabs();
-				let resolvedIndex = startIndex;
-				if (state.shouldUseActiveChild(hashApplied)) {
-					const activeChildIndex = state.getActiveChildIndex();
-					if (activeChildIndex > -1) {
-						resolvedIndex = activeChildIndex;
-						state._activeIndex = activeChildIndex;
-					}
-				}
-				state.syncSelection(resolvedIndex);
-			});
+			state.syncSelection(resolvedIndex);
 		}
 
-		if (_ref) {
-			const observer = new MutationObserver((mutations) => {
-				const isTabNode = (node: Node) => {
-					const element = node as Element;
-					return (
-						!!element.matches &&
-						(element.matches('[role="tab"], [role="tabpanel"]') ||
-							!!element.querySelector?.(
-								'[role="tab"], [role="tabpanel"]'
-							))
-					);
-				};
-
-				const hasTabChange = mutations.some(
-					(mutation) =>
-						Array.from(mutation.addedNodes).some(isTabNode) ||
-						Array.from(mutation.removedNodes).some(isTabNode)
-				);
-
-				const hasContentChange = mutations.some(
-					(mutation) => mutation.type === 'characterData'
-				);
-
-				// Detect disabled/aria-disabled attribute changes on tab buttons
-				// so that selection falls back when the active tab becomes disabled.
-				const hasDisabledChange = mutations.some(
-					(mutation) =>
-						mutation.type === 'attributes' &&
-						(mutation.attributeName === 'disabled' ||
-							mutation.attributeName === 'aria-disabled') &&
-						(mutation.target as Element)?.getAttribute?.('role') ===
-							'tab'
-				);
-
-				if (!hasTabChange && !hasContentChange && !hasDisabledChange)
-					return;
-
-				const rafId = state._pendingRafId;
-				if (rafId !== null) cancelAnimationFrame(rafId);
-				state._pendingRafId = requestAnimationFrame(() => {
-					state._pendingRafId = null;
-					state.initTabList();
-					if (hasTabChange) {
-						state.initTabs();
-					}
-					if (hasDisabledChange) {
-						state.syncSelection(state._activeIndex);
-					}
-				});
-			});
-
-			observer.observe(_ref, {
-				childList: true,
-				subtree: true,
-				characterData: true,
-				attributes: true,
-				attributeFilter: ['disabled', 'aria-disabled']
-			});
-
-			state._observer = observer;
-		}
+		state._setupObserver();
 	});
 
 	onUnMount(() => {
