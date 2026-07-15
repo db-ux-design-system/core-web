@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/refactor-removed-migration-package/_next/static/css/4e7eb6034287f7f3.css" as="style"/><link rel="stylesheet" href="/core-web/review/refactor-removed-migration-package/_next/static/css/4e7eb6034287f7f3.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/refactor-removed-migration-package/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/chunks/webpack-3a42f8103d74c617.js" defer=""></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/chunks/framework-79250bdf2b2e142c.js" defer=""></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/chunks/main-194f91cc27134ebb.js" defer=""></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/chunks/pages/_app-099c599d71cf66a8.js" defer=""></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/chunks/pages/components/data-input/custom-select/docs/Angular-35e538c491bcc895.js" defer=""></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/I9lzOzMrtzvgWAR8gtY9p/_buildManifest.js" defer=""></script><script src="/core-web/review/refactor-removed-migration-package/_next/static/I9lzOzMrtzvgWAR8gtY9p/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">//app.component.ts
+import { DBCustomSelect } from &#x27;@db-ux/ngx-core-components&#x27;;
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBCustomSelect
+	],
+	standalone: true
+	// ...
+})
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+&lt;db-custom-select label=&quot;Label&quot; placeholder=&quot;Placeholder&quot; [options]=&quot;options&quot; /&gt;
+</code></pre>
+<pre><code class="language-ts">// app.component.ts
+import { Component } from &quot;@angular/core&quot;;
+
+@Component({
+	selector: &quot;app-app&quot;,
+	templateUrl: &quot;./app.component.html&quot;
+})
+export class AppComponent {
+	options = [
+		{ value: &quot;Option 1&quot; },
+		{ value: &quot;Option 2&quot; },
+		{ value: &quot;Option 3&quot; },
+		{ value: &quot;Option 4&quot; },
+		{ value: &quot;Option 5&quot; }
+	];
+}
+</code></pre>
+<h2 id="how-to-use-with-signal-forms">How to use with Signal Forms<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=how-to-use-with-signal-forms"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>how-to-use-with-signal-forms<!-- --> anchor link</a></h2>
+<p><a target="_blank" referrerPolicy="no-referrer" href="https://angular.dev/essentials/signal-forms">Angular Signal Forms</a> (Angular ≥ 21) are supported via Duck-Typing. The <code>DBCustomSelect</code> component exposes a <code>values</code> ModelSignal that Angular&#x27;s <code>[formField]</code> directive recognizes automatically.</p>
+<pre><code class="language-ts">//app.component.ts
+import { DBCustomSelect } from &#x27;@db-ux/ngx-core-components&#x27;;
+import { FormField } from &#x27;@angular/forms/signals&#x27;;
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBCustomSelect,
+		FormField
+	],
+	// ...
+})
+</code></pre>
+<pre><code class="language-ts">// form.component.ts
+import { Component, signal } from &quot;@angular/core&quot;;
+import { form } from &quot;@angular/forms/signals&quot;;
+
+export class FormComponent {
+	options = [
+		{ value: &quot;Option 1&quot;, id: &quot;option-1&quot; },
+		{ value: &quot;Option 2&quot;, id: &quot;option-2&quot; },
+		{ value: &quot;Option 3&quot;, id: &quot;option-3&quot; }
+	];
+	model = signal({ values: [&quot;Option 2&quot;] });
+	myForm = form(this.model);
+
+	onFormSubmit(): void {
+		alert(JSON.stringify(this.model()));
+	}
+}
+</code></pre>
+<pre><code class="language-html">&lt;!-- form.component.html --&gt;
+&lt;form (submit)=&quot;onFormSubmit()&quot;&gt;
+	&lt;db-custom-select
+		[options]=&quot;options&quot;
+		label=&quot;Custom Select&quot;
+		[formField]=&quot;myForm.values&quot;
+	&gt;&lt;/db-custom-select&gt;
+	&lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;h2&gt;Output&lt;/h2&gt;
+&lt;dl&gt;
+	&lt;dt&gt;custom-select&#x27;s values&lt;/dt&gt;
+	&lt;dd&gt;{{ myForm.values().value() || &quot;No selection&quot; }}&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+<h3 id="controlling-validation-timing">Controlling validation timing<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=controlling-validation-timing"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>controlling-validation-timing<!-- --> anchor link</a></h3>
+<p>By default, Signal Forms validation errors appear immediately. To show errors only after user interaction, use a helper method with the <code>[validation]</code> property:</p>
+<pre><code class="language-typescript">import { type FieldTree } from &quot;@angular/forms/signals&quot;;
+
+fieldValidation&lt;T&gt;(field: FieldTree&lt;T&gt;): &quot;invalid&quot; | &quot;valid&quot; | &quot;no-validation&quot; {
+  if (field().dirty() &amp;&amp; field().invalid() &amp;&amp; !field().pending()) return &quot;invalid&quot;;
+  if (field().dirty() &amp;&amp; field().valid() &amp;&amp; !field().pending()) return &quot;valid&quot;;
+  return &quot;no-validation&quot;;
+}
+</code></pre>
+<pre><code class="language-html">&lt;db-custom-select
+	label=&quot;Custom Select&quot;
+	[options]=&quot;options&quot;
+	[formField]=&quot;myForm.values&quot;
+	[validation]=&quot;fieldValidation(myForm.values)&quot;
+&gt;&lt;/db-custom-select&gt;
+</code></pre>
+<h3 id="invalid-message-fallback-cascade">Invalid message fallback cascade<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=invalid-message-fallback-cascade"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>invalid-message-fallback-cascade<!-- --> anchor link</a></h3>
+<p>When a form field becomes invalid, the displayed error message is resolved through the following priority chain (first match wins):</p>
+<ol>
+<li><strong><code>invalidMessage</code> prop</strong> — explicitly set on the component</li>
+<li><strong>Signal Forms schema message</strong> — <code>errors[0].message</code> from the form schema validators</li>
+<li><strong>Browser default</strong> — native <code>validationMessage</code> (e.g. &quot;Please select an item in the list&quot; for <code>required</code>)</li>
+<li><strong><code>&quot;TODO: Add an invalidMessage&quot;</code></strong> — fallback indicating a custom message should be provided</li>
+</ol>
+<h2 id="how-to-use-with-reactive-forms">How to use with Reactive Forms<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=how-to-use-with-reactive-forms"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>how-to-use-with-reactive-forms<!-- --> anchor link</a></h2>
+<p>Third party controls require a ControlValueAccessor to function with angular forms.
+Our custom-select component implements this interface so you can use it like any other native element with reactive Forms:</p>
+<pre><code class="language-ts">//app.component.ts
+import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		ReactiveFormsModule
+	],
+	// ...
+})
+</code></pre>
+<pre><code class="language-html">&lt;!-- form.component.html --&gt;
+&lt;form [formGroup]=&quot;form&quot; (submit)=&quot;onFormSubmit()&quot;&gt;
+	&lt;db-custom-select
+		[options]=&quot;options&quot;
+		label=&quot;Custom Select&quot;
+		[formControl]=&quot;formControl&quot;
+	&gt;&lt;/db-custom-select&gt;
+&lt;/form&gt;
+
+&lt;h2&gt;Output&lt;/h2&gt;
+&lt;dl&gt;
+	&lt;dt&gt;custom-select&#x27;s values&lt;/dt&gt;
+	&lt;dd&gt;{{ formControl.value }}&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+<pre><code class="language-ts">// form.component.ts
+export class FormComponent {
+	options = [
+		{ value: &quot;Option 1&quot;, id: &quot;option-1&quot; },
+		{ value: &quot;Option 2&quot;, id: &quot;option-2&quot; },
+		{ value: &quot;Option 3&quot;, id: &quot;option-3&quot; }
+	];
+	formControl = new FormControl([&quot;option-2&quot;]);
+	form = new FormGroup({ select: this.formControl });
+
+	onFormSubmit(): void {
+		alert(JSON.stringify(this.form.value));
+	}
+}
+</code></pre>
+<h2 id="how-to-use-with-template-driven-forms">How to use with Template Driven Forms<a class="header-link" href="/core-web/review/refactor-removed-migration-package/components/data-input/custom-select/docs/Angular?current=how-to-use-with-template-driven-forms"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>how-to-use-with-template-driven-forms<!-- --> anchor link</a></h2>
+<p>Third party controls require a ControlValueAccessor to function with angular forms.
+Our custom-select component implements this interface so you can use it like any other native element with ngModel:</p>
+<pre><code class="language-ts">//app.component.ts
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		FormsModule
+	],
+	// ...
+})
+</code></pre>
+<pre><code class="language-html">&lt;!-- form.component.html --&gt;
+&lt;form&gt;
+	&lt;db-custom-select
+		[options]=&quot;options&quot;
+		label=&quot;Custom Select&quot;
+		[(ngModel)]=&quot;selected&quot;
+		name=&quot;custom-select&quot;
+	&gt;&lt;/db-custom-select&gt;
+	&lt;db-button type=&quot;button&quot; variant=&quot;brand&quot; (click)=&quot;showValues()&quot;
+		&gt;Get values&lt;/db-button
+	&gt;
+&lt;/form&gt;
+
+&lt;h2&gt;Output&lt;/h2&gt;
+&lt;dl&gt;
+	&lt;dt&gt;custom-select&#x27;s values&lt;/dt&gt;
+	&lt;dd&gt;{{ selected }}&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+<pre><code class="language-ts">// form.component.ts
+export class FormComponent {
+	options = [
+		{ value: &quot;Option 1&quot;, id: &quot;option-1&quot; },
+		{ value: &quot;Option 2&quot;, id: &quot;option-2&quot; },
+		{ value: &quot;Option 3&quot;, id: &quot;option-3&quot; }
+	];
+	selected = [&quot;option-2&quot;];
+	showValues(): void {
+		alert(JSON.stringify({ selected: this.selected }));
+	}
+}
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/custom-select/docs/Angular","query":{},"buildId":"I9lzOzMrtzvgWAR8gtY9p","assetPrefix":"/core-web/review/refactor-removed-migration-package","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
