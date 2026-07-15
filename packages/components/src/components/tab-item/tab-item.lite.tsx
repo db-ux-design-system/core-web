@@ -3,6 +3,7 @@ import {
 	onUnMount,
 	onUpdate,
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -194,7 +195,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			role="tab"
 			class={cls('db-tab-item', props.className)}
 			disabled={getBoolean(props.disabled, 'disabled') ? true : undefined}
-			id={props.id}
 			// Initial selection state rendered declaratively so SSR/no-JS output
 			// and the first paint expose a selected tab.
 			// When inside DBTabs this is kept in sync by initTabs/syncSelection.
@@ -227,7 +227,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 					<Show when={props.label}>{props.label}</Show>
 					{props.children}
 				</span>
-				<div class="db-tab-item-label-end-slot">{props.endSlot}</div>
+				<span class="db-tab-item-label-end-slot">
+					<Slot name="endSlot" />
+				</span>
 			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
 				<DBTooltip placement="top">{state.tooltipText}</DBTooltip>

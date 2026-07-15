@@ -11,6 +11,7 @@ import TabsInitialSelection from '../examples/initialSelection.example.lite';
 import TabsNested from '../examples/nested.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
+import TabsPropsTabs from '../examples/propsTabs.example.lite';
 import TabsSlotWithBadge from '../examples/slotWithBadge.example.lite';
 import TabItemWidth from '../examples/tabItemWidth.example.lite';
 import TabsTruncation from '../examples/truncation.example.lite';
@@ -73,6 +74,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Controlled">
 				<CardWrapperShowcase>
 					<TabsControlled />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Props Tabs">
+				<CardWrapperShowcase>
+					<TabsPropsTabs />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">

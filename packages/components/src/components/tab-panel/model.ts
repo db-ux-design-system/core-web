@@ -11,4 +11,5 @@ export type DBTabPanelDefaultProps = {
 	hidden?: boolean;
 };
 
-export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps;
+export type DBTabPanelProps = DBTabPanelDefaultProps &
+	Omit<GlobalProps, 'id' | 'propOverrides'>;

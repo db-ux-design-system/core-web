@@ -40,7 +40,7 @@ export type DBTabItemDefaultProps = {
 };
 
 export type DBTabItemProps = DBTabItemDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id' | 'propOverrides'> &
 	IconProps &
 	ShowIconProps &
 	IconTrailingProps &

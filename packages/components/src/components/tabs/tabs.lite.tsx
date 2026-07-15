@@ -615,10 +615,9 @@ export default function DBTabs(props: DBTabsProps) {
 			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
 			if (!baseId) return;
 
-			const previousBaseId = state._appliedBaseId;
-			const baseIdChanged = !!previousBaseId && previousBaseId !== baseId;
+			const baseIdChanged = state._appliedBaseId !== baseId;
 
-			if (_ref) {
+			if (_ref && baseIdChanged) {
 				const tabListEl = state._getScrollContainer();
 				const panels = Array.from<HTMLElement>(
 					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
@@ -636,58 +635,15 @@ export default function DBTabs(props: DBTabsProps) {
 				buttons.forEach((button: HTMLElement, index: number) => {
 					const panel = panels[index];
 
-					const tabId = `${baseId}-tab-${index}`;
-					const panelId = `${baseId}-tab-panel-${index}`;
-
-					const wasGeneratedTabId =
-						baseIdChanged &&
-						button.id === `${previousBaseId}-tab-${index}`;
-
-					if (!button.id || wasGeneratedTabId) {
-						button.id = tabId;
-					}
+					const buttonId = `${baseId}-tab-${index}`;
+					button.id = buttonId;
 
 					if (panel) {
-						const wasGeneratedPanelId =
-							baseIdChanged &&
-							panel.id === `${previousBaseId}-tab-panel-${index}`;
+						const panelId = `${baseId}-tab-panel-${index}`;
 
-						if (!panel.id || wasGeneratedPanelId) {
-							panel.id = panelId;
-						}
-
-						// Use the actual resolved IDs (which may be
-						// consumer-provided) for the ARIA relationship.
-						const resolvedPanelId = panel.id;
-						const resolvedTabId = button.id;
-
-						const ariaControls =
-							button.getAttribute('aria-controls');
-						if (
-							!ariaControls ||
-							(baseIdChanged &&
-								ariaControls ===
-									`${previousBaseId}-tab-panel-${index}`)
-						) {
-							button.setAttribute(
-								'aria-controls',
-								resolvedPanelId
-							);
-						}
-						const labelledBy =
-							panel.getAttribute('aria-labelledby');
-						if (
-							(!labelledBy ||
-								(baseIdChanged &&
-									labelledBy ===
-										`${previousBaseId}-tab-${index}`)) &&
-							!panel.getAttribute('aria-label')
-						) {
-							panel.setAttribute(
-								'aria-labelledby',
-								resolvedTabId
-							);
-						}
+						panel.id = panelId;
+						button.setAttribute('aria-controls', panelId);
+						panel.setAttribute('aria-labelledby', buttonId);
 					}
 				});
 
@@ -1025,8 +981,6 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.label + 'tab-item' + index}
-								id={state.getTabId(index)}
-								aria-controls={state.getPanelId(index)}
 								aria-label={tab.ariaLabel}
 								label={tab.label}
 								icon={tab.icon}
@@ -1048,9 +1002,6 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.label + 'tab-panel' + index}
-							id={state.getPanelId(index)}
-							aria-labelledby={state.getTabId(index)}
-							hidden={state.getRenderIndex() !== index}
 							content={tab.content}>
 							{tab.children}
 						</DBTabPanel>
