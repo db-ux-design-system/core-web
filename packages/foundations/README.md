@@ -329,7 +329,7 @@ Otherwise, if the font is not initially required but would be requested later or
 
 ## Migration
 
-For migration guidance between versions, see the [migration docs](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/).
+For migration guidance between versions, see the [migration docs](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/).
 
 ## Deutsche Bahn brand
 
