@@ -83,10 +83,6 @@ $with-icon-padding-calc: calc(
 				#{form-components.$font-size-height} +
 					#{variables.$db-spacing-fixed-xs}
 			);
-
-			&::before {
-				margin-inline-end: 0;
-			}
 		}
 	}
 
