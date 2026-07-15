@@ -292,3 +292,29 @@ export const getNotificationRole = ({
 			return 'article';
 	}
 };
+
+export const NAVIGATION_KEYS = [
+	'ArrowRight',
+	'ArrowDown',
+	'ArrowLeft',
+	'ArrowUp',
+	'Home',
+	'End',
+	'Enter',
+	' '
+] as const;
+
+/**
+ * Checks whether the browser natively supports the `focusgroup` HTML attribute.
+ * When supported, the browser handles arrow-key navigation and roving tabindex
+ * for composite widgets (tablists, toolbars, etc.), so our JS fallback can be skipped.
+ *
+ * @public
+ */
+export const hasFocusgroupSupport = (): boolean => {
+	if (typeof HTMLElement === 'undefined') return false;
+	return (
+		'focusGroup' in HTMLElement.prototype ||
+		'focusgroup' in HTMLElement.prototype
+	);
+};
