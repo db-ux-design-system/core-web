@@ -832,7 +832,25 @@ export default function DBTabs(props: DBTabsProps) {
 				const panels = Array.from<HTMLElement>(
 					_ref.querySelectorAll('[role="tabpanel"]')
 				).filter((panel) => state._isOwnedPanel(panel));
-				if (!useActiveChild) {
+				if (useActiveChild) {
+					// For the composed active-child path, read which tab has
+					// aria-selected="true" (set declaratively by DBTabItem)
+					// and hide all panels except the matching one.
+					const tabListEl2 =
+						_ref.querySelector('[role="tablist"]') ?? null;
+					const activeIdx = tabListEl2
+						? Array.from<HTMLElement>(
+								tabListEl2.querySelectorAll('[role="tab"]')
+							).findIndex(
+								(b: HTMLElement) =>
+									b.getAttribute('aria-selected') === 'true'
+							)
+						: 0;
+					const visibleIndex = activeIdx > -1 ? activeIdx : 0;
+					panels.forEach((panel: HTMLElement, index: number) => {
+						panel.hidden = visibleIndex !== index;
+					});
+				} else {
 					panels.forEach((panel: HTMLElement, index: number) => {
 						panel.hidden = startIndex !== index;
 					});
@@ -938,6 +956,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-tab-item-alignment={props.tabItemAlignment}
 			data-tab-item-width={props.tabItemWidth}
+			data-initial-selected-mode={props.initialSelectedMode}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>
