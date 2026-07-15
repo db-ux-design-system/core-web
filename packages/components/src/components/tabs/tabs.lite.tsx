@@ -341,7 +341,17 @@ export default function DBTabs(props: DBTabsProps) {
 						return entry as DBSimpleTabProps;
 					});
 				} else if (props.tabs) {
-					return props.tabs as DBSimpleTabProps[];
+					// Normalize hyphenated aria-label to camelCase ariaLabel
+					// for object arrays as well (users may pass 'aria-label' keys).
+					return (props.tabs as DBSimpleTabProps[]).map(
+						(tab: DBSimpleTabProps) => {
+							const entry = tab as Record<string, unknown>;
+							if (!entry['ariaLabel'] && entry['aria-label']) {
+								entry['ariaLabel'] = entry['aria-label'];
+							}
+							return entry as DBSimpleTabProps;
+						}
+					);
 				}
 			} catch (error) {
 				console.error(error);
