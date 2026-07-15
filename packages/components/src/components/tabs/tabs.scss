@@ -148,6 +148,14 @@ $focus-outline-reach: calc(
 				flex-direction: column;
 				align-items: flex-start;
 			}
+
+			.db-tab-item-label {
+				inline-size: 100%;
+			}
+
+			.db-tab-item-label-end-slot {
+				margin-inline-start: auto;
+			}
 		}
 	}
 

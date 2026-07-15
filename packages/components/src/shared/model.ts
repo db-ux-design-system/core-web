@@ -35,6 +35,20 @@ export interface GlobalProps {
 	propOverrides?: PropOverridesType;
 }
 
+export type StartSlotProps = {
+	/**
+	 * Slot for start content, for example add a custom component between an icon and a label.
+	 */
+	startSlot?: any;
+};
+
+export type EndSlotProps = {
+	/**
+	 * Slot for end content, for example add a custom component between an icon and a label.
+	 */
+	endSlot?: any;
+};
+
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 

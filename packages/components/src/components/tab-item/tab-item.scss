@@ -27,7 +27,7 @@
 		transition: background-color variables.$db-transition-duration-fast;
 	}
 
-	.db-tab-label {
+	.db-tab-item-label {
 		max-inline-size: 100%;
 
 		@include helpers.display(flex);
@@ -35,10 +35,20 @@
 		align-items: center;
 		gap: variables.$db-spacing-fixed-xs;
 
-		.db-tab-label-text {
+		.db-tab-item-label-text {
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
+		}
+
+		.db-tab-item-label-end-slot {
+			display: inherit;
+			align-items: center;
+			gap: variables.$db-spacing-fixed-xs;
+
+			&:empty {
+				display: none;
+			}
 		}
 
 		&[data-icon]:not([data-show-icon="false"]) {
@@ -58,7 +68,7 @@
 		}
 	}
 
-	[data-orientation="vertical"] & .db-tab-label {
+	[data-orientation="vertical"] & .db-tab-item-label {
 		overflow: hidden;
 	}
 

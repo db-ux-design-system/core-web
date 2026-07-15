@@ -1,5 +1,6 @@
-import type {
+import {
 	ActiveProps,
+	EndSlotProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -47,7 +48,8 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 	ShowIconTrailingProps &
 	ShowIconLeadingProps &
 	ActiveProps &
-	WidthProps;
+	WidthProps &
+	EndSlotProps;
 
 export type DBTabItemDefaultState = {
 	_resizeObserver: ResizeObserver | null | undefined;

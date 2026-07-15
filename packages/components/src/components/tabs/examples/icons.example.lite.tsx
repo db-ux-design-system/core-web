@@ -63,21 +63,6 @@ export default function TabsIcons() {
 					<DBTabPanel>Settings content</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div class="fit-content-container">
-				<DBInfotext icon="none" size="small" semantic="informational">
-					icon only:
-				</DBInfotext>
-				<DBTabs initialSelectedMode="manually">
-					<DBTabList>
-						<DBTabItem icon="house" aria-label="Test 1"></DBTabItem>
-						<DBTabItem>Test 2</DBTabItem>
-						<DBTabItem>Test 3</DBTabItem>
-					</DBTabList>
-					<DBTabPanel>Tab Panel 1</DBTabPanel>
-					<DBTabPanel>Tab Panel 2</DBTabPanel>
-					<DBTabPanel>Tab Panel 3</DBTabPanel>
-				</DBTabs>
-			</div>
 		</Fragment>
 	);
 }
