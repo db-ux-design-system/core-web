@@ -76,6 +76,12 @@
 		}
 	}
 
+	&:not([data-no-text="true"]) {
+		#{$selector} {
+			gap: variables.$db-spacing-fixed-xs;
+		}
+	}
+
 	&[data-wrap="false"] {
 		#{$selector} {
 			white-space: nowrap;
@@ -92,10 +98,7 @@
 			&:not([data-no-text="true"]) {
 				// stylelint-disable-next-line db-ux/use-spacings
 				padding: 1px variables.$db-spacing-fixed-sm;
-
-				&::before {
-					margin-inline-end: variables.$db-spacing-fixed-2xs;
-				}
+				gap: variables.$db-spacing-fixed-2xs;
 			}
 
 			// Square icon only buttons

@@ -2,21 +2,12 @@
 @use "sass:map";
 @use "sass:list";
 @use "../helpers";
-@use "../variables";
 
 $default-icon-size: 24;
 $default-icon-size-rem: #{helpers.px-to-rem($default-icon-size)};
 $default-icon-variants: "default", "filled";
 $default-icon-content: var(--db-icon, attr(data-icon));
 $default-icon-content-after: var(--db-icon-trailing, attr(data-icon-trailing));
-$default-icon-margin-end: var(
-	--db-icon-margin-end,
-	#{variables.$db-spacing-fixed-xs}
-);
-$default-icon-margin-start: var(
-	--db-icon-margin-start,
-	#{variables.$db-spacing-fixed-xs}
-);
 $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 @function get-icon-font-size($font-size, $line-height) {
@@ -73,14 +64,10 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 				@if $position == "before" {
 					--db-icon: "#{$icon}";
-
-					margin-inline-end: $default-icon-margin-end;
 				}
 
 				@if $position == "after" {
 					--db-icon-trailing: "#{$icon}";
-
-					margin-inline-start: $default-icon-margin-start;
 
 					@include icon-content($default-icon-content-after);
 				}
@@ -92,17 +79,6 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 // SCSS mixin for elements that text should get hidden in favour of only displaying the included icon
 @mixin is-icon-text-replace($position: "before") {
 	font-size: 0 !important;
-
-	@if $position == "before" {
-		&::before {
-			--db-icon-margin-end: 0;
-		}
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	} @else {
-		&::after {
-			--db-icon-margin-start: 0;
-		}
-	}
 }
 
 @mixin has-no-icon() {
