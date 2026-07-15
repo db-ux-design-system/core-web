@@ -28,12 +28,7 @@
 			{
 				"allowCalc": true,
 				"allow": {
-					"includes": [
-						"$db-",
-						"$font-size-height",
-						"--db-drawer-max-",
-						"--db-drawer-min-"
-					],
+					"includes": ["$db-", "$font-size-height", "--db-drawer-"],
 					"startsWith": [
 						"icons.$",
 						"component.$",
