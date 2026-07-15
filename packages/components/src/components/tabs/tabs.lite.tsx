@@ -390,14 +390,20 @@ export default function DBTabs(props: DBTabsProps) {
 
 		// Synchronously resolves the initially selected index from props/active entry. Used during render so SSR output hides inactive panels and at mount.
 		getInitialIndex(): number {
-			if (props.activeIndex !== undefined) {
-				const parsedIndex = Number(props.activeIndex);
-				return isNaN(parsedIndex) ? 0 : parsedIndex;
-			}
-
 			const tabs = state.getTabs();
 			const isEnabled = (tab: DBSimpleTabProps) =>
 				!getBoolean(tab.disabled, 'disabled');
+
+			if (props.activeIndex !== undefined) {
+				const parsedIndex = Number(props.activeIndex);
+				const idx = isNaN(parsedIndex) ? 0 : parsedIndex;
+				// Skip disabled tabs at the controlled index.
+				if (tabs.length > 0 && tabs[idx] && !isEnabled(tabs[idx])) {
+					const firstEnabled = tabs.findIndex(isEnabled);
+					return firstEnabled > -1 ? firstEnabled : 0;
+				}
+				return idx;
+			}
 
 			if (props.initialSelectedIndex !== undefined) {
 				const parsedIndex = Number(props.initialSelectedIndex);
