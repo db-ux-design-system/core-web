@@ -167,6 +167,19 @@
     - tab "Tab 2"
     - tab "Tab 3"
   - tabpanel "Tab 1": Content of Tab 1
+  - link "Props Tabs"
+  - text: "Option API — using the tabs prop with an array of tab objects:"
+  - tablist:
+    - tab "Home" [selected]
+    - tab "Profile"
+    - tab "Settings"
+  - tabpanel "Home": Home content
+  - text: "Composition API — using child components:"
+  - tablist:
+    - tab "Home" [selected]
+    - tab "Profile"
+    - tab "Settings"
+  - tabpanel "Home": Home content
   - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
