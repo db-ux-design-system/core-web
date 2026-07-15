@@ -49,8 +49,6 @@ export default function DBTabs(props: DBTabsProps) {
 
 		_id: undefined,
 
-		_appliedBaseId: undefined,
-
 		_appliedLabel: undefined as string | undefined,
 
 		resetIds: () => {
@@ -706,47 +704,42 @@ export default function DBTabs(props: DBTabsProps) {
 			state._observer = observer;
 		},
 
-		// Caches button/panel references and sets up static IDs/ARIA wiring.
+		// Re-queries the DOM for button/panel elements, caches them, and
+		// (re-)applies IDs + ARIA wiring. Called on mount, when the
+		// MutationObserver detects structural changes, and when props.tabs changes.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
-		// Only called on mount and when the MutationObserver detects structural changes.
 		initTabs() {
 			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
-			if (!baseId) return;
+			if (!baseId || !_ref) return;
 
-			const baseIdChanged = state._appliedBaseId !== baseId;
+			const tabListEl = state._getScrollContainer();
+			const panels = Array.from<HTMLElement>(
+				_ref?.querySelectorAll('[role="tabpanel"]') ?? []
+			).filter((panel) => state._isOwnedPanel(panel));
 
-			if (_ref && baseIdChanged) {
-				const tabListEl = state._getScrollContainer();
-				const panels = Array.from<HTMLElement>(
-					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
-				).filter((panel) => state._isOwnedPanel(panel));
+			if (!tabListEl) return;
 
-				if (!tabListEl) return;
+			const buttons = Array.from<HTMLElement>(
+				tabListEl.querySelectorAll('[role="tab"]')
+			);
 
-				const buttons = Array.from<HTMLElement>(
-					tabListEl.querySelectorAll('[role="tab"]')
-				);
+			state._tabButtons = buttons;
+			state._tabPanels = panels;
 
-				state._tabButtons = buttons;
-				state._tabPanels = panels;
+			buttons.forEach((button: HTMLElement, index: number) => {
+				const panel = panels[index];
 
-				buttons.forEach((button: HTMLElement, index: number) => {
-					const panel = panels[index];
+				const buttonId = `${baseId}-tab-${index}`;
+				button.id = buttonId;
 
-					const buttonId = `${baseId}-tab-${index}`;
-					button.id = buttonId;
+				if (panel) {
+					const panelId = `${baseId}-tab-panel-${index}`;
 
-					if (panel) {
-						const panelId = `${baseId}-tab-panel-${index}`;
-
-						panel.id = panelId;
-						button.setAttribute('aria-controls', panelId);
-						panel.setAttribute('aria-labelledby', buttonId);
-					}
-				});
-
-				state._appliedBaseId = baseId;
-			}
+					panel.id = panelId;
+					button.setAttribute('aria-controls', panelId);
+					panel.setAttribute('aria-labelledby', buttonId);
+				}
+			});
 		}
 	});
 

@@ -119,7 +119,6 @@ export type DBTabsProps = DBTabsDefaultProps &
 
 export type DBTabsDefaultState = {
 	_id?: string;
-	_appliedBaseId?: string;
 	_appliedLabel?: string;
 	resetIds: () => void;
 	_getScrollContainer: () => Element | null;
