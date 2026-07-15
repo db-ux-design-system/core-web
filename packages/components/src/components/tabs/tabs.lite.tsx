@@ -1004,12 +1004,6 @@ export default function DBTabs(props: DBTabsProps) {
 										? false
 										: state.getRenderIndex() === index
 								}
-								tabIndex={
-									state.getRenderIndex() === -1 &&
-									state.getRenderFocusIndex() === index
-										? 0
-										: undefined
-								}
 								value={tab.value}
 							/>
 						)}
