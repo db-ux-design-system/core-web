@@ -338,10 +338,18 @@ $focus-outline-reach: calc(
 
 			.tabs-scroll-start {
 				inset-inline-start: 0;
+
+				&:dir(rtl) {
+					--db-icon: "chevron_right";
+				}
 			}
 
 			.tabs-scroll-end {
 				inset-inline-end: 0;
+
+				&:dir(rtl) {
+					--db-icon: "chevron_left";
+				}
 			}
 		}
 	}
