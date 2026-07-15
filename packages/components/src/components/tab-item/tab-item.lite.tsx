@@ -196,10 +196,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 			disabled={getBoolean(props.disabled, 'disabled') ? true : undefined}
 			id={props.id}
 			// Initial selection state rendered declaratively so SSR/no-JS output
-			// and the first paint expose a selected tab and a roving tabindex.
+			// and the first paint expose a selected tab.
 			// When inside DBTabs this is kept in sync by initTabs/syncSelection.
 			// Omitted when active is undefined (standalone usage stays focusable).
 			aria-selected={getBooleanAsString(props.active, 'active')}
+			// Mark the selected tab as the focusgroup entry point for browsers
+			// that support focusgroup natively. syncSelection manages this at
+			// runtime; this covers SSR/first-paint.
+			focusgroupstart={
+				getBoolean(props.active, 'active') ? '' : undefined
+			}
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}
 			<span

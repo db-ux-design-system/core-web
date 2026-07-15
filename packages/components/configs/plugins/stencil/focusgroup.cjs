@@ -30,6 +30,7 @@ declare module "@stencil/core/internal" {
 	namespace JSXBase {
 		interface HTMLAttributes<T = HTMLElement> {
 			focusgroup?: string;
+			focusgroupstart?: string;
 		}
 	}
 }
