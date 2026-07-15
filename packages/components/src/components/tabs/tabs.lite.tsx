@@ -445,7 +445,9 @@ export default function DBTabs(props: DBTabsProps) {
 		getActiveChildIndex(): number {
 			return state._tabButtons.findIndex(
 				(button: HTMLElement) =>
-					button.getAttribute('aria-selected') === 'true'
+					button.getAttribute('aria-selected') === 'true' &&
+					!(button as HTMLButtonElement).disabled &&
+					button.getAttribute('aria-disabled') !== 'true'
 			);
 		},
 
@@ -864,6 +866,7 @@ export default function DBTabs(props: DBTabsProps) {
 					// For the composed active-child path, read which tab has
 					// aria-selected="true" (set declaratively by DBTabItem)
 					// and hide all panels except the matching one.
+					// Skip disabled tabs to mirror the data-driven behavior.
 					const tabListEl2 =
 						_ref.querySelector('[role="tablist"]') ?? null;
 					const activeIdx = tabListEl2
@@ -871,7 +874,10 @@ export default function DBTabs(props: DBTabsProps) {
 								tabListEl2.querySelectorAll('[role="tab"]')
 							).findIndex(
 								(b: HTMLElement) =>
-									b.getAttribute('aria-selected') === 'true'
+									b.getAttribute('aria-selected') ===
+										'true' &&
+									!(b as HTMLButtonElement).disabled &&
+									b.getAttribute('aria-disabled') !== 'true'
 							)
 						: 0;
 					const visibleIndex = activeIdx > -1 ? activeIdx : 0;
