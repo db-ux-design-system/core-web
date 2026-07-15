@@ -337,7 +337,7 @@ export default function DBTabs(props: DBTabsProps) {
 					});
 				} else if (props.tabs) {
 					// Normalize hyphenated aria-label to camelCase ariaLabel
-					// for object arrays as well (users may pass 'aria-label' keys).
+					// for object arrays as well (users may pass aria-label keys).
 					return (props.tabs as DBSimpleTabProps[]).map(
 						(tab: DBSimpleTabProps) => {
 							const entry = tab as Record<string, unknown>;
