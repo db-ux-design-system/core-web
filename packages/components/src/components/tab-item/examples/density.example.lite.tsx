@@ -12,14 +12,14 @@ useMetadata({
 export default function TabItemDensity() {
 	return (
 		<Fragment>
-			<DBTabList>
-				<DBTabItem data-density="functional" label="Functional" />
+			<DBTabList data-density="functional">
+				<DBTabItem label="Functional" />
 			</DBTabList>
 			<DBTabList>
-				<DBTabItem data-density="regular" label="(Default) Regular" />
+				<DBTabItem label="(Default) Regular" />
 			</DBTabList>
-			<DBTabList>
-				<DBTabItem data-density="expressive" label="Expressive" />
+			<DBTabList data-density="expressive">
+				<DBTabItem label="Expressive" />
 			</DBTabList>
 		</Fragment>
 	);

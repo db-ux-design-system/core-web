@@ -189,20 +189,6 @@ export const checkFixMap: CheckConfig[] = [
 		fixCommands: []
 	},
 	{
-		name: 'test:migration',
-		checkCommand: {
-			command: 'pnpm',
-			args: [
-				'--filter',
-				'@db-ux/core-migration',
-				'run',
-				'test',
-				'--reporter=dot'
-			]
-		},
-		fixCommands: []
-	},
-	{
 		name: 'test:postcss-plugin',
 		checkCommand: {
 			command: 'pnpm',

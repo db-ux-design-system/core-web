@@ -2,11 +2,19 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import TabsControlled from '../examples/controlled.example.lite';
 import TabsDensity from '../examples/density.example.lite';
+import TabsDisabled from '../examples/disabled.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
+import TabsIcons from '../examples/icons.example.lite';
+import TabsInitialSelection from '../examples/initialSelection.example.lite';
+import TabsNested from '../examples/nested.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
-import TabsWidth from '../examples/width.example.lite';
+import TabsPropsTabs from '../examples/propsTabs.example.lite';
+import TabsSlotWithBadge from '../examples/slotWithBadge.example.lite';
+import TabItemWidth from '../examples/tabItemWidth.example.lite';
+import TabsTruncation from '../examples/truncation.example.lite';
 
 export default function TabsShowcase(props: PatternhubProps) {
 	return (
@@ -25,12 +33,52 @@ export default function TabsShowcase(props: PatternhubProps) {
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Width">
 				<CardWrapperShowcase>
-					<TabsWidth />
+					<TabItemWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Overflow">
 				<CardWrapperShowcase>
 					<TabsOverflow />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Truncation">
+				<CardWrapperShowcase>
+					<TabsTruncation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Icons">
+				<CardWrapperShowcase>
+					<TabsIcons />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Disabled">
+				<CardWrapperShowcase>
+					<TabsDisabled />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Slot with Badge">
+				<CardWrapperShowcase>
+					<TabsSlotWithBadge />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="URL Sync">
+				<CardWrapperShowcase>
+					<TabsInitialSelection />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Nested Tabs">
+				<CardWrapperShowcase>
+					<TabsNested />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Controlled">
+				<CardWrapperShowcase>
+					<TabsControlled />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Props Tabs">
+				<CardWrapperShowcase>
+					<TabsPropsTabs />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">
