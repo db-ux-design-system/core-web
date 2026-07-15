@@ -176,14 +176,9 @@ export default function DBTabs(props: DBTabsProps) {
 				const tabIndex = rovingIndex === index ? 0 : -1;
 				button.setAttribute('aria-selected', String(isSelected));
 				if (state._focusgroupSupported) {
-					// Mark the active tab as the focusgroup entry point so the
-					// browser tabs into the selected tab rather than the first one.
-					if (rovingIndex === index) {
-						button.setAttribute('focusgroupstart', '');
-					} else {
-						button.removeAttribute('focusgroupstart');
-					}
 					// Remove any SSR-rendered tabindex; focusgroup manages focus.
+					// focusgroupstart is left as-is: it only marks the initial
+					// entry point and the browser memory handles subsequent visits.
 					button.removeAttribute('tabindex');
 				} else {
 					button.setAttribute('tabindex', String(tabIndex));
@@ -341,7 +336,17 @@ export default function DBTabs(props: DBTabsProps) {
 						return entry as DBSimpleTabProps;
 					});
 				} else if (props.tabs) {
-					return props.tabs as DBSimpleTabProps[];
+					// Normalize hyphenated aria-label to camelCase ariaLabel
+					// for object arrays as well (users may pass 'aria-label' keys).
+					return (props.tabs as DBSimpleTabProps[]).map(
+						(tab: DBSimpleTabProps) => {
+							const entry = tab as Record<string, unknown>;
+							if (!entry['ariaLabel'] && entry['aria-label']) {
+								entry['ariaLabel'] = entry['aria-label'];
+							}
+							return entry as DBSimpleTabProps;
+						}
+					);
 				}
 			} catch (error) {
 				console.error(error);
@@ -380,18 +385,29 @@ export default function DBTabs(props: DBTabsProps) {
 
 		// Synchronously resolves the initially selected index from props/active entry. Used during render so SSR output hides inactive panels and at mount.
 		getInitialIndex(): number {
-			if (props.activeIndex !== undefined) {
-				const parsedIndex = Number(props.activeIndex);
-				return isNaN(parsedIndex) ? 0 : parsedIndex;
-			}
-
 			const tabs = state.getTabs();
 			const isEnabled = (tab: DBSimpleTabProps) =>
 				!getBoolean(tab.disabled, 'disabled');
 
+			if (props.activeIndex !== undefined) {
+				const parsedIndex = Number(props.activeIndex);
+				const idx = isNaN(parsedIndex) ? 0 : parsedIndex;
+				// Skip disabled tabs at the controlled index.
+				if (tabs.length > 0 && tabs[idx] && !isEnabled(tabs[idx])) {
+					const firstEnabled = tabs.findIndex(isEnabled);
+					return firstEnabled > -1 ? firstEnabled : 0;
+				}
+				return idx;
+			}
+
 			if (props.initialSelectedIndex !== undefined) {
 				const parsedIndex = Number(props.initialSelectedIndex);
 				if (isNaN(parsedIndex)) return 0;
+				// Clamp out-of-range index to the first enabled tab.
+				if (tabs.length > 0 && parsedIndex >= tabs.length) {
+					const firstEnabled = tabs.findIndex(isEnabled);
+					return firstEnabled > -1 ? firstEnabled : 0;
+				}
 				// Skip disabled tabs at the requested index.
 				if (
 					tabs.length > 0 &&
@@ -429,7 +445,9 @@ export default function DBTabs(props: DBTabsProps) {
 		getActiveChildIndex(): number {
 			return state._tabButtons.findIndex(
 				(button: HTMLElement) =>
-					button.getAttribute('aria-selected') === 'true'
+					button.getAttribute('aria-selected') === 'true' &&
+					!(button as HTMLButtonElement).disabled &&
+					button.getAttribute('aria-disabled') !== 'true'
 			);
 		},
 
@@ -848,6 +866,7 @@ export default function DBTabs(props: DBTabsProps) {
 					// For the composed active-child path, read which tab has
 					// aria-selected="true" (set declaratively by DBTabItem)
 					// and hide all panels except the matching one.
+					// Skip disabled tabs to mirror the data-driven behavior.
 					const tabListEl2 =
 						_ref.querySelector('[role="tablist"]') ?? null;
 					const activeIdx = tabListEl2
@@ -855,7 +874,10 @@ export default function DBTabs(props: DBTabsProps) {
 								tabListEl2.querySelectorAll('[role="tab"]')
 							).findIndex(
 								(b: HTMLElement) =>
-									b.getAttribute('aria-selected') === 'true'
+									b.getAttribute('aria-selected') ===
+										'true' &&
+									!(b as HTMLButtonElement).disabled &&
+									b.getAttribute('aria-disabled') !== 'true'
 							)
 						: 0;
 					const visibleIndex = activeIdx > -1 ? activeIdx : 0;
