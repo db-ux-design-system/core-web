@@ -408,6 +408,11 @@ export default function DBTabs(props: DBTabsProps) {
 			if (props.initialSelectedIndex !== undefined) {
 				const parsedIndex = Number(props.initialSelectedIndex);
 				if (isNaN(parsedIndex)) return 0;
+				// Clamp out-of-range index to the first enabled tab.
+				if (tabs.length > 0 && parsedIndex >= tabs.length) {
+					const firstEnabled = tabs.findIndex(isEnabled);
+					return firstEnabled > -1 ? firstEnabled : 0;
+				}
 				// Skip disabled tabs at the requested index.
 				if (
 					tabs.length > 0 &&
