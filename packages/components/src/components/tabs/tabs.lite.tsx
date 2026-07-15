@@ -331,20 +331,27 @@ export default function DBTabs(props: DBTabsProps) {
 					return parsed.map((tab: DBSimpleTabProps) => {
 						const entry = tab as Record<string, unknown>;
 						if (!entry['ariaLabel'] && entry['aria-label']) {
-							entry['ariaLabel'] = entry['aria-label'];
+							return {
+								...entry,
+								ariaLabel: entry['aria-label']
+							} as DBSimpleTabProps;
 						}
-						return entry as DBSimpleTabProps;
+						return tab;
 					});
 				} else if (props.tabs) {
 					// Normalize hyphenated aria-label to camelCase ariaLabel
 					// for object arrays as well (users may pass aria-label keys).
+					// Return a shallow copy to avoid mutating frozen input data.
 					return (props.tabs as DBSimpleTabProps[]).map(
 						(tab: DBSimpleTabProps) => {
 							const entry = tab as Record<string, unknown>;
 							if (!entry['ariaLabel'] && entry['aria-label']) {
-								entry['ariaLabel'] = entry['aria-label'];
+								return {
+									...entry,
+									ariaLabel: entry['aria-label']
+								} as DBSimpleTabProps;
 							}
-							return entry as DBSimpleTabProps;
+							return tab;
 						}
 					);
 				}
