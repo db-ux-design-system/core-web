@@ -2,14 +2,14 @@
 
 ## Breaking changes
 
-| Change                             | Before                        | After                                               |
-| ---------------------------------- | ----------------------------- | --------------------------------------------------- |
-| `header` slot now required         | Optional, no header needed    | Must pass `<db-drawer-header>` in the `header` slot |
-| `spacing` property removed         | `<db-drawer spacing="small">` | Remove `spacing` prop (no longer supported)         |
-| `direction` values renamed         | `right`, `left`               | `to-left`, `to-right`                               |
-| `width` renamed to `containerSize` | `<db-drawer width="full">`    | `<db-drawer containerSize="full">`                  |
-| New `showSpacing` property         | N/A                           | `<db-drawer [showSpacing]="false">` to disable      |
-| New `containerSize` options        | `width`: `full`, `auto`       | `containerSize`: `small`, `medium`, `large`, `full` |
+| Change                             | Before                        | After                                                                     |
+| ---------------------------------- | ----------------------------- | ------------------------------------------------------------------------- |
+| `header` slot now required         | Optional, no header needed    | Must pass `<db-drawer-header>` in the `header` slot                       |
+| `spacing` property removed         | `<db-drawer spacing="small">` | Remove `spacing` prop (no longer supported)                               |
+| `direction` values renamed         | `right`, `left`               | `to-left`, `to-right`                                                     |
+| `width` renamed to `containerSize` | `<db-drawer width="full">`    | `<db-drawer containerSize="full" [showSpacing]="false">` (see note below) |
+| New `showSpacing` property         | N/A                           | `<db-drawer [showSpacing]="false">` to disable                            |
+| New `containerSize` options        | `width`: `full`, `auto`       | `containerSize`: `small`, `medium`, `large`, `full`                       |
 
 ## Required `DBDrawerHeader`
 
@@ -80,6 +80,8 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 
 The `width` property has been replaced by `containerSize` with new size options: `small` (default on desktop), `medium`, `large`, and `full`.
 
+> **Important:** If you previously used `width="full"`, you must also set `[showSpacing]="false"` to preserve the old full-viewport behavior. Without it, the drawer retains a small gap from the screen edge due to the default backdrop spacing.
+
 ### Before
 
 ```html
@@ -91,7 +93,12 @@ The `width` property has been replaced by `containerSize` with new size options:
 ### After
 
 ```html
-<db-drawer containerSize="full" [open]="open()" (close)="open.set(false)">
+<db-drawer
+	containerSize="full"
+	[showSpacing]="false"
+	[open]="open()"
+	(close)="open.set(false)"
+>
 	<db-drawer-header header>Title</db-drawer-header>
 	Content
 </db-drawer>
