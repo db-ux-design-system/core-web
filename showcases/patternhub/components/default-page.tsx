@@ -56,9 +56,9 @@ const DefaultPage = ({
 			: localStorage.getItem(colorModeKey) === 'dark'
 	);
 
-	const setColorMode = useCallback((dark: boolean) => {
-		localStorage.setItem(colorModeKey, dark ? 'dark' : 'light');
-		setMode(dark);
+	const setColorMode = useCallback((isDark: boolean) => {
+		localStorage.setItem(colorModeKey, isDark ? 'dark' : 'light');
+		setMode(isDark);
 	}, []);
 
 	useEffect(() => {

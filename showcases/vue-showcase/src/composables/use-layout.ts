@@ -20,8 +20,8 @@ export const useLayout = () => {
 	const fullscreen = ref();
 	const drawerOpen = ref(false);
 
-	const toggleDrawer = (open: boolean) => {
-		drawerOpen.value = open;
+	const toggleDrawer = (isOpen: boolean) => {
+		drawerOpen.value = isOpen;
 	};
 
 	const classNames = computed(
