@@ -200,13 +200,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			// When inside DBTabs this is kept in sync by initTabs/syncSelection.
 			// Omitted when active is undefined (standalone usage stays focusable).
 			aria-selected={getBooleanAsString(props.active, 'active')}
-			tabIndex={
-				props.active === undefined
-					? undefined
-					: getBoolean(props.active, 'active')
-						? 0
-						: -1
-			}
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}
 			<span

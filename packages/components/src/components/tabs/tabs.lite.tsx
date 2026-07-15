@@ -183,8 +183,11 @@ export default function DBTabs(props: DBTabsProps) {
 					} else {
 						button.removeAttribute('focusgroupstart');
 					}
+					// Remove any SSR-rendered tabindex; focusgroup manages focus.
+					button.removeAttribute('tabindex');
 				} else {
 					button.setAttribute('tabindex', String(tabIndex));
+					button.removeAttribute('focusgroupstart');
 				}
 			});
 
@@ -998,10 +1001,14 @@ export default function DBTabs(props: DBTabsProps) {
 								disabled={tab.disabled}
 								active={
 									state.getRenderIndex() === -1
-										? state.getRenderFocusIndex() === index
-											? undefined
-											: false
+										? false
 										: state.getRenderIndex() === index
+								}
+								tabIndex={
+									state.getRenderIndex() === -1 &&
+									state.getRenderFocusIndex() === index
+										? 0
+										: undefined
 								}
 								value={tab.value}
 							/>
