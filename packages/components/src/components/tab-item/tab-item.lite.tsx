@@ -230,7 +230,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				<div class="db-tab-item-label-end-slot">{props.endSlot}</div>
 			</span>
 			<Show when={state.isTruncated && state.tooltipText}>
-				<DBTooltip placement="bottom">{state.tooltipText}</DBTooltip>
+				<DBTooltip placement="top">{state.tooltipText}</DBTooltip>
 			</Show>
 		</button>
 	);
