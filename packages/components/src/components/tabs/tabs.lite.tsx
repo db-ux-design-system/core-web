@@ -327,7 +327,16 @@ export default function DBTabs(props: DBTabsProps) {
 		getTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
-					return JSON.parse(props.tabs as string);
+					const parsed = JSON.parse(props.tabs as string);
+					// Normalize hyphenated aria-label to camelCase ariaLabel
+					// so the render path can forward it consistently.
+					return parsed.map((tab: DBSimpleTabProps) => {
+						const entry = tab as Record<string, unknown>;
+						if (!entry['ariaLabel'] && entry['aria-label']) {
+							entry['ariaLabel'] = entry['aria-label'];
+						}
+						return entry as DBSimpleTabProps;
+					});
 				} else if (props.tabs) {
 					return props.tabs as DBSimpleTabProps[];
 				}
