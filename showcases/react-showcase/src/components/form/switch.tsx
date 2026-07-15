@@ -2,7 +2,7 @@ import { DBSwitch } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
-const FormSwitches = () => {
+export default function FormSwitches() {
 	const [controlled, setControlled] = useState(true);
 	const [uncontrolled, setUncontrolled] = useState(true);
 
@@ -26,6 +26,4 @@ const FormSwitches = () => {
 			</DBSwitch>
 		</FormWrapper>
 	);
-};
-
-export default FormSwitches;
+}

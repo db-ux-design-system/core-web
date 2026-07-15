@@ -181,7 +181,7 @@ export const collectVarsWithLayer = (
 		const entries = varMap.get(prop);
 		if (entries) {
 			const existing = entries.find(
-				(e) => e.file === file && e.layer === layer
+				(entry) => entry.file === file && entry.layer === layer
 			);
 			if (existing) {
 				existing.value = value;

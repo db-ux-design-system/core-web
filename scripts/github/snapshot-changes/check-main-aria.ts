@@ -1,3 +1,3 @@
-import { checkSnapshotChanges } from './check.js';
+import { hasSnapshotChanges } from './check.js';
 
-console.log(checkSnapshotChanges(true, 'origin/main'));
+console.log(hasSnapshotChanges(true, 'origin/main'));

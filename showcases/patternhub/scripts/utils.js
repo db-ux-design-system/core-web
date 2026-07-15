@@ -138,7 +138,7 @@ export const getCodeByFramework = (
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
-			? !(child.slot.includes('Navigation') && framework !== 'angular')
+			? !child.slot.includes('Navigation') || framework === 'angular'
 			: false
 	);
 	let reactSlots = '';
