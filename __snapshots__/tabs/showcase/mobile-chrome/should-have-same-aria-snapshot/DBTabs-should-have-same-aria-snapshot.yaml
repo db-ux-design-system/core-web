@@ -117,11 +117,6 @@
     - tab "Info"
     - tab "Settings"
   - tabpanel "Notifications": Notifications content
-  - text: "icon only:"
-  - tablist:
-    - tab "Test 1"
-    - tab "Test 2"
-    - tab "Test 3"
   - link "Disabled"
   - text: "with disabled tab in the middle:"
   - tablist:
@@ -130,10 +125,16 @@
     - tab "Another Tab"
   - tabpanel "Active Tab": Panel for active tab
   - link "Slot with Badge"
-  - text: "tab-items with badges:"
+  - text: "Horizontal:"
   - tablist:
     - tab "Messages 134" [selected]
-    - tab "Notifications 433"
+    - tab "Notifications and very long content 433"
+    - tab "Settings"
+  - tabpanel "Messages 134": Messages content
+  - text: "Vertical:"
+  - tablist:
+    - tab "Messages 134" [selected]
+    - tab "Notifications and very long content 433"
     - tab "Settings"
   - tabpanel "Messages 134": Messages content
   - link "URL Sync"
