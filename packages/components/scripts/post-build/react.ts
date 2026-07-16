@@ -125,6 +125,10 @@ keyof DB${upperComponentName}Props> & DB${upperComponentName}Props
 export default DB${upperComponentName};`
 				},
 				{
+					from: '>(null);',
+					to: '>(null);\n  const _mergedRef = mergeRefs(_ref, component);'
+				},
+				{
 					from: '={true}',
 					to: ''
 				},
@@ -140,7 +144,7 @@ export default DB${upperComponentName};`
 				{
 					from: 'ref={_ref}',
 					to:
-						'ref={mergeRefs(_ref, component)}\n' +
+						'ref={_mergedRef}\n' +
 						`{...filterPassingProps(props,${JSON.stringify([...rootProps, ...(component?.config?.react?.propsPassingFilter ?? [])])})}`
 				},
 				{
