@@ -43,12 +43,13 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValuePropertyInterceptor,
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import { DateTimeInputTypeList, DBInputProps, DBInputState } from './model';
+import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
@@ -145,7 +146,6 @@ export default function DBInput(props: DBInputProps) {
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
-			state.handleEmptyState();
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLInputElement>,
@@ -178,7 +178,6 @@ export default function DBInput(props: DBInputProps) {
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
-			state.handleEmptyState();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
@@ -201,11 +200,6 @@ export default function DBInput(props: DBInputProps) {
 					: _list) || []
 			);
 		},
-		handleEmptyState: () => {
-			if (_ref && DateTimeInputTypeList.includes(props.type ?? '')) {
-				_ref.dataset.empty = !_ref.value;
-			}
-		},
 		resetIds: () => {
 			const mId =
 				props.id ?? props.propOverrides?.id ?? `input-${uuid()}`;
@@ -220,7 +214,6 @@ export default function DBInput(props: DBInputProps) {
 	onMount(() => {
 		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-		void delay(() => state.handleEmptyState(), 1);
 	});
 
 	onUpdate(() => {
@@ -256,8 +249,7 @@ export default function DBInput(props: DBInputProps) {
 
 	onUpdate(() => {
 		state._value = props.value;
-		state.handleEmptyState();
-	}, [props.value, props.type]);
+	}, [props.value]);
 
 	onUpdate(() => {
 		// If angular uses ngModel value and _value are null
@@ -288,6 +280,8 @@ export default function DBInput(props: DBInputProps) {
 				},
 				controller.signal
 			);
+
+			addValuePropertyInterceptor(_ref, controller.signal);
 		}
 	}, [_ref]);
 

@@ -131,24 +131,7 @@ export type DBInputProps = DBInputDefaultProps &
 export type DBInputDefaultState = {
 	_dataListId?: string;
 	getDataList: () => ValueLabelType[];
-	/**
-	 * Reflects the current (DOM) value of date/time related inputs onto a
-	 * `data-empty` attribute so the "placeholder" styling of the
-	 * `::-webkit-datetime-edit` can react to values that were set via the DOM
-	 * value property (e.g. by form libraries like react-hook-form) instead of
-	 * the HTML value attribute.
-	 */
-	handleEmptyState: () => void;
 };
-
-/** @internal List of input types whose value is rendered inside `::-webkit-datetime-edit`. Internal helper for the `data-empty` placeholder styling. */
-export const DateTimeInputTypeList: string[] = [
-	'date',
-	'datetime-local',
-	'month',
-	'time',
-	'week'
-];
 
 export type DBInputState = DBInputDefaultState &
 	GlobalState &

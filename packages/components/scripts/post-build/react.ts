@@ -125,11 +125,6 @@ keyof DB${upperComponentName}Props> & DB${upperComponentName}Props
 export default DB${upperComponentName};`
 				},
 				{
-					from: '>(null);',
-					to: '>(component);'
-				},
-				{ from: 'useRef<', to: 'component || useRef<' },
-				{
 					from: '={true}',
 					to: ''
 				},
@@ -140,12 +135,12 @@ export default DB${upperComponentName};`
 						// Explicit .js extension required: this import is injected
 						// here in post-build, AFTER the Mitosis esm-extensions
 						// plugin has run, so it is not rewritten automatically.
-						'import { filterPassingProps, getRootProps } from "../../utils/react.js";\n'
+						'import { filterPassingProps, getRootProps, mergeRefs } from "../../utils/react.js";\n'
 				},
 				{
 					from: 'ref={_ref}',
 					to:
-						'ref={_ref}\n' +
+						'ref={mergeRefs(_ref, component)}\n' +
 						`{...filterPassingProps(props,${JSON.stringify([...rootProps, ...(component?.config?.react?.propsPassingFilter ?? [])])})}`
 				},
 				{

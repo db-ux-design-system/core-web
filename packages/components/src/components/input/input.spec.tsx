@@ -141,27 +141,6 @@ const testAction = () => {
 		await input.press('Enter');
 		await expect(input).toHaveValue('00:15');
 	});
-
-	test('should mark empty date/time input as empty', async ({ mount }) => {
-		const component = await mount(<DBInput label="Label" type="time" />);
-		const input = component.locator('input[type="time"]');
-		await expect(input).toHaveAttribute('data-empty', 'true');
-	});
-
-	test('should mark date/time input as filled when value is set via property', async ({
-		mount
-	}) => {
-		// Simulates form libraries (e.g. react-hook-form) that set the value via
-		// the DOM value property instead of the HTML value attribute. This must
-		// not render the value in the italic "placeholder" style (issue #6626).
-		const component = await mount(<DBInput label="Label" type="time" />);
-		const input = component.locator('input[type="time"]');
-		await input.evaluate((el: HTMLInputElement) => {
-			el.value = '08:00:00';
-			el.dispatchEvent(new Event('input', { bubbles: true }));
-		});
-		await expect(input).toHaveAttribute('data-empty', 'false');
-	});
 };
 
 test.describe('DBInput', () => {
