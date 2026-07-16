@@ -1,5 +1,17 @@
 # @db-ux/core-foundations
 
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+### Patch Changes
+
+- refactor: we're not assigning our CSS Custom Properties to the `:host` selector anymore, but only `:root`, which even also covers `:host`, as the ShadowRoot boundary doesn't block the CSS cascade. - [see commit b6f0600](https://github.com/db-ux-design-system/core-web/commit/b6f06000c5f23ba10c324f93faae8fb7cc4fe33d)
+
 ## 4.14.0
 
 ### Minor Changes
