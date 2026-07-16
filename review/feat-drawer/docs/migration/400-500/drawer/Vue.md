@@ -67,14 +67,16 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 
 ## `direction` values renamed
 
-The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. If you relied on the default `right` behavior (which was opening from right), you now need to set `direction="to-left"` explicitly (slides from right border to the left).
+The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. The default behavior (opening from the right side) is unchanged — it now corresponds to `to-left` (slides from the right screen border to the left).
 
 ### Before
 
 ```vue
 <template>
-	<!-- Previously opened from the right by default -->
-	<DBDrawer :open="open" @close="open = false"> Content </DBDrawer>
+	<!-- Explicit right direction (or omitted, since right was the default) -->
+	<DBDrawer direction="right" :open="open" @close="open = false">
+		Content
+	</DBDrawer>
 </template>
 ```
 
@@ -82,10 +84,10 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 
 ```vue
 <template>
-	<!-- Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) -->
-	<DBDrawer direction="to-left" :open="open" @close="open = false">
+	<!-- "to-left" is the new default — no need to set it explicitly unless you had "left" before -->
+	<DBDrawer :open="open" @close="open = false">
 		<template #header>
-			<DBDrawerHeader>Title</DBDrawerHeader>
+			<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>
 		</template>
 		Content
 	</DBDrawer>
