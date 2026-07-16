@@ -146,13 +146,13 @@ function isValidHeaderProp(headerAttr: any): boolean {
 	}
 
 	// Check if expression contains DBDrawerHeader (recursively)
-	return containsDBDrawerHeader(expr);
+	return hasDBDrawerHeader(expr);
 }
 
 /**
  * Recursively checks if a JSX expression tree contains a DBDrawerHeader component.
  */
-function containsDBDrawerHeader(node: any): boolean {
+function hasDBDrawerHeader(node: any): boolean {
 	if (!node) {
 		return false;
 	}
@@ -164,12 +164,12 @@ function containsDBDrawerHeader(node: any): boolean {
 		}
 		// Recursively check children of JSX elements (e.g. <div><DBDrawerHeader>...</DBDrawerHeader></div>)
 		const children = node.children || [];
-		return children.some((child: any) => containsDBDrawerHeader(child));
+		return children.some((child: any) => hasDBDrawerHeader(child));
 	}
 
 	if (node.type === 'JSXFragment') {
 		const children = node.children || [];
-		return children.some((child: any) => containsDBDrawerHeader(child));
+		return children.some((child: any) => hasDBDrawerHeader(child));
 	}
 
 	return false;
