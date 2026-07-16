@@ -9,12 +9,12 @@ const repoRoot =
 	path.join(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 const { VALID_SEMVER_VERSION } = process.env;
-const RELEASE = process.env.RELEASE === 'true';
-const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
-const CI = process.env.CI === 'true';
+const IS_RELEASE = process.env.RELEASE === 'true';
+let isPreRelease = process.env.PRE_RELEASE === 'true';
+const IS_CI = process.env.CI === 'true';
 
 if (!VALID_SEMVER_VERSION) {
-	if (CI) {
+	if (IS_CI) {
 		console.error('Version is missing!');
 		process.exit(1);
 	}
@@ -23,8 +23,8 @@ if (!VALID_SEMVER_VERSION) {
 	console.warn('⚠️ No version set, using 0.0.0-local for local run');
 }
 
-if (!RELEASE && !PRE_RELEASE) {
-	if (CI) {
+if (!IS_RELEASE && !isPreRelease) {
+	if (IS_CI) {
 		console.error(
 			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
 		);
@@ -38,7 +38,7 @@ if (!RELEASE && !PRE_RELEASE) {
 }
 
 const VALID_SEMVER = process.env.VALID_SEMVER_VERSION;
-const IS_PRE_RELEASE = process.env.PRE_RELEASE === 'true';
+isPreRelease = process.env.PRE_RELEASE === 'true';
 
 console.log('🛠 Forge all packages version numbers');
 console.log(`which package version ?: ${VALID_SEMVER}`);
@@ -53,7 +53,6 @@ const packages = [
 	{ dir: 'react', name: 'react-core-components' },
 	{ dir: 'vue', name: 'v-core-components' },
 	{ dir: 'wc-core-components', name: 'wc-core-components' },
-	{ dir: 'migration', name: 'core-migration' },
 	{ dir: 'stylelint', name: 'core-stylelint' },
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
@@ -113,7 +112,7 @@ for (const { dir, name: PACKAGE } of packages) {
 }
 
 let TAG = 'latest';
-if (IS_PRE_RELEASE) {
+if (isPreRelease) {
 	TAG = 'next';
 }
 
@@ -126,7 +125,7 @@ execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
 console.log('🔑 Using trusted publishing for NPM');
 
 // Only run provenance (real publish) in CI, locally only dry-run
-for (const step of CI ? ['dry-run', 'provenance'] : ['dry-run']) {
+for (const step of IS_CI ? ['dry-run', 'provenance'] : ['dry-run']) {
 	for (const { dir, name: PACKAGE } of packages) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {

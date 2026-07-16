@@ -6,6 +6,7 @@ import {
 	DBCustomSelect,
 	DBDivider,
 	DBDrawer,
+	DBDrawerHeader,
 	DBInfotext,
 	DBInput,
 	DBLink,
@@ -355,7 +356,7 @@ const FormComponent = () => {
 						</DBTabItem>
 						<DBTabItem
 							icon="x_placeholder"
-							noText={true}></DBTabItem>
+							label="Icon only tab"></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
@@ -509,8 +510,8 @@ const FormComponent = () => {
 					onClose={() => {
 						setDrawerOpen(false);
 					}}
-					open={drawerOpen}
-					spacing="none">
+					header={<DBDrawerHeader>Drawer Test</DBDrawerHeader>}
+					open={drawerOpen}>
 					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
 						Test: Mouse down here, drag to backdrop, release. Drawer
 						should stay open.

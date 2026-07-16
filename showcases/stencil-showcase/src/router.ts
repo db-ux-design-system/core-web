@@ -98,6 +98,7 @@ function updateActiveNavItem(): void {
 
 	for (const link of navLinks) {
 		const href = (link.getAttribute('href') ?? '').split('?', 1)[0];
+		// eslint-disable-next-line unicorn/prefer-toggle-attribute -- aria-current needs string value "page", not just boolean presence
 		if (href === currentHash) {
 			link.setAttribute('aria-current', 'page');
 		} else {

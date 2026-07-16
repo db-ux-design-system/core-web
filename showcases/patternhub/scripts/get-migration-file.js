@@ -7,7 +7,7 @@ const componentPath = '../../packages/components/src/components';
  @param displayName {string}
  @returns {string}
  */
-const getMigrationFile = (componentName, displayName) => {
+export default function getMigrationFile(componentName, displayName) {
 	let imports = '';
 	let components = '';
 
@@ -28,6 +28,4 @@ ${components}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;
 	`;
-};
-
-export default getMigrationFile;
+}

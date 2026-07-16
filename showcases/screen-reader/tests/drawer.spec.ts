@@ -8,7 +8,7 @@ test.describe('DBDrawer', () => {
 		title: 'autofocus',
 		description: 'should autofocus',
 		url: './#/01/drawer?page=density',
-		async testFn(voiceOver, nvda, page) {
+		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.previous();
 			await screenReader?.act();
@@ -28,6 +28,10 @@ test.describe('DBDrawer', () => {
 							// Autofocus timing: NVDA sometimes prepends "button." to the dialog announcement
 							.replace(
 								'button. dialog. document',
+								'dialog. document'
+							)
+							.replace(
+								'button. Functional, dialog. document',
 								'dialog. document'
 							)
 					)

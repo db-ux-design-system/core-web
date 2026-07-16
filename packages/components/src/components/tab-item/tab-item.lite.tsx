@@ -3,176 +3,237 @@ import {
 	onUnMount,
 	onUpdate,
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
-import {
-	handleFrameworkEventAngular,
-	handleFrameworkEventVue
-} from '../../utils/form-components';
+import DBTooltip from '../tooltip/tooltip.lite';
 import type { DBTabItemProps, DBTabItemState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled'],
+		nativeAttributes: ['disabled', 'tabindex'],
 		signals: {
-			writeable: ['disabled', 'checked']
+			writeable: ['disabled']
 		}
 	}
 });
+
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | any>(null);
+	const _ref = useRef<HTMLButtonElement | null>(null);
+	const _labelRef = useRef<HTMLSpanElement | null>(null);
 
-	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		_selected: false,
-		_name: undefined,
 		initialized: false,
-		_listenerAdded: false,
-		boundSetSelectedOnChange: undefined,
-		setSelectedOnChange: (event: any) => {
-			event.stopPropagation();
-			useTarget({
-				stencil: () => {
-					state._selected = getBooleanAsString(
-						event.target === _ref,
-						'selected'
-					);
-				},
-				default: () => {
-					state._selected = event.target === _ref;
-				}
-			});
-		},
-		handleNameAttribute: () => {
-			if (_ref) {
-				const setAttribute = _ref.setAttribute;
-				_ref.setAttribute = (attribute: string, value: string) => {
-					setAttribute.call(_ref, attribute, value);
-					if (attribute === 'name') {
-						state._name = value;
-					}
-				};
-			}
-		},
-		handleChange: (event: any) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		isTruncated: false,
+		tooltipText: '',
+		_resizeObserver: null,
+		_mutationObserver: null,
+		_setupRafId: null,
+		_unmounted: false,
+		// Removes only the truncation tooltip ID from aria-describedby,
+		// preserving any consumer-provided IDs in the space-separated list.
+		_cleanupTooltipAria: () => {
+			if (!_ref) return;
+			if (!_ref.hasAttribute('data-has-tooltip')) return;
 
-			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
-			});
+			_ref.removeAttribute('data-has-tooltip');
+
+			const tooltipEl = _ref.querySelector('.db-tooltip');
+			if (!tooltipEl || !tooltipEl.id) return;
+
+			const describedBy = _ref.getAttribute('aria-describedby') || '';
+			const remaining = describedBy
+				.split(' ')
+				.filter((id: string) => id !== '' && id !== tooltipEl.id)
+				.join(' ');
+
+			if (remaining) {
+				_ref.setAttribute('aria-describedby', remaining);
+			} else {
+				_ref.removeAttribute('aria-describedby');
+			}
+		},
+		checkTruncation: () => {
+			if (_labelRef) {
+				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
+				const clientWidth = Math.ceil(_labelRef.clientWidth);
+				const truncated = scrollWidth > clientWidth + 1;
+
+				if (state.isTruncated !== truncated) {
+					state.isTruncated = truncated;
+
+					if (!truncated) {
+						state._cleanupTooltipAria();
+						// Remove the empty title we set to suppress native
+						// tooltip; consumer-provided titles are re-applied by
+						// the framework spread on the next render.
+						if (_ref && _ref.getAttribute('title') === '') {
+							_ref.removeAttribute('title');
+						}
+					} else if (_ref) {
+						// Suppress native browser tooltip while our custom
+						// truncation tooltip is active.
+						_ref.setAttribute('title', '');
+					}
+				}
+
+				state.tooltipText = truncated
+					? props.label ||
+						_labelRef.innerText ||
+						_labelRef.textContent ||
+						''
+					: '';
+			}
 		}
 	});
 
-	// Set up event listener to react on any change (select & deselect) in tab list
-	// Default: Most framework can just pass the state function to the parents event listener.
-	// Stencil: Bind the function to maintain correct 'this' context in class components
-	// React: Wrap in arrow function so setState doesn't treat it as a state updater
 	onMount(() => {
-		useTarget({
-			stencil: () => {
-				state.boundSetSelectedOnChange =
-					state.setSelectedOnChange.bind(state);
-			},
-			react: () => {
-				state.boundSetSelectedOnChange = () =>
-					state.setSelectedOnChange;
-			},
-			default: () => {
-				state.boundSetSelectedOnChange = state.setSelectedOnChange;
-			}
-		});
 		state.initialized = true;
 	});
-	// jscpd:ignore-end
 
+	// Setup truncation check and resize observer once the label ref and
+	// initialization are both available.
 	onUpdate(() => {
-		if (_ref && state.initialized && state.boundSetSelectedOnChange) {
-			useTarget({ react: () => state.handleNameAttribute() });
-			state.initialized = false;
-
-			// deselect this tab when another tab in tablist is selected
-			if (!state._listenerAdded) {
-				_ref.closest('[role=tablist]')?.addEventListener(
-					'change',
-					state.boundSetSelectedOnChange
-				);
-				state._listenerAdded = true;
-			}
-
-			// Initialize selected state from either active prop (set by parent) or checked attribute
-			if (props.active || _ref.checked) {
-				useTarget({
-					stencil: () => {
-						state._selected = getBooleanAsString(true, 'selected');
-					},
-					default: () => {
-						state._selected = true;
+		if (
+			typeof window !== 'undefined' &&
+			_labelRef &&
+			state.initialized &&
+			!state._resizeObserver
+		) {
+			const setupObserverAndCheck = () => {
+				state._setupRafId = requestAnimationFrame(() => {
+					state._setupRafId = null;
+					if (state._unmounted) return;
+					state.checkTruncation();
+					if (_labelRef && !state._resizeObserver) {
+						const resizeObserver = new ResizeObserver(() => {
+							requestAnimationFrame(() => {
+								if (!state._unmounted) {
+									state.checkTruncation();
+								}
+							});
+						});
+						resizeObserver.observe(_labelRef);
+						state._resizeObserver = resizeObserver;
+					}
+					// The ResizeObserver only reacts to box-size changes. When
+					// slotted/children text changes in place (e.g. i18n or an
+					// async badge count) the box can keep its size while
+					// scrollWidth changes, so also observe content mutations.
+					if (_labelRef && !state._mutationObserver) {
+						const mutationObserver = new MutationObserver(() => {
+							requestAnimationFrame(() => {
+								if (!state._unmounted) {
+									state.checkTruncation();
+								}
+							});
+						});
+						mutationObserver.observe(_labelRef, {
+							childList: true,
+							subtree: true,
+							characterData: true
+						});
+						state._mutationObserver = mutationObserver;
 					}
 				});
-				_ref.click();
+			};
+			const hasIcon = !!(
+				props.iconLeading ??
+				props.icon ??
+				props.iconTrailing
+			);
+			if (hasIcon && document.fonts?.ready) {
+				document.fonts.ready.then(() => {
+					if (!state._unmounted) {
+						setupObserverAndCheck();
+					}
+				});
+			} else {
+				setupObserverAndCheck();
 			}
 		}
-	}, [_ref, state.initialized, state.boundSetSelectedOnChange]);
+	}, [_labelRef, state.initialized]);
 
-	onUpdate(() => {
-		if (props.name) {
-			state._name = props.name;
-		}
-	}, [props.name]);
-
+	// Disconnect the observers
 	onUnMount(() => {
-		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
-			_ref.closest('[role=tablist]')?.removeEventListener(
-				'change',
-				state.boundSetSelectedOnChange
-			);
-			state._listenerAdded = false;
+		state._unmounted = true;
+		const rafId = state._setupRafId;
+		if (rafId !== null) {
+			cancelAnimationFrame(rafId);
+			state._setupRafId = null;
 		}
+		state._resizeObserver?.disconnect();
+		state._mutationObserver?.disconnect();
 	});
 
+	// Re-check truncation when the label content changes. The ResizeObserver only
+	// fires on box-size changes, not when the text content (and thus scrollWidth)
+	// changes while the box stays the same size.
+	onUpdate(() => {
+		if (_labelRef && state.initialized) {
+			state.checkTruncation();
+		}
+	}, [props.label, state.initialized, _labelRef]);
+
+	// Manually sync DOM attributes when truncation state changes
+	onUpdate(() => {
+		if (_ref && !state.isTruncated) {
+			state._cleanupTooltipAria();
+		}
+	}, [_ref, state.isTruncated]);
+
 	return (
-		<li class={cls('db-tab-item', props.className)} role="none">
-			<label
-				htmlFor={props.id ?? props.propOverrides?.id}
+		<button
+			ref={_ref}
+			type="button"
+			role="tab"
+			class={cls('db-tab-item', props.className)}
+			disabled={getBoolean(props.disabled, 'disabled') ? true : undefined}
+			// Initial selection state rendered declaratively so SSR/no-JS output
+			// and the first paint expose a selected tab.
+			// When inside DBTabs this is kept in sync by initTabs/syncSelection.
+			// Omitted when active is undefined (standalone usage stays focusable).
+			aria-selected={getBooleanAsString(props.active, 'active')}
+			// Mark the selected tab as the focusgroup entry point for browsers
+			// that support focusgroup natively. syncSelection manages this at
+			// runtime; this covers SSR/first-paint.
+			focusgroupstart={
+				getBoolean(props.active, 'active') ? '' : undefined
+			}
+			data-value={props.value}>
+			{/* wrapper needed for accurate width measurement via refs */}
+			<span
+				class="db-tab-item-label"
 				data-icon={props.iconLeading ?? props.icon}
-				data-icon-trailing={props.iconTrailing}
 				data-show-icon={
 					getBooleanAsString(
 						props.showIconLeading,
 						'showIconLeading'
 					) || getBooleanAsString(props.showIcon, 'showIcon')
 				}
+				data-icon-trailing={props.iconTrailing}
 				data-show-icon-trailing={getBooleanAsString(
 					props.showIconTrailing,
 					'showIconTrailing'
-				)}
-				data-no-text={getBooleanAsString(props.noText, 'noText')}>
-				<input
-					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-selected={state._selected}
-					checked={getBoolean(props.checked, 'checked')}
-					ref={_ref}
-					type="radio"
-					role="tab"
-					name={state._name}
-					id={props.id ?? props.propOverrides?.id}
-					onInput={(event: any) => state.handleChange(event)}
-				/>
-
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
-			</label>
-		</li>
+				)}>
+				{/* only the text truncates – icons stay visible */}
+				<span ref={_labelRef} class="db-tab-item-label-text">
+					<Show when={props.label}>{props.label}</Show>
+					{props.children}
+				</span>
+				<span class="db-tab-item-label-end-slot">
+					<Slot name="endSlot" />
+				</span>
+			</span>
+			<Show when={state.isTruncated && state.tooltipText}>
+				<DBTooltip placement="top">{state.tooltipText}</DBTooltip>
+			</Show>
+		</button>
 	);
 }

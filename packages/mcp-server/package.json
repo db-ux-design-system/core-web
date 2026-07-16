@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/mcp-server",
-  "version": "4.14.0",
+  "version": "5.0.0",
   "type": "module",
   "description": "MCP server for DB UX Design System – gives LLMs access to UI components and code examples",
   "repository": {
@@ -50,7 +50,7 @@
     "npm-run-all2": "9.0.2",
     "tsx": "4.23.0",
     "typescript": "5.9.3",
-    "vitest": "4.1.9"
+    "vitest": "4.1.10"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
