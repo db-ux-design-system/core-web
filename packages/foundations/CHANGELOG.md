@@ -2,6 +2,8 @@
 
 ## 5.0.0
 
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
 ### Major Changes
 
 - refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)

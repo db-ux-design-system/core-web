@@ -2,6 +2,8 @@
 
 ## 5.0.0
 
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
 ### Major Changes
 
 - refactor: DBDrawer with breaking changes - [see commit 9189f6c](https://github.com/db-ux-design-system/core-web/commit/9189f6c24cd3a64f072c2f60f8c8127d1ed68c55):
