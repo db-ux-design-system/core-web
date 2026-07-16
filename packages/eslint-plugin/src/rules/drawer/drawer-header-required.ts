@@ -130,13 +130,6 @@ function isValidHeaderProp(headerAttr: any): boolean {
 	}
 
 	const expr = value.expression;
-	if (expr?.type === 'JSXElement') {
-		const innerOpening = expr.openingElement;
-		return (
-			Boolean(innerOpening) &&
-			isDBComponent(innerOpening, COMPONENTS.DBDrawerHeader)
-		);
-	}
 
 	// Allow variable references (e.g. header={headerSlot})
 	// since we can't statically verify what the variable contains
@@ -148,18 +141,38 @@ function isValidHeaderProp(headerAttr: any): boolean {
 		'LogicalExpression'
 	];
 
-	// Allow JSX fragments only if they contain a DBDrawerHeader child
-	if (expr?.type === 'JSXFragment') {
-		const children = expr.children || [];
-		return children.some(
-			(child: any) =>
-				child.type === 'JSXElement' &&
-				child.openingElement &&
-				isDBComponent(child.openingElement, COMPONENTS.DBDrawerHeader)
-		);
+	if (dynamicTypes.includes(expr?.type)) {
+		return true;
 	}
 
-	return dynamicTypes.includes(expr?.type);
+	// Check if expression contains DBDrawerHeader (recursively)
+	return containsDBDrawerHeader(expr);
+}
+
+/**
+ * Recursively checks if a JSX expression tree contains a DBDrawerHeader component.
+ */
+function containsDBDrawerHeader(node: any): boolean {
+	if (!node) {
+		return false;
+	}
+
+	if (node.type === 'JSXElement') {
+		const opening = node.openingElement;
+		if (opening && isDBComponent(opening, COMPONENTS.DBDrawerHeader)) {
+			return true;
+		}
+		// Recursively check children of JSX elements (e.g. <div><DBDrawerHeader>...</DBDrawerHeader></div>)
+		const children = node.children || [];
+		return children.some((child: any) => containsDBDrawerHeader(child));
+	}
+
+	if (node.type === 'JSXFragment') {
+		const children = node.children || [];
+		return children.some((child: any) => containsDBDrawerHeader(child));
+	}
+
+	return false;
 }
 
 export default {
@@ -223,28 +236,9 @@ export default {
 				return;
 			}
 
-			// In Vue, check for v-bind:header / :header prop
-			const startTag = node.startTag || openingElement;
-			const vueHeaderAttr = (startTag.attributes || []).find(
-				(attr: any) => {
-					if (attr.directive && attr.key) {
-						const keyName =
-							typeof attr.key.name === 'string'
-								? attr.key.name
-								: attr.key.name?.name;
-						const argName = attr.key.argument
-							? typeof attr.key.argument === 'string'
-								? attr.key.argument
-								: attr.key.argument.name
-							: undefined;
-						return keyName === 'bind' && argName === 'header';
-					}
-					return false;
-				}
-			);
-			if (vueHeaderAttr) {
-				return;
-			}
+			// Note: v-bind:header / :header is NOT accepted for Vue because
+			// Vue uses named slots (<template #header>), not prop bindings.
+			// A bound :header prop would not actually project into the header slot.
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;

@@ -11,7 +11,7 @@ export default function DrawerFigmaLite(props: FigmaDrawerProps) {
 	return (
 		<DBDrawer
 			header={
-				<DBDrawerHeader>
+				<DBDrawerHeader closeButtonText="Close">
 					{props._showText ? props._drawerHeader : ''}
 				</DBDrawerHeader>
 			}>

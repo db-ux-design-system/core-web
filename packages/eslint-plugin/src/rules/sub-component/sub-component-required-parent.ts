@@ -26,7 +26,8 @@ const SUB_COMPONENT_CONFIG: Record<
 	DBNavigationItem: {
 		parents: [
 			{ name: 'DBNavigation', slot: undefined },
-			{ name: 'DBNavigationItem', slot: 'subNavigation' }
+			{ name: 'DBNavigationItem', slot: 'subNavigation' },
+			{ name: 'DBHeader', slot: undefined }
 		]
 	},
 	DBTabList: { parents: [{ name: 'DBTabs', slot: undefined }] },
@@ -205,20 +206,13 @@ function isInsideJsxParent(
 	while (current) {
 		if (current.type === 'JSXElement') {
 			const opening = current.openingElement;
-			if (opening && isDBComponent(opening, parentName)) {
-				// If no slot is required, any ancestor match is valid
-				if (!slotName) {
-					return true;
-				}
-				// If a slot IS required, accept direct JSX children of the parent
-				// (React Mitosis output handles children as slots internally)
-				if (node.parent === current) {
-					return true;
-				}
-				// For nested cases, only accept if passed through the slot prop
-				// (handled by the JSXExpressionContainer check below).
-				// Do not return true here — continue walking up.
+			if (opening && isDBComponent(opening, parentName) && !slotName) {
+				// If no slot is required, only accept direct children of the parent
+				return node.parent === current;
 			}
+			// If a slot IS required, only accept if passed through the named slot prop
+			// (handled by the JSXExpressionContainer check below).
+			// Direct JSX children without slot prop are NOT valid for slot-based relationships.
 		}
 
 		// Check if this node is passed as a prop value (JSX expression container)

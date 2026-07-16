@@ -57,21 +57,23 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 
 ## `direction` values renamed
 
-The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. If you relied on the default `right` behavior (which was opening from right), you now need to set `direction="to-left"` explicitly (slides from right border to the left).
+The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. The default behavior (opening from the right side) is unchanged — it now corresponds to `to-left` (slides from the right screen border to the left).
 
 ### Before
 
 ```html
-<!-- Previously opened from the right by default -->
-<db-drawer [open]="open()" (close)="open.set(false)"> Content </db-drawer>
+<!-- Explicit right direction (or omitted, since right was the default) -->
+<db-drawer direction="right" [open]="open()" (close)="open.set(false)">
+	Content
+</db-drawer>
 ```
 
 ### After
 
 ```html
-<!-- Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) -->
-<db-drawer direction="to-left" [open]="open()" (close)="open.set(false)">
-	<db-drawer-header header>Title</db-drawer-header>
+<!-- "to-left" is the new default — no need to set it explicitly unless you had "left" before -->
+<db-drawer [open]="open()" (close)="open.set(false)">
+	<db-drawer-header header closeButtonText="Close">Title</db-drawer-header>
 	Content
 </db-drawer>
 ```

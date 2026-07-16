@@ -36,12 +36,26 @@ describe('sub-component-required-parent', () => {
 			{
 				valid: [
 					{
-						code: '<DBDrawer><DBDrawerHeader>Title</DBDrawerHeader></DBDrawer>'
+						code: '<DBDrawer header={<DBDrawerHeader>Title</DBDrawerHeader>}>Content</DBDrawer>'
 					}
 				],
 				invalid: [
 					{
 						code: '<div><DBDrawerHeader>Title</DBDrawerHeader></div>',
+						errors: [
+							{
+								messageId: 'subComponentRequiredParent',
+								data: {
+									component: 'DBDrawerHeader',
+									parent: 'DBDrawer (in slot "header")',
+									slot: ''
+								}
+							}
+						]
+					},
+					{
+						// Direct child without slot prop is invalid
+						code: '<DBDrawer><DBDrawerHeader>Title</DBDrawerHeader></DBDrawer>',
 						errors: [
 							{
 								messageId: 'subComponentRequiredParent',
@@ -304,6 +318,10 @@ describe('sub-component-required-parent', () => {
 					{
 						// NavigationItem can also be nested inside another NavigationItem
 						code: '<DBNavigation><DBNavigationItem subNavigation={<DBNavigationItem>Sub</DBNavigationItem>}>Item</DBNavigationItem></DBNavigation>'
+					},
+					{
+						// NavigationItem can also be a direct child of DBHeader
+						code: '<DBHeader><DBNavigationItem>Item</DBNavigationItem></DBHeader>'
 					}
 				],
 				invalid: [
@@ -314,7 +332,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'DBNavigationItem',
-									parent: 'DBNavigation or DBNavigationItem (in slot "subNavigation")',
+									parent: 'DBNavigation or DBNavigationItem (in slot "subNavigation") or DBHeader',
 									slot: ''
 								}
 							}
@@ -339,6 +357,10 @@ describe('sub-component-required-parent', () => {
 					{
 						// Vue also accepts camelCase slot names: #subNavigation
 						code: '<template><DBNavigation><DBNavigationItem><template v-slot:subNavigation><DBNavigationItem>Sub</DBNavigationItem></template></DBNavigationItem></DBNavigation></template>'
+					},
+					{
+						// NavigationItem can be a direct child of DBHeader
+						code: '<template><DBHeader><DBNavigationItem>Item</DBNavigationItem></DBHeader></template>'
 					}
 				],
 				invalid: [
@@ -349,7 +371,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'DBNavigationItem',
-									parent: 'DBNavigation or DBNavigationItem (in slot "subNavigation")',
+									parent: 'DBNavigation or DBNavigationItem (in slot "subNavigation") or DBHeader',
 									slot: ''
 								}
 							}

@@ -87,15 +87,15 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 
 ## `direction` values renamed
 
-The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. If you relied on the default `right` behavior (which was opening from right), you now need to set `direction="to-left"` explicitly (slides from right border to the left).
+The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. The default behavior (opening from the right side) is unchanged — it now corresponds to `to-left` (slides from the right screen border to the left).
 
 ### Before
 
 ```tsx
 {
-	/* Previously opened from the right by default */
+	/* Explicit right direction (or omitted, since right was the default) */
 }
-<DBDrawer open={open} onClose={() => setOpen(false)}>
+<DBDrawer direction="right" open={open} onClose={() => setOpen(false)}>
 	Content
 </DBDrawer>;
 ```
@@ -104,13 +104,12 @@ The direction values have been renamed from `right`/`left` to `to-left`/`to-righ
 
 ```tsx
 {
-	/* Now opens from the left by default — add direction="to-left" to keep old behavior (slides from right to left) */
+	/* "to-left" is the new default — no need to set it explicitly unless you had "left" before */
 }
 <DBDrawer
-	direction="to-left"
 	open={open}
 	onClose={() => setOpen(false)}
-	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+	header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}
 >
 	Content
 </DBDrawer>;
