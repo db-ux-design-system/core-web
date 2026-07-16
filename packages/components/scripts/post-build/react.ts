@@ -126,7 +126,7 @@ export default DB${upperComponentName};`
 				},
 				{
 					from: '>(null);',
-					to: '>(null);\n  const _mergedRef = mergeRefs(_ref, component);'
+					to: '>(null);\n  const _mergedRef = useRef(mergeRefs(_ref, component)).current;'
 				},
 				{
 					from: '={true}',
