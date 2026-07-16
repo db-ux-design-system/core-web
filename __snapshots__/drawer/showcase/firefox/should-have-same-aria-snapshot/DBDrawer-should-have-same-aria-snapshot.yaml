@@ -31,6 +31,8 @@
   - 'button "Open: To-Right"'
   - 'button "Open: Up"'
   - 'button "Open: Down"'
+  - link "Position"
+  - 'button "Open: Absolute"'
   - link "Example"
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
