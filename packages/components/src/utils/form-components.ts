@@ -124,7 +124,7 @@ export const addValueResetEventListener = (
 };
 
 /** @internal List of input types whose value is rendered inside `::-webkit-datetime-edit`. Internal helper for the placeholder styling. */
-export const dateTimeInputTypeList: string[] = [
+const dateTimeInputTypeList: string[] = [
 	'date',
 	'datetime-local',
 	'month',
