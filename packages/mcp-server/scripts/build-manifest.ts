@@ -100,8 +100,8 @@ export async function processComponent(
 			data: { props, examples, exampleCode }
 		};
 	} catch (error: unknown) {
-		const msg = error instanceof Error ? error.message : String(error);
-		console.error(`Failed to process component ${name}: ${msg}`);
+		const message = error instanceof Error ? error.message : String(error);
+		console.error(`Failed to process component ${name}: ${message}`);
 		return { hasError: true as const };
 	}
 }
@@ -215,8 +215,8 @@ export async function buildManifest() {
 		withFileTypes: true
 	});
 	const componentNames = componentEntries
-		.filter((e) => e.isDirectory())
-		.map((e) => e.name);
+		.filter((entry) => entry.isDirectory())
+		.map((entry) => entry.name);
 
 	// Icon list from all-icons.ts
 	const icons = ALL_ICONS;

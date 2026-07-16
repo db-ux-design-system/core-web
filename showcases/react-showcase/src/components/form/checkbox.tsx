@@ -2,7 +2,7 @@ import { DBCheckbox } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
-const FormCheckboxes = () => {
+export default function FormCheckboxes() {
 	const [controlled, setControlled] = useState(true);
 	const [uncontrolled, setUncontrolled] = useState(true);
 
@@ -26,6 +26,4 @@ const FormCheckboxes = () => {
 			</DBCheckbox>
 		</FormWrapper>
 	);
-};
-
-export default FormCheckboxes;
+}

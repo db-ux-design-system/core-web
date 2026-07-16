@@ -13,6 +13,10 @@ updates:
       separator: "-"
     cooldown:
       default-days: 7
+    groups:
+      codeql:
+        patterns:
+          - "github/codeql-action/*"
 
   # Daily: Check minor and patch updates
   - package-ecosystem: "npm"

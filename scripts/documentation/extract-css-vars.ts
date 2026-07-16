@@ -90,7 +90,7 @@ function extractTags(description: string) {
 	};
 	const descLines: string[] = [];
 	const exampleLines: string[] = [];
-	let inExample = false;
+	let isInExample = false;
 
 	for (const line of lines) {
 		const tagMatch = /^@(\w+)\s*:?\s*(.*)$/.exec(line);
@@ -99,33 +99,33 @@ function extractTags(description: string) {
 			switch (tag) {
 				case 'cssprop': {
 					result.name = rest.trim();
-					inExample = false;
+					isInExample = false;
 					break;
 				}
 
 				case 'default': {
 					result.defaultValue = rest.trim();
-					inExample = false;
+					isInExample = false;
 					break;
 				}
 
 				case 'propertyname': {
-					inExample = true;
+					isInExample = true;
 					result.propertyName = rest.trim();
 					break;
 				}
 
 				case 'example': {
-					inExample = true;
+					isInExample = true;
 					exampleLines.push(rest.trim());
 					break;
 				}
 
 				default: {
-					inExample = false;
+					isInExample = false;
 				}
 			}
-		} else if (inExample) {
+		} else if (isInExample) {
 			if (line.startsWith('@')) {
 				break;
 			}

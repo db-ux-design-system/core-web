@@ -9,8 +9,6 @@
 %center-icon {
 	&:not([data-show-icon-leading="false"]) {
 		&::before {
-			--db-icon-margin-end: 0;
-
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;

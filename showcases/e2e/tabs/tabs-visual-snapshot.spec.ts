@@ -11,13 +11,19 @@ const preScreenShot = async (page: Page, project: FullProject) => {
 		test.skip();
 	}
 
-	const scrollRight = page.locator('[data-icon=chevron_right]');
+	const scrollRight = page
+		.locator('[data-scroll-behavior="arrows"]')
+		.first()
+		.locator('[data-icon=chevron_right]');
 	await expect(scrollRight).toBeVisible();
 };
 
 test.describe('DBTabs', () => {
 	getDefaultScreenshotTest({
 		path,
-		preScreenShot
+		preScreenShot,
+		// Increased tolerance due to scroll button visibility timing and
+		// subpixel rendering differences of tab indicators across browsers.
+		ratio: '0.02'
 	});
 });

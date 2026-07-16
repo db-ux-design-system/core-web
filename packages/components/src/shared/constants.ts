@@ -17,8 +17,10 @@ export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add an invalidMessage';
 export const DEFAULT_REMOVE: string = 'Remove';
 export const DEFAULT_BACK: string = 'Back';
 export const DEFAULT_SELECTED: string = 'Selected';
+export const DEFAULT_SCROLL_LEFT: string = 'Scroll left';
+export const DEFAULT_SCROLL_RIGHT: string = 'Scroll right';
 
-export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
+export const DEFAULT_BURGER_MENU: string = 'Open navigation menu';
 export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_ROWS: number = 4;
 

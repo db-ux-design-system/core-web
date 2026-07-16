@@ -6,7 +6,7 @@
  @param {object} context - The GitHub Actions context object
  @returns {{ name: string, baseUrl: string, repo: string, owner: string }}
  */
-function extractNameAndBaseUrl(context) {
+export default function extractNameAndBaseUrl(context) {
 	console.log('Starting extractNameAndBaseUrl...');
 	// Extract branch name from context
 	const branchName = (
@@ -52,5 +52,3 @@ function extractNameAndBaseUrl(context) {
 
 	return result;
 }
-
-export default extractNameAndBaseUrl;

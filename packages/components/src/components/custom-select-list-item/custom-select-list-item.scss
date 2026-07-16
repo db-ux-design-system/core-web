@@ -47,10 +47,17 @@ db-custom-select-list-item:not(:last-of-type) {
 	}
 
 	> label {
-		--db-icon-margin-start: auto;
 		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 
 		inline-size: 100%;
+
+		&::before {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
+		&::after {
+			margin-inline-start: auto;
+		}
 
 		.db-custom-select-list-item-label {
 			// Long labels wrap onto new lines by default (fixed/full dropdowns).
@@ -69,8 +76,6 @@ db-custom-select-list-item:not(:last-of-type) {
 
 		&:has(input[type="radio"]) {
 			--db-icon-trailing: "none";
-
-			gap: 0;
 		}
 
 		&:has(input[type="radio"]:checked) {

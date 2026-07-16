@@ -1,6 +1,64 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-tab-panel {
-	@include helpers.display(none);
+	padding: variables.$db-spacing-fixed-xs;
+	position: relative;
+	z-index: 1;
+}
+
+// SSR / no-JS fallback for the composed API path:
+// When DBTabs renders children directly, panels do not receive the `hidden`
+// prop. Before JS sets `hidden` via syncSelection(), hide all panels except
+// the first to prevent a flash of all content at once.
+// The :not(:has(...[hidden])) guard ensures this rule is inert after
+// hydration — once JS sets `hidden` on at least one panel, native hidden
+// behavior takes over.
+// When initialSelectedMode="manually", hide ALL panels (no tab is active).
+.db-tabs[data-initial-selected-mode="manually"]:not(
+		:has(> .db-tab-panel[hidden])
+	)
+	> .db-tab-panel {
+	display: none;
+}
+
+.db-tabs:not(
+		[data-initial-selected-mode="manually"],
+		:has(> .db-tab-panel[hidden])
+	)
+	> .db-tab-panel
+	~ .db-tab-panel {
+	display: none;
+}
+
+// Angular/Stencil wrap each component in a custom element host.
+.db-tabs[data-initial-selected-mode="manually"]:not(
+		:has(> db-tab-panel .db-tab-panel[hidden])
+	)
+	> db-tab-panel {
+	display: none;
+}
+
+.db-tabs:not(
+		[data-initial-selected-mode="manually"],
+		:has(> db-tab-panel .db-tab-panel[hidden])
+	)
+	> db-tab-panel
+	~ db-tab-panel {
+	display: none;
+}
+
+.db-tabs[data-initial-selected-mode="manually"]:not(
+		:has(> dbtabpanel .db-tab-panel[hidden])
+	)
+	> dbtabpanel {
+	display: none;
+}
+
+.db-tabs:not(
+		[data-initial-selected-mode="manually"],
+		:has(> dbtabpanel .db-tab-panel[hidden])
+	)
+	> dbtabpanel
+	~ dbtabpanel {
+	display: none;
 }

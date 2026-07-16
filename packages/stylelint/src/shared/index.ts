@@ -50,7 +50,7 @@ export type AllowedType = {
 	type?: 'every' | 'some';
 };
 
-const checkIncludes = (value: string, allowedValues: AllowedType): boolean =>
+const hasIncludes = (value: string, allowedValues: AllowedType): boolean =>
 	Boolean(
 		allowedValues.includes?.find((include) => {
 			if (typeof include === 'string') {
@@ -88,7 +88,7 @@ export const isAllowed = (
 			Boolean(
 				allowedValues.startsWith?.find((sw) => value_.startsWith(sw))
 			) ||
-			checkIncludes(value_, allowedValues)
+			hasIncludes(value_, allowedValues)
 	);
 
 	if (allowedValues.type === 'some') {
