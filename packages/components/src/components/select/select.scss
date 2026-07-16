@@ -23,6 +23,10 @@
 	// increased inline size for elements with icons
 	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+		--db-form-component-padding-inline-start: calc(
+			#{select-components.$has-before-padding} +
+				#{variables.$db-spacing-fixed-sm}
+		);
 	}
 
 	select {
