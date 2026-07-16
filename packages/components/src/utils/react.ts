@@ -76,7 +76,29 @@ export const getRootProps = (
 		}, {});
 };
 
+/**
+ * Creates a ref callback that assigns the element to both an internal
+ * RefObject and an external forwarded ref (which may be a RefObject or
+ * a callback function). This ensures the component always has access to
+ * the DOM element via the internal ref, even when the consumer passes a
+ * callback ref (e.g. react-hook-form's `register()`).
+ */
+export const mergeRefs = <T>(
+	internalRef: { current: T | null },
+	externalRef: ((instance: T | null) => void) | { current: T | null } | null
+): ((instance: T | null) => void) => {
+	return (instance: T | null) => {
+		internalRef.current = instance;
+		if (typeof externalRef === 'function') {
+			externalRef(instance);
+		} else if (externalRef) {
+			externalRef.current = instance;
+		}
+	};
+};
+
 export default {
 	getRootProps,
-	filterPassingProps
+	filterPassingProps,
+	mergeRefs
 };

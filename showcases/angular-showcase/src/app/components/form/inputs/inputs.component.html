@@ -33,4 +33,26 @@
 		/>
 		<app-signal-forms-input [formField]="signalForm.value" />
 	</fieldset>
+	<fieldset>
+		<legend>Date inputs</legend>
+		<db-input
+			type="date"
+			(change)="handleDatePlainChange($event)"
+			[value]="datePlain"
+			label="Date (plain)"
+			name="input-date-plain"
+		/>
+		<db-input
+			type="date"
+			[(ngModel)]="dateNgModel"
+			label="Date (ngModel)"
+			name="input-date-ngmodel"
+		/>
+		<db-input
+			type="date"
+			[formControl]="dateFormControl"
+			label="Date (formControl)"
+			name="input-date-form-control"
+		/>
+	</fieldset>
 </app-form-wrapper>

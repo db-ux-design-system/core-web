@@ -1,10 +1,20 @@
 import { DBInput } from '@components';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import FormWrapper from './form-wrapper';
 
 export default function FormInputs() {
 	const [controlled, setControlled] = useState('test1');
 	const [uncontrolled, setUncontrolled] = useState('test2');
+	const [controlledDate, setControlledDate] = useState('2025-01-15');
+
+	const { register, watch } = useForm({
+		defaultValues: {
+			hookFormDate: '2025-01-15'
+		}
+	});
+
+	const hookFormDate = watch('hookFormDate');
 
 	return (
 		<FormWrapper controlled={controlled} uncontrolled={uncontrolled}>
@@ -30,6 +40,23 @@ export default function FormInputs() {
 					setUncontrolled(event.target.value);
 				}}
 			/>
+			<DBInput
+				label="Date (controlled)"
+				type="date"
+				name="input-date-controlled"
+				value={controlledDate}
+				onChange={(event) => {
+					setControlledDate(event.target.value);
+				}}
+			/>
+			<DBInput
+				label="Date (react-hook-form register)"
+				type="date"
+				{...register('hookFormDate')}
+			/>
+			<p>
+				<small>react-hook-form date value: {hookFormDate}</small>
+			</p>
 		</FormWrapper>
 	);
 }
