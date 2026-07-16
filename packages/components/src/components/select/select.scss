@@ -27,6 +27,10 @@
 			#{select-components.$has-before-padding} +
 				#{variables.$db-spacing-fixed-sm}
 		);
+
+		select {
+			text-indent: 0;
+		}
 	}
 
 	select {
