@@ -5,6 +5,8 @@ import {
 	DBButton,
 	DBCustomSelect,
 	DBDrawer,
+	DBDrawerFooter,
+	DBDrawerHeader,
 	DBHeader,
 	DBIcon,
 	DBInput,
@@ -12,6 +14,16 @@ import {
 	DBNavigationItem,
 	DBNotification,
 	DBSelect,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTableBody,
+	DBTableCaption,
+	DBTableDataCell,
+	DBTableFooter,
+	DBTableHead,
+	DBTableHeaderCell,
+	DBTableRow,
 	DBTag,
 	DBTooltip
 } from '@db-ux/react-core-components';
@@ -35,8 +47,41 @@ export const TestComponent = () => {
 			<DBNotification closeable={true}>Test</DBNotification>
 			<DBNotification closeable={false}>Test</DBNotification>
 			<DBNotification>Test</DBNotification>
-			<DBDrawer></DBDrawer>
+			<DBDrawerHeader>Test</DBDrawerHeader>
 			<DBCustomSelect label="Select"></DBCustomSelect>
+
+			{/* db-ux/drawer-header-required */}
+			<DBDrawer>Content without header</DBDrawer>
+
+			{/* db-ux/sub-component-required-parent */}
+			<DBDrawerHeader>Outside drawer</DBDrawerHeader>
+			<DBDrawerFooter>Outside drawer</DBDrawerFooter>
+			<DBNavigationItem>Outside navigation</DBNavigationItem>
+			<DBTabList>
+				<DBTabItem>Outside tabs</DBTabItem>
+			</DBTabList>
+			<DBTabPanel>Outside tabs</DBTabPanel>
+			<DBTableHead>
+				<DBTableRow>
+					<DBTableHeaderCell>H</DBTableHeaderCell>
+				</DBTableRow>
+			</DBTableHead>
+			<DBTableBody>
+				<DBTableRow>
+					<DBTableDataCell>D</DBTableDataCell>
+				</DBTableRow>
+			</DBTableBody>
+			<DBTableFooter>
+				<DBTableRow>
+					<DBTableDataCell>F</DBTableDataCell>
+				</DBTableRow>
+			</DBTableFooter>
+			<DBTableRow>
+				<DBTableDataCell>Outside section</DBTableDataCell>
+			</DBTableRow>
+			<DBTableHeaderCell>Outside row</DBTableHeaderCell>
+			<DBTableDataCell>Outside row</DBTableDataCell>
+			<DBTableCaption>Outside table</DBTableCaption>
 
 			{/* db-ux/button-no-text-requires-tooltip */}
 			<DBButton type="submit" noText icon="search"></DBButton>

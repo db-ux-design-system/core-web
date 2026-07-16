@@ -8,9 +8,13 @@ For general installation and configuration look at the [react-core-components](h
 
 ```tsx App.tsx
 // App.tsx
-import { DBAccordionItem } from "@db-ux/react-core-components";
+import { DBAccordion, DBAccordionItem } from "@db-ux/react-core-components";
 
-const App = () => <DBAccordionItem headline="Title">Content</DBAccordionItem>;
+const App = () => (
+	<DBAccordion>
+		<DBAccordionItem headline="Title">Content</DBAccordionItem>
+	</DBAccordion>
+);
 export default App;
 ```
 
@@ -18,8 +22,12 @@ export default App;
 
 ```tsx App.tsx
 // App.tsx
-import { DBAccordionItem } from "@db-ux/react-core-components";
+import { DBAccordion, DBAccordionItem } from "@db-ux/react-core-components";
 
-const App = () => <DBAccordionItem headline="Title" content="Content" />;
+const App = () => (
+	<DBAccordion>
+		<DBAccordionItem headline="Title" content="Content" />
+	</DBAccordion>
+);
 export default App;
 ```

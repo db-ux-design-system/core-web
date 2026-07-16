@@ -222,7 +222,7 @@ const reset = () => {
 			</p>
 			<DBButton @click="drawerOpen = true">Open Drawer</DBButton>
 			<DBDrawer :open="drawerOpen" @close="drawerOpen = false">
-				<template #drawer-header>Drawer Header</template>
+				<template #header>Drawer Header</template>
 				<DBInfotext style="margin: 100px; display: flex">
 					Test: Mouse down here, drag to backdrop, release. Drawer
 					should stay open.
