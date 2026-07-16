@@ -26,7 +26,7 @@ function hasAngularHeaderSlot(node: any): boolean {
 					return true;
 				}
 				// Check if any descendant is a db-drawer-header
-				return containsDrawerHeader(child);
+				return hasDrawerHeader(child);
 			}
 		}
 		return false;
@@ -36,7 +36,7 @@ function hasAngularHeaderSlot(node: any): boolean {
 /**
  * Recursively checks if a node or its children contain a DBDrawerHeader component.
  */
-function containsDrawerHeader(node: any): boolean {
+function hasDrawerHeader(node: any): boolean {
 	if (!node.children) {
 		return false;
 	}
@@ -47,7 +47,7 @@ function containsDrawerHeader(node: any): boolean {
 		) {
 			return true;
 		}
-		return containsDrawerHeader(child);
+		return hasDrawerHeader(child);
 	});
 }
 
@@ -90,14 +90,14 @@ function hasVueHeaderSlot(node: any): boolean {
 		}
 
 		// Verify the slot template contains a DBDrawerHeader
-		return containsVueDrawerHeader(child);
+		return hasVueDrawerHeader(child);
 	});
 }
 
 /**
  * Recursively checks if a Vue node or its children contain a DBDrawerHeader component.
  */
-function containsVueDrawerHeader(node: any): boolean {
+function hasVueDrawerHeader(node: any): boolean {
 	if (!node.children) {
 		return false;
 	}
@@ -108,7 +108,7 @@ function containsVueDrawerHeader(node: any): boolean {
 		) {
 			return true;
 		}
-		return containsVueDrawerHeader(child);
+		return hasVueDrawerHeader(child);
 	});
 }
 

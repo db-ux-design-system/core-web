@@ -50,7 +50,7 @@ const SUB_COMPONENT_CONFIG: Record<
 /**
  * Checks if a Vue rawName or name matches the given component name (PascalCase or kebab-case).
  */
-function matchesComponentName(
+function isMatchingComponentName(
 	rawName: string | undefined,
 	componentName: string
 ): boolean {
@@ -71,7 +71,7 @@ function toKebabCase(string_: string): string {
 /**
  * Checks if two slot names match, comparing both camelCase and kebab-case forms.
  */
-function slotNamesMatch(actual: string, expected: string): boolean {
+function doesSlotNameMatch(actual: string, expected: string): boolean {
 	if (actual === expected) {
 		return true;
 	}
@@ -97,7 +97,7 @@ function isInsideAngularParent(
 	let hasSlotAttribute = false;
 	if (slotName) {
 		const selfAttrs = node.attributes || [];
-		if (selfAttrs.some((a: any) => slotNamesMatch(a.name, slotName))) {
+		if (selfAttrs.some((a: any) => doesSlotNameMatch(a.name, slotName))) {
 			hasSlotAttribute = true;
 		}
 	}
@@ -110,7 +110,7 @@ function isInsideAngularParent(
 			slotName &&
 			!hasSlotAttribute &&
 			current.attributes?.some((a: any) =>
-				slotNamesMatch(a.name, slotName)
+				doesSlotNameMatch(a.name, slotName)
 			)
 		) {
 			hasSlotAttribute = true;
@@ -170,7 +170,7 @@ function isInsideVueParent(
 				return (
 					keyName === 'slot' &&
 					argName !== undefined &&
-					slotNamesMatch(argName, slotName)
+					doesSlotNameMatch(argName, slotName)
 				);
 			});
 			if (matchesSlot) {
@@ -181,7 +181,7 @@ function isInsideVueParent(
 		// Check if we reached the parent component (skip template elements)
 		if (
 			current.rawName !== 'template' &&
-			matchesComponentName(current.rawName, parentName)
+			isMatchingComponentName(current.rawName, parentName)
 		) {
 			return slotName ? hasSlotTemplate : true;
 		}
@@ -231,7 +231,7 @@ function isInsideJsxParent(
 			const attr = current.parent;
 			const attrName =
 				typeof attr.name?.name === 'string' ? attr.name.name : '';
-			if (slotNamesMatch(attrName, slotName)) {
+			if (doesSlotNameMatch(attrName, slotName)) {
 				// Check that the attribute belongs to the expected parent
 				const parentElement = attr.parent; // JSXOpeningElement
 				if (parentElement && isDBComponent(parentElement, parentName)) {
@@ -337,47 +337,29 @@ export default {
 			const isJsx =
 				node.type === 'JSXElement' || node.openingElement !== undefined;
 
-			if (isJsx) {
-				const isValid = config.parents.some((p) =>
-					isInsideJsxParent(node, p.name, p.slot)
-				);
-				if (!isValid) {
-					const parentDesc = config.parents
-						.map((p) =>
-							p.slot ? `${p.name} (in slot "${p.slot}")` : p.name
-						)
-						.join(' or ');
-					context.report({
-						node: openingElement,
-						messageId: MESSAGE_IDS.SUB_COMPONENT_REQUIRED_PARENT,
-						data: {
-							component: componentName,
-							parent: parentDesc,
-							slot: ''
-						}
-					});
-				}
-			} else {
-				// Vue
-				const isValid = config.parents.some((p) =>
-					isInsideVueParent(node, p.name, p.slot)
-				);
-				if (!isValid) {
-					const parentDesc = config.parents
-						.map((p) =>
-							p.slot ? `${p.name} (in slot "${p.slot}")` : p.name
-						)
-						.join(' or ');
-					context.report({
-						node: openingElement,
-						messageId: MESSAGE_IDS.SUB_COMPONENT_REQUIRED_PARENT,
-						data: {
-							component: componentName,
-							parent: parentDesc,
-							slot: ''
-						}
-					});
-				}
+			const isValid = isJsx
+				? config.parents.some((p) =>
+						isInsideJsxParent(node, p.name, p.slot)
+					)
+				: config.parents.some((p) =>
+						isInsideVueParent(node, p.name, p.slot)
+					);
+
+			if (!isValid) {
+				const parentDesc = config.parents
+					.map((p) =>
+						p.slot ? `${p.name} (in slot "${p.slot}")` : p.name
+					)
+					.join(' or ');
+				context.report({
+					node: openingElement,
+					messageId: MESSAGE_IDS.SUB_COMPONENT_REQUIRED_PARENT,
+					data: {
+						component: componentName,
+						parent: parentDesc,
+						slot: ''
+					}
+				});
 			}
 		};
 
