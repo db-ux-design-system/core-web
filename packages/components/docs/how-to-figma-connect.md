@@ -535,9 +535,15 @@ These files **must be committed** — they are the baseline for CI.
 ### Generate a Figma Access Token
 
 1. Go to your [Figma account settings](https://www.figma.com/settings)
-2. Generate a personal access token
+2. Generate a personal access token with the following scopes:
 
 ![Generate access token](figma-generate-access-token.png)
+
+| Scope                      | Description                                         |
+| -------------------------- | --------------------------------------------------- |
+| `file_content:read`        | Read the contents of and render images from files   |
+| `file_code_connect:write`  | Write and change component code                     |
+| `file_dev_resources:write` | Create and modify dev resources in accessible files |
 
 ### Publish to Figma
 
