@@ -1,6 +1,5 @@
 import {
 	onMount,
-	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -28,7 +27,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const state = useStore<DBDrawerState>({
 		initialized: false,
 		backdropPointerDown: false,
-		_closeTimeoutId: undefined as number | undefined,
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -45,24 +43,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 			state.backdropPointerDown =
 				(event?.target as any)?.nodeName === 'DIALOG';
 		},
-		/**
-		 * Handles close events from multiple sources:
-		 * - Escape key
-		 * - Backdrop click (when backdrop is enabled)
-		 * - Any element inside the drawer with `[data-action="close"]` attribute
-		 *   (e.g. the close button rendered by `DBDrawerHeader`)
-		 * - Direct forceClose calls
-		 *
-		 * CONTRACT: The `DBDrawerHeader` component must render its close button
-		 * with `data-action="close"` for this detection to work.
-		 */
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
 				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void,
-			forceClose?: boolean
+				| void
 		) => {
 			if (!event) return;
 
@@ -75,14 +61,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 			} else {
-				if (forceClose) {
-					event.stopPropagation();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-
 				const isBackdrop =
 					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
@@ -95,6 +73,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 				);
 
 				if (isBackdrop || isCloseButton) {
+					if (isCloseButton) {
+						event.stopPropagation();
+					}
+
 					if (props.onClose) {
 						props.onClose(event);
 					}
@@ -108,18 +90,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (_ref) {
 				const dialogOpen = getBoolean(props.open, 'open');
-				if (dialogOpen && state._closeTimeoutId !== undefined) {
-					// Cancel any pending close timeout when reopening to prevent
-					// a stale timer from closing the dialog after it was reopened.
-					clearTimeout(state._closeTimeoutId);
-					state._closeTimeoutId = undefined;
-					// Restore the open transition state since the close was cancelled
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset[
-							'transition'
-						] = 'open';
-					}
-				}
 				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(
@@ -145,13 +115,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 							'transition'
 						] = 'close';
 					}
-					// Cancel any previously scheduled close to prevent double-close on rapid toggling
-					if (state._closeTimeoutId !== undefined) {
-						clearTimeout(state._closeTimeoutId);
-					}
 
-					// Read close delay from CSS (already accounts for prefers-reduced-motion)
-					let closeDelay = 0;
+					let closeDelay = 401;
 					if (dialogContainerRef) {
 						const durationStr = getComputedStyle(
 							dialogContainerRef as HTMLDivElement
@@ -164,9 +129,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 						}
 					}
 
-					state._closeTimeoutId = window.setTimeout(() => {
+					void delay(() => {
 						_ref?.close();
-						state._closeTimeoutId = undefined;
 					}, closeDelay);
 				}
 			}
@@ -191,20 +155,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		}
 	}, [_ref, state.initialized, props.position]);
-
-	onUnMount(() => {
-		// Cancel any pending close timeout to prevent stale references
-		if (state._closeTimeoutId !== undefined) {
-			clearTimeout(state._closeTimeoutId);
-		}
-		if (_ref && props.position === 'absolute') {
-			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
-			if (parent) {
-				parent.style.position = '';
-			}
-		}
-	});
 
 	return (
 		<dialog

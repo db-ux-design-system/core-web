@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-postcss-plugin",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "type": "module",
   "description": "PostCSS plugins for DB UX Design System",
   "repository": {

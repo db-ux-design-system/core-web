@@ -26,7 +26,7 @@ import { DBDrawer, DBDrawerHeader } from '@db-ux/ngx-core-components';
 <!-- app.component.html -->
 
 <db-button (click)="toggleDrawer(true)"> Open me </db-button>
-<db-drawer [open]="openDrawer" (onClose)="toggleDrawer(false)">
+<db-drawer [open]="openDrawer" (close)="toggleDrawer(false)">
 	<db-drawer-header header closeButtonText="Close">
 		Drawer Title
 	</db-drawer-header>
