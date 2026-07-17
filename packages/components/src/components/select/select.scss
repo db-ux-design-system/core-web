@@ -59,4 +59,17 @@
 			display: none;
 		}
 	}
-}
+	select:has(option:checked:not(.placeholder)) {
+		// Hide the placeholder once a non-placeholder option is selected
+		& ~ [id$="-placeholder"] {
+			display: none;
+		}
+	}
+
+	select:is(:has(option:checked:not(.placeholder)), :open) {
+		// Hide an inserted empty `option` with `data-show-empty-option="false"`
+		// once a non-placeholder option is selected or the `select` is open
+		option[data-show-empty-option="false"] {
+			display: none;
+		}
+	}

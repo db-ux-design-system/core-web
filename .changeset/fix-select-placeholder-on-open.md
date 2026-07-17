@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: prevent placeholder from being hidden when select is opened
+refactor: prevent placeholder from being hidden when select is opened
