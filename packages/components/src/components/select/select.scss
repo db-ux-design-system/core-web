@@ -39,10 +39,11 @@
 		&:has(option:checked:not(.placeholder)) ~ [id$="-placeholder"] {
 			display: none;
 		}
-		
+
 		// Hide an inserted empty `option` with `data-show-empty-option="false"`
 		// once a non-placeholder option is selected or the `select` is open
-		&:is(:has(option:checked:not(.placeholder)), :open) option[data-show-empty-option="false"] {
+		&:is(:has(option:checked:not(.placeholder)), :open)
+			option[data-show-empty-option="false"] {
 			display: none;
 		}
 	}
