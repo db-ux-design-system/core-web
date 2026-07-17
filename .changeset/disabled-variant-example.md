@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: add disabled variant example for DBButton showing all 4 variants in disabled state
+fix: refactor disabled state for DBButton to avoid opacity on tooltip
