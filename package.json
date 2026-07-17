@@ -97,7 +97,7 @@
     "@playwright/test": "1.60.0",
     "@typescript-eslint/eslint-plugin": "8.63.0",
     "@typescript-eslint/parser": "8.63.0",
-    "accessibility-checker-engine": "4.0.26",
+    "accessibility-checker-engine": "4.0.29",
     "cspell": "10.0.1",
     "eslint": "10.7.0",
     "eslint-config-prettier": "10.1.8",
