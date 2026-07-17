@@ -5,6 +5,14 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "./component";
 
+@mixin get-disabled-color($selector, $color) {
+	#{$selector}: color-mix(
+		in srgb,
+		transparent calc((1 - var(--db-disabled-opacity, 1)) * 100%),
+		#{$color}
+	);
+}
+
 %default-button {
 	font-weight: 700;
 	overflow-wrap: break-word; // Multiple lines support
@@ -18,7 +26,10 @@
 }
 
 %button-outlined-ghost-colors {
-	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	@include get-disabled-color(
+		background-color,
+		#{colors.$db-adaptive-bg-basic-transparent-full-default}
+	);
 
 	@include helpers.interactive-bg(
 		colors.$db-adaptive-bg-basic-transparent-full-hovered,
@@ -27,9 +38,17 @@
 }
 
 %button-brand-colors {
-	background-color: colors.$db-brand-origin-default;
-	color: colors.$db-brand-on-origin-default;
-	border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+	@include get-disabled-color(
+		background-color,
+		#{colors.$db-brand-origin-default}
+	);
+
+	@include get-disabled-color(color, #{colors.$db-brand-on-origin-default});
+
+	@include get-disabled-color(
+		border-color,
+		#{colors.$db-brand-on-bg-basic-emphasis-70-default}
+	);
 
 	@include helpers.not-disabled {
 		@include helpers.hover {
@@ -51,7 +70,6 @@
 		@extend %db-overwrite-font-size-md;
 
 		max-inline-size: 100%;
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		min-block-size: variables.$db-sizing-md;
 		block-size: max-content;
 		inline-size: fit-content;
@@ -59,6 +77,15 @@
 
 		// disable text-decoration if someone wants to use the button for an <a> tag
 		text-decoration: none;
+
+		@include get-disabled-color(
+			color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
+		@include get-disabled-color(
+			border-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 
 	// Square icon only buttons
@@ -141,7 +168,10 @@
 
 	&[data-variant="filled"] {
 		#{$selector} {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			@include get-disabled-color(
+				background-color,
+				#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+			);
 
 			@include helpers.not-disabled {
 				@include helpers.hover {

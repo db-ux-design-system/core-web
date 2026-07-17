@@ -323,6 +323,11 @@ const FormComponent = () => {
 					ipsum dolor sit amet.
 				</p>
 
+				<DBButton disabled>
+					Disabled Tooltip
+					<DBTooltip>Test</DBTooltip>
+				</DBButton>
+
 				<DBButton
 					onClick={() => {
 						setTabsTest(!tabsTest);
