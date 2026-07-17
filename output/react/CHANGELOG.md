@@ -1,5 +1,13 @@
 # @db-ux/react-core-components
 
+## 5.0.1
+
+### Patch Changes
+
+- fix: drawer close handling by removing timeout state management - [see commit 45d93f0](https://github.com/db-ux-design-system/core-web/commit/45d93f010bf0caece669f96c6f00d288ebdf5363)
+
+- fix(select): icon overlapping the floating label - [see commit 9dff6ed](https://github.com/db-ux-design-system/core-web/commit/9dff6ed85fa5e2f6aebd89b3b2662e3a017b196e)
+
 ## 5.0.0
 
 We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
