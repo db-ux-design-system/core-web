@@ -35,19 +35,15 @@
 	select {
 		text-indent: select-components.$has-before-padding;
 
-		&:has(option:checked:not(.placeholder)) {
-			// Hide the placeholder once a non-placeholder option is selected
-			& ~ [id$="-placeholder"] {
-				display: none;
-			}
+		// Hide the placeholder once a non-placeholder option is selected
+		&:has(option:checked:not(.placeholder)) ~ [id$="-placeholder"] {
+			display: none;
 		}
-	
-		&:is(:has(option:checked:not(.placeholder)), :open) {
-			// Hide an inserted empty `option` with `data-show-empty-option="false"`
-			// once a non-placeholder option is selected or the `select` is open
-			option[data-show-empty-option="false"] {
-				display: none;
-			}
+		
+		// Hide an inserted empty `option` with `data-show-empty-option="false"`
+		// once a non-placeholder option is selected or the `select` is open
+		&:is(:has(option:checked:not(.placeholder)), :open) option[data-show-empty-option="false"] {
+			display: none;
 		}
 	}
 
