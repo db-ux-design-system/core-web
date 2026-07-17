@@ -30,7 +30,6 @@
 		background-color,
 		#{colors.$db-adaptive-bg-basic-transparent-full-default}
 	);
-
 	@include helpers.interactive-bg(
 		colors.$db-adaptive-bg-basic-transparent-full-hovered,
 		colors.$db-adaptive-bg-basic-transparent-full-pressed
@@ -42,9 +41,7 @@
 		background-color,
 		#{colors.$db-brand-origin-default}
 	);
-
 	@include get-disabled-color(color, #{colors.$db-brand-on-origin-default});
-
 	@include get-disabled-color(
 		border-color,
 		#{colors.$db-brand-on-bg-basic-emphasis-70-default}
