@@ -1,5 +1,9 @@
 # @db-ux/core-foundations
 
+## 5.0.1
+
+_version bump_
+
 ## 5.0.0
 
 We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
