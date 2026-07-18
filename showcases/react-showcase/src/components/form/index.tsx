@@ -512,7 +512,7 @@ const FormComponent = () => {
 					}}
 					header={<DBDrawerHeader>Drawer Test</DBDrawerHeader>}
 					open={drawerOpen}>
-					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
+					<DBInfotext>
 						Test: Mouse down here, drag to backdrop, release. Drawer
 						should stay open.
 						<DBTooltip placement="bottom-start">

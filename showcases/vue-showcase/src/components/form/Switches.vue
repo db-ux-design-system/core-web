@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { DBSwitch } from "@components";
 import { ref } from "vue";
-import { DBSwitch } from "../../../../../output/vue/src";
 import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref(true);
