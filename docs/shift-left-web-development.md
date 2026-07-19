@@ -6,6 +6,10 @@ This document describes the guiding principle for choosing where functionality l
 
 Prefer solutions as far "left" (towards HTML) as possible. Each layer to the right adds complexity, runtime cost, and opacity for consumers.
 
+Web development is fundamentally about giving suggestions to the user agent regarding the user experience a page should be consumed with, adapted to a specific user's context: device, settings, browser and OS defaults, assistive technology, viewport size, and more. For us, it's all about context, and all of these are part of that context, just as much as the context of components nested into each other.
+
+The beauty of this paradigm is that we develop our system as declarative boilerplate, and developers consuming our library bring their own context. A public-facing app might need broad browser support; a business portal might enforce a single browser. Tools like PostCSS or LightningCSS can transform our declarative CSS to match each consumer's browser targets — not including polyfills and downlevel syntax they don't need at all. JS workarounds, by contrast, always ship to everyone regardless, adding dead weight in contexts where native support already exists.
+
 | Layer    | Characteristics                                                                                                 |
 | -------- | --------------------------------------------------------------------------------------------------------------- |
 | **HTML** | Declarative, rendered in component output, adaptable by consumers, SSR/SSG-friendly, most stable and performant |
