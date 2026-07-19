@@ -16,9 +16,13 @@ Prefer solutions as far "left" (towards HTML) as possible. Each layer to the rig
 
 - **Stability**: HTML attributes and CSS properties are standardized, backwards-compatible, and have no runtime failure modes. JavaScript is the most fragile technology in this stack.
 - **Performance**: The browser's rendering pipeline is optimized for declarative HTML/CSS. JS-driven DOM manipulation forces layout recalculations and blocks the main thread.
+- **Bundle size**: Every line of JS ships to every user and must be parsed, compiled, and executed. CSS that browsers don't support is simply ignored — there's no equivalent of "dead CSS crashing your app."
 - **SSR/SSG compatibility**: HTML and CSS work without JavaScript execution. Components that rely on JS for rendering or state transitions break in server-rendered or statically-generated environments until hydration completes.
 - **Transparency for consumers**: HTML attributes and CSS classes in the component output are part of the public API. Consumers can inspect, override, and style them. JS-only internal state (e.g. toggling `data-*` attributes via `setTimeout`) is opaque, non-portable, and impossible to override without reimplementing the logic.
+- **Discoverable interactions**: Declarative connections between elements (e.g. `<button commandfor="my-drawer" command="show-modal">`) are visible directly in the rendered markup — in Storybook, in DevTools, in view-source. Developers can see _what triggers what_ without tracing through JS event handlers. This makes component APIs self-documenting and examples copy-pasteable.
 - **Accessibility**: Declarative browser features automatically manage correct ARIA semantics. When the browser understands the relationship between elements natively (e.g. a button invoking a dialog via Invoker Commands), it handles `aria-expanded`, `aria-controls`, and focus management without manual wiring. JS-driven interactions require developers to replicate this by hand — and often get it wrong or incomplete.
+- **Testability**: HTML/CSS behavior is verifiable via snapshot and visual regression tests without mocking timers or async state. JS logic requires unit tests with fake DOM environments and often flaky timer-dependent assertions.
+- **Debugging**: DevTools show computed CSS live and allow real-time edits. JS state requires breakpoints, console logs, or framework-specific DevTools. For consumers of a design system, CSS is inspectable and overridable; JS internals are a black box.
 - **Simplicity**: Fewer moving parts means fewer bugs, easier debugging, and less maintenance overhead.
 
 ## Rules
@@ -46,6 +50,9 @@ Prefer solutions as far "left" (towards HTML) as possible. Each layer to the rig
 | JS form validation display logic                               | `:user-invalid` / `:user-valid` pseudo-classes                                                  |
 | JS keyboard arrow-key navigation in toolbars/tablists          | `focusgroup` attribute                                                                          |
 | JS counting siblings for nth-based styling                     | `sibling-count()` / `sibling-index()` CSS functions                                             |
+| JS measuring target height for collapse animations             | `interpolate-size: allow-keywords` — transition `height: 0` to `height: auto` directly          |
+| JS scroll event listeners for header shrink/reveal             | Scroll-driven animations (`animation-timeline: scroll()`)                                       |
+| JS-managed focus traps or disabling sibling interaction        | `inert` attribute on sibling content                                                            |
 
 ## Progressive enhancement without JS fallback
 

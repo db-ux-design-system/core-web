@@ -241,3 +241,5 @@ popovertarget
 popovertargetaction
 interestfor
 styleable
+pasteable
+inspectable
