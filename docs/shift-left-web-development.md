@@ -59,3 +59,7 @@ Use these features directly. Do not implement JS fallbacks for them.
 | `hidden="until-found"`                  | Content inside collapsed sections is searchable via find-in-page — fallback is just hidden |
 | Customizable `<select>` elements        | Fully styleable dropdowns — fallback is the native platform select UI                      |
 | `<select multiple size="1">` desktop UX | Compact multi-select on desktop — fallback is the standard scrollable listbox              |
+
+## Resources
+
+- [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance/) — Google's AI skill for all AI environments that provides up-to-date guidance on modern HTML, CSS, and JS platform features. Developers should install it to get suggestions aligned with this shift-left philosophy.
