@@ -63,3 +63,4 @@ Use these features directly. Do not implement JS fallbacks for them.
 ## Resources
 
 - [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance/) — Google's AI skill for all AI environments that provides up-to-date guidance on modern HTML, CSS, and JS platform features. Developers should install it to get suggestions aligned with this shift-left philosophy.
+- ["The Layers Of The Web"](https://youtu.be/ll1e8cYx3do?si=6pJCs_P6AKZimiRX), a talk given by Jeremy Keith at [Beyond Tellerrand](https://beyondtellerrand.com/).
