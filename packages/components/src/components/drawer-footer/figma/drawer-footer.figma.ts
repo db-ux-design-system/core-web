@@ -9,8 +9,6 @@ const drawerFooterProps: Record<string, FigmaProp> = {
 };
 
 export const drawerFooters: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=37977:35190'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=37977:35190'],
 	props: drawerFooterProps
 };

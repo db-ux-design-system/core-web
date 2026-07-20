@@ -21,8 +21,6 @@ const drawerHeaderProps: Record<string, FigmaProp> = {
 };
 
 export const drawerHeaders: FigmaCodeConnect = {
-	urls: [
-		'https://www.figma.com/design/FIGMA_FILE?node-id=37980:31922'
-	],
+	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=37980:31922'],
 	props: drawerHeaderProps
 };

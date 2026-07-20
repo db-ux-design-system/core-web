@@ -8,9 +8,7 @@ useMetadata({
 
 export default function DrawerFigmaLite(props: FigmaDrawerProps) {
 	return (
-		<DBDrawer
-			header={props._drawerHeader}
-			footer={props._drawerFooter}>
+		<DBDrawer header={props._drawerHeader} footer={props._drawerFooter}>
 			{props._children}
 		</DBDrawer>
 	);
