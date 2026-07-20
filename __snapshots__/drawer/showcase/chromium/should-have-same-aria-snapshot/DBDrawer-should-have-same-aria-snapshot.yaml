@@ -32,7 +32,7 @@
   - 'button "Open: Up"'
   - 'button "Open: Down"'
   - link "Position"
-  - 'button "Open: Absolute"'
+  - 'button "Open: Absolute1"'
   - link "Example"
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
