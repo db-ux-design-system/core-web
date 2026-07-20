@@ -253,18 +253,8 @@
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
 
-		// Override UA "display: none" for closed dialogs so that the exit
-		// transition can play. Use visibility to hide and prevent interaction.
-		display: flex;
-		visibility: hidden;
-
-		@media (prefers-reduced-motion: no-preference) {
-			transition: visibility
-				#{variables.$db-transition-duration-extra-slow} allow-discrete;
-		}
-
 		&[open] {
-			visibility: visible;
+			display: flex;
 		}
 
 		.db-drawer-container {
