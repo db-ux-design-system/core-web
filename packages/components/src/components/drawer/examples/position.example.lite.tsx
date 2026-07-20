@@ -29,7 +29,7 @@ export default function DrawerPosition() {
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
 					onClick={() => setOpenIndex(1)}>
-					Open: Absolute
+					Open: Absolute1
 				</DBButton>
 				<DBDrawer
 					position="absolute"
