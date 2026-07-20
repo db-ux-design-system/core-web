@@ -40,24 +40,24 @@ The beauty of this paradigm is that we develop our system as declarative boilerp
 
 ## Examples
 
-| Instead of…                                                    | Prefer…                                                                                         |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Instead of…                                                    | Prefer…                                                                                        |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | JS glue code wiring `button` click to `dialog`                 | Invoker Commands (`commandfor`/`command`): browser manages ARIA implicitly                     |
 | JS glue code wiring `button` click to `popover`                | Popover API (`popover`/`popovertarget`/`popovertargetaction`): browser manages ARIA implicitly |
 | JS glue code wiring `button`, `a` or `area` hover to `popover` | Interest invoker (`interestfor`): browser manages ARIA implicitly                              |
-| JS `setTimeout` + `dataset` toggling for dialog transitions    | `transition-behavior: allow-discrete` + `@starting-style`                                       |
-| JS to close `dialog` on backdrop click                         | `dialog[closedby="any"]`                                                                        |
-| JS to link accordion panels into exclusive groups              | Multiple named `<details>` elements (`name` attribute)                                          |
-| JS scroll listeners to show/hide elements                      | `position: sticky` or scroll-driven animations                                                  |
-| JS positioning logic for tooltips/popovers (edge cases)        | CSS Anchor Positioning (`anchor()`, `position-area`)                                            |
-| JS-computed responsive layouts                                 | CSS container queries or media queries                                                          |
-| JS-driven open/close state on accordions                       | `<details>`/`<summary>` with CSS transitions                                                    |
-| JS form validation display logic                               | `:user-invalid` / `:user-valid` pseudo-classes                                                  |
-| JS keyboard arrow-key navigation in toolbars/tablists          | `focusgroup` attribute                                                                          |
-| JS counting siblings for nth-based styling                     | `sibling-count()` / `sibling-index()` CSS functions                                             |
+| JS `setTimeout` + `dataset` toggling for dialog transitions    | `transition-behavior: allow-discrete` + `@starting-style`                                      |
+| JS to close `dialog` on backdrop click                         | `dialog[closedby="any"]`                                                                       |
+| JS to link accordion panels into exclusive groups              | Multiple named `<details>` elements (`name` attribute)                                         |
+| JS scroll listeners to show/hide elements                      | `position: sticky` or scroll-driven animations                                                 |
+| JS positioning logic for tooltips/popovers (edge cases)        | CSS Anchor Positioning (`anchor()`, `position-area`)                                           |
+| JS-computed responsive layouts                                 | CSS container queries or media queries                                                         |
+| JS-driven open/close state on accordions                       | `<details>`/`<summary>` with CSS transitions                                                   |
+| JS form validation display logic                               | `:user-invalid` / `:user-valid` pseudo-classes                                                 |
+| JS keyboard arrow-key navigation in toolbars/tablists          | `focusgroup` attribute                                                                         |
+| JS counting siblings for nth-based styling                     | `sibling-count()` / `sibling-index()` CSS functions                                            |
 | JS measuring target height for collapse animations             | `interpolate-size: allow-keywords`: transition `height: 0` to `height: auto` directly          |
-| JS scroll event listeners for header shrink/reveal             | Scroll-driven animations (`animation-timeline: scroll()`)                                       |
-| JS-managed focus traps or disabling sibling interaction        | `inert` attribute on sibling content                                                            |
+| JS scroll event listeners for header shrink/reveal             | Scroll-driven animations (`animation-timeline: scroll()`)                                      |
+| JS-managed focus traps or disabling sibling interaction        | `inert` attribute on sibling content                                                           |
 
 ## Progressive enhancement without JS fallback
 
@@ -65,8 +65,8 @@ Some native features are **complementary enhancements**; they improve UX where s
 
 Use these features directly. Do not implement JS fallbacks for them.
 
-| Feature                                 | What it enhances                                                                           |
-| --------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Feature                                 | What it enhances                                                                          |
+| --------------------------------------- | ----------------------------------------------------------------------------------------- |
 | CSS `field-sizing: content`             | Inputs/textareas auto-size to their content: graceful fallback is fixed-width fields      |
 | `hidden="until-found"`                  | Content inside collapsed sections is searchable via find-in-page: fallback is just hidden |
 | Customizable `<select>` elements        | Fully styleable dropdowns: fallback is the native platform select UI                      |
