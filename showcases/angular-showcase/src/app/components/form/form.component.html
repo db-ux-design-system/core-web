@@ -185,7 +185,7 @@
 		</p>
 		<db-button (click)="drawerOpen = true">Open Drawer</db-button>
 		<db-drawer (close)="drawerOpen = false" [open]="drawerOpen">
-			<span drawer-header>Drawer Header</span>
+			<db-drawer-header header>Drawer Header</db-drawer-header>
 			<db-infotext>
 				Mouse down here, drag to backdrop, release. Drawer should stay
 				open.

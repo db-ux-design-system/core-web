@@ -41,7 +41,7 @@ describe('close-button-text-required', () => {
 				code: '<DBNotification closeable={false}>Message</DBNotification>'
 			},
 			{
-				code: '<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>'
+				code: '<DBDrawerHeader closeButtonText="Close drawer">Title</DBDrawerHeader>'
 			},
 			{
 				code: '<DBCustomSelect mobileCloseButtonText="Close" label="Select" />'
@@ -61,12 +61,24 @@ describe('close-button-text-required', () => {
 				]
 			},
 			{
-				code: '<DBDrawer>Content</DBDrawer>',
+				code: '<DBDrawerHeader>Title</DBDrawerHeader>',
 				errors: [
 					{
 						messageId: 'missingCloseButtonText',
 						data: {
-							component: 'DBDrawer',
+							component: 'DBDrawerHeader',
+							attribute: 'closeButtonText'
+						}
+					}
+				]
+			},
+			{
+				code: '<DBDrawerHeader closeButtonText>Title</DBDrawerHeader>',
+				errors: [
+					{
+						messageId: 'missingCloseButtonText',
+						data: {
+							component: 'DBDrawerHeader',
 							attribute: 'closeButtonText'
 						}
 					}
@@ -94,6 +106,9 @@ describe('close-button-text-required', () => {
 			},
 			{
 				code: '<template><DBNotification :closeable="false">Message</DBNotification></template>'
+			},
+			{
+				code: '<template><DBDrawerHeader :closeButtonText="closeText">Title</DBDrawerHeader></template>'
 			}
 		],
 		invalid: [
@@ -104,6 +119,18 @@ describe('close-button-text-required', () => {
 						messageId: 'missingCloseButtonText',
 						data: {
 							component: 'DBNotification',
+							attribute: 'closeButtonText'
+						}
+					}
+				]
+			},
+			{
+				code: '<template><DBDrawerHeader>Title</DBDrawerHeader></template>',
+				errors: [
+					{
+						messageId: 'missingCloseButtonText',
+						data: {
+							component: 'DBDrawerHeader',
 							attribute: 'closeButtonText'
 						}
 					}
@@ -124,7 +151,7 @@ describe('close-button-text-required', () => {
 				code: '<db-notification [closeable]="false">Message</db-notification>'
 			},
 			{
-				code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
+				code: '<db-drawer-header [closeButtonText]="closeText">Title</db-drawer-header>'
 			}
 		],
 		invalid: [
@@ -141,12 +168,12 @@ describe('close-button-text-required', () => {
 				]
 			},
 			{
-				code: '<db-drawer>Content</db-drawer>',
+				code: '<db-drawer-header>Title</db-drawer-header>',
 				errors: [
 					{
 						messageId: 'missingCloseButtonText',
 						data: {
-							component: 'db-drawer',
+							component: 'db-drawer-header',
 							attribute: 'closeButtonText'
 						}
 					}

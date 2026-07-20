@@ -174,14 +174,8 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				const tabIndex = rovingIndex === index ? 0 : -1;
 				button.setAttribute('aria-selected', String(isSelected));
-				if (state._focusgroupSupported) {
-					// Remove any SSR-rendered tabindex; focusgroup manages focus.
-					// focusgroupstart is left as-is: it only marks the initial
-					// entry point and the browser memory handles subsequent visits.
-					button.removeAttribute('tabindex');
-				} else {
+				if (!state._focusgroupSupported) {
 					button.setAttribute('tabindex', String(tabIndex));
-					button.removeAttribute('focusgroupstart');
 				}
 			});
 

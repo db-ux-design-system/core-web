@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: remove dead `z-index` and `position: relative` from table-row interactive children
+refactor: prevent placeholder from being hidden when select is opened

@@ -1,5 +1,19 @@
 # @db-ux/core-eslint-plugin
 
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+### Minor Changes
+
+- feat: add `drawer-header-required` and `sub-component-required-parent` rules to recommended config - [see commit 9189f6c](https://github.com/db-ux-design-system/core-web/commit/9189f6c24cd3a64f072c2f60f8c8127d1ed68c55)
+
+### Patch Changes
+
+- fix: infer rule configs as 'error'/'warn' constants instead of string to prevent type error - [see commit 204c578](https://github.com/db-ux-design-system/core-web/commit/204c578d02efd5e6ec796cffbf08dc3d23ba3580)
+
 ## 4.14.0
 
 _version bump_

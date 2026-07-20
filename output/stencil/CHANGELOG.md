@@ -1,5 +1,41 @@
 # @db-ux/wc-core-components
 
+## 5.0.1
+
+### Patch Changes
+
+- fix: drawer close handling by removing timeout state management - [see commit 45d93f0](https://github.com/db-ux-design-system/core-web/commit/45d93f010bf0caece669f96c6f00d288ebdf5363)
+
+- fix(select): icon overlapping the floating label - [see commit 9dff6ed](https://github.com/db-ux-design-system/core-web/commit/9dff6ed85fa5e2f6aebd89b3b2662e3a017b196e)
+
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: DBDrawer with breaking changes - [see commit 9189f6c](https://github.com/db-ux-design-system/core-web/commit/9189f6c24cd3a64f072c2f60f8c8127d1ed68c55):
+
+        - The `DBDrawer` component now requires a `DBDrawerHeader` component to be passed in the `header` slot.
+        - The `spacing` property has been removed from `DBDrawer`.
+        - The default `direction` has changed from `right` to `to-left`.
+        - The `width` property has been renamed to `containerSize`.
+        - The `direction` values have been renamed from `right`/`left` to `to-left`/`to-right`.
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+- refactor: rework DBTabs and DBTabItem - [see commit c50e522](https://github.com/db-ux-design-system/core-web/commit/c50e5221a4c6f3357ff52451291bdc5772267178):
+
+        - **Breaking:** DBTabItem now renders a native `button` (`role="tab"`) instead of a radio `input`.
+        - **Breaking:** Removed `checked`, `noText` and `name` from DBTabItem.
+        - **Breaking:** Renamed DBTabs props `onTabSelect` → `onIndexChange`, `alignment` → `tabItemAlignment`, `width` → `tabItemWidth`.
+        - **Breaking:** Deep linking derives the tab id from the `id` prop instead of `label`.
+        - Added truncation tooltip for overflowing tab labels and fixed vertical layout, trailing icon and tooltip placement.
+
+### Patch Changes
+
+- fix: remove dead `z-index` and `position: relative` from table-row interactive children - [see commit 7edb77b](https://github.com/db-ux-design-system/core-web/commit/7edb77bb9f90d4a79f238ebab362074d12f02f0f)
+
 ## 4.14.0
 
 ### Minor Changes
