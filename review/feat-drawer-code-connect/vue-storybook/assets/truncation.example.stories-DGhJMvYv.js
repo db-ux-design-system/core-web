@@ -1,0 +1,36 @@
+import{i as e}from"./preload-helper-CDA_ci_P.js";import{C as t,T as n,a as r,gt as i,t as a,x as o}from"./src-knhtF9qE.js";var s,c,l,u;e((()=>{a(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBTabs/Truncation`,component:r,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:s(),onTabSelect:s()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},tabItemWidth:{control:`select`,options:[`full`,`auto`]},tabItemAlignment:{control:`select`,options:[`start`,`center`,`end`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},label:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onTabSelect:{action:`onTabSelect`}}},l={args:{orientation:`vertical`,tabItemWidth:`auto`,default:`<DBTabList
+  ><DBTabItem label="Very long tab label that gets truncated"></DBTabItem
+  ><DBTabItem label="Another long label"></DBTabItem
+  ><DBTabItem label="Short"></DBTabItem></DBTabList
+><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel
+><DBTabPanel>Tab Panel 3</DBTabPanel>`},render:e=>({components:{DBTabs:r,DBInfotext:i,DBTabItem:n,DBTabList:t,DBTabPanel:o},setup(){return{args:e}},template:`<div class="fit-content-container"   ><DBInfotext icon="none" size="small" semantic="informational"   >
+                    truncated tab label (vertical only):
+                </DBInfotext><DBTabs v-bind="args"   >${e.default}</DBTabs></div>`})},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "vertical",
+    "tabItemWidth": "auto",
+    "default": \`<DBTabList
+  ><DBTabItem label="Very long tab label that gets truncated"></DBTabItem
+  ><DBTabItem label="Another long label"></DBTabItem
+  ><DBTabItem label="Short"></DBTabItem></DBTabList
+><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel
+><DBTabPanel>Tab Panel 3</DBTabPanel>\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBTabs,
+      DBInfotext,
+      DBTabItem,
+      DBTabList,
+      DBTabPanel
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<div class="fit-content-container"   ><DBInfotext icon="none" size="small" semantic="informational"   >
+                    truncated tab label (vertical only):
+                </DBInfotext><DBTabs v-bind="args"   >\${args.default}</DBTabs></div>\`
+  })
+}`,...l.parameters?.docs?.source}}},u=[`truncatedvertical`]}))();export{u as __namedExportsOrder,c as default,l as truncatedvertical};
