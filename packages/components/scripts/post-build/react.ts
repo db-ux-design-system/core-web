@@ -110,7 +110,7 @@ export default (tmp?: boolean) => {
 			const replacements: Overwrite[] = [
 				{
 					from: ` } from "react"`,
-					to: `, forwardRef, HTMLAttributes } from "react"`
+					to: `, forwardRef, useMemo, HTMLAttributes } from "react"`
 				},
 				{
 					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
@@ -126,7 +126,7 @@ export default DB${upperComponentName};`
 				},
 				{
 					from: '>(null);',
-					to: '>(null);\n  const _mergedRef = useRef(mergeRefs(_ref, component)).current;'
+					to: '>(null);\n  const _mergedRef = useMemo(() => mergeRefs(_ref, component), [component]);'
 				},
 				{
 					from: '={true}',
