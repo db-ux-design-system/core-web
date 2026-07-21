@@ -27,7 +27,7 @@
     "@db-ux/db-theme": "5.9.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.10.0",
-    "vue": "3.5.39",
+    "vue": "3.5.40",
     "vue-router": "5.1.0"
   },
   "devDependencies": {
