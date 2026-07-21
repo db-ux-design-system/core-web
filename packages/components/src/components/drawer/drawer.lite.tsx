@@ -97,26 +97,24 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 				if (!dialogOpen && _ref.open) {
-					// TODO: Remove this selector part after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
-					if (!state.isNotModal()) {
-						const durationStr = getComputedStyle(
-							_ref as HTMLElement
-						).getPropertyValue('transition-duration');
-						const ms = parseFloat(durationStr) * 1000;
-						if (ms > 0) {
-							// Signal CSS to revert transform while dialog
-							// is still open, triggering the exit animation.
-							(_ref as HTMLElement).dataset[
+					// TODO: Remove this block after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+					const durationStr = getComputedStyle(
+						_ref as HTMLElement
+					).getPropertyValue('transition-duration');
+					const ms = parseFloat(durationStr) * 1000;
+					if (ms > 0) {
+						// Signal CSS to revert transform while dialog
+						// is still open, triggering the exit animation.
+						(_ref as HTMLElement).dataset[
+							'closingAllowDiscretePolyfill'
+						] = '';
+						void delay(() => {
+							delete (_ref as HTMLElement).dataset[
 								'closingAllowDiscretePolyfill'
-							] = '';
-							void delay(() => {
-								delete (_ref as HTMLElement).dataset[
-									'closingAllowDiscretePolyfill'
-								];
-								_ref?.close();
-							}, ms);
-							return;
-						}
+							];
+							_ref?.close();
+						}, ms);
+						return;
 					}
 					// END OF Mozilla allow-discrete polyfill
 					_ref.close();
