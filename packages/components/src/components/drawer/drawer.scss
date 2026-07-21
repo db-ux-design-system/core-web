@@ -255,6 +255,7 @@
 		background-color: transparent;
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
+		overflow: clip;
 
 		&[open] {
 			display: flex;
