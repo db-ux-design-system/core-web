@@ -217,13 +217,13 @@
 
 		@starting-style {
 			.db-drawer-container {
-				&[data-direction="to-right"] {
-					transform: translateX(-110%);
-				}
-
 				&:not([data-direction]),
 				&[data-direction="to-left"] {
 					transform: translateX(110%);
+				}
+				
+				&[data-direction="to-right"] {
+					transform: translateX(-110%);
 				}
 
 				&[data-direction="up"] {
