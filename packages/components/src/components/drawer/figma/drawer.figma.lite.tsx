@@ -10,7 +10,6 @@ export default function DrawerFigmaLite(props: FigmaDrawerProps) {
 	return (
 		<DBDrawer
 			header={props._drawerHeader}
-			footer={props._drawerFooter}>
-		</DBDrawer>
+			footer={props._drawerFooter}></DBDrawer>
 	);
 }
