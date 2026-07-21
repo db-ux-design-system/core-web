@@ -187,8 +187,14 @@ export const addValuePropertyInterceptor = (
 			get: descriptor.get,
 			set(newValue: string) {
 				originalSet.call(this, newValue);
-				if (newValue) {
-					(this as HTMLInputElement).setAttribute('value', newValue);
+				// Read the actual DOM value after the native setter,
+				// which may sanitize invalid date/time strings to "".
+				const actualValue = (this as HTMLInputElement).value;
+				if (actualValue) {
+					(this as HTMLInputElement).setAttribute(
+						'value',
+						actualValue
+					);
 				} else {
 					(this as HTMLInputElement).removeAttribute('value');
 				}
