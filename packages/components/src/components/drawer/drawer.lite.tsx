@@ -107,11 +107,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 							// Signal CSS to revert transform while dialog
 							// is still open, triggering the exit animation.
 							(_ref as HTMLElement).dataset[
-								'closing-allow-discrete-polyfill'
+								'closingAllowDiscretePolyfill'
 							] = '';
 							void delay(() => {
 								delete (_ref as HTMLElement).dataset[
-									'closing-allow-discrete-polyfill'
+									'closingAllowDiscretePolyfill'
 								];
 								_ref?.close();
 							}, ms);
