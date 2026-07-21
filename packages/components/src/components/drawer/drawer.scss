@@ -127,6 +127,9 @@
 }
 
 .db-drawer {
+	--db-drawer-inline-size: 100lvw;
+	--db-drawer-block-size: 100lvh;
+	
 	@media (prefers-reduced-motion: no-preference) {
 		transition:
 			display #{variables.$db-transition-duration-extra-slow}
@@ -235,11 +238,6 @@
 				}
 			}
 		}
-	}
-
-	&:not([data-position="absolute"]) {
-		--db-drawer-inline-size: 100lvw;
-		--db-drawer-block-size: 100lvh;
 	}
 
 	&[data-position="absolute"] {
