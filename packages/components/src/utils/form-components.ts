@@ -163,6 +163,20 @@ export const addValuePropertyInterceptor = (
 	const originalSet = descriptor.set;
 	let interceptorActive = false;
 
+	// Sync the value attribute from native user interactions (e.g. date picker)
+	// which bypass the JS setter.
+	const syncAttribute = () => {
+		if (!interceptorActive) return;
+		if (element.value) {
+			element.setAttribute('value', element.value);
+		} else {
+			element.removeAttribute('value');
+		}
+	};
+
+	element.addEventListener('input', syncAttribute, { signal });
+	element.addEventListener('change', syncAttribute, { signal });
+
 	const activateInterceptor = () => {
 		if (interceptorActive) {
 			return;
