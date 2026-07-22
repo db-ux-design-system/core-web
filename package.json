@@ -49,6 +49,7 @@
     "check:format": "prettier --check .",
     "ci:version": "changeset version && pnpm tsx scripts/github/changesets/version-bump.ts && prettier --no-error-on-unmatched-pattern **/CHANGELOG.md --write",
     "clean": "git clean -dfx --exclude=.env",
+    "clean:light": "git clean -dfx --exclude=.env --exclude=node_modules",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
     "dev": "pnpm --filter scripts run dev",
