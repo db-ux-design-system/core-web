@@ -56,7 +56,9 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 	const durationStr = getComputedStyle(dialog).getPropertyValue(
 		'transition-duration'
 	);
-	const ms = parseFloat(durationStr) * 1000;
+	const ms = durationStr.includes('ms')
+		? parseFloat(durationStr)
+		: parseFloat(durationStr) * 1000;
 
 	dialog.dataset['closingAllowDiscretePolyfill'] = '';
 	void delay(() => {
