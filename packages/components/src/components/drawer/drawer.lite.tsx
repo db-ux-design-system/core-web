@@ -101,7 +101,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					const durationStr = getComputedStyle(
 						_ref as HTMLElement
 					).getPropertyValue('transition-duration');
-					const ms = parseFloat(durationStr) * 1000;
+					const closeDelay = parseFloat(durationStr) * 1000;
 					// Signal CSS to revert transform while dialog
 					// is still open, triggering the exit animation.
 					(_ref as HTMLElement).dataset[
@@ -112,7 +112,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 							'closingAllowDiscretePolyfill'
 						];
 						_ref?.close();
-					}, ms);
+					}, closeDelay);
 				}
 			}
 		}
