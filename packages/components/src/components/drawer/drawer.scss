@@ -65,10 +65,7 @@
 %direction-from-left-to-right {
 	@extend %container-size-horizontal;
 
-	&:not([data-transition="open"]) {
-		transform: translateX(-110%);
-	}
-
+	transform: translateX(-110%);
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
@@ -80,10 +77,7 @@
 %direction-from-right-to-left {
 	@extend %container-size-horizontal;
 
-	&:not([data-transition="open"]) {
-		transform: translateX(110%);
-	}
-
+	transform: translateX(110%);
 	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
@@ -95,10 +89,7 @@
 %direction-from-bottom-to-top {
 	@extend %container-size-vertical;
 
-	&:not([data-transition="open"]) {
-		transform: translateY(110%);
-	}
-
+	transform: translateY(110%);
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -110,10 +101,7 @@
 %direction-from-top-to-bottom {
 	@extend %container-size-vertical;
 
-	&:not([data-transition="open"]) {
-		transform: translateY(-110%);
-	}
-
+	transform: translateY(-110%);
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -139,16 +127,22 @@
 }
 
 .db-drawer {
+	--db-drawer-inline-size: 100lvw;
+	--db-drawer-block-size: 100lvh;
+
+	position: fixed;
+	inset: 0;
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition:
+			display #{variables.$db-transition-duration-extra-slow}
+				allow-discrete,
+			overlay #{variables.$db-transition-duration-extra-slow}
+				allow-discrete;
+	}
+
 	.db-drawer-container {
 		@extend %drawer-safe-area;
-
-		// Close delay: 0s by default (reduced motion), set to transition duration
-		// when motion is allowed. Read by JS to schedule dialog.close().
-		--db-drawer-close-delay: 0;
-
-		@media (prefers-reduced-motion: no-preference) {
-			--db-drawer-close-delay: #{variables.$db-transition-duration-extra-slow};
-		}
 
 		display: grid;
 		grid-template-rows:
@@ -221,21 +215,34 @@
 		}
 	}
 
-	&:not([data-position="absolute"]) {
-		--db-drawer-inline-size: 100lvw;
-		--db-drawer-block-size: 100lvh;
-
-		&[open] {
+	// Shared open state: reset transform and define entry animation.
+	// data-closing reverts the transform while still [open] to trigger
+	// the exit animation in browsers without allow-discrete for display.
+	&[open] {
+		// TODO: Remove this selector part after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+		&:not([data-closing-allow-discrete-ponyfill]) {
 			.db-drawer-container {
-				&[data-transition="open"] {
-					transform: none;
+				transform: none;
+			}
+		}
+
+		@starting-style {
+			.db-drawer-container {
+				&:not([data-direction]),
+				&[data-direction="to-left"] {
+					transform: translateX(110%);
 				}
 
-				&[data-transition="close"] {
-					@media (prefers-reduced-motion: no-preference) {
-						transition: transform var(--db-drawer-close-delay)
-							#{variables.$db-transition-timing-emotional};
-					}
+				&[data-direction="to-right"] {
+					transform: translateX(-110%);
+				}
+
+				&[data-direction="up"] {
+					transform: translateY(110%);
+				}
+
+				&[data-direction="down"] {
+					transform: translateY(-110%);
 				}
 			}
 		}
@@ -247,17 +254,17 @@
 
 		position: absolute;
 		z-index: 3;
-		inset: 0;
 		background-color: transparent;
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
+		overflow: clip;
 
 		&[open] {
 			display: flex;
+		}
 
-			.db-drawer-container[data-transition="close"] {
-				position: relative;
-			}
+		.db-drawer-container {
+			position: relative;
 		}
 
 		&:not([data-direction]),
@@ -275,12 +282,6 @@
 		&[data-direction="to-left"],
 		&[data-direction="up"] {
 			align-items: flex-end;
-		}
-
-		.db-drawer-container {
-			&[data-transition="open"] {
-				position: relative;
-			}
 		}
 	}
 }

@@ -94,6 +94,7 @@ export * from './components/tooltip';
 export * from './components/tooltip/model';
 export * from './shared/constants';
 export * from './shared/model';
+export * from './utils/allow-discrete-ponyfill';
 export * from './utils/document-click-listener';
 export * from './utils/document-scroll-listener';
 export * from './utils/floating-components';
