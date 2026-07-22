@@ -236,3 +236,6 @@ focusgroup
 unprovide
 tablists
 focusgroupstart
+commandfor
+popovertarget
+popovertargetaction

@@ -27,7 +27,6 @@
 			}
 		}
 	},
-	"defaultProject": "lib",
 	"cli": {
 		"analytics": false
 	}
