@@ -3,6 +3,7 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ButtonDensity from '../examples/density.example.lite';
+import ButtonDisabledVariant from '../examples/disabled-variant.example.lite';
 import ButtonDisabled from '../examples/disabled.example.lite';
 import ButtonMultiLineText from '../examples/multi-line-text.example.lite';
 import ButtonNoText from '../examples/no-text.example.lite';
@@ -30,6 +31,11 @@ export default function ButtonShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Disabled">
 				<CardWrapperShowcase>
 					<ButtonDisabled />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Disabled Variant">
+				<CardWrapperShowcase>
+					<ButtonDisabledVariant />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Size">
