@@ -316,7 +316,7 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ### Shift-left: HTML → CSS → JS
 
-Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's Browserslist. Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See `docs/shift-left-web-development.md` for the full rationale and examples.
+Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See `docs/shift-left-web-development.md` for the full rationale and examples.
 
 ### Dependency pinning and package execution
 
