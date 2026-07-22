@@ -217,7 +217,7 @@
 	// the exit animation in browsers without allow-discrete for display.
 	&[open] {
 		// TODO: Remove this selector part after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
-		&:not([data-closing-allow-discrete-polyfill]) {
+		&:not([data-closing-allow-discrete-ponyfill]) {
 			.db-drawer-container {
 				transform: none;
 			}

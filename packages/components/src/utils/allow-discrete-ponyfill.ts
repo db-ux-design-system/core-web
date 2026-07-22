@@ -3,7 +3,7 @@
  * support for the `display` property and just use `_ref?.close();` directly in the including file:
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
  *
- * This module provides a polyfill for browsers that do not support transitioning
+ * This module provides a ponyfill for browsers that do not support transitioning
  * `display` with `transition-behavior: allow-discrete`. It defers `dialog.close()`
  * and signals CSS to revert the transform (triggering the exit animation) while
  * the dialog is still open.
@@ -39,7 +39,7 @@ export const supportsDisplayTransition = (() => {
  * @public
  * Closes a dialog with a deferred `close()` call, allowing the CSS exit
  * transition to play in browsers that don't support `allow-discrete` for
- * `display`. Sets `data-closing-allow-discrete-polyfill` on the dialog to
+ * `display`. Sets `data-closing-allow-discrete-ponyfill` on the dialog to
  * signal CSS to revert the transform while the dialog is still [open].
  *
  * In browsers that support `allow-discrete` for `display`, calls `close()`
@@ -60,9 +60,9 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 		? parseFloat(durationStr)
 		: parseFloat(durationStr) * 1000;
 
-	dialog.dataset['closingAllowDiscretePolyfill'] = '';
+	dialog.dataset['closingAllowDiscretePonyfill'] = '';
 	void delay(() => {
-		delete dialog.dataset['closingAllowDiscretePolyfill'];
+		delete dialog.dataset['closingAllowDiscretePonyfill'];
 		dialog.close();
 	}, ms);
 };
