@@ -6,53 +6,56 @@ export type FigmaDrawerProps = {
 	rounded?: boolean;
 	showSpacing?: boolean;
 	showBackdrop?: boolean;
-	_drawerHeader?: string;
-	_showText?: boolean;
-	_children?: any;
+	_drawerHeader?: any;
+	_drawerFooter?: any;
 };
 
 const drawerProps: Record<string, FigmaProp> = {
 	direction: {
 		type: 'enum',
 		key: 'Direction',
-		value: { Right: 'to-left', Left: 'to-right', Bottom: 'up', Top: 'down' }
+		value: {
+			'to-left': 'to-left',
+			'to-right': 'to-right',
+			up: 'up',
+			down: 'down'
+		}
 	},
 	containerSize: {
 		type: 'enum',
-		key: 'Size',
-		value: { Medium: 'medium', Full: 'full' }
+		key: 'Container Size',
+		value: {
+			'(Def) Small': 'small',
+			Medium: 'medium',
+			Large: 'large',
+			Full: 'full'
+		}
 	},
 	rounded: { type: 'boolean', key: 'Rounded' },
 	showSpacing: { type: 'boolean', key: 'Show Spacing' },
 	showBackdrop: { type: 'boolean', key: 'Show Backdrop' },
 	_drawerHeader: {
-		type: 'string',
-		key: '✏️ Text',
-		layer: '↳ Drawer HEADER'
+		type: 'connectedInstances',
+		filter: 'Drawer Header'
 	},
-	_showText: {
-		type: 'boolean',
-		key: 'Show Text',
-		layer: '↳ Drawer HEADER'
-	},
-	_children: {
-		type: 'children',
-		key: 'Children'
+	_drawerFooter: {
+		type: 'connectedInstances',
+		filter: 'Drawer Footer'
 	}
+	// TODO: Children slot removed — getSlot() crashes when connected instances
+	// are placed inside the slot (Figma Code Connect limitation).
 };
 
 export const drawers: FigmaCodeConnect = {
 	urls: [
 		// (Def) Right
-		'https://www.figma.com/design/FIGMA_FILE?node-id=35452:6313',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=37477:7499',
 		// Left
-		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:7783',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=37477:7614',
 		// Bottom
-		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:8027',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=37477:7729',
 		// Top
-		'https://www.figma.com/design/FIGMA_FILE?node-id=35453:8244',
-		// Full
-		'https://www.figma.com/design/FIGMA_FILE?node-id=35471:17307'
+		'https://www.figma.com/design/FIGMA_FILE?node-id=37477:7856'
 	],
 	props: drawerProps
 };
