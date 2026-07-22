@@ -130,6 +130,9 @@
 	--db-drawer-inline-size: 100lvw;
 	--db-drawer-block-size: 100lvh;
 
+	position: fixed;
+	inset: 0;
+
 	@media (prefers-reduced-motion: no-preference) {
 		transition:
 			display #{variables.$db-transition-duration-extra-slow}
@@ -251,7 +254,6 @@
 
 		position: absolute;
 		z-index: 3;
-		inset: 0;
 		background-color: transparent;
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
