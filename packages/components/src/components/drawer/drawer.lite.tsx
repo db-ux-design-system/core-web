@@ -10,11 +10,11 @@ import {
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
-	delay,
 	getBoolean,
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
+import { closeDialogWithTransition } from '../../utils/allow-discrete-polyfill';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -97,22 +97,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 				if (!dialogOpen && _ref.open) {
-					// TODO: Remove this block (only keep `_ref?.close();`) after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
-					const durationStr = getComputedStyle(
-						_ref as HTMLElement
-					).getPropertyValue('transition-duration');
-					const closeDelay = parseFloat(durationStr) * 1000;
-					// Signal CSS to revert transform while dialog
-					// is still open, triggering the exit animation.
-					(_ref as HTMLElement).dataset[
-						'closingAllowDiscretePolyfill'
-					] = '';
-					void delay(() => {
-						delete (_ref as HTMLElement).dataset[
-							'closingAllowDiscretePolyfill'
-						];
-						_ref?.close();
-					}, closeDelay);
+					closeDialogWithTransition(_ref as HTMLDialogElement);
 				}
 			}
 		}
