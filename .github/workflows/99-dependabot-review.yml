@@ -14,6 +14,6 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: Prepare dependency review prompt
-        uses: mfranzke/dependabot-review-action@f978694098c8d903eaeb3d4d5b02e25d1c31fe63 # v0.1.0
+        uses: mfranzke/dependabot-review-action@ddcb73c0b7a50ea88830061cd423ab13d7a4bf7a # v0.1.1
         with:
           github-token: ${{ github.token }}
