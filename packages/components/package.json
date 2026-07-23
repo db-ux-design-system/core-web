@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
-    "@builder.io/mitosis": "0.13.2",
-    "@builder.io/mitosis-cli": "0.13.2",
+    "@builder.io/mitosis": "0.14.0",
+    "@builder.io/mitosis-cli": "0.14.0",
     "@prettier/sync": "0.6.1",
     "cpr": "3.0.1",
     "cssnano": "8.0.2",
