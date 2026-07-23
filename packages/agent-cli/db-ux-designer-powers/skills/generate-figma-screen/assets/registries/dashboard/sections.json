@@ -1,0 +1,43 @@
+{
+	"_meta": {
+		"schema": "db-ux/sections/v1",
+		"pageType": "dashboard",
+		"purpose": "The content-driven selection layer for dashboards. Each entry maps a CONTENT SHAPE / INTENT to a concrete block. To compose: split the content into groups (headline metrics, entity lists, tabular data), match each to the block whose `whenToUse` fits, then order per template.json.",
+		"usage": "Pick, do not invent. Fill every placeholder with real content; drop a node only when no content applies. If a group matches no block, STOP and flag for human review.",
+		"patternSource": "Each block id resolves in dashboard/blocks.json."
+	},
+	"sections": {
+		"metric-row": {
+			"intent": "Headline KPIs — a few read-only numbers with a trend.",
+			"whenToUse": "3 equal top-level metrics (value + delta badge + label). Lead the dashboard with these. Read-only, no action, no placeholder icon.",
+			"pattern": "dashboard.metric-row",
+			"itemBlock": "dashboard.metric-card",
+			"cardinality": "3 cards",
+			"level": "content"
+		},
+		"content-grid": {
+			"intent": "A set of ENTITIES, each described by a card — projects, reports, teams, stations.",
+			"whenToUse": "3–6 rich items where each has a title, status, short description and ONE navigation Link. Use when items deserve prose, not just a table row.",
+			"pattern": null,
+			"itemBlock": "dashboard.content-card",
+			"cardinality": "3-6 cards",
+			"level": "content",
+			"note": "Compose as a Grid of dashboard.content-card (auto equal-height). No dedicated pattern id yet — build the Grid directly from the item block."
+		},
+		"data-table": {
+			"intent": "Tabular records with shared columns — transactions, logs, connections, tickets.",
+			"whenToUse": "Many homogeneous rows compared across the SAME columns. Header row + text-cell rows. Read-only unless a real row action exists.",
+			"pattern": "dashboard.data-table",
+			"itemBlock": "dashboard.table-row",
+			"cardinality": "header + N rows",
+			"level": "content"
+		},
+		"toolbar": {
+			"intent": "Filter the table below.",
+			"whenToUse": "Place directly above a data-table ONLY when concrete filters exist. Each Select must carry a real label + value (text:{label,value}). Trailing icon-button actions are optional and need a real glyph. Omit entirely if there is nothing to filter.",
+			"pattern": "dashboard.toolbar",
+			"cardinality": "1",
+			"level": "content"
+		}
+	}
+}

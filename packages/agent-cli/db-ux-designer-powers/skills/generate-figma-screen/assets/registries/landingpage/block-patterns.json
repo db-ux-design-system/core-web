@@ -1,0 +1,163 @@
+{
+	"_meta": {
+		"schema": "db-ux/block-patterns/v1",
+		"pageType": "landingpage",
+		"purpose": "Section-level landing-page patterns captured 1:1 from the Figma 'Landingpage - Blocks Pattern' catalog and the 'Landingpage - Examples' page. A pattern composes atomic blocks (landingpage/blocks.json) into a ready-to-place unit. `level` says whether the pattern IS a full Section (incl. wrapper) or is CONTENT to nest inside a titled Section.",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, node 730:21779 (Landingpage - Blocks Pattern) → section 730:21788; hero + closing CTA from 362:1807 (Landingpage - Examples).",
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment from landingpage/blocks.json. The agent expands $ref when authoring the Composition Plan — the render runtime never sees $ref."
+	},
+	"patterns": {
+		"landingpage.hero": {
+			"source": "362:1807 → 680:9507 (example hero)",
+			"level": "section",
+			"purpose": "Opening hero: a centered Heading followed by a button group — a Brand primary next to a Filled secondary. The example hero carries no description (heading + buttons only); add a short description only if needed.",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"align": "center",
+				"titleAs": "h1",
+				"title": "<Hero title>",
+				"children": [
+					{
+						"type": "ContainerHorizontal",
+						"gap": "sm",
+						"hugWidth": true,
+						"children": [
+							{
+								"type": "Button",
+								"props": {
+									"variant": "brand",
+									"iconOnly": false
+								},
+								"label": "<Primary CTA>"
+							},
+							{
+								"type": "Button",
+								"props": {
+									"variant": "filled",
+									"iconOnly": false
+								},
+								"label": "<Secondary CTA>"
+							}
+						]
+					}
+				]
+			}
+		},
+		"landingpage.feature-grid": {
+			"source": "362:1807 → 680:8960 (teaser grid) / 362:3912 (card grid)",
+			"level": "content",
+			"purpose": "A grid of 2–4 teasers. Nest inside a titled Section (title = h2). Use image-top teasers (landingpage.image-teaser) or card teasers (landingpage.teaser-card). Auto equal-height.",
+			"plan": {
+				"type": "Grid",
+				"children": [
+					{ "$ref": "landingpage.image-teaser" },
+					{ "$ref": "landingpage.image-teaser" },
+					{ "$ref": "landingpage.image-teaser" }
+				]
+			}
+		},
+		"landingpage.media-text-row": {
+			"source": "730:21779 → 730:21791 (media-text rows)",
+			"level": "content",
+			"purpose": "Media-text row, text-left: a 50-50 grid (gap xl) with the text block left and the image right. Nest inside a titled Section.",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "xl",
+				"children": [
+					{ "$ref": "landingpage.media-text-block" },
+					{ "$ref": "landingpage.image" }
+				]
+			}
+		},
+		"landingpage.media-text-row-reversed": {
+			"source": "730:21779 → 730:21791 (alternating media-text rows)",
+			"level": "content",
+			"purpose": "Media-text row, image-left: same as media-text-row but the image leads and the text block follows. Alternate with media-text-row for rhythm.",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "xl",
+				"children": [
+					{ "$ref": "landingpage.image" },
+					{ "$ref": "landingpage.media-text-block" }
+				]
+			}
+		},
+		"landingpage.highlight-card": {
+			"source": "362:1807 → 364:4606 (wide highlight card)",
+			"level": "content",
+			"purpose": "A single full-width elevation-1 Card containing a 50-50 grid: a text block (heading + description + Link) beside an Image. A featured highlight between grids/rows.",
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "large",
+				"children": [
+					{
+						"type": "Grid",
+						"gridLayout": "50-50",
+						"gridGap": "xl",
+						"children": [
+							{
+								"type": "ContainerVertical",
+								"gap": "lg",
+								"fillHeight": true,
+								"align": "left",
+								"children": [
+									{
+										"type": "Heading",
+										"as": "h3",
+										"content": "<Title>",
+										"fills": "color.text.strong"
+									},
+									{
+										"type": "Body",
+										"size": "(Def) Medium",
+										"content": "<Description>",
+										"fills": "color.text.weak"
+									},
+									{
+										"type": "Link",
+										"props": {
+											"target": "internal",
+											"brand": false
+										},
+										"label": "<Mehr erfahren?>"
+									}
+								]
+							},
+							{
+								"type": "Image",
+								"ratio": "16:9",
+								"radius": "radius.md",
+								"label": "<Alt/label>"
+							}
+						]
+					}
+				]
+			}
+		},
+		"landingpage.cta-centered": {
+			"source": "362:1807 → 680:8550 (closing CTA); variant 730:21794 uses Brand + Filled",
+			"level": "section",
+			"purpose": "Closing call-to-action: a centered Heading + a single Brand Button (the example). A Brand + Filled button group is the captured alternative (pattern 730:21794).",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.surface",
+				"contentWidth": "Medium (1024)",
+				"align": "center",
+				"title": "<CTA title>",
+				"children": [
+					{
+						"type": "Button",
+						"props": { "variant": "brand", "iconOnly": false },
+						"label": "<CTA action>"
+					}
+				]
+			}
+		}
+	}
+}

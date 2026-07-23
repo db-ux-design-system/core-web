@@ -12,6 +12,19 @@
 				"get_design_tokens",
 				"docs_search"
 			]
+		},
+		"figma": {
+			"//": "Official Figma MCP (Dev Mode) — provides the render/write tool `use_figma` plus inspection. Requires the Figma desktop app running with the Dev Mode MCP server enabled (Preferences → enable local MCP server). The local endpoint is typically http://127.0.0.1:3845/mcp; if you use Figma's remote MCP, point `url` there instead.",
+			"url": "http://127.0.0.1:3845/mcp",
+			"tools": [
+				"get_metadata",
+				"get_design_context",
+				"get_screenshot",
+				"get_variable_defs",
+				"get_code_connect_map",
+				"create_new_file",
+				"use_figma"
+			]
 		}
 	}
 }

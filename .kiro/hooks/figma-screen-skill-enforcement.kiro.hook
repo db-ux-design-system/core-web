@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "name": "Figma Screen – Skill Enforcement",
-  "description": "Before any Figma write (use_figma) call, verifies the agent is following the generate-figma-screen skill: Composition Plan authored, db-figma-runtime.js pasted verbatim, renderPlan called. Blocks hand-written imperative Figma node code.",
+  "description": "Before any Figma write (use_figma) call, verifies the agent is following the generate-figma-screen skill: Composition Plan authored, db-figma-runtime.min.js pasted verbatim, renderPlan called. Blocks hand-written imperative Figma node code.",
   "version": "1",
   "when": {
     "type": "preToolUse",
@@ -12,6 +12,6 @@
   },
   "then": {
     "type": "askAgent",
-    "prompt": "You are about to write to a Figma file. STOP and verify:\n\n1. Have you read the generate-figma-screen SKILL.md from `db-ux-designer-powers/skills/generate-figma-screen/SKILL.md`?\n2. Have you authored a Composition Plan (JSON) with `layout`, `screen`, and `targetNodeId`?\n3. Does your use_figma code paste `assets/db-figma-runtime.js` verbatim and call `renderPlan(PLAN)`?\n4. Are you NOT using createFrame / createInstance / appendChild / setBoundVariable directly?\n\nOUTPUT IS ALWAYS A FIGMA FRAME — NEVER HTML, CSS, JSX or any workspace file.\n\nIf ALL four are YES → proceed with the EXACT same tool call parameters.\nIf ANY is NO → STOP. Read the SKILL.md first, then author the plan and paste the runtime before calling use_figma."
+    "prompt": "You are about to write to a Figma file. STOP and verify you are following the generate-figma-screen skill (`db-ux-designer-powers/skills/generate-figma-screen/SKILL.md`).\n\nALLOWED write calls are ONLY these:\n\nA) Store-once bootstrap (Phase 4a) — pasting `assets/bootstrap/check.js`, `store-<i>.js`, or `store-meta.js` verbatim. These write the runtime into figma.root shared plugin data and create NO nodes. OK to proceed.\n\nB) Render/edit via the loader (Phase 4a, PREFERRED) — pasting `assets/bootstrap/render.js` verbatim, then a Composition Plan (`screen`, `targetNodeId`, `layout`) + `renderPlan(PLAN)` (or `applyEdits({...})`). OK to proceed.\n\nC) Render/edit via verbatim paste (Phase 4b fallback / edit bundle) — pasting `assets/db-figma-runtime.min.js` or `assets/db-figma-edit.min.js` verbatim, then `renderPlan(PLAN)` / `applyEdits(...)`. OK to proceed.\n\nFORBIDDEN: hand-written imperative Figma node code (createFrame / createInstance / appendChild / setBoundVariable) that is NOT one of the runtime bundles/loaders above, and any attempt to output HTML/CSS/JSX or a workspace file as the 'screen'. OUTPUT IS ALWAYS A FIGMA FRAME.\n\nIf your call matches A, B, or C → proceed with the EXACT same tool call parameters.\nIf it matches none → STOP, read the SKILL.md, and use the store-once loader (or verbatim runtime) with a validated Composition Plan."
   }
 }

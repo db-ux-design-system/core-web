@@ -1,0 +1,35 @@
+{
+	"_meta": {
+		"schema": "db-ux/template/v1",
+		"pageType": "dashboard",
+		"purpose": "Page template for an operational dashboard: which content blocks are allowed and how to order them. Compose by SELECTING blocks per content (see sections.json → whenToUse), not by copying example.json. example.json is only a density/style reference.",
+		"source": "Derived from Figma 'Dashboard - Example' (730:11891) + 'Dashboard - Blocks' (721:6689)."
+	},
+	"spacing": "small",
+	"order": ["overview", "detail"],
+	"slots": {
+		"overview": {
+			"required": false,
+			"position": "first",
+			"allow": ["dashboard.metric-row"],
+			"note": "If the content includes headline KPIs/metrics, lead with a single metric row (3 read-only cards)."
+		},
+		"detail": {
+			"required": true,
+			"position": "after-overview",
+			"repeatable": true,
+			"minSections": 1,
+			"maxSections": 4,
+			"allow": ["dashboard.content-grid", "dashboard.data-table"],
+			"note": "One or more detail blocks chosen by content: entities/projects/reports → content-grid; tabular records with columns → data-table."
+		}
+	},
+	"rules": [
+		"Header is always the first child (app name; meta-nav off; no 'Startseite' item).",
+		"Prefer ONE Section wrapping the dashboard (metric row → Divider → detail block), matching the reference example. Use separate titled Sections only for genuinely distinct content groups.",
+		"Every Section spacing 'small' for a dense, scannable B2B layout.",
+		"Backgrounds: first section color.background.canvas; if multiple sections, alternate surface/canvas.",
+		"NEVER emit empty placeholders (Select 'Input Text', ✕ icon buttons, glyphless icons). Only add a Select/Icon/Button once its label/value/glyph/action is provided (see blocks.json → noPlaceholders).",
+		"Read-only metrics have no action; entity cards use a single Link; tables are read-only unless a real row action is defined."
+	]
+}

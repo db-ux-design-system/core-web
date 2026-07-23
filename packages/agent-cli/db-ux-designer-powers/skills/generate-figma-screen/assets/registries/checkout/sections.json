@@ -1,0 +1,91 @@
+{
+	"_meta": {
+		"schema": "db-ux/sections/v1",
+		"pageType": "checkout",
+		"status": "proposal",
+		"requiresHumanReview": true,
+		"purpose": "PROPOSED content-driven selection layer for a transactional purchase/booking flow (e.g. DB Ticket Kaufprozess). Each section maps a CONTENT SHAPE / INTENT to a concrete section pattern. NOT yet established — patterns/blocks are plan:null stubs pending human capture from Figma. See PROPOSAL.md.",
+		"detection": {
+			"note": "PROPOSED detection intents to add to the skill's page-type classifier (currently hardcoded dashboard|landingpage).",
+			"whenToClassifyAsCheckout": "The prompt describes a purchase / booking / order / application FLOW or a single step of one: selecting a fare/option, entering passenger/customer/payment data, reviewing an order, or confirming a purchase.",
+			"triggers": [
+				"kaufprozess",
+				"checkout",
+				"buchung",
+				"buchen",
+				"bestellung",
+				"bestellen",
+				"warenkorb",
+				"zahlung",
+				"bezahlen",
+				"ticket kaufen",
+				"reisende erfassen",
+				"antrag stellen",
+				"purchase flow",
+				"booking flow",
+				"payment",
+				"order summary"
+			]
+		},
+		"usage": "Pick, do not invent. If a content group matches no section, STOP and flag for human review (never approximate). Fill every placeholder with real content; drop a node only when no content applies.",
+		"arrangementGuidelines": "Group and arrange sections + their inner elements per context/layout-guidelines.md ('Contentarten', 'Gruppierung', 'Reihenfolgen') and context/gestaltgesetze.md (Ähnlichkeit, Nähe, Prägnanz, gemeinsame Regionen). Equal/comparable content → horizontal; sequential/prioritized content → vertical; responsive fallback to vertical.",
+		"patternSource": "Each `pattern` id resolves in checkout/block-patterns.json; each block id in checkout/blocks.json."
+	},
+	"sections": {
+		"progress": {
+			"intent": "Show where the user is in the multi-step flow.",
+			"whenToUse": "Always, once, as the first section after the Header, when the flow has 2+ steps (e.g. Verbindung → Reisende → Zahlung → Bestätigung). Read-only.",
+			"pattern": "checkout.stepper",
+			"cardinality": "1",
+			"level": "section",
+			"gap": "Needs an official DB Stepper/Progress component OR a captured composite block. See PROPOSAL.md gap #1.",
+			"requiresHumanReview": true
+		},
+		"selection-list": {
+			"intent": "Let the user choose ONE option from a set of equivalent, priced alternatives.",
+			"whenToUse": "Fare/tariff or option selection (e.g. Sparpreis / Flexpreis / BahnCard). 2–6 equal options, each with title + description + price + a single Radio. Equal-item-action — never one Brand button per option.",
+			"arrangement": "Equal + comparable → arrange HORIZONTALLY (equal-height cards) so options read as equivalent (layout-guidelines.md; Gestalt-Ähnlichkeit). Fall back to a VERTICAL list for >4 options, long per-option copy, or narrow widths.",
+			"pattern": "checkout.option-list",
+			"itemBlock": "checkout.option-row",
+			"cardinality": "2-6 options",
+			"level": "content",
+			"wrapInTitledSection": true,
+			"requiresHumanReview": true
+		},
+		"form-fieldset": {
+			"intent": "Collect grouped user input (passenger data, contact, address, payment details).",
+			"whenToUse": "Any group of related fields under a subheading (e.g. 'Reisende', 'Kontaktdaten', 'Zahlungsart'). Uses Input/Select/CustomSelect/Checkbox/Radio/Switch. Repeatable for multiple groups.",
+			"pattern": "checkout.form-fieldset",
+			"itemBlock": "checkout.form-field",
+			"cardinality": "1-n fieldsets",
+			"level": "content",
+			"wrapInTitledSection": true,
+			"requiresHumanReview": true
+		},
+		"order-summary": {
+			"intent": "Show the order/price breakdown so the user can review before paying.",
+			"whenToUse": "A summary of line items + total, optionally with 'Ändern' links. Typically an aside beside the form, or a full-width review before the final confirm step. Read-only except edit Links.",
+			"pattern": "checkout.summary",
+			"cardinality": "1",
+			"level": "content",
+			"wrapInTitledSection": true,
+			"requiresHumanReview": true
+		},
+		"notice": {
+			"intent": "Surface a contextual info / warning / error relevant to the step.",
+			"whenToUse": "Optional. A single Notification (e.g. 'Nur noch wenige Sparpreise verfügbar', validation errors). Drop when no message applies.",
+			"pattern": "checkout.notice",
+			"cardinality": "0-1",
+			"level": "content",
+			"requiresHumanReview": true
+		},
+		"action-bar": {
+			"intent": "Advance or go back in the flow.",
+			"whenToUse": "Always, once, as the last section. A button group: a secondary 'Zurück' (ghost/outlined) next to the single Brand forward action ('Weiter' / 'Zahlungspflichtig bestellen'). ≤1 primary.",
+			"pattern": "checkout.action-bar",
+			"cardinality": "1",
+			"level": "section",
+			"requiresHumanReview": true
+		}
+	}
+}

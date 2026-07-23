@@ -1,0 +1,330 @@
+{
+	"_meta": {
+		"schema": "db-ux/example/v1",
+		"pageType": "dashboard",
+		"purpose": "Canonical reference composition for an operational dashboard, captured 1:1 from the Figma 'Dashboard - Example'. ONE Section contains: a section header (title + description) → a 3-up metric-card row → a Divider → a data table (header row + rows). Assemble new dashboards by following this structure and drawing blocks from dashboard/blocks.json.",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, node 730:11891 (Dashboard - Example) → frame 730:11892 (Dashboard); block palette 721:6689 (Dashboard - Blocks).",
+		"conventions": "Concept Heading/Body. ONE Section wraps the whole dashboard (no zebra of multiple sections). Order: section header → metric row (3 auto equal-height cards) → Divider → data table. Metric card = muted label, large value Heading, Badge + delta note (NO placeholder icon). Section spacing 'small'. Header shows the app name; meta-nav off. The reference toolbar (Selects + icon buttons) and the avatar/progress-bar table cells are omitted — the runtime cannot populate them meaningfully yet, and empty placeholders are forbidden."
+	},
+	"screen": "Betriebsübersicht",
+	"width": 1440,
+	"variables": [
+		"color.background.canvas",
+		"color.text.strong",
+		"color.text.weak",
+		"color.text.muted"
+	],
+	"layout": [
+		{
+			"type": "Header",
+			"appName": "Betriebsübersicht",
+			"navItems": ["Übersicht", "Berichte", "Einstellungen"]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.canvas",
+			"spacing": "small",
+			"title": "Übersicht",
+			"description": "Aktuelle Kennzahlen und laufende Vorgänge auf einen Blick.",
+			"children": [
+				{
+					"type": "Grid",
+					"children": [
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Umsatz",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "€ 1,24 Mio",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"children": [
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "+8,2 %",
+													"semantic": "Successful",
+													"hugWidth": true
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "vs. Vormonat",
+													"fills": "color.text.muted",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Aktive Nutzer",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "18.430",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"children": [
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "+3,1 %",
+													"semantic": "Successful",
+													"hugWidth": true
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "vs. Vorwoche",
+													"fills": "color.text.muted",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Störungen",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "7",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"children": [
+												{
+													"type": "Badge",
+													"props": {
+														"content": "text"
+													},
+													"label": "+2",
+													"semantic": "Warning",
+													"hugWidth": true
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "offen",
+													"fills": "color.text.muted",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{ "type": "Divider" },
+				{
+					"type": "ContainerVertical",
+					"gap": "2xs",
+					"children": [
+						{
+							"type": "Grid",
+							"gridLayout": "25-25-25-25",
+							"children": [
+								{
+									"type": "Body",
+									"size": "Small",
+									"content": "Kennung",
+									"fills": "color.text.muted"
+								},
+								{
+									"type": "Body",
+									"size": "Small",
+									"content": "Status",
+									"fills": "color.text.muted"
+								},
+								{
+									"type": "Body",
+									"size": "Small",
+									"content": "Verantwortlich",
+									"fills": "color.text.muted"
+								},
+								{
+									"type": "Body",
+									"size": "Small",
+									"content": "Aktualisiert",
+									"fills": "color.text.muted"
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "small",
+							"children": [
+								{
+									"type": "Grid",
+									"gridLayout": "25-25-25-25",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "PRJ-1042",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "In Arbeit",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "A. Meier",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "vor 2 Std.",
+											"fills": "color.text.weak"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "small",
+							"children": [
+								{
+									"type": "Grid",
+									"gridLayout": "25-25-25-25",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "PRJ-1039",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "Abgeschlossen",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "S. Yilmaz",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "gestern",
+											"fills": "color.text.weak"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "small",
+							"children": [
+								{
+									"type": "Grid",
+									"gridLayout": "25-25-25-25",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "PRJ-1051",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "Blockiert",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "T. Braun",
+											"fills": "color.text.weak"
+										},
+										{
+											"type": "Body",
+											"size": "Small",
+											"content": "vor 5 Std.",
+											"fills": "color.text.weak"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

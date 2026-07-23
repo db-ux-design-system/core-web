@@ -86,13 +86,13 @@ When adding or editing a skill, use `skills/TEMPLATE.md` as the canonical refere
 ### MCP Configuration (`mcp.json`)
 
 - **Consumer bundle**: connects only `@db-ux/mcp-server` via `npx --yes @db-ux/mcp-server`.
-- **Designer bundle**: connects only `@db-ux/mcp-server` (docs) for live component/token/icon verification.
+- **Designer bundle**: connects `@db-ux/mcp-server` (docs) **and** the official Figma Dev Mode MCP (`figma`) whose `use_figma` tool renders the Composition Plan. The `figma` server is URL-based (`http://127.0.0.1:3845/mcp`) and requires the Figma desktop app with the Dev Mode MCP server enabled — it is NOT the read-only `figma-developer-mcp`.
 - **Maintainer bundle**: connects both `@db-ux/mcp-server` and `figma-developer-mcp` (stdio mode). The Figma server requires a `FIGMA_API_KEY` environment variable.
 
-> **Note — `generate-figma-screen` (designer):** this skill RENDERS into Figma and therefore
-> needs a Figma **write** MCP (the tool that executes plugin code, e.g. `use_figma`) in the
-> host. The designer `mcp.json` currently wires only `@db-ux/mcp-server` (docs). Confirm and
-> wire the render MCP before publishing this skill.
+> **Note — `generate-figma-screen` (designer):** the render step runs through the `figma`
+> MCP's `use_figma` tool. The render engine is host/local (Figma desktop Dev Mode MCP), so the
+> bundle only declares the dependency in `mcp.json`; the user must have Figma desktop running
+> with the Dev Mode MCP server enabled.
 
 ## CLI Development Notes
 

@@ -1,0 +1,242 @@
+{
+	"_meta": {
+		"schema": "db-ux/blocks/v1",
+		"pageType": "checkout",
+		"status": "proposal",
+		"requiresHumanReview": true,
+		"purpose": "PROPOSED atomic content blocks for a transactional purchase/booking flow. NOT yet established. Every block below is a `plan: null` STUB: the render runtime treats plan:null as a STOP. `componentsUsed` lists the real (already-registered) components each block will use; `planSketch` is a NON-AUTHORITATIVE hint for the designer capturing the block 1:1 from Figma. A block becomes usable only when a designer fills `plan`, sets a real `source` node id, and removes `requiresHumanReview`.",
+		"source": "TO CAPTURE — Figma file uI6oKmJ0qDhsEuE0nFah2W, checkout reference screen (node id to be recorded).",
+		"appliesGuidelines": [
+			"context/layout-guidelines.md",
+			"context/gestaltgesetze.md"
+		],
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment. Only valid once plan is captured."
+	},
+	"blocks": {
+		"checkout.stepper": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "Read-only progress indicator across the flow steps (e.g. Verbindung → Reisende → Zahlung → Bestätigung), highlighting the current step.",
+			"componentsUsed": [
+				"(GAP) Stepper/Progress — not in components.json"
+			],
+			"gap": "No official DB Stepper/Progress component is registered. Add one to ../components.json OR capture a composite. Do NOT fake it with Tags/Badges without design sign-off. See PROPOSAL.md gap #1.",
+			"plan": null,
+			"planSketch": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"children": [
+					{
+						"type": "<Stepper — component TBD>",
+						"steps": [
+							"<Step 1>",
+							"<Step 2>",
+							"<Step 3>",
+							"<Step 4>"
+						],
+						"current": "<index of active step>"
+					}
+				]
+			}
+		},
+		"checkout.form-field": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "A single labelled form control. The atomic unit of a fieldset.",
+			"usedIn": "checkout.form-fieldset",
+			"componentsUsed": [
+				"Input",
+				"Select",
+				"CustomSelect",
+				"Checkbox",
+				"Radio",
+				"Switch",
+				"Textarea",
+				"Infotext"
+			],
+			"note": "Pick the control by data type: free text → Input; single choice from a known list → Select/CustomSelect; boolean/consent → Checkbox/Switch; one-of-few → Radio; long text → Textarea. Verify variant axes live via db-ux/get_component_props before capture (e.g. Input label=above|floating, state=empty|filled|active).",
+			"plan": null,
+			"planSketch": {
+				"type": "Input",
+				"props": { "label": "above", "state": "empty" },
+				"label": "<Field label>",
+				"placeholder": "<Placeholder?>",
+				"infotext": "<Helper text?>"
+			}
+		},
+		"checkout.form-fieldset": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "A titled group of related form fields (e.g. 'Reisende', 'Kontaktdaten', 'Zahlungsart'). Single uniform gap.",
+			"componentsUsed": [
+				"Input",
+				"Select",
+				"Checkbox",
+				"Radio",
+				"Switch",
+				"Divider"
+			],
+			"plan": null,
+			"planSketch": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"align": "left",
+				"children": [
+					{
+						"type": "Heading",
+						"as": "h3",
+						"content": "<Fieldset title>",
+						"fills": "color.text.strong"
+					},
+					{ "$ref": "checkout.form-field" },
+					{ "$ref": "checkout.form-field" }
+				]
+			}
+		},
+		"checkout.option-row": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "One selectable, priced option in a fare/tariff list (e.g. Sparpreis). Exactly one interactive element (the Radio). Equal-item-action.",
+			"usedIn": "checkout.option-list",
+			"componentsUsed": ["Card", "Radio", "Tag", "Divider"],
+			"note": "The whole row is selectable via a single Radio. NO nested button/link. Price is read-only text; title h4. Content is TOP-aligned; in a horizontal option-list all cards share one height (equalHeights) and identical styling so they read as equivalent (Gestalt-Ähnlichkeit / layout-guidelines.md).",
+			"plan": null,
+			"planSketch": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "large",
+				"children": [
+					{
+						"type": "ContainerHorizontal",
+						"spread": true,
+						"children": [
+							{
+								"type": "ContainerVertical",
+								"gap": "lg",
+								"align": "left",
+								"children": [
+									{
+										"type": "Radio",
+										"props": {
+											"size": "medium",
+											"width": "auto"
+										},
+										"label": "<Option title>"
+									},
+									{
+										"type": "Body",
+										"size": "(Def) Medium",
+										"content": "<Option description>",
+										"fills": "color.text.weak"
+									}
+								]
+							},
+							{
+								"type": "Body",
+								"size": "(Def) Medium",
+								"content": "<Price>",
+								"fills": "color.text.strong",
+								"hugWidth": true
+							}
+						]
+					}
+				]
+			}
+		},
+		"checkout.summary-line": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "One line item in the order summary (label + amount), optionally with an 'Ändern' Link.",
+			"usedIn": "checkout.summary-card",
+			"componentsUsed": ["Link", "Divider"],
+			"plan": null,
+			"planSketch": {
+				"type": "ContainerHorizontal",
+				"spread": true,
+				"children": [
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Line label>",
+						"fills": "color.text.weak"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Amount>",
+						"fills": "color.text.strong",
+						"hugWidth": true
+					}
+				]
+			}
+		},
+		"checkout.summary-card": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "Order summary: several summary lines, a Divider, then a bold total. Read-only except edit Links.",
+			"componentsUsed": ["Card", "Divider", "Link"],
+			"plan": null,
+			"planSketch": {
+				"type": "Card",
+				"props": { "elevationLevel": "2" },
+				"spacing": "large",
+				"children": [
+					{
+						"type": "Heading",
+						"as": "h3",
+						"content": "<Summary title>",
+						"fills": "color.text.strong"
+					},
+					{ "$ref": "checkout.summary-line" },
+					{ "$ref": "checkout.summary-line" },
+					{ "type": "Divider" },
+					{
+						"type": "ContainerHorizontal",
+						"spread": true,
+						"children": [
+							{
+								"type": "Body",
+								"size": "Large",
+								"content": "<Total label>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Body",
+								"size": "Large",
+								"content": "<Total amount>",
+								"fills": "color.text.strong",
+								"hugWidth": true
+							}
+						]
+					}
+				]
+			}
+		},
+		"checkout.action-buttons": {
+			"source": "TO CAPTURE",
+			"requiresHumanReview": true,
+			"purpose": "Flow navigation: a secondary 'Zurück' next to the single Brand forward/pay action.",
+			"componentsUsed": ["Button"],
+			"note": "≤1 Brand button. 'Zurück' is ghost/outlined and only valid because it sits next to the stronger Brand button.",
+			"plan": null,
+			"planSketch": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"hugWidth": true,
+				"children": [
+					{
+						"type": "Button",
+						"props": { "variant": "ghost", "iconOnly": false },
+						"label": "<Zurück>"
+					},
+					{
+						"type": "Button",
+						"props": { "variant": "brand", "iconOnly": false },
+						"label": "<Weiter / Zahlungspflichtig bestellen>"
+					}
+				]
+			}
+		}
+	}
+}

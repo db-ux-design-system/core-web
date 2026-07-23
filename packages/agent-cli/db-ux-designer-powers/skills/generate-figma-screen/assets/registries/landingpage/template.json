@@ -1,0 +1,46 @@
+{
+	"_meta": {
+		"schema": "db-ux/template/v1",
+		"pageType": "landingpage",
+		"purpose": "Page template for a landing page: which section patterns are required / optional / forbidden, and the order rules. Compose a page by SELECTING sections per content (see sections.json → whenToUse) and ordering them per this template — NOT by copying examples.json. examples.json is only a density/style reference.",
+		"source": "Derived from Figma 'Landingpage - Examples' (362:1807) + 'Blocks Pattern' (730:21779)."
+	},
+	"contentWidth": "Medium (1024)",
+	"order": ["hero", "body", "cta"],
+	"slots": {
+		"hero": {
+			"required": true,
+			"position": "first",
+			"allow": ["landingpage.hero"],
+			"note": "Exactly one hero, always the first section after the Header."
+		},
+		"body": {
+			"required": true,
+			"position": "middle",
+			"repeatable": true,
+			"minSections": 2,
+			"maxSections": 5,
+			"allow": [
+				"landingpage.feature-grid",
+				"landingpage.media-text-rows",
+				"landingpage.highlight",
+				"landingpage.card-grid"
+			],
+			"note": "Choose 2–5 body sections by mapping each content group to the best-fit pattern via sections.json → whenToUse. Do NOT reuse the same pattern for every group when the content types differ."
+		},
+		"cta": {
+			"required": true,
+			"position": "last",
+			"allow": ["landingpage.cta-centered"],
+			"note": "Exactly one closing CTA, always the last section."
+		}
+	},
+	"rules": [
+		"Header is always the first child (logo = home; no 'Startseite' nav item).",
+		"Zebra backgrounds: hero on color.background.canvas, then alternate surface/canvas across sections.",
+		"One consistent centered contentWidth for the whole page.",
+		"Action hierarchy: the hero owns the page's primary action (Brand, may add a Filled secondary); the closing CTA is Brand; body sections use Links, never a Brand button per card.",
+		"Avoid a mono-layout: if the body has heterogeneous content (e.g. a benefit story AND a set of options), use different patterns for them (e.g. media-text-rows + card-grid), not the same grid twice.",
+		"Every body section MUST carry a title (h2); inner headings are h3/h4."
+	]
+}

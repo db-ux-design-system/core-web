@@ -1,0 +1,268 @@
+{
+	"_meta": {
+		"schema": "db-ux/blocks/v1",
+		"pageType": "dashboard",
+		"purpose": "Palette of the ACTUAL dashboard blocks captured 1:1 from the Figma 'Dashboard - Blocks' catalog (section 725:24527). Each block is a registry-valid Composition Plan fragment with <placeholders>. Assemble a dashboard by placing these following dashboard/example.json. Every `plan` uses ONLY registry-backed components, tokens and text styles.",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, node 721:6689 (Dashboard - Blocks) → section 725:24527 (Dashboard Blocks).",
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment. Composite blocks (rows/grids/lists) reference their item block. The agent expands $ref when authoring the Composition Plan — the render runtime never sees $ref.",
+		"capture": "Blocks with `plan: null` are referenced by `source` node id but not yet renderable (e.g. the progress-bar / avatar data-table cell). Capture/extend before use — never approximate.",
+		"noPlaceholders": "FILL every placeholder with real content, do not leave DS defaults. A Select MUST carry `text: { label, value }` (never 'Label'/'Input Text'). A functional Icon MUST carry a glyph `key` (from the DB Theme Icons library); an icon-only Button MUST carry an icon glyph via `applyProps`. If no real label/value/glyph/action applies, OMIT the node entirely rather than emit an empty ✕ / 'Input Text' placeholder."
+	},
+	"blocks": {
+		"dashboard.section-header": {
+			"source": "725:17488",
+			"purpose": "Section title + description block: an h2 Heading over a muted description. Opens a dashboard section. The runtime builds this automatically from a Section's `title`/`description`, so author it via those props rather than nesting this block manually.",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "xs",
+				"align": "left",
+				"children": [
+					{
+						"type": "Heading",
+						"as": "h2",
+						"content": "<Title>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Description>",
+						"fills": "color.text.weak"
+					}
+				]
+			}
+		},
+		"dashboard.metric-card": {
+			"source": "730:11893 → 0:23 (Dashboard - Example metric card)",
+			"purpose": "Compact KPI card: a muted label, a large value Heading, and a Badge + short delta/trend note. Read-only, no action. Used in a 3-up metric row. (The reference card shows a decorative trailing arrow; it is omitted here because a generic Icon has no meaningful glyph — never render an empty placeholder icon.)",
+			"usedIn": "dashboard.metric-row",
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "medium",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "sm",
+						"align": "left",
+						"children": [
+							{
+								"type": "Body",
+								"size": "(Def) Medium",
+								"content": "<Label>",
+								"fills": "color.text.weak"
+							},
+							{
+								"type": "Heading",
+								"as": "h3",
+								"content": "<Value>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "ContainerHorizontal",
+								"gap": "xs",
+								"children": [
+									{
+										"type": "Badge",
+										"props": { "content": "text" },
+										"label": "<Delta>",
+										"semantic": "<Informational|Successful|Warning|Critical>",
+										"hugWidth": true
+									},
+									{
+										"type": "Body",
+										"size": "Small",
+										"content": "<Trend note?>",
+										"fills": "color.text.muted",
+										"hugWidth": true
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		"dashboard.metric-row": {
+			"source": "730:11893 → 0:21 (metric card row)",
+			"purpose": "A row of 3 metric cards (auto equal-height grid). The typical first content block of a dashboard, directly under the section header.",
+			"plan": {
+				"type": "Grid",
+				"children": [
+					{ "$ref": "dashboard.metric-card" },
+					{ "$ref": "dashboard.metric-card" },
+					{ "$ref": "dashboard.metric-card" }
+				]
+			}
+		},
+		"dashboard.content-card": {
+			"source": "725:17484",
+			"purpose": "Rich content/teaser card: a title Heading, a description, a Badge + meta row, a Tag + meta row, and a single navigation Link. The whole card describes one entity (project, report, entry).",
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "medium",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "sm",
+						"align": "left",
+						"children": [
+							{
+								"type": "Heading",
+								"as": "h3",
+								"content": "<Title>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Body",
+								"size": "(Def) Medium",
+								"content": "<Description>",
+								"fills": "color.text.weak"
+							},
+							{
+								"type": "ContainerHorizontal",
+								"gap": "xs",
+								"children": [
+									{
+										"type": "Badge",
+										"props": { "content": "text" },
+										"label": "<Status>",
+										"semantic": "<Informational|Successful|Warning|Critical>",
+										"hugWidth": true
+									},
+									{
+										"type": "Body",
+										"size": "Small",
+										"content": "<Meta?>",
+										"fills": "color.text.muted",
+										"hugWidth": true
+									}
+								]
+							},
+							{
+								"type": "Link",
+								"props": {
+									"target": "internal",
+									"brand": false
+								},
+								"label": "<Details?>"
+							}
+						]
+					}
+				]
+			}
+		},
+		"dashboard.table-row": {
+			"source": "725:17700 → 0:218 (data-table card row)",
+			"purpose": "A single data-table row: a Card wrapping a full-width Grid of text cells (4 columns here; the reference uses 6). Use for tabular records under a header row.",
+			"usedIn": "dashboard.data-table",
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "small",
+				"children": [
+					{
+						"type": "Grid",
+						"gridLayout": "25-25-25-25",
+						"children": [
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Cell 1>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Cell 2>",
+								"fills": "color.text.weak"
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Cell 3>",
+								"fills": "color.text.weak"
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Cell 4>",
+								"fills": "color.text.weak"
+							}
+						]
+					}
+				]
+			}
+		},
+		"dashboard.data-table": {
+			"source": "725:17700 / 725:17778",
+			"purpose": "Tabular data: a header row (bold column labels) followed by table rows. In the richest reference (Dashboard - Example) a cell may carry an avatar Image + text or an inline progress-bar (LoadingIndicator, Concept); those cell decorations are NOT yet exposed by the render runtime, so the text-cell form (dashboard.table-row) is the captured, renderable variant.",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "2xs",
+				"children": [
+					{
+						"type": "Grid",
+						"gridLayout": "25-25-25-25",
+						"children": [
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Header 1>",
+								"fills": "color.text.muted"
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Header 2>",
+								"fills": "color.text.muted"
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Header 3>",
+								"fills": "color.text.muted"
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Header 4>",
+								"fills": "color.text.muted"
+							}
+						]
+					},
+					{ "$ref": "dashboard.table-row" },
+					{ "$ref": "dashboard.table-row" },
+					{ "$ref": "dashboard.table-row" }
+				]
+			}
+		},
+		"dashboard.toolbar": {
+			"source": "725:19075 (also 725:18903 / 725:19176)",
+			"purpose": "Filter toolbar row above a data table: Select filters, each carrying a real label + selected value. Only place it when concrete filters exist — fill EVERY Select's `text` with a real label + value; never leave the default 'Label'/'Input Text'. Trailing icon-button actions are optional and require a real glyph via `applyProps` (INSTANCE_SWAP icon key) — omit them if no glyph/action is defined (never an empty ✕ button).",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"children": [
+					{
+						"type": "Select",
+						"props": { "label": "floating", "state": "selected" },
+						"text": { "label": "<Filter 1>", "value": "<Wert 1>" }
+					},
+					{
+						"type": "Select",
+						"props": { "label": "floating", "state": "selected" },
+						"text": { "label": "<Filter 2>", "value": "<Wert 2>" }
+					},
+					{
+						"type": "Select",
+						"props": { "label": "floating", "state": "selected" },
+						"text": { "label": "<Filter 3?>", "value": "<Wert 3?>" }
+					}
+				]
+			}
+		}
+	}
+}

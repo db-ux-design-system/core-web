@@ -1,0 +1,62 @@
+{
+	"_meta": {
+		"schema": "db-ux/template/v1",
+		"pageType": "checkout",
+		"status": "proposal",
+		"requiresHumanReview": true,
+		"purpose": "PROPOSED page template for one step of a transactional purchase/booking flow. Which section patterns are required / optional / forbidden, and the order rules. NOT yet established — see PROPOSAL.md. Compose by SELECTING sections per content (sections.json → whenToUse) and ordering them per this template.",
+		"appliesGuidelines": [
+			"context/layout-guidelines.md",
+			"context/gestaltgesetze.md"
+		],
+		"source": "TO CAPTURE — derive from a real Figma checkout reference screen (record its node id)."
+	},
+	"contentWidth": "Medium (1024)",
+	"spacing": "small",
+	"order": ["progress", "notice", "body", "action-bar"],
+	"slots": {
+		"progress": {
+			"required": true,
+			"position": "first",
+			"allow": ["checkout.stepper"],
+			"note": "Exactly one step indicator, always the first section after the Header. Read-only. Blocked on the Stepper component gap (PROPOSAL.md #1)."
+		},
+		"notice": {
+			"required": false,
+			"position": "after-progress",
+			"allow": ["checkout.notice"],
+			"note": "Optional single Notification for step-level info/errors. Drop when no message."
+		},
+		"body": {
+			"required": true,
+			"position": "middle",
+			"repeatable": true,
+			"minSections": 1,
+			"maxSections": 4,
+			"allow": [
+				"checkout.option-list",
+				"checkout.form-fieldset",
+				"checkout.summary"
+			],
+			"note": "Choose body sections by mapping each content group to the best-fit pattern via sections.json → whenToUse: fare choice → option-list; data entry → form-fieldset; review → summary. A step that enters data alongside a live summary uses a two-column layout (form + summary aside) — confirm the Grid layout against the captured reference."
+		},
+		"action-bar": {
+			"required": true,
+			"position": "last",
+			"allow": ["checkout.action-bar"],
+			"note": "Exactly one action bar, always last: secondary 'Zurück' + single Brand forward action."
+		}
+	},
+	"rules": [
+		"Header is always the first child (logo = home; no 'Startseite' nav item; meta-nav/action icons off unless a real action exists).",
+		"Progress/stepper is read-only and always first; it never carries a Button.",
+		"Action hierarchy: exactly ONE Brand button per step (the forward/pay action); 'Zurück' is a ghost/outlined secondary in the same button group; fare options are a Radio group (equal-item-action), never one Brand button per option; summary edit affordances are Links.",
+		"Every body section MUST carry a title (h2); inner headings (fieldset subheadings, option titles) are h3/h4.",
+		"Spacing 'small' throughout for a dense, form-focused layout; one consistent centered contentWidth.",
+		"Backgrounds: first section color.background.canvas, then alternate surface/canvas (zebra).",
+		"NEVER emit empty placeholders (empty Select 'Input Text', glyphless icons, ✕ icon buttons). Only add a field/Select/Icon/Button once its label/value/glyph/action is provided.",
+		"A clickable option card has exactly one interactive element (the Radio) — no nested button/link inside it.",
+		"Arrangement (layout-guidelines.md → 'Reihenfolgen'): equal/comparable content is arranged HORIZONTALLY (fare options as equal-height cards; short field pairs like Vorname/Nachname, PLZ/Ort), sequential/prioritized content VERTICALLY (fieldsets, section order). Combine both only when each group's reading order stays unambiguous; fall back to vertical responsively when width is tight.",
+		"Grouping (gestaltgesetze.md): keep equal elements identically styled (Ähnlichkeit); place related elements close and separate groups via cards/surfaces (Nähe, gemeinsame Regionen); make exactly one element the most prominent — the Brand forward action (Prägnanz)."
+	]
+}

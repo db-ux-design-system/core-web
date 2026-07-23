@@ -1,0 +1,61 @@
+{
+	"_meta": {
+		"schema": "db-ux/sections/v1",
+		"pageType": "landingpage",
+		"purpose": "The content-driven selection layer. Each section maps a CONTENT SHAPE / INTENT to a concrete section pattern. To compose a page: split the prompt into content groups, match each group to the section whose `whenToUse` fits best, then order them per template.json. This replaces 'copy one example' and is what makes layouts differ by content instead of by chance.",
+		"usage": "Pick, do not invent. If a content group matches no section, STOP and flag for human review (never approximate). Fill every placeholder with real content; drop a node only when no content applies.",
+		"patternSource": "Each `pattern` id resolves in landingpage/block-patterns.json; each block id in landingpage/blocks.json."
+	},
+	"sections": {
+		"hero": {
+			"intent": "Open the page: the core promise + the primary action.",
+			"whenToUse": "Always, once, as the first section. The single most important message + the page's primary CTA (Brand), optionally a Filled secondary.",
+			"pattern": "landingpage.hero",
+			"cardinality": "1",
+			"level": "section"
+		},
+		"feature-grid": {
+			"intent": "Present a set of EQUIVALENT items that each have (or suit) an image — features, destinations, product highlights.",
+			"whenToUse": "3–6 equal items where each benefits from a visual (e.g. Reiseziele, Produkt-Features mit Bild). Each item = image-teaser (image + heading + short text + Link). Use card teasers instead only when there is no meaningful imagery (→ card-grid).",
+			"pattern": "landingpage.feature-grid",
+			"itemBlock": "landingpage.image-teaser",
+			"cardinality": "3-6 items",
+			"level": "content",
+			"wrapInTitledSection": true
+		},
+		"card-grid": {
+			"intent": "Present a set of EQUIVALENT options WITHOUT strong imagery — fare tiers, help topics, resources, FAQ entries.",
+			"whenToUse": "3–6 equal, text-first options (e.g. Tickets/Tarife, Service-Themen, Ressourcen). Each item = a Card with heading + description + Link. Prefer this over feature-grid when images would be filler.",
+			"pattern": "landingpage.feature-grid",
+			"itemBlock": "landingpage.teaser-card",
+			"cardinality": "3-6 items",
+			"level": "content",
+			"wrapInTitledSection": true,
+			"note": "Same grid pattern as feature-grid but composed from card teasers (no image) instead of image teasers."
+		},
+		"media-text-rows": {
+			"intent": "Explain a sequence / story / how-it-works where each point needs a paragraph + a supporting image.",
+			"whenToUse": "2–4 explanatory points that are NOT interchangeable list items — a process, benefits that need context, before/after. Alternate image side row to row for rhythm.",
+			"pattern": "landingpage.media-text-row",
+			"altPattern": "landingpage.media-text-row-reversed",
+			"cardinality": "2-4 rows (alternating)",
+			"level": "content",
+			"wrapInTitledSection": true
+		},
+		"highlight": {
+			"intent": "Spotlight ONE standout item — a launch, a featured offer, a key announcement.",
+			"whenToUse": "Exactly one thing to emphasize between grids/rows. A single wide Card with image + text + Link. Never use for a set of equal items.",
+			"pattern": "landingpage.highlight-card",
+			"cardinality": "1",
+			"level": "content",
+			"wrapInTitledSection": true
+		},
+		"cta-centered": {
+			"intent": "Close the page with a single conversion action.",
+			"whenToUse": "Always, once, as the last section. Centered heading + a single Brand button (or Brand + Filled group).",
+			"pattern": "landingpage.cta-centered",
+			"cardinality": "1",
+			"level": "section"
+		}
+	}
+}

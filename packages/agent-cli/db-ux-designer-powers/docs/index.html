@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de" data-density="regular">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DB UX Designer Power – Anleitung für Designer:innen</title>
+
+<!-- Echtes DB UX Design System CSS (veröffentlichte Bundles via CDN).
+     Hinweis: öffentlich verfügbar ist das Whitelabel-Theme; die DB-Brand
+     (Rot, DB-Fonts) ist markenrechtlich geschützt und hier bewusst nicht geladen. -->
+<style>
+  @layer whitelabel-theme, db-ux;
+  @import url("https://unpkg.com/@db-ux/core-foundations/build/styles/theme/rollup.css") layer(whitelabel-theme);
+  @import url("https://unpkg.com/@db-ux/core-components/build/styles/bundle.css") layer(db-ux);
+</style>
+
+<!-- Nur Seiten-Layout (kein Nachbau von Komponenten). Unlayered = gewinnt nie
+     gegen Komponenten-Interna, betrifft nur das Doku-Gerüst. -->
+<style>
+  body{margin:0}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{padding:48px 0 36px;
+    background:var(--db-adaptive-bg-basic-level-2-default,#eef1f4)}
+  .stack>*+*{margin-block-start:var(--db-spacing-fixed-md,16px)}
+  .section{padding-block:var(--db-spacing-fixed-xl,32px)}
+  .section:nth-of-type(even){background:var(--db-adaptive-bg-basic-level-2-default,#f4f6f8)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--db-spacing-fixed-md,16px)}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .row{display:flex;gap:var(--db-spacing-fixed-sm,12px);align-items:center;flex-wrap:wrap}
+  .between{display:flex;gap:var(--db-spacing-fixed-md,16px);justify-content:space-between;align-items:flex-start}
+  .muted{color:var(--db-adaptive-on-bg-basic-emphasis-80-default,#6b7682)}
+  .weak{color:var(--db-adaptive-on-bg-basic-emphasis-90-default,#4a5561)}
+  .toc ul{columns:2;gap:24px;padding-left:18px}
+  @media(max-width:680px){.toc ul{columns:1}}
+  .num{inline-size:28px;block-size:28px;border-radius:50%;flex:0 0 28px;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--db-adaptive-on-bg-basic-emphasis-100-default,#131821);
+    color:var(--db-adaptive-bg-basic-level-1-default,#fff);font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap stack">
+    <span class="db-tag" data-semantic="informational" data-emphasis="strong">DB UX Designer Power</span>
+    <h1 data-headline-size="2xl">Wie diese Power funktioniert – und wie du damit bessere Screens baust</h1>
+    <p class="weak">Eine Anleitung in Alltagssprache: kein Code-Wissen nötig. Du erfährst, was im
+    Hintergrund passiert und mit welchen Design-Regeln du das Ergebnis steuerst. Diese Seite selbst
+    ist mit echten DB UX Komponenten (<code>db-card</code>, <code>db-button</code>, <code>db-tag</code>,
+    <code>db-link</code>) und dem Foundation-CSS gebaut.</p>
+  </div>
+</header>
+
+<main>
+  <div class="section"><div class="wrap">
+    <nav class="db-card toc" data-elevation-level="1" data-spacing="small" aria-label="Inhalt">
+      <strong>Inhalt</strong>
+      <ul>
+        <li><a class="db-link" href="#was">Was macht diese Power?</a></li>
+        <li><a class="db-link" href="#aufbau">Wie sie aufgebaut ist</a></li>
+        <li><a class="db-link" href="#ablauf">Der Ablauf in 4 Schritten</a></li>
+        <li><a class="db-link" href="#regeln">Design-Regeln zum Optimieren</a></li>
+        <li><a class="db-link" href="#arbeiten">So arbeitest du damit</a></li>
+        <li><a class="db-link" href="#glossar">Kleines Glossar</a></li>
+      </ul>
+    </nav>
+  </div></div>
+
+  <section class="section" id="was"><div class="wrap stack">
+    <h2 data-headline-size="lg">Was macht diese Power?</h2>
+    <p>Du beschreibst in Worten, welchen Screen du brauchst (z. B. „ein Dashboard zur Sicherheit am
+    Bahnhof"). Die Power baut daraus einen fertigen, <strong>DB UX Design System v3-konformen
+    Screen direkt in Figma</strong> – nur aus echten, offiziellen Bausteinen. Sie erfindet nichts
+    dazu: Farben, Schriften, Abstände und Komponenten stammen aus dem Design System.</p>
+    <div class="db-card" data-elevation-level="1" data-spacing="small">
+      <div class="stack">
+        <div class="row"><span class="db-tag" data-semantic="successful" data-emphasis="strong">Immer</span>
+          <span>offizielle DB-Komponenten, gebundene Farb-Tokens, registrierte Textstile.</span></div>
+        <div class="row"><span class="db-tag" data-semantic="critical" data-emphasis="strong">Nie</span>
+          <span>nachgebaute Buttons, freie HEX-Farben oder selbst gesetzte Schriftgrößen.</span></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section" id="aufbau"><div class="wrap stack">
+    <h2 data-headline-size="lg">Wie sie aufgebaut ist</h2>
+    <p class="muted">Drei Bausteine arbeiten zusammen. Stell dir ein Kochrezept vor:</p>
+    <div class="grid">
+      <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+        <h3 data-headline-size="sm">1. Der Bauplan (Composition Plan)</h3>
+        <p class="weak">Eine strukturierte Beschreibung des Screens – wie eine Einkaufsliste plus
+        Reihenfolge: welche Abschnitte, welche Karten, welche Texte. Reiner Inhalt, noch kein Bild.</p>
+      </div></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+        <h3 data-headline-size="sm">2. Die Render-Runtime (die Küche)</h3>
+        <p class="weak">Ein geprüftes Programm, das den Bauplan in echte Figma-Ebenen umsetzt. Es
+        kennt alle Figma-Fallstricke und setzt Abstände, Größen und Bindungen korrekt.</p>
+      </div></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+        <h3 data-headline-size="sm">3. Die Registries (die Speisekarte)</h3>
+        <p class="weak">Nachschlage-Listen aller erlaubten Zutaten: Komponenten, Farb-Tokens und
+        Textstile. Was nicht auf der Liste steht, wird nicht verwendet.</p>
+      </div></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+        <h3 data-headline-size="sm">Der Prüfer (Audit)</h3>
+        <p class="weak">Prüft das Ergebnis automatisch: keine überlaufenden Texte, kein fehlender
+        Header, richtige Hell/Dunkel-Abfolge. Erst wenn alles passt, gilt der Screen als fertig.</p>
+      </div></div>
+    </div>
+  </div></section>
+
+  <section class="section" id="ablauf"><div class="wrap stack">
+    <h2 data-headline-size="lg">Der Ablauf in 4 Schritten</h2>
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <div class="row"><span class="num">1</span><span><strong>Du beschreibst den Screen.</strong>
+        In normaler Sprache, plus ein Figma-Link, auf den gebaut werden soll.</span></div>
+      <div class="row"><span class="num">2</span><span><strong>Bauplan wird erstellt.</strong>
+        Deine Beschreibung wird zur Inhalts-Liste und gegen die Registries geprüft.</span></div>
+      <div class="row"><span class="num">3</span><span><strong>Screen wird in Figma gebaut.</strong>
+        Als echte Komponenten – ein normaler Frame, den du weiterbearbeiten kannst.</span></div>
+      <div class="row"><span class="num">4</span><span><strong>Prüfung &amp; Feinschliff.</strong>
+        Der Prüfer meldet Probleme; du gibst Feedback in Worten, die Power baut gezielt nach.</span></div>
+    </div></div>
+  </div></section>
+
+  <section class="section" id="regeln"><div class="wrap stack">
+    <h2 data-headline-size="lg">Design-Regeln zum Optimieren</h2>
+    <p class="muted">Das sind die Stellschrauben. Nutze diese Begriffe in deinem Feedback – die
+    Power versteht sie.</p>
+
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Nur offizielle Komponenten</h3>
+      <p class="weak">Buttons, Cards, Tags, Inputs, Navigation kommen immer aus dem Design System.
+      Ein Element „nachbauen" oder umfärben, um eine Variante vorzutäuschen, ist tabu. Fehlt etwas,
+      wird es gemeldet – nicht improvisiert.</p>
+    </div></div>
+
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Farbe &amp; Betonung (Emphasis)</h3>
+      <p class="weak">Alle Farben sind gebundene Tokens. Für Text: <strong>100</strong> normal/betont,
+      <strong>90</strong> leicht zurückgenommen, <strong>80</strong> Meta/Nebeninfo. Die Markenfarbe
+      ist <em>nur Akzent</em> (Text, Icon, Rand) – nie große Fläche.</p>
+      <div class="row"><span class="db-tag" data-semantic="successful" data-emphasis="strong">Richtig</span>
+        <span>Gewicht und Farbe in dieselbe Richtung: <strong>fett + 100</strong> oder normal + 80.</span></div>
+      <div class="row"><span class="db-tag" data-semantic="critical" data-emphasis="strong">Falsch</span>
+        <span>fett <em>und</em> Farbe 80 – das widerspricht sich.</span></div>
+    </div></div>
+
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Typografie</h3>
+      <p class="weak">Jeder Text nutzt einen registrierten Textstil (Display, Headline, Body …).
+      Freie Schriftgrößen gibt es nicht. Der Kennzahl-Wert ist groß, sein Label klein und
+      zurückgenommen – so wird die Zahl zum Blickfang.</p>
+    </div></div>
+
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Abschnitte, Zebra &amp; Abstand</h3>
+      <p class="weak">Jeder Abschnitt hat eine Überschrift und wechselt hell/etwas-dunkler (Zebra).
+      <strong>Dashboards &amp; B2B</strong> nutzen enge Abstände (<code>spacing: small</code>);
+      Marketing/Landingpages luftigere.</p>
+    </div></div>
+
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Volle Breite statt gequetschter Spalten</h3>
+      <div class="between">
+        <div><strong>Info links</strong><br><span class="muted">einzeilig, volle Breite</span></div>
+        <div class="row"><span class="db-tag" data-semantic="critical">Kritisch</span>
+          <span class="db-tag" data-semantic="warning">In Bearbeitung</span></div>
+      </div>
+      <p class="weak">Listen-, Status- und Timeline-Zeilen nutzen die ganze Kartenbreite: Info links,
+      Status/Aktion rechts (im Bauplan: <code>spread</code>). So bleibt Text einzeilig statt in eine
+      schmale Spalte gequetscht mit Leerraum daneben.</p>
+    </div></div>
+  </div></section>
+
+  <section class="section" id="interaktion"><div class="wrap stack">
+    <h2 data-headline-size="lg">Buttons, Links &amp; klickbare Cards</h2>
+    <div class="grid">
+      <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+        <h3 data-headline-size="sm">Kommando → Button</h3>
+        <p class="weak">Etwas passiert/ändert sich (Zuweisen, Senden, Löschen). Karte selbst nicht
+        klickbar.</p>
+        <button class="db-button" data-variant="brand" type="button">Zuweisen</button>
+      </div></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+        <h3 data-headline-size="sm">Navigation → Link / Link-Card</h3>
+        <p class="weak">Ein Ziel, ganze Karte passt → ganze Karte klickbar, optional sichtbarer
+        Hinweis-Link. Kein Button darin.</p>
+        <a class="db-link" href="#">Details</a>
+      </div></div>
+    </div>
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <div class="row"><span class="db-tag" data-semantic="critical" data-emphasis="strong">Wichtig</span>
+        <span>In einer klickbaren Karte darf <strong>kein</strong> Button und kein zweiter Link
+        stecken. Eine klickbare Karte ist genau <em>ein</em> Klickziel – sonst wird es für Tastatur
+        und Screenreader mehrdeutig (Barrierefreiheit).</span></div>
+    </div></div>
+    <p class="weak"><strong>Landingpage vs. Dashboard:</strong> Landingpage = schmale zentrierte
+    Spalte, große Hero-Headline, luftig, ein Brand-CTA. Dashboard/B2B = volle Breite, enge Abstände,
+    viele Kennzahlen/Listen, schnell scannbar. Ein Dashboard soll nicht wie Marketing aussehen.</p>
+  </div></section>
+
+  <section class="section" id="arbeiten"><div class="wrap stack">
+    <h2 data-headline-size="lg">So arbeitest du damit</h2>
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Eine gute Anfrage stellen</h3>
+      <p class="weak">Sag <em>was</em> für ein Screen, <em>für wen</em>, welche <em>Inhalte</em> und
+      den <em>Figma-Link mit node-id</em>:</p>
+      <p><code>DB Designer: Erstelle ein Dashboard „Sicherheit am Bahnhof" mit KPI-Übersicht,
+      Status-Karten pro Bahnhof, Vorfall-Liste und Maßnahmen. https://figma.com/design/…?node-id=177-1091</code></p>
+    </div></div>
+    <div class="db-card" data-elevation-level="1" data-spacing="small"><div class="stack">
+      <h3 data-headline-size="sm">Gutes Feedback geben</h3>
+      <div class="row"><span class="db-tag" data-semantic="successful" data-emphasis="strong">Wirkt gut</span>
+        <span>„Incident-Liste über volle Breite, Badges rechts", „Sections auf spacing small",
+        „Zeit normal, Titel fett", „Statuskarten als klickbare Link-Cards statt Button".</span></div>
+      <p class="muted">Tipp: Beschreibe die <em>Absicht</em> („die Zahl soll der Blickfang sein"),
+      nicht Pixelwerte. Die Power kennt die passenden Tokens und Regeln.</p>
+    </div></div>
+  </div></section>
+
+  <section class="section" id="glossar"><div class="wrap stack">
+    <h2 data-headline-size="lg">Kleines Glossar</h2>
+    <div class="grid">
+      <div class="db-card" data-elevation-level="1" data-spacing="small">
+        <strong>Composition Plan / Bauplan</strong><br>
+        <span class="weak">Strukturierte Inhalts-Beschreibung des Screens, aus der gebaut wird.</span></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small">
+        <strong>Token</strong><br>
+        <span class="weak">Ein benannter Design-Wert (Farbe, Abstand …) aus dem DS – kein freier Wert.</span></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small">
+        <strong>Emphasis 100/90/80</strong><br>
+        <span class="weak">Betonungsstufen für Text: normal, leicht zurückgenommen, Nebeninfo.</span></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small">
+        <strong>Zebra</strong><br>
+        <span class="weak">Hell/Dunkel-Wechsel aufeinanderfolgender Abschnitte zur Unterscheidung.</span></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small">
+        <strong>spread</strong><br>
+        <span class="weak">Zeile über die volle Breite: Inhalt links, Status/Aktion rechts.</span></div>
+      <div class="db-card" data-elevation-level="1" data-spacing="small">
+        <strong>Link-Card</strong><br>
+        <span class="weak">Eine ganze Karte, die als ein einziger Link funktioniert – ohne Button darin.</span></div>
+    </div>
+    <p class="muted">Die vollständigen technischen Regeln stehen in
+    <code>context/figma-generation.md</code>, der Skill-Prozess in
+    <code>skills/generate-figma-screen/</code>. Diese Seite lädt das DB UX CSS als
+    Whitelabel-Theme via CDN; die DB-Brand (Rot, DB-Fonts) ist markenrechtlich geschützt und hier
+    nicht enthalten.</p>
+  </div></section>
+</main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+	"_meta": {
+		"library": "DB UX DS v3 - DB Theme Icons",
+		"purpose": "Comfort layer: resolve a functional icon by its DB Theme name (e.g. \"arrow_right\") to its Figma componentKey, so a plan can write { \"type\": \"Icon\", \"name\": \"arrow_right\" } instead of a raw key. The raw-key path ({ \"type\": \"Icon\", \"key\": \"...\" }) still works and takes precedence.",
+		"nameNormalization": "Plan names use underscores (arrow_right). The Figma icon component_set name uses hyphens (arrow-right). Lookup is case-insensitive and treats _, -, and spaces as equivalent.",
+		"howToExtend": "Icons not listed here are resolved on demand: call search_design_system with the hyphenated icon name (e.g. \"arrow-right\") scoped to library \"DB UX DS v3 - DB Theme Icons\", take the returned componentKey (a component_set), and add it below AND to ICON_KEYS in db-figma-runtime.js, then rebuild via `node build-runtime.cjs`.",
+		"fallback": "An unresolved name falls back to the generic icon placeholder (ICON_KEY) — never fails the render.",
+		"iconType": "component_set (importComponentSetByKeyAsync -> defaultVariant.createInstance)"
+	},
+
+	"icons": {
+		"arrow_right": "22c98058cb5cf55ae3c65380fc1f5a300a47ebbd",
+		"arrow_up_right": "816c8cc7c14dc6bc4dd8afd3896d0260302e3691",
+		"chevron_right": "43be99bb7ad7fde8b308cf5db3a5e8932cb58de7",
+		"double_chevron_right": "54e86bb68e75a34fd1adb2e1334ca091ed6f184e",
+		"check": "1fa18e489d6f4ca39a260cc6b0c3a85fb6c64814",
+		"check_circle": "a2b00e107d95dc22282cb43182e5ba0f890c3025",
+		"magnifying_glass": "ddc16c3a7602673fc41359399002744a739cae4c",
+		"funnel": "f0b86c216082d38aa48d5e345e8ff44b8926d232",
+		"calendar": "e7ae6334b04b51ad2de527d056a6a99255dfe177",
+		"shield_check": "8ac3f6c5e837ec79dd3ea3a258a38df92518e87a",
+		"information_circle": "14bcaf471daf970f0da7ba9535b0cb8cb262bc93",
+		"clock": "10fe0413ea8b23091b7dbb207983402f94fe4397",
+		"map_pin": "0b5410dcb5112a34defc38455fd1eee4de903a13",
+		"star": "3239a77a84015a226cf69ea90ba4dcf74ba65842",
+		"moon": "d59d11019467c5a5c9b57ef6e39878b59cc7c53c",
+		"ticket_horizontal": "4f569422bebfc42b3e52be3df4be1a9efffe74d6",
+		"seat_window": "9ab1c7eea15bdaadc8752282c4750d5560c7400d",
+		"train": "f6626ec977d9191b3556118c0d46a5650e60c4ca",
+		"train_station": "cb42c815de9f55a669ca1837bb2770f077ab2906",
+		"local_train": "e9b31b9807d5e764b76ac5fe7c0dbf6bbe3119cb",
+		"tram": "c970c9b46b13d15bd197b161628b287ae88f777a",
+		"bus": "143c8c8555460bc5b46e6db6ce63e39534c1a722",
+		"bike": "d4327a3717c2f797247b35dbd9dc9ae544fb7b01"
+	}
+}

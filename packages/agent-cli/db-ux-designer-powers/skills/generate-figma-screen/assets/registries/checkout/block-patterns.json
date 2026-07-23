@@ -1,0 +1,92 @@
+{
+	"_meta": {
+		"schema": "db-ux/block-patterns/v1",
+		"pageType": "checkout",
+		"status": "proposal",
+		"requiresHumanReview": true,
+		"purpose": "PROPOSED section-level patterns for a transactional purchase/booking flow. NOT yet established. Each pattern is a `plan: null` STUB pending 1:1 capture from a real Figma checkout reference. `level` says whether the pattern IS a full Section or is CONTENT to nest inside a titled Section.",
+		"arrangementGuidelines": "Arrangement (horizontal vs. vertical) follows context/layout-guidelines.md → 'Reihenfolgen'; grouping follows context/gestaltgesetze.md (Ähnlichkeit, Nähe, gemeinsame Regionen, Prägnanz). Summary: equal/comparable items → horizontal; sequential/prioritized content → vertical; responsive fallback to vertical when width is tight or readability suffers.",
+		"source": "TO CAPTURE — Figma file uI6oKmJ0qDhsEuE0nFah2W, checkout reference screen (node id to be recorded).",
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment from checkout/blocks.json. Only valid once plan is captured."
+	},
+	"patterns": {
+		"checkout.stepper": {
+			"source": "TO CAPTURE",
+			"level": "section",
+			"requiresHumanReview": true,
+			"purpose": "Full-width read-only step indicator as the first section. Blocked on the Stepper/Progress component gap (PROPOSAL.md #1).",
+			"plan": null,
+			"planSketch": { "$ref": "checkout.stepper" }
+		},
+		"checkout.option-list": {
+			"source": "TO CAPTURE",
+			"level": "content",
+			"requiresHumanReview": true,
+			"purpose": "2–6 selectable, equivalent fare/option cards bound to ONE Radio group. Nest inside a titled Section (title = h2). Equal-item-action.",
+			"arrangement": "The options are EQUIVALENT and COMPARABLE, so arrange them HORIZONTALLY (a Grid of equal-height cards) per layout-guidelines.md → 'horizontal, wenn Inhalte parallel erfasst / verglichen / als gleichwertig wahrgenommen werden'. Identical card styling expresses Gestalt-Ähnlichkeit; the Card region expresses gemeinsame Regionen; equal heights come free from a Cards-only Grid (equalHeights). Switch to a VERTICAL stack (ContainerVertical) when there are many options (>4), when each row carries long descriptions, or responsively when the width is too narrow for readable columns.",
+			"plan": null,
+			"planSketch": {
+				"type": "Grid",
+				"children": [
+					{ "$ref": "checkout.option-row" },
+					{ "$ref": "checkout.option-row" },
+					{ "$ref": "checkout.option-row" }
+				]
+			}
+		},
+		"checkout.form-fieldset": {
+			"source": "TO CAPTURE",
+			"level": "content",
+			"requiresHumanReview": true,
+			"purpose": "One or more titled fieldsets of form fields. Nest inside a titled Section. For a step that shows a live summary, place this in the left column of a two-column Grid with checkout.summary in the aside (confirm Grid layout against the reference).",
+			"arrangement": "Fields build on each other and have a clear reading order → arrange them VERTICALLY (layout-guidelines.md → 'vertikal, wenn Inhalte in klarer Reihenfolge / aufeinander aufbauend'). Only pair fields HORIZONTALLY when they are equivalent and short (e.g. Vorname/Nachname, PLZ/Ort), keeping the reading order unambiguous; collapse pairs to vertical responsively when the width is tight.",
+			"plan": null,
+			"planSketch": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"children": [
+					{ "$ref": "checkout.form-fieldset" },
+					{ "$ref": "checkout.form-fieldset" }
+				]
+			}
+		},
+		"checkout.summary": {
+			"source": "TO CAPTURE",
+			"level": "content",
+			"requiresHumanReview": true,
+			"purpose": "The order-summary card. As an aside beside the form, or full-width on a final review step.",
+			"arrangement": "As a form aside, place it HORIZONTALLY next to the fieldset (high information density, stays visible while filling — layout-guidelines.md). Keep it in its own Card so Gestalt-Nähe + gemeinsame Regionen bind the price breakdown into one unit, clearly separated from the form. On a final full-width review step, arrange the summary vertically above the action bar.",
+			"plan": null,
+			"planSketch": { "$ref": "checkout.summary-card" }
+		},
+		"checkout.notice": {
+			"source": "TO CAPTURE",
+			"level": "content",
+			"requiresHumanReview": true,
+			"purpose": "A single contextual Notification for the step (info / warning / error). Drop when no message applies.",
+			"componentsUsed": ["Notification"],
+			"plan": null,
+			"planSketch": {
+				"type": "Notification",
+				"props": {
+					"semantic": "<informational|warning|critical|successful>"
+				},
+				"headline": "<Notice title>",
+				"content": "<Notice text>"
+			}
+		},
+		"checkout.action-bar": {
+			"source": "TO CAPTURE",
+			"level": "section",
+			"requiresHumanReview": true,
+			"purpose": "Full-width closing action bar: secondary 'Zurück' + single Brand forward/pay action.",
+			"plan": null,
+			"planSketch": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"children": [{ "$ref": "checkout.action-buttons" }]
+			}
+		}
+	}
+}
