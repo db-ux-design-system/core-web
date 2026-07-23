@@ -94,6 +94,10 @@ module.exports = () => ({
 			if (['angular', 'stencil'].includes(target)) {
 				changedCode = changedCode
 					.replace(
+						'[...parent.attributes]',
+						'Array.from(parent.attributes)'
+					)
+					.replace(
 						`if (attr && attr.name === "class") {`,
 						// Pass `style` to ref
 						`else if (attr && ["style"].includes(attr.name)) {

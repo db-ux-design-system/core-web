@@ -291,21 +291,19 @@ describe('attribute-passing: generated output validation', () => {
 
 		const code = fs.readFileSync(angularOutputPath, 'utf-8');
 
-		// After Mitosis fix: the loop should iterate backwards or snapshot
-		// attributes to avoid the live NamedNodeMap shift bug.
-		// Check that the generated code does NOT use a simple forward loop
-		// that removes from parent inside the iteration.
-		const hasForwardLoopWithRemoval =
-			// Pattern: for (let i = 0; ...) { ... parent.removeAttribute
-			/for\s*\(\s*let\s+i\s*=\s*0\s*;[\s\S]*?parent\.removeAttribute/.test(
-				code
-			);
+		// After Mitosis fix: the code should snapshot attributes before iterating
+		// (e.g. Array.from or [...]) so removal from the live NamedNodeMap during
+		// iteration doesn't skip entries.
+		const hasUnsafeIteration =
+			// Bug pattern: assigns parent.attributes directly (no Array.from/spread)
+			// then removes from parent inside the loop
+			/const attributes = parent\.attributes;/.test(code) &&
+			/parent\.removeAttribute/.test(code);
 
-		// This assertion will FAIL with the current buggy Mitosis output
-		// and PASS after the Mitosis update fixes the iteration order.
+		// This assertion FAILS with the old buggy output and PASSES after the fix.
 		expect(
-			hasForwardLoopWithRemoval,
-			'enableAttributePassing should not use forward iteration with removal from a live NamedNodeMap'
+			hasUnsafeIteration,
+			'enableAttributePassing must snapshot parent.attributes before iterating (use Array.from or spread)'
 		).toBe(false);
 	});
 
@@ -316,14 +314,13 @@ describe('attribute-passing: generated output validation', () => {
 
 		const code = fs.readFileSync(stencilOutputPath, 'utf-8');
 
-		const hasForwardLoopWithRemoval =
-			/for\s*\(\s*let\s+i\s*=\s*0\s*;[\s\S]*?parent\.removeAttribute/.test(
-				code
-			);
+		const hasUnsafeIteration =
+			/const attributes = parent\.attributes;/.test(code) &&
+			/parent\.removeAttribute/.test(code);
 
 		expect(
-			hasForwardLoopWithRemoval,
-			'enableAttributePassing should not use forward iteration with removal from a live NamedNodeMap'
+			hasUnsafeIteration,
+			'enableAttributePassing must snapshot parent.attributes before iterating (use Array.from or spread)'
 		).toBe(false);
 	});
 });
