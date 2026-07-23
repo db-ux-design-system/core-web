@@ -28,7 +28,7 @@
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.10.0",
     "vue": "3.5.40",
-    "vue-router": "5.1.0"
+    "vue-router": "5.2.0"
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
@@ -36,7 +36,7 @@
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.1.4",
+    "vite": "8.1.5",
     "vue-tsc": "3.3.7"
   }
 }
