@@ -1,0 +1,19 @@
+import{i as e}from"./preload-helper-g0r1zIEC.js";import{t}from"./iframe-DSom8uuh.js";import{bt as n,ct as r,t as i}from"./src-BIwoJVt_.js";var a,o,s,c,l,u;e((()=>{i(),a=t(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBTooltip/Animation`,component:r,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{id:{control:`text`},showArrow:{control:`boolean`},emphasis:{control:`select`,options:[`weak`,`strong`]},placement:{control:`select`,options:[`top`,`bottom`,`top-start`,`top-end`,`bottom-start`,`bottom-end`,`left`,`right`,`left-start`,`left-end`,`right-start`,`right-end`]},width:{control:`select`,options:[`auto`,`fixed`]},animation:{control:`boolean`},delay:{control:`select`,options:[`none`,`slow`,`fast`]},variant:{control:`select`,options:[`description`,`label`]},autofocus:{control:`boolean`}}},c={args:{id:`tooltip-14`,animation:!0,children:`Tooltip`},render:e=>(0,a.jsxs)(n,{children:[`(Default) True`,(0,a.jsx)(r,{...e})]})},l={args:{id:`tooltip-17`,animation:!1,children:`Tooltip`},render:e=>(0,a.jsxs)(n,{children:[`False`,(0,a.jsx)(r,{...e})]})},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "id": "tooltip-14",
+    "animation": true,
+    "children": "Tooltip"
+  },
+  render: (properties: any) => <DBButton>
+                (Default) True
+                <DBTooltip {...properties} /></DBButton>
+}`,...c.parameters?.docs?.source}}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "id": "tooltip-17",
+    "animation": false,
+    "children": "Tooltip"
+  },
+  render: (properties: any) => <DBButton>
+                False
+                <DBTooltip {...properties} /></DBButton>
+}`,...l.parameters?.docs?.source}}},u=[`DefaultTrue`,`False`]}))();export{c as DefaultTrue,l as False,u as __namedExportsOrder,s as default};
