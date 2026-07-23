@@ -1,5 +1,9 @@
 # @db-ux/core-postcss-plugin
 
+## 5.0.2
+
+_version bump_
+
 ## 5.0.1
 
 _version bump_
