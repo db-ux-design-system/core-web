@@ -79,7 +79,6 @@ const xoConfig = [
 			'jsdoc/imports-as-dependencies': 0, // 1 violation
 			'@typescript-eslint/naming-convention': 0, // 4 violations
 			'@typescript-eslint/no-unnecessary-type-conversion': 0, // 3 violations
-			'@typescript-eslint/no-restricted-imports': 0, // 1 violation
 			'no-shadow': 0, // 3 violations — covered by @typescript-eslint/no-shadow
 			'@html-eslint/require-form-method': 0, // 1 violation — Angular forms use (submit)
 			'@html-eslint/no-inline-styles': 0 // 1 violation — acceptable in showcases
@@ -160,7 +159,6 @@ const xoConfig = [
 	{
 		files: ['./showcases/e2e/**'],
 		rules: {
-			'@typescript-eslint/no-loop-func': 0, // This is fine for playwright testing
 			'@typescript-eslint/prefer-nullish-coalescing': [
 				'error',
 				{ ignorePrimitives: { boolean: true } }
