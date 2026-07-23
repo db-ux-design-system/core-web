@@ -276,7 +276,17 @@ export function createAngularFix(
 	if (closeTagIndex === -1) {
 		return null;
 	}
-	const insertPos = startOffset + closeTagIndex;
+
+	let insertPos = startOffset + closeTagIndex;
+	// For self-closing tags (/>), insert before the slash (and any preceding whitespace)
+	if (closeTagIndex > 0 && tagText[closeTagIndex - 1] === '/') {
+		insertPos = startOffset + closeTagIndex - 1;
+		// Also skip whitespace before the /
+		const beforeSlash = tagText.substring(0, closeTagIndex - 1);
+		const trimmed = beforeSlash.trimEnd();
+		insertPos = startOffset + trimmed.length;
+	}
+
 	return { insertPos, attributeText };
 }
 

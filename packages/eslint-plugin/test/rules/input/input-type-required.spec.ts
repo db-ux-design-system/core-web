@@ -46,6 +46,16 @@ describe('input-type-required', () => {
 				code: '<db-input label="Name"></db-input>',
 				errors: [{ messageId: 'missingType' }],
 				output: '<db-input label="Name" type="text"></db-input>'
+			},
+			{
+				code: '<db-input />',
+				errors: [{ messageId: 'missingType' }],
+				output: '<db-input type="text" />'
+			},
+			{
+				code: '<db-input/>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<db-input type="text"/>'
 			}
 		]
 	});
