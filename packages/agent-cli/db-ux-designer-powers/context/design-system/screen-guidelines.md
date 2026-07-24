@@ -59,7 +59,7 @@ Die Art der Aktion ist nie frei wählbar. Erst die _Bedeutung_ der Aktion bestim
 
 | Aktionstyp | Wann | Variante |
 |------------|------|----------|
-| **primary-button** | Wichtigste Aktion der Seite/des Flows | `brand`. EIN Mal pro Seite, nie pro Card in einem Grid. |
+| **primary-button** | Wichtigste Aktion der Seite/des Flows | `brand`. EIN Mal pro Viewport, nie pro Card in einem Grid. |
 | **equal-item-action** | Mehrere gleichwertige Items mit eigener Aktion | `filled` (oder Link). Alle Items behalten dieselbe Aktion. |
 | **link** | Informative / redaktionelle / navigierende Inhalte | Link-Komponente. Standard für „Mehr erfahren", „Details". |
 | **button-group** | Mehrere Aktionen auf DEMSELBEN Objekt/Kontext | Max. EINE primäre + sekundäre (`ghost`/`outlined`). |
@@ -95,10 +95,10 @@ Zwei Situationen erfordern STOPP:
 
 ## Komponenten
 
-- Buttons, Cards, Tags, Inputs, Menus, Navigation, Notifications → ausschließlich offizielle DB-Komponenteninstanzen.
+- Alle UI-Elemente (Buttons, Cards, Tags, Inputs, Menus, Navigation, Notifications, Accordion, Badge, Switch, Tooltip, etc.) → ausschließlich offizielle DB-Komponenteninstanzen aus `components.json`.
 - NIEMALS ein komponentenartiges Element aus Frames / Rechtecken / Text bauen.
 - NIEMALS Fills/Strokes/CornerRadius einer Instanz überschreiben, um eine Variante vorzutäuschen.
-- Jeder Screen STARTET mit dem offiziellen DB `Header` (Logo + App-Name) als erstes Child.
+- Jeder Screen STARTET mit dem offiziellen `DB Header` (Logo + App-Name) als erstes Child.
 - Layout nur über die zugelassenen Primitive: Section, Grid, Container/Stack, Slot.
 
 ### Header-Regeln
