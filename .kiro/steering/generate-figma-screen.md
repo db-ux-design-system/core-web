@@ -119,3 +119,19 @@ Stoppe und melde den genauen Gap, wenn:
 - Eine benötigte Komponente / Variante / Token / Textstyle nicht in den Registries vorkommt.
 - Die Figma-URL keine `node-id` enthält → nachfragen.
 - `res.audit.valid === false` nach 3 Versuchen.
+
+## Runtime-Änderungen bündeln (feste Regel – Kosten)
+
+> **Regel:** Ein Re-Bootstrap fügt die gesamte ~37 KB-Runtime als 6 Chunks neu ein und ist
+> **teuer**. Änderungen an der Runtime (`db-figma-runtime.js`) daher IMMER bündeln:
+>
+> 1. **Alle** geplanten Runtime-Fixes zuerst sammeln und gemeinsam vornehmen.
+> 2. Dann **genau ein** `node assets/build-runtime.cjs`.
+> 3. Dann **genau ein** Re-Bootstrap (Store-Chunks + `store-meta.js`), mit Längen-Check je Chunk.
+>
+> **Niemals pro Mikro-Fix neu bauen + neu bootstrappen.** Wer sich dabei erwischt, die Runtime
+> ein zweites Mal im selben Task zu ändern: STOP und erst sicherstellen, dass keine weiteren
+> Runtime-Fixes mehr kommen, bevor gebaut wird.
+>
+> Für rein visuelle Änderungen an einem bestehenden Frame ohnehin `applyEdits` nutzen – keine
+> Runtime-Änderung, kein Re-Bootstrap, kein Re-Render.

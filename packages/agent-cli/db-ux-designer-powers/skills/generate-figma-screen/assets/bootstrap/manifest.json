@@ -1,7 +1,7 @@
 {
   "namespace": "dbuxRuntime",
-  "version_sha": "5b2814f1eaed",
+  "version_sha": "a8ca0fda576e",
   "chunkCount": 6,
   "chunkSize": 7000,
-  "runtimeBytes": 36237
+  "runtimeBytes": 37247
 }

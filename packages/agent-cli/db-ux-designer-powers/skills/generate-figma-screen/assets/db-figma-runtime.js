@@ -553,6 +553,22 @@ const normName = (s) =>
 		.toLowerCase()
 		.replace(/[^a-z0-9]/g, '');
 
+/* Resolve a friendly spacing/size value ("small"|"medium"|"large"|"none") to the actual
+ * VARIANT option available on a property — tolerant of the "(Def)" prefix, which differs
+ * per component (Section's default Spacing is "(Def) Medium", Card's is "(Def) Small").
+ * A hardcoded label map is wrong for one of them; matching the real variantOptions is not.
+ * Falls back to the raw value if nothing matches. */
+function resolveVariantLabel(prop, want) {
+	const opts = (prop && prop.variantOptions) || [];
+	const target = normName(want);
+	const strip = (s) => normName(s).replace(/^def/, '');
+	return (
+		opts.find((o) => strip(o) === target) ||
+		opts.find((o) => normName(o) === target) ||
+		want
+	);
+}
+
 const _varCache = {};
 async function importVar(tokenName) {
 	const key = VAR_KEYS[tokenName];
@@ -1181,13 +1197,7 @@ async function buildSection(node) {
 				(cp[k]?.type === 'VARIANT' && /spacing/i.test(k))
 		);
 		if (sk) {
-			const SP = {
-				small: 'Small',
-				medium: '(Def) Medium',
-				large: 'Large',
-				none: 'None'
-			};
-			const label = SP[normName(node.spacing)] ?? node.spacing;
+			const label = resolveVariantLabel(cp[sk], node.spacing);
 			try {
 				inst.setProperties({ [sk]: label });
 			} catch {}
@@ -1231,7 +1241,7 @@ function gridColumnCountFor(label) {
 	if (n === '100') return 1;
 	if (n.includes('25252525')) return 4;
 	if (n.includes('333333')) return 3;
-	return 2; // 50-50, 66-33, 33-66, 25-75, 75-25, 320-auto, auto-320
+	return 2; // 50-50, 66-33, 33-66, 320-auto
 }
 /* Fill ONE Grid instance (a single row) with its children. A row never holds more than its
  * column count, so children map 1:1 onto cells[0..k-1] (NO modulo — that was the old overflow
@@ -1342,13 +1352,7 @@ async function buildCard(node) {
 				(cp[k]?.type === 'VARIANT' && /spacing/i.test(k))
 		);
 		if (sk) {
-			const SP = {
-				small: 'Small',
-				medium: '(Def) Medium',
-				large: 'Large',
-				none: 'None'
-			};
-			const label = SP[normName(node.spacing)] ?? node.spacing;
+			const label = resolveVariantLabel(cp[sk], node.spacing);
 			try {
 				inst.setProperties({ [sk]: label });
 			} catch {}
@@ -1637,6 +1641,17 @@ async function renderNode(node, parent) {
 					sl.primaryAxisSizingMode = 'FIXED';
 					sl.primaryAxisAlignItems = 'SPACE_BETWEEN';
 				} catch {}
+			} else if (!node.hugWidth) {
+				// The container fills its parent width, but the local ContainerHorizontal's
+				// inner Slot defaults to HUG — so a FILL child (e.g. a text column beside a
+				// fixed-width thumbnail) can't expand and its content wraps. Stretch the Slot
+				// to FILL + FIXED (normal left packing) so FILL children take the remaining
+				// width. (A HUG container keeps its hugging slot.)
+				try {
+					const sl = freshSlot(c, 'Slot');
+					sl.layoutSizingHorizontal = 'FILL';
+					sl.primaryAxisSizingMode = 'FIXED';
+				} catch {}
 			}
 			return c;
 		}
@@ -1645,7 +1660,7 @@ async function renderNode(node, parent) {
 			// `cols` children; extra children WRAP into further Grid instances stacked in a
 			// ContainerVertical. This replaces the old `cells[i % cells.length]` overflow (which
 			// stacked two items in one cell once child count exceeded the column count).
-			// Column count comes from an explicit `gridLayout` ("50-50" | "33-66" | "25-75" | ...)
+			// Column count comes from an explicit `gridLayout` ("50-50" | "33-66" | "66-33" | "320-auto" | ...)
 			// or is derived from the child count; >4 children default to a 4-column wrap.
 			const kids = node.children ?? [];
 			const gap = node.gridGap ?? '(Def) md';
@@ -1760,7 +1775,14 @@ async function renderNode(node, parent) {
 			const r = figma.createRectangle();
 			r.name = node.label || 'Image';
 			const factor = IMAGE_RATIOS[node.ratio] ?? IMAGE_RATIOS['16:9'];
-			r.resize(800, Math.round(800 * factor));
+			// Optional FIXED width (a small thumbnail, e.g. beside text in a ContainerHorizontal).
+			// Without it the image FILLS its container width (the default, e.g. inside a Grid cell).
+			const fixedW =
+				typeof node.imageWidth === 'number' && node.imageWidth > 0
+					? node.imageWidth
+					: null;
+			const baseW = fixedW || 800;
+			r.resize(baseW, Math.round(baseW * factor));
 			await applyImageFill(r, node);
 			// Rounded corners bind to a DB radius token (never a raw number). Default radius.lg;
 			// pass radius:"none" to disable, or a token like "radius.md".
@@ -1773,16 +1795,29 @@ async function renderNode(node, parent) {
 			try {
 				r.lockAspectRatio();
 			} catch {}
-			fillWidth(r);
-			// Fallback: if aspect-ratio lock doesn't drive height under FILL, pin a FIXED height
-			// computed from the laid-out width, then re-assert FILL width.
-			try {
-				const w = r.width;
-				if (w && Math.abs(r.height - w * factor) > 1) {
-					r.resize(w, Math.round(w * factor));
-					r.layoutSizingHorizontal = 'FILL';
-				}
-			} catch {}
+			if (fixedW) {
+				// Thumbnail: keep an explicit width (hug, don't fill), height from the ratio.
+				try {
+					r.layoutSizingHorizontal = 'FIXED';
+				} catch {}
+				try {
+					r.resize(fixedW, Math.round(fixedW * factor));
+				} catch {}
+				try {
+					r.layoutSizingVertical = 'FIXED';
+				} catch {}
+			} else {
+				fillWidth(r);
+				// Fallback: if aspect-ratio lock doesn't drive height under FILL, pin a FIXED
+				// height computed from the laid-out width, then re-assert FILL width.
+				try {
+					const w = r.width;
+					if (w && Math.abs(r.height - w * factor) > 1) {
+						r.resize(w, Math.round(w * factor));
+						r.layoutSizingHorizontal = 'FILL';
+					}
+				} catch {}
+			}
 			return r;
 		}
 		default: {
@@ -1883,10 +1918,49 @@ async function renderPlan(plan) {
 		}
 	}
 
+	// GUARD — never silently create a duplicate frame on a page that already has one.
+	// A follow-up change to an existing screen MUST go through applyEdits (in place).
+	// A deliberate full rebuild requires `replace: true`, which removes the existing
+	// matching (or only) frame first and renders in its place — so no sibling pile-up.
+	let reusePos = plan.reuse;
+	const pageFrames = (figma.currentPage.children ?? []).filter(
+		(n) => safe(() => n.type, '') === 'FRAME'
+	);
+	if (pageFrames.length) {
+		const wantName = plan.screen ?? 'Screen';
+		const named = pageFrames.filter(
+			(f) => safe(() => f.name, '') === wantName
+		);
+		if (plan.replace) {
+			const victims = named.length ? named : pageFrames;
+			if (victims[0] && !reusePos)
+				reusePos = {
+					x: safe(() => victims[0].x, 0),
+					y: safe(() => victims[0].y, 0)
+				};
+			for (const f of victims) {
+				try {
+					f.remove();
+				} catch {}
+			}
+		} else {
+			stop(
+				`A frame already exists on page "${safe(
+					() => figma.currentPage.name,
+					'?'
+				)}" (${pageFrames
+					.map((f) => `"${safe(() => f.name, '?')}"`)
+					.join(
+						', '
+					)}). Do NOT create a duplicate — use applyEdits to patch the existing frame in place. For a deliberate full rebuild pass { replace: true } (removes the existing frame first).`
+			);
+		}
+	}
+
 	const root = createScreenRoot(
 		plan.screen ?? 'Screen',
 		plan.width,
-		plan.reuse
+		reusePos
 	);
 	for (const node of plan.layout) await renderNode(node, root);
 	hugHeight(root); // final: root hugs total content height
@@ -2355,6 +2429,11 @@ async function applyEdits(spec) {
  *   "screen": "DS KPI Dashboard",
  *   "targetNodeId": "177:1091",          // optional: page/frame to render on
  *   "width": 1440,                        // optional (default 1440)
+ *   "replace": false,                     // optional. renderPlan REFUSES to run if a frame
+ *                                         // already exists on the target page (use applyEdits
+ *                                         // to edit in place). Pass replace:true ONLY for a
+ *                                         // deliberate rebuild — it removes the existing
+ *                                         // matching/only frame first (no duplicate pile-up).
  *   "layout": [                           // ordered top-level children of the root
  *     { "type": "Header", "appName": "Design System KPIs" },
  *     { "type": "Section", "fills": "color.background.canvas", "children": [
@@ -2440,6 +2519,9 @@ async function applyEdits(spec) {
  *             gray box. The width fills its container and the height derives from a
  *             design-system aspect RATIO — never a free pixel height.
  *             ratio      "1:1" | "3:4" | "16:9" (default "16:9")
+ *             imageWidth OPTIONAL fixed pixel width for a small thumbnail (e.g. beside text
+ *                        in a ContainerHorizontal). Height derives from the ratio. Omit to
+ *                        FILL the container width (the default, e.g. inside a Grid cell).
  *             src        real image URL (optional; loaded via createImageAsync)
  *             imageHash  explicit Figma image hash (optional)
  *             scaleMode  "FILL" (default) | "FIT" | "TILE" | "CROP"
@@ -2450,7 +2532,8 @@ async function applyEdits(spec) {
  *   gridGap   Grid gap token: "(Def) md" (default) | "xl" | "2xl" etc.
  *             Media/Text rows on landing pages use "xl".
  *   gridLayout Grid column split: defaults to the child count (2->"50-50",
- *             3->"(Def) 33-33-33", 4->"25-25-25-25"); override e.g. "66-33" | "25-75".
+ *             3->"(Def) 33-33-33", 4->"25-25-25-25"); override with a real Grid layout,
+ *             e.g. "50-50" | "33-66" | "66-33" | "320-auto" (NOT "25-75" — no such variant).
  *   title       Section: heading text (auto-styled headline + color.text.strong)
  *   description Section: sub text under the title (body + color.text.weak)
  *   titleStyle / descriptionStyle  Section: override the heading/description text style

@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Figma renderPlan Guard",
+  "description": "Before a use_figma call, if it contains renderPlan(, require confirming the target page has no existing screen frame; otherwise use applyEdits (or replace:true for a deliberate rebuild).",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      ".*use_figma.*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "You are about to run a use_figma write. If the code contains `renderPlan(`, STOP and verify this is NOT an edit to an already-rendered screen: first check the target page with figma/get_metadata. If a screen frame already exists there, do NOT re-render — use `applyEdits` to patch that existing frame in place. Only use `renderPlan` for a first-time creation, or for a deliberate full rebuild by passing `replace: true` (which removes the existing frame instead of creating a duplicate). If the code uses `applyEdits`, store-bootstrap chunks, or the loader only, proceed."
+  }
+}
