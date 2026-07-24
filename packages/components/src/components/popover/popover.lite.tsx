@@ -28,6 +28,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
 		handleEscape: (event: any) => {
+			if (!_ref) return;
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
 				for (const child of Array.from(_ref.children)) {
