@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Verify Figma Registry Keys (Drift Check)",
+  "description": "Manually-triggered check that re-verifies every DB UX registry key (component sets, variables, text styles) against the live Figma library and refreshes any stale keys. Use this periodically or when Figma components are re-published.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run the DB UX registry drift check to detect stale Figma keys (keys can change within a library version on re-publish; the version name is not a reliable freshness signal).\n\nSteps:\n1. Run `node packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/verify-registry-keys.cjs --emit` to generate the import-test snippet.\n2. Paste the emitted snippet into a single `figma/use_figma` call against a Figma design file that has the DB UX libraries added (ask the user for a fileKey/URL if none is in context).\n3. Read the returned `{ ok, failCount, fails }`. Every entry in `fails` is a STALE key (prefix `set:` = component set, `var:` = variable, `style:` = text style).\n4. For each stale key: find the current key from the canonical library via `figma/search_design_system` scoped to the library key recorded in the registry `_meta` (verify with `importComponentSetByKeyAsync`/`importVariableByKeyAsync`/`importStyleByKeyAsync`), then update the corresponding entry in `registries/components.json`, `tokens.json`, or `icons.json`.\n5. Update `components.json` `_meta.lastKeyVerification` with today's date and the ok/total count.\n6. Re-run `node assets/build-runtime.cjs` (regenerates the injected maps + bootstrap) and report a summary of what changed. Do NOT make the core build fetch from Figma — it stays pinned to the committed registry keys."
+  }
+}

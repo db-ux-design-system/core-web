@@ -222,16 +222,17 @@ Two situations require STOPPING and human review — never approximate:
 - Text emphasis: default is `color.text.strong` (emphasis-100). Use `weak` (90) / `muted`
   (80) only for intentionally de-emphasized text. 70 is icons-only, never text.
 
-## Typography (Heading/Text components; registered text styles only)
+## Typography (Heading/Body components only — NO raw text)
 
-- **Prefer the official DB typography COMPONENTS** for content text — the Concept `Heading`
-  (`As=h1…h6`) and `Text` (`Size=Small…3xLarge`) components — rather than raw text nodes.
-  This is how the DB UX examples are authored. In the Composition Plan use node types
-  `Heading` (hero=h1, section titles=h2, card titles=h4) and `Body` (caption/card=Small,
+- **ALL content text is an official DB typography COMPONENT** — the Concept `Heading`
+  (`As=h1…h6`) or `Text` (`Size=Small…3xLarge`) component. In the Composition Plan use node
+  types `Heading` (hero=h1, section titles=h2, card titles=h4) and `Body` (caption/card=Small,
   section description=(Def) Medium, hero subline=Large). They require Concept opt-in.
-- If a raw text node is used instead, it MUST use a registered DB text style (`display`,
-  `headline*`, `body*`). Raw `fontName` / `fontSize` / `lineHeight` on text is FORBIDDEN.
-- Color is bound separately via a color variable.
+- **Raw text nodes are FORBIDDEN.** The runtime has no `Text` node type — a plan using one
+  hard-stops. There is no raw-text fallback: never `figma.createText()`, never raw
+  `fontName`/`fontSize`/`lineHeight`. (Registered text styles still exist in `tokens.json`
+  because the Concept components carry them internally.)
+- Color is bound separately via a color variable (on the component's inner text).
 - **Heading hierarchy — no two same-size headlines in one Section.** The Section `title`
   is the section heading (`h2`). Any heading INSIDE that section (card title, media-text
   title) MUST be a lower level (`h3`/`h4`/`h5`). Never render two `h2`s in the same section.

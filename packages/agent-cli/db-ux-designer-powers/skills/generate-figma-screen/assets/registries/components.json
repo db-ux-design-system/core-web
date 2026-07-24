@@ -5,7 +5,9 @@
 		"schema": "Keyed by CANONICAL component (docs/code identity). Figma splits a component into multiple component_sets for performance only; those live under figmaSets with their exact Figma name + key + axes. The agent reasons in canonical name + props; axes resolve to the right figma set key.",
 		"resolution": "1) find canonical component by name. 2) match desired props against figmaSets[*].axes. 3) importComponentSetByKeyAsync(key). 4) pick variant child + createInstance(). If no axes match, STOP and report.",
 		"naming": "❌ = deprecated, ↳ / 🛟 = helper/subcomponent (only inside parent), (Beta)/(Concept) = maturity.",
-		"coreLab": "Concept components in db-lab-component-registry.json (require user confirmation)."
+		"coreLab": "Concept components in db-lab-component-registry.json (require user confirmation).",
+		"lastKeyVerification": "2026-07-24 — all non-deprecated figmaSets keys import-tested against the live library (83/83 resolve). Note: Figma component keys can drift WITHIN a version name on re-publish (e.g. Drawer was refreshed here), so re-verify per-key — the version string alone is not a reliable freshness signal.",
+		"keyRefresh": "To refresh: for each component, pull the current component_set key from the canonical libraryKey (search_design_system scoped, or import-test existing keys) and update figmaSets. The core build stays pinned to these committed keys (deterministic, no Figma dependency at build time)."
 	},
 
 	"components": {
@@ -466,6 +468,7 @@
 			"codeName": "notification",
 			"maturity": "Stable",
 			"required": false,
+			"contentSlot": "Children",
 			"note": "Figma splits Notification by placement (docked/standalone/overlay) and media (icon/image).",
 			"figmaSets": {
 				"Notification → (Def) Docked - (Def) Icon": {
@@ -556,23 +559,23 @@
 			"maturity": "Stable",
 			"required": false,
 			"contentSlot": "Slot",
-			"note": "Figma splits Drawer by side; one Drawer component with prop side.",
+			"note": "Figma splits Drawer by side; one Drawer component with prop side. Keys verified against DB UX DS v3 - Core Components (2026-07-20); the former 'full' side was replaced by 'top'.",
 			"figmaSets": {
 				"Drawer → (Def) Right": {
-					"key": "98b8a88910f95ec114b6d6d3a93052769d8189fc",
+					"key": "c1f44d84df351c41342b844f6de85bbd1332c692",
 					"axes": { "side": "right" }
 				},
 				"Drawer → Left": {
-					"key": "876f2f8ee010c4cb9d931273fa074bf43bdb2afa",
+					"key": "6174042aef4e81ce5e7205dcda13b837c3a923f1",
 					"axes": { "side": "left" }
 				},
 				"Drawer → Bottom": {
-					"key": "843510bda466febad9111e551dfc206a5130d90a",
+					"key": "36c1837e68765ae78bf4c2333b82f1f356cfdeb6",
 					"axes": { "side": "bottom" }
 				},
-				"Drawer → Full": {
-					"key": "b11d12cc0a8030ee2f891cf13e25e71918c53532",
-					"axes": { "side": "full" }
+				"Drawer → Top": {
+					"key": "7ade5c65edd826c2e7ade934135ce18c7a9d176e",
+					"axes": { "side": "top" }
 				},
 				"❌ Drawer → (Def) Right (Deprecated)": {
 					"key": "e0b1436276d012f8641a79d96e6357281ee4a4ec",
@@ -608,6 +611,7 @@
 			"codeName": "accordion",
 			"maturity": "Beta",
 			"required": false,
+			"contentSlot": "Children",
 			"figmaSets": {
 				"Accordion (Beta)": {
 					"key": "c842298934e02a0332e36c451ad8e1d3f0cc8955",

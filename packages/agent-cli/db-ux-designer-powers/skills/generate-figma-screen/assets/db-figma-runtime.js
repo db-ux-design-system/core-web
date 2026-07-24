@@ -28,109 +28,10 @@
  * If a registry key changes, regenerate the corresponding entry here.
  * ========================================================================== */
 
-/* -----------------------------------------------------------------------------
- * RESOLVED KEY MAPS (mirror of the registries — single source of truth here)
- * -------------------------------------------------------------------------- */
-const VAR_KEYS = {
-	'color.background.canvas': '539324f386b2150504d789cfbad9126c14cbdad1',
-	'color.background.surface': 'e4c25c81df8e51185f22570c6d6317238cddfa4d',
-	'color.background.elevated': '5510a95229c069c0448a76361b0967b4ac96276d',
-	'color.text.strong': '497497bca9694f6004d1667de59f1a903b3cd3ef',
-	'color.text.default': '497497bca9694f6004d1667de59f1a903b3cd3ef',
-	'color.text.weak': '4b6fa889078d2d2be01885affe2ccf9b6fe00bca',
-	'color.text.muted': 'de14758ec6fb33b47e9cb67eb4587d01d4f38828',
-	'color.icon': '1a1b9dd754ea56f8a4579ff1396ab560b98c018d',
-	'color.border.subtle': 'bb22fcc29f4e0e01a03649f1dc2bb37e58a0dd38',
-	'color.brand.origin': '998998d67d3ebef6f2692db932bce69431b3d0cc',
-	'color.brand.bgInverted': 'de9d33135d82cee05cc2835cb08df6ed6dc40e78',
-	'color.brand.onOrigin': '68475ba28d00cabd01c8310e6da5bd41158e6f0d',
-	'color.brand.onBgInverted': '9d68adbef048ba6c831b470b070542479bb929eb',
-	'space.xs': '7bf011be28799b8941bfdc8d3e4bdef53a98bfee',
-	'space.sm': 'd2f8d2d9ce6aead856cc0a0451064e7e58dd1540',
-	'space.md': '783a93db6d2cc787ac709aadc1062ad083568515',
-	'space.lg': '3145886d20a1dc171e1d96d282fde398bd40c832',
-	'space.xl': 'e78d8e26882571f30187cbf2ba64506c139f5c8a',
-	'space.2xl': '71b85a42d436c917ac405692ef86ed99597d789a',
-	'space.3xl': '597c7e6603cc8c02ff0d932044f0960a350a4360'
-};
-
 // Tokens that MUST NOT back a surface (accent-only). Fail fast if misused as a fill.
+/* @db-maps-inject — build-runtime.cjs replaces this with emitMapsSource() */
 const SURFACE_FORBIDDEN = new Set(['color.brand.origin']);
-// Basic background levels allowed on large surfaces / sections.
-const LEVEL_BG = new Set([
-	'color.background.canvas',
-	'color.background.surface',
-	'color.background.elevated'
-]);
 
-// DB border-radius tokens (Core Foundation "Density" collection, scope CORNER_RADIUS).
-const RADIUS_KEYS = {
-	'radius.3xs': '7cd85813ec89a8fad9aed6c82fe440f761405349',
-	'radius.2xs': '3dc45106a521db00a2b23292aa19e013266588b7',
-	'radius.xs': '10a4e20ba00d09707255e11dd87fd40c30b7c0bf',
-	'radius.sm': 'ba8ec50fe3e04cc92e7ba8574e5339ceb9863175',
-	'radius.md': 'beaeebe2274cd3190390b0b629f5426afeeffcc4',
-	'radius.lg': '8d600d76091a8a73e48d36bddae38e9e201f8163',
-	'radius.xl': '83e33a634dd69c671519fc0d005628c1c79d2f63',
-	'radius.2xl': 'a4e818c581fec0f258af7893ed398a9989c542d1',
-	'radius.3xl': '78ca1156d0d07dcad464bddf545dc794ebd8e1a0'
-};
-
-const TEXT_STYLE_KEYS = {
-	display: '3d925e1ab760c23797ab3f9718f79a4b2c82cfdd',
-	'headline.lg': '310b9874b227f598d4ca8d054eb06be9d6987329',
-	headline: 'e168a9ca99270c06aa87b9375b11d3859d910ba1',
-	'headline.md': 'b26b0a63301d81cd7a68409c4b6275c6adb8dec9',
-	'headline.sm': '5204e21f676d68ad7f3ab0b1861ed560b85e2092',
-	body: '60f7eab567f48478d55bbed9e4c556265e1fd5c0',
-	'body.bold': 'c253285cf17de376e41ba2e78f2e9abba4e342b3',
-	'body.sm': 'c055d5e1e0644bb46159862577fe90390cbf820d',
-	'body.sm.bold': '9af856205f2d030f9e367ab4e774b445e132d3f5'
-};
-
-// Concept (Core Lab) typography components. Prefer these over raw styled text so headings
-// and body copy are real DB instances (this is how the DB UX examples are authored).
-// They REQUIRE Concept opt-in (see SKILL.md `concept_components`). `As=h1..h6` picks the
-// heading level (size via default mapping); Text `Size` = Small|(Def) Medium|Large|xLarge|
-// 2xLarge|3xLarge. Both expose a `✏️ Text` prop and a `Text Align` variant.
-const CONCEPT_KEYS = {
-	Heading: '016cad8991d12925c1364c07b90aa58559225743',
-	Text: 'c1ad46c72344cc70ea88a9fca7da7da8f0915feb'
-};
-// Functional icon placeholder (DB Theme Icons). Rendered as a real DB Theme Icon component
-// instance for `visual: "icon"` — NEVER a recolored image rectangle. The icon's dimensions
-// are INTRINSIC to its `Size` variant; the instance hugs both axes (never force-resized).
-const ICON_KEY = 'ebafa2ba125b7d891d26741eb8989581360d3a95';
-// Comfort layer: resolve a functional icon by NAME (e.g. { type:"Icon", name:"arrow_right" })
-// to its DB Theme Icons component_set key, so plans don't need raw keys. Mirrors
-// assets/registries/icons.json — extend BOTH when adding icons (see that file's _meta).
-// Lookup is normalized: _, -, spaces are equivalent and case-insensitive. An explicit
-// node.key always wins; an unknown name falls back to the generic ICON_KEY placeholder.
-const ICON_KEYS = {
-	arrow_right: '22c98058cb5cf55ae3c65380fc1f5a300a47ebbd',
-	arrow_up_right: '816c8cc7c14dc6bc4dd8afd3896d0260302e3691',
-	chevron_right: '43be99bb7ad7fde8b308cf5db3a5e8932cb58de7',
-	double_chevron_right: '54e86bb68e75a34fd1adb2e1334ca091ed6f184e',
-	check: '1fa18e489d6f4ca39a260cc6b0c3a85fb6c64814',
-	check_circle: 'a2b00e107d95dc22282cb43182e5ba0f890c3025',
-	magnifying_glass: 'ddc16c3a7602673fc41359399002744a739cae4c',
-	funnel: 'f0b86c216082d38aa48d5e345e8ff44b8926d232',
-	calendar: 'e7ae6334b04b51ad2de527d056a6a99255dfe177',
-	shield_check: '8ac3f6c5e837ec79dd3ea3a258a38df92518e87a',
-	information_circle: '14bcaf471daf970f0da7ba9535b0cb8cb262bc93',
-	clock: '10fe0413ea8b23091b7dbb207983402f94fe4397',
-	map_pin: '0b5410dcb5112a34defc38455fd1eee4de903a13',
-	star: '3239a77a84015a226cf69ea90ba4dcf74ba65842',
-	moon: 'd59d11019467c5a5c9b57ef6e39878b59cc7c53c',
-	ticket_horizontal: '4f569422bebfc42b3e52be3df4be1a9efffe74d6',
-	seat_window: '9ab1c7eea15bdaadc8752282c4750d5560c7400d',
-	train: 'f6626ec977d9191b3556118c0d46a5650e60c4ca',
-	train_station: 'cb42c815de9f55a669ca1837bb2770f077ab2906',
-	local_train: 'e9b31b9807d5e764b76ac5fe7c0dbf6bbe3119cb',
-	tram: 'c970c9b46b13d15bd197b161628b287ae88f777a',
-	bus: '143c8c8555460bc5b46e6db6ce63e39534c1a722',
-	bike: 'd4327a3717c2f797247b35dbd9dc9ae544fb7b01'
-};
 // name -> key with normalization (_, -, space equivalent, case-insensitive).
 const iconKeyByName = (name) => {
 	if (!name || typeof name !== 'string') return null;
@@ -140,353 +41,10 @@ const iconKeyByName = (name) => {
 	for (const k in ICON_KEYS) if (norm(k) === target) return ICON_KEYS[k];
 	return null;
 };
-// Image aspect ratios allowed by the design system. `Image` nodes MUST use one of these
-// (width fills the container, height derives from the ratio) — never a free pixel height.
-const IMAGE_RATIOS = { '1:1': 1, '3:4': 4 / 3, '16:9': 9 / 16 };
 const TEXT_ALIGN_LABELS = {
 	left: '(Def) Left',
 	center: 'Center',
 	right: 'Right'
-};
-
-// Library component sets: name -> { variants:[{axes,key}], slot }.
-// Resolution: match a plan node's props against a variant's axes.
-const COMPONENTS = {
-	Button: {
-		variants: [
-			{
-				axes: { variant: 'brand', iconOnly: false },
-				key: 'bcd676a2ab5beb47eef54a9f36d74d91f2aa4a20'
-			},
-			{
-				axes: { variant: 'filled', iconOnly: false },
-				key: '324c20d16cf7f1a285279547f4d9ca1407df39ed'
-			},
-			{
-				axes: { variant: 'outlined', iconOnly: false },
-				key: '8c488eae78e6f082da0be2571ba7a0dd26caf962'
-			},
-			{
-				axes: { variant: 'ghost', iconOnly: false },
-				key: '46f934fb9da2c1bcfc1d357cf04694b888400c19'
-			},
-			{
-				axes: { variant: 'brand', iconOnly: true },
-				key: 'd3d9596ab2f065b22e89fbfbc0163f51967d5eff'
-			},
-			{
-				axes: { variant: 'filled', iconOnly: true },
-				key: '890bbab6c64b4357b781cfee90ac524c7337c0f3'
-			},
-			{
-				axes: { variant: 'outlined', iconOnly: true },
-				key: '92bbe193756813cbe30f9b8448043016318ff097'
-			},
-			{
-				axes: { variant: 'ghost', iconOnly: true },
-				key: '647b29562542c1141dd918ce1f0095157db64459'
-			}
-		]
-	},
-	Card: {
-		slot: 'Children',
-		variants: [
-			{
-				axes: { elevationLevel: '1' },
-				key: 'ac60c14fe38796f4d53e293d9b8cc813a9079193'
-			},
-			{
-				axes: { elevationLevel: '2' },
-				key: '245f3f9d7c51155844b58acfd939a21a473aefce'
-			},
-			{
-				axes: { elevationLevel: '3' },
-				key: 'f5ac595ff7bbc6ae121b29dbc5f45246fcc8d3c9'
-			}
-		]
-	},
-	Tag: {
-		variants: [
-			{
-				axes: { icon: false, emphasis: 'weak', behavior: 'static' },
-				key: 'd0ad401dcfc5665cc2d10f920c71f30007caafe5'
-			},
-			{
-				axes: { icon: false, emphasis: 'strong', behavior: 'static' },
-				key: 'd572ddecf60d3a16a72c799af2c97a72932df0af'
-			},
-			{
-				axes: { icon: false, emphasis: 'weak', behavior: 'removable' },
-				key: 'eda7e0b0091a5e9210befc179f3e45013e9aa519'
-			},
-			{
-				axes: {
-					icon: false,
-					emphasis: 'weak',
-					behavior: 'interactive'
-				},
-				key: '34fa98d8e15e9b0aa8a34295d362ebce154818bb'
-			},
-			{
-				axes: {
-					icon: false,
-					emphasis: 'strong',
-					behavior: 'removable'
-				},
-				key: '38b63c37cbdb5c8c693fbb1143190e69c0fd9c2a'
-			},
-			{
-				axes: {
-					icon: false,
-					emphasis: 'strong',
-					behavior: 'interactive'
-				},
-				key: '4e0a4801ff8321e83b5117ad744a2e0f86c4a10e'
-			},
-			{
-				axes: { icon: true, emphasis: 'weak', behavior: 'static' },
-				key: 'd2deb712823dc6af00070c3f330c5c5f800be169'
-			},
-			{
-				axes: { icon: true, emphasis: 'strong', behavior: 'static' },
-				key: '1bcb38ae4812c6fd3212a8a09aa420f7034fce9a'
-			}
-		]
-	},
-	Badge: {
-		variants: [
-			{
-				axes: { content: 'text' },
-				key: '022c804cdaa04f2468bfa0ce0cdff649abe3ac57'
-			},
-			{
-				axes: { content: 'dot' },
-				key: '6f45aa090ea8728319522ea7c916d150dde2ad71'
-			},
-			{
-				axes: { content: 'icon' },
-				key: '85c9797ce5f015696239c6fd7e267a1b61005dea'
-			}
-		]
-	},
-	Link: {
-		variants: [
-			{
-				axes: { target: 'internal', brand: false },
-				key: 'd516c148ca0b438df205de010c206584b4a3a8be'
-			},
-			{
-				axes: { target: 'external', brand: false },
-				key: '392ec8286886c8ceb051b689c3ed8e68f35c1c3a'
-			},
-			{
-				axes: { target: 'internal', brand: true },
-				key: '991b35aca7658dc3837705718549e95501c5812f'
-			},
-			{
-				axes: { target: 'external', brand: true },
-				key: 'be74885f007bdaaacbd026592725f8ce8b6cc715'
-			}
-		]
-	},
-	Header: {
-		variants: [
-			{
-				axes: { device: 'desktop' },
-				key: 'df5e3e03d7d2814f87f867bb632348b4af673e59'
-			},
-			{
-				axes: { device: 'mobile' },
-				key: '16733f0cd068c631552b3820614d80ccb66631b3'
-			}
-		]
-	},
-	Divider: {
-		variants: [
-			{ axes: {}, key: '401c3242f2e720f68b8c4255bb60670481e29451' }
-		]
-	},
-	Section: {
-		slot: 'Children',
-		variants: [
-			{ axes: {}, key: '55ce6d2d8deba893cfdfdd49e826a52673cf06da' }
-		]
-	},
-	Input: {
-		variants: [
-			{
-				axes: { label: 'above', state: 'empty' },
-				key: '08ffb65e50921a3c1cd9a9bf7fa48135fc97430a'
-			},
-			{
-				axes: { label: 'above', state: 'filled' },
-				key: '01229bdc8f305c4cc10adfce424481364463e3a0'
-			},
-			{
-				axes: { label: 'above', state: 'active' },
-				key: '8696ab641dc40085ae634633ab47463d17b06f99'
-			},
-			{
-				axes: { label: 'floating', state: 'empty' },
-				key: 'db70f90473d860893d4378ca27a65b65918e3894'
-			},
-			{
-				axes: { label: 'floating', state: 'filled' },
-				key: '6c3b2901a87c442c36d2faf0521ea23f82db7bd9'
-			},
-			{
-				axes: { label: 'floating', state: 'active' },
-				key: '4a7e873a8a2215584cd595fbd9b3eda9c38d8c94'
-			}
-		]
-	},
-	Textarea: {
-		variants: [
-			{
-				axes: { label: 'above', state: 'filled' },
-				key: '9e875608630b9479ae55561311b9f000e2ae9a87'
-			}
-		]
-	},
-	Checkbox: {
-		variants: [
-			{
-				axes: { size: 'medium', width: 'auto' },
-				key: 'f55dbce9bf3ba1650ca8ac5b44c76b84378d15ca'
-			},
-			{
-				axes: { size: 'small', width: 'auto' },
-				key: '08080b223a829e943bbe42682d249ccfaeda252a'
-			},
-			{
-				axes: { size: 'medium', width: 'full' },
-				key: '04364aeaaf01abe73f7286b1a4ea2b024f79f7fb'
-			},
-			{
-				axes: { size: 'small', width: 'full' },
-				key: 'b206fe4be942442945b40ac8d6f9e82c8afc7f1e'
-			}
-		]
-	},
-	Radio: {
-		variants: [
-			{
-				axes: { size: 'medium', width: 'auto' },
-				key: '06d45155016e374aee5782a33c994922c87ede24'
-			},
-			{
-				axes: { size: 'small', width: 'auto' },
-				key: '096d5459aed351b10f24079134ebf443cf03da19'
-			},
-			{
-				axes: { size: 'medium', width: 'full' },
-				key: '2cc01a4da359b8d324080ad78c155e7d2e869874'
-			},
-			{
-				axes: { size: 'small', width: 'full' },
-				key: 'b8c8cc9190b2de7c12ff3130506d51f046cbd7c9'
-			}
-		]
-	},
-	Switch: {
-		variants: [
-			{
-				axes: {
-					labelPosition: 'trailing',
-					width: 'full',
-					size: 'small'
-				},
-				key: 'bb9ad253da472dd8c821acf8f1ff7f8a82d14e32'
-			},
-			{
-				axes: {
-					labelPosition: 'leading',
-					width: 'full',
-					size: 'medium'
-				},
-				key: '641334e04985ebd35e4db6cd4c993dd70137d81b'
-			}
-		]
-	},
-	Select: {
-		variants: [
-			{
-				axes: { label: 'above', state: 'empty' },
-				key: 'c68719e1c018e149324b1b99f70085305b1e1eb8'
-			},
-			{
-				axes: { label: 'above', state: 'selected' },
-				key: '6dc8c2e6686d7b90e6c3db8fd49d63b182b4ee46'
-			},
-			{
-				axes: { label: 'floating', state: 'empty' },
-				key: 'aff8a7d7435948ef3b312f198ed8f2130caebab0'
-			},
-			{
-				axes: { label: 'floating', state: 'selected' },
-				key: 'a017ac6759ac04fcf3b0103766ea823ad6220f67'
-			}
-		]
-	},
-	Infotext: {
-		variants: [
-			{
-				axes: { width: 'auto' },
-				key: '072e65767d05b99f91d63f489ef0c28620b002ca'
-			},
-			{
-				axes: { width: 'full' },
-				key: 'af81be60e9498309b5fcf195fa6731d6381b82f0'
-			}
-		]
-	},
-	Notification: {
-		slot: 'Children',
-		variants: [
-			{
-				axes: { placement: 'docked', media: 'icon' },
-				key: '0b8195110baab8ec2bde79769a21728fe5fe0ace'
-			},
-			{
-				axes: { placement: 'docked', media: 'image' },
-				key: 'e1162439b4fcea78e74f0fab350556ea64a40806'
-			},
-			{
-				axes: { placement: 'standalone', media: 'icon' },
-				key: '21d0406331e71a91bdea08bc2ff312290748be5a'
-			},
-			{
-				axes: { placement: 'standalone', media: 'image' },
-				key: '04ffed0aab92a88eb3ece16f40ce499df2d705b4'
-			},
-			{
-				axes: { placement: 'overlay', media: 'icon' },
-				key: '106477a728f386c6266693059f0b8cecc960042d'
-			},
-			{
-				axes: { placement: 'overlay', media: 'image' },
-				key: 'abb0a0df1e439b23dcffe568851b4e4fa1ea95c0'
-			}
-		]
-	},
-	Accordion: {
-		slot: 'Children',
-		variants: [
-			{ axes: {}, key: 'c842298934e02a0332e36c451ad8e1d3f0cc8955' }
-		]
-	},
-	Tooltip: {
-		variants: [
-			{
-				axes: { position: 'left' },
-				key: '313242eddbd58b864208a63edaad666ecdb7e17f'
-			},
-			{
-				axes: { position: 'top' },
-				key: 'b9ee3b09d239c9820e55808401291abfce4801bf'
-			}
-		]
-	}
 };
 
 // Library components rendered as leaf instances that should FILL their container width
@@ -521,13 +79,6 @@ const LOCAL = {
 		slot: 'Slot'
 	}
 };
-
-const LAYOUT_TYPES = new Set([
-	'Section',
-	'Grid',
-	'ContainerVertical',
-	'ContainerHorizontal'
-]);
 
 /* -----------------------------------------------------------------------------
  * LOW-LEVEL HELPERS — each encapsulates a specific Figma API gotcha.
@@ -890,25 +441,6 @@ async function loadInstanceFonts(instance) {
 		}
 	}
 }
-async function createStyledText(content, styleName, fillToken, align) {
-	const key = TEXT_STYLE_KEYS[styleName];
-	if (!key)
-		stop(
-			`Unknown text style "${styleName}". Use a key from the text-style registry.`
-		);
-	await ensureFonts();
-	const t = figma.createText();
-	t.characters = content ?? '';
-	const style = await figma.importStyleByKeyAsync(key);
-	await t.setTextStyleIdAsync(style.id); // typography ONLY — never raw font/size
-	if (fillToken) await bindTextFill(t, fillToken); // color bound separately
-	if (align) {
-		try {
-			t.textAlignHorizontal = String(align).toUpperCase();
-		} catch {}
-	}
-	return t;
-}
 /* Set a VARIANT property by axis name (normalized, exact match), e.g. setVariant(i,"As","h1"). */
 function setVariant(inst, axis, value) {
 	const cp = inst.componentProperties || {};
@@ -938,8 +470,8 @@ async function buildHeadingComponent(node) {
 			? (set.defaultVariant ?? set.children[0])
 			: set
 	).createInstance();
-	await ensureFonts();
-	await loadInstanceFonts(inst);
+	// No font loading needed: the Concept text is set via the "✏️ Text" component property
+	// (setProperties), which does not require the font to be loaded.
 	if (node.as) setVariant(inst, 'As', node.as);
 	if (node.weight) setVariant(inst, 'Font Weight', node.weight);
 	if (node.align)
@@ -960,8 +492,7 @@ async function buildBodyComponent(node) {
 			? (set.defaultVariant ?? set.children[0])
 			: set
 	).createInstance();
-	await ensureFonts();
-	await loadInstanceFonts(inst);
+	// No font loading needed: the Concept text is set via the "✏️ Text" component property.
 	if (node.size) setVariant(inst, 'Size', node.size);
 	if (node.align)
 		setVariant(
@@ -1450,18 +981,13 @@ async function buildHeader(node) {
  * -------------------------------------------------------------------------- */
 async function renderNode(node, parent) {
 	switch (node.type) {
-		case 'Text': {
-			const t = await createStyledText(
-				node.content,
-				node.style,
-				node.fills,
-				node.align
+		case 'Text':
+			// Raw styled text nodes are no longer supported — ALL content text is an official
+			// DB typography COMPONENT. Migrate to "Heading" (as: h1..h6) or "Body" (size: …).
+			stop(
+				'Raw "Text" nodes are not allowed. Use "Heading" (as: h1..h6) for headings or "Body" (size: Small|(Def) Medium|Large|…) for body/caption copy.'
 			);
-			parent.appendChild(t);
-			if (node.hugWidth) hugWidth(t);
-			else fillWidth(t);
-			return t;
-		}
+		// falls through (unreachable — stop throws)
 		case 'Heading': {
 			const h = await buildHeadingComponent(node);
 			parent.appendChild(h);
@@ -2376,10 +1902,93 @@ async function applyOneEdit(frame, e) {
 			await renderNode(e.node, slot);
 			return { op: e.op, ok: true };
 		}
+		case 'custom': {
+			// ESCAPE HATCH — for edits no prepared op covers. Resolves a target the same way
+			// the other ops do, then hands it to a caller-supplied `apply(node, api, frame)`
+			// with the runtime's HARDENED helpers (EDIT_API): bind-on-paint fills, variant
+			// setters, stale-slot-safe slot access, styled text, compliant renderNode, etc.
+			// It STILL runs inside applyEdits, so the post-edit auditTree() re-validates the
+			// result — a guarded fallback, not raw guesswork. `apply` may be async.
+			if (typeof e.apply !== 'function')
+				return {
+					op: e.op,
+					ok: false,
+					error: 'custom edit needs an `apply(node, api, frame)` function'
+				};
+			let node = e.name ? findByName(frame, e.name) : null;
+			if (!node && e.find) {
+				const t = findTextNode(frame, e.find, e.mode);
+				node = t
+					? e.scope
+						? nearestAncestor(t, new RegExp(e.scope, 'i'))
+						: t
+					: null;
+			}
+			if (!node && (e.name || e.find))
+				return { op: e.op, ok: false, error: 'target not found' };
+			node = node || frame; // no selector → operate on the whole frame
+			try {
+				await e.apply(node, EDIT_API, frame);
+			} catch (err) {
+				return {
+					op: e.op,
+					ok: false,
+					error: String((err && err.message) || err)
+				};
+			}
+			return { op: e.op, ok: true };
+		}
 		default:
 			return { op: e.op, ok: false, error: `unknown edit op "${e.op}"` };
 	}
 }
+
+/* EDIT_API — the runtime's hardened helper toolkit, exposed to:
+ *   1) the `custom` edit op (above), via apply(node, api, frame); and
+ *   2) direct `use_figma` fallbacks, via the store-once loader's returned `api` (render.js)
+ *      or directly by name in the verbatim-paste path.
+ * These are the SAME primitives renderPlan/applyEdits use internally, so a fallback edit
+ * keeps every Figma-API gotcha solved (fills bound on the paint, slots re-fetched fresh,
+ * tokens/styles validated against the registry) and stays DB-compliant. End a free-form
+ * fallback with `await api.auditTree(frame)` to re-validate. */
+const EDIT_API = {
+	// color / tokens (bind on the paint — never node.setBoundVariable('fills'))
+	bindFill,
+	bindTextFill,
+	bindRadius,
+	importVar,
+	// variants / component props / labels
+	setVariant,
+	setInstanceLabel,
+	setInstanceFields,
+	applyProps,
+	setSemantic,
+	// slots (always re-resolved — never cached across a mutation)
+	freshSlot,
+	appendToSlot,
+	// sizing helpers
+	fillWidth,
+	hugWidth,
+	fillHeight,
+	hugHeight,
+	hugVertical,
+	// build compliant content (Heading/Body via renderNode — raw styled text is not allowed)
+	renderNode,
+	importSet,
+	createLibraryInstance,
+	createLocalInstance,
+	// selectors / traversal
+	findByName,
+	findTextNode,
+	nearestAncestor,
+	nearestInstanceFrom,
+	loadFontForTextNode,
+	// validation + utils
+	auditTree,
+	normName,
+	stop,
+	safe
+};
 async function applyEdits(spec) {
 	if (!spec || !Array.isArray(spec.edits))
 		stop('applyEdits needs an `edits` array.');
@@ -2438,7 +2047,7 @@ async function applyEdits(spec) {
  *     { "type": "Header", "appName": "Design System KPIs" },
  *     { "type": "Section", "fills": "color.background.canvas", "children": [
  *         { "type": "ContainerVertical", "gap": "sm", "children": [
- *             { "type": "Text", "style": "headline.lg", "content": "…", "fills": "color.text.strong" }
+ *             { "type": "Heading", "as": "h2", "content": "…", "fills": "color.text.strong" }
  *         ]}
  *     ]},
  *     { "type": "Section", "fills": "color.background.surface", "children": [
@@ -2447,9 +2056,9 @@ async function applyEdits(spec) {
  *                 { "type": "Tag", "props": {"icon":false,"emphasis":"weak","behavior":"static"},
  *                   "label": "48 Stable", "semantic": "Successful" },
  *                 { "type": "ContainerVertical", "gap": "2xs", "children": [
- *                     { "type": "Text", "style": "headline.sm", "content": "Komponenten", "fills": "color.text.strong" },
- *                     { "type": "Text", "style": "headline",    "content": "89%",         "fills": "color.text.strong" },
- *                     { "type": "Text", "style": "body.sm",     "content": "Adoption Rate","fills": "color.text.weak" }
+ *                     { "type": "Heading", "as": "h5", "content": "Komponenten", "fills": "color.text.strong" },
+ *                     { "type": "Heading", "as": "h3", "content": "89%",         "fills": "color.text.strong" },
+ *                     { "type": "Body",    "size": "Small", "content": "Adoption Rate","fills": "color.text.weak" }
  *                 ]}
  *             ]}]
  *         }]}
@@ -2460,9 +2069,9 @@ async function applyEdits(spec) {
  *
  * NODE FIELDS
  *   type      Layout/base: Header|Section|Grid|ContainerVertical|ContainerHorizontal|
- *             Card|Divider|Text|Image|Icon. Typography (Concept components — PREFER these for
- *             headings + body over raw Text): Heading|Body. Library components (rendered
- *             as leaf instances): Button|Tag|Badge|Link|Input|Textarea|Select|Checkbox|
+ *             Card|Divider|Image|Icon. Typography is ALWAYS a Concept COMPONENT — there is NO
+ *             raw text node: Heading (headings) | Body (body/caption). Library components
+ *             (rendered as leaf instances): Button|Tag|Badge|Link|Input|Textarea|Select|Checkbox|
  *             Radio|Switch|Infotext|Notification|Accordion|Tooltip. Any name in the
  *             COMPONENTS map works via the generic path — add more there to extend coverage.
  *   Heading   Concept Heading component. as = h1..h6 (level→size default mapping);

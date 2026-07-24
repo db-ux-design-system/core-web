@@ -2,20 +2,22 @@
 /* =============================================================================
  * build-runtime.cjs — produce the size-optimized runtimes for use_figma.
  * -----------------------------------------------------------------------------
- * WHY: the authored, heavily-commented sources exceed the Figma `use_figma`
+ * WHY: the authored, heavily-commented source exceeds the Figma `use_figma`
  * 50 000-char `code` limit, and the runtime must be pasted verbatim in ONE call
  * (globalThis does not persist between calls). Every byte of the build is a byte
  * the model must re-emit as OUTPUT on every render, so smaller = faster + cheaper.
  *
- * Two bundles are produced:
- *   db-figma-runtime.js  -> db-figma-runtime.min.js   (FULL: renderPlan + applyEdits)
- *   db-figma-edit.js     -> db-figma-edit.min.js      (COMPACT: applyEdits only)
- * Paste the FULL bundle for first-time creation (renderPlan) or the structural
- * `appendLike` edit; paste the COMPACT edit bundle for all other iterations — it
- * is a few KB instead of ~33 KB, which is the biggest cost lever per iteration.
+ * ONE bundle is produced:
+ *   db-figma-runtime.js  -> db-figma-runtime.min.js   (renderPlan + applyEdits + renderNode)
+ * There is deliberately NO separate edit-only bundle: `applyEdits` ships INSIDE
+ * the one runtime. Its `appendLike` op needs `renderNode` and `auditTree` is shared
+ * by both entry points, so an "edit-only" split cannot be lean anyway — it would only
+ * duplicate the shared half and invite drift. Iterations go through the store-once
+ * loader (below), which exposes `applyEdits` for ~0 extra output tokens once the file
+ * is bootstrapped — so the old 8 KB edit bundle no longer buys anything.
  *
  * PLUS the store-once bootstrap assets (assets/bootstrap/), generated from the
- * FULL runtime build: store-<i>.js / store-meta.js (paste once per file to stash
+ * runtime build: store-<i>.js / store-meta.js (paste once per file to stash
  * the runtime in figma.root shared plugin data), check.js (is it bootstrapped?),
  * render.js (tiny loader that rehydrates the runtime from the document) and
  * manifest.json. This is the PREFERRED render path — after a one-time bootstrap,
@@ -42,6 +44,7 @@
  * ========================================================================== */
 const fs = require('fs');
 const path = require('path');
+const { injectMaps } = require('./registry-maps.cjs');
 
 // Preferred minifier: esbuild (optional). Resolve lazily so a standalone run
 // without node_modules cleanly falls back to the tokenizer below.
@@ -283,13 +286,20 @@ function buildBootstrap(runtimeMin) {
 		` *   const PLAN = { screen, targetNodeId, layout, variables };\n` +
 		` *   const res = await renderPlan(PLAN); return JSON.stringify(res.audit);\n` +
 		` * For edits: const res = await applyEdits({ ... }); return JSON.stringify(res);\n` +
+		` * FALLBACK (no prepared op fits): use the hardened helper toolkit \`api\` for a\n` +
+		` * direct edit, then re-validate — e.g.:\n` +
+		` *   const f = figma.currentPage.findOne(n => n.name === "My Screen");\n` +
+		` *   await api.bindFill(f, "color.background.elevated");\n` +
+		` *   return JSON.stringify(await api.auditTree(f));\n` +
+		` * (\`api\` is the SAME primitives renderPlan/applyEdits use — fills bound on the\n` +
+		` *  paint, slots re-fetched fresh, tokens validated — so fallbacks stay compliant.)\n` +
 		` */\n` +
 		`const _m = JSON.parse(figma.root.getSharedPluginData(${q}, "meta") || "{}");\n` +
 		`if (!_m.count) throw new Error("[STOP] runtime not bootstrapped in this file — run bootstrap/store-*.js then store-meta.js first");\n` +
 		`let _src = "";\n` +
 		`for (let i = 0; i < _m.count; i++) _src += figma.root.getSharedPluginData(${q}, "c" + i);\n` +
-		`const _api = new Function(_src + ";return {renderPlan,applyEdits,renderNode};")();\n` +
-		`const renderPlan = _api.renderPlan, applyEdits = _api.applyEdits;\n`;
+		`const _api = new Function(_src + ";return {renderPlan,applyEdits,renderNode,api:EDIT_API};")();\n` +
+		`const renderPlan = _api.renderPlan, applyEdits = _api.applyEdits, api = _api.api;\n`;
 	fs.writeFileSync(path.join(dir, 'render.js'), loader);
 
 	fs.writeFileSync(
@@ -317,12 +327,10 @@ const BUNDLES = [
 	{
 		src: 'db-figma-runtime.js',
 		out: 'db-figma-runtime.min.js',
-		mustExport: ['renderPlan', 'applyEdits', 'renderNode']
-	},
-	{
-		src: 'db-figma-edit.js',
-		out: 'db-figma-edit.min.js',
-		mustExport: ['applyEdits', 'renderNode']
+		// Maps (VAR_KEYS/COMPONENTS/…) are injected from the registries at build time.
+		injectMaps: true,
+		// EDIT_API must survive minification too — the store-once loader returns it as `api`.
+		mustExport: ['renderPlan', 'applyEdits', 'renderNode', 'EDIT_API']
 	}
 ];
 
@@ -338,7 +346,16 @@ for (const b of BUNDLES) {
 		console.error(`SKIP: ${b.src} not found.`);
 		continue;
 	}
-	const src = fs.readFileSync(srcPath, 'utf8');
+	let src = fs.readFileSync(srcPath, 'utf8');
+	if (b.injectMaps) {
+		try {
+			src = injectMaps(src, path.join(__dirname, 'registries'));
+		} catch (err) {
+			console.error(`ERROR: ${b.out} map injection failed:`, err.message);
+			failed = true;
+			continue;
+		}
+	}
 
 	let out;
 	try {
