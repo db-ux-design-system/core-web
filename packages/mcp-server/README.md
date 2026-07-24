@@ -47,7 +47,7 @@ Those are the files you might want to change:
 You have two options:
 
 - **Recommended (Project-level):** Create a `.vscode/mcp.json` file in your project root. This allows you to share the MCP config with your team via Git.
-- **Alternative (User-level):** Add the entry to your global `settings.json`.
+- **Alternative (User-level):** Add the entry to your global `settings.json` underneath `mcp` object.
 
 > **Note:** If both exist, the `.vscode/mcp.json` file takes precedence.
 
