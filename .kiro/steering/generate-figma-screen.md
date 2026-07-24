@@ -95,13 +95,13 @@ Sektionen / anderer Seitentyp) → **Pfad A (Erst-Erstellung)**.
 
 ### Pfad A — Erst-Erstellung / großer Umbau (`renderPlan`)
 
-| Asset                                                                                | Zweck                                                                                                                                                        |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `assets/db-figma-runtime.min.js`                                                     | Volle Render-Runtime (~37 KB, `renderPlan` + `applyEdits`), verbatim einfügen (Quelle: `db-figma-runtime.js`, neu bauen via `node assets/build-runtime.cjs`) |
-| `assets/registries/tokens.json`                                                      | Farb-/Spacing-/Radius-Tokens + Textstyles (Figma-Bindings)                                                                                                   |
-| `assets/registries/components.json`                                                  | Komponenten + Varianten. Detail-Props NICHT komplett lesen — gezielt via `db-ux/get_component_props` für die tatsächlich genutzten Komponenten.              |
-| `assets/registries/<pageType>/example.json`                                          | Kanonischer Referenz-Plan des erkannten Seitentyps (`dashboard` **oder** `landingpage`) — das strukturelle Skelett.                                          |
-| `assets/registries/<pageType>/blocks.json` (+ `block-patterns.json` bei landingpage) | Die Block-/Pattern-Palette des Seitentyps zum Befüllen des Skeletts.                                                                                         |
+| Asset                                                                                | Zweck                                                                                                                                                             |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `assets/db-figma-runtime.min.js`                                                     | Volle Render-Runtime (~37 KB, `renderPlan` + `applyEdits`), verbatim einfügen (Quelle: Module unter `assets/src/`, neu bauen via `node assets/build-runtime.cjs`) |
+| `assets/registries/tokens.json`                                                      | Farb-/Spacing-/Radius-Tokens + Textstyles (Figma-Bindings)                                                                                                        |
+| `assets/registries/components.json`                                                  | Komponenten + Varianten. Detail-Props NICHT komplett lesen — gezielt via `db-ux/get_component_props` für die tatsächlich genutzten Komponenten.                   |
+| `assets/registries/<pageType>/example.json`                                          | Kanonischer Referenz-Plan des erkannten Seitentyps (`dashboard` **oder** `landingpage`) — das strukturelle Skelett.                                               |
+| `assets/registries/<pageType>/blocks.json` (+ `block-patterns.json` bei landingpage) | Die Block-/Pattern-Palette des Seitentyps zum Befüllen des Skeletts.                                                                                              |
 
 ### Pfad B — Iteration an bestehendem Screen (`applyEdits`)
 
@@ -130,7 +130,7 @@ Stoppe und melde den genauen Gap, wenn:
 ## Runtime-Änderungen bündeln (feste Regel – Kosten)
 
 > **Regel:** Ein Re-Bootstrap fügt die gesamte ~37 KB-Runtime als 6 Chunks neu ein und ist
-> **teuer**. Änderungen an der Runtime (`db-figma-runtime.js`) daher IMMER bündeln:
+> **teuer**. Änderungen an der Runtime (Module unter `assets/src/`) daher IMMER bündeln:
 >
 > 1. **Alle** geplanten Runtime-Fixes zuerst sammeln und gemeinsam vornehmen.
 > 2. Dann **genau ein** `node assets/build-runtime.cjs`.

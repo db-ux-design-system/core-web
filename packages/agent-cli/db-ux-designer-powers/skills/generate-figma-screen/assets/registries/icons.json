@@ -3,7 +3,7 @@
 		"library": "DB UX DS v3 - DB Theme Icons",
 		"purpose": "Comfort layer: resolve a functional icon by its DB Theme name (e.g. \"arrow_right\") to its Figma componentKey, so a plan can write { \"type\": \"Icon\", \"name\": \"arrow_right\" } instead of a raw key. The raw-key path ({ \"type\": \"Icon\", \"key\": \"...\" }) still works and takes precedence.",
 		"nameNormalization": "Plan names use underscores (arrow_right). The Figma icon component_set name uses hyphens (arrow-right). Lookup is case-insensitive and treats _, -, and spaces as equivalent.",
-		"howToExtend": "Icons not listed here are resolved on demand: call search_design_system with the hyphenated icon name (e.g. \"arrow-right\") scoped to library \"DB UX DS v3 - DB Theme Icons\", take the returned componentKey (a component_set), and add it below AND to ICON_KEYS in db-figma-runtime.js, then rebuild via `node build-runtime.cjs`.",
+		"howToExtend": "Icons not listed here are resolved on demand: call search_design_system with the hyphenated icon name (e.g. \"arrow-right\") scoped to library \"DB UX DS v3 - DB Theme Icons\", take the returned componentKey (a component_set), and add it below. The build generates the runtime ICON_KEYS map from this file, so just rebuild via `node build-runtime.cjs`.",
 		"fallback": "An unresolved name falls back to the generic icon placeholder (`placeholderKey` below) — never fails the render.",
 		"placeholderKey": "ebafa2ba125b7d891d26741eb8989581360d3a95",
 		"iconType": "component_set (importComponentSetByKeyAsync -> defaultVariant.createInstance)"

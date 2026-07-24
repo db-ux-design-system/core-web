@@ -24,6 +24,31 @@ function loadJson(dir, name) {
 	return JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
 }
 
+/* Flatten each component's non-deprecated figmaSets into the runtime COMPONENTS shape
+ * ({ variants:[{axes,key}], slot? }). A component with only deprecated sets is dropped. */
+function buildComponentsMap(components) {
+	const out = {};
+
+	for (const [name, def] of Object.entries(components)) {
+		const variants = [];
+
+		for (const set of Object.values(def.figmaSets || {})) {
+			if (set.deprecated) continue;
+			variants.push({ axes: set.axes || {}, key: set.key });
+		}
+
+		// Drop components with no usable (non-deprecated) set, e.g. Popover.
+		if (variants.length === 0) continue;
+
+		const entry = { variants };
+
+		if (def.contentSlot) entry.slot = def.contentSlot;
+		out[name] = entry;
+	}
+
+	return out;
+}
+
 /** Build the map OBJECTS from the registries (used for generation AND verification). */
 function buildMaps(registriesDir) {
 	const tokens = loadJson(registriesDir, 'tokens.json');
@@ -60,18 +85,7 @@ function buildMaps(registriesDir) {
 	const ICON_KEYS = { ...icons.icons };
 	const ICON_KEY = icons._meta && icons._meta.placeholderKey;
 
-	const COMPONENTS = {};
-	for (const [name, def] of Object.entries(components.components || {})) {
-		const variants = [];
-		for (const set of Object.values(def.figmaSets || {})) {
-			if (set.deprecated) continue;
-			variants.push({ axes: set.axes || {}, key: set.key });
-		}
-		if (variants.length === 0) continue; // e.g. Popover (deprecated-only)
-		const entry = { variants };
-		if (def.contentSlot) entry.slot = def.contentSlot;
-		COMPONENTS[name] = entry;
-	}
+	const COMPONENTS = buildComponentsMap(components.components || {});
 
 	return {
 		VAR_KEYS,
@@ -102,108 +116,26 @@ function emitMapsSource(registriesDir) {
 	);
 }
 
+// The maps are injected at this marker, which lives in src/10-figma-helpers.js.
 const INJECT_MARKER =
 	'/* @db-maps-inject — build-runtime.cjs replaces this with emitMapsSource() */';
 
-/* Remove a top-level `const NAME = …;` declaration (object / array / new Set(…) / string)
- * plus any comment lines immediately preceding it. Balanced over (){}[] with string
- * awareness. Returns the source unchanged if NAME is not found. */
-function stripTopLevelConst(src, name) {
-	const declRe = new RegExp(`(^|\\n)const ${name}\\s*=`, '');
-	const m = declRe.exec(src);
-	if (!m) return src;
-	const declStart = m.index + (m[1] ? 1 : 0); // start of the `const` line
-	// Walk from `=` to the terminating `;` at brace/paren/bracket depth 0.
-	let i = src.indexOf('=', declStart) + 1;
-	let depth = 0;
-	let str = null;
-	for (; i < src.length; i++) {
-		const c = src[i];
-		if (str) {
-			if (c === '\\') i++;
-			else if (c === str) str = null;
-			continue;
-		}
-		if (c === "'" || c === '"' || c === '`') str = c;
-		else if (c === '{' || c === '(' || c === '[') depth++;
-		else if (c === '}' || c === ')' || c === ']') depth--;
-		else if (c === ';' && depth === 0) {
-			i++;
-			break;
-		}
-	}
-	let end = i; // just past the `;`
-	// Absorb comment lines immediately above the declaration.
-	let s = declStart;
-	const lineStart = (idx) => src.lastIndexOf('\n', idx - 1) + 1;
-	let ls = lineStart(s);
-	for (;;) {
-		if (ls === 0) break;
-		const prevLineStart = lineStart(ls - 1);
-		const prevLine = src.slice(prevLineStart, ls - 1).trim();
-		if (
-			prevLine.startsWith('//') ||
-			prevLine.startsWith('/*') ||
-			prevLine.startsWith('*') ||
-			prevLine.endsWith('*/')
-		) {
-			s = prevLineStart;
-			ls = prevLineStart;
-		} else break;
-	}
-	// Trim a trailing newline so we don't leave a blank gap.
-	if (src[end] === '\n') end++;
-	return src.slice(0, s) + src.slice(end);
-}
-
-/* Rewrite db-figma-runtime.js into "stub" form: strip the generator-covered maps and the
- * dead consts, and drop the inject marker where the maps used to lead. The build injects the
- * generated maps at the marker before minifying, so the registries are the single source. */
-function stubRuntime(runtimePath) {
-	let src = fs.readFileSync(runtimePath, 'utf8');
-	const covered = [
-		'VAR_KEYS',
-		'RADIUS_KEYS',
-		'TEXT_STYLE_KEYS',
-		'CONCEPT_KEYS',
-		'ICON_KEY',
-		'ICON_KEYS',
-		'IMAGE_RATIOS',
-		'COMPONENTS'
-	];
-	const dead = ['LEVEL_BG', 'LAYOUT_TYPES'];
-	// Strip covered + dead consts FIRST (comment-absorption would otherwise eat the marker).
-	for (const n of [...covered, ...dead]) src = stripTopLevelConst(src, n);
-	// Then anchor the inject marker before the first surviving static const.
-	if (!src.includes(INJECT_MARKER)) {
-		src = src.replace(
-			/(^|\n)const SURFACE_FORBIDDEN\s*=/,
-			`\n${INJECT_MARKER}\nconst SURFACE_FORBIDDEN =`
-		);
-	}
-	fs.writeFileSync(runtimePath, src);
-	return src;
-}
-
-/* Inject the generated maps into a runtime source string (in memory, at build time). */
+/* Inject the generated maps into the concatenated runtime source (in memory, at build time). */
 function injectMaps(runtimeSrc, registriesDir) {
 	if (!runtimeSrc.includes(INJECT_MARKER))
 		throw new Error(
-			`[STOP] inject marker not found in runtime source — run \`node registry-maps.cjs --stub\` first.`
+			`[STOP] inject marker not found — src/10-figma-helpers.js must contain ${INJECT_MARKER}`
 		);
 	return runtimeSrc.replace(INJECT_MARKER, emitMapsSource(registriesDir));
 }
 
-module.exports = {
-	buildMaps,
-	emitMapsSource,
-	injectMaps,
-	stubRuntime,
-	INJECT_MARKER
-};
+module.exports = { buildMaps, emitMapsSource, injectMaps, INJECT_MARKER };
 
-if (require.main === module && process.argv.includes('--stub')) {
-	const p = path.join(__dirname, 'db-figma-runtime.js');
-	stubRuntime(p);
-	console.log('Stubbed', p, '(maps now injected by build-runtime.cjs).');
+if (require.main === module) {
+	const { sets } = {
+		sets: buildMaps(path.join(__dirname, 'registries')).COMPONENTS
+	};
+	console.log(
+		`registry-maps.cjs — generates the runtime maps from registries (${Object.keys(sets).length} components). Used by build-runtime.cjs.`
+	);
 }

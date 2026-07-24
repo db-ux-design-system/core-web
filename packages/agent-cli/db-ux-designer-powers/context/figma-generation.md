@@ -144,7 +144,7 @@ Achieve this by SELECTING sections per content group — never by copying `examp
    `blocks.json`): expand `$ref`, fill EVERY `<placeholder>` with real content, resolve each
    action via the **Action Hierarchy** (section 3). Drop an optional node ONLY when no content
    applies; never leave an empty Select/Icon/Button placeholder.
-6. **Assemble one Composition Plan** (per the PLAN SCHEMA in `db-figma-runtime.js`): Header
+6. **Assemble one Composition Plan** (per the PLAN SCHEMA in `assets/src/70-edit-engine.js`): Header
    first, then the ordered sections. `example.json` is a **density/style reference only**
    (spacing, zebra, heading hierarchy) — do not copy its section sequence.
 7. **Validate** (see the Validation / Linting section at the end), then render once via
@@ -189,8 +189,9 @@ Two situations require STOPPING and human review — never approximate:
 ## Render environment
 
 - Screens are produced by handing a declarative **Composition Plan (JSON)** to the
-  hardened render runtime (`skills/generate-figma-screen/assets/db-figma-runtime.js`),
-  executed through the `figma` MCP **write** tool `use_figma` (official Figma Dev Mode MCP,
+  hardened render runtime (authored under `skills/generate-figma-screen/assets/src/`, built
+  into `db-figma-runtime.min.js`), executed through the `figma` MCP **write** tool `use_figma`
+  (official Figma Dev Mode MCP,
   wired in `mcp.json`). Requires the Figma desktop app with the Dev Mode MCP server enabled.
 - NEVER hand-write imperative Figma node code. The runtime encapsulates every Figma
   Plugin API gotcha; bespoke orchestration reintroduces the flaky failures it prevents.
@@ -362,8 +363,8 @@ Two situations require STOPPING and human review — never approximate:
   Icon renders the generic placeholder — so always name the glyph when one is meaningful.
 - If the icon you need is not in `icons.json`, resolve it via `search_design_system` (query
   the hyphenated icon name, e.g. `arrow-right`, scoped to library "DB UX DS v3 - DB Theme
-  Icons"), then add it to BOTH `registries/icons.json` and the `ICON_KEYS` map in
-  `db-figma-runtime.js` and rebuild (`node build-runtime.cjs`). A raw `key` still works and
+  Icons"), then add it to `registries/icons.json` and rebuild (`node build-runtime.cjs` — the
+  build generates the runtime `ICON_KEYS` map from that file). A raw `key` still works and
   wins over `name`.
 
 ## Stop conditions (report, never approximate)

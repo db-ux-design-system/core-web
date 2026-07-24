@@ -8,7 +8,8 @@
  * the model must re-emit as OUTPUT on every render, so smaller = faster + cheaper.
  *
  * ONE bundle is produced:
- *   db-figma-runtime.js  -> db-figma-runtime.min.js   (renderPlan + applyEdits + renderNode)
+ *   src/*.js (concatenated, in filename order) + registry-injected maps
+ *     -> db-figma-runtime.min.js   (renderPlan + applyEdits + renderNode)
  * There is deliberately NO separate edit-only bundle: `applyEdits` ships INSIDE
  * the one runtime. Its `appendLike` op needs `renderNode` and `auditTree` is shared
  * by both entry points, so an "edit-only" split cannot be lean anyway — it would only
@@ -325,7 +326,8 @@ const BUNDLES = [
 	// `mustExport`: public names that MUST survive minification (called by the
 	// model / by other ops after the paste). Guarded below.
 	{
-		src: 'db-figma-runtime.js',
+		// Source is the src/ folder: plain-script modules concatenated in filename order.
+		srcDir: 'src',
 		out: 'db-figma-runtime.min.js',
 		// Maps (VAR_KEYS/COMPONENTS/…) are injected from the registries at build time.
 		injectMaps: true,
@@ -334,6 +336,23 @@ const BUNDLES = [
 	}
 ];
 
+/** Read a bundle's source: either a single file (`src`) or a concatenated src/ folder (`srcDir`). */
+function readBundleSource(b) {
+	if (b.srcDir) {
+		const dir = path.join(__dirname, b.srcDir);
+		const files = fs
+			.readdirSync(dir)
+			.filter((f) => f.endsWith('.js'))
+			.sort();
+		if (files.length === 0)
+			throw new Error(`no .js modules in ${b.srcDir}/`);
+		return files
+			.map((f) => fs.readFileSync(path.join(dir, f), 'utf8'))
+			.join('\n\n');
+	}
+	return fs.readFileSync(path.join(__dirname, b.src), 'utf8');
+}
+
 const method = esbuild
 	? `esbuild@${esbuild.version} (full minify)`
 	: 'tokenizer fallback (esbuild not resolved)';
@@ -341,12 +360,14 @@ console.log(`Minifier: ${method}\n`);
 
 let failed = false;
 for (const b of BUNDLES) {
-	const srcPath = path.join(__dirname, b.src);
-	if (!fs.existsSync(srcPath)) {
-		console.error(`SKIP: ${b.src} not found.`);
+	let src;
+	try {
+		src = readBundleSource(b);
+	} catch (err) {
+		console.error(`SKIP: ${b.out} — ${err.message}`);
+		failed = true;
 		continue;
 	}
-	let src = fs.readFileSync(srcPath, 'utf8');
 	if (b.injectMaps) {
 		try {
 			src = injectMaps(src, path.join(__dirname, 'registries'));
