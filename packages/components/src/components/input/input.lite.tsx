@@ -43,6 +43,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValuePropertyInterceptor,
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -279,6 +280,8 @@ export default function DBInput(props: DBInputProps) {
 				},
 				controller.signal
 			);
+
+			addValuePropertyInterceptor(_ref, controller.signal);
 		}
 	}, [_ref]);
 

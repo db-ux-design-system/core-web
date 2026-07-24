@@ -68,6 +68,7 @@ export function renderHomePage(container: HTMLElement): void {
 						<fieldset>
 							<db-input label="Input 1" placeholder="Placeholder" message="Description" icon="x_placeholder" name="input-name" value="test1"></db-input>
 							<db-input label="Input 2" placeholder="Placeholder" message="Description" icon="x_placeholder" name="input-name-2" value="test2"></db-input>
+							<db-input label="Date" type="date" name="input-date" value="2025-01-15"></db-input>
 						</fieldset>
 						<db-button type="reset" data-testid="reset-button">Reset</db-button>
 					</form>
