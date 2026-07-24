@@ -53,12 +53,10 @@ You have two options:
 
 ```json
 {
-	"mcp": {
-		"servers": {
-			"db-ux": {
-				"command": "npx",
-				"args": ["--yes", "@db-ux/mcp-server"]
-			}
+	"servers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["--yes", "@db-ux/mcp-server"]
 		}
 	}
 }
