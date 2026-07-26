@@ -60,7 +60,7 @@
     "npm-run-all2": "9.0.2",
     "open-cli": "9.0.0",
     "prettier": "3.9.5",
-    "sass": "1.101.3",
+    "sass": "1.101.6",
     "typescript": "5.9.3",
     "unist-util-visit": "5.1.0"
   }
