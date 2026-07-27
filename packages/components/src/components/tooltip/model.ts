@@ -38,7 +38,7 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	TextProps;
 
 export type DBTooltipDefaultState = {
-	getParent: () => HTMLElement | null;
+	getParent: () => HTMLElement;
 	_attachedParent?: HTMLElement;
 	_attachedId?: string;
 	_activeTriggerCount?: number;

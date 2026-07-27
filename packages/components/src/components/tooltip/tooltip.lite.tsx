@@ -46,11 +46,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 				_ref &&
 				getComputedStyle(_ref).visibility === 'visible'
 			) {
-				state.getParent()?.blur();
+				state.getParent().blur();
 			}
 		},
-		getParent(): HTMLElement | null {
-			if (!_ref) return null;
+		getParent(): HTMLElement {
 			let parent = _ref.parentElement;
 
 			if (parent && parent.localName.includes('tooltip')) {
