@@ -1,5 +1,15 @@
 # @db-ux/ngx-core-components
 
+## 5.0.2
+
+### Patch Changes
+
+- fix(links): removing icon underline at 110% zoom level - [see commit dc5a0de](https://github.com/db-ux-design-system/core-web/commit/dc5a0de4067468f858a7b22e53c5565c14688949)
+
+- refactor: prevent placeholder from being hidden when select is opened - [see commit 1421a4f](https://github.com/db-ux-design-system/core-web/commit/1421a4fb9ed5fe7307960fba00e5932f3971665a)
+
+- fix(Angular & Stencil): attributePassing skips attributes - [see commit 90aa1ed](https://github.com/db-ux-design-system/core-web/commit/90aa1ed9cfc2daafc0bd4d199cb43a02784e7a60)
+
 ## 5.0.1
 
 ### Patch Changes
