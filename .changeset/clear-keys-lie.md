@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: safe-guarding the access `ref` in several components
+fix: safe-guarding the access to `ref` in several components
