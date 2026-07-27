@@ -26,17 +26,17 @@ The `context/` folder provides design knowledge at two levels:
 
 ### General (universal UI principles)
 
-| File | Content |
-|------|---------|
-| `context/general/design-laws.md` | Gestalt laws (proximity, similarity, closure, common region) |
+| File                                   | Content                                                       |
+| -------------------------------------- | ------------------------------------------------------------- |
+| `context/general/design-laws.md`       | Gestalt laws (proximity, similarity, closure, common region)  |
 | `context/general/layout-guidelines.md` | Content types, grouping, spacing hierarchy, layout primitives |
 
 ### Design System (DB UX v3 specific)
 
-| File | Content |
-|------|---------|
-| `context/design-system/screen-guidelines.md` | Screen composition, visual rules, action hierarchy, validation |
-| `context/design-system/component-guidelines/` | Do/Don't per component (button, card, section, header, …) |
+| File                                          | Content                                                        |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| `context/design-system/screen-guidelines.md`  | Screen composition, visual rules, action hierarchy, validation |
+| `context/design-system/component-guidelines/` | Do/Don't per component (button, card, section, header, …)      |
 
 ## Registries (machine-readable)
 
@@ -58,14 +58,14 @@ The render runtime lives under `skills/generate-figma-screen/assets/`:
 
 - **Source**: split into modules under `src/` (`10-figma-helpers` → `70-edit-engine`).
 - **Build**: `node build-runtime.cjs` concatenates + minifies into `db-figma-runtime.min.js` and regenerates bootstrap snippets.
-- **Registry maps**: `registry-maps.cjs` generates key maps from `registries/*.json` and injects them at build time.
+- **Registry maps**: `build-registry-maps.cjs` generates key maps from `registries/*.json` and injects them at build time.
 - **Single bundle**: ONE file (`db-figma-runtime.min.js`) provides both `renderPlan` and `applyEdits`.
 
 ## MCP Servers
 
-| Server | Purpose |
-|--------|---------|
-| `db-ux` (`@db-ux/mcp-server`) | Live component, token, icon verification |
+| Server                              | Purpose                                                        |
+| ----------------------------------- | -------------------------------------------------------------- |
+| `db-ux` (`@db-ux/mcp-server`)       | Live component, token, icon verification                       |
 | `figma` (Figma Dev Mode MCP, local) | Renders Composition Plan into Figma (`use_figma`) + inspection |
 
 > The `figma` server requires the Figma desktop app with Dev Mode MCP enabled.

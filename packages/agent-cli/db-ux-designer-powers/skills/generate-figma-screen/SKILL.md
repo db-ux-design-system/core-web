@@ -42,7 +42,7 @@ requires:
     - asset: assets/db-figma-runtime.min.js
     - asset: assets/build-runtime.cjs
     # Runtime source is split into modules under assets/src/ (concatenated by the build).
-    - asset: assets/registry-maps.cjs
+    - asset: assets/build-registry-maps.cjs
     # Store-once bootstrap (PREFERRED render path — see Phase 4a).
     - asset: assets/bootstrap/manifest.json
     - asset: assets/bootstrap/check.js
@@ -150,6 +150,7 @@ Two paths. **Prefer store-once** (keeps render calls tiny).
 #### 4b. Single verbatim paste (FALLBACK)
 
 Paste entire `assets/db-figma-runtime.min.js` verbatim in ONE `use_figma` call (runtime + plan together — `globalThis` does NOT persist between calls). Then:
+
 ```js
 const PLAN = { screen, targetNodeId, layout, variables };
 const res = await renderPlan(PLAN);
@@ -183,15 +184,25 @@ For follow-up changes, patch in place with `applyEdits`:
 2. Author a small edit spec:
     ```js
     const res = await applyEdits({
-        screen: "Frame Name",   // or rootId: "12:34"
-        targetNodeId: "700:4960",
-        edits: [
-            { op: "setText", find: "Old", value: "New" },
-            { op: "setVariant", find: "Title", axis: "As", value: "h3" },
-            { op: "setSectionFill", anchorText: "Section", token: "color.background.elevated" },
-            { op: "remove", find: "Unused" },
-            { op: "appendLike", find: "Sibling", node: { /* plan node */ } }
-        ]
+    	screen: "Frame Name", // or rootId: "12:34"
+    	targetNodeId: "700:4960",
+    	edits: [
+    		{ op: "setText", find: "Old", value: "New" },
+    		{ op: "setVariant", find: "Title", axis: "As", value: "h3" },
+    		{
+    			op: "setSectionFill",
+    			anchorText: "Section",
+    			token: "color.background.elevated"
+    		},
+    		{ op: "remove", find: "Unused" },
+    		{
+    			op: "appendLike",
+    			find: "Sibling",
+    			node: {
+    				/* plan node */
+    			}
+    		}
+    	]
     });
     return JSON.stringify(res);
     ```
@@ -213,19 +224,19 @@ Do NOT jump to raw hand-written node code. Climb this ladder:
 
 ## Red Flags (STOP immediately)
 
-| If you think…                                                     | Response                                                         |
-| ----------------------------------------------------------------- | ---------------------------------------------------------------- |
-| "I'll create the button/card from frames + text."                 | STOP. Only official DB instances via the runtime.                |
-| "I'll recolor fills to fake a variant."                           | STOP. Use built-in variant or adaptive mode.                     |
-| "I'll hand-write the node tree, it's faster."                     | STOP. Author the PLAN JSON and call `renderPlan`.                |
-| "I'll freely combine block properties."                           | STOP. Use captured blocks from `blocks.json`.                    |
-| "I'll invent a new section/page layout."                          | STOP. Select via `sections.json`; unmatched → human review.      |
-| "All my sections are the same grid."                              | STOP. Heterogeneous content needs different patterns.            |
-| "Every card gets a brand button."                                 | STOP. ≤1 brand/page; equal items share one action kind.          |
-| "I'll make the card a link AND add a button inside."              | STOP. Clickable card = exactly one interactive element.          |
-| "I'll add a 'Startseite'/'Home' nav item."                        | STOP. Logo = home. List only OTHER pages.                        |
-| "I'll use raw text / figma.createText()."                         | STOP. ALL text via Heading/Body components. No raw text nodes.   |
-| "To change one label, I'll regenerate the whole screen."          | STOP. Use `applyEdits` — never re-render for small changes.     |
+| If you think…                                            | Response                                                       |
+| -------------------------------------------------------- | -------------------------------------------------------------- |
+| "I'll create the button/card from frames + text."        | STOP. Only official DB instances via the runtime.              |
+| "I'll recolor fills to fake a variant."                  | STOP. Use built-in variant or adaptive mode.                   |
+| "I'll hand-write the node tree, it's faster."            | STOP. Author the PLAN JSON and call `renderPlan`.              |
+| "I'll freely combine block properties."                  | STOP. Use captured blocks from `blocks.json`.                  |
+| "I'll invent a new section/page layout."                 | STOP. Select via `sections.json`; unmatched → human review.    |
+| "All my sections are the same grid."                     | STOP. Heterogeneous content needs different patterns.          |
+| "Every card gets a brand button."                        | STOP. ≤1 brand/page; equal items share one action kind.        |
+| "I'll make the card a link AND add a button inside."     | STOP. Clickable card = exactly one interactive element.        |
+| "I'll add a 'Startseite'/'Home' nav item."               | STOP. Logo = home. List only OTHER pages.                      |
+| "I'll use raw text / figma.createText()."                | STOP. ALL text via Heading/Body components. No raw text nodes. |
+| "To change one label, I'll regenerate the whole screen." | STOP. Use `applyEdits` — never re-render for small changes.    |
 
 ## Output Checklist
 

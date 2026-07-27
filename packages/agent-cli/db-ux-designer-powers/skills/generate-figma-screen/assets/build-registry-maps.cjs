@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* =============================================================================
- * registry-maps.cjs — generate the runtime's data maps FROM the registries.
+ * build-registry-maps.cjs — generate the runtime's data maps FROM the registries.
  * -----------------------------------------------------------------------------
  * WHY: the runtime cannot read files in the Figma sandbox, so the key maps must
  * be embedded as literals. But hand-copying them from the registries (the old
@@ -104,7 +104,7 @@ function emitMapsSource(registriesDir) {
 	const m = buildMaps(registriesDir);
 	const j = (v) => JSON.stringify(v, null, '\t');
 	return (
-		'/* AUTO-GENERATED from assets/registries/*.json by registry-maps.cjs — DO NOT EDIT. */\n' +
+		'/* AUTO-GENERATED from assets/registries/*.json by build-registry-maps.cjs — DO NOT EDIT. */\n' +
 		`const VAR_KEYS = ${j(m.VAR_KEYS)};\n` +
 		`const RADIUS_KEYS = ${j(m.RADIUS_KEYS)};\n` +
 		`const TEXT_STYLE_KEYS = ${j(m.TEXT_STYLE_KEYS)};\n` +
@@ -136,6 +136,6 @@ if (require.main === module) {
 		sets: buildMaps(path.join(__dirname, 'registries')).COMPONENTS
 	};
 	console.log(
-		`registry-maps.cjs — generates the runtime maps from registries (${Object.keys(sets).length} components). Used by build-runtime.cjs.`
+		`build-registry-maps.cjs — generates the runtime maps from registries (${Object.keys(sets).length} components). Used by build-runtime.cjs.`
 	);
 }

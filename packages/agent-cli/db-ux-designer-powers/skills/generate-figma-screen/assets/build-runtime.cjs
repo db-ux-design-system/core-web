@@ -45,7 +45,7 @@
  * ========================================================================== */
 const fs = require('fs');
 const path = require('path');
-const { injectMaps } = require('./registry-maps.cjs');
+const { injectMaps } = require('./build-registry-maps.cjs');
 
 // Preferred minifier: esbuild (optional). Resolve lazily so a standalone run
 // without node_modules cleanly falls back to the tokenizer below.
