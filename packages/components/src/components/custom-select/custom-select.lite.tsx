@@ -204,7 +204,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					new IntersectionObserverListener().observe(
 						detailsRef,
 						(entry) => {
-							if (!entry.isIntersecting && detailsRef.open) {
+							if (!entry.isIntersecting && detailsRef?.open) {
 								detailsRef.open = false;
 							}
 						}
