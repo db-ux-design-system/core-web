@@ -401,10 +401,14 @@ async function renderChildrenIntoSlot(ownerInstance, slotName, children) {
 
 /* -----------------------------------------------------------------------------
  * SCREEN ROOT — placed to the RIGHT of existing frames, never stacked at 0,0.
+ * Additional screens on the SAME page sit beside the rightmost frame with a
+ * `gap` gutter (default 200px, override via plan.screenGap) — a multi-screen
+ * site lives on one Figma page, side by side, instead of on separate pages.
  * GOTCHA 3: set width via resize FIRST, then primaryAxisSizingMode = AUTO LAST.
  * -------------------------------------------------------------------------- */
-function createScreenRoot(name, width, reuse) {
+function createScreenRoot(name, width, reuse, gap) {
 	const page = figma.currentPage;
+	const gutter = typeof gap === 'number' && gap >= 0 ? gap : 200;
 	let maxRight = 0,
 		has = false;
 	for (const n of page.children) {
@@ -425,7 +429,7 @@ function createScreenRoot(name, width, reuse) {
 		root.x = reuse.x;
 		root.y = reuse.y;
 	} else {
-		root.x = has ? maxRight + 200 : 0;
+		root.x = has ? maxRight + gutter : 0;
 		root.y = 0;
 	}
 	root.primaryAxisSizingMode = 'AUTO'; // AUTO LAST (do not resize after this)
@@ -463,10 +467,14 @@ async function renderPlan(plan) {
 		}
 	}
 
-	// GUARD — never silently create a duplicate frame on a page that already has one.
-	// A follow-up change to an existing screen MUST go through applyEdits (in place).
-	// A deliberate full rebuild requires `replace: true`, which removes the existing
-	// matching (or only) frame first and renders in its place — so no sibling pile-up.
+	// GUARD — guard against a DUPLICATE of the SAME screen, but allow ADDITIONAL
+	// (differently-named) screens to be placed side by side on the same page.
+	//  • Same-named frame already present → likely a re-render: STOP and steer to
+	//    applyEdits (in-place edit) or `replace: true` (deliberate rebuild).
+	//  • Only other, differently-named frames present → this is a NEW screen of a
+	//    multi-screen site: fall through and let createScreenRoot place it to the
+	//    RIGHT of the existing frames (gutter via plan.screenGap, default 200px).
+	// `replace: true` still removes the matching (or only) frame and reuses its slot.
 	let reusePos = plan.reuse;
 	const pageFrames = (figma.currentPage.children ?? []).filter(
 		(n) => safe(() => n.type, '') === 'FRAME'
@@ -488,24 +496,22 @@ async function renderPlan(plan) {
 					f.remove();
 				} catch {}
 			}
-		} else {
+		} else if (named.length) {
 			stop(
-				`A frame already exists on page "${safe(
+				`A frame named "${wantName}" already exists on page "${safe(
 					() => figma.currentPage.name,
 					'?'
-				)}" (${pageFrames
-					.map((f) => `"${safe(() => f.name, '?')}"`)
-					.join(
-						', '
-					)}). Do NOT create a duplicate — use applyEdits to patch the existing frame in place. For a deliberate full rebuild pass { replace: true } (removes the existing frame first).`
+				)}". Do NOT create a duplicate — use applyEdits to patch it in place, or pass { replace: true } for a deliberate rebuild. (Additional, differently-named screens ARE allowed and get placed to the right automatically.)`
 			);
 		}
+		// else: only differently-named frames exist → additional screen, placed to the right.
 	}
 
 	const root = createScreenRoot(
 		plan.screen ?? 'Screen',
 		plan.width,
-		reusePos
+		reusePos,
+		plan.screenGap
 	);
 	for (const node of plan.layout) await renderNode(node, root);
 	hugHeight(root); // final: root hugs total content height

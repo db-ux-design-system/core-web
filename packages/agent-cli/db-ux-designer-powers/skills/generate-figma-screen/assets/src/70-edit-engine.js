@@ -381,11 +381,16 @@ async function applyEdits(spec) {
  *   "screen": "DS KPI Dashboard",
  *   "targetNodeId": "177:1091",          // optional: page/frame to render on
  *   "width": 1440,                        // optional (default 1440)
- *   "replace": false,                     // optional. renderPlan REFUSES to run if a frame
- *                                         // already exists on the target page (use applyEdits
- *                                         // to edit in place). Pass replace:true ONLY for a
- *                                         // deliberate rebuild — it removes the existing
- *                                         // matching/only frame first (no duplicate pile-up).
+ *   "screenGap": 200,                     // optional (default 200). Horizontal gutter (px) to
+ *                                         // the rightmost existing frame when this screen is
+ *                                         // an ADDITIONAL screen on the same page.
+ *   "replace": false,                     // optional. A screen with the SAME `screen` name
+ *                                         // already on the page → renderPlan REFUSES (use
+ *                                         // applyEdits to edit in place). A DIFFERENTLY-named
+ *                                         // screen is allowed and placed to the RIGHT of the
+ *                                         // existing frames (multi-screen site on one page).
+ *                                         // replace:true removes the matching/only frame first
+ *                                         // for a deliberate rebuild (no duplicate pile-up).
  *   "layout": [                           // ordered top-level children of the root
  *     { "type": "Header", "appName": "Design System KPIs" },
  *     { "type": "Section", "fills": "color.background.canvas", "children": [
