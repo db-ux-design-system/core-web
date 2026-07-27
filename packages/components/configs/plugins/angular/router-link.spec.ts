@@ -25,9 +25,7 @@ describe('transformRouterLink', () => {
 			'import { RouterLink } from "@angular/router";'
 		);
 		expect(result).toContain('[attr.href]="routerLink?.urlTree ?? href()"');
-		expect(result).toContain(
-			'(click)="void (routerLink && $event.preventDefault())"'
-		);
+		expect(result).toContain('(click)="handleClick($event)"');
 		expect(result).toContain(
 			'readonly routerLink = inject(RouterLink, { optional: true });'
 		);
