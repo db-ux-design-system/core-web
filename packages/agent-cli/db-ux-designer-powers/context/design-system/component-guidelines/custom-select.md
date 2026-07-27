@@ -2,14 +2,9 @@
 
 Erweitertes Dropdown mit Suche, Gruppierung und Mehrfachauswahl für komplexere Auswahlszenarien.
 
-## Do
+## Regeln
 
-- Verwende Custom Select für Mehrfachauswahl mit vielen Optionen oder bei Bedarf von Suche/Gruppierung
-- Verwende Custom Select ab 5 oder mehr Auswahloptionen
-- Stelle sicher, dass ausgewählte Optionen ohne erneutes Öffnen der Liste überprüfbar sind (Tags, Anzahl oder Text)
-- Stelle Suche für lange Listen bereit und verwende Gruppentitel für eine klare Übersicht
-
-## Don't
-
-- Verwende Custom Select nicht für kurze, einfache Einzelauswahl-Listen – nutze stattdessen Select oder Radio
-- Verwende Custom Select nicht für weniger als 5 Auswahloptionen – nutze stattdessen Radio/Checkbox
+1. Verwenden ab 5+ Optionen oder wenn Suche/Gruppierung/Mehrfachauswahl nötig ist — unter 5 Optionen Radio oder Checkbox nutzen.
+2. Ausgewählte Optionen müssen ohne erneutes Öffnen überprüfbar sein — Tags bei Mehrfachauswahl die häufig bearbeitet wird, Amount bei engem Platz (nur Mehrfachauswahl), Text bei Einzelauswahl.
+3. Suche für lange Listen bereitstellen — Gruppentitel für klare Übersicht bei heterogenen Optionen.
+4. Für kurze, einfache Einzelauswahl ohne Suche stattdessen natives Select oder Radio verwenden.

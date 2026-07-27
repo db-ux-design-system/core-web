@@ -2,14 +2,9 @@
 
 Ermöglicht die Auswahl genau einer Option aus sich gegenseitig ausschließenden Alternativen.
 
-## Do
+## Regeln
 
-- Verwende Radio-Buttons für sich gegenseitig ausschließende Optionen (genau eine Auswahl)
-- Verwende Radio für 2–6 Optionen, die Nutzer:innen schnell vergleichen sollen
-- Verwende klare, kurze Labels, die eindeutig voneinander unterscheidbar sind
-- Staple Optionen vertikal und halte einheitliche Abstände innerhalb der Gruppe ein
-
-## Don't
-
-- Verwende Radio nicht für Mehrfachauswahl – nutze stattdessen Checkbox
-- Verwende Radio nicht für lange Listen – nutze stattdessen Select
+1. Radio bei gegenseitigem Ausschluss (genau 1 aus n) — Checkbox bei Mehrfachauswahl.
+2. Für 2–6 Optionen nutzen, die direkt vergleichbar sein sollen — bei langen Listen stattdessen Select.
+3. Labels kurz, klar und eindeutig voneinander unterscheidbar formulieren.
+4. Optionen vertikal stapeln mit einheitlichen Abständen innerhalb der Gruppe.

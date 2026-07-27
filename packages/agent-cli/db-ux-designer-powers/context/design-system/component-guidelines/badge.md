@@ -1,15 +1,11 @@
 # Badge
 
-Zeigt kurze, kontextbezogene Informationen wie Status, Kategorie oder Metadaten in direkter Nähe zu einem anderen Element an.
+Zeigt kurze, kontextbezogene Informationen wie Status oder Metadaten in direkter Nähe zu einem anderen Element an.
 
-## Do
+## Regeln
 
-- Verwende eine Badge, um einen Status neben einem Listenelement oder Titel anzuzeigen
-- Verwende ein oder zwei kurze Wörter wie „Neu" oder „Entwurf"
-- Richte die Badge konsistent neben dem zugehörigen Label oder der Komponente aus
-- Stelle klare Textlabels und ausreichenden Farbkontrast sicher; vermittle Bedeutung nie allein durch Farbe
-
-## Don't
-
-- Setze eine Badge nicht als einzigen Hinweis für kritische Informationen ein – sie ist ergänzend, nicht primär
-- Verwende keine Badge, wenn das Element klickbar oder entfernbar sein soll – nutze stattdessen Tag
+1. Ergänzt ein Element um Kontext — nie primärer Informationsträger.
+2. Maximal ein bis zwei Wörter (z. B. „Neu", „Entwurf", „Beta").
+3. Bedeutung nie allein durch Farbe vermitteln — immer Textlabel oder ergänzendes Merkmal.
+4. Konsistent neben dem zugehörigen Element positionieren — räumliche Nähe sichert die Zuordnung.
+5. Badge ist statisch — für interaktive Elemente (filtern, entfernen) stattdessen Tag verwenden.

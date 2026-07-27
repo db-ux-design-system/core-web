@@ -2,14 +2,10 @@
 
 Ermöglicht die Eingabe und Überprüfung längerer, mehrzeiliger Texte in Formularen und Dialogen.
 
-## Do
+## Regeln
 
-- Verwende Textarea für Kommentare, Nachrichten, Beschreibungen und Feedback
-- Stelle ein kurzes, spezifisches Label bereit, konsistent platziert
-- Starte mit einer Höhe, die zur erwarteten Eingabemenge passt (Standard: 4 Zeilen oder Content-Variante)
-- Stelle einen kurzen Hilfshinweis und eine klare Fehlermeldung bei ungültiger Eingabe bereit
-
-## Don't
-
-- Verwende Textarea nicht für kurze Werte wie Name oder E-Mail – nutze stattdessen Input
-- Setze essenzielle Anforderungen nicht nur in den Platzhaltertext – er verschwindet beim Tippen
+1. Für mehrzeilige Texte verwenden — für kurze, einzeilige Werte stattdessen Input.
+2. Sichtbares Label bereitstellen — konsistent mit anderen Formularfeldern platziert.
+3. Starthöhe an die erwartete Eingabemenge anpassen.
+4. Essenzielle Anforderungen nie nur im Platzhalter — er verschwindet beim Tippen.
+5. Hilfshinweis und Fehlermeldung bei ungültiger Eingabe bereitstellen.

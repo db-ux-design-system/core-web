@@ -2,13 +2,8 @@
 
 Schwebendes Overlay für kontextbezogene Inhalte, ausgelöst durch Nutzer:innen-Interaktion.
 
-## Do
+## Regeln
 
-- Verwende Popover für zusammengehörige Optionen oder interaktive Inhalte, die an einem Trigger verankert sind
-- Präsentiere ein Thema mit klarer Hierarchie und einer begrenzten Anzahl von Steuerelementen
-- Verwende Standard-Platzierung und aktiviere Flipping, um das Popover vollständig sichtbar zu halten
-
-## Don't
-
-- Verwende kein Popover für die Anzeige des Labels eines Icon-Buttons – nutze stattdessen Tooltip
-- Packe nicht mehrere unzusammenhängende Abschnitte oder große, scrolllastige Inhalte in ein Popover
+1. Für interaktive oder zusammengesetzte Inhalte an einem Trigger verwenden — für reine Text-Erklärungen stattdessen Tooltip.
+2. Inhalt auf ein Thema begrenzen — keine großen oder scrolllastigen Inhalte.
+3. Standard-Platzierung nutzen und Flipping aktivieren, damit das Popover vollständig sichtbar bleibt.

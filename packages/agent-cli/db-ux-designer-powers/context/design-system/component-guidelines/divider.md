@@ -1,14 +1,10 @@
 # Divider
 
-Visueller Trenner zur Strukturierung und Gruppierung von Inhaltsbereichen – sparsam einsetzen.
+Visueller Trenner zur Strukturierung und Gruppierung von Inhaltsbereichen — sparsam einsetzen.
 
-## Do
+## Regeln
 
-- Verwende Weak für dezente Trennung; Strong nur zwischen großen Abschnitten, wenn Abstand allein unklar ist
-- Füge einen Divider nur hinzu, wenn Abstand allein nicht genügend Trennung bietet
-- Passe die Divider-Länge an den Inhaltsbereich an und halte die Ausrichtung konsistent
-
-## Don't
-
-- Setze nicht zwischen jedem Element Divider ein – das erzeugt visuelle Unruhe und reduziert Hierarchie
-- Setze starke Divider nicht überall zum Ausgleich fehlender Layoutstruktur ein
+1. Nur einsetzen, wenn Whitespace allein keine ausreichende Trennung bietet.
+2. Weak für dezente Trennung innerhalb eines Bereichs — Strong nur zwischen großen Abschnitten.
+3. Länge an den Inhaltsbereich anpassen und Ausrichtung konsistent halten.
+4. Nicht rein dekorativ zwischen jedem Element einsetzen wenn kein Gruppierungsgewinn entsteht.

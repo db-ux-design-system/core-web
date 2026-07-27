@@ -1,16 +1,11 @@
 # Tag
 
-Kompaktes Label zur Kategorisierung, Hervorhebung von Attributen oder Darstellung von Auswahlen – statisch oder interaktiv.
+Kompaktes Label zur Kategorisierung, Hervorhebung von Attributen oder Darstellung von Auswahlen — statisch oder interaktiv.
 
-## Do
+## Regeln
 
-- Verwende den passenden Tag-Typ: Statisch für Kategorisierung, Interaktiv (Checkbox/Radio) für Filterung, Entfernbar für Auswahl-Management
-- Halte Labels so kurz und knapp wie möglich – Tags bleiben immer einzeilig
-- Verwende Strong-Betonung gezielt, um bestimmte Informationen hervorzuheben
-- Stelle einen klickbaren Bereich von mindestens 24×24 px bei funktionaler Dichte sicher
-
-## Don't
-
-- Verwende Tags nicht als Ersatz für primäre Navigation oder Hauptaktionen
-- Verwende Tag nicht zur Statusanzeige – nutze stattdessen Badge
-- Verwende nicht verschiedene Betonungen innerhalb eines Kontexts ohne triftigen Grund
+1. Behavior nach Funktion wählen: Statisch (reine Anzeige), Checkbox/Radio (Filterung), Removable (getroffene Auswahl anzeigen/entfernen), Link (Navigation), Button (Aktion)..
+2. Labels so kurz wie möglich — Tags bleiben immer einzeilig.
+3. Für reine Statusanzeige stattdessen Badge verwenden — Tag ist für kategorisierende und interaktive Zwecke.
+4. Strong-Betonung gezielt einsetzen — nicht verschiedene Betonungen innerhalb eines Kontexts ohne Grund mischen.
+5. Mindest-Trefferzone 24×24 px bei interaktiven Varianten sicherstellen.

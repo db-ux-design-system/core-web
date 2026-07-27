@@ -1,16 +1,11 @@
 # Navigation
+<!-- TODO: Navigation wird mittelfristig deprecated. -->
+Stabile Ziele für konsistente Bewegung durch eine Anwendung auf Desktop und Mobile.
 
-Ziele für eine konsistente Bewegung durch eine Anwendung auf Desktop und Mobile.
+## Regeln
 
-## Do
-
-- Verwende Navigationselemente für stabile Ziele wie „Übersicht", „Berichte", „Einstellungen"
-- Verwende horizontale Navigation für flache Strukturen; vertikale Navigation für Sidebars oder tiefere Hierarchien
-- Halte Labels kurz, klar und in der Formulierung einheitlich
-- Begrenze sichtbare Top-Level-Elemente und verschiebe den Rest in einen Overflow-Eintrag
-
-## Don't
-
-- Verwende Navigationselemente nicht für einmalige Aktionen wie „Jetzt herunterladen" oder „Absenden" – nutze stattdessen Buttons
-- Zwänge horizontale Navigation nicht in enge Räume, in denen Labels abgeschnitten werden
-- Erstelle keine tiefen, mehrstufigen Bäume, die exzessives Navigieren erfordern
+1. Nur für stabile Ziele (Seiten, Bereiche) verwenden — nicht für Einmal-Aktionen wie „Absenden" oder „Herunterladen".
+2. Horizontal für flache Strukturen — vertikal (Sidebar) für tiefere Hierarchien.
+3. Labels kurz, klar und in Formulierung einheitlich halten.
+4. Sichtbare Top-Level-Elemente begrenzen — Rest in Overflow oder mobile Navigation verschieben.
+5. Keine tiefen, mehrstufigen Bäume die exzessives Navigieren erfordern.

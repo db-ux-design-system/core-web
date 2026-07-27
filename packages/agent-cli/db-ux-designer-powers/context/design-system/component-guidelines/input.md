@@ -1,16 +1,11 @@
 # Input
 
-Erfasst kurze, einzeilige Texteingaben in Formularen und Dialogen. Klar beschriftet, mit Hinweisen und Validierungsfeedback bei Bedarf.
+Erfasst kurze, einzeilige Texteingaben in Formularen und Dialogen.
 
-## Do
+## Regeln
 
-- Verwende Input, wenn Nutzer:innen einen beliebigen kurzen Wert eingeben können
-- Ordne ein sichtbares, kurzes Label direkt dem Feld zu (darüber oder konsistent ausgerichtet)
-- Verwende Platzhalter nur für ein Beispielformat (z.B. „name@firma.de"), während das Label die Bedeutung trägt
-- Zeige eine kurze Hilfsmeldung für Format-Hinweise und eine explizite Fehlermeldung bei ungültiger Eingabe
-- Halte Label, Input und Hilfs-/Validierungstext ausgerichtet und über Breakpoints hinweg konsistent beabstandet
-
-## Don't
-
-- Verwende Input nicht zur Auswahl aus einer festen Liste – nutze stattdessen Select oder Autocomplete
-- Platziere Anforderungen oder Hilfetexte nicht ausschließlich im Platzhalter – sie verschwinden beim Tippen
+1. Verwende Input wenn Nutzer:innen einen beliebigen kurzen Wert eingeben — für feste Listen stattdessen Select oder CustomSelect.
+2. Immer ein sichtbares, kurzes Label direkt dem Feld zuordnen — Platzhalter ist kein Label-Ersatz.
+3. Platzhalter nur für Beispielformat (z. B. „name@firma.de") — nie für Pflichthinweise oder Anforderungen.
+4. Kurze Hilfsmeldung für Format-Hinweise, explizite Fehlermeldung bei ungültiger Eingabe.
+5. Feldbreite an der erwartbaren Eingabelänge oder am Grid orientieren.

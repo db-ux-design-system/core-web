@@ -1,13 +1,12 @@
 # Link
 
-Dient der Navigation zu anderen Seiten, Abschnitten oder externen Zielen und zeigt visuell eine Navigationsmöglichkeit an.
+Dient der Navigation zu anderen Seiten, Abschnitten oder externen Zielen.
 
-## Do
+## Regeln
 
-- Verwende einen Link, um zu einer anderen Seite oder einem Abschnitt zu navigieren
-- Verwende Text-Links innerhalb von Absätzen für Inline-Navigation; die eigenständige Link-Komponente steht außerhalb von Fließtext
-- Hebe einen wichtigen Navigationslink sparsam mit der Brand-Variante hervor
+1. Link = Navigation. Für Aktionen die Zustände ändern stattdessen Button verwenden.
+2. Text-Link für Inline-Navigation innerhalb von Fließtext — eigenständige Link-Komponente für standalone Navigation außerhalb von Fließtext.
+3. Brand-Variante sparsam für einen hervorgehobenen Navigationslink — nicht inflationär einsetzen.
+4. Externe Links kennzeichnen (Icon) und Verhalten (neuer Tab) klar kommunizieren.
 
-## Don't
-
-- Verwende keinen Link, um eine Aktion auszulösen oder Daten zu ändern – nutze stattdessen Button
+<!-- TODO: Regel 4 verifizieren — Icon-Konvention und target=_blank Verhalten konkretisieren. -->

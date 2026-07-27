@@ -2,13 +2,12 @@
 
 Oberer Bereich mit Markenidentität, primärer Navigation und optionalen Aktionen.
 
-## Do
+<!-- TODO: Header wird mittelfristig deprecated. Regeln komplett überarbeiten — aktuelle Basis war nicht sinnvoll. -->
 
-- Platziere das Logo links, die primäre Navigation mittig oder rechts und Aktionen gruppiert ganz rechts
-- Verwende Icon-Buttons für Aktionen und belasse Ziel-Links im Navigationsbereich
-- Kennzeichne externe Ziele klar und halte die Interaktion konsistent über den Header
+## Regeln
 
-## Don't
-
-- Verteile Logo, Navigation und Aktionen nicht willkürlich und platziere Meta-Navigation nicht prominenter als die primäre Navigation
-- Setze Navigationsziele nicht in den Aktionsbereich und mische keine Aktionen in die Navigationsliste
+1. Logo links — es dient gleichzeitig als Home-Link. Keinen separaten „Home"-Navigationspunkt.
+2. Primäre Navigation links neben dem Logo, Aktionen (Icon-Buttons) gruppiert rechts.
+3. Navigationsziele gehören in den Navigationsbereich — Aktionen (z. B. Suche, Profil) in den Aktionsbereich. Nicht mischen.
+4. Meta-Navigation nie prominenter als die primäre Navigation platzieren.
+5. Externe Ziele klar kennzeichnen und Interaktionsmuster konsistent halten.

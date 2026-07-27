@@ -2,13 +2,8 @@
 
 Overlay-Ebene hinter modale Inhalte zur Fokussierung und Interaktionsblockierung.
 
-## Do
+## Regeln
 
-- Verwende Backdrop hinter einem Dialog oder Drawer, um eine aktive Overlay-Ebene klar anzuzeigen
-- Verwende Backdrop nur, wenn Nutzer:innen die Aufgabe ohne Hintergrundinhalte abschließen können
-- Halte den Fokus innerhalb des aktiven Overlays und verhindere Interaktion mit dem Hintergrund
-
-## Don't
-
-- Verwende Backdrop nicht zur dekorativen Hervorhebung, wenn kein Overlay vorhanden ist
-- Verwende Backdrop nicht, wenn Nutzer:innen gleichzeitig mit dem Hintergrund arbeiten müssen – nutze stattdessen ein nicht-blockierendes Muster
+1. Nur hinter modalen Overlays (Dialog, Drawer) einsetzen — nie dekorativ ohne zugehöriges Overlay.
+2. Blockiert Interaktion mit dem Hintergrund — Klick auf den Backdrop kann das Overlay schließen (optional). Fokus bleibt innerhalb des Overlays.
+3. Nur verwenden, wenn die Aufgabe ohne Zugriff auf Hintergrundinhalte abschließbar ist — sonst nicht-blockierendes Muster nutzen.

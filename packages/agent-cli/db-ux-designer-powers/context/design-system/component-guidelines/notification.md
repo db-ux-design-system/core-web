@@ -1,17 +1,12 @@
 # Notification
 
-Kommuniziert eine kurze Nachricht über ein Ereignis, eine Zustandsänderung oder System-Feedback, ohne Nutzer:innen zu blockieren.
+Kommuniziert eine kurze Nachricht über ein Ereignis, eine Zustandsänderung oder System-Feedback, ohne zu blockieren.
 
-## Do
+## Regeln
 
-- Verwende Notification für Feedback, das Nutzer:innen ihre Aufgabe fortsetzen lässt
-- Verwende semantische Varianten konsistent: Success für Abschluss, Info für neutrale Updates, Warning für Risiko, Error für Fehler
-- Verwende einen optionalen kurzen Titel + einen knappen Satz und bei Bedarf einen klaren Aktions-Link/Button
-- Schließe Success/Info nach der Standarddauer automatisch; halte Warning/Error persistent mit sichtbarem Schließen-Button
-- Staple Notifications im Standard-Eck/Bereich mit gleichmäßigem Abstand, ohne Navigation oder primäre CTAs zu überlagern
-
-## Don't
-
-- Verwende Notification nicht zur Bestätigung irreversibler Aktionen oder zum Erzwingen einer Entscheidung – nutze stattdessen Dialog
-- Verwende Success-Styling nicht für neutrale Updates – die Nachricht muss auch ohne Farbe verständlich sein
-- Kombiniere keine mehrabsätzigen Erklärungen oder zusammenhangslose Nachrichten in einem Block
+1. Nur für nicht-blockierendes Feedback verwenden — für Bestätigungen irreversibler Aktionen oder erzwungene Entscheidungen stattdessen Dialog.
+2. Semantische Variante passend zur Dringlichkeit wählen — nie zur rein visuellen Betonung missbrauchen.
+3. Bedeutung muss auch ohne Farbe verständlich sein.
+4. Nachricht so kurz wie möglich halten — für Details auf eine eigene Oberfläche verlinken.
+5. Automatisches Ausblenden nur bei Successful/Informational erlaubt — Warning/Critical immer persistent mit Schließen-Button.
+6. Sichtbar platzieren ohne primäre Steuerelemente zu verdecken — Anzahl gleichzeitig sichtbarer Notifications begrenzen.

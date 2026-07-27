@@ -2,13 +2,10 @@
 
 Ermöglicht die Auswahl einer oder mehrerer unabhängiger Optionen mit klarem Auswahlzustand.
 
-## Do
+## Regeln
 
-- Verwende Checkboxen, wenn Mehrfachauswahl erlaubt ist (einschließlich keine Auswahl)
-- Verwende klare, knappe Labels mit positiver Formulierung
-- Verwende ein klares Gruppen-Label und halte die Formulierung der Optionen einheitlich
-
-## Don't
-
-- Verwende Checkboxen nicht für sich gegenseitig ausschließende Optionen – nutze stattdessen Radio
-- Verwende keine doppelten Verneinungen, die bei aktiviertem Zustand verwirren können
+1. Checkbox bei Mehrfachauswahl (0 bis n) — Radio bei gegenseitigem Ausschluss (genau 1 aus n).
+2. Labels positiv formulieren und den aktivierten Zustand beschreiben — keine doppelten Verneinungen.
+3. Jede Checkbox-Gruppe braucht ein übergeordnetes Gruppen-Label für den semantischen Rahmen.
+4. Alle Optionen einer Gruppe einheitlich formuliert — gleiche Satzstruktur, gleiche Länge.
+5. Checkbox wenn Änderung erst nach Absenden wirkt — Switch wenn sofortige Wirkung.
