@@ -49,7 +49,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state.getParent().blur();
 			}
 		},
-		getParent(): HTMLElement {
+		getParent(): HTMLElement | null {
+			if (!_ref) return null;
 			let parent = _ref.parentElement;
 
 			if (parent && parent.localName.includes('tooltip')) {
@@ -123,15 +124,18 @@ export default function DBTooltip(props: DBTooltipProps) {
 						document.documentElement,
 						() => state.handleAutoPlacement(parent)
 					);
-				state._intersectionObserverCallbackId =
-					new IntersectionObserverListener().observe(
-						state.getParent(),
-						(entry) => {
-							if (!entry.isIntersecting) {
-								state.handleEscape(false);
+				const observeTarget = state.getParent();
+				if (observeTarget) {
+					state._intersectionObserverCallbackId =
+						new IntersectionObserverListener().observe(
+							observeTarget,
+							(entry) => {
+								if (!entry.isIntersecting) {
+									state.handleEscape(false);
+								}
 							}
-						}
-					);
+						);
+				}
 			}
 			state.handleAutoPlacement(parent);
 		},
