@@ -44,10 +44,22 @@ export class InputsComponent {
 	formControl: FormControl = new FormControl('test3');
 	signalModel = signal({ value: 'test4' });
 	signalForm = form(this.signalModel);
+
+	datePlain = '2025-01-15';
+	dateNgModel = '2025-06-20';
+	dateFormControl: FormControl = new FormControl('2025-03-10');
+
 	public handlePlainChange(event: Event | void) {
 		if (!event) {
 			return;
 		}
 		this.plain = (event.target as HTMLInputElement).value;
+	}
+
+	public handleDatePlainChange(event: Event | void) {
+		if (!event) {
+			return;
+		}
+		this.datePlain = (event.target as HTMLInputElement).value;
 	}
 }
