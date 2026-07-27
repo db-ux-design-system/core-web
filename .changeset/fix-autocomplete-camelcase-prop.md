@@ -2,4 +2,4 @@
 "@db-ux/react-core-components": patch
 ---
 
-fix: support `autoComplete` (camelCase) prop alongside `autocomplete` for React compatibility
+fix: accept `autoComplete` (camelCase) as alias for `autocomplete` to resolve React DOM compatibility
