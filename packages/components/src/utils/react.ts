@@ -56,6 +56,7 @@ const reactDefaultAttributes = [
 	'defaultSelected'
 ];
 
+/** @public */
 export const filterPassingProps = (
 	props: any,
 	propsPassingFilter: string[]
@@ -76,7 +77,8 @@ export const filterPassingProps = (
 			return { ...obj, [key]: props[key] };
 		}, {});
 
-const getRootProps = (
+/** @public */
+export const getRootProps = (
 	props: any,
 	rooProps: string[]
 ): Record<string, unknown> => {
@@ -85,4 +87,10 @@ const getRootProps = (
 		.reduce((obj: Record<string, unknown>, key: string) => {
 			return { ...obj, [key]: props[key] };
 		}, {});
+};
+
+/** @public */
+export default {
+	getRootProps,
+	filterPassingProps
 };
