@@ -109,6 +109,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 		},
 		handleEnter(parent?: HTMLElement): void {
+			if (!_ref) return;
 			// Register the shared scroll callback only for the first active
 			// trigger; a second enter (e.g. focusin after mouseenter) must not
 			// orphan the first callback.
