@@ -188,6 +188,18 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
 - **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
 
+### Working with Figma Code Connect
+
+- **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
+- **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
+    ```bash
+    pnpm --filter=react-figma run test:update
+    pnpm --filter=angular-figma run test:update
+    pnpm --filter=vue-figma run test:update
+    ```
+- **Run Figma tests**: `pnpm --filter=react-figma --filter=angular-figma --filter=vue-figma run test`
+
 ### Working with Styles
 
 - **Foundation styles**: `packages/foundations/`
@@ -316,6 +328,18 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
 
+### TypeScript execution
+
+Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
+
+```bash
+# ✅ Preferred
+node scripts/my-script.ts
+
+# ❌ Avoid
+pnpm exec tsx scripts/my-script.ts
+```
+
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
@@ -326,7 +350,6 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 - `packages/agent-cli/AGENTS.md` — CLI tool for generating AI agent instructions
 - `packages/components/AGENTS.md` — component authoring, Mitosis, changeset rules
 - `packages/foundations/AGENTS.md` — design tokens, assets, SCSS structure
-- `packages/migration/AGENTS.md` — migration CLI development
 - `packages/postcss-plugin/AGENTS.md` — PostCSS flatten plugin
 - `packages/stylelint/AGENTS.md` — Stylelint plugin rules
 - `packages/vite-plugin/AGENTS.md` — Vite plugin for optimized CSS

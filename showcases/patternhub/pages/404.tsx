@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const FallbackPage = () => {
+export default function FallbackPage() {
 	const { push, asPath } = useRouter();
 
 	useEffect(() => {
@@ -12,6 +12,4 @@ const FallbackPage = () => {
 		}
 	}, []);
 	return null;
-};
-
-export default FallbackPage;
+}

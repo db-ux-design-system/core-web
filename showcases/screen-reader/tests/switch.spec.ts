@@ -8,37 +8,34 @@ test.describe('DBSwitch', () => {
 		title: 'default',
 		description:
 			'should toggle switches, should not toggle disabled switch',
-		url: './#/03/switch?page=checked',
+		url: './#/03/switch?page=disabled',
 		async testFn(screenReader) {
 			if (isWin()) {
 				await screenReader.previous(); // Focus "switch 1"
 				await screenReader.act(); // Interact "switch 1"
 				await screenReader.next(); // Focus "switch 2"
 				await screenReader.act(); // Interact "switch 2"
-				await screenReader.next(); // Focus "switch 3"
 			} else {
 				await screenReader.previous(); // Focus "switch 1"
 				await screenReader.act(); // Interact "switch 1"
 				await screenReader.next(); // Focus "switch 1 inline text"
 				await screenReader.next(); // Focus "switch 2"
-				await screenReader.act(); // Interact "switch 1"
+				await screenReader.act(); // Interact "switch 2"
 				await screenReader.next(); // Focus "switch 2 inline text"
-				await screenReader.next(); // Focus "switch 3"
-				await screenReader.act(); // Interact "switch 1"
-				await screenReader.next(); // Focus "switch 3 inline text"
 			}
 		},
 		async postTestFn(screenReader, retry) {
 			if (isWin()) {
 				/*
 				 * There is a timing issue for windows which results in different outputs in CICD.
-				 * We avoid this by replacing the generated log files
+				 * NVDA sometimes announces "blank" instead of the disabled switch,
+				 * so we normalize it to the expected announcement.
 				 */
 				await generateSnapshot(screenReader, retry, (phraseLog) =>
 					phraseLog.map((log) =>
 						log
 							// NVDA sometimes shows "blank"
-							.replace('blank', 'switch, off, True')
+							.replace('blank', 'switch, unavailable, off, True')
 					)
 				);
 			} else {

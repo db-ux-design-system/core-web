@@ -1,5 +1,6 @@
 import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
@@ -26,7 +27,12 @@ export default function DrawerRounded() {
 				<DBDrawer
 					rounded={false}
 					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							(Default) False
+						</DBDrawerHeader>
+					}>
 					(Default) False
 				</DBDrawer>
 			</div>
@@ -39,7 +45,12 @@ export default function DrawerRounded() {
 				<DBDrawer
 					rounded={true}
 					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							True
+						</DBDrawerHeader>
+					}>
 					True
 				</DBDrawer>
 			</div>

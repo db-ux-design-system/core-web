@@ -22,6 +22,7 @@ import {
 	DBCheckbox,
 	DBCustomSelect,
 	DBDrawer,
+	DBDrawerHeader,
 	DBInfotext,
 	DBInput,
 	DBRadio,
@@ -55,7 +56,8 @@ import {
 		DBTabItem,
 		DBTabPanel,
 		DBDrawer,
-		DBInfotext
+		DBInfotext,
+		DBDrawerHeader
 	],
 	standalone: true
 })

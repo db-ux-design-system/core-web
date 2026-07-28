@@ -29,6 +29,10 @@ test.describe('DBDrawer', () => {
 								'button. dialog. document',
 								'dialog. document'
 							)
+							.replace(
+								'button. Functional, dialog. document',
+								'dialog. document'
+							)
 					)
 				);
 			} else {

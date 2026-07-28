@@ -8,7 +8,7 @@ import {
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
-	DBDrawer: 'closeButtonText',
+	DBDrawerHeader: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
@@ -78,6 +78,29 @@ export default {
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
 					data: { component: node.name, attribute }
 				});
+				return;
+			}
+
+			// Reject bare boolean attributes (e.g. <db-drawer-header close-button-text>)
+			// getAttributeValue returns `true` for both bare attrs and [binding]="expr",
+			// so check if it was found only as a plain attribute with no value
+			if (value === true) {
+				const kebabAttr = attribute
+					.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+					.toLowerCase();
+				const hasInput = node.inputs?.some(
+					(i: any) => i.name === attribute || i.name === kebabAttr
+				);
+				if (!hasInput) {
+					const loc = parserServices.convertNodeSourceSpanToLoc(
+						node.sourceSpan
+					);
+					context.report({
+						loc,
+						messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
+						data: { component: node.name, attribute }
+					});
+				}
 			}
 		};
 
@@ -181,6 +204,51 @@ export default {
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
 					data: { component: componentName, attribute }
 				});
+				return;
+			}
+
+			// For JSX: reject bare boolean attributes (e.g. <DBDrawerHeader closeButtonText>)
+			// getAttributeValue returns `true` for these, same as for expression containers,
+			// so we need to check the raw attribute node specifically
+			if (value === true && openingElement.attributes) {
+				const jsxAttr = openingElement.attributes.find(
+					(a: any) =>
+						a.type === 'JSXAttribute' && a.name?.name === attribute
+				);
+				if (jsxAttr && !jsxAttr.value) {
+					context.report({
+						node: openingElement,
+						messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
+						data: { component: componentName, attribute }
+					});
+				}
+			}
+
+			// For Vue: reject bare boolean attributes (e.g. <DBDrawerHeader closeButtonText>)
+			// Vue startTag attributes that are not directives and have no value are bare booleans
+			if (value === true && openingElement.startTag?.attributes) {
+				const kebabAttr = attribute
+					.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+					.toLowerCase();
+				const vueAttr = openingElement.startTag.attributes.find(
+					(a: any) => {
+						if (a.directive) {
+							return false;
+						}
+						const keyName =
+							typeof a.key?.name === 'string'
+								? a.key.name
+								: a.key?.name?.name;
+						return keyName === attribute || keyName === kebabAttr;
+					}
+				);
+				if (vueAttr && !vueAttr.value) {
+					context.report({
+						node: openingElement,
+						messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
+						data: { component: componentName, attribute }
+					});
+				}
 			}
 		};
 

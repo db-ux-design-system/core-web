@@ -1,5 +1,6 @@
 import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 
@@ -26,7 +27,12 @@ export default function DrawerBackdrop() {
 				<DBDrawer
 					backdrop="strong"
 					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							(Default) Strong
+						</DBDrawerHeader>
+					}>
 					(Default) Strong
 				</DBDrawer>
 			</div>
@@ -39,7 +45,12 @@ export default function DrawerBackdrop() {
 				<DBDrawer
 					backdrop="weak"
 					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							Weak
+						</DBDrawerHeader>
+					}>
 					Weak
 				</DBDrawer>
 			</div>
@@ -52,7 +63,12 @@ export default function DrawerBackdrop() {
 				<DBDrawer
 					backdrop="invisible"
 					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							Invisible
+						</DBDrawerHeader>
+					}>
 					Invisible
 				</DBDrawer>
 			</div>
@@ -65,7 +81,12 @@ export default function DrawerBackdrop() {
 				<DBDrawer
 					backdrop="none"
 					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}>
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							No Backdrop
+						</DBDrawerHeader>
+					}>
 					No Backdrop
 				</DBDrawer>
 			</div>

@@ -26,8 +26,8 @@ import { transformRoot } from './helpers/transform.js';
  @returns A PostCSS plugin instance
  */
 const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
-	const removeAtProperty = options.removeAtProperty ?? true;
-	const removeResolved = options.removeResolved ?? true;
+	const isRemoveAtProperty = options.removeAtProperty ?? true;
+	const isRemoveResolved = options.removeResolved ?? true;
 	const dynamicPrefixes = options.dynamicPrefixes ?? DEFAULT_DYNAMIC_PREFIXES;
 
 	const varMap = new Map<string, VarEntry[]>();
@@ -77,8 +77,8 @@ const dbUxFlatten: PluginCreator<FlattenOptions> = (options = {}) => {
 				referencedVars,
 				propertyNames,
 				dynamicVars,
-				removeAtProperty,
-				removeResolved
+				isRemoveAtProperty,
+				isRemoveResolved
 			);
 		}
 	};

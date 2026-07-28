@@ -141,6 +141,12 @@
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
 	background-color: var(--db-adaptive-bg-basic-level-2-default);
+
+	[data-icon="x_placeholder"] {
+		&::before {
+			margin-inline-end: var(--db-spacing-fixed-xs);
+		}
+	}
 }
 
 .badge-inline-container .db-badge {

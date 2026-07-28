@@ -329,7 +329,7 @@ Otherwise, if the font is not initially required but would be requested later or
 
 ## Migration
 
-We provide a [CLI tool](https://github.com/db-ux-design-system/core-web/blob/main/packages/migration/README.md) to auto migrate your source code.
+For migration guidance between versions, see the [migration docs](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/).
 
 ## Deutsche Bahn brand
 
