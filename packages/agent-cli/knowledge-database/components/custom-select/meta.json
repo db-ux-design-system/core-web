@@ -1,0 +1,8 @@
+{
+	"id": "custom-select",
+	"name": "CustomSelect",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

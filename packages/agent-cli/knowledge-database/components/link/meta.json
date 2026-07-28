@@ -1,0 +1,8 @@
+{
+	"id": "link",
+	"name": "Link",
+	"type": "component",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

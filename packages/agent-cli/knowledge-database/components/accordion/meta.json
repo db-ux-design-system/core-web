@@ -1,0 +1,8 @@
+{
+	"id": "accordion",
+	"name": "Accordion",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}
