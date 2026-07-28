@@ -55,6 +55,7 @@ Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 
 Komponenten im Status **Concept** oder **Pre-Release**. Gleiche Dateistruktur wie Components, aber:
 
+- Sind als Konzept-Komponenten in Figma vorhanden und existieren noch nicht im Code.
 - `properties.json` enthält nur `figmaProperties` (Code-Properties noch nicht definiert)
 - `guidelines.md` ist Platzhalter
 - Kein stabiler API-Vertrag — Breaking Changes jederzeit möglich
