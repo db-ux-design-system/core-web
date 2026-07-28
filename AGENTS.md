@@ -328,6 +328,18 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
 
+### TypeScript execution
+
+Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
+
+```bash
+# ✅ Preferred
+node scripts/my-script.ts
+
+# ❌ Avoid
+pnpm exec tsx scripts/my-script.ts
+```
+
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
