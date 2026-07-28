@@ -116,7 +116,9 @@ Jeder Inhalt muss mindestens folgende Informationen enthalten:
 * kurze Beschreibung
 * Status
 * verantwortliches Team oder Owner
-* Version oder Änderungsdatum
+* Version (`since`) — ab welcher Design-System-Version der Inhalt verfügbar ist
+
+Das konkrete Änderungsdatum wird nicht manuell gepflegt, sondern über Git History abgeleitet (`git log`). Die allgemeinen Informationen werden in einer eigenen `meta.json` pro Inhalt gespeichert — getrennt von Guidelines (Markdown) und Design/Code-Referenzen (figma.json, properties.json).
 
 ### Guidelines
 

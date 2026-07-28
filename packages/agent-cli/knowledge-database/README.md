@@ -47,6 +47,7 @@ Tracking von Abweichungen zwischen Figma und Code (Figma-only Tokens, Code-only 
 
 Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 
+- `meta.json` — Allgemeine Informationen (ID, Name, Typ, Status, Owner, Version)
 - `figma.json` — Figma Library-Referenz, Component Sets, Node IDs
 - `properties.json` — Figma Properties, Code Connect Properties, Code Properties
 - `guidelines.md` — Nutzungsrichtlinien, Do's and Don'ts

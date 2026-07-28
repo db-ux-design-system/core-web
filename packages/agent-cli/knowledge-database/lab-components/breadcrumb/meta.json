@@ -1,0 +1,8 @@
+{
+	"id": "breadcrumb",
+	"name": "Breadcrumb",
+	"type": "lab-component",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

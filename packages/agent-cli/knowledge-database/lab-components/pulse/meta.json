@@ -1,0 +1,8 @@
+{
+	"id": "pulse",
+	"name": "Pulse",
+	"type": "lab-component",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

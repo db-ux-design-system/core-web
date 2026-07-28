@@ -1,0 +1,8 @@
+{
+	"id": "grid",
+	"name": "Grid",
+	"type": "lab-component",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

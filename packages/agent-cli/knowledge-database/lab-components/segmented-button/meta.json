@@ -1,0 +1,8 @@
+{
+	"id": "segmented-button",
+	"name": "SegmentedButton",
+	"type": "lab-component",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}
