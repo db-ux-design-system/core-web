@@ -65,7 +65,7 @@ export const filterPassingProps = (
 			return { ...obj, [key]: props[key] };
 		}, {});
 
-export const getRootProps = (
+const getRootProps = (
 	props: any,
 	rooProps: string[]
 ): Record<string, unknown> => {
@@ -74,9 +74,4 @@ export const getRootProps = (
 		.reduce((obj: Record<string, unknown>, key: string) => {
 			return { ...obj, [key]: props[key] };
 		}, {});
-};
-
-export default {
-	getRootProps,
-	filterPassingProps
 };
