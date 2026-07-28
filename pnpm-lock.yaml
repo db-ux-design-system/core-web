@@ -134,8 +134,8 @@ importers:
         specifier: 0.58.1
         version: 0.58.1(@types/eslint@9.6.1)(@typescript-eslint/utils@8.61.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@5.5.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10(supports-color@10.2.2))(eslint-plugin-import@2.32.0)(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)
       eslint-plugin-package-json:
-        specifier: 1.6.1
-        version: 1.6.1(@eslint/json@2.0.1)(@types/estree@1.0.9)(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))
+        specifier: 1.6.2
+        version: 1.6.2(@eslint/json@2.0.1)(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -9960,17 +9960,14 @@ packages:
       typescript:
         optional: true
 
-  eslint-plugin-package-json@1.6.1:
-    resolution: {integrity: sha512-iKcIfIYZXXb20vghnigDUemIISW9D2dMPuDZ+IGRnIOPa53+ZwU1HnsvsbSB7zGq4MAo1V9ZYfL0uTEVpCFEiQ==}
+  eslint-plugin-package-json@1.6.2:
+    resolution: {integrity: sha512-Zp0CdqXKQqB9luUYa/TOwnGq3VlLotx1UDflZOzEt3D5A5kxu3Lj1VFJ087jKudEhc+K3kF20XV/aKZAlDuslw==}
     engines: {node: ^22.22.2 || >=24.15.0}
     peerDependencies:
       '@eslint/json': '>=1.0.0'
-      '@types/estree': '>=1.0.0'
       eslint: '>=9.0.0'
     peerDependenciesMeta:
       '@eslint/json':
-        optional: true
-      '@types/estree':
         optional: true
 
   eslint-plugin-prettier@5.5.6:
@@ -27079,9 +27076,10 @@ snapshots:
       ts-declaration-location: 1.0.7(typescript@5.9.3)
       typescript: 5.9.3
 
-  eslint-plugin-package-json@1.6.1(@eslint/json@2.0.1)(@types/estree@1.0.9)(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2)):
+  eslint-plugin-package-json@1.6.2(@eslint/json@2.0.1)(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2)):
     dependencies:
       '@altano/repository-tools': 2.0.3
+      '@types/estree': 1.0.9
       change-case: 5.4.4
       detect-indent: 7.0.2
       detect-newline: 4.0.1
@@ -27095,7 +27093,6 @@ snapshots:
       sort-package-json: 4.0.0
     optionalDependencies:
       '@eslint/json': 2.0.1
-      '@types/estree': 1.0.9
 
   eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6):
     dependencies:
