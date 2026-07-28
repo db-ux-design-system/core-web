@@ -14,15 +14,15 @@ const transformRouterLink = (code, componentName) => {
 	const replacements = [
 		[
 			'} from "@angular/core";',
-			'inject, } from "@angular/core";\nimport { RouterLink } from "@angular/router";'
+			'inject, } from "@angular/core";\nimport { Router, RouterLink } from "@angular/router";\nimport { LocationStrategy } from "@angular/common";'
 		],
 		[
 			'[attr.href]="href()"',
-			'[attr.href]="routerLink?.urlTree ?? href()"\n    (click)="handleClick($event)"'
+			'[attr.href]="computeRouterHref(routerLink?.urlTree) ?? href()"\n    (click)="handleClick($event)"'
 		],
 		[
 			'  constructor() {}',
-			'  readonly routerLink = inject(RouterLink, { optional: true, self: true });\n\n  handleClick(e: MouseEvent) {\n    if (!this.routerLink || this.routerLink.urlTree === null) return;\n    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey || (this.target() && this.target() !== "_self")) {\n      e.stopPropagation();\n    } else {\n      e.preventDefault();\n    }\n  }\n\n  constructor() {}'
+			'  readonly routerLink = inject(RouterLink, { optional: true, self: true });\n  readonly locationStrategy = inject(LocationStrategy, { optional: true });\n  readonly router = inject(Router, { optional: true });\n\n  handleClick(e: MouseEvent) {\n    if (!this.routerLink || this.routerLink.urlTree === null) return;\n    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey || (this.target() && this.target() !== "_self")) {\n      e.stopPropagation();\n    } else {\n      e.preventDefault();\n    }\n  }\n\n  computeRouterHref(urlTree) {\n    return urlTree != null && this.locationStrategy && this.router ? (this.locationStrategy?.prepareExternalUrl(this.router.serializeUrl(urlTree)) ?? "") : null;\n  }\n\n  constructor() {}'
 		]
 	];
 

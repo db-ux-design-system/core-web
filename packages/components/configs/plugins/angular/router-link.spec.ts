@@ -22,9 +22,11 @@ describe('transformRouterLink', () => {
 
 		expect(result).toContain('inject, } from "@angular/core";');
 		expect(result).toContain(
-			'import { RouterLink } from "@angular/router";'
+			'import { Router, RouterLink } from "@angular/router";'
 		);
-		expect(result).toContain('[attr.href]="routerLink?.urlTree ?? href()"');
+		expect(result).toContain(
+			'[attr.href]="computeRouterHref(routerLink?.urlTree) ?? href()"'
+		);
 		expect(result).toContain('(click)="handleClick($event)"');
 		expect(result).toContain(
 			'readonly routerLink = inject(RouterLink, { optional: true, self: true });'
