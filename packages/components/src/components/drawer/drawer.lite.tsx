@@ -14,10 +14,7 @@ import {
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
-import {
-	closeDialogWithTransition,
-	supportsClosedBy
-} from '../../utils/allow-discrete-ponyfill';
+import { closeDialogWithTransition } from '../../utils/allow-discrete-ponyfill';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -56,13 +53,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
 				if (event.key === 'Escape') {
-					// When closedby="any" is NOT supported, we must prevent the
-					// default (which would close without transition) and handle
-					// closing ourselves. When it IS supported the browser closes
-					// the dialog natively with the correct transition.
-					if (!supportsClosedBy()) {
-						event.preventDefault();
-					}
+					event.preventDefault();
 
 					if (props.onClose) {
 						props.onClose(event);
@@ -142,8 +133,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}
-			closedby="any">
+			data-variant={props.variant}>
 			<article
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}
