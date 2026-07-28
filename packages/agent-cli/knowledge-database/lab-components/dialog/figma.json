@@ -1,0 +1,13 @@
+{
+	"component": "dialog",
+	"library": "core-lab",
+	"pageId": "17347:8293",
+	"pageName": "Dialog (Concept)",
+	"componentSets": [
+		{
+			"name": "Dialog",
+			"nodeId": "17347:8293",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

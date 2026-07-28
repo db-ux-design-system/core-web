@@ -1,0 +1,23 @@
+{
+	"component": "shell",
+	"library": "core-lab",
+	"pageId": "10947:40244",
+	"pageName": "Shell (Pre-Release)",
+	"componentSets": [
+		{
+			"name": "Shell → Part 1",
+			"nodeId": "10947:40244",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Shell → Part 2",
+			"nodeId": "10947:40267",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Shell → Part 3",
+			"nodeId": "10947:40315",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

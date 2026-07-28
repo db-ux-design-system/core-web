@@ -1,0 +1,13 @@
+{
+	"component": "container",
+	"library": "core-lab",
+	"pageId": "17775:762",
+	"pageName": "Grid (Concept)",
+	"componentSets": [
+		{
+			"name": "Container",
+			"nodeId": "17775:762",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

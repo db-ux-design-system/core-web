@@ -1,0 +1,13 @@
+{
+	"component": "breadcrumb",
+	"library": "core-lab",
+	"pageId": "12519:5325",
+	"pageName": "Breadcrumb (Concept)",
+	"componentSets": [
+		{
+			"name": "Breadcrumb",
+			"nodeId": "12519:5325",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

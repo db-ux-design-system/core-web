@@ -1,0 +1,13 @@
+{
+	"component": "toggle-button",
+	"library": "core-lab",
+	"pageId": "18175:3702",
+	"pageName": "ToggleButton (Concept)",
+	"componentSets": [
+		{
+			"name": "ToggleButton",
+			"nodeId": "18175:3702",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

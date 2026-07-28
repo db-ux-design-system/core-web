@@ -1,0 +1,13 @@
+{
+	"component": "pagination",
+	"library": "core-lab",
+	"pageId": "17457:13260",
+	"pageName": "Pagination (Concept)",
+	"componentSets": [
+		{
+			"name": "Pagination",
+			"nodeId": "17457:13260",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

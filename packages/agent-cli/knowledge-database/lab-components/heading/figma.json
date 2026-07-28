@@ -1,0 +1,13 @@
+{
+	"component": "heading",
+	"library": "core-lab",
+	"pageId": "13340:1012",
+	"pageName": "Heading (Concept)",
+	"componentSets": [
+		{
+			"name": "Heading",
+			"nodeId": "13340:1012",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

@@ -1,0 +1,28 @@
+{
+	"component": "loading-indicator",
+	"library": "core-lab",
+	"pageId": "14622:2504",
+	"pageName": "LoadingIndicator (Concept)",
+	"componentSets": [
+		{
+			"name": "LoadingIndicator → Part 1",
+			"nodeId": "14622:2504",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "LoadingIndicator → Part 2",
+			"nodeId": "14778:1524",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "LoadingIndicator → Part 3",
+			"nodeId": "14778:1435",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "LoadingIndicator → Part 4",
+			"nodeId": "14629:3690",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

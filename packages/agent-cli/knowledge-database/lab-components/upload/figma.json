@@ -1,0 +1,13 @@
+{
+	"component": "upload",
+	"library": "core-lab",
+	"pageId": "17481:2730",
+	"pageName": "Upload (Concept)",
+	"componentSets": [
+		{
+			"name": "Upload",
+			"nodeId": "17481:2730",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"component": "grid",
+	"library": "core-lab",
+	"pageId": "17784:695",
+	"pageName": "Grid (Concept)",
+	"componentSets": [
+		{
+			"name": "Grid",
+			"nodeId": "17784:695",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"component": "split-button",
+	"library": "core-lab",
+	"pageId": "16686:8561",
+	"pageName": "SplitButton (Concept)",
+	"componentSets": [
+		{
+			"name": "SplitButton",
+			"nodeId": "16686:8561",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"component": "text",
+	"library": "core-lab",
+	"pageId": "13360:2182",
+	"pageName": "Text (Concept)",
+	"componentSets": [
+		{
+			"name": "Text",
+			"nodeId": "13360:2182",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

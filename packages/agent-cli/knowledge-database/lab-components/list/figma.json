@@ -1,0 +1,13 @@
+{
+	"component": "list",
+	"library": "core-lab",
+	"pageId": "13527:3860",
+	"pageName": "List (Concept)",
+	"componentSets": [
+		{
+			"name": "List",
+			"nodeId": "13527:3860",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

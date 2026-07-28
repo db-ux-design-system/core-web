@@ -1,0 +1,13 @@
+{
+	"component": "button-group",
+	"library": "core-lab",
+	"pageId": "13247:8052",
+	"pageName": "ButtonGroup (Concept)",
+	"componentSets": [
+		{
+			"name": "ButtonGroup",
+			"nodeId": "13247:8052",
+			"type": "COMPONENT_SET"
+		}
+	]
+}
