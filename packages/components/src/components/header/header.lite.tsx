@@ -18,7 +18,9 @@ import { DBHeaderProps, DBHeaderState } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBHeaderProps>({});
+useDefaultProps<DBHeaderProps>({
+	closeButtonText: DEFAULT_CLOSE_BUTTON
+});
 
 export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
