@@ -22,6 +22,7 @@ $focus-outline-reach: calc(
 				-1 * #{$indicator-gap-offset} -
 					#{variables.$db-border-width-3xs}
 			) !important; // overrides inset-block shorthand set in _indicator.scss
+			// mitigating transparent border of the button for indicator position
 			// stylelint-disable-next-line db-ux/use-spacings
 			margin-inline-start: -#{variables.$db-border-width-3xs};
 		}
@@ -47,6 +48,7 @@ $focus-outline-reach: calc(
 				)
 				auto;
 			z-index: 5;
+			// mitigating transparent border of the button for indicator position
 			// stylelint-disable-next-line db-ux/use-spacings
 			margin-block-start: -#{variables.$db-border-width-3xs};
 		}
