@@ -4,6 +4,7 @@ const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
 const focusgroupPlugin = require('../plugins/stencil/focusgroup.cjs');
+const closedbyPlugin = require('../plugins/stencil/closedby.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToStencilOptions}
@@ -20,6 +21,7 @@ module.exports = {
 		slotsPlugin,
 		onClickPlugin,
 		esmExtensionsPlugin,
-		focusgroupPlugin
+		focusgroupPlugin,
+		closedbyPlugin
 	]
 };
