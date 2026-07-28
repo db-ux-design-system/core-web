@@ -45,6 +45,17 @@ const reactHtmlAttributes = [
 	'ping'
 ];
 
+/**
+ * Standard HTML defaultX attributes that React recognizes on DOM elements.
+ * Only these should be forwarded — custom default* props (e.g. defaultOpen)
+ * must NOT be passed to the DOM.
+ */
+const reactDefaultAttributes = [
+	'defaultChecked',
+	'defaultValue',
+	'defaultSelected'
+];
+
 export const filterPassingProps = (
 	props: any,
 	propsPassingFilter: string[]
@@ -54,7 +65,7 @@ export const filterPassingProps = (
 			(key) =>
 				(key.startsWith('data-') ||
 					key.startsWith('aria-') ||
-					key.startsWith('default') ||
+					reactDefaultAttributes.includes(key) ||
 					key.startsWith('auto') ||
 					key.startsWith('item') ||
 					key.startsWith('on') ||
