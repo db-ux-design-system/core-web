@@ -19,7 +19,8 @@ $focus-outline-reach: calc(
 
 		&::after {
 			inset-block-end: calc(
-				-1 * #{$indicator-gap-offset}
+				-1 * #{$indicator-gap-offset} -
+					#{variables.$db-border-width-3xs}
 			) !important; // overrides inset-block shorthand set in _indicator.scss
 		}
 
@@ -38,7 +39,11 @@ $focus-outline-reach: calc(
 		@include indicator.set-indicator-vertical;
 
 		&::after {
-			inset-inline: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) auto;
+			inset-inline: calc(
+					-1 * var(--db-tabs-line-gap-vertical, 0px) -
+						#{variables.$db-border-width-3xs}
+				)
+				auto;
 			z-index: 5;
 		}
 
