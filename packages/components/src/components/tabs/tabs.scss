@@ -22,6 +22,8 @@ $focus-outline-reach: calc(
 				-1 * #{$indicator-gap-offset} -
 					#{variables.$db-border-width-3xs}
 			) !important; // overrides inset-block shorthand set in _indicator.scss
+			// stylelint-disable-next-line db-ux/use-spacings
+			margin-inline-start: -#{variables.$db-border-width-3xs};
 		}
 
 		&[aria-selected="true"] {
@@ -45,6 +47,8 @@ $focus-outline-reach: calc(
 				)
 				auto;
 			z-index: 5;
+			// stylelint-disable-next-line db-ux/use-spacings
+			margin-block-start: -#{variables.$db-border-width-3xs};
 		}
 
 		&[aria-selected="true"] {
