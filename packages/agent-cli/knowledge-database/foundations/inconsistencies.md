@@ -7,6 +7,7 @@ Tracking differences between Figma and Code token availability.
 | Token | Category | Figma Variable Key | Notes |
 |-------|----------|-------------------|-------|
 | `db-opacity/none` | opacity | `f06e98ba2930b3e2c2ce64024ef407bacaee89c2` | Value is 0 — in code use `opacity: 0` directly |
+| `db-spacing/fixed/none` | spacing | `1bc966c4ce29569a4d65020e0fc9439341553db7` | Value is 0 — in code use `gap: 0` / `padding: 0` directly |
 
 ## Code-only tokens (no Figma variable equivalent)
 
