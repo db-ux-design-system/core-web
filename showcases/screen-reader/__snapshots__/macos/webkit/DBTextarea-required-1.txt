@@ -1,1 +1,1 @@
-["Label Fill out this field required text entry area","T","e","s","t","Select All. Test selected","Fill out this field","T","e","s","t"]
+["Label Fill out this field required text entry area","T","e","s","t","Test","Fill out this field","T","e","s","t"]
