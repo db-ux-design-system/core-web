@@ -48,6 +48,7 @@ $focus-outline-reach: calc(
 				)
 				auto;
 			z-index: 5;
+
 			// mitigating transparent border of the button for indicator position
 			// stylelint-disable-next-line db-ux/use-spacings
 			margin-block-start: -#{variables.$db-border-width-3xs};
