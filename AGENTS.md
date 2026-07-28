@@ -113,6 +113,8 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 | `packages/components/src`   | `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
 | `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                           |
 
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages only when shared code (components, `model.ts`, shared utils) or styling is changed.
+
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes

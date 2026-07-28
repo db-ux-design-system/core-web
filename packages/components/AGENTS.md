@@ -245,6 +245,14 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 Changes in `packages/components/src` require a changeset for:
 `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
 
+**Scope the packages to what is actually affected:**
+
+- Changes in shared code (components, `model.ts`, shared utils) → all framework packages
+- Changes in framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`) → only the affected framework package
+- Changes in styling (SCSS/CSS) → `@db-ux/core-components` + all framework packages
+
+Bump types:
+
 - `patch` — bug fix
 - `minor` — new feature or example, or any prop added in `model.ts`
 - `major` — any prop in `model.ts` removed, renamed, or retyped
