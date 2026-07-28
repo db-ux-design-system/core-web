@@ -1,6 +1,55 @@
 {
 	"component": "heading",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Heading"
+		},
+		{
+			"name": "Paragraph Spacing",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Start",
+			"type": "SLOT"
+		},
+		{
+			"name": "🎨 Show Start Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "As",
+			"type": "VARIANT",
+			"values": ["h1", "h2", "h3", "h4", "h5", "h6"]
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Default Mapping", "3xLarge", "2xLarge", "xLarge", "Large", "Medium", "Small", "xSmall", "2xSmall", "3xSmall"]
+		},
+		{
+			"name": "Font Weight",
+			"type": "VARIANT",
+			"values": ["(Def) Black", "Light"]
+		},
+		{
+			"name": "Text Align",
+			"type": "VARIANT",
+			"values": ["(Def) Left", "Center", "Right"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

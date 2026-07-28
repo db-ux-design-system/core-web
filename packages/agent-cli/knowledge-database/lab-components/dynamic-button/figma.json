@@ -1,11 +1,11 @@
 {
 	"component": "dynamic-button",
 	"library": "core-lab",
-	"pageId": "18175:6809",
+	"pageId": "18175:4760",
 	"pageName": "DynamicButton (Concept)",
 	"componentSets": [
 		{
-			"name": "DynamicButton",
+			"name": "🧪 DynamicButton",
 			"nodeId": "18175:6809",
 			"type": "COMPONENT_SET"
 		}

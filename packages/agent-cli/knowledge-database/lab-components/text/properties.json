@@ -1,6 +1,27 @@
 {
 	"component": "text",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small", "3xLarge", "2xLarge", "xLarge", "Large", "xSmall", "2xSmall", "3xSmall"]
+		},
+		{
+			"name": "Text Align",
+			"type": "VARIANT",
+			"values": ["(Def) Left", "Center", "Right"]
+		},
+		{
+			"name": "Max Width",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small", "Large", "None"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

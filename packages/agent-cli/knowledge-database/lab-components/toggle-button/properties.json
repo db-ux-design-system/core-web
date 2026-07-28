@@ -1,6 +1,82 @@
 {
 	"component": "toggle-button",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Show Icon Leading",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		},
+		{
+			"name": "🔄 Icon Leading Medium",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Icon Leading Small",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "Show Icon Trailing",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Icon Trailing Medium",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Icon Trailing Small",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🎨 Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Checked",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "Variant",
+			"type": "VARIANT",
+			"values": ["Ghost", "Filled", "Outlined"]
+		},
+		{
+			"name": "🎨 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small"]
+		},
+		{
+			"name": "Width",
+			"type": "VARIANT",
+			"values": ["(Def) Auto", "Full"]
+		},
+		{
+			"name": "No Text",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

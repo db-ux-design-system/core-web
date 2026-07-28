@@ -1,6 +1,21 @@
 {
 	"component": "pagination",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small"]
+		},
+		{
+			"name": "🎨 Position",
+			"type": "VARIANT",
+			"values": ["(Def) Start", "Center", "End"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

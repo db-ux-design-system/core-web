@@ -1,6 +1,22 @@
 {
 	"component": "split-button",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Open",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small"]
+		},
+		{
+			"name": "Variant",
+			"type": "VARIANT",
+			"values": ["(Def) Outlined", "Filled", "Brand"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

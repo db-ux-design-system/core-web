@@ -1,6 +1,12 @@
 {
 	"component": "dialog",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Backdrop",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

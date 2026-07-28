@@ -1,12 +1,37 @@
 {
 	"component": "list",
 	"library": "core-lab",
-	"pageId": "13527:3860",
+	"pageId": "13240:446",
 	"pageName": "List (Concept)",
 	"componentSets": [
 		{
-			"name": "List",
+			"name": "🧪 List (Concept)",
 			"nodeId": "13527:3860",
+			"type": "COMPONENT"
+		},
+		{
+			"name": "↳ List TITLE (Concept)",
+			"nodeId": "13278:11844",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ List ITEM (Concept)",
+			"nodeId": "13249:8586",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ List TEASERITEM (Concept)",
+			"nodeId": "13316:1990",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ List VERTICAL ITEM (Concept)",
+			"nodeId": "13319:3349",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ List DIVIDER (Concept)",
+			"nodeId": "13388:1937",
 			"type": "COMPONENT_SET"
 		}
 	]

@@ -1,12 +1,17 @@
 {
 	"component": "segmented-button",
 	"library": "core-lab",
-	"pageId": "16554:4430",
+	"pageId": "16368:1432",
 	"pageName": "SegmentedButton (Concept)",
 	"componentSets": [
 		{
-			"name": "SegmentedButton",
+			"name": "🧪 SegmentedButton (Concept)",
 			"nodeId": "16554:4430",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ SegmentedButton Item (Concept)",
+			"nodeId": "16554:4364",
 			"type": "COMPONENT_SET"
 		}
 	]

@@ -1,6 +1,45 @@
 {
 	"component": "upload",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "End Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "🎨 Show End Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Start Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "🎨 Show Start Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Show Button",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "Text",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "🎨 Interaction States",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"]
+		},
+		{
+			"name": "Direction",
+			"type": "VARIANT",
+			"values": ["(Def) Vertical", "Horizontal"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

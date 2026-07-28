@@ -2,5 +2,6 @@
 	"component": "list",
 	"figmaProperties": [],
 	"codeConnectProperties": [],
-	"codeProperties": []
+	"codeProperties": [],
+	"note": "The main List component is a simple COMPONENT (not a COMPONENT_SET) with no configurable variant properties."
 }

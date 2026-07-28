@@ -1,11 +1,11 @@
 {
 	"component": "container",
 	"library": "core-lab",
-	"pageId": "17775:762",
+	"pageId": "17775:356",
 	"pageName": "Grid (Concept)",
 	"componentSets": [
 		{
-			"name": "Container",
+			"name": "🧪 Container",
 			"nodeId": "17775:762",
 			"type": "COMPONENT_SET"
 		}

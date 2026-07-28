@@ -1,12 +1,22 @@
 {
 	"component": "dialog",
 	"library": "core-lab",
-	"pageId": "17347:8293",
+	"pageId": "15877:986",
 	"pageName": "Dialog (Concept)",
 	"componentSets": [
 		{
-			"name": "Dialog",
+			"name": "🧪 Dialog (Concept)",
 			"nodeId": "17347:8293",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Dialog Header (Concept)",
+			"nodeId": "17347:8097",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Dialog Footer (Concept)",
+			"nodeId": "17347:8123",
 			"type": "COMPONENT_SET"
 		}
 	]

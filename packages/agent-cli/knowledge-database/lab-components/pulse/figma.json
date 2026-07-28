@@ -1,11 +1,11 @@
 {
 	"component": "pulse",
 	"library": "core-lab",
-	"pageId": "14308:288",
+	"pageId": "14308:162",
 	"pageName": "Pulse (Concept)",
 	"componentSets": [
 		{
-			"name": "Pulse",
+			"name": "🧪 Pulse (Concept)",
 			"nodeId": "14308:288",
 			"type": "COMPONENT_SET"
 		}

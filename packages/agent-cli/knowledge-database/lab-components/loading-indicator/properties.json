@@ -1,6 +1,33 @@
 {
 	"component": "loading-indicator",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "Show Label",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "Orientation",
+			"type": "VARIANT",
+			"values": ["(Def) Vertical", "Horizontal"]
+		},
+		{
+			"name": "State",
+			"type": "VARIANT",
+			"values": ["(Def) Active", "(Def) Inactive", "Successful", "Critical"]
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small", "Large"]
+		}
+	],
 	"codeConnectProperties": [],
-	"codeProperties": []
+	"codeProperties": [],
+	"note": "Properties merged from all 4 main LoadingIndicator component sets. Determinate variants additionally expose: Show Progress (BOOLEAN), ✏️ Progress (TEXT), 🎨 Show Text Container (BOOLEAN)."
 }

@@ -1,11 +1,11 @@
 {
 	"component": "footer",
 	"library": "core-lab",
-	"pageId": "12795:15845",
+	"pageId": "10427:1586",
 	"pageName": "Footer (Concept)",
 	"componentSets": [
 		{
-			"name": "Footer",
+			"name": "🧪 Footer (Concept)",
 			"nodeId": "12795:15845",
 			"type": "COMPONENT_SET"
 		}

@@ -1,6 +1,12 @@
 {
 	"component": "calendar",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Variant",
+			"type": "VARIANT",
+			"values": ["(Def) Days", "Years", "Months"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

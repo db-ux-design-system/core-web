@@ -1,6 +1,40 @@
 {
 	"component": "footer",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Show Copyright",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "✏️ Copyright",
+			"type": "TEXT",
+			"defaultValue": "© Deutsche Bahn AG"
+		},
+		{
+			"name": "Show Main",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "Show Meta",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Meta.Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Content Width",
+			"type": "VARIANT",
+			"values": ["Full", "Large 1440", "Medium 1024", "Small 768"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }

@@ -1,6 +1,26 @@
 {
 	"component": "button-group",
-	"figmaProperties": [],
+	"figmaProperties": [
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Variant",
+			"type": "VARIANT",
+			"values": ["(Def) Outlined", "Filled"]
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small"]
+		},
+		{
+			"name": "Width",
+			"type": "VARIANT",
+			"values": ["(Def) Auto", "Full"]
+		}
+	],
 	"codeConnectProperties": [],
 	"codeProperties": []
 }
