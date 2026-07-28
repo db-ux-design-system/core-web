@@ -38,11 +38,15 @@ export default {
 			COMPONENTS.DBHeader,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkHeader = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBHeader)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBHeader)) {
+				return;
+			}
 
 			const burgerMenuLabel = getAttributeValue(
 				openingElement,

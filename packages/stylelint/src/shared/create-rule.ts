@@ -15,6 +15,7 @@ const {
 export type RuleFunctionType<T> = (
 	root: Root,
 	result: PostcssResult,
+	// eslint-disable-next-line unicorn/consistent-boolean-name -- matches stylelint Rule API convention
 	primaryOptions: boolean,
 	secondaryOptions: T,
 	context: RuleContext
@@ -34,19 +35,20 @@ export const createRule = <T = any>({
 	fn
 }: CreateRuleProps<T>) => {
 	const ruleFunction: Rule =
+		// eslint-disable-next-line unicorn/consistent-boolean-name -- matches stylelint Rule API convention
 		(primaryOptions: boolean, secondaryOptions: T, context) =>
-		(root: Root, result: PostcssResult) => {
-			const validOptions = validateOptions(result, ruleName, {
-				actual: primaryOptions,
-				possible: [true]
-			});
+			(root: Root, result: PostcssResult) => {
+				const isValidOptions = validateOptions(result, ruleName, {
+					actual: primaryOptions,
+					possible: [true]
+				});
 
-			if (!validOptions) {
-				return;
-			}
+				if (!isValidOptions) {
+					return;
+				}
 
-			fn(root, result, primaryOptions, secondaryOptions, context);
-		};
+				fn(root, result, primaryOptions, secondaryOptions, context);
+			};
 
 	ruleFunction.ruleName = ruleName;
 	ruleFunction.messages = messages;

@@ -96,7 +96,7 @@
   - button "Help"
   - text: DBHeader
   - button "Search"
-  - button "BurgerMenu"
+  - button "Open navigation menu"
   - link "Examples"
   - text: DBHeader
   - navigation "With Application Name + Navigation":

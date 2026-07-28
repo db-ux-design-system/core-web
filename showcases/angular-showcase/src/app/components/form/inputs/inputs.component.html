@@ -1,34 +1,36 @@
 <app-form-wrapper
-	[plain]="plain"
-	[model]="ngModel"
 	[control]="formControl.value"
+	[model]="ngModel"
+	[plain]="plain"
+	[signalForms]="signalForm.value().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-input
-			label="Plain"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			name="input-name"
-			[value]="plain"
 			(change)="handlePlainChange($event)"
+			[value]="plain"
+			icon="x_placeholder"
+			label="Plain"
+			message="Description"
+			name="input-name"
+			placeholder="Placeholder"
 		/>
 		<db-input
-			label="ngModel"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			name="input-name"
 			[(ngModel)]="ngModel"
+			icon="x_placeholder"
+			label="ngModel"
+			message="Description"
+			name="input-name"
+			placeholder="Placeholder"
 		/>
 		<db-input
-			label="formControl"
-			placeholder="Placeholder"
-			message="Description"
-			icon="x_placeholder"
-			name="input-name"
 			[formControl]="formControl"
+			icon="x_placeholder"
+			label="formControl"
+			message="Description"
+			name="input-name"
+			placeholder="Placeholder"
 		/>
+		<app-signal-forms-input [formField]="signalForm.value" />
 	</fieldset>
 </app-form-wrapper>

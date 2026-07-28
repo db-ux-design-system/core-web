@@ -15,6 +15,7 @@ function hasOptionChildren(node: any): boolean {
 			}
 		}
 
+		// eslint-disable-next-line unicorn/prefer-else-if
 		if (child.type === 'VElement' || child.type === 'Element') {
 			return child.rawName === 'option' || child.name === 'option';
 		}
@@ -57,11 +58,15 @@ export default {
 			COMPONENTS.DBSelect,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkSelect = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBSelect)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBSelect)) {
+				return;
+			}
 
 			const options = getAttributeValue(openingElement, 'options');
 			const hasChildren = hasOptionChildren(node);

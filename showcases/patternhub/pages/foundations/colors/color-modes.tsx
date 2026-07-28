@@ -5,7 +5,7 @@ import DefaultPage from '../../../components/default-page';
 
 const colors = ['neutral', ...SEMANTICS];
 
-const ColorOverview = () => {
+export default function ColorOverview() {
 	const [colorScheme, setColorScheme] = useState('light');
 	const [colorScheme2, setColorScheme2] = useState('light');
 	return (
@@ -75,6 +75,4 @@ const ColorOverview = () => {
 			</div>
 		</DefaultPage>
 	);
-};
-
-export default ColorOverview;
+}

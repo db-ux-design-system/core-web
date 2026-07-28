@@ -46,9 +46,8 @@ export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
-export const hasWebComponentSyntax = (showcase?: string): boolean => {
-	return isAngular(showcase) || isStencil(showcase);
-};
+export const hasWebComponentSyntax = (showcase?: string): boolean =>
+	isAngular(showcase) || isStencil(showcase);
 
 export const waitForDBPage = async (page: Page) => {
 	const dbPage = page.locator('.db-page');
@@ -74,6 +73,7 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
 	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
@@ -103,7 +103,7 @@ export const getDefaultScreenshotTest = ({
 	skip,
 	ratio
 }: DefaultSnapshotTestType) => {
-	test(`should match screenshot`, async ({ page }, { project }) => {
+	test('should match screenshot', async ({ page }, { project }) => {
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const isWebkit =
@@ -181,6 +181,7 @@ export const runAxeCoreTest = ({
 
 		// This is a workaround for axe for browsers using forcedColors
 		// see https://github.com/dequelabs/axe-core-npm/issues/1067
+		/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
 		await page.evaluate(($project) => {
 			if ($project.use.contextOptions?.forcedColors === 'active') {
 				const style = document.createElement('style');
@@ -190,6 +191,7 @@ export const runAxeCoreTest = ({
 				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
 			}
 		}, project);
+		/* eslint-enable unicorn/isolated-functions */
 
 		if (preAxe) {
 			await preAxe(page);
@@ -240,15 +242,19 @@ export const runA11yCheckerTest = ({
 			const enginePath = require.resolve('accessibility-checker-engine');
 			await page.addScriptTag({ path: enginePath });
 
+			/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
 			const results: Issue[] = await page.evaluate(async () => {
 				const { ace } = globalThis as any;
-				if (!ace?.Checker) return [];
+				if (!ace?.Checker) {
+					return [];
+				}
 				const checker: Checker = new ace.Checker();
 				const report = await checker.check(document, [
 					'IBM_Accessibility'
 				]);
 				return report.results ?? [];
 			});
+			/* eslint-enable unicorn/isolated-functions */
 
 			failures = results.filter(
 				(result: Issue) =>
@@ -271,7 +277,7 @@ export const runAriaSnapshotTest = ({
 	preScreenShot,
 	skip
 }: DefaultSnapshotTestType) => {
-	test(`should have same aria-snapshot`, async ({ page }, {
+	test('should have same aria-snapshot', async ({ page }, {
 		project,
 		title
 	}) => {

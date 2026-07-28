@@ -1,9 +1,9 @@
 /**
- * E2E transport test — verifies the MCP server communicates correctly over stdio.
- *
- * StdioClientTransport spawns the server process itself, so no manual
- * child_process.spawn is needed. transport.close() shuts down the child
- * process cleanly on teardown.
+ E2E transport test — verifies the MCP server communicates correctly over stdio.
+
+ StdioClientTransport spawns the server process itself, so no manual
+ child_process.spawn is needed. transport.close() shuts down the child
+ process cleanly on teardown.
  */
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';

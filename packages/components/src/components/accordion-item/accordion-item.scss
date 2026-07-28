@@ -47,7 +47,9 @@
 			@extend %dropdown-icon;
 			@extend %db-overwrite-font-size-md;
 
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			// Default (divider) variant: the summary blends into the page.
+			// The "card" variant overrides this with a level-1 fill in accordion.scss.
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			list-style: none;
 
 			@include helpers.display(flex);
@@ -58,8 +60,8 @@
 			border-radius: variables.$db-border-radius-sm;
 
 			@include helpers.interactive-bg(
-				colors.$db-adaptive-bg-basic-level-1-hovered,
-				colors.$db-adaptive-bg-basic-level-1-pressed
+				colors.$db-adaptive-bg-basic-transparent-full-hovered,
+				colors.$db-adaptive-bg-basic-transparent-full-pressed
 			);
 
 			&::-webkit-details-marker {

@@ -1,27 +1,34 @@
 <app-form-wrapper
-	[plain]="plain"
-	[model]="ngModel"
 	[control]="formControl.value"
+	[model]="ngModel"
+	[plain]="plain"
+	[signalForms]="signalFormsValue()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-radio
 			(change)="handlePlainChange($event)"
-			value="radio-0"
-			name="radio-0"
 			label="Plain"
+			name="radio-0"
+			value="radio-0"
 		></db-radio>
 		<db-radio
 			[(ngModel)]="ngModel"
-			value="radio-1"
-			name="radio-1"
 			label="ngModel"
+			name="radio-1"
+			value="radio-1"
 		></db-radio>
 		<db-radio
 			[formControl]="formControl"
-			value="radio-2"
-			name="radio-2"
 			label="formControl"
+			name="radio-2"
+			value="radio-2"
+		></db-radio>
+		<db-radio
+			(change)="handleSignalFormsChange($event)"
+			label="signalForms"
+			name="radio-3"
+			value="radio-3"
 		></db-radio>
 	</fieldset>
 </app-form-wrapper>

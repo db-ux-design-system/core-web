@@ -1,9 +1,11 @@
-import type { GlobalProps } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	OrientationProps
+} from '../../shared/model';
 
-export type DBTabListDefaultProps = {};
+export type DBTabListProps = GlobalProps & OrientationProps;
 
-export type DBTabListProps = DBTabListDefaultProps & GlobalProps;
-
-export type DBTabListDefaultState = {};
-
-export type DBTabListState = DBTabListDefaultState;
+export interface DBTabListState extends GlobalState {
+	_id?: string;
+}

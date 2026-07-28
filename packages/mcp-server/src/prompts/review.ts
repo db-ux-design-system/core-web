@@ -1,10 +1,12 @@
 import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
 /**
- * Generates a structured prompt that performs a multi-layered QA, accessibility,
- * and DB UX compliance audit on a provided code snippet.
- * @param code_snippet - The source code to be evaluated.
- * @param framework - The framework the snippet is written in.
+ Generates a structured prompt that performs a multi-layered QA, accessibility,
+ and DB UX compliance audit on a provided code snippet.
+ @param code_snippet - The source code to be evaluated.
+ @param code_snippet.code_snippet
+ @param framework - The framework the snippet is written in.
+ @param code_snippet.framework
  */
 export function handleReviewUiCodePrompt({
 	code_snippet,

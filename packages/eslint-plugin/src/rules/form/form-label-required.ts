@@ -41,7 +41,9 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const label = getAttributeValue(node, 'label');
 			const hasChildren = node.children?.some(
@@ -79,7 +81,9 @@ export default {
 			}
 		}
 
-		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
+		if (Object.keys(angularVisitors).length > 0) {
+			return angularVisitors;
+		}
 
 		const checkFormComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
@@ -87,7 +91,9 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;

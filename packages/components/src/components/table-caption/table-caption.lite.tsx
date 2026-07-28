@@ -8,11 +8,11 @@ useDefaultProps<DBTableCaptionProps>({});
 
 export default function DBTableCaption(props: DBTableCaptionProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLTableCaptionElement | any>(undefined);
+	const _ref = useRef<HTMLTableCaptionElement | any>(null);
 	return (
 		<caption
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-table-caption', props.className)}>
 			{props.children}
 		</caption>

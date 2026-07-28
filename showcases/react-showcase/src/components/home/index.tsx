@@ -8,7 +8,7 @@ import FormSelects from '../form/select';
 import FormSwitches from '../form/switch';
 import FormTextareas from '../form/textarea';
 
-const Home = () => {
+export default function Home() {
 	return (
 		<DBTabs data-testid="tabs">
 			<DBTabList>
@@ -49,6 +49,4 @@ const Home = () => {
 			</DBTabPanel>
 		</DBTabs>
 	);
-};
-
-export default Home;
+}

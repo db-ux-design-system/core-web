@@ -61,9 +61,7 @@ For required text attributes, check both `null` and empty string:
 ```typescript
 // ✅ CORRECT
 if (textAttribute === null || textAttribute === "") {
-	context.report({
-		/* error */
-	});
+	context.report({/* error */});
 }
 ```
 
@@ -74,9 +72,7 @@ For attributes that can have falsy values (0, false), only check `null`:
 ```typescript
 // ✅ CORRECT - allows text={0}
 if (text === null && !hasChildren) {
-	context.report({
-		/* error */
-	});
+	context.report({/* error */});
 }
 ```
 
@@ -211,9 +207,7 @@ export default {
 const COMPONENTS_TO_CHECK = ["DBButton", "DBLink", "DBInput"];
 
 export default {
-	meta: {
-		/* ... */
-	},
+	meta: {/* ... */},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const component = COMPONENTS_TO_CHECK.find((comp) =>
@@ -368,23 +362,15 @@ const angularRuleTester = new AngularRuleTester();
 describe("rule-name", () => {
 	it("should validate rule", () => {
 		ruleTester.run("rule-name", rule, {
-			valid: [
-				/* React/Vue cases */
-			],
-			invalid: [
-				/* React/Vue cases */
-			]
+			valid: [/* React/Vue cases */],
+			invalid: [/* React/Vue cases */]
 		});
 	});
 
 	it("should validate rule (Angular)", () => {
 		angularRuleTester.run("rule-name", rule, {
-			valid: [
-				/* Angular cases with <db- */
-			],
-			invalid: [
-				/* Angular cases with <db- */
-			]
+			valid: [/* Angular cases with <db- */],
+			invalid: [/* Angular cases with <db- */]
 		});
 	});
 });

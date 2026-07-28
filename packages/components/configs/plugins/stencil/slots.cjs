@@ -23,7 +23,8 @@ const processNode = (node) => {
 						...bind,
 						properties: {
 							...bind.properties,
-							slot: getSlotKey(key)
+							// Stencil keeps slot names in camelCase (matching <Slot name="..."/> in the source)
+							slot: key
 						}
 					}))
 				);

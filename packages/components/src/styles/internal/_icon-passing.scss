@@ -1,29 +1,34 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/icons";
 
 $interactive-button-selectors: "label,button,a";
 
-@mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
+@mixin icon-passing(
+	$inline-start: variables.$db-spacing-fixed-sm,
+	$gap: variables.$db-spacing-fixed-xs
+) {
 	&[data-icon-leading]:not([data-show-icon-leading="false"]),
 	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
-			inset-block-start: calc(50% - 0.5em);
+			inset-block-start: var(
+				--db-icon-passing-inset-block-start,
+				calc(50% - 0.5em)
+			);
 			inset-inline-start: var(
-				--db-icon-passing-inline-start,
+				--db-icon-passing-inset-inline-start,
 				#{$inline-start}
 			);
 			pointer-events: none;
 			z-index: 1;
 		}
 
-		#{$interactive-button-selectors} {
-			--db-padding-inline-start: calc(
-				#{$inline-start} + #{icons.$default-icon-margin-end} + 1lh
-			);
-
+		> :is(#{$interactive-button-selectors}),
+		> * > :is(#{$interactive-button-selectors}) {
 			/* stylelint-disable-next-line db-ux/use-spacings */
-			padding-inline-start: var(--db-padding-inline-start);
+			padding-inline-start: var(
+				--db-icon-passing-padding-inline-start,
+				calc(#{$inline-start} + #{$gap} + var(--db-icon-font-size, 1lh))
+			);
 		}
 	}
 }
@@ -32,16 +37,20 @@ $interactive-button-selectors: "label,button,a";
 	&[data-icon-trailing]:not([data-show-icon-trailing="false"]) {
 		&::after {
 			position: absolute;
-			inset-block-start: calc(50% - 0.5em);
+			inset-block-start: var(
+				--db-icon-passing-inset-block-start,
+				calc(50% - 0.5em)
+			);
 			inset-inline-end: $inline-end;
 			pointer-events: none;
 			z-index: 1;
 		}
 
-		#{$interactive-button-selectors} {
+		> :is(#{$interactive-button-selectors}),
+		> * > :is(#{$interactive-button-selectors}) {
 			padding-inline-end: calc(
-				#{$inline-end} + #{icons.$default-icon-margin-end} +
-					var(--db-icon-font-size)
+				#{$inline-end} + #{variables.$db-spacing-fixed-xs} +
+					var(--db-icon-font-size, 1lh)
 			);
 		}
 	}

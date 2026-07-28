@@ -8,6 +8,7 @@ import {
 } from './resolve.js';
 
 /**
+ * @public
  * Collapse `light-dark(x, y)` to just `x` when both arguments are identical
  * after trimming whitespace. Handles nested parentheses correctly.
  * @param value - The CSS value string potentially containing `light-dark()` calls
@@ -19,7 +20,9 @@ export const collapseLightDark = (value: string): string => {
 
 	while (searchFrom < result.length) {
 		const found = findCssFunction(result, 'light-dark', searchFrom);
-		if (!found) break;
+		if (!found) {
+			break;
+		}
 
 		const commaIdx = findTopLevelComma(found.inner);
 		if (commaIdx === -1) {
@@ -52,8 +55,8 @@ export const collapseLightDark = (value: string): string => {
  * @param referencedVars - Set to track which variables are still referenced after resolution
  * @param propertyNames - Set of variable names that came from `@property`
  * @param dynamicVars - Set of dynamic variable names (never removed)
- * @param removeAtProperty - Whether to remove `@property` rules
- * @param removeResolved - Whether to remove unused `@property`-sourced declarations
+ * @param shouldRemoveAtProperty - Whether to remove `@property` rules
+ * @param shouldRemoveResolved - Whether to remove unused `@property`-sourced declarations
  */
 export const transformRoot = (
 	root: Root,
@@ -61,8 +64,8 @@ export const transformRoot = (
 	referencedVars: Set<string>,
 	propertyNames: Set<string>,
 	dynamicVars: Set<string>,
-	removeAtProperty: boolean,
-	removeResolved: boolean
+	shouldRemoveAtProperty: boolean,
+	shouldRemoveResolved: boolean
 ) => {
 	root.walkDecls((decl: Declaration) => {
 		const hasVar = decl.value.includes('var(');
@@ -70,7 +73,9 @@ export const transformRoot = (
 		const hasColorMix = decl.value.includes('color-mix(');
 		const hasLightDark = decl.value.includes('light-dark(');
 
-		if (!hasVar && !hasCalc && !hasColorMix && !hasLightDark) return;
+		if (!hasVar && !hasCalc && !hasColorMix && !hasLightDark) {
+			return;
+		}
 
 		let resolved = decl.value;
 
@@ -94,7 +99,7 @@ export const transformRoot = (
 		decl.value = resolved;
 	});
 
-	if (removeAtProperty) {
+	if (shouldRemoveAtProperty) {
 		root.walkAtRules('property', (atRule: AtRule) => {
 			const propName = atRule.params.trim();
 			if (!referencedVars.has(propName)) {
@@ -103,7 +108,7 @@ export const transformRoot = (
 		});
 	}
 
-	if (removeResolved) {
+	if (shouldRemoveResolved) {
 		root.walkDecls(/^--/, (decl: Declaration) => {
 			if (
 				propertyNames.has(decl.prop) &&
@@ -124,21 +129,21 @@ export const transformRoot = (
  * Walks bottom-up so nested empty containers are cleaned recursively.
  */
 const removeEmptyContainers = (root: Root) => {
-	let changed = true;
-	while (changed) {
-		changed = false;
+	let isChanged = true;
+	while (isChanged) {
+		isChanged = false;
 
 		root.walkRules((rule: Rule) => {
 			if (rule.nodes?.length === 0) {
 				rule.remove();
-				changed = true;
+				isChanged = true;
 			}
 		});
 
 		root.walkAtRules('layer', (atRule: AtRule) => {
 			if (atRule.nodes?.length === 0) {
 				atRule.remove();
-				changed = true;
+				isChanged = true;
 			}
 		});
 	}

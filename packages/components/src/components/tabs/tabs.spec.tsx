@@ -45,22 +45,86 @@ const testComponent = () => {
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
 		expect(activeTabIndex).toBe(undefined);
-
-		// Beware: the comments below actually change the selector for vue
-		// this is necessary because vue will not trigger a check on an list element but requires the actual
-		// radio button element, which has the role=tab
 		const component = await mount(comp);
-		await component
-			.getByTestId('test2')
-			// VUE: .getByRole('tab')
-			.check({ force: true });
-		const tabChecked = await component
-			.getByTestId('test')
-			// VUE: .getByRole('tab')
-			.isChecked();
-		expect(!tabChecked).toBeTruthy();
+		await component.getByRole('tab', { name: 'Test 2' }).click();
+		await expect(
+			component.getByRole('tab', { name: 'Test 1' })
+		).toHaveAttribute('aria-selected', 'false');
+		await expect(
+			component.getByRole('tab', { name: 'Test 2' })
+		).toHaveAttribute('aria-selected', 'true');
+	});
 
-		expect(activeTabIndex).toBe(1);
+	test('should fire onValueChange with value when tabs have value props', async ({
+		mount
+	}) => {
+		let receivedValue: string | undefined = 'initial';
+		const component = await mount(
+			<DBTabs onValueChange={(value?: string) => (receivedValue = value)}>
+				<DBTabList>
+					<DBTabItem value="tab-a">Tab A</DBTabItem>
+					<DBTabItem value="tab-b">Tab B</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel A</DBTabPanel>
+				<DBTabPanel>Panel B</DBTabPanel>
+			</DBTabs>
+		);
+		await component.getByRole('tab', { name: 'Tab B' }).click();
+		expect(receivedValue).toBe('tab-b');
+	});
+
+	test('should fire onValueChange with undefined when tabs have no value props', async ({
+		mount
+	}) => {
+		let receivedValue: string | undefined = 'initial';
+		const component = await mount(
+			<DBTabs onValueChange={(value?: string) => (receivedValue = value)}>
+				<DBTabList>
+					<DBTabItem>Tab X</DBTabItem>
+					<DBTabItem>Tab Y</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel X</DBTabPanel>
+				<DBTabPanel>Panel Y</DBTabPanel>
+			</DBTabs>
+		);
+		await component.getByRole('tab', { name: 'Tab Y' }).click();
+		expect(receivedValue).toBeUndefined();
+	});
+
+	test('should ignore bubbled change events from nested controls in tab panels', async ({
+		mount
+	}) => {
+		expect(activeTabIndex).toBe(undefined);
+
+		const component = await mount(
+			<DBTabs onIndexChange={(index: number) => (activeTabIndex = index)}>
+				<DBTabList>
+					<DBTabItem>Tab 1</DBTabItem>
+					<DBTabItem>Tab 2</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>
+					<label>
+						<input data-testid="nested-checkbox" type="checkbox" />
+						Nested control
+					</label>
+				</DBTabPanel>
+				<DBTabPanel>Panel 2</DBTabPanel>
+			</DBTabs>
+		);
+
+		const nestedCheckbox = component.getByTestId('nested-checkbox');
+		await nestedCheckbox.evaluate((el) => {
+			el.dispatchEvent(new Event('input', { bubbles: true }));
+			el.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+
+		expect(activeTabIndex).toBe(undefined);
+		await expect(
+			component.getByRole('tab', { name: 'Tab 1' })
+		).toHaveAttribute('aria-selected', 'true');
+		await expect(
+			component.getByRole('tab', { name: 'Tab 2' })
+		).toHaveAttribute('aria-selected', 'false');
 	});
 };
 
@@ -83,9 +147,50 @@ const testA11y = () => {
 	});
 };
 
+const testProps = () => {
+	test('should accept tab-item alignment prop', async ({ mount }) => {
+		const component = await mount(
+			<DBTabs tabItemAlignment="center">
+				<DBTabList>
+					<DBTabItem>Test 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Content 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(component).toHaveAttribute(
+			'data-tab-item-alignment',
+			'center'
+		);
+	});
+
+	test('should activate tab based on URL hash', async ({ mount, page }) => {
+		await page.setViewportSize({ width: 1920, height: 1080 });
+		await page.evaluate(() => {
+			window.location.hash = '#my-deep-link-tab-1';
+		});
+		const component = await mount(
+			<DBTabs id="my-deep-link" label="my-deep-link">
+				<DBTabList>
+					<DBTabItem>Tab 0</DBTabItem>
+					<DBTabItem>Tab 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel 0</DBTabPanel>
+				<DBTabPanel>Panel 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(
+			component.getByRole('tab', { name: 'Tab 1' })
+		).toHaveAttribute('aria-selected', 'true');
+		await expect(
+			component.getByRole('tab', { name: 'Tab 0' })
+		).toHaveAttribute('aria-selected', 'false');
+	});
+};
+
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
 	testActions();
+	testProps();
 });

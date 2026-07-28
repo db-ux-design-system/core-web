@@ -93,6 +93,11 @@ module.exports = () => ({
 
 			if (['angular', 'stencil'].includes(target)) {
 				changedCode = changedCode
+					// TODO: revert commit ece830027e97b407cfca41081e792950687bc98a again after https://github.com/BuilderIO/mitosis/pull/1810 got released
+					.replace(
+						'[...parent.attributes]',
+						'Array.from(parent.attributes)'
+					)
 					.replace(
 						`if (attr && attr.name === "class") {`,
 						// Pass `style` to ref

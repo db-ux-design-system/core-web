@@ -8,7 +8,7 @@ import {
 	semanticColors
 } from '../../../components/foundations/colors/data';
 
-const ColorSchemes = () => {
+export default function ColorSchemes() {
 	return (
 		<DefaultPage>
 			<div>
@@ -135,6 +135,4 @@ const ColorSchemes = () => {
 			</div>
 		</DefaultPage>
 	);
-};
-
-export default ColorSchemes;
+}

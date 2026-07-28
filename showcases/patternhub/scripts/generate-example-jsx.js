@@ -57,7 +57,7 @@ const generateExampleJSX = () => {
 	}
 
 	FS.writeFileSync(
-		`./scripts/generated/index.jsx`,
+		'./scripts/generated/index.jsx',
 		"import { renderToString } from 'react-dom/server';\n" +
 			"import React from 'react';\n" +
 			`import {${imports.join(',')}} from '../../../../output/react/src';\n\n` +

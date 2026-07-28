@@ -6,8 +6,8 @@ export const MAX_FILE_CONTENT = 20_000;
 export const MAX_JSON_OUTPUT = 20_000;
 
 /**
- * Truncates a string to at most `limit` characters and appends a labelled marker.
- * Returns the original string unchanged when it is within the limit.
+ Truncates a string to at most `limit` characters and appends a labelled marker.
+ Returns the original string unchanged when it is within the limit.
  */
 export function truncate(
 	text: string,
@@ -24,6 +24,6 @@ export const COMPONENT_NOT_FOUND_MSG = (name: string) =>
 	`Error: Component '${name}' is not available in the DB UX Design System. Please check your spelling or use the 'list_components' tool to see all valid components.`;
 
 /** Creates a standard MCP error ToolResult with the given message. */
-export function err(text: string): ToolResult {
+export function error(text: string): ToolResult {
 	return { content: [{ type: 'text', text }], isError: true };
 }

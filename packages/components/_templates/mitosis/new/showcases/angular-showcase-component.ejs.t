@@ -1,5 +1,5 @@
 ---
-to: "<%= showcases ? `../../showcases/angular-showcase/src/app/components/${name}.component.ts` : null %>"
+to: "<%= (!subComponent && showcases) ? `../../showcases/angular-showcase/src/app/components/${name}.component.ts` : null %>"
 ---
 import { Component } from '@angular/core';
 import { <%= h.changeCase.pascal(name) %>Showcase } from '@components/components/<%= name %>/showcase/<%= name %>.showcase';

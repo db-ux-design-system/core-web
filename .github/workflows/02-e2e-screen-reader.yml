@@ -27,7 +27,7 @@ jobs:
         shardTotal: [4]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
@@ -42,7 +42,7 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: 🦮 Guidepup Setup Windows
-        uses: guidepup/setup-action@5ab89fbb6641406f6f6c91057225f3fb397c2eea # 0.20.0
+        uses: guidepup/setup-action@5d19b1151e972898cae0f0cc44e239127953bd90 # 0.21.0
         with:
           record: true
 

@@ -77,6 +77,271 @@ describe('getFloatingProps', () => {
 	});
 });
 
+describe('getFloatingProps placement flip matrix', () => {
+	const createScenario = (
+		viewport: { width: number; height: number },
+		parentRect: {
+			top: number;
+			left: number;
+			width: number;
+			height: number;
+			bottom: number;
+			right: number;
+		},
+		childSize: { width: number; height: number }
+	) => {
+		(window as Window).innerWidth = viewport.width;
+		(window as Window).innerHeight = viewport.height;
+
+		const element = {
+			getBoundingClientRect: () => childSize
+		} as HTMLElement;
+		const parent = {
+			getBoundingClientRect: () => parentRect
+		} as HTMLElement;
+
+		return { element, parent };
+	};
+
+	it('bottom flips to top when bottom overflows and top has room', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 500 },
+			{
+				top: 200,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 480,
+				right: 500
+			},
+			{ width: 80, height: 100 }
+		);
+		const result = getFloatingProps(element, parent, 'bottom');
+		expect(result.correctedPlacement).toBe('top');
+	});
+
+	it('bottom stays bottom when within viewport', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 200,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 240,
+				right: 500
+			},
+			{ width: 80, height: 100 }
+		);
+		const result = getFloatingProps(element, parent, 'bottom');
+		expect(result.correctedPlacement).toBe('bottom');
+	});
+
+	it('bottom stays bottom when both top and bottom overflow', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 100 },
+			{
+				top: 10,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 90,
+				right: 500
+			},
+			{ width: 80, height: 200 }
+		);
+		const result = getFloatingProps(element, parent, 'bottom');
+		expect(result.correctedPlacement).toBe('bottom');
+	});
+
+	it('top flips to bottom when top overflows and bottom has room', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 20,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 60,
+				right: 500
+			},
+			{ width: 80, height: 100 }
+		);
+		const result = getFloatingProps(element, parent, 'top');
+		expect(result.correctedPlacement).toBe('bottom');
+	});
+
+	it('top stays top when within viewport', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 500,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 540,
+				right: 500
+			},
+			{ width: 80, height: 100 }
+		);
+		const result = getFloatingProps(element, parent, 'top');
+		expect(result.correctedPlacement).toBe('top');
+	});
+
+	it('top stays top when both top and bottom overflow', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 100 },
+			{
+				top: 10,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 90,
+				right: 500
+			},
+			{ width: 80, height: 200 }
+		);
+		const result = getFloatingProps(element, parent, 'top');
+		expect(result.correctedPlacement).toBe('top');
+	});
+
+	it('left flips to right when left overflows and right has room', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 400,
+				left: 20,
+				width: 100,
+				height: 40,
+				bottom: 440,
+				right: 120
+			},
+			{ width: 100, height: 60 }
+		);
+		const result = getFloatingProps(element, parent, 'left');
+		expect(result.correctedPlacement).toBe('right');
+	});
+
+	it('left stays left when within viewport', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 400,
+				left: 500,
+				width: 100,
+				height: 40,
+				bottom: 440,
+				right: 600
+			},
+			{ width: 100, height: 60 }
+		);
+		const result = getFloatingProps(element, parent, 'left');
+		expect(result.correctedPlacement).toBe('left');
+	});
+
+	it('left stays left when both left and right overflow', () => {
+		const { element, parent } = createScenario(
+			{ width: 200, height: 1000 },
+			{
+				top: 400,
+				left: 50,
+				width: 100,
+				height: 40,
+				bottom: 440,
+				right: 150
+			},
+			{ width: 300, height: 60 }
+		);
+		const result = getFloatingProps(element, parent, 'left');
+		expect(result.correctedPlacement).toBe('left');
+	});
+
+	it('right flips to left when right overflows and left has room', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 400,
+				left: 800,
+				width: 100,
+				height: 40,
+				bottom: 440,
+				right: 980
+			},
+			{ width: 100, height: 60 }
+		);
+		const result = getFloatingProps(element, parent, 'right');
+		expect(result.correctedPlacement).toBe('left');
+	});
+
+	it('right stays right when within viewport', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 400,
+				left: 200,
+				width: 100,
+				height: 40,
+				bottom: 440,
+				right: 300
+			},
+			{ width: 100, height: 60 }
+		);
+		const result = getFloatingProps(element, parent, 'right');
+		expect(result.correctedPlacement).toBe('right');
+	});
+
+	it('right stays right when both left and right overflow', () => {
+		const { element, parent } = createScenario(
+			{ width: 200, height: 1000 },
+			{
+				top: 400,
+				left: 50,
+				width: 100,
+				height: 40,
+				bottom: 440,
+				right: 150
+			},
+			{ width: 300, height: 60 }
+		);
+		const result = getFloatingProps(element, parent, 'right');
+		expect(result.correctedPlacement).toBe('right');
+	});
+
+	it('bottom adjusts to bottom-end when right side overflows', () => {
+		const { element, parent } = createScenario(
+			{ width: 500, height: 1000 },
+			{
+				top: 200,
+				left: 400,
+				width: 100,
+				height: 40,
+				bottom: 240,
+				right: 500
+			},
+			{ width: 200, height: 100 }
+		);
+		const result = getFloatingProps(element, parent, 'bottom');
+		expect(result.correctedPlacement).toBe('bottom-end');
+	});
+
+	it('bottom adjusts to bottom-start when left side overflows', () => {
+		const { element, parent } = createScenario(
+			{ width: 1000, height: 1000 },
+			{
+				top: 200,
+				left: 10,
+				width: 100,
+				height: 40,
+				bottom: 240,
+				right: 110
+			},
+			{ width: 200, height: 100 }
+		);
+		const result = getFloatingProps(element, parent, 'bottom');
+		expect(result.correctedPlacement).toBe('bottom-start');
+	});
+});
+
 describe('handleFixedPopover', () => {
 	it('does not throw when element or parent is null', () => {
 		expect(() =>
@@ -130,6 +395,7 @@ describe('handleFixedDropdown', () => {
 			({
 				zIndex: '1',
 				maxInlineSize: 'none',
+				position: 'fixed',
 				...(styleByElement.get(el) ?? {})
 			}) as unknown as CSSStyleDeclaration;
 		try {

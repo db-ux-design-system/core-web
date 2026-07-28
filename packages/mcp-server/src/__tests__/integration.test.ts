@@ -16,17 +16,17 @@ const { execMock, writeFileMock, unlinkMock } = vi.hoisted(() => ({
 vi.mock('node:child_process', () => ({
 	exec(
 		_cmd: string,
-		_opts: unknown,
+		_options: unknown,
 		cb: (
-			err: Error | undefined,
+			error: Error | undefined,
 			result?: { stdout: string; stderr: string }
 		) => void
 	) {
-		const result = execMock(_cmd, _opts);
+		const result = execMock(_cmd, _options);
 		if (result && typeof result.then === 'function') {
 			result.then(
-				(val: { stdout: string; stderr: string }) => {
-					cb(null, val);
+				(value: { stdout: string; stderr: string }) => {
+					cb(null, value);
 				},
 				(error: Error) => {
 					cb(error);
@@ -84,8 +84,8 @@ const FAKE_PROPS = 'export interface FakeProps { label: string; }';
 const FAKE_EXAMPLE_CODE = '<DBButton>Click</DBButton>';
 
 /**
- * Serialises a partial manifest structure and parses it back for use as a
- * resetManifestCache override.
+ Serialises a partial manifest structure and parses it back for use as a
+ resetManifestCache override.
  */
 function makeManifest({
 	components,
@@ -110,9 +110,9 @@ function makeManifest({
 }
 
 /**
- * Builds a manifest JSON string containing a single "button" component whose
- * react exampleCode is populated with the given example file keys.
- * Used to exercise the fuzzy-matching logic in handleGetExampleCode.
+ Builds a manifest JSON string containing a single "button" component whose
+ react exampleCode is populated with the given example file keys.
+ Used to exercise the fuzzy-matching logic in handleGetExampleCode.
  */
 function makeFuzzyManifest(exampleKeys: string[]) {
 	const exampleCode: Record<string, Record<string, string>> = {
@@ -133,8 +133,8 @@ function makeFuzzyManifest(exampleKeys: string[]) {
 }
 
 /**
- * Extracts the text from a ToolResult content item, asserting it is a TextContent.
- * Avoids TS2339 on the `TextContent | ImageContent` union type.
+ Extracts the text from a ToolResult content item, asserting it is a TextContent.
+ Avoids TS2339 on the `TextContent | ImageContent` union type.
  */
 function text(content: { type: string; text?: string }): string {
 	expect(content.type).toBe('text');
@@ -142,8 +142,8 @@ function text(content: { type: string; text?: string }): string {
 }
 
 /**
- * Asserts that a prompt handler result contains exactly one user-role message
- * and returns its text content for further assertions.
+ Asserts that a prompt handler result contains exactly one user-role message
+ and returns its text content for further assertions.
  */
 function assertUserMessage(result: any) {
 	expect(result.messages).toHaveLength(1);
@@ -909,7 +909,9 @@ describe('resolveSafePath', () => {
 		it('rejects Unix absolute path /var/log/syslog', () => {
 			// On Windows /var/log/syslog resolves within the current drive,
 			// which may or may not be inside BASE — skip on Windows.
-			if (platform() === 'win32') return;
+			if (platform() === 'win32') {
+				return;
+			}
 			expect(() => resolveSafePath(BASE, '/var/log/syslog')).toThrow(
 				'Path traversal detected'
 			);
@@ -1104,12 +1106,15 @@ describe('handleScanV2Migration', () => {
 	let handleScanV2Migration: (typeof import('../tools/scanner.js'))['handleScanV2Migration'];
 
 	/** Creates a temp file inside process.cwd() and returns its path. */
-	function writeCwdTemp(name: string, content: string): string {
+	function writeCwdTemporary(name: string, content: string): string {
 		const { writeFileSync } = require('node:fs');
 		const { join } = require('node:path');
-		const tmp = join(process.cwd(), `.scan-test-${name}-${Date.now()}`);
-		writeFileSync(tmp, content);
-		return tmp;
+		const temporary = join(
+			process.cwd(),
+			`.scan-test-${name}-${Date.now()}`
+		);
+		writeFileSync(temporary, content);
+		return temporary;
 	}
 
 	beforeEach(async () => {
@@ -1119,13 +1124,13 @@ describe('handleScanV2Migration', () => {
 
 	it('detects v2 component tags and returns suggestions', async () => {
 		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp(
+		const temporary = writeCwdTemporary(
 			'comp',
 			'<div>\n  <elm-button>Click</elm-button>\n  <cmp-card></cmp-card>\n</div>'
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('elm-button');
@@ -1134,19 +1139,19 @@ describe('handleScanV2Migration', () => {
 			expect(output).toContain('"suggestion": "db-card"');
 			expect(output).toContain('"type": "component"');
 		} finally {
-			unlinkSync(tmp);
+			unlinkSync(temporary);
 		}
 	});
 
 	it('detects v2 color tokens and returns BG/FG suggestions', async () => {
 		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp(
+		const temporary = writeCwdTemporary(
 			'color',
 			'.foo { background: var(--db-color-red-500); }'
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('db-color-red-500');
@@ -1158,19 +1163,19 @@ describe('handleScanV2Migration', () => {
 				'--db-brand-on-bg-basic-emphasis-70-default'
 			);
 		} finally {
-			unlinkSync(tmp);
+			unlinkSync(temporary);
 		}
 	});
 
 	it('detects v2 icon names and returns suggestions', async () => {
 		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp(
+		const temporary = writeCwdTemporary(
 			'icon',
 			'<elm-button icon="account">Login</elm-button>\n<div data-icon="search">X</div>'
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('"type": "icon"');
@@ -1179,24 +1184,24 @@ describe('handleScanV2Migration', () => {
 			expect(output).toContain('"found": "search"');
 			expect(output).toContain('"suggestion": "magnifying_glass"');
 		} finally {
-			unlinkSync(tmp);
+			unlinkSync(temporary);
 		}
 	});
 
 	it('returns no-findings message for a clean file', async () => {
 		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp(
+		const temporary = writeCwdTemporary(
 			'clean',
 			'<div class="db-card"><p>Already migrated</p></div>'
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('No DB UI v2 patterns found');
 		} finally {
-			unlinkSync(tmp);
+			unlinkSync(temporary);
 		}
 	});
 
@@ -1211,38 +1216,38 @@ describe('handleScanV2Migration', () => {
 
 	it('includes correct line numbers in findings', async () => {
 		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp(
+		const temporary = writeCwdTemporary(
 			'lines',
 			'<div>\n<p>hello</p>\n<elm-button>Click</elm-button>\n</div>'
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
 			// Elm-button is on line 3
 			expect(output).toContain('"line": 3');
 		} finally {
-			unlinkSync(tmp);
+			unlinkSync(temporary);
 		}
 	});
 
 	it('includes summary with finding counts', async () => {
 		const { unlinkSync } = await import('node:fs');
-		const tmp = writeCwdTemp(
+		const temporary = writeCwdTemporary(
 			'summary',
 			'<elm-button icon="account">X</elm-button>\n.x{color:var(--db-color-red-500)}'
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: tmp });
+			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
 			expect(output).toContain('component(s)');
 			expect(output).toContain('color token(s)');
 			expect(output).toContain('icon(s)');
 		} finally {
-			unlinkSync(tmp);
+			unlinkSync(temporary);
 		}
 	});
 

@@ -1,4 +1,4 @@
-/** Base for all Figma prop definitions. */
+/** @public Base for all Figma prop definitions. */
 export type FigmaBaseProp = {
 	/** The prop type discriminator. */
 	type: string;
@@ -11,7 +11,7 @@ export type FigmaBaseProp = {
 	layer?: string;
 };
 
-/** A nested Figma instance swap prop (e.g. icon components). */
+/** @public A nested Figma instance swap prop (e.g. icon components). */
 export type FigmaInstanceProp = FigmaBaseProp & {
 	/** Use 'instance' for generic instance swaps, 'iconSwap' for icon instances that resolve to a string name. */
 	type: 'instance' | 'iconSwap';
@@ -19,7 +19,7 @@ export type FigmaInstanceProp = FigmaBaseProp & {
 	key: string;
 };
 
-/** An enum prop mapping Figma variant values to code values. */
+/** @public An enum prop mapping Figma variant values to code values. */
 export type FigmaEnumProp = FigmaBaseProp & {
 	type: 'enum';
 	/** The Figma property key (e.g. 'Size', '💻 Variant'). */
@@ -34,7 +34,7 @@ export type FigmaEnumProp = FigmaBaseProp & {
 	guardKey?: string;
 };
 
-/** A simple scalar prop. */
+/** @public A simple scalar prop. */
 export type FigmaSimpleProp = FigmaBaseProp & {
 	/**
 	 * - 'string': maps to instance.getString()
@@ -54,6 +54,7 @@ export type FigmaSimpleProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Reads a text property from the first code-connected child instance.
  * Generates: instance.findConnectedInstances((node) => node.hasCodeConnect())
  *   .filter((node) => node.type === 'INSTANCE')
@@ -69,6 +70,7 @@ export type FigmaConnectedTextProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Generates a single message variable from a connected instance's text,
  * then maps it to different attribute names based on another prop's value.
  *
@@ -86,6 +88,7 @@ export type FigmaValidationMessageProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Renders all direct code-connected child instances as children.
  * Generates: instance.findConnectedInstances((node) => node.hasCodeConnect())
  *   .flatMap((child) => child.executeTemplate().example)
@@ -101,6 +104,7 @@ export type FigmaConnectedInstancesProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Renders code-connected child instances recursively, filtered by a nestedImports string.
  * Uses traverseInstances: true to find all descendants, then filters by checking whether
  * the instance's template nestedImports contains the given filter string.
@@ -120,6 +124,7 @@ export type FigmaNestedConnectedInstancesProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Maps multiple boolean Figma properties to a single enum code value.
  * The first property whose value is `true` wins; if none match, the prop is omitted.
  *
@@ -133,6 +138,7 @@ export type FigmaBooleanToEnumProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Finds all nested instances matching a filter and maps their properties to an array.
  * Each matched instance produces one object in the array, with keys defined by `props`.
  *
@@ -148,6 +154,7 @@ export type FigmaNestedInstancesToArrayProp = FigmaBaseProp & {
 };
 
 /**
+ * @public
  * Wraps an iconSwap prop so it is only rendered when a boolean Figma property is enabled.
  * Generates: let icon = ''; if (getPropertyValue(guardKey) === true || getPropertyValue(guardKey) === 'True') { icon = `\n\t\ticon="${iconLeading}"` }
  */

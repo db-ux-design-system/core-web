@@ -5,7 +5,7 @@ import {
 	DBInput
 } from '../../../../output/react/src';
 
-const ValidationExample = () => {
+export default function ValidationExample() {
 	return (
 		<>
 			<h3>Example</h3>
@@ -53,6 +53,4 @@ const ValidationExample = () => {
 			</div>
 		</>
 	);
-};
-
-export default ValidationExample;
+}

@@ -208,30 +208,27 @@ describe('timeout handling', () => {
 describe('abort signal propagation', () => {
 	test('aborted checks are treated as failed', async () => {
 		// Simulate a check that respects the abort signal by returning a failed result
-		const spawnFn = vi
-			.fn()
-			.mockImplementation(
-				async (
-					_cmd: string,
-					_args: string[],
-					options: { abortSignal?: AbortSignal }
-				) => {
-					return new Promise<CommandExecResult>((resolve) => {
-						if (options.abortSignal?.aborted) {
-							resolve({ exitCode: 1, timedOut: false });
-							return;
-						}
+		const spawnFn = vi.fn().mockImplementation(
+			async (
+				_cmd: string,
+				_args: string[],
+				options: { abortSignal?: AbortSignal }
+			) =>
+				new Promise<CommandExecResult>((resolve) => {
+					if (options.abortSignal?.aborted) {
+						resolve({ exitCode: 1, timedOut: false });
+						return;
+					}
 
-						options.abortSignal?.addEventListener(
-							'abort',
-							() => {
-								resolve({ exitCode: 1, timedOut: false });
-							},
-							{ once: true }
-						);
-					});
-				}
-			);
+					options.abortSignal?.addEventListener(
+						'abort',
+						() => {
+							resolve({ exitCode: 1, timedOut: false });
+						},
+						{ once: true }
+					);
+				})
+		);
 
 		const controller = new AbortController();
 		// Abort immediately after orchestrate starts

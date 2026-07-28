@@ -4,7 +4,7 @@ For general installation and configuration take a look at the [components](https
 
 ### General
 
-If you use `width !== full` you are able to overwrite the `max-width` with `--db-drawer-max-width:` CSS variable.
+If you use `containerSize !== full` you are able to overwrite the `max-width` with `--db-drawer-max-width:` CSS variable.
 
 ### Use component
 

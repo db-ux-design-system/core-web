@@ -61,7 +61,6 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 	// jscpd:ignore-end
 
 	input {
-		--db-icon-margin-start: 0;
 		--thumb-offset-x: #{$switch-fixed-padding};
 
 		@extend %db-overwrite-font-size-sm;

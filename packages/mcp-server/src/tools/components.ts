@@ -5,7 +5,7 @@ import {
 	COMPONENT_NOT_FOUND_MSG,
 	MAX_FILE_CONTENT,
 	MAX_JSON_OUTPUT,
-	err,
+	error,
 	resolveSafePath,
 	truncate,
 	withTimeout
@@ -13,9 +13,9 @@ import {
 import { getManifest } from '../utils/manifest';
 
 /**
- * Resolves and verifies a component path within a given base directory.
- * Handles path traversal protection via resolveSafePath and existence check.
- * @returns The resolved absolute path, or a ToolResult error object on failure.
+ Resolves and verifies a component path within a given base directory.
+ Handles path traversal protection via resolveSafePath and existence check.
+ @returns The resolved absolute path, or a ToolResult error object on failure.
  */
 function resolveComponentPath(
 	baseDir: string,
@@ -25,11 +25,11 @@ function resolveComponentPath(
 	try {
 		safePath = resolveSafePath(baseDir, componentName);
 	} catch {
-		return err(`Error: Invalid component name '${componentName}'.`);
+		return error(`Error: Invalid component name '${componentName}'.`);
 	}
 
 	if (!existsSync(safePath)) {
-		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+		return error(COMPONENT_NOT_FOUND_MSG(componentName));
 	}
 
 	return safePath;
@@ -52,8 +52,9 @@ export async function handleListComponents(): Promise<ToolResult> {
 }
 
 /**
- * Returns the list of example names for a component by reading its showcase file.
- * @param componentName - The kebab-case component name (e.g. "button").
+ Returns the list of example names for a component by reading its showcase file.
+ @param componentName - The kebab-case component name (e.g. "button").
+ @param componentName.componentName
  */
 export async function handleGetComponentDetails({
 	componentName
@@ -62,7 +63,9 @@ export async function handleGetComponentDetails({
 }): Promise<ToolResult> {
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
+	if (!comp) {
+		return error(COMPONENT_NOT_FOUND_MSG(componentName));
+	}
 	return {
 		content: [
 			{
@@ -77,8 +80,9 @@ export async function handleGetComponentDetails({
 }
 
 /**
- * Returns the raw TypeScript content of a component's model.ts file.
- * @param componentName - The kebab-case component name (e.g. "button").
+ Returns the raw TypeScript content of a component's model.ts file.
+ @param componentName - The kebab-case component name (e.g. "button").
+ @param componentName.componentName
  */
 export async function handleGetComponentProps({
 	componentName
@@ -87,11 +91,15 @@ export async function handleGetComponentProps({
 }): Promise<ToolResult> {
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
-	if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
-	if (!comp.props)
-		return err(
+	if (!comp) {
+		return error(COMPONENT_NOT_FOUND_MSG(componentName));
+	}
+	if (!comp.props) {
+		return error(
 			`Error: Props file (model.ts) for component '${componentName}' not found.`
 		);
+	}
+
 	return {
 		content: [
 			{ type: 'text', text: truncate(comp.props, MAX_FILE_CONTENT) }
@@ -120,9 +128,9 @@ const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
 };
 
 /**
- * Finds the best-matching example filename from a list of candidates.
- * Prefers exact stem match, then falls back to partial inclusion.
- * Inspects at most the first 10 entries to avoid excessive scanning.
+ Finds the best-matching example filename from a list of candidates.
+ Prefers exact stem match, then falls back to partial inclusion.
+ Inspects at most the first 10 entries to avoid excessive scanning.
  */
 function fuzzyMatchExample(
 	entries: string[],
@@ -130,18 +138,23 @@ function fuzzyMatchExample(
 	ext: string
 ): string | undefined {
 	return entries.slice(0, 10).find((f) => {
-		if (!f.endsWith(`.example.${ext}`)) return false;
+		if (!f.endsWith(`.example.${ext}`)) {
+			return false;
+		}
 		const stem = f.replace(`.example.${ext}`, '');
 		return stem === kebab || stem.includes(kebab) || kebab.includes(stem);
 	});
 }
 
 /**
- * Returns the generated framework-specific source code for a component example.
- * Applies a 10-second timeout to prevent hanging on slow filesystem reads.
- * @param componentName - The kebab-case component name (e.g. "button").
- * @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
- * @param framework - The target framework (react, angular, vue, web-components, html).
+ Returns the generated framework-specific source code for a component example.
+ Applies a 10-second timeout to prevent hanging on slow filesystem reads.
+ @param componentName - The kebab-case component name (e.g. "button").
+ @param componentName.componentName
+ @param exampleName - The human-readable example name (e.g. "Show Icon Leading").
+ @param componentName.exampleName
+ @param framework - The target framework (react, angular, vue, web-components, html).
+ @param componentName.framework
  */
 export async function handleGetExampleCode({
 	componentName,
@@ -159,10 +172,12 @@ export async function handleGetExampleCode({
 				const ext = FRAMEWORK_EXT[framework];
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
-				if (!comp) return err(COMPONENT_NOT_FOUND_MSG(componentName));
+				if (!comp) {
+					return error(COMPONENT_NOT_FOUND_MSG(componentName));
+				}
 				if (framework === 'html' || framework === 'vanilla') {
-					return err(
-						`Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage.`
+					return error(
+						"Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage."
 					);
 				}
 
@@ -172,7 +187,7 @@ export async function handleGetExampleCode({
 					? directKey
 					: fuzzyMatchExample(Object.keys(fwExamples), kebab, ext);
 				if (!matchKey) {
-					return err(
+					return error(
 						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					);
 				}
@@ -189,7 +204,7 @@ export async function handleGetExampleCode({
 					]
 				};
 			} catch (error: any) {
-				return err(`Error: ${error.message}`);
+				return error(`Error: ${error.message}`);
 			}
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'

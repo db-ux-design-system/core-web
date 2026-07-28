@@ -41,7 +41,9 @@ export default {
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const iconChild = node.children?.find(
 				(child: any) =>
@@ -73,7 +75,9 @@ export default {
 			}
 		}
 
-		if (Object.keys(angularVisitors).length > 0) return angularVisitors;
+		if (Object.keys(angularVisitors).length > 0) {
+			return angularVisitors;
+		}
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
@@ -81,7 +85,9 @@ export default {
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
@@ -104,49 +110,37 @@ export default {
 					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
 					data: { component: componentName },
 					fix(fixer: any) {
-						if (!iconValue || typeof iconValue !== 'string')
+						if (!iconValue || typeof iconValue !== 'string') {
 							return null;
+						}
 
 						const fixes = [];
 						fixes.push(fixer.remove(iconChild));
 
+						let insertPos: number;
 						if (node.openingElement) {
 							// JSX
 							const lastAttr = openingElement.attributes.at(-1);
-							const insertPos = lastAttr
+							insertPos = lastAttr
 								? lastAttr.range[1]
 								: openingElement.name.range[1];
-							fixes.push(
-								fixer.insertTextAfterRange(
-									[insertPos, insertPos],
-									` icon="${iconValue}"`
-								)
-							);
 						} else {
 							// Vue
 							const attrs = openingElement.startTag.attributes;
-							if (attrs.length > 0) {
-								const lastAttr = attrs.at(-1);
-								const insertPos = lastAttr.range[1];
-								fixes.push(
-									fixer.insertTextAfterRange(
-										[insertPos, insertPos],
-										` icon="${iconValue}"`
-									)
-								);
-							} else {
-								const insertPos =
-									openingElement.startTag.range[0] +
-									1 +
-									openingElement.rawName.length;
-								fixes.push(
-									fixer.insertTextAfterRange(
-										[insertPos, insertPos],
-										` icon="${iconValue}"`
-									)
-								);
-							}
+							insertPos =
+								attrs.length > 0
+									? attrs.at(-1).range[1]
+									: openingElement.startTag.range[0] +
+										1 +
+										openingElement.rawName.length;
 						}
+
+						fixes.push(
+							fixer.insertTextAfterRange(
+								[insertPos, insertPos],
+								` icon="${iconValue}"`
+							)
+						);
 
 						return fixes;
 					}

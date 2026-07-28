@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= name %>/<%= name %>.spec.tsx
+to: "<%= subComponent ? null : `src/components/${name}/${name}.spec.tsx` %>"
 ---
 import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';

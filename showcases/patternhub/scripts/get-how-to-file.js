@@ -5,11 +5,11 @@ const componentPath = '../../packages/components/src/components';
 const docs = ['Accessibility', 'HTML', 'Angular', 'React', 'Vue'];
 
 /**
- * @param componentName {string}
- * @param displayName {string}
- * @returns {string}
+ @param componentName {string}
+ @param displayName {string}
+ @returns {string}
  */
-const getHowToFile = (componentName, displayName) => {
+export default function getHowToFile(componentName, displayName) {
 	let imports = '';
 	let components = '';
 
@@ -31,6 +31,4 @@ ${components}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;
 	`;
-};
-
-export default getHowToFile;
+}

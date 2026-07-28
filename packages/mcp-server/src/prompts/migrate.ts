@@ -1,13 +1,16 @@
 import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
 /**
- * Generates a structured prompt that guides an AI agent through the full DB UX
- * migration workflow — including mandatory code verification via the
- * `verify_migrated_code` tool before final output.
- *
- * @param legacy_code - The source code of the outdated component.
- * @param source_context - The origin/context of the legacy code (e.g. 'db-ui-v2', 'bootstrap-4').
- * @param target_framework - The target framework (react, angular, vue, web-components, html).
+ Generates a structured prompt that guides an AI agent through the full DB UX
+ migration workflow — including mandatory code verification via the
+ `verify_migrated_code` tool before final output.
+
+ @param legacy_code - The source code of the outdated component.
+ @param legacy_code.legacy_code
+ @param source_context - The origin/context of the legacy code (e.g. 'db-ui-v2', 'bootstrap-4').
+ @param legacy_code.source_context
+ @param target_framework - The target framework (react, angular, vue, web-components, html).
+ @param legacy_code.target_framework
  */
 export function handleMigrateComponentPrompt({
 	legacy_code,

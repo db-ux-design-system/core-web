@@ -27,7 +27,7 @@ jobs:
     steps:
       # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 🔄 Init Node & PNPM cache
         uses: ./.github/actions/pnpm-cache
@@ -51,6 +51,7 @@ jobs:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
           version: pnpm run ci:version
+          prDraft: always
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           HUSKY: 0 # Disable Husky hooks in CI

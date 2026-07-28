@@ -144,7 +144,7 @@ Review the issue content and determine if any of these existing labels apply. On
 | `🍄🆙improvement`  | Feature request or enhancement                                 |
 | `😍niceToHave`     | Nice-to-have, low-priority improvement                         |
 | `❓question`       | Issue is asking a question rather than reporting a bug/feature |
-| `💬 assessment`    | Needs discussion / "we need to talk about it"                  |
+| `💬assessment`     | Needs discussion / "we need to talk about it"                  |
 | `📗story needed`   | Needs a story in the team backlog for further discussion       |
 | `good first issue` | Simple enough for newcomers to tackle                          |
 
@@ -152,9 +152,9 @@ Review the issue content and determine if any of these existing labels apply. On
 
 | Label                   | When to apply                                |
 | ----------------------- | -------------------------------------------- |
-| `🏗foundations`         | Relates to `packages/foundations/`           |
+| `🏗foundations`          | Relates to `packages/foundations/`           |
 | `📦foundations`         | Changes inside foundations folder            |
-| `🏘components`          | Relates to `packages/components/`            |
+| `🏘components`           | Relates to `packages/components/`            |
 | `🧱components`          | Changes inside components folder             |
 | `📺showcases`           | Relates to showcase apps                     |
 | `🛠️configuration`       | Relates to configuration/tooling             |
@@ -168,8 +168,8 @@ Review the issue content and determine if any of these existing labels apply. On
 | Label           | When to apply                           |
 | --------------- | --------------------------------------- |
 | `🤘react`       | React-specific issue                    |
-| `🅰angular`     | Angular-specific issue                  |
-| `🏝vue`         | Vue-specific issue                      |
+| `🅰angular`      | Angular-specific issue                  |
+| `🏝vue`          | Vue-specific issue                      |
 | `🎨(s)css`      | CSS/SCSS styling issue                  |
 | `💻javascript`  | JavaScript-specific issue               |
 | `🧬mitosis`     | Relates to Mitosis (component compiler) |

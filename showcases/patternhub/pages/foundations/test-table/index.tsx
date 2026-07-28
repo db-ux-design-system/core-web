@@ -43,7 +43,7 @@ const tableHeaders = [
 	}
 ];
 
-const TestTable = () => {
+export default function TestTable() {
 	return (
 		<DefaultPage>
 			<table>
@@ -133,6 +133,4 @@ const TestTable = () => {
 			</table>
 		</DefaultPage>
 	);
-};
-
-export default TestTable;
+}

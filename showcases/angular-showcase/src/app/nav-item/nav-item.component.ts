@@ -17,7 +17,5 @@ import { NavItem } from '../utils/navigation-item';
 export class NavItemComponent {
 	@Input({ required: true }) navItem!: NavItem;
 
-	getBackButtonText = () => {
-		return `Back to ${this.navItem.label}`;
-	};
+	getBackButtonText = () => `Back to ${this.navItem.label}`;
 }
