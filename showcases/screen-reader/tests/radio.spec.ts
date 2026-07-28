@@ -12,8 +12,6 @@ test.describe('DBRadio', () => {
 				await screenReader.next();
 				await screenReader.clearSpokenPhraseLog();
 				await screenReader.previous();
-				await screenReader.next();
-				await screenReader.next();
 			} else {
 				// We are on the radio group after loading
 				// Every element (radio, label) will be read as single element
@@ -21,9 +19,9 @@ test.describe('DBRadio', () => {
 				await screenReader.next();
 				await screenReader.next();
 				await screenReader.next();
-				await screenReader.next();
-				await screenReader.next();
 			}
+			await screenReader.next();
+			await screenReader.next();
 		}
 	});
 	testDefault({
