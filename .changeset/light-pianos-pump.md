@@ -2,4 +2,4 @@
 "@db-ux/react-core-components": patch
 ---
 
-fix(DBAccordionItem): removed incompatible property `defaultOpen`, which generates console error
+fix(DBAccordionItem): prevent `defaultOpen` prop from being forwarded to the DOM element
