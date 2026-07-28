@@ -1,0 +1,6 @@
+{
+  "component": "table",
+  "library": "core-components",
+  "nodeIds": [],
+  "note": "No published Figma component set exists for DBTable in the core-components library. Tables are built from native HTML table elements with DB UX styling classes applied via the code component."
+}

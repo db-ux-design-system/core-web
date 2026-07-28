@@ -1,0 +1,18 @@
+{
+  "component": "infotext",
+  "library": "core-components",
+  "pageId": "14436:15054",
+  "pageName": "Infotext",
+  "componentSets": [
+    {
+      "name": "Infotext - (Def) Auto Width",
+      "nodeId": "14442:4357",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Infotext - Full Width",
+      "nodeId": "14442:4430",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

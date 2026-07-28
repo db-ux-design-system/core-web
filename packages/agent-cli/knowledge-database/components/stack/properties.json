@@ -1,0 +1,43 @@
+{
+  "component": "stack",
+  "figmaProperties": [],
+  "codeConnectProperties": [],
+  "codeProperties": [
+    {
+      "name": "variant",
+      "type": "StackVariantType",
+      "values": ["simple", "divider"],
+      "default": "simple",
+      "description": "Use 'divider' with DBDivider after each element"
+    },
+    {
+      "name": "direction",
+      "type": "StackDirectionType",
+      "values": ["row", "column"],
+      "default": "column",
+      "description": "Flex direction of the stack"
+    },
+    {
+      "name": "wrap",
+      "type": "boolean | string",
+      "description": "Whether the stack should wrap if parent is too small"
+    },
+    {
+      "name": "alignment",
+      "type": "StackAlignmentType",
+      "values": ["stretch", "start", "end", "center"],
+      "description": "CSS align-items"
+    },
+    {
+      "name": "justifyContent",
+      "type": "StackJustifyContentType",
+      "values": ["space-between", "start", "center", "end"],
+      "description": "CSS justify-content"
+    },
+    {
+      "name": "gap",
+      "type": "GapSpacingType",
+      "description": "Gap spacing between children"
+    }
+  ]
+}

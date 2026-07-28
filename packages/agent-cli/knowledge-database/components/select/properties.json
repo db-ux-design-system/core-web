@@ -1,0 +1,140 @@
+{
+  "component": "select",
+  "figmaProperties": [
+    {
+      "name": "👁️ Show Required Asterisk",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "👁️ Show Label",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "✏️ Label",
+      "type": "TEXT",
+      "defaultValue": "Label"
+    },
+    {
+      "name": "✏️ Placeholder",
+      "type": "TEXT",
+      "defaultValue": "Placeholder"
+    },
+    {
+      "name": "👁️ Show Message",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "🔄 Icon",
+      "type": "INSTANCE_SWAP"
+    },
+    {
+      "name": "🔀 Interaction State",
+      "type": "VARIANT",
+      "values": ["(Def) Enabled", "Hovered", "Focused", "None"]
+    },
+    {
+      "name": "🔀 Disabled",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "🔀 Validation",
+      "type": "VARIANT",
+      "values": ["(Def) No Validation", "Invalid", "Valid"]
+    },
+    {
+      "name": "👁️ Show Icon",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Required",
+      "type": "VARIANT",
+      "values": ["false", "true"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "required"
+    },
+    {
+      "name": "⚙️ Variant",
+      "type": "VARIANT",
+      "values": ["above", "floating"],
+      "defaultValue": "above",
+      "mapsToCodeProp": "variant",
+      "note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Label text for the select"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Placeholder text shown when no option is selected"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Current selected value"
+    },
+    {
+      "name": "variant",
+      "type": "FormVariantType",
+      "values": ["above", "floating"],
+      "default": "above",
+      "description": "Label position variant"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean | string",
+      "description": "Disables the select"
+    },
+    {
+      "name": "required",
+      "type": "boolean | string",
+      "description": "Marks the field as required"
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "description": "Helper/validation message text"
+    },
+    {
+      "name": "validMessage",
+      "type": "string",
+      "description": "Message shown on valid state"
+    },
+    {
+      "name": "invalidMessage",
+      "type": "string",
+      "description": "Message shown on invalid state"
+    },
+    {
+      "name": "icon",
+      "type": "string",
+      "description": "Leading icon name"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean",
+      "description": "Show/hide the leading icon"
+    },
+    {
+      "name": "options",
+      "type": "DBSelectOptionType[]",
+      "description": "Options array if not using children/slots"
+    },
+    {
+      "name": "showEmptyOption",
+      "type": "boolean",
+      "description": "Controls whether empty placeholder option is shown after selection"
+    }
+  ]
+}

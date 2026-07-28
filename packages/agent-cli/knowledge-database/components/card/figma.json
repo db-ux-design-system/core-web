@@ -1,0 +1,23 @@
+{
+  "component": "card",
+  "library": "core-components",
+  "pageId": "14457:45714",
+  "pageName": "Card (Beta)",
+  "componentSets": [
+    {
+      "name": "Card → (Def) Level 1 (Beta)",
+      "nodeId": "32604:4793",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Card → Level 2 (Beta)",
+      "nodeId": "32604:4898",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Card → Level 3 (Beta)",
+      "nodeId": "32604:5003",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

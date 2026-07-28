@@ -1,0 +1,56 @@
+{
+	"component": "custom-button",
+	"figmaProperties": [],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Icon name for icon-only button"
+		},
+		{
+			"name": "iconLeading",
+			"type": "string",
+			"description": "Icon before the label"
+		},
+		{
+			"name": "iconTrailing",
+			"type": "string",
+			"description": "Icon after the label"
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean"
+		},
+		{
+			"name": "showIconLeading",
+			"type": "boolean"
+		},
+		{
+			"name": "showIconTrailing",
+			"type": "boolean"
+		},
+		{
+			"name": "noText",
+			"type": "boolean",
+			"description": "Renders as icon-only"
+		},
+		{
+			"name": "size",
+			"type": "SizeType",
+			"values": ["small", "medium"],
+			"default": "medium"
+		},
+		{
+			"name": "width",
+			"type": "WidthType",
+			"values": ["auto", "full"],
+			"default": "auto"
+		},
+		{
+			"name": "wrap",
+			"type": "boolean",
+			"description": "Enable text wrapping"
+		}
+	]
+}

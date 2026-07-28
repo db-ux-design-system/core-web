@@ -1,0 +1,104 @@
+{
+  "component": "radio",
+  "figmaProperties": [
+    {
+      "name": "👁️ Show Label",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "✏️ Label",
+      "type": "TEXT",
+      "defaultValue": "Label"
+    },
+    {
+      "name": "👁️ Show Required Asterisk",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "👁️ Show Children Slot",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "🔀 Interaction State",
+      "type": "VARIANT",
+      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+    },
+    {
+      "name": "🔀 Disabled",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "🔀 Checked",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "🔀 Validation",
+      "type": "VARIANT",
+      "values": ["(Def) No Validation", "Invalid", "Valid"]
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Required",
+      "type": "VARIANT",
+      "values": ["false", "true"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "required"
+    },
+    {
+      "name": "⚙️ Size",
+      "type": "VARIANT",
+      "values": ["small", "medium"],
+      "defaultValue": "medium",
+      "mapsToCodeProp": "size",
+      "note": "In Figma, size is expressed via separate Component Sets (Medium vs Small). Code Connect maps to the size prop."
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Label text for the radio"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Groups radios together (shared name)"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Value of the radio option"
+    },
+    {
+      "name": "checked",
+      "type": "boolean | string",
+      "description": "Whether the radio is selected"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean | string",
+      "description": "Disables the radio"
+    },
+    {
+      "name": "required",
+      "type": "boolean | string",
+      "description": "Marks the field as required"
+    },
+    {
+      "name": "size",
+      "type": "SizeType",
+      "values": ["small", "medium"],
+      "default": "medium"
+    }
+  ]
+}

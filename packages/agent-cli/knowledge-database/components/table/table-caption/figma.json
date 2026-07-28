@@ -1,0 +1,6 @@
+{
+  "component": "table-caption",
+  "library": "core-components",
+  "nodeIds": [],
+  "note": "No Figma component. Code-only wrapper for caption."
+}

@@ -1,0 +1,18 @@
+{
+  "component": "custom-select-dropdown",
+  "library": "core-components",
+  "pageId": "19383:3590",
+  "pageName": "CustomSelect (Beta)",
+  "componentSets": [
+    {
+      "name": "↳ CustomSelect DROPDOWN → Desktop (Beta)",
+      "nodeId": "19383:19315",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ CustomSelect DROPDOWN → Mobile (Beta)",
+      "nodeId": "19383:19352",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

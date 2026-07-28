@@ -1,0 +1,13 @@
+{
+	"component": "backdrop",
+	"library": "core-components",
+	"pageId": "18920:4578",
+	"pageName": "Backdrop (Beta)",
+	"componentSets": [
+		{
+			"name": "Backdrop (Beta)",
+			"nodeId": "19382:4838",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

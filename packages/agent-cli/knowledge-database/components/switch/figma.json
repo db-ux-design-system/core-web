@@ -1,0 +1,48 @@
+{
+  "component": "switch",
+  "library": "core-components",
+  "pageId": "14457:44476",
+  "pageName": "Switch",
+  "componentSets": [
+    {
+      "name": "Switch → (Def) Trailing - (Def) Auto Width - (Def) Medium",
+      "nodeId": "3:25045",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → (Def) Trailing - Full Width - (Def) Medium",
+      "nodeId": "10707:22590",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → Leading - (Def) Auto Width - (Def) Medium",
+      "nodeId": "25185:23452",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → Leading - Full Width - (Def) Medium",
+      "nodeId": "25185:23940",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → (Def) Trailing - (Def) Auto Width - Small",
+      "nodeId": "25185:2705",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → (Def) Trailing - Full Width - Small",
+      "nodeId": "25185:2989",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → Leading - (Def) Auto Width - Small",
+      "nodeId": "25204:19990",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Switch → Leading - Full Width - Small",
+      "nodeId": "25204:20475",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

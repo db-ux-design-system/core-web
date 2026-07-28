@@ -1,0 +1,18 @@
+{
+  "component": "header",
+  "library": "core-components",
+  "pageId": "14457:45716",
+  "pageName": "Header (Beta)",
+  "componentSets": [
+    {
+      "name": "Header → Desktop (Beta)",
+      "nodeId": "3432:27231",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Header → Mobile (Beta)",
+      "nodeId": "2946:22714",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

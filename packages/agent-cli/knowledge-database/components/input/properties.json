@@ -1,0 +1,197 @@
+{
+  "component": "input",
+  "figmaProperties": [
+    {
+      "name": "👁️ Show Message",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "✏️ Placeholder",
+      "type": "TEXT",
+      "defaultValue": "Placeholder"
+    },
+    {
+      "name": "✏️ Label",
+      "type": "TEXT",
+      "defaultValue": "Label"
+    },
+    {
+      "name": "👁️ Show Required Asterisk",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "👁️ Show Label",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "🔄 Icon Trailing",
+      "type": "INSTANCE_SWAP"
+    },
+    {
+      "name": "🔄 Icon Leading",
+      "type": "INSTANCE_SWAP"
+    },
+    {
+      "name": "🔀 Interaction State",
+      "type": "VARIANT",
+      "values": ["(Def) Enabled", "Hovered", "Focused", "None"]
+    },
+    {
+      "name": "🔀 Disabled",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "🔀 Readonly",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "🔀 Validation",
+      "type": "VARIANT",
+      "values": ["(Def) No Validation", "Invalid", "Valid"]
+    },
+    {
+      "name": "👁️ Show Icon Leading",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "👁️ Show Icon Trailing",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Variant",
+      "type": "VARIANT",
+      "values": ["above", "floating"],
+      "defaultValue": "above",
+      "mapsToCodeProp": "variant",
+      "note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
+    },
+    {
+      "name": "⚙️ Required",
+      "type": "VARIANT",
+      "values": ["false", "true"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "required"
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Label text for the input"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Placeholder text"
+    },
+    {
+      "name": "type",
+      "type": "InputTypeType | string",
+      "values": ["color", "date", "datetime-local", "email", "file", "hidden", "month", "number", "password", "range", "search", "tel", "text", "time", "url", "week"],
+      "default": "text"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Current value of the input"
+    },
+    {
+      "name": "variant",
+      "type": "FormVariantType",
+      "values": ["above", "floating"],
+      "default": "above",
+      "description": "Label position variant"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean | string",
+      "description": "Disables the input"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean | string",
+      "description": "Makes the input read-only"
+    },
+    {
+      "name": "required",
+      "type": "boolean | string",
+      "description": "Marks the field as required"
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "description": "Helper/validation message text"
+    },
+    {
+      "name": "validMessage",
+      "type": "string",
+      "description": "Message shown on valid state"
+    },
+    {
+      "name": "invalidMessage",
+      "type": "string",
+      "description": "Message shown on invalid state"
+    },
+    {
+      "name": "icon",
+      "type": "string",
+      "description": "Icon name (deprecated, use iconLeading)"
+    },
+    {
+      "name": "iconLeading",
+      "type": "string",
+      "description": "Leading icon name"
+    },
+    {
+      "name": "iconTrailing",
+      "type": "string",
+      "description": "Trailing icon name"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean"
+    },
+    {
+      "name": "showIconLeading",
+      "type": "boolean"
+    },
+    {
+      "name": "showIconTrailing",
+      "type": "boolean"
+    },
+    {
+      "name": "dataList",
+      "type": "string[] | ValueLabelType[]",
+      "description": "Options for a datalist"
+    },
+    {
+      "name": "min",
+      "type": "number | string",
+      "description": "Minimum value"
+    },
+    {
+      "name": "max",
+      "type": "number | string",
+      "description": "Maximum value"
+    },
+    {
+      "name": "step",
+      "type": "number | string",
+      "description": "Step value"
+    },
+    {
+      "name": "pattern",
+      "type": "string",
+      "description": "Validation pattern regex"
+    }
+  ]
+}

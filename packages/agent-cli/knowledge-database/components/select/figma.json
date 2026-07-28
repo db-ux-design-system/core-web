@@ -1,0 +1,28 @@
+{
+  "component": "select",
+  "library": "core-components",
+  "pageId": "14457:44482",
+  "pageName": "Select",
+  "componentSets": [
+    {
+      "name": "Select → (Def) Label Above - (Def) Empty",
+      "nodeId": "3900:5134",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Select → (Def) Label Above - Selected",
+      "nodeId": "3900:25648",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Select → Floating Label - (Def) Empty",
+      "nodeId": "3914:4692",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Select → Floating Label - Selected",
+      "nodeId": "3914:5527",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "component": "custom-select-form-field",
+  "library": "core-components",
+  "pageId": "19383:3590",
+  "pageName": "CustomSelect (Beta)",
+  "componentSets": [
+    {
+      "name": "↳ CustomSelect FORM FIELD → (Def) Label Above - (Def) Empty (Beta)",
+      "nodeId": "19383:15743",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ CustomSelect FORM FIELD → (Def) Label Above - Selected (Beta)",
+      "nodeId": "19383:16190",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ CustomSelect FORM FIELD → Floating Label - (Def) Empty (Beta)",
+      "nodeId": "19383:17910",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ CustomSelect FORM FIELD → Floating Label - Selected (Beta)",
+      "nodeId": "19383:18285",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

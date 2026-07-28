@@ -1,0 +1,28 @@
+{
+  "component": "navigation-item",
+  "library": "core-components",
+  "pageId": "1:19398",
+  "pageName": "Navigation (Beta)",
+  "componentSets": [
+    {
+      "name": "↳ NAVIGATION ITEM → (Def) Horizontal - (Def) Auto Width (Beta)",
+      "nodeId": "4924:33106",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ NAVIGATION ITEM → Vertical - (Def) Full Width (Beta)",
+      "nodeId": "4924:33052",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ NAVIGATION ITEM → Vertical - AutoWidth (Beta)",
+      "nodeId": "4924:32998",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ NAVIGATION ITEM → Horizontal - Full Width (Beta)",
+      "nodeId": "4924:33160",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

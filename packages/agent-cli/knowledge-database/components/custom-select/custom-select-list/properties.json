@@ -1,0 +1,17 @@
+{
+  "component": "custom-select-list",
+  "figmaProperties": [],
+  "codeConnectProperties": [],
+  "codeProperties": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the list"
+    },
+    {
+      "name": "multiple",
+      "type": "boolean",
+      "description": "Whether multiple items can be selected"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+	"component": "custom-button",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No published Figma component set. DBCustomButton is a headless code component that lets consumers build custom button-like elements with DB UX styling."
+}

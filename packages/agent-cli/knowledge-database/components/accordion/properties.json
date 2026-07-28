@@ -1,0 +1,63 @@
+{
+  "component": "accordion",
+  "figmaProperties": [
+    {
+      "name": "🔀 Variant",
+      "type": "VARIANT",
+      "values": ["(Def) Divider", "Card"]
+    },
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "📦 Children Card",
+      "type": "SLOT"
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Behavior",
+      "type": "VARIANT",
+      "values": ["multiple", "single"],
+      "defaultValue": "multiple",
+      "mapsToCodeProp": "behavior"
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "variant",
+      "type": "AccordionVariantType",
+      "values": ["divider", "card"],
+      "default": "divider",
+      "description": "Defines the display: divider (with dividing line) or card (items shown in card variant)"
+    },
+    {
+      "name": "behavior",
+      "type": "AccordionBehaviorType",
+      "values": ["multiple", "single"],
+      "default": "multiple",
+      "description": "To allow multiple items open at the same time or only 1 item"
+    },
+    {
+      "name": "initOpenIndex",
+      "type": "number[]",
+      "description": "The index of items which should be open when loading the accordion"
+    },
+    {
+      "name": "items",
+      "type": "DBAccordionItemDefaultProps[] | string",
+      "description": "Alternative to pass in a simple representation of accordion items"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Set details name for exclusive accordions"
+    },
+    {
+      "name": "onChange",
+      "type": "(openAccordionItemIds: string[]) => void",
+      "description": "Informs about changes in internal state, which item is open"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "component": "drawer",
+  "library": "core-components",
+  "pageId": "14457:45717",
+  "pageName": "Drawer",
+  "componentSets": [
+    {
+      "name": "Drawer → (Def) Right",
+      "nodeId": "37477:7499",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Drawer → Left",
+      "nodeId": "37477:7614",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Drawer → Bottom",
+      "nodeId": "37477:7729",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Drawer → Top",
+      "nodeId": "37477:7856",
+      "type": "COMPONENT_SET"
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "drawer-header",
+      "componentSets": [
+        {
+          "name": "↳ Drawer Header",
+          "nodeId": "37980:31922",
+          "type": "COMPONENT"
+        }
+      ]
+    },
+    {
+      "name": "drawer-footer",
+      "componentSets": [
+        {
+          "name": "↳ Drawer Footer",
+          "nodeId": "37977:35190",
+          "type": "COMPONENT"
+        }
+      ]
+    }
+  ]
+}

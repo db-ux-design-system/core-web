@@ -1,0 +1,18 @@
+{
+  "component": "navigation",
+  "figmaProperties": [
+    {
+      "name": "🔀 Variant",
+      "type": "VARIANT",
+      "values": ["Level 1", "Level 2+"]
+    },
+    {
+      "name": "👁️ Show Back Link",
+      "type": "BOOLEAN",
+      "defaultValue": true,
+      "note": "Mobile only"
+    }
+  ],
+  "codeConnectProperties": [],
+  "codeProperties": []
+}

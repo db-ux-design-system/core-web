@@ -1,0 +1,23 @@
+{
+  "component": "tab-list",
+  "library": "core-components",
+  "pageId": "37398:3642",
+  "pageName": "Tabs (Beta)",
+  "componentSets": [
+    {
+      "name": "↳ Tab List - (Def) Horizontal - (Def) AutoWidth (Beta)",
+      "nodeId": "37398:6674",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ Tab List - (Def) Horizontal - Full Width - (Def) Start (Beta)",
+      "nodeId": "37398:6627",
+      "type": "COMPONENT"
+    },
+    {
+      "name": "↳ Tab List - Vertical (Beta)",
+      "nodeId": "37398:6660",
+      "type": "COMPONENT"
+    }
+  ]
+}

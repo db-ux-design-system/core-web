@@ -1,0 +1,13 @@
+{
+  "component": "drawer-header",
+  "library": "core-components",
+  "pageId": "14457:45717",
+  "pageName": "Drawer",
+  "componentSets": [
+    {
+      "name": "↳ Drawer Header",
+      "nodeId": "37980:31922",
+      "type": "COMPONENT"
+    }
+  ]
+}

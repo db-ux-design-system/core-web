@@ -1,0 +1,28 @@
+{
+  "component": "icon",
+  "figmaProperties": [],
+  "codeConnectProperties": [],
+  "codeProperties": [
+    {
+      "name": "icon",
+      "type": "string",
+      "description": "Icon name to render (e.g. 'arrow-right', 'check-circle')"
+    },
+    {
+      "name": "variant",
+      "type": "string",
+      "description": "Icon variant"
+    },
+    {
+      "name": "weight",
+      "type": "IconWeightType",
+      "values": ["16", "20", "24", "32", "48", "64"],
+      "description": "Icon weight/size in pixels"
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "description": "Accessible text alternative for the icon (used as aria-label)"
+    }
+  ]
+}

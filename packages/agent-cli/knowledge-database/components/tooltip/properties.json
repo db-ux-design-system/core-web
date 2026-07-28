@@ -1,0 +1,134 @@
+{
+  "component": "tooltip",
+  "figmaProperties": [
+    {
+      "name": "👁️ Show Arrow",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "✏️ Label",
+      "type": "TEXT",
+      "defaultValue": "Tooltip"
+    },
+    {
+      "name": "👁️ Show Children Slot",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "🔀 Width",
+      "type": "VARIANT",
+      "values": ["(Def) Auto", "Fixed"]
+    },
+    {
+      "name": "🔀 Emphasis",
+      "type": "VARIANT",
+      "values": ["(Def) Weak", "Strong"]
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Animation",
+      "type": "VARIANT",
+      "values": ["true", "false"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "animation"
+    },
+    {
+      "name": "⚙️ Delay",
+      "type": "VARIANT",
+      "values": ["none", "slow", "fast"],
+      "defaultValue": "fast",
+      "mapsToCodeProp": "delay"
+    },
+    {
+      "name": "⚙️ Gap",
+      "type": "VARIANT",
+      "values": ["true", "false"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "gap"
+    },
+    {
+      "name": "⚙️ Placement",
+      "type": "VARIANT",
+      "values": ["bottom", "bottom-end", "bottom-start", "left", "left-end", "left-start", "right", "right-end", "right-start", "top", "top-end", "top-start"],
+      "defaultValue": "bottom",
+      "mapsToCodeProp": "placement",
+      "note": "In Figma, the primary placement is expressed via separate Component Sets (Bottom, Top, Left, Right). Code Connect maps to placement prop."
+    },
+    {
+      "name": "⚙️ Variant",
+      "type": "VARIANT",
+      "values": ["description", "label"],
+      "defaultValue": "description",
+      "mapsToCodeProp": "variant"
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "text",
+      "type": "string",
+      "description": "Tooltip text content"
+    },
+    {
+      "name": "placement",
+      "type": "PlacementType",
+      "values": ["bottom", "bottom-end", "bottom-start", "left", "left-end", "left-start", "right", "right-end", "right-start", "top", "top-end", "top-start"],
+      "default": "bottom"
+    },
+    {
+      "name": "variant",
+      "type": "TooltipVariantType",
+      "values": ["description", "label"],
+      "default": "description",
+      "description": "'description' adds aria-describedby, 'label' adds aria-labelledby to parent"
+    },
+    {
+      "name": "emphasis",
+      "type": "EmphasisType",
+      "values": ["weak", "strong"],
+      "default": "weak"
+    },
+    {
+      "name": "showArrow",
+      "type": "boolean | string",
+      "default": true,
+      "description": "Show/hide the tooltip arrow"
+    },
+    {
+      "name": "animation",
+      "type": "boolean | string",
+      "default": true,
+      "description": "Enable/disable entrance animation"
+    },
+    {
+      "name": "delay",
+      "type": "DelayType",
+      "values": ["none", "slow", "fast"],
+      "default": "fast",
+      "description": "Delay before showing the tooltip"
+    },
+    {
+      "name": "gap",
+      "type": "boolean | string",
+      "default": true,
+      "description": "Show/hide the gap between trigger and tooltip"
+    },
+    {
+      "name": "open",
+      "type": "boolean | string",
+      "description": "Manually control tooltip visibility"
+    },
+    {
+      "name": "width",
+      "type": "WidthType",
+      "values": ["auto", "fixed"],
+      "default": "auto"
+    }
+  ]
+}

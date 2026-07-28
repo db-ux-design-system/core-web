@@ -1,0 +1,24 @@
+{
+  "component": "tab-list",
+  "figmaProperties": [
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "🔀 Overflow Position",
+      "type": "VARIANT",
+      "values": ["(Def) None", "Start", "Center", "End"],
+      "note": "Only on the AutoWidth horizontal variant"
+    }
+  ],
+  "codeConnectProperties": [],
+  "codeProperties": [
+    {
+      "name": "orientation",
+      "type": "OrientationType",
+      "values": ["horizontal", "vertical"],
+      "description": "Orientation of the tab list"
+    }
+  ]
+}

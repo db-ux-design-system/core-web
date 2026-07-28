@@ -1,0 +1,18 @@
+{
+  "component": "custom-select-list-item",
+  "library": "core-components",
+  "pageId": "19383:3590",
+  "pageName": "CustomSelect (Beta)",
+  "componentSets": [
+    {
+      "name": "↳ CustomSelect LIST ITEM → (Def) Multiple (Beta)",
+      "nodeId": "19383:19470",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ CustomSelect LIST ITEM → Single (Beta)",
+      "nodeId": "19383:19556",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

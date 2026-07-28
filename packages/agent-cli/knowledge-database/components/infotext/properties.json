@@ -1,0 +1,59 @@
+{
+  "component": "infotext",
+  "figmaProperties": [
+    {
+      "name": "✏️ Text",
+      "type": "TEXT",
+      "defaultValue": "Text"
+    },
+    {
+      "name": "👁️ Show Icon",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "👁️ Show Children Slot",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "🔀 Semantic",
+      "type": "VARIANT",
+      "values": ["(Def) Adaptive", "Critical", "Informational", "Neutral", "Successful", "Warning"]
+    },
+    {
+      "name": "🔀 Size",
+      "type": "VARIANT",
+      "values": ["(Def) Medium", "Small"]
+    }
+  ],
+  "codeConnectProperties": [],
+  "codeProperties": [
+    {
+      "name": "semantic",
+      "type": "SemanticType",
+      "values": ["adaptive", "critical", "informational", "neutral", "successful", "warning"],
+      "default": "adaptive"
+    },
+    {
+      "name": "size",
+      "type": "SizeType",
+      "values": ["small", "medium"],
+      "default": "medium"
+    },
+    {
+      "name": "icon",
+      "type": "string",
+      "description": "Custom icon name (auto-selected based on semantic if not set)"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}

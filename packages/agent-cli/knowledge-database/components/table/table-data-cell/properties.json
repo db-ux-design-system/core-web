@@ -1,0 +1,9 @@
+{
+  "component": "table-data-cell",
+  "figmaProperties": [],
+  "codeConnectProperties": [],
+  "codeProperties": [
+    { "name": "colSpan", "type": "number", "description": "Number of columns to span" },
+    { "name": "rowSpan", "type": "number", "description": "Number of rows to span" }
+  ]
+}

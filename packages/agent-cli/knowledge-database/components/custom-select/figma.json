@@ -1,0 +1,100 @@
+{
+  "component": "custom-select",
+  "library": "core-components",
+  "pageId": "19383:3590",
+  "pageName": "CustomSelect (Beta)",
+  "componentSets": [
+    {
+      "name": "CustomSelect → (Def) Bottom - (Def) Full Width - Desktop (Beta)",
+      "nodeId": "19383:17780",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "CustomSelect → (Def) Bottom - Auto Width - Desktop (Beta)",
+      "nodeId": "19383:17804",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "CustomSelect → Top - (Def) Full Width - Desktop (Beta)",
+      "nodeId": "19383:17828",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "CustomSelect → Top - Auto Width - Desktop (Beta)",
+      "nodeId": "19383:17852",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "CustomSelect → Mobile (Beta)",
+      "nodeId": "19383:17876",
+      "type": "COMPONENT_SET"
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "custom-select-form-field",
+      "componentSets": [
+        {
+          "name": "↳ CustomSelect FORM FIELD → (Def) Label Above - (Def) Empty (Beta)",
+          "nodeId": "19383:15743",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ CustomSelect FORM FIELD → (Def) Label Above - Selected (Beta)",
+          "nodeId": "19383:16190",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ CustomSelect FORM FIELD → Floating Label - (Def) Empty (Beta)",
+          "nodeId": "19383:17910",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ CustomSelect FORM FIELD → Floating Label - Selected (Beta)",
+          "nodeId": "19383:18285",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    },
+    {
+      "name": "custom-select-dropdown",
+      "componentSets": [
+        {
+          "name": "↳ CustomSelect DROPDOWN → Desktop (Beta)",
+          "nodeId": "19383:19315",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ CustomSelect DROPDOWN → Mobile (Beta)",
+          "nodeId": "19383:19352",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    },
+    {
+      "name": "custom-select-list-item",
+      "componentSets": [
+        {
+          "name": "↳ CustomSelect LIST ITEM → (Def) Multiple (Beta)",
+          "nodeId": "19383:19470",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ CustomSelect LIST ITEM → Single (Beta)",
+          "nodeId": "19383:19556",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    },
+    {
+      "name": "custom-select-search",
+      "componentSets": [
+        {
+          "name": "↳ CustomSelect SEARCH (Beta)",
+          "nodeId": "19383:19397",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    }
+  ]
+}

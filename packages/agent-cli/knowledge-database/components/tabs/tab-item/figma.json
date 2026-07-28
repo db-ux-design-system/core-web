@@ -1,0 +1,33 @@
+{
+  "component": "tab-item",
+  "library": "core-components",
+  "pageId": "37398:3642",
+  "pageName": "Tabs (Beta)",
+  "componentSets": [
+    {
+      "name": "↳ Tab Item - (Def) Horizontal - (Def) Auto Width (Beta)",
+      "nodeId": "37398:5952",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ Tab Item - (Def) Horizontal - Full Width - (Def) Start (Beta)",
+      "nodeId": "37398:6095",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ Tab Item - (Def) Horizontal - Full Width - Centered (Beta)",
+      "nodeId": "37398:6222",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ Tab Item - (Def) Horizontal - Full Width - End (Beta)",
+      "nodeId": "37398:6349",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "↳ Tab Item - Vertical - Full Width - Left (Beta)",
+      "nodeId": "37398:6476",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

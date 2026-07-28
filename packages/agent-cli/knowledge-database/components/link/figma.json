@@ -1,0 +1,28 @@
+{
+  "component": "link",
+  "library": "core-components",
+  "pageId": "14436:8613",
+  "pageName": "Link",
+  "componentSets": [
+    {
+      "name": "Link → (Def) Internal",
+      "nodeId": "14436:12312",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Link → (Def) Internal - Brand",
+      "nodeId": "14436:12458",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Link → External",
+      "nodeId": "14436:12385",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Link → External - Brand",
+      "nodeId": "14436:12531",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

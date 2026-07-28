@@ -1,0 +1,91 @@
+{
+  "component": "popover",
+  "figmaProperties": [
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "📦 Start Slot",
+      "type": "SLOT"
+    },
+    {
+      "name": "📦 End Slot",
+      "type": "SLOT"
+    },
+    {
+      "name": "👁️ Show Start Slot",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "👁️ Show End Slot",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "🔀 Spacing",
+      "type": "VARIANT",
+      "values": ["(Def) Small", "Medium", "Large", "None"]
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Animation",
+      "type": "VARIANT",
+      "values": ["true", "false"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "animation"
+    },
+    {
+      "name": "⚙️ Delay",
+      "type": "VARIANT",
+      "values": ["none", "slow", "fast"],
+      "defaultValue": "fast",
+      "mapsToCodeProp": "delay"
+    },
+    {
+      "name": "⚙️ Gap",
+      "type": "VARIANT",
+      "values": ["true", "false"],
+      "defaultValue": "true",
+      "mapsToCodeProp": "gap"
+    },
+    {
+      "name": "⚙️ Placement",
+      "type": "VARIANT",
+      "values": ["bottom", "bottom-end", "bottom-start", "left", "left-end", "left-start", "right", "right-end", "right-start", "top", "top-end", "top-start"],
+      "defaultValue": "bottom",
+      "mapsToCodeProp": "placement"
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "spacing",
+      "type": "SpacingType",
+      "values": ["small", "medium", "large", "none"],
+      "default": "small"
+    },
+    {
+      "name": "placement",
+      "type": "PlacementType",
+      "values": ["bottom", "bottom-end", "bottom-start", "left", "left-end", "left-start", "right", "right-end", "right-start", "top", "top-end", "top-start"],
+      "default": "bottom"
+    },
+    {
+      "name": "gap",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "open",
+      "type": "boolean | string",
+      "description": "Disables default hover/focus behavior to use on click or other trigger"
+    },
+    {
+      "name": "trigger",
+      "type": "any",
+      "description": "The trigger to open the popover (e.g. a button)"
+    }
+  ]
+}

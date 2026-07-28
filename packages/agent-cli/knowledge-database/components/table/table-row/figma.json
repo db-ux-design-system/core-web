@@ -1,0 +1,6 @@
+{
+  "component": "table-row",
+  "library": "core-components",
+  "nodeIds": [],
+  "note": "No Figma component. Code-only wrapper for tr."
+}

@@ -1,0 +1,45 @@
+{
+  "component": "navigation",
+  "library": "core-components",
+  "pageId": "1:19398",
+  "pageName": "Navigation (Beta)",
+  "componentSets": [
+    {
+      "name": "Navigation → Desktop (Beta)",
+      "nodeId": "4935:49095",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Navigation → Mobile (Beta)",
+      "nodeId": "4924:32907",
+      "type": "COMPONENT_SET"
+    }
+  ],
+  "subComponents": [
+    {
+      "name": "navigation-item",
+      "componentSets": [
+        {
+          "name": "↳ NAVIGATION ITEM → (Def) Horizontal - (Def) Auto Width (Beta)",
+          "nodeId": "4924:33106",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ NAVIGATION ITEM → Vertical - (Def) Full Width (Beta)",
+          "nodeId": "4924:33052",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ NAVIGATION ITEM → Vertical - AutoWidth (Beta)",
+          "nodeId": "4924:32998",
+          "type": "COMPONENT_SET"
+        },
+        {
+          "name": "↳ NAVIGATION ITEM → Horizontal - Full Width (Beta)",
+          "nodeId": "4924:33160",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "component": "radio",
+  "library": "core-components",
+  "pageId": "14457:44474",
+  "pageName": "Radio",
+  "componentSets": [
+    {
+      "name": "Radio → (Def) Medium - (Def) Auto Width",
+      "nodeId": "2242:4473",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Radio → (Def) Medium - Full Width",
+      "nodeId": "10707:21529",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Radio → Small - (Def) Auto Width",
+      "nodeId": "2277:4584",
+      "type": "COMPONENT_SET"
+    },
+    {
+      "name": "Radio → Small - Full Width",
+      "nodeId": "10707:21698",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

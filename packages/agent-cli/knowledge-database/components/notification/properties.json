@@ -1,0 +1,171 @@
+{
+  "component": "notification",
+  "figmaProperties": [
+    {
+      "name": "✏️ Headline",
+      "type": "TEXT",
+      "defaultValue": "Headline"
+    },
+    {
+      "name": "✏️ Text",
+      "type": "TEXT",
+      "defaultValue": "Text"
+    },
+    {
+      "name": "✏️ Link",
+      "type": "TEXT",
+      "defaultValue": "Link"
+    },
+    {
+      "name": "(Def) Link Variant: Block",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "↳ OR Link Variant: Inline",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "🔀 Closeable",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "👁️ Show Icon",
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    {
+      "name": "📦 Children",
+      "type": "SLOT"
+    },
+    {
+      "name": "👁️ Show Children Slot",
+      "type": "BOOLEAN",
+      "defaultValue": false
+    },
+    {
+      "name": "🔀 Semantic",
+      "type": "VARIANT",
+      "values": ["(Def) Adaptive", "Critical", "Informational", "Successful", "Warning"]
+    },
+    {
+      "name": "🔀 Show Headline",
+      "type": "VARIANT",
+      "values": ["False", "True"]
+    },
+    {
+      "name": "✏️ Timestamp",
+      "type": "TEXT",
+      "defaultValue": "10 min ago",
+      "note": "Overlay variant only"
+    },
+    {
+      "name": "👁️ Show Timestamp",
+      "type": "BOOLEAN",
+      "defaultValue": false,
+      "note": "Overlay variant only"
+    }
+  ],
+  "codeConnectProperties": [
+    {
+      "name": "⚙️ Variant",
+      "type": "VARIANT",
+      "values": ["standalone", "docked", "overlay"],
+      "defaultValue": "docked",
+      "mapsToCodeProp": "variant",
+      "note": "In Figma, variant is expressed via separate Component Sets (Docked, Standalone, Overlay). Code Connect maps to the variant prop."
+    }
+  ],
+  "codeProperties": [
+    {
+      "name": "variant",
+      "type": "NotificationVariantType",
+      "values": ["docked", "standalone", "overlay"],
+      "default": "docked",
+      "description": "Styling variant for different use cases"
+    },
+    {
+      "name": "semantic",
+      "type": "SemanticType",
+      "values": ["adaptive", "critical", "informational", "successful", "warning"],
+      "default": "adaptive"
+    },
+    {
+      "name": "headline",
+      "type": "string | any",
+      "description": "Bold headline text"
+    },
+    {
+      "name": "showHeadline",
+      "type": "boolean | string",
+      "default": true,
+      "description": "Show/hide the headline"
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "description": "Body text of the notification"
+    },
+    {
+      "name": "closeable",
+      "type": "boolean | string",
+      "default": true,
+      "description": "Show/hide the close button"
+    },
+    {
+      "name": "icon",
+      "type": "string",
+      "description": "Custom icon name (overrides semantic default)"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean",
+      "default": true,
+      "description": "Show/hide the icon"
+    },
+    {
+      "name": "image",
+      "type": "any",
+      "description": "Slot for an image instead of an icon"
+    },
+    {
+      "name": "link",
+      "type": "any",
+      "description": "Slot for a link element"
+    },
+    {
+      "name": "linkVariant",
+      "type": "NotificationLinkVariantType",
+      "values": ["block", "inline"],
+      "description": "Display variant for the link"
+    },
+    {
+      "name": "timestamp",
+      "type": "string",
+      "description": "Timestamp text (overlay variant)"
+    },
+    {
+      "name": "timestampDatetime",
+      "type": "string",
+      "description": "Machine-readable datetime for the time element"
+    },
+    {
+      "name": "showTimestamp",
+      "type": "boolean | string",
+      "description": "Show/hide timestamp (overlay variant)"
+    },
+    {
+      "name": "ariaLive",
+      "type": "NotificationAriaLiveType",
+      "values": ["assertive", "polite", "off"],
+      "description": "Controls screen reader announcement behavior"
+    },
+    {
+      "name": "closeButtonLabel",
+      "type": "string",
+      "description": "Accessible label for the close button"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "component": "section",
+  "library": "core-components",
+  "pageId": "14457:45715",
+  "pageName": "Section (Beta)",
+  "componentSets": [
+    {
+      "name": "Section (Beta)",
+      "nodeId": "32604:20623",
+      "type": "COMPONENT_SET"
+    }
+  ]
+}

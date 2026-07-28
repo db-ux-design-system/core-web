@@ -1,0 +1,6 @@
+{
+  "component": "page",
+  "library": "core-components",
+  "nodeIds": [],
+  "note": "No published Figma component set exists for DBPage. The page component is a structural code-only component that provides the overall page layout (header, main, footer)."
+}

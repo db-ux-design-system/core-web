@@ -1,0 +1,20 @@
+{
+  "libraries": {
+    "db-theme-icons": {
+      "name": "DB UX DS v3 - DB Theme Icons",
+      "figmaFileKey": "5qAIAjuseE3tpqGbtwglSN"
+    },
+    "core-foundation": {
+      "name": "DB UX DS v3 - Core Foundation",
+      "figmaFileKey": "HiaxnfH92ilbE4gfboFMA0"
+    },
+    "core-lab": {
+      "name": "DB UX DS v3 - 🧪 Core Lab",
+      "figmaFileKey": "jS7unqZw51v07eYyXR6qP0"
+    },
+    "core-components": {
+      "name": "DB UX DS v3 - Core Components",
+      "figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB"
+    }
+  }
+}

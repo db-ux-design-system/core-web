@@ -1,0 +1,12 @@
+{
+	"component": "backdrop",
+	"figmaProperties": [
+		{
+			"name": "🔀 Emphasis",
+			"type": "VARIANT",
+			"values": ["(Def) Strong", "Weak"]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}
