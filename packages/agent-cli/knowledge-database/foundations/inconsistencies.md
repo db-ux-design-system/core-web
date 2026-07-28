@@ -12,7 +12,9 @@ Tracking differences between Figma and Code token availability.
 
 | Token | Category | Notes |
 |-------|----------|-------|
-| — | — | None identified yet |
+| `--db-transition-duration-*` | transition | All duration tokens (extra-fast, fast, medium, slow, extra-slow) |
+| `--db-transition-timing-*` | transition | All timing tokens (emotional, functional, show, hide) |
+| `--db-transition-straight-*` | transition | All composed shorthand transitions |
 
 ## Structural differences
 
