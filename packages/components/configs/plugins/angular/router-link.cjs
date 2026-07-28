@@ -22,7 +22,7 @@ const transformRouterLink = (code, componentName) => {
 		],
 		[
 			'  constructor() {}',
-			'  readonly routerLink = inject(RouterLink, { optional: true, self: true });\n\n  handleClick(e: MouseEvent) {\n    if (!this.routerLink) return;\n    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey || (this.target() && this.target() !== "_self") || this.routerLink.urlTree === null) {\n      e.stopPropagation();\n    } else {\n      e.preventDefault();\n    }\n  }\n\n  constructor() {}'
+			'  readonly routerLink = inject(RouterLink, { optional: true, self: true });\n\n  handleClick(e: MouseEvent) {\n    if (!this.routerLink || this.routerLink.urlTree === null) return;\n    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey || (this.target() && this.target() !== "_self")) {\n      e.stopPropagation();\n    } else {\n      e.preventDefault();\n    }\n  }\n\n  constructor() {}'
 		]
 	];
 
