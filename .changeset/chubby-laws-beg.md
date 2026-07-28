@@ -3,4 +3,4 @@
 "@db-ux/core-foundations": patch
 ---
 
-refactor(Indicator; Tabs & Navigation): switched from `background` to `background-color` CSS property (mainly for Tailwind compatibility)
+refactor(Indicator in Tabs & Navigation): switched from `background` to `background-color` CSS property (mainly for Tailwind compatibility)
