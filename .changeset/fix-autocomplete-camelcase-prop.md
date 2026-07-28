@@ -1,5 +1,8 @@
 ---
-"@db-ux/react-core-components": patch
+"@db-ux/ngx-core-components": minor
+"@db-ux/react-core-components": minor
+"@db-ux/wc-core-components": minor
+"@db-ux/v-core-components": minor
 ---
 
-fix: accept `autoComplete` (camelCase) as alias for `autocomplete` to resolve React DOM compatibility
+feat: accept `autoComplete` (camelCase) as alias for `autocomplete` on form components
