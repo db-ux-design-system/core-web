@@ -27,7 +27,7 @@ describe('transformRouterLink', () => {
 		expect(result).toContain('[attr.href]="routerLink?.urlTree ?? href()"');
 		expect(result).toContain('(click)="handleClick($event)"');
 		expect(result).toContain(
-			'readonly routerLink = inject(RouterLink, { optional: true });'
+			'readonly routerLink = inject(RouterLink, { optional: true, self: true });'
 		);
 	});
 
