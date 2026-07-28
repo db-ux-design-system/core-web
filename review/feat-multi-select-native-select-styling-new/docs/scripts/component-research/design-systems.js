@@ -1,6 +1,5 @@
 /**
- *
- * @type {[{ name: string, componentUrl: string, url: string}]}
+ @type {[{ name: string, componentUrl: string, url: string}]}
  */
 export const designSystems = [
 	{
