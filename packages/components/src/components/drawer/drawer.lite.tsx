@@ -12,11 +12,11 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
-	isKeyboardEvent
+	isKeyboardEvent,
+	supportsClosedBy
 } from '../../utils';
 import {
 	closeDialogWithTransition,
-	supportsClosedBy,
 	supportsDisplayTransition
 } from '../../utils/allow-discrete-ponyfill';
 import { DBDrawerProps, DBDrawerState } from './model';

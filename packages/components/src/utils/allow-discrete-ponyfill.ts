@@ -13,25 +13,6 @@ import { delay } from './index';
 
 /**
  * @public
- * Feature-detects whether the browser supports the `closedby` attribute
- * on `<dialog>` elements (i.e. native light-dismiss via ESC and backdrop click).
- * Result is cached after the first call.
- */
-export const supportsClosedBy = (() => {
-	let cachedValue: boolean | undefined;
-	return () => {
-		if (cachedValue === undefined) {
-			cachedValue =
-				typeof HTMLDialogElement !== 'undefined' &&
-				'closedBy' in HTMLDialogElement.prototype;
-		}
-
-		return cachedValue;
-	};
-})();
-
-/**
- * @public
  * Feature-detects whether the browser supports transitioning
  * `display` when `transition-behavior: allow-discrete` is set.
  * Result is cached after the first call.
