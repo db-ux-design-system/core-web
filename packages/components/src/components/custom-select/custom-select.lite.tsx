@@ -204,7 +204,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					new IntersectionObserverListener().observe(
 						detailsRef,
 						(entry) => {
-							if (!entry.isIntersecting && detailsRef.open) {
+							if (!entry.isIntersecting && detailsRef?.open) {
 								detailsRef.open = false;
 							}
 						}
@@ -300,11 +300,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (dropdown) {
 					// This is a workaround for Angular
 					void delay(() => {
-						handleFixedDropdown(
-							dropdown,
-							detailsRef,
-							(props.placement as unknown as string) ?? 'bottom'
-						);
+						if (detailsRef) {
+							handleFixedDropdown(
+								dropdown,
+								detailsRef,
+								(props.placement as unknown as string) ??
+									'bottom'
+							);
+						}
 					}, 1);
 				}
 			}
@@ -493,7 +496,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							void delay(() => (detailsRef.open = false), 1);
+							void delay(() => {
+								if (detailsRef) {
+									detailsRef.open = false;
+								}
+							}, 1);
 						}
 					}
 				}
