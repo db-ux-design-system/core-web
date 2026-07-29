@@ -17,7 +17,7 @@ import {
 } from '../../utils';
 import {
 	closeDialogWithTransition,
-	supportsDisplayTransition
+	supportsAllowDiscreteDisplayAndOverlayTransition
 } from '../../utils/allow-discrete-ponyfill';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -61,7 +61,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 					// allow-discrete are missing (e.g. Firefox), we set closedby
 					// to "none" and must preventDefault to avoid an instant close
 					// without exit animation. Our JS fallback handles the close.
-					if (!supportsClosedBy() || !supportsDisplayTransition()) {
+					if (
+						!supportsClosedBy() ||
+						!supportsAllowDiscreteDisplayAndOverlayTransition()
+					) {
 						event.preventDefault();
 					}
 
@@ -121,7 +124,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			/* Browsers that lack allow-discrete display transitions (e.g. Firefox)
 			   would close the dialog instantly without an exit animation. Override
 			   closedby to "none" so our JS fallback handles closing. */
-			if (_ref && !supportsDisplayTransition()) {
+			if (_ref && !supportsAllowDiscreteDisplayAndOverlayTransition()) {
 				(_ref as HTMLDialogElement).setAttribute('closedby', 'none');
 			}
 		}
