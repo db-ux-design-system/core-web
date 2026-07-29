@@ -82,16 +82,21 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 
 	const duration = parseCssTime(
 		displayIndex >= 0
-			? durations[displayIndex] || durations[0]
+			? durations[displayIndex % durations.length]
 			: durations[0]
 	);
 	const delayMs = parseCssTime(
-		displayIndex >= 0 ? delays[displayIndex] || delays[0] : delays[0]
+		displayIndex >= 0 ? delays[displayIndex % delays.length] : delays[0]
 	);
 	const ms = duration + delayMs;
 
 	dialog.dataset['closingAllowDiscretePonyfill'] = '';
 	void delay(() => {
+		// Guard: if the dialog was reopened before the timer fired,
+		// the attribute will have been removed — skip the close.
+		if (!('closingAllowDiscretePonyfill' in dialog.dataset)) {
+			return;
+		}
 		delete dialog.dataset['closingAllowDiscretePonyfill'];
 		dialog.close();
 	}, ms);

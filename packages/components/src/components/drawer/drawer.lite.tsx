@@ -106,6 +106,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 						_ref.showModal();
 					}
 				}
+				if (dialogOpen && _ref.open) {
+					// Cancel any pending ponyfill close if reopened
+					delete (_ref as HTMLElement).dataset[
+						'closingAllowDiscretePonyfill'
+					];
+				}
 				if (!dialogOpen && _ref.open) {
 					closeDialogWithTransition(_ref as HTMLDialogElement);
 				}
