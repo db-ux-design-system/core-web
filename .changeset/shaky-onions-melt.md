@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-fix(Drawer): re-added `closedby="any"` attribute for native functionality of closing the dialog
+feat(Drawer): provide `closedby` property
