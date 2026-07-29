@@ -150,6 +150,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 	}, [props.open]);
 
 	onUpdate(() => {
+		state.handleDisplayTransitionFallback();
+	}, [props.closedby, props.backdrop]);
+
+	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
 			const parent = refElement.parentElement;
