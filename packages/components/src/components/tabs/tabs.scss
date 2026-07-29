@@ -233,6 +233,13 @@ $focus-outline-reach: calc(
 				&::before {
 					content: none;
 				}
+
+				.db-tab-item::after {
+					inset-block-end: calc(
+						-1 * #{$indicator-gap-offset} +
+							#{variables.$db-border-width-3xs}
+					) !important;
+				}
 			}
 		}
 	}
@@ -298,7 +305,7 @@ $focus-outline-reach: calc(
 								(
 									#{variables.$db-spacing-fixed-xs} -
 										#{variables.$db-border-width-2xs}
-								)
+								) + #{variables.$db-border-width-3xs}
 						) !important;
 					}
 				}
