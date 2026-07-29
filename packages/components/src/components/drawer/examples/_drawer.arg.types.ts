@@ -2,6 +2,10 @@ import type { InputType } from 'storybook/internal/csf';
 
 export const StorybookDrawerArgTypes: Record<string, InputType> = {
 	open: { control: 'boolean' },
+	closedby: {
+		control: 'select',
+		options: ['any', 'closerequest', 'none']
+	},
 	containerSize: {
 		control: 'select',
 		options: ['small', 'medium', 'large', 'full']
