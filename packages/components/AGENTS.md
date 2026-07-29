@@ -260,7 +260,7 @@ Changes in `packages/components/src` require a changeset for:
 
 - Changes in shared code (components, `model.ts`, shared utils) → all framework packages
 - Changes in framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`) → only the affected framework package
-- Changes in styling (SCSS/CSS) → `@db-ux/core-components` + all framework packages
+- Changes in styling (SCSS/CSS) or HTML (template within the components) → `@db-ux/core-components` + all framework packages
 
 Bump types:
 
