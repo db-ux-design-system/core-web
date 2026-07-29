@@ -131,6 +131,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (!supportsAllowDiscreteDisplayAndOverlayTransition()) {
 				(_ref as HTMLDialogElement).setAttribute('closedby', 'none');
 			}
+		},
+		handleCancel: () => {
+			if (props.onClose) {
+				props.onClose();
+			}
 		}
 	});
 
@@ -159,11 +164,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
-			onCancel={() => {
-				if (props.onClose) {
-					props.onClose();
-				}
-			}}
+			onCancel={() => state.handleCancel()}
 			onClick={(event) => state.handleClose(event)}
 			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
 			onKeyDown={(event) => state.handleClose(event)}
