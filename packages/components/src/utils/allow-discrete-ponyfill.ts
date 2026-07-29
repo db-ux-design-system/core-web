@@ -68,17 +68,27 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 		.getPropertyValue('transition-property')
 		.split(',');
 	const durations = styles.getPropertyValue('transition-duration').split(',');
+	const delays = styles.getPropertyValue('transition-delay').split(',');
 
-	// Find the duration for the `display` transition specifically
+	// Find the duration + delay for the `display` transition specifically
 	const displayIndex = properties.findIndex((p) => p.trim() === 'display');
-	const durationEntry =
+
+	const parseCssTime = (str: string | undefined): number => {
+		const trimmed = (str || '0s').trim();
+		return trimmed.includes('ms')
+			? parseFloat(trimmed)
+			: parseFloat(trimmed) * 1000;
+	};
+
+	const duration = parseCssTime(
 		displayIndex >= 0
-			? (durations[displayIndex] || durations[0])?.trim()
-			: durations[0]?.trim();
-	const ms =
-		durationEntry && durationEntry.includes('ms')
-			? parseFloat(durationEntry)
-			: parseFloat(durationEntry || '0') * 1000;
+			? durations[displayIndex] || durations[0]
+			: durations[0]
+	);
+	const delayMs = parseCssTime(
+		displayIndex >= 0 ? delays[displayIndex] || delays[0] : delays[0]
+	);
+	const ms = duration + delayMs;
 
 	dialog.dataset['closingAllowDiscretePonyfill'] = '';
 	void delay(() => {
