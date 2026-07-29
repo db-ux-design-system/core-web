@@ -38,12 +38,24 @@ export const DrawerContainerSizeList = [
 ] as const;
 export type DrawerContainerSizeType = (typeof DrawerContainerSizeList)[number];
 
+export const DrawerClosedByList = ['any', 'closerequest', 'none'] as const;
+export type DrawerClosedByType = (typeof DrawerClosedByList)[number];
+
 export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
 	backdrop?: DrawerBackdropType;
+
+	/**
+	 * Controls native light-dismiss behaviour of the dialog.
+	 * - `any` (default): ESC key and backdrop click close the dialog natively.
+	 * - `closerequest`: Only ESC key closes the dialog natively.
+	 * - `none`: No native light-dismiss; closing must be handled programmatically.
+	 */
+	closedby?: DrawerClosedByType;
+
 	/**
 	 * The direction attribute changes the position & animation of the drawer.
 	 * E.g. "to-left" slides from right screen border to the left.

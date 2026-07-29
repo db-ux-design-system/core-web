@@ -121,10 +121,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDisplayTransitionFallback: () => {
+			if (!_ref) {
+				return;
+			}
+
 			/* Browsers that lack allow-discrete display transitions (e.g. Firefox)
 			   would close the dialog instantly without an exit animation. Override
 			   closedby to "none" so our JS fallback handles closing. */
-			if (_ref && !supportsAllowDiscreteDisplayAndOverlayTransition()) {
+			if (!supportsAllowDiscreteDisplayAndOverlayTransition()) {
 				(_ref as HTMLDialogElement).setAttribute('closedby', 'none');
 			}
 		}
@@ -162,7 +166,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
 			data-variant={props.variant}
-			closedby="any">
+			closedby={
+				props.closedby ||
+				(props.backdrop === 'none' ? 'closerequest' : 'any')
+			}>
 			<article
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}
