@@ -14,10 +14,10 @@
  *   detection (checks both `display` transition and `overlay` support)
  * - `closeDialogWithTransition(dialog)` — if supported natively, calls
  *   `close()` immediately; otherwise sets `data-closing-allow-discrete-ponyfill`
- *   on the dialog, waits `--db-drawer-transition-duration`, then calls `close()`
+ *   on the dialog, waits `--db-transition-duration`, then calls `close()`
  *
  * CSS contract:
- * - `.db-drawer` defines `--db-drawer-transition-duration` (`0s` default,
+ * - `.db-drawer` defines `--db-transition-duration` (`0s` default,
  *   real value under `prefers-reduced-motion: no-preference`); the ponyfill
  *   reads this custom property via `getComputedStyle`
  * - `&[open]:not([data-closing-allow-discrete-ponyfill])` controls
@@ -29,7 +29,7 @@
  * - The attribute name `data-closing-allow-discrete-ponyfill` must stay in
  *   sync between JS (`dataset['closingAllowDiscretePonyfill']`) and CSS
  *   (`[data-closing-allow-discrete-ponyfill]`)
- * - The custom property `--db-drawer-transition-duration` must stay in sync
+ * - The custom property `--db-transition-duration` must stay in sync
  *   between the SCSS declaration and the JS `getPropertyValue` call
  */
 
