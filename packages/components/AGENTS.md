@@ -240,6 +240,17 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
+### React `propsPassingFilter` and `default*` props
+
+The `filterPassingProps` utility in `src/utils/react.ts` forwards any prop starting with `default` to the inner DOM element (alongside `data-*`, `aria-*`, `on*`, etc.). This works for standard HTML attributes like `defaultValue`, `defaultChecked`, and `defaultSelected`, but **custom** `default*` props (e.g. `defaultOpen`) must NOT reach the DOM — React will warn about unrecognized attributes.
+
+**When introducing a new prop that starts with `default`:**
+
+1. If it maps to a standard HTML attribute on the target element (e.g. `defaultValue` on `<input>`), no action needed — it passes through correctly.
+2. If it is a custom prop (e.g. `defaultOpen` on `<details>`, which only has `open`), add it to the component's `propsPassingFilter` in `scripts/post-build/components.ts` so it gets excluded from the DOM spread.
+
+Alternatively, consider naming the prop without the `default` prefix (e.g. `initialOpen`) to avoid the forwarding issue entirely.
+
 ## Changeset Rules
 
 Changes in `packages/components/src` require a changeset for:
