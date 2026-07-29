@@ -82,11 +82,11 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 
 	const duration = parseCssTime(
 		displayIndex >= 0
-			? durations[displayIndex] || durations[0]
+			? durations[displayIndex % durations.length]
 			: durations[0]
 	);
 	const delayMs = parseCssTime(
-		displayIndex >= 0 ? delays[displayIndex] || delays[0] : delays[0]
+		displayIndex >= 0 ? delays[displayIndex % delays.length] : delays[0]
 	);
 	const ms = duration + delayMs;
 
