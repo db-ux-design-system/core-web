@@ -1,12 +1,36 @@
 /**
- * TODO: Remove this file after Firefox has fixed `transition-behaviour: allow-discrete`
- * support for the `display` property and just use `_ref?.close();` directly in the including file:
- * https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+ * TODO: Remove this file once Firefox ships `allow-discrete` for `display`
+ * (https://bugzilla.mozilla.org/show_bug.cgi?id=1882408) and Safari supports
+ * `overlay` transitions. Replace all `closeDialogWithTransition()` calls with
+ * direct `dialog.close()`.
  *
  * This module provides a ponyfill for browsers that do not support transitioning
- * `display` with `transition-behavior: allow-discrete`. It defers `dialog.close()`
- * and signals CSS to revert the transform (triggering the exit animation) while
- * the dialog is still open.
+ * `display` and/or `overlay` with `transition-behavior: allow-discrete`
+ * (currently Firefox and Safari). Used by the drawer to animate dialog exit
+ * transitions.
+ *
+ * Architecture:
+ * - `supportsAllowDiscreteDisplayAndOverlayTransition()` — cached feature
+ *   detection (checks both `display` transition and `overlay` support)
+ * - `closeDialogWithTransition(dialog)` — if supported natively, calls
+ *   `close()` immediately; otherwise sets `data-closing-allow-discrete-ponyfill`
+ *   on the dialog, waits `--db-drawer-transition-duration`, then calls `close()`
+ *
+ * CSS contract:
+ * - `.db-drawer` defines `--db-drawer-transition-duration` (`0s` default,
+ *   real value under `prefers-reduced-motion: no-preference`); the ponyfill
+ *   reads this custom property via `getComputedStyle`
+ * - `&[open]:not([data-closing-allow-discrete-ponyfill])` controls
+ *   `transform: none` — when the attribute is present, the transform reverts
+ *   to the off-screen value, triggering the exit animation while the dialog
+ *   is still [open]
+ *
+ * Maintenance constraints:
+ * - The attribute name `data-closing-allow-discrete-ponyfill` must stay in
+ *   sync between JS (`dataset['closingAllowDiscretePonyfill']`) and CSS
+ *   (`[data-closing-allow-discrete-ponyfill]`)
+ * - The custom property `--db-drawer-transition-duration` must stay in sync
+ *   between the SCSS declaration and the JS `getPropertyValue` call
  */
 
 import { delay } from './index';

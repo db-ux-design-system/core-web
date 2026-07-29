@@ -100,6 +100,10 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
+## Allow-discrete Ponyfill (`src/utils/allow-discrete-ponyfill.ts`)
+
+A shared ponyfill for browsers that don't support transitioning `display` and/or `overlay` with `transition-behavior: allow-discrete` (currently Firefox and Safari). Used by the drawer to animate dialog exit transitions. See the file-level JSDoc for architecture, CSS contract, and maintenance constraints.
+
 ## Storybook Generation
 
 Stories are generated from the `examples/` folder via the `configs/plugins/storybook/` plugin. The plugin reads `data-sb-*` attributes from example components to configure story metadata, controls, and args.
