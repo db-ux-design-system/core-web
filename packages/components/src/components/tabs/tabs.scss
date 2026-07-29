@@ -21,7 +21,7 @@ $focus-outline-reach: calc(
 			inset-block-end: calc(
 				-1 * #{$indicator-gap-offset} -
 					#{variables.$db-border-width-3xs}
-			) !important; // overrides inset-block shorthand set in _indicator.scss
+			); // overrides inset-block shorthand set in _indicator.scss via source order
 		}
 
 		&[aria-selected="true"] {
@@ -238,7 +238,7 @@ $focus-outline-reach: calc(
 					inset-block-end: calc(
 						-1 * #{$indicator-gap-offset} +
 							#{variables.$db-border-width-3xs}
-					) !important;
+					);
 				}
 			}
 		}
@@ -306,7 +306,7 @@ $focus-outline-reach: calc(
 									#{variables.$db-spacing-fixed-xs} -
 										#{variables.$db-border-width-2xs}
 								) + #{variables.$db-border-width-3xs}
-						) !important;
+						);
 					}
 				}
 			}
