@@ -13,21 +13,31 @@ import { delay } from './index';
 
 /**
  * @public
- * Feature-detects whether the browser supports transitioning
- * `display` when `transition-behavior: allow-discrete` is set.
- * Result is cached after the first call.
+ * Feature-detects whether the browser supports transitioning the `display`
+ * and `overlay` properties when `transition-behavior: allow-discrete` is set.
+ * Both are required for a complete dialog exit animation:
+ * - `display` transitioning keeps the element visible during the exit
+ * - `overlay` transitioning keeps it in the top layer (preserving the backdrop)
+ *
+ * Returns false during SSR or before document.body is available.
+ * Result is cached after the first successful call.
  */
-export const supportsDisplayTransition = (() => {
+export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
 	let cachedValue: boolean | undefined;
 	return () => {
 		if (cachedValue === undefined) {
+			if (typeof document === 'undefined' || !document.body) {
+				return false;
+			}
 			const div = document.createElement('div');
 			div.style.transition = 'display 1s allow-discrete';
 			document.body.append(div);
 			const cs = getComputedStyle(div);
 			cs.display;
 			div.style.display = 'none';
-			cachedValue = cs.display !== 'none';
+			const supportsDisplay = cs.display !== 'none';
+			const supportsOverlay = CSS.supports('overlay', 'auto');
+			cachedValue = supportsDisplay && supportsOverlay;
 			div.remove();
 		}
 
@@ -48,17 +58,27 @@ export const supportsDisplayTransition = (() => {
  * @param dialog - The dialog element to close
  */
 export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
-	if (supportsDisplayTransition()) {
+	if (supportsAllowDiscreteDisplayAndOverlayTransition()) {
 		dialog.close();
 		return;
 	}
 
-	const durationStr = getComputedStyle(dialog).getPropertyValue(
-		'transition-duration'
-	);
-	const ms = durationStr.includes('ms')
-		? parseFloat(durationStr)
-		: parseFloat(durationStr) * 1000;
+	const styles = getComputedStyle(dialog);
+	const properties = styles
+		.getPropertyValue('transition-property')
+		.split(',');
+	const durations = styles.getPropertyValue('transition-duration').split(',');
+
+	// Find the duration for the `display` transition specifically
+	const displayIndex = properties.findIndex((p) => p.trim() === 'display');
+	const durationEntry =
+		displayIndex >= 0
+			? (durations[displayIndex] || durations[0])?.trim()
+			: durations[0]?.trim();
+	const ms =
+		durationEntry && durationEntry.includes('ms')
+			? parseFloat(durationEntry)
+			: parseFloat(durationEntry || '0') * 1000;
 
 	dialog.dataset['closingAllowDiscretePonyfill'] = '';
 	void delay(() => {
