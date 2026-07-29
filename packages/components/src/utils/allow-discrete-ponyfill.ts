@@ -49,11 +49,14 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
  * @public
  * Closes a dialog with a deferred `close()` call, allowing the CSS exit
  * transition to play in browsers that don't support `allow-discrete` for
- * `display`. Sets `data-closing-allow-discrete-ponyfill` on the dialog to
- * signal CSS to revert the transform while the dialog is still [open].
+ * `display` and `overlay`. Sets `data-closing-allow-discrete-ponyfill` on the
+ * dialog to signal CSS to revert the transform while the dialog is still [open].
  *
- * In browsers that support `allow-discrete` for `display`, calls `close()`
- * immediately and lets native CSS handle the exit animation.
+ * Reads `--db-transition-duration` from the dialog as the contract
+ * between CSS and JS for the transition timing.
+ *
+ * In browsers that support `allow-discrete` for `display` and `overlay`,
+ * calls `close()` immediately and lets native CSS handle the exit animation.
  *
  * @param dialog - The dialog element to close
  */
@@ -63,43 +66,12 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 		return;
 	}
 
-	const styles = getComputedStyle(dialog);
-	const properties = styles
-		.getPropertyValue('transition-property')
-		.split(',');
-	const durations = styles.getPropertyValue('transition-duration').split(',');
-	const delays = styles.getPropertyValue('transition-delay').split(',');
-
-	// Find the duration + delay for the `display` transition specifically.
-	// CSS precedence: a later explicit `display` overrides an earlier `all`.
-	let displayIndex = -1;
-	for (let i = properties.length - 1; i >= 0; i--) {
-		const prop = properties[i].trim();
-		if (prop === 'display') {
-			displayIndex = i;
-			break;
-		}
-		if (prop === 'all' && displayIndex < 0) {
-			displayIndex = i;
-		}
-	}
-
-	const parseCssTime = (str: string | undefined): number => {
-		const trimmed = (str || '0s').trim();
-		return trimmed.includes('ms')
-			? parseFloat(trimmed)
-			: parseFloat(trimmed) * 1000;
-	};
-
-	const duration = parseCssTime(
-		displayIndex >= 0
-			? durations[displayIndex % durations.length]
-			: durations[0]
-	);
-	const delayMs = parseCssTime(
-		displayIndex >= 0 ? delays[displayIndex % delays.length] : delays[0]
-	);
-	const ms = duration + delayMs;
+	const durationStr = getComputedStyle(dialog)
+		.getPropertyValue('--db-transition-duration')
+		.trim();
+	const ms = durationStr.includes('ms')
+		? parseFloat(durationStr)
+		: parseFloat(durationStr || '0') * 1000;
 
 	const token = String(Date.now());
 	dialog.dataset['closingAllowDiscretePonyfill'] = token;
