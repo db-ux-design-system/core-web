@@ -50,6 +50,7 @@ $indicator-background: linear-gradient(
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
 		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+
 		background-image: $indicator-background;
 
 		@media (prefers-reduced-motion: no-preference) {
