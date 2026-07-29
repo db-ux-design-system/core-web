@@ -1,5 +1,11 @@
 # @db-ux/core-eslint-plugin
 
+## 5.0.3
+
+### Patch Changes
+
+- fix: autofix for missing "type" prop breaks self-closing elements - [see commit 55fa552](https://github.com/db-ux-design-system/core-web/commit/55fa5522c13accd2bd6d740e7983b88274dfcac7)
+
 ## 5.0.2
 
 _version bump_

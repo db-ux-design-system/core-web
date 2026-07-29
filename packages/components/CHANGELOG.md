@@ -1,5 +1,13 @@
 # @db-ux/core-components
 
+## 5.0.3
+
+### Patch Changes
+
+- refactor(Indicator in Tabs & Navigation): switched from `background` to `background-color` CSS property (mainly for Tailwind compatibility) - [see commit 1b3081c](https://github.com/db-ux-design-system/core-web/commit/1b3081c757d81ed80a080be99694bda2cf9968ed)
+
+- fix(tabs): indicator position slightly off - [see commit 1d58254](https://github.com/db-ux-design-system/core-web/commit/1d58254c6f1f7f106ae6682e721f784d3a69cf1e)
+
 ## 5.0.2
 
 ### Patch Changes
