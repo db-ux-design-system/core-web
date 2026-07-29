@@ -1,9 +1,0 @@
-{
-	"id": "breadcrumb-separator",
-	"name": "BreadcrumbSeparator",
-	"type": "lab-component",
-	"parent": "breadcrumb",
-	"status": "concept",
-	"owner": "core-team",
-	"since": null
-}

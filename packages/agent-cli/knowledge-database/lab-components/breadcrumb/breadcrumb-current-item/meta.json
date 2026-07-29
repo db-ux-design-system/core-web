@@ -1,9 +1,0 @@
-{
-	"id": "breadcrumb-current-item",
-	"name": "BreadcrumbCurrentItem",
-	"type": "lab-component",
-	"parent": "breadcrumb",
-	"status": "concept",
-	"owner": "core-team",
-	"since": null
-}

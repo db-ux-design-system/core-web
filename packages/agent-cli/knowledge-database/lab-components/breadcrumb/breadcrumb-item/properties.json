@@ -8,8 +8,7 @@
 		},
 		{
 			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Path"
+			"type": "TEXT"
 		},
 		{
 			"name": "🔄 Icon",
@@ -30,6 +29,16 @@
 			"defaultValue": false
 		},
 		{
+			"name": "🎨 Show Collapsed Menu",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 ↳ OR Show Tooltip",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
 			"name": "🎨 Interaction States",
 			"type": "VARIANT",
 			"values": [
@@ -43,12 +52,20 @@
 		{
 			"name": "Disabled",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
+		},
+		{
+			"name": "Active",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "No Text",
+			"type": "VARIANT",
+			"values": ["False", "True"]
 		}
 	],
 	"codeConnectProperties": [],
-	"codeProperties": []
+	"codeProperties": [],
+	"note": "In Figma the item is modelled as separate component sets per design variant (Root Item, Item, Popover Item, Current Item, Truncation Item) and per size (Small, Medium). These are design variants of one and the same sub-component, not separate sub-components. The properties listed here are the union across all sets — not every property applies to every variant: `No Text` only exists on the Root Item, `Active` only on the Current Item, `🎨 Show Collapsed Menu` and `🎨 ↳ OR Show Tooltip` only on the Truncation Item. The default of `✏️ Text` differs per variant (Root, Path, Current)."
 }

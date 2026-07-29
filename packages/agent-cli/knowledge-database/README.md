@@ -58,6 +58,12 @@ Sub-Components liegen als Unterordner der Elternkomponente und haben dieselbe Da
 
 Varianten desselben Sub-Components (z. B. Größen oder Stile, die in Figma als separate Component Sets modelliert sind) werden in **einem** Ordner zusammengefasst und dort als mehrere Einträge in `componentSets` geführt.
 
+Maßgeblich ist die fachliche Struktur, nicht die Figma-Modellierung: Was in Figma aus Design-Gründen in mehrere Component Sets aufgeteilt ist, bleibt in der Wissensbasis ein Sub-Component.
+
+### Hilfskomponenten
+
+Reine Figma-Hilfskomponenten (Präfix `🛟`) sind kein Teil der Design-System-API. Sie werden in der `figma.json` der Elternkomponente unter `helperComponents` geführt und erhalten keinen eigenen Ordner.
+
 ## Lab-Components
 
 Komponenten im Status **Concept** oder **Pre-Release**. Gleiche Dateistruktur wie Components, aber:

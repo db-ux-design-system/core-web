@@ -1,7 +1,0 @@
-{
-	"component": "breadcrumb-separator",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [],
-	"note": "The separator style (Chevron Right, Slash) and size are expressed through separate component sets, not through properties."
-}
