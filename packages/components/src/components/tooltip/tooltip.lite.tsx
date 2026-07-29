@@ -109,6 +109,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 		},
 		handleEnter(parent?: HTMLElement): void {
+			if (!_ref) return;
 			// Register the shared scroll callback only for the first active
 			// trigger; a second enter (e.g. focusin after mouseenter) must not
 			// orphan the first callback.
@@ -123,15 +124,18 @@ export default function DBTooltip(props: DBTooltipProps) {
 						document.documentElement,
 						() => state.handleAutoPlacement(parent)
 					);
-				state._intersectionObserverCallbackId =
-					new IntersectionObserverListener().observe(
-						state.getParent(),
-						(entry) => {
-							if (!entry.isIntersecting) {
-								state.handleEscape(false);
+				const observeTarget = state.getParent();
+				if (observeTarget) {
+					state._intersectionObserverCallbackId =
+						new IntersectionObserverListener().observe(
+							observeTarget,
+							(entry) => {
+								if (!entry.isIntersecting) {
+									state.handleEscape(false);
+								}
 							}
-						}
-					);
+						);
+				}
 			}
 			state.handleAutoPlacement(parent);
 		},

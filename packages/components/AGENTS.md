@@ -171,6 +171,30 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
 - **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
+
+    ```tsx
+    // ✅ Correct — guard inside the async callback
+    void delay(() => {
+    	if (detailsRef) {
+    		detailsRef.open = false;
+    	}
+    }, 1);
+
+    // ✅ Correct — guard inside observer callback
+    new IntersectionObserverListener().observe(element, (entry) => {
+    	if (!entry.isIntersecting && detailsRef?.open) {
+    		detailsRef.open = false;
+    	}
+    });
+
+    // ❌ Wrong — ref checked before delay, but could be null when timer fires
+    if (detailsRef) {
+    	void delay(() => {
+    		detailsRef.open = false; // crash if unmounted during delay
+    	}, 1);
+    }
+    ```
 
 ## Shared Styles (`src/styles/internal/`)
 
@@ -253,8 +277,13 @@ Alternatively, consider naming the prop without the `default` prefix (e.g. `init
 
 ## Changeset Rules
 
-Changes in `packages/components/src` require a changeset for:
-`@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
+Changes in `packages/components/src` require a changeset. Which packages to include depends on **what** changed:
+
+| What changed                                                                      | Packages to include                                                                                                                             |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`                                                                                                                        |
+| **Component logic or templates** (model.ts, component files processed by Mitosis) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| **Both**                                                                          | All five packages                                                                                                                               |
 
 **Scope the packages to what is actually affected:**
 
