@@ -119,6 +119,8 @@ Use the following bump types for changeset entries:
 - **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
 - **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
+
 ### How to Add a Changeset
 
 Run the following command and follow the interactive prompts:

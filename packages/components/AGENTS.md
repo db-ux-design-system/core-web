@@ -277,4 +277,6 @@ Changes in `packages/components/src` require a changeset for:
 - `minor` — new feature or example, or any prop added in `model.ts`
 - `major` — any prop in `model.ts` removed, renamed, or retyped
 
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
