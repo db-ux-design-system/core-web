@@ -8,21 +8,11 @@
 			"name": "🧪 Calender (Concept)",
 			"nodeId": "16423:4571",
 			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Calender Item (Concept)",
-			"nodeId": "16279:2156",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "🛟 Calender -> Header (Concept)",
-			"nodeId": "16281:528",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "🛟 Calender -> Views (Concept)",
-			"nodeId": "16281:487",
-			"type": "COMPONENT_SET"
 		}
+	],
+	"subComponents": [
+		"calendar-item",
+		"calendar-header",
+		"calendar-views"
 	]
 }

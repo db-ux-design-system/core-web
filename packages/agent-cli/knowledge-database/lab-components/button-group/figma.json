@@ -8,16 +8,9 @@
 			"name": "🧪 ButtonGroup (Concept)",
 			"nodeId": "13247:8052",
 			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "🛟 ButtonGroup Item → Outlined (Concept)",
-			"nodeId": "17457:3609",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "🛟 ButtonGroup Item → Filled (Concept)",
-			"nodeId": "17457:4397",
-			"type": "COMPONENT_SET"
 		}
+	],
+	"subComponents": [
+		"button-group-item"
 	]
 }

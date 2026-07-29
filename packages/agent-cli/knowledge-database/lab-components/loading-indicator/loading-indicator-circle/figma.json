@@ -1,0 +1,28 @@
+{
+	"component": "loading-indicator-circle",
+	"library": "core-lab",
+	"pageId": "13970:16",
+	"pageName": "LoadingIndicator (Concept)",
+	"componentSets": [
+		{
+			"name": "🛟 LoadingIndicator -> CIRCLE Vertical (Concept)",
+			"nodeId": "14629:4127",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "🛟 LoadingIndicator -> CIRCLE Horizontal (Concept)",
+			"nodeId": "14629:4210",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "🛟 LoadingIndicator -> CIRCLE Vertical Progress (Concept)",
+			"nodeId": "14629:3361",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "🛟 LoadingIndicator -> CIRCLE Horizontal Progress (Concept)",
+			"nodeId": "14629:4181",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

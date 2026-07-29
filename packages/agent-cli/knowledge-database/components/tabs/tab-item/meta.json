@@ -1,0 +1,9 @@
+{
+	"id": "tab-item",
+	"name": "TabItem",
+	"type": "component",
+	"parent": "tabs",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v5.0.0"
+}

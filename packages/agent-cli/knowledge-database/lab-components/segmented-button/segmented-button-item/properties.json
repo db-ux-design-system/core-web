@@ -1,0 +1,33 @@
+{
+	"component": "segmented-button-item",
+	"figmaProperties": [
+		{
+			"name": "Active",
+			"type": "VARIANT",
+			"values": [
+				"False",
+				"True"
+			]
+		},
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			]
+		},
+		{
+			"name": "Variant",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Outlined",
+				"Filled",
+				"Brand",
+				"-"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

@@ -1,0 +1,18 @@
+{
+	"component": "pagination-truncation-item",
+	"library": "core-lab",
+	"pageId": "15479:2013",
+	"pageName": "Pagination (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Pagination Truncation Item - Medium (Concept)",
+			"nodeId": "15761:2289",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Pagination Truncation Item - Small (Concept)",
+			"nodeId": "17457:13997",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

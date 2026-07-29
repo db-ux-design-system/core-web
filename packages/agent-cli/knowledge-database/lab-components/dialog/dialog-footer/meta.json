@@ -1,0 +1,9 @@
+{
+	"id": "dialog-footer",
+	"name": "DialogFooter",
+	"type": "lab-component",
+	"parent": "dialog",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

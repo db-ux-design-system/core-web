@@ -1,0 +1,9 @@
+{
+	"id": "tab-panel",
+	"name": "TabPanel",
+	"type": "component",
+	"parent": "tabs",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v5.0.0"
+}

@@ -1,0 +1,9 @@
+{
+	"id": "pagination-truncation-item",
+	"name": "PaginationTruncationItem",
+	"type": "lab-component",
+	"parent": "pagination",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

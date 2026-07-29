@@ -1,0 +1,18 @@
+{
+	"component": "breadcrumb-truncation-item",
+	"library": "core-lab",
+	"pageId": "12519:3857",
+	"pageName": "Breadcrumb (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Breadcrumb Truncation ITEM → Small",
+			"nodeId": "12519:5011",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Breadcrumb COLLAPSED ITEM → Medium",
+			"nodeId": "12519:5125",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

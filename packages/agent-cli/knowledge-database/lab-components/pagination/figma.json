@@ -8,26 +8,10 @@
 			"name": "🧪 Pagination (Concept)",
 			"nodeId": "17457:13260",
 			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Pagination Item - Medium (Concept)",
-			"nodeId": "15761:2276",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Pagination Item - Small (Concept)",
-			"nodeId": "17457:13907",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Pagination Truncation Item - Medium (Concept)",
-			"nodeId": "15761:2289",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Pagination Truncation Item - Small (Concept)",
-			"nodeId": "17457:13997",
-			"type": "COMPONENT_SET"
 		}
+	],
+	"subComponents": [
+		"pagination-item",
+		"pagination-truncation-item"
 	]
 }

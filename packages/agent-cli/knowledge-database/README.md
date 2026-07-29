@@ -52,6 +52,12 @@ Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 - `properties.json` — Figma Properties, Code Connect Properties, Code Properties
 - `guidelines.md` — Nutzungsrichtlinien, Do's and Don'ts
 
+### Sub-Components
+
+Sub-Components liegen als Unterordner der Elternkomponente und haben dieselbe Dateistruktur. Ihre `meta.json` referenziert die Elternkomponente über das Feld `parent`, die `figma.json` der Elternkomponente listet sie über `subComponents` auf.
+
+Varianten desselben Sub-Components (z. B. Größen oder Stile, die in Figma als separate Component Sets modelliert sind) werden in **einem** Ordner zusammengefasst und dort als mehrere Einträge in `componentSets` geführt.
+
 ## Lab-Components
 
 Komponenten im Status **Concept** oder **Pre-Release**. Gleiche Dateistruktur wie Components, aber:

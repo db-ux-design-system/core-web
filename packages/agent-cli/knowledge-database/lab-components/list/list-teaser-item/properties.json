@@ -1,0 +1,96 @@
+{
+	"component": "list-teaser-item",
+	"figmaProperties": [
+		{
+			"name": "🎨 Show Description",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Description",
+			"type": "TEXT",
+			"defaultValue": "Description"
+		},
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "🎨 Show Slot Leading",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "🎨 Show Slot Trailing",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 Show Icon Leading",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Icon Leading",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Slot Leading",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Slot Trailing",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "Start",
+			"type": "SLOT"
+		},
+		{
+			"name": "Start Content",
+			"type": "SLOT"
+		},
+		{
+			"name": "End",
+			"type": "SLOT"
+		},
+		{
+			"name": "End Content",
+			"type": "SLOT"
+		},
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🎨 Interaction State",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"None"
+			]
+		},
+		{
+			"name": "Disabled",
+			"type": "VARIANT",
+			"values": [
+				"False",
+				"True"
+			]
+		},
+		{
+			"name": "Image Position",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Top",
+				"Bottom",
+				"Behind"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

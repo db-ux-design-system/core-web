@@ -1,0 +1,13 @@
+{
+	"component": "dialog-header",
+	"library": "core-lab",
+	"pageId": "15877:986",
+	"pageName": "Dialog (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Dialog Header (Concept)",
+			"nodeId": "17347:8097",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

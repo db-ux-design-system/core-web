@@ -1,0 +1,18 @@
+{
+	"component": "breadcrumb-root-item",
+	"library": "core-lab",
+	"pageId": "12519:3857",
+	"pageName": "Breadcrumb (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Breadcrumb Root Item → Small",
+			"nodeId": "12519:24305",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Breadcrumb ROOT ITEM → Medium",
+			"nodeId": "12519:5151",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

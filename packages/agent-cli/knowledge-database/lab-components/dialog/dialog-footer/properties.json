@@ -1,0 +1,20 @@
+{
+	"component": "dialog-footer",
+	"figmaProperties": [
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Type",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Brand",
+				"Filled",
+				"Outlined"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

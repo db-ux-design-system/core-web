@@ -1,0 +1,18 @@
+{
+	"component": "pagination-item",
+	"library": "core-lab",
+	"pageId": "15479:2013",
+	"pageName": "Pagination (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Pagination Item - Medium (Concept)",
+			"nodeId": "15761:2276",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Pagination Item - Small (Concept)",
+			"nodeId": "17457:13907",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

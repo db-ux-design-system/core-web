@@ -1,0 +1,13 @@
+{
+	"component": "list-vertical-item",
+	"library": "core-lab",
+	"pageId": "13240:446",
+	"pageName": "List (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ List VERTICAL ITEM (Concept)",
+			"nodeId": "13319:3349",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

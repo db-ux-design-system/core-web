@@ -1,0 +1,24 @@
+{
+	"component": "button-group-item",
+	"figmaProperties": [
+		{
+			"name": "Size",
+			"type": "VARIANT",
+			"values": [
+				"Medium",
+				"Small"
+			]
+		},
+		{
+			"name": "Width",
+			"type": "VARIANT",
+			"values": [
+				"Auto",
+				"Full"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [],
+	"note": "The variant (Outlined, Filled) is expressed through separate component sets, not through a property."
+}

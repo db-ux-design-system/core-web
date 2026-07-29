@@ -1,0 +1,9 @@
+{
+	"id": "list-title",
+	"name": "ListTitle",
+	"type": "lab-component",
+	"parent": "list",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

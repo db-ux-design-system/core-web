@@ -1,0 +1,9 @@
+{
+	"id": "drawer-header",
+	"name": "DrawerHeader",
+	"type": "component",
+	"parent": "drawer",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

@@ -1,0 +1,9 @@
+{
+	"id": "button-group-item",
+	"name": "ButtonGroupItem",
+	"type": "lab-component",
+	"parent": "button-group",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

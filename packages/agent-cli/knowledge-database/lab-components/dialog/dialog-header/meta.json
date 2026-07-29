@@ -1,0 +1,9 @@
+{
+	"id": "dialog-header",
+	"name": "DialogHeader",
+	"type": "lab-component",
+	"parent": "dialog",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

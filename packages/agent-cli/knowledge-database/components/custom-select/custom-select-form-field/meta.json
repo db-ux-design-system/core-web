@@ -1,0 +1,9 @@
+{
+	"id": "custom-select-form-field",
+	"name": "CustomSelectFormField",
+	"type": "component",
+	"parent": "custom-select",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v2.0.0"
+}

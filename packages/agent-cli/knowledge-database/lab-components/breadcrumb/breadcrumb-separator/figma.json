@@ -1,0 +1,28 @@
+{
+	"component": "breadcrumb-separator",
+	"library": "core-lab",
+	"pageId": "12519:3857",
+	"pageName": "Breadcrumb (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Breadcrumb Separator → (Def) Chevron Right - Small",
+			"nodeId": "12519:5040",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Breadcrumb Separator → Slash - Small",
+			"nodeId": "12519:24262",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Breadcrumb SEPARATOR → (Def) Chevron Right  - Medium",
+			"nodeId": "12519:5312",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ Breadcrumb SEPARATOR → Slash - Medium",
+			"nodeId": "12519:5315",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

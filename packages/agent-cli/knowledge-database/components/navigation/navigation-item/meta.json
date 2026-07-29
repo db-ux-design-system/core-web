@@ -1,0 +1,9 @@
+{
+	"id": "navigation-item",
+	"name": "NavigationItem",
+	"type": "component",
+	"parent": "navigation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

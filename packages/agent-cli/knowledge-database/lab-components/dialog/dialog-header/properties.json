@@ -1,0 +1,32 @@
+{
+	"component": "dialog-header",
+	"figmaProperties": [
+		{
+			"name": "Closeable",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "Show Icon",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "Semantic",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Adaptive",
+				"Critical",
+				"Informational",
+				"Successfull",
+				"Warning"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

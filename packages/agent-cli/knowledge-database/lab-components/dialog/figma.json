@@ -8,16 +8,10 @@
 			"name": "🧪 Dialog (Concept)",
 			"nodeId": "17347:8293",
 			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Dialog Header (Concept)",
-			"nodeId": "17347:8097",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Dialog Footer (Concept)",
-			"nodeId": "17347:8123",
-			"type": "COMPONENT_SET"
 		}
+	],
+	"subComponents": [
+		"dialog-header",
+		"dialog-footer"
 	]
 }

@@ -1,0 +1,13 @@
+{
+	"component": "dialog-footer",
+	"library": "core-lab",
+	"pageId": "15877:986",
+	"pageName": "Dialog (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Dialog Footer (Concept)",
+			"nodeId": "17347:8123",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

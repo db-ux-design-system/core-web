@@ -1,0 +1,54 @@
+{
+	"component": "breadcrumb-popover-item",
+	"figmaProperties": [
+		{
+			"name": "Show Icon",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Path"
+		},
+		{
+			"name": "🔄 Icon",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🎨 Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 Show Badge Corner",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 Interaction States",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			]
+		},
+		{
+			"name": "Disabled",
+			"type": "VARIANT",
+			"values": [
+				"False",
+				"True"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

@@ -1,0 +1,9 @@
+{
+	"id": "calendar-views",
+	"name": "CalendarViews",
+	"type": "lab-component",
+	"parent": "calendar",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

@@ -1,0 +1,9 @@
+{
+	"id": "list-teaser-item",
+	"name": "ListTeaserItem",
+	"type": "lab-component",
+	"parent": "list",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

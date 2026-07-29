@@ -1,0 +1,9 @@
+{
+	"id": "pagination-item",
+	"name": "PaginationItem",
+	"type": "lab-component",
+	"parent": "pagination",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

@@ -1,0 +1,13 @@
+{
+	"component": "list-divider",
+	"library": "core-lab",
+	"pageId": "13240:446",
+	"pageName": "List (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ List DIVIDER (Concept)",
+			"nodeId": "13388:1937",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

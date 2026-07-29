@@ -1,0 +1,9 @@
+{
+	"id": "calendar-header",
+	"name": "CalendarHeader",
+	"type": "lab-component",
+	"parent": "calendar",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

@@ -1,0 +1,9 @@
+{
+	"id": "table-row",
+	"name": "TableRow",
+	"type": "component",
+	"parent": "table",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v4.11.0"
+}

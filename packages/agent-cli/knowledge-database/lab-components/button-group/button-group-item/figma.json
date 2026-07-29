@@ -1,0 +1,18 @@
+{
+	"component": "button-group-item",
+	"library": "core-lab",
+	"pageId": "13247:4534",
+	"pageName": "ButtonGroup (Concept)",
+	"componentSets": [
+		{
+			"name": "🛟 ButtonGroup Item → Outlined (Concept)",
+			"nodeId": "17457:3609",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "🛟 ButtonGroup Item → Filled (Concept)",
+			"nodeId": "17457:4397",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

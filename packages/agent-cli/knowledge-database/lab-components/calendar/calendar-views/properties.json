@@ -1,0 +1,16 @@
+{
+	"component": "calendar-views",
+	"figmaProperties": [
+		{
+			"name": "Variant",
+			"type": "VARIANT",
+			"values": [
+				"Default",
+				"Calender Months",
+				"Calender Years"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

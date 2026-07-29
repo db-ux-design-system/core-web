@@ -1,0 +1,13 @@
+{
+	"component": "calendar-item",
+	"library": "core-lab",
+	"pageId": "16115:898",
+	"pageName": "Calender (Concept)",
+	"componentSets": [
+		{
+			"name": "↳ Calender Item (Concept)",
+			"nodeId": "16279:2156",
+			"type": "COMPONENT_SET"
+		}
+	]
+}

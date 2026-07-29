@@ -1,0 +1,27 @@
+{
+	"component": "breadcrumb-truncation-item",
+	"figmaProperties": [
+		{
+			"name": "🎨 Show Collapsed Menu",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 ↳ OR Show Tooltip",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🎨 Interaction States",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

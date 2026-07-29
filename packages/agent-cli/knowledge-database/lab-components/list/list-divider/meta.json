@@ -1,0 +1,9 @@
+{
+	"id": "list-divider",
+	"name": "ListDivider",
+	"type": "lab-component",
+	"parent": "list",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}

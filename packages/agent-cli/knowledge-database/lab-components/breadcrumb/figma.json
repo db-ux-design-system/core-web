@@ -10,76 +10,6 @@
 			"type": "COMPONENT_SET"
 		},
 		{
-			"name": "↳ Breadcrumb Root Item → Small",
-			"nodeId": "12519:24305",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb Item → Small",
-			"nodeId": "12519:4839",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb Popover Item → Small",
-			"nodeId": "12537:94744",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb Current Item → Small",
-			"nodeId": "12519:24885",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb Truncation ITEM → Small",
-			"nodeId": "12519:5011",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb Separator → (Def) Chevron Right - Small",
-			"nodeId": "12519:5040",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb Separator → Slash - Small",
-			"nodeId": "12519:24262",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb ROOT ITEM → Medium",
-			"nodeId": "12519:5151",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb ITEM → Medium",
-			"nodeId": "12519:5051",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb POPOVER ITEM → Medium",
-			"nodeId": "12537:94862",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb CURRENT ITEM → Medium",
-			"nodeId": "12531:52482",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb COLLAPSED ITEM → Medium",
-			"nodeId": "12519:5125",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb SEPARATOR → (Def) Chevron Right  - Medium",
-			"nodeId": "12519:5312",
-			"type": "COMPONENT_SET"
-		},
-		{
-			"name": "↳ Breadcrumb SEPARATOR → Slash - Medium",
-			"nodeId": "12519:5315",
-			"type": "COMPONENT_SET"
-		},
-		{
 			"name": "🛟 Breadcrumbs Item → (Def) Small",
 			"nodeId": "17489:7934",
 			"type": "COMPONENT_SET"
@@ -89,5 +19,13 @@
 			"nodeId": "17489:7935",
 			"type": "COMPONENT_SET"
 		}
+	],
+	"subComponents": [
+		"breadcrumb-root-item",
+		"breadcrumb-item",
+		"breadcrumb-popover-item",
+		"breadcrumb-current-item",
+		"breadcrumb-truncation-item",
+		"breadcrumb-separator"
 	]
 }

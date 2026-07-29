@@ -1,0 +1,26 @@
+{
+	"component": "list-title",
+	"figmaProperties": [
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "Show Trailing Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "Emphasis",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Regular",
+				"Weak",
+				"Strong"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": []
+}

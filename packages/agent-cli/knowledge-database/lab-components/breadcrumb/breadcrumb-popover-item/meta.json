@@ -1,0 +1,9 @@
+{
+	"id": "breadcrumb-popover-item",
+	"name": "BreadcrumbPopoverItem",
+	"type": "lab-component",
+	"parent": "breadcrumb",
+	"status": "concept",
+	"owner": "core-team",
+	"since": null
+}
