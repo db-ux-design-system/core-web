@@ -19,15 +19,18 @@ $focus-outline-reach: calc(
 
 		&::after {
 			inset-block-end: calc(
-				-1 * #{$indicator-gap-offset}
-			) !important; // overrides inset-block shorthand set in _indicator.scss
+				-1 * #{$indicator-gap-offset} -
+					#{variables.$db-border-width-3xs}
+			); // overrides inset-block shorthand set in _indicator.scss via source order
 		}
 
 		&[aria-selected="true"] {
 			@include indicator.show-indicator-horizontal;
 
 			&::after {
-				inline-size: 100%;
+				// Expand to cover both transparent borders of the button while
+				// staying centered via translate(-50%) from _indicator.scss.
+				inline-size: calc(100% + 2 * #{variables.$db-border-width-3xs});
 			}
 		}
 	}
@@ -38,7 +41,11 @@ $focus-outline-reach: calc(
 		@include indicator.set-indicator-vertical;
 
 		&::after {
-			inset-inline: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) auto;
+			inset-inline: calc(
+					-1 * var(--db-tabs-line-gap-vertical, 0px) -
+						#{variables.$db-border-width-3xs}
+				)
+				auto;
 			z-index: 5;
 		}
 
@@ -46,7 +53,9 @@ $focus-outline-reach: calc(
 			@include indicator.show-indicator-vertical;
 
 			&::after {
-				block-size: 100%;
+				// Expand to cover both transparent borders of the button while
+				// staying centered via translate(0, -50%) from _indicator.scss.
+				block-size: calc(100% + 2 * #{variables.$db-border-width-3xs});
 			}
 		}
 	}
@@ -224,6 +233,13 @@ $focus-outline-reach: calc(
 				&::before {
 					content: none;
 				}
+
+				.db-tab-item::after {
+					inset-block-end: calc(
+						-1 * #{$indicator-gap-offset} +
+							#{variables.$db-border-width-3xs}
+					);
+				}
 			}
 		}
 	}
@@ -289,8 +305,9 @@ $focus-outline-reach: calc(
 								(
 									#{variables.$db-spacing-fixed-xs} -
 										#{variables.$db-border-width-2xs}
-								)
-						) !important;
+								) +
+								#{variables.$db-border-width-3xs}
+						);
 					}
 				}
 			}
