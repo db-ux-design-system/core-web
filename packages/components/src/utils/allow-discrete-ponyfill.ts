@@ -11,6 +11,8 @@
 
 import { delay } from './index';
 
+let closeAttemptCounter = 0;
+
 /**
  * @public
  * Feature-detects whether the browser supports transitioning the `display`
@@ -73,7 +75,7 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 		? parseFloat(durationStr)
 		: parseFloat(durationStr || '0') * 1000;
 
-	const token = String(Date.now());
+	const token = String(++closeAttemptCounter);
 	dialog.dataset['closingAllowDiscretePonyfill'] = token;
 	void delay(() => {
 		// Guard: skip if the dialog was reopened or a newer close attempt
