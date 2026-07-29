@@ -1,15 +1,41 @@
 /**
- * TODO: Remove this file after Firefox has fixed `transition-behaviour: allow-discrete`
- * support for the `display` property and just use `_ref?.close();` directly in the including file:
- * https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+ * TODO: Remove this file once Firefox ships `allow-discrete` for `display`
+ * (https://bugzilla.mozilla.org/show_bug.cgi?id=1882408) and Safari supports
+ * `overlay` transitions. Replace all `closeDialogWithTransition()` calls with
+ * direct `dialog.close()`.
  *
  * This module provides a ponyfill for browsers that do not support transitioning
- * `display` with `transition-behavior: allow-discrete`. It defers `dialog.close()`
- * and signals CSS to revert the transform (triggering the exit animation) while
- * the dialog is still open.
+ * `display` and/or `overlay` with `transition-behavior: allow-discrete`
+ * (currently Firefox and Safari). Used by the drawer to animate dialog exit
+ * transitions.
+ *
+ * Architecture:
+ * - `supportsAllowDiscreteDisplayAndOverlayTransition()` — cached feature
+ *   detection (checks both `display` transition and `overlay` support)
+ * - `closeDialogWithTransition(dialog)` — if supported natively, calls
+ *   `close()` immediately; otherwise sets `data-closing-allow-discrete-ponyfill`
+ *   on the dialog, waits `--db-drawer-transition-duration`, then calls `close()`
+ *
+ * CSS contract:
+ * - `.db-drawer` defines `--db-drawer-transition-duration` (`0s` default,
+ *   real value under `prefers-reduced-motion: no-preference`); the ponyfill
+ *   reads this custom property via `getComputedStyle`
+ * - `&[open]:not([data-closing-allow-discrete-ponyfill])` controls
+ *   `transform: none` — when the attribute is present, the transform reverts
+ *   to the off-screen value, triggering the exit animation while the dialog
+ *   is still [open]
+ *
+ * Maintenance constraints:
+ * - The attribute name `data-closing-allow-discrete-ponyfill` must stay in
+ *   sync between JS (`dataset['closingAllowDiscretePonyfill']`) and CSS
+ *   (`[data-closing-allow-discrete-ponyfill]`)
+ * - The custom property `--db-drawer-transition-duration` must stay in sync
+ *   between the SCSS declaration and the JS `getPropertyValue` call
  */
 
 import { delay } from './index';
+
+let closeAttemptCounter = 0;
 
 /**
  * @public
@@ -49,11 +75,14 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
  * @public
  * Closes a dialog with a deferred `close()` call, allowing the CSS exit
  * transition to play in browsers that don't support `allow-discrete` for
- * `display`. Sets `data-closing-allow-discrete-ponyfill` on the dialog to
- * signal CSS to revert the transform while the dialog is still [open].
+ * `display` and `overlay`. Sets `data-closing-allow-discrete-ponyfill` on the
+ * dialog to signal CSS to revert the transform while the dialog is still [open].
  *
- * In browsers that support `allow-discrete` for `display`, calls `close()`
- * immediately and lets native CSS handle the exit animation.
+ * Reads `--db-transition-duration` from the dialog as the contract
+ * between CSS and JS for the transition timing.
+ *
+ * In browsers that support `allow-discrete` for `display` and `overlay`,
+ * calls `close()` immediately and lets native CSS handle the exit animation.
  *
  * @param dialog - The dialog element to close
  */
@@ -63,38 +92,19 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 		return;
 	}
 
-	const styles = getComputedStyle(dialog);
-	const properties = styles
-		.getPropertyValue('transition-property')
-		.split(',');
-	const durations = styles.getPropertyValue('transition-duration').split(',');
-	const delays = styles.getPropertyValue('transition-delay').split(',');
+	const durationStr = getComputedStyle(dialog)
+		.getPropertyValue('--db-transition-duration')
+		.trim();
+	const ms = durationStr.includes('ms')
+		? parseFloat(durationStr)
+		: parseFloat(durationStr || '0') * 1000;
 
-	// Find the duration + delay for the `display` transition specifically
-	const displayIndex = properties.findIndex((p) => p.trim() === 'display');
-
-	const parseCssTime = (str: string | undefined): number => {
-		const trimmed = (str || '0s').trim();
-		return trimmed.includes('ms')
-			? parseFloat(trimmed)
-			: parseFloat(trimmed) * 1000;
-	};
-
-	const duration = parseCssTime(
-		displayIndex >= 0
-			? durations[displayIndex % durations.length]
-			: durations[0]
-	);
-	const delayMs = parseCssTime(
-		displayIndex >= 0 ? delays[displayIndex % delays.length] : delays[0]
-	);
-	const ms = duration + delayMs;
-
-	dialog.dataset['closingAllowDiscretePonyfill'] = '';
+	const token = String(++closeAttemptCounter);
+	dialog.dataset['closingAllowDiscretePonyfill'] = token;
 	void delay(() => {
-		// Guard: if the dialog was reopened before the timer fired,
-		// the attribute will have been removed — skip the close.
-		if (!('closingAllowDiscretePonyfill' in dialog.dataset)) {
+		// Guard: skip if the dialog was reopened or a newer close attempt
+		// replaced this one.
+		if (dialog.dataset['closingAllowDiscretePonyfill'] !== token) {
 			return;
 		}
 		delete dialog.dataset['closingAllowDiscretePonyfill'];
