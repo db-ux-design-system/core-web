@@ -159,6 +159,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
+			onCancel={() => {
+				if (props.onClose) {
+					props.onClose();
+				}
+			}}
 			onClick={(event) => state.handleClose(event)}
 			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
 			onKeyDown={(event) => state.handleClose(event)}
