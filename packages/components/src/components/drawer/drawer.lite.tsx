@@ -111,11 +111,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 				}
 			}
 		},
-		handleClosedByFallback: () => {
-			/* ponytail: Browsers that lack allow-discrete display transitions
-			   (e.g. Firefox) would close the dialog instantly without an exit
-			   animation. Override closedby to "none" so our JS fallback with
-			   closeDialogWithTransition handles ESC and backdrop closing. */
+		handleDisplayTransitionFallback: () => {
+			/* Browsers that lack allow-discrete display transitions (e.g. Firefox)
+			   would close the dialog instantly without an exit animation. Override
+			   closedby to "none" so our JS fallback handles closing. */
 			if (_ref && !supportsDisplayTransition()) {
 				(_ref as HTMLDialogElement).setAttribute('closedby', 'none');
 			}
@@ -125,7 +124,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onMount(() => {
 		state.handleDialogOpen();
 		state.initialized = true;
-		state.handleClosedByFallback();
+		state.handleDisplayTransitionFallback();
 	});
 
 	onUpdate(() => {
