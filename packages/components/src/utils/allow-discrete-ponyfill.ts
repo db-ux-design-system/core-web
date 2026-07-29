@@ -70,8 +70,19 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 	const durations = styles.getPropertyValue('transition-duration').split(',');
 	const delays = styles.getPropertyValue('transition-delay').split(',');
 
-	// Find the duration + delay for the `display` transition specifically
-	const displayIndex = properties.findIndex((p) => p.trim() === 'display');
+	// Find the duration + delay for the `display` transition specifically.
+	// CSS precedence: a later explicit `display` overrides an earlier `all`.
+	let displayIndex = -1;
+	for (let i = properties.length - 1; i >= 0; i--) {
+		const prop = properties[i].trim();
+		if (prop === 'display') {
+			displayIndex = i;
+			break;
+		}
+		if (prop === 'all' && displayIndex < 0) {
+			displayIndex = i;
+		}
+	}
 
 	const parseCssTime = (str: string | undefined): number => {
 		const trimmed = (str || '0s').trim();
