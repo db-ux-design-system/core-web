@@ -152,3 +152,41 @@ Das konkrete Änderungsdatum wird nicht manuell gepflegt, sondern über Git Hist
 * Zuordnung zwischen Figma und Code Properties
 * dokumentierte Unterschiede
 * Regeln für Transformation oder Interpretation
+
+## Offene Themen
+
+### Code Referenzen (`code.json`) — Vorschlag, noch nicht umgesetzt
+
+Für Code Referenzen liegt ein Format-Vorschlag als Prototyp unter `components/button/code.json`. Er ergänzt die bestehenden Dateien um die Informationen, die `properties.json` nicht abdeckt: Framework-Identität (Package, Import, Selector, Tag), DOM-Vertrag (Root-Element, CSS-Klasse, `data-*`-Attribute), Slots, Events, CSS Custom Properties, Beispiel-Namen und den Accessibility-Vertrag.
+
+Props werden bewusst **nicht** dupliziert — die stehen weiterhin in `properties.json` unter `codeProperties`.
+
+**Automatisch generierbar (~90%):**
+
+| Feld | Quelle |
+|------|--------|
+| `sourcePath` | Ordnername |
+| `frameworks.*` | Konvention + `output/*/package.json` |
+| `dom.*` | Root-Tag, `cls()`-Aufruf und Attribute in `{component}.lite.tsx` |
+| `slots` | `children` und `*Slot`-Props aus `model.ts` |
+| `events` | `*EventProps` aus `model.ts` bzw. `output/stencil/dist/web-types.json` |
+| `cssCustomProperties` | `scripts/documentation/extract-css-vars.ts` (SassDoc `@cssprop`) |
+| `examples` | `exampleName="…"` aus `showcase/{component}.showcase.lite.tsx` |
+| `accessibility.automatic` | Native Element, `useMetadata().nativeAttributes`, Pass-Through-Regel |
+| `accessibility.testedWith` | axe-Scope und aria-snapshot-Tests aus `{component}.spec.tsx` |
+
+**Manuell zu pflegen:**
+
+* `accessibility.consumerRequired` — was der Consumer selbst liefern muss (z. B. `aria-label` bei `noText`)
+* `notes` — Verhalten, das sich nicht aus den Props ergibt (z. B. berechneter `type`-Default bei Button)
+
+**Nächste Schritte (Dev):**
+
+1. Format final abstimmen und ggf. `subComponents` ergänzen (relevant für Drawer, Accordion, Table, Tabs)
+2. Generator-Script analog zu `packages/mcp-server/scripts/build-manifest.ts` aufsetzen
+3. Generator muss **mergen statt überschreiben**, damit die manuell gepflegten Felder erhalten bleiben
+4. Erzeugung in den Build- oder CI-Prozess einbinden, damit `code.json` dauerhaft synchron zum Code bleibt
+
+### Generierung nachgelagerter Artefakte aus der Wissensbasis
+
+Noch zu betrachten: welche Artefakte sich zukünftig **aus** der Wissensbasis erzeugen lassen, anstatt parallel gepflegt zu werden — beispielsweise Storybook-Dokumentation (Props-Tabellen, Controls, Beschreibungen) oder Teile der Plattform-Dokumentation. Voraussetzung dafür ist, dass Props, Slots, Events und Guidelines in der Wissensbasis vollständig und verlässlich vorliegen.

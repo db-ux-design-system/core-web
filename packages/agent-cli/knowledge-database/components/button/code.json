@@ -1,0 +1,97 @@
+{
+	"_proposal": "Format proposal, not yet rolled out. Button serves as the prototype. See requirements.md → Offene Themen for the generation concept.",
+	"component": "button",
+	"sourcePath": "packages/components/src/components/button",
+	"frameworks": {
+		"react": {
+			"package": "@db-ux/react-core-components",
+			"componentName": "DBButton",
+			"import": "import { DBButton } from '@db-ux/react-core-components';"
+		},
+		"angular": {
+			"package": "@db-ux/ngx-core-components",
+			"componentName": "DBButtonComponent",
+			"selector": "db-button",
+			"standalone": true
+		},
+		"vue": {
+			"package": "@db-ux/v-core-components",
+			"componentName": "DBButton",
+			"import": "import { DBButton } from '@db-ux/v-core-components';"
+		},
+		"web-components": {
+			"package": "@db-ux/wc-core-components",
+			"tagName": "db-button"
+		},
+		"html": {
+			"package": "@db-ux/core-components",
+			"cssClass": "db-button"
+		}
+	},
+	"dom": {
+		"rootElement": "button",
+		"cssClass": "db-button",
+		"dataAttributes": [
+			"data-variant",
+			"data-size",
+			"data-width",
+			"data-wrap",
+			"data-no-text",
+			"data-icon",
+			"data-show-icon",
+			"data-icon-trailing",
+			"data-show-icon-trailing"
+		],
+		"nativeAttributes": [
+			"type",
+			"disabled",
+			"name",
+			"form",
+			"value",
+			"command",
+			"commandfor"
+		]
+	},
+	"slots": [
+		{
+			"name": "default",
+			"description": "Button label and content. Alternative to the `text` property."
+		}
+	],
+	"events": [
+		{
+			"name": "click",
+			"reactName": "onClick",
+			"payload": "MouseEvent"
+		}
+	],
+	"cssCustomProperties": [],
+	"examples": [
+		"Variant",
+		"Size",
+		"Width",
+		"Show Icon Leading",
+		"Show Icon Trailing",
+		"No Text",
+		"Wrap",
+		"Disabled",
+		"Density"
+	],
+	"accessibility": {
+		"automatic": [
+			"Renders a native `button` element — keyboard operability and `role=button` come from the platform.",
+			"`disabled` is forwarded as the native `disabled` attribute.",
+			"All `aria-*` and `data-*` attributes are passed through to the root `button` element."
+		],
+		"consumerRequired": [
+			"When `noText` is set, provide an accessible label via `aria-label` or visually hidden text — the icon alone is not an accessible name."
+		],
+		"testedWith": [
+			"axe-core (scoped to `.db-button`, default and icon-only variant)",
+			"aria-snapshot regression test (icon-only variant)"
+		]
+	},
+	"notes": [
+		"The `type` attribute is computed when not set explicitly: `button` if `onClick` or `commandfor` is present, otherwise `submit`."
+	]
+}
