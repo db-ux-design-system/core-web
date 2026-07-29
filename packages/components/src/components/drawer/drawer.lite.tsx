@@ -16,7 +16,8 @@ import {
 } from '../../utils';
 import {
 	closeDialogWithTransition,
-	supportsClosedBy
+	supportsClosedBy,
+	supportsDisplayTransition
 } from '../../utils/allow-discrete-ponyfill';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -56,11 +57,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
 				if (event.key === 'Escape') {
-					// When closedby="any" is NOT supported, we must prevent the
-					// default (which would close without transition) and handle
-					// closing ourselves. When it IS supported the browser closes
-					// the dialog natively with the correct transition.
-					if (!supportsClosedBy()) {
+					// When closedby is not supported or display transitions with
+					// allow-discrete are missing (e.g. Firefox), we set closedby
+					// to "none" and must preventDefault to avoid an instant close
+					// without exit animation. Our JS fallback handles the close.
+					if (!supportsClosedBy() || !supportsDisplayTransition()) {
 						event.preventDefault();
 					}
 
@@ -109,12 +110,22 @@ export default function DBDrawer(props: DBDrawerProps) {
 					closeDialogWithTransition(_ref as HTMLDialogElement);
 				}
 			}
+		},
+		handleClosedByFallback: () => {
+			/* ponytail: Browsers that lack allow-discrete display transitions
+			   (e.g. Firefox) would close the dialog instantly without an exit
+			   animation. Override closedby to "none" so our JS fallback with
+			   closeDialogWithTransition handles ESC and backdrop closing. */
+			if (_ref && !supportsDisplayTransition()) {
+				(_ref as HTMLDialogElement).setAttribute('closedby', 'none');
+			}
 		}
 	});
 
 	onMount(() => {
 		state.handleDialogOpen();
 		state.initialized = true;
+		state.handleClosedByFallback();
 	});
 
 	onUpdate(() => {
