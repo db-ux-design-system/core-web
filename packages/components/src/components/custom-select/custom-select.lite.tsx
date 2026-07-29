@@ -993,6 +993,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
+				{/* ponytail: browser autofill will set the native value but state._values / summary won't sync — follow-up needed to wire onChange into handleOptionSelected */}
 				<select
 					role="none"
 					hidden
