@@ -1,0 +1,8 @@
+{
+	"id": "principles",
+	"name": "Principles",
+	"type": "foundation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

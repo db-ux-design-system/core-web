@@ -1,0 +1,8 @@
+{
+	"id": "internals",
+	"name": "Internals",
+	"type": "foundation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+	"id": "colors",
+	"name": "Colors",
+	"type": "foundation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}

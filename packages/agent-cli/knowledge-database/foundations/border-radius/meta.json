@@ -1,0 +1,8 @@
+{
+	"id": "border-radius",
+	"name": "Border Radius",
+	"type": "foundation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0"
+}
