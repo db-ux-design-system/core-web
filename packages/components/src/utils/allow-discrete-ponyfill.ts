@@ -64,13 +64,13 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 	}
 
 	const styles = getComputedStyle(dialog);
-	const properties = styles.getPropertyValue('transition-property').split(',');
+	const properties = styles
+		.getPropertyValue('transition-property')
+		.split(',');
 	const durations = styles.getPropertyValue('transition-duration').split(',');
 
 	// Find the duration for the `display` transition specifically
-	const displayIndex = properties.findIndex(
-		(p) => p.trim() === 'display'
-	);
+	const displayIndex = properties.findIndex((p) => p.trim() === 'display');
 	const durationEntry =
 		displayIndex >= 0
 			? (durations[displayIndex] || durations[0])?.trim()
