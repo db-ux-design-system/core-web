@@ -305,7 +305,8 @@ $focus-outline-reach: calc(
 								(
 									#{variables.$db-spacing-fixed-xs} -
 										#{variables.$db-border-width-2xs}
-								) + #{variables.$db-border-width-3xs}
+								) +
+								#{variables.$db-border-width-3xs}
 						);
 					}
 				}
