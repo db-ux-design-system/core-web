@@ -4,7 +4,7 @@ Zentrale, strukturierte Wissensbasis des DB UX Design Systems.
 
 ## Struktur
 
-```
+```text
 knowledge-database/
   foundations/              Tokens, Prinzipien und interne Mechanismen
   components/              Core-Komponenten (veröffentlicht)
@@ -14,6 +14,8 @@ knowledge-database/
 ```
 
 ## Foundations
+
+Jeder Ordner enthält eine `meta.json` mit den allgemeinen Informationen. Der fachliche Inhalt liegt je nach Kategorie in einer `tokens.json` oder als Markdown-Datei.
 
 ### Token-Ordner (`{kategorie}/tokens.json`)
 
@@ -54,7 +56,9 @@ Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 
 ### Sub-Components
 
-Sub-Components liegen als Unterordner der Elternkomponente und haben dieselbe Dateistruktur. Ihre `meta.json` referenziert die Elternkomponente über das Feld `parent`, die `figma.json` der Elternkomponente listet sie über `subComponents` auf.
+In Figma sind Sub-Components am Präfix `↳` im Namen des Component Sets erkennbar und liegen zusätzlich in einer eigenen Sub-Component-Section auf der Komponentenseite.
+
+Sub-Components liegen als Unterordner der Elternkomponente und haben dieselbe Dateistruktur. Ihre `meta.json` referenziert die Elternkomponente über das Feld `parent`, die `figma.json` der Elternkomponente listet sie über `subComponents` auf. Das `componentSets`-Array der Elternkomponente enthält ausschließlich deren eigene Sets — `↳`-Sets stehen nie darin.
 
 Varianten desselben Sub-Components (z. B. Größen oder Stile, die in Figma als separate Component Sets modelliert sind) werden in **einem** Ordner zusammengefasst und dort als mehrere Einträge in `componentSets` geführt.
 
@@ -70,8 +74,10 @@ Komponenten im Status **Concept** oder **Pre-Release**. Gleiche Dateistruktur wi
 
 - Sind als Konzept-Komponenten in Figma vorhanden und existieren noch nicht im Code.
 - `properties.json` enthält nur `figmaProperties` (Code-Properties noch nicht definiert)
-- `guidelines.md` ist Platzhalter
+- `guidelines.md` enthält die Beschreibung der Komponente, aber noch keine Regeln
 - Kein stabiler API-Vertrag — Breaking Changes jederzeit möglich
+
+Property-Namen werden 1:1 aus der Figma-Library übernommen. Die endgültige Benennung erfolgt erst mit dem Übertrag nach Core (Beta) in Abstimmung mit Dev — bis dahin ist die Abweichung zur Core-Namenskonvention beabsichtigt.
 
 ## Figma Libraries
 
