@@ -1,74 +1,74 @@
 {
-  "component": "card",
-  "figmaProperties": [
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "📦 Start Slot",
-      "type": "SLOT"
-    },
-    {
-      "name": "📦 End Slot",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Start Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show End Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Spacing",
-      "type": "VARIANT",
-      "values": ["(Def) Small", "Medium", "Large", "None"]
-    },
-    {
-      "name": "🔀 Behavior",
-      "type": "VARIANT",
-      "values": ["(Def) Static", "Interactive"]
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Elevation Level",
-      "type": "VARIANT",
-      "values": ["1", "2", "3"],
-      "defaultValue": "1",
-      "mapsToCodeProp": "elevationLevel",
-      "note": "In Figma, elevation level is expressed via separate Component Sets (Card → Level 1, Level 2, Level 3)."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "behavior",
-      "type": "CardBehaviorType",
-      "values": ["static", "interactive"],
-      "default": "static",
-      "description": "Makes the card interactive"
-    },
-    {
-      "name": "elevationLevel",
-      "type": "CardElevationLevelType",
-      "values": ["1", "2", "3"],
-      "default": "1",
-      "description": "Changes the elevation of the card (equal to basic-background-level)"
-    },
-    {
-      "name": "spacing",
-      "type": "SpacingType",
-      "values": ["small", "medium", "large", "none"],
-      "default": "small"
-    }
-  ]
+	"component": "card",
+	"figmaProperties": [
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "📦 Start Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "📦 End Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Start Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show End Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Spacing",
+			"type": "VARIANT",
+			"values": ["(Def) Small", "Medium", "Large", "None"]
+		},
+		{
+			"name": "🔀 Behavior",
+			"type": "VARIANT",
+			"values": ["(Def) Static", "Interactive"]
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Elevation Level",
+			"type": "VARIANT",
+			"values": ["1", "2", "3"],
+			"defaultValue": "1",
+			"mapsToCodeProp": "elevationLevel",
+			"note": "In Figma, elevation level is expressed via separate Component Sets (Card → Level 1, Level 2, Level 3)."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "behavior",
+			"type": "CardBehaviorType",
+			"values": ["static", "interactive"],
+			"default": "static",
+			"description": "Makes the card interactive"
+		},
+		{
+			"name": "elevationLevel",
+			"type": "CardElevationLevelType",
+			"values": ["1", "2", "3"],
+			"default": "1",
+			"description": "Changes the elevation of the card (equal to basic-background-level)"
+		},
+		{
+			"name": "spacing",
+			"type": "SpacingType",
+			"values": ["small", "medium", "large", "none"],
+			"default": "small"
+		}
+	]
 }

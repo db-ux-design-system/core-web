@@ -4,10 +4,7 @@
 		{
 			"name": "Orientation",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Horizontal",
-				"Vertical"
-			]
+			"values": ["(Def) Horizontal", "Vertical"]
 		}
 	],
 	"codeConnectProperties": [],

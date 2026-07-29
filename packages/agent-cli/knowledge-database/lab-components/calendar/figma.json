@@ -10,9 +10,5 @@
 			"type": "COMPONENT_SET"
 		}
 	],
-	"subComponents": [
-		"calendar-item",
-		"calendar-header",
-		"calendar-views"
-	]
+	"subComponents": ["calendar-item", "calendar-header", "calendar-views"]
 }

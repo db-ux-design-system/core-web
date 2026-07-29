@@ -1,68 +1,68 @@
 {
-  "component": "table",
-  "figmaProperties": [],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "variant",
-      "type": "DBTableVariantType",
-      "values": ["flat", "zebra", "spaced"],
-      "description": "Layout variant of the table"
-    },
-    {
-      "name": "size",
-      "type": "DBTableRowSizeType",
-      "values": ["x-small", "small", "medium", "large"],
-      "description": "Size of the table rows"
-    },
-    {
-      "name": "divider",
-      "type": "DBTableDividerType",
-      "values": ["none", "both", "horizontal", "vertical"],
-      "description": "Show dividers between rows/cells"
-    },
-    {
-      "name": "width",
-      "type": "WidthType",
-      "values": ["auto", "full"],
-      "description": "Width of the table"
-    },
-    {
-      "name": "stickyHeader",
-      "type": "DBTableStickyHeaderType",
-      "values": ["none", "both", "horizontal", "vertical"],
-      "description": "Make header cells sticky when scrolling"
-    },
-    {
-      "name": "mobileVariant",
-      "type": "DBTableMobileVariantType",
-      "values": ["table", "list"],
-      "description": "Layout on mobile (table or list)"
-    },
-    {
-      "name": "caption",
-      "type": "any",
-      "description": "Slot for table caption"
-    },
-    {
-      "name": "captionPlain",
-      "type": "string",
-      "description": "String alternative for table caption"
-    },
-    {
-      "name": "showCaption",
-      "type": "boolean | string",
-      "description": "Show caption above table (default hidden)"
-    },
-    {
-      "name": "data",
-      "type": "DBTableData | string",
-      "description": "Table data object with header/body/footer arrays"
-    },
-    {
-      "name": "columnSizes",
-      "type": "Record<number, DBTableColumnsSizeType | string>",
-      "description": "Width of columns by index (grid-template-columns)"
-    }
-  ]
+	"component": "table",
+	"figmaProperties": [],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "variant",
+			"type": "DBTableVariantType",
+			"values": ["flat", "zebra", "spaced"],
+			"description": "Layout variant of the table"
+		},
+		{
+			"name": "size",
+			"type": "DBTableRowSizeType",
+			"values": ["x-small", "small", "medium", "large"],
+			"description": "Size of the table rows"
+		},
+		{
+			"name": "divider",
+			"type": "DBTableDividerType",
+			"values": ["none", "both", "horizontal", "vertical"],
+			"description": "Show dividers between rows/cells"
+		},
+		{
+			"name": "width",
+			"type": "WidthType",
+			"values": ["auto", "full"],
+			"description": "Width of the table"
+		},
+		{
+			"name": "stickyHeader",
+			"type": "DBTableStickyHeaderType",
+			"values": ["none", "both", "horizontal", "vertical"],
+			"description": "Make header cells sticky when scrolling"
+		},
+		{
+			"name": "mobileVariant",
+			"type": "DBTableMobileVariantType",
+			"values": ["table", "list"],
+			"description": "Layout on mobile (table or list)"
+		},
+		{
+			"name": "caption",
+			"type": "any",
+			"description": "Slot for table caption"
+		},
+		{
+			"name": "captionPlain",
+			"type": "string",
+			"description": "String alternative for table caption"
+		},
+		{
+			"name": "showCaption",
+			"type": "boolean | string",
+			"description": "Show caption above table (default hidden)"
+		},
+		{
+			"name": "data",
+			"type": "DBTableData | string",
+			"description": "Table data object with header/body/footer arrays"
+		},
+		{
+			"name": "columnSizes",
+			"type": "Record<number, DBTableColumnsSizeType | string>",
+			"description": "Width of columns by index (grid-template-columns)"
+		}
+	]
 }

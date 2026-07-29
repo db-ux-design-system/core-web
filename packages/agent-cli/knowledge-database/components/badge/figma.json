@@ -1,23 +1,23 @@
 {
-  "component": "badge",
-  "library": "core-components",
-  "pageId": "14457:44780",
-  "pageName": "Badge",
-  "componentSets": [
-    {
-      "name": "Badge → (Def) Text",
-      "nodeId": "1:29568",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Badge → Dot",
-      "nodeId": "1:31013",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Badge → Icon",
-      "nodeId": "4184:18686",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "badge",
+	"library": "core-components",
+	"pageId": "14457:44780",
+	"pageName": "Badge",
+	"componentSets": [
+		{
+			"name": "Badge → (Def) Text",
+			"nodeId": "1:29568",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Badge → Dot",
+			"nodeId": "1:31013",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Badge → Icon",
+			"nodeId": "4184:18686",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

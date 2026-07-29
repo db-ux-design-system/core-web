@@ -1,95 +1,95 @@
 {
-  "component": "tabs",
-  "figmaProperties": [
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "🔀 Orientation",
-      "type": "VARIANT",
-      "values": ["(Def) Horizontal", "Vertical"]
-    },
-    {
-      "name": "🔀 Tab Item Width",
-      "type": "VARIANT",
-      "values": ["(Def) Auto", "Full"]
-    },
-    {
-      "name": "🔀 Tab Item Alignment",
-      "type": "VARIANT",
-      "values": ["(Def) Start", "Center", "Right"]
-    }
-  ],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "orientation",
-      "type": "OrientationType",
-      "values": ["horizontal", "vertical"],
-      "default": "horizontal",
-      "description": "Orientation of the tab bar"
-    },
-    {
-      "name": "tabItemWidth",
-      "type": "WidthType | string",
-      "values": ["auto", "full"],
-      "default": "auto",
-      "description": "Width behavior of tab items"
-    },
-    {
-      "name": "tabItemAlignment",
-      "type": "TabItemAlignmentType | string",
-      "values": ["start", "center", "end"],
-      "default": "start",
-      "description": "Alignment of tab items in full width mode"
-    },
-    {
-      "name": "behavior",
-      "type": "TabsBehaviorType",
-      "values": ["scrollbar", "arrows"],
-      "description": "Overflow navigation style for horizontal tabs"
-    },
-    {
-      "name": "initialSelectedIndex",
-      "type": "number | string",
-      "description": "Initially selected tab index"
-    },
-    {
-      "name": "activeIndex",
-      "type": "number | string",
-      "description": "Controlled active tab index"
-    },
-    {
-      "name": "initialSelectedMode",
-      "type": "TabsInitialSelectedModeType",
-      "values": ["auto", "manually"],
-      "description": "Disable auto-selection of first tab with 'manually'"
-    },
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Accessible label for the tablist (aria-label)"
-    },
-    {
-      "name": "tabs",
-      "type": "DBSimpleTabProps[] | string",
-      "description": "Simple tabs with label + text content"
-    },
-    {
-      "name": "arrowScrollDistance",
-      "type": "number | string",
-      "description": "Scroll distance for arrow navigation"
-    },
-    {
-      "name": "scrollStartLabel",
-      "type": "string",
-      "description": "Accessible label for scroll start button (i18n)"
-    },
-    {
-      "name": "scrollEndLabel",
-      "type": "string",
-      "description": "Accessible label for scroll end button (i18n)"
-    }
-  ]
+	"component": "tabs",
+	"figmaProperties": [
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🔀 Orientation",
+			"type": "VARIANT",
+			"values": ["(Def) Horizontal", "Vertical"]
+		},
+		{
+			"name": "🔀 Tab Item Width",
+			"type": "VARIANT",
+			"values": ["(Def) Auto", "Full"]
+		},
+		{
+			"name": "🔀 Tab Item Alignment",
+			"type": "VARIANT",
+			"values": ["(Def) Start", "Center", "Right"]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "orientation",
+			"type": "OrientationType",
+			"values": ["horizontal", "vertical"],
+			"default": "horizontal",
+			"description": "Orientation of the tab bar"
+		},
+		{
+			"name": "tabItemWidth",
+			"type": "WidthType | string",
+			"values": ["auto", "full"],
+			"default": "auto",
+			"description": "Width behavior of tab items"
+		},
+		{
+			"name": "tabItemAlignment",
+			"type": "TabItemAlignmentType | string",
+			"values": ["start", "center", "end"],
+			"default": "start",
+			"description": "Alignment of tab items in full width mode"
+		},
+		{
+			"name": "behavior",
+			"type": "TabsBehaviorType",
+			"values": ["scrollbar", "arrows"],
+			"description": "Overflow navigation style for horizontal tabs"
+		},
+		{
+			"name": "initialSelectedIndex",
+			"type": "number | string",
+			"description": "Initially selected tab index"
+		},
+		{
+			"name": "activeIndex",
+			"type": "number | string",
+			"description": "Controlled active tab index"
+		},
+		{
+			"name": "initialSelectedMode",
+			"type": "TabsInitialSelectedModeType",
+			"values": ["auto", "manually"],
+			"description": "Disable auto-selection of first tab with 'manually'"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Accessible label for the tablist (aria-label)"
+		},
+		{
+			"name": "tabs",
+			"type": "DBSimpleTabProps[] | string",
+			"description": "Simple tabs with label + text content"
+		},
+		{
+			"name": "arrowScrollDistance",
+			"type": "number | string",
+			"description": "Scroll distance for arrow navigation"
+		},
+		{
+			"name": "scrollStartLabel",
+			"type": "string",
+			"description": "Accessible label for scroll start button (i18n)"
+		},
+		{
+			"name": "scrollEndLabel",
+			"type": "string",
+			"description": "Accessible label for scroll end button (i18n)"
+		}
+	]
 }

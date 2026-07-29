@@ -4,22 +4,12 @@
 		{
 			"name": "Value",
 			"type": "VARIANT",
-			"values": [
-				"Active",
-				"Inactive",
-				"Full",
-				"Successful",
-				"Critical"
-			]
+			"values": ["Active", "Inactive", "Full", "Successful", "Critical"]
 		},
 		{
 			"name": "🎨 Value",
 			"type": "VARIANT",
-			"values": [
-				"25%",
-				"50%",
-				"75%"
-			]
+			"values": ["25%", "50%", "75%"]
 		}
 	],
 	"codeConnectProperties": [],

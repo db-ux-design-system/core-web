@@ -4,18 +4,12 @@
 		{
 			"name": "Size",
 			"type": "VARIANT",
-			"values": [
-				"Medium",
-				"Small"
-			]
+			"values": ["Medium", "Small"]
 		},
 		{
 			"name": "Width",
 			"type": "VARIANT",
-			"values": [
-				"Auto",
-				"Full"
-			]
+			"values": ["Auto", "Full"]
 		}
 	],
 	"codeConnectProperties": [],

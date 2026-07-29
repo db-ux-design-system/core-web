@@ -1,171 +1,171 @@
 {
-  "component": "textarea",
-  "figmaProperties": [
-    {
-      "name": "👁️ Show Label",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Show Message",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "✏️ Label",
-      "type": "TEXT",
-      "defaultValue": "Label"
-    },
-    {
-      "name": "✏️ Placeholder",
-      "type": "TEXT",
-      "defaultValue": "Placeholder"
-    },
-    {
-      "name": "👁️ Show Required Asterisk",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Resizer",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Readonly",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Validation",
-      "type": "VARIANT",
-      "values": ["(Def) No Validation", "Invalid", "Valid"]
-    },
-    {
-      "name": "🔀 Field Sizing",
-      "type": "VARIANT",
-      "values": ["(Def) Fixed", "Content"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Resize",
-      "type": "VARIANT",
-      "values": ["both", "horizontal", "vertical", "none"],
-      "defaultValue": "both",
-      "mapsToCodeProp": "resize"
-    },
-    {
-      "name": "⚙️ Required",
-      "type": "VARIANT",
-      "values": ["false", "true"],
-      "defaultValue": "true",
-      "mapsToCodeProp": "required"
-    },
-    {
-      "name": "⚙️ Variant",
-      "type": "VARIANT",
-      "values": ["above", "floating"],
-      "defaultValue": "above",
-      "mapsToCodeProp": "variant",
-      "note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Label text for the textarea"
-    },
-    {
-      "name": "placeholder",
-      "type": "string",
-      "description": "Placeholder text"
-    },
-    {
-      "name": "value",
-      "type": "string",
-      "description": "Current value of the textarea"
-    },
-    {
-      "name": "variant",
-      "type": "FormVariantType",
-      "values": ["above", "floating"],
-      "default": "above",
-      "description": "Label position variant"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the textarea"
-    },
-    {
-      "name": "readOnly",
-      "type": "boolean | string",
-      "description": "Makes the textarea read-only"
-    },
-    {
-      "name": "required",
-      "type": "boolean | string",
-      "description": "Marks the field as required"
-    },
-    {
-      "name": "message",
-      "type": "string",
-      "description": "Helper/validation message text"
-    },
-    {
-      "name": "validMessage",
-      "type": "string",
-      "description": "Message shown on valid state"
-    },
-    {
-      "name": "invalidMessage",
-      "type": "string",
-      "description": "Message shown on invalid state"
-    },
-    {
-      "name": "resize",
-      "type": "TextareaResizeType",
-      "values": ["none", "both", "horizontal", "vertical"],
-      "description": "Controls the resize handle behavior"
-    },
-    {
-      "name": "showResizer",
-      "type": "boolean | string",
-      "default": true,
-      "description": "Show/hide the resize drag handle"
-    },
-    {
-      "name": "rows",
-      "type": "number | string",
-      "description": "Number of visible text lines"
-    },
-    {
-      "name": "cols",
-      "type": "number | string",
-      "description": "Visible width in average character widths"
-    },
-    {
-      "name": "wrap",
-      "type": "TextareaWrapType",
-      "values": ["hard", "soft", "off"],
-      "description": "How the control wraps text for form submission"
-    },
-    {
-      "name": "spellCheck",
-      "type": "boolean",
-      "description": "Enable/disable browser spell checking"
-    }
-  ]
+	"component": "textarea",
+	"figmaProperties": [
+		{
+			"name": "👁️ Show Label",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Show Message",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "✏️ Placeholder",
+			"type": "TEXT",
+			"defaultValue": "Placeholder"
+		},
+		{
+			"name": "👁️ Show Required Asterisk",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Resizer",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Readonly",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Validation",
+			"type": "VARIANT",
+			"values": ["(Def) No Validation", "Invalid", "Valid"]
+		},
+		{
+			"name": "🔀 Field Sizing",
+			"type": "VARIANT",
+			"values": ["(Def) Fixed", "Content"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Resize",
+			"type": "VARIANT",
+			"values": ["both", "horizontal", "vertical", "none"],
+			"defaultValue": "both",
+			"mapsToCodeProp": "resize"
+		},
+		{
+			"name": "⚙️ Required",
+			"type": "VARIANT",
+			"values": ["false", "true"],
+			"defaultValue": "true",
+			"mapsToCodeProp": "required"
+		},
+		{
+			"name": "⚙️ Variant",
+			"type": "VARIANT",
+			"values": ["above", "floating"],
+			"defaultValue": "above",
+			"mapsToCodeProp": "variant",
+			"note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label text for the textarea"
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"description": "Placeholder text"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Current value of the textarea"
+		},
+		{
+			"name": "variant",
+			"type": "FormVariantType",
+			"values": ["above", "floating"],
+			"default": "above",
+			"description": "Label position variant"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the textarea"
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean | string",
+			"description": "Makes the textarea read-only"
+		},
+		{
+			"name": "required",
+			"type": "boolean | string",
+			"description": "Marks the field as required"
+		},
+		{
+			"name": "message",
+			"type": "string",
+			"description": "Helper/validation message text"
+		},
+		{
+			"name": "validMessage",
+			"type": "string",
+			"description": "Message shown on valid state"
+		},
+		{
+			"name": "invalidMessage",
+			"type": "string",
+			"description": "Message shown on invalid state"
+		},
+		{
+			"name": "resize",
+			"type": "TextareaResizeType",
+			"values": ["none", "both", "horizontal", "vertical"],
+			"description": "Controls the resize handle behavior"
+		},
+		{
+			"name": "showResizer",
+			"type": "boolean | string",
+			"default": true,
+			"description": "Show/hide the resize drag handle"
+		},
+		{
+			"name": "rows",
+			"type": "number | string",
+			"description": "Number of visible text lines"
+		},
+		{
+			"name": "cols",
+			"type": "number | string",
+			"description": "Visible width in average character widths"
+		},
+		{
+			"name": "wrap",
+			"type": "TextareaWrapType",
+			"values": ["hard", "soft", "off"],
+			"description": "How the control wraps text for form submission"
+		},
+		{
+			"name": "spellCheck",
+			"type": "boolean",
+			"description": "Enable/disable browser spell checking"
+		}
+	]
 }

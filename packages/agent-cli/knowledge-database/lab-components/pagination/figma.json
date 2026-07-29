@@ -10,8 +10,5 @@
 			"type": "COMPONENT_SET"
 		}
 	],
-	"subComponents": [
-		"pagination-item",
-		"pagination-truncation-item"
-	]
+	"subComponents": ["pagination-item", "pagination-truncation-item"]
 }

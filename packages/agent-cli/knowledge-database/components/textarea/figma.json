@@ -1,38 +1,38 @@
 {
-  "component": "textarea",
-  "library": "core-components",
-  "pageId": "14457:44477",
-  "pageName": "Textarea",
-  "componentSets": [
-    {
-      "name": "Textarea → Label Above - (Def) Empty",
-      "nodeId": "3895:4642",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Textarea → Label Above - Active",
-      "nodeId": "3714:6941",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Textarea → Label Above - Filled",
-      "nodeId": "3714:7493",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Textarea → Floating Label - (Def) Empty",
-      "nodeId": "3714:8045",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Textarea → Floating Label - Active",
-      "nodeId": "3714:8597",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Textarea → Floating Label - Filled",
-      "nodeId": "3714:8838",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "textarea",
+	"library": "core-components",
+	"pageId": "14457:44477",
+	"pageName": "Textarea",
+	"componentSets": [
+		{
+			"name": "Textarea → Label Above - (Def) Empty",
+			"nodeId": "3895:4642",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Textarea → Label Above - Active",
+			"nodeId": "3714:6941",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Textarea → Label Above - Filled",
+			"nodeId": "3714:7493",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Textarea → Floating Label - (Def) Empty",
+			"nodeId": "3714:8045",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Textarea → Floating Label - Active",
+			"nodeId": "3714:8597",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Textarea → Floating Label - Filled",
+			"nodeId": "3714:8838",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

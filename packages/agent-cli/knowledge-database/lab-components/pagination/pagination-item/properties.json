@@ -9,20 +9,12 @@
 		{
 			"name": "🎨 Interaction States",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Enabled",
-				"Hovered",
-				"Pressed",
-				"Focused"
-			]
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"]
 		},
 		{
 			"name": "Active",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		}
 	],
 	"codeConnectProperties": [],

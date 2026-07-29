@@ -1,6 +1,6 @@
 {
-  "component": "table-head",
-  "library": "core-components",
-  "nodeIds": [],
-  "note": "No Figma component. Code-only wrapper for thead."
+	"component": "table-head",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No Figma component. Code-only wrapper for thead."
 }

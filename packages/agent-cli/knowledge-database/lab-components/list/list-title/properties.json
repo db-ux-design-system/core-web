@@ -14,11 +14,7 @@
 		{
 			"name": "Emphasis",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Regular",
-				"Weak",
-				"Strong"
-			]
+			"values": ["(Def) Regular", "Weak", "Strong"]
 		}
 	],
 	"codeConnectProperties": [],

@@ -41,13 +41,7 @@
 		{
 			"name": "🎨 Interaction States",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Enabled",
-				"Hovered",
-				"Pressed",
-				"Focused",
-				"None"
-			]
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
 		},
 		{
 			"name": "Disabled",

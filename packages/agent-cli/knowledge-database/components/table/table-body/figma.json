@@ -1,6 +1,6 @@
 {
-  "component": "table-body",
-  "library": "core-components",
-  "nodeIds": [],
-  "note": "No Figma component. Code-only wrapper for tbody."
+	"component": "table-body",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No Figma component. Code-only wrapper for tbody."
 }

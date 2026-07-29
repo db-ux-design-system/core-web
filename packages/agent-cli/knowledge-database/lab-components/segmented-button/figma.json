@@ -10,7 +10,5 @@
 			"type": "COMPONENT_SET"
 		}
 	],
-	"subComponents": [
-		"segmented-button-item"
-	]
+	"subComponents": ["segmented-button-item"]
 }

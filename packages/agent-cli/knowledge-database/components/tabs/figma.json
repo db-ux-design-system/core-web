@@ -1,90 +1,90 @@
 {
-  "component": "tabs",
-  "library": "core-components",
-  "pageId": "37398:3642",
-  "pageName": "Tabs (Beta)",
-  "componentSets": [
-    {
-      "name": "Tabs (Beta)",
-      "nodeId": "37398:5856",
-      "type": "COMPONENT_SET"
-    }
-  ],
-  "subComponents": [
-    {
-      "name": "tab-item",
-      "componentSets": [
-        {
-          "name": "↳ Tab Item - (Def) Horizontal - (Def) Auto Width (Beta)",
-          "nodeId": "37398:5952",
-          "type": "COMPONENT_SET"
-        },
-        {
-          "name": "↳ Tab Item - (Def) Horizontal - Full Width - (Def) Start (Beta)",
-          "nodeId": "37398:6095",
-          "type": "COMPONENT_SET"
-        },
-        {
-          "name": "↳ Tab Item - (Def) Horizontal - Full Width - Centered (Beta)",
-          "nodeId": "37398:6222",
-          "type": "COMPONENT_SET"
-        },
-        {
-          "name": "↳ Tab Item - (Def) Horizontal - Full Width - End (Beta)",
-          "nodeId": "37398:6349",
-          "type": "COMPONENT_SET"
-        },
-        {
-          "name": "↳ Tab Item - Vertical - Full Width - Left (Beta)",
-          "nodeId": "37398:6476",
-          "type": "COMPONENT_SET"
-        }
-      ]
-    },
-    {
-      "name": "tab-list",
-      "componentSets": [
-        {
-          "name": "↳ Tab List - (Def) Horizontal - (Def) AutoWidth (Beta)",
-          "nodeId": "37398:6674",
-          "type": "COMPONENT_SET"
-        },
-        {
-          "name": "↳ Tab List - (Def) Horizontal - Full Width - (Def) Start (Beta)",
-          "nodeId": "37398:6627",
-          "type": "COMPONENT"
-        },
-        {
-          "name": "↳ Tab List - (Def) Horizontal - Full Width - Center (Beta)",
-          "nodeId": "37398:6638",
-          "type": "COMPONENT"
-        },
-        {
-          "name": "↳ Tab List - (Def) Horizontal - Full Width - End (Beta)",
-          "nodeId": "37398:6649",
-          "type": "COMPONENT"
-        },
-        {
-          "name": "↳ Tab List - Vertical (Beta)",
-          "nodeId": "37398:6660",
-          "type": "COMPONENT"
-        }
-      ]
-    },
-    {
-      "name": "tab-panel",
-      "componentSets": [
-        {
-          "name": "↳ Tab Panel - Horizontal (Beta)",
-          "nodeId": "37398:6621",
-          "type": "COMPONENT"
-        },
-        {
-          "name": "↳ Tab Panel - Vertical (Beta)",
-          "nodeId": "37398:6624",
-          "type": "COMPONENT"
-        }
-      ]
-    }
-  ]
+	"component": "tabs",
+	"library": "core-components",
+	"pageId": "37398:3642",
+	"pageName": "Tabs (Beta)",
+	"componentSets": [
+		{
+			"name": "Tabs (Beta)",
+			"nodeId": "37398:5856",
+			"type": "COMPONENT_SET"
+		}
+	],
+	"subComponents": [
+		{
+			"name": "tab-item",
+			"componentSets": [
+				{
+					"name": "↳ Tab Item - (Def) Horizontal - (Def) Auto Width (Beta)",
+					"nodeId": "37398:5952",
+					"type": "COMPONENT_SET"
+				},
+				{
+					"name": "↳ Tab Item - (Def) Horizontal - Full Width - (Def) Start (Beta)",
+					"nodeId": "37398:6095",
+					"type": "COMPONENT_SET"
+				},
+				{
+					"name": "↳ Tab Item - (Def) Horizontal - Full Width - Centered (Beta)",
+					"nodeId": "37398:6222",
+					"type": "COMPONENT_SET"
+				},
+				{
+					"name": "↳ Tab Item - (Def) Horizontal - Full Width - End (Beta)",
+					"nodeId": "37398:6349",
+					"type": "COMPONENT_SET"
+				},
+				{
+					"name": "↳ Tab Item - Vertical - Full Width - Left (Beta)",
+					"nodeId": "37398:6476",
+					"type": "COMPONENT_SET"
+				}
+			]
+		},
+		{
+			"name": "tab-list",
+			"componentSets": [
+				{
+					"name": "↳ Tab List - (Def) Horizontal - (Def) AutoWidth (Beta)",
+					"nodeId": "37398:6674",
+					"type": "COMPONENT_SET"
+				},
+				{
+					"name": "↳ Tab List - (Def) Horizontal - Full Width - (Def) Start (Beta)",
+					"nodeId": "37398:6627",
+					"type": "COMPONENT"
+				},
+				{
+					"name": "↳ Tab List - (Def) Horizontal - Full Width - Center (Beta)",
+					"nodeId": "37398:6638",
+					"type": "COMPONENT"
+				},
+				{
+					"name": "↳ Tab List - (Def) Horizontal - Full Width - End (Beta)",
+					"nodeId": "37398:6649",
+					"type": "COMPONENT"
+				},
+				{
+					"name": "↳ Tab List - Vertical (Beta)",
+					"nodeId": "37398:6660",
+					"type": "COMPONENT"
+				}
+			]
+		},
+		{
+			"name": "tab-panel",
+			"componentSets": [
+				{
+					"name": "↳ Tab Panel - Horizontal (Beta)",
+					"nodeId": "37398:6621",
+					"type": "COMPONENT"
+				},
+				{
+					"name": "↳ Tab Panel - Vertical (Beta)",
+					"nodeId": "37398:6624",
+					"type": "COMPONENT"
+				}
+			]
+		}
+	]
 }

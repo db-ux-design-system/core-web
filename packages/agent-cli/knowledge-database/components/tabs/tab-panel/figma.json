@@ -1,18 +1,18 @@
 {
-  "component": "tab-panel",
-  "library": "core-components",
-  "pageId": "37398:3642",
-  "pageName": "Tabs (Beta)",
-  "componentSets": [
-    {
-      "name": "↳ Tab Panel - Horizontal (Beta)",
-      "nodeId": "37398:6621",
-      "type": "COMPONENT"
-    },
-    {
-      "name": "↳ Tab Panel - Vertical (Beta)",
-      "nodeId": "37398:6624",
-      "type": "COMPONENT"
-    }
-  ]
+	"component": "tab-panel",
+	"library": "core-components",
+	"pageId": "37398:3642",
+	"pageName": "Tabs (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ Tab Panel - Horizontal (Beta)",
+			"nodeId": "37398:6621",
+			"type": "COMPONENT"
+		},
+		{
+			"name": "↳ Tab Panel - Vertical (Beta)",
+			"nodeId": "37398:6624",
+			"type": "COMPONENT"
+		}
+	]
 }

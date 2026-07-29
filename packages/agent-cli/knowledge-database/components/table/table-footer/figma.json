@@ -1,6 +1,6 @@
 {
-  "component": "table-footer",
-  "library": "core-components",
-  "nodeIds": [],
-  "note": "No Figma component. Code-only wrapper for tfoot."
+	"component": "table-footer",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No Figma component. Code-only wrapper for tfoot."
 }

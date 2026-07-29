@@ -19,7 +19,12 @@
 		{
 			"name": "State",
 			"type": "VARIANT",
-			"values": ["(Def) Active", "(Def) Inactive", "Successful", "Critical"]
+			"values": [
+				"(Def) Active",
+				"(Def) Inactive",
+				"Successful",
+				"Critical"
+			]
 		},
 		{
 			"name": "Size",

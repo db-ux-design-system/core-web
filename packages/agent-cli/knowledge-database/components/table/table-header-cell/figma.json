@@ -1,6 +1,6 @@
 {
-  "component": "table-header-cell",
-  "library": "core-components",
-  "nodeIds": [],
-  "note": "No Figma component. Code-only wrapper for th."
+	"component": "table-header-cell",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No Figma component. Code-only wrapper for th."
 }

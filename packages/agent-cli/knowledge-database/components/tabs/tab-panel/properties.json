@@ -1,22 +1,22 @@
 {
-  "component": "tab-panel",
-  "figmaProperties": [
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    }
-  ],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "content",
-      "type": "string",
-      "description": "Content text if not using children"
-    },
-    {
-      "name": "hidden",
-      "type": "boolean",
-      "description": "Whether the panel is hidden"
-    }
-  ]
+	"component": "tab-panel",
+	"figmaProperties": [
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "content",
+			"type": "string",
+			"description": "Content text if not using children"
+		},
+		{
+			"name": "hidden",
+			"type": "boolean",
+			"description": "Whether the panel is hidden"
+		}
+	]
 }

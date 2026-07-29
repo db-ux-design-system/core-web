@@ -25,8 +25,5 @@
 			"type": "COMPONENT_SET"
 		}
 	],
-	"subComponents": [
-		"loading-indicator-circle",
-		"loading-indicator-bar"
-	]
+	"subComponents": ["loading-indicator-circle", "loading-indicator-bar"]
 }

@@ -4,11 +4,11 @@ Das adaptive Farbsystem stellt kontextabhängige Farben bereit, die sich basiere
 
 ## Collections-Überblick
 
-| Collection | Zweck | Aktivierung |
-|------------|-------|-------------|
-| **Color** (adaptiv) | Farben passen sich dem Eltern-Variant-Kontext an | Automatisch via `data-variant` auf Vorfahr |
-| **Mode** (absolut) | Feste Variant-Farbe, kontextunabhängig | Direkte Variablen-Bindung |
-| **Theme** (Primitive) | Interne Roh-Palettenwerte | NICHT im Design-Kontext verwenden |
+| Collection            | Zweck                                            | Aktivierung                                |
+| --------------------- | ------------------------------------------------ | ------------------------------------------ |
+| **Color** (adaptiv)   | Farben passen sich dem Eltern-Variant-Kontext an | Automatisch via `data-variant` auf Vorfahr |
+| **Mode** (absolut)    | Feste Variant-Farbe, kontextunabhängig           | Direkte Variablen-Bindung                  |
+| **Theme** (Primitive) | Interne Roh-Palettenwerte                        | NICHT im Design-Kontext verwenden          |
 
 ## Funktionsweise
 
@@ -33,7 +33,7 @@ Wenn `db-brand/origin/default` angewendet wird, ist es **immer** die Brand-Farbe
 
 ```html
 <div data-variant="brand">
-  <!-- Alle adaptiven Farben lösen zur Brand-Variante auf -->
+	<!-- Alle adaptiven Farben lösen zur Brand-Variante auf -->
 </div>
 ```
 
@@ -43,7 +43,7 @@ Für Farbschema (hell/dunkel):
 
 ```html
 <div data-color-scheme="dark">
-  <!-- Dunkle Farben -->
+	<!-- Dunkle Farben -->
 </div>
 ```
 

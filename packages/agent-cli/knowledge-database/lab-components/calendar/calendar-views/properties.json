@@ -4,11 +4,7 @@
 		{
 			"name": "Variant",
 			"type": "VARIANT",
-			"values": [
-				"Default",
-				"Calender Months",
-				"Calender Years"
-			]
+			"values": ["Default", "Calender Months", "Calender Years"]
 		}
 	],
 	"codeConnectProperties": [],

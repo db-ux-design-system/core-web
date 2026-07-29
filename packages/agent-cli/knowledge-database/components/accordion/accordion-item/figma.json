@@ -1,18 +1,18 @@
 {
-  "component": "accordion-item",
-  "library": "core-components",
-  "pageId": "14436:15051",
-  "pageName": "Accordion (Beta)",
-  "componentSets": [
-    {
-      "name": "↳ ACCORDION ITEM → (Def) Divider (Beta)",
-      "nodeId": "14442:15841",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "↳ ACCORDION ITEM → Card (Beta)",
-      "nodeId": "14442:15919",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "accordion-item",
+	"library": "core-components",
+	"pageId": "14436:15051",
+	"pageName": "Accordion (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ ACCORDION ITEM → (Def) Divider (Beta)",
+			"nodeId": "14442:15841",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "↳ ACCORDION ITEM → Card (Beta)",
+			"nodeId": "14442:15919",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

@@ -1,60 +1,60 @@
 {
-  "component": "custom-select-dropdown",
-  "figmaProperties": [
-    {
-      "name": "👁️ Show Search",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Show SelectAll",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Show Scrollbar",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "📦 Children Multiple",
-      "type": "SLOT"
-    },
-    {
-      "name": "📦 Children Single",
-      "type": "SLOT"
-    },
-    {
-      "name": "🔀 Multiple",
-      "type": "VARIANT",
-      "values": ["True", "False", "True | False"]
-    },
-    {
-      "name": "🔀 Show Loading",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Show No Results",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Dropdown Width",
-      "type": "VARIANT",
-      "values": ["full", "auto", "fixed"],
-      "defaultValue": "auto",
-      "mapsToCodeProp": "width"
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "width",
-      "type": "CustomSelectDropdownWidthType | string",
-      "values": ["fixed", "auto", "full"],
-      "description": "Width behavior of the dropdown"
-    }
-  ]
+	"component": "custom-select-dropdown",
+	"figmaProperties": [
+		{
+			"name": "👁️ Show Search",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Show SelectAll",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Show Scrollbar",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "📦 Children Multiple",
+			"type": "SLOT"
+		},
+		{
+			"name": "📦 Children Single",
+			"type": "SLOT"
+		},
+		{
+			"name": "🔀 Multiple",
+			"type": "VARIANT",
+			"values": ["True", "False", "True | False"]
+		},
+		{
+			"name": "🔀 Show Loading",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Show No Results",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Dropdown Width",
+			"type": "VARIANT",
+			"values": ["full", "auto", "fixed"],
+			"defaultValue": "auto",
+			"mapsToCodeProp": "width"
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "width",
+			"type": "CustomSelectDropdownWidthType | string",
+			"values": ["fixed", "auto", "full"],
+			"description": "Width behavior of the dropdown"
+		}
+	]
 }

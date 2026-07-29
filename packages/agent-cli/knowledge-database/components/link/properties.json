@@ -1,110 +1,110 @@
 {
-  "component": "link",
-  "figmaProperties": [
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Text"
-    },
-    {
-      "name": "👁️ Show Icon",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Size",
-      "type": "VARIANT",
-      "values": ["(Def) Medium", "Small"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Content",
-      "type": "VARIANT",
-      "values": ["Internal", "External"],
-      "defaultValue": "Internal",
-      "mapsToCodeProp": "content",
-      "note": "In Figma, content type is expressed via separate Component Sets (Internal vs External). Code Connect maps to the content prop."
-    },
-    {
-      "name": "⚙️ Variant",
-      "type": "VARIANT",
-      "values": ["outlined", "filled", "ghost", "brand", "adaptive"],
-      "defaultValue": "adaptive",
-      "mapsToCodeProp": "variant",
-      "note": "In Figma, brand variant is a separate Component Set (Link → Internal - Brand, Link → External - Brand). Code Connect maps to variant prop."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "content",
-      "type": "LinkContentType",
-      "values": ["external", "internal"],
-      "default": "internal",
-      "description": "Adds arrow icon indicating external or internal link"
-    },
-    {
-      "name": "variant",
-      "type": "LinkVariantType",
-      "values": ["adaptive", "brand", "inline"],
-      "default": "adaptive",
-      "description": "Styling variant. 'inline' removes the arrow."
-    },
-    {
-      "name": "size",
-      "type": "LinkSizeType",
-      "values": ["medium", "small"],
-      "default": "medium"
-    },
-    {
-      "name": "text",
-      "type": "string",
-      "description": "Link text content"
-    },
-    {
-      "name": "href",
-      "type": "string",
-      "description": "URL the link points to"
-    },
-    {
-      "name": "target",
-      "type": "string",
-      "description": "Where to display the linked URL (_blank, _self, etc.)"
-    },
-    {
-      "name": "rel",
-      "type": "string",
-      "description": "Relationship of linked URL"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Visually disables the link"
-    },
-    {
-      "name": "showIcon",
-      "type": "boolean",
-      "default": true,
-      "description": "Show/hide the trailing arrow icon"
-    }
-  ]
+	"component": "link",
+	"figmaProperties": [
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		},
+		{
+			"name": "👁️ Show Icon",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Content",
+			"type": "VARIANT",
+			"values": ["Internal", "External"],
+			"defaultValue": "Internal",
+			"mapsToCodeProp": "content",
+			"note": "In Figma, content type is expressed via separate Component Sets (Internal vs External). Code Connect maps to the content prop."
+		},
+		{
+			"name": "⚙️ Variant",
+			"type": "VARIANT",
+			"values": ["outlined", "filled", "ghost", "brand", "adaptive"],
+			"defaultValue": "adaptive",
+			"mapsToCodeProp": "variant",
+			"note": "In Figma, brand variant is a separate Component Set (Link → Internal - Brand, Link → External - Brand). Code Connect maps to variant prop."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "content",
+			"type": "LinkContentType",
+			"values": ["external", "internal"],
+			"default": "internal",
+			"description": "Adds arrow icon indicating external or internal link"
+		},
+		{
+			"name": "variant",
+			"type": "LinkVariantType",
+			"values": ["adaptive", "brand", "inline"],
+			"default": "adaptive",
+			"description": "Styling variant. 'inline' removes the arrow."
+		},
+		{
+			"name": "size",
+			"type": "LinkSizeType",
+			"values": ["medium", "small"],
+			"default": "medium"
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Link text content"
+		},
+		{
+			"name": "href",
+			"type": "string",
+			"description": "URL the link points to"
+		},
+		{
+			"name": "target",
+			"type": "string",
+			"description": "Where to display the linked URL (_blank, _self, etc.)"
+		},
+		{
+			"name": "rel",
+			"type": "string",
+			"description": "Relationship of linked URL"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Visually disables the link"
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"default": true,
+			"description": "Show/hide the trailing arrow icon"
+		}
+	]
 }

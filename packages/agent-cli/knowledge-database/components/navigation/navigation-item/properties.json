@@ -1,102 +1,102 @@
 {
-  "component": "navigation-item",
-  "figmaProperties": [
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Navi Item"
-    },
-    {
-      "name": "👁️ Show Icon",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔄 Icon",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "👁️ Show Indicator",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Expanded",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Interaction States",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Active",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Width",
-      "type": "VARIANT",
-      "values": ["auto", "full"],
-      "defaultValue": "auto",
-      "mapsToCodeProp": "width",
-      "note": "In Figma, width is expressed via separate Component Sets (Auto Width vs Full Width). Code Connect maps to width prop."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "text",
-      "type": "string",
-      "description": "Navigation item label text"
-    },
-    {
-      "name": "active",
-      "type": "boolean",
-      "description": "Marks the item as active (bold font)"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the navigation item"
-    },
-    {
-      "name": "icon",
-      "type": "string",
-      "description": "Leading icon name"
-    },
-    {
-      "name": "showIcon",
-      "type": "boolean",
-      "description": "Show/hide the leading icon"
-    },
-    {
-      "name": "width",
-      "type": "WidthType",
-      "values": ["auto", "full"],
-      "default": "auto"
-    },
-    {
-      "name": "subNavigation",
-      "type": "any",
-      "description": "Slot for sub-navigation content"
-    },
-    {
-      "name": "subNavigationExpanded",
-      "type": "boolean | string",
-      "description": "Mobile only: makes sub-navigation a static overlay"
-    },
-    {
-      "name": "backButtonLabel",
-      "type": "string",
-      "description": "Accessible label for the back button in sub-navigation"
-    }
-  ]
+	"component": "navigation-item",
+	"figmaProperties": [
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Navi Item"
+		},
+		{
+			"name": "👁️ Show Icon",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Icon",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "👁️ Show Indicator",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Expanded",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Interaction States",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Active",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Width",
+			"type": "VARIANT",
+			"values": ["auto", "full"],
+			"defaultValue": "auto",
+			"mapsToCodeProp": "width",
+			"note": "In Figma, width is expressed via separate Component Sets (Auto Width vs Full Width). Code Connect maps to width prop."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Navigation item label text"
+		},
+		{
+			"name": "active",
+			"type": "boolean",
+			"description": "Marks the item as active (bold font)"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the navigation item"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Leading icon name"
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"description": "Show/hide the leading icon"
+		},
+		{
+			"name": "width",
+			"type": "WidthType",
+			"values": ["auto", "full"],
+			"default": "auto"
+		},
+		{
+			"name": "subNavigation",
+			"type": "any",
+			"description": "Slot for sub-navigation content"
+		},
+		{
+			"name": "subNavigationExpanded",
+			"type": "boolean | string",
+			"description": "Mobile only: makes sub-navigation a static overlay"
+		},
+		{
+			"name": "backButtonLabel",
+			"type": "string",
+			"description": "Accessible label for the back button in sub-navigation"
+		}
+	]
 }

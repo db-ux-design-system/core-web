@@ -1,48 +1,48 @@
 {
-  "component": "button",
-  "library": "core-components",
-  "pageId": "0:1",
-  "pageName": "Button",
-  "componentSets": [
-    {
-      "name": "Button → (Def) Outlined",
-      "nodeId": "14436:13065",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Button → Filled",
-      "nodeId": "14436:13355",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Button → Ghost",
-      "nodeId": "14436:13645",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Button → Brand",
-      "nodeId": "14436:13935",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Button → (Def) Outlined",
-      "nodeId": "14436:13210",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Button → Filled",
-      "nodeId": "14436:13500",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Button → Ghost",
-      "nodeId": "14436:13790",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Button → Brand",
-      "nodeId": "14436:14080",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "button",
+	"library": "core-components",
+	"pageId": "0:1",
+	"pageName": "Button",
+	"componentSets": [
+		{
+			"name": "Button → (Def) Outlined",
+			"nodeId": "14436:13065",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Button → Filled",
+			"nodeId": "14436:13355",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Button → Ghost",
+			"nodeId": "14436:13645",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Button → Brand",
+			"nodeId": "14436:13935",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Button → (Def) Outlined",
+			"nodeId": "14436:13210",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Button → Filled",
+			"nodeId": "14436:13500",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Button → Ghost",
+			"nodeId": "14436:13790",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Button → Brand",
+			"nodeId": "14436:14080",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

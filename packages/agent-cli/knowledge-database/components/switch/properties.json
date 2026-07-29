@@ -1,162 +1,162 @@
 {
-  "component": "switch",
-  "figmaProperties": [
-    {
-      "name": "👁️ Show Label",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "✏️ Label",
-      "type": "TEXT",
-      "defaultValue": "Label"
-    },
-    {
-      "name": "👁️ Visual Aid",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔄 Icon Trailing",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "🔄 Icon Leading",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "👁️ Show Required Asterisk",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Message",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Checked",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Validation",
-      "type": "VARIANT",
-      "values": ["(Def) No Validation", "Invalid", "Valid"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Required",
-      "type": "VARIANT",
-      "values": ["false", "true"],
-      "defaultValue": "true",
-      "mapsToCodeProp": "required"
-    },
-    {
-      "name": "⚙️ Size",
-      "type": "VARIANT",
-      "values": ["small", "medium"],
-      "defaultValue": "medium",
-      "mapsToCodeProp": "size",
-      "note": "In Figma, size is expressed via separate Component Sets (Medium vs Small). Code Connect maps to size prop."
-    },
-    {
-      "name": "⚙️ Variant",
-      "type": "VARIANT",
-      "values": ["leading", "trailing"],
-      "defaultValue": "leading",
-      "mapsToCodeProp": "variant",
-      "note": "In Figma, label position is expressed via separate Component Sets (Trailing vs Leading). Code Connect maps to variant prop."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Label text for the switch"
-    },
-    {
-      "name": "name",
-      "type": "string",
-      "description": "Name attribute for form submission"
-    },
-    {
-      "name": "value",
-      "type": "string",
-      "description": "Value attribute"
-    },
-    {
-      "name": "checked",
-      "type": "boolean | string",
-      "description": "Whether the switch is on"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the switch"
-    },
-    {
-      "name": "required",
-      "type": "boolean | string",
-      "description": "Marks the field as required"
-    },
-    {
-      "name": "size",
-      "type": "SizeType",
-      "values": ["small", "medium"],
-      "default": "medium"
-    },
-    {
-      "name": "variant",
-      "type": "LabelVariantHorizontalType",
-      "values": ["trailing", "leading"],
-      "default": "trailing",
-      "description": "Position of the label relative to the switch"
-    },
-    {
-      "name": "visualAid",
-      "type": "boolean | string",
-      "description": "Show additional icons to indicate active/inactive state"
-    },
-    {
-      "name": "icon",
-      "type": "string",
-      "description": "Icon name"
-    },
-    {
-      "name": "iconLeading",
-      "type": "string",
-      "description": "Icon for active (on) state"
-    },
-    {
-      "name": "iconTrailing",
-      "type": "string",
-      "description": "Icon for inactive (off) state"
-    },
-    {
-      "name": "message",
-      "type": "string",
-      "description": "Helper/validation message text"
-    }
-  ]
+	"component": "switch",
+	"figmaProperties": [
+		{
+			"name": "👁️ Show Label",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "👁️ Visual Aid",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Icon Trailing",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Icon Leading",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "👁️ Show Required Asterisk",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Message",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Checked",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Validation",
+			"type": "VARIANT",
+			"values": ["(Def) No Validation", "Invalid", "Valid"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Required",
+			"type": "VARIANT",
+			"values": ["false", "true"],
+			"defaultValue": "true",
+			"mapsToCodeProp": "required"
+		},
+		{
+			"name": "⚙️ Size",
+			"type": "VARIANT",
+			"values": ["small", "medium"],
+			"defaultValue": "medium",
+			"mapsToCodeProp": "size",
+			"note": "In Figma, size is expressed via separate Component Sets (Medium vs Small). Code Connect maps to size prop."
+		},
+		{
+			"name": "⚙️ Variant",
+			"type": "VARIANT",
+			"values": ["leading", "trailing"],
+			"defaultValue": "leading",
+			"mapsToCodeProp": "variant",
+			"note": "In Figma, label position is expressed via separate Component Sets (Trailing vs Leading). Code Connect maps to variant prop."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label text for the switch"
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"description": "Name attribute for form submission"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Value attribute"
+		},
+		{
+			"name": "checked",
+			"type": "boolean | string",
+			"description": "Whether the switch is on"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the switch"
+		},
+		{
+			"name": "required",
+			"type": "boolean | string",
+			"description": "Marks the field as required"
+		},
+		{
+			"name": "size",
+			"type": "SizeType",
+			"values": ["small", "medium"],
+			"default": "medium"
+		},
+		{
+			"name": "variant",
+			"type": "LabelVariantHorizontalType",
+			"values": ["trailing", "leading"],
+			"default": "trailing",
+			"description": "Position of the label relative to the switch"
+		},
+		{
+			"name": "visualAid",
+			"type": "boolean | string",
+			"description": "Show additional icons to indicate active/inactive state"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Icon name"
+		},
+		{
+			"name": "iconLeading",
+			"type": "string",
+			"description": "Icon for active (on) state"
+		},
+		{
+			"name": "iconTrailing",
+			"type": "string",
+			"description": "Icon for inactive (off) state"
+		},
+		{
+			"name": "message",
+			"type": "string",
+			"description": "Helper/validation message text"
+		}
+	]
 }

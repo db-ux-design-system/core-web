@@ -1,38 +1,38 @@
 {
-  "component": "notification",
-  "library": "core-components",
-  "pageId": "14457:44781",
-  "pageName": "Notification",
-  "componentSets": [
-    {
-      "name": "Notification → (Def) Docked - (Def) Icon",
-      "nodeId": "2:3566",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Notification → (Def) Docked - Image",
-      "nodeId": "35453:15630",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Notification → Standalone - (Def) Icon",
-      "nodeId": "2:3812",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Notification → Standalone - Image",
-      "nodeId": "35454:16447",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Notification → Overlay - (Def) Icon",
-      "nodeId": "2:2727",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Notification → Overlay - Image",
-      "nodeId": "35454:17920",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "notification",
+	"library": "core-components",
+	"pageId": "14457:44781",
+	"pageName": "Notification",
+	"componentSets": [
+		{
+			"name": "Notification → (Def) Docked - (Def) Icon",
+			"nodeId": "2:3566",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Notification → (Def) Docked - Image",
+			"nodeId": "35453:15630",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Notification → Standalone - (Def) Icon",
+			"nodeId": "2:3812",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Notification → Standalone - Image",
+			"nodeId": "35454:16447",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Notification → Overlay - (Def) Icon",
+			"nodeId": "2:2727",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Notification → Overlay - Image",
+			"nodeId": "35454:17920",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

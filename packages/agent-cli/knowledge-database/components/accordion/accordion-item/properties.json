@@ -1,72 +1,72 @@
 {
-  "component": "accordion-item",
-  "figmaProperties": [
-    {
-      "name": "✏️ Headline",
-      "type": "TEXT",
-      "defaultValue": "Headline"
-    },
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Lorem Ipsum"
-    },
-    {
-      "name": "👁️ Show Text Content",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Open",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Focused", "Hovered", "None", "Pressed"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    }
-  ],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "headlinePlain",
-      "type": "string",
-      "description": "Title of the accordion-item as plain text"
-    },
-    {
-      "name": "headline",
-      "type": "any",
-      "description": "Title of the accordion-item as slot"
-    },
-    {
-      "name": "open",
-      "type": "boolean | string",
-      "description": "State for the accordion item"
-    },
-    {
-      "name": "defaultOpen",
-      "type": "boolean",
-      "description": "Initial state for the accordion item"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Keeps a user from clicking on the element"
-    }
-  ]
+	"component": "accordion-item",
+	"figmaProperties": [
+		{
+			"name": "✏️ Headline",
+			"type": "TEXT",
+			"defaultValue": "Headline"
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Lorem Ipsum"
+		},
+		{
+			"name": "👁️ Show Text Content",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Open",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Focused", "Hovered", "None", "Pressed"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "headlinePlain",
+			"type": "string",
+			"description": "Title of the accordion-item as plain text"
+		},
+		{
+			"name": "headline",
+			"type": "any",
+			"description": "Title of the accordion-item as slot"
+		},
+		{
+			"name": "open",
+			"type": "boolean | string",
+			"description": "State for the accordion item"
+		},
+		{
+			"name": "defaultOpen",
+			"type": "boolean",
+			"description": "Initial state for the accordion item"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Keeps a user from clicking on the element"
+		}
+	]
 }

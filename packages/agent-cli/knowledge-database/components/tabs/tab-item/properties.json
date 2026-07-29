@@ -1,109 +1,109 @@
 {
-  "component": "tab-item",
-  "figmaProperties": [
-    {
-      "name": "✏️ Label",
-      "type": "TEXT",
-      "defaultValue": "Label"
-    },
-    {
-      "name": "🔄 Icon Leading",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "👁️ Show Icon Leading",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Icon Trailing",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔄 Icon Trailing",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "📦 End Slot",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show End Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Interaction States",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Active",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    }
-  ],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Tab item label text"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the tab item"
-    },
-    {
-      "name": "active",
-      "type": "boolean",
-      "description": "Whether the tab is currently active"
-    },
-    {
-      "name": "icon",
-      "type": "string",
-      "description": "Icon name"
-    },
-    {
-      "name": "iconLeading",
-      "type": "string",
-      "description": "Leading icon name"
-    },
-    {
-      "name": "iconTrailing",
-      "type": "string",
-      "description": "Trailing icon name"
-    },
-    {
-      "name": "showIconLeading",
-      "type": "boolean"
-    },
-    {
-      "name": "showIconTrailing",
-      "type": "boolean"
-    },
-    {
-      "name": "width",
-      "type": "WidthType",
-      "values": ["auto", "full"],
-      "default": "auto"
-    },
-    {
-      "name": "endSlot",
-      "type": "any",
-      "description": "Slot for content at the end (e.g. badge)"
-    },
-    {
-      "name": "value",
-      "type": "string",
-      "description": "Semantic value for form binding"
-    }
-  ]
+	"component": "tab-item",
+	"figmaProperties": [
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "🔄 Icon Leading",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "👁️ Show Icon Leading",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Icon Trailing",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Icon Trailing",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "📦 End Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show End Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Interaction States",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Active",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Tab item label text"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the tab item"
+		},
+		{
+			"name": "active",
+			"type": "boolean",
+			"description": "Whether the tab is currently active"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Icon name"
+		},
+		{
+			"name": "iconLeading",
+			"type": "string",
+			"description": "Leading icon name"
+		},
+		{
+			"name": "iconTrailing",
+			"type": "string",
+			"description": "Trailing icon name"
+		},
+		{
+			"name": "showIconLeading",
+			"type": "boolean"
+		},
+		{
+			"name": "showIconTrailing",
+			"type": "boolean"
+		},
+		{
+			"name": "width",
+			"type": "WidthType",
+			"values": ["auto", "full"],
+			"default": "auto"
+		},
+		{
+			"name": "endSlot",
+			"type": "any",
+			"description": "Slot for content at the end (e.g. badge)"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Semantic value for form binding"
+		}
+	]
 }

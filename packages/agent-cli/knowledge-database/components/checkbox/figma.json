@@ -1,28 +1,28 @@
 {
-  "component": "checkbox",
-  "library": "core-components",
-  "pageId": "14457:44473",
-  "pageName": "Checkbox",
-  "componentSets": [
-    {
-      "name": "Checkbox → (Def) Medium - (Def) Auto Width",
-      "nodeId": "2068:3423",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Checkbox → (Def) Medium - Full Width",
-      "nodeId": "10707:19709",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Checkbox → Small - (Def) Auto Width",
-      "nodeId": "2068:3548",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Checkbox → Small - Full Width",
-      "nodeId": "10707:19958",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "checkbox",
+	"library": "core-components",
+	"pageId": "14457:44473",
+	"pageName": "Checkbox",
+	"componentSets": [
+		{
+			"name": "Checkbox → (Def) Medium - (Def) Auto Width",
+			"nodeId": "2068:3423",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Checkbox → (Def) Medium - Full Width",
+			"nodeId": "10707:19709",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Checkbox → Small - (Def) Auto Width",
+			"nodeId": "2068:3548",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Checkbox → Small - Full Width",
+			"nodeId": "10707:19958",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

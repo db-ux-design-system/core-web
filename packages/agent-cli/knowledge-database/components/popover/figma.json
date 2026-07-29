@@ -1,13 +1,13 @@
 {
-  "component": "popover",
-  "library": "core-components",
-  "pageId": "1:18965",
-  "pageName": "Popover (Beta)",
-  "componentSets": [
-    {
-      "name": "Popover",
-      "nodeId": "32604:5594",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "popover",
+	"library": "core-components",
+	"pageId": "1:18965",
+	"pageName": "Popover (Beta)",
+	"componentSets": [
+		{
+			"name": "Popover",
+			"nodeId": "32604:5594",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

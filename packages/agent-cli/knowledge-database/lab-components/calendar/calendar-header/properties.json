@@ -4,10 +4,7 @@
 		{
 			"name": "Variant",
 			"type": "VARIANT",
-			"values": [
-				"Default",
-				"Calender -> Weekdays"
-			]
+			"values": ["Default", "Calender -> Weekdays"]
 		}
 	],
 	"codeConnectProperties": [],

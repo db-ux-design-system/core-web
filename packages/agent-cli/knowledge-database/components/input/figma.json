@@ -1,38 +1,38 @@
 {
-  "component": "input",
-  "library": "core-components",
-  "pageId": "14457:44475",
-  "pageName": "Input",
-  "componentSets": [
-    {
-      "name": "Input → (Def) Label Above - (Def) Empty",
-      "nodeId": "2:4310",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Input → (Def) Label Above - Active",
-      "nodeId": "2:16649",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Input → (Def) Label Above - Filled",
-      "nodeId": "2:18530",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Input → Floating Label - (Def) Empty",
-      "nodeId": "2:8795",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Input → Floating Label - Active",
-      "nodeId": "3:22117",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Input → Floating Label - Filled",
-      "nodeId": "3:20411",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "input",
+	"library": "core-components",
+	"pageId": "14457:44475",
+	"pageName": "Input",
+	"componentSets": [
+		{
+			"name": "Input → (Def) Label Above - (Def) Empty",
+			"nodeId": "2:4310",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Input → (Def) Label Above - Active",
+			"nodeId": "2:16649",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Input → (Def) Label Above - Filled",
+			"nodeId": "2:18530",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Input → Floating Label - (Def) Empty",
+			"nodeId": "2:8795",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Input → Floating Label - Active",
+			"nodeId": "3:22117",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Input → Floating Label - Filled",
+			"nodeId": "3:20411",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

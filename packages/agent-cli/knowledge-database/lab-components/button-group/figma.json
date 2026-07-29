@@ -10,7 +10,5 @@
 			"type": "COMPONENT_SET"
 		}
 	],
-	"subComponents": [
-		"button-group-item"
-	]
+	"subComponents": ["button-group-item"]
 }

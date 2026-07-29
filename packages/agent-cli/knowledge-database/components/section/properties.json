@@ -1,34 +1,39 @@
 {
-  "component": "section",
-  "figmaProperties": [
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "🔀 Spacing",
-      "type": "VARIANT",
-      "values": ["(Def) Medium", "Large", "Small", "None"]
-    },
-    {
-      "name": "🔀 Width",
-      "type": "VARIANT",
-      "values": ["(Def) Full", "Large (1440)", "Medium (1024)", "Small (768)"]
-    }
-  ],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "spacing",
-      "type": "SpacingType",
-      "values": ["small", "medium", "large", "none"],
-      "default": "medium"
-    },
-    {
-      "name": "width",
-      "type": "ContainerWidthType",
-      "values": ["full", "large", "medium", "small"],
-      "default": "full"
-    }
-  ]
+	"component": "section",
+	"figmaProperties": [
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🔀 Spacing",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Large", "Small", "None"]
+		},
+		{
+			"name": "🔀 Width",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Full",
+				"Large (1440)",
+				"Medium (1024)",
+				"Small (768)"
+			]
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "spacing",
+			"type": "SpacingType",
+			"values": ["small", "medium", "large", "none"],
+			"default": "medium"
+		},
+		{
+			"name": "width",
+			"type": "ContainerWidthType",
+			"values": ["full", "large", "medium", "small"],
+			"default": "full"
+		}
+	]
 }

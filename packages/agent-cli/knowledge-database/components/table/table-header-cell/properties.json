@@ -1,11 +1,28 @@
 {
-  "component": "table-header-cell",
-  "figmaProperties": [],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    { "name": "scope", "type": "DBTableHeaderCellScopeType", "values": ["row", "col", "rowgroup", "colgroup"], "description": "Scope of the header cell" },
-    { "name": "abbr", "type": "string", "description": "Abbreviation for the header cell" },
-    { "name": "colSpan", "type": "number", "description": "Number of columns to span" },
-    { "name": "rowSpan", "type": "number", "description": "Number of rows to span" }
-  ]
+	"component": "table-header-cell",
+	"figmaProperties": [],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "scope",
+			"type": "DBTableHeaderCellScopeType",
+			"values": ["row", "col", "rowgroup", "colgroup"],
+			"description": "Scope of the header cell"
+		},
+		{
+			"name": "abbr",
+			"type": "string",
+			"description": "Abbreviation for the header cell"
+		},
+		{
+			"name": "colSpan",
+			"type": "number",
+			"description": "Number of columns to span"
+		},
+		{
+			"name": "rowSpan",
+			"type": "number",
+			"description": "Number of rows to span"
+		}
+	]
 }

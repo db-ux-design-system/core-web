@@ -8,12 +8,34 @@
 		{
 			"name": "Align",
 			"type": "VARIANT",
-			"values": ["bottom-center", "bottom-left", "center", "top-right", "top-left", "top-center", "left", "bottom-right", "right"]
+			"values": [
+				"bottom-center",
+				"bottom-left",
+				"center",
+				"top-right",
+				"top-left",
+				"top-center",
+				"left",
+				"bottom-right",
+				"right"
+			]
 		},
 		{
 			"name": "Gap",
 			"type": "VARIANT",
-			"values": ["(Def) md", "3xs", "2xs", "xs", "sm", "lg", "xl", "2xl", "3xl", "None", "auto"]
+			"values": [
+				"(Def) md",
+				"3xs",
+				"2xs",
+				"xs",
+				"sm",
+				"lg",
+				"xl",
+				"2xl",
+				"3xl",
+				"None",
+				"auto"
+			]
 		},
 		{
 			"name": "Direction",
@@ -23,7 +45,18 @@
 		{
 			"name": "Padding",
 			"type": "VARIANT",
-			"values": ["(Def) None", "3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl"]
+			"values": [
+				"(Def) None",
+				"3xs",
+				"2xs",
+				"xs",
+				"sm",
+				"md",
+				"lg",
+				"xl",
+				"2xl",
+				"3xl"
+			]
 		}
 	],
 	"codeConnectProperties": [],

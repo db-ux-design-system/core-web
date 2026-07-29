@@ -1,85 +1,115 @@
 {
-  "component": "badge",
-  "figmaProperties": [
-    {
-      "name": "🔀 Size",
-      "type": "VARIANT",
-      "values": ["(Def) Small", "Medium"]
-    },
-    {
-      "name": "🔀 Semantic",
-      "type": "VARIANT",
-      "values": ["(Def) Adaptive", "Critical", "Informational", "Neutral", "Successful", "Warning"]
-    },
-    {
-      "name": "🔀 Emphasis",
-      "type": "VARIANT",
-      "values": ["(Def) Weak", "Strong"]
-    },
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Text"
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔄 Icon Medium",
-      "type": "INSTANCE_SWAP",
-      "appliesTo": "Badge → Icon"
-    },
-    {
-      "name": "🔄 Icon Small",
-      "type": "INSTANCE_SWAP",
-      "appliesTo": "Badge → Icon"
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Placement",
-      "type": "VARIANT",
-      "values": ["inline", "corner-top-left", "corner-top-right", "corner-center-left", "corner-center-right", "corner-bottom-left", "corner-bottom-right"],
-      "defaultValue": "inline",
-      "mapsToCodeProp": "placement"
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "semantic",
-      "type": "SemanticType",
-      "values": ["adaptive", "critical", "informational", "neutral", "successful", "warning"],
-      "default": "adaptive"
-    },
-    {
-      "name": "emphasis",
-      "type": "EmphasisType",
-      "values": ["weak", "strong"],
-      "default": "weak"
-    },
-    {
-      "name": "size",
-      "type": "SizeType",
-      "values": ["small", "medium"],
-      "default": "small"
-    },
-    {
-      "name": "placement",
-      "type": "BadgePlacementType",
-      "values": ["inline", "corner-top-left", "corner-top-right", "corner-center-left", "corner-center-right", "corner-bottom-left", "corner-bottom-right"],
-      "default": "inline",
-      "description": "The corner-* values change the position to absolute and adds a transform based on the placement."
-    },
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Describes the badge for a11y if you use placement attribute with corner-*"
-    }
-  ]
+	"component": "badge",
+	"figmaProperties": [
+		{
+			"name": "🔀 Size",
+			"type": "VARIANT",
+			"values": ["(Def) Small", "Medium"]
+		},
+		{
+			"name": "🔀 Semantic",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Adaptive",
+				"Critical",
+				"Informational",
+				"Neutral",
+				"Successful",
+				"Warning"
+			]
+		},
+		{
+			"name": "🔀 Emphasis",
+			"type": "VARIANT",
+			"values": ["(Def) Weak", "Strong"]
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Icon Medium",
+			"type": "INSTANCE_SWAP",
+			"appliesTo": "Badge → Icon"
+		},
+		{
+			"name": "🔄 Icon Small",
+			"type": "INSTANCE_SWAP",
+			"appliesTo": "Badge → Icon"
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Placement",
+			"type": "VARIANT",
+			"values": [
+				"inline",
+				"corner-top-left",
+				"corner-top-right",
+				"corner-center-left",
+				"corner-center-right",
+				"corner-bottom-left",
+				"corner-bottom-right"
+			],
+			"defaultValue": "inline",
+			"mapsToCodeProp": "placement"
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "semantic",
+			"type": "SemanticType",
+			"values": [
+				"adaptive",
+				"critical",
+				"informational",
+				"neutral",
+				"successful",
+				"warning"
+			],
+			"default": "adaptive"
+		},
+		{
+			"name": "emphasis",
+			"type": "EmphasisType",
+			"values": ["weak", "strong"],
+			"default": "weak"
+		},
+		{
+			"name": "size",
+			"type": "SizeType",
+			"values": ["small", "medium"],
+			"default": "small"
+		},
+		{
+			"name": "placement",
+			"type": "BadgePlacementType",
+			"values": [
+				"inline",
+				"corner-top-left",
+				"corner-top-right",
+				"corner-center-left",
+				"corner-center-right",
+				"corner-bottom-left",
+				"corner-bottom-right"
+			],
+			"default": "inline",
+			"description": "The corner-* values change the position to absolute and adds a transform based on the placement."
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Describes the badge for a11y if you use placement attribute with corner-*"
+		}
+	]
 }

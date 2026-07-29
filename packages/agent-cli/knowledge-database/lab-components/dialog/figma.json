@@ -10,8 +10,5 @@
 			"type": "COMPONENT_SET"
 		}
 	],
-	"subComponents": [
-		"dialog-header",
-		"dialog-footer"
-	]
+	"subComponents": ["dialog-header", "dialog-footer"]
 }

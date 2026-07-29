@@ -9,7 +9,17 @@
 		{
 			"name": "Size",
 			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small", "3xLarge", "2xLarge", "xLarge", "Large", "xSmall", "2xSmall", "3xSmall"]
+			"values": [
+				"(Def) Medium",
+				"Small",
+				"3xLarge",
+				"2xLarge",
+				"xLarge",
+				"Large",
+				"xSmall",
+				"2xSmall",
+				"3xSmall"
+			]
 		},
 		{
 			"name": "Text Align",

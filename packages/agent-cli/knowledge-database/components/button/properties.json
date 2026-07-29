@@ -1,160 +1,160 @@
 {
-  "component": "button",
-  "figmaProperties": [
-    {
-      "name": "👁️ Show Icon Leading",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Icon Trailing",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Text"
-    },
-    {
-      "name": "🔄 Icon Leading Medium",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "🔄 Icon Leading Small",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "🔄 Icon Trailing Medium",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "🔄 Icon Trailing Small",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Size",
-      "type": "VARIANT",
-      "values": ["(Def) Medium", "Small"]
-    },
-    {
-      "name": "🔀 Width",
-      "type": "VARIANT",
-      "values": ["(Def) Auto", "Full"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Variant",
-      "type": "VARIANT",
-      "values": ["outlined", "filled", "ghost", "brand"],
-      "defaultValue": "outlined",
-      "mapsToCodeProp": "variant",
-      "note": "In Figma, variant is expressed via separate Component Sets (Button → Outlined, etc.). Code Connect maps the active set to the variant prop."
-    },
-    {
-      "name": "⚙️ No Text",
-      "type": "VARIANT",
-      "values": ["true", "false"],
-      "defaultValue": "false",
-      "mapsToCodeProp": "noText",
-      "note": "In Figma, Icon Button sets represent noText=true. Code Connect maps Icon Button selection to noText prop."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "variant",
-      "type": "ButtonVariantType",
-      "values": ["outlined", "brand", "filled", "ghost"],
-      "default": "outlined",
-      "description": "Variant of the button. Only use one primary button as a CTA on a page."
-    },
-    {
-      "name": "size",
-      "type": "SizeType",
-      "values": ["small", "medium"],
-      "default": "medium"
-    },
-    {
-      "name": "width",
-      "type": "WidthType",
-      "values": ["auto", "full"],
-      "default": "auto"
-    },
-    {
-      "name": "noText",
-      "type": "boolean",
-      "description": "Renders icon-only button (requires icon prop and accessible label)"
-    },
-    {
-      "name": "icon",
-      "type": "string",
-      "description": "Icon name for icon-only buttons"
-    },
-    {
-      "name": "iconLeading",
-      "type": "string",
-      "description": "Icon before the label text"
-    },
-    {
-      "name": "iconTrailing",
-      "type": "string",
-      "description": "Icon after the label text"
-    },
-    {
-      "name": "showIconLeading",
-      "type": "boolean",
-      "default": false
-    },
-    {
-      "name": "showIconTrailing",
-      "type": "boolean",
-      "default": false
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Keeps a user from clicking on the button"
-    },
-    {
-      "name": "type",
-      "type": "ButtonTypeType",
-      "values": ["button", "reset", "submit"],
-      "default": "button"
-    },
-    {
-      "name": "name",
-      "type": "string",
-      "description": "Name attribute value for the button"
-    },
-    {
-      "name": "value",
-      "type": "string",
-      "description": "Initial value for the button"
-    },
-    {
-      "name": "form",
-      "type": "string",
-      "description": "Associates the control with a form element"
-    }
-  ]
+	"component": "button",
+	"figmaProperties": [
+		{
+			"name": "👁️ Show Icon Leading",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Icon Trailing",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		},
+		{
+			"name": "🔄 Icon Leading Medium",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Icon Leading Small",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Icon Trailing Medium",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔄 Icon Trailing Small",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Size",
+			"type": "VARIANT",
+			"values": ["(Def) Medium", "Small"]
+		},
+		{
+			"name": "🔀 Width",
+			"type": "VARIANT",
+			"values": ["(Def) Auto", "Full"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Variant",
+			"type": "VARIANT",
+			"values": ["outlined", "filled", "ghost", "brand"],
+			"defaultValue": "outlined",
+			"mapsToCodeProp": "variant",
+			"note": "In Figma, variant is expressed via separate Component Sets (Button → Outlined, etc.). Code Connect maps the active set to the variant prop."
+		},
+		{
+			"name": "⚙️ No Text",
+			"type": "VARIANT",
+			"values": ["true", "false"],
+			"defaultValue": "false",
+			"mapsToCodeProp": "noText",
+			"note": "In Figma, Icon Button sets represent noText=true. Code Connect maps Icon Button selection to noText prop."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "variant",
+			"type": "ButtonVariantType",
+			"values": ["outlined", "brand", "filled", "ghost"],
+			"default": "outlined",
+			"description": "Variant of the button. Only use one primary button as a CTA on a page."
+		},
+		{
+			"name": "size",
+			"type": "SizeType",
+			"values": ["small", "medium"],
+			"default": "medium"
+		},
+		{
+			"name": "width",
+			"type": "WidthType",
+			"values": ["auto", "full"],
+			"default": "auto"
+		},
+		{
+			"name": "noText",
+			"type": "boolean",
+			"description": "Renders icon-only button (requires icon prop and accessible label)"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Icon name for icon-only buttons"
+		},
+		{
+			"name": "iconLeading",
+			"type": "string",
+			"description": "Icon before the label text"
+		},
+		{
+			"name": "iconTrailing",
+			"type": "string",
+			"description": "Icon after the label text"
+		},
+		{
+			"name": "showIconLeading",
+			"type": "boolean",
+			"default": false
+		},
+		{
+			"name": "showIconTrailing",
+			"type": "boolean",
+			"default": false
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Keeps a user from clicking on the button"
+		},
+		{
+			"name": "type",
+			"type": "ButtonTypeType",
+			"values": ["button", "reset", "submit"],
+			"default": "button"
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"description": "Name attribute value for the button"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Initial value for the button"
+		},
+		{
+			"name": "form",
+			"type": "string",
+			"description": "Associates the control with a form element"
+		}
+	]
 }

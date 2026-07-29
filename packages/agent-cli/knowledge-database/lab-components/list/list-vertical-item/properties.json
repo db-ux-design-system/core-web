@@ -23,28 +23,17 @@
 		{
 			"name": "Emphasis",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Regular",
-				"Strong"
-			]
+			"values": ["(Def) Regular", "Strong"]
 		},
 		{
 			"name": "🎨 Interaction States",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Enabled",
-				"Hovered",
-				"Pressed",
-				"None"
-			]
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "None"]
 		},
 		{
 			"name": "Disabled",
 			"type": "VARIANT",
-			"values": [
-				"True",
-				"False"
-			]
+			"values": ["True", "False"]
 		}
 	],
 	"codeConnectProperties": [],

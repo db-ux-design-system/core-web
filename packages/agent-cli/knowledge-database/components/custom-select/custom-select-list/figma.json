@@ -1,6 +1,6 @@
 {
-  "component": "custom-select-list",
-  "library": "core-components",
-  "nodeIds": [],
-  "note": "No separate published Figma component set. The list is embedded within the dropdown component."
+	"component": "custom-select-list",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No separate published Figma component set. The list is embedded within the dropdown component."
 }

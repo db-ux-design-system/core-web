@@ -1,112 +1,112 @@
 {
-  "component": "header",
-  "figmaProperties": [
-    {
-      "name": "👁️ Primary Action",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "✏️ Application Name",
-      "type": "TEXT",
-      "defaultValue": "Application Name"
-    },
-    {
-      "name": "👁️ Secondary Action",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Meta Navigation",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Application Name",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Navigation",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "👁️ Divider (AppName + Navi)",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "🔀 Width",
-      "type": "VARIANT",
-      "values": ["(Def) Full", "Medium", "Large"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Direction",
-      "type": "VARIANT",
-      "values": ["up", "to-left", "to-right", "down"],
-      "defaultValue": "down",
-      "mapsToCodeProp": "direction",
-      "note": "Header mobile drawer direction. Mapped from the internal drawer component."
-    },
-    {
-      "name": "⚙️ Size",
-      "type": "VARIANT",
-      "values": ["small", "medium", "full", "large", "custom"],
-      "defaultValue": "small",
-      "mapsToCodeProp": "containerSize",
-      "note": "Header mobile drawer container size."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "brand",
-      "type": "any",
-      "description": "Slot for the DBBrand component"
-    },
-    {
-      "name": "metaNavigation",
-      "type": "any",
-      "description": "Slot for meta navigation (desktop: above header, mobile: inside drawer)"
-    },
-    {
-      "name": "primaryAction",
-      "type": "any",
-      "description": "Slot for primary action buttons (e.g. search)"
-    },
-    {
-      "name": "secondaryAction",
-      "type": "any",
-      "description": "Slot for secondary action buttons (e.g. profile, language)"
-    },
-    {
-      "name": "drawerOpen",
-      "type": "boolean | string",
-      "description": "Opens/closes the drawer for mobile header"
-    },
-    {
-      "name": "forceMobile",
-      "type": "boolean | string",
-      "description": "Forces mobile layout for desktop as well"
-    },
-    {
-      "name": "drawerHeaderText",
-      "type": "string",
-      "description": "Headline text for the drawer header"
-    },
-    {
-      "name": "burgerMenuLabel",
-      "type": "string",
-      "description": "Accessible label for the burger menu button"
-    },
-    {
-      "name": "containerWidth",
-      "type": "ContainerWidthType",
-      "values": ["full", "medium", "large"],
-      "default": "full",
-      "description": "Width constraint for the header content"
-    }
-  ]
+	"component": "header",
+	"figmaProperties": [
+		{
+			"name": "👁️ Primary Action",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "✏️ Application Name",
+			"type": "TEXT",
+			"defaultValue": "Application Name"
+		},
+		{
+			"name": "👁️ Secondary Action",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Meta Navigation",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Application Name",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Navigation",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "👁️ Divider (AppName + Navi)",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "🔀 Width",
+			"type": "VARIANT",
+			"values": ["(Def) Full", "Medium", "Large"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Direction",
+			"type": "VARIANT",
+			"values": ["up", "to-left", "to-right", "down"],
+			"defaultValue": "down",
+			"mapsToCodeProp": "direction",
+			"note": "Header mobile drawer direction. Mapped from the internal drawer component."
+		},
+		{
+			"name": "⚙️ Size",
+			"type": "VARIANT",
+			"values": ["small", "medium", "full", "large", "custom"],
+			"defaultValue": "small",
+			"mapsToCodeProp": "containerSize",
+			"note": "Header mobile drawer container size."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "brand",
+			"type": "any",
+			"description": "Slot for the DBBrand component"
+		},
+		{
+			"name": "metaNavigation",
+			"type": "any",
+			"description": "Slot for meta navigation (desktop: above header, mobile: inside drawer)"
+		},
+		{
+			"name": "primaryAction",
+			"type": "any",
+			"description": "Slot for primary action buttons (e.g. search)"
+		},
+		{
+			"name": "secondaryAction",
+			"type": "any",
+			"description": "Slot for secondary action buttons (e.g. profile, language)"
+		},
+		{
+			"name": "drawerOpen",
+			"type": "boolean | string",
+			"description": "Opens/closes the drawer for mobile header"
+		},
+		{
+			"name": "forceMobile",
+			"type": "boolean | string",
+			"description": "Forces mobile layout for desktop as well"
+		},
+		{
+			"name": "drawerHeaderText",
+			"type": "string",
+			"description": "Headline text for the drawer header"
+		},
+		{
+			"name": "burgerMenuLabel",
+			"type": "string",
+			"description": "Accessible label for the burger menu button"
+		},
+		{
+			"name": "containerWidth",
+			"type": "ContainerWidthType",
+			"values": ["full", "medium", "large"],
+			"default": "full",
+			"description": "Width constraint for the header content"
+		}
+	]
 }

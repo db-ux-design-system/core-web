@@ -1,6 +1,6 @@
 {
-  "component": "stack",
-  "library": "core-components",
-  "nodeIds": [],
-  "note": "No published Figma component set exists for DBStack. It is a code-only layout utility component for flex-based stacking of children."
+	"component": "stack",
+	"library": "core-components",
+	"nodeIds": [],
+	"note": "No published Figma component set exists for DBStack. It is a code-only layout utility component for flex-based stacking of children."
 }

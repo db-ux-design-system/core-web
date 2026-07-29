@@ -1,164 +1,184 @@
 {
-  "component": "tag",
-  "figmaProperties": [
-    {
-      "name": "👁️ Show Icon",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Text"
-    },
-    {
-      "name": "🔄 Icon",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "👁️ Overflow",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "📦 Content",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Content Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔀 Semantic",
-      "type": "VARIANT",
-      "values": ["(Def) Adaptive", "Critical", "Informational", "Neutral", "Successful", "Warning"]
-    },
-    {
-      "name": "🔀 Checked",
-      "type": "VARIANT",
-      "values": ["False", "True"],
-      "note": "Interactive Toggle variants only"
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"],
-      "note": "Interactive and Toggle variants only"
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"],
-      "note": "Interactive and Toggle variants only"
-    },
-    {
-      "name": "👁️ Show Check State",
-      "type": "BOOLEAN",
-      "defaultValue": true,
-      "note": "Toggle variants only"
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Behavior",
-      "type": "VARIANT",
-      "values": ["static", "removable"],
-      "defaultValue": "static",
-      "mapsToCodeProp": "behavior",
-      "note": "In Figma, behavior is expressed via separate Component Sets (Static, Interactive, Interactive Toggle, Removable). Code Connect maps removable sets to behavior='removable'."
-    },
-    {
-      "name": "⚙️ Emphasis",
-      "type": "VARIANT",
-      "values": ["weak", "strong"],
-      "defaultValue": "strong",
-      "mapsToCodeProp": "emphasis",
-      "note": "In Figma, emphasis is expressed via separate Component Sets (Weak vs Strong). Code Connect maps to emphasis prop."
-    },
-    {
-      "name": "⚙️ No Text",
-      "type": "VARIANT",
-      "values": ["true", "false"],
-      "defaultValue": "true",
-      "mapsToCodeProp": "noText",
-      "note": "In Figma, Icon Tag sets represent noText=true."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "text",
-      "type": "string",
-      "description": "Text content of the tag"
-    },
-    {
-      "name": "semantic",
-      "type": "SemanticType",
-      "values": ["adaptive", "critical", "informational", "neutral", "successful", "warning"],
-      "default": "adaptive"
-    },
-    {
-      "name": "emphasis",
-      "type": "EmphasisType",
-      "values": ["weak", "strong"],
-      "default": "weak"
-    },
-    {
-      "name": "behavior",
-      "type": "TagBehaviorType | string",
-      "values": ["static", "removable"],
-      "default": "static",
-      "description": "static: default without remove button; removable: adds remove button"
-    },
-    {
-      "name": "noText",
-      "type": "boolean",
-      "description": "Renders icon-only tag (requires icon prop and accessible text)"
-    },
-    {
-      "name": "icon",
-      "type": "string",
-      "description": "Icon name"
-    },
-    {
-      "name": "showIcon",
-      "type": "boolean",
-      "description": "Show/hide the icon"
-    },
-    {
-      "name": "overflow",
-      "type": "boolean",
-      "description": "Enable text overflow with ellipsis"
-    },
-    {
-      "name": "removeButton",
-      "type": "string",
-      "description": "Accessible label for the remove button"
-    },
-    {
-      "name": "showCheckState",
-      "type": "boolean | string",
-      "default": true,
-      "description": "Show check icon for checkbox/radio inside tag"
-    },
-    {
-      "name": "value",
-      "type": "string",
-      "description": "Value for the underlying checkbox/radio input (interactive use)"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the tag (interactive variants)"
-    }
-  ]
+	"component": "tag",
+	"figmaProperties": [
+		{
+			"name": "👁️ Show Icon",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		},
+		{
+			"name": "🔄 Icon",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "👁️ Overflow",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "📦 Content",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Content Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔀 Semantic",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Adaptive",
+				"Critical",
+				"Informational",
+				"Neutral",
+				"Successful",
+				"Warning"
+			]
+		},
+		{
+			"name": "🔀 Checked",
+			"type": "VARIANT",
+			"values": ["False", "True"],
+			"note": "Interactive Toggle variants only"
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"note": "Interactive and Toggle variants only"
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"],
+			"note": "Interactive and Toggle variants only"
+		},
+		{
+			"name": "👁️ Show Check State",
+			"type": "BOOLEAN",
+			"defaultValue": true,
+			"note": "Toggle variants only"
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Behavior",
+			"type": "VARIANT",
+			"values": ["static", "removable"],
+			"defaultValue": "static",
+			"mapsToCodeProp": "behavior",
+			"note": "In Figma, behavior is expressed via separate Component Sets (Static, Interactive, Interactive Toggle, Removable). Code Connect maps removable sets to behavior='removable'."
+		},
+		{
+			"name": "⚙️ Emphasis",
+			"type": "VARIANT",
+			"values": ["weak", "strong"],
+			"defaultValue": "strong",
+			"mapsToCodeProp": "emphasis",
+			"note": "In Figma, emphasis is expressed via separate Component Sets (Weak vs Strong). Code Connect maps to emphasis prop."
+		},
+		{
+			"name": "⚙️ No Text",
+			"type": "VARIANT",
+			"values": ["true", "false"],
+			"defaultValue": "true",
+			"mapsToCodeProp": "noText",
+			"note": "In Figma, Icon Tag sets represent noText=true."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Text content of the tag"
+		},
+		{
+			"name": "semantic",
+			"type": "SemanticType",
+			"values": [
+				"adaptive",
+				"critical",
+				"informational",
+				"neutral",
+				"successful",
+				"warning"
+			],
+			"default": "adaptive"
+		},
+		{
+			"name": "emphasis",
+			"type": "EmphasisType",
+			"values": ["weak", "strong"],
+			"default": "weak"
+		},
+		{
+			"name": "behavior",
+			"type": "TagBehaviorType | string",
+			"values": ["static", "removable"],
+			"default": "static",
+			"description": "static: default without remove button; removable: adds remove button"
+		},
+		{
+			"name": "noText",
+			"type": "boolean",
+			"description": "Renders icon-only tag (requires icon prop and accessible text)"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Icon name"
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"description": "Show/hide the icon"
+		},
+		{
+			"name": "overflow",
+			"type": "boolean",
+			"description": "Enable text overflow with ellipsis"
+		},
+		{
+			"name": "removeButton",
+			"type": "string",
+			"description": "Accessible label for the remove button"
+		},
+		{
+			"name": "showCheckState",
+			"type": "boolean | string",
+			"default": true,
+			"description": "Show check icon for checkbox/radio inside tag"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Value for the underlying checkbox/radio input (interactive use)"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the tag (interactive variants)"
+		}
+	]
 }

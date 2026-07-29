@@ -1,78 +1,78 @@
 {
-  "component": "tag",
-  "library": "core-components",
-  "pageId": "14436:15052",
-  "pageName": "Tag (Beta)",
-  "componentSets": [
-    {
-      "name": "(Def) Tag → (Def) Weak - (Def) Static (Beta)",
-      "nodeId": "14442:18427",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → (Def) Weak - Interactive (Beta)",
-      "nodeId": "15754:26043",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → (Def) Weak - Interactive Toggle (Beta)",
-      "nodeId": "14442:18526",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → (Def) Weak - Removable (Beta)",
-      "nodeId": "14442:19514",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Tag → (Def) Weak - (Def) Static (Beta)",
-      "nodeId": "14442:18483",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Tag → (Def) Weak - Interactive (Beta)",
-      "nodeId": "15754:26350",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Tag → (Def) Weak - Interactive Toggle (Beta)",
-      "nodeId": "14442:18803",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → Strong - (Def) Static (Beta)",
-      "nodeId": "14442:19575",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → Strong - Interactive (Beta)",
-      "nodeId": "15767:31246",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → Strong - Interactive Toggle (Beta)",
-      "nodeId": "14442:19673",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "(Def) Tag → Strong - Removable (Beta)",
-      "nodeId": "14442:20661",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Tag → Strong - (Def) Static (Beta)",
-      "nodeId": "14442:19630",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Tag → Strong - Interactive (Beta)",
-      "nodeId": "15767:31553",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Icon Tag → Strong - Interactive Toggle (Beta)",
-      "nodeId": "14442:19950",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "tag",
+	"library": "core-components",
+	"pageId": "14436:15052",
+	"pageName": "Tag (Beta)",
+	"componentSets": [
+		{
+			"name": "(Def) Tag → (Def) Weak - (Def) Static (Beta)",
+			"nodeId": "14442:18427",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → (Def) Weak - Interactive (Beta)",
+			"nodeId": "15754:26043",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → (Def) Weak - Interactive Toggle (Beta)",
+			"nodeId": "14442:18526",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → (Def) Weak - Removable (Beta)",
+			"nodeId": "14442:19514",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Tag → (Def) Weak - (Def) Static (Beta)",
+			"nodeId": "14442:18483",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Tag → (Def) Weak - Interactive (Beta)",
+			"nodeId": "15754:26350",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Tag → (Def) Weak - Interactive Toggle (Beta)",
+			"nodeId": "14442:18803",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → Strong - (Def) Static (Beta)",
+			"nodeId": "14442:19575",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → Strong - Interactive (Beta)",
+			"nodeId": "15767:31246",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → Strong - Interactive Toggle (Beta)",
+			"nodeId": "14442:19673",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "(Def) Tag → Strong - Removable (Beta)",
+			"nodeId": "14442:20661",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Tag → Strong - (Def) Static (Beta)",
+			"nodeId": "14442:19630",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Tag → Strong - Interactive (Beta)",
+			"nodeId": "15767:31553",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Icon Tag → Strong - Interactive Toggle (Beta)",
+			"nodeId": "14442:19950",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

@@ -66,29 +66,17 @@
 		{
 			"name": "🎨 Interaction State",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Enabled",
-				"Hovered",
-				"Pressed",
-				"None"
-			]
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "None"]
 		},
 		{
 			"name": "Disabled",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		},
 		{
 			"name": "Image Position",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Top",
-				"Bottom",
-				"Behind"
-			]
+			"values": ["(Def) Top", "Bottom", "Behind"]
 		}
 	],
 	"codeConnectProperties": [],

@@ -1,56 +1,56 @@
 {
-  "component": "drawer-header",
-  "figmaProperties": [
-    {
-      "name": "📦 Start Slot",
-      "type": "SLOT"
-    },
-    {
-      "name": "📦 End Slot",
-      "type": "SLOT"
-    },
-    {
-      "name": "👁️ Show Start Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show End Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Text",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "✏️ Text",
-      "type": "TEXT",
-      "defaultValue": "Text"
-    }
-  ],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "text",
-      "type": "string",
-      "description": "Text content for the drawer header"
-    },
-    {
-      "name": "closeButtonLabel",
-      "type": "string",
-      "description": "Accessible label for the close button"
-    },
-    {
-      "name": "startSlot",
-      "type": "any",
-      "description": "Slot for content at the start of the header"
-    },
-    {
-      "name": "endSlot",
-      "type": "any",
-      "description": "Slot for content at the end of the header"
-    }
-  ]
+	"component": "drawer-header",
+	"figmaProperties": [
+		{
+			"name": "📦 Start Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "📦 End Slot",
+			"type": "SLOT"
+		},
+		{
+			"name": "👁️ Show Start Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show End Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Text",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "✏️ Text",
+			"type": "TEXT",
+			"defaultValue": "Text"
+		}
+	],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Text content for the drawer header"
+		},
+		{
+			"name": "closeButtonLabel",
+			"type": "string",
+			"description": "Accessible label for the close button"
+		},
+		{
+			"name": "startSlot",
+			"type": "any",
+			"description": "Slot for content at the start of the header"
+		},
+		{
+			"name": "endSlot",
+			"type": "any",
+			"description": "Slot for content at the end of the header"
+		}
+	]
 }

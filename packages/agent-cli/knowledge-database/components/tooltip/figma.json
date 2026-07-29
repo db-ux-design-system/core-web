@@ -1,28 +1,28 @@
 {
-  "component": "tooltip",
-  "library": "core-components",
-  "pageId": "14436:15053",
-  "pageName": "Tooltip (Beta)",
-  "componentSets": [
-    {
-      "name": "Tooltip  → (Def) Bottom (Beta)",
-      "nodeId": "8:54892",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Tooltip → Top (Beta)",
-      "nodeId": "8:55540",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Tooltip → Left (Beta)",
-      "nodeId": "8:55669",
-      "type": "COMPONENT_SET"
-    },
-    {
-      "name": "Tooltip → Right (Beta)",
-      "nodeId": "8:55798",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "tooltip",
+	"library": "core-components",
+	"pageId": "14436:15053",
+	"pageName": "Tooltip (Beta)",
+	"componentSets": [
+		{
+			"name": "Tooltip  → (Def) Bottom (Beta)",
+			"nodeId": "8:54892",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Tooltip → Top (Beta)",
+			"nodeId": "8:55540",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Tooltip → Left (Beta)",
+			"nodeId": "8:55669",
+			"type": "COMPONENT_SET"
+		},
+		{
+			"name": "Tooltip → Right (Beta)",
+			"nodeId": "8:55798",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

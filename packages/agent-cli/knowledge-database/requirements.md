@@ -18,13 +18,13 @@ Die Wissensbasis dient sowohl Menschen als auch AI gestützten Tools als verläs
 
 Die Inhalte sollen unter anderem verwendet werden für:
 
-* Design System MCP und weitere AI Tools
-* Generierung der Dokumentation auf der Design System Plattform
-* Generierung und Ergänzung von Storybook Dokumentationen
-* Unterstützung bei der Erstellung von Designs und Interfaces
-* Unterstützung bei der Implementierung mit Design System Komponenten
-* Prüfung von Konsistenz zwischen Figma, Code und Dokumentation
-* Erkennung veralteter oder fehlender Dokumentationen
+- Design System MCP und weitere AI Tools
+- Generierung der Dokumentation auf der Design System Plattform
+- Generierung und Ergänzung von Storybook Dokumentationen
+- Unterstützung bei der Erstellung von Designs und Interfaces
+- Unterstützung bei der Implementierung mit Design System Komponenten
+- Prüfung von Konsistenz zwischen Figma, Code und Dokumentation
+- Erkennung veralteter oder fehlender Dokumentationen
 
 ## Grundprinzipien
 
@@ -38,23 +38,23 @@ Plattform, Storybook und AI Tools sollen keine voneinander unabhängigen Version
 
 Jeder Inhalt erhält eine stabile und systemübergreifende ID. Für Komponenten ist diese ID der **kebab-case Komponentenname** (z. B. `badge`, `custom-select`, `accordion-item`). Dieser Name ist bereits in allen Systemen konsistent verankert:
 
-| System | Ableitung aus ID |
-|--------|-----------------|
-| Knowledge Database | Ordnername: `components/{id}/` |
-| Code | Ordnername: `packages/components/src/components/{id}/` |
-| CSS | Klasse: `.db-{id}` |
-| MCP Server | Tool-Parameter: `get_component_props("{id}")` |
-| Figma | Page-Name: PascalCase/Title-Case-Ableitung (z. B. "Badge", "Custom Select") |
-| Storybook | Story-Pfad: `Components/{PascalCase}` |
-| Plattform-URL | Pfad: `/documentation/components/{id}` |
+| System             | Ableitung aus ID                                                            |
+| ------------------ | --------------------------------------------------------------------------- |
+| Knowledge Database | Ordnername: `components/{id}/`                                              |
+| Code               | Ordnername: `packages/components/src/components/{id}/`                      |
+| CSS                | Klasse: `.db-{id}`                                                          |
+| MCP Server         | Tool-Parameter: `get_component_props("{id}")`                               |
+| Figma              | Page-Name: PascalCase/Title-Case-Ableitung (z. B. "Badge", "Custom Select") |
+| Storybook          | Story-Pfad: `Components/{PascalCase}`                                       |
+| Plattform-URL      | Pfad: `/documentation/components/{id}`                                      |
 
 Diese ID verbindet:
 
-* Dokumentation
-* Figma Komponenten und Properties
-* Code Komponenten und Properties
-* Storybook Stories
-* Plattformseiten
+- Dokumentation
+- Figma Komponenten und Properties
+- Code Komponenten und Properties
+- Storybook Stories
+- Plattformseiten
 
 Eine separate UUID oder ein künstlicher Identifier ist nicht notwendig, da Komponentennamen im Design System stabil sind — eine Umbenennung wäre ein Breaking Change und erfordert ohnehin eine Migration.
 
@@ -73,12 +73,12 @@ Die `⚙️ Code Connect` Properties in Figma sind das explizite Mapping zwische
 
 Die Wissensbasis muss deshalb explizit dokumentieren:
 
-* welche Artefakte fachlich zusammengehören
-* welche Properties einander entsprechen
-* welche Properties nur in Figma oder nur im Code existieren
-* welche Code Connect Properties das Bindeglied zwischen Design und Code bilden
-* welche Unterschiede durch Figma, Frameworks oder technische Einschränkungen entstehen
-* wie eine Design Konfiguration in Code übersetzt wird
+- welche Artefakte fachlich zusammengehören
+- welche Properties einander entsprechen
+- welche Properties nur in Figma oder nur im Code existieren
+- welche Code Connect Properties das Bindeglied zwischen Design und Code bilden
+- welche Unterschiede durch Figma, Frameworks oder technische Einschränkungen entstehen
+- wie eine Design Konfiguration in Code übersetzt wird
 
 ### Menschenlesbar und maschinenlesbar
 
@@ -93,14 +93,14 @@ Freitext darf nicht die einzige Quelle für Informationen sein, die von Tools zu
 
 Die Wissensbasis muss unterschiedliche Arten von Design System Inhalten unterstützen, beispielsweise:
 
-* Foundations
-* Components
-* Patterns
-* Layout Guidelines
-* Design Laws
-* Content Guidelines
-* Extensions
-* Templates
+- Foundations
+- Components
+- Patterns
+- Layout Guidelines
+- Design Laws
+- Content Guidelines
+- Extensions
+- Templates
 
 Alle Inhaltstypen verwenden ein gemeinsames Grundmodell und können zusätzliche typenspezifische Daten enthalten.
 
@@ -110,48 +110,48 @@ Jeder Inhalt muss mindestens folgende Informationen enthalten:
 
 ### Allgemeine Informationen
 
-* stabile ID
-* Name
-* Inhaltstyp
-* kurze Beschreibung
-* Status
-* verantwortliches Team oder Owner
-* Version (`since`) — ab welcher Design-System-Version der Inhalt verfügbar ist
+- stabile ID
+- Name
+- Inhaltstyp
+- kurze Beschreibung
+- Status
+- verantwortliches Team oder Owner
+- Version (`since`) — ab welcher Design-System-Version der Inhalt verfügbar ist
 
 Das konkrete Änderungsdatum wird nicht manuell gepflegt, sondern über Git History abgeleitet (`git log`). Die allgemeinen Informationen werden in einer eigenen `meta.json` pro Inhalt gespeichert — getrennt von Guidelines (Markdown) und Design/Code-Referenzen (figma.json, properties.json).
 
 ### Guidelines
 
-* Zweck
-* Einsatzbereiche
-* Nutzungsempfehlungen
-* Einschränkungen
-* relevante Accessibility Anforderungen
-* bekannte Fehlanwendungen
+- Zweck
+- Einsatzbereiche
+- Nutzungsempfehlungen
+- Einschränkungen
+- relevante Accessibility Anforderungen
+- bekannte Fehlanwendungen
 
 ### Design Referenzen
 
-* Figma File ID
-* Node oder Component Set IDs
-* Name der Figma Library
-* Figma Properties und mögliche Werte
-* Varianten und Zustände
+- Figma File ID
+- Node oder Component Set IDs
+- Name der Figma Library
+- Figma Properties und mögliche Werte
+- Varianten und Zustände
 
 ### Code Referenzen
 
-* Repository
-* Package
-* Component oder API Name
-* Code Properties und mögliche Werte
-* relevante Storybook Referenzen
-* Framework oder Plattform
+- Repository
+- Package
+- Component oder API Name
+- Code Properties und mögliche Werte
+- relevante Storybook Referenzen
+- Framework oder Plattform
 
 ### Mapping
 
-* Zuordnung zwischen Figma und Code Artefakten
-* Zuordnung zwischen Figma und Code Properties
-* dokumentierte Unterschiede
-* Regeln für Transformation oder Interpretation
+- Zuordnung zwischen Figma und Code Artefakten
+- Zuordnung zwischen Figma und Code Properties
+- dokumentierte Unterschiede
+- Regeln für Transformation oder Interpretation
 
 ## Offene Themen
 
@@ -163,22 +163,22 @@ Props werden bewusst **nicht** dupliziert — die stehen weiterhin in `propertie
 
 **Automatisch generierbar (~90%):**
 
-| Feld | Quelle |
-|------|--------|
-| `sourcePath` | Ordnername |
-| `frameworks.*` | Konvention + `output/*/package.json` |
-| `dom.*` | Root-Tag, `cls()`-Aufruf und Attribute in `{component}.lite.tsx` |
-| `slots` | `children` und `*Slot`-Props aus `model.ts` |
-| `events` | `*EventProps` aus `model.ts` bzw. `output/stencil/dist/web-types.json` |
-| `cssCustomProperties` | `scripts/documentation/extract-css-vars.ts` (SassDoc `@cssprop`) |
-| `examples` | `exampleName="…"` aus `showcase/{component}.showcase.lite.tsx` |
-| `accessibility.automatic` | Native Element, `useMetadata().nativeAttributes`, Pass-Through-Regel |
-| `accessibility.testedWith` | axe-Scope und aria-snapshot-Tests aus `{component}.spec.tsx` |
+| Feld                       | Quelle                                                                 |
+| -------------------------- | ---------------------------------------------------------------------- |
+| `sourcePath`               | Ordnername                                                             |
+| `frameworks.*`             | Konvention + `output/*/package.json`                                   |
+| `dom.*`                    | Root-Tag, `cls()`-Aufruf und Attribute in `{component}.lite.tsx`       |
+| `slots`                    | `children` und `*Slot`-Props aus `model.ts`                            |
+| `events`                   | `*EventProps` aus `model.ts` bzw. `output/stencil/dist/web-types.json` |
+| `cssCustomProperties`      | `scripts/documentation/extract-css-vars.ts` (SassDoc `@cssprop`)       |
+| `examples`                 | `exampleName="…"` aus `showcase/{component}.showcase.lite.tsx`         |
+| `accessibility.automatic`  | Native Element, `useMetadata().nativeAttributes`, Pass-Through-Regel   |
+| `accessibility.testedWith` | axe-Scope und aria-snapshot-Tests aus `{component}.spec.tsx`           |
 
 **Manuell zu pflegen:**
 
-* `accessibility.consumerRequired` — was der Consumer selbst liefern muss (z. B. `aria-label` bei `noText`)
-* `notes` — Verhalten, das sich nicht aus den Props ergibt (z. B. berechneter `type`-Default bei Button)
+- `accessibility.consumerRequired` — was der Consumer selbst liefern muss (z. B. `aria-label` bei `noText`)
+- `notes` — Verhalten, das sich nicht aus den Props ergibt (z. B. berechneter `type`-Default bei Button)
 
 **Nächste Schritte (Dev):**
 

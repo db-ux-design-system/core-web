@@ -1,13 +1,13 @@
 {
-  "component": "divider",
-  "library": "core-components",
-  "pageId": "14457:45718",
-  "pageName": "Divider (Beta)",
-  "componentSets": [
-    {
-      "name": "Divider (Beta)",
-      "nodeId": "1:21536",
-      "type": "COMPONENT_SET"
-    }
-  ]
+	"component": "divider",
+	"library": "core-components",
+	"pageId": "14457:45718",
+	"pageName": "Divider (Beta)",
+	"componentSets": [
+		{
+			"name": "Divider (Beta)",
+			"nodeId": "1:21536",
+			"type": "COMPONENT_SET"
+		}
+	]
 }

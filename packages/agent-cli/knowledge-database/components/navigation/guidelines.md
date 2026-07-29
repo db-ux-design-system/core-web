@@ -1,5 +1,7 @@
 # Navigation
+
 <!-- TODO: Navigation wird mittelfristig deprecated. -->
+
 Stabile Ziele für konsistente Bewegung durch eine Anwendung auf Desktop und Mobile.
 
 ## Regeln

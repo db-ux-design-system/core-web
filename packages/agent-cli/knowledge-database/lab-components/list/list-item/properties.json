@@ -69,52 +69,32 @@
 		{
 			"name": "Interactive",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		},
 		{
 			"name": "🎨 Interaction State",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Enabled",
-				"Hovered",
-				"Pressed",
-				"None"
-			]
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "None"]
 		},
 		{
 			"name": "Disabled",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		},
 		{
 			"name": "Emphasis",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Regular",
-				"Strong"
-			]
+			"values": ["(Def) Regular", "Strong"]
 		},
 		{
 			"name": "Checked",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		},
 		{
 			"name": "Multiple",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		}
 	],
 	"codeConnectProperties": [],

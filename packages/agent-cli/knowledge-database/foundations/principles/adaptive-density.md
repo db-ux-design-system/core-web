@@ -4,11 +4,11 @@ Das Density-System steuert, wie kompakt oder großzügig UI-Elemente gerendert w
 
 ## Modi
 
-| Modus | Effekt | Einsatzzweck |
-|-------|--------|--------------|
-| `expressive` | Größere Werte — mehr Raum | Marketing-Seiten, Landing Pages, content-lastige Layouts |
-| `regular` | Standard-Werte | Standard-Anwendungen |
-| `functional` | Kleinere Werte — kompakter | Daten-intensive UIs, Dashboards, Admin-Panels |
+| Modus        | Effekt                     | Einsatzzweck                                             |
+| ------------ | -------------------------- | -------------------------------------------------------- |
+| `expressive` | Größere Werte — mehr Raum  | Marketing-Seiten, Landing Pages, content-lastige Layouts |
+| `regular`    | Standard-Werte             | Standard-Anwendungen                                     |
+| `functional` | Kleinere Werte — kompakter | Daten-intensive UIs, Dashboards, Admin-Panels            |
 
 ## Funktionsweise
 
@@ -26,7 +26,7 @@ Den **Layer Mode** eines Frames auf einen der Density-Modi setzen (expressive, r
 
 ```html
 <div data-density="functional">
-  <!-- Alle Kinder rendern in funktionaler Density -->
+	<!-- Alle Kinder rendern in funktionaler Density -->
 </div>
 ```
 

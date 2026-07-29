@@ -4,48 +4,27 @@
 		{
 			"name": "Variant",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Day",
-				"Weekday",
-				"Month",
-				"Year"
-			]
+			"values": ["(Def) Day", "Weekday", "Month", "Year"]
 		},
 		{
 			"name": "🎨 Interaction State",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Enabled",
-				"Hovered",
-				"Pressed",
-				"Focused"
-			]
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"]
 		},
 		{
 			"name": "Checked",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		},
 		{
 			"name": "Range",
 			"type": "VARIANT",
-			"values": [
-				"False",
-				"True"
-			]
+			"values": ["False", "True"]
 		},
 		{
 			"name": "🎨 Range Position",
 			"type": "VARIANT",
-			"values": [
-				"None",
-				"Start",
-				"End",
-				"Between"
-			]
+			"values": ["None", "Start", "End", "Between"]
 		}
 	],
 	"codeConnectProperties": [],

@@ -1,160 +1,167 @@
 {
-  "component": "custom-select",
-  "figmaProperties": [
-    {
-      "name": "🔀 Open",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "🔄 Form Field",
-      "type": "INSTANCE_SWAP"
-    },
-    {
-      "name": "🔀 Dropdown Width",
-      "type": "VARIANT",
-      "values": ["(Def) Full", "Auto/Fix"]
-    },
-    {
-      "name": "🔀 Dropdown Position",
-      "type": "VARIANT",
-      "values": ["(Def) Bottom", "Bottom-End", "Bottom-Start", "Top", "Top-End", "Top-Start"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Form Field Width",
-      "type": "VARIANT",
-      "values": ["full", "auto"],
-      "defaultValue": "auto",
-      "mapsToCodeProp": "formFieldWidth"
-    },
-    {
-      "name": "⚙️ Dropdown Position",
-      "type": "VARIANT",
-      "values": ["bottom"],
-      "defaultValue": "bottom",
-      "mapsToCodeProp": "placement"
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "multiple",
-      "type": "boolean | string",
-      "description": "Enables multi-select mode"
-    },
-    {
-      "name": "open",
-      "type": "boolean",
-      "description": "Programmatically open the dropdown"
-    },
-    {
-      "name": "placement",
-      "type": "PlacementVerticalType",
-      "description": "Position of the dropdown relative to the trigger"
-    },
-    {
-      "name": "dropdownWidth",
-      "type": "CustomSelectDropdownWidthType | string",
-      "description": "Width behavior of the dropdown"
-    },
-    {
-      "name": "formFieldWidth",
-      "type": "WidthType | string",
-      "values": ["auto", "full"],
-      "description": "Width of the form field component"
-    },
-    {
-      "name": "options",
-      "type": "CustomSelectOptionType[]",
-      "description": "Array of options to render"
-    },
-    {
-      "name": "values",
-      "type": "string[]",
-      "description": "Initial selected values for multi select"
-    },
-    {
-      "name": "selectedType",
-      "type": "SelectedTypeType",
-      "values": ["amount", "text", "tag"],
-      "description": "Display variant for selected values in multi select"
-    },
-    {
-      "name": "showSearch",
-      "type": "boolean",
-      "description": "Forces search input in the dropdown header"
-    },
-    {
-      "name": "showSelectAll",
-      "type": "boolean",
-      "description": "Forces select all checkbox (only for multiple)"
-    },
-    {
-      "name": "showClearSelection",
-      "type": "boolean",
-      "default": true,
-      "description": "Show/hide clear selection button"
-    },
-    {
-      "name": "searchLabel",
-      "type": "string",
-      "description": "Label for the search input"
-    },
-    {
-      "name": "searchPlaceholder",
-      "type": "string",
-      "description": "Placeholder for the search input"
-    },
-    {
-      "name": "clearSelectionText",
-      "type": "string",
-      "description": "Label for the clear selection button"
-    },
-    {
-      "name": "mobileCloseButtonText",
-      "type": "string",
-      "description": "Button text for mobile close"
-    },
-    {
-      "name": "amountText",
-      "type": "string",
-      "description": "Text for the amount display in selectedType='amount'"
-    },
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Label for the form field"
-    },
-    {
-      "name": "placeholder",
-      "type": "string",
-      "description": "Placeholder text"
-    },
-    {
-      "name": "required",
-      "type": "boolean",
-      "description": "Marks the field as required"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the component"
-    },
-    {
-      "name": "message",
-      "type": "string",
-      "description": "Validation message text"
-    },
-    {
-      "name": "icon",
-      "type": "string",
-      "description": "Leading icon name"
-    },
-    {
-      "name": "showIcon",
-      "type": "boolean",
-      "description": "Show/hide the leading icon"
-    }
-  ]
+	"component": "custom-select",
+	"figmaProperties": [
+		{
+			"name": "🔀 Open",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "🔄 Form Field",
+			"type": "INSTANCE_SWAP"
+		},
+		{
+			"name": "🔀 Dropdown Width",
+			"type": "VARIANT",
+			"values": ["(Def) Full", "Auto/Fix"]
+		},
+		{
+			"name": "🔀 Dropdown Position",
+			"type": "VARIANT",
+			"values": [
+				"(Def) Bottom",
+				"Bottom-End",
+				"Bottom-Start",
+				"Top",
+				"Top-End",
+				"Top-Start"
+			]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Form Field Width",
+			"type": "VARIANT",
+			"values": ["full", "auto"],
+			"defaultValue": "auto",
+			"mapsToCodeProp": "formFieldWidth"
+		},
+		{
+			"name": "⚙️ Dropdown Position",
+			"type": "VARIANT",
+			"values": ["bottom"],
+			"defaultValue": "bottom",
+			"mapsToCodeProp": "placement"
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "multiple",
+			"type": "boolean | string",
+			"description": "Enables multi-select mode"
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Programmatically open the dropdown"
+		},
+		{
+			"name": "placement",
+			"type": "PlacementVerticalType",
+			"description": "Position of the dropdown relative to the trigger"
+		},
+		{
+			"name": "dropdownWidth",
+			"type": "CustomSelectDropdownWidthType | string",
+			"description": "Width behavior of the dropdown"
+		},
+		{
+			"name": "formFieldWidth",
+			"type": "WidthType | string",
+			"values": ["auto", "full"],
+			"description": "Width of the form field component"
+		},
+		{
+			"name": "options",
+			"type": "CustomSelectOptionType[]",
+			"description": "Array of options to render"
+		},
+		{
+			"name": "values",
+			"type": "string[]",
+			"description": "Initial selected values for multi select"
+		},
+		{
+			"name": "selectedType",
+			"type": "SelectedTypeType",
+			"values": ["amount", "text", "tag"],
+			"description": "Display variant for selected values in multi select"
+		},
+		{
+			"name": "showSearch",
+			"type": "boolean",
+			"description": "Forces search input in the dropdown header"
+		},
+		{
+			"name": "showSelectAll",
+			"type": "boolean",
+			"description": "Forces select all checkbox (only for multiple)"
+		},
+		{
+			"name": "showClearSelection",
+			"type": "boolean",
+			"default": true,
+			"description": "Show/hide clear selection button"
+		},
+		{
+			"name": "searchLabel",
+			"type": "string",
+			"description": "Label for the search input"
+		},
+		{
+			"name": "searchPlaceholder",
+			"type": "string",
+			"description": "Placeholder for the search input"
+		},
+		{
+			"name": "clearSelectionText",
+			"type": "string",
+			"description": "Label for the clear selection button"
+		},
+		{
+			"name": "mobileCloseButtonText",
+			"type": "string",
+			"description": "Button text for mobile close"
+		},
+		{
+			"name": "amountText",
+			"type": "string",
+			"description": "Text for the amount display in selectedType='amount'"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label for the form field"
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"description": "Placeholder text"
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"description": "Marks the field as required"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the component"
+		},
+		{
+			"name": "message",
+			"type": "string",
+			"description": "Validation message text"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Leading icon name"
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"description": "Show/hide the leading icon"
+		}
+	]
 }

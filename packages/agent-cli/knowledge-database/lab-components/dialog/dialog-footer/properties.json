@@ -8,11 +8,7 @@
 		{
 			"name": "Type",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Brand",
-				"Filled",
-				"Outlined"
-			]
+			"values": ["(Def) Brand", "Filled", "Outlined"]
 		}
 	],
 	"codeConnectProperties": [],

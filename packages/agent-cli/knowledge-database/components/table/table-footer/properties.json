@@ -1,8 +1,12 @@
 {
-  "component": "table-footer",
-  "figmaProperties": [],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    { "name": "rows", "type": "DBTableRowProps[]", "description": "Row data array if not using children" }
-  ]
+	"component": "table-footer",
+	"figmaProperties": [],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "rows",
+			"type": "DBTableRowProps[]",
+			"description": "Row data array if not using children"
+		}
+	]
 }

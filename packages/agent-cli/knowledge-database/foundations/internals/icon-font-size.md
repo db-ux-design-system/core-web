@@ -8,13 +8,13 @@ Icons innerhalb von Text (Body/Headline) müssen mit dem Text skalieren. Das `db
 
 ## Variablen-Pattern
 
-```
+```text
 --db-base-icon-font-size-{density}-{device}-{type}-{size}
 ```
 
 Aufgelöste Kurzform, die auf Elementen verwendet wird:
 
-```
+```text
 --db-icon-font-size
 --db-base-body-icon-font-size-{size}
 --db-base-headline-icon-font-size-{size}
@@ -46,7 +46,7 @@ Beim Bau einer Komponente, die Icons neben Text enthält:
 @use "icons";
 
 .my-component-icon {
-  font-size: icons.$default-icon-font-size; // var(--db-icon-font-size)
+	font-size: icons.$default-icon-font-size; // var(--db-icon-font-size)
 }
 ```
 

@@ -1,124 +1,124 @@
 {
-  "component": "checkbox",
-  "figmaProperties": [
-    {
-      "name": "👁️ Show Label",
-      "type": "BOOLEAN",
-      "defaultValue": true
-    },
-    {
-      "name": "✏️ Label",
-      "type": "TEXT",
-      "defaultValue": "Label"
-    },
-    {
-      "name": "👁️ Show Message",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Required Asterisk",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "👁️ Show Children Slot",
-      "type": "BOOLEAN",
-      "defaultValue": false
-    },
-    {
-      "name": "📦 Children",
-      "type": "SLOT"
-    },
-    {
-      "name": "🔀 Interaction State",
-      "type": "VARIANT",
-      "values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-    },
-    {
-      "name": "🔀 Checked",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Indeterminate",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Disabled",
-      "type": "VARIANT",
-      "values": ["False", "True"]
-    },
-    {
-      "name": "🔀 Validation",
-      "type": "VARIANT",
-      "values": ["(Def) No Validation", "Invalid", "Valid"]
-    }
-  ],
-  "codeConnectProperties": [
-    {
-      "name": "⚙️ Required",
-      "type": "VARIANT",
-      "values": ["false", "true"],
-      "defaultValue": "false",
-      "mapsToCodeProp": "required"
-    },
-    {
-      "name": "⚙️ Size",
-      "type": "VARIANT",
-      "values": ["small", "medium"],
-      "defaultValue": "medium",
-      "mapsToCodeProp": "size",
-      "note": "In Figma, size is expressed via separate Component Sets (Medium/Small). Code Connect maps to size prop."
-    }
-  ],
-  "codeProperties": [
-    {
-      "name": "label",
-      "type": "string",
-      "description": "Visible label for the checkbox"
-    },
-    {
-      "name": "checked",
-      "type": "boolean | string",
-      "description": "Checked state"
-    },
-    {
-      "name": "indeterminate",
-      "type": "boolean | string",
-      "description": "Indeterminate state of a checkbox"
-    },
-    {
-      "name": "disabled",
-      "type": "boolean | string",
-      "description": "Disables the checkbox"
-    },
-    {
-      "name": "required",
-      "type": "boolean | string",
-      "description": "Marks the field as required"
-    },
-    {
-      "name": "size",
-      "type": "SizeType",
-      "values": ["small", "medium"],
-      "default": "medium"
-    },
-    {
-      "name": "name",
-      "type": "string",
-      "description": "Name attribute for form submission"
-    },
-    {
-      "name": "value",
-      "type": "string",
-      "description": "Value attribute for form submission"
-    },
-    {
-      "name": "onChange",
-      "type": "(event) => void",
-      "description": "Change event handler"
-    }
-  ]
+	"component": "checkbox",
+	"figmaProperties": [
+		{
+			"name": "👁️ Show Label",
+			"type": "BOOLEAN",
+			"defaultValue": true
+		},
+		{
+			"name": "✏️ Label",
+			"type": "TEXT",
+			"defaultValue": "Label"
+		},
+		{
+			"name": "👁️ Show Message",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Required Asterisk",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "👁️ Show Children Slot",
+			"type": "BOOLEAN",
+			"defaultValue": false
+		},
+		{
+			"name": "📦 Children",
+			"type": "SLOT"
+		},
+		{
+			"name": "🔀 Interaction State",
+			"type": "VARIANT",
+			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+		},
+		{
+			"name": "🔀 Checked",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Indeterminate",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Disabled",
+			"type": "VARIANT",
+			"values": ["False", "True"]
+		},
+		{
+			"name": "🔀 Validation",
+			"type": "VARIANT",
+			"values": ["(Def) No Validation", "Invalid", "Valid"]
+		}
+	],
+	"codeConnectProperties": [
+		{
+			"name": "⚙️ Required",
+			"type": "VARIANT",
+			"values": ["false", "true"],
+			"defaultValue": "false",
+			"mapsToCodeProp": "required"
+		},
+		{
+			"name": "⚙️ Size",
+			"type": "VARIANT",
+			"values": ["small", "medium"],
+			"defaultValue": "medium",
+			"mapsToCodeProp": "size",
+			"note": "In Figma, size is expressed via separate Component Sets (Medium/Small). Code Connect maps to size prop."
+		}
+	],
+	"codeProperties": [
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Visible label for the checkbox"
+		},
+		{
+			"name": "checked",
+			"type": "boolean | string",
+			"description": "Checked state"
+		},
+		{
+			"name": "indeterminate",
+			"type": "boolean | string",
+			"description": "Indeterminate state of a checkbox"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean | string",
+			"description": "Disables the checkbox"
+		},
+		{
+			"name": "required",
+			"type": "boolean | string",
+			"description": "Marks the field as required"
+		},
+		{
+			"name": "size",
+			"type": "SizeType",
+			"values": ["small", "medium"],
+			"default": "medium"
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"description": "Name attribute for form submission"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Value attribute for form submission"
+		},
+		{
+			"name": "onChange",
+			"type": "(event) => void",
+			"description": "Change event handler"
+		}
+	]
 }

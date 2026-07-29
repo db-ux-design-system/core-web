@@ -4,10 +4,7 @@
 		{
 			"name": "Size",
 			"type": "VARIANT",
-			"values": [
-				"(Def) Medium",
-				"Small"
-			]
+			"values": ["(Def) Medium", "Small"]
 		}
 	],
 	"codeConnectProperties": [],

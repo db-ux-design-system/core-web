@@ -1,40 +1,40 @@
 {
-  "component": "page",
-  "figmaProperties": [],
-  "codeConnectProperties": [],
-  "codeProperties": [
-    {
-      "name": "variant",
-      "type": "PageVariantType",
-      "values": ["auto", "fixed"],
-      "default": "auto",
-      "description": "fixed uses flex-box to make header and footer static"
-    },
-    {
-      "name": "fadeIn",
-      "type": "boolean | string",
-      "description": "Transition with opacity to avoid layout-shifts from font loading"
-    },
-    {
-      "name": "documentOverflow",
-      "type": "PageDocumentOverflowType",
-      "values": ["hidden", "auto"],
-      "description": "Sets overflow on the root document"
-    },
-    {
-      "name": "header",
-      "type": "any",
-      "description": "Slot for the page header"
-    },
-    {
-      "name": "footer",
-      "type": "any",
-      "description": "Slot for the page footer"
-    },
-    {
-      "name": "mainClass",
-      "type": "string",
-      "description": "Adds class to the main element"
-    }
-  ]
+	"component": "page",
+	"figmaProperties": [],
+	"codeConnectProperties": [],
+	"codeProperties": [
+		{
+			"name": "variant",
+			"type": "PageVariantType",
+			"values": ["auto", "fixed"],
+			"default": "auto",
+			"description": "fixed uses flex-box to make header and footer static"
+		},
+		{
+			"name": "fadeIn",
+			"type": "boolean | string",
+			"description": "Transition with opacity to avoid layout-shifts from font loading"
+		},
+		{
+			"name": "documentOverflow",
+			"type": "PageDocumentOverflowType",
+			"values": ["hidden", "auto"],
+			"description": "Sets overflow on the root document"
+		},
+		{
+			"name": "header",
+			"type": "any",
+			"description": "Slot for the page header"
+		},
+		{
+			"name": "footer",
+			"type": "any",
+			"description": "Slot for the page footer"
+		},
+		{
+			"name": "mainClass",
+			"type": "string",
+			"description": "Adds class to the main element"
+		}
+	]
 }
