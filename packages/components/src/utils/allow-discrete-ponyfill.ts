@@ -53,12 +53,22 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 		return;
 	}
 
-	const durationStr = getComputedStyle(dialog).getPropertyValue(
-		'transition-duration'
+	const styles = getComputedStyle(dialog);
+	const properties = styles.getPropertyValue('transition-property').split(',');
+	const durations = styles.getPropertyValue('transition-duration').split(',');
+
+	// Find the duration for the `display` transition specifically
+	const displayIndex = properties.findIndex(
+		(p) => p.trim() === 'display'
 	);
-	const ms = durationStr.includes('ms')
-		? parseFloat(durationStr)
-		: parseFloat(durationStr) * 1000;
+	const durationEntry =
+		displayIndex >= 0
+			? (durations[displayIndex] || durations[0])?.trim()
+			: durations[0]?.trim();
+	const ms =
+		durationEntry && durationEntry.includes('ms')
+			? parseFloat(durationEntry)
+			: parseFloat(durationEntry || '0') * 1000;
 
 	dialog.dataset['closingAllowDiscretePonyfill'] = '';
 	void delay(() => {
