@@ -1,5 +1,13 @@
 # @db-ux/react-core-components
 
+## 5.1.0
+
+### Minor Changes
+
+- feat: accept `autoComplete` (camelCase) as alias for `autocomplete` on form components - [see commit 6ac2c72](https://github.com/db-ux-design-system/core-web/commit/6ac2c722ea1a3d992218f78c4881b30c2c8c65cf)
+
+- refactor(drawer): replace JS transition workaround with CSS native functionality - [see commit 9370d63](https://github.com/db-ux-design-system/core-web/commit/9370d638176cf270e5700094c2a544d712c7413b)
+
 ## 5.0.4
 
 _version bump_
