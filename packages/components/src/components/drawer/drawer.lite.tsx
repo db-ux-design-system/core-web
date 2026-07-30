@@ -14,7 +14,7 @@ import {
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
-import { closeDialogWithTransition } from '../../utils/allow-discrete-ponyfill';
+import { closeDialogWithTransition } from '../../ponyfills/allow-discrete';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
