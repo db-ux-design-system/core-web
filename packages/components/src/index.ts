@@ -92,7 +92,6 @@ export * from './components/textarea';
 export * from './components/textarea/model';
 export * from './components/tooltip';
 export * from './components/tooltip/model';
-export * from './ponyfills/allow-discrete';
 export * from './shared/constants';
 export * from './shared/model';
 export * from './utils/document-click-listener';

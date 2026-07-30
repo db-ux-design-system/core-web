@@ -40,7 +40,7 @@ import { delay } from '../utils/index';
 let closeAttemptCounter = 0;
 
 /**
- * @public
+ * @internal
  * Feature-detects whether the browser supports transitioning the `display`
  * and `overlay` properties when `transition-behavior: allow-discrete` is set.
  * Both are required for a complete dialog exit animation:
@@ -50,7 +50,7 @@ let closeAttemptCounter = 0;
  * Returns false during SSR or before document.body is available.
  * Result is cached after the first successful call.
  */
-export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
+export const _supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
 	let cachedValue: boolean | undefined;
 	return () => {
 		if (cachedValue === undefined) {
@@ -74,7 +74,7 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
 })();
 
 /**
- * @public
+ * @internal
  * Handles dialog open/close transitions for browsers that don't support
  * `allow-discrete` for `display` and `overlay`.
  *
@@ -92,7 +92,7 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
  * @param dialogOpen - Whether the dialog should be open
  * @param onClose - Callback to execute when the dialog should close (typically `() => dialog.close()`)
  */
-export const closeDialogWithTransition = (
+export const _closeDialogWithTransition = (
 	dialog: HTMLDialogElement,
 	dialogOpen: boolean,
 	onClose: () => void
@@ -103,7 +103,7 @@ export const closeDialogWithTransition = (
 		return;
 	}
 
-	if (supportsAllowDiscreteDisplayAndOverlayTransition()) {
+	if (_supportsAllowDiscreteDisplayAndOverlayTransition()) {
 		onClose();
 		return;
 	}
