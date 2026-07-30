@@ -1,5 +1,9 @@
 # @db-ux/core-components
 
+## 5.1.1
+
+_version bump_
+
 ## 5.1.0
 
 ### Minor Changes
