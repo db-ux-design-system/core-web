@@ -331,7 +331,7 @@ export default function DBInput(props: DBInputProps) {
 				pattern={props.pattern}
 				size={props.size}
 				// @ts-expect-error input has a property autoComplete
-				autoComplete={props.autocomplete}
+				autoComplete={props.autoComplete ?? props.autocomplete}
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				enterKeyHint={props.enterkeyhint}
 				inputMode={props.inputmode}
