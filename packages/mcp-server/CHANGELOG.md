@@ -2,9 +2,7 @@
 
 ## 5.0.4
 
-### Patch Changes
-
-- _version bump_
+_version bump_
 
 ## 5.0.3
 
