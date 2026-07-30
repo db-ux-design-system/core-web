@@ -99,7 +99,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 				if (_ref.open) {
 					closeDialogWithTransition(
 						_ref as HTMLDialogElement,
-						!!dialogOpen
+						!!dialogOpen,
+						() => _ref?.close()
 					);
 				}
 			}

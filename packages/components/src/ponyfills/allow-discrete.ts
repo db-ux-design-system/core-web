@@ -79,8 +79,8 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
  * `allow-discrete` for `display` and `overlay`.
  *
  * When `dialogOpen` is false: sets `data-closing-allow-discrete-ponyfill` on
- * the dialog to signal CSS to revert the transform, then defers `close()`.
- * In browsers with native support, calls `close()` immediately.
+ * the dialog to signal CSS to revert the transform, then defers `onClose`.
+ * In browsers with native support, calls `onClose` immediately.
  *
  * When `dialogOpen` is true: cancels any pending ponyfill close by removing
  * the dataset attribute.
@@ -90,10 +90,12 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
  *
  * @param dialog - The dialog element
  * @param dialogOpen - Whether the dialog should be open
+ * @param onClose - Callback to execute when the dialog should close (typically `() => dialog.close()`)
  */
 export const closeDialogWithTransition = (
 	dialog: HTMLDialogElement,
-	dialogOpen: boolean
+	dialogOpen: boolean,
+	onClose: () => void
 ): void => {
 	if (dialogOpen) {
 		// Cancel any pending ponyfill close if reopened
@@ -102,7 +104,7 @@ export const closeDialogWithTransition = (
 	}
 
 	if (supportsAllowDiscreteDisplayAndOverlayTransition()) {
-		dialog.close();
+		onClose();
 		return;
 	}
 
@@ -122,6 +124,6 @@ export const closeDialogWithTransition = (
 			return;
 		}
 		delete dialog.dataset['closingAllowDiscretePonyfill'];
-		dialog.close();
+		onClose();
 	}, ms);
 };
