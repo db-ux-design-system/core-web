@@ -1,5 +1,11 @@
 # @db-ux/mcp-server
 
+## 5.1.1
+
+### Patch Changes
+
+- _version bump_ - [see commit 6b4e81f](https://github.com/db-ux-design-system/core-web/commit/6b4e81f6de003b8b722f595b121a50577b64a7fa)
+
 ## 5.1.0
 
 _version bump_
