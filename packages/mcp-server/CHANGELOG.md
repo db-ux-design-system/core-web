@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- _version bump_ - [see commit 5ab2204](https://github.com/db-ux-design-system/core-web/commit/5ab22046acd7615d63410826319b67b69f300ae2)
+- _version bump_
 
 ## 5.0.3
 
