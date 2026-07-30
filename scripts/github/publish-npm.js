@@ -57,8 +57,8 @@ const packages = [
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
 	{ dir: 'postcss-plugin', name: 'core-postcss-plugin' },
-	{ dir: 'agent-cli', name: 'agent-cli' },
-	{ dir: 'mcp-server', name: 'mcp-server' }
+	{ dir: 'mcp-server', name: 'mcp-server' },
+	{ dir: 'agent-cli', name: 'agent-cli' }
 ];
 
 const packagesWithFoundationsDep = new Set([
