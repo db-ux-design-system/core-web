@@ -1,6 +1,6 @@
-# Foundation Token Inconsistencies
+# Inconsistencies
 
-Tracking differences between Figma and Code token availability.
+Tracking von Unterschieden zwischen Figma und Code sowie bekannte Gaps.
 
 ## Figma-only tokens (no CSS custom property equivalent)
 
@@ -23,3 +23,9 @@ Tracking differences between Figma and Code token availability.
 | ---------------- | ------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------- |
 | Elevation        | Effect Styles (not variables)   | CSS custom properties (`--db-elevation-sm/md/lg`)   | Different mechanism, same intent                                 |
 | Theme collection | Palette primitives (0–14 steps) | CSS custom properties (`--db-{variant}-0` to `-14`) | Theme collection is internal in Figma, not for direct design use |
+
+## Component Gaps
+
+| Component     | Subcomponent       | Gap                                                             |
+| ------------- | ------------------ | --------------------------------------------------------------- |
+| Custom Select | Custom Select List | No dedicated subcomponent in Figma — review during refactoring. |
