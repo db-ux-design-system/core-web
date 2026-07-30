@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {

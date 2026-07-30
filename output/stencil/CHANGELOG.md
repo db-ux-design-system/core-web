@@ -1,5 +1,9 @@
 # @db-ux/wc-core-components
 
+## 5.0.4
+
+_version bump_
+
 ## 5.0.3
 
 ### Patch Changes
