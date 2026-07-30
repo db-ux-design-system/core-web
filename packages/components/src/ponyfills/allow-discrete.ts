@@ -12,12 +12,14 @@
  * Architecture:
  * - `supportsAllowDiscreteDisplayAndOverlayTransition()` — cached feature
  *   detection (checks both `display` transition and `overlay` support)
- * - `closeDialogWithTransition(dialog)` — if supported natively, calls
- *   `close()` immediately; otherwise sets `data-closing-allow-discrete-ponyfill`
- *   on the dialog, waits `--db-transition-duration`, then calls `close()`
+ * - `closeDialogWithTransition(dialog, dialogOpen)` — when closing: if
+ *   supported natively, calls `close()` immediately; otherwise sets
+ *   `data-closing-allow-discrete-ponyfill` on the dialog, waits
+ *   `--db-transition-duration`, then calls `close()`.
+ *   When opening: cancels any pending ponyfill close.
  *
  * CSS contract:
- * - `.db-drawer` defines `--db-transition-duration` (`0s` default,
+ * - `.db-drawer` defines `--db-transition-duration` (`0ms` default,
  *   real value under `prefers-reduced-motion: no-preference`); the ponyfill
  *   reads this custom property via `getComputedStyle`
  * - `&[open]:not([data-closing-allow-discrete-ponyfill])` controls
@@ -33,12 +35,12 @@
  *   between the SCSS declaration and the JS `getPropertyValue` call
  */
 
-import { delay } from './index';
+import { delay } from '../utils/index';
 
 let closeAttemptCounter = 0;
 
 /**
- * @public
+ * @internal
  * Feature-detects whether the browser supports transitioning the `display`
  * and `overlay` properties when `transition-behavior: allow-discrete` is set.
  * Both are required for a complete dialog exit animation:
@@ -48,7 +50,7 @@ let closeAttemptCounter = 0;
  * Returns false during SSR or before document.body is available.
  * Result is cached after the first successful call.
  */
-export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
+const _supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
 	let cachedValue: boolean | undefined;
 	return () => {
 		if (cachedValue === undefined) {
@@ -72,23 +74,37 @@ export const supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
 })();
 
 /**
- * @public
- * Closes a dialog with a deferred `close()` call, allowing the CSS exit
- * transition to play in browsers that don't support `allow-discrete` for
- * `display` and `overlay`. Sets `data-closing-allow-discrete-ponyfill` on the
- * dialog to signal CSS to revert the transform while the dialog is still [open].
+ * @internal
+ * Handles dialog open/close transitions for browsers that don't support
+ * `allow-discrete` for `display` and `overlay`.
+ *
+ * When `dialogOpen` is false: sets `data-closing-allow-discrete-ponyfill` on
+ * the dialog to signal CSS to revert the transform, then defers `onClose`.
+ * In browsers with native support, calls `onClose` immediately.
+ *
+ * When `dialogOpen` is true: cancels any pending ponyfill close by removing
+ * the dataset attribute.
  *
  * Reads `--db-transition-duration` from the dialog as the contract
  * between CSS and JS for the transition timing.
  *
- * In browsers that support `allow-discrete` for `display` and `overlay`,
- * calls `close()` immediately and lets native CSS handle the exit animation.
- *
- * @param dialog - The dialog element to close
+ * @param dialog - The dialog element
+ * @param dialogOpen - Whether the dialog should be open
+ * @param onClose - Callback to execute when the dialog should close (typically `() => dialog.close()`)
  */
-export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
-	if (supportsAllowDiscreteDisplayAndOverlayTransition()) {
-		dialog.close();
+export const _closeDialogWithTransition = (
+	dialog: HTMLDialogElement,
+	dialogOpen: boolean,
+	onClose: () => void
+): void => {
+	if (dialogOpen) {
+		// Cancel any pending ponyfill close if reopened
+		delete dialog.dataset['closingAllowDiscretePonyfill'];
+		return;
+	}
+
+	if (_supportsAllowDiscreteDisplayAndOverlayTransition()) {
+		onClose();
 		return;
 	}
 
@@ -108,6 +124,6 @@ export const closeDialogWithTransition = (dialog: HTMLDialogElement): void => {
 			return;
 		}
 		delete dialog.dataset['closingAllowDiscretePonyfill'];
-		dialog.close();
+		onClose();
 	}, ms);
 };
