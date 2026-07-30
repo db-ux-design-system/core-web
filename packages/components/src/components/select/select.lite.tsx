@@ -311,7 +311,7 @@ export default function DBSelect(props: DBSelectProps) {
 				name={props.name}
 				size={props.size}
 				value={props.value ?? state._value ?? ''}
-				autocomplete={props.autocomplete}
+				autocomplete={props.autoComplete ?? props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
