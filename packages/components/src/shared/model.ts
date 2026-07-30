@@ -521,6 +521,10 @@ export type FormMessageProps = {
 	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 	 */
 	autocomplete?: string | AutoCompleteType;
+	/**
+	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+	 */
+	autoComplete?: string | AutoCompleteType;
 
 	/**
 	 * Enables or disables the visibility of the message.
