@@ -35,7 +35,7 @@
  *   between the SCSS declaration and the JS `getPropertyValue` call
  */
 
-import { delay } from './index';
+import { delay } from '../utils/index';
 
 let closeAttemptCounter = 0;
 
