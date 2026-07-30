@@ -50,7 +50,7 @@ let closeAttemptCounter = 0;
  * Returns false during SSR or before document.body is available.
  * Result is cached after the first successful call.
  */
-export const _supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
+const _supportsAllowDiscreteDisplayAndOverlayTransition = (() => {
 	let cachedValue: boolean | undefined;
 	return () => {
 		if (cachedValue === undefined) {
