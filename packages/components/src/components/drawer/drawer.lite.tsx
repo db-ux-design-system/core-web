@@ -7,6 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { closeDialogWithTransition } from '../../ponyfills/allow-discrete';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
@@ -14,7 +15,6 @@ import {
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
-import { closeDialogWithTransition } from '../../ponyfills/allow-discrete';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
