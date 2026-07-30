@@ -1,5 +1,19 @@
 # @db-ux/react-core-components
 
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- fix(Header): missing close-button default label in drawer - [see commit ad24b1c](https://github.com/db-ux-design-system/core-web/commit/ad24b1cc24b0e34617941d874059cd69eb289d70)
+
+- fix: safe-guarding the access to `ref` in several components - [see commit 7b0e6da](https://github.com/db-ux-design-system/core-web/commit/7b0e6dac904748d7c61bc064963ab729a1c3c5b4)
+
+- fix(DBAccordionItem): prevent `defaultOpen` prop from being forwarded to the DOM element - [see commit db8401b](https://github.com/db-ux-design-system/core-web/commit/db8401b87797977ee65f8634c138cae9076c3988)
+
 ## 5.0.2
 
 ### Patch Changes

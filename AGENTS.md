@@ -115,6 +115,8 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 | `packages/components/src` — **both**                                                             | All five packages above                                                                                                                         |
 | `packages/foundations/scss`                                                                      | `@db-ux/core-foundations`                                                                                                                       |
 
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages only when shared code (components, `model.ts`, shared utils) or styling is changed.
+
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
