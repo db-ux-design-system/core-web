@@ -123,6 +123,8 @@ Use the following bump types for changeset entries:
 - **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
 - **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
+
 ### How to Add a Changeset
 
 Run the following command and follow the interactive prompts:
@@ -317,6 +319,10 @@ If possible, start by writing a test that you could use to verify your solution,
 Remember: This is a design system used by Deutsche Bahn applications. Always ensure changes maintain accessibility, consistency, and brand compliance.
 
 ## General code styles and approaches
+
+### Shift-left: HTML → CSS → JS
+
+Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See `docs/shift-left-web-development.md` for the full rationale and examples.
 
 ### Dependency pinning and package execution
 

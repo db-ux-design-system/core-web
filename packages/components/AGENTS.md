@@ -100,6 +100,10 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
+## Allow-discrete Ponyfill (`src/utils/allow-discrete-ponyfill.ts`)
+
+A shared ponyfill for browsers that don't support transitioning `display` and/or `overlay` with `transition-behavior: allow-discrete` (currently Firefox and Safari). Used by the drawer to animate dialog exit transitions. See the file-level JSDoc for architecture, CSS contract, and maintenance constraints.
+
 ## Storybook Generation
 
 Stories are generated from the `examples/` folder via the `configs/plugins/storybook/` plugin. The plugin reads `data-sb-*` attributes from example components to configure story metadata, controls, and args.
@@ -297,4 +301,6 @@ Bump types:
 - `minor` — new feature or example, or any prop added in `model.ts`
 - `major` — any prop in `model.ts` removed, renamed, or retyped
 
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
