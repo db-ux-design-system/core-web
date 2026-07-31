@@ -41,19 +41,19 @@ dialog {
 		&::before {
 			background-color: $backdrop-color-strong;
 		}
+	}
 
-		&[data-backdrop="invisible"] {
-			&::backdrop,
-			&::before {
-				background-color: transparent;
-			}
+	&[data-backdrop="invisible"] {
+		&::backdrop,
+		&::before {
+			background-color: transparent;
 		}
+	}
 
-		&[data-backdrop="weak"] {
-			&::backdrop,
-			&::before {
-				background-color: $backdrop-color-weak;
-			}
+	&[data-backdrop="weak"] {
+		&::backdrop,
+		&::before {
+			background-color: $backdrop-color-weak;
 		}
 	}
 }
