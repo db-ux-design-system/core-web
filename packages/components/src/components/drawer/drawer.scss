@@ -152,9 +152,14 @@
 
 	// BEGIN: overlay ponyfill — Safari/Firefox don't support `overlay` transitions: https://bugs.webkit.org/show_bug.cgi?id=267
 	// ::backdrop disappears instantly on close since the dialog leaves the
-	// top layer immediately. Use ::before with an opacity transition instead.
+	// top layer immediately. Use ::before with a visibility transition instead,
+	// and hide the native ::backdrop to prevent double-darkening.
 	@supports not (overlay: auto) {
 		&:not([data-backdrop="none"]):not([data-position="absolute"]) {
+			&::backdrop {
+				background-color: transparent;
+			}
+
 			&::before {
 				content: "";
 				position: fixed;
@@ -172,7 +177,6 @@
 			}
 		}
 	}
-
 	// END: overlay ponyfill
 
 	@media (prefers-reduced-motion: no-preference) {
