@@ -131,6 +131,9 @@
 	--db-drawer-block-size: 100lvh;
 	--db-transition-duration: 0ms;
 
+	position: fixed;
+	inset: 0;
+
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
 	// can control hiding instead — Firefox supports allow-discrete for visibility.
@@ -141,12 +144,6 @@
 		visibility: hidden;
 	}
 
-	// END: allow-discrete ponyfill
-
-	position: fixed;
-	inset: 0;
-
-	// BEGIN: overlay ponyfill — Safari/Firefox don't support `overlay` transitions: https://bugs.webkit.org/show_bug.cgi?id=267
 	// ::backdrop disappears instantly on close since the dialog leaves the
 	// top layer immediately. Use ::before with a visibility transition instead,
 	// and hide the native ::backdrop to prevent double-darkening.
@@ -160,8 +157,6 @@
 				content: "";
 				position: fixed;
 				inset: 0;
-				visibility: hidden;
-				background-color: dialog-init.$backdrop-color-strong;
 
 				@media (prefers-reduced-motion: no-preference) {
 					transition: visibility var(--db-transition-duration)
@@ -169,16 +164,19 @@
 				}
 			}
 
+			&:not([open]) {
+				&::before {
+					visibility: hidden;
+				}
+			}
+
+			&:not([data-backdrop="invisible"]) {
+				&::before {
+					background-color: dialog-init.$backdrop-color-strong;
+				}
+			}
 			&[data-backdrop="weak"]::before {
 				background-color: dialog-init.$backdrop-color-weak;
-			}
-
-			&[data-backdrop="invisible"]::before {
-				background-color: transparent;
-			}
-
-			&[open]::before {
-				visibility: visible;
 			}
 		}
 	}
