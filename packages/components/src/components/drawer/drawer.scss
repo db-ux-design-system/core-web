@@ -146,8 +146,6 @@
 		}
 	}
 
-	// END: allow-discrete ponyfill
-
 	// ::backdrop disappears instantly on close since the dialog leaves the
 	// top layer immediately. Use ::before with a visibility transition instead,
 	// and hide the native ::backdrop to prevent double-darkening.
