@@ -1,0 +1,9 @@
+{
+	"id": "icon-font-size",
+	"name": "Icon Font Size",
+	"type": "foundation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"audience": "creation-only"
+}

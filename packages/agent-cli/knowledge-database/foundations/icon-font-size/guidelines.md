@@ -1,4 +1,4 @@
-# Icon Font Size (Intern)
+# Icon Font Size
 
 Internes Variablen-System für die Größenanpassung von Icons innerhalb von Typografie-Kontexten.
 

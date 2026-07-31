@@ -1,0 +1,10 @@
+{
+	"id": "component-tokens",
+	"name": "Component Tokens",
+	"type": "foundation",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"audience": "creation-only",
+	"note": "Komponentenspezifische Figma-Variablen (🧱 design) aus der Density Collection. Interne Primitive — nicht für direkte Nutzung durch Designer."
+}

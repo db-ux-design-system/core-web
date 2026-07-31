@@ -1,0 +1,69 @@
+{
+	"component": "resizer",
+	"description": "Spezifische Sizing-Variablen für die Resizer-Komponente (Drag-Handle zum Vergrößern/Verkleinern)",
+	"collection": "Density",
+	"library": "DB UX - Core Foundation",
+	"prefix": "🧱 design/resizer",
+	"tokens": {
+		"sizing": {
+			"3xs": {
+				"key": "5d428955347c0a649b3511f897c774aef7bdd710",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"2xs": {
+				"key": "b494a8d4dcd875cfb3be468e79436d8fc8026207",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xs": {
+				"key": "48f247a0df4cf03adc9ce1aab3d367bdbedde063",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"sm": {
+				"key": "b59444be46346e8cff03751ffa4577209f439f0c",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"md": {
+				"key": "15a002837595ed11b46b19b967566d6a27228bd0",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"lg": {
+				"key": "ab0575a942d167d5ce5654beeb27d4518845ab4d",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xl": {
+				"key": "4d5a1973009c96f9e863497e93694bd09c8a1d61",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"2xl": {
+				"key": "cc9171e82d3b3b9aafd86a7aad142e6bd4fb1bff",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"3xl": {
+				"key": "e34f12c9fc27eebbea6fe2e5ef939364b0e7723b",
+				"scopes": ["ALL_SCOPES"]
+			}
+		},
+		"container": {
+			"xs": {
+				"key": "1603bde22fdf4ad7d45a413768079d548e240f6c",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"sm": {
+				"key": "61a02f4900201accf18894b71ece98d654b2fc91",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"md": {
+				"key": "f35e21bd5b9d4b7138f13f403f9c8902718275cf",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"lg": {
+				"key": "b50f0841fd1cf7bd01462766e02ef1e206ee18c2",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xl": {
+				"key": "1d0d862f080fc8b7f64a9a304195d62dc2a7a581",
+				"scopes": ["ALL_SCOPES"]
+			}
+		}
+	}
+}

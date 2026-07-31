@@ -1,0 +1,61 @@
+{
+	"component": "shell",
+	"description": "Spezifische Sizing-Variablen für die Shell-Komponente (Header/Navigation Shell)",
+	"collection": "Density",
+	"library": "DB UX - Core Foundation",
+	"prefix": "🧱 design/shell",
+	"tokens": {
+		"width": {
+			"xs": {
+				"key": "3638868cb8aca285c55c896a95ff05afa26b32d8",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xs-mobile": {
+				"key": "ef725af0d1fe248704aeada1892c80e07f9b6c2f",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"sm": {
+				"key": "9ae7a4cc72a705de4df9deb8232f8fbea1b23121",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"md": {
+				"key": "a53656eec563b46ef214213ca2c8acbd4b7c3621",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"lg": {
+				"key": "7a55482495720329e90259a22c838f03bb7f1307",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xl": {
+				"key": "357b078f16cbfb26f65a35dd0087f84f0d4eabf1",
+				"scopes": ["ALL_SCOPES"]
+			}
+		},
+		"height": {
+			"xs": {
+				"key": "ce9838f8444e1908c6409e372b04b6a28339aef7",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xs-mobile": {
+				"key": "87d1939720f8b92fbca9e91fd2be9da431f1cbdb",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"sm": {
+				"key": "bfc062e4124a578f1256e2a5729ade35679a3f78",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"md": {
+				"key": "9d9b4e154dcabf27bd54765206e7fc827f639f2a",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"lg": {
+				"key": "c68ff33bddfd065a432718a0d062ee2ef2cd1819",
+				"scopes": ["ALL_SCOPES"]
+			},
+			"xl": {
+				"key": "4d3d9eda99dbcd5cf312662b12a36cb347d42a37",
+				"scopes": ["ALL_SCOPES"]
+			}
+		}
+	}
+}
