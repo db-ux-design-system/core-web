@@ -11,11 +11,13 @@ Tracking von Unterschieden zwischen Figma und Code sowie bekannte Gaps.
 
 ## Code-only tokens (no Figma variable equivalent)
 
-| Token                        | Category   | Notes                                                            |
-| ---------------------------- | ---------- | ---------------------------------------------------------------- |
-| `--db-transition-duration-*` | transition | All duration tokens (extra-fast, fast, medium, slow, extra-slow) |
-| `--db-transition-timing-*`   | transition | All timing tokens (emotional, functional, show, hide)            |
-| `--db-transition-straight-*` | transition | All composed shorthand transitions                               |
+| Token                              | Category   | Notes                                                                              |
+| ---------------------------------- | ---------- | ---------------------------------------------------------------------------------- |
+| `--db-transition-duration-*`       | transition | All duration tokens (extra-fast, fast, medium, slow, extra-slow)                   |
+| `--db-transition-timing-*`         | transition | All timing tokens (emotional, functional, show, hide)                              |
+| `--db-transition-straight-*`       | transition | All composed shorthand transitions                                                 |
+| `--db-adaptive-on-origin-hovered`  | colors     | No Figma equivalent — accessibility (contrast) cannot be guaranteed for this state |
+| `--db-adaptive-on-origin-pressed`  | colors     | No Figma equivalent — accessibility (contrast) cannot be guaranteed for this state |
 
 ## Structural differences
 
