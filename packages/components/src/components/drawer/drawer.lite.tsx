@@ -16,10 +16,7 @@ import {
 	isKeyboardEvent,
 	supportsClosedBy
 } from '../../utils';
-import {
-	closeDialogWithTransition,
-	supportsAllowDiscreteDisplayAndOverlayTransition
-} from '../../utils/allow-discrete-ponyfill';
+import { supportsAllowDiscreteDisplayAndOverlayTransition } from '../../utils/allow-discrete-ponyfill';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
