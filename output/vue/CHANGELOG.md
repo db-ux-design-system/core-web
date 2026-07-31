@@ -1,5 +1,29 @@
 # @db-ux/v-core-components
 
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+### Minor Changes
+
+- feat: accept `autoComplete` (camelCase) as alias for `autocomplete` on form components - [see commit 6ac2c72](https://github.com/db-ux-design-system/core-web/commit/6ac2c722ea1a3d992218f78c4881b30c2c8c65cf)
+
+- refactor(drawer): replace JS transition workaround with CSS native functionality - [see commit 9370d63](https://github.com/db-ux-design-system/core-web/commit/9370d638176cf270e5700094c2a544d712c7413b)
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- fix(Header): missing close-button default label in drawer - [see commit ad24b1c](https://github.com/db-ux-design-system/core-web/commit/ad24b1cc24b0e34617941d874059cd69eb289d70)
+
+- fix: safe-guarding the access to `ref` in several components - [see commit 7b0e6da](https://github.com/db-ux-design-system/core-web/commit/7b0e6dac904748d7c61bc064963ab729a1c3c5b4)
+
 ## 5.0.2
 
 ### Patch Changes

@@ -217,7 +217,7 @@
 	}
 
 	// Shared open state: reset transform and define entry animation.
-	// data-closing reverts the transform while still [open] to trigger
+	// data-closing-allow-discrete-ponyfill reverts the transform while still [open] to trigger
 	// the exit animation in browsers without allow-discrete for display.
 	&[open] {
 		// TODO: Remove this selector part after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408

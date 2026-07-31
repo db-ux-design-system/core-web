@@ -100,7 +100,7 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
-## Allow-discrete Ponyfill (`src/utils/allow-discrete-ponyfill.ts`)
+## Allow-discrete Ponyfill (`src/ponyfills/allow-discrete.ts`)
 
 A shared ponyfill for browsers that don't support transitioning `display` and/or `overlay` with `transition-behavior: allow-discrete` (currently Firefox and Safari). Used by the drawer to animate dialog exit transitions. See the file-level JSDoc for architecture, CSS contract, and maintenance constraints.
 
@@ -268,13 +268,39 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
+### React `propsPassingFilter` and `default*` props
+
+The `filterPassingProps` utility in `src/utils/react.ts` forwards any prop starting with `default` to the inner DOM element (alongside `data-*`, `aria-*`, `on*`, etc.). This works for standard HTML attributes like `defaultValue`, `defaultChecked`, and `defaultSelected`, but **custom** `default*` props (e.g. `defaultOpen`) must NOT reach the DOM — React will warn about unrecognized attributes.
+
+**When introducing a new prop that starts with `default`:**
+
+1. If it maps to a standard HTML attribute on the target element (e.g. `defaultValue` on `<input>`), no action needed — it passes through correctly.
+2. If it is a custom prop (e.g. `defaultOpen` on `<details>`, which only has `open`), add it to the component's `propsPassingFilter` in `scripts/post-build/components.ts` so it gets excluded from the DOM spread.
+
+Alternatively, consider naming the prop without the `default` prefix (e.g. `initialOpen`) to avoid the forwarding issue entirely.
+
 ## Changeset Rules
 
-Changes in `packages/components/src` require a changeset for:
-`@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`
+Changes in `packages/components/src` require a changeset. Which packages to include depends on **what** changed:
+
+| What changed                                                                      | Packages to include                                                                                                                             |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`                                                                                                                        |
+| **Component logic or templates** (model.ts, component files processed by Mitosis) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| **Both**                                                                          | All five packages                                                                                                                               |
+
+**Scope the packages to what is actually affected:**
+
+- Changes in shared code (components, `model.ts`, shared utils) → all framework packages
+- Changes in framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`) → only the affected framework package
+- Changes in styling (SCSS/CSS) or HTML (template within the components) → `@db-ux/core-components` + all framework packages
+
+Bump types:
 
 - `patch` — bug fix
 - `minor` — new feature or example, or any prop added in `model.ts`
 - `major` — any prop in `model.ts` removed, renamed, or retyped
 
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.

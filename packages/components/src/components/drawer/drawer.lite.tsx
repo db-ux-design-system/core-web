@@ -7,6 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { _closeDialogWithTransition } from '../../ponyfills/allow-discrete';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
@@ -109,14 +110,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 						_ref.showModal();
 					}
 				}
-				if (dialogOpen && _ref.open) {
-					// Cancel any pending ponyfill close if reopened
-					delete (_ref as HTMLElement).dataset[
-						'closingAllowDiscretePonyfill'
-					];
-				}
-				if (!dialogOpen && _ref.open) {
-					closeDialogWithTransition(_ref as HTMLDialogElement);
+				if (_ref.open) {
+					_closeDialogWithTransition(
+						_ref as HTMLDialogElement,
+						!!dialogOpen,
+						() => _ref?.close()
+					);
 				}
 			}
 		},
