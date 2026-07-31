@@ -135,21 +135,19 @@
 	inset: 0;
 
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
-	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
-	// can control hiding instead — Firefox supports allow-discrete for visibility.
 	@supports not (overlay: auto) {
+		// Override UA `dialog:not([open]) { display: none }` so that `visibility`
+		// can control hiding instead — Firefox supports allow-discrete for visibility.
 		// stylelint-disable-next-line declaration-no-important
 		display: block !important;
 
 		&:not([open]) {
 			visibility: hidden;
 		}
-	}
 
-	// ::backdrop disappears instantly on close since the dialog leaves the
-	// top layer immediately. Use ::before with a visibility transition instead,
-	// and hide the native ::backdrop to prevent double-darkening.
-	@supports not (overlay: auto) {
+		// ::backdrop disappears instantly on close since the dialog leaves the
+		// top layer immediately. Use ::before with a visibility transition instead,
+		// and hide the native ::backdrop to prevent double-darkening.
 		&:not([data-backdrop="none"], [data-position="absolute"]) {
 			&::backdrop {
 				background-color: transparent;
