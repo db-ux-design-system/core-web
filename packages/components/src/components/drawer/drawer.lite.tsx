@@ -98,7 +98,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 			} else {
-				_ref?.close()
+				_ref?.close();
 			}
 		}
 	});
