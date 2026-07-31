@@ -2,8 +2,6 @@
 
 Visuelle Symbole zur Unterstützung von Text, Navigation und Aktionen. Im Code über einen Icon Font (inner source) bereitgestellt, in Figma als Assets aus einer separaten Library (`DB UX DS v3 - DB Theme Icons`) platziert.
 
-<!-- TODO: Ggf. Anleitung von Dev ergänzen, wie Icons lokal eingebunden/installiert werden. -->
-
 ## Regeln
 
 1. Bei Icon-Text-Kombinationen entspricht die Icon Size der Line Height des Texts.

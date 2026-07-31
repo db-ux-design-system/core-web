@@ -9,41 +9,54 @@ knowledge-database/
   foundations/              Tokens, Prinzipien und interne Mechanismen
   components/              Core-Komponenten (veröffentlicht)
   lab-components/          Lab-Komponenten (Concept / Pre-Release)
+  icons/                   Icon-System (Namen, Guidelines)
   figma-libraries.json     Übersicht der Figma-Libraries mit File Keys
+  inconsistencies.md       Tracking von Abweichungen zwischen Figma und Code
   requirements.md          Anforderungsdokument an die Knowledge Base
+  TODO.md                  Offene Punkte
 ```
 
 ## Foundations
 
-Jeder Ordner enthält eine `meta.json` mit den allgemeinen Informationen. Der fachliche Inhalt liegt je nach Kategorie in einer `tokens.json` oder als Markdown-Datei.
+Jeder Ordner enthält eine `meta.json` mit den allgemeinen Informationen. Der fachliche Inhalt liegt je nach Kategorie in einer `tokens.json` und/oder als Markdown-Datei (`guidelines.md`).
 
 ### Token-Ordner (`{kategorie}/tokens.json`)
 
-Öffentliche Token-API des Design Systems. Jede Datei dokumentiert:
+Öffentliche Token-API des Design Systems. Jede Datei dokumentiert pro Token:
 
-- CSS Custom Properties mit Token-Namen
-- Figma Variable Collection und Variable Keys
-- Skala, Gruppen und Beschreibungen
+- CSS Custom Property
+- Figma Variable/Style Name und Key
+- Gruppierung (bei Multi-Group-Tokens wie spacing, typography)
 
 Kategorien: `colors`, `spacing`, `sizing`, `border-width`, `border-radius`, `opacity`, `elevation`, `typography`, `transition`, `screen`, `container`
 
-### Principles (`foundations/principles/`)
+### Principles (`foundations/_principles/`)
 
 Übergreifende Systemkonzepte, die beschreiben wie die Tokens zusammenwirken. Zielgruppe: Konsumenten und Entwickler, die verstehen wollen wie das adaptive System funktioniert.
 
 - `adaptive-colors.md` — Farbsystem (Modes, Varianten, Collections)
 - `adaptive-density.md` — Density-System (Modi, Aktivierung, betroffene Kategorien)
 
-### Internals (`foundations/internals/`)
+### Component Tokens (`foundations/_component-tokens/`)
 
-Interne Mechanismen und Variablen für Design-System-Maintainer und Komponentenentwickler. Nicht für Konsumenten gedacht, aber essentiell für den Bau neuer Komponenten.
+Komponentenspezifische Sizing-Variablen (`🧱 design`) für Fälle, die über die globalen Spacing-/Sizing-Skalen hinausgehen. Existieren nur in Figma (Density Collection) und werden nicht als CSS Custom Properties exponiert.
 
-- `icon-font-size.md` — Internes Icon-Sizing-System (density × device × type × size)
-- `design-variables.md` — Komponentenspezifische 🧱-Variablen in Figma
+- `shell.json` — Width/Height für die Shell-Komponente (Header/Navigation)
+- `resizer.json` — Sizing/Container für die Resizer-Komponente (Drag-Handle)
+- `textarea.json` — Height für die Textarea-Komponente (Label-positionsabhängig)
 
-### Inkonsistenzen (`foundations/inconsistencies.md`)
+### Icon Font Size (`foundations/icon-font-size/`)
 
-Tracking von Abweichungen zwischen Figma und Code (Figma-only Tokens, Code-only Tokens, strukturelle Unterschiede).
+Internes Icon-Sizing-System (density × device × type × size). Nicht für Konsumenten, sondern für den Bau von Komponenten relevant.
+
+## Icons
+
+Icon-System des Design Systems:
+
+- `guidelines.md` — Nutzungsregeln
+- `icon-names.json` — Vollständige Liste aller verfügbaren Icon-Namen
+- `properties.json` — Properties der Icon-Komponente
+- `meta.json` — Allgemeine Informationen
 
 ## Components
 
