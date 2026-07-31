@@ -13,6 +13,5 @@ Komponentenspezifische Sizing-Variablen (`🧱 design`) für Fälle, die über d
 ## Verfügbare Token-Gruppen
 
 - `shell.json` — Width/Height für die Shell-Komponente (Header/Navigation)
-- `pulse.json` — Width für die Pulse-Komponente (Loading Indicator / Skeleton)
 - `resizer.json` — Sizing/Container für die Resizer-Komponente (Drag-Handle)
 - `textarea.json` — Height für die Textarea-Komponente (Label-positionsabhängig)

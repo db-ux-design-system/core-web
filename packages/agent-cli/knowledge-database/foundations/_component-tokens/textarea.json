@@ -15,27 +15,5 @@
 			"scopes": ["WIDTH_HEIGHT"],
 			"note": "Mindesthöhe der Textarea bei Floating Label"
 		}
-	},
-	"deviceResolved": {
-		"collection": "Device",
-		"prefix": "🔗 design/textarea",
-		"note": "Aufgelöste Werte pro Density × Device — werden intern von den Density-Tokens referenziert.",
-		"tokens": {
-			"regular/height-label-above": {
-				"key": "970ef169b59a8317548b0f1ab341cdc30bbb1041"
-			},
-			"expressive/height-label-above": {
-				"key": "91c9e3d2b290e097ae3257d34934de9e792e36c7"
-			},
-			"functional/height-label-above": {
-				"key": "9889d95fdd86cbcc262ef35a7613f744f939ee7f"
-			},
-			"functional/height-floating-label": {
-				"key": "3ce6a8a77aeca1363cefa8911945ab5e0a8780b5"
-			},
-			"expressive/height-floating-label": {
-				"key": "b8ea7f321e884d2bc39a2af81850e0fc447e4f47"
-			}
-		}
 	}
 }
