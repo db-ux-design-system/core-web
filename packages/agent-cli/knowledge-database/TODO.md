@@ -4,4 +4,10 @@
 
 ### 1. `code.json` für alle Komponenten ausrollen
 
-Aktuell nur als Prototyp bei Button vorhanden. Muss von Dev für alle Komponenten angelegt werden.
+Aktuell nur als Prototyp bei Button vorhanden. Muss von Dev für alle Komponenten angelegt werden. Format-Vorschlag und Generierungskonzept siehe `components/button/code.json`.
+
+## Generierung
+
+### 2. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
+
+Welche Artefakte sich zukünftig aus der Wissensbasis generieren lassen, anstatt parallel gepflegt zu werden — z.B. Storybook-Dokumentation (Props-Tabellen, Controls, Beschreibungen) oder Teile der Plattform-Dokumentation. Voraussetzung: Props, Slots, Events und Guidelines vollständig in der Wissensbasis.
