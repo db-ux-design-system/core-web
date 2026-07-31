@@ -8,5 +8,15 @@
 		}
 	],
 	"codeConnectProperties": [],
-	"codeProperties": []
+	"codeProperties": [],
+	"codeImplementation": {
+		"note": "Backdrop ist keine eigenständige Komponente im Code. Bei DBDrawer und DBCustomSelect ist er bereits integriert (siehe deren `backdrop`-Prop). Für eigene modale Komponenten basierend auf `<dialog>` das CSS-Pattern manuell anwenden.",
+		"css": {
+			"strong": "background-color: color(from var(--db-adaptive-on-bg-basic-emphasis-100-default) srgb r g b / var(--db-opacity-lg));",
+			"weak": "background-color: color(from var(--db-adaptive-on-bg-basic-emphasis-100-default) srgb r g b / var(--db-opacity-sm));",
+			"invisible": "background-color: transparent;",
+			"none": "Kein Backdrop — dialog.show() statt dialog.showModal() verwenden."
+		},
+		"selector": "dialog::backdrop, dialog::before"
+	}
 }
