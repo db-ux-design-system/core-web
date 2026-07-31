@@ -148,7 +148,7 @@
 	// top layer immediately. Use ::before with a visibility transition instead,
 	// and hide the native ::backdrop to prevent double-darkening.
 	@supports not (overlay: auto) {
-		&:not([data-backdrop="none"], [data-position="absolute"]) {
+		&:not([data-backdrop="none"]):not([data-position="absolute"]) {
 			&::backdrop {
 				background-color: transparent;
 			}
