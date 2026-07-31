@@ -7,7 +7,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { _closeDialogWithTransition } from '../../ponyfills/allow-discrete';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
@@ -99,11 +98,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 			} else {
-				_closeDialogWithTransition(
-					_ref as HTMLDialogElement,
-					!!dialogOpen,
-					() => _ref?.close()
-				);
+				_ref?.close()
 			}
 		}
 	});
