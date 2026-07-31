@@ -1,56 +1,110 @@
 {
 	"component": "custom-button",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Icon name for icon-only button"
+			"description": "Icon name for icon-only button",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "iconLeading",
 			"type": "string",
-			"description": "Icon before the label"
+			"description": "Icon before the label",
+			"code": {
+				"prop": "iconLeading",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "iconTrailing",
 			"type": "string",
-			"description": "Icon after the label"
+			"description": "Icon after the label",
+			"code": {
+				"prop": "iconTrailing",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "showIcon",
-			"type": "boolean"
+			"type": "boolean",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "showIconLeading",
-			"type": "boolean"
+			"type": "boolean",
+			"code": {
+				"prop": "showIconLeading",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "showIconTrailing",
-			"type": "boolean"
+			"type": "boolean",
+			"code": {
+				"prop": "showIconTrailing",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "noText",
 			"type": "boolean",
-			"description": "Renders as icon-only"
+			"description": "Renders as icon-only",
+			"code": {
+				"prop": "noText",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "size",
-			"type": "SizeType",
-			"values": ["small", "medium"],
-			"default": "medium"
+			"type": "enum",
+			"values": [
+				"small",
+				"medium"
+			],
+			"default": "medium",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": null
 		},
 		{
 			"name": "width",
-			"type": "WidthType",
-			"values": ["auto", "full"],
-			"default": "auto"
+			"type": "enum",
+			"values": [
+				"auto",
+				"full"
+			],
+			"default": "auto",
+			"code": {
+				"prop": "width",
+				"type": "WidthType"
+			},
+			"design": null
 		},
 		{
 			"name": "wrap",
 			"type": "boolean",
-			"description": "Enable text wrapping"
+			"description": "Enable text wrapping",
+			"code": {
+				"prop": "wrap",
+				"type": "boolean"
+			},
+			"design": null
 		}
 	]
 }

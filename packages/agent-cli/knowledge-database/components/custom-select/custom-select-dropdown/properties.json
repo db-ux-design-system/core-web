@@ -1,60 +1,116 @@
 {
 	"component": "custom-select-dropdown",
-	"figmaProperties": [
-		{
-			"name": "👁️ Show Search",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "👁️ Show SelectAll",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "👁️ Show Scrollbar",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "📦 Children Multiple",
-			"type": "SLOT"
-		},
-		{
-			"name": "📦 Children Single",
-			"type": "SLOT"
-		},
-		{
-			"name": "🔀 Multiple",
-			"type": "VARIANT",
-			"values": ["True", "False", "True | False"]
-		},
-		{
-			"name": "🔀 Show Loading",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Show No Results",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Dropdown Width",
-			"type": "VARIANT",
-			"values": ["full", "auto", "fixed"],
-			"defaultValue": "auto",
-			"mapsToCodeProp": "width"
-		}
-	],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "width",
-			"type": "CustomSelectDropdownWidthType | string",
-			"values": ["fixed", "auto", "full"],
-			"description": "Width behavior of the dropdown"
+			"type": "enum",
+			"values": [
+				"fixed",
+				"auto",
+				"full"
+			],
+			"default": "auto",
+			"description": "Width behavior of the dropdown",
+			"code": {
+				"prop": "width",
+				"type": "CustomSelectDropdownWidthType | string"
+			},
+			"design": {
+				"name": "⚙️ Dropdown Width",
+				"codeConnect": true,
+				"values": [
+					"full",
+					"auto",
+					"fixed"
+				]
+			}
+		},
+		{
+			"name": "showSearch",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Search"
+			}
+		},
+		{
+			"name": "showSelectAll",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show SelectAll"
+			}
+		},
+		{
+			"name": "showScrollbar",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Scrollbar"
+			}
+		},
+		{
+			"name": "childrenMultiple",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children Multiple",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "childrenSingle",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children Single",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "multiple",
+			"type": "enum",
+			"values": [
+				"True",
+				"False",
+				"True | False"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Multiple",
+				"values": [
+					"True",
+					"False",
+					"True | False"
+				]
+			}
+		},
+		{
+			"name": "showLoading",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Show Loading",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showNoResults",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Show No Results",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		}
 	]
 }

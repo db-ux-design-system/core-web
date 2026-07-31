@@ -1,125 +1,199 @@
 {
 	"component": "drawer",
-	"figmaProperties": [
-		{
-			"name": "👁️ Show Backdrop",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Footer",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show Spacing",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "🔀 Container Size",
-			"type": "VARIANT",
-			"values": ["(Def) Small", "Medium", "Large", "Custom", "Full"]
-		},
-		{
-			"name": "🔀 Rounded",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Backdrop",
-			"type": "VARIANT",
-			"values": ["strong"],
-			"defaultValue": "strong",
-			"mapsToCodeProp": "backdrop"
-		},
-		{
-			"name": "⚙️ Direction",
-			"type": "VARIANT",
-			"values": ["up", "to-left", "to-right", "down"],
-			"defaultValue": "down",
-			"mapsToCodeProp": "direction",
-			"note": "In Figma, direction is expressed via separate Component Sets (Drawer → Right, Left, Bottom, Top). Code Connect maps the active set to the direction prop."
-		},
-		{
-			"name": "⚙️ Rounded",
-			"type": "VARIANT",
-			"values": ["true", "false"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "rounded"
-		},
-		{
-			"name": "⚙️ Size",
-			"type": "VARIANT",
-			"values": ["small", "medium", "large", "full", "custom"],
-			"defaultValue": "small",
-			"mapsToCodeProp": "containerSize"
-		}
-	],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "backdrop",
-			"type": "DrawerBackdropType",
-			"values": ["none", "strong", "weak", "invisible"],
+			"type": "enum",
+			"values": [
+				"none",
+				"strong",
+				"weak",
+				"invisible"
+			],
 			"default": "strong",
-			"description": "Changes the opacity of the backdrop"
+			"description": "Changes the opacity of the backdrop",
+			"code": {
+				"prop": "backdrop",
+				"type": "DrawerBackdropType"
+			},
+			"design": {
+				"name": "⚙️ Backdrop",
+				"codeConnect": true,
+				"values": [
+					"strong"
+				]
+			}
 		},
 		{
 			"name": "direction",
-			"type": "DrawerDirectionType",
-			"values": ["to-left", "to-right", "up", "down"],
-			"description": "Position and animation direction of the drawer"
-		},
-		{
-			"name": "open",
-			"type": "boolean | string",
-			"description": "Opens or closes the drawer"
+			"type": "enum",
+			"values": [
+				"to-left",
+				"to-right",
+				"up",
+				"down"
+			],
+			"default": "down",
+			"description": "Position and animation direction of the drawer",
+			"code": {
+				"prop": "direction",
+				"type": "DrawerDirectionType"
+			},
+			"design": {
+				"name": "⚙️ Direction",
+				"codeConnect": true,
+				"values": [
+					"up",
+					"to-left",
+					"to-right",
+					"down"
+				],
+				"note": "In Figma, direction is expressed via separate Component Sets (Drawer → Right, Left, Bottom, Top). Code Connect maps the active set to the direction prop."
+			}
 		},
 		{
 			"name": "rounded",
-			"type": "boolean | string",
-			"description": "Applies border radius to the corners on the end of the drawer"
+			"type": "boolean",
+			"default": "true",
+			"description": "Applies border radius to the corners on the end of the drawer",
+			"code": {
+				"prop": "rounded",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "⚙️ Rounded",
+				"codeConnect": true,
+				"values": [
+					"true",
+					"false"
+				]
+			}
 		},
 		{
 			"name": "containerSize",
-			"type": "DrawerContainerSizeType",
-			"values": ["small", "medium", "large", "full"],
-			"description": "Size of the drawer container"
+			"type": "enum",
+			"values": [
+				"small",
+				"medium",
+				"large",
+				"full"
+			],
+			"default": "small",
+			"description": "Size of the drawer container",
+			"code": {
+				"prop": "containerSize",
+				"type": "DrawerContainerSizeType"
+			},
+			"design": {
+				"name": "⚙️ Size",
+				"codeConnect": true,
+				"values": [
+					"small",
+					"medium",
+					"large",
+					"full",
+					"custom"
+				]
+			}
 		},
 		{
 			"name": "showSpacing",
-			"type": "boolean | string",
-			"description": "Shows spacing between viewport frame and drawer content"
+			"type": "boolean",
+			"description": "Shows spacing between viewport frame and drawer content",
+			"code": {
+				"prop": "showSpacing",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "👁️ Show Spacing"
+			}
+		},
+		{
+			"name": "showBackdrop",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Backdrop"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showFooter",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Footer"
+			}
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Opens or closes the drawer",
+			"code": {
+				"prop": "open",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "variant",
-			"type": "DrawerVariantType",
-			"values": ["modal", "inside"],
+			"type": "enum",
+			"values": [
+				"modal",
+				"inside"
+			],
 			"default": "modal",
-			"description": "Set the variant modal or inside"
+			"description": "Set the variant modal or inside",
+			"code": {
+				"prop": "variant",
+				"type": "DrawerVariantType"
+			},
+			"design": null
 		},
 		{
 			"name": "position",
-			"type": "DrawerPositionType",
-			"values": ["fixed", "absolute"],
+			"type": "enum",
+			"values": [
+				"fixed",
+				"absolute"
+			],
 			"default": "fixed",
-			"description": "CSS position of the drawer (fixed uses showModal, absolute uses show)"
+			"description": "CSS position of the drawer (fixed uses showModal, absolute uses show)",
+			"code": {
+				"prop": "position",
+				"type": "DrawerPositionType"
+			},
+			"design": null
 		},
 		{
 			"name": "header",
 			"type": "any",
-			"description": "Slot for the drawer header"
+			"description": "Slot for the drawer header",
+			"code": {
+				"prop": "header",
+				"type": "any"
+			},
+			"design": null
 		},
 		{
 			"name": "footer",
 			"type": "any",
-			"description": "Slot for the drawer footer"
+			"description": "Slot for the drawer footer",
+			"code": {
+				"prop": "footer",
+				"type": "any"
+			},
+			"design": null
 		}
 	]
 }

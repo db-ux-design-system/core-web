@@ -1,18 +1,45 @@
 {
 	"component": "loading-indicator-circle",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Value",
-			"type": "VARIANT",
-			"values": ["Active", "Inactive", "Full", "Successful", "Critical"]
+			"name": "value",
+			"type": "enum",
+			"values": [
+				"Active",
+				"Inactive",
+				"Full",
+				"Successful",
+				"Critical"
+			],
+			"code": null,
+			"design": {
+				"name": "Value",
+				"values": [
+					"Active",
+					"Inactive",
+					"Full",
+					"Successful",
+					"Critical"
+				]
+			}
 		},
 		{
-			"name": "🎨 Value",
-			"type": "VARIANT",
-			"values": ["25%", "50%", "75%"]
+			"name": "value",
+			"type": "enum",
+			"values": [
+				"25%",
+				"50%",
+				"75%"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Value",
+				"values": [
+					"25%",
+					"50%",
+					"75%"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [],
-	"note": "Orientation (Vertical, Horizontal) and the progress variant are expressed through separate component sets. `Value` applies to the base sets, `🎨 Value` to the progress sets."
+	]
 }

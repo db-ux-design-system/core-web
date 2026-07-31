@@ -1,14 +1,20 @@
 {
 	"component": "text",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Text"
+			"name": "text",
+			"type": "string",
+			"default": "Text",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text"
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
+			"name": "size",
+			"type": "enum",
 			"values": [
 				"(Def) Medium",
 				"Small",
@@ -19,19 +25,60 @@
 				"xSmall",
 				"2xSmall",
 				"3xSmall"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small",
+					"3xLarge",
+					"2xLarge",
+					"xLarge",
+					"Large",
+					"xSmall",
+					"2xSmall",
+					"3xSmall"
+				]
+			}
 		},
 		{
-			"name": "Text Align",
-			"type": "VARIANT",
-			"values": ["(Def) Left", "Center", "Right"]
+			"name": "textAlign",
+			"type": "enum",
+			"values": [
+				"(Def) Left",
+				"Center",
+				"Right"
+			],
+			"code": null,
+			"design": {
+				"name": "Text Align",
+				"values": [
+					"(Def) Left",
+					"Center",
+					"Right"
+				]
+			}
 		},
 		{
-			"name": "Max Width",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small", "Large", "None"]
+			"name": "maxWidth",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small",
+				"Large",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "Max Width",
+				"values": [
+					"(Def) Medium",
+					"Small",
+					"Large",
+					"None"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

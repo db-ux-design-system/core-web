@@ -1,22 +1,43 @@
 {
 	"component": "list-title",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "label",
+			"type": "string",
+			"default": "Label",
+			"code": null,
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
-			"name": "Show Trailing Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showTrailingSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Show Trailing Slot"
+			}
 		},
 		{
-			"name": "Emphasis",
-			"type": "VARIANT",
-			"values": ["(Def) Regular", "Weak", "Strong"]
+			"name": "emphasis",
+			"type": "enum",
+			"values": [
+				"(Def) Regular",
+				"Weak",
+				"Strong"
+			],
+			"code": null,
+			"design": {
+				"name": "Emphasis",
+				"values": [
+					"(Def) Regular",
+					"Weak",
+					"Strong"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

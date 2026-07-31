@@ -1,24 +1,49 @@
 {
 	"component": "tab-list",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "📦 Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🔀 Overflow Position",
-			"type": "VARIANT",
-			"values": ["(Def) None", "Start", "Center", "End"],
-			"note": "Only on the AutoWidth horizontal variant"
-		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [
+			"name": "overflowPosition",
+			"type": "enum",
+			"values": [
+				"None",
+				"Start",
+				"Center",
+				"End"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Overflow Position",
+				"values": [
+					"(Def) None",
+					"Start",
+					"Center",
+					"End"
+				],
+				"note": "Only on the AutoWidth horizontal variant"
+			}
+		},
 		{
 			"name": "orientation",
-			"type": "OrientationType",
-			"values": ["horizontal", "vertical"],
-			"description": "Orientation of the tab list"
+			"type": "enum",
+			"values": [
+				"horizontal",
+				"vertical"
+			],
+			"description": "Orientation of the tab list",
+			"code": {
+				"prop": "orientation",
+				"type": "OrientationType"
+			},
+			"design": null
 		}
 	]
 }

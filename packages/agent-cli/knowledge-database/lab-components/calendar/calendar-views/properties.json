@@ -1,12 +1,23 @@
 {
 	"component": "calendar-views",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["Default", "Calender Months", "Calender Years"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"Default",
+				"Calender Months",
+				"Calender Years"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"Default",
+					"Calender Months",
+					"Calender Years"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

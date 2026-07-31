@@ -1,114 +1,187 @@
 {
 	"component": "custom-select-list-item",
-	"figmaProperties": [
-		{
-			"name": "👁️ Show Divider",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "✏️ Group Title",
-			"type": "TEXT",
-			"defaultValue": "List Group Title"
-		},
-		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "List Item"
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Checked",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Indeterminate",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Is Group Title",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Type",
-			"type": "VARIANT",
-			"values": ["checkbox", "radio"],
-			"defaultValue": "checkbox",
-			"mapsToCodeProp": "type"
-		},
-		{
-			"name": "⚙️ Show Icon",
-			"type": "VARIANT",
-			"values": ["true", "false"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "showIcon"
-		}
-	],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "type",
-			"type": "CustomSelectListItemTypeType",
-			"values": ["checkbox", "radio"],
-			"description": "Behavior of the item (single/radio or multiple/checkbox)"
-		},
-		{
-			"name": "groupTitle",
-			"type": "string",
-			"description": "Set the title of a group of items"
-		},
-		{
-			"name": "label",
-			"type": "string",
-			"description": "Label for the list item"
-		},
-		{
-			"name": "value",
-			"type": "string",
-			"description": "Value of the item"
-		},
-		{
-			"name": "checked",
-			"type": "boolean | string",
-			"description": "Whether the item is checked"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Whether the item is disabled"
-		},
-		{
-			"name": "isGroupTitle",
-			"type": "boolean",
-			"description": "Whether this item is a group title (text only)"
-		},
-		{
-			"name": "showDivider",
-			"type": "boolean",
-			"description": "Show a divider on the bottom for visual grouping"
-		},
-		{
-			"name": "icon",
-			"type": "string",
-			"description": "Leading icon name (single select only)"
+			"type": "enum",
+			"values": [
+				"checkbox",
+				"radio"
+			],
+			"default": "checkbox",
+			"description": "Behavior of the item (single/radio or multiple/checkbox)",
+			"code": {
+				"prop": "type",
+				"type": "CustomSelectListItemTypeType"
+			},
+			"design": {
+				"name": "⚙️ Type",
+				"codeConnect": true,
+				"values": [
+					"checkbox",
+					"radio"
+				]
+			}
 		},
 		{
 			"name": "showIcon",
 			"type": "boolean",
-			"description": "Show/hide the leading icon"
+			"default": "true",
+			"description": "Show/hide the leading icon",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "⚙️ Show Icon",
+				"codeConnect": true,
+				"values": [
+					"true",
+					"false"
+				]
+			}
+		},
+		{
+			"name": "showDivider",
+			"type": "boolean",
+			"description": "Show a divider on the bottom for visual grouping",
+			"code": {
+				"prop": "showDivider",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Divider"
+			}
+		},
+		{
+			"name": "groupTitle",
+			"type": "string",
+			"description": "Set the title of a group of items",
+			"code": {
+				"prop": "groupTitle",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Group Title",
+				"type": "text",
+				"defaultValue": "List Group Title"
+			}
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label for the list item",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "List Item"
+			}
+		},
+		{
+			"name": "checked",
+			"type": "boolean",
+			"description": "Whether the item is checked",
+			"code": {
+				"prop": "checked",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Checked",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Whether the item is disabled",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "isGroupTitle",
+			"type": "boolean",
+			"description": "Whether this item is a group title (text only)",
+			"code": {
+				"prop": "isGroupTitle",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "🔀 Is Group Title",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "indeterminate",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Indeterminate",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Value of the item",
+			"code": {
+				"prop": "value",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Leading icon name (single select only)",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

@@ -1,140 +1,244 @@
 {
 	"component": "select",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "👁️ Show Required Asterisk",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "required",
+			"type": "boolean",
+			"default": "true",
+			"description": "Marks the field as required",
+			"code": {
+				"prop": "required",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "⚙️ Required",
+				"codeConnect": true,
+				"values": [
+					"false",
+					"true"
+				]
+			}
 		},
 		{
-			"name": "👁️ Show Label",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"above",
+				"floating"
+			],
+			"default": "above",
+			"description": "Label position variant",
+			"code": {
+				"prop": "variant",
+				"type": "FormVariantType"
+			},
+			"design": {
+				"name": "⚙️ Variant",
+				"codeConnect": true,
+				"values": [
+					"above",
+					"floating"
+				],
+				"note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
+			}
 		},
-		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
-		},
-		{
-			"name": "✏️ Placeholder",
-			"type": "TEXT",
-			"defaultValue": "Placeholder"
-		},
-		{
-			"name": "👁️ Show Message",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔄 Icon",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Validation",
-			"type": "VARIANT",
-			"values": ["(Def) No Validation", "Invalid", "Valid"]
-		},
-		{
-			"name": "👁️ Show Icon",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Required",
-			"type": "VARIANT",
-			"values": ["false", "true"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "required"
-		},
-		{
-			"name": "⚙️ Variant",
-			"type": "VARIANT",
-			"values": ["above", "floating"],
-			"defaultValue": "above",
-			"mapsToCodeProp": "variant",
-			"note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
-		}
-	],
-	"codeProperties": [
 		{
 			"name": "label",
 			"type": "string",
-			"description": "Label text for the select"
+			"description": "Label text for the select",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
 			"name": "placeholder",
 			"type": "string",
-			"description": "Placeholder text shown when no option is selected"
-		},
-		{
-			"name": "value",
-			"type": "string",
-			"description": "Current selected value"
-		},
-		{
-			"name": "variant",
-			"type": "FormVariantType",
-			"values": ["above", "floating"],
-			"default": "above",
-			"description": "Label position variant"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Disables the select"
-		},
-		{
-			"name": "required",
-			"type": "boolean | string",
-			"description": "Marks the field as required"
-		},
-		{
-			"name": "message",
-			"type": "string",
-			"description": "Helper/validation message text"
-		},
-		{
-			"name": "validMessage",
-			"type": "string",
-			"description": "Message shown on valid state"
-		},
-		{
-			"name": "invalidMessage",
-			"type": "string",
-			"description": "Message shown on invalid state"
+			"description": "Placeholder text shown when no option is selected",
+			"code": {
+				"prop": "placeholder",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Placeholder",
+				"type": "text",
+				"defaultValue": "Placeholder"
+			}
 		},
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Leading icon name"
+			"description": "Leading icon name",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": {
+				"name": "🔄 Icon",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Disables the select",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
 			"name": "showIcon",
 			"type": "boolean",
-			"description": "Show/hide the leading icon"
+			"description": "Show/hide the leading icon",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showRequiredAsterisk",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Required Asterisk"
+			}
+		},
+		{
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Label"
+			}
+		},
+		{
+			"name": "showMessage",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Message"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Focused",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "validation",
+			"type": "enum",
+			"values": [
+				"No Validation",
+				"Invalid",
+				"Valid"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Validation",
+				"values": [
+					"(Def) No Validation",
+					"Invalid",
+					"Valid"
+				]
+			}
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Current selected value",
+			"code": {
+				"prop": "value",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "message",
+			"type": "string",
+			"description": "Helper/validation message text",
+			"code": {
+				"prop": "message",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "validMessage",
+			"type": "string",
+			"description": "Message shown on valid state",
+			"code": {
+				"prop": "validMessage",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "invalidMessage",
+			"type": "string",
+			"description": "Message shown on invalid state",
+			"code": {
+				"prop": "invalidMessage",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "options",
-			"type": "DBSelectOptionType[]",
-			"description": "Options array if not using children/slots"
+			"type": "any",
+			"description": "Options array if not using children/slots",
+			"code": {
+				"prop": "options",
+				"type": "DBSelectOptionType[]"
+			},
+			"design": null
 		},
 		{
 			"name": "showEmptyOption",
 			"type": "boolean",
-			"description": "Controls whether empty placeholder option is shown after selection"
+			"description": "Controls whether empty placeholder option is shown after selection",
+			"code": {
+				"prop": "showEmptyOption",
+				"type": "boolean"
+			},
+			"design": null
 		}
 	]
 }

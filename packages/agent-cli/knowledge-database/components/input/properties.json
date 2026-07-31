@@ -1,101 +1,231 @@
 {
 	"component": "input",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "👁️ Show Message",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"above",
+				"floating"
+			],
+			"default": "above",
+			"description": "Label position variant",
+			"code": {
+				"prop": "variant",
+				"type": "FormVariantType"
+			},
+			"design": {
+				"name": "⚙️ Variant",
+				"codeConnect": true,
+				"values": [
+					"above",
+					"floating"
+				],
+				"note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
+			}
 		},
 		{
-			"name": "✏️ Placeholder",
-			"type": "TEXT",
-			"defaultValue": "Placeholder"
-		},
-		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
-		},
-		{
-			"name": "👁️ Show Required Asterisk",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show Label",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "🔄 Icon Trailing",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔄 Icon Leading",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Readonly",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Validation",
-			"type": "VARIANT",
-			"values": ["(Def) No Validation", "Invalid", "Valid"]
-		},
-		{
-			"name": "👁️ Show Icon Leading",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "👁️ Show Icon Trailing",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Variant",
-			"type": "VARIANT",
-			"values": ["above", "floating"],
-			"defaultValue": "above",
-			"mapsToCodeProp": "variant",
-			"note": "In Figma, label variant is expressed via separate Component Sets (Label Above vs Floating Label). Code Connect maps to the variant prop."
-		},
-		{
-			"name": "⚙️ Required",
-			"type": "VARIANT",
-			"values": ["false", "true"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "required"
-		}
-	],
-	"codeProperties": [
-		{
-			"name": "label",
-			"type": "string",
-			"description": "Label text for the input"
+			"name": "required",
+			"type": "boolean",
+			"default": "true",
+			"description": "Marks the field as required",
+			"code": {
+				"prop": "required",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "⚙️ Required",
+				"codeConnect": true,
+				"values": [
+					"false",
+					"true"
+				]
+			}
 		},
 		{
 			"name": "placeholder",
 			"type": "string",
-			"description": "Placeholder text"
+			"description": "Placeholder text",
+			"code": {
+				"prop": "placeholder",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Placeholder",
+				"type": "text",
+				"defaultValue": "Placeholder"
+			}
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label text for the input",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
+		},
+		{
+			"name": "iconTrailing",
+			"type": "string",
+			"description": "Trailing icon name",
+			"code": {
+				"prop": "iconTrailing",
+				"type": "string"
+			},
+			"design": {
+				"name": "🔄 Icon Trailing",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "iconLeading",
+			"type": "string",
+			"description": "Leading icon name",
+			"code": {
+				"prop": "iconLeading",
+				"type": "string"
+			},
+			"design": {
+				"name": "🔄 Icon Leading",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Disables the input",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"description": "Makes the input read-only",
+			"code": {
+				"prop": "readOnly",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Readonly",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showIconLeading",
+			"type": "boolean",
+			"code": {
+				"prop": "showIconLeading",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon Leading",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showIconTrailing",
+			"type": "boolean",
+			"code": {
+				"prop": "showIconTrailing",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon Trailing",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showMessage",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Message"
+			}
+		},
+		{
+			"name": "showRequiredAsterisk",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Required Asterisk"
+			}
+		},
+		{
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Label"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Focused",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "validation",
+			"type": "enum",
+			"values": [
+				"No Validation",
+				"Invalid",
+				"Valid"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Validation",
+				"values": [
+					"(Def) No Validation",
+					"Invalid",
+					"Valid"
+				]
+			}
 		},
 		{
 			"name": "type",
-			"type": "InputTypeType | string",
+			"type": "enum",
 			"values": [
 				"color",
 				"date",
@@ -114,101 +244,121 @@
 				"url",
 				"week"
 			],
-			"default": "text"
+			"default": "text",
+			"code": {
+				"prop": "type",
+				"type": "InputTypeType | string"
+			},
+			"design": null
 		},
 		{
 			"name": "value",
 			"type": "string",
-			"description": "Current value of the input"
-		},
-		{
-			"name": "variant",
-			"type": "FormVariantType",
-			"values": ["above", "floating"],
-			"default": "above",
-			"description": "Label position variant"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Disables the input"
-		},
-		{
-			"name": "readOnly",
-			"type": "boolean | string",
-			"description": "Makes the input read-only"
-		},
-		{
-			"name": "required",
-			"type": "boolean | string",
-			"description": "Marks the field as required"
+			"description": "Current value of the input",
+			"code": {
+				"prop": "value",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "message",
 			"type": "string",
-			"description": "Helper/validation message text"
+			"description": "Helper/validation message text",
+			"code": {
+				"prop": "message",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "validMessage",
 			"type": "string",
-			"description": "Message shown on valid state"
+			"description": "Message shown on valid state",
+			"code": {
+				"prop": "validMessage",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "invalidMessage",
 			"type": "string",
-			"description": "Message shown on invalid state"
+			"description": "Message shown on invalid state",
+			"code": {
+				"prop": "invalidMessage",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Icon name (deprecated, use iconLeading)"
-		},
-		{
-			"name": "iconLeading",
-			"type": "string",
-			"description": "Leading icon name"
-		},
-		{
-			"name": "iconTrailing",
-			"type": "string",
-			"description": "Trailing icon name"
+			"description": "Icon name (deprecated, use iconLeading)",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "showIcon",
-			"type": "boolean"
-		},
-		{
-			"name": "showIconLeading",
-			"type": "boolean"
-		},
-		{
-			"name": "showIconTrailing",
-			"type": "boolean"
+			"type": "boolean",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "dataList",
-			"type": "string[] | ValueLabelType[]",
-			"description": "Options for a datalist"
+			"type": "any",
+			"description": "Options for a datalist",
+			"code": {
+				"prop": "dataList",
+				"type": "string[] | ValueLabelType[]"
+			},
+			"design": null
 		},
 		{
 			"name": "min",
-			"type": "number | string",
-			"description": "Minimum value"
+			"type": "number",
+			"description": "Minimum value",
+			"code": {
+				"prop": "min",
+				"type": "number | string"
+			},
+			"design": null
 		},
 		{
 			"name": "max",
-			"type": "number | string",
-			"description": "Maximum value"
+			"type": "number",
+			"description": "Maximum value",
+			"code": {
+				"prop": "max",
+				"type": "number | string"
+			},
+			"design": null
 		},
 		{
 			"name": "step",
-			"type": "number | string",
-			"description": "Step value"
+			"type": "number",
+			"description": "Step value",
+			"code": {
+				"prop": "step",
+				"type": "number | string"
+			},
+			"design": null
 		},
 		{
 			"name": "pattern",
 			"type": "string",
-			"description": "Validation pattern regex"
+			"description": "Validation pattern regex",
+			"code": {
+				"prop": "pattern",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

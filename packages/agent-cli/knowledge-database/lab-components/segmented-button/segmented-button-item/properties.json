@@ -1,22 +1,57 @@
 {
 	"component": "segmented-button-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Active",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "active",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Active",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Outlined", "Filled", "Brand", "-"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"(Def) Outlined",
+				"Filled",
+				"Brand",
+				"-"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"(Def) Outlined",
+					"Filled",
+					"Brand",
+					"-"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

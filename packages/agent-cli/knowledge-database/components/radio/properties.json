@@ -1,104 +1,187 @@
 {
 	"component": "radio",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "👁️ Show Label",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "required",
+			"type": "boolean",
+			"default": "true",
+			"description": "Marks the field as required",
+			"code": {
+				"prop": "required",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "⚙️ Required",
+				"codeConnect": true,
+				"values": [
+					"false",
+					"true"
+				]
+			}
 		},
 		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"small",
+				"medium"
+			],
+			"default": "medium",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "⚙️ Size",
+				"codeConnect": true,
+				"values": [
+					"small",
+					"medium"
+				],
+				"note": "In Figma, size is expressed via separate Component Sets (Medium vs Small). Code Connect maps to the size prop."
+			}
 		},
-		{
-			"name": "👁️ Show Required Asterisk",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Checked",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Validation",
-			"type": "VARIANT",
-			"values": ["(Def) No Validation", "Invalid", "Valid"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Required",
-			"type": "VARIANT",
-			"values": ["false", "true"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "required"
-		},
-		{
-			"name": "⚙️ Size",
-			"type": "VARIANT",
-			"values": ["small", "medium"],
-			"defaultValue": "medium",
-			"mapsToCodeProp": "size",
-			"note": "In Figma, size is expressed via separate Component Sets (Medium vs Small). Code Connect maps to the size prop."
-		}
-	],
-	"codeProperties": [
 		{
 			"name": "label",
 			"type": "string",
-			"description": "Label text for the radio"
+			"description": "Label text for the radio",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Disables the radio",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "checked",
+			"type": "boolean",
+			"description": "Whether the radio is selected",
+			"code": {
+				"prop": "checked",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Checked",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Label"
+			}
+		},
+		{
+			"name": "showRequiredAsterisk",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Required Asterisk"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "validation",
+			"type": "enum",
+			"values": [
+				"No Validation",
+				"Invalid",
+				"Valid"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Validation",
+				"values": [
+					"(Def) No Validation",
+					"Invalid",
+					"Valid"
+				]
+			}
 		},
 		{
 			"name": "name",
 			"type": "string",
-			"description": "Groups radios together (shared name)"
+			"description": "Groups radios together (shared name)",
+			"code": {
+				"prop": "name",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "value",
 			"type": "string",
-			"description": "Value of the radio option"
-		},
-		{
-			"name": "checked",
-			"type": "boolean | string",
-			"description": "Whether the radio is selected"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Disables the radio"
-		},
-		{
-			"name": "required",
-			"type": "boolean | string",
-			"description": "Marks the field as required"
-		},
-		{
-			"name": "size",
-			"type": "SizeType",
-			"values": ["small", "medium"],
-			"default": "medium"
+			"description": "Value of the radio option",
+			"code": {
+				"prop": "value",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

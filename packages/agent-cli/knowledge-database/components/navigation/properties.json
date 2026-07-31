@@ -1,18 +1,31 @@
 {
 	"component": "navigation",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "🔀 Variant",
-			"type": "VARIANT",
-			"values": ["Level 1", "Level 2+"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"Level 1",
+				"Level 2+"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Variant",
+				"values": [
+					"Level 1",
+					"Level 2+"
+				]
+			}
 		},
 		{
-			"name": "👁️ Show Back Link",
-			"type": "BOOLEAN",
-			"defaultValue": true,
-			"note": "Mobile only"
+			"name": "showBackLink",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Back Link",
+				"note": "Mobile only"
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

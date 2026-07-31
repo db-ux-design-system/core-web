@@ -1,41 +1,95 @@
 {
 	"component": "list-vertical-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "🎨 Show Icon Leading",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "showIconLeading",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Icon Leading"
+			}
 		},
 		{
-			"name": "🔄 Icon Leading",
-			"type": "INSTANCE_SWAP"
+			"name": "iconLeading",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Leading",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "label",
+			"type": "string",
+			"default": "Label",
+			"code": null,
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
-			"name": "🎨 Show Image",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showImage",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Image"
+			}
 		},
 		{
-			"name": "Emphasis",
-			"type": "VARIANT",
-			"values": ["(Def) Regular", "Strong"]
+			"name": "emphasis",
+			"type": "enum",
+			"values": [
+				"(Def) Regular",
+				"Strong"
+			],
+			"code": null,
+			"design": {
+				"name": "Emphasis",
+				"values": [
+					"(Def) Regular",
+					"Strong"
+				]
+			}
 		},
 		{
-			"name": "🎨 Interaction States",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "None"]
+			"name": "interactionStates",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction States",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"None"
+				]
+			}
 		},
 		{
-			"name": "Disabled",
-			"type": "VARIANT",
-			"values": ["True", "False"]
+			"name": "disabled",
+			"type": "enum",
+			"values": [
+				"True",
+				"False"
+			],
+			"code": null,
+			"design": {
+				"name": "Disabled",
+				"values": [
+					"True",
+					"False"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

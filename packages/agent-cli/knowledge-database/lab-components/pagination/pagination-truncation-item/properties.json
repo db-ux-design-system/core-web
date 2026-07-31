@@ -1,12 +1,21 @@
 {
 	"component": "pagination-truncation-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

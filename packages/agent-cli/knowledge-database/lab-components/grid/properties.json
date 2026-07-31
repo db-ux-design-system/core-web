@@ -1,9 +1,9 @@
 {
 	"component": "grid",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Gap",
-			"type": "VARIANT",
+			"name": "gap",
+			"type": "enum",
 			"values": [
 				"(Def) md",
 				"None",
@@ -15,11 +15,27 @@
 				"xl",
 				"2xl",
 				"3xl"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Gap",
+				"values": [
+					"(Def) md",
+					"None",
+					"3xs",
+					"2xs",
+					"xs",
+					"sm",
+					"lg",
+					"xl",
+					"2xl",
+					"3xl"
+				]
+			}
 		},
 		{
-			"name": "Layout",
-			"type": "VARIANT",
+			"name": "layout",
+			"type": "enum",
 			"values": [
 				"(Def) 33-33-33",
 				"100",
@@ -30,14 +46,38 @@
 				"25-75",
 				"75-25",
 				"320-auto"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Layout",
+				"values": [
+					"(Def) 33-33-33",
+					"100",
+					"50-50",
+					"25-25-25-25",
+					"33-66",
+					"66-33",
+					"25-75",
+					"75-25",
+					"320-auto"
+				]
+			}
 		},
 		{
 			"name": "fill",
-			"type": "VARIANT",
-			"values": ["false", "true"]
+			"type": "enum",
+			"values": [
+				"false",
+				"true"
+			],
+			"code": null,
+			"design": {
+				"name": "fill",
+				"values": [
+					"false",
+					"true"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

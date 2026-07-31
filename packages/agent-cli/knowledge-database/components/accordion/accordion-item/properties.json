@@ -1,72 +1,131 @@
 {
 	"component": "accordion-item",
-	"figmaProperties": [
-		{
-			"name": "✏️ Headline",
-			"type": "TEXT",
-			"defaultValue": "Headline"
-		},
-		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Lorem Ipsum"
-		},
-		{
-			"name": "👁️ Show Text Content",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Open",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Focused", "Hovered", "None", "Pressed"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [
-		{
-			"name": "headlinePlain",
-			"type": "string",
-			"description": "Title of the accordion-item as plain text"
-		},
+	"properties": [
 		{
 			"name": "headline",
 			"type": "any",
-			"description": "Title of the accordion-item as slot"
+			"description": "Title of the accordion-item as slot",
+			"code": {
+				"prop": "headline",
+				"type": "any"
+			},
+			"design": {
+				"name": "✏️ Headline",
+				"type": "text",
+				"defaultValue": "Headline"
+			}
 		},
 		{
 			"name": "open",
-			"type": "boolean | string",
-			"description": "State for the accordion item"
+			"type": "boolean",
+			"description": "State for the accordion item",
+			"code": {
+				"prop": "open",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Open",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Keeps a user from clicking on the element",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"default": "Lorem Ipsum",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Lorem Ipsum"
+			}
+		},
+		{
+			"name": "showTextContent",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Text Content"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Focused",
+				"Hovered",
+				"None",
+				"Pressed"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Focused",
+					"Hovered",
+					"None",
+					"Pressed"
+				]
+			}
+		},
+		{
+			"name": "headlinePlain",
+			"type": "string",
+			"description": "Title of the accordion-item as plain text",
+			"code": {
+				"prop": "headlinePlain",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "defaultOpen",
 			"type": "boolean",
-			"description": "Initial state for the accordion item"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Keeps a user from clicking on the element"
+			"description": "Initial state for the accordion item",
+			"code": {
+				"prop": "defaultOpen",
+				"type": "boolean"
+			},
+			"design": null
 		}
 	]
 }

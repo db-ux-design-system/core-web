@@ -1,63 +1,106 @@
 {
 	"component": "accordion",
-	"figmaProperties": [
-		{
-			"name": "🔀 Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Divider", "Card"]
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "📦 Children Card",
-			"type": "SLOT"
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Behavior",
-			"type": "VARIANT",
-			"values": ["multiple", "single"],
-			"defaultValue": "multiple",
-			"mapsToCodeProp": "behavior"
-		}
-	],
-	"codeProperties": [
-		{
-			"name": "variant",
-			"type": "AccordionVariantType",
-			"values": ["divider", "card"],
-			"default": "divider",
-			"description": "Defines the display: divider (with dividing line) or card (items shown in card variant)"
-		},
+	"properties": [
 		{
 			"name": "behavior",
-			"type": "AccordionBehaviorType",
-			"values": ["multiple", "single"],
+			"type": "enum",
+			"values": [
+				"multiple",
+				"single"
+			],
 			"default": "multiple",
-			"description": "To allow multiple items open at the same time or only 1 item"
+			"description": "To allow multiple items open at the same time or only 1 item",
+			"code": {
+				"prop": "behavior",
+				"type": "AccordionBehaviorType"
+			},
+			"design": {
+				"name": "⚙️ Behavior",
+				"codeConnect": true,
+				"values": [
+					"multiple",
+					"single"
+				]
+			}
+		},
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"divider",
+				"card"
+			],
+			"default": "divider",
+			"description": "Defines the display: divider (with dividing line) or card (items shown in card variant)",
+			"code": {
+				"prop": "variant",
+				"type": "AccordionVariantType"
+			},
+			"design": {
+				"name": "🔀 Variant",
+				"values": [
+					"(Def) Divider",
+					"Card"
+				]
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "childrenCard",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children Card",
+				"type": "slot"
+			}
 		},
 		{
 			"name": "initOpenIndex",
-			"type": "number[]",
-			"description": "The index of items which should be open when loading the accordion"
+			"type": "any",
+			"description": "The index of items which should be open when loading the accordion",
+			"code": {
+				"prop": "initOpenIndex",
+				"type": "number[]"
+			},
+			"design": null
 		},
 		{
 			"name": "items",
-			"type": "DBAccordionItemDefaultProps[] | string",
-			"description": "Alternative to pass in a simple representation of accordion items"
+			"type": "any",
+			"description": "Alternative to pass in a simple representation of accordion items",
+			"code": {
+				"prop": "items",
+				"type": "DBAccordionItemDefaultProps[] | string"
+			},
+			"design": null
 		},
 		{
 			"name": "name",
 			"type": "string",
-			"description": "Set details name for exclusive accordions"
+			"description": "Set details name for exclusive accordions",
+			"code": {
+				"prop": "name",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "onChange",
-			"type": "(openAccordionItemIds: string[]) => void",
-			"description": "Informs about changes in internal state, which item is open"
+			"type": "function",
+			"description": "Informs about changes in internal state, which item is open",
+			"code": {
+				"prop": "onChange",
+				"type": "(openAccordionItemIds: string[]) => void"
+			},
+			"design": null
 		}
 	]
 }

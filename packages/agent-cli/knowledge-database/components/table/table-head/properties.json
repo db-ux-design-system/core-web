@@ -1,12 +1,15 @@
 {
 	"component": "table-head",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "rows",
-			"type": "DBTableRowProps[]",
-			"description": "Row data array if not using children"
+			"type": "any",
+			"description": "Row data array if not using children",
+			"code": {
+				"prop": "rows",
+				"type": "DBTableRowProps[]"
+			},
+			"design": null
 		}
 	]
 }

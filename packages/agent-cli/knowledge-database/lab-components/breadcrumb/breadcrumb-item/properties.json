@@ -1,65 +1,147 @@
 {
 	"component": "breadcrumb-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Show Icon",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showIcon",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Show Icon"
+			}
 		},
 		{
-			"name": "✏️ Text",
-			"type": "TEXT"
+			"name": "text",
+			"type": "string",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text"
+			}
 		},
 		{
-			"name": "🔄 Icon",
-			"type": "INSTANCE_SWAP"
+			"name": "icon",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🎨 Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Children Slot"
+			}
 		},
 		{
-			"name": "🎨 Show Badge Corner",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showBadgeCorner",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Badge Corner"
+			}
 		},
 		{
-			"name": "🎨 Show Collapsed Menu",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showCollapsedMenu",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Collapsed Menu"
+			}
 		},
 		{
-			"name": "🎨 ↳ OR Show Tooltip",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "oRShowTooltip",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 ↳ OR Show Tooltip"
+			}
 		},
 		{
-			"name": "🎨 Interaction States",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+			"name": "interactionStates",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction States",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
 		},
 		{
-			"name": "Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "disabled",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Active",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "active",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Active",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "No Text",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "noText",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "No Text",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [],
-	"note": "In Figma the item is modelled as separate component sets per design variant (Root Item, Item, Popover Item, Current Item, Truncation Item) and per size (Small, Medium). These are design variants of one and the same sub-component, not separate sub-components. The properties listed here are the union across all sets — not every property applies to every variant: `No Text` only exists on the Root Item, `Active` only on the Current Item, `🎨 Show Collapsed Menu` and `🎨 ↳ OR Show Tooltip` only on the Truncation Item. The default of `✏️ Text` differs per variant (Root, Path, Current)."
+	]
 }

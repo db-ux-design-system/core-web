@@ -1,43 +1,87 @@
 {
 	"component": "stack",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "variant",
-			"type": "StackVariantType",
-			"values": ["simple", "divider"],
+			"type": "enum",
+			"values": [
+				"simple",
+				"divider"
+			],
 			"default": "simple",
-			"description": "Use 'divider' with DBDivider after each element"
+			"description": "Use 'divider' with DBDivider after each element",
+			"code": {
+				"prop": "variant",
+				"type": "StackVariantType"
+			},
+			"design": null
 		},
 		{
 			"name": "direction",
-			"type": "StackDirectionType",
-			"values": ["row", "column"],
+			"type": "enum",
+			"values": [
+				"row",
+				"column"
+			],
 			"default": "column",
-			"description": "Flex direction of the stack"
+			"description": "Flex direction of the stack",
+			"code": {
+				"prop": "direction",
+				"type": "StackDirectionType"
+			},
+			"design": null
 		},
 		{
 			"name": "wrap",
-			"type": "boolean | string",
-			"description": "Whether the stack should wrap if parent is too small"
+			"type": "boolean",
+			"description": "Whether the stack should wrap if parent is too small",
+			"code": {
+				"prop": "wrap",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "alignment",
-			"type": "StackAlignmentType",
-			"values": ["stretch", "start", "end", "center"],
-			"description": "CSS align-items"
+			"type": "enum",
+			"values": [
+				"stretch",
+				"start",
+				"end",
+				"center"
+			],
+			"description": "CSS align-items",
+			"code": {
+				"prop": "alignment",
+				"type": "StackAlignmentType"
+			},
+			"design": null
 		},
 		{
 			"name": "justifyContent",
-			"type": "StackJustifyContentType",
-			"values": ["space-between", "start", "center", "end"],
-			"description": "CSS justify-content"
+			"type": "enum",
+			"values": [
+				"space-between",
+				"start",
+				"center",
+				"end"
+			],
+			"description": "CSS justify-content",
+			"code": {
+				"prop": "justifyContent",
+				"type": "StackJustifyContentType"
+			},
+			"design": null
 		},
 		{
 			"name": "gap",
-			"type": "GapSpacingType",
-			"description": "Gap spacing between children"
+			"type": "string",
+			"description": "Gap spacing between children",
+			"code": {
+				"prop": "gap",
+				"type": "GapSpacingType"
+			},
+			"design": null
 		}
 	]
 }

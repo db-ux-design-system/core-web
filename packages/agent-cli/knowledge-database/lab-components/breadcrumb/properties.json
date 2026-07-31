@@ -1,16 +1,30 @@
 {
 	"component": "breadcrumb",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Small", "Medium"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Small",
+				"Medium"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Small",
+					"Medium"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

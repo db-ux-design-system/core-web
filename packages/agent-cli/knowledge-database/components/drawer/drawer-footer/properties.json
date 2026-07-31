@@ -1,11 +1,14 @@
 {
 	"component": "drawer-footer",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "📦 Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

@@ -1,13 +1,18 @@
 {
 	"component": "container",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Slot",
-			"type": "SLOT"
+			"name": "slot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Slot",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Align",
-			"type": "VARIANT",
+			"name": "align",
+			"type": "enum",
 			"values": [
 				"bottom-center",
 				"bottom-left",
@@ -18,11 +23,26 @@
 				"left",
 				"bottom-right",
 				"right"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Align",
+				"values": [
+					"bottom-center",
+					"bottom-left",
+					"center",
+					"top-right",
+					"top-left",
+					"top-center",
+					"left",
+					"bottom-right",
+					"right"
+				]
+			}
 		},
 		{
-			"name": "Gap",
-			"type": "VARIANT",
+			"name": "gap",
+			"type": "enum",
 			"values": [
 				"(Def) md",
 				"3xs",
@@ -35,16 +55,44 @@
 				"3xl",
 				"None",
 				"auto"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Gap",
+				"values": [
+					"(Def) md",
+					"3xs",
+					"2xs",
+					"xs",
+					"sm",
+					"lg",
+					"xl",
+					"2xl",
+					"3xl",
+					"None",
+					"auto"
+				]
+			}
 		},
 		{
-			"name": "Direction",
-			"type": "VARIANT",
-			"values": ["(Def) Vertical", "Horizontal"]
+			"name": "direction",
+			"type": "enum",
+			"values": [
+				"(Def) Vertical",
+				"Horizontal"
+			],
+			"code": null,
+			"design": {
+				"name": "Direction",
+				"values": [
+					"(Def) Vertical",
+					"Horizontal"
+				]
+			}
 		},
 		{
-			"name": "Padding",
-			"type": "VARIANT",
+			"name": "padding",
+			"type": "enum",
 			"values": [
 				"(Def) None",
 				"3xs",
@@ -56,9 +104,23 @@
 				"xl",
 				"2xl",
 				"3xl"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Padding",
+				"values": [
+					"(Def) None",
+					"3xs",
+					"2xs",
+					"xs",
+					"sm",
+					"md",
+					"lg",
+					"xl",
+					"2xl",
+					"3xl"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

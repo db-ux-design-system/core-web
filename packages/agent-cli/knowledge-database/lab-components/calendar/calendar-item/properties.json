@@ -1,32 +1,97 @@
 {
 	"component": "calendar-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Day", "Weekday", "Month", "Year"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"(Def) Day",
+				"Weekday",
+				"Month",
+				"Year"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"(Def) Day",
+					"Weekday",
+					"Month",
+					"Year"
+				]
+			}
 		},
 		{
-			"name": "🎨 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"]
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused"
+				]
+			}
 		},
 		{
-			"name": "Checked",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "checked",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Checked",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Range",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "range",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Range",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "🎨 Range Position",
-			"type": "VARIANT",
-			"values": ["None", "Start", "End", "Between"]
+			"name": "rangePosition",
+			"type": "enum",
+			"values": [
+				"None",
+				"Start",
+				"End",
+				"Between"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Range Position",
+				"values": [
+					"None",
+					"Start",
+					"End",
+					"Between"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

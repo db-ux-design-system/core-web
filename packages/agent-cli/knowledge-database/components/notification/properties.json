@@ -1,100 +1,94 @@
 {
 	"component": "notification",
-	"figmaProperties": [
-		{
-			"name": "✏️ Headline",
-			"type": "TEXT",
-			"defaultValue": "Headline"
-		},
-		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Text"
-		},
-		{
-			"name": "✏️ Link",
-			"type": "TEXT",
-			"defaultValue": "Link"
-		},
-		{
-			"name": "(Def) Link Variant: Block",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "↳ OR Link Variant: Inline",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Closeable",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "👁️ Show Icon",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Semantic",
-			"type": "VARIANT",
-			"values": [
-				"(Def) Adaptive",
-				"Critical",
-				"Informational",
-				"Successful",
-				"Warning"
-			]
-		},
-		{
-			"name": "🔀 Show Headline",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "✏️ Timestamp",
-			"type": "TEXT",
-			"defaultValue": "10 min ago",
-			"note": "Overlay variant only"
-		},
-		{
-			"name": "👁️ Show Timestamp",
-			"type": "BOOLEAN",
-			"defaultValue": false,
-			"note": "Overlay variant only"
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Variant",
-			"type": "VARIANT",
-			"values": ["standalone", "docked", "overlay"],
-			"defaultValue": "docked",
-			"mapsToCodeProp": "variant",
-			"note": "In Figma, variant is expressed via separate Component Sets (Docked, Standalone, Overlay). Code Connect maps to the variant prop."
-		}
-	],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "variant",
-			"type": "NotificationVariantType",
+			"type": "enum",
 			"values": ["docked", "standalone", "overlay"],
 			"default": "docked",
-			"description": "Styling variant for different use cases"
+			"description": "Styling variant for different use cases",
+			"code": {
+				"prop": "variant",
+				"type": "NotificationVariantType"
+			},
+			"design": {
+				"name": "⚙️ Variant",
+				"codeConnect": true,
+				"values": ["standalone", "docked", "overlay"],
+				"note": "In Figma, variant is expressed via separate Component Sets (Docked, Standalone, Overlay). Code Connect maps to the variant prop."
+			}
+		},
+		{
+			"name": "headline",
+			"type": "any",
+			"description": "Bold headline text",
+			"code": {
+				"prop": "headline",
+				"type": "string | any"
+			},
+			"design": {
+				"name": "✏️ Headline",
+				"type": "text",
+				"defaultValue": "Headline"
+			}
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Body text of the notification",
+			"code": {
+				"prop": "text",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text"
+			}
+		},
+		{
+			"name": "link",
+			"type": "any",
+			"description": "Slot for a link element",
+			"code": {
+				"prop": "link",
+				"type": "any"
+			},
+			"design": {
+				"name": "✏️ Link",
+				"type": "text",
+				"defaultValue": "Link"
+			}
+		},
+		{
+			"name": "closeable",
+			"type": "boolean",
+			"default": true,
+			"description": "Show/hide the close button",
+			"code": {
+				"prop": "closeable",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Closeable"
+			}
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"default": true,
+			"description": "Show/hide the icon",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon"
+			}
 		},
 		{
 			"name": "semantic",
-			"type": "SemanticType",
+			"type": "enum",
 			"values": [
 				"adaptive",
 				"critical",
@@ -102,82 +96,154 @@
 				"successful",
 				"warning"
 			],
-			"default": "adaptive"
-		},
-		{
-			"name": "headline",
-			"type": "string | any",
-			"description": "Bold headline text"
+			"default": "adaptive",
+			"code": {
+				"prop": "semantic",
+				"type": "SemanticType"
+			},
+			"design": {
+				"name": "🔀 Semantic",
+				"values": [
+					"(Def) Adaptive",
+					"Critical",
+					"Informational",
+					"Successful",
+					"Warning"
+				]
+			}
 		},
 		{
 			"name": "showHeadline",
-			"type": "boolean | string",
-			"default": true,
-			"description": "Show/hide the headline"
-		},
-		{
-			"name": "text",
-			"type": "string",
-			"description": "Body text of the notification"
-		},
-		{
-			"name": "closeable",
-			"type": "boolean | string",
-			"default": true,
-			"description": "Show/hide the close button"
-		},
-		{
-			"name": "icon",
-			"type": "string",
-			"description": "Custom icon name (overrides semantic default)"
-		},
-		{
-			"name": "showIcon",
 			"type": "boolean",
 			"default": true,
-			"description": "Show/hide the icon"
-		},
-		{
-			"name": "image",
-			"type": "any",
-			"description": "Slot for an image instead of an icon"
-		},
-		{
-			"name": "link",
-			"type": "any",
-			"description": "Slot for a link element"
-		},
-		{
-			"name": "linkVariant",
-			"type": "NotificationLinkVariantType",
-			"values": ["block", "inline"],
-			"description": "Display variant for the link"
+			"description": "Show/hide the headline",
+			"code": {
+				"prop": "showHeadline",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Show Headline",
+				"values": ["False", "True"]
+			}
 		},
 		{
 			"name": "timestamp",
 			"type": "string",
-			"description": "Timestamp text (overlay variant)"
+			"description": "Timestamp text (overlay variant)",
+			"code": {
+				"prop": "timestamp",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Timestamp",
+				"type": "text",
+				"defaultValue": "10 min ago",
+				"note": "Overlay variant only"
+			}
+		},
+		{
+			"name": "showTimestamp",
+			"type": "boolean",
+			"description": "Show/hide timestamp (overlay variant)",
+			"code": {
+				"prop": "showTimestamp",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "👁️ Show Timestamp",
+				"note": "Overlay variant only"
+			}
+		},
+		{
+			"name": "linkVariantBlock",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "🔀 Link Variant",
+				"values": ["(Def) Block", "Inline"],
+				"note": "In Figma this is a variant property controlling link display. Maps to code prop linkVariant."
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Custom icon name (overrides semantic default)",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "image",
+			"type": "any",
+			"description": "Slot for an image instead of an icon",
+			"code": {
+				"prop": "image",
+				"type": "any"
+			},
+			"design": null
+		},
+		{
+			"name": "linkVariant",
+			"type": "enum",
+			"values": ["block", "inline"],
+			"description": "Display variant for the link",
+			"code": {
+				"prop": "linkVariant",
+				"type": "NotificationLinkVariantType"
+			},
+			"design": null
 		},
 		{
 			"name": "timestampDatetime",
 			"type": "string",
-			"description": "Machine-readable datetime for the time element"
-		},
-		{
-			"name": "showTimestamp",
-			"type": "boolean | string",
-			"description": "Show/hide timestamp (overlay variant)"
+			"description": "Machine-readable datetime for the time element",
+			"code": {
+				"prop": "timestampDatetime",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "ariaLive",
-			"type": "NotificationAriaLiveType",
+			"type": "enum",
 			"values": ["assertive", "polite", "off"],
-			"description": "Controls screen reader announcement behavior"
+			"description": "Controls screen reader announcement behavior",
+			"code": {
+				"prop": "ariaLive",
+				"type": "NotificationAriaLiveType"
+			},
+			"design": null
 		},
 		{
 			"name": "closeButtonLabel",
 			"type": "string",
-			"description": "Accessible label for the close button"
+			"description": "Accessible label for the close button",
+			"code": {
+				"prop": "closeButtonLabel",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

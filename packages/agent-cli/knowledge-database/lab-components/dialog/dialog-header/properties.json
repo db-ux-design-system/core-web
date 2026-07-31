@@ -1,32 +1,54 @@
 {
 	"component": "dialog-header",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Closeable",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "closeable",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "Closeable"
+			}
 		},
 		{
-			"name": "Show Icon",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showIcon",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Show Icon"
+			}
 		},
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Semantic",
-			"type": "VARIANT",
+			"name": "semantic",
+			"type": "enum",
 			"values": [
 				"(Def) Adaptive",
 				"Critical",
 				"Informational",
 				"Successfull",
 				"Warning"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Semantic",
+				"values": [
+					"(Def) Adaptive",
+					"Critical",
+					"Informational",
+					"Successfull",
+					"Warning"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

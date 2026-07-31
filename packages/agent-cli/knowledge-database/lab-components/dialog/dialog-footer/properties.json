@@ -1,16 +1,32 @@
 {
 	"component": "dialog-footer",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Type",
-			"type": "VARIANT",
-			"values": ["(Def) Brand", "Filled", "Outlined"]
+			"name": "type",
+			"type": "enum",
+			"values": [
+				"(Def) Brand",
+				"Filled",
+				"Outlined"
+			],
+			"code": null,
+			"design": {
+				"name": "Type",
+				"values": [
+					"(Def) Brand",
+					"Filled",
+					"Outlined"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

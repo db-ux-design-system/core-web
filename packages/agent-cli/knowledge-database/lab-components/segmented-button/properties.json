@@ -1,21 +1,46 @@
 {
 	"component": "segmented-button",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["(Def) White", "Grey"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"(Def) White",
+				"Grey"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"(Def) White",
+					"Grey"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

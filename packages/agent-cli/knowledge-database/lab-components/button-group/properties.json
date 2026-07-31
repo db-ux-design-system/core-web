@@ -1,26 +1,62 @@
 {
 	"component": "button-group",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Outlined", "Filled"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"(Def) Outlined",
+				"Filled"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"(Def) Outlined",
+					"Filled"
+				]
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "Width",
-			"type": "VARIANT",
-			"values": ["(Def) Auto", "Full"]
+			"name": "width",
+			"type": "enum",
+			"values": [
+				"(Def) Auto",
+				"Full"
+			],
+			"code": null,
+			"design": {
+				"name": "Width",
+				"values": [
+					"(Def) Auto",
+					"Full"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

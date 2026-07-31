@@ -1,42 +1,89 @@
 {
 	"component": "heading",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Heading"
+			"name": "text",
+			"type": "string",
+			"default": "Heading",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Heading"
+			}
 		},
 		{
-			"name": "Paragraph Spacing",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "paragraphSpacing",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Paragraph Spacing"
+			}
 		},
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Start",
-			"type": "SLOT"
+			"name": "start",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Start",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🎨 Show Start Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showStartSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Start Slot"
+			}
 		},
 		{
-			"name": "🎨 Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Children Slot"
+			}
 		},
 		{
-			"name": "As",
-			"type": "VARIANT",
-			"values": ["h1", "h2", "h3", "h4", "h5", "h6"]
+			"name": "as",
+			"type": "enum",
+			"values": [
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6"
+			],
+			"code": null,
+			"design": {
+				"name": "As",
+				"values": [
+					"h1",
+					"h2",
+					"h3",
+					"h4",
+					"h5",
+					"h6"
+				]
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
+			"name": "size",
+			"type": "enum",
 			"values": [
 				"(Def) Default Mapping",
 				"3xLarge",
@@ -48,19 +95,57 @@
 				"xSmall",
 				"2xSmall",
 				"3xSmall"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Default Mapping",
+					"3xLarge",
+					"2xLarge",
+					"xLarge",
+					"Large",
+					"Medium",
+					"Small",
+					"xSmall",
+					"2xSmall",
+					"3xSmall"
+				]
+			}
 		},
 		{
-			"name": "Font Weight",
-			"type": "VARIANT",
-			"values": ["(Def) Black", "Light"]
+			"name": "fontWeight",
+			"type": "enum",
+			"values": [
+				"(Def) Black",
+				"Light"
+			],
+			"code": null,
+			"design": {
+				"name": "Font Weight",
+				"values": [
+					"(Def) Black",
+					"Light"
+				]
+			}
 		},
 		{
-			"name": "Text Align",
-			"type": "VARIANT",
-			"values": ["(Def) Left", "Center", "Right"]
+			"name": "textAlign",
+			"type": "enum",
+			"values": [
+				"(Def) Left",
+				"Center",
+				"Right"
+			],
+			"code": null,
+			"design": {
+				"name": "Text Align",
+				"values": [
+					"(Def) Left",
+					"Center",
+					"Right"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

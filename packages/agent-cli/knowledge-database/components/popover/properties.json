@@ -1,117 +1,192 @@
 {
 	"component": "popover",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "📦 Children",
-			"type": "SLOT"
+			"name": "animation",
+			"type": "boolean",
+			"default": true,
+			"code": {
+				"prop": "animation",
+				"type": "string"
+			},
+			"design": {
+				"name": "⚙️ Animation",
+				"codeConnect": true,
+				"values": [
+					"true",
+					"false"
+				]
+			}
 		},
 		{
-			"name": "📦 Start Slot",
-			"type": "SLOT"
-		},
-		{
-			"name": "📦 End Slot",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Start Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show End Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Spacing",
-			"type": "VARIANT",
-			"values": ["(Def) Small", "Medium", "Large", "None"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Animation",
-			"type": "VARIANT",
-			"values": ["true", "false"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "animation"
-		},
-		{
-			"name": "⚙️ Delay",
-			"type": "VARIANT",
-			"values": ["none", "slow", "fast"],
-			"defaultValue": "fast",
-			"mapsToCodeProp": "delay"
-		},
-		{
-			"name": "⚙️ Gap",
-			"type": "VARIANT",
-			"values": ["true", "false"],
-			"defaultValue": "true",
-			"mapsToCodeProp": "gap"
-		},
-		{
-			"name": "⚙️ Placement",
-			"type": "VARIANT",
+			"name": "delay",
+			"type": "enum",
 			"values": [
-				"bottom",
-				"bottom-end",
-				"bottom-start",
-				"left",
-				"left-end",
-				"left-start",
-				"right",
-				"right-end",
-				"right-start",
-				"top",
-				"top-end",
-				"top-start"
+				"none",
+				"slow",
+				"fast"
 			],
-			"defaultValue": "bottom",
-			"mapsToCodeProp": "placement"
-		}
-	],
-	"codeProperties": [
-		{
-			"name": "spacing",
-			"type": "SpacingType",
-			"values": ["small", "medium", "large", "none"],
-			"default": "small"
-		},
-		{
-			"name": "placement",
-			"type": "PlacementType",
-			"values": [
-				"bottom",
-				"bottom-end",
-				"bottom-start",
-				"left",
-				"left-end",
-				"left-start",
-				"right",
-				"right-end",
-				"right-start",
-				"top",
-				"top-end",
-				"top-start"
-			],
-			"default": "bottom"
+			"default": "fast",
+			"code": {
+				"prop": "delay",
+				"type": "string"
+			},
+			"design": {
+				"name": "⚙️ Delay",
+				"codeConnect": true,
+				"values": [
+					"none",
+					"slow",
+					"fast"
+				]
+			}
 		},
 		{
 			"name": "gap",
 			"type": "boolean",
-			"default": true
+			"default": true,
+			"code": {
+				"prop": "gap",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "⚙️ Gap",
+				"codeConnect": true,
+				"values": [
+					"true",
+					"false"
+				]
+			}
+		},
+		{
+			"name": "placement",
+			"type": "enum",
+			"values": [
+				"bottom",
+				"bottom-end",
+				"bottom-start",
+				"left",
+				"left-end",
+				"left-start",
+				"right",
+				"right-end",
+				"right-start",
+				"top",
+				"top-end",
+				"top-start"
+			],
+			"default": "bottom",
+			"code": {
+				"prop": "placement",
+				"type": "PlacementType"
+			},
+			"design": {
+				"name": "⚙️ Placement",
+				"codeConnect": true,
+				"values": [
+					"bottom",
+					"bottom-end",
+					"bottom-start",
+					"left",
+					"left-end",
+					"left-start",
+					"right",
+					"right-end",
+					"right-start",
+					"top",
+					"top-end",
+					"top-start"
+				]
+			}
+		},
+		{
+			"name": "spacing",
+			"type": "enum",
+			"values": [
+				"small",
+				"medium",
+				"large",
+				"none"
+			],
+			"default": "small",
+			"code": {
+				"prop": "spacing",
+				"type": "SpacingType"
+			},
+			"design": {
+				"name": "🔀 Spacing",
+				"values": [
+					"(Def) Small",
+					"Medium",
+					"Large",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "startSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Start Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 End Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showStartSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Start Slot"
+			}
+		},
+		{
+			"name": "showEndSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show End Slot"
+			}
 		},
 		{
 			"name": "open",
-			"type": "boolean | string",
-			"description": "Disables default hover/focus behavior to use on click or other trigger"
+			"type": "boolean",
+			"description": "Disables default hover/focus behavior to use on click or other trigger",
+			"code": {
+				"prop": "open",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "trigger",
 			"type": "any",
-			"description": "The trigger to open the popover (e.g. a button)"
+			"description": "The trigger to open the popover (e.g. a button)",
+			"code": {
+				"prop": "trigger",
+				"type": "any"
+			},
+			"design": null
 		}
 	]
 }

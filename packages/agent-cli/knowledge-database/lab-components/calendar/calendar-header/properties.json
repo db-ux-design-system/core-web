@@ -1,12 +1,21 @@
 {
 	"component": "calendar-header",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["Default", "Calender -> Weekdays"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"Default",
+				"Calender -> Weekdays"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"Default",
+					"Calender -> Weekdays"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

@@ -1,82 +1,208 @@
 {
 	"component": "toggle-button",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Show Icon Leading",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showIconLeading",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Show Icon Leading"
+			}
 		},
 		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Text"
+			"name": "text",
+			"type": "string",
+			"default": "Text",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text"
+			}
 		},
 		{
-			"name": "🔄 Icon Leading Medium",
-			"type": "INSTANCE_SWAP"
+			"name": "iconLeadingMedium",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Leading Medium",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "🔄 Icon Leading Small",
-			"type": "INSTANCE_SWAP"
+			"name": "iconLeadingSmall",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Leading Small",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "Show Icon Trailing",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showIconTrailing",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Show Icon Trailing"
+			}
 		},
 		{
-			"name": "🔄 Icon Trailing Medium",
-			"type": "INSTANCE_SWAP"
+			"name": "iconTrailingMedium",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Trailing Medium",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "🔄 Icon Trailing Small",
-			"type": "INSTANCE_SWAP"
+			"name": "iconTrailingSmall",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Trailing Small",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🎨 Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Children Slot"
+			}
 		},
 		{
-			"name": "Checked",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "checked",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Checked",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["Ghost", "Filled", "Outlined"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"Ghost",
+				"Filled",
+				"Outlined"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"Ghost",
+					"Filled",
+					"Outlined"
+				]
+			}
 		},
 		{
-			"name": "🎨 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
 		},
 		{
-			"name": "Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "disabled",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "Width",
-			"type": "VARIANT",
-			"values": ["(Def) Auto", "Full"]
+			"name": "width",
+			"type": "enum",
+			"values": [
+				"(Def) Auto",
+				"Full"
+			],
+			"code": null,
+			"design": {
+				"name": "Width",
+				"values": [
+					"(Def) Auto",
+					"Full"
+				]
+			}
 		},
 		{
-			"name": "No Text",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "noText",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "No Text",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

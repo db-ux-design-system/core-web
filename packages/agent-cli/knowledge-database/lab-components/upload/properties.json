@@ -1,45 +1,97 @@
 {
 	"component": "upload",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "End Slot",
-			"type": "SLOT"
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "End Slot",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🎨 Show End Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showEndSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show End Slot"
+			}
 		},
 		{
-			"name": "Start Slot",
-			"type": "SLOT"
+			"name": "startSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Start Slot",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🎨 Show Start Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showStartSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Start Slot"
+			}
 		},
 		{
-			"name": "Show Button",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "showButton",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "Show Button"
+			}
 		},
 		{
-			"name": "Text",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "text",
+			"type": "string",
+			"default": "Label",
+			"code": null,
+			"design": {
+				"name": "Text",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
-			"name": "🎨 Interaction States",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"]
+			"name": "interactionStates",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction States",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused"
+				]
+			}
 		},
 		{
-			"name": "Direction",
-			"type": "VARIANT",
-			"values": ["(Def) Vertical", "Horizontal"]
+			"name": "direction",
+			"type": "enum",
+			"values": [
+				"(Def) Vertical",
+				"Horizontal"
+			],
+			"code": null,
+			"design": {
+				"name": "Direction",
+				"values": [
+					"(Def) Vertical",
+					"Horizontal"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

@@ -1,18 +1,41 @@
 {
 	"component": "loading-indicator-bar",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Value",
-			"type": "VARIANT",
-			"values": ["Inactive", "Active", "Full"]
+			"name": "value",
+			"type": "enum",
+			"values": [
+				"Inactive",
+				"Active",
+				"Full"
+			],
+			"code": null,
+			"design": {
+				"name": "Value",
+				"values": [
+					"Inactive",
+					"Active",
+					"Full"
+				]
+			}
 		},
 		{
-			"name": "🎨 Value",
-			"type": "VARIANT",
-			"values": ["25%", "50%", "75%"]
+			"name": "value",
+			"type": "enum",
+			"values": [
+				"25%",
+				"50%",
+				"75%"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Value",
+				"values": [
+					"25%",
+					"50%",
+					"75%"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [],
-	"note": "The progress variant is expressed through a separate component set. `Value` applies to the base set, `🎨 Value` to the progress set."
+	]
 }

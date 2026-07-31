@@ -1,12 +1,21 @@
 {
 	"component": "dynamic-button",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "State",
-			"type": "VARIANT",
-			"values": ["A", "B"]
+			"name": "state",
+			"type": "enum",
+			"values": [
+				"A",
+				"B"
+			],
+			"code": null,
+			"design": {
+				"name": "State",
+				"values": [
+					"A",
+					"B"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

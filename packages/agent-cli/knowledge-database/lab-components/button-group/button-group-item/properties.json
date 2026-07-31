@@ -1,18 +1,37 @@
 {
 	"component": "button-group-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "Width",
-			"type": "VARIANT",
-			"values": ["Auto", "Full"]
+			"name": "width",
+			"type": "enum",
+			"values": [
+				"Auto",
+				"Full"
+			],
+			"code": null,
+			"design": {
+				"name": "Width",
+				"values": [
+					"Auto",
+					"Full"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [],
-	"note": "The variant (Outlined, Filled) is expressed through separate component sets, not through a property."
+	]
 }

@@ -1,22 +1,48 @@
 {
 	"component": "split-button",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Open",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "open",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Open"
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Outlined", "Filled", "Brand"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"(Def) Outlined",
+				"Filled",
+				"Brand"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"(Def) Outlined",
+					"Filled",
+					"Brand"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

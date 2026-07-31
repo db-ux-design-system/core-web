@@ -1,99 +1,9 @@
 {
 	"component": "badge",
-	"figmaProperties": [
-		{
-			"name": "🔀 Size",
-			"type": "VARIANT",
-			"values": ["(Def) Small", "Medium"]
-		},
-		{
-			"name": "🔀 Semantic",
-			"type": "VARIANT",
-			"values": [
-				"(Def) Adaptive",
-				"Critical",
-				"Informational",
-				"Neutral",
-				"Successful",
-				"Warning"
-			]
-		},
-		{
-			"name": "🔀 Emphasis",
-			"type": "VARIANT",
-			"values": ["(Def) Weak", "Strong"]
-		},
-		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Text"
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔄 Icon Medium",
-			"type": "INSTANCE_SWAP",
-			"appliesTo": "Badge → Icon"
-		},
-		{
-			"name": "🔄 Icon Small",
-			"type": "INSTANCE_SWAP",
-			"appliesTo": "Badge → Icon"
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Placement",
-			"type": "VARIANT",
-			"values": [
-				"inline",
-				"corner-top-left",
-				"corner-top-right",
-				"corner-center-left",
-				"corner-center-right",
-				"corner-bottom-left",
-				"corner-bottom-right"
-			],
-			"defaultValue": "inline",
-			"mapsToCodeProp": "placement"
-		}
-	],
-	"codeProperties": [
-		{
-			"name": "semantic",
-			"type": "SemanticType",
-			"values": [
-				"adaptive",
-				"critical",
-				"informational",
-				"neutral",
-				"successful",
-				"warning"
-			],
-			"default": "adaptive"
-		},
-		{
-			"name": "emphasis",
-			"type": "EmphasisType",
-			"values": ["weak", "strong"],
-			"default": "weak"
-		},
-		{
-			"name": "size",
-			"type": "SizeType",
-			"values": ["small", "medium"],
-			"default": "small"
-		},
+	"properties": [
 		{
 			"name": "placement",
-			"type": "BadgePlacementType",
+			"type": "enum",
 			"values": [
 				"inline",
 				"corner-top-left",
@@ -104,12 +14,151 @@
 				"corner-bottom-right"
 			],
 			"default": "inline",
-			"description": "The corner-* values change the position to absolute and adds a transform based on the placement."
+			"description": "The corner-* values change the position to absolute and adds a transform based on the placement.",
+			"code": {
+				"prop": "placement",
+				"type": "BadgePlacementType"
+			},
+			"design": {
+				"name": "⚙️ Placement",
+				"codeConnect": true,
+				"values": [
+					"inline",
+					"corner-top-left",
+					"corner-top-right",
+					"corner-center-left",
+					"corner-center-right",
+					"corner-bottom-left",
+					"corner-bottom-right"
+				]
+			}
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"small",
+				"medium"
+			],
+			"default": "small",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "🔀 Size",
+				"values": [
+					"(Def) Small",
+					"Medium"
+				]
+			}
+		},
+		{
+			"name": "semantic",
+			"type": "enum",
+			"values": [
+				"adaptive",
+				"critical",
+				"informational",
+				"neutral",
+				"successful",
+				"warning"
+			],
+			"default": "adaptive",
+			"code": {
+				"prop": "semantic",
+				"type": "SemanticType"
+			},
+			"design": {
+				"name": "🔀 Semantic",
+				"values": [
+					"(Def) Adaptive",
+					"Critical",
+					"Informational",
+					"Neutral",
+					"Successful",
+					"Warning"
+				]
+			}
+		},
+		{
+			"name": "emphasis",
+			"type": "enum",
+			"values": [
+				"weak",
+				"strong"
+			],
+			"default": "weak",
+			"code": {
+				"prop": "emphasis",
+				"type": "EmphasisType"
+			},
+			"design": {
+				"name": "🔀 Emphasis",
+				"values": [
+					"(Def) Weak",
+					"Strong"
+				]
+			}
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"default": "Text",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "iconMedium",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Medium",
+				"type": "instance-swap",
+				"appliesTo": "Badge → Icon"
+			}
+		},
+		{
+			"name": "iconSmall",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Small",
+				"type": "instance-swap",
+				"appliesTo": "Badge → Icon"
+			}
 		},
 		{
 			"name": "label",
 			"type": "string",
-			"description": "Describes the badge for a11y if you use placement attribute with corner-*"
+			"description": "Describes the badge for a11y if you use placement attribute with corner-*",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

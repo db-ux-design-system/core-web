@@ -1,48 +1,21 @@
 {
 	"component": "infotext",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Text"
+			"name": "showIcon",
+			"type": "boolean",
+			"default": true,
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon"
+			}
 		},
-		{
-			"name": "👁️ Show Icon",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Semantic",
-			"type": "VARIANT",
-			"values": [
-				"(Def) Adaptive",
-				"Critical",
-				"Informational",
-				"Neutral",
-				"Successful",
-				"Warning"
-			]
-		},
-		{
-			"name": "🔀 Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
-		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [
 		{
 			"name": "semantic",
-			"type": "SemanticType",
+			"type": "enum",
 			"values": [
 				"adaptive",
 				"critical",
@@ -51,23 +24,81 @@
 				"successful",
 				"warning"
 			],
-			"default": "adaptive"
+			"default": "adaptive",
+			"code": {
+				"prop": "semantic",
+				"type": "SemanticType"
+			},
+			"design": {
+				"name": "🔀 Semantic",
+				"values": [
+					"(Def) Adaptive",
+					"Critical",
+					"Informational",
+					"Neutral",
+					"Successful",
+					"Warning"
+				]
+			}
 		},
 		{
 			"name": "size",
-			"type": "SizeType",
-			"values": ["small", "medium"],
-			"default": "medium"
+			"type": "enum",
+			"values": [
+				"small",
+				"medium"
+			],
+			"default": "medium",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "🔀 Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"default": "Text",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
 		},
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Custom icon name (auto-selected based on semantic if not set)"
-		},
-		{
-			"name": "showIcon",
-			"type": "boolean",
-			"default": true
+			"description": "Custom icon name (auto-selected based on semantic if not set)",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

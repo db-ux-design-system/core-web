@@ -1,102 +1,235 @@
 {
 	"component": "list-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "🎨 Show Icon Leading",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showIconLeading",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Icon Leading"
+			}
 		},
 		{
-			"name": "🎨 Show Icon Trailing",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showIconTrailing",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Icon Trailing"
+			}
 		},
 		{
-			"name": "🔄 Icon Leading",
-			"type": "INSTANCE_SWAP"
+			"name": "iconLeading",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Leading",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "🔄 Icon Trailing",
-			"type": "INSTANCE_SWAP"
+			"name": "iconTrailing",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Trailing",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "🎨 Show Description",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showDescription",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Description"
+			}
 		},
 		{
-			"name": "✏️ Description",
-			"type": "TEXT",
-			"defaultValue": "Description"
+			"name": "description",
+			"type": "string",
+			"default": "Description",
+			"code": null,
+			"design": {
+				"name": "✏️ Description",
+				"type": "text",
+				"defaultValue": "Description"
+			}
 		},
 		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "label",
+			"type": "string",
+			"default": "Label",
+			"code": null,
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
-			"name": "🎨 Show Start Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showStartSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Start Slot"
+			}
 		},
 		{
-			"name": "🎨 Show End Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showEndSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show End Slot"
+			}
 		},
 		{
-			"name": "🎨 Show Image",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showImage",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Image"
+			}
 		},
 		{
-			"name": "Start",
-			"type": "SLOT"
+			"name": "start",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Start",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "🎨 Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🎨 Show Children Slot"
+			}
 		},
 		{
-			"name": "End",
-			"type": "SLOT"
+			"name": "end",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "End",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Interactive",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "interactive",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Interactive",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "🎨 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "None"]
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"None"
+				]
+			}
 		},
 		{
-			"name": "Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "disabled",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Emphasis",
-			"type": "VARIANT",
-			"values": ["(Def) Regular", "Strong"]
+			"name": "emphasis",
+			"type": "enum",
+			"values": [
+				"(Def) Regular",
+				"Strong"
+			],
+			"code": null,
+			"design": {
+				"name": "Emphasis",
+				"values": [
+					"(Def) Regular",
+					"Strong"
+				]
+			}
 		},
 		{
-			"name": "Checked",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "checked",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Checked",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "Multiple",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "multiple",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Multiple",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

@@ -1,28 +1,51 @@
 {
 	"component": "table-header-cell",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "scope",
-			"type": "DBTableHeaderCellScopeType",
-			"values": ["row", "col", "rowgroup", "colgroup"],
-			"description": "Scope of the header cell"
+			"type": "enum",
+			"values": [
+				"row",
+				"col",
+				"rowgroup",
+				"colgroup"
+			],
+			"description": "Scope of the header cell",
+			"code": {
+				"prop": "scope",
+				"type": "DBTableHeaderCellScopeType"
+			},
+			"design": null
 		},
 		{
 			"name": "abbr",
 			"type": "string",
-			"description": "Abbreviation for the header cell"
+			"description": "Abbreviation for the header cell",
+			"code": {
+				"prop": "abbr",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "colSpan",
 			"type": "number",
-			"description": "Number of columns to span"
+			"description": "Number of columns to span",
+			"code": {
+				"prop": "colSpan",
+				"type": "number"
+			},
+			"design": null
 		},
 		{
 			"name": "rowSpan",
 			"type": "number",
-			"description": "Number of rows to span"
+			"description": "Number of rows to span",
+			"code": {
+				"prop": "rowSpan",
+				"type": "number"
+			},
+			"design": null
 		}
 	]
 }

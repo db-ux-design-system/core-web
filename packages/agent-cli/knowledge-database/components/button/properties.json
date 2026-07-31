@@ -1,160 +1,293 @@
 {
 	"component": "button",
-	"figmaProperties": [
-		{
-			"name": "👁️ Show Icon Leading",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show Icon Trailing",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Text"
-		},
-		{
-			"name": "🔄 Icon Leading Medium",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔄 Icon Leading Small",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔄 Icon Trailing Medium",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔄 Icon Trailing Small",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
-		},
-		{
-			"name": "🔀 Width",
-			"type": "VARIANT",
-			"values": ["(Def) Auto", "Full"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Variant",
-			"type": "VARIANT",
-			"values": ["outlined", "filled", "ghost", "brand"],
-			"defaultValue": "outlined",
-			"mapsToCodeProp": "variant",
-			"note": "In Figma, variant is expressed via separate Component Sets (Button → Outlined, etc.). Code Connect maps the active set to the variant prop."
-		},
-		{
-			"name": "⚙️ No Text",
-			"type": "VARIANT",
-			"values": ["true", "false"],
-			"defaultValue": "false",
-			"mapsToCodeProp": "noText",
-			"note": "In Figma, Icon Button sets represent noText=true. Code Connect maps Icon Button selection to noText prop."
-		}
-	],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "variant",
-			"type": "ButtonVariantType",
-			"values": ["outlined", "brand", "filled", "ghost"],
+			"type": "enum",
+			"values": [
+				"outlined",
+				"brand",
+				"filled",
+				"ghost"
+			],
 			"default": "outlined",
-			"description": "Variant of the button. Only use one primary button as a CTA on a page."
-		},
-		{
-			"name": "size",
-			"type": "SizeType",
-			"values": ["small", "medium"],
-			"default": "medium"
-		},
-		{
-			"name": "width",
-			"type": "WidthType",
-			"values": ["auto", "full"],
-			"default": "auto"
+			"description": "Variant of the button. Only use one primary button as a CTA on a page.",
+			"code": {
+				"prop": "variant",
+				"type": "ButtonVariantType"
+			},
+			"design": {
+				"name": "⚙️ Variant",
+				"codeConnect": true,
+				"values": [
+					"outlined",
+					"filled",
+					"ghost",
+					"brand"
+				],
+				"note": "In Figma, variant is expressed via separate Component Sets (Button → Outlined, etc.). Code Connect maps the active set to the variant prop."
+			}
 		},
 		{
 			"name": "noText",
 			"type": "boolean",
-			"description": "Renders icon-only button (requires icon prop and accessible label)"
-		},
-		{
-			"name": "icon",
-			"type": "string",
-			"description": "Icon name for icon-only buttons"
-		},
-		{
-			"name": "iconLeading",
-			"type": "string",
-			"description": "Icon before the label text"
-		},
-		{
-			"name": "iconTrailing",
-			"type": "string",
-			"description": "Icon after the label text"
+			"default": "false",
+			"description": "Renders icon-only button (requires icon prop and accessible label)",
+			"code": {
+				"prop": "noText",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "⚙️ No Text",
+				"codeConnect": true,
+				"values": [
+					"true",
+					"false"
+				],
+				"note": "In Figma, Icon Button sets represent noText=true. Code Connect maps Icon Button selection to noText prop."
+			}
 		},
 		{
 			"name": "showIconLeading",
 			"type": "boolean",
-			"default": false
+			"default": false,
+			"code": {
+				"prop": "showIconLeading",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon Leading"
+			}
 		},
 		{
 			"name": "showIconTrailing",
 			"type": "boolean",
-			"default": false
+			"default": false,
+			"code": {
+				"prop": "showIconTrailing",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon Trailing"
+			}
 		},
 		{
 			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Keeps a user from clicking on the button"
+			"type": "boolean",
+			"description": "Keeps a user from clicking on the button",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"small",
+				"medium"
+			],
+			"default": "medium",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "🔀 Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
+		},
+		{
+			"name": "width",
+			"type": "enum",
+			"values": [
+				"auto",
+				"full"
+			],
+			"default": "auto",
+			"code": {
+				"prop": "width",
+				"type": "WidthType"
+			},
+			"design": {
+				"name": "🔀 Width",
+				"values": [
+					"(Def) Auto",
+					"Full"
+				]
+			}
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"default": "Text",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text"
+			}
+		},
+		{
+			"name": "iconLeadingMedium",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Leading Medium",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "iconLeadingSmall",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Leading Small",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "iconTrailingMedium",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Trailing Medium",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "iconTrailingSmall",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon Trailing Small",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Icon name for icon-only buttons",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "iconLeading",
+			"type": "string",
+			"description": "Icon before the label text",
+			"code": {
+				"prop": "iconLeading",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "iconTrailing",
+			"type": "string",
+			"description": "Icon after the label text",
+			"code": {
+				"prop": "iconTrailing",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "type",
-			"type": "ButtonTypeType",
-			"values": ["button", "reset", "submit"],
-			"default": "button"
+			"type": "enum",
+			"values": [
+				"button",
+				"reset",
+				"submit"
+			],
+			"default": "button",
+			"code": {
+				"prop": "type",
+				"type": "ButtonTypeType"
+			},
+			"design": null
 		},
 		{
 			"name": "name",
 			"type": "string",
-			"description": "Name attribute value for the button"
+			"description": "Name attribute value for the button",
+			"code": {
+				"prop": "name",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "value",
 			"type": "string",
-			"description": "Initial value for the button"
+			"description": "Initial value for the button",
+			"code": {
+				"prop": "value",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "form",
 			"type": "string",
-			"description": "Associates the control with a form element"
+			"description": "Associates the control with a form element",
+			"code": {
+				"prop": "form",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

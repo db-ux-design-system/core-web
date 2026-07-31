@@ -1,12 +1,21 @@
 {
 	"component": "list-divider",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Orientation",
-			"type": "VARIANT",
-			"values": ["(Def) Horizontal", "Vertical"]
+			"name": "orientation",
+			"type": "enum",
+			"values": [
+				"(Def) Horizontal",
+				"Vertical"
+			],
+			"code": null,
+			"design": {
+				"name": "Orientation",
+				"values": [
+					"(Def) Horizontal",
+					"Vertical"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

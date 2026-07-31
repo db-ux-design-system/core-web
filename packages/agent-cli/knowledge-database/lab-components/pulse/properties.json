@@ -1,19 +1,42 @@
 {
 	"component": "pulse",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Spacing multiline",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "spacingMultiline",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Spacing multiline"
+			}
 		},
 		{
-			"name": "As",
-			"type": "VARIANT",
-			"values": ["h1", "h2", "h3", "h4", "h5", "h6"]
+			"name": "as",
+			"type": "enum",
+			"values": [
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6"
+			],
+			"code": null,
+			"design": {
+				"name": "As",
+				"values": [
+					"h1",
+					"h2",
+					"h3",
+					"h4",
+					"h5",
+					"h6"
+				]
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
+			"name": "size",
+			"type": "enum",
 			"values": [
 				"(Def) Default Mapping",
 				"3xLarge",
@@ -25,9 +48,23 @@
 				"xSmall",
 				"2xSmall",
 				"3xs"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Default Mapping",
+					"3xLarge",
+					"2xLarge",
+					"xLarge",
+					"Large",
+					"Medium",
+					"Small",
+					"xSmall",
+					"2xSmall",
+					"3xs"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

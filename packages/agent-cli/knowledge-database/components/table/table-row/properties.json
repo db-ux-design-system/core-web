@@ -1,18 +1,30 @@
 {
 	"component": "table-row",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "cells",
-			"type": "DBTableRowCell[]",
-			"description": "All cells of the row"
+			"type": "any",
+			"description": "All cells of the row",
+			"code": {
+				"prop": "cells",
+				"type": "DBTableRowCell[]"
+			},
+			"design": null
 		},
 		{
 			"name": "subHeaderEmphasis",
-			"type": "DBTableRowSubHeaderEmphasisType",
-			"values": ["none", "weak", "strong"],
-			"description": "Styling for sub-header rows inside thead"
+			"type": "enum",
+			"values": [
+				"none",
+				"weak",
+				"strong"
+			],
+			"description": "Styling for sub-header rows inside thead",
+			"code": {
+				"prop": "subHeaderEmphasis",
+				"type": "DBTableRowSubHeaderEmphasisType"
+			},
+			"design": null
 		}
 	]
 }

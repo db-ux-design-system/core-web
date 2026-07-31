@@ -1,68 +1,146 @@
 {
 	"component": "table",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "variant",
-			"type": "DBTableVariantType",
-			"values": ["flat", "zebra", "spaced"],
-			"description": "Layout variant of the table"
+			"type": "enum",
+			"values": [
+				"flat",
+				"zebra",
+				"spaced"
+			],
+			"description": "Layout variant of the table",
+			"code": {
+				"prop": "variant",
+				"type": "DBTableVariantType"
+			},
+			"design": null
 		},
 		{
 			"name": "size",
-			"type": "DBTableRowSizeType",
-			"values": ["x-small", "small", "medium", "large"],
-			"description": "Size of the table rows"
+			"type": "enum",
+			"values": [
+				"x-small",
+				"small",
+				"medium",
+				"large"
+			],
+			"description": "Size of the table rows",
+			"code": {
+				"prop": "size",
+				"type": "DBTableRowSizeType"
+			},
+			"design": null
 		},
 		{
 			"name": "divider",
-			"type": "DBTableDividerType",
-			"values": ["none", "both", "horizontal", "vertical"],
-			"description": "Show dividers between rows/cells"
+			"type": "enum",
+			"values": [
+				"none",
+				"both",
+				"horizontal",
+				"vertical"
+			],
+			"description": "Show dividers between rows/cells",
+			"code": {
+				"prop": "divider",
+				"type": "DBTableDividerType"
+			},
+			"design": null
 		},
 		{
 			"name": "width",
-			"type": "WidthType",
-			"values": ["auto", "full"],
-			"description": "Width of the table"
+			"type": "enum",
+			"values": [
+				"auto",
+				"full"
+			],
+			"description": "Width of the table",
+			"code": {
+				"prop": "width",
+				"type": "WidthType"
+			},
+			"design": null
 		},
 		{
 			"name": "stickyHeader",
-			"type": "DBTableStickyHeaderType",
-			"values": ["none", "both", "horizontal", "vertical"],
-			"description": "Make header cells sticky when scrolling"
+			"type": "enum",
+			"values": [
+				"none",
+				"both",
+				"horizontal",
+				"vertical"
+			],
+			"description": "Make header cells sticky when scrolling",
+			"code": {
+				"prop": "stickyHeader",
+				"type": "DBTableStickyHeaderType"
+			},
+			"design": null
 		},
 		{
 			"name": "mobileVariant",
-			"type": "DBTableMobileVariantType",
-			"values": ["table", "list"],
-			"description": "Layout on mobile (table or list)"
+			"type": "enum",
+			"values": [
+				"table",
+				"list"
+			],
+			"description": "Layout on mobile (table or list)",
+			"code": {
+				"prop": "mobileVariant",
+				"type": "DBTableMobileVariantType"
+			},
+			"design": null
 		},
 		{
 			"name": "caption",
 			"type": "any",
-			"description": "Slot for table caption"
+			"description": "Slot for table caption",
+			"code": {
+				"prop": "caption",
+				"type": "any"
+			},
+			"design": null
 		},
 		{
 			"name": "captionPlain",
 			"type": "string",
-			"description": "String alternative for table caption"
+			"description": "String alternative for table caption",
+			"code": {
+				"prop": "captionPlain",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "showCaption",
-			"type": "boolean | string",
-			"description": "Show caption above table (default hidden)"
+			"type": "boolean",
+			"description": "Show caption above table (default hidden)",
+			"code": {
+				"prop": "showCaption",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "data",
-			"type": "DBTableData | string",
-			"description": "Table data object with header/body/footer arrays"
+			"type": "any",
+			"description": "Table data object with header/body/footer arrays",
+			"code": {
+				"prop": "data",
+				"type": "DBTableData | string"
+			},
+			"design": null
 		},
 		{
 			"name": "columnSizes",
-			"type": "Record<number, DBTableColumnsSizeType | string>",
-			"description": "Width of columns by index (grid-template-columns)"
+			"type": "any",
+			"description": "Width of columns by index (grid-template-columns)",
+			"code": {
+				"prop": "columnSizes",
+				"type": "Record<number, DBTableColumnsSizeType | string>"
+			},
+			"design": null
 		}
 	]
 }

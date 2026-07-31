@@ -1,61 +1,141 @@
 {
 	"component": "custom-select-form-field",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "👁️ Show Required Asterisk",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showRequiredAsterisk",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Required Asterisk"
+			}
 		},
 		{
-			"name": "👁️ Show Label",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Label"
+			}
 		},
 		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "label",
+			"type": "string",
+			"default": "Label",
+			"code": null,
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
-			"name": "✏️ Placeholder",
-			"type": "TEXT",
-			"defaultValue": "Placeholder"
+			"name": "placeholder",
+			"type": "string",
+			"default": "Placeholder",
+			"code": null,
+			"design": {
+				"name": "✏️ Placeholder",
+				"type": "text",
+				"defaultValue": "Placeholder"
+			}
 		},
 		{
-			"name": "👁️ Show Message",
-			"type": "BOOLEAN",
-			"defaultValue": false
+			"name": "showMessage",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Message"
+			}
 		},
 		{
-			"name": "🔄 Icon",
-			"type": "INSTANCE_SWAP"
+			"name": "icon",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon",
+				"type": "instance-swap"
+			}
 		},
 		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Focused", "None"]
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Focused",
+					"None"
+				]
+			}
 		},
 		{
-			"name": "🔀 Validation",
-			"type": "VARIANT",
-			"values": ["(Def) No Validation", "Invalid", "Valid"]
+			"name": "validation",
+			"type": "enum",
+			"values": [
+				"No Validation",
+				"Invalid",
+				"Valid"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Validation",
+				"values": [
+					"(Def) No Validation",
+					"Invalid",
+					"Valid"
+				]
+			}
 		},
 		{
-			"name": "🔀 Width",
-			"type": "VARIANT",
-			"values": ["(Def) Full", "Auto"]
+			"name": "width",
+			"type": "enum",
+			"values": [
+				"Full",
+				"Auto"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Width",
+				"values": [
+					"(Def) Full",
+					"Auto"
+				]
+			}
 		},
 		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "disabled",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		},
 		{
-			"name": "👁️ Show Icon",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "showIcon",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Icon",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

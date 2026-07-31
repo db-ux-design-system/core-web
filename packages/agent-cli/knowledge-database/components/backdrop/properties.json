@@ -1,14 +1,17 @@
 {
 	"component": "backdrop",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "🔀 Emphasis",
-			"type": "VARIANT",
-			"values": ["(Def) Strong", "Weak"]
+			"name": "emphasis",
+			"type": "enum",
+			"values": ["Strong", "Weak"],
+			"code": null,
+			"design": {
+				"name": "🔀 Emphasis",
+				"values": ["(Def) Strong", "Weak"]
+			}
 		}
 	],
-	"codeConnectProperties": [],
-	"codeProperties": [],
 	"codeImplementation": {
 		"note": "Backdrop ist keine eigenständige Komponente im Code. Bei DBDrawer und DBCustomSelect ist er bereits integriert (siehe deren `backdrop`-Prop). Für eigene modale Komponenten basierend auf `<dialog>` das CSS-Pattern manuell anwenden.",
 		"css": {

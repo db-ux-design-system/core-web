@@ -1,22 +1,52 @@
 {
 	"component": "pagination-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "10"
+			"name": "text",
+			"type": "string",
+			"default": "10",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "10"
+			}
 		},
 		{
-			"name": "🎨 Interaction States",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"]
+			"name": "interactionStates",
+			"type": "enum",
+			"values": [
+				"(Def) Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Interaction States",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused"
+				]
+			}
 		},
 		{
-			"name": "Active",
-			"type": "VARIANT",
-			"values": ["False", "True"]
+			"name": "active",
+			"type": "enum",
+			"values": [
+				"False",
+				"True"
+			],
+			"code": null,
+			"design": {
+				"name": "Active",
+				"values": [
+					"False",
+					"True"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

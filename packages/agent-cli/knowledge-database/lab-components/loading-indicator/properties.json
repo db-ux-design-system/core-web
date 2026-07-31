@@ -1,38 +1,79 @@
 {
 	"component": "loading-indicator",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
+			"name": "label",
+			"type": "string",
+			"default": "Label",
+			"code": null,
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
 		},
 		{
-			"name": "Show Label",
-			"type": "BOOLEAN",
-			"defaultValue": true
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "Show Label"
+			}
 		},
 		{
-			"name": "Orientation",
-			"type": "VARIANT",
-			"values": ["(Def) Vertical", "Horizontal"]
+			"name": "orientation",
+			"type": "enum",
+			"values": [
+				"(Def) Vertical",
+				"Horizontal"
+			],
+			"code": null,
+			"design": {
+				"name": "Orientation",
+				"values": [
+					"(Def) Vertical",
+					"Horizontal"
+				]
+			}
 		},
 		{
-			"name": "State",
-			"type": "VARIANT",
+			"name": "state",
+			"type": "enum",
 			"values": [
 				"(Def) Active",
 				"(Def) Inactive",
 				"Successful",
 				"Critical"
-			]
+			],
+			"code": null,
+			"design": {
+				"name": "State",
+				"values": [
+					"(Def) Active",
+					"(Def) Inactive",
+					"Successful",
+					"Critical"
+				]
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small", "Large"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small",
+				"Large"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small",
+					"Large"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [],
-	"note": "Properties merged from all 4 main LoadingIndicator component sets. Determinate variants additionally expose: Show Progress (BOOLEAN), ✏️ Progress (TEXT), 🎨 Show Text Container (BOOLEAN)."
+	]
 }

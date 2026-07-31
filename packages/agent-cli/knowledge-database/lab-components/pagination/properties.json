@@ -1,21 +1,48 @@
 {
 	"component": "pagination",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Children",
-			"type": "SLOT"
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "slot"
+			}
 		},
 		{
-			"name": "Size",
-			"type": "VARIANT",
-			"values": ["(Def) Medium", "Small"]
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"(Def) Medium",
+				"Small"
+			],
+			"code": null,
+			"design": {
+				"name": "Size",
+				"values": [
+					"(Def) Medium",
+					"Small"
+				]
+			}
 		},
 		{
-			"name": "🎨 Position",
-			"type": "VARIANT",
-			"values": ["(Def) Start", "Center", "End"]
+			"name": "position",
+			"type": "enum",
+			"values": [
+				"(Def) Start",
+				"Center",
+				"End"
+			],
+			"code": null,
+			"design": {
+				"name": "🎨 Position",
+				"values": [
+					"(Def) Start",
+					"Center",
+					"End"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

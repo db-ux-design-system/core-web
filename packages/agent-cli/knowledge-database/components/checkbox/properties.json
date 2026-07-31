@@ -1,124 +1,222 @@
 {
 	"component": "checkbox",
-	"figmaProperties": [
-		{
-			"name": "👁️ Show Label",
-			"type": "BOOLEAN",
-			"defaultValue": true
-		},
-		{
-			"name": "✏️ Label",
-			"type": "TEXT",
-			"defaultValue": "Label"
-		},
-		{
-			"name": "👁️ Show Message",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show Required Asterisk",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show Children Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Checked",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Indeterminate",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Validation",
-			"type": "VARIANT",
-			"values": ["(Def) No Validation", "Invalid", "Valid"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Required",
-			"type": "VARIANT",
-			"values": ["false", "true"],
-			"defaultValue": "false",
-			"mapsToCodeProp": "required"
-		},
-		{
-			"name": "⚙️ Size",
-			"type": "VARIANT",
-			"values": ["small", "medium"],
-			"defaultValue": "medium",
-			"mapsToCodeProp": "size",
-			"note": "In Figma, size is expressed via separate Component Sets (Medium/Small). Code Connect maps to size prop."
-		}
-	],
-	"codeProperties": [
-		{
-			"name": "label",
-			"type": "string",
-			"description": "Visible label for the checkbox"
-		},
-		{
-			"name": "checked",
-			"type": "boolean | string",
-			"description": "Checked state"
-		},
-		{
-			"name": "indeterminate",
-			"type": "boolean | string",
-			"description": "Indeterminate state of a checkbox"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Disables the checkbox"
-		},
+	"properties": [
 		{
 			"name": "required",
-			"type": "boolean | string",
-			"description": "Marks the field as required"
+			"type": "boolean",
+			"default": "false",
+			"description": "Marks the field as required",
+			"code": {
+				"prop": "required",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "⚙️ Required",
+				"codeConnect": true,
+				"values": [
+					"false",
+					"true"
+				]
+			}
 		},
 		{
 			"name": "size",
-			"type": "SizeType",
-			"values": ["small", "medium"],
-			"default": "medium"
+			"type": "enum",
+			"values": [
+				"small",
+				"medium"
+			],
+			"default": "medium",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "⚙️ Size",
+				"codeConnect": true,
+				"values": [
+					"small",
+					"medium"
+				],
+				"note": "In Figma, size is expressed via separate Component Sets (Medium/Small). Code Connect maps to size prop."
+			}
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Visible label for the checkbox",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Label"
+			}
+		},
+		{
+			"name": "checked",
+			"type": "boolean",
+			"description": "Checked state",
+			"code": {
+				"prop": "checked",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Checked",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "indeterminate",
+			"type": "boolean",
+			"description": "Indeterminate state of a checkbox",
+			"code": {
+				"prop": "indeterminate",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Indeterminate",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Disables the checkbox",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Label"
+			}
+		},
+		{
+			"name": "showMessage",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Message"
+			}
+		},
+		{
+			"name": "showRequiredAsterisk",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Required Asterisk"
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "validation",
+			"type": "enum",
+			"values": [
+				"No Validation",
+				"Invalid",
+				"Valid"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Validation",
+				"values": [
+					"(Def) No Validation",
+					"Invalid",
+					"Valid"
+				]
+			}
 		},
 		{
 			"name": "name",
 			"type": "string",
-			"description": "Name attribute for form submission"
+			"description": "Name attribute for form submission",
+			"code": {
+				"prop": "name",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "value",
 			"type": "string",
-			"description": "Value attribute for form submission"
+			"description": "Value attribute for form submission",
+			"code": {
+				"prop": "value",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "onChange",
-			"type": "(event) => void",
-			"description": "Change event handler"
+			"type": "function",
+			"description": "Change event handler",
+			"code": {
+				"prop": "onChange",
+				"type": "(event) => void"
+			},
+			"design": null
 		}
 	]
 }

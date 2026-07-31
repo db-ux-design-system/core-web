@@ -1,102 +1,168 @@
 {
 	"component": "navigation-item",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "✏️ Text",
-			"type": "TEXT",
-			"defaultValue": "Navi Item"
+			"name": "width",
+			"type": "enum",
+			"values": [
+				"auto",
+				"full"
+			],
+			"default": "auto",
+			"code": {
+				"prop": "width",
+				"type": "WidthType"
+			},
+			"design": {
+				"name": "⚙️ Width",
+				"codeConnect": true,
+				"values": [
+					"auto",
+					"full"
+				],
+				"note": "In Figma, width is expressed via separate Component Sets (Auto Width vs Full Width). Code Connect maps to width prop."
+			}
 		},
-		{
-			"name": "👁️ Show Icon",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔄 Icon",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "👁️ Show Indicator",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Expanded",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Interaction States",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-		},
-		{
-			"name": "🔀 Disabled",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		},
-		{
-			"name": "🔀 Active",
-			"type": "VARIANT",
-			"values": ["False", "True"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Width",
-			"type": "VARIANT",
-			"values": ["auto", "full"],
-			"defaultValue": "auto",
-			"mapsToCodeProp": "width",
-			"note": "In Figma, width is expressed via separate Component Sets (Auto Width vs Full Width). Code Connect maps to width prop."
-		}
-	],
-	"codeProperties": [
 		{
 			"name": "text",
 			"type": "string",
-			"description": "Navigation item label text"
-		},
-		{
-			"name": "active",
-			"type": "boolean",
-			"description": "Marks the item as active (bold font)"
-		},
-		{
-			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Disables the navigation item"
-		},
-		{
-			"name": "icon",
-			"type": "string",
-			"description": "Leading icon name"
+			"description": "Navigation item label text",
+			"code": {
+				"prop": "text",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Navi Item"
+			}
 		},
 		{
 			"name": "showIcon",
 			"type": "boolean",
-			"description": "Show/hide the leading icon"
+			"description": "Show/hide the leading icon",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "👁️ Show Icon"
+			}
 		},
 		{
-			"name": "width",
-			"type": "WidthType",
-			"values": ["auto", "full"],
-			"default": "auto"
+			"name": "icon",
+			"type": "string",
+			"description": "Leading icon name",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": {
+				"name": "🔄 Icon",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Disables the navigation item",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "active",
+			"type": "boolean",
+			"description": "Marks the item as active (bold font)",
+			"code": {
+				"prop": "active",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "🔀 Active",
+				"values": [
+					"False",
+					"True"
+				]
+			}
+		},
+		{
+			"name": "showIndicator",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Indicator"
+			}
+		},
+		{
+			"name": "expanded",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Expanded"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction States",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
 		},
 		{
 			"name": "subNavigation",
 			"type": "any",
-			"description": "Slot for sub-navigation content"
+			"description": "Slot for sub-navigation content",
+			"code": {
+				"prop": "subNavigation",
+				"type": "any"
+			},
+			"design": null
 		},
 		{
 			"name": "subNavigationExpanded",
-			"type": "boolean | string",
-			"description": "Mobile only: makes sub-navigation a static overlay"
+			"type": "boolean",
+			"description": "Mobile only: makes sub-navigation a static overlay",
+			"code": {
+				"prop": "subNavigationExpanded",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "backButtonLabel",
 			"type": "string",
-			"description": "Accessible label for the back button in sub-navigation"
+			"description": "Accessible label for the back button in sub-navigation",
+			"code": {
+				"prop": "backButtonLabel",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

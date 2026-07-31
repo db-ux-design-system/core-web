@@ -1,12 +1,23 @@
 {
 	"component": "calendar",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Days", "Years", "Months"]
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"(Def) Days",
+				"Years",
+				"Months"
+			],
+			"code": null,
+			"design": {
+				"name": "Variant",
+				"values": [
+					"(Def) Days",
+					"Years",
+					"Months"
+				]
+			}
 		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": []
+	]
 }

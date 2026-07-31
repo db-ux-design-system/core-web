@@ -1,40 +1,74 @@
 {
 	"component": "page",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "variant",
-			"type": "PageVariantType",
-			"values": ["auto", "fixed"],
+			"type": "enum",
+			"values": [
+				"auto",
+				"fixed"
+			],
 			"default": "auto",
-			"description": "fixed uses flex-box to make header and footer static"
+			"description": "fixed uses flex-box to make header and footer static",
+			"code": {
+				"prop": "variant",
+				"type": "PageVariantType"
+			},
+			"design": null
 		},
 		{
 			"name": "fadeIn",
-			"type": "boolean | string",
-			"description": "Transition with opacity to avoid layout-shifts from font loading"
+			"type": "boolean",
+			"description": "Transition with opacity to avoid layout-shifts from font loading",
+			"code": {
+				"prop": "fadeIn",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "documentOverflow",
-			"type": "PageDocumentOverflowType",
-			"values": ["hidden", "auto"],
-			"description": "Sets overflow on the root document"
+			"type": "enum",
+			"values": [
+				"hidden",
+				"auto"
+			],
+			"description": "Sets overflow on the root document",
+			"code": {
+				"prop": "documentOverflow",
+				"type": "PageDocumentOverflowType"
+			},
+			"design": null
 		},
 		{
 			"name": "header",
 			"type": "any",
-			"description": "Slot for the page header"
+			"description": "Slot for the page header",
+			"code": {
+				"prop": "header",
+				"type": "any"
+			},
+			"design": null
 		},
 		{
 			"name": "footer",
 			"type": "any",
-			"description": "Slot for the page footer"
+			"description": "Slot for the page footer",
+			"code": {
+				"prop": "footer",
+				"type": "any"
+			},
+			"design": null
 		},
 		{
 			"name": "mainClass",
 			"type": "string",
-			"description": "Adds class to the main element"
+			"description": "Adds class to the main element",
+			"code": {
+				"prop": "mainClass",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

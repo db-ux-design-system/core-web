@@ -1,26 +1,44 @@
 {
 	"component": "brand",
-	"figmaProperties": [],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "hideLogo",
 			"type": "boolean",
-			"description": "Disable the default logo svg to pass in a custom img (deprecated)"
+			"description": "Disable the default logo svg to pass in a custom img (deprecated)",
+			"code": {
+				"prop": "hideLogo",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Icon name to display"
+			"description": "Icon name to display",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "showIcon",
-			"type": "boolean"
+			"type": "boolean",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "text",
 			"type": "string",
-			"description": "Text content for the brand"
+			"description": "Text content for the brand",
+			"code": {
+				"prop": "text",
+				"type": "string"
+			},
+			"design": null
 		}
 	]
 }

@@ -1,37 +1,60 @@
 {
 	"component": "divider",
-	"figmaProperties": [
-		{
-			"name": "🔀 Variant",
-			"type": "VARIANT",
-			"values": ["(Def) Horizontal", "Vertical"]
-		},
-		{
-			"name": "🔀 Emphasis",
-			"type": "VARIANT",
-			"values": ["(Def) Weak", "Strong"]
-		}
-	],
-	"codeConnectProperties": [],
-	"codeProperties": [
+	"properties": [
 		{
 			"name": "variant",
-			"type": "DividerVariantType",
-			"values": ["horizontal", "vertical"],
+			"type": "enum",
+			"values": [
+				"horizontal",
+				"vertical"
+			],
 			"default": "horizontal",
-			"description": "Changes the orientation of the divider"
+			"description": "Changes the orientation of the divider",
+			"code": {
+				"prop": "variant",
+				"type": "DividerVariantType"
+			},
+			"design": {
+				"name": "🔀 Variant",
+				"values": [
+					"(Def) Horizontal",
+					"Vertical"
+				]
+			}
 		},
 		{
 			"name": "emphasis",
-			"type": "EmphasisType",
-			"values": ["weak", "strong"],
-			"default": "weak"
+			"type": "enum",
+			"values": [
+				"weak",
+				"strong"
+			],
+			"default": "weak",
+			"code": {
+				"prop": "emphasis",
+				"type": "EmphasisType"
+			},
+			"design": {
+				"name": "🔀 Emphasis",
+				"values": [
+					"(Def) Weak",
+					"Strong"
+				]
+			}
 		},
 		{
 			"name": "margin",
-			"type": "DividerMarginType",
-			"values": ["none", "_"],
-			"description": "Removes the margin of the divider"
+			"type": "enum",
+			"values": [
+				"none",
+				"_"
+			],
+			"description": "Removes the margin of the divider",
+			"code": {
+				"prop": "margin",
+				"type": "DividerMarginType"
+			},
+			"design": null
 		}
 	]
 }

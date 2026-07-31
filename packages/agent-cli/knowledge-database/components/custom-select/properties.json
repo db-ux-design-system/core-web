@@ -1,167 +1,301 @@
 {
 	"component": "custom-select",
-	"figmaProperties": [
+	"properties": [
 		{
-			"name": "🔀 Open",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔄 Form Field",
-			"type": "INSTANCE_SWAP"
-		},
-		{
-			"name": "🔀 Dropdown Width",
-			"type": "VARIANT",
-			"values": ["(Def) Full", "Auto/Fix"]
-		},
-		{
-			"name": "🔀 Dropdown Position",
-			"type": "VARIANT",
+			"name": "formFieldWidth",
+			"type": "enum",
 			"values": [
-				"(Def) Bottom",
+				"auto",
+				"full"
+			],
+			"default": "auto",
+			"description": "Width of the form field component",
+			"code": {
+				"prop": "formFieldWidth",
+				"type": "WidthType | string"
+			},
+			"design": {
+				"name": "⚙️ Form Field Width",
+				"codeConnect": true,
+				"values": [
+					"full",
+					"auto"
+				]
+			}
+		},
+		{
+			"name": "placement",
+			"type": "string",
+			"default": "bottom",
+			"description": "Position of the dropdown relative to the trigger",
+			"code": {
+				"prop": "placement",
+				"type": "PlacementVerticalType"
+			},
+			"design": {
+				"name": "⚙️ Dropdown Position",
+				"codeConnect": true,
+				"values": [
+					"bottom"
+				]
+			}
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Programmatically open the dropdown",
+			"code": {
+				"prop": "open",
+				"type": "boolean"
+			},
+			"design": {
+				"name": "🔀 Open"
+			}
+		},
+		{
+			"name": "dropdownWidth",
+			"type": "any",
+			"description": "Width behavior of the dropdown",
+			"code": {
+				"prop": "dropdownWidth",
+				"type": "CustomSelectDropdownWidthType | string"
+			},
+			"design": {
+				"name": "🔀 Dropdown Width",
+				"values": [
+					"(Def) Full",
+					"Auto/Fix"
+				]
+			}
+		},
+		{
+			"name": "formField",
+			"type": "any",
+			"code": null,
+			"design": {
+				"name": "🔄 Form Field",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "dropdownPosition",
+			"type": "enum",
+			"values": [
+				"Bottom",
 				"Bottom-End",
 				"Bottom-Start",
 				"Top",
 				"Top-End",
 				"Top-Start"
-			]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Form Field Width",
-			"type": "VARIANT",
-			"values": ["full", "auto"],
-			"defaultValue": "auto",
-			"mapsToCodeProp": "formFieldWidth"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Dropdown Position",
+				"values": [
+					"(Def) Bottom",
+					"Bottom-End",
+					"Bottom-Start",
+					"Top",
+					"Top-End",
+					"Top-Start"
+				]
+			}
 		},
-		{
-			"name": "⚙️ Dropdown Position",
-			"type": "VARIANT",
-			"values": ["bottom"],
-			"defaultValue": "bottom",
-			"mapsToCodeProp": "placement"
-		}
-	],
-	"codeProperties": [
 		{
 			"name": "multiple",
-			"type": "boolean | string",
-			"description": "Enables multi-select mode"
-		},
-		{
-			"name": "open",
 			"type": "boolean",
-			"description": "Programmatically open the dropdown"
-		},
-		{
-			"name": "placement",
-			"type": "PlacementVerticalType",
-			"description": "Position of the dropdown relative to the trigger"
-		},
-		{
-			"name": "dropdownWidth",
-			"type": "CustomSelectDropdownWidthType | string",
-			"description": "Width behavior of the dropdown"
-		},
-		{
-			"name": "formFieldWidth",
-			"type": "WidthType | string",
-			"values": ["auto", "full"],
-			"description": "Width of the form field component"
+			"description": "Enables multi-select mode",
+			"code": {
+				"prop": "multiple",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "options",
-			"type": "CustomSelectOptionType[]",
-			"description": "Array of options to render"
+			"type": "any",
+			"description": "Array of options to render",
+			"code": {
+				"prop": "options",
+				"type": "CustomSelectOptionType[]"
+			},
+			"design": null
 		},
 		{
 			"name": "values",
-			"type": "string[]",
-			"description": "Initial selected values for multi select"
+			"type": "any",
+			"description": "Initial selected values for multi select",
+			"code": {
+				"prop": "values",
+				"type": "string[]"
+			},
+			"design": null
 		},
 		{
 			"name": "selectedType",
-			"type": "SelectedTypeType",
-			"values": ["amount", "text", "tag"],
-			"description": "Display variant for selected values in multi select"
+			"type": "enum",
+			"values": [
+				"amount",
+				"text",
+				"tag"
+			],
+			"description": "Display variant for selected values in multi select",
+			"code": {
+				"prop": "selectedType",
+				"type": "SelectedTypeType"
+			},
+			"design": null
 		},
 		{
 			"name": "showSearch",
 			"type": "boolean",
-			"description": "Forces search input in the dropdown header"
+			"description": "Forces search input in the dropdown header",
+			"code": {
+				"prop": "showSearch",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "showSelectAll",
 			"type": "boolean",
-			"description": "Forces select all checkbox (only for multiple)"
+			"description": "Forces select all checkbox (only for multiple)",
+			"code": {
+				"prop": "showSelectAll",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "showClearSelection",
 			"type": "boolean",
 			"default": true,
-			"description": "Show/hide clear selection button"
+			"description": "Show/hide clear selection button",
+			"code": {
+				"prop": "showClearSelection",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "searchLabel",
 			"type": "string",
-			"description": "Label for the search input"
+			"description": "Label for the search input",
+			"code": {
+				"prop": "searchLabel",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "searchPlaceholder",
 			"type": "string",
-			"description": "Placeholder for the search input"
+			"description": "Placeholder for the search input",
+			"code": {
+				"prop": "searchPlaceholder",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "clearSelectionText",
 			"type": "string",
-			"description": "Label for the clear selection button"
+			"description": "Label for the clear selection button",
+			"code": {
+				"prop": "clearSelectionText",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "mobileCloseButtonText",
 			"type": "string",
-			"description": "Button text for mobile close"
+			"description": "Button text for mobile close",
+			"code": {
+				"prop": "mobileCloseButtonText",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "amountText",
 			"type": "string",
-			"description": "Text for the amount display in selectedType='amount'"
+			"description": "Text for the amount display in selectedType='amount'",
+			"code": {
+				"prop": "amountText",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "label",
 			"type": "string",
-			"description": "Label for the form field"
+			"description": "Label for the form field",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "placeholder",
 			"type": "string",
-			"description": "Placeholder text"
+			"description": "Placeholder text",
+			"code": {
+				"prop": "placeholder",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "required",
 			"type": "boolean",
-			"description": "Marks the field as required"
+			"description": "Marks the field as required",
+			"code": {
+				"prop": "required",
+				"type": "boolean"
+			},
+			"design": null
 		},
 		{
 			"name": "disabled",
-			"type": "boolean | string",
-			"description": "Disables the component"
+			"type": "boolean",
+			"description": "Disables the component",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": null
 		},
 		{
 			"name": "message",
 			"type": "string",
-			"description": "Validation message text"
+			"description": "Validation message text",
+			"code": {
+				"prop": "message",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Leading icon name"
+			"description": "Leading icon name",
+			"code": {
+				"prop": "icon",
+				"type": "string"
+			},
+			"design": null
 		},
 		{
 			"name": "showIcon",
 			"type": "boolean",
-			"description": "Show/hide the leading icon"
+			"description": "Show/hide the leading icon",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean"
+			},
+			"design": null
 		}
 	]
 }

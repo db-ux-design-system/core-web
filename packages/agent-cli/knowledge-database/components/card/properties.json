@@ -1,74 +1,142 @@
 {
 	"component": "card",
-	"figmaProperties": [
-		{
-			"name": "📦 Children",
-			"type": "SLOT"
-		},
-		{
-			"name": "📦 Start Slot",
-			"type": "SLOT"
-		},
-		{
-			"name": "📦 End Slot",
-			"type": "SLOT"
-		},
-		{
-			"name": "👁️ Show Start Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "👁️ Show End Slot",
-			"type": "BOOLEAN",
-			"defaultValue": false
-		},
-		{
-			"name": "🔀 Spacing",
-			"type": "VARIANT",
-			"values": ["(Def) Small", "Medium", "Large", "None"]
-		},
-		{
-			"name": "🔀 Behavior",
-			"type": "VARIANT",
-			"values": ["(Def) Static", "Interactive"]
-		},
-		{
-			"name": "🔀 Interaction State",
-			"type": "VARIANT",
-			"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"]
-		}
-	],
-	"codeConnectProperties": [
-		{
-			"name": "⚙️ Elevation Level",
-			"type": "VARIANT",
-			"values": ["1", "2", "3"],
-			"defaultValue": "1",
-			"mapsToCodeProp": "elevationLevel",
-			"note": "In Figma, elevation level is expressed via separate Component Sets (Card → Level 1, Level 2, Level 3)."
-		}
-	],
-	"codeProperties": [
-		{
-			"name": "behavior",
-			"type": "CardBehaviorType",
-			"values": ["static", "interactive"],
-			"default": "static",
-			"description": "Makes the card interactive"
-		},
+	"properties": [
 		{
 			"name": "elevationLevel",
-			"type": "CardElevationLevelType",
-			"values": ["1", "2", "3"],
+			"type": "enum",
+			"values": [
+				"1",
+				"2",
+				"3"
+			],
 			"default": "1",
-			"description": "Changes the elevation of the card (equal to basic-background-level)"
+			"description": "Changes the elevation of the card (equal to basic-background-level)",
+			"code": {
+				"prop": "elevationLevel",
+				"type": "CardElevationLevelType"
+			},
+			"design": {
+				"name": "⚙️ Elevation Level",
+				"codeConnect": true,
+				"values": [
+					"1",
+					"2",
+					"3"
+				],
+				"note": "In Figma, elevation level is expressed via separate Component Sets (Card → Level 1, Level 2, Level 3)."
+			}
 		},
 		{
 			"name": "spacing",
-			"type": "SpacingType",
-			"values": ["small", "medium", "large", "none"],
-			"default": "small"
+			"type": "enum",
+			"values": [
+				"small",
+				"medium",
+				"large",
+				"none"
+			],
+			"default": "small",
+			"code": {
+				"prop": "spacing",
+				"type": "SpacingType"
+			},
+			"design": {
+				"name": "🔀 Spacing",
+				"values": [
+					"(Def) Small",
+					"Medium",
+					"Large",
+					"None"
+				]
+			}
+		},
+		{
+			"name": "behavior",
+			"type": "enum",
+			"values": [
+				"static",
+				"interactive"
+			],
+			"default": "static",
+			"description": "Makes the card interactive",
+			"code": {
+				"prop": "behavior",
+				"type": "CardBehaviorType"
+			},
+			"design": {
+				"name": "🔀 Behavior",
+				"values": [
+					"(Def) Static",
+					"Interactive"
+				]
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "startSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Start Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 End Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showStartSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Start Slot"
+			}
+		},
+		{
+			"name": "showEndSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show End Slot"
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": [
+				"Enabled",
+				"Hovered",
+				"Pressed",
+				"Focused",
+				"None"
+			],
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				]
+			}
 		}
 	]
 }
