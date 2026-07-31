@@ -165,11 +165,20 @@
 				position: fixed;
 				inset: 0;
 				visibility: hidden;
+				background-color: dialog-init.$backdrop-color-strong;
 
 				@media (prefers-reduced-motion: no-preference) {
 					transition: visibility var(--db-transition-duration)
 						allow-discrete;
 				}
+			}
+
+			&[data-backdrop="weak"]::before {
+				background-color: dialog-init.$backdrop-color-weak;
+			}
+
+			&[data-backdrop="invisible"]::before {
+				background-color: transparent;
 			}
 
 			&[open]::before {
