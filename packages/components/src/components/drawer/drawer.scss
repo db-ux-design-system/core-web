@@ -145,13 +145,14 @@
 			visibility: hidden;
 		}
 	}
+
 	// END: allow-discrete ponyfill
 
 	// ::backdrop disappears instantly on close since the dialog leaves the
 	// top layer immediately. Use ::before with a visibility transition instead,
 	// and hide the native ::backdrop to prevent double-darkening.
 	@supports not (overlay: auto) {
-		&:not([data-backdrop="none"]):not([data-position="absolute"]) {
+		&:not([data-backdrop="none"], [data-position="absolute"]) {
 			&::backdrop {
 				background-color: transparent;
 			}
@@ -196,9 +197,9 @@
 
 		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 		@supports not (overlay: auto) {
-			transition:
-				visibility var(--db-transition-duration) allow-discrete;
+			transition: visibility var(--db-transition-duration) allow-discrete;
 		}
+
 		// END: allow-discrete ponyfill
 	}
 
