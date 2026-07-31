@@ -2,7 +2,7 @@
 	"id": "tabs",
 	"name": "Tabs",
 	"type": "component",
-	"status": "stable",
+	"status": "beta",
 	"owner": "core-team",
 	"since": "v5.0.0"
 }

@@ -2,7 +2,7 @@
 	"id": "drawer",
 	"name": "Drawer",
 	"type": "component",
-	"status": "beta",
+	"status": "stable",
 	"owner": "core-team",
 	"since": "v1.0.0"
 }

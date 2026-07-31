@@ -2,7 +2,7 @@
 	"id": "navigation",
 	"name": "Navigation",
 	"type": "component",
-	"status": "stable",
+	"status": "beta",
 	"owner": "core-team",
 	"since": "v1.0.0"
 }

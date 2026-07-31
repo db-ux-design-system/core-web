@@ -1,5 +1,5 @@
 {
-	"_proposal": "Format proposal, not yet rolled out. Button serves as the prototype. See requirements.md → Offene Themen for the generation concept.",
+	"_proposal": "Format-Prototyp. Muss von Dev für alle Komponenten ausgerollt werden.",
 	"component": "button",
 	"sourcePath": "packages/components/src/components/button",
 	"frameworks": {

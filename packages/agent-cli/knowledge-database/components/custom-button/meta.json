@@ -4,5 +4,6 @@
 	"type": "component",
 	"status": "beta",
 	"owner": "core-team",
-	"since": "v4.5.0"
+	"since": "v4.5.0",
+	"availability": "code-only"
 }
