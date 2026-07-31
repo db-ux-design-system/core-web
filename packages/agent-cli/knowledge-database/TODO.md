@@ -14,11 +14,7 @@ Mögliche Ziele:
 
 Betrifft: colors, elevation, transition, typography.
 
-### 2. `scale`-Property — behalten oder ableiten?
-
-Bei einfachen Kategorien ist die Scale aus den Tokennamen ableitbar. Nur bei figmaOnly-Tokens (opacity/none, spacing/fixed/none) bietet sie Mehrwert. Entfernen oder als explizite Referenz behalten?
-
-### 3. `figmaLookup`-Felder — Agent-Instruktion oder Datenbeschreibung?
+### 2. `figmaLookup`-Felder — Agent-Instruktion oder Datenbeschreibung?
 
 `figmaLookup` erklärt dem Agent wie er `search_design_system` aufrufen soll. Gehört das in die Knowledge-Database oder eher in ein Steering/Prompt?
 
@@ -33,11 +29,3 @@ Aktuell nur als Prototyp bei Button vorhanden. Muss von Dev für alle Komponente
 ### 5. Backdrop — Code-Umsetzung dokumentieren
 
 Backdrop ist figma-only (eigene Komponente in Figma), wird im Code aber anders umgesetzt (CSS-Pattern innerhalb von Drawer). Die Code-Umsetzung muss in der Knowledge-Database dokumentiert werden — z.B. im `backdrop/properties.json` als Verweis auf Drawer.
-
-### 6. `custom-select-list` in figma.json ergänzen
-
-Existiert im Code als Subkomponente, fehlt aber in `custom-select/figma.json` → prüfen ob in Figma vorhanden oder bewusst weggelassen.
-
-### 7. Status-Definitionen klären
-
-Woher kommt die Source-of-Truth für den Komponentenstatus? Aktuell leitet sich "beta" vom Figma-Komponentennamen ab ("(Beta)"-Suffix). Falls sich der Status ändert (Figma entfernt Beta), muss `meta.json` nachgezogen werden.
