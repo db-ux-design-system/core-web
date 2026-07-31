@@ -1,0 +1,9 @@
+{
+	"id": "icons",
+	"name": "Icons",
+	"type": "asset",
+	"status": "stable",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"note": "Inner-source assets — icon names only, no SVG/font files included."
+}

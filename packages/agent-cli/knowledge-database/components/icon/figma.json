@@ -1,6 +1,0 @@
-{
-	"component": "icon",
-	"library": "core-components",
-	"nodeIds": [],
-	"note": "Icons are published from the separate 'DB UX DS v3 - DB Theme Icons' library (fileKey: 5qAIAjuseE3tpqGbtwglSN), not from core-components. The DBIcon code component renders any icon by name."
-}

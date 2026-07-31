@@ -1,8 +1,0 @@
-{
-	"id": "icon",
-	"name": "Icon",
-	"type": "component",
-	"status": "stable",
-	"owner": "core-team",
-	"since": "v1.0.0"
-}

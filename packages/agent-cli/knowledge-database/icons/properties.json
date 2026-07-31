@@ -6,18 +6,20 @@
 		{
 			"name": "icon",
 			"type": "string",
-			"description": "Icon name to render (e.g. 'arrow-right', 'check-circle')"
+			"description": "Icon name to render (e.g. 'arrow_right', 'check_circle')"
 		},
 		{
 			"name": "variant",
-			"type": "string",
-			"description": "Icon variant"
+			"type": "IconVariantType",
+			"values": ["default", "filled"],
+			"default": "default",
+			"description": "Icon style variant — 'default' (outlined) or 'filled'"
 		},
 		{
 			"name": "weight",
 			"type": "IconWeightType",
 			"values": ["16", "20", "24", "32", "48", "64"],
-			"description": "Icon weight/size in pixels"
+			"description": "Icon size in pixels — corresponds to 'size' in Figma"
 		},
 		{
 			"name": "text",

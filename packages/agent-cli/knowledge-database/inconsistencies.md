@@ -29,3 +29,14 @@ Tracking von Unterschieden zwischen Figma und Code sowie bekannte Gaps.
 | Component     | Subcomponent       | Gap                                                             |
 | ------------- | ------------------ | --------------------------------------------------------------- |
 | Custom Select | Custom Select List | No dedicated subcomponent in Figma — review during refactoring. |
+
+## Icons — Figma ↔ Code Gap
+
+| Aspekt          | Figma                                                                                | Code                                          |
+| --------------- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
+| Format          | SVG-Instanzen (Component Instances)                                                  | Icon Font (woff2)                             |
+| Library         | Separate Library: `DB UX DS v3 - DB Theme Icons` (fileKey: `5qAIAjuseE3tpqGbtwglSN`) | Package: `@db-ux/core-foundations` (assets/)  |
+| Referenzierung  | Instance Swap auf Icon-Komponente                                                    | String-Name über `icon`-Prop                  |
+| Größensteuerung | Property heißt `size`                                                                | Property heißt `weight` (steuert font-weight) |
+
+Assets sind Inner Source und nicht in diesem Repository enthalten.
