@@ -175,6 +175,7 @@
 					background-color: dialog-init.$backdrop-color-strong;
 				}
 			}
+
 			&[data-backdrop="weak"]::before {
 				background-color: dialog-init.$backdrop-color-weak;
 			}
