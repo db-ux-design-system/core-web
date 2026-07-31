@@ -87,22 +87,23 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (_ref) {
-				const dialogOpen = getBoolean(props.open, 'open');
-				if (dialogOpen && !_ref.open) {
+			if (!_ref) return;
+
+			const dialogOpen = getBoolean(props.open, 'open');
+			if (!_ref.open) {
+				if (dialogOpen) {
 					if (state.isNotModal()) {
 						_ref.show();
 					} else {
 						_ref.showModal();
 					}
 				}
-				if (_ref.open) {
-					_closeDialogWithTransition(
-						_ref as HTMLDialogElement,
-						!!dialogOpen,
-						() => _ref?.close()
-					);
-				}
+			} else {
+				_closeDialogWithTransition(
+					_ref as HTMLDialogElement,
+					!!dialogOpen,
+					() => _ref?.close()
+				);
 			}
 		}
 	});
