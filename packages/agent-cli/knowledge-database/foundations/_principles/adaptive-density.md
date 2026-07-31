@@ -4,11 +4,9 @@ Das Density-System steuert, wie kompakt oder großzügig UI-Elemente gerendert w
 
 ## Modi
 
-| Modus        | Effekt                     | Einsatzzweck                                             |
-| ------------ | -------------------------- | -------------------------------------------------------- |
-| `expressive` | Größere Werte — mehr Raum  | Marketing-Seiten, Landing Pages, content-lastige Layouts |
-| `regular`    | Standard-Werte             | Standard-Anwendungen                                     |
-| `functional` | Kleinere Werte — kompakter | Daten-intensive UIs, Dashboards, Admin-Panels            |
+- **expressive** — Größere Werte, mehr Raum. Für Marketing-Seiten, Landing Pages, content-lastige Layouts.
+- **regular** — Standard-Werte. Für Standard-Anwendungen.
+- **functional** — Kleinere Werte, kompakter. Für datenintensive UIs, Dashboards, Admin-Panels.
 
 ## Funktionsweise
 

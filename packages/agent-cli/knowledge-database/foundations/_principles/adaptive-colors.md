@@ -4,11 +4,9 @@ Das adaptive Farbsystem stellt kontextabhängige Farben bereit, die sich basiere
 
 ## Collections-Überblick
 
-| Collection            | Zweck                                            | Aktivierung                                |
-| --------------------- | ------------------------------------------------ | ------------------------------------------ |
-| **Color** (adaptiv)   | Farben passen sich dem Eltern-Variant-Kontext an | Automatisch via `data-variant` auf Vorfahr |
-| **Mode** (absolut)    | Feste Variant-Farbe, kontextunabhängig           | Direkte Variablen-Bindung                  |
-| **Theme** (Primitive) | Interne Roh-Palettenwerte                        | NICHT im Design-Kontext verwenden          |
+- **Color** (adaptiv) — Farben passen sich dem Eltern-Variant-Kontext an. Aktivierung automatisch via `data-variant` auf Vorfahr.
+- **Mode** (absolut) — Feste Variant-Farbe, kontextunabhängig. Aktivierung über direkte Variablen-Bindung.
+- **Theme** (Primitive) — Interne Roh-Palettenwerte. NICHT im Design-Kontext verwenden.
 
 ## Funktionsweise
 
