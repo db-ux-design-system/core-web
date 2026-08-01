@@ -136,65 +136,55 @@
 
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
-	// can control hiding instead. Use transition-delay (not allow-discrete)
-	// so that visibility switches immediately on open but delays on close.
-	// stylelint-disable-next-line declaration-no-important
-	display: block !important;
+	// can control hiding instead. Only needed when motion is enabled —
+	// with reduced motion, the UA's instant display:none is correct.
+	@media (prefers-reduced-motion: no-preference) {
+		// stylelint-disable-next-line declaration-no-important
+		display: block !important;
 
-	&[open] {
-		visibility: visible;
-		transition: none;
-	}
+		&[open] {
+			// stylelint-disable-next-line declaration-no-important
+			visibility: visible !important;
+			transition: none;
+		}
 
-	&:not([open]) {
-		visibility: hidden;
-
-		@media (prefers-reduced-motion: no-preference) {
+		&:not([open]) {
+			visibility: hidden;
 			transition: visibility 0s var(--db-transition-duration);
 		}
-	}
 
-	// ::backdrop disappears instantly on close since the dialog leaves the
-	// top layer immediately. Use ::before with a delayed visibility instead,
-	// and hide the native ::backdrop to prevent double-darkening.
-	@supports not (overlay: auto) {
-		&:not([data-backdrop="none"], [data-position="absolute"]) {
-			&::backdrop {
-				background-color: transparent;
-			}
-
-			&::before {
-				content: "";
-				position: fixed;
-				inset: 0;
-			}
-
-			&:not([open]) {
-				@media screen and (prefers-reduced-motion: reduce) {
-					&::before {
-						visibility: hidden;
-						transition: none;
-					}
+		// ::backdrop disappears instantly on close since the dialog leaves the
+		// top layer immediately. Use ::before with a delayed visibility instead,
+		// and hide the native ::backdrop to prevent double-darkening.
+		@supports not (overlay: auto) {
+			&:not([data-backdrop="none"], [data-position="absolute"]) {
+				&::backdrop {
+					background-color: transparent;
 				}
 
 				&::before {
+					content: "";
+					position: fixed;
+					inset: 0;
+				}
+
+				&:not([open])::before {
 					visibility: hidden;
 					transition: visibility 0s var(--db-transition-duration);
 				}
-			}
 
-			&:not([data-backdrop="invisible"]) {
-				&::before {
-					background-color: dialog-init.$backdrop-color-strong;
+				&:not([data-backdrop="invisible"]) {
+					&::before {
+						background-color: dialog-init.$backdrop-color-strong;
+					}
 				}
-			}
 
-			&[data-backdrop="weak"]::before {
-				background-color: dialog-init.$backdrop-color-weak;
+				&[data-backdrop="weak"]::before {
+					background-color: dialog-init.$backdrop-color-weak;
+				}
 			}
 		}
 	}
-
 	// END: allow-discrete ponyfill
 
 	@media (prefers-reduced-motion: no-preference) {

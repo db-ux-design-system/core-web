@@ -70,7 +70,6 @@ const testAction = () => {
 		);
 		const component = await mount(drawer);
 		const testSpan = component.getByTestId('test');
-		await page.waitForSelector('dialog[open]');
 		await expect(testSpan).toBeVisible();
 		await component.getByRole('button').click();
 		expect(test).toEqual('close');
