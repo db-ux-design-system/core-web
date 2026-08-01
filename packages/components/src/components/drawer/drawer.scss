@@ -147,6 +147,13 @@
 			transition: none;
 		}
 
+		@media screen and (prefers-reduced-motion: reduce) {
+			&:not([open]) {
+				visibility: hidden;
+				transition: none;
+			}
+		}
+
 		&:not([open]) {
 			visibility: hidden;
 			transition: visibility 0s var(--db-transition-duration);
