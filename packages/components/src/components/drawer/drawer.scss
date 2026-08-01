@@ -148,6 +148,7 @@
 
 	&:not([open]) {
 		visibility: hidden;
+
 		@media (prefers-reduced-motion: no-preference) {
 			transition: visibility 0s var(--db-transition-duration);
 		}
@@ -169,6 +170,13 @@
 			}
 
 			&:not([open]) {
+				@media screen and (prefers-reduced-motion: reduce) {
+					&::before {
+						visibility: hidden;
+						transition: none;
+					}
+				}
+
 				&::before {
 					visibility: hidden;
 					transition: visibility 0s var(--db-transition-duration);
@@ -313,6 +321,7 @@
 		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 		// stylelint-disable-next-line declaration-no-important
 		display: flex !important;
+
 		// END: allow-discrete ponyfill
 
 		&[open] {
