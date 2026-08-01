@@ -148,7 +148,9 @@
 
 	&:not([open]) {
 		visibility: hidden;
-		transition: visibility 0s var(--db-transition-duration);
+		@media (prefers-reduced-motion: no-preference) {
+			transition: visibility 0s var(--db-transition-duration);
+		}
 	}
 
 	// ::backdrop disappears instantly on close since the dialog leaves the
