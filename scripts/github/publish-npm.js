@@ -130,7 +130,8 @@ for (const step of IS_CI ? ['dry-run', 'provenance'] : ['dry-run']) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {
 			execSync(
-				`pnpm publish --tag ${TAG} ${path.join(buildOutputs, dir, `db-ux-${PACKAGE}-${VALID_SEMVER}.tgz`)} --${step} --no-git-checks`
+				`pnpm publish --tag ${TAG} ${path.join(buildOutputs, dir, `db-ux-${PACKAGE}-${VALID_SEMVER}.tgz`)} --${step} --no-git-checks`,
+				{ stdio: 'inherit' }
 			);
 		} catch (error) {
 			console.error(
