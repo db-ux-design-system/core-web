@@ -142,11 +142,9 @@
 		// stylelint-disable-next-line declaration-no-important
 		display: block !important;
 
-		@media screen and (prefers-reduced-motion: reduce) {
-			&:not([open]) {
-				visibility: hidden;
-				transition: none;
-			}
+		&[open] {
+			visibility: visible;
+			transition: none;
 		}
 
 		&:not([open]) {
