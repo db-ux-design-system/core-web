@@ -135,33 +135,26 @@
 	inset: 0;
 
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
+	// can control hiding instead. Use transition-delay (not allow-discrete)
+	// so that visibility switches immediately on open but delays on close.
+	// stylelint-disable-next-line declaration-no-important
+	display: block !important;
+
+	&[open] {
+		visibility: visible;
+		transition: none;
+	}
+
+	&:not([open]) {
+		visibility: hidden;
+		transition: visibility 0s var(--db-transition-duration);
+	}
+
+	// ::backdrop disappears instantly on close since the dialog leaves the
+	// top layer immediately. Use ::before with a delayed visibility instead,
+	// and hide the native ::backdrop to prevent double-darkening.
 	@supports not (overlay: auto) {
-		// Override UA `dialog:not([open]) { display: none }` so that `visibility`
-		// can control hiding instead. Use transition-delay (not allow-discrete)
-		// so that visibility switches immediately on open but delays on close.
-		// stylelint-disable-next-line declaration-no-important
-		display: block !important;
-
-		&[open] {
-			visibility: visible;
-			transition: none;
-		}
-
-		@media screen and (prefers-reduced-motion: reduce) {
-			&:not([open]) {
-				visibility: hidden;
-				transition: none;
-			}
-		}
-
-		&:not([open]) {
-			visibility: hidden;
-			transition: visibility 0s var(--db-transition-duration);
-		}
-
-		// ::backdrop disappears instantly on close since the dialog leaves the
-		// top layer immediately. Use ::before with a visibility transition instead,
-		// and hide the native ::backdrop to prevent double-darkening.
 		&:not([data-backdrop="none"], [data-position="absolute"]) {
 			&::backdrop {
 				background-color: transparent;
@@ -174,13 +167,6 @@
 			}
 
 			&:not([open]) {
-				@media screen and (prefers-reduced-motion: reduce) {
-					&::before {
-						visibility: hidden;
-						transition: none;
-					}
-				}
-
 				&::before {
 					visibility: hidden;
 					transition: visibility 0s var(--db-transition-duration);
@@ -324,10 +310,7 @@
 
 		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 		// stylelint-disable-next-line declaration-no-important
-		@supports not (overlay: auto) {
-			display: flex !important;
-		}
-
+		display: flex !important;
 		// END: allow-discrete ponyfill
 
 		&[open] {
