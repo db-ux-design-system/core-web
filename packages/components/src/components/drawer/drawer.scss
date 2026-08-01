@@ -133,6 +133,7 @@
 	position: fixed;
 	inset: 0;
 
+
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
 	// can control hiding instead. Only needed when motion is enabled —
@@ -142,8 +143,7 @@
 		display: block !important;
 
 		&[open] {
-			// stylelint-disable-next-line declaration-no-important
-			visibility: visible !important;
+			visibility: visible;
 			transition: none;
 		}
 
@@ -165,13 +165,6 @@
 					content: "";
 					position: fixed;
 					inset: 0;
-				}
-
-				@media screen and (prefers-reduced-motion: reduce) {
-					&:not([open])::before {
-						visibility: hidden;
-						transition: none;
-					}
 				}
 
 				&:not([open])::before {
