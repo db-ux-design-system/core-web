@@ -129,7 +129,6 @@
 .db-drawer {
 	--db-drawer-inline-size: 100lvw;
 	--db-drawer-block-size: 100lvh;
-	--db-transition-duration: 0ms;
 
 	position: fixed;
 	inset: 0;
@@ -150,7 +149,7 @@
 
 		&:not([open]) {
 			visibility: hidden;
-			transition: visibility 0s var(--db-transition-duration);
+			transition: visibility 0s #{variables.$db-transition-duration-extra-slow};
 		}
 
 		// ::backdrop disappears instantly on close since the dialog leaves the
@@ -177,7 +176,7 @@
 
 				&:not([open])::before {
 					visibility: hidden;
-					transition: visibility 0s var(--db-transition-duration);
+					transition: visibility 0s #{variables.$db-transition-duration-extra-slow};
 				}
 
 				&:not([data-backdrop="invisible"]) {
@@ -196,10 +195,8 @@
 	// END: allow-discrete ponyfill
 
 	@media (prefers-reduced-motion: no-preference) {
-		--db-transition-duration: #{variables.$db-transition-duration-extra-slow};
-
 		transition:
-			display var(--db-transition-duration) allow-discrete,
+			display #{variables.$db-transition-duration-extra-slow} allow-discrete,
 			overlay #{variables.$db-transition-duration-fast} allow-discrete;
 	}
 
