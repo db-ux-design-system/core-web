@@ -89,16 +89,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (!_ref) return;
 
 			const dialogOpen = getBoolean(props.open, 'open');
-			if (!_ref.open) {
-				if (dialogOpen) {
-					if (state.isNotModal()) {
-						_ref.show();
-					} else {
-						_ref.showModal();
-					}
+			if (dialogOpen && !_ref.open) {
+				if (state.isNotModal()) {
+					_ref.show();
+				} else {
+					_ref.showModal();
 				}
-			} else {
-				_ref?.close();
+			} else if (!dialogOpen && _ref.open) {
+				_ref.close();
 			}
 		}
 	});
