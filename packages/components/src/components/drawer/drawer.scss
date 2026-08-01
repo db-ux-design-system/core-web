@@ -133,7 +133,6 @@
 	position: fixed;
 	inset: 0;
 
-
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
 	// can control hiding instead. Only needed when motion is enabled —
@@ -149,7 +148,8 @@
 
 		&:not([open]) {
 			visibility: hidden;
-			transition: visibility 0s #{variables.$db-transition-duration-extra-slow};
+			transition: visibility 0s
+				#{variables.$db-transition-duration-extra-slow};
 		}
 
 		// ::backdrop disappears instantly on close since the dialog leaves the
@@ -167,9 +167,17 @@
 					inset: 0;
 				}
 
+				@media screen and (prefers-reduced-motion: reduce) {
+					&:not([open])::before {
+						visibility: hidden;
+						transition: none;
+					}
+				}
+
 				&:not([open])::before {
 					visibility: hidden;
-					transition: visibility 0s #{variables.$db-transition-duration-extra-slow};
+					transition: visibility 0s
+						#{variables.$db-transition-duration-extra-slow};
 				}
 
 				&:not([data-backdrop="invisible"]) {
@@ -189,7 +197,8 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		transition:
-			display #{variables.$db-transition-duration-extra-slow} allow-discrete,
+			display #{variables.$db-transition-duration-extra-slow}
+				allow-discrete,
 			overlay #{variables.$db-transition-duration-fast} allow-discrete;
 	}
 
