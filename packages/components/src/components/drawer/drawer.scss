@@ -318,7 +318,9 @@
 
 		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 		// stylelint-disable-next-line declaration-no-important
-		display: flex !important;
+		@media (prefers-reduced-motion: no-preference) {
+			display: flex !important;
+		}
 
 		// END: allow-discrete ponyfill
 
