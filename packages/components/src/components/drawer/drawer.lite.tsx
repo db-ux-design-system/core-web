@@ -53,10 +53,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
 				if (event.key === 'Escape') {
-					// When closedby is not supported or display transitions with
-					// allow-discrete are missing (e.g. Firefox), we set closedby
-					// to "none" and must preventDefault to avoid an instant close
-					// without exit animation. Our JS fallback handles the close.
+					// When closedby is not supported, we set closedby to "none"
+					// and must preventDefault to avoid an instant close without
+					// exit animation. Our JS fallback handles the close.
 					if (!supportsClosedBy()) {
 						event.preventDefault();
 					}
@@ -107,8 +106,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleCancel: () => {
-			if (props.onClose) {
-				props.onClose();
+			if (props.onCancel) {
+				props.onCancel();
 			}
 		}
 	});
