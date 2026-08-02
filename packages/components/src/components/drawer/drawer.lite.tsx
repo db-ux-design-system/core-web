@@ -119,7 +119,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
+			let parent = refElement.parentElement;
+			// Skip custom element hosts (Angular/Stencil) which have
+			// display:contents and pass attributes to child elements.
+			if (parent && parent.tagName.includes('-')) {
+				parent = parent.parentElement;
+			}
 			if (parent) {
 				parent.style.position = 'relative';
 			}
