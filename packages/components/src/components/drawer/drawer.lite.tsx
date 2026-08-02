@@ -106,11 +106,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 				_ref.close();
 			}
 		},
-		handleDisplayTransitionFallback: () => {
-			if (!_ref) {
-				return;
-			}
-		},
 		handleCancel: () => {
 			if (props.onClose) {
 				props.onClose();
@@ -121,16 +116,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onMount(() => {
 		state.handleDialogOpen();
 		state.initialized = true;
-		state.handleDisplayTransitionFallback();
 	});
 
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
-
-	onUpdate(() => {
-		state.handleDisplayTransitionFallback();
-	}, [props.closedby, props.backdrop]);
 
 	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
