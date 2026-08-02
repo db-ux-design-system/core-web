@@ -36,14 +36,14 @@
     "next": "16.2.12",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "react-router-dom": "7.18.1"
+    "react-router-dom": "7.18.2"
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
-    "@types/node": "26.1.1",
+    "@types/node": "26.1.2",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.4",
+    "@vitejs/plugin-react": "6.0.5",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
