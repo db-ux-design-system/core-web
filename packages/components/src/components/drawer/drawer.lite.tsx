@@ -7,7 +7,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { _closeDialogWithTransition } from '../../ponyfills/allow-discrete';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
@@ -98,22 +97,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (_ref) {
-				const dialogOpen = getBoolean(props.open, 'open');
-				if (dialogOpen && !_ref.open) {
-					if (state.isNotModal()) {
-						_ref.show();
-					} else {
-						_ref.showModal();
-					}
+			if (!_ref) return;
+
+			const dialogOpen = getBoolean(props.open, 'open');
+			if (dialogOpen && !_ref.open) {
+				if (state.isNotModal()) {
+					_ref.show();
+				} else {
+					_ref.showModal();
 				}
-				if (_ref.open) {
-					_closeDialogWithTransition(
-						_ref as HTMLDialogElement,
-						!!dialogOpen,
-						() => _ref?.close()
-					);
-				}
+			} else if (!dialogOpen && _ref.open) {
+				_ref.close();
 			}
 		},
 		handleDisplayTransitionFallback: () => {
@@ -152,7 +146,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
+			let parent = refElement.parentElement;
+			// Skip custom element hosts (Angular/Stencil) which have
+			// display:contents and pass attributes to child elements.
+			if (parent && parent.tagName.includes('-')) {
+				parent = parent.parentElement;
+			}
 			if (parent) {
 				parent.style.position = 'relative';
 			}

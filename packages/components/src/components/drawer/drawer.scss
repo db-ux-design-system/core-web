@@ -129,17 +129,77 @@
 .db-drawer {
 	--db-drawer-inline-size: 100lvw;
 	--db-drawer-block-size: 100lvh;
-	--db-transition-duration: 0ms;
 
 	position: fixed;
 	inset: 0;
 
+	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
+	// can control hiding instead. Only needed when motion is enabled —
+	// with reduced motion, the UA's instant display:none is correct.
 	@media (prefers-reduced-motion: no-preference) {
-		--db-transition-duration: #{variables.$db-transition-duration-extra-slow};
+		// stylelint-disable-next-line declaration-no-important
+		display: block !important;
 
+		&[open] {
+			visibility: visible;
+			transition: none;
+		}
+
+		&:not([open]) {
+			visibility: hidden;
+			transition: visibility 0s
+				#{variables.$db-transition-duration-extra-slow};
+		}
+
+		// ::backdrop disappears instantly on close since the dialog leaves the
+		// top layer immediately. Use ::before with a delayed visibility instead,
+		// and hide the native ::backdrop to prevent double-darkening.
+		@supports not (overlay: auto) {
+			&:not([data-backdrop="none"], [data-position="absolute"]) {
+				&::backdrop {
+					background-color: transparent;
+				}
+
+				&::before {
+					content: "";
+					position: fixed;
+					inset: 0;
+				}
+
+				@media screen and (prefers-reduced-motion: reduce) {
+					&:not([open])::before {
+						visibility: hidden;
+						transition: none;
+					}
+				}
+
+				&:not([open])::before {
+					visibility: hidden;
+					transition: visibility 0s
+						#{variables.$db-transition-duration-extra-slow};
+				}
+
+				&:not([data-backdrop="invisible"]) {
+					&::before {
+						background-color: dialog-init.$backdrop-color-strong;
+					}
+				}
+
+				&[data-backdrop="weak"]::before {
+					background-color: dialog-init.$backdrop-color-weak;
+				}
+			}
+		}
+	}
+
+	// END: allow-discrete ponyfill
+
+	@media (prefers-reduced-motion: no-preference) {
 		transition:
-			display var(--db-transition-duration) allow-discrete,
-			overlay var(--db-transition-duration) allow-discrete;
+			display #{variables.$db-transition-duration-extra-slow}
+				allow-discrete,
+			overlay #{variables.$db-transition-duration-fast} allow-discrete;
 	}
 
 	.db-drawer-container {
@@ -217,14 +277,9 @@
 	}
 
 	// Shared open state: reset transform and define entry animation.
-	// data-closing-allow-discrete-ponyfill reverts the transform while still [open] to trigger
-	// the exit animation in browsers without allow-discrete for display.
 	&[open] {
-		// TODO: Remove this selector part after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
-		&:not([data-closing-allow-discrete-ponyfill]) {
-			.db-drawer-container {
-				transform: none;
-			}
+		.db-drawer-container {
+			transform: none;
 		}
 
 		@starting-style {
@@ -259,6 +314,14 @@
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
 		overflow: clip;
+
+		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+		// stylelint-disable-next-line declaration-no-important
+		@media (prefers-reduced-motion: no-preference) {
+			display: flex !important;
+		}
+
+		// END: allow-discrete ponyfill
 
 		&[open] {
 			display: flex;
