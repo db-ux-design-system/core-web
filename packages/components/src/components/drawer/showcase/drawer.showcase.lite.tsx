@@ -19,7 +19,7 @@ export default function DrawerShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<DrawerDensity />
-					sdfdf
+					sdfdff
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Container Size">
