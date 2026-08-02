@@ -15,7 +15,6 @@ import {
 	isKeyboardEvent,
 	supportsClosedBy
 } from '../../utils';
-import { supportsAllowDiscreteDisplayAndOverlayTransition } from '../../utils/allow-discrete-ponyfill';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -58,10 +57,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					// allow-discrete are missing (e.g. Firefox), we set closedby
 					// to "none" and must preventDefault to avoid an instant close
 					// without exit animation. Our JS fallback handles the close.
-					if (
-						!supportsClosedBy() ||
-						!supportsAllowDiscreteDisplayAndOverlayTransition()
-					) {
+					if (!supportsClosedBy()) {
 						event.preventDefault();
 					}
 
@@ -113,13 +109,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDisplayTransitionFallback: () => {
 			if (!_ref) {
 				return;
-			}
-
-			/* Browsers that lack allow-discrete display transitions (e.g. Firefox)
-			   would close the dialog instantly without an exit animation. Override
-			   closedby to "none" so our JS fallback handles closing. */
-			if (!supportsAllowDiscreteDisplayAndOverlayTransition()) {
-				(_ref as HTMLDialogElement).setAttribute('closedby', 'none');
 			}
 		},
 		handleCancel: () => {
