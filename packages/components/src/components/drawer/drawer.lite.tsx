@@ -114,9 +114,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
 			let parent = refElement.parentElement;
-			// Skip custom element hosts (Angular/Stencil) which have
-			// display:contents and pass attributes to child elements.
-			if (parent && parent.tagName.includes('-')) {
+			// Skip host elements with display:contents (Angular/Stencil)
+			// which don't create a containing block.
+			if (
+				parent &&
+				getComputedStyle(parent).display === 'contents'
+			) {
 				parent = parent.parentElement;
 			}
 			if (parent) {
