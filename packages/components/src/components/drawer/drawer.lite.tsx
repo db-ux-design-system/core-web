@@ -53,9 +53,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
 				if (event.key === 'Escape') {
-					// When closedby is not supported, we set closedby to "none"
-					// and must preventDefault to avoid an instant close without
-					// exit animation. Our JS fallback handles the close.
 					if (!supportsClosedBy()) {
 						event.preventDefault();
 					}
