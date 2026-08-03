@@ -7,42 +7,50 @@
 		{
 			"name": "Switch → (Def) Trailing - (Def) Auto Width - (Def) Medium",
 			"nodeId": "3:25045",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "13e2156a95814af46b7865a0b66d65023dad611b"
 		},
 		{
 			"name": "Switch → (Def) Trailing - Full Width - (Def) Medium",
 			"nodeId": "10707:22590",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "2cd438595839d30139b276f4628e3ff33220a677"
 		},
 		{
 			"name": "Switch → Leading - (Def) Auto Width - (Def) Medium",
 			"nodeId": "25185:23452",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "a1b4da2ffe8781a648230129ce79c3708496a686"
 		},
 		{
 			"name": "Switch → Leading - Full Width - (Def) Medium",
 			"nodeId": "25185:23940",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "641334e04985ebd35e4db6cd4c993dd70137d81b"
 		},
 		{
 			"name": "Switch → (Def) Trailing - (Def) Auto Width - Small",
 			"nodeId": "25185:2705",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "193d37c8633d30943a0dd6ef09b3577261287666"
 		},
 		{
 			"name": "Switch → (Def) Trailing - Full Width - Small",
 			"nodeId": "25185:2989",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "bb9ad253da472dd8c821acf8f1ff7f8a82d14e32"
 		},
 		{
 			"name": "Switch → Leading - (Def) Auto Width - Small",
 			"nodeId": "25204:19990",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "3c43fd73d90a83563d331d9cca9da9d36a590c3e"
 		},
 		{
 			"name": "Switch → Leading - Full Width - Small",
 			"nodeId": "25204:20475",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c3011ddc1e20b901481a571c4b847664a1540116"
 		}
 	]
 }

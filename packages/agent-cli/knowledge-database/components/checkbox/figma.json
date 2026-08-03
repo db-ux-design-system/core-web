@@ -7,22 +7,26 @@
 		{
 			"name": "Checkbox → (Def) Medium - (Def) Auto Width",
 			"nodeId": "2068:3423",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "f55dbce9bf3ba1650ca8ac5b44c76b84378d15ca"
 		},
 		{
 			"name": "Checkbox → (Def) Medium - Full Width",
 			"nodeId": "10707:19709",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "04364aeaaf01abe73f7286b1a4ea2b024f79f7fb"
 		},
 		{
 			"name": "Checkbox → Small - (Def) Auto Width",
 			"nodeId": "2068:3548",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "08080b223a829e943bbe42682d249ccfaeda252a"
 		},
 		{
 			"name": "Checkbox → Small - Full Width",
 			"nodeId": "10707:19958",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "b206fe4be942442945b40ac8d6f9e82c8afc7f1e"
 		}
 	]
 }

@@ -7,7 +7,8 @@
 		{
 			"name": "Popover",
 			"nodeId": "32604:5594",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "de21520fe2e956e6724399eaba75e7ab6c718f18"
 		}
 	]
 }

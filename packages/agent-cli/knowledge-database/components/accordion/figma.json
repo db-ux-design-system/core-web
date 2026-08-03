@@ -7,7 +7,8 @@
 		{
 			"name": "Accordion (Beta)",
 			"nodeId": "14442:15752",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c842298934e02a0332e36c451ad8e1d3f0cc8955"
 		}
 	],
 	"subComponents": [
@@ -17,12 +18,14 @@
 				{
 					"name": "↳ ACCORDION ITEM → (Def) Divider (Beta)",
 					"nodeId": "14442:15841",
-					"type": "COMPONENT_SET"
+					"type": "COMPONENT_SET",
+					"key": "5a35b8c20d8d9765c68d1b25915851b9d952182d"
 				},
 				{
 					"name": "↳ ACCORDION ITEM → Card (Beta)",
 					"nodeId": "14442:15919",
-					"type": "COMPONENT_SET"
+					"type": "COMPONENT_SET",
+					"key": "29791af5e69cc3ce9da735d16e0bed87210d5380"
 				}
 			]
 		}

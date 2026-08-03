@@ -7,12 +7,14 @@
 		{
 			"name": "↳ Tab Panel - Horizontal (Beta)",
 			"nodeId": "37398:6621",
-			"type": "COMPONENT"
+			"type": "COMPONENT",
+			"key": "bfd598920ebecc8ebcdf6e4f372de603fa47b8b4"
 		},
 		{
 			"name": "↳ Tab Panel - Vertical (Beta)",
 			"nodeId": "37398:6624",
-			"type": "COMPONENT"
+			"type": "COMPONENT",
+			"key": "829e1f3d023331b3cf2db5e7f0190fa6ff7d1f82"
 		}
 	]
 }

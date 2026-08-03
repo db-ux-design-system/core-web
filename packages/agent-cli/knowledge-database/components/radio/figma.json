@@ -7,22 +7,26 @@
 		{
 			"name": "Radio → (Def) Medium - (Def) Auto Width",
 			"nodeId": "2242:4473",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "06d45155016e374aee5782a33c994922c87ede24"
 		},
 		{
 			"name": "Radio → (Def) Medium - Full Width",
 			"nodeId": "10707:21529",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "2cc01a4da359b8d324080ad78c155e7d2e869874"
 		},
 		{
 			"name": "Radio → Small - (Def) Auto Width",
 			"nodeId": "2277:4584",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "096d5459aed351b10f24079134ebf443cf03da19"
 		},
 		{
 			"name": "Radio → Small - Full Width",
 			"nodeId": "10707:21698",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "b8c8cc9190b2de7c12ff3130506d51f046cbd7c9"
 		}
 	]
 }

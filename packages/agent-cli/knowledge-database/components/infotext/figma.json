@@ -7,12 +7,14 @@
 		{
 			"name": "Infotext - (Def) Auto Width",
 			"nodeId": "14442:4357",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "072e65767d05b99f91d63f489ef0c28620b002ca"
 		},
 		{
 			"name": "Infotext - Full Width",
 			"nodeId": "14442:4430",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "af81be60e9498309b5fcf195fa6731d6381b82f0"
 		}
 	]
 }

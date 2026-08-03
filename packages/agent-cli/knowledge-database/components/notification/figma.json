@@ -7,32 +7,38 @@
 		{
 			"name": "Notification → (Def) Docked - (Def) Icon",
 			"nodeId": "2:3566",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "0b8195110baab8ec2bde79769a21728fe5fe0ace"
 		},
 		{
 			"name": "Notification → (Def) Docked - Image",
 			"nodeId": "35453:15630",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "e1162439b4fcea78e74f0fab350556ea64a40806"
 		},
 		{
 			"name": "Notification → Standalone - (Def) Icon",
 			"nodeId": "2:3812",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "21d0406331e71a91bdea08bc2ff312290748be5a"
 		},
 		{
 			"name": "Notification → Standalone - Image",
 			"nodeId": "35454:16447",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "04ffed0aab92a88eb3ece16f40ce499df2d705b4"
 		},
 		{
 			"name": "Notification → Overlay - (Def) Icon",
 			"nodeId": "2:2727",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "106477a728f386c6266693059f0b8cecc960042d"
 		},
 		{
 			"name": "Notification → Overlay - Image",
 			"nodeId": "35454:17920",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "abb0a0df1e439b23dcffe568851b4e4fa1ea95c0"
 		}
 	]
 }

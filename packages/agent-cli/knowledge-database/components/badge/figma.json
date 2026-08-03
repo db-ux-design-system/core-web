@@ -7,17 +7,20 @@
 		{
 			"name": "Badge → (Def) Text",
 			"nodeId": "1:29568",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "022c804cdaa04f2468bfa0ce0cdff649abe3ac57"
 		},
 		{
 			"name": "Badge → Dot",
 			"nodeId": "1:31013",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "6f45aa090ea8728319522ea7c916d150dde2ad71"
 		},
 		{
 			"name": "Badge → Icon",
 			"nodeId": "4184:18686",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "85c9797ce5f015696239c6fd7e267a1b61005dea"
 		}
 	]
 }

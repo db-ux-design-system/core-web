@@ -7,7 +7,8 @@
 		{
 			"name": "Divider (Beta)",
 			"nodeId": "1:21536",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "401c3242f2e720f68b8c4255bb60670481e29451"
 		}
 	]
 }

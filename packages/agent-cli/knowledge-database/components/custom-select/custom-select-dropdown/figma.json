@@ -7,12 +7,14 @@
 		{
 			"name": "↳ CustomSelect DROPDOWN → Desktop (Beta)",
 			"nodeId": "19383:19315",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "1e4822f712214278ffd3caa2568646ba419f30ad"
 		},
 		{
 			"name": "↳ CustomSelect DROPDOWN → Mobile (Beta)",
 			"nodeId": "19383:19352",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "9bf691f2a76cd99d73118db823f105a3e8e3299a"
 		}
 	]
 }

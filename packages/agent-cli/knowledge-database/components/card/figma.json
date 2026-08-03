@@ -7,17 +7,20 @@
 		{
 			"name": "Card → (Def) Level 1 (Beta)",
 			"nodeId": "32604:4793",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "ac60c14fe38796f4d53e293d9b8cc813a9079193"
 		},
 		{
 			"name": "Card → Level 2 (Beta)",
 			"nodeId": "32604:4898",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "245f3f9d7c51155844b58acfd939a21a473aefce"
 		},
 		{
 			"name": "Card → Level 3 (Beta)",
 			"nodeId": "32604:5003",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "f5ac595ff7bbc6ae121b29dbc5f45246fcc8d3c9"
 		}
 	]
 }

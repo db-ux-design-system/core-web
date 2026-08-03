@@ -7,32 +7,38 @@
 		{
 			"name": "Textarea → Label Above - (Def) Empty",
 			"nodeId": "3895:4642",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "0e3f9fd4f578ee44e725603b8079a4f4319d571c"
 		},
 		{
 			"name": "Textarea → Label Above - Active",
 			"nodeId": "3714:6941",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "9d698ca36bb26b7d733b300d3109e3be18abbc24"
 		},
 		{
 			"name": "Textarea → Label Above - Filled",
 			"nodeId": "3714:7493",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "9e875608630b9479ae55561311b9f000e2ae9a87"
 		},
 		{
 			"name": "Textarea → Floating Label - (Def) Empty",
 			"nodeId": "3714:8045",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "1299871c258e1b0c5fe896f82127d083431b088b"
 		},
 		{
 			"name": "Textarea → Floating Label - Active",
 			"nodeId": "3714:8597",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c2fa392b92f01b7db3959a34812a1512a5e3d171"
 		},
 		{
 			"name": "Textarea → Floating Label - Filled",
 			"nodeId": "3714:8838",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c5cf91e0afb92f22fc0c051ceec6335f2c45fbf2"
 		}
 	]
 }

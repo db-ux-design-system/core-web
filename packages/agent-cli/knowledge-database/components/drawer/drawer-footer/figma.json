@@ -7,7 +7,8 @@
 		{
 			"name": "↳ Drawer Footer",
 			"nodeId": "37977:35190",
-			"type": "COMPONENT"
+			"type": "COMPONENT",
+			"key": "1ed0350db14b954c69bc73228383e718463b5d7a"
 		}
 	]
 }

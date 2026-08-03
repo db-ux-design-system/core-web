@@ -7,22 +7,26 @@
 		{
 			"name": "Drawer → (Def) Right",
 			"nodeId": "37477:7499",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c1f44d84df351c41342b844f6de85bbd1332c692"
 		},
 		{
 			"name": "Drawer → Left",
 			"nodeId": "37477:7614",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "6174042aef4e81ce5e7205dcda13b837c3a923f1"
 		},
 		{
 			"name": "Drawer → Bottom",
 			"nodeId": "37477:7729",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "36c1837e68765ae78bf4c2333b82f1f356cfdeb6"
 		},
 		{
 			"name": "Drawer → Top",
 			"nodeId": "37477:7856",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "7ade5c65edd826c2e7ade934135ce18c7a9d176e"
 		}
 	],
 	"subComponents": [
@@ -32,7 +36,8 @@
 				{
 					"name": "↳ Drawer Header",
 					"nodeId": "37980:31922",
-					"type": "COMPONENT"
+					"type": "COMPONENT",
+					"key": "0c73093713d6a8d40b4aea3e9b31dfe7625f3c85"
 				}
 			]
 		},
@@ -42,7 +47,8 @@
 				{
 					"name": "↳ Drawer Footer",
 					"nodeId": "37977:35190",
-					"type": "COMPONENT"
+					"type": "COMPONENT",
+					"key": "1ed0350db14b954c69bc73228383e718463b5d7a"
 				}
 			]
 		}

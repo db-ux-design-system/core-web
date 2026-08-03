@@ -7,7 +7,8 @@
 		{
 			"name": "↳ Drawer Header",
 			"nodeId": "37980:31922",
-			"type": "COMPONENT"
+			"type": "COMPONENT",
+			"key": "0c73093713d6a8d40b4aea3e9b31dfe7625f3c85"
 		}
 	]
 }

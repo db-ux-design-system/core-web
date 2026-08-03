@@ -7,17 +7,20 @@
 		{
 			"name": "↳ Tab List - (Def) Horizontal - (Def) AutoWidth (Beta)",
 			"nodeId": "37398:6674",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "37b6bc6da963ee059731a759850a7c8d63aa548f"
 		},
 		{
 			"name": "↳ Tab List - (Def) Horizontal - Full Width - (Def) Start (Beta)",
 			"nodeId": "37398:6627",
-			"type": "COMPONENT"
+			"type": "COMPONENT",
+			"key": "60017cc82a5bc8656c5343e7f55afb79df90360c"
 		},
 		{
 			"name": "↳ Tab List - Vertical (Beta)",
 			"nodeId": "37398:6660",
-			"type": "COMPONENT"
+			"type": "COMPONENT",
+			"key": "eacc201044a2bb86e96a554bf8f90096fdddb4ec"
 		}
 	]
 }

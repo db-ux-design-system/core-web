@@ -7,7 +7,8 @@
 		{
 			"name": "Backdrop (Beta)",
 			"nodeId": "19382:4838",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "f06a3f1f284a1279f96dc2f1e7e6f8b2431ec7a2"
 		}
 	]
 }

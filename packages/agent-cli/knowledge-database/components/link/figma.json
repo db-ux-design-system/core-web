@@ -7,22 +7,26 @@
 		{
 			"name": "Link → (Def) Internal",
 			"nodeId": "14436:12312",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "d516c148ca0b438df205de010c206584b4a3a8be"
 		},
 		{
 			"name": "Link → (Def) Internal - Brand",
 			"nodeId": "14436:12458",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "991b35aca7658dc3837705718549e95501c5812f"
 		},
 		{
 			"name": "Link → External",
 			"nodeId": "14436:12385",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "392ec8286886c8ceb051b689c3ed8e68f35c1c3a"
 		},
 		{
 			"name": "Link → External - Brand",
 			"nodeId": "14436:12531",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "be74885f007bdaaacbd026592725f8ce8b6cc715"
 		}
 	]
 }

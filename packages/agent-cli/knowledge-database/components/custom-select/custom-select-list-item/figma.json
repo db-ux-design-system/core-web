@@ -7,12 +7,14 @@
 		{
 			"name": "↳ CustomSelect LIST ITEM → (Def) Multiple (Beta)",
 			"nodeId": "19383:19470",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "fb5d0696d56ba553b0f20981129d15d0781fa9e3"
 		},
 		{
 			"name": "↳ CustomSelect LIST ITEM → Single (Beta)",
 			"nodeId": "19383:19556",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "b245051a27dad4ddac09df71965eed6950b5d8a4"
 		}
 	]
 }

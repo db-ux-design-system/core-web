@@ -7,12 +7,14 @@
 		{
 			"name": "Navigation → Desktop (Beta)",
 			"nodeId": "4935:49095",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "117fcc8e53e9d76450c0f584b3d35722c1a83f6d"
 		},
 		{
 			"name": "Navigation → Mobile (Beta)",
 			"nodeId": "4924:32907",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "e7668707220da01560a6ffca90b53615aa9e311d"
 		}
 	],
 	"subComponents": [
@@ -22,22 +24,26 @@
 				{
 					"name": "↳ NAVIGATION ITEM → (Def) Horizontal - (Def) Auto Width (Beta)",
 					"nodeId": "4924:33106",
-					"type": "COMPONENT_SET"
+					"type": "COMPONENT_SET",
+					"key": "5edf1c7bbf95fe6ae7643b5fb9e17ec760b631ba"
 				},
 				{
 					"name": "↳ NAVIGATION ITEM → Vertical - (Def) Full Width (Beta)",
 					"nodeId": "4924:33052",
-					"type": "COMPONENT_SET"
+					"type": "COMPONENT_SET",
+					"key": "e16c30e7327415ae9dfe15e4384b7c2666e111cb"
 				},
 				{
 					"name": "↳ NAVIGATION ITEM → Vertical - AutoWidth (Beta)",
 					"nodeId": "4924:32998",
-					"type": "COMPONENT_SET"
+					"type": "COMPONENT_SET",
+					"key": "00985b32bfcaa6c651c240460948aad290041b27"
 				},
 				{
 					"name": "↳ NAVIGATION ITEM → Horizontal - Full Width (Beta)",
 					"nodeId": "4924:33160",
-					"type": "COMPONENT_SET"
+					"type": "COMPONENT_SET",
+					"key": "338feb96205e0c746ae3b0f5ba010f40b8695411"
 				}
 			]
 		}
