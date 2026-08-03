@@ -10,7 +10,7 @@ const path = require('node:path');
  * type-only, so it adds no runtime code to the published bundle.
  *
  * TODO: This augmentation can be removed once Stencil's type definitions
- * natively support the closedby attribute.
+ * natively support the closedby attribute with https://github.com/stenciljs/core/pull/6797
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby
  */
