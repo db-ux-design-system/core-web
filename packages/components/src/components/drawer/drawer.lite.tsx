@@ -115,7 +115,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			const refElement = _ref as HTMLDialogElement;
 			let parent = refElement.parentElement;
 			// Skip host elements with display:contents (Angular/Stencil)
-			// which don't create a containing block.
+			// which do not create a containing block.
 			if (parent && getComputedStyle(parent).display === 'contents') {
 				parent = parent.parentElement;
 			}
