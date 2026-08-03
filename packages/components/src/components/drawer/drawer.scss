@@ -148,8 +148,10 @@
 
 		&:not([open]) {
 			visibility: hidden;
-			transition: visibility 0s
-				#{variables.$db-transition-duration-extra-slow};
+			transition:
+				visibility 0s #{variables.$db-transition-duration-extra-slow},
+				overlay #{variables.$db-transition-duration-extra-slow}
+					allow-discrete;
 		}
 
 		// ::backdrop disappears instantly on close since the dialog leaves the
@@ -199,7 +201,7 @@
 		transition:
 			display #{variables.$db-transition-duration-extra-slow}
 				allow-discrete,
-			overlay #{variables.$db-transition-duration-fast} allow-discrete;
+			overlay #{variables.$db-transition-duration-extra-slow} allow-discrete;
 	}
 
 	.db-drawer-container {
