@@ -7,7 +7,8 @@
 		{
 			"name": "↳ SegmentedButton Item (Concept)",
 			"nodeId": "16554:4364",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "96b0185ebc31e9699f719cd9e72c6f687a97966c"
 		}
 	]
 }

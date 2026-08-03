@@ -7,12 +7,14 @@
 		{
 			"name": "↳ Pagination Truncation Item - Medium (Concept)",
 			"nodeId": "15761:2289",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "2b9145766da0c9871166b9d89d4580084513be65"
 		},
 		{
 			"name": "↳ Pagination Truncation Item - Small (Concept)",
 			"nodeId": "17457:13997",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c4a2bc0e0a2bdf3cfcf34f9bf37ededc0456650c"
 		}
 	]
 }

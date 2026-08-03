@@ -7,23 +7,30 @@
 		{
 			"name": "🧪 LoadingIndicator -> (Def) Indeterminate - Circular (Concept)",
 			"nodeId": "14622:2504",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "507d1d7021e747a18e318b40531f69e2f4d1af21"
 		},
 		{
 			"name": "🧪 LoadingIndicator -> Determinate - Circular (Concept)",
 			"nodeId": "14778:1524",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "dbde0e52c83ce5bde77f7f1bc6f92bba5457b02c"
 		},
 		{
 			"name": "🧪 LoadingIndicator -> (Def) Indeterminate - Bar (Concept)",
 			"nodeId": "14778:1435",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "2186cd6ef2b551c35093230189fb20406c4a1075"
 		},
 		{
 			"name": "🧪 LoadingIndicator -> Determinate - Bar (Concept)",
 			"nodeId": "14629:3690",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c6b8faf27ac0fbd20131c1dad7630f491182f43d"
 		}
 	],
-	"subComponents": ["loading-indicator-circle", "loading-indicator-bar"]
+	"subComponents": [
+		"loading-indicator-circle",
+		"loading-indicator-bar"
+	]
 }

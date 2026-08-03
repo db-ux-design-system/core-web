@@ -7,7 +7,8 @@
 		{
 			"name": "↳ List VERTICAL ITEM (Concept)",
 			"nodeId": "13319:3349",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "68f7502c82ed82bdee41550a5f36e0e66a5b7af8"
 		}
 	]
 }

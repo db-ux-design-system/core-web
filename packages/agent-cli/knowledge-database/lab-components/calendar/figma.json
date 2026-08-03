@@ -7,8 +7,13 @@
 		{
 			"name": "🧪 Calender (Concept)",
 			"nodeId": "16423:4571",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "3cad3e510204bf9ac1646bd04336a43e58c9115c"
 		}
 	],
-	"subComponents": ["calendar-item", "calendar-header", "calendar-views"]
+	"subComponents": [
+		"calendar-item",
+		"calendar-header",
+		"calendar-views"
+	]
 }

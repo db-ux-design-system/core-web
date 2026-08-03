@@ -7,7 +7,8 @@
 		{
 			"name": "🧪 ToggleButton",
 			"nodeId": "18175:3702",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "14cad63b3f67108d20ef39b7763da760e652c5fc"
 		}
 	]
 }

@@ -7,10 +7,13 @@
 		{
 			"name": "🧪 Breadcrumb (Concept)",
 			"nodeId": "12519:5325",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "66e9b0a0d8cb866c6485c116f81f3ee3e32ae270"
 		}
 	],
-	"subComponents": ["breadcrumb-item"],
+	"subComponents": [
+		"breadcrumb-item"
+	],
 	"helperComponents": [
 		{
 			"name": "🛟 Breadcrumb Item → (Def) Small",

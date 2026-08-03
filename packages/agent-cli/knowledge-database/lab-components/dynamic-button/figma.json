@@ -7,7 +7,8 @@
 		{
 			"name": "🧪 DynamicButton",
 			"nodeId": "18175:6809",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "3db11ea2de186577c341e8576168ac1b84992846"
 		}
 	]
 }

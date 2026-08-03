@@ -7,7 +7,8 @@
 		{
 			"name": "🧪 Pulse (Concept)",
 			"nodeId": "14308:288",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "bf60b35bbadabdb06284d5447b88a6dd38d706ac"
 		}
 	]
 }

@@ -7,8 +7,12 @@
 		{
 			"name": "🧪 Dialog (Concept)",
 			"nodeId": "17347:8293",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "63f75b2dd03d11dca1d7ec2d565414c9e887e86f"
 		}
 	],
-	"subComponents": ["dialog-header", "dialog-footer"]
+	"subComponents": [
+		"dialog-header",
+		"dialog-footer"
+	]
 }

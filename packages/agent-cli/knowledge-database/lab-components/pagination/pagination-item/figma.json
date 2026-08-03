@@ -7,12 +7,14 @@
 		{
 			"name": "↳ Pagination Item - Medium (Concept)",
 			"nodeId": "15761:2276",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "986a428fd5bd9ad09e7faedbe71234adfd4ee1cb"
 		},
 		{
 			"name": "↳ Pagination Item - Small (Concept)",
 			"nodeId": "17457:13907",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "2d4e41d23054af0293c0b30889c1137a2e1e96be"
 		}
 	]
 }

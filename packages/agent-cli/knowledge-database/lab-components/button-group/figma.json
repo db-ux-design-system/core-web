@@ -7,8 +7,11 @@
 		{
 			"name": "🧪 ButtonGroup (Concept)",
 			"nodeId": "13247:8052",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "8df399b2c8d8d567debff73e79d8757686328782"
 		}
 	],
-	"subComponents": ["button-group-item"]
+	"subComponents": [
+		"button-group-item"
+	]
 }

@@ -7,7 +7,8 @@
 		{
 			"name": "↳ Dialog Header (Concept)",
 			"nodeId": "17347:8097",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "f4de6daa957fb4c9927c042823d5c2c0a26f15fb"
 		}
 	]
 }

@@ -7,52 +7,62 @@
 		{
 			"name": "↳ Breadcrumb Root Item → Small",
 			"nodeId": "12519:24305",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "0f3e0f9b96df2558dbc450b08d2935ba1dc18cd3"
 		},
 		{
 			"name": "↳ Breadcrumb Item → Small",
 			"nodeId": "12519:4839",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "e9d7a1e21ec631f0321961f663abdcdd2eaecb3f"
 		},
 		{
 			"name": "↳ Breadcrumb Popover Item → Small",
 			"nodeId": "12537:94744",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "0fd7c07ccf2a16ef116458011ed1c3d952d55d1a"
 		},
 		{
 			"name": "↳ Breadcrumb Current Item → Small",
 			"nodeId": "12519:24885",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "465b15f410bafb26dffffe10486e5be2d9821c28"
 		},
 		{
 			"name": "↳ Breadcrumb Truncation Item → Small",
 			"nodeId": "12519:5011",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "ae94e425fed2de4a44cb784b5250ce5a4afe64aa"
 		},
 		{
 			"name": "↳ Breadcrumb Root Item → Medium",
 			"nodeId": "12519:5151",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "74dc9743e359872982d9a753bab78581b6c7e36c"
 		},
 		{
 			"name": "↳ Breadcrumb Item → Medium",
 			"nodeId": "12519:5051",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "76272a3a0ebded8975a969a28d4949c38b8c0387"
 		},
 		{
 			"name": "↳ Breadcrumb Popover Item → Medium",
 			"nodeId": "12537:94862",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "d7f31721c7f1ec9d5736674d8feada63d269a5db"
 		},
 		{
 			"name": "↳ Breadcrumb Current Item → Medium",
 			"nodeId": "12531:52482",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "1ff9c706339b5171dafabe03e9f74eca16ae3f58"
 		},
 		{
 			"name": "↳ Breadcrumb Truncation Item → Medium",
 			"nodeId": "12519:5125",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "f4e0ab6f58ab08175adb2c56caea23028a7e0292"
 		}
 	]
 }

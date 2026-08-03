@@ -7,8 +7,12 @@
 		{
 			"name": "🧪 Pagination (Concept)",
 			"nodeId": "17457:13260",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "4250e42fdf76630aed82c76a07a943a1f62f0778"
 		}
 	],
-	"subComponents": ["pagination-item", "pagination-truncation-item"]
+	"subComponents": [
+		"pagination-item",
+		"pagination-truncation-item"
+	]
 }

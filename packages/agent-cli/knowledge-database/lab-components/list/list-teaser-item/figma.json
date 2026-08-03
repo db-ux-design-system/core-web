@@ -7,7 +7,8 @@
 		{
 			"name": "↳ List TEASERITEM (Concept)",
 			"nodeId": "13316:1990",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "e4793788afb930cb68d21219057b2b9d5b30a18e"
 		}
 	]
 }

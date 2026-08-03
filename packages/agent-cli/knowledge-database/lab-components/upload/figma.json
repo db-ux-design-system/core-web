@@ -7,7 +7,8 @@
 		{
 			"name": "🧪 Upload",
 			"nodeId": "17481:2730",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "d51e2221a3c15c37dbbf7e16af20d5f0429ba96b"
 		}
 	]
 }

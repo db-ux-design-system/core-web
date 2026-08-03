@@ -7,7 +7,8 @@
 		{
 			"name": "🧪 Text (Concept)",
 			"nodeId": "13360:2182",
-			"type": "COMPONENT_SET"
+			"type": "COMPONENT_SET",
+			"key": "c1ad46c72344cc70ea88a9fca7da7da8f0915feb"
 		}
 	]
 }
