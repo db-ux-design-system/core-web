@@ -320,6 +320,10 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ## General code styles and approaches
 
+### Preserve comments during refactoring
+
+When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
+
 ### Shift-left: HTML → CSS → JS
 
 Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See `docs/shift-left-web-development.md` for the full rationale and examples.
