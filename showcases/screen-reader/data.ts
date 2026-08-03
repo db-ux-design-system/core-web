@@ -1,7 +1,4 @@
-import {
-	type NVDAPlaywright,
-	type VoiceOverPlaywright
-} from '@guidepup/playwright';
+import { type ScreenReaderPlaywright } from '@guidepup/playwright';
 import {
 	type Page,
 	type PlaywrightTestArgs,
@@ -11,11 +8,11 @@ import {
 	type TestType
 } from '@playwright/test';
 
-export type ScreenReaderTestType = TestType<
+type ScreenReaderTestType = TestType<
 	PlaywrightTestArgs &
 		PlaywrightTestOptions & {
-			nvda?: NVDAPlaywright;
-			voiceOver?: VoiceOverPlaywright;
+			screenReader: ScreenReaderPlaywright;
+			screenReaderStartOptions: { capture?: boolean | 'initial' };
 		},
 	PlaywrightWorkerArgs & PlaywrightWorkerOptions
 >;
@@ -29,13 +26,11 @@ export type DefaultTestType = {
 	description: string;
 	url: string;
 	testFn?: (
-		voiceOver?: VoiceOverPlaywright,
-		nvda?: NVDAPlaywright,
+		screenReader: ScreenReaderPlaywright,
 		page?: Page
 	) => Promise<void>;
 	postTestFn?: (
-		voiceOver?: VoiceOverPlaywright,
-		nvda?: NVDAPlaywright,
+		screenReader: ScreenReaderPlaywright,
 		retry?: number
 	) => Promise<void>;
 	additionalParams?: string;
@@ -44,6 +39,5 @@ export type DefaultTestType = {
 export type RunTestType = {
 	page: Page;
 	retry: number;
-	nvda?: NVDAPlaywright;
-	voiceOver?: VoiceOverPlaywright;
+	screenReader: ScreenReaderPlaywright;
 };

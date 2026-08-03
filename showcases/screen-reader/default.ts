@@ -1,18 +1,11 @@
-import { WindowsKeyCodes, WindowsModifiers } from '@guidepup/guidepup';
 import {
-	type NVDAPlaywright,
-	nvdaTest,
-	type VoiceOverPlaywright,
-	voiceOverTest
+	type ScreenReaderPlaywright,
+	screenReaderTest
 } from '@guidepup/playwright';
 import { macOSRecord, windowsRecord } from '@guidepup/record';
 import { expect } from '@playwright/test';
 import { platform } from 'node:os';
-import {
-	type DefaultTestType,
-	type RunTestType,
-	type ScreenReaderTestType
-} from './data';
+import { type DefaultTestType, type RunTestType } from './data';
 import { translations } from './translations';
 
 const standardPhrases = [
@@ -80,7 +73,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	});
 
 export const generateSnapshot = async (
-	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
+	screenReader?: ScreenReaderPlaywright,
 	retry?: number,
 	phraseLogConvertFn?: (phraseLog: string[]) => string[]
 ) => {
@@ -111,54 +104,6 @@ export const generateSnapshot = async (
 	expect(snapshot).toMatchSnapshot();
 };
 
-const SWITCH_APPLICATION = {
-	keyCode: [WindowsKeyCodes.Escape],
-	modifiers: [WindowsModifiers.Alt]
-};
-const MOVE_TO_TOP = {
-	keyCode: [WindowsKeyCodes.Home],
-	modifiers: [WindowsModifiers.Control]
-};
-
-const nvdaNavigateToWebContent = async (
-	screenRecorder: NVDAPlaywright,
-	pageTitle: string
-) => {
-	// Make sure NVDA is not in focus mode.
-	await screenRecorder.perform(screenRecorder.keyboardCommands.exitFocusMode);
-	let windowTitle: string;
-	await screenRecorder.perform(screenRecorder.keyboardCommands.reportTitle);
-	windowTitle = await screenRecorder.lastSpokenPhrase();
-	if (!windowTitle.startsWith(pageTitle)) {
-		let switchRetryCount = 0;
-		while (switchRetryCount < 10) {
-			switchRetryCount++;
-			await screenRecorder.perform(SWITCH_APPLICATION);
-			await screenRecorder.perform(
-				screenRecorder.keyboardCommands.reportTitle
-			);
-			windowTitle = await screenRecorder.lastSpokenPhrase();
-			if (windowTitle.startsWith(pageTitle)) {
-				break;
-			}
-		}
-	}
-
-	await screenRecorder.perform(
-		screenRecorder.keyboardCommands.readNextFocusableItem
-	);
-	await screenRecorder.perform(
-		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
-	);
-	await screenRecorder.perform(
-		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
-	);
-	await screenRecorder.perform(MOVE_TO_TOP);
-	// Clear out logs.
-	await screenRecorder.clearItemTextLog();
-	await screenRecorder.clearSpokenPhraseLog();
-};
-
 export const runTest = async ({
 	title,
 	url,
@@ -166,14 +111,12 @@ export const runTest = async ({
 	postTestFn,
 	additionalParams,
 	page,
-	nvda,
-	voiceOver,
+	screenReader,
 	retry
 }: DefaultTestType & RunTestType) => {
 	await page.goto(`${url}${additionalParams}`, {
 		waitUntil: 'networkidle'
 	});
-	const pageTitle = await page.title();
 
 	let recorder: (() => void) | undefined;
 
@@ -182,33 +125,20 @@ export const runTest = async ({
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
 
-	const screenRecorder: VoiceOverPlaywright | NVDAPlaywright | undefined =
-		nvda ?? voiceOver;
-	if (!screenRecorder) {
-		return;
-	}
+	await screenReader.navigateToWebContent();
 
-	/**
-	 In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
-	 Therefore, we need to move back with the cursor to the start and delete the logs before starting.
-	 In windows:Chrome the cursor is on the middle element.
-	 Therefore, we need to move back and delete the logs, and then start everything.
-	 */
-
-	await (nvda
-		? // TODO: We can revert this after https://github.com/guidepup/guidepup-playwright/pull/32 is released
-			nvdaNavigateToWebContent(nvda, pageTitle)
-		: screenRecorder.navigateToWebContent());
-
-	await testFn?.(voiceOver, nvda, page);
-	await postTestFn?.(voiceOver, nvda, retry);
+	await testFn?.(screenReader, page);
+	await postTestFn?.(screenReader, retry);
 	recorder?.();
 };
 
 export const testDefault = (defaultTestType: DefaultTestType) => {
 	const { test, title, additionalParams, postTestFn } = defaultTestType;
-	const fallbackPostFn = async (voiceOver, nvda, retry) => {
-		await generateSnapshot(voiceOver ?? nvda, retry);
+	const fallbackPostFn = async (
+		screenReader: ScreenReaderPlaywright,
+		retry?: number
+	) => {
+		await generateSnapshot(screenReader, retry);
 	};
 
 	const testType: DefaultTestType = {
@@ -219,30 +149,17 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 			'&color=neutral-bg-basic-level-1&density=regular'
 	};
 
-	if (isWin()) {
-		test.use({ nvdaStartOptions: { capture: true } });
-		test?.(title, async ({ page, nvda }, { retry }) => {
-			await runTest({
-				...testType,
-				page,
-				nvda,
-				retry
-			});
+	test?.use({ screenReaderStartOptions: { capture: true } });
+	test?.(title, async ({ page, screenReader }, { retry }) => {
+		await runTest({
+			...testType,
+			page,
+			screenReader,
+			retry
 		});
-	} else {
-		test.use({ voiceOverStartOptions: { capture: true } });
-		test?.(title, async ({ page, voiceOver }, { retry }) => {
-			await runTest({
-				...testType,
-				page,
-				voiceOver,
-				retry
-			});
-		});
-	}
+	});
 };
 
-const isWin = (): boolean => platform() === 'win32';
+export const isWin = (): boolean => platform() === 'win32';
 
-export const getTest = (): ScreenReaderTestType =>
-	isWin() ? nvdaTest : voiceOverTest;
+export const getTest = () => screenReaderTest;
