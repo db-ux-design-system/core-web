@@ -201,7 +201,7 @@
 		transition:
 			display #{variables.$db-transition-duration-extra-slow}
 				allow-discrete,
-			overlay #{variables.$db-transition-duration-fast} allow-discrete;
+			overlay #{variables.$db-transition-duration-extra-slow} allow-discrete;
 	}
 
 	.db-drawer-container {
