@@ -116,14 +116,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 			let parent = refElement.parentElement;
 			// Skip host elements with display:contents (Angular/Stencil)
 			// which don't create a containing block.
-			if (
-				parent &&
-				getComputedStyle(parent).display === 'contents'
-			) {
+			if (parent && getComputedStyle(parent).display === 'contents') {
 				parent = parent.parentElement;
 			}
 			if (parent) {
-				parent.style.position = 'relative';
+				const pos = getComputedStyle(parent).position;
+				if (pos === 'static') {
+					parent.style.position = 'relative';
+				}
 			}
 		}
 	}, [_ref, state.initialized, props.position]);
