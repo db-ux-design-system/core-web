@@ -168,13 +168,7 @@
 					inset: 0;
 				}
 
-				@media screen and (prefers-reduced-motion: reduce) {
-					&:not([open])::before {
-						visibility: hidden;
-						transition: none;
-					}
-				}
-
+				// stylelint-disable-next-line a11y/media-prefers-reduced-motion -- This is even already encapsulated in a necessary media query on line 140
 				&:not([open])::before {
 					visibility: hidden;
 					transition: visibility 0s
