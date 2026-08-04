@@ -27,6 +27,7 @@ Popover is loosely depending on Anchor Positioning.
 | [`dialog[closedby="any"]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closerequest) (planned)  | 134 (19.03.2024) | 141 (22.07.2025) | [Technology Preview 242](https://webkit.org/blog/category/safari-technology-preview/)                    |
 | [Customizable `select` elements](https://caniuse.com/selectlist) (planned)                                                      | 134 (19.03.2024) | tbd              | [Technology Preview 238](https://webkit.org/blog/17848/release-notes-for-safari-technology-preview-238/) |
 | [`select[multiple][size="1"]` UI optimization on Desktop browsers](https://chromestatus.com/feature/5412736871825408) (planned) | 142 (28.10.2025) | tbd              | tbd                                                                                                      |
+| [`aria-actions` HTML attribute](https://chromestatus.com/feature/5161589307867136) (planned) | 151 (15.07.2026) | tbd              | tbd                                                                                                      |
 
 ## Without graceful degradation
 
