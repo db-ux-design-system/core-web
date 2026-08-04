@@ -1,4 +1,4 @@
-# Adaptive Farben
+# Adaptive Colors
 
 Das adaptive Farbsystem stellt kontextabhängige Farben bereit, die sich basierend auf der aktiven Variante und dem Farbschema (hell/dunkel) ändern.
 
@@ -22,8 +22,8 @@ Wenn `db-brand/origin/default` angewendet wird, ist es **immer** die Brand-Farbe
 
 ### In Figma
 
-- **Adaptive Farben**: Aus der Color Collection anwenden. Der aufgelöste Wert ändert sich, wenn der Layer Mode des übergeordneten Frames auf eine andere Variante gesetzt wird.
-- **Absolute Farben**: Aus der Mode Collection anwenden. Farbe bleibt fix.
+- **Adaptive Colors**: Aus der Color Collection anwenden. Der aufgelöste Wert ändert sich, wenn der Layer Mode des übergeordneten Frames auf eine andere Variante gesetzt wird.
+- **Absolute Colors**: Aus der Mode Collection anwenden. Farbe bleibt fix.
 
 ### Im Code
 
@@ -35,8 +35,6 @@ Wenn `db-brand/origin/default` angewendet wird, ist es **immer** die Brand-Farbe
 </div>
 ```
 
-Gültige Varianten: `neutral`, `brand`, `critical`, `successful`, `warning`, `informational`.
-
 Für Farbschema (hell/dunkel):
 
 ```html
@@ -47,11 +45,11 @@ Für Farbschema (hell/dunkel):
 
 ## Verfügbare Varianten
 
-### Semantisch (für Komponenten-Einfärbung)
+### Semantische Farben (für Komponenten-Einfärbung)
 
 `neutral`, `brand`, `critical`, `successful`, `warning`, `informational`
 
-### Additional (für Datenvisualisierung, Illustrationen)
+### Zusätzliche Farben (für Datenvisualisierung, Illustrationen)
 
 `yellow`, `orange`, `red`, `pink`, `violet`, `blue`, `cyan`, `turquoise`, `green`, `light-green`, `burgundy`
 

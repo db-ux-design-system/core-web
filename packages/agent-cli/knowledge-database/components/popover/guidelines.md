@@ -6,4 +6,4 @@ Schwebendes Overlay für kontextbezogene Inhalte, ausgelöst durch Nutzer:innen-
 
 1. Für interaktive oder zusammengesetzte Inhalte an einem Trigger verwenden — für reine Text-Erklärungen stattdessen Tooltip.
 2. Inhalt auf ein Thema begrenzen — keine großen oder scrolllastigen Inhalte.
-3. Standard-Platzierung nutzen und Flipping aktivieren, damit das Popover vollständig sichtbar bleibt.
+3. `placement` beim Standardwert `bottom` belassen, sofern kein Grund dagegen spricht. Läuft das Popover aus dem Viewport, dreht die Kollisionsvermeidung die Platzierung automatisch — dafür ist keine Konfiguration nötig.

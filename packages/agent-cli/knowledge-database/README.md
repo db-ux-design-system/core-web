@@ -30,6 +30,11 @@ Jeder Ordner enthält eine `meta.json` mit den allgemeinen Informationen. Der fa
 
 Kategorien: `colors`, `spacing`, `sizing`, `border-width`, `border-radius`, `opacity`, `elevation`, `typography`, `transition`, `screen`, `container`
 
+**Kategorie und Gruppe sind nicht dasselbe** und werden in Guidelines und Principles konsequent auseinandergehalten:
+
+- **Kategorie** — oberste Ebene, entspricht dem Feld `category` in der `tokens.json` (z. B. `spacing`, `colors`)
+- **Gruppe** — Unterteilung innerhalb einer Kategorie (z. B. `fixed` und `responsive` bei `spacing`, `bg/basic` und `on-bg/basic` bei `colors`)
+
 ### Principles (`foundations/_principles/`)
 
 Übergreifende Systemkonzepte, die beschreiben wie die Tokens zusammenwirken. Zielgruppe: Konsumenten und Entwickler, die verstehen wollen wie das adaptive System funktioniert.
@@ -62,7 +67,7 @@ Icon-System des Design Systems:
 
 Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 
-- `meta.json` — Allgemeine Informationen (ID, Name, Typ, Status, Owner, Version)
+- `meta.json` — Allgemeine Informationen (ID, Name, Typ, Status, Owner, Version). Optional `deprecation: "planned"` plus `note`, wenn eine Komponente mittelfristig abgelöst wird — dieser Hinweis gehört in die `meta.json` und nicht in die `guidelines.md`, damit er maschinell auswertbar bleibt.
 - `figma.json` — Figma Library-Referenz, Component Sets, Node IDs
 - `properties.json` — Figma Properties, Code Connect Properties, Code Properties
 - `guidelines.md` — Nutzungsrichtlinien, Do's and Don'ts
@@ -91,6 +96,10 @@ Komponenten im Status **Concept** oder **Pre-Release**. Gleiche Dateistruktur wi
 - Kein stabiler API-Vertrag — Breaking Changes jederzeit möglich
 
 Property-Namen werden 1:1 aus der Figma-Library übernommen. Die endgültige Benennung erfolgt erst mit dem Übertrag nach Core (Beta) in Abstimmung mit Dev — bis dahin ist die Abweichung zur Core-Namenskonvention beabsichtigt.
+
+## Arbeitsnotizen
+
+`guidelines.md`-Dateien enthalten keine internen Kommentare (`<!-- TODO -->`, `<!-- NOTE -->`). Offene Punkte gehören nach `TODO.md`, Abweichungen zwischen Figma und Code nach `inconsistencies.md`, verarbeitungsrelevante Statusinformationen in die jeweilige `meta.json`.
 
 ## Figma Libraries
 

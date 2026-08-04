@@ -10,5 +10,3 @@ Löst Aktionen aus und bestätigt Entscheidungen. Leitet Nutzer:innen durch wich
 4. Horizontal nebeneinander ausrichten wenn Platz reicht.
 5. Mindest-Trefferzone 24×24 px — benachbarte interaktive Elemente dürfen nicht überlappen.
 6. Maximal ein Icon pro Button — Icon-Only immer mit Tooltip und `aria-label`.
-
-<!-- TODO: Explizite Regel zur Varianten-Hierarchie in Button-Gruppen (filled + ghost = primär + sekundär)? Steckt implizit in Regel 2. -->

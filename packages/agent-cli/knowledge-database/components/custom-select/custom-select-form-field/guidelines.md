@@ -5,6 +5,6 @@ Eingabefeld-Subkomponente, die den Trigger zum Öffnen des Dropdowns darstellt u
 ## Regeln
 
 1. Label immer setzen — beschreibt klar, welche Auswahl erwartet wird.
-2. Label Variant passend zu anderen Eingabe-Feldern wählen.
-3. Ausgewählte Optionen müssen ohne erneutes Öffnen überprüfbar sein — Tags bei Mehrfachauswahl die häufig bearbeitet wird, Amount bei engem Platz (nur Mehrfachauswahl), Text bei Einzelauswahl.
-4. Clear Selection Button anzeigen, um Auswahl rückgängig zu machen. Ausblenden, wenn Platz gering ist und wenig bearbeitet werden muss.
+2. `variant` (`above` oder `floating`) passend zu den anderen Eingabefeldern der Seite wählen. Das Property liegt auf der Elternkomponente `custom-select`.
+3. Ausgewählte Optionen müssen ohne erneutes Öffnen überprüfbar sein — `selectedType` bei Mehrfachauswahl auf `tag` setzen, wenn die Auswahl häufig bearbeitet wird, auf `amount` bei knappem Platz. Bei Einzelauswahl wird der Text angezeigt (`text`). Das Property liegt auf der Elternkomponente `custom-select`.
+4. `showClearSelection` aktiv lassen (Default `true`), damit die Auswahl zurückgesetzt werden kann — nur ausblenden, wenn der Platz knapp ist und die Auswahl selten geändert wird. Das Property liegt auf der Elternkomponente `custom-select`.

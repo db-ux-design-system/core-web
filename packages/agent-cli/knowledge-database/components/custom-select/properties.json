@@ -4,10 +4,7 @@
 		{
 			"name": "formFieldWidth",
 			"type": "enum",
-			"values": [
-				"auto",
-				"full"
-			],
+			"values": ["auto", "full"],
 			"default": "auto",
 			"description": "Width of the form field component",
 			"code": {
@@ -17,10 +14,7 @@
 			"design": {
 				"name": "⚙️ Form Field Width",
 				"codeConnect": true,
-				"values": [
-					"full",
-					"auto"
-				]
+				"values": ["full", "auto"]
 			}
 		},
 		{
@@ -35,9 +29,7 @@
 			"design": {
 				"name": "⚙️ Dropdown Position",
 				"codeConnect": true,
-				"values": [
-					"bottom"
-				]
+				"values": ["bottom"]
 			}
 		},
 		{
@@ -62,10 +54,7 @@
 			},
 			"design": {
 				"name": "🔀 Dropdown Width",
-				"values": [
-					"(Def) Full",
-					"Auto/Fix"
-				]
+				"values": ["(Def) Full", "Auto/Fix"]
 			}
 		},
 		{
@@ -134,11 +123,7 @@
 		{
 			"name": "selectedType",
 			"type": "enum",
-			"values": [
-				"amount",
-				"text",
-				"tag"
-			],
+			"values": ["amount", "text", "tag"],
 			"description": "Display variant for selected values in multi select",
 			"code": {
 				"prop": "selectedType",
@@ -234,6 +219,17 @@
 			"code": {
 				"prop": "label",
 				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": ["above", "floating"],
+			"description": "Position of the label on the form field",
+			"code": {
+				"prop": "variant",
+				"type": "LabelVariantType"
 			},
 			"design": null
 		},

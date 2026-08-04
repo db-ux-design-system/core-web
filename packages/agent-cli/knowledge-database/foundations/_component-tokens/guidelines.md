@@ -8,7 +8,7 @@ Komponentenspezifische Sizing-Variablen (`🧱 design`) für Fälle, die über d
 2. Nur für die Komponentenerstellung verwenden — nicht für allgemeine Layouts oder Designs.
 3. Naming Pattern: `🧱 design/{component}/{property}/{size}`
 4. Deprecated Tokens (`🔗 design/{component}-deprecated/`) nicht in neuen Designs verwenden.
-5. Component Tokens verhalten sich adaptiv (density-abhängig). Weitere Details befinden sich in der _principles/adaptive-density.md
+5. Component Tokens verhalten sich adaptiv (density-abhängig). Weitere Details befinden sich in der Datei [Adaptive Density](../_principles/adaptive-density.md).
 
 ## Verfügbare Token-Gruppen
 

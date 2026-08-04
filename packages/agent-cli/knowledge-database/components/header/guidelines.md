@@ -2,8 +2,6 @@
 
 Oberer Bereich mit Markenidentität, primärer Navigation und optionalen Aktionen.
 
-<!-- TODO: Header wird mittelfristig deprecated. Regeln komplett überarbeiten — aktuelle Basis war nicht sinnvoll. -->
-
 ## Regeln
 
 1. Logo links — es dient gleichzeitig als Home-Link. Keinen separaten „Home"-Navigationspunkt.

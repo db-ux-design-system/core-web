@@ -4,4 +4,4 @@ Viewport Größen für responsives Design.
 
 ## Regeln
 
-1. Screen Tokens für alle responsiven Breakpoints verwenden.
+1. Breakpoints ausschließlich über `screen`-Tokens setzen — keine eigenen Zwischenwerte definieren.

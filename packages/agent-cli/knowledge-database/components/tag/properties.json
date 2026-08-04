@@ -4,10 +4,7 @@
 		{
 			"name": "behavior",
 			"type": "enum",
-			"values": [
-				"static",
-				"removable"
-			],
+			"values": ["static", "removable"],
 			"default": "static",
 			"description": "static: default without remove button; removable: adds remove button",
 			"code": {
@@ -17,20 +14,14 @@
 			"design": {
 				"name": "⚙️ Behavior",
 				"codeConnect": true,
-				"values": [
-					"static",
-					"removable"
-				],
-				"note": "In Figma, behavior is expressed via separate Component Sets (Static, Interactive, Interactive Toggle, Removable). Code Connect maps removable sets to behavior='removable'."
+				"values": ["static", "removable"],
+				"note": "In Figma, behavior is expressed via separate Component Sets (Static, Interactive, Interactive Toggle, Removable). Code Connect maps removable sets to behavior='removable'. In code, behavior only controls the remove button — interactivity is composed via child elements (checkbox, radio, link, button), not via this property."
 			}
 		},
 		{
 			"name": "emphasis",
 			"type": "enum",
-			"values": [
-				"weak",
-				"strong"
-			],
+			"values": ["weak", "strong"],
 			"default": "weak",
 			"code": {
 				"prop": "emphasis",
@@ -39,10 +30,7 @@
 			"design": {
 				"name": "⚙️ Emphasis",
 				"codeConnect": true,
-				"values": [
-					"weak",
-					"strong"
-				],
+				"values": ["weak", "strong"],
 				"note": "In Figma, emphasis is expressed via separate Component Sets (Weak vs Strong). Code Connect maps to emphasis prop."
 			}
 		},
@@ -58,10 +46,7 @@
 			"design": {
 				"name": "⚙️ No Text",
 				"codeConnect": true,
-				"values": [
-					"true",
-					"false"
-				],
+				"values": ["true", "false"],
 				"note": "In Figma, Icon Tag sets represent noText=true."
 			}
 		},
@@ -154,10 +139,7 @@
 			},
 			"design": {
 				"name": "🔀 Disabled",
-				"values": [
-					"False",
-					"True"
-				],
+				"values": ["False", "True"],
 				"note": "Interactive and Toggle variants only"
 			}
 		},
@@ -217,23 +199,14 @@
 			"code": null,
 			"design": {
 				"name": "🔀 Checked",
-				"values": [
-					"False",
-					"True"
-				],
+				"values": ["False", "True"],
 				"note": "Interactive Toggle variants only"
 			}
 		},
 		{
 			"name": "interactionState",
 			"type": "enum",
-			"values": [
-				"Enabled",
-				"Hovered",
-				"Pressed",
-				"Focused",
-				"None"
-			],
+			"values": ["Enabled", "Hovered", "Pressed", "Focused", "None"],
 			"code": null,
 			"design": {
 				"name": "🔀 Interaction State",

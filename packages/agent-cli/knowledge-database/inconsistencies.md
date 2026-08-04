@@ -31,6 +31,12 @@ Tracking von Unterschieden zwischen Figma und Code sowie bekannte Gaps.
 
 - In Figma: Effect Styles (not variables). In Code: CSS custom properties (`--db-elevation-sm/md/lg`). Different mechanism, same intent.
 
+### Density collection scope
+
+- In Figma liegen `sizing`, `spacing-fixed`, `spacing-responsive`, `border-width`, `border-radius`, `opacity`, `container`, `screen` und `typography` in der Density Collection und haben je drei Mode-Varianten.
+- In Code skaliert die Density-Ebene (`packages/foundations/scss/density/`) nur `sizing`, `spacing-fixed`, `spacing-responsive` und `typography`. Für `border-width`, `border-radius`, `opacity`, `container` und `screen` existieren keine Density-Overrides — diese Tokens sind dort konstant.
+- Konsequenz: Ein Density-Wechsel ändert diese fünf Kategorien in Figma, im Browser nicht. Klärungsbedarf mit Design und Dev, welche Seite die Zielrichtung vorgibt.
+
 ### Theme collection
 
 - In Figma: Palette primitives (0–14 steps), internal. In Code: CSS custom properties (`--db-{variant}-0` to `-14`). Theme collection is internal in Figma, not for direct design use.
@@ -40,6 +46,12 @@ Tracking von Unterschieden zwischen Figma und Code sowie bekannte Gaps.
 ### Custom Select
 
 - **Custom Select List** — No dedicated subcomponent in Figma. Review during refactoring.
+- **Property-Verteilung Dev vs. Design** — In Figma liegen Properties wie der Clear Selection Button, die Label-Variante und die Anzeige der ausgewählten Werte am Sub-Component **Custom Select Form Field**. Im Code liegen sie als `showClearSelection`, `variant` und `selectedType` an der Elternkomponente `DBCustomSelect`. Bis zum geplanten Refactoring sind die Regeln dort dokumentiert, wo sie fachlich hingehören (Form Field), mit Hinweis auf die Elternkomponente als Ablageort des Properties.
+
+### Tag
+
+- **Interaktivität: Component Sets vs. Komposition** — In Figma sind vier Component Sets modelliert (Static, Interactive, Interactive Toggle, Removable). Im Code gibt es dafür nur `behavior` mit `static | removable`; dieses Property schaltet ausschließlich den Entfernen-Button. Interaktive Tags entstehen über das eingebettete Element (`<input type="checkbox">` / `<input type="radio">` im `<label>`, `<a>`, `<button>`), siehe `behavior.example` und `example-strong.example`. Beide Achsen sind kombinierbar, in Figma sind sie es nicht.
+- Konsequenz: Ein 1:n-Mapping zwischen Figma-Sets und Code-Property. Werte wie `behavior="link"` oder `behavior="button"` existieren nicht und dürfen nicht aus den Set-Namen abgeleitet werden.
 
 ## Icons
 

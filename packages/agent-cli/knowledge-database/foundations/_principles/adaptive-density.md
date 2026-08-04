@@ -10,7 +10,7 @@ Das Density-System steuert, wie kompakt oder großzügig UI-Elemente gerendert w
 
 ## Funktionsweise
 
-Alle numerischen Tokens in der **Density Collection** (sizing, spacing-fixed, spacing-responsive, border-width, border-radius, opacity, container, screen, typography-sizes) sind mit drei Mode-Varianten definiert. Der aktive Mode bestimmt, welcher Wertesatz verwendet wird.
+Alle numerischen Tokens in der **Density Collection** (`sizing`, `spacing`, `border-width`, `border-radius`, `opacity`, `container`, `screen`, `typography`) sind mit drei Mode-Varianten definiert. Der aktive Mode bestimmt, welcher Wertesatz verwendet wird.
 
 ## Aktivierung
 
@@ -33,8 +33,7 @@ Gültige Werte: `expressive`, `regular` (Standard), `functional`.
 ## Betroffene Token-Kategorien
 
 - `sizing` — Komponenten-Höhen/Breiten
-- `spacing-fixed` — Feste Abstände und Paddings
-- `spacing-responsive` — Viewport-skalierende Abstände
+- `spacing` — feste Abstände und Paddings (Gruppe `fixed`), Viewport-skalierende Abstände (Gruppe `responsive`)
 - `border-width` — Strichstärken
 - `border-radius` — Eckenradien
 - `opacity` — Transparenzwerte
