@@ -146,12 +146,16 @@ Prepare a PR description based on `.github/PULL_REQUEST_TEMPLATE.md`:
 
 ## Quick Validation Commands
 
+<!-- jscpd:ignore-start -->
+
 ```bash
 pnpm run build         # ~30s — core packages compile
 pnpm run test          # ~10s — tests pass
 pnpm run lint          # lint checks (may fail if Nuxt showcase not run)
 pnpm run build-outputs # ~2min — framework outputs build
 ```
+
+<!-- jscpd:ignore-end -->
 
 ## Common Pre-Commit Mistakes
 
