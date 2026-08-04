@@ -4,5 +4,5 @@ Einzelne Option innerhalb der Custom Select List — kann ausgewählt, deaktivie
 
 ## Regeln
 
-1. Label kurz und eindeutig formulieren — Nutzer müssen Optionen schnell scannen und unterscheiden können.
-2. Bei Gruppierung klare, kurze Gruppentitel verwenden — nur gruppieren wenn die Kategorien den Nutzer beim Finden unterstützen.
+1. Label kurz und eindeutig formulieren. Nutzer müssen Optionen schnell scannen und unterscheiden können.
+2. Bei Gruppierung klare, kurze Gruppentitel verwenden. Nur gruppieren, wenn die Kategorien den Nutzer beim Finden unterstützen.

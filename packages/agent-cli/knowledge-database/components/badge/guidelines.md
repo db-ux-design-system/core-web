@@ -4,8 +4,8 @@ Zeigt kurze, kontextbezogene Informationen wie Status oder Metadaten in direkter
 
 ## Regeln
 
-1. Ergänzt ein Element um Kontext — nie primärer Informationsträger.
+1. Badge nur als Ergänzung zu einem Element einsetzen, nie als primären Informationsträger.
 2. Maximal ein bis zwei Wörter (z. B. „Neu", „Entwurf", „Beta").
-3. Bedeutung nie allein durch Farbe vermitteln — immer Textlabel oder ergänzendes Merkmal.
-4. Konsistent neben dem zugehörigen Element positionieren — räumliche Nähe sichert die Zuordnung.
-5. Badge ist statisch — für interaktive Elemente (filtern, entfernen) stattdessen Tag verwenden.
+3. Bedeutung nie allein durch Farbe vermitteln, immer zusätzlich ein Textlabel oder ein ergänzendes Merkmal nutzen.
+4. Konsistent neben dem zugehörigen Element positionieren, die räumliche Nähe sichert die Zuordnung.
+5. Für interaktive Elemente (filtern, entfernen) stattdessen [Tag](../tag/guidelines.md) verwenden. Badge ist statisch.

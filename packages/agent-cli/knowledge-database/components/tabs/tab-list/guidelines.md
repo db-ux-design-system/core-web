@@ -4,5 +4,5 @@ Container-Subkomponente, die alle Tab Items enthält und deren Layout, Overflow-
 
 ## Regeln
 
-1. `overflowPosition` wirkt nur bei der horizontalen AutoWidth-Variante — Position der Overflow-Steuerung passend zur Leserichtung wählen.
+1. Position der Overflow-Steuerung über `overflowPosition` passend zur Leserichtung wählen. Wirkt nur bei der horizontalen AutoWidth-Variante.
 2. Die Reihenfolge muss für Nutzer konsistent und nachvollziehbar bleiben.

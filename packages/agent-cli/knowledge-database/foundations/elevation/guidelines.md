@@ -5,4 +5,5 @@ Schatten-Styling für visuelle Tiefe.
 ## Regeln
 
 1. Elevation verwenden, um Elemente hervorzuheben.
-2. Je höher die Elevation-Werte desto stärker rücken die Elemente in den Vordergrund.
+2. Elevation-Stufe entsprechend der gewünschten Rangfolge wählen: `sm` wirkt am flachsten, `lg` am stärksten im Vordergrund.
+3. Innerhalb eines Kontexts nicht mehrere Elevation-Stufen ohne Grund mischen.

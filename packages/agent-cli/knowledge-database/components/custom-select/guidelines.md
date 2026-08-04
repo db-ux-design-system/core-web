@@ -4,5 +4,5 @@ Erweitertes Dropdown mit Suche, Gruppierung und Mehrfachauswahl für komplexere 
 
 ## Regeln
 
-1. Verwenden ab 5+ Optionen oder wenn Suche/Gruppierung/Mehrfachauswahl nötig ist — unter 5 Optionen Radio oder Checkbox nutzen.
-2. Für kurze, einfache Einzelauswahl ohne Suche stattdessen natives Select oder Radio verwenden.
+1. Ab 5 Optionen verwenden oder wenn Suche, Gruppierung oder Mehrfachauswahl nötig ist. Bei weniger als 5 Optionen [Radio](../radio/guidelines.md) oder [Checkbox](../checkbox/guidelines.md) nutzen.
+2. Für kurze, einfache Einzelauswahl ohne Suche stattdessen natives [Select](../select/guidelines.md) oder [Radio](../radio/guidelines.md) verwenden.

@@ -72,6 +72,20 @@ Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 - `properties.json` — Figma Properties, Code Connect Properties, Code Properties
 - `guidelines.md` — Nutzungsrichtlinien, Do's and Don'ts
 
+### Abschnitte in `guidelines.md`
+
+- `## Regeln` — ausschließlich normative Aussagen: Anweisungen, Empfehlungen, Verbote. Alles, worüber bei der Umsetzung entschieden wird.
+- `## Zusätzliche Informationen` — deskriptive Aussagen: Systemverhalten, Gestaltungsspielraum, automatische Mechanismen. Nichts davon ist eine Handlungsanweisung, die Inhalte sind aber Grundlage für erklärende Doku-Abschnitte und Beispiele.
+
+Ein Generator, der `## Regeln` zu Do's und Don'ts verarbeitet, darf `## Zusätzliche Informationen` nicht als Anweisung interpretieren.
+
+### Verweise in `guidelines.md`
+
+- **Andere Komponenten** werden als relativer Markdown-Link auf deren Guideline gesetzt: `[Checkbox](../checkbox/guidelines.md)`. Der Anzeigename entspricht `name` aus der `meta.json`, die ID ist aus dem Pfad ableitbar. Selbstverweise innerhalb der eigenen Guideline werden nicht verlinkt.
+- **Lab-Komponenten** werden ebenfalls verlinkt, aber zusätzlich als solche gekennzeichnet, weil sie keinen stabilen API-Vertrag haben.
+- **Dateien** (z. B. Principles) werden genauso verlinkt: `[Adaptive Density](../_principles/adaptive-density.md)`.
+- **Kein Gedankenstrich in `## Regeln`.** Verbote als „nicht"/„nie" im Satz, Alternativen mit „stattdessen", Begründungen als eigener Satz, Aufzählungen nach Doppelpunkt. Trägt die zweite Hälfte eine eigenständige Aussage, wird sie eine eigene Regel.
+
 ### Sub-Components
 
 In Figma sind Sub-Components am Präfix `↳` im Namen des Component Sets erkennbar und liegen zusätzlich in einer eigenen Sub-Component-Section auf der Komponentenseite.

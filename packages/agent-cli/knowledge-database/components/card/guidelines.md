@@ -4,9 +4,10 @@ Gruppiert zusammengehörige Inhalte auf einer abgegrenzten Fläche für visuelle
 
 ## Regeln
 
-1. Nur verwenden, wenn Inhalte eine inhaltliche Einheit bilden und von einer eigenen Fläche profitieren — nicht alles in Cards packen.
-2. Cards für reichhaltige Vorschauen mit gemischten Inhalten — Listen/Tabellen für dichte, vergleichbare Zeilen.
-3. Alle Cards einer Gruppe nutzen dasselbe Interaktionsmuster — keine Mischung aus klickbar/nicht-klickbar ohne klare Unterscheidung.
-4. Ganze Card klickbar nur wenn genau ein Navigationsziel und kein weiteres Steuerelement nötig — klickbare Cards enthalten keine verschachtelten interaktiven Elemente.
-5. Titel, Inhalte und Aktionen über alle Cards eines Grids konsistent ausrichten.
-6. Card-Inhalt oben ausgerichtet — nur die abschließende Aktion darf bottom-aligned stehen.
+1. Nur verwenden, wenn Inhalte eine inhaltliche Einheit bilden und von einer eigenen Fläche profitieren. Nicht jeden Inhaltsblock in eine Card setzen.
+2. Cards für reichhaltige Vorschauen mit gemischten Inhalten verwenden, Listen oder Tabellen für dichte, vergleichbare Zeilen.
+3. Alle Cards einer Gruppe nutzen dasselbe Interaktionsmuster. Klickbare und nicht-klickbare Cards nicht ohne klare Unterscheidung mischen.
+4. Ganze Card nur dann klickbar machen, wenn genau ein Navigationsziel besteht und kein weiteres Steuerelement nötig ist.
+5. Klickbare Cards enthalten keine verschachtelten interaktiven Elemente.
+6. Titel, Inhalte und Aktionen über alle Cards eines Grids konsistent ausrichten.
+7. Card-Inhalt oben ausrichten. Ausnahme: die abschließende Aktion darf bottom-aligned stehen.

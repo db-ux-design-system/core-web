@@ -4,6 +4,9 @@ Overlay-Ebene hinter modale Inhalte zur Fokussierung und Interaktionsblockierung
 
 ## Regeln
 
-1. Nur hinter modalen Overlays (Dialog, Drawer) einsetzen — nie dekorativ ohne zugehöriges Overlay.
-2. Blockiert Interaktion mit dem Hintergrund — Klick auf den Backdrop kann das Overlay schließen (optional). Fokus bleibt innerhalb des Overlays.
-3. Nur verwenden, wenn die Aufgabe ohne Zugriff auf Hintergrundinhalte abschließbar ist — sonst nicht-blockierendes Muster nutzen.
+1. Nur hinter modalen Overlays einsetzen ([Dialog](../../lab-components/dialog/guidelines.md), [Drawer](../drawer/guidelines.md)), nie dekorativ ohne zugehöriges Overlay. Dialog ist eine Lab-Komponente ohne stabilen API-Vertrag.
+2. Nur verwenden, wenn die Aufgabe ohne Zugriff auf Hintergrundinhalte abschließbar ist. Sonst ein nicht-blockierendes Muster nutzen.
+
+## Zusätzliche Informationen
+
+- Blockiert Interaktion mit dem Hintergrund. Klick auf den Backdrop kann das Overlay schließen (optional). Fokus bleibt innerhalb des Overlays.
