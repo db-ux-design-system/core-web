@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-Bjar_WwY.js";e();
