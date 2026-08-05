@@ -98,7 +98,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				} else {
 					_ref.showModal();
 				}
-			} else if (!dialogOpen && _ref.open) {
+			} else if (!dialogOpen && _ref.open && !supportsClosedBy()) {
 				_ref.close();
 			}
 		},
