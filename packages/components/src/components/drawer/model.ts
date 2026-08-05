@@ -107,7 +107,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
-	handleCancel: () => void;
+	handleCancel: (event: Event) => void;
 	isNotModal: () => boolean;
 	handleBackdropPointerDown: (event: any) => void;
 	backdropPointerDown: boolean;

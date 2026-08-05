@@ -99,9 +99,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 				_ref.close();
 			}
 		},
-		handleCancel: () => {
+		handleCancel: (event: Event) => {
 			if (props.onCancel) {
-				props.onCancel();
+				props.onCancel(event);
 			}
 		}
 	});
@@ -138,7 +138,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id ?? props.propOverrides?.id}
 			ref={_ref}
 			class="db-drawer"
-			onCancel={() => state.handleCancel()}
+			onCancel={(event: Event) => state.handleCancel(event)}
 			onClick={(event) => state.handleClose(event)}
 			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
 			onKeyDown={(event) => state.handleClose(event)}
