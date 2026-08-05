@@ -149,10 +149,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
 			data-variant={props.variant}
-			closedby={
-				props.closedby ||
-				(props.backdrop === 'none' ? 'closerequest' : 'any')
-			}>
+			closedby={props.backdrop === 'none' ? 'closerequest' : 'any'}>
 			<article
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}

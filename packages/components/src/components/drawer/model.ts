@@ -50,14 +50,6 @@ export type DBDrawerDefaultProps = {
 	backdrop?: DrawerBackdropType;
 
 	/**
-	 * Controls native light-dismiss behaviour of the dialog.
-	 * - `any` (default): ESC key and backdrop click close the dialog natively.
-	 * - `closerequest`: Only ESC key closes the dialog natively.
-	 * - `none`: No native light-dismiss; closing must be handled programmatically.
-	 */
-	closedby?: DrawerClosedByType;
-
-	/**
 	 * The direction attribute changes the position & animation of the drawer.
 	 * E.g. "to-left" slides from right screen border to the left.
 	 */
