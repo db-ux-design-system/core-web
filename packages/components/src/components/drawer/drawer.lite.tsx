@@ -99,7 +99,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 				_ref.close();
 			}
 		},
-		handleCancel: (event: Event) => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleCancel: (event: any) => {
 			if (props.onCancel) {
 				props.onCancel(event);
 			}
