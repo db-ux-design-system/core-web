@@ -12,7 +12,8 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
-	isKeyboardEvent
+	isKeyboardEvent,
+	supportsClosedBy
 } from '../../utils';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -51,7 +52,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (!event) return;
 
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
-				if (event.key === 'Escape') {
+				if (event.key === 'Escape' && !supportsClosedBy()) {
 					event.preventDefault();
 
 					if (props.onClose) {
