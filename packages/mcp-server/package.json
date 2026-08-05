@@ -40,14 +40,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.29.0",
+    "@modelcontextprotocol/sdk": "1.30.0",
     "zod": "4.4.3"
   },
   "devDependencies": {
     "@db-ux/db-theme-icons": "4.0.0",
     "cpr": "3.0.1",
     "esbuild": "0.28.1",
-    "npm-run-all2": "9.0.2",
+    "npm-run-all2": "9.0.3",
     "tsx": "4.23.1",
     "typescript": "5.9.3",
     "vitest": "4.1.10"
