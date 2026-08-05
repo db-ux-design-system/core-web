@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat(Drawer): provide `closedby` property
+refactor(Drawer): re-added `closedby` property to control the drawers closing behaviour natively
