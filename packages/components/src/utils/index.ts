@@ -337,3 +337,22 @@ export const supportsClosedBy = (() => {
 		return cachedValue;
 	};
 })();
+
+/**
+ * @public
+ * Feature-detects whether the browser supports the `commandfor`/`command`
+ * HTML attributes for declarative button-to-element commands.
+ * Result is cached after the first call.
+ */
+export const supportsCommandFor = (() => {
+	let cachedValue: boolean | undefined;
+	return () => {
+		if (cachedValue === undefined) {
+			cachedValue =
+				typeof HTMLButtonElement !== 'undefined' &&
+				'commandForElement' in HTMLButtonElement.prototype;
+		}
+
+		return cachedValue;
+	};
+})();

@@ -107,6 +107,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
+	handleClick: (event: ClickEvent<HTMLDialogElement>) => void;
 	handleCancel: (event: any) => void;
 	isNotModal: () => boolean;
 };

@@ -7,12 +7,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
+import { ClickEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
-	isKeyboardEvent
+	supportsCommandFor,
+	uuid
 } from '../../utils';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -24,6 +25,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
+		_id: props.id || props.propOverrides?.id || 'db-drawer-' + uuid(),
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -32,34 +34,22 @@ export default function DBDrawer(props: DBDrawerProps) {
 			);
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (
-			event?:
-				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void
-		) => {
+		handleClick: (event: ClickEvent<HTMLDialogElement>) => {
 			if (!event) return;
 
-			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
-				if (event.key === 'Escape') {
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-			} else {
-				const isCloseButton = Boolean(
-					(event.target as HTMLElement)?.closest?.(
-						'[data-action="close"]'
-					)
-				);
+			const isCloseButton = Boolean(
+				(event.target as HTMLElement)?.closest?.('[command="close"]')
+			);
 
-				if (isCloseButton) {
-					event.stopPropagation();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
+			if (isCloseButton && !supportsCommandFor()) {
+				event.stopPropagation();
+				(_ref as HTMLDialogElement).close();
+			}
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleClose: (event?: any) => {
+			if (props.onClose) {
+				props.onClose(event);
 			}
 		},
 		handleDialogOpen: () => {
@@ -113,12 +103,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id ?? props.propOverrides?.id}
+			id={state._id}
 			ref={_ref}
 			class="db-drawer"
 			onCancel={(event: Event) => state.handleCancel(event)}
-			onClick={(event) => state.handleClose(event)}
-			onKeyDown={(event) => state.handleClose(event)}
+			onClick={(event) => state.handleClick(event)}
+			onClose={(event) => state.handleClose(event)}
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}

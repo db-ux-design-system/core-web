@@ -307,7 +307,7 @@
 	// TODO: Remove after `closedby` is evergreen regarding our browserlist
 	&:not([data-backdrop="none"], [data-position="absolute"]) {
 		@supports not (overlay: auto) {
-			[data-action="close"]::after {
+			[command="close"]::after {
 				content: "";
 				position: fixed;
 				inset: 0;
