@@ -250,3 +250,4 @@ closedby
 Ponyfill
 ponyfill
 ponyfills
+browserlist
