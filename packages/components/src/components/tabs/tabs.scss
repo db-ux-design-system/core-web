@@ -254,7 +254,7 @@ $focus-outline-reach: calc(
 		}
 
 		&:not([data-orientation="vertical"]) {
-			// Track für Arrow-Buttons-Modus als ::before Pseudo-Element auf .db-tabs
+			// Track for Arrow-Buttons-Modus as ::before Pseudo Elements on .db-tabs
 			&::before {
 				content: "";
 				position: absolute;
