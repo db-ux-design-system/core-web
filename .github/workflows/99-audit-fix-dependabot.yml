@@ -1,0 +1,59 @@
+---
+# Audit Fix for Dependabot PRs
+#
+# Runs `pnpm audit --fix` on dependabot PRs to opportunistically resolve
+# additional known vulnerabilities beyond what the current PR addresses.
+# If the lockfile changes, commits and pushes directly to the PR branch.
+# Runs after `init` to reuse the pnpm cache and avoid blocking the pipeline start.
+
+name: Audit fix (Dependabot)
+
+on:
+  workflow_call:
+
+jobs:
+  audit-fix:
+    name: Audit fix
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: ⏬ Checkout PR branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 1
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: 🔒 Run pnpm audit --fix
+        run: pnpm audit --fix || true
+
+      - name: 📦 Sync lockfile
+        run: pnpm install --no-frozen-lockfile
+
+      - name: 🔍 Check for lockfile changes
+        id: changes
+        run: |
+          if git diff --quiet pnpm-lock.yaml; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📝 Commit and push lockfile
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        env:
+          HUSKY: "0"
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pnpm-lock.yaml
+          git commit --message "fix: resolve additional audit vulnerabilities"
+          git push
