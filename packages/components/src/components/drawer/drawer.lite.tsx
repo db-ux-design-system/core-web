@@ -52,9 +52,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (!event) return;
 
 			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
-				if (event.key === 'Escape' && !supportsClosedBy()) {
-					event.preventDefault();
-
+				if (event.key === 'Escape') {
 					if (props.onClose) {
 						props.onClose(event);
 					}
