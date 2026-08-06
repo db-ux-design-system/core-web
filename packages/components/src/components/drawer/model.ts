@@ -109,8 +109,6 @@ export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
 	handleCancel: (event: any) => void;
 	isNotModal: () => boolean;
-	handleBackdropPointerDown: (event: any) => void;
-	backdropPointerDown: boolean;
 };
 
 export type DBDrawerState = DBDrawerDefaultState &
