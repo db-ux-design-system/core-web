@@ -95,11 +95,11 @@ importers:
         specifier: 1.4.9
         version: 1.4.9(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.29.2
-        version: 0.29.2
+        specifier: 0.31.0
+        version: 0.31.0
       '@guidepup/playwright':
         specifier: 0.18.0
-        version: 0.18.0(@guidepup/guidepup@0.29.2)(@playwright/test@1.60.0)
+        version: 0.18.0(@guidepup/guidepup@0.31.0)(@playwright/test@1.60.0)
       '@guidepup/record':
         specifier: 0.1.0
         version: 0.1.0(supports-color@10.2.2)
@@ -3788,8 +3788,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.29.2':
-    resolution: {integrity: sha512-vdYvI68JzpcnknN6d2U83ezt8AN8vSOkc+9qm60snwDgG17l3Nz8exjU4Z7ynKpeWGyKuyuX5FufIqm7Lkr+qg==}
+  '@guidepup/guidepup@0.31.0':
+    resolution: {integrity: sha512-r3eKTep4fdSajiSGEJI0KHHjKvJ6e4wyMhHIGbr+ztW04CcE91CRMRbTaM5JQwZKvRiOfj3kFVKaYIx+CFJWMw==}
 
   '@guidepup/playwright@0.18.0':
     resolution: {integrity: sha512-yIaXzy79hBY7/vIlhPORUXUiXXGXZFpRt6aeYuSvpn5SJ3zzFV0WqZy7s9zxuG0nyzGFF1Wr90t17GQAcqy+Lw==}
@@ -13543,6 +13543,10 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  plist@4.0.0:
+    resolution: {integrity: sha512-4dOqNo0Y2NpfSf9q4+zr4bh7pzNWeckIam34Z0KYJhg8qtNNfh59VbD+Yna5SjwcxawVvLKx5w5FtuCijpEF4Q==}
+    engines: {node: '>=18'}
+
   plur@5.1.0:
     resolution: {integrity: sha512-VP/72JeXqak2KiOzjgKtQen5y3IZHn+9GOuLDafPv0eXa47xq0At93XahYBs26MsifCQ4enGKwbjBTKgb9QJXg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -16969,6 +16973,10 @@ packages:
     resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
     engines: {node: '>=4.0'}
 
+  xmlbuilder@15.1.1:
+    resolution: {integrity: sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==}
+    engines: {node: '>=8.0'}
+
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
 
@@ -20163,11 +20171,13 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.29.2': {}
-
-  '@guidepup/playwright@0.18.0(@guidepup/guidepup@0.29.2)(@playwright/test@1.60.0)':
+  '@guidepup/guidepup@0.31.0':
     dependencies:
-      '@guidepup/guidepup': 0.29.2
+      plist: 4.0.0
+
+  '@guidepup/playwright@0.18.0(@guidepup/guidepup@0.31.0)(@playwright/test@1.60.0)':
+    dependencies:
+      '@guidepup/guidepup': 0.31.0
       '@playwright/test': 1.60.0
 
   '@guidepup/record@0.1.0(supports-color@10.2.2)':
@@ -32005,6 +32015,11 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
+  plist@4.0.0:
+    dependencies:
+      '@xmldom/xmldom': 0.9.10
+      xmlbuilder: 15.1.1
+
   plur@5.1.0:
     dependencies:
       irregular-plurals: 3.5.0
@@ -36320,6 +36335,8 @@ snapshots:
       xmlbuilder: 11.0.1
 
   xmlbuilder@11.0.1: {}
+
+  xmlbuilder@15.1.1: {}
 
   xmlchars@2.2.0: {}
 
