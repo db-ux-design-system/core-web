@@ -408,8 +408,8 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       replace-in-file:
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 9.0.0
+        version: 9.0.0
       tsx:
         specifier: 4.23.4
         version: 4.23.4
@@ -488,8 +488,8 @@ importers:
         specifier: 11.0.1
         version: 11.0.1(jiti@2.7.0)(postcss@8.5.25)(tsx@4.23.4)
       replace-in-file:
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 9.0.0
+        version: 9.0.0
       sass:
         specifier: 1.102.0
         version: 1.102.0
@@ -724,8 +724,8 @@ importers:
         specifier: 0.3.22
         version: 0.3.22
       replace-in-file:
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 9.0.0
+        version: 9.0.0
       sassdoc:
         specifier: 2.7.4
         version: 2.7.4(chokidar@3.6.0)
@@ -8494,6 +8494,10 @@ packages:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
+  chalk@6.0.0:
+    resolution: {integrity: sha512-2uNTXIuTTxk7ciZgAU1BQcgnchcG0xXnrs6jzkQfj9SsRa9M2s5zE8WT96hS6KmG4MzWHSrvH43DF1m4XRkrFg==}
+    engines: {node: '>=22'}
+
   change-case@3.1.0:
     resolution: {integrity: sha512-2AZp7uJZbYEzRPsFoa+ijKdvp9zsrnnt6+yFokfwEpeJm0xuJDVoxiRCAaTzyJND8GJkofo2IcKWaUZ/OECVzw==}
 
@@ -14342,9 +14346,9 @@ packages:
     resolution: {integrity: sha512-yD5BHCe7quCgBph4rMQ+0KkIRKwWCrHDOX1p1Gp6HwjPM5kVoCdKGNhN7ydqqsX6lJEnQDKZ/tFMiEdQ1dvPEw==}
     engines: {node: '>= 0.10'}
 
-  replace-in-file@8.4.0:
-    resolution: {integrity: sha512-D28k8jy2LtUGbCzCnR3znajaTWIjJ/Uee3UdodzcHRxE7zn6NmYW/dcSqyivnsYU3W+MxdX6SbF28NvJ0GRoLA==}
-    engines: {node: '>=18'}
+  replace-in-file@9.0.0:
+    resolution: {integrity: sha512-ACFXyc5ninRlHSVw8ZRht0Fd/BKoje8mpbIDZjbOU/LCaaoZzD9uo3zDQNkULDhcrvhXyL38FCcF1D2SiHM6Vg==}
+    engines: {node: '>=22.12.0'}
     hasBin: true
 
   require-directory@2.1.1:
@@ -25285,6 +25289,8 @@ snapshots:
 
   chalk@5.6.2: {}
 
+  chalk@6.0.0: {}
+
   change-case@3.1.0:
     dependencies:
       camel-case: 3.0.0
@@ -32891,11 +32897,11 @@ snapshots:
 
   replace-ext@1.0.1: {}
 
-  replace-in-file@8.4.0:
+  replace-in-file@9.0.0:
     dependencies:
-      chalk: 5.6.2
+      chalk: 6.0.0
       glob: 13.0.6
-      yargs: 18.0.0
+      yargs: 18.1.0
 
   require-directory@2.1.1: {}
 
