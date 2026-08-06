@@ -1,6 +1,5 @@
 /* Required styles to normalize default css */
 
-@use "sass:string";
 @use "../variables";
 @use "../colors";
 @use "../helpers";
@@ -128,7 +127,7 @@ iframe {
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown */
-	list-style-type: #{string.unquote('"\\\\2022\\\\a0"')};
+	list-style-type: "\2022\a0";
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};
