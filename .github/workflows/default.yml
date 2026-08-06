@@ -49,6 +49,12 @@ jobs:
     needs: [init]
     secrets: inherit
 
+  audit-fix:
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    uses: ./.github/workflows/99-audit-fix-dependabot.yml
+    needs: [init]
+    secrets: inherit
+
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
