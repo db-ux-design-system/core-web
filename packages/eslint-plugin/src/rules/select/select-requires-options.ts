@@ -20,6 +20,18 @@ function hasOptionChildren(node: any): boolean {
 			return child.rawName === 'option' || child.name === 'option';
 		}
 
+		// Angular template expressions that may produce <option> children
+		if (
+			child.type === 'BoundText' ||
+			child.type === 'Template' ||
+			child.type === 'IfBlock' ||
+			child.type === 'ForLoopBlock' ||
+			child.type === 'SwitchBlock' ||
+			child.type === 'DeferredBlock'
+		) {
+			return true;
+		}
+
 		return false;
 	});
 }
