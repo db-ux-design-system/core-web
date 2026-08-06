@@ -130,7 +130,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 				// Use string.unquote to emit a CSS escape sequence verbatim,
 				// preventing Sass from resolving it to a literal bullet character
 				// which would trigger @charset "UTF-8" in the output.
-				content: #{string.unquote('"\\\\2022"')} / "";
+				content: #{string.unquote('"\\2022"')} / "";
 			}
 		}
 
