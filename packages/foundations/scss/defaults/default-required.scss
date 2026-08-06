@@ -1,12 +1,12 @@
 /* Required styles to normalize default css */
 
+@use "sass:string";
 @use "../variables";
 @use "../colors";
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
 @use "../colors/default-color-icons";
-@use "non-ascii-tokens.css";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
@@ -128,7 +128,7 @@ iframe {
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown */
-	list-style-type: var(--db-list-bullet);
+	list-style-type: #{string.unquote('"\\2022\\a0"')};
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};

@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
@@ -126,7 +127,10 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: var(--db-forced-colors-bullet) / "";
+				// Use string.unquote to emit a CSS escape sequence verbatim,
+				// preventing Sass from resolving it to a literal bullet character
+				// which would trigger @charset "UTF-8" in the output.
+				content: #{string.unquote('"\\2022"')} / "";
 			}
 		}
 
