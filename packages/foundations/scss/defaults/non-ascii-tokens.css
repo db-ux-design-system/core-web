@@ -1,7 +1,6 @@
 /* Non-ASCII character tokens as CSS custom properties.
  * This file is plain CSS (not SCSS) so that Sass does not resolve the escape
- * sequences to literal characters, which would emit @charset "UTF-8" and
- * cause BOM corruption when cssnano + PostCSS concatenate the output.
+ * sequences to literal characters, which would emit @charset "UTF-8".
  * See: https://github.com/db-ux-design-system/core-web/issues/7525 */
 :root,
 :host {
