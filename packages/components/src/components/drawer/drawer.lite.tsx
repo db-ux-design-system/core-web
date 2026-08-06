@@ -38,12 +38,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (!event) return;
 
 			const isCloseButton = Boolean(
-				(event.target as HTMLElement)?.closest?.('[command="close"]')
+				(event.target as HTMLElement)?.closest?.(
+					'[command="request-close"]'
+				)
 			);
 
 			if (isCloseButton && !supportsCommandFor()) {
 				event.stopPropagation();
-				(_ref as HTMLDialogElement).close();
+				(_ref as HTMLDialogElement).requestClose();
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,7 +65,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					_ref.showModal();
 				}
 			} else if (!dialogOpen && _ref.open) {
-				_ref.close();
+				_ref.requestClose();
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

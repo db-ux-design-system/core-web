@@ -71,7 +71,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			<Slot name="endSlot" />
 			<DBButton
 				commandfor={state._dialogId}
-				command="close"
+				command="request-close"
 				id={props.closeButtonId}
 				icon="cross"
 				variant="ghost"
