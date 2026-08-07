@@ -1,7 +1,7 @@
 ---
 # Audit Fix for Dependabot PRs
 #
-# Runs `pnpm audit --fix` on dependabot PRs to opportunistically resolve
+# Runs `pnpm audit --fix=update` on dependabot PRs to opportunistically resolve
 # additional known vulnerabilities beyond what the current PR addresses.
 # If the lockfile changes, commits and pushes directly to the PR branch.
 # Runs after `init` to reuse the pnpm cache and avoid blocking the pipeline start.
@@ -32,8 +32,8 @@ jobs:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
-      - name: 🔒 Run pnpm audit --fix
-        run: pnpm audit --fix || true
+      - name: 🔒 Run pnpm audit --fix=update
+        run: pnpm audit --fix=update || true
 
       - name: 📦 Sync lockfile
         run: pnpm install --no-frozen-lockfile
