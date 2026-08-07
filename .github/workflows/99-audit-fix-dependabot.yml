@@ -21,10 +21,18 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - name: 🧬 Generate App token
+        id: generate-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
       - name: ⏬ Checkout PR branch
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.head_ref }}
+          token: ${{ steps.generate-token.outputs.token }}
           fetch-depth: 1
 
       - name: 🔄 Init Cache
