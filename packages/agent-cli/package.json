@@ -9,7 +9,7 @@
   },
   "license": "Apache-2.0",
   "bin": {
-    "@db-ux/agent-cli": "build/index.js"
+    "agent-cli": "build/index.js"
   },
   "main": "build/index.js",
   "files": [
