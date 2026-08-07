@@ -439,6 +439,7 @@ jobs:
         run: |
           if [[ $IS_CHANGESET_RELEASE == "true" ]]; then
             echo "🔍 Changeset release PR - validating core checks only."
+            resultLint="${{ needs.lint.result }}"
             resultBuildOutputs="${{ needs.build-outputs.result }}"
             resultTestPackages="${{ needs.test-components.result }}"
             resultTestFoundations="${{ needs.test-foundations.result }}"
@@ -446,6 +447,7 @@ jobs:
             resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
             resultTestScreenReader="${{ needs.test-screen-reader.result }}"
 
+            echo "resultLint: $resultLint"
             echo "resultBuildOutputs: $resultBuildOutputs"
             echo "resultTestPackages: $resultTestPackages"
             echo "resultTestFoundations: $resultTestFoundations"
@@ -453,7 +455,8 @@ jobs:
             echo "resultTestShowcaseReact: $resultTestShowcaseReact"
             echo "resultTestScreenReader: $resultTestScreenReader"
 
-            if [[ $resultBuildOutputs == "success" ]] && \
+            if [[ $resultLint == "success" ]] && \
+               [[ $resultBuildOutputs == "success" ]] && \
                [[ $resultTestPackages == "success" ]] && \
                [[ $resultTestFoundations == "success" ]] && \
                [[ $resultTestVitePlugin == "success" ]] && \
@@ -546,6 +549,7 @@ jobs:
           fi
     needs:
       [
+        lint,
         build-storybook-composition,
         build-storybook-angular,
         build-storybook-html,
