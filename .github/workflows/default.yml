@@ -108,7 +108,7 @@ jobs:
 
   test-vite-plugin:
     uses: ./.github/workflows/02-vite-plugin-test.yml
-    needs: [build-outputs, init]
+    needs: [build-outputs]
     secrets: inherit
 
   test-figma-code-connect:
