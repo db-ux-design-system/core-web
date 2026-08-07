@@ -33,18 +33,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement>) => {
-			if (!event) return;
+			if (!event || supportsCommandFor()) return;
 
-			const isCloseButton = Boolean(
+			if (
 				(event.target as HTMLElement)?.closest?.(
 					'[command="request-close"]'
 				)
-			);
-
-			if (isCloseButton && !supportsCommandFor()) {
-				event.stopPropagation();
+			) {
 				(_ref as HTMLDialogElement).requestClose();
 			}
 		},
