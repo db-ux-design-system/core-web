@@ -18,13 +18,6 @@ Ensure you are using Node.js v22+ and have access to the DB UX packages. The ser
 npx --yes @db-ux/mcp-server
 ```
 
-Or with pnpm:
-
-```bash
-pnpm i @db-ux/mcp-server --save-dev
-pnpm exec db-ux-mcp-server
-```
-
 > **Crucial Concept:** You do **not** run this command manually in your terminal for daily usage. If you do, it will look like the terminal is hanging because it is waiting for JSON-RPC messages over standard input (`stdio`). Instead, you will configure your IDE (Cursor, VS Code, IntelliJ) to run this command automatically in the background.
 
 ### 2. Configure your IDE
