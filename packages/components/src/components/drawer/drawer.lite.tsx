@@ -44,12 +44,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 				(_ref as HTMLDialogElement).requestClose();
 			}
 		},
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (event?: any) => {
-			if (props.onClose) {
-				props.onClose(event);
-			}
-		},
 		handleDialogOpen: () => {
 			if (!_ref) return;
 
@@ -68,6 +62,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleCancel: (event: any) => {
 			if (props.onCancel) {
 				props.onCancel(event);
+			}
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleClose: (event?: any) => {
+			if (props.onClose) {
+				props.onClose(event);
 			}
 		}
 	});
