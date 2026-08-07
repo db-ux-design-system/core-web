@@ -47,6 +47,10 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: 🎨 Format changed files
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        run: pnpm exec prettier --write pnpm-workspace.yaml
+
       - name: 📝 Commit and push changes
         if: ${{ steps.changes.outputs.changed == 'true' }}
         uses: ./.github/actions/auto-commit
