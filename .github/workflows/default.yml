@@ -50,7 +50,7 @@ jobs:
     secrets: inherit
 
   audit-fix:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    # if: ${{ github.actor == 'dependabot[bot]' }}
     uses: ./.github/workflows/99-audit-fix-dependabot.yml
     needs: [init]
     secrets: inherit
