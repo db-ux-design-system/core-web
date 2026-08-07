@@ -251,3 +251,5 @@ Ponyfill
 ponyfill
 ponyfills
 browserlist
+descope
+pnpms
