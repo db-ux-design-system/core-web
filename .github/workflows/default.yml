@@ -446,6 +446,7 @@ jobs:
             resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
             resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
             resultTestScreenReader="${{ needs.test-screen-reader.result }}"
+            resultPublishPackages="${{ needs.publish-dry-run.result }}"
 
             echo "resultLint: $resultLint"
             echo "resultBuildOutputs: $resultBuildOutputs"
@@ -454,6 +455,7 @@ jobs:
             echo "resultTestVitePlugin: $resultTestVitePlugin"
             echo "resultTestShowcaseReact: $resultTestShowcaseReact"
             echo "resultTestScreenReader: $resultTestScreenReader"
+            echo "resultPublishPackages: $resultPublishPackages"
 
             if [[ $resultLint == "success" ]] && \
                [[ $resultBuildOutputs == "success" ]] && \
@@ -461,7 +463,8 @@ jobs:
                [[ $resultTestFoundations == "success" ]] && \
                [[ $resultTestVitePlugin == "success" ]] && \
                [[ $resultTestShowcaseReact == "success" ]] && \
-               [[ $resultTestScreenReader == "success" ]]; then
+               [[ $resultTestScreenReader == "success" ]] && \
+               [[ $resultPublishPackages == "success" ]]; then
               echo "🎉 All changeset release checks passed."
               exit 0
             else
@@ -493,6 +496,7 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
+          resultPublishPackages="${{ needs.publish-dry-run.result }}"
 
           echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
           echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
@@ -516,6 +520,7 @@ jobs:
           echo "resultTestShowcaseVue: $resultTestShowcaseVue"
           echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
           echo "resultTestScreenReader: $resultTestScreenReader"
+          echo "resultPublishPackages: $resultPublishPackages"
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
@@ -540,7 +545,8 @@ jobs:
              [[ $resultBuildShowcaseNext == "success" ]] && \
              [[ $resultBuildShowcaseVue == "success" ]] && \
              [[ $resultBuildShowcaseNuxt == "success" ]] && \
-             [[ $resultBuildShowcasePatternhub == "success" ]]; then
+             [[ $resultBuildShowcasePatternhub == "success" ]] && \
+             [[ $resultPublishPackages == "success" || $resultPublishPackages == "skipped" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
@@ -574,6 +580,7 @@ jobs:
         test-showcase-patternhub,
         test-foundations,
         test-screen-reader,
+        publish-dry-run,
         init
       ]
 
@@ -606,8 +613,18 @@ jobs:
     needs: [deploy, init]
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
+  publish-dry-run:
+    if: ${{ !cancelled() && github.event_name != 'release' }}
+    uses: ./.github/workflows/03-publish-packages.yml
+    needs: [init, build-outputs]
+    secrets: inherit
+    with:
+      release: ${{ needs.init.outputs.release }}
+      preRelease: ${{ needs.init.outputs.preRelease }}
+      version: ${{ needs.init.outputs.version }}
+
   publishpackages:
-    if: ${{ !cancelled() && needs.checks-done.result == 'success' }}
+    if: ${{ !cancelled() && github.event_name == 'release' && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit
