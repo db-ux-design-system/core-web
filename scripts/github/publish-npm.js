@@ -12,19 +12,20 @@ const { VALID_SEMVER_VERSION } = process.env;
 const IS_RELEASE = process.env.RELEASE === 'true';
 let isPreRelease = process.env.PRE_RELEASE === 'true';
 const IS_CI = process.env.CI === 'true';
+const isDryRunOnly = process.env.DRY_RUN_ONLY === 'true';
 
 if (!VALID_SEMVER_VERSION) {
-	if (IS_CI) {
+	if (IS_CI && !isDryRunOnly) {
 		console.error('Version is missing!');
 		process.exit(1);
 	}
 
 	process.env.VALID_SEMVER_VERSION = '0.0.0-local';
-	console.warn('⚠️ No version set, using 0.0.0-local for local run');
+	console.warn('⚠️ No version set, using 0.0.0-local for local/dry-run');
 }
 
 if (!IS_RELEASE && !isPreRelease) {
-	if (IS_CI) {
+	if (IS_CI && !isDryRunOnly) {
 		console.error(
 			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
 		);
@@ -32,7 +33,7 @@ if (!IS_RELEASE && !isPreRelease) {
 	}
 
 	console.warn(
-		'⚠️ No RELEASE/PRE_RELEASE set, defaulting to PRE_RELEASE=true for local run'
+		'⚠️ No RELEASE/PRE_RELEASE set, defaulting to PRE_RELEASE=true for local/dry-run'
 	);
 	process.env.PRE_RELEASE = 'true';
 }
@@ -124,8 +125,14 @@ execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
 });
 console.log('🔑 Using trusted publishing for NPM');
 
-// Only run provenance (real publish) in CI, locally only dry-run
-for (const step of IS_CI ? ['dry-run', 'provenance'] : ['dry-run']) {
+// Only run provenance (real publish) in CI when not dry-run-only, locally only dry-run
+const publishSteps = isDryRunOnly
+	? ['dry-run']
+	: IS_CI
+		? ['dry-run', 'provenance']
+		: ['dry-run'];
+
+for (const step of publishSteps) {
 	for (const { dir, name: PACKAGE } of packages) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {
