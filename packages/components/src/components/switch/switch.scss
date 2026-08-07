@@ -124,6 +124,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 					visibility variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional;
 			}
+
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
 				content: var(--db-forced-colors-bullet) / "";
