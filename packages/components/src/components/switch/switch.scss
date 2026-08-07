@@ -124,11 +124,6 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 					visibility variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional;
 			}
-
-			// This is a workaround for forced-colors mode from browser
-			@media (forced-colors: active) {
-				content: "\2022" / "";
-			}
 		}
 
 		/* positioned at the end of the track: track length - 100% (thumb width) */
