@@ -1,9 +1,10 @@
 ---
 # Audit Fix for Dependabot PRs
 #
-# Runs `pnpm audit --fix` on dependabot PRs to opportunistically resolve
+# Runs `pnpm audit --fix=update` on dependabot PRs to opportunistically resolve
 # additional known vulnerabilities beyond what the current PR addresses.
-# If the lockfile changes, commits and pushes directly to the PR branch.
+# If any files change (lockfile, workspace config, package.json), commits and
+# pushes via the auto-commit action to re-trigger the pipeline.
 # Runs after `init` to reuse the pnpm cache and avoid blocking the pipeline start.
 
 name: Audit fix (Dependabot)
@@ -32,28 +33,32 @@ jobs:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
-      - name: 🔒 Run pnpm audit --fix
-        run: pnpm audit --fix || true
+      - name: 🔒 Run pnpm audit --fix=update
+        run: pnpm audit --fix=update || true
 
       - name: 📦 Sync lockfile
         run: pnpm install --no-frozen-lockfile
 
-      - name: 🔍 Check for lockfile changes
+      - name: 🔍 Check for changes
         id: changes
         run: |
-          if git diff --quiet pnpm-lock.yaml; then
+          if git diff --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: 📝 Commit and push lockfile
+      - name: 🎨 Format changed files
         if: ${{ steps.changes.outputs.changed == 'true' }}
-        env:
-          HUSKY: "0"
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pnpm-lock.yaml
-          git commit --message "fix: resolve additional audit vulnerabilities"
-          git push
+        run: pnpm exec prettier --write pnpm-workspace.yaml
+
+      - name: 📝 Commit and push changes
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-audit-fix"
+          commit-message: "fix: resolve additional audit vulnerabilities"
+          commit-files: "."
+          auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
