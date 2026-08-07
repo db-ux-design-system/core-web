@@ -3,8 +3,8 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/defaults/non-ascii-tokens.css";
 @use "../../styles/internal/form-components";
-@use "non-ascii-tokens.css";
 
 // We need some fixed padding here to avoid layout shifts
 /* stylelint-disable-next-line db-ux/use-spacings */
