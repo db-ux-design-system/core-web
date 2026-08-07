@@ -348,8 +348,8 @@ The `bin` field keys must be plain command names — **never include the `@` sco
 
 ```jsonc
 // ✅ Correct
-"bin": { "agent-cli": "build/index.js" }
-"bin": { "mcp-server": "./dist/index.js" }
+"bin": { "db-ux-agent-cli": "build/index.js" }
+"bin": { "db-ux-mcp-server": "./dist/index.js" }
 
 // ❌ Wrong — will not create a usable symlink
 "bin": { "@db-ux/agent-cli": "build/index.js" }
