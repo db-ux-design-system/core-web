@@ -344,14 +344,14 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 ### `bin` entries in package.json
 
-The `bin` field keys must be plain command names — **never include the `@` scope or `/`**. pnpms use the key as the symlink name in `node_modules/.bin/`, and `@` is not valid there.
+The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
 
 ```jsonc
-// ✅ Correct
-"bin": { "agent-cli": "build/index.js" }
-"bin": { "mcp-server": "./dist/index.js" }
+// ✅ Preferred — explicit, discoverable command name
+"bin": { "db-ux-agent-cli": "build/index.js" }
+"bin": { "db-ux-mcp-server": "./dist/index.js" }
 
-// ❌ Wrong — will not create a usable symlink
+// ⚠️ Avoid — relies on implicit basename normalization
 "bin": { "@db-ux/agent-cli": "build/index.js" }
 ```
 
