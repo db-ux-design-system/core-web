@@ -1,5 +1,9 @@
 # @db-ux/core-foundations
 
+## 5.1.2
+
+_version bump_
+
 ## 5.1.1
 
 _version bump_
