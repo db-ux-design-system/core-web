@@ -5,6 +5,7 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
+@use "../colors/default-color-icons";
 @use "non-ascii-tokens.css";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
