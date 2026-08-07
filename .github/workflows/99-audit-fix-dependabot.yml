@@ -47,22 +47,13 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: 🧬 Generate App token
-        if: ${{ steps.changes.outputs.changed == 'true' }}
-        id: generate-token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-        with:
-          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
-          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
-
       - name: 📝 Commit and push lockfile
         if: ${{ steps.changes.outputs.changed == 'true' }}
-        env:
-          HUSKY: "0"
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pnpm-lock.yaml
-          git commit --message "fix: resolve additional audit vulnerabilities"
-          git push
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-audit-fix"
+          commit-message: "fix: resolve additional audit vulnerabilities"
+          commit-files: "pnpm-lock.yaml"
+          auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
