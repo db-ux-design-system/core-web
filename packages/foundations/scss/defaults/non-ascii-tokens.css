@@ -3,6 +3,6 @@
  * sequences to literal characters, which would emit @charset "UTF-8".
  * See: https://github.com/db-ux-design-system/core-web/issues/7525 */
 :root {
-	--db-list-bullet: "\2022\a0";
+	--db-list-bullet: "\2022" + " ";
 	--db-forced-colors-bullet: "\2022";
 }
