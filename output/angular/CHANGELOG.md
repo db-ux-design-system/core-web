@@ -1,5 +1,13 @@
 # @db-ux/ngx-core-components
 
+## 5.1.2
+
+### Patch Changes
+
+- refactor(drawer): further simplified transition implementation - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
+- fix(drawer): incorrect styling of `position=absolute` variant - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
 ## 5.1.1
 
 _version bump_
