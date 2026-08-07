@@ -112,7 +112,16 @@ describe('text-or-children-required', () => {
 		valid: [
 			{ code: '<db-button text="Save"></db-button>' },
 			{ code: '<db-button>Save</db-button>' },
-			{ code: '<db-button [text]="myText"></db-button>' }
+			{ code: '<db-button [text]="myText"></db-button>' },
+			{
+				code: '<db-link routerLink="/account">{{ something }}</db-link>'
+			},
+			{
+				code: '<db-navigation-item backButtonText="Back"><a *dbNavigationContent routerLink="/overview">Home</a></db-navigation-item>'
+			},
+			{
+				code: '<db-button>{{ dynamicLabel }}</db-button>'
+			}
 		],
 		invalid: []
 	});

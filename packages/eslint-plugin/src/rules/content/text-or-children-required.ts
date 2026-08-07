@@ -45,7 +45,13 @@ export default {
 				(child: any) =>
 					(child.type === 'Text' && child.value.trim() !== '') ||
 					child.type === 'Element' ||
-					child.type === 'Element$1'
+					child.type === 'Element$1' ||
+					child.type === 'BoundText' ||
+					child.type === 'Template' ||
+					child.type === 'IfBlock' ||
+					child.type === 'ForLoopBlock' ||
+					child.type === 'SwitchBlock' ||
+					child.type === 'DeferredBlock'
 			);
 
 			if (text === undefined && !hasChildren) {
