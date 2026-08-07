@@ -2,6 +2,7 @@
 	[control]="formControl.value"
 	[model]="ngModel"
 	[plain]="plain"
+	[signalForms]="signalForm.values().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -22,6 +23,12 @@
 			[formControl]="formControl"
 			[options]="options"
 			label="formControl"
+		>
+		</db-custom-select>
+		<db-custom-select
+			[formField]="signalForm.values"
+			[options]="options"
+			label="signalForms"
 		>
 		</db-custom-select>
 	</fieldset>

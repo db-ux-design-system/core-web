@@ -189,20 +189,6 @@ export const checkFixMap: CheckConfig[] = [
 		fixCommands: []
 	},
 	{
-		name: 'test:migration',
-		checkCommand: {
-			command: 'pnpm',
-			args: [
-				'--filter',
-				'@db-ux/core-migration',
-				'run',
-				'test',
-				'--reporter=dot'
-			]
-		},
-		fixCommands: []
-	},
-	{
 		name: 'test:postcss-plugin',
 		checkCommand: {
 			command: 'pnpm',
@@ -233,6 +219,26 @@ export const checkFixMap: CheckConfig[] = [
 			args: ['--check', '.', '--log-level', 'warn']
 		},
 		fixCommands: []
+	},
+	{
+		name: 'check:snapshot-newlines',
+		checkCommand: {
+			command: 'node',
+			args: [
+				'scripts/strip-final-newline.js',
+				'showcases/screen-reader/__snapshots__/**/*.txt'
+			]
+		},
+		fixCommands: [
+			{
+				command: 'node',
+				args: [
+					'scripts/strip-final-newline.js',
+					'--fix',
+					'showcases/screen-reader/__snapshots__/**/*.txt'
+				]
+			}
+		]
 	}
 ];
 

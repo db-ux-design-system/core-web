@@ -2,6 +2,7 @@
 	[control]="formControl.value"
 	[model]="ngModel"
 	[plain]="plain"
+	[signalForms]="signalForm.checked().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -20,6 +21,10 @@
 			[formControl]="formControl"
 			label="formControl"
 			name="switch"
+		></db-switch>
+		<db-switch
+			[formField]="signalForm.checked"
+			label="signalForms"
 		></db-switch>
 	</fieldset>
 </app-form-wrapper>

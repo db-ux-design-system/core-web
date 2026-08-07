@@ -1,5 +1,99 @@
 # @db-ux/wc-core-components
 
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+### Patch Changes
+
+- refactor(drawer): further simplified transition implementation - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+### Minor Changes
+
+- feat: accept `autoComplete` (camelCase) as alias for `autocomplete` on form components - [see commit 6ac2c72](https://github.com/db-ux-design-system/core-web/commit/6ac2c722ea1a3d992218f78c4881b30c2c8c65cf)
+
+- refactor(drawer): replace JS transition workaround with CSS native functionality - [see commit 9370d63](https://github.com/db-ux-design-system/core-web/commit/9370d638176cf270e5700094c2a544d712c7413b)
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- fix(Header): missing close-button default label in drawer - [see commit ad24b1c](https://github.com/db-ux-design-system/core-web/commit/ad24b1cc24b0e34617941d874059cd69eb289d70)
+
+- fix: safe-guarding the access to `ref` in several components - [see commit 7b0e6da](https://github.com/db-ux-design-system/core-web/commit/7b0e6dac904748d7c61bc064963ab729a1c3c5b4)
+
+## 5.0.2
+
+### Patch Changes
+
+- fix(links): removing icon underline at 110% zoom level - [see commit dc5a0de](https://github.com/db-ux-design-system/core-web/commit/dc5a0de4067468f858a7b22e53c5565c14688949)
+
+- refactor: prevent placeholder from being hidden when select is opened - [see commit 1421a4f](https://github.com/db-ux-design-system/core-web/commit/1421a4fb9ed5fe7307960fba00e5932f3971665a)
+
+- fix(Angular & Stencil): attributePassing skips attributes - [see commit 90aa1ed](https://github.com/db-ux-design-system/core-web/commit/90aa1ed9cfc2daafc0bd4d199cb43a02784e7a60)
+
+## 5.0.1
+
+### Patch Changes
+
+- fix: drawer close handling by removing timeout state management - [see commit 45d93f0](https://github.com/db-ux-design-system/core-web/commit/45d93f010bf0caece669f96c6f00d288ebdf5363)
+
+- fix(select): icon overlapping the floating label - [see commit 9dff6ed](https://github.com/db-ux-design-system/core-web/commit/9dff6ed85fa5e2f6aebd89b3b2662e3a017b196e)
+
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: DBDrawer with breaking changes - [see commit 9189f6c](https://github.com/db-ux-design-system/core-web/commit/9189f6c24cd3a64f072c2f60f8c8127d1ed68c55):
+
+        - The `DBDrawer` component now requires a `DBDrawerHeader` component to be passed in the `header` slot.
+        - The `spacing` property has been removed from `DBDrawer`.
+        - The default `direction` has changed from `right` to `to-left`.
+        - The `width` property has been renamed to `containerSize`.
+        - The `direction` values have been renamed from `right`/`left` to `to-left`/`to-right`.
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+- refactor: rework DBTabs and DBTabItem - [see commit c50e522](https://github.com/db-ux-design-system/core-web/commit/c50e5221a4c6f3357ff52451291bdc5772267178):
+
+        - **Breaking:** DBTabItem now renders a native `button` (`role="tab"`) instead of a radio `input`.
+        - **Breaking:** Removed `checked`, `noText` and `name` from DBTabItem.
+        - **Breaking:** Renamed DBTabs props `onTabSelect` → `onIndexChange`, `alignment` → `tabItemAlignment`, `width` → `tabItemWidth`.
+        - **Breaking:** Deep linking derives the tab id from the `id` prop instead of `label`.
+        - Added truncation tooltip for overflowing tab labels and fixed vertical layout, trailing icon and tooltip placement.
+
+### Patch Changes
+
+- fix: remove dead `z-index` and `position: relative` from table-row interactive children - [see commit 7edb77b](https://github.com/db-ux-design-system/core-web/commit/7edb77bb9f90d4a79f238ebab362074d12f02f0f)
+
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: correct accordion variant backgrounds to match design (divider is transparent, card is level-1 including the open content area) - [see commit b611b84](https://github.com/db-ux-design-system/core-web/commit/b611b845e6aded8f50dd07f3727ebf5fdf902b69)
+
+- fix: use inline-flex with align-items center for link components to vertically center text with fixed height across densities - [see commit 5ebdef8](https://github.com/db-ux-design-system/core-web/commit/5ebdef89b14d56d901630aa61e098213704ba603)
+
+- fix: `key` special attributes need to be unique - [see commit 63eb9d5](https://github.com/db-ux-design-system/core-web/commit/63eb9d596e83f196ca00aee1de26a5a2e33b4864)
+
 ## 4.13.0
 
 ### Minor Changes

@@ -108,16 +108,22 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 > **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
-| Folder                      | Packages to include                                                                                                                                                                                 |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src`   | `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                           |
+| Folder                                                                                           | Packages to include                                                                                                                             |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src` — **only styling** (SCSS/CSS)                                          | `@db-ux/core-components`                                                                                                                        |
+| `packages/components/src` — **component logic or templates** (model.ts, Mitosis component files) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/components/src` — **both**                                                             | All five packages above                                                                                                                         |
+| `packages/foundations/scss`                                                                      | `@db-ux/core-foundations`                                                                                                                       |
+
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages only when shared code (components, `model.ts`, shared utils) or styling is changed.
 
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
 - **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
 - **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
+
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
 
 ### How to Add a Changeset
 
@@ -186,6 +192,19 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Generate new component**: `pnpm run generate:component`
 - **Component build location**: `packages/components/build/`
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
+- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
+
+### Working with Figma Code Connect
+
+- **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
+- **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
+    ```bash
+    pnpm --filter=react-figma run test:update
+    pnpm --filter=angular-figma run test:update
+    pnpm --filter=vue-figma run test:update
+    ```
+- **Run Figma tests**: `pnpm --filter=react-figma --filter=angular-figma --filter=vue-figma run test`
 
 ### Working with Styles
 
@@ -301,6 +320,14 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ## General code styles and approaches
 
+### Preserve comments during refactoring
+
+When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
+
+### Shift-left: HTML → CSS → JS
+
+Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
+
 ### Dependency pinning and package execution
 
 All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for supply-chain security, reproducibility, and deterministic builds. See `docs/dependency-update-strategy.md` for the full rationale.
@@ -315,6 +342,31 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
 
+### `bin` entries in package.json
+
+The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
+
+```jsonc
+// ✅ Preferred — explicit, discoverable command name
+"bin": { "db-ux-agent-cli": "build/index.js" }
+"bin": { "db-ux-mcp-server": "./dist/index.js" }
+
+// ⚠️ Avoid — relies on implicit basename normalization
+"bin": { "@db-ux/agent-cli": "build/index.js" }
+```
+
+### TypeScript execution
+
+Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
+
+```bash
+# ✅ Preferred
+node scripts/my-script.ts
+
+# ❌ Avoid
+pnpm exec tsx scripts/my-script.ts
+```
+
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
@@ -325,7 +377,6 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 - `packages/agent-cli/AGENTS.md` — CLI tool for generating AI agent instructions
 - `packages/components/AGENTS.md` — component authoring, Mitosis, changeset rules
 - `packages/foundations/AGENTS.md` — design tokens, assets, SCSS structure
-- `packages/migration/AGENTS.md` — migration CLI development
 - `packages/postcss-plugin/AGENTS.md` — PostCSS flatten plugin
 - `packages/stylelint/AGENTS.md` — Stylelint plugin rules
 - `packages/vite-plugin/AGENTS.md` — Vite plugin for optimized CSS

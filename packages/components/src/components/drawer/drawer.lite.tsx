@@ -7,16 +7,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
-	delay,
 	getBoolean,
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
-import DBButton from '../button/button.lite';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -25,7 +22,6 @@ useDefaultProps<DBDrawerProps>({});
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
-	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
 		backdropPointerDown: false,
@@ -50,8 +46,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			event?:
 				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void,
-			forceClose?: boolean
+				| void
 		) => {
 			if (!event) return;
 
@@ -64,20 +59,22 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 			} else {
-				if (forceClose) {
-					event.stopPropagation();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-
-				if (
+				const isBackdrop =
 					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
 					props.backdrop !== 'none' &&
-					state.backdropPointerDown
-				) {
+					state.backdropPointerDown;
+				const isCloseButton = Boolean(
+					(event.target as HTMLElement)?.closest?.(
+						'[data-action="close"]'
+					)
+				);
+
+				if (isBackdrop || isCloseButton) {
+					if (isCloseButton) {
+						event.stopPropagation();
+					}
+
 					if (props.onClose) {
 						props.onClose(event);
 					}
@@ -89,42 +86,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (_ref) {
-				const dialogOpen = getBoolean(props.open, 'open');
-				if (dialogOpen && !_ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).removeAttribute(
-							'data-transition'
-						);
-					}
-					if (state.isNotModal()) {
-						_ref.show();
-					} else {
-						// Set the closedby attribute imperatively: the JSX
-						// dialog type does not know this attribute yet, and it
-						// only applies to modal dialogs. "any" enables native
-						// light dismiss (backdrop click / Esc).
-						_ref.setAttribute('closedby', 'any');
-						_ref.showModal();
-					}
-					void delay(() => {
-						if (dialogContainerRef) {
-							(dialogContainerRef as HTMLDivElement).dataset[
-								'transition'
-							] = 'open';
-						}
-					}, 1);
+			if (!_ref) return;
+
+			const dialogOpen = getBoolean(props.open, 'open');
+			if (dialogOpen && !_ref.open) {
+				if (state.isNotModal()) {
+					_ref.show();
+				} else {
+					_ref.showModal();
 				}
-				if (!dialogOpen && _ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset[
-							'transition'
-						] = 'close';
-					}
-					void delay(() => {
-						_ref?.close();
-					}, 401);
-				}
+			} else if (!dialogOpen && _ref.open) {
+				_ref.close();
 			}
 		}
 	});
@@ -141,9 +113,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
+			let parent = refElement.parentElement;
+			// Skip host elements with display:contents (Angular/Stencil)
+			// which do not create a containing block.
+			if (parent && getComputedStyle(parent).display === 'contents') {
+				parent = parent.parentElement;
+			}
 			if (parent) {
-				parent.style.position = 'relative';
+				const pos = getComputedStyle(parent).position;
+				if (pos === 'static') {
+					parent.style.position = 'relative';
+				}
 			}
 		}
 	}, [_ref, state.initialized, props.position]);
@@ -161,27 +141,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-direction={props.direction}
 			data-variant={props.variant}>
 			<article
-				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
-				data-spacing={props.spacing}
-				data-width={props.width}
+				data-container-size={props.containerSize}
+				data-show-spacing={getBooleanAsString(
+					props.showSpacing ?? true,
+					'showSpacing'
+				)}
 				data-direction={props.direction}
 				data-rounded={getBooleanAsString(props.rounded, 'rounded')}>
-				<header class="db-drawer-header">
-					<div class="db-drawer-header-text">
-						<Slot name="drawerHeader" />
-					</div>
-					<DBButton
-						class="button-close-drawer"
-						id={props.closeButtonId}
-						icon="cross"
-						variant="ghost"
-						noText
-						onClick={(event) => state.handleClose(event, true)}>
-						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-					</DBButton>
-				</header>
+				<Slot name="header" />
 				<div class="db-drawer-content">{props.children}</div>
+				<Slot name="footer" />
 			</article>
 		</dialog>
 	);

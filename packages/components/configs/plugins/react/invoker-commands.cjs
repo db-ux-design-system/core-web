@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const path = require('node:path');
+const { createBuildPostHandler } = require('./augmentation-utils.cjs');
 
 /**
  * Type augmentation that extends React's `ButtonHTMLAttributes` with the
@@ -71,25 +71,7 @@ const appendInvokerCommandsAugmentation = (filePath) => {
 module.exports = () => ({
 	name: 'react-invoker-commands',
 	build: {
-		post: (targetContext, files) => {
-			if (!files) return;
-
-			// `configs/react/index.cjs` is also reused by the Storybook and
-			// Figma Code Connect builds, which do not emit a `src/index.ts`
-			// entrypoint. Missing it is therefore the expected case there, so we
-			// silently skip rather than warn (mirroring how esm-extensions stays
-			// quiet when there is nothing to do).
-			const indexFile = (files.nonComponentFiles || []).find(
-				(file) => file.outputFilePath === 'src/index.ts'
-			);
-			if (!indexFile) return;
-
-			const filePath = path.resolve(
-				indexFile.outputDir,
-				indexFile.outputFilePath
-			);
-			appendInvokerCommandsAugmentation(filePath);
-		}
+		post: createBuildPostHandler(appendInvokerCommandsAugmentation)
 	}
 });
 

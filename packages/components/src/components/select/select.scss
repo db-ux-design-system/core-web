@@ -23,10 +23,29 @@
 	// increased inline size for elements with icons
 	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+
+		label {
+			--db-form-component-padding-inline-start: calc(
+				#{select-components.$has-before-padding} +
+					#{variables.$db-spacing-fixed-sm}
+			);
+		}
 	}
 
 	select {
 		text-indent: select-components.$has-before-padding;
+
+		// Hide the placeholder once a non-placeholder option is selected
+		&:has(option:checked:not(.placeholder)) ~ [id$="-placeholder"] {
+			display: none;
+		}
+
+		// Hide an inserted empty `option` with `data-show-empty-option="false"`
+		// once a non-placeholder option is selected or the `select` is open
+		&:is(:has(option:checked:not(.placeholder)), :open)
+			option[data-show-empty-option="false"] {
+			display: none;
+		}
 	}
 
 	&[data-hide-label="true"] {
@@ -42,14 +61,5 @@
 
 	optgroup {
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
-	}
-
-	select:is(:has(option:checked:not(.placeholder)), :open) {
-		& ~ [id$="-placeholder"],
-		// Hide the placeholder and an inserted empty `option` with
-		// `data-show-empty-option="false"` once a non-placeholder option is selected or the `select` is open
-		option[data-show-empty-option="false"] {
-			display: none;
-		}
 	}
 }

@@ -4,10 +4,11 @@
 
 ```shell
 npx playwright install
-npx @guidepup/setup
+pnpm exec guidepup setup
+pnpm exec guidepup install
 ```
 
-If errors occur after the automatic setup of Guidepup (e.g. no connection to Voiceover), the setup must be executed manually. See [instructions](https://www.guidepup.dev/docs/guides/manual-voiceover-setup).
+If errors occur after the automatic setup of Guidepup (e.g. no connection to VoiceOver), the setup must be executed manually. See [instructions](https://www.guidepup.dev/docs/guides/manual-voiceover-setup).
 
 ## Start
 

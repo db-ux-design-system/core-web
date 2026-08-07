@@ -79,9 +79,13 @@ For non-DB applications, import only the component styles. The default theme or 
 
 For JavaScript framework-specific component imports:
 
+<!-- jscpd:ignore-start -->
+
 | Framework      | Node package                   | Import Pattern                                                                                                                      |
 | -------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | React          | `@db-ux/react-core-components` | `import { DBButton, DBInput } from '@db-ux/react-core-components'`                                                                  |
 | Angular        | `@db-ux/ngx-core-components`   | `import { DBButton } from '@db-ux/ngx-core-components'` (standalone components, add to `imports` array)                             |
 | Vue            | `@db-ux/v-core-components`     | `import { DBButton } from '@db-ux/v-core-components'`                                                                               |
 | Web Components | `@db-ux/wc-core-components`    | `import { defineCustomElements } from '@db-ux/wc-core-components'; defineCustomElements();` (call once, then use all `<db-*>` tags) |
+
+<!-- jscpd:ignore-end -->

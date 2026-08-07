@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { migrationData } from '../data/db-ui-migration-map';
-import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
+import { type ToolResult, error, MAX_JSON_OUTPUT, truncate } from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
 const MAX_SCAN_SIZE = 5 * 1024 * 1024;
@@ -22,8 +22,8 @@ type ScanFinding = {
 // ---------------------------------------------------------------------------
 // Regex Patterns
 //
-// ⚠️ These regexps use the /g flag and MUST only be used with
-// String.prototype.matchAll() — NEVER with regex.exec() or regex.test().
+// These regexps use the /g flag and MUST only be used with
+// String.prototype.matchAll() - NEVER with regex.exec() or regex.test().
 // matchAll() internally clones the regex, so shared lastIndex state is safe.
 // Using .exec() or .test() on module-level /g regexps causes subtle bugs
 // because lastIndex persists across calls.
@@ -64,7 +64,7 @@ const V2_PACKAGE_MAP: Record<string, string> = {
  */
 function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const findings: ScanFinding[] = [];
-	const ctx = line.length > 120 ? line.slice(0, 120) + '…' : line;
+	const ctx = line.length > 120 ? line.slice(0, 120) + '...' : line;
 
 	// --- V2 CSS classes (cmp-*, elm-*, rea-*) ---
 	for (const match of line.matchAll(RE_V2_CSS_CLASS)) {
@@ -91,8 +91,8 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 			type: 'component',
 			found: `<${old}>`,
 			context: ctx.trim(),
-			// V2 <db-*> maps to v3 <db-*> — flag for API review
-			suggestion: `${old} (v3) — review changed props/API`
+			// V2 <db-*> maps to v3 <db-*> - flag for API review
+			suggestion: `${old} (v3) - review changed props/API`
 		};
 
 		findings.push(finding);
@@ -159,7 +159,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  - v2 icon names (cross-referenced against the icon migration data)
 
  Returns a JSON report with line numbers, findings, and migration suggestions
- resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
+ resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.
  */
 export async function handleScanV2Migration({
 	filePath
@@ -170,29 +170,29 @@ export async function handleScanV2Migration({
 	const cwd = resolve(process.cwd()).replaceAll('\\', '/');
 	const absolutePath = resolve(cwd, filePath).replaceAll('\\', '/');
 
-	// 🔒 Path traversal protection: file must be within cwd()
+	// Path traversal protection: file must be within cwd()
 	if (!absolutePath.startsWith(cwd + '/')) {
-		return err(
+		return error(
 			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
 		);
 	}
 
 	if (!existsSync(absolutePath)) {
-		return err(
+		return error(
 			`Error: File not found: '${absolutePath}'. Provide an absolute path or a path relative to your workspace root.`
 		);
 	}
 
-	// 🔒 File size guard: reject files larger than 5 MB
+	// File size guard: reject files larger than 5 MB
 	const stats = await stat(absolutePath);
 	if (!stats.isFile()) {
-		return err(
+		return error(
 			`Error: Expected a file, but '${absolutePath}' is a directory.`
 		);
 	}
 
 	if (stats.size > MAX_SCAN_SIZE) {
-		return err(
+		return error(
 			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
 		);
 	}
@@ -200,9 +200,9 @@ export async function handleScanV2Migration({
 	// Read and scan
 	const content = await readFile(absolutePath, 'utf-8');
 
-	// 🔒 Binary file guard: reject files containing NUL bytes
+	// Binary file guard: reject files containing NUL bytes
 	if (content.slice(0, 8192).includes('\0')) {
-		return err(
+		return error(
 			'Error: File appears to be binary. Only text files can be scanned.'
 		);
 	}

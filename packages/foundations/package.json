@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "4.13.0",
+  "version": "5.1.3",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
@@ -21,10 +21,10 @@
     "build": "pnpm run build:01_normalize && pnpm run build:02_copy && pnpm run build:03_css && pnpm run build:04_tailwind && pnpm run build:05_postcss && pnpm run build:05_tailwind_scss && pnpm run build:06_ide && pnpm run build:06_ts",
     "build:01_normalize": "pnpm run copy-prepare:icon-overview && pnpm run copy-prepare:normalize",
     "build:02_copy": "pnpm run copy:scss",
-    "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles",
+    "build:03_css": "sass --no-source-map --no-charset --load-path=node_modules/ --load-path=../../node_modules/ build/styles",
     "build:04_tailwind": "cpr tailwind build/tailwind --overwrite",
     "build:05_postcss": "postcss build/styles/**/*.css --replace",
-    "build:05_tailwind_scss": "sass --no-source-map build/tailwind/theme",
+    "build:05_tailwind_scss": "sass --no-source-map --no-charset build/tailwind/theme",
     "build:06_ide": "cpr ide build/ide --overwrite",
     "build:06_ts": "tsc",
     "clean": "rm --recursive --force build",
@@ -56,13 +56,13 @@
     "cssnano": "8.0.2",
     "glob": "13.0.6",
     "nodemon": "3.1.14",
-    "postcss": "8.5.16",
+    "postcss": "8.5.25",
     "postcss-cli": "11.0.1",
-    "prettier": "3.9.4",
-    "sass": "1.101.0",
-    "tsx": "4.23.0",
+    "prettier": "3.9.6",
+    "sass": "1.102.0",
+    "tsx": "4.23.5",
     "typescript": "5.9.3",
-    "vite": "8.1.3"
+    "vite": "8.2.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

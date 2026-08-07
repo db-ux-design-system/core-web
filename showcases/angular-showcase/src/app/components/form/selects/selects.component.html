@@ -2,6 +2,7 @@
 	[control]="formControl.value"
 	[model]="ngModel"
 	[plain]="plain"
+	[signalForms]="signalForm.value().value()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -13,16 +14,25 @@
 			<option value="combobox-0">combobox-0</option>
 			<option value="combobox-1">combobox-1</option>
 			<option value="combobox-2">combobox-2</option>
+			<option value="combobox-3">combobox-3</option>
 		</db-select>
 		<db-select [(ngModel)]="ngModel" label="ngModel">
 			<option value="combobox-0">combobox-0</option>
 			<option value="combobox-1">combobox-1</option>
 			<option value="combobox-2">combobox-2</option>
+			<option value="combobox-3">combobox-3</option>
 		</db-select>
 		<db-select [formControl]="formControl" label="formControl">
 			<option value="combobox-0">combobox-0</option>
 			<option value="combobox-1">combobox-1</option>
 			<option value="combobox-2">combobox-2</option>
+			<option value="combobox-3">combobox-3</option>
+		</db-select>
+		<db-select [formField]="signalForm.value" label="signalForms">
+			<option value="combobox-0">combobox-0</option>
+			<option value="combobox-1">combobox-1</option>
+			<option value="combobox-2">combobox-2</option>
+			<option value="combobox-3">combobox-3</option>
 		</db-select>
 	</fieldset>
 </app-form-wrapper>

@@ -7,8 +7,8 @@ import {
 	waitForDBPage
 } from '../default';
 
-const stencil = isStencil(process.env.showcase);
-const angular = isAngular(process.env.showcase);
+const isStencilShowcase = isStencil(process.env.showcase);
+const isAngularShowcase = isAngular(process.env.showcase);
 
 const testFormComponents = async (
 	page: Page,
@@ -95,17 +95,19 @@ const testFormComponents = async (
 
 	const formResetButton = await page.getByTestId('reset-button').all();
 	for (const locator of formResetButton) {
-		if (await locator.isVisible()) {
-			await locator.click({ force: true });
-			// Wait until event for reset was fired
-			await page.waitForTimeout(1000);
+		if (!(await locator.isVisible())) {
+			continue;
 		}
+
+		await locator.click({ force: true });
+		// Wait until event for reset was fired
+		await page.waitForTimeout(1000);
 	}
 
 	for (const def of definition) {
 		const index = definition.indexOf(def);
 
-		if (angular && index === 1) {
+		if (isAngularShowcase && index === 1) {
 			// We skip ngModel for angular - reset isn't working there
 			continue;
 		}
@@ -156,16 +158,13 @@ test.describe('Home', () => {
 		await waitForDBPage(page);
 		const accessibilityScanResults = await new AxeBuilder({
 			page
-		})
-			// TODO: There might be an issue our implementation of which elements get which roles
-			.disableRules(['aria-allowed-role'])
-			.analyze();
+		}).analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
 
 	test('test inputs', async ({ page }) => {
-		if (stencil) {
+		if (isStencilShowcase) {
 			test.skip();
 		}
 
@@ -173,7 +172,7 @@ test.describe('Home', () => {
 	});
 
 	test('test textareas', async ({ page }) => {
-		if (stencil) {
+		if (isStencilShowcase) {
 			test.skip();
 		}
 
@@ -181,7 +180,7 @@ test.describe('Home', () => {
 	});
 
 	test('test selects', async ({ page }) => {
-		if (stencil) {
+		if (isStencilShowcase) {
 			test.skip();
 		}
 
@@ -189,7 +188,7 @@ test.describe('Home', () => {
 	});
 
 	test('test checkboxes', async ({ page }) => {
-		if (stencil) {
+		if (isStencilShowcase) {
 			test.skip();
 		}
 
@@ -197,7 +196,7 @@ test.describe('Home', () => {
 	});
 
 	test('test radios', async ({ page }) => {
-		if (stencil) {
+		if (isStencilShowcase) {
 			test.skip();
 		}
 
@@ -205,7 +204,7 @@ test.describe('Home', () => {
 	});
 
 	test('test switches', async ({ page }) => {
-		if (stencil) {
+		if (isStencilShowcase) {
 			test.skip();
 		}
 
@@ -216,7 +215,7 @@ test.describe('Home', () => {
 		// TODO: We need to investigate on this one how to enable it for WebKit again
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
-		if (stencil || isWebkit) {
+		if (isStencilShowcase || isWebkit) {
 			test.skip();
 		}
 

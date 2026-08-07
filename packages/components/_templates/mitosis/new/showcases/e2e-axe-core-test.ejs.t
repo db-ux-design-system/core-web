@@ -1,5 +1,5 @@
 ---
-to: "<%= showcases ? `../../showcases/e2e/${name}/${name}-axe-core.spec.ts` : null %>"
+to: "<%= (!subComponent && showcases) ? `../../showcases/e2e/${name}/${name}-axe-core.spec.ts` : null %>"
 ---
 import { test } from '@playwright/test';
 import { runAxeCoreTest } from '../default.ts';

@@ -15,8 +15,6 @@ export default function TabItemShowIconTrailing() {
 			<DBTabList>
 				<DBTabItem
 					label="(Default) False"
-					icon="x_placeholder"
-					showIcon={false}
 					iconTrailing="x_placeholder"
 					showIconTrailing={false}
 				/>
@@ -24,8 +22,6 @@ export default function TabItemShowIconTrailing() {
 			<DBTabList>
 				<DBTabItem
 					label="True"
-					icon="x_placeholder"
-					showIcon={true}
 					iconTrailing="x_placeholder"
 					showIconTrailing={true}
 				/>

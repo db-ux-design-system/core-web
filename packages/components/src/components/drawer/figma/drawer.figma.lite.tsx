@@ -1,5 +1,5 @@
 import { useMetadata } from '@builder.io/mitosis';
-import { DBDrawer } from '../index';
+import DBDrawer from '../drawer.lite';
 import { FigmaDrawerProps, drawers } from './drawer.figma';
 
 useMetadata({
@@ -7,5 +7,9 @@ useMetadata({
 });
 
 export default function DrawerFigmaLite(props: FigmaDrawerProps) {
-	return <DBDrawer>{props._children}</DBDrawer>;
+	return (
+		<DBDrawer
+			header={props._drawerHeader}
+			footer={props._drawerFooter}></DBDrawer>
+	);
 }

@@ -1,6 +1,6 @@
-import { uuid } from './index';
+import { AbstractDocumentListener } from './abstract-document-listener';
 
-export class DocumentClickListener {
+export class DocumentClickListener extends AbstractDocumentListener {
 	private static callbacks: Record<string, (event: any) => void> = {};
 	private static _instance: DocumentClickListener | null = null;
 
@@ -13,6 +13,8 @@ export class DocumentClickListener {
 	}
 
 	constructor() {
+		super();
+
 		if (DocumentClickListener._instance) {
 			return DocumentClickListener._instance;
 		}
@@ -24,13 +26,7 @@ export class DocumentClickListener {
 		}
 	}
 
-	public addCallback(callback: (event: any) => void) {
-		const callbackID = uuid();
-		DocumentClickListener.callbacks[callbackID] = callback;
-		return callbackID;
-	}
-
-	public removeCallback(id: string) {
-		delete DocumentClickListener.callbacks[id];
+	protected getCallbacks(): Record<string, (event: any) => void> {
+		return DocumentClickListener.callbacks;
 	}
 }

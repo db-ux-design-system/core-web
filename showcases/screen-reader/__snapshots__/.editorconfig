@@ -2,5 +2,8 @@
 # this file, please see the EditorConfig documentation:
 # https://editorconfig.org/
 
+# Screen-reader snapshot files must NOT have a trailing newline.
+# Playwright's toMatchSnapshot() compares byte-for-byte against the
+# in-memory string which has no trailing newline.
 [*.txt]
 insert_final_newline = false

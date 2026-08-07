@@ -5,7 +5,7 @@ import {
 	COMPONENT_NOT_FOUND_MSG,
 	MAX_FILE_CONTENT,
 	MAX_JSON_OUTPUT,
-	err,
+	error,
 	resolveSafePath,
 	truncate,
 	withTimeout
@@ -25,11 +25,11 @@ function resolveComponentPath(
 	try {
 		safePath = resolveSafePath(baseDir, componentName);
 	} catch {
-		return err(`Error: Invalid component name '${componentName}'.`);
+		return error(`Error: Invalid component name '${componentName}'.`);
 	}
 
 	if (!existsSync(safePath)) {
-		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+		return error(COMPONENT_NOT_FOUND_MSG(componentName));
 	}
 
 	return safePath;
@@ -64,7 +64,7 @@ export async function handleGetComponentDetails({
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
 	if (!comp) {
-		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+		return error(COMPONENT_NOT_FOUND_MSG(componentName));
 	}
 	return {
 		content: [
@@ -92,10 +92,10 @@ export async function handleGetComponentProps({
 	const manifest = await getManifest();
 	const comp = manifest.components[componentName];
 	if (!comp) {
-		return err(COMPONENT_NOT_FOUND_MSG(componentName));
+		return error(COMPONENT_NOT_FOUND_MSG(componentName));
 	}
 	if (!comp.props) {
-		return err(
+		return error(
 			`Error: Props file (model.ts) for component '${componentName}' not found.`
 		);
 	}
@@ -173,10 +173,10 @@ export async function handleGetExampleCode({
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
 				if (!comp) {
-					return err(COMPONENT_NOT_FOUND_MSG(componentName));
+					return error(COMPONENT_NOT_FOUND_MSG(componentName));
 				}
 				if (framework === 'html' || framework === 'vanilla') {
-					return err(
+					return error(
 						"Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage."
 					);
 				}
@@ -187,7 +187,7 @@ export async function handleGetExampleCode({
 					? directKey
 					: fuzzyMatchExample(Object.keys(fwExamples), kebab, ext);
 				if (!matchKey) {
-					return err(
+					return error(
 						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					);
 				}
@@ -204,7 +204,7 @@ export async function handleGetExampleCode({
 					]
 				};
 			} catch (error: any) {
-				return err(`Error: ${error.message}`);
+				return error(`Error: ${error.message}`);
 			}
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'

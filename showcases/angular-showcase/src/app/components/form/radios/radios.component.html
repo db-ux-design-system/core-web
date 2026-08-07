@@ -2,6 +2,7 @@
 	[control]="formControl.value"
 	[model]="ngModel"
 	[plain]="plain"
+	[signalForms]="signalFormsValue()"
 >
 	<fieldset>
 		<legend>Different form approaches</legend>
@@ -22,6 +23,12 @@
 			label="formControl"
 			name="radio-2"
 			value="radio-2"
+		></db-radio>
+		<db-radio
+			(change)="handleSignalFormsChange($event)"
+			label="signalForms"
+			name="radio-3"
+			value="radio-3"
 		></db-radio>
 	</fieldset>
 </app-form-wrapper>

@@ -1,2 +1,0 @@
-<DBButton icon="user">
-<a href="#" data-icon="swap_vertical">

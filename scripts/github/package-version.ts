@@ -3,8 +3,8 @@ import findVersions from 'find-versions';
 
 export const packageVersion = () => {
 	const { TAG } = process.env;
-	const RELEASE: boolean = process.env.RELEASE === 'true';
-	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
+	const IS_RELEASE: boolean = process.env.RELEASE === 'true';
+	const IS_PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
 	const { GITHUB_SHA } = process.env;
 
 	if (!TAG) {
@@ -19,7 +19,7 @@ export const packageVersion = () => {
 
 	const SEMVER_VERSION: string = findVersions(TAG).toString();
 
-	if (RELEASE) {
+	if (IS_RELEASE) {
 		if (SEMVER_VERSION.includes('-')) {
 			console.error(
 				`Version ${SEMVER_VERSION} contains hyphen, maybe you forgot to check the prerelease checkbox in GitHub release draft. A release should not have a hyphen!`
@@ -28,7 +28,7 @@ export const packageVersion = () => {
 		}
 
 		console.log(SEMVER_VERSION);
-	} else if (PRE_RELEASE) {
+	} else if (IS_PRE_RELEASE) {
 		if (SEMVER_VERSION.includes('-')) {
 			const GITHUB_SHA_SHORT: string = GITHUB_SHA.slice(0, 7);
 

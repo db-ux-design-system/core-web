@@ -7,16 +7,23 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_BURGER_MENU } from '../../shared/constants';
+import {
+	DEFAULT_BURGER_MENU,
+	DEFAULT_CLOSE_BUTTON
+} from '../../shared/constants';
 import { addAttributeToChildren, cls, getBoolean } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
+import DBDrawerFooter from '../drawer-footer/drawer-footer.lite';
+import DBDrawerHeader from '../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer/drawer.lite';
 import { DBHeaderProps, DBHeaderState } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBHeaderProps>({});
+useDefaultProps<DBHeaderProps>({
+	closeButtonText: DEFAULT_CLOSE_BUTTON
+});
 
 export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
@@ -97,13 +104,24 @@ export default function DBHeader(props: DBHeaderProps) {
 			</div>
 
 			<DBDrawer
-				class="db-header-drawer"
+				header={
+					<DBDrawerHeader
+						closeButtonId={props.closeButtonId}
+						closeButtonText={props.closeButtonText}
+						text={props.drawerHeaderText}
+					/>
+				}
+				className="db-header-drawer"
 				rounded
-				spacing="small"
-				closeButtonId={props.closeButtonId}
-				closeButtonText={props.closeButtonText}
 				open={getBoolean(props.drawerOpen)}
-				onClose={() => state.handleToggle()}>
+				onClose={() => state.handleToggle()}
+				footer={
+					<DBDrawerFooter>
+						<div class="db-header-secondary-action">
+							<Slot name="secondaryAction" />
+						</div>
+					</DBDrawerFooter>
+				}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
@@ -115,9 +133,6 @@ export default function DBHeader(props: DBHeaderProps) {
 					<div class="db-header-meta-navigation">
 						<Slot name="metaNavigation" />
 					</div>
-				</div>
-				<div class="db-header-secondary-action">
-					<Slot name="secondaryAction" />
 				</div>
 			</DBDrawer>
 		</header>

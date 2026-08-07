@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { COLOR } from '../../../../packages/components/src/shared/constants';
 import ComponentParser from '../../components/component-parser';
 
-const IframeComponent = () => {
+export default function IframeComponent() {
 	const router = useRouter();
 
 	const density = router.query.density ?? 'regular';
@@ -21,6 +21,4 @@ const IframeComponent = () => {
 			<ComponentParser componentsString={components} />
 		</div>
 	);
-};
-
-export default IframeComponent;
+}

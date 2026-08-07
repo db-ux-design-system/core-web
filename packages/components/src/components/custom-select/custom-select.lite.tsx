@@ -53,6 +53,8 @@ import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
 import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
@@ -121,7 +123,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		handleDocumentScroll: (event: any) => {
 			if (
 				event?.target?.contains &&
@@ -192,7 +195,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					);
 
 				state.handleAutoPlacement();
-				state._observer?.observe(detailsRef);
+				state._resizeObserverCallbackId =
+					new ResizeObserverListener().observe(
+						document.documentElement,
+						() => state.handleAutoPlacement()
+					);
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						detailsRef,
+						(entry) => {
+							if (!entry.isIntersecting && detailsRef?.open) {
+								detailsRef.open = false;
+							}
+						}
+					);
 				if (!event.target.dataset['test']) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
@@ -208,7 +224,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state._documentScrollListenerCallbackId!
 					);
 				}
-				state._observer?.unobserve(detailsRef);
+				if (state._resizeObserverCallbackId) {
+					new ResizeObserverListener().unobserve(
+						state._resizeObserverCallbackId!
+					);
+				}
+				if (state._intersectionObserverCallbackId) {
+					new IntersectionObserverListener().unobserve(
+						state._intersectionObserverCallbackId!
+					);
+				}
 			}
 		},
 		getNativeSelectValue: () => {
@@ -260,7 +285,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void | any
+			event?: ClickEvent<HTMLButtonElement> | Event | void
 		) => {
 			if (event) {
 				event.stopPropagation();
@@ -275,11 +300,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (dropdown) {
 					// This is a workaround for Angular
 					void delay(() => {
-						handleFixedDropdown(
-							dropdown,
-							detailsRef,
-							(props.placement as unknown as string) ?? 'bottom'
-						);
+						if (detailsRef) {
+							handleFixedDropdown(
+								dropdown,
+								detailsRef,
+								(props.placement as unknown as string) ??
+									'bottom'
+							);
+						}
 					}, 1);
 				}
 			}
@@ -468,7 +496,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							void delay(() => (detailsRef.open = false), 1);
+							void delay(() => {
+								if (detailsRef) {
+									detailsRef.open = false;
+								}
+							}, 1);
 						}
 					}
 				}
@@ -688,18 +720,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onMount(() => {
 		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-			state._observer = new IntersectionObserver((payload) => {
-				if (detailsRef) {
-					const entry = payload.find(
-						({ target }) => target === detailsRef
-					);
-					if (entry && !entry.isIntersecting && detailsRef.open) {
-						detailsRef.open = false;
-					}
-				}
-			});
-		}
 	});
 
 	onUpdate(() => {
@@ -920,6 +940,28 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUnMount(() => {
 		state.abortController?.abort();
+
+		// Clean up singleton observers if dropdown was open when unmounting
+		if (state._documentClickListenerCallbackId) {
+			new DocumentClickListener().removeCallback(
+				state._documentClickListenerCallbackId!
+			);
+		}
+		if (state._documentScrollListenerCallbackId) {
+			new DocumentScrollListener().removeCallback(
+				state._documentScrollListenerCallbackId!
+			);
+		}
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+		}
+		if (state._intersectionObserverCallbackId) {
+			new IntersectionObserverListener().unobserve(
+				state._intersectionObserverCallbackId!
+			);
+		}
 	});
 
 	function satisfyReact(event: any) {
@@ -951,6 +993,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
+				{/* ponytail: browser autofill will set the native value but state._values / summary would not sync; follow-up needed to wire onChange into handleOptionSelected */}
 				<select
 					role="none"
 					hidden
@@ -959,6 +1002,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={selectRef}
 					form={props.form}
 					name={props.name}
+					autocomplete={props.autoComplete ?? props.autocomplete}
 					data-custom-validity={state._validity}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}

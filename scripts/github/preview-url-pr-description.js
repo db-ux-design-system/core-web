@@ -7,7 +7,7 @@
  @param {import('@actions/github').GitHub} github - Octokit client from actions/github-script
  @param {object} context - GitHub Actions context
  */
-async function previewUrlPrDescription({ github, context }) {
+export default async function previewUrlPrDescription({ github, context }) {
 	const { owner, repo } = context.repo;
 	const pullNumber = context.payload.pull_request.number;
 	const headRef = context.payload.pull_request.head.ref;
@@ -67,5 +67,3 @@ async function previewUrlPrDescription({ github, context }) {
 		body
 	});
 }
-
-export default previewUrlPrDescription;
