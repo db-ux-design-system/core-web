@@ -342,6 +342,19 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
 
+### `bin` entries in package.json
+
+The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
+
+```jsonc
+// ✅ Preferred — explicit, discoverable command name
+"bin": { "db-ux-agent-cli": "build/index.js" }
+"bin": { "db-ux-mcp-server": "./dist/index.js" }
+
+// ⚠️ Avoid — relies on implicit basename normalization
+"bin": { "@db-ux/agent-cli": "build/index.js" }
+```
+
 ### TypeScript execution
 
 Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
