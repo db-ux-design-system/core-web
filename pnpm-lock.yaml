@@ -674,8 +674,8 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       publint:
-        specifier: 0.3.22
-        version: 0.3.22
+        specifier: 0.3.23
+        version: 0.3.23
       replace-in-file:
         specifier: 9.0.0
         version: 9.0.0
@@ -953,8 +953,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       dompurify:
-        specifier: 3.4.12
-        version: 3.4.12
+        specifier: 3.4.13
+        version: 3.4.13
       highlight.js:
         specifier: 11.11.1
         version: 11.11.1
@@ -9444,8 +9444,8 @@ packages:
   domino@2.1.7:
     resolution: {integrity: sha512-3rcXhx0ixJV2nj8J0tljzejTF73A35LVVdnTQu79UAqTBFEgYPMgGtykMuu/BDqaOZphATku1ddRUn/RtqUHYQ==}
 
-  dompurify@3.4.12:
-    resolution: {integrity: sha512-zQvGet8Z2sWbQhCmfFz/T5QWH2oBmjnqK3qvOjaqaNLrLEF912WamU+ohnTp0TCep/MFVHpdJuCZEdFOdTnEFg==}
+  dompurify@3.4.13:
+    resolution: {integrity: sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==}
 
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
@@ -13984,8 +13984,8 @@ packages:
   pstree.remy@1.1.8:
     resolution: {integrity: sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==}
 
-  publint@0.3.22:
-    resolution: {integrity: sha512-6Z/scsr5CA7APdwyF35EY88CqgDj1textWuY788DVTJYPCWVv/Wn9G6KmLnrVRnStgYcahqN4wCDLZGSbQJ69w==}
+  publint@0.3.23:
+    resolution: {integrity: sha512-5MQipUPcB7MWw84zLUkHrg/H/UBtk3LL+A0GngTTBSsiNJLQurMUaSIRG3edlOrRz4UFe0AOKK9TZdIWviV+jQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -23622,7 +23622,7 @@ snapshots:
 
   '@types/dompurify@3.2.0':
     dependencies:
-      dompurify: 3.4.12
+      dompurify: 3.4.13
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -26526,7 +26526,7 @@ snapshots:
 
   domino@2.1.7: {}
 
-  dompurify@3.4.12:
+  dompurify@3.4.13:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -32643,7 +32643,7 @@ snapshots:
 
   pstree.remy@1.1.8: {}
 
-  publint@0.3.22:
+  publint@0.3.23:
     dependencies:
       '@publint/pack': 0.1.6
       package-manager-detector: 1.8.0
