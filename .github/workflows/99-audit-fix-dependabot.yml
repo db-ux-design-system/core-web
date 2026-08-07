@@ -38,22 +38,22 @@ jobs:
       - name: 📦 Sync lockfile
         run: pnpm install --no-frozen-lockfile
 
-      - name: 🔍 Check for lockfile changes
+      - name: 🔍 Check for changes
         id: changes
         run: |
-          if git diff --quiet pnpm-lock.yaml; then
+          if git diff --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: 📝 Commit and push lockfile
+      - name: 📝 Commit and push changes
         if: ${{ steps.changes.outputs.changed == 'true' }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-audit-fix"
           commit-message: "fix: resolve additional audit vulnerabilities"
-          commit-files: "pnpm-lock.yaml"
+          commit-files: "."
           auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
