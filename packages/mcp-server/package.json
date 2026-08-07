@@ -12,8 +12,7 @@
     "node": ">=22.0.0"
   },
   "bin": {
-    "db-ux-mcp-server": "./dist/index.js",
-    "mcp-server": "./dist/index.js"
+    "db-ux-mcp-server": "./dist/index.js"
   },
   "exports": {
     ".": "./dist/index.js"
