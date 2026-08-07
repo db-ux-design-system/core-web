@@ -537,6 +537,7 @@ jobs:
         test-showcase-patternhub,
         test-foundations,
         test-screen-reader,
+        audit-fix,
         init
       ]
 
