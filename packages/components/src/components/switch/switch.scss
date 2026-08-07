@@ -3,9 +3,8 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/defaults/non-ascii-tokens.css";
 @use "../../styles/internal/form-components";
-
+/* switch css */
 // We need some fixed padding here to avoid layout shifts
 /* stylelint-disable-next-line db-ux/use-spacings */
 $switch-fixed-padding: helpers.px-to-rem(2);
@@ -127,7 +126,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: var(--db-forced-colors-bullet) / "";
+				content: "\2022" / "";
 			}
 		}
 
