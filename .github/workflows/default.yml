@@ -458,7 +458,7 @@ jobs:
                [[ $resultTestFoundations == "success" ]] && \
                [[ $resultTestVitePlugin == "success" ]] && \
                [[ $resultTestShowcaseReact == "success" ]] && \
-               [[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]]; then
+               [[ $resultTestScreenReader == "success" ]]; then
               echo "🎉 All changeset release checks passed."
               exit 0
             else
