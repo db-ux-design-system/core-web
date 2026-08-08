@@ -133,9 +133,9 @@
 	position: fixed;
 	inset: 0;
 
-	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+	// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
-	// can control hiding instead. Only needed when motion is enabled —
+	// can control hiding instead. Only needed when motion is enabled -
 	// with reduced motion, the UA's instant display:none is correct.
 	@media (prefers-reduced-motion: no-preference) {
 		// stylelint-disable-next-line declaration-no-important
@@ -311,7 +311,7 @@
 		block-size: var(--db-drawer-block-size);
 		overflow: clip;
 
-		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+		// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 		// stylelint-disable-next-line declaration-no-important
 		@media (prefers-reduced-motion: no-preference) {
 			display: flex !important;
