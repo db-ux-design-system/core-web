@@ -342,25 +342,7 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
 
-### Dependabot grouping
-
-When adding dependencies that belong to a logical group, **add a `groups:` entry** in `.github/dependabot.yml` so Dependabot updates them together in a single PR. This applies to:
-
-- Dependencies from the same npm org (e.g. `@tanstack/*`, `@inquirer/*`, `@mdx-js/*`)
-- A main package together with its plugins/addons (e.g. `storybook`, `@storybook*`, `*-storybook`)
-- Dependencies that were added together and are tightly coupled (e.g. `react` + `react-dom`)
-
-The heuristic: if updating one package without the others would likely break the build or cause version mismatches, they belong in a group.
-
-```yaml
-# Example: adding a new group for a hypothetical @acme org
-groups:
-    acme:
-        patterns:
-            - "@acme/*"
-```
-
-See the existing groups in `.github/dependabot.yml` for reference patterns.
+**Dependabot grouping:** When adding related dependencies (same org, main package + plugins, or tightly coupled sets), add a `groups:` entry in `.github/dependabot.yml`. See `docs/dependency-update-strategy.md` § "Dependabot grouping" for details and examples.
 
 ### `bin` entries in package.json
 
