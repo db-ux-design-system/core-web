@@ -249,3 +249,5 @@ nghost
 Ponyfill
 ponyfill
 ponyfills
+descope
+pnpms
