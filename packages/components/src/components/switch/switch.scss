@@ -126,7 +126,8 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: "\2022" / "";
+				border-style: solid;
+				border-width: calc(var(--db-icon-font-size) / 2 - 0.125rem);
 			}
 		}
 
@@ -157,6 +158,11 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 				background-color: colors.$db-adaptive-on-bg-inverted-default;
 				color: colors.$db-adaptive-on-bg-inverted-default;
 				margin: 0;
+
+				// This is a workaround for forced-colors mode from browser
+				@media (forced-colors: active) {
+					border-width: calc(var(--db-icon-font-size) / 2);
+				}
 			}
 		}
 
