@@ -6,11 +6,11 @@
 @use "../fonts";
 @use "../screen-sizes";
 @use "../colors/default-color-icons";
+@forward "../colors/default-color-mappings";
+@forward "../normalize";
 [data-sass-charset-mitigation] {
 	color: red;
 }
-@forward "../colors/default-color-mappings";
-@forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
 :root,
