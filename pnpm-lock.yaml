@@ -1297,8 +1297,8 @@ importers:
         specifier: 8.21.4
         version: 8.21.4(@angular/core@21.2.19(@angular/compiler@21.2.19)(rxjs@7.8.2)(zone.js@0.15.1))
       '@tanstack/match-sorter-utils':
-        specifier: 8.19.4
-        version: 8.19.4
+        specifier: 9.0.0
+        version: 9.0.0
       rxjs:
         specifier: 7.8.2
         version: 7.8.2
@@ -1425,8 +1425,8 @@ importers:
         specifier: 10.5.0
         version: 10.5.0
       '@tanstack/match-sorter-utils':
-        specifier: 8.19.4
-        version: 8.19.4
+        specifier: 9.0.0
+        version: 9.0.0
       '@tanstack/react-table':
         specifier: 8.21.3
         version: 8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -1501,8 +1501,8 @@ importers:
         specifier: 10.5.0
         version: 10.5.0
       '@tanstack/match-sorter-utils':
-        specifier: 8.19.4
-        version: 8.19.4
+        specifier: 9.0.0
+        version: 9.0.0
       '@tanstack/vue-table':
         specifier: 8.21.3
         version: 8.21.3(vue@3.5.40(typescript@5.9.3))
@@ -6865,9 +6865,9 @@ packages:
     peerDependencies:
       '@angular/core': '>=17'
 
-  '@tanstack/match-sorter-utils@8.19.4':
-    resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
-    engines: {node: '>=12'}
+  '@tanstack/match-sorter-utils@9.0.0':
+    resolution: {integrity: sha512-6oZrlzBw/hZGFhIomyN9WyFwoaRkI/Neu2OJhYblbHNMzIbcJDDtXN2SEpICZm+fh+MALUmwOaX8YWaH+E1dMg==}
+    engines: {node: '>=20'}
 
   '@tanstack/react-table@8.21.3':
     resolution: {integrity: sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==}
@@ -23425,7 +23425,7 @@ snapshots:
       '@tanstack/table-core': 8.21.3
       tslib: 2.8.1
 
-  '@tanstack/match-sorter-utils@8.19.4':
+  '@tanstack/match-sorter-utils@9.0.0':
     dependencies:
       remove-accents: 0.5.0
 
