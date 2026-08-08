@@ -300,6 +300,23 @@
 		}
 	}
 
+	// Backdrop click fallback: In browsers that don't support closedby,
+	// extend the close button's hit area to cover the full viewport.
+	// This makes clicking the "backdrop" area trigger the close button.
+	// Guarded by overlay support as a proxy — all closedby browsers support it.
+	// TODO: Remove after `closedby` is evergreen regarding our browserlist
+	&:not([data-backdrop="none"], [data-position="absolute"]) {
+		@supports not (overlay: auto) {
+			[command="request-close"]::after {
+				content: "";
+				position: fixed;
+				inset: 0;
+				z-index: -1;
+				cursor: default;
+			}
+		}
+	}
+
 	&[data-position="absolute"] {
 		--db-drawer-inline-size: 100%;
 		--db-drawer-block-size: 100%;

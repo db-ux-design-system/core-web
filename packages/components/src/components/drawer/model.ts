@@ -1,4 +1,5 @@
 import type {
+	CancelEventProps,
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
@@ -38,12 +39,16 @@ export const DrawerContainerSizeList = [
 ] as const;
 export type DrawerContainerSizeType = (typeof DrawerContainerSizeList)[number];
 
+export const DrawerClosedByList = ['any', 'closerequest', 'none'] as const;
+export type DrawerClosedByType = (typeof DrawerClosedByList)[number];
+
 export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
 	backdrop?: DrawerBackdropType;
+
 	/**
 	 * The direction attribute changes the position & animation of the drawer.
 	 * E.g. "to-left" slides from right screen border to the left.
@@ -94,6 +99,7 @@ export type DBDrawerDefaultProps = {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
+	CancelEventProps &
 	CloseEventProps<
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 		| GeneralKeyboardEvent<HTMLDialogElement>
@@ -101,9 +107,9 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
+	handleClick: (event: ClickEvent<HTMLDialogElement>) => void;
+	handleCancel: (event: any) => void;
 	isNotModal: () => boolean;
-	handleBackdropPointerDown: (event: any) => void;
-	backdropPointerDown: boolean;
 };
 
 export type DBDrawerState = DBDrawerDefaultState &
