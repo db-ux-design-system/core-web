@@ -55,4 +55,13 @@ minimumReleaseAgeExclude:
   - undici@6.28.0 || 7.29.0
   - fast-uri@3.1.5
 
+overrides:
+  # PostCSS patch releases ship type-incompatible .d.ts files; pnpm isolates
+  # different patches into separate node_modules paths, breaking TS compilation.
+  # Force the entire dependency graph to resolve a single copy via catalog.
+  postcss: "catalog:"
+
+catalog:
+  postcss: 8.5.26
+
 saveExact: true

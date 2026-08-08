@@ -41,7 +41,7 @@
   "devDependencies": {
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.3",
-    "postcss": "8.5.25",
+    "postcss": "catalog:",
     "typescript": "5.9.3",
     "vitest": "4.1.10"
   },
