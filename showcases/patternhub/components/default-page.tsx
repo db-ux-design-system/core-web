@@ -32,6 +32,20 @@ import VersionSwitcher from './version-switcher';
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
 
+/**
+ * Resolve current dark mode state from stored override or OS preference.
+ * Implements Lea Verou's two-state toggle model:
+ * @see https://lea.verou.me/blog/2026/dark-mode-toggles/
+ */
+const isDark = (): boolean => {
+	const stored = localStorage.getItem(colorModeKey);
+	if (stored !== null) {
+		return stored === 'dark';
+	}
+
+	return globalThis.matchMedia?.(preferDark).matches ?? false;
+};
+
 const DefaultPage = ({
 	children,
 	noNavigation
@@ -50,23 +64,47 @@ const DefaultPage = ({
 	const [breadcrumb, setBreadcrumb] = useState<NavigationItem[]>();
 	const router = useRouter();
 
-	const [mode, setMode] = useState(
-		localStorage.getItem(colorModeKey) === null
-			? globalThis.matchMedia?.(preferDark).matches
-			: localStorage.getItem(colorModeKey) === 'dark'
-	);
+	const [mode, setMode] = useState(isDark);
 
-	const setColorMode = useCallback((isDark: boolean) => {
-		localStorage.setItem(colorModeKey, isDark ? 'dark' : 'light');
-		setMode(isDark);
+	/**
+	 * Toggle color mode following Lea Verou's two-state model:
+	 * - If the target matches the OS preference, remove the override
+	 *   (revert to system default).
+	 * - If the target differs from the OS preference, store it as an
+	 *   explicit override.
+	 * This keeps the toggle at two visual states while correctly
+	 * modelling three underlying states (light / dark / system).
+	 * @see https://lea.verou.me/blog/2026/dark-mode-toggles/
+	 */
+	const toggleColorMode = useCallback(() => {
+		const isCurrentlyDark = isDark();
+		const isTargetDark = !isCurrentlyDark;
+		const isOsDark = globalThis.matchMedia?.(preferDark).matches ?? false;
+
+		if (isTargetDark === isOsDark) {
+			// Target matches OS — remove override, revert to system
+			localStorage.removeItem(colorModeKey);
+		} else {
+			// Target differs from OS — store explicit override
+			localStorage.setItem(colorModeKey, isTargetDark ? 'dark' : 'light');
+		}
+
+		setMode(isTargetDark);
 	}, []);
 
 	useEffect(() => {
-		globalThis
-			.matchMedia(preferDark)
-			.addEventListener('change', (event) => {
-				setColorMode(event.matches);
-			});
+		const mediaQuery = globalThis.matchMedia(preferDark);
+		const handleChange = () => {
+			// Only follow OS changes when no explicit override is stored
+			if (localStorage.getItem(colorModeKey) === null) {
+				setMode(mediaQuery.matches);
+			}
+		};
+
+		mediaQuery.addEventListener('change', handleChange);
+		return () => {
+			mediaQuery.removeEventListener('change', handleChange);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -154,9 +192,7 @@ const DefaultPage = ({
 									icon="sun"
 									iconTrailing="moon"
 									showLabel={false}
-									onChange={() => {
-										setColorMode(!mode);
-									}}>
+									onChange={toggleColorMode}>
 									<DBTooltip>
 										Switch color scheme (light/dark)
 									</DBTooltip>
