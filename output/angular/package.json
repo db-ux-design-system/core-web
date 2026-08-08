@@ -23,10 +23,10 @@
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.19",
+    "@angular-devkit/build-angular": "21.2.20",
     "@angular/animations": "21.2.18",
-    "@angular/build": "21.2.19",
-    "@angular/cli": "21.2.19",
+    "@angular/build": "21.2.20",
+    "@angular/cli": "21.2.20",
     "@angular/common": "21.2.19",
     "@angular/compiler": "21.2.19",
     "@angular/compiler-cli": "21.2.19",
