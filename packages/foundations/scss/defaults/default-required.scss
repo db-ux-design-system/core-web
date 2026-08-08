@@ -10,6 +10,10 @@
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
+// stylelint-disable-next-line block-no-empty
+body {
+}
+
 :root,
 :host {
 	@extend %db-font-size-md;

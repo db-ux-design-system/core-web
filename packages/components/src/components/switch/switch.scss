@@ -5,6 +5,10 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/form-components";
 
+// stylelint-disable-next-line block-no-empty
+.db-switch {
+}
+
 // We need some fixed padding here to avoid layout shifts
 /* stylelint-disable-next-line db-ux/use-spacings */
 $switch-fixed-padding: helpers.px-to-rem(2);
