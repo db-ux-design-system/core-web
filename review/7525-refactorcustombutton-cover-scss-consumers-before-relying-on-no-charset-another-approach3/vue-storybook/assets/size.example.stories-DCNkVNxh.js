@@ -1,0 +1,32 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{n as t,t as n}from"./infotext-wHbggDsD.js";var r,i,a,o,s;function c(){return(c=e((()=>{t(),{fn:r}=__STORYBOOK_MODULE_TEST__,i={title:`Components/DBInfotext/Size`,component:n,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{semantic:{control:`select`,options:[`adaptive`,`neutral`,`critical`,`informational`,`warning`,`successful`]},size:{control:`select`,options:[`small`,`medium`]},showIcon:{control:`boolean`},text:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},a={args:{default:`(Default) Medium`},render:e=>({components:{DBInfotext:n},setup(){return{args:e}},template:`<DBInfotext v-bind="args"   >${e.default}</DBInfotext>`})},o={args:{size:`small`,default:`Small`},render:e=>({components:{DBInfotext:n},setup(){return{args:e}},template:`<DBInfotext v-bind="args"   >${e.default}</DBInfotext>`})},a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    "default": \`(Default) Medium\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBInfotext
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<DBInfotext v-bind="args"   >\${args.default}</DBInfotext>\`
+  })
+}`,...a.parameters?.docs?.source}}},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "size": "small",
+    "default": \`Small\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBInfotext
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<DBInfotext v-bind="args"   >\${args.default}</DBInfotext>\`
+  })
+}`,...o.parameters?.docs?.source}}},s=[`DefaultMedium`,`Small`]})))()}c();export{a as DefaultMedium,o as Small,s as __namedExportsOrder,i as default};
