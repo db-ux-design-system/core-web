@@ -32,6 +32,9 @@ import VersionSwitcher from './version-switcher';
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
 
+const isOsModeDark = (): boolean =>
+	globalThis.matchMedia?.(preferDark).matches ?? false;
+
 /**
  * Resolve current dark mode state from stored override or OS preference.
  * Implements Lea Verou's two-state toggle model:
@@ -43,7 +46,7 @@ const isDark = (): boolean => {
 		return stored === 'dark';
 	}
 
-	return globalThis.matchMedia?.(preferDark).matches ?? false;
+	return isOsModeDark();
 };
 
 const DefaultPage = ({
@@ -78,9 +81,8 @@ const DefaultPage = ({
 	 */
 	const toggleColorMode = useCallback(() => {
 		const isTargetDark = !mode;
-		const isOsDark = globalThis.matchMedia?.(preferDark).matches ?? false;
 
-		if (isTargetDark === isOsDark) {
+		if (isTargetDark === isOsModeDark()) {
 			// Target matches OS — remove override, revert to system
 			localStorage.removeItem(colorModeKey);
 		} else {
