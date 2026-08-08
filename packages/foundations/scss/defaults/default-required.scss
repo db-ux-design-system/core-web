@@ -6,7 +6,6 @@
 @use "../fonts";
 @use "../screen-sizes";
 @use "../colors/default-color-icons";
-@use "non-ascii-tokens.css";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
@@ -128,7 +127,7 @@ iframe {
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
-	list-style-type: var(--db-list-bullet);
+	list-style-type: "\2022" + " ";
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};
