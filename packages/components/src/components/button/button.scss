@@ -6,6 +6,6 @@
 	@include button-components.set-basic-button;
 
 	&:is(:disabled, [aria-disabled="true"]) {
-		opacity: variables.$db-opacity-md;
+		--db-disabled-opacity: #{variables.$db-opacity-md};
 	}
 }

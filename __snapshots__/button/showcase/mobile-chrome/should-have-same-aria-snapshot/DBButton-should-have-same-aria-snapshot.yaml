@@ -12,6 +12,11 @@
   - link "Disabled"
   - button "(Default) False"
   - button "True" [disabled]
+  - link "Disabled Variant"
+  - button "Outlined" [disabled]
+  - button "Filled" [disabled]
+  - button "Ghost" [disabled]
+  - button "Brand" [disabled]
   - link "Size"
   - button "(Default) Medium"
   - button "Small"
