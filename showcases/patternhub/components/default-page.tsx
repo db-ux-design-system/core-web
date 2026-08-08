@@ -77,8 +77,7 @@ const DefaultPage = ({
 	 * @see https://lea.verou.me/blog/2026/dark-mode-toggles/
 	 */
 	const toggleColorMode = useCallback(() => {
-		const isCurrentlyDark = isDark();
-		const isTargetDark = !isCurrentlyDark;
+		const isTargetDark = !mode;
 		const isOsDark = globalThis.matchMedia?.(preferDark).matches ?? false;
 
 		if (isTargetDark === isOsDark) {
@@ -90,7 +89,7 @@ const DefaultPage = ({
 		}
 
 		setMode(isTargetDark);
-	}, []);
+	}, [mode]);
 
 	useEffect(() => {
 		const mediaQuery = globalThis.matchMedia(preferDark);
@@ -101,9 +100,20 @@ const DefaultPage = ({
 			}
 		};
 
+		const handleStorage = (event: StorageEvent) => {
+			if (event.key !== colorModeKey) {
+				return;
+			}
+
+			// Another tab changed the override — resolve current state
+			setMode(isDark());
+		};
+
 		mediaQuery.addEventListener('change', handleChange);
+		globalThis.addEventListener('storage', handleStorage);
 		return () => {
 			mediaQuery.removeEventListener('change', handleChange);
+			globalThis.removeEventListener('storage', handleStorage);
 		};
 	}, []);
 
