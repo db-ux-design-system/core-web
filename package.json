@@ -119,7 +119,7 @@
     "stylelint": "17.14.1",
     "stylelint-config-standard-scss": "17.0.0",
     "stylelint-use-logical": "2.1.3",
-    "tsx": "4.23.8",
+    "tsx": "4.23.9",
     "typescript": "5.9.3",
     "validate-branch-name": "1.3.2",
     "xo": "4.0.0"
