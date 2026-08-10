@@ -3,4 +3,4 @@
 "@db-ux/mcp-server": patch
 ---
 
-fix: remove invalid `@` org scope from `bin` entries in `package.json`
+fix: rename `bin` entries in `package.json` to use `db-ux-` prefix
