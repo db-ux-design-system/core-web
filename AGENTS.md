@@ -339,7 +339,16 @@ Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a poly
 
 ### No literal non-ASCII characters in SCSS
 
-Sass emits `@charset "UTF-8"` whenever it encounters a non-ASCII byte in source (e.g. `•`, ` `, `–` in `content:` values or list markers). This charset marker causes downstream BOM-conversion issues. **Never use literal non-ASCII characters in `.scss` files.** Instead, use CSS hex escape sequences (e.g. `"\2022"` for `•`, `"\a0"` for non-breaking space). If the value must remain unresolved by Sass (Sass resolves `"\2022"` back to a literal `•` during compilation), place it in a **plain `.css` file** that is `@import`-ed or `@use`-ed — Sass passes plain CSS through without interpreting escape sequences. See [`packages/foundations/scss/defaults/non-ascii-tokens.css`](packages/foundations/scss/defaults/non-ascii-tokens.css) for the canonical example and [PR #7526](https://github.com/db-ux-design-system/core-web/pull/7526) for background.
+Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.
+
+**Rules:**
+
+- **Never use literal non-ASCII characters in `.scss` files** — not in values, not in comments, nowhere.
+- In comments, use ASCII alternatives (e.g. `->` instead of `→`).
+- In CSS values, use hex escape sequences (e.g. `"\2022"` for `•`, `"\a0"` for non-breaking space).
+- If the value must remain unresolved by Sass (Sass resolves `"\2022"` back to a literal `•` during compilation), place it in a **plain `.css` file** that is `@import`-ed or `@use`-ed — Sass passes plain CSS through without interpreting escape sequences.
+
+See [`packages/foundations/scss/defaults/non-ascii-tokens.css`](packages/foundations/scss/defaults/non-ascii-tokens.css) for the canonical example and [PR #7526](https://github.com/db-ux-design-system/core-web/pull/7526) for background.
 
 ### Dependency pinning and package execution
 
