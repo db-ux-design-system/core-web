@@ -37,6 +37,7 @@ Add the following to your [MCP configuration file](https://code.visualstudio.com
     }
   }
 }
+```
 
 #### Option B: Configure for Kiro
 
