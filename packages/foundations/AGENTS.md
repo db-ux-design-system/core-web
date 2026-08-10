@@ -5,7 +5,7 @@ Provides all design tokens (colors, spacing, typography, elevation, density) and
 ## Key Facts
 
 - **ESM only** (`"type": "module"`)
-- Tokens are authored in SCSS (`scss/`) and compiled to CSS, SCSS variables, and Tailwind tokens
+- Tokens are authored in SCSS (`scss/`) and compiled to CSS, SCSS variables, and Tailwind tokens (exception: `scss/defaults/non-ascii-tokens.css` — see below)
 - Assets (icons, fonts) live in `assets/`
 - Build output goes to `build/`
 
@@ -45,6 +45,10 @@ Changes in `packages/foundations/scss` require a changeset for `@db-ux/core-foun
 - `major` — removed or renamed token (breaking for consumers)
 
 > **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, variable renaming without API impact), it does not require a changeset. Changesets are only necessary when the change affects token values, styling output, public APIs, or behavior visible to consumers.
+
+## Plain CSS Exception: `non-ascii-tokens.css`
+
+`scss/defaults/non-ascii-tokens.css` is intentionally a **plain CSS file**, not SCSS. It contains CSS custom properties whose values use hex escape sequences (e.g. `"\2022\a0"`). If this file were renamed to `.scss`, Sass would resolve those escapes to literal non-ASCII characters during compilation, which triggers an unwanted `@charset "UTF-8"` marker in the output. **Do not convert this file to SCSS or inline its contents into an SCSS file.** See [issue #7525](https://github.com/db-ux-design-system/core-web/issues/7525) for background.
 
 ## Important Notes
 
