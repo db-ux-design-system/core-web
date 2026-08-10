@@ -45,4 +45,21 @@
 
 		@extend %a11y-visually-hidden-text;
 	}
+
+	.db-control-panel-brand-text-container {
+		display: flex;
+		flex-direction: column;
+		justify-items: center;
+
+		&[data-has-sub-line="true"] {
+			@extend %db-overwrite-font-size-2xs;
+		}
+	}
+
+	.db-control-panel-brand-text-container,
+	.db-control-panel-brand-end-slot {
+		&:empty {
+			display: none;
+		}
+	}
 }

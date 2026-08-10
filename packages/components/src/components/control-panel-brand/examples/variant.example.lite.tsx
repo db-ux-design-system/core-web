@@ -16,20 +16,16 @@ export default function ControlPanelBrandVariant() {
 				<DBInfotext semantic="informational" size="small" icon="none">
 					(Default) With Logo
 				</DBInfotext>
-				<DBControlPanelBrand />
+				<DBControlPanelBrand>Functional</DBControlPanelBrand>
 			</div>
 			<div>
-				<DBInfotext semantic="informational" size="small" icon="none">
+				<DBControlPanelBrand data-logo="db-systel">
 					Logo Variant
-				</DBInfotext>
-				<DBControlPanelBrand data-logo="db-systel" />
+				</DBControlPanelBrand>
 			</div>
 			<div>
-				<DBInfotext semantic="informational" size="small" icon="none">
-					As Link
-				</DBInfotext>
 				<DBControlPanelBrand>
-					<a href="#">Home</a>
+					<a href="#"> As Link</a>
 				</DBControlPanelBrand>
 			</div>
 		</Fragment>

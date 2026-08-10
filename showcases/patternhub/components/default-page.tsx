@@ -136,7 +136,9 @@ const DefaultPage = ({
 			{router.isReady && !fullscreen && (
 				<DBShell data-mode={mode ? 'dark' : 'light'} fadeIn>
 					<DBControlPanelDesktop
-						brand={<DBControlPanelBrand></DBControlPanelBrand>}
+						brand={
+							<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+						}
 						primaryActions={
 							<PrimaryActions
 								mode={mode}

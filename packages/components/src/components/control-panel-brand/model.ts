@@ -1,9 +1,12 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { EndSlotProps, GlobalProps, GlobalState } from '../../shared/model';
 
-export type DBControlPanelBrandDefaultProps = {};
+export type DBControlPanelBrandDefaultProps = {
+	subLine?: string;
+};
 
 export type DBControlPanelBrandProps = DBControlPanelBrandDefaultProps &
-	GlobalProps;
+	GlobalProps &
+	EndSlotProps;
 
 export type DBControlPanelBrandDefaultState = {};
 

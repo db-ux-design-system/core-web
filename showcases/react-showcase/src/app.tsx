@@ -62,7 +62,11 @@ const App = () => {
 						<a href="#main-content">Skip navigation</a>
 					</DBControlPanelSkipNavigation>
 				}
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				brand={
+					<DBControlPanelBrand data-logo="db-systel">
+						Showcase
+					</DBControlPanelBrand>
+				}
 				primaryActions={
 					<PrimaryActions
 						color={color}
@@ -83,7 +87,11 @@ const App = () => {
 						<a href="#main-content">Skip navigation</a>
 					</DBControlPanelSkipNavigation>
 				}
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				brand={
+					<DBControlPanelBrand data-logo="db-systel">
+						Showcase
+					</DBControlPanelBrand>
+				}
 				meta={<MetaNavigation />}
 				primaryActions={
 					<PrimaryActions

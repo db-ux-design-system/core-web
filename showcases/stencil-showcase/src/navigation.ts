@@ -303,7 +303,7 @@ export function renderNavigation(): void {
 			</db-shell-sub-navigation>
 
 			<db-control-panel-desktop>
-				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>
+				<db-control-panel-brand slot="brand" data-logo="db-systel">Showcase</db-control-panel-brand>
 				${renderMetaNavigation()}
 				${renderPrimaryActions()}
 				${renderSecondaryActions()}
@@ -313,7 +313,7 @@ export function renderNavigation(): void {
 			<db-control-panel-mobile
 				drawer-header-text="Showcase"
 			>
-				<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand>
+				<db-control-panel-brand slot="brand" data-logo="db-systel">Showcase</db-control-panel-brand>
 				${renderMetaNavigation()}
 				${renderPrimaryActions()}
 				${renderSecondaryActions()}

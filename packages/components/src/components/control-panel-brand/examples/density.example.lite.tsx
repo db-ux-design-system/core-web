@@ -1,5 +1,4 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBInfotext from '../../infotext/infotext.lite';
 import DBControlPanelBrand from '../control-panel-brand.lite';
 import { StorybookControlPanelBrandArgTypes } from './_control-panel-brand.arg.types';
 
@@ -13,22 +12,19 @@ export default function ControlPanelBrandDensity() {
 	return (
 		<Fragment>
 			<div>
-				<DBInfotext semantic="informational" size="small" icon="none">
+				<DBControlPanelBrand data-density="functional">
 					Functional
-				</DBInfotext>
-				<DBControlPanelBrand data-density="functional" />
+				</DBControlPanelBrand>
 			</div>
 			<div>
-				<DBInfotext semantic="informational" size="small" icon="none">
+				<DBControlPanelBrand data-density="regular">
 					(Default) Regular
-				</DBInfotext>
-				<DBControlPanelBrand data-density="regular" />
+				</DBControlPanelBrand>
 			</div>
 			<div>
-				<DBInfotext semantic="informational" size="small" icon="none">
+				<DBControlPanelBrand data-density="expressive">
 					Expressive
-				</DBInfotext>
-				<DBControlPanelBrand data-density="expressive" />
+				</DBControlPanelBrand>
 			</div>
 		</Fragment>
 	);

@@ -57,7 +57,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<DBControlPanelMobile
 				id={controlPanelMobileId}
 				drawerHeaderText="Showcase"
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				brand={
+					<DBControlPanelBrand data-logo="db-systel">
+						Showcase
+					</DBControlPanelBrand>
+				}
 				primaryActions={
 					<PrimaryActions
 						color={color}
@@ -74,7 +78,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
 				id={controlPanelDesktopId}
-				brand={<DBControlPanelBrand data-logo="db-systel" />}
+				brand={
+					<DBControlPanelBrand data-logo="db-systel">
+						Showcase
+					</DBControlPanelBrand>
+				}
 				meta={<MetaNavigation />}
 				primaryActions={
 					<PrimaryActions
