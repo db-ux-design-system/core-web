@@ -89,7 +89,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			aspect-ratio: 1;
 
 			@media (forced-colors: active) {
-				border-radius: $variables.db-border-radius-full;
+				border-radius: variables.$db-border-radius-full;
 			}
 		}
 
