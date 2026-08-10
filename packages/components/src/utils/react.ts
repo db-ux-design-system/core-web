@@ -78,6 +78,9 @@ export const getRootProps = (
 		}, {});
 };
 
+type RefCleanup = () => void;
+type RefCallback<T> = (instance: T | null) => void | RefCleanup;
+
 /**
  * Creates a stable ref callback that assigns the element to both an internal
  * RefObject and an external forwarded ref (which may be a RefObject or
@@ -86,25 +89,58 @@ export const getRootProps = (
  * callback ref (e.g. react-hook-form's `register()`).
  *
  * The returned object has a stable `.current` setter so it can be used
- * directly as a ref without causing re-invocation on every render.
+ * directly as a ref without causing re-invocation on every render. Cleanup
+ * functions returned by React 19 callback refs are invoked when their element
+ * is cleared or replaced.
  *
  * @public
  */
 export const mergeRefs = <T>(
 	internalRef: { current: T | null },
-	externalRef: ((instance: T | null) => void) | { current: T | null } | null
+	externalRef: RefCallback<T> | { current: T | null } | null
 ): { current: T | null } => {
+	let currentInstance = internalRef.current;
+	let callbackAttached = false;
+	let callbackCleanup: RefCleanup | undefined;
+
+	const clearCallbackRef = (): void => {
+		const cleanup = callbackCleanup;
+		callbackAttached = false;
+		callbackCleanup = undefined;
+
+		if (cleanup) {
+			cleanup();
+		} else if (typeof externalRef === 'function') {
+			externalRef(null);
+		}
+	};
+
 	return {
 		set current(instance: T | null) {
+			if (currentInstance === instance) {
+				return;
+			}
+
+			if (callbackAttached) {
+				clearCallbackRef();
+			}
+
+			currentInstance = instance;
 			internalRef.current = instance;
+
 			if (typeof externalRef === 'function') {
-				externalRef(instance);
+				if (instance !== null) {
+					const cleanup = externalRef(instance);
+					callbackAttached = true;
+					callbackCleanup =
+						typeof cleanup === 'function' ? cleanup : undefined;
+				}
 			} else if (externalRef) {
 				externalRef.current = instance;
 			}
 		},
 		get current(): T | null {
-			return internalRef.current;
+			return currentInstance;
 		}
 	};
 };
