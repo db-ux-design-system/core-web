@@ -41,24 +41,28 @@ Add the following to your [MCP configuration file](https://code.visualstudio.com
 
 #### Option B: Configure for Kiro
 
-Add the following to your MCP configuration file (`.kiro/settings/mcp.json` in the workspace, or `~/.kiro/settings/mcp.json` for user-level):
+Add the following to your **user-level** config at `~/.kiro/settings/mcp.json` (not in the workspace — a token here might be committed to git by accident):
 
 ```json
 {
 	"mcpServers": {
 		"github": {
-          "type": "http",
-          "url": "https://api.githubcopilot.com/mcp/",
-          "headers": {
-            "Authorization": "Bearer XXX"
-          },
-          "autoApprove": [...]
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/",
+			"headers": {
+				"Authorization": "Bearer <your-token>"
+			},
+			"autoApprove": [...]
 		}
 	}
 }
 ```
 
-> **Note:** This configuration uses the GitHub CLI (`gh`) to dynamically retrieve your auth token. Make sure you have the [GitHub CLI](https://cli.github.com/) installed and authenticated (`gh auth login`).
+> **Important:** Never place a real token in the workspace-level `.kiro/settings/mcp.json` — use `~/.kiro/settings/mcp.json` instead.
+
+##### Required PAT scopes
+
+Create a [GitHub Personal Access Token](https://github.com/settings/personal-access-tokens/new) with the permissions you want to grant your AI tools. Refer to the [GitHub MCP Server documentation](https://github.com/github/github-mcp-server#readme) for details on recommended scopes.
 
 ### How the Triage Works
 
