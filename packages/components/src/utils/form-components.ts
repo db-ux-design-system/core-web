@@ -164,7 +164,7 @@ export const addValuePropertyInterceptor = (
 	let interceptorActive = false;
 
 	// Sync the value attribute from native user interactions (e.g. date picker)
-	// which bypass the JS setter.
+	// and after date/time type changes that may sanitize the current value.
 	const syncAttribute = () => {
 		if (!interceptorActive) return;
 		if (element.value) {
@@ -178,33 +178,31 @@ export const addValuePropertyInterceptor = (
 	element.addEventListener('change', syncAttribute, { signal });
 
 	const activateInterceptor = () => {
-		if (interceptorActive) {
-			return;
-		}
-		interceptorActive = true;
-		Object.defineProperty(element, 'value', {
-			configurable: true,
-			get: descriptor.get,
-			set(newValue: string) {
-				originalSet.call(this, newValue);
-				// Read the actual DOM value after the native setter,
-				// which may sanitize invalid date/time strings to "".
-				const actualValue = (this as HTMLInputElement).value;
-				if (actualValue) {
-					(this as HTMLInputElement).setAttribute(
-						'value',
-						actualValue
-					);
-				} else {
-					(this as HTMLInputElement).removeAttribute('value');
+		if (!interceptorActive) {
+			interceptorActive = true;
+			Object.defineProperty(element, 'value', {
+				configurable: true,
+				get: descriptor.get,
+				set(newValue: string) {
+					originalSet.call(this, newValue);
+					// Read the actual DOM value after the native setter,
+					// which may sanitize invalid date/time strings to "".
+					const actualValue = (this as HTMLInputElement).value;
+					if (actualValue) {
+						(this as HTMLInputElement).setAttribute(
+							'value',
+							actualValue
+						);
+					} else {
+						(this as HTMLInputElement).removeAttribute('value');
+					}
 				}
-			}
-		});
-
-		// Sync initial value if already set
-		if (element.value) {
-			element.setAttribute('value', element.value);
+			});
 		}
+
+		// Always resynchronize because switching between supported types can
+		// cause the browser to sanitize an existing value.
+		syncAttribute();
 	};
 
 	const deactivateInterceptor = () => {
