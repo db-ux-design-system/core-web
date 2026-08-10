@@ -106,63 +106,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (_ref) {
-				const dialogOpen = getBoolean(props.open, 'open');
-				if (dialogOpen && state._closeTimeoutId !== undefined) {
-					// Cancel any pending close timeout when reopening to prevent
-					// a stale timer from closing the dialog after it was reopened.
-					clearTimeout(state._closeTimeoutId);
-					state._closeTimeoutId = undefined;
-				}
-				if (dialogOpen && !_ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).removeAttribute(
-							'data-transition'
-						);
-					}
-					if (state.isNotModal()) {
-						_ref.show();
-					} else {
-						_ref.showModal();
-					}
-					void delay(() => {
-						if (dialogContainerRef) {
-							(dialogContainerRef as HTMLDivElement).dataset[
-								'transition'
-							] = 'open';
-						}
-					}, 1);
-				}
-				if (!dialogOpen && _ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset[
-							'transition'
-						] = 'close';
-					}
-					// Cancel any previously scheduled close to prevent double-close on rapid toggling
-					if (state._closeTimeoutId !== undefined) {
-						clearTimeout(state._closeTimeoutId);
-					}
+			if (!_ref) return;
 
-					// Read close delay from CSS (already accounts for prefers-reduced-motion)
-					let closeDelay = 0;
-					if (dialogContainerRef) {
-						const durationStr = getComputedStyle(
-							dialogContainerRef as HTMLDivElement
-						)
-							.getPropertyValue('--db-drawer-close-delay')
-							.trim();
-						const seconds = parseFloat(durationStr);
-						if (seconds > 0) {
-							closeDelay = seconds * 1000 + 1;
-						}
-					}
-
-					state._closeTimeoutId = window.setTimeout(() => {
-						_ref?.close();
-						state._closeTimeoutId = undefined;
-					}, closeDelay);
+			const dialogOpen = getBoolean(props.open, 'open');
+			if (dialogOpen && !_ref.open) {
+				if (state.isNotModal()) {
+					_ref.show();
+				} else {
+					_ref.showModal();
 				}
+			} else if (!dialogOpen && _ref.open) {
+				_ref.close();
 			}
 		}
 	});
