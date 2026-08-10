@@ -10,7 +10,6 @@ import {
 	DBDrawer,
 	DBDrawerFooter,
 	DBDrawerHeader,
-	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
