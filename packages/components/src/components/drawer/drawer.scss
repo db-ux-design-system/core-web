@@ -323,10 +323,6 @@
 			display: flex;
 		}
 
-		.db-drawer-container {
-			position: relative;
-		}
-
 		&:not([data-direction]),
 		&[data-direction="to-right"],
 		&[data-direction="to-left"] {
@@ -342,6 +338,10 @@
 		&[data-direction="to-left"],
 		&[data-direction="up"] {
 			align-items: flex-end;
+		}
+
+		.db-drawer-container {
+			position: relative;
 		}
 	}
 }

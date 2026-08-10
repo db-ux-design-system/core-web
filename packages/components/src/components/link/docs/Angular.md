@@ -22,3 +22,20 @@ import { DBLink } from '@db-ux/ngx-core-components';
 <!-- app.component.html -->
 <db-link href="#" variant="brand">Link</db-link>
 ```
+
+Angular router links can be applied directly to the component:
+
+```ts app.component.ts
+import { RouterLink } from '@angular/router';
+
+@Component({
+  // ...
+  imports: [..., DBLink, RouterLink],
+  // ...
+})
+```
+
+```html app.component.html
+<!-- app.component.html -->
+<db-link routerLink="/destination" variant="brand">Router link</db-link>
+```
