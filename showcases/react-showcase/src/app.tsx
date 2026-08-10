@@ -62,11 +62,7 @@ export default function App() {
 						<a href="#main-content">Skip navigation</a>
 					</DBControlPanelSkipNavigation>
 				}
-				brand={
-					<DBControlPanelBrand data-logo="db-systel">
-						Showcase
-					</DBControlPanelBrand>
-				}
+				brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 				primaryActions={
 					<PrimaryActions
 						color={color}
@@ -87,11 +83,7 @@ export default function App() {
 						<a href="#main-content">Skip navigation</a>
 					</DBControlPanelSkipNavigation>
 				}
-				brand={
-					<DBControlPanelBrand data-logo="db-systel">
-						Showcase
-					</DBControlPanelBrand>
-				}
+				brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 				meta={<MetaNavigation />}
 				primaryActions={
 					<PrimaryActions

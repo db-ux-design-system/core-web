@@ -12,6 +12,7 @@ import controlPanelMobileBurgerMenuLabelRequired from './rules/control-panel-mob
 import drawerHeaderRequired from './rules/drawer/drawer-header-required.js';
 import formLabelRequired from './rules/form/form-label-required.js';
 import formValidationMessageRequired from './rules/form/form-validation-message-required.js';
+import headerBurgerMenuLabelRequired from './rules/header/header-burger-menu-label-required.js';
 import preferIconAttribute from './rules/icon/prefer-icon-attribute.js';
 import inputFileTypeValidation from './rules/input/input-file-type-validation.js';
 import inputTypeRequired from './rules/input/input-type-required.js';

@@ -1,7 +1,7 @@
 import { EndSlotProps, GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBControlPanelBrandDefaultProps = {
-	subLine?: string;
+	secondLine?: string;
 };
 
 export type DBControlPanelBrandProps = DBControlPanelBrandDefaultProps &

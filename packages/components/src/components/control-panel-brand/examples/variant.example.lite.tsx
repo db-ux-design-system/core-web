@@ -19,14 +19,12 @@ export default function ControlPanelBrandVariant() {
 				<DBControlPanelBrand>Functional</DBControlPanelBrand>
 			</div>
 			<div>
-				<DBControlPanelBrand data-logo="db-systel">
-					Logo Variant
-				</DBControlPanelBrand>
+				<DBControlPanelBrand data-logo="db-systel" />
 			</div>
 			<div>
-				<DBControlPanelBrand>
-					<a href="#"> As Link</a>
-				</DBControlPanelBrand>
+				<a href="#">
+					<DBControlPanelBrand>As Link</DBControlPanelBrand>
+				</a>
 			</div>
 		</Fragment>
 	);

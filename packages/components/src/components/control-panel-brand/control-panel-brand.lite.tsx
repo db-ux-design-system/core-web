@@ -5,7 +5,7 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
-import { cls, getBoolean } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBControlPanelBrandProps } from './model';
 
 useMetadata({});
@@ -22,10 +22,10 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 			class={cls('db-control-panel-brand', props.className)}>
 			<div
 				class="db-control-panel-brand-text-container"
-				data-has-sub-line={getBoolean(props.subLine)}>
+				data-has-second-line={getBooleanAsString(!!props.secondLine)}>
 				{props.children}
-				<Show when={props.subLine}>
-					<span>{props.subLine}</span>
+				<Show when={props.secondLine}>
+					<span>{props.secondLine}</span>
 				</Show>
 			</div>
 			<div class="db-control-panel-brand-end-slot">

@@ -71,6 +71,7 @@
 	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
 	min-block-size: variables.$db-sizing-md;
+	gap: variables.$db-spacing-fixed-sm;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;

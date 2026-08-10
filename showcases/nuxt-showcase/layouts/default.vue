@@ -28,9 +28,7 @@ const {
 		<DBShell v-if="!page && !fullscreen" :fadeIn="true">
 			<DBControlPanelDesktop>
 				<template v-slot:brand>
-					<DBControlPanelBrand data-logo="db-systel"
-						>Showcase</DBControlPanelBrand
-					>
+					<DBControlPanelBrand>Showcase</DBControlPanelBrand>
 				</template>
 				<DBControlPanelNavigation>
 					{{ page }}
