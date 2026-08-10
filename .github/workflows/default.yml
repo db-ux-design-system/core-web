@@ -48,6 +48,12 @@ jobs:
     needs: [init]
     secrets: inherit
 
+  audit-fix:
+    if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+    uses: ./.github/workflows/99-audit-fix-dependabot.yml
+    needs: [init]
+    secrets: inherit
+
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
@@ -497,6 +503,7 @@ jobs:
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
           resultPublishPackages="${{ needs.publish-dry-run.result }}"
+          resultAuditFix="${{ needs.audit-fix.result }}"
 
           echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
           echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
@@ -546,7 +553,8 @@ jobs:
              [[ $resultBuildShowcaseVue == "success" ]] && \
              [[ $resultBuildShowcaseNuxt == "success" ]] && \
              [[ $resultBuildShowcasePatternhub == "success" ]] && \
-             [[ $resultPublishPackages == "success" || $resultPublishPackages == "skipped" ]]; then
+             [[ $resultPublishPackages == "success" || $resultPublishPackages == "skipped" ]] && \
+             [[ $resultAuditFix == "success" || $resultAuditFix == "skipped" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
@@ -581,6 +589,7 @@ jobs:
         test-foundations,
         test-screen-reader,
         publish-dry-run,
+        audit-fix,
         init
       ]
 

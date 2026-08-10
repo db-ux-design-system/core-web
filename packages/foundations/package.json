@@ -53,16 +53,16 @@
     "@db-ux/icon-font-tools": "0.3.6",
     "@playwright/test": "1.60.0",
     "cpr": "3.0.1",
-    "cssnano": "8.0.2",
+    "cssnano": "8.0.4",
     "glob": "13.0.6",
     "nodemon": "3.1.14",
-    "postcss": "8.5.25",
+    "postcss": "8.5.26",
     "postcss-cli": "11.0.1",
     "prettier": "3.9.6",
     "sass": "1.102.0",
-    "tsx": "4.23.5",
+    "tsx": "4.23.9",
     "typescript": "5.9.3",
-    "vite": "8.2.0"
+    "vite": "8.2.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
