@@ -24,12 +24,19 @@ The issue triage workflow requires the **GitHub MCP server** to be configured so
 
 ### Setting Up the GitHub MCP Server
 
-#### Option A: Install via VS Code Marketplace (for VS Code / GitHub Copilot users)
+#### Option A: Configure for VS Code
 
-If you're using VS Code with the GitHub MCP extension, you can install it directly:
+Add the following to your [MCP configuration file](https://code.visualstudio.com/docs/agent-customization/mcp-servers#_configure-the-mcpjson-file) (`.vscode/mcp.json` in the workspace, or `mcp.json` in [your user-profile](https://code.visualstudio.com/docs/configure/profiles)):
 
-- [GitHub MCP Server on VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
-- [GitHub MCP Server repository](https://github.com/github/github-mcp-server)
+```json
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp"
+    }
+  }
+}
 
 #### Option B: Configure for Kiro
 
