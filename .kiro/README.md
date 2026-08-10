@@ -30,12 +30,12 @@ Add the following to your [MCP configuration file](https://code.visualstudio.com
 
 ```json
 {
-  "servers": {
-    "github": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp"
-    }
-  }
+	"servers": {
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp"
+		}
+	}
 }
 ```
 
