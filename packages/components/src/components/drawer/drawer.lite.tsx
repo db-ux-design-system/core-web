@@ -8,13 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { ClickEvent } from '../../shared/model';
-import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	supportsCommandFor,
-	uuid
-} from '../../utils';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -34,7 +28,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			);
 		},
 		handleClick: (event: ClickEvent<HTMLDialogElement>) => {
-			if (!event || supportsCommandFor()) return;
+			if (!event) return;
 
 			if (
 				(event.target as HTMLElement)?.closest?.(
