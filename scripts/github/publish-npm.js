@@ -125,7 +125,9 @@ execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
 });
 console.log('🔑 Using trusted publishing for NPM');
 
-// Only run provenance (real publish) in CI when not dry-run-only, locally only dry-run
+// Dry-run only: validate publish without provenance (changeset PR / push to main)
+// Real release (CI): dry-run first, then provenance
+// Local: dry-run only
 const publishSteps = isDryRunOnly
 	? ['dry-run']
 	: IS_CI
