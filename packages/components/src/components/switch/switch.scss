@@ -127,7 +127,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
 				border-style: solid;
-				border-width: calc(1lh / 2 - var(--db-border-width-3xs) * 2);
+				border-width: calc(0.5lh - var(--db-border-width-3xs) * 2);
 			}
 		}
 
