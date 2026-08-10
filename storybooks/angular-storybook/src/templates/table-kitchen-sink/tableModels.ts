@@ -1,8 +1,9 @@
 import {
-	sortingFns,
+	sortFn_alphanumeric,
 	type ColumnDef,
 	type FilterFn,
-	type SortingFn
+	type SortFn,
+	type StockFeatures
 } from '@tanstack/angular-table';
 import {
 	compareItems,
@@ -11,18 +12,22 @@ import {
 } from '@tanstack/match-sorter-utils';
 import type { Person } from './makeData';
 
-export const fuzzyFilter: FilterFn<Person> = (
+export const fuzzyFilter: FilterFn<StockFeatures, Person> = (
 	row,
 	columnId,
 	value,
 	addMeta
 ) => {
 	const itemRank = rankItem(row.getValue(columnId), value);
-	addMeta(itemRank);
+	addMeta?.(itemRank);
 	return itemRank.passed;
 };
 
-export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
+export const fuzzySort: SortFn<StockFeatures, Person> = (
+	rowA,
+	rowB,
+	columnId
+) => {
 	let dir = 0;
 	if (rowA.columnFiltersMeta[columnId]) {
 		dir = compareItems(
@@ -30,14 +35,14 @@ export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
 			rowB.columnFiltersMeta[columnId]! as RankingInfo
 		);
 	}
-	return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
+	return dir === 0 ? sortFn_alphanumeric(rowA, rowB, columnId) : dir;
 };
 
 export type TableMeta = {
 	updateData: (rowIndex: number, columnId: string, value: unknown) => void;
 };
 
-export const columns: ColumnDef<Person>[] = [
+export const columns: ColumnDef<StockFeatures, Person>[] = [
 	{
 		id: 'select',
 		header: 'select-header',
@@ -67,7 +72,7 @@ export const columns: ColumnDef<Person>[] = [
 				cell: (info) => info.getValue(),
 				footer: (props) => props.column.id,
 				filterFn: fuzzyFilter,
-				sortingFn: fuzzySort
+				sortFn: fuzzySort
 			}
 		]
 	},

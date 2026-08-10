@@ -14,22 +14,23 @@ import {
 	type HeaderGroup,
 	type Row,
 	type RowData,
+	type StockFeatures,
 	type Table
 } from '@tanstack/react-table';
 import Filter from './Filter';
 
 function getTableHeaderGroups<T extends RowData>(
-	table: Table<T>
-): [HeaderGroup<T>[], HeaderGroup<T>[]] {
+	table: Table<StockFeatures, T>
+): [HeaderGroup<StockFeatures, T>[], HeaderGroup<StockFeatures, T>[]] {
 	return [table.getHeaderGroups(), table.getFooterGroups()];
 }
 
-function getRowGroup<T extends RowData>(row: Row<T>) {
+function getRowGroup<T extends RowData>(row: Row<StockFeatures, T>) {
 	return row.getVisibleCells();
 }
 
 type Props<T extends RowData> = {
-	table: Table<T>;
+	table: Table<StockFeatures, T>;
 };
 
 export function CustomTable<T extends RowData>({ table }: Props<T>) {

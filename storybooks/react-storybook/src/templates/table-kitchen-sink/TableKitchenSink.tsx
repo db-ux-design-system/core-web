@@ -1,15 +1,8 @@
 import {
 	type ColumnFiltersState,
-	getCoreRowModel,
-	getFacetedMinMaxValues,
-	getFacetedRowModel,
-	getFacetedUniqueValues,
-	getFilteredRowModel,
-	getGroupedRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
 	type GroupingState,
-	useReactTable
+	stockFeatures,
+	useTable
 } from '@tanstack/react-table';
 import { makeData } from './makeData';
 
@@ -32,24 +25,20 @@ export const TableKitchenSink = () => {
 	const [columnVisibility, setColumnVisibility] = useState({});
 	const [grouping, setGrouping] = useState<GroupingState>([]);
 	const [rowSelection, setRowSelection] = useState({});
-	const [columnPinning, setColumnPinning] = useState({});
+	const [columnPinning, setColumnPinning] = useState({
+		start: [] as string[],
+		end: [] as string[]
+	});
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState('');
 
 	const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
 
-	const table = useReactTable({
+	const table = useTable({
+		features: stockFeatures,
 		data,
 		columns,
 		defaultColumn,
-		getCoreRowModel: getCoreRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getGroupedRowModel: getGroupedRowModel(),
-		getFacetedRowModel: getFacetedRowModel(),
-		getFacetedUniqueValues: getFacetedUniqueValues(),
-		getFacetedMinMaxValues: getFacetedMinMaxValues(),
 		onColumnFiltersChange: setColumnFilters,
 		onGlobalFilterChange: setGlobalFilter,
 		globalFilterFn: fuzzyFilter,
@@ -72,6 +61,7 @@ export const TableKitchenSink = () => {
 		},
 		initialState: {
 			pagination: {
+				pageIndex: 0,
 				pageSize: 5
 			}
 		},
@@ -81,12 +71,12 @@ export const TableKitchenSink = () => {
 	});
 
 	useEffect(() => {
-		if (table.getState().columnFilters[0]?.id === 'fullName') {
-			if (table.getState().sorting[0]?.id !== 'fullName') {
+		if (table.state.columnFilters[0]?.id === 'fullName') {
+			if (table.state.sorting[0]?.id !== 'fullName') {
 				table.setSorting([{ id: 'fullName', desc: false }]);
 			}
 		}
-	}, [table.getState().columnFilters[0]?.id]);
+	}, [table.state.columnFilters[0]?.id]);
 
 	return (
 		<DBStack>
@@ -122,8 +112,8 @@ export const TableKitchenSink = () => {
 				hasPreviousPage={table.getCanPreviousPage()}
 				nextPage={table.nextPage}
 				pageCount={table.getPageCount()}
-				pageIndex={table.getState().pagination.pageIndex}
-				pageSize={table.getState().pagination.pageSize}
+				pageIndex={table.state.pagination.pageIndex}
+				pageSize={table.state.pagination.pageSize}
 				previousPage={table.previousPage}
 				setPageIndex={table.setPageIndex}
 				setPageSize={table.setPageSize}
