@@ -165,6 +165,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 				// This is a workaround for forced-colors mode from browser
 				@media (forced-colors: active) {
+					/* stylelint-disable-next-line db-ux/use-border-width */
 					border-width: 0.5lh;
 				}
 			}
