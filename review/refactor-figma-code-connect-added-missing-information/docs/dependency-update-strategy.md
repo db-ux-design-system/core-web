@@ -98,6 +98,27 @@ By enforcing `pnpm exec`, every tool invocation is bound to the same audited, pi
 
 Just like with GitHub Actions, Dependabot opens PRs for new versions of our npm dependencies. We get the security and stability benefits of pinning without falling behind on updates — each upgrade is reviewed, tested in CI, and merged deliberately.
 
+## Dependabot grouping
+
+Related dependencies are grouped in `.github/dependabot.yml` so Dependabot updates them together in a single PR. This avoids broken intermediate states where one package in a tightly coupled set is updated without the others.
+
+**When to add a new group:** whenever you introduce dependencies that belong together — update one without the others would likely break the build or cause version mismatches. Common patterns:
+
+- Dependencies from the same npm org (e.g. `@tanstack/*`, `@inquirer/*`, `@mdx-js/*`)
+- A main package together with its plugins/addons (e.g. `storybook`, `@storybook*`, `*-storybook`)
+- Dependencies that were added together and are tightly coupled (e.g. `react` + `react-dom`)
+
+Add the group to the `groups:` section of the npm ecosystem entry in `.github/dependabot.yml`:
+
+```yaml
+groups:
+    acme:
+        patterns:
+            - "@acme/*"
+```
+
+See the existing groups in that file for more examples (scoped orgs, main+plugins, framework sets).
+
 ## Resolving type-incompatible duplicate dependencies (catalog + override)
 
 Some packages — notably PostCSS — ship breaking `.d.ts` changes in patch releases. Because pnpm's strict isolation gives each resolution its own physical copy under `.pnpm/`, TypeScript treats two patch versions (e.g. `8.5.25` and `8.5.26`) as fundamentally different types, causing compilation failures like:
