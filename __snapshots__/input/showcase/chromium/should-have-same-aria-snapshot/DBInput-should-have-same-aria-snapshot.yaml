@@ -167,22 +167,27 @@
   - text: Label
   - textbox "Label":
     - /placeholder: Date
+    - text: 2025-01-15
   - status
   - text: Label
   - textbox "Label":
     - /placeholder: Datetime Local
+    - text: 2025-01-15T12:30
   - status
   - text: Label
   - textbox "Label":
     - /placeholder: Month
+    - text: 2025-01
   - status
   - text: Label
   - textbox "Label":
     - /placeholder: Time
+    - text: 12:30
   - status
   - text: Label
   - textbox "Label":
     - /placeholder: Week
+    - text: 2025-W03
   - status
   - link "Example Floating Label"
   - text: Label
